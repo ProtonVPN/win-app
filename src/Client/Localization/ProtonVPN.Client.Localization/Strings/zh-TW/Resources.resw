@@ -124,13 +124,13 @@
     <value>連線詳細資訊</value>
   </data>
   <data name="Automation_Properties_Connection_Card_Component">
-    <value>Connection card</value>
+    <value>連線資訊卡</value>
   </data>
   <data name="Automation_Properties_Features_Bar">
     <value>功能列</value>
   </data>
   <data name="Automation_Properties_Home_Page">
-    <value>Home page</value>
+    <value>主頁</value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
     <value>緊急終止開關設定</value>
@@ -151,7 +151,7 @@
     <value>連接埠轉送設定</value>
   </data>
   <data name="Automation_Properties_Profile_Page">
-    <value>Profile page</value>
+    <value>設定檔頁</value>
   </data>
   <data name="Automation_Properties_Settings_Advanced_Page">
     <value>進階設定</value>
@@ -194,7 +194,7 @@
     <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Add">
-    <value>新增</value>
+    <value>加入</value>
   </data>
   <data name="Common_Actions_Back">
     <value>返回</value>
@@ -222,14 +222,14 @@
     <value>刪除</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>中斷連線</value>
+    <value>斷線</value>
   </data>
   <data name="Common_Actions_DisconnectFrom">
     <value>與 {0} 中斷連線</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Duplicate">
-    <value>Duplicate</value>
+    <value>複製</value>
   </data>
   <data name="Common_Actions_Edit">
     <value>編輯</value>
@@ -238,13 +238,13 @@
     <value>啟用</value>
   </data>
   <data name="Common_Actions_Exit_ProtonVPN">
-    <value>Exit Proton VPN</value>
+    <value>退出 Proton VPN</value>
   </data>
   <data name="Common_Actions_GotIt">
-    <value>Got it</value>
+    <value>了解</value>
   </data>
   <data name="Common_Actions_Install">
-    <value>Install</value>
+    <value>安裝</value>
   </data>
   <data name="Common_Actions_Reconnect">
     <value>重新連線</value>
@@ -253,13 +253,13 @@
     <value>移除</value>
   </data>
   <data name="Common_Actions_Restart">
-    <value>Restart</value>
+    <value>重新啟動</value>
   </data>
   <data name="Common_Actions_Save">
-    <value>Save</value>
+    <value>儲存</value>
   </data>
   <data name="Common_Actions_TryAgain">
-    <value>Try again</value>
+    <value>再試一次</value>
   </data>
   <data name="Common_Actions_Update">
     <value>更新</value>
@@ -268,16 +268,16 @@
     <value>升級</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>Advanced kill switch is enabled. To use the internet without VPN, disable advanced kill switch.</value>
+    <value>進階緊急終止開關已啟用。若不使用 VPN 連上網際網路，請停用進階緊急終止開關。</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>Advanced kill switch is enabled. If you continue, you will be disconnected from the internet.</value>
+    <value>高階緊急終止開關已啟用如您繼續的話，您將會被中斷網絡連線</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>這將會中斷與 VPN 的連線。</value>
   </data>
   <data name="Common_Links_LearnMore">
-    <value>了解更多</value>
+    <value>瞭解更多</value>
   </data>
   <data name="Common_Message_Loading">
     <value>載入中‧‧‧</value>
@@ -292,19 +292,19 @@
     <value>正在更新...</value>
   </data>
   <data name="Common_Tags_New">
-    <value>NEW</value>
+    <value>新版本</value>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
-    <value>Get the most from your VPN by updating to the latest version of the app.</value>
+    <value>更新應用程式至最新版本，以充分發揮 VPN 的功能。</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues">
-    <value>You're more likely to have issues on older versions of Proton VPN.</value>
+    <value>舊版 Proton VPN 有可能會出現問題。</value>
   </data>
   <data name="Components_Update_UpdateAvailable">
-    <value>Update available</value>
+    <value>有可用更新</value>
   </data>
   <data name="Components_Update_UpdateProtonVpn">
-    <value>Update Proton VPN</value>
+    <value>更新 Proton VPN</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>編輯個人資料</value>
@@ -313,10 +313,10 @@
     <value>由於網路問題，Proton VPN 提取認證憑證失敗。</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>All servers in your selection are unavailable. Please expand your selection or try again later.</value>
+    <value>您選取的伺服器目前不適用。請擴大您的選取範圍或者稍後再試一次。</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
-    <value>Your server selection for '{0}' is unavailable. Select a different server or try again later.</value>
+    <value>您選取的伺服器 '{0}' 現在不適用。請選取另一不同的伺服器或者是稍後再試一次。</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
@@ -350,10 +350,10 @@
     <value>我們不清楚發生的原因。請稍後重試，或聯繫我們的客服團隊。</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
-    <value>View fixes</value>
+    <value>檢視修正</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Your device's WireGuard adapter is in use. Disconnect from any other VPN running on your device, then try again.</value>
+    <value>裝置的 WireGuard 配接器現正使用中。請將其它正在裝置上執行的 VPN 予以中斷連線，然後再試一次。</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>自動選擇自</value>
@@ -378,7 +378,7 @@
     <value>市</value>
   </data>
   <data name="Connections_City_Restricted">
-    <value>Servers in this city are available with VPN Plus</value>
+    <value>在此城市裡的伺服器可使用 VPN Plus</value>
   </data>
   <data name="Connections_City_UnderMaintenance">
     <value>此城市所有伺服器俱在維護中</value>
@@ -393,7 +393,7 @@
     <value>中轉國家</value>
   </data>
   <data name="Connections_Country_Restricted">
-    <value>Servers in this country are available with VPN Plus</value>
+    <value>在此國家裡的伺服器可使用 VPN Plus</value>
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>此國家所有伺服器俱在維護中</value>
@@ -405,22 +405,22 @@
     <value>Free 伺服器 ({0} 個)</value>
   </data>
   <data name="Connections_Gateway">
-    <value>Gateway</value>
+    <value>閘道</value>
   </data>
   <data name="Connections_Gateway_Restricted">
-    <value>Servers in this gateway are available with VPN Plus</value>
+    <value>在此閘道的伺服器可使用 VPN Plus</value>
   </data>
   <data name="Connections_Gateway_UnderMaintenance">
-    <value>All servers in this gateway are under maintenance</value>
+    <value>在此閘道中的所有伺服器現正在維護中</value>
   </data>
   <data name="Connections_Gateways_Other">
     <value>閘道 ({0})</value>
   </data>
   <data name="Connections_Gateways_Server">
-    <value>Dedicated server</value>
+    <value>專用伺服器</value>
   </data>
   <data name="Connections_Gateways_Servers_Other">
-    <value>Dedicated servers ({0})</value>
+    <value>專用伺服器數量 ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_Other">
     <value>P2P 城市 ({0})</value>
@@ -429,61 +429,61 @@
     <value>P2P 國家 ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P servers ({0})</value>
+    <value>P2P 伺服器數量 ({0})</value>
   </data>
   <data name="Connections_P2P_States_Other">
     <value>P2P州 ({0})</value>
   </data>
   <data name="Connections_Profiles_Other">
-    <value>Profiles ({0})</value>
+    <value>設定檔數量 ({0})</value>
   </data>
   <data name="Connections_Profiles_Create">
-    <value>Create profile</value>
+    <value>建立設定檔</value>
     <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
   </data>
   <data name="Connections_Profiles_Delete">
     <value>刪除設定檔</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
-    <value>'{0}' will be permanently removed.</value>
+    <value>'{0}' 將會永久移除。</value>
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
-    <value>Delete profile?</value>
+    <value>刪除設定檔?</value>
   </data>
   <data name="Connections_Profiles_Empty_Description">
-    <value>Profiles are saved connections with your choice of location, server, and protocol.</value>
+    <value>設定檔乃儲存您自選的位置、伺服器與通訊協定的連線。</value>
   </data>
   <data name="Connections_Profiles_Empty_Title">
     <value>建立您的首個設定檔</value>
   </data>
   <data name="Connections_Profiles_Location_Header">
-    <value>Select connection type and location</value>
+    <value>選擇連線類型與位置</value>
   </data>
   <data name="Connections_Profiles_Name">
-    <value>Give your profile a name</value>
+    <value>為您的設定檔命名</value>
   </data>
   <data name="Connections_Profiles_Name_Default">
-    <value>Untitled</value>
+    <value>無標題</value>
     <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
   </data>
   <data name="Connections_Profiles_Name_Duplicate">
-    <value>Copy of {0}</value>
+    <value>'{0}' 的副本</value>
     <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
   </data>
   <data name="Connections_Profiles_New">
-    <value>New profile</value>
+    <value>新設定檔</value>
     <comment>"New profile" is more appropriate when you already have a profile</comment>
   </data>
   <data name="Connections_Profiles_NotAvailable_Tooltip">
-    <value>Profiles are available with VPN Plus</value>
+    <value>適用 VPN Plus 的設定檔</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
   <data name="Connections_Profiles_Settings_Description">
-    <value>Profile settings will override your VPN settings when connected.</value>
+    <value>當連線時，設定檔將會覆寫 VPN 的設定值。</value>
   </data>
   <data name="Connections_Profiles_Settings_Header">
-    <value>Add custom settings</value>
+    <value>加入自訂設定值</value>
   </data>
   <data name="Connections_Random">
     <value>隨機</value>
@@ -507,19 +507,19 @@
     <value>Secure Core 伺服器 ({0})</value>
   </data>
   <data name="Connections_SeeCities_Other">
-    <value>See cities ({0})</value>
+    <value>可查閱城市數 ({0})</value>
   </data>
   <data name="Connections_SeeServers_Other">
-    <value>See servers ({0})</value>
+    <value>可查閱伺服器數 ({0})</value>
   </data>
   <data name="Connections_SeeStates_Other">
-    <value>See states ({0})</value>
+    <value>可查閱地區數 ({0})</value>
   </data>
   <data name="Connections_Server">
     <value>伺服器</value>
   </data>
   <data name="Connections_Server_Restricted">
-    <value>Server available with VPN Plus</value>
+    <value>適用 VPN Plus 的伺服器</value>
   </data>
   <data name="Connections_Server_UnderMaintenance">
     <value>伺服器維護中</value>
@@ -528,10 +528,10 @@
     <value>伺服器 ({0})</value>
   </data>
   <data name="Connections_State">
-    <value>State</value>
+    <value>州</value>
   </data>
   <data name="Connections_State_Restricted">
-    <value>Servers in this state are available with VPN Plus.</value>
+    <value>在此區域裡的伺服器可適用 VPN Plus。</value>
     <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_State_UnderMaintenance">
@@ -557,7 +557,7 @@
     <value>{0} 城市</value>
   </data>
   <data name="Countries_Connect">
-    <value>連接</value>
+    <value>連線</value>
     <comment>Connect button label on a country row in the countries tab</comment>
   </data>
   <data name="Countries_Fastest">
@@ -602,7 +602,7 @@
     <value>智慧路由</value>
   </data>
   <data name="Countries_Tor">
-    <value>Tor</value>
+    <value>洋蔥路由器</value>
   </data>
   <data name="Countries_TorServers">
     <value>Tor 伺服器 ({0})</value>
@@ -621,10 +621,10 @@
     <value>Fastest (excluding my country)</value>
   </data>
   <data name="Country_Random">
-    <value>Random country</value>
+    <value>隨選國家地區</value>
   </data>
   <data name="Country_Random_ExcludingMyCountry">
-    <value>Random (excluding my country)</value>
+    <value>隨機 (排除我所在的國家地區)</value>
   </data>
   <data name="Country_val_AD">
     <value>安道爾</value>
@@ -1681,7 +1681,7 @@
     <value>高(150ms+)</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Description">
-    <value>光速快</value>
+    <value>極速</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Title">
     <value>低(1ms - 50ms)</value>
@@ -1696,17 +1696,17 @@
     <value>什麼是延遲？</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers. Please use a different server for P2P.</value>
+    <value>因為您使用的伺服器不支援點對點 (P2P) 傳輸，因此您的連線已被停用。免費伺服器不支援 P2P。請使用不同的伺服器來啟用 P2P。</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
     <value>P2P traffic detected</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
-    <value>如何使用 P2P 進行種子下載</value>
+    <value>如何使用 P2P 下載種子</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_Title">
-    <value>P2P</value>
+    <value> P2P </value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer">
@@ -1848,7 +1848,7 @@
     <value>如何存取 Tor 網路</value>
   </data>
   <data name="Dialogs_Tor_Title">
-    <value>Tor</value>
+    <value>洋蔥路由器</value>
   </data>
   <data name="Dialogs_Troubleshooting_Antivirus">
     <value>Turn off antivirus or firewall software</value>
@@ -1952,6 +1952,36 @@
   <data name="Dialogs_Welcome_Title">
     <value>歡迎使用 Proton VPN</value>
   </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>You can now access your organization’s dedicated servers from the main sidebar.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>Gateways have moved</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>We refreshed our designs and moved some things around to make the app easier to use.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>New look, same protection</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>Add advanced profile settings like NetShield and port forwarding, or set up Connect and Go to launch a website of your choice when you connect.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Even more powerful profiles</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>It's now even easier to reconnect to your favorite servers. View your most recent connections on the home screen, or pin them for quick access.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>介紹「最近使用」</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>立即查看</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>What's new</value>
+  </data>
   <data name="Exit_Confirmation_Title">
     <value>Exit Proton VPN?</value>
   </data>
@@ -2046,7 +2076,7 @@
     <value>Block ads, trackers, and malware with VPN Plus.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
-    <value>Enjoy ad-free browsing</value>
+    <value>享受無廣告的瀏覽體驗</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Active port number</value>
@@ -2073,34 +2103,34 @@
     <value>Which VPN protocol is the best?</value>
   </data>
   <data name="Flyouts_Protocol_Title">
-    <value>Protocol</value>
+    <value>協定</value>
   </data>
   <data name="Flyouts_ServerLoad_Description">
-    <value>Server load shows how close a server is to its maximum capacity. A high server load can slow down your connection.</value>
+    <value>伺服器負載顯示與最高負載的佔比。伺服器高負載或會減慢您的連線。</value>
   </data>
   <data name="Flyouts_ServerLoad_High">
-    <value>High (91-100%)</value>
+    <value>高 (91-100%) </value>
   </data>
   <data name="Flyouts_ServerLoad_High_Description">
-    <value>VPN may run slower than normal</value>
+    <value>VPN 執行速度可能較正常為慢</value>
   </data>
   <data name="Flyouts_ServerLoad_KnowledgeBaseLinkTitle">
-    <value>What is server load?</value>
+    <value>什麼是伺服器負載？</value>
   </data>
   <data name="Flyouts_ServerLoad_Low">
-    <value>Low (1-75%)</value>
+    <value>低 (1-75%) </value>
   </data>
   <data name="Flyouts_ServerLoad_Low_Description">
-    <value>Lightning fast speeds</value>
+    <value>極速</value>
   </data>
   <data name="Flyouts_ServerLoad_Medium">
-    <value>Medium (76-90%)</value>
+    <value>中 (76-90%) </value>
   </data>
   <data name="Flyouts_ServerLoad_Medium_Description">
     <value>Unlikely to affect connection speed</value>
   </data>
   <data name="Flyouts_ServerLoad_Title">
-    <value>Server load</value>
+    <value>伺服器負載</value>
   </data>
   <data name="Flyouts_Speed_BoostedByVpnAccelerator">
     <value>用VPN加速器增速</value>
@@ -2112,24 +2142,24 @@
     <value>Speed is based on your device's current activity — it doesn't represent the VPN's maximum speed.</value>
   </data>
   <data name="Flyouts_Speed_Download">
-    <value>Download</value>
+    <value>下載</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
     <value>了解及提升 VPN 連接速度</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>Speed</value>
+    <value>速度</value>
   </data>
   <data name="Flyouts_Speed_Upload">
-    <value>Upload</value>
+    <value>上傳</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
     <value>Excluded apps ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
-    <value>Excluded IP addresses ({0})</value>
+    <value>排除的 IP 位址 ({0} 個)</value>
   </data>
   <data name="Flyouts_SplitTunneling_Info">
     <value>Allows trusted apps and IP addresses to connect without VPN protection</value>
@@ -2150,7 +2180,7 @@
     <value>Divide your traffic into VPN and non-VPN tunnels with VPN Plus.</value>
   </data>
   <data name="Flyouts_SplitTunneling_Upsell_Title">
-    <value>Get the best of both worlds</value>
+    <value>獲得兩全其美</value>
   </data>
   <data name="Flyouts_Volume_Description">
     <value>This shows how much traffic has routed through your VPN.</value>
@@ -2160,10 +2190,10 @@
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>Volume</value>
+    <value>音量</value>
   </data>
   <data name="Flyouts_Volume_Upload">
-    <value>Upload</value>
+    <value>上傳</value>
     <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
   </data>
   <data name="Format_Milliseconds">
@@ -2219,7 +2249,7 @@
     <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
   </data>
   <data name="Format_Speed_MegabytesPerSecond">
-    <value>{0} MB/秒</value>
+    <value>{0} MB/s</value>
     <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
   </data>
   <data name="Format_Speed_PetabytesPerSecond">
@@ -2227,7 +2257,7 @@
     <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
   </data>
   <data name="Format_Speed_TerabytesPerSecond">
-    <value>{0} TB/秒</value>
+    <value>{0} TB/s</value>
     <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
   </data>
   <data name="Format_Time_Day_Other">
@@ -2311,7 +2341,7 @@
     <value>安全瀏覽自</value>
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
-    <value>正在連接到...</value>
+    <value>連接到...</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
     <value>預設連線</value>
@@ -2369,10 +2399,10 @@
     <value>我的 IP</value>
   </data>
   <data name="Home_ConnectionDetails_Protected">
-    <value>已受保護</value>
+    <value>受保護</value>
   </data>
   <data name="Home_ConnectionDetails_Protocol">
-    <value>通訊協定</value>
+    <value>協定</value>
   </data>
   <data name="Home_ConnectionDetails_Server">
     <value>伺服器</value>
@@ -2481,28 +2511,28 @@
     <value>移除釘選</value>
   </data>
   <data name="Home_TitleBar_Menu_About">
-    <value>About</value>
+    <value>關於</value>
   </data>
   <data name="Home_TitleBar_Menu_Account">
-    <value>Account</value>
+    <value>帳號</value>
   </data>
   <data name="Home_TitleBar_Menu_ExitTheApp">
     <value>Exit the app</value>
   </data>
   <data name="Home_TitleBar_Menu_Help">
-    <value>Help</value>
+    <value>幫助</value>
   </data>
   <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
-    <value>What's the issue?</value>
+    <value>發生什麼事了？</value>
   </data>
   <data name="Home_TitleBar_Menu_Settings">
-    <value>Settings</value>
+    <value>設定</value>
   </data>
   <data name="Home_TitleBar_Menu_Signout">
-    <value>Sign out</value>
+    <value>登出</value>
   </data>
   <data name="Home_TitleBar_Menu_UpdateNow">
-    <value>Update now</value>
+    <value>立即更新</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
     <value>有可用更新</value>
@@ -2521,7 +2551,7 @@
     <value>您目前處於未受保護狀態</value>
   </data>
   <data name="Home_VpnStatus_Title_Connected">
-    <value>已受保護</value>
+    <value>受保護</value>
   </data>
   <data name="LoadingPage_Tip">
     <value>A better world starts with privacy and digital freedom.</value>
@@ -2592,7 +2622,7 @@
     <value>To protect your IP address, kill switch is blocking your internet connection.</value>
   </data>
   <data name="Notifications_PortForwarding_CopyPortNumber">
-    <value>Copy port number</value>
+    <value>複製連接埠號碼</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>在您的 BitTorrent 應用程式設定此連接埠號以取得更快的速度。</value>
@@ -2654,7 +2684,7 @@
     <value>What is a VPN profile?</value>
   </data>
   <data name="Overlay_Profile_Title">
-    <value>Profiles</value>
+    <value>配置</value>
   </data>
   <data name="Overlay_SecureCore_Description1">
     <value>Secure Core connects you to your destination server via a second, maximum security VPN server.</value>
@@ -2700,7 +2730,7 @@ VPN 連線</value>
     <value>高 (91-100%) </value>
   </data>
   <data name="Overlay_ServerLoad_LearnMore">
-    <value>What is server load?</value>
+    <value>什麼是伺服器負載？</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Description">
     <value>極速</value>
@@ -2715,7 +2745,7 @@ VPN 連線</value>
     <value>中 (76-90%) </value>
   </data>
   <data name="Overlay_ServerLoad_Title">
-    <value>Server Load</value>
+    <value>伺服器負載</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
     <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.</value>
@@ -2742,10 +2772,10 @@ VPN 連線</value>
     <value>使用任何瀏覽器連線到 Tor 伺服器訪問隱藏服務和隱蔽(Onion)網站。 </value>
   </data>
   <data name="Overlay_Tor_LearnMore">
-    <value>How to access the Tor network</value>
+    <value>如何存取 Tor 網路</value>
   </data>
   <data name="Overlay_Tor_Title">
-    <value>Tor</value>
+    <value>洋蔥路由器</value>
   </data>
   <data name="Profile_CustomSettings_Description">
     <value>Profile settings will override your VPN settings when connected.</value>
@@ -2781,7 +2811,7 @@ VPN 連線</value>
     <value>This will change the NAT type for this profile to Strict (type 3).</value>
   </data>
   <data name="Profiles_Default_Gaming">
-    <value>Gaming</value>
+    <value>遊戲</value>
   </data>
   <data name="Profiles_Default_MaxSecurity">
     <value>Max security</value>
@@ -2790,22 +2820,22 @@ VPN 連線</value>
     <value>Office</value>
   </data>
   <data name="Profiles_Default_P2P">
-    <value>P2P</value>
+    <value> P2P </value>
   </data>
   <data name="Profiles_Default_RandomConnection">
     <value>Random connection</value>
   </data>
   <data name="Profiles_Default_Streaming">
-    <value>Streaming US</value>
+    <value>串流 - 美國</value>
   </data>
   <data name="Profiles_Default_WorkSchool">
-    <value>Work/School</value>
+    <value>工作/學校</value>
   </data>
   <data name="Profiles_Page_Description">
     <value>Configure your own VPN settings and connect in one click.</value>
   </data>
   <data name="Profiles_Page_Title">
-    <value>設定檔</value>
+    <value>配置</value>
   </data>
   <data name="Search_InputBox_Placeholder">
     <value>從此瀏覽...</value>
@@ -2829,22 +2859,22 @@ VPN 連線</value>
     <value>Try a different keyword.</value>
   </data>
   <data name="Search_NoResults_Title">
-    <value>No results found</value>
+    <value>未找到任何結果</value>
   </data>
   <data name="Server">
-    <value>Server</value>
+    <value>伺服器</value>
   </data>
   <data name="Server_Fastest_Free">
-    <value>最快速的伺免費服器</value>
+    <value>最快速的免費伺服器</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Gateway</value>
+    <value>閘道</value>
   </data>
   <data name="Server_Feature_B2B_Description">
     <value>Access your organization's servers</value>
   </data>
   <data name="Server_Feature_None">
-    <value>Standard</value>
+    <value>標準</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
@@ -2859,13 +2889,13 @@ VPN 連線</value>
     <value>Double protection</value>
   </data>
   <data name="Server_Feature_Tor">
-    <value>Tor</value>
+    <value>洋蔥路由器</value>
   </data>
   <data name="Server_Free">
     <value>免費伺服器</value>
   </data>
   <data name="Servers">
-    <value>Servers</value>
+    <value>伺服器</value>
   </data>
   <data name="Settings_About">
     <value>關於</value>
@@ -2880,25 +2910,25 @@ VPN 連線</value>
     <value>無法載入更新資訊。</value>
   </data>
   <data name="Settings_About_LearnMore">
-    <value>瞭解更多</value>
+    <value>瞭解詳情</value>
   </data>
   <data name="Settings_About_Licensing">
     <value>授權</value>
   </data>
   <data name="Settings_About_Loading">
-    <value>載入中...</value>
+    <value>載入中</value>
   </data>
   <data name="Settings_About_Title">
     <value>關於</value>
   </data>
   <data name="Settings_Account_Account">
-    <value>Account</value>
+    <value>帳號</value>
   </data>
   <data name="Settings_Account_Exit">
     <value>Exit the app</value>
   </data>
   <data name="Settings_Account_SignOut">
-    <value>Sign out</value>
+    <value>登出</value>
   </data>
   <data name="Settings_AppVersion">
     <value>應用程式版本</value>
@@ -2923,7 +2953,7 @@ VPN 連線</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Connection">
-    <value>連線</value>
+    <value>連接</value>
   </data>
   <data name="Settings_Connection_AdvancedSettings">
     <value>進階設定</value>
@@ -3009,43 +3039,43 @@ VPN 連線</value>
     <value>最快的國家</value>
   </data>
   <data name="Settings_Connection_Default_Fastest_Description">
-    <value>The best server based on your location</value>
+    <value>按您所在位置挑選最佳伺服器</value>
   </data>
   <data name="Settings_Connection_Default_Last">
     <value>最後一次連接</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
-    <value>Your most recently used connection</value>
+    <value>您最近一次使用的連線</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
-    <value>Recents</value>
+    <value>最近使用</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>緊急終止開關</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced">
-    <value>Advanced</value>
+    <value>進階</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
-    <value>Only allow internet access when connected to Proton VPN. Advanced kill switch will remain active even when you restart your device.</value>
+    <value>只有當連線到 Proton VPN 時才允許存取網路。進階緊急中止開關將保持啟用，即使您重新啟動裝置。</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>This will disable split tunneling.</value>
+    <value>這將會停用分隔通道。</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Enable kill switch?</value>
+    <value>啟用緊急終止開關？</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Description">
-    <value>Protects your IP address by disconnecting you from the internet if you lose your VPN connection.</value>
+    <value>如果 VPN 連線意外中斷，會暫停網路連線來保護您的 IP 位址。</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Footer">
-    <value>When kill switch is on, you won't be able to connect to websites and apps excluded from your VPN connection through split tunneling.</value>
+    <value>當緊急終止開關開啟時，您將無法透過分隔通道功能連線到被排除在 VPN 連線之外的網站和應用程式。</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard">
-    <value>Standard</value>
+    <value>標準</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard_Description">
-    <value>Automatically disconnect from the internet if VPN connection is lost.</value>
+    <value>如果 VPN 連線中斷，會自動中斷網路連線。</value>
   </data>
   <data name="Settings_Connection_NetShield">
     <value>NetShield</value>
@@ -3054,22 +3084,22 @@ VPN 連線</value>
     <value>Block ads, malware and trackers</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
-    <value>Block malware only</value>
+    <value>僅封鎖惡意軟體</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Description">
-    <value>You won't be able to connect with a custom DNS server when NetShield is enabled.</value>
+    <value>啟用 NetShield 時，將無法使用自訂 DNS 伺服器。</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Information">
     <value>NetShield is not compatible with Custom DNS.</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Title">
-    <value>Enable NetShield?</value>
+    <value>啟用 NetShield？</value>
   </data>
   <data name="Settings_Connection_NetShield_Description">
-    <value>Protect yourself from ads, malware, and trackers on websites and apps.</value>
+    <value>在網站和應用程式中阻擋廣告、惡意軟體和追蹤器，保護您的安全。</value>
   </data>
   <data name="Settings_Connection_NetShield_Footer">
-    <value>Some websites may not load properly when ads and trackers are blocked.</value>
+    <value>當廣告與追蹤器被封鎖時，部分網站可能無法正常載入。</value>
   </data>
   <data name="Settings_Connection_NetShield_PrivacyPanel">
     <value>NetShield Privacy Panel</value>
@@ -3078,34 +3108,34 @@ VPN 連線</value>
     <value>通訊埠轉送</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Active port:</value>
+    <value>已啟用連接埠：</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
-    <value>Copy port number</value>
+    <value>複製連接埠號碼</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Description">
-    <value>You won't be able to use Moderate NAT when port forwarding is enabled.</value>
+    <value>啟用連接埠轉送時，您將無法使用 Moderate NAT。</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Title">
-    <value>Enable port forwarding?</value>
+    <value>啟用連接埠轉送？</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Bypass firewalls to connect to P2P servers and devices in your local network.</value>
+    <value>繞過防火牆連接到 P2P 伺服器以及本地網路中的裝置。</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>To use port forwarding, please connect to a server that supports P2P.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Loading">
-    <value>Loading...</value>
+    <value>正在載入...</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications">
-    <value>Notifications</value>
+    <value>通知</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Get notified when the port forwarding number changes</value>
   </data>
   <data name="Settings_Connection_Protocol">
-    <value>通訊協定</value>
+    <value>協定</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Action">
     <value>Go to profiles</value>
@@ -3121,73 +3151,73 @@ VPN 連線</value>
     <value>Change protocol in profiles</value>
   </data>
   <data name="Settings_Connection_SplitTunneling">
-    <value>Split tunneling</value>
+    <value>分隔通道</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Add">
-    <value>Add app</value>
+    <value>加入應用程式</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
-    <value>App files</value>
+    <value>應用程式檔案</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Header">
-    <value>Selected apps ({0})</value>
+    <value>已選取的應用程式 ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
-    <value>Remove app</value>
+    <value>移除應用程式</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>This will disable kill switch.</value>
+    <value>這將會停用緊急終止開關。</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Enable split tunneling?</value>
+    <value>啟用分隔通道？</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
-    <value>Customize your connection by deciding which apps and IP addresses are protected by VPN.</value>
+    <value>透過決定哪些應用程式和 IP 位址受到 VPN 保護，來自訂您的連線設定。</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Inverse</value>
+    <value>反轉選取</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Only selected apps and IP addresses connect via VPN, all other traffic is unprotected</value>
+    <value>只有已選的應用程式及 IP 位址透過 VPN 連線，所有其他流量將不受保護。</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>Add IP</value>
+    <value>加入 IP 位址</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
-    <value>Selected IP addresses ({0})</value>
+    <value>已選擇的 IP 位址 ({0})</value>
     <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
-    <value>Remove IP</value>
+    <value>移除 IP 位址</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
-    <value>Add IPv4 address</value>
+    <value>加入 IPv4 位址</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Standard</value>
+    <value>標準</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
-    <value>Selected apps and IP addresses are excluded from VPN connection</value>
+    <value>已選的應用程式及 IP 位址會被排除在 VPN 連線之外</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Action">
-    <value>Discard changes</value>
+    <value>放棄變更</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Cancel">
-    <value>Keep editing</value>
+    <value>繼續編輯</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Title">
-    <value>Discard unsaved changes?</value>
+    <value>要捨棄未儲存的變更嗎？</value>
   </data>
   <data name="Settings_Features">
     <value>VPN features</value>
   </data>
   <data name="Settings_General">
-    <value>一般設定</value>
+    <value>一般</value>
   </data>
   <data name="Settings_General_AutoStartup">
     <value>自動啟動</value>
@@ -3378,7 +3408,7 @@ VPN 連線</value>
     <value>除錯日誌</value>
   </data>
   <data name="Settings_Support_DebugLogs_Application">
-    <value>應用程式紀錄</value>
+    <value>應用程式日誌</value>
   </data>
   <data name="Settings_Support_DebugLogs_ErrorMessage">
     <value>無法找到日誌資料夾。</value>
@@ -3405,7 +3435,7 @@ VPN 連線</value>
     <value>透過高效能技術，將您的連線速度提升高達 400%。</value>
   </data>
   <data name="SignIn_Form">
-    <value>Sign in form</value>
+    <value>登入表單</value>
   </data>
   <data name="SignIn_Form_AdvancedKillSwitchDescription">
     <value>進階Kill Switch 現正阻止你的網絡連接。</value>
@@ -3414,7 +3444,7 @@ VPN 連線</value>
     <value>速度最佳的安全 VPN</value>
   </data>
   <data name="SignIn_Form_CreateAccount">
-    <value>Create account</value>
+    <value>建立帳號</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="SignIn_Form_Description">
@@ -3424,10 +3454,10 @@ VPN 連線</value>
     <value>停用 Kill Switch</value>
   </data>
   <data name="SignIn_Form_Email">
-    <value>Email</value>
+    <value>電子信箱</value>
   </data>
   <data name="SignIn_Form_ForgotUsername">
-    <value>Forgot username</value>
+    <value>忘記使用者名稱</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_Help">
@@ -3441,39 +3471,39 @@ VPN 連線</value>
     <value>開放原始碼</value>
   </data>
   <data name="SignIn_Form_Password">
-    <value>Password</value>
+    <value>密碼</value>
   </data>
   <data name="SignIn_Form_PasswordError">
-    <value>Enter your password</value>
+    <value>輸入您的密碼</value>
     <comment>An error message is displayed when the user attempts to sign in without entering a password</comment>
   </data>
   <data name="SignIn_Form_ReportAnIssue">
-    <value>Report an issue</value>
+    <value>回報問題</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>Forgot password</value>
+    <value>忘記密碼</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
-    <value>Sign in</value>
+    <value>登入</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="SignIn_Form_SignInWithSso">
-    <value>Sign in with SSO</value>
+    <value>使用 SSO 登入</value>
   </data>
   <data name="SignIn_Form_SwissBased">
     <value>總部設於瑞士</value>
   </data>
   <data name="SignIn_Form_Title">
-    <value>Sign in</value>
+    <value>登入</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
-    <value>Support Center</value>
+    <value>支援中心</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
-    <value>Email or username</value>
+    <value>電子郵件或使用者名稱</value>
   </data>
   <data name="SignIn_Form_UsernameError">
     <value>Enter your email or username</value>
@@ -3493,14 +3523,14 @@ VPN 連線</value>
     <value>已中斷連線</value>
   </data>
   <data name="Tray_Actions_ExitApplication">
-    <value>結束</value>
+    <value>離開</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>Open {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Unit_BytesPerSecond">
-    <value>B/s</value>
+    <value>位元組/秒</value>
     <comment>Unit for Bytes per second</comment>
   </data>
   <data name="Unit_ExabytesPerSecond">
@@ -3528,7 +3558,7 @@ VPN 連線</value>
     <comment>Unit for Terabytes per second</comment>
   </data>
   <data name="UpsellBanner_NetShield_Description">
-    <value>Block ads, trackers, and malware on websites and apps</value>
+    <value>封鎖網站與應用程式中的廣告、追蹤器與惡意程式</value>
   </data>
   <data name="UpsellBanner_NetShield_Title">
     <value>NetShield</value>
@@ -3628,7 +3658,7 @@ VPN 連線</value>
     <value>途經瑞士、瑞典及冰島的超高加密伺服器</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>以更高的速度瀏覽 (高達 10 Gbps)</value>
+    <value>以較高的速度瀏覽(高達 10 Gbps)</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
     <value>使用 VPN Accelerator 將連線速度提昇多達 400%</value>

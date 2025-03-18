@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Account_VpnPlan_Free">
-    <value>Brezplačen Proton VPN</value>
+    <value>Proton VPN Free</value>
   </data>
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>Connection details page</value>
   </data>
   <data name="Automation_Properties_Connection_Card_Component">
-    <value>Connection card</value>
+    <value>Priključna kartica</value>
   </data>
   <data name="Automation_Properties_Features_Bar">
     <value>Features bar</value>
@@ -229,7 +229,7 @@
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Duplicate">
-    <value>Duplicate</value>
+    <value>Podvoji</value>
   </data>
   <data name="Common_Actions_Edit">
     <value>Uredi</value>
@@ -238,10 +238,10 @@
     <value>Omogoči</value>
   </data>
   <data name="Common_Actions_Exit_ProtonVPN">
-    <value>Exit Proton VPN</value>
+    <value>Zapuščate Proton VPN</value>
   </data>
   <data name="Common_Actions_GotIt">
-    <value>Got it</value>
+    <value>Razumem</value>
   </data>
   <data name="Common_Actions_Install">
     <value>Install</value>
@@ -253,13 +253,13 @@
     <value>Odstrani</value>
   </data>
   <data name="Common_Actions_Restart">
-    <value>Restart</value>
+    <value>Ponovni zagon</value>
   </data>
   <data name="Common_Actions_Save">
-    <value>Save</value>
+    <value>Shrani</value>
   </data>
   <data name="Common_Actions_TryAgain">
-    <value>Try again</value>
+    <value>Poskusi znova</value>
   </data>
   <data name="Common_Actions_Update">
     <value>Posodobi</value>
@@ -274,7 +274,7 @@
     <value>Advanced kill switch is enabled. If you continue, you will be disconnected from the internet.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
-    <value>You'll be disconnected from VPN.</value>
+    <value>Povezava z VPN bo prekinjena.</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Izvedi več</value>
@@ -292,19 +292,19 @@
     <value>Posodabljanje ...</value>
   </data>
   <data name="Common_Tags_New">
-    <value>NEW</value>
+    <value>NOVO</value>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
-    <value>Get the most from your VPN by updating to the latest version of the app.</value>
+    <value>Da kar najbolje izkoristite VPN posodobite aplikacijo na najnovejšo različico.</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues">
     <value>You're more likely to have issues on older versions of Proton VPN.</value>
   </data>
   <data name="Components_Update_UpdateAvailable">
-    <value>Update available</value>
+    <value>Na voljo je nadgradnja!</value>
   </data>
   <data name="Components_Update_UpdateProtonVpn">
-    <value>Update Proton VPN</value>
+    <value>Posodobi Proton VPN</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>Urejanje profila</value>
@@ -372,16 +372,16 @@
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
   <data name="Connections_Cities_One">
-    <value>Mesta ({0})</value>
+    <value>City ({0})</value>
   </data>
   <data name="Connections_Cities_Two">
-    <value>Mesti ({0})</value>
+    <value>Mesta ({0})</value>
   </data>
   <data name="Connections_Cities_Few">
     <value>Mesta ({0})</value>
   </data>
   <data name="Connections_Cities_Other">
-    <value>Mest ({0})</value>
+    <value>Mesta ({0})</value>
   </data>
   <data name="Connections_City">
     <value>Mesto</value>
@@ -393,16 +393,16 @@
     <value>Vsi strežniki v tem mestu so v vzdrževanju</value>
   </data>
   <data name="Connections_Countries_One">
-    <value>Država ({0})</value>
+    <value>Country ({0})</value>
   </data>
   <data name="Connections_Countries_Two">
-    <value>Državi ({0})</value>
+    <value>Države ({0})</value>
   </data>
   <data name="Connections_Countries_Few">
     <value>Države ({0})</value>
   </data>
   <data name="Connections_Countries_Other">
-    <value>Držav ({0})</value>
+    <value>Države ({0})</value>
   </data>
   <data name="Connections_Country">
     <value>Država</value>
@@ -417,7 +417,7 @@
     <value>Vsi strežniki v tej državi so v vzdrževanju</value>
   </data>
   <data name="Connections_Fastest">
-    <value>Fastest</value>
+    <value>Najhitrejši</value>
   </data>
   <data name="Connections_Free_Servers_One">
     <value>Free server ({0})</value>
@@ -468,10 +468,10 @@
     <value>Namenski strežniki ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_One">
-    <value>P2P mesto ({0})</value>
+    <value>P2P city ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_Two">
-    <value>P2P mesti ({0})</value>
+    <value>P2P mesta ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_Few">
     <value>P2P mesta ({0})</value>
@@ -480,16 +480,16 @@
     <value>P2P mesta ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_One">
-    <value>P2P država ({0})</value>
+    <value>P2P country ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_Two">
-    <value>P2P državi ({0})</value>
+    <value>Države P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_Few">
-    <value>P2P države ({0})</value>
+    <value>Države P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_Other">
-    <value>P2P države ({0})</value>
+    <value>Države P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
     <value>P2P strežnik ({0})</value>
@@ -554,7 +554,7 @@
     <value>Give your profile a name</value>
   </data>
   <data name="Connections_Profiles_Name_Default">
-    <value>Untitled</value>
+    <value>Brez naslova</value>
     <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
   </data>
   <data name="Connections_Profiles_Name_Duplicate">
@@ -609,16 +609,16 @@
     <value>Pinned ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
-    <value>Secure Core država ({0})</value>
+    <value>Secure Core country ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_Two">
-    <value>Secure Core državi ({0})</value>
+    <value>„Secure Core” države ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_Few">
-    <value>Secure Core države ({0})</value>
+    <value>„Secure Core” države ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_Other">
-    <value>Secure Core države ({0})</value>
+    <value>„Secure Core” države ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
     <value>Secure Core strežnik ({0})</value>
@@ -678,10 +678,10 @@
     <value>Ta strežnik je v vzdrževanju</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Strežnik ({0})</value>
+    <value>Server ({0})</value>
   </data>
   <data name="Connections_Servers_Two">
-    <value>Strežnika ({0})</value>
+    <value>Strežniki ({0})</value>
   </data>
   <data name="Connections_Servers_Few">
     <value>Strežniki ({0})</value>
@@ -713,22 +713,22 @@
     <value>Države ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_One">
-    <value>Tor država ({0})</value>
+    <value>Tor country ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_Two">
-    <value>Tor državi ({0})</value>
+    <value>Države Tor ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_Few">
-    <value>Tor države ({0})</value>
+    <value>Države Tor ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_Other">
-    <value>Tor države ({0})</value>
+    <value>Države Tor ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Tor strežnik ({0})</value>
+    <value>Tor server ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_Two">
-    <value>Tor strežnika ({0})</value>
+    <value>Tor strežniki ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_Few">
     <value>Tor strežniki ({0})</value>
@@ -1865,7 +1865,7 @@
     <value>Proton Free vas samodejno poveže z najhitrejšim razpoložljivim brezplačnim strežnikom iz {0} prostih držav. To bo običajno najbližji strežnik vaši lokaciji.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Few">
-    <value>Proton Free vas samodejno poveže z najhitrejšim razpoložljivim brezplačnim strežnikom iz {0} prostih držav. To bo običajno najbližji strežnik vaši lokaciji.</value>
+    <value>Proton Free vas samodejno poveže z najhitrejšim razpoložljivim brezplačnim strežnikom iz naše brezplačne držav {0}. To bo običajno najbližji strežnik vaši lokaciji.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
     <value>Proton Free vas samodejno poveže z najhitrejšim razpoložljivim brezplačnim strežnikom iz {0} prostih držav. To bo običajno najbližji strežnik vaši lokaciji.</value>
@@ -1877,10 +1877,10 @@
     <value>Državi z brezplačnim strežnikom ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Few">
-    <value>Države z brezplačnim strežnikom ({0})</value>
+    <value>Državi z brezplačnim strežnikom ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other">
-    <value>Države z brezplačnim strežnikom ({0})</value>
+    <value>Državi z brezplačnim strežnikom ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Title">
     <value>Brezplačne povezave</value>
@@ -1912,7 +1912,7 @@ Visoka zakasnitev lahko upočasni vašo povezavo.</value>
     <value>Kaj je zakasnitev?</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers. Please use a different server for P2P.</value>
+    <value>Vaša povezava je bila onemogočena, ker uporabljate strežnik, ki ne podpira prometa enakovrednih (P2P). P2P ni podprt na brezplačnih strežnikih. Za P2P uporabite drug strežnik.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
     <value>P2P traffic detected</value>
@@ -2177,6 +2177,36 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
   <data name="Dialogs_Welcome_Title">
     <value>Dobrodošli v Proton VPN</value>
   </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>You can now access your organization’s dedicated servers from the main sidebar.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>Gateways have moved</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>We refreshed our designs and moved some things around to make the app easier to use.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>New look, same protection</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>Add advanced profile settings like NetShield and port forwarding, or set up Connect and Go to launch a website of your choice when you connect.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Even more powerful profiles</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>It's now even easier to reconnect to your favorite servers. View your most recent connections on the home screen, or pin them for quick access.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>Introducing Recents</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Take a look</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>What's new</value>
+  </data>
   <data name="Exit_Confirmation_Title">
     <value>Zapuščate Proton VPN?</value>
   </data>
@@ -2271,7 +2301,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Block ads, trackers, and malware with VPN Plus.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
-    <value>Enjoy ad-free browsing</value>
+    <value>Uživajte v brskanju brez oglasov</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Active port number</value>
@@ -2301,13 +2331,13 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Protokol</value>
   </data>
   <data name="Flyouts_ServerLoad_Description">
-    <value>Server load shows how close a server is to its maximum capacity. A high server load can slow down your connection.</value>
+    <value>Obremenitev strežnika kaže, kako blizu je strežnik svojim največjim zmogljivostim.Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
   </data>
   <data name="Flyouts_ServerLoad_High">
     <value>Visoka (91 do 100 %)</value>
   </data>
   <data name="Flyouts_ServerLoad_High_Description">
-    <value>VPN may run slower than normal</value>
+    <value>VPN lahko deluje počasneje kot običajno</value>
   </data>
   <data name="Flyouts_ServerLoad_KnowledgeBaseLinkTitle">
     <value>Kaj je obremenitev strežnika?</value>
@@ -2319,7 +2349,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Bliskovite hitrosti</value>
   </data>
   <data name="Flyouts_ServerLoad_Medium">
-    <value>Medium (76-90%)</value>
+    <value>Srednja (76 do 90 %)</value>
   </data>
   <data name="Flyouts_ServerLoad_Medium_Description">
     <value>Unlikely to affect connection speed</value>
@@ -2328,7 +2358,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Obremenitev strežnika</value>
   </data>
   <data name="Flyouts_Speed_BoostedByVpnAccelerator">
-    <value>Boosted by VPN Accelerator</value>
+    <value>Povečano z VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description1">
     <value>This shows how much data gets transmitted through Proton VPN each second.</value>
@@ -2411,7 +2441,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Divide your traffic into VPN and non-VPN tunnels with VPN Plus.</value>
   </data>
   <data name="Flyouts_SplitTunneling_Upsell_Title">
-    <value>Get the best of both worlds</value>
+    <value>Izkoristite najboljše iz obeh svetov</value>
   </data>
   <data name="Flyouts_Volume_Description">
     <value>This shows how much traffic has routed through your VPN.</value>
@@ -2421,7 +2451,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>Volume</value>
+    <value>Količina</value>
   </data>
   <data name="Flyouts_Volume_Upload">
     <value>Nalaganje</value>
@@ -2619,7 +2649,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Povezovanje</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectingSubLabel">
-    <value>Protecting your digital identity...</value>
+    <value>Zaščita vaše digitalne identitete...</value>
   </data>
   <data name="Home_ConnectionDetails_Country">
     <value>Država</value>
@@ -2682,7 +2712,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Encrypt your online activity by connecting to VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
-    <value>Volume</value>
+    <value>Količina</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>Velikost prenosa</value>
@@ -2778,28 +2808,28 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Odpni</value>
   </data>
   <data name="Home_TitleBar_Menu_About">
-    <value>About</value>
+    <value>O nas</value>
   </data>
   <data name="Home_TitleBar_Menu_Account">
-    <value>Account</value>
+    <value>Račun</value>
   </data>
   <data name="Home_TitleBar_Menu_ExitTheApp">
     <value>Exit the app</value>
   </data>
   <data name="Home_TitleBar_Menu_Help">
-    <value>Help</value>
+    <value>Pomoč</value>
   </data>
   <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
-    <value>What's the issue?</value>
+    <value>Kaj je narobe?</value>
   </data>
   <data name="Home_TitleBar_Menu_Settings">
-    <value>Settings</value>
+    <value>Nastavitve</value>
   </data>
   <data name="Home_TitleBar_Menu_Signout">
-    <value>Sign out</value>
+    <value>Odjavi se</value>
   </data>
   <data name="Home_TitleBar_Menu_UpdateNow">
-    <value>Update now</value>
+    <value>Posodobi zdaj</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
     <value>Na voljo je nadgradnja!</value>
@@ -2812,7 +2842,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_VpnStatus_Subtitle_Connecting">
-    <value>Protecting your digital identity...</value>
+    <value>Zaščita vaše digitalne identitete...</value>
   </data>
   <data name="Home_VpnStatus_Subtitle_Disconnected">
     <value>Ste nezaščiteni</value>
@@ -2847,7 +2877,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>Enter the code from your authenticator app.</value>
+    <value>Vnesite kodo iz aplikacije za preverjanje pristnosti.</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>Dvojno preverjanja pristnosti</value>
@@ -2889,7 +2919,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>To protect your IP address, kill switch is blocking your internet connection.</value>
   </data>
   <data name="Notifications_PortForwarding_CopyPortNumber">
-    <value>Copy port number</value>
+    <value>Kopiraj številko vrat</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Nastavite to številko v aplikaciji BitTorrent za večjo hitrost.</value>
@@ -2951,7 +2981,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>What is a VPN profile?</value>
   </data>
   <data name="Overlay_Profile_Title">
-    <value>Profiles</value>
+    <value>Profili</value>
   </data>
   <data name="Overlay_SecureCore_Description1">
     <value>Secure Core connects you to your destination server via a second, maximum security VPN server.</value>
@@ -2964,7 +2994,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection">
     <value>Secure Core
-VPN connection</value>
+VPN povezava</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
     <value>Večja zakasnitev</value>
@@ -2973,8 +3003,8 @@ VPN connection</value>
     <value>Napredna zasebnost</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection">
-    <value>Standard
-VPN connection</value>
+    <value>Standardna
+VPN povezava</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection_Latency">
     <value>Manjša zakasnitev</value>
@@ -2986,12 +3016,12 @@ VPN connection</value>
     <value>Secure Core</value>
   </data>
   <data name="Overlay_ServerLoad_Description">
-    <value>Server load shows how close a server is to its maximum capacity.
+    <value>Obremenitev strežnika kaže, kako blizu je strežnik največjih zmogljivosti.
 
-A high server load can slow down your connection.</value>
+Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Description">
-    <value>VPN may run slower than normal</value>
+    <value>VPN lahko deluje počasneje kot običajno</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Title">
     <value>Visoka (91 do 100 %)</value>
@@ -3006,7 +3036,7 @@ A high server load can slow down your connection.</value>
     <value>Nizka (1 do 75 %)</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Description">
-    <value>Unlikely to affect VPN speed</value>
+    <value>Ni verjetnosti, da bi vplivalo na hitrost VPN</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Title">
     <value>Srednja (76 do 90 %)</value>
@@ -3024,7 +3054,7 @@ A high server load can slow down your connection.</value>
     <value>Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>Servers are physically located in {0}, but you'll appear to be browsing from {1}</value>
+    <value>Strežniki se fizično nahajajo v {0}, vendar bo videti, kot da brskate iz {1}</value>
     <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
     Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
     Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
@@ -3036,10 +3066,10 @@ A high server load can slow down your connection.</value>
     <value>Smart Routing</value>
   </data>
   <data name="Overlay_Tor_Description">
-    <value>Connect to a Tor server to access hidden services and onion sites using any browser.</value>
+    <value>Povežite se s strežnikom Tor za dostop do skritih storitev in Tor spletnih mest s katerim koli brskalnikom.</value>
   </data>
   <data name="Overlay_Tor_LearnMore">
-    <value>How to access the Tor network</value>
+    <value>Kako dostopati do omrežja Tor</value>
   </data>
   <data name="Overlay_Tor_Title">
     <value>Tor</value>
@@ -3078,7 +3108,7 @@ A high server load can slow down your connection.</value>
     <value>This will change the NAT type for this profile to Strict (type 3).</value>
   </data>
   <data name="Profiles_Default_Gaming">
-    <value>Gaming</value>
+    <value>Igranje</value>
   </data>
   <data name="Profiles_Default_MaxSecurity">
     <value>Max security</value>
@@ -3135,13 +3165,13 @@ A high server load can slow down your connection.</value>
     <value>Najhitrejši brezplačni strežnik</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Gateway</value>
+    <value>Prehod</value>
   </data>
   <data name="Server_Feature_B2B_Description">
     <value>Access your organization's servers</value>
   </data>
   <data name="Server_Feature_None">
-    <value>Standard</value>
+    <value>Standardno</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
@@ -3189,7 +3219,7 @@ A high server load can slow down your connection.</value>
     <value>O programu</value>
   </data>
   <data name="Settings_Account_Account">
-    <value>Account</value>
+    <value>Račun</value>
   </data>
   <data name="Settings_Account_Exit">
     <value>Exit the app</value>
@@ -3315,7 +3345,7 @@ A high server load can slow down your connection.</value>
     <value>Vaša nazadnje uporabljena povezava</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
-    <value>Recents</value>
+    <value>Nedavne</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Stikalo za izklop</value>
@@ -3324,25 +3354,25 @@ A high server load can slow down your connection.</value>
     <value>Napredno</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
-    <value>Only allow internet access when connected to Proton VPN. Advanced kill switch will remain active even when you restart your device.</value>
+    <value>Dovolite dostop do interneta samo, ko ste povezani s Proton VPN. Napredno stikalo za izklop bo ostalo aktivno tudi, ko znova zaženete napravo.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>This will disable split tunneling.</value>
+    <value>To bo onemogočilo deljeno tuneliranje.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Enable kill switch?</value>
+    <value>Omogočiti stikalo za izklop?</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Description">
-    <value>Protects your IP address by disconnecting you from the internet if you lose your VPN connection.</value>
+    <value>Ščiti vaš naslov IP tako, da prekine povezavo z internetom, če izgubite povezavo VPN.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Footer">
-    <value>When kill switch is on, you won't be able to connect to websites and apps excluded from your VPN connection through split tunneling.</value>
+    <value>Ko je stikalo za izklop vklopljeno, se ne boste mogli povezati s spletnimi mesti in aplikacijami, ki so izključene iz vaše povezave VPN prek deljenega tuneliranja.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard">
     <value>Standardno</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard_Description">
-    <value>Automatically disconnect from the internet if VPN connection is lost.</value>
+    <value>Samodejno prekini povezavo z internetom, če je povezava VPN izgubljena.</value>
   </data>
   <data name="Settings_Connection_NetShield">
     <value>NetShield</value>
@@ -3354,7 +3384,7 @@ A high server load can slow down your connection.</value>
     <value>Blokiraj samo zlonamerne programe</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Description">
-    <value>You won't be able to connect with a custom DNS server when NetShield is enabled.</value>
+    <value>Ko je NetShield omogočen, se ne boste mogli povezati s strežnikom DNS po meri.</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Information">
     <value>NetShield is not compatible with Custom DNS.</value>
@@ -3363,16 +3393,16 @@ A high server load can slow down your connection.</value>
     <value>Omogočiti NetShield?</value>
   </data>
   <data name="Settings_Connection_NetShield_Description">
-    <value>Protect yourself from ads, malware, and trackers on websites and apps.</value>
+    <value>Zaščitite se pred oglasi, zlonamerno programsko opremo in sledilniki na spletnih straneh in v aplikacijah.</value>
   </data>
   <data name="Settings_Connection_NetShield_Footer">
-    <value>Some websites may not load properly when ads and trackers are blocked.</value>
+    <value>Nekatere spletne strani se morda ne bodo pravilno naložile, če so oglasi in sledilniki blokirani.</value>
   </data>
   <data name="Settings_Connection_NetShield_PrivacyPanel">
     <value>NetShield Privacy Panel</value>
   </data>
   <data name="Settings_Connection_PortForwarding">
-    <value>Port forwarding</value>
+    <value>Posredovanje vrat</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
     <value>Aktivna vrata:</value>
@@ -3381,16 +3411,16 @@ A high server load can slow down your connection.</value>
     <value>Kopiraj številko vrat</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Description">
-    <value>You won't be able to use Moderate NAT when port forwarding is enabled.</value>
+    <value>Ko je posredovanje vrat omogočeno, ne boste mogli uporabljati zmernega NAT.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Title">
-    <value>Enable port forwarding?</value>
+    <value>Omogoči posredovanje vrat?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Bypass firewalls to connect to P2P servers and devices in your local network.</value>
+    <value>Obiščite požarne zidove za povezavo s strežniki P2P in napravami v vašem lokalnem omrežju.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
-    <value>To use port forwarding, please connect to a server that supports P2P.</value>
+    <value>Če želite uporabiti posredovanje vrat, se povežite s strežnikom, ki podpira P2P.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Loading">
     <value>Nalaganje ...</value>
@@ -3399,7 +3429,7 @@ A high server load can slow down your connection.</value>
     <value>Obvestila</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Get notified when the port forwarding number changes</value>
+    <value>Prejmite obvestilo, ko se spremeni številka za posredovanje vrat</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokol</value>
@@ -3418,7 +3448,7 @@ A high server load can slow down your connection.</value>
     <value>Change protocol in profiles</value>
   </data>
   <data name="Settings_Connection_SplitTunneling">
-    <value>Split tunneling</value>
+    <value>Razdeljeno tuneliranje</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Add">
     <value>Dodaj aplikacijo</value>
@@ -3428,32 +3458,32 @@ A high server load can slow down your connection.</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Header">
-    <value>Selected apps ({0})</value>
+    <value>Izbrane aplikacije ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Odstrani aplikacijo</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>This will disable kill switch.</value>
+    <value>To bo onemogočilo stikalo za izklop.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Enable split tunneling?</value>
+    <value>Omogočiti razdeljeno tuneliranje?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
-    <value>Customize your connection by deciding which apps and IP addresses are protected by VPN.</value>
+    <value>Prilagodite povezavo tako, da določite, katere aplikacije in IP naslovi so zaščiteni z omrežjem VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
     <value>Obratno</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Only selected apps and IP addresses connect via VPN, all other traffic is unprotected</value>
+    <value>Samo izbrane aplikacije in naslovi IP se povezujejo prek VPN, ves ostali promet je nezaščiten</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
     <value>Dodaj IP</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
-    <value>Selected IP addresses ({0})</value>
+    <value>Izbrani naslovi IP ({0})</value>
     <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
@@ -3466,19 +3496,19 @@ A high server load can slow down your connection.</value>
     <value>Standardno</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
-    <value>Selected apps and IP addresses are excluded from VPN connection</value>
+    <value>Izbrane aplikacije in naslovi IP so izključeni iz povezave VPN</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Action">
-    <value>Discard changes</value>
+    <value>Zavržem spremembe</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Cancel">
-    <value>Keep editing</value>
+    <value>Nadaljuj z urejanjem</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Title">
-    <value>Discard unsaved changes?</value>
+    <value>Zavržem neshranjene spremembe?</value>
   </data>
   <data name="Settings_Features">
     <value>Funkcije VPN</value>
@@ -3615,7 +3645,7 @@ A high server load can slow down your connection.</value>
     <value>Hitrost (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description">
-    <value>State-of-the-art protocol for security and performance.</value>
+    <value>Najsodobnejši protokol za varnost in zmogljivost.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Title">
     <value>WireGuard</value>
@@ -3627,7 +3657,7 @@ A high server load can slow down your connection.</value>
     <value>Stealth</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>State-of-the-art protocol for security and performance.</value>
+    <value>Najsodobnejši protokol za varnost in zmogljivost.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
@@ -3715,16 +3745,16 @@ A high server load can slow down your connection.</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="SignIn_Form_Description">
-    <value>Enter your Proton Account details.</value>
+    <value>Vnesite podrobnosti o Proton računu.</value>
   </data>
   <data name="SignIn_Form_DisableKillSwitch">
-    <value>Disable kill switch</value>
+    <value>Onemogoči stikalo za izklop</value>
   </data>
   <data name="SignIn_Form_Email">
     <value>E-pošta</value>
   </data>
   <data name="SignIn_Form_ForgotUsername">
-    <value>Forgot username</value>
+    <value>Pozabljeno uporabniško ime</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_Help">
@@ -3741,15 +3771,15 @@ A high server load can slow down your connection.</value>
     <value>Geslo</value>
   </data>
   <data name="SignIn_Form_PasswordError">
-    <value>Enter your password</value>
+    <value>Vnesite svoje geslo</value>
     <comment>An error message is displayed when the user attempts to sign in without entering a password</comment>
   </data>
   <data name="SignIn_Form_ReportAnIssue">
-    <value>Report an issue</value>
+    <value>Prijava napake</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>Forgot password</value>
+    <value>Pozabljeno geslo</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
@@ -3766,7 +3796,7 @@ A high server load can slow down your connection.</value>
     <value>Prijava</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
-    <value>Support Center</value>
+    <value>Center za podporo</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
@@ -4040,7 +4070,7 @@ A high server load can slow down your connection.</value>
     <value>WireGuard (TCP)</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tcp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Najsodobnejši protokol za varnost in zmogljivost</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tls">
     <value>Stealth</value>
@@ -4052,6 +4082,6 @@ A high server load can slow down your connection.</value>
     <value>WireGuard (UDP)</value>
   </data>
   <data name="VpnProtocol_WireGuard_Udp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Najsodobnejši protokol za varnost in zmogljivost</value>
   </data>
 </root>

@@ -295,7 +295,7 @@
     <value>NUEVO</value>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
-    <value>Aproveche al máximo su VPN actualizando a la última versión de la aplicación.</value>
+    <value>Actualice a la última versión de la aplicación para aprovechar al máximo su VPN.</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues">
     <value>Es más probable que tenga problemas con versiones anteriores de Proton VPN.</value>
@@ -353,7 +353,7 @@
     <value>Ver soluciones</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>El adaptador WireGuard de su dispositivo está en uso. Desconéctese de cualquier otra VPN funcionando en su dispositivo y vuelva a intentar.</value>
+    <value>El adaptador WireGuard de su dispositivo está en uso. Desconéctese de cualquier otra VPN que esté funcionando en su dispositivo y vuelva a intentarlo.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Selección automática de</value>
@@ -531,7 +531,7 @@
     <value>Aún no hay recientes</value>
   </data>
   <data name="Connections_Recents_Pinned_One">
-    <value>Anclada ({0})</value>
+    <value>Ancladas ({0})</value>
   </data>
   <data name="Connections_Recents_Pinned_Other">
     <value>Ancladas ({0})</value>
@@ -1700,7 +1700,7 @@
     <value>El servicio Base Filtering Engine (BFE) de su dispositivo Windows está desactivado. Este servicio debe estar activado para que Proton VPN funcione correctamente.</value>
   </data>
   <data name="Dialogs_BaseFilteringEngine_HowToEnable">
-    <value>¿Cómo activar el servicio Base Filtering Engine?</value>
+    <value>Cómo activar el servicio Base Filtering Engine</value>
   </data>
   <data name="Dialogs_BaseFilteringEngine_Title">
     <value>Active el servicio Base Filtering Engine para continuar</value>
@@ -1730,7 +1730,7 @@
     <value>Proton Free le conecta automáticamente al servidor gratuito más rápido disponible en nuestro {0} país gratuito. Normalmente es el servidor más cercano a su ubicación.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free le conecta automáticamente al servidor gratuito más rápido disponible en nuestros {0} países gratuitos. Normalmente es el servidor más cercano a su ubicación.</value>
+    <value>Proton Free le conecta automáticamente al servidor más rápido disponible en nuestros {0} países gratuitos. Normalmente es el servidor más cercano a su ubicación.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
     <value>País con servidores gratuitos ({0})</value>
@@ -1941,7 +1941,7 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
     <value>Use una red diferente</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
-    <value>Pruebe a cambiar de red WiFi o usar datos móviles en su lugar.</value>
+    <value>Pruebe cambiar de red WiFi o usar datos móviles en su lugar.</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage">
     <value>Revise nuestra página de estado</value>
@@ -2027,6 +2027,36 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
   <data name="Dialogs_Welcome_Title">
     <value>Le damos la bienvenida a Proton VPN</value>
   </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>Ahora puede acceder a los servidores exclusivos de su organización desde la barra lateral principal.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>Se movieron las puertas de enlace</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>Hemos actualizado nuestros diseños y movimos algunas cosas para que la aplicación sea fácil de usar.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>Apariencia nueva, misma protección</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>Agregue ajustes de perfil avanzados como NetShield y redirección de puertos, o configure Conectar y listo para iniciar un sitio web de su elección cuando se conecte.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Perfiles aún más potentes</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>Ahora es mucho más fácil restablecer la conexión a sus servidores favoritos. Vea las conexiones más recientes en la pantalla de inicio o fíjelas para un acceso más rápido.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>Aquí tiene las conexiones recientes</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Eche un vistazo</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>Novedades</value>
+  </data>
   <data name="Exit_Confirmation_Title">
     <value>¿Salir de Proton VPN?</value>
   </data>
@@ -2052,13 +2082,13 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
     <value>Conéctese a una VPN para cambiar su ubicación virtual</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Connected">
-    <value>La IP de la VPN enmascara su dirección IP real. Esto hace que parezca que navega desde la ubicación de su VPN, así que su actividad en línea no se puede vincular a su dispositivo.</value>
+    <value>La IP de la VPN enmascara su dirección IP real. Esto hace que parezca que navega desde la ubicación de su VPN, por lo que su actividad online no se puede vincular a su dispositivo.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected1">
     <value>Los sitios web y los ISP (proveedores de servicios de Internet) pueden usar este código único para vincular su ubicación e historial de navegación a su dispositivo.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected2">
-    <value>Una VPN enmascara su dirección IP, haciendo difícil que su actividad sea rastreada hasta usted.</value>
+    <value>Una VPN enmascara su dirección IP, lo que dificulta que su actividad pueda ser rastreada hasta usted.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
     <value>¿Qué es una dirección IP?</value>
@@ -2076,13 +2106,13 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
     <value>Su dirección IP es visible</value>
   </data>
   <data name="Flyouts_Isp_Description1">
-    <value>Su ISP (Proveedor de Servicios de Internet) es la empresa que le conecta a internet.</value>
+    <value>Su ISP (proveedor de servicio de internet) es la empresa que le conecta a internet.</value>
   </data>
   <data name="Flyouts_Isp_Description2">
-    <value>Pueden registrar su actividad en línea. En algunos países, pueden vender sus datos a anunciantes. En otros, pueden verse obligados a entregárselos al gobierno.</value>
+    <value>Pueden registrar su actividad online. En algunos países, pueden vender sus datos a anunciantes. En otros, pueden verse obligados a entregárselos al gobierno.</value>
   </data>
   <data name="Flyouts_Isp_Description3">
-    <value>Una VPN oculta su dirección IP, protegiéndole de la interferencia de su ISP.</value>
+    <value>Una VPN oculta su dirección IP, lo que lo protege de la interferencia de su ISP.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
     <value>¿Qué es un proveedor de servicio de internet (ISP)?</value>
@@ -2103,7 +2133,7 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
     <value>Si su conexión VPN cae, se le desconectará de internet hasta que la VPN se restaure</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Connected">
-    <value>El interruptor de bloqueo avanzado aplica incluso si desconecta la VPN intencionalmente</value>
+    <value>El interruptor de bloqueo avanzado se aplica incluso si desconecta la VPN intencionalmente</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Disconnected">
     <value>Para volver a conectarse, conéctese a una VPN o desactive el interruptor de bloqueo avanzado</value>
@@ -2133,13 +2163,13 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
     <value>Mejora sus velocidades de descarga peer-to-peer</value>
   </data>
   <data name="Flyouts_PortForwarding_Upsell_Description">
-    <value>Mejore el rendimiento del intercambio de archivos entre pares (P2P) con VPN Plus.</value>
+    <value>Mejore el rendimiento del intercambio de archivos peer-to-peer (P2P) con VPN Plus.</value>
   </data>
   <data name="Flyouts_PortForwarding_Upsell_Title">
-    <value>Mejorar la velocidad P2P</value>
+    <value>Mejore la velocidad P2P</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
-    <value>Para usar el reenvío de puertos, conéctese a un servidor P2P</value>
+    <value>Para usar la redirección de puertos, conéctese a un servidor P2P</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>Un protocolo VPN determina cómo se cifra y transmite el tráfico a través de la VPN.</value>
@@ -2201,10 +2231,10 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
-    <value>App excluida ({0})</value>
+    <value>Aplicación excluida ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
-    <value>Apps excluidas ({0})</value>
+    <value>Aplicaciones excluidas ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
     <value>Dirección IP excluida ({0})</value>
@@ -2213,7 +2243,7 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
     <value>Direcciones IP excluidas ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Info">
-    <value>Permite que las aplicaciones y direcciones IP de confianza se conecten sin VPN</value>
+    <value>Permite que las aplicaciones y direcciones IP de confianza se conecten sin protección VPN</value>
   </data>
   <data name="Flyouts_SplitTunneling_Inverse_Info">
     <value>Solo estas aplicaciones y direcciones IP se conectan mediante VPN. El resto del tráfico no está protegido.</value>
@@ -2688,7 +2718,7 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
   </data>
   <data name="Notifications_KillSwitch_Description">
-    <value>Para proteger su dirección IP, el interruptor de bloqueo está bloqueando su conexión de internet.</value>
+    <value>Para proteger su dirección IP, el interruptor de bloqueo bloquea su conexión de internet.</value>
   </data>
   <data name="Notifications_PortForwarding_CopyPortNumber">
     <value>Copiar número de puerto</value>
@@ -2747,7 +2777,7 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
     <value>Los perfiles son conexiones VPN personalizadas que pueden adaptarse a sus necesidades y guardarse para un acceso rápido.</value>
   </data>
   <data name="Overlay_Profile_Description2">
-    <value>Establezca su ubicación preferida y optimice sus ajustes para seguridad, velocidad, videojuegos o cualquier otro uso</value>
+    <value>Establezca su ubicación preferida y optimice sus ajustes para seguridad, velocidad, videojuegos o cualquier otro uso.</value>
   </data>
   <data name="Overlay_Profile_LearnMore">
     <value>¿Qué es un perfil VPN?</value>
@@ -2859,13 +2889,13 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
     <value>Mostrar ajustes</value>
   </data>
   <data name="Profile_NatType_Conflict_Description">
-    <value>Esto desactivará el reenvío de puertos para este perfil.</value>
+    <value>Esto desactivará la redirección de puertos para este perfil.</value>
   </data>
   <data name="Profile_NetShield_Conflict_Description">
     <value>Esto desactivará el DNS personalizado para este perfil.</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>Abre automáticamente un sitio web de su elección cuando se conecte a este perfil.</value>
+    <value>Abra automáticamente un sitio web de su elección cuando se conecte a este perfil.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>Conectar y listo</value>
@@ -2895,7 +2925,7 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
     <value>Conexión aleatoria</value>
   </data>
   <data name="Profiles_Default_Streaming">
-    <value>Streaming EE. UU.</value>
+    <value>Streaming EE. UU.</value>
   </data>
   <data name="Profiles_Default_WorkSchool">
     <value>Trabajo/Escuela</value>
@@ -3277,10 +3307,10 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
     <value>Descartar los cambios</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Cancel">
-    <value>Continuar editando</value>
+    <value>Seguir editando</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Title">
-    <value>¿Descartar los cambios no guardados?</value>
+    <value>¿Descartar los cambios sin guardar?</value>
   </data>
   <data name="Settings_Features">
     <value>Funciones de la VPN</value>
@@ -3373,10 +3403,10 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
     <value>Este ajuste está conectado a su perfil activo.</value>
   </data>
   <data name="Settings_OverriddenByProfile_Description2">
-    <value>Edite su perfil para realizar cambios, o desconéctese para editar sus ajustes generales de VPN.</value>
+    <value>Edite su perfil para realizar cambios o desconéctese para editar sus ajustes generales de VPN.</value>
   </data>
   <data name="Settings_OverriddenByProfile_Tagline">
-    <value>Estos ajustes están conectados al perfil '{0}' y solo se pueden gestionar en los perfiles.</value>
+    <value>Estos ajustes están conectados al perfil '{0}' y solo se pueden gestionar en Perfiles.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Settings_OverriddenByProfile_Title">

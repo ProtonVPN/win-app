@@ -124,7 +124,7 @@
     <value>Yhteyden tiedot -sivu</value>
   </data>
   <data name="Automation_Properties_Connection_Card_Component">
-    <value>Connection card</value>
+    <value>Yhteyskortti</value>
   </data>
   <data name="Automation_Properties_Features_Bar">
     <value>Ominaisuudet-palkki</value>
@@ -229,19 +229,19 @@
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Duplicate">
-    <value>Duplicate</value>
+    <value>Luo kopio</value>
   </data>
   <data name="Common_Actions_Edit">
     <value>Muokkaa</value>
   </data>
   <data name="Common_Actions_Enable">
-    <value>Käytä</value>
+    <value>Ota käyttöön</value>
   </data>
   <data name="Common_Actions_Exit_ProtonVPN">
-    <value>Exit Proton VPN</value>
+    <value>Suljetaanko Proton VPN</value>
   </data>
   <data name="Common_Actions_GotIt">
-    <value>Got it</value>
+    <value>Selvä</value>
   </data>
   <data name="Common_Actions_Install">
     <value>Install</value>
@@ -253,13 +253,13 @@
     <value>Poista</value>
   </data>
   <data name="Common_Actions_Restart">
-    <value>Restart</value>
+    <value>Käynnistä uudelleen</value>
   </data>
   <data name="Common_Actions_Save">
-    <value>Save</value>
+    <value>Tallenna</value>
   </data>
   <data name="Common_Actions_TryAgain">
-    <value>Try again</value>
+    <value>Yritä uudelleen</value>
   </data>
   <data name="Common_Actions_Update">
     <value>Päivitä</value>
@@ -268,10 +268,10 @@
     <value>Päivitä</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>Advanced kill switch is enabled. To use the internet without VPN, disable advanced kill switch.</value>
+    <value>Edistynyt tappokytkin on käytössä. Jos haluat käyttää Internetiä ilman VPN:ää, poista se käytöstä.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>Advanced kill switch is enabled. If you continue, you will be disconnected from the internet.</value>
+    <value>Edistynyt tappokytkin on käytössä. Jos jatkat, Internet-yhteytesi katkaistaan.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>VPN-yhteytesi katkaistaan.</value>
@@ -292,19 +292,19 @@
     <value>Päivitetään...</value>
   </data>
   <data name="Common_Tags_New">
-    <value>NEW</value>
+    <value>UUTTA</value>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
-    <value>Get the most from your VPN by updating to the latest version of the app.</value>
+    <value>Ota VPN:stä kaikki irti päivittämällä sovellus uusimpaan versioon.</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues">
     <value>You're more likely to have issues on older versions of Proton VPN.</value>
   </data>
   <data name="Components_Update_UpdateAvailable">
-    <value>Update available</value>
+    <value>Päivitys saatavilla</value>
   </data>
   <data name="Components_Update_UpdateProtonVpn">
-    <value>Update Proton VPN</value>
+    <value>Päivitä Proton VPN</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>Muokkaa profiilia</value>
@@ -408,7 +408,7 @@
     <value>Nopein</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Ilmaispalvelin ({0})</value>
+    <value>Free server ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Other">
     <value>Ilmaispalvelimet ({0})</value>
@@ -438,7 +438,7 @@
     <value>Omat palvelimet ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_One">
-    <value>P2P-kaupunki ({0})</value>
+    <value>P2P city ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_Other">
     <value>P2P-kaupungit ({0})</value>
@@ -479,7 +479,7 @@
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
-    <value>Poistetaanko profiili?</value>
+    <value>Poista profiili?</value>
   </data>
   <data name="Connections_Profiles_Empty_Description">
     <value>Profiilit ovat tallennettuja yhteyksiä, jotka sisältävät valitsemasi sijainnin, palvelimen ja protokollan.</value>
@@ -488,13 +488,13 @@
     <value>Luo ensimmäinen profiilisi</value>
   </data>
   <data name="Connections_Profiles_Location_Header">
-    <value>Select connection type and location</value>
+    <value>Valitse yhteystyyppi ja -sijainti</value>
   </data>
   <data name="Connections_Profiles_Name">
     <value>Give your profile a name</value>
   </data>
   <data name="Connections_Profiles_Name_Default">
-    <value>Untitled</value>
+    <value>Nimetön</value>
     <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
   </data>
   <data name="Connections_Profiles_Name_Duplicate">
@@ -531,7 +531,7 @@
     <value>Viimeisimpiä ei vielä ole</value>
   </data>
   <data name="Connections_Recents_Pinned_One">
-    <value>Kiinnitetty ({0})</value>
+    <value>Kiinnitetyt ({0})</value>
   </data>
   <data name="Connections_Recents_Pinned_Other">
     <value>Kiinnitetyt ({0})</value>
@@ -576,7 +576,7 @@
     <value>Palvelin on huollossa</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Palvelin ({0})</value>
+    <value>Server ({0})</value>
   </data>
   <data name="Connections_Servers_Other">
     <value>Palvelimet ({0})</value>
@@ -605,7 +605,7 @@
     <value>Tor-maat ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Tor-palvelin ({0})</value>
+    <value>Tor server ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
     <value>Tor-palvelimet ({0})</value>
@@ -1768,7 +1768,7 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
     <value>Mikä on viive?</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers. Please use a different server for P2P.</value>
+    <value>Yhteytesi on poistettu käytöstä, koska käytät palvelinta, joka ei tue tiedostojen jakoon käytettävää P2P-tiedonsiirtoa. P2P-tiedonsiirtoa ei tueta ilmaisilla palvelimilla. Käytä tähän tarkoitukseen eri palvelinta.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
     <value>P2P traffic detected</value>
@@ -2027,6 +2027,36 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   <data name="Dialogs_Welcome_Title">
     <value>Tervetuloa Proton VPN:ään</value>
   </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>You can now access your organization’s dedicated servers from the main sidebar.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>Gateways have moved</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>We refreshed our designs and moved some things around to make the app easier to use.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>New look, same protection</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>Add advanced profile settings like NetShield and port forwarding, or set up Connect and Go to launch a website of your choice when you connect.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Even more powerful profiles</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>It's now even easier to reconnect to your favorite servers. View your most recent connections on the home screen, or pin them for quick access.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>Introducing Recents</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Take a look</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>What's new</value>
+  </data>
   <data name="Exit_Confirmation_Title">
     <value>Suljetaanko Proton VPN?</value>
   </data>
@@ -2121,7 +2151,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Block ads, trackers, and malware with VPN Plus.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
-    <value>Enjoy ad-free browsing</value>
+    <value>Nauti mainosvapaasta selaamisesta</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Active port number</value>
@@ -2154,7 +2184,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Palvelimen kuormitus osoittaa, kuinka lähellä palvelin on sen enimmäiskapasiteettia. Palvelimen korkea kuormitus voi hidastaa yhteyttäsi.</value>
   </data>
   <data name="Flyouts_ServerLoad_High">
-    <value>Korkea (91 - 100 %)</value>
+    <value>Korkea (91-100 %)</value>
   </data>
   <data name="Flyouts_ServerLoad_High_Description">
     <value>VPN voi olla tavallista hitaampi</value>
@@ -2163,7 +2193,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Mitä palvelimen kuormitus tarkoittaa?</value>
   </data>
   <data name="Flyouts_ServerLoad_Low">
-    <value>Matala (1 - 75 %)</value>
+    <value>Matala (1-75 %)</value>
   </data>
   <data name="Flyouts_ServerLoad_Low_Description">
     <value>Salamannopea</value>
@@ -2187,7 +2217,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Speed is based on your device's current activity — it doesn't represent the VPN's maximum speed.</value>
   </data>
   <data name="Flyouts_Speed_Download">
-    <value>Lataus</value>
+    <value>Lataa</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
@@ -2210,7 +2240,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Excluded IP address ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
-    <value>Excluded IP addresses ({0})</value>
+    <value>Poissuljetut IP-osoitteet ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Info">
     <value>Allows trusted apps and IP addresses to connect without VPN protection</value>
@@ -2237,13 +2267,13 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Divide your traffic into VPN and non-VPN tunnels with VPN Plus.</value>
   </data>
   <data name="Flyouts_SplitTunneling_Upsell_Title">
-    <value>Get the best of both worlds</value>
+    <value>Hanki molempien parhaat puolet</value>
   </data>
   <data name="Flyouts_Volume_Description">
     <value>Tämä näyttää, kuinka paljon liikennettä on ohjattu VPN:si kautta.</value>
   </data>
   <data name="Flyouts_Volume_Download">
-    <value>Lataus</value>
+    <value>Lataa</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
@@ -2358,16 +2388,16 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
   </data>
   <data name="FreeConnections_P2PUpsell">
-    <value>Lataa tiedostoja mm. BitTorrentin kaltaisilla tiedonsiirtoprotokollilla.</value>
+    <value>Lataa tiedostoja mm. BitTorrentin kaltaisilla tiedonsiirtoprotokollilla</value>
   </data>
   <data name="FreeConnections_SecureCoreUpsell">
-    <value>Lisää VPN-yhteyteesi toinen salauskerros.</value>
+    <value>Lisää VPN-yhteyteesi toinen salauskerros</value>
   </data>
   <data name="FreeConnections_TorUpsell">
-    <value>Käytä Tor-verkkoa VPN-yhteytesi välityksellä ja tehosta tietosuojaasi.</value>
+    <value>Käytä Tor-verkkoa VPN-yhteytesi välityksellä ja tehosta tietosuojaasi</value>
   </data>
   <data name="FreeConnections_WorldwideCoverageUpsell">
-    <value>Hanki maailmanlaajuinen kattavuus VPN Plussalla</value>
+    <value>Hanki maailmanlaajuinen kattavuus VPN Plus -tilauksella</value>
   </data>
   <data name="Gateway_Fastest">
     <value>Fastest gateway</value>
@@ -2401,7 +2431,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Vaihda palvelinta</value>
   </data>
   <data name="Home_ConnectionCard_Header_BrowseSafely">
-    <value>Selataan turvallisesti sijainnista</value>
+    <value>Selaat turvallisesti sijainnista</value>
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
     <value>Yhdistetään palvelimeen...</value>
@@ -2580,28 +2610,28 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Irrota</value>
   </data>
   <data name="Home_TitleBar_Menu_About">
-    <value>About</value>
+    <value>Tietoja</value>
   </data>
   <data name="Home_TitleBar_Menu_Account">
-    <value>Account</value>
+    <value>Tili</value>
   </data>
   <data name="Home_TitleBar_Menu_ExitTheApp">
-    <value>Exit the app</value>
+    <value>Sulje sovellus</value>
   </data>
   <data name="Home_TitleBar_Menu_Help">
-    <value>Help</value>
+    <value>Tuki</value>
   </data>
   <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
-    <value>What's the issue?</value>
+    <value>Mikä on ongelmana?</value>
   </data>
   <data name="Home_TitleBar_Menu_Settings">
-    <value>Settings</value>
+    <value>Asetukset</value>
   </data>
   <data name="Home_TitleBar_Menu_Signout">
-    <value>Sign out</value>
+    <value>Kirjaudu ulos</value>
   </data>
   <data name="Home_TitleBar_Menu_UpdateNow">
-    <value>Update now</value>
+    <value>Päivitä nyt</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
     <value>Päivitys saatavilla</value>
@@ -2691,7 +2721,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>To protect your IP address, kill switch is blocking your internet connection.</value>
   </data>
   <data name="Notifications_PortForwarding_CopyPortNumber">
-    <value>Copy port number</value>
+    <value>Kopioi portin numero</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Määritä tämä numero BitTorrent-sovellukseesi korkeampaa nopeutta varten.</value>
@@ -2753,7 +2783,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>What is a VPN profile?</value>
   </data>
   <data name="Overlay_Profile_Title">
-    <value>Profiles</value>
+    <value>Profiilit</value>
   </data>
   <data name="Overlay_SecureCore_Description1">
     <value>Secure Core connects you to your destination server via a second, maximum security VPN server.</value>
@@ -2796,7 +2826,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>VPN voi olla tavallista hitaampi</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Title">
-    <value>Korkea (91 - 100 %)</value>
+    <value>Korkea (91-100 %)</value>
   </data>
   <data name="Overlay_ServerLoad_LearnMore">
     <value>Mitä palvelimen kuormitus tarkoittaa?</value>
@@ -2805,10 +2835,10 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Salamannopea</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Title">
-    <value>Matala (1 - 75 %)</value>
+    <value>Matala (1-75 %)</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Description">
-    <value>Ei todennäköisesti vaikuta VPN:n nopeuteen</value>
+    <value>Tuskin vaikuttaa VPN:n nopeuteen</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Title">
     <value>Keskitasoinen (76 - 90 %)</value>
@@ -2865,25 +2895,25 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>This will disable custom DNS for this profile.</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>Automatically open a website of your choice when you connect to this profile.</value>
+    <value>Haluamasi verkkosivusto avataan automaattisesti, kun muodostat yhteyden tähän profiiliin.</value>
   </data>
   <data name="Profile_Options_Header">
-    <value>Connect and Go</value>
+    <value>Yhdistä ja Siirry</value>
   </data>
   <data name="Profile_Options_Url">
-    <value>Website URL</value>
+    <value>Verkkosivuston URL-osoite</value>
   </data>
   <data name="Profile_Options_Url_Error">
-    <value>Enter a valid URL</value>
+    <value>Syötä kelvollinen URL-osoite</value>
   </data>
   <data name="Profile_PortForwarding_Conflict_Description">
     <value>This will change the NAT type for this profile to Strict (type 3).</value>
   </data>
   <data name="Profiles_Default_Gaming">
-    <value>Gaming</value>
+    <value>Pelit</value>
   </data>
   <data name="Profiles_Default_MaxSecurity">
-    <value>Max security</value>
+    <value>Maksimiturva</value>
   </data>
   <data name="Profiles_Default_Office">
     <value>Office</value>
@@ -2895,10 +2925,10 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Random connection</value>
   </data>
   <data name="Profiles_Default_Streaming">
-    <value>Streaming US</value>
+    <value>Suoratoisto</value>
   </data>
   <data name="Profiles_Default_WorkSchool">
-    <value>Work/School</value>
+    <value>Työ/Koulu</value>
   </data>
   <data name="Profiles_Page_Description">
     <value>Määritä omat VPN-asetuksesi ja yhdistä yhdellä klikkauksella.</value>
@@ -2937,13 +2967,13 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Nopein ilmainen palvelin</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Gateway</value>
+    <value>Yhdyskäytävä</value>
   </data>
   <data name="Server_Feature_B2B_Description">
     <value>Access your organization's servers</value>
   </data>
   <data name="Server_Feature_None">
-    <value>Standard</value>
+    <value>Vakio</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
@@ -2991,7 +3021,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Tietoja</value>
   </data>
   <data name="Settings_Account_Account">
-    <value>Account</value>
+    <value>Tili</value>
   </data>
   <data name="Settings_Account_Exit">
     <value>Sulje sovellus</value>
@@ -3018,7 +3048,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Käyttötilastot auttavat meitä kiertämään VPN-estoja ja parantamaan sovelluksen suorituskykyä.</value>
   </data>
   <data name="Settings_Common_Apply">
-    <value>Toteuta</value>
+    <value>Käytä</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Connection">
@@ -3117,7 +3147,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Viimeksi käyttämäsi yhteys</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
-    <value>Recents</value>
+    <value>Viimeisimmät</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Tappokytkin</value>
@@ -3141,7 +3171,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Tappokytkimen olessa käytössä et voi muodostaa yhteyttä verkkosivustoihin ja sovelluksiin, jotka on jaetun tunneloinnn avulla suljettu VPN-yhteyden ulkopuolelle.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard">
-    <value>Tavallinen</value>
+    <value>Vakio</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard_Description">
     <value>Estää pääsyn Internetiin automaattisesti VPN-yhteyden katketessa odottamattomasti.</value>
@@ -3265,7 +3295,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Lisää IPv4-osoite</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Tavallinen</value>
+    <value>Vakio</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>Valitut sovellukset ja IP-osoitteet suljetaan VPN-yhteyden ulkopuolelle</value>
@@ -3274,13 +3304,13 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Action">
-    <value>Discard changes</value>
+    <value>Hylkää muutokset</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Cancel">
-    <value>Keep editing</value>
+    <value>Jatka muokkausta</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Title">
-    <value>Discard unsaved changes?</value>
+    <value>Hylätäänkö tallentamattomat muutokset?</value>
   </data>
   <data name="Settings_Features">
     <value>VPN:n ominaisuudet</value>
@@ -3380,7 +3410,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Settings_OverriddenByProfile_Title">
-    <value>Manage {0} in Profiles</value>
+    <value>Hallitse {0} profiileissa</value>
     <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
   </data>
   <data name="Settings_Page_Title">
@@ -3526,7 +3556,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Sähköpostiosoite</value>
   </data>
   <data name="SignIn_Form_ForgotUsername">
-    <value>Unohtunut käyttäjätunnus</value>
+    <value>Käyttäjätunnus unohtunut</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_Help">
@@ -3551,7 +3581,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>Forgot password</value>
+    <value>Unohtunut salasana</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
@@ -3568,7 +3598,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Kirjaudu sisään</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
-    <value>Support Center</value>
+    <value>Tukikeskus</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
@@ -3633,7 +3663,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>NetShield</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
-    <value>Valitse mikä tahansa palvelin päivittämällä tilauksesi.</value>
+    <value>Päivitä tilauksesi ja valitse mikä tahansa palvelin.</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Title">
     <value>Eikö tämä ole haluamasi maa?</value>
@@ -3724,7 +3754,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Suojaudu verkkohyökkäyksiltä</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Routing">
-    <value>Ohjaa tietoliikenteesi huipputurvallisten Sveitsissä, Ruotsissa ja Islannissa sijaitsevien palvelinten kautta</value>
+    <value>Ohjaa tietoliikenteesi huipputurvallisten Sveitsissä, Ruotsissa ja Islannissa sijaitsevien palvelimien kautta</value>
   </data>
   <data name="Upsell_Carousel_Speed">
     <value>Selaa vielä korkeammilla nopeuksilla (jopa 10 Gbit/s)</value>

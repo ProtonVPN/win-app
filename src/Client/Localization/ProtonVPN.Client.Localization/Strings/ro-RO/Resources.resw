@@ -480,13 +480,13 @@
     <value>Servere P2P ({0})</value>
   </data>
   <data name="Connections_P2P_States_One">
-    <value>Țări P2P ({0})</value>
+    <value>State P2P ({0})</value>
   </data>
   <data name="Connections_P2P_States_Few">
-    <value>Țări P2P ({0})</value>
+    <value>State P2P ({0})</value>
   </data>
   <data name="Connections_P2P_States_Other">
-    <value>Țări P2P ({0})</value>
+    <value>State P2P ({0})</value>
   </data>
   <data name="Connections_Profiles_One">
     <value>Profiluri ({0})</value>
@@ -609,13 +609,13 @@
     <value>Afișare servere ({0})</value>
   </data>
   <data name="Connections_SeeStates_One">
-    <value>Vezi stat ({0})</value>
+    <value>Afișare stat ({0})</value>
   </data>
   <data name="Connections_SeeStates_Few">
-    <value>Vezi state ({0})</value>
+    <value>Afișare state ({0})</value>
   </data>
   <data name="Connections_SeeStates_Other">
-    <value>Vezi state ({0})</value>
+    <value>Afișare state ({0})</value>
   </data>
   <data name="Connections_Server">
     <value>Server</value>
@@ -647,7 +647,7 @@
     <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_States_One">
-    <value>Stat ({0})</value>
+    <value>State ({0})</value>
   </data>
   <data name="Connections_States_Few">
     <value>State ({0})</value>
@@ -1793,13 +1793,13 @@
     <value>Activați serviciul Windows pentru a continua</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
-    <value>Proton Free vă conectează automat la cel mai rapid server din {0} țară disponibilă. Acesta va fi în mod normal cel mai apropiat server de locul de unde vă conectați.</value>
+    <value>Proton Free vă conectează automat la cel mai rapid server disponibil din {0} țară gratuită. Acesta va fi în mod normal cel mai apropiat server de locul de unde vă conectați.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Few">
-    <value>Proton Free vă conectează automat la cel mai rapid server disponibil din cele {0} țări disponibile. Acesta va fi în mod normal cel mai apropiat server de locul de unde vă conectați.</value>
+    <value>Proton Free vă conectează automat la cel mai rapid server disponibil din cele {0} țări gratuite. De obicei acesta va fi cel mai apropiat server de locul de unde vă conectați.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free vă conectează automat la cel mai rapid server disponibil din cele {0} de țări disponibile. Acesta va fi în mod normal cel mai apropiat server de locul de unde vă conectați.</value>
+    <value>Proton Free vă conectează automat la cel mai rapid server disponibil din cele {0} de țări gratuite. De obicei acesta va fi cel mai apropiat server de locul de unde vă conectați.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
     <value>Țări servere gratuite ({0})</value>
@@ -2067,10 +2067,10 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
     <value>Ascundeți-vă poziția geografică virtuală și experimentați internetul din {0} țară disponibilă.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Few">
-    <value>Ascundeți-vă poziția geografică virtuală și experimentați internetul din oricare cele {0} țari disponibile.</value>
+    <value>Ascundeți-vă poziția geografică și experimentați internetul din oricare din cele {0} țări disponibile.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>Ascundeți-vă poziția geografică virtuală și experimentați internetul din oricare cele {0} de țari disponibile.</value>
+    <value>Ascundeți-vă poziția geografică și experimentați internetul din oricare din cele {0} de țări disponibile.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
     <value>Protejați 10 dispozitive simultan</value>
@@ -2101,6 +2101,36 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Bun venit la Proton VPN</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>Acum puteți accesa serverele dedicate ale organizației din panoul lateral.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>Porțile de acces s-au mutat</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>Am împrospătat interfața și am mutat unele articole pentru a face aplicația mai ușor de utilizat.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>Un aspect nou, aceeași protecție</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>Adăugați setări avansate de profil, cum ar fi NetShield și redirecționarea porturilor sau configurați „Conectare și accesare” pentru a lansa un site web la alegere când vă conectați.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Și mai multe profiluri puternice</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>Acum este și mai ușor să vă reconectați la serverele preferate. Vizualizați cele mai recente conexiuni pe panoul principal sau fixați-le pentru accesare rapidă.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>Vă prezentăm funcția „Recente”</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Aruncați o privire</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>Noutăți</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Închideți Proton VPN?</value>
@@ -2172,7 +2202,7 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
     <value>Blochează întregul acces la internet când nu aveți conexiune la Proton VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Info">
-    <value>Adresa IP v-ar putea fi expusă dacă ar cădea conexiunea la VPN.</value>
+    <value>Adresa IP v-ar putea fi expusă dacă se întrerupe conexiunea la VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>Dacă se întrerupe conexiunea la VPN, se va întrerupe și conexiunea la internet până la reconectarea în VPN.</value>
@@ -2617,7 +2647,7 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_AdsBlocked_One">
-    <value>Reclamă blocată</value>
+    <value>Reclame blocate</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Few">
     <value>Reclame blocate</value>
@@ -2642,13 +2672,13 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
     <value>Statistici NetShield</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_One">
-    <value>Urmăritor oprit</value>
+    <value>Urmăritor blocat</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Few">
-    <value>Urmăritori opriți</value>
+    <value>Urmăritori blocați</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Other">
-    <value>Urmăritori opriți</value>
+    <value>Urmăritori blocați</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Description">
     <value>Urmăritorii și unele fișiere cookie sunt site-uri terțe care colectează, stochează și vă vând informațiile privind activitatea de pe internet.</value>
@@ -3475,7 +3505,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Editați-vă profilul pentru a efectua modificări sau deconectați-vă pentru a edita setările generale din VPN.</value>
   </data>
   <data name="Settings_OverriddenByProfile_Tagline">
-    <value>Aceste setări sunt conectate la profilil „{0}” și pot fi gestionate doar în secțiunea „Profiluri”.</value>
+    <value>Aceste setări sunt conectate la profilul „{0}” și pot fi gestionate doar în secțiunea „Profiluri”.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Settings_OverriddenByProfile_Title">

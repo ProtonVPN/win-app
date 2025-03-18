@@ -259,7 +259,7 @@
     <value>Guardar</value>
   </data>
   <data name="Common_Actions_TryAgain">
-    <value>Volver a intentar</value>
+    <value>Inténtalo de nuevo</value>
   </data>
   <data name="Common_Actions_Update">
     <value>Actualizar</value>
@@ -531,7 +531,7 @@
     <value>Aún no hay recientes</value>
   </data>
   <data name="Connections_Recents_Pinned_One">
-    <value>Anclada ({0})</value>
+    <value>Ancladas ({0})</value>
   </data>
   <data name="Connections_Recents_Pinned_Other">
     <value>Ancladas ({0})</value>
@@ -1768,7 +1768,7 @@ La latencia alta puede ralentizar tu conexión.</value>
     <value>¿Qué es la latencia?</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Se ha desactivado tu conexión porque estás usando un servidor que no soporta el tráfico peer-to-peer (P2P). P2P no es compatible con servidores gratuitos. Utiliza otro servidor para P2P.</value>
+    <value>Tu conexión ha sido desactivada porque estás usando un servidor que no soporta el tráfico peer-to-peer (P2P). P2P no es compatible con servidores gratuitos. Por favor, utiliza un servidor distinto para P2P.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
     <value>Tráfico P2P detectado</value>
@@ -2027,6 +2027,36 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   <data name="Dialogs_Welcome_Title">
     <value>Te damos la bienvenida a Proton VPN</value>
   </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>Ahora puedes acceder a los servidores dedicados de tu organización desde la barra lateral principal.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>Se han movido las puertas de enlace.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>Hemos actualizado nuestros diseños y movimos algunas cosas para que la aplicación sea fácil de usar.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>Aspecto nuevo, misma protección</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>Añade ajustes de perfil avanzados como NetShield y reenvío de puertos, o configura Conectar y listo para iniciar un sitio web de tu elección cuando te conectes.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Perfiles aún más potentes</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>Ahora es mucho más fácil restablecer la conexión a tus servidores favoritos. Ve las conexiones más recientes en la pantalla de inicio o fíjalas para un acceso más rápido.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>Aquí tienes las conexiones recientes</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Echa un vistazo</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>Novedades</value>
+  </data>
   <data name="Exit_Confirmation_Title">
     <value>¿Salir de Proton VPN?</value>
   </data>
@@ -2121,7 +2151,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Bloquea anuncios, rastreadores y malware con VPN Plus.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
-    <value>Disfruta de una navegación sin publicidad</value>
+    <value>Disfruta de una navegación sin anuncios</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Número de puerto activo</value>
@@ -2928,7 +2958,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Prueba con una palabra clave diferente.</value>
   </data>
   <data name="Search_NoResults_Title">
-    <value>No se ha encontrado ningún resultado</value>
+    <value>No se han encontrado resultados</value>
   </data>
   <data name="Server">
     <value>Servidor</value>
@@ -3277,7 +3307,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Descartar los cambios</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Cancel">
-    <value>Continuar editando</value>
+    <value>Seguir editando</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Title">
     <value>¿Descartar los cambios no guardados?</value>

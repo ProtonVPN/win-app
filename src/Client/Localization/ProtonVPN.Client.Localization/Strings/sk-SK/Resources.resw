@@ -151,7 +151,7 @@
     <value>Stránka presmerovania portu</value>
   </data>
   <data name="Automation_Properties_Profile_Page">
-    <value>Profile page</value>
+    <value>Stránka profilu</value>
   </data>
   <data name="Automation_Properties_Settings_Advanced_Page">
     <value>Stránka pokročilých nastavení</value>
@@ -235,7 +235,7 @@
     <value>Upraviť</value>
   </data>
   <data name="Common_Actions_Enable">
-    <value>Povoliť</value>
+    <value>Zapnúť</value>
   </data>
   <data name="Common_Actions_Exit_ProtonVPN">
     <value>Ukončiť Proton VPN</value>
@@ -259,7 +259,7 @@
     <value>Uložiť</value>
   </data>
   <data name="Common_Actions_TryAgain">
-    <value>Skúsiť znova</value>
+    <value>Skús znova</value>
   </data>
   <data name="Common_Actions_Update">
     <value>Aktualizovať</value>
@@ -298,7 +298,7 @@
     <value>Ak chcete VPN využívať naplno, aktualizujte si najnovšiu verziu aplikácie.</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues">
-    <value>You're more likely to have issues on older versions of Proton VPN.</value>
+    <value>Je pravdepodobnejšie, že budete mať problémy so staršími verziami Proton VPN.</value>
   </data>
   <data name="Components_Update_UpdateAvailable">
     <value>K dispozícii je aktualizácia</value>
@@ -310,7 +310,7 @@
     <value>Upraviť profil</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
-    <value>Proton VPN sa nepodarilo načítať overovací certifikát kvôli problému so sieťou.</value>
+    <value>Protonu VPN sa nepodarilo načítať overovací certifikát kvôli problému so sieťou.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>Všetky servery vo vašom výbere sú nedostupné. Rozšírte svoj výber alebo to skúste neskôr, prosím.</value>
@@ -353,7 +353,7 @@
     <value>Zobraziť opravy</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Your device's WireGuard adapter is in use. Disconnect from any other VPN running on your device, then try again.</value>
+    <value>Adaptér WireGuard vášho zariadenia sa používa. Odpojte sa od akejkoľvek inej siete VPN spustenej na vašom zariadení a potom to skúste znova.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Automatický výber z</value>
@@ -423,13 +423,13 @@
     <value>Bezplatný server ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Few">
-    <value>Bezplatné servery ({0})</value>
+    <value>Bezplatných serverov ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Many">
     <value>Bezplatných serverov ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Bezplatné servery ({0})</value>
+    <value>Bezplatných serverov ({0})</value>
   </data>
   <data name="Connections_Gateway">
     <value>Brána</value>
@@ -507,13 +507,13 @@
     <value>P2P štát({0})</value>
   </data>
   <data name="Connections_P2P_States_Few">
-    <value>P2P štáty ({0})</value>
+    <value>P2P štátov ({0})</value>
   </data>
   <data name="Connections_P2P_States_Many">
     <value>P2P štátov ({0})</value>
   </data>
   <data name="Connections_P2P_States_Other">
-    <value>P2P štáty ({0})</value>
+    <value>P2P štátov ({0})</value>
   </data>
   <data name="Connections_Profiles_One">
     <value>Profil ({0})</value>
@@ -576,7 +576,7 @@
     <value>Pridať vlastné nastavenia</value>
   </data>
   <data name="Connections_Random">
-    <value>Náhodne</value>
+    <value>Náhodný</value>
   </data>
   <data name="Connections_Recents_One">
     <value>Nedávne ({0})</value>
@@ -666,7 +666,7 @@
     <value>Zobraziť štátov ({0})</value>
   </data>
   <data name="Connections_SeeStates_Other">
-    <value>Zobraziť štáty ({0})</value>
+    <value>Zobraziť štátov ({0})</value>
   </data>
   <data name="Connections_Server">
     <value>Server</value>
@@ -704,13 +704,13 @@
     <value>Štát ({0})</value>
   </data>
   <data name="Connections_States_Few">
-    <value>Štáty ({0})</value>
+    <value>Štátov ({0})</value>
   </data>
   <data name="Connections_States_Many">
     <value>Štátov ({0})</value>
   </data>
   <data name="Connections_States_Other">
-    <value>Štáty ({0})</value>
+    <value>Štátov ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_One">
     <value>Tor krajina ({0})</value>
@@ -1829,13 +1829,13 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_BaseFilteringEngine_Description">
-    <value>The Base Filtering Engine (BFE) service on your Windows device is disabled. This service needs to be enabled for Proton VPN to work properly.</value>
+    <value>Služba BFE (Base Filtering Engine) v zariadení so systémom Windows je vypnutá. Táto služba musí byť povolená, aby Proton VPN fungoval správne.</value>
   </data>
   <data name="Dialogs_BaseFilteringEngine_HowToEnable">
-    <value>How to enable Base Filtering Engine</value>
+    <value>Ako povoliť Base Filtering Engine</value>
   </data>
   <data name="Dialogs_BaseFilteringEngine_Title">
-    <value>Enable Base Filtering Engine to continue</value>
+    <value>Pre pokračovanie povoľte Base Filtering Engine</value>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
     <value>Získajte neobmedzený počet zmien serverov s VPN Plus.</value>
@@ -1844,7 +1844,7 @@
     <value>Momentálne ste dosiahli maximálny počet bezplatných zmien servera</value>
   </data>
   <data name="Dialogs_Common_GetStarted">
-    <value>Začnite</value>
+    <value>Začíname</value>
   </data>
   <data name="Dialogs_Common_SubscriptionExpired">
     <value>Predplatné vypršalo</value>
@@ -1853,10 +1853,10 @@
     <value>Inovujte svoj účet, aby ste znova získali prístup k serverom a funkciám Plus.</value>
   </data>
   <data name="Dialogs_DisabledService_Description">
-    <value>Looks like the Proton VPN Service is disabled. You'll need to re-enable the service to connect.</value>
+    <value>Zdá sa, že služba Proton VPN je vypnutá. Ak sa chcete pripojiť, musíte službu znova povoliť.</value>
   </data>
   <data name="Dialogs_DisabledService_Title">
-    <value>Enable Windows Service to continue</value>
+    <value>Pre pokračovanie povoľte službu Windows</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free vás automaticky pripojí k najrýchlejšiemu dostupnému bezplatnému serveru z našej {0} bezplatnej krajiny. Obvykle sa jedná o server, ktorý je najbližšie k vašej polohe.</value>
@@ -1912,10 +1912,10 @@ Vysoká latencia môže spomaliť vaše pripojenie.</value>
     <value>Čo je to latencia?</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers. Please use a different server for P2P.</value>
+    <value>Vaše pripojenie bolo deaktivované, pretože používate server, ktorý nepodporuje prevádzku peer-to-peer (P2P). P2P nie je podporované na bezplatných serveroch. Pre P2P použite iný server.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>P2P traffic detected</value>
+    <value>Zistená prevádzka P2P</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Ako torrentovať s P2P</value>
@@ -1980,7 +1980,7 @@ Vysoká latencia môže spomaliť vaše pripojenie.</value>
     <value>V čom je problém?</value>
   </data>
   <data name="Dialogs_ReportIssue_NoLogsWarning">
-    <value>Error logs help us to get to the bottom of your issue. If you don't include them, we may not be able to investigate fully.</value>
+    <value>Logy chýb nám pomôžu prísť vášmu problému na kĺb. Ak ich neuvediete, je možné, že to nebudeme môcť plne prešetriť.</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>Rýchle opravy</value>
@@ -2017,9 +2017,9 @@ Vysoká latencia môže spomaliť vaše pripojenie.</value>
     <value>Nahlásiť problém</value>
   </data>
   <data name="Dialogs_ServerLoad_Description">
-    <value>Vyťaženie servera ukazuje, ako blízko je server k svojej maximálnej kapacite. 
+    <value>Vyťaženie servera zobrazuje, koľko kapacity servera je využitých.
 
-Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
+Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Description">
     <value>VPN môže fungovať pomalšie než zvyčajne</value>
@@ -2037,7 +2037,7 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Rýchlosť VPN by nemala byť ovplyvnená</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Title">
-    <value>Stredné (76-90%)</value>
+    <value>Stredná (76-90%)</value>
   </data>
   <data name="Dialogs_ServerLoad_Title">
     <value>Čo je vyťaženie servera?</value>
@@ -2049,7 +2049,7 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Možno neskôr</value>
   </data>
   <data name="Dialogs_SystemProxy_Description">
-    <value>It looks like your device is using a proxy server. This may interfere with your VPN protection.</value>
+    <value>Zdá sa, že vaše zariadenie používa proxy server. To môže narúšať ochranu VPN.</value>
   </data>
   <data name="Dialogs_SystemProxy_Disable">
     <value>Deaktivovať proxy</value>
@@ -2097,16 +2097,16 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Pomoc s pripojením</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
-    <value>This will disconnect you from VPN. Any active internet connections will be temporarily unprotected.</value>
+    <value>Tento krok vás odpojí od VPN. Všetky aktívne internetové pripojenia budú dočasne nechránené.</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
-    <value>This will disconnect you from VPN and temporarily disable kill switch. Any active internet connections will be temporarily unprotected.</value>
+    <value>Tento krok vás odpojí od VPN a dočasne deaktivuje kill switch. Všetky aktívne internetové pripojenia budú dočasne nechránené.</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Title_Install">
-    <value>Install update?</value>
+    <value>Nainštalovať aktualizáciu?</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Title_Restart">
-    <value>Restart Proton VPN to complete update</value>
+    <value>Reštartujte Proton VPN pre dokončenie aktualizácie</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
     <value>Zdá sa, že vaše systémové hodiny nie sú synchronizované. To môže spôsobovať problémy pri pripojení k VPN.</value>
@@ -2121,13 +2121,13 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Jednoduché. Bezproblémové. Bezpečné. Chráňte sa online a bezpečne pristupujte k webom, softvéru a súborom svojej organizácie.</value>
   </data>
   <data name="Dialogs_WelcomeToProton_Title">
-    <value>Vitajte v Proton VPN</value>
+    <value>Víta vás Proton VPN</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_Description">
     <value>Prechádzajte súkromne, pristupujte k blokovanému obsahu a užívajte si digitálne slobody bez obmedzenia dát a rýchlosti.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs">
-    <value>Certifikovaná VPN sieť bez logov</value>
+    <value>Certifikovaná sieť VPN bez logov</value>
   </data>
   <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
     <value>Vaša aktivita je chránená švajčiarskymi zákonmi o ochrane osobných údajov. Nikdy nebudeme sledovať vašu online aktivitu a zdieľať ju s tretími stranami.</value>
@@ -2163,10 +2163,10 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Vitajte vo VPN Plus</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description1">
-    <value>Congratulations! You unlocked premium security and performance features on all Proton services.</value>
+    <value>Gratulujeme! Odomkli ste prémiové funkcie zabezpečenia a výkonu všetkých služieb Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Enjoy the best of Proton privacy.</value>
+    <value>Vychutnajte si to najlepšie zo súkromia od Protonu.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Vitajte v Proton Unlimited</value>
@@ -2175,7 +2175,37 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Pripravujeme pre vás VPN. Malo by to trvať len chvíľu.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
-    <value>Vitajte v Proton VPN</value>
+    <value>Víta vás Proton VPN</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>K vyhradeným serverom vašej organizácie môžete teraz pristupovať z bočného panelu.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>Brány boli presunuté</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>Vylepšili sme náš dizajn a presunuli niektoré veci, aby sa aplikácia ľahšie používala.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>Nový vzhľad, tá istá ochrana</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>Pridajte pokročilé nastavenia profilu, ako je NetShield a presmerovanie portov, alebo nastavte funkciu Pripojiť a spustiť, aby sa po pripojení otvorila webová stránka podľa vášho výberu.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Ešte výkonnejšie profily</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>Teraz je ešte jednoduchšie znova sa pripojiť k obľúbeným serverom. Zobrazte najnovšie pripojenia na domovskej obrazovke alebo ich pripnite pre rýchly prístup.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>Predstavujeme posledné novinky</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Pozrite sa</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>Čo je nové</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Ukončiť Proton VPN?</value>
@@ -2187,13 +2217,13 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Ukončiť Proton VPN</value>
   </data>
   <data name="Flyouts_Country_Description1">
-    <value>Browsing without a VPN leaves you vulnerable to location-based internet restrictions.</value>
+    <value>Pri surfovaní bez VPN sa vystavujete internetovým obmedzeniam na základe polohy.</value>
   </data>
   <data name="Flyouts_Country_Description2">
-    <value>Websites can use geoblocks to restrict content to certain locations. Governments can also instruct ISPs (Internet Service Providers) to block certain websites in their country.</value>
+    <value>Webové lokality môžu používať geografické blokovanie na obmedzenie obsahu na konkrétne lokality. Vlády tiež môžu dať pokyn poskytovateľom internetových služieb (ISP), aby blokovali určité webové stránky v ich krajine.</value>
   </data>
   <data name="Flyouts_Country_Description3">
-    <value>A VPN makes it looks like you're browsing from somewhere else, protecting you from surveillance and censorship.</value>
+    <value>VPN vytvára dojem, že surfujete z iného miesta, a chráni vás pred sledovaním a cenzúrou.</value>
   </data>
   <data name="Flyouts_Country_Title">
     <value>Krajina</value>
@@ -2202,13 +2232,13 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Pripojte sa k VPN pre zmenu vašej virtuálnej polohy</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Connected">
-    <value>Your VPN IP masks your real IP address. This makes it look like you're browsing from your VPN location, so your online activity can't be linked to your device.</value>
+    <value>IP adresa VPN maskuje vašu skutočnú IP adresu. Vďaka tomu to vyzerá, že prechádzate internet z miesta, kde sa nachádza server VPN, takže vaša online aktivita sa nedá spojiť s vaším zariadením.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected1">
-    <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device.</value>
+    <value>Tento jedinečný kód môžu webové stránky a poskytovatelia internetových služieb (ISP) použiť na prepojenie vašej polohy a histórie prehliadania s vaším zariadením.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected2">
-    <value>A VPN masks your IP address, making it harder for your activity to be traced back to you.</value>
+    <value>VPN maskuje vašu IP adresu, takže je ťažšie vystopovať vašu aktivitu.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
     <value>Čo je IP adresa?</value>
@@ -2217,7 +2247,7 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>IP adresa</value>
   </data>
   <data name="Flyouts_IpAddress_VpnIp">
-    <value>IP VPN</value>
+    <value>VPN IP</value>
   </data>
   <data name="Flyouts_IpAddress_YourIp">
     <value>Vaša IP</value>
@@ -2226,13 +2256,13 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Vaša IP adresa je viditeľná</value>
   </data>
   <data name="Flyouts_Isp_Description1">
-    <value>Your ISP (Internet Service Provider) is the company that connects you to the internet.</value>
+    <value>Poskytovateľ internetových služieb (ISP) je spoločnosť, ktorá vás pripája na internet.</value>
   </data>
   <data name="Flyouts_Isp_Description2">
-    <value>They can log your online activity. In some countries, they can sell your data to advertisers. In others, they can be required to hand it over to the government.</value>
+    <value>Môžu zaznamenávať vašu online aktivitu. V niektorých krajinách môžu vaše údaje predávať inzerentom. V iných krajinách môžu byť povinní odovzdať ich vláde.</value>
   </data>
   <data name="Flyouts_Isp_Description3">
-    <value>A VPN hides your IP address, protecting you from ISP interference.</value>
+    <value>VPN skrýva vašu IP adresu a chráni vás pred ovplyvňovaním zo strany poskytovateľa internetových služieb.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
     <value>Čo to je poskytovateľ internetových služieb (ISP)?</value>
@@ -2244,52 +2274,52 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Váš poskytovateľ môže vidieť, ktoré webové stránky navštevujete.</value>
   </data>
   <data name="Flyouts_KillSwitch_Advanced_Success">
-    <value>Blocks all internet access when you're not connected to Proton VPN</value>
+    <value>Blokuje všetok prístup na internet, keď nemáte pripojenie k Proton VPN</value>
   </data>
   <data name="Flyouts_KillSwitch_Info">
-    <value>Your IP address could be exposed if your VPN connection drops</value>
+    <value>Vaša IP adresa môže byť odhalená, ak sa VPN pripojenie preruší</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
-    <value>If your VPN connection drops, you'll be disconnected from the internet until VPN is restored</value>
+    <value>Ak sa VPN pripojenie preruší, zostanete bez pripojenia na internet, kým sa VPN neobnoví</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Connected">
-    <value>Advanced kill switch applies even if you intentionally disconnect from VPN</value>
+    <value>Pokročilý Kill Switch sa používa aj v prípade, že sa zámerne odpojíte od VPN</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Disconnected">
-    <value>To get back online, connect to VPN or disable advanced kill switch</value>
+    <value>Keď sa chcete znova vrátiť do režimu online, pripojte sa k VPN alebo vypnite pokročilý kill switch</value>
   </data>
   <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
-    <value>You're protected from ads, trackers, and malware</value>
+    <value>Máte ochranu pred reklamami, sledovacími prvkami a malvérom</value>
   </data>
   <data name="Flyouts_NetShield_Info">
-    <value>Protect yourself from ads, trackers, and malware on websites and apps</value>
+    <value>Chráňte sa pred reklamami, sledovacími prvkami a malvérom na webových stránkach a v aplikáciách</value>
   </data>
   <data name="Flyouts_NetShield_MalwareOnly_Success">
-    <value>You're protected from malware only</value>
+    <value>Máte ochranu len pred malvérom</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Description">
-    <value>Block ads, trackers, and malware with VPN Plus.</value>
+    <value>Blokujte reklamy, sledovače a malvér s VPN Plus.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
-    <value>Enjoy ad-free browsing</value>
+    <value>Užívajte si prehliadanie bez reklám</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort">
-    <value>Active port number</value>
+    <value>Číslo aktívneho portu</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Enter the active port number into your BitTorrent app to improve your P2P speeds</value>
+    <value>Zadajte číslo aktívneho portu do aplikácie BitTorrent, aby ste zvýšili rýchlosť P2P</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
-    <value>Improves peer-to-peer download speeds</value>
+    <value>Zlepšuje rýchlosť peer-to-peer sťahovania</value>
   </data>
   <data name="Flyouts_PortForwarding_Upsell_Description">
-    <value>Supercharge peer-to-peer (P2P) file sharing performance with VPN Plus.</value>
+    <value>Zvýšte výkon pri peer-to-peer (P2P) zdieľaní súborov pomocou VPN Plus.</value>
   </data>
   <data name="Flyouts_PortForwarding_Upsell_Title">
-    <value>Improve P2P speed</value>
+    <value>Zvýšiť rýchlosť P2P</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
-    <value>To use port forwarding, connect to a P2P server</value>
+    <value>Ak chcete použiť presmerovanie portov, pripojte sa k P2P serveru</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>VPN protokol určuje spôsob šifrovania a prenosu dát cez VPN.</value>
@@ -2316,7 +2346,7 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Nízke (1-75%)</value>
   </data>
   <data name="Flyouts_ServerLoad_Low_Description">
-    <value>Blesková rýchlosť</value>
+    <value>Bleskové rýchlosti</value>
   </data>
   <data name="Flyouts_ServerLoad_Medium">
     <value>Stredné (76-90%)</value>
@@ -2331,10 +2361,10 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Zrýchlené pomocou VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description1">
-    <value>This shows how much data gets transmitted through Proton VPN each second.</value>
+    <value>Tento údaj zobrazuje, koľko údajov sa každú sekundu prenesie prostredníctvom Proton VPN.</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>Speed is based on your device's current activity — it doesn't represent the VPN's maximum speed.</value>
+    <value>Rýchlosť je založená na aktuálnej aktivite vášho zariadenia — nepredstavuje maximálnu rýchlosť siete VPN.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Sťahovanie</value>
@@ -2351,67 +2381,67 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
-    <value>Excluded app ({0})</value>
+    <value>Vylúčená aplikácia ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_Few">
-    <value>Excluded apps ({0})</value>
+    <value>Vylúčené aplikácie ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_Many">
-    <value>Excluded apps ({0})</value>
+    <value>Vylúčené aplikácie ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
-    <value>Excluded apps ({0})</value>
+    <value>Vylúčené aplikácie ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
-    <value>Excluded IP address ({0})</value>
+    <value>Vylúčená IP adresa ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_Few">
-    <value>Excluded IP addresses ({0})</value>
+    <value>Vylúčené IP adresy ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_Many">
-    <value>Excluded IP addresses ({0})</value>
+    <value>Vylúčené IP adresy ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
-    <value>Excluded IP addresses ({0})</value>
+    <value>Vylúčené IP adresy ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Info">
-    <value>Allows trusted apps and IP addresses to connect without VPN protection</value>
+    <value>Umožňuje pripojenie dôveryhodných aplikácií a IP adries bez VPN ochrany</value>
   </data>
   <data name="Flyouts_SplitTunneling_Inverse_Info">
-    <value>Only these apps and IP addresses connect through VPN. All other traffic is unprotected.</value>
+    <value>Len tieto aplikácie a IP adresy sa pripájajú cez VPN. Všetka ostatná prevádzka je nechránená.</value>
   </data>
   <data name="Flyouts_SplitTunneling_Protected_Apps_One">
-    <value>Protected app ({0})</value>
+    <value>Chránená aplikácia ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Protected_Apps_Few">
-    <value>Protected apps ({0})</value>
+    <value>Chránené aplikácie ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Protected_Apps_Many">
-    <value>Protected apps ({0})</value>
+    <value>Chránené aplikácie ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
-    <value>Protected apps ({0})</value>
+    <value>Chránené aplikácie ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Protected_Ips_One">
-    <value>Protected IP address ({0})</value>
+    <value>Chránená IP adresa ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Protected_Ips_Few">
-    <value>Protected IP addresses ({0})</value>
+    <value>Chránené IP adresy ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Protected_Ips_Many">
-    <value>Protected IP addresses ({0})</value>
+    <value>Chránené IP adresy ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
-    <value>Protected IP addresses ({0})</value>
+    <value>Chránené IP adresy ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Standard_Info">
-    <value>These apps and IP addresses connect without VPN protection. All other traffic is protected.</value>
+    <value>Tieto aplikácie a IP adresy sa pripájajú bez VPN ochrany. Všetka ostatná prevádzka je chránená.</value>
   </data>
   <data name="Flyouts_SplitTunneling_Upsell_Description">
-    <value>Divide your traffic into VPN and non-VPN tunnels with VPN Plus.</value>
+    <value>Rozdeľte svoju prevádzku na VPN a iné ne-VPN tunely pomocou VPN Plus.</value>
   </data>
   <data name="Flyouts_SplitTunneling_Upsell_Title">
-    <value>Get the best of both worlds</value>
+    <value>Získajte to najlepšie z oboch svetov</value>
   </data>
   <data name="Flyouts_Volume_Description">
     <value>Zobrazuje, koľko dát prešlo cez vašu VPN.</value>
@@ -2556,10 +2586,10 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Získajte celosvetové pokrytie s VPN Plus</value>
   </data>
   <data name="Gateway_Fastest">
-    <value>Fastest gateway</value>
+    <value>Najrýchlejšia brána</value>
   </data>
   <data name="Gateway_Random">
-    <value>Random gateway</value>
+    <value>Náhodná brána</value>
   </data>
   <data name="Gateways_Page_Description">
     <value>Pripojte sa k bráne a získajte prístup k VPN vašej organizácie.</value>
@@ -2581,7 +2611,7 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Môj účet</value>
   </data>
   <data name="Home_ConnectionCard_ChangeDefaultConnection">
-    <value>Change default connection</value>
+    <value>Zmeniť predvolené pripojenie</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Zmeniť server</value>
@@ -2590,7 +2620,7 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Bezpečné surfovanie z</value>
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
-    <value>Pripája sa ku...</value>
+    <value>Pripájanie k...</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
     <value>Predvolené pripojenie</value>
@@ -2670,7 +2700,7 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Zobraziť IP adresu používateľa</value>
   </data>
   <data name="Home_ConnectionDetails_State">
-    <value>Krajina</value>
+    <value>Štát</value>
   </data>
   <data name="Home_ConnectionDetails_Title">
     <value>Podrobnosti pripojenia</value>
@@ -2778,28 +2808,28 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Odopnúť</value>
   </data>
   <data name="Home_TitleBar_Menu_About">
-    <value>About</value>
+    <value>O aplikácii</value>
   </data>
   <data name="Home_TitleBar_Menu_Account">
-    <value>Account</value>
+    <value>Účet</value>
   </data>
   <data name="Home_TitleBar_Menu_ExitTheApp">
-    <value>Exit the app</value>
+    <value>Ukončiť aplikáciu</value>
   </data>
   <data name="Home_TitleBar_Menu_Help">
-    <value>Help</value>
+    <value>Nápoveda</value>
   </data>
   <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
-    <value>What's the issue?</value>
+    <value>V čom je problém?</value>
   </data>
   <data name="Home_TitleBar_Menu_Settings">
-    <value>Settings</value>
+    <value>Nastavenia</value>
   </data>
   <data name="Home_TitleBar_Menu_Signout">
-    <value>Sign out</value>
+    <value>Odhlásiť sa</value>
   </data>
   <data name="Home_TitleBar_Menu_UpdateNow">
-    <value>Update now</value>
+    <value>Aktualizovať teraz</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
     <value>K dispozícii je aktualizácia</value>
@@ -2882,29 +2912,29 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
   <data name="Map_ConnectTo">
-    <value>Connect - {0}</value>
+    <value>Pripojiť - {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
   </data>
   <data name="Notifications_KillSwitch_Description">
-    <value>To protect your IP address, kill switch is blocking your internet connection.</value>
+    <value>Kill Switch blokuje vaše pripojenie k internetu, aby ochránil vašu skutočnú IP adresu.</value>
   </data>
   <data name="Notifications_PortForwarding_CopyPortNumber">
-    <value>Copy port number</value>
+    <value>Kopírovať číslo portu</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>Nastavte toto číslo vo vašej aplikácii BitTorrent pre najvyššie rýchlosti.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
-    <value>You’ve reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
+    <value>Dosiahli ste maximálny limit počtu zariadení. Ak sa chcete znovu pripojiť k VPN, odpojte sa v inom zariadení.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Vaša tarifa bola znížená na Proton Free a prepájame vás k najrýchlejšiemu bezplatnému serveru.</value>
   </data>
   <data name="Notifications_UnsecureWifi_Description">
-    <value>Public Wi-Fi networks are more vulnerable to security threats. Connect to VPN to browse safely.</value>
+    <value>Verejné WiFi siete sú zraniteľnejšie voči bezpečnostným hrozbám. Pripojte sa k VPN a surfujte bezpečne.</value>
   </data>
   <data name="Notifications_UnsecureWifi_Title">
-    <value>Unsecured Wi-Fi connection detected</value>
+    <value>Bolo zistené nezabezpečené WiFi pripojenie</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Aktualizovať teraz</value>
@@ -2942,22 +2972,22 @@ Vysoké zaťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>P2P</value>
   </data>
   <data name="Overlay_Profile_Description1">
-    <value>Profiles are custom VPN connections that you can tailor to your needs and save for quick access.</value>
+    <value>Profily sú vlastné VPN pripojenia, ktoré si môžete prispôsobiť svojim potrebám a uložiť pre rýchly prístup.</value>
   </data>
   <data name="Overlay_Profile_Description2">
-    <value>Set your preferred location and optimize your settings for security, performance, gaming, or any other scenario.</value>
+    <value>Nastavte si obľúbené umiestnenie a optimalizujte nastavenia pre bezpečnosť, výkon, hranie hier alebo akýkoľvek iný scenár.</value>
   </data>
   <data name="Overlay_Profile_LearnMore">
-    <value>What is a VPN profile?</value>
+    <value>Čo to je VPN profil?</value>
   </data>
   <data name="Overlay_Profile_Title">
-    <value>Profiles</value>
+    <value>Profily</value>
   </data>
   <data name="Overlay_SecureCore_Description1">
-    <value>Secure Core connects you to your destination server via a second, maximum security VPN server.</value>
+    <value>Secure Core vás pripojí k cieľovému serveru prostredníctvom druhého VPN servera s maximálnym zabezpečením.</value>
   </data>
   <data name="Overlay_SecureCore_Description2">
-    <value>This higher level of protection may cause higher latency and slower speeds.</value>
+    <value>Táto vyššia úroveň ochrany môže spôsobiť vyššiu latenciu a nižšiu rýchlosť.</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore">
     <value>Čo je Secure Core?</value>
@@ -2991,7 +3021,7 @@ VPN pripojenie</value>
 Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Description">
-    <value>VPN môže fungovať pomalšie, než je zvykom</value>
+    <value>VPN môže fungovať pomalšie než zvyčajne</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Title">
     <value>Vysoké (91-100%)</value>
@@ -3000,13 +3030,13 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Čo je vyťaženie servera?</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Description">
-    <value>Blesková rýchlosť</value>
+    <value>Bleskové rýchlosti</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Title">
     <value>Nízke (1-75%)</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Description">
-    <value>Pravdepodobne neovplyvňuje rýchlosť VPN</value>
+    <value>Rýchlosť VPN by nemala byť ovplyvnená</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Title">
     <value>Stredná (76-90%)</value>
@@ -3015,13 +3045,13 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Vyťaženie servera</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.</value>
+    <value>Smart Routing využíva virtuálne servery na zabezpečenie VPN pokrytia v ťažko dostupných krajinách.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
-    <value>When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.</value>
+    <value>Keď sa pripojíte k Smart Routing serveru, bude sa zdať, že surfujete v cieľovej krajine, aj keď sa server fyzicky nachádza inde.</value>
   </data>
   <data name="Overlay_SmartRouting_Description3">
-    <value>Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+    <value>Smart Routing sa zvyčajne používa na obchádzanie zákonov o ochrane súkromia a iných foriem cenzúry.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
     <value>Fyzické umiestnenie serverov je {0}, ale bude to vyzerať, že prehliadanie internetu prebieha zo zeme {1}</value>
@@ -3051,16 +3081,16 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Pridať vlastné nastavenia</value>
   </data>
   <data name="Profile_CustomSettings_Hide">
-    <value>Hide settings</value>
+    <value>Skryť nastavenia</value>
   </data>
   <data name="Profile_CustomSettings_Show">
     <value>Zobraziť nastavenia</value>
   </data>
   <data name="Profile_NatType_Conflict_Description">
-    <value>This will disable port forwarding for this profile.</value>
+    <value>Týmto zakážete presmerovanie portov pre tento profil.</value>
   </data>
   <data name="Profile_NetShield_Conflict_Description">
-    <value>This will disable custom DNS for this profile.</value>
+    <value>Týmto zakážete vlastné DNS pre tento profil.</value>
   </data>
   <data name="Profile_Options_Description">
     <value>Po pripojení k tomuto profilu sa automaticky otvorí webová stránka podľa vášho výberu.</value>
@@ -3069,34 +3099,34 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Pripojiť a otvoriť</value>
   </data>
   <data name="Profile_Options_Url">
-    <value>Website URL</value>
+    <value>URL webovej stránky</value>
   </data>
   <data name="Profile_Options_Url_Error">
-    <value>Enter a valid URL</value>
+    <value>Zadajte platnú URL adresu</value>
   </data>
   <data name="Profile_PortForwarding_Conflict_Description">
-    <value>This will change the NAT type for this profile to Strict (type 3).</value>
+    <value>Týmto zmeníte typ NAT pre tento profil na Strict (typ 3)</value>
   </data>
   <data name="Profiles_Default_Gaming">
-    <value>Gaming</value>
+    <value>Hranie</value>
   </data>
   <data name="Profiles_Default_MaxSecurity">
-    <value>Max security</value>
+    <value>Maximálna bezpečnosť</value>
   </data>
   <data name="Profiles_Default_Office">
-    <value>Office</value>
+    <value>Kancelária</value>
   </data>
   <data name="Profiles_Default_P2P">
     <value>P2P</value>
   </data>
   <data name="Profiles_Default_RandomConnection">
-    <value>Random connection</value>
+    <value>Náhodné pripojenie</value>
   </data>
   <data name="Profiles_Default_Streaming">
-    <value>Streaming US</value>
+    <value>Streamovanie US</value>
   </data>
   <data name="Profiles_Default_WorkSchool">
-    <value>Work/School</value>
+    <value>Práca/Škola</value>
   </data>
   <data name="Profiles_Page_Description">
     <value>Nakonfigurujte si vlastné nastavenia VPN a pripojte sa jedným kliknutím.</value>
@@ -3135,13 +3165,13 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Najrýchlejší bezplatný server</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Gateway</value>
+    <value>Brána</value>
   </data>
   <data name="Server_Feature_B2B_Description">
-    <value>Access your organization's servers</value>
+    <value>Pristupujte k serverom svojej organizácie</value>
   </data>
   <data name="Server_Feature_None">
-    <value>Standard</value>
+    <value>Štandardná</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
@@ -3168,10 +3198,10 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>O aplikácii</value>
   </data>
   <data name="Settings_About_Changelog">
-    <value>Zoznam zmien</value>
+    <value>Denník zmien</value>
   </data>
   <data name="Settings_About_CurrentVersion">
-    <value>Súčasná verzia</value>
+    <value>Sučasná verzia</value>
   </data>
   <data name="Settings_About_FailedToFetch">
     <value>Získanie informácií z hlásenia o zmene sa nepodarilo.</value>
@@ -3189,7 +3219,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>O aplikácii</value>
   </data>
   <data name="Settings_Account_Account">
-    <value>Account</value>
+    <value>Účet</value>
   </data>
   <data name="Settings_Account_Exit">
     <value>Ukončiť aplikáciu</value>
@@ -3204,13 +3234,13 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Tieto štatistiky neobsahujú vašu IP adresu a nemôžu byť použité na vašu identifikáciu. Nikdy ich nebudeme zdieľať s tretími stranami.</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports">
-    <value>Zdieľajte anonymné hlásenia o zlyhaní</value>
+    <value>Zdieľať anonymné hlásenia o zlyhaní</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports_Description">
     <value>Hlásenia o pádoch nám pomáhajú opravovať chyby, detekovať firewally a vyhýbať sa blokovaniu VPN.</value>
   </data>
   <data name="Settings_Censorship_ShareStatistics">
-    <value>Zdieľajte anonymné štatistiky o používaní</value>
+    <value>Zdieľať anonymné štatistiky používania</value>
   </data>
   <data name="Settings_Censorship_ShareStatistics_Description">
     <value>Údaje o používaní nám pomáhajú obchádzať blokovanie VPN a vylepšovať výkon aplikácie.</value>
@@ -3285,7 +3315,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Prísny (typ 3)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
-    <value>Obmedzí údaje vstupujúce do siete. Táto možnosť je bezpečnejšia, ale môže sťažovať peer-to-peer hranie.</value>
+    <value>Obmedzuje dáta vstupujúce do vašej siete. Táto voľba je bezpečnejšia, ale môže skomplikovať pripojenie k hrám typu peer-to-peer.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
     <value>Smeruje prevádzku medzi rôznymi sieťami.</value>
@@ -3294,10 +3324,10 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Používa premostenie na pripojenie sietí. TUN poskytuje vyššie rýchlosti ako TAP, ale môže byť menej stabilný.</value>
   </data>
   <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
-    <value>Custom DNS can't be turned on because you're connected to a profile with NetShield enabled.</value>
+    <value>Vlastná DNS sa nedá zapnúť, pretože máte aktívne pripojenie k profilu so zapnutou funkciou NetShield.</value>
   </data>
   <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
-    <value>Custom DNS is disabled because you're currently connected to a profile with NetShield enabled.</value>
+    <value>Vlastná DNS je vypnutá, pretože aktuálne máte aktívne pripojenie k profilu so zapnutou funkciou NetShield.</value>
   </data>
   <data name="Settings_Connection_Default">
     <value>Predvolené pripojenie</value>
@@ -3315,7 +3345,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Vaše naposledy použité pripojenie</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
-    <value>Recents</value>
+    <value>Nedávne</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill switch</value>
@@ -3357,7 +3387,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Ak je povolený NetShield, nebudete sa môcť pripojiť pomocou vlastného DNS servera.</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Information">
-    <value>NetShield is not compatible with Custom DNS.</value>
+    <value>NetShield nie je kompatibilný s vlastným DNS.</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Title">
     <value>Povoliť NetShield?</value>
@@ -3366,7 +3396,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Chráňte sa pred reklamou, malware a sledovacími prvkami na weboch a v aplikáciách.</value>
   </data>
   <data name="Settings_Connection_NetShield_Footer">
-    <value>Niektoré webové stránky sa nemusia správne načítať, ak je blokovaná reklama a sledovacie prvky.</value>
+    <value>Niektoré webové lokality sa po zablokovaní reklám a sledovacích zariadení nemusia načítať správne.</value>
   </data>
   <data name="Settings_Connection_NetShield_PrivacyPanel">
     <value>Panel súkromia NetShield</value>
@@ -3408,11 +3438,11 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Prejsť na profily</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>You're currently connected to a VPN profile.
+    <value>Práve ste sa pripojili k VPN profilu. 
 
-• To change the protocol for this connection, disconnect then edit your profile.
+- Ak chcete zmeniť protokol pre toto pripojenie, odpojte sa a potom upravte svoj profil.
 
-• To change your protocol for other VPN connections, you'll need to disconnect from your profile first.</value>
+- Ak chcete zmeniť protokol na iné VPN pripojenia, musíte sa najprv od svojho profilu odpojiť.</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Title">
     <value>Zmeniť protokol v profiloch</value>
@@ -3472,13 +3502,13 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Action">
-    <value>Discard changes</value>
+    <value>Zahodiť zmeny</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Cancel">
-    <value>Keep editing</value>
+    <value>Pokračovať v úpravách</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Title">
-    <value>Discard unsaved changes?</value>
+    <value>Zmazať neuložené zmeny?</value>
   </data>
   <data name="Settings_Features">
     <value>Funkcie VPN</value>
@@ -3490,7 +3520,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Automatické spustenie</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>Automaticky pripojiť</value>
+    <value>Automatické pripojenie</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>Po otvorení služby Proton VPN sa automaticky pripojí k vášmu predvolenému pripojeniu.</value>
@@ -3550,13 +3580,13 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Vzhľad</value>
   </data>
   <data name="Settings_General_Theme_Dark">
-    <value>Tmavý</value>
+    <value>Tmavá</value>
   </data>
   <data name="Settings_General_Theme_Default">
-    <value>Predvolený</value>
+    <value>Predvolené</value>
   </data>
   <data name="Settings_General_Theme_Light">
-    <value>Svetlý</value>
+    <value>Svetlá</value>
   </data>
   <data name="Settings_Improve">
     <value>Vylepšite Proton</value>
@@ -3568,17 +3598,17 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Verzia operačného systému</value>
   </data>
   <data name="Settings_OverriddenByProfile_Description1">
-    <value>This setting is connected to your active profile.</value>
+    <value>Toto nastavenie je spojené s vaším aktívnym profilom.</value>
   </data>
   <data name="Settings_OverriddenByProfile_Description2">
-    <value>Edit your profile to make changes, or disconnect to edit your general VPN settings.</value>
+    <value>Upravte svoj profil a vykonajte zmeny alebo sa odpojte a upravte všeobecné nastavenia VPN.</value>
   </data>
   <data name="Settings_OverriddenByProfile_Tagline">
-    <value>These settings are connected to '{0}' profile and can only be managed in Profiles.</value>
+    <value>Tieto nastavenia sú spojené s profilom "{0}" a možno ich spravovať len v Profiloch.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Settings_OverriddenByProfile_Title">
-    <value>Manage {0} in Profiles</value>
+    <value>Spravovať {0} v Profiloch</value>
     <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
   </data>
   <data name="Settings_Page_Title">
@@ -3633,22 +3663,22 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>WireGuard</value>
   </data>
   <data name="Settings_Reconnection_Title">
-    <value>Reconnect to apply changes</value>
+    <value>Znovu sa pripojte, aby sa zmeny použili</value>
   </data>
   <data name="Settings_RestoreDefault">
-    <value>Obnovenie východzieho nastavenia</value>
+    <value>Obnoviť východzie nastavenia</value>
   </data>
   <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
     <value>Obnoviť a znova pripojiť</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Action">
-    <value>Obnovenie východzieho nastavenia</value>
+    <value>Obnoviť východzie nastavenia</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Message">
     <value>Týmto resetujete nastavenie Proton VPN do pôvodného stavu.</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Title">
-    <value>Obnovenie východzieho nastavenia?</value>
+    <value>Obnoviť východzie nastavenia?</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnTcp">
     <value>OpenVPN (TCP)</value>
@@ -3718,7 +3748,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Zadajte detaily vášho účtu Proton.</value>
   </data>
   <data name="SignIn_Form_DisableKillSwitch">
-    <value>Vypnúť Kill Switch</value>
+    <value>Zakázať kill switch</value>
   </data>
   <data name="SignIn_Form_Email">
     <value>Email</value>
@@ -3728,7 +3758,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_Help">
-    <value>Pomoc</value>
+    <value>Nápoveda</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_NoLogsPolicy">
@@ -3749,7 +3779,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>Forgot password</value>
+    <value>Zabudol/la som heslo</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
@@ -3766,7 +3796,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Prihlásiť sa</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
-    <value>Support Center</value>
+    <value>Centrum podpory</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
@@ -3783,7 +3813,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Teraz ste chránený</value>
   </data>
   <data name="SystemNotification_ConnectedTo">
-    <value>Pripojené ku {0}.</value>
+    <value>Pripojené k {0}.</value>
     <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
   </data>
   <data name="SystemNotification_Disconnected">
@@ -3901,16 +3931,16 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
   </data>
   <data name="Upsell_Carousel_Profiles">
-    <value>Get quick access to frequent connections</value>
+    <value>Získajte rýchly prístup k najčastejším pripojeniam</value>
   </data>
   <data name="Upsell_Carousel_Profiles_Convenience">
-    <value>Set a profile as your default connection and connect in 1 click</value>
+    <value>Nastavte profil ako predvolené pripojenie a pripojte sa 1 kliknutím</value>
   </data>
   <data name="Upsell_Carousel_Profiles_Creation">
-    <value>Create and save your own VPN configurations with Profiles</value>
+    <value>Vytvárajte a ukladajte vlastné nastavenia VPN pomocou profilov</value>
   </data>
   <data name="Upsell_Carousel_Profiles_Customization">
-    <value>Customize your location, protocol, and settings</value>
+    <value>Prispôsobte si umiestnenie, protokol a nastavenia</value>
   </data>
   <data name="Upsell_Carousel_SecureCore">
     <value>Pridajte ďalšiu úroveň ochrany k vášmu pripojeniu</value>

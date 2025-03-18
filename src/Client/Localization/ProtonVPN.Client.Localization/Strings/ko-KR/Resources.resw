@@ -238,7 +238,7 @@
     <value>활성화</value>
   </data>
   <data name="Common_Actions_Exit_ProtonVPN">
-    <value>Proton VPN 종료</value>
+    <value>Proton VPN을 종료합니까</value>
   </data>
   <data name="Common_Actions_GotIt">
     <value>확인</value>
@@ -301,7 +301,7 @@
     <value>이전 버전의 Proton VPN에서는 문제를 겪기 쉽습니다.</value>
   </data>
   <data name="Components_Update_UpdateAvailable">
-    <value>업데이트 사용 가능</value>
+    <value>사용 가능한 업데이트가 있습니다</value>
   </data>
   <data name="Components_Update_UpdateProtonVpn">
     <value>Proton VPN 업데이트</value>
@@ -402,7 +402,7 @@
     <value>가장 빠르게</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Free 서버 ({0})</value>
+    <value>무료 서버 ({0})</value>
   </data>
   <data name="Connections_Gateway">
     <value>게이트웨이</value>
@@ -1661,7 +1661,7 @@
     <value>계속하려면 Windows 서비스 활성화</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free가 {0}개 무료 국가 내의 가능한 빠른 서버로 자동으로 연결해 줍니다. 사용자의 위치에서 가장 가까운 곳으로 연결됩니다.</value>
+    <value>Proton Free가 {0}개 무료 국가 중 가능한 빠른 서버로 자동으로 연결해 줍니다. 사용자의 위치에서 가장 가까운 곳으로 연결됩니다.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other">
     <value>무료 서버 국가 ({0})</value>
@@ -1951,6 +1951,36 @@
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Proton VPN에 오신 것을 환영합니다</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>You can now access your organization’s dedicated servers from the main sidebar.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>Gateways have moved</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>We refreshed our designs and moved some things around to make the app easier to use.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>New look, same protection</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>Add advanced profile settings like NetShield and port forwarding, or set up Connect and Go to launch a website of your choice when you connect.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Even more powerful profiles</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>It's now even easier to reconnect to your favorite servers. View your most recent connections on the home screen, or pin them for quick access.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>Introducing Recents</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Take a look</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>What's new</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Proton VPN을 종료합니까?</value>
@@ -2502,7 +2532,7 @@
     <value>로그아웃</value>
   </data>
   <data name="Home_TitleBar_Menu_UpdateNow">
-    <value>지금 업데이트</value>
+    <value>지금 업데이트하기</value>
   </data>
   <data name="Home_Update_UpdateAvailable">
     <value>사용 가능한 업데이트가 있습니다</value>

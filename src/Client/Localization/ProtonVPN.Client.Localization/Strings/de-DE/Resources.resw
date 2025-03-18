@@ -411,7 +411,7 @@
     <value>Kostenloser Server ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Kostenlose Server ({0})</value>
+    <value>Kostenlose-Server ({0})</value>
   </data>
   <data name="Connections_Gateway">
     <value>Gateway</value>
@@ -537,10 +537,10 @@
     <value>Angeheftet ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
-    <value>„Secure Core”-Land ({0})</value>
+    <value>Secure Core-Land ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_Other">
-    <value>„Secure Core”-Länder ({0})</value>
+    <value>Secure Core-Länder ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
     <value>Secure Core-Server ({0})</value>
@@ -593,10 +593,10 @@
     <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_States_One">
-    <value>Staat ({0})</value>
+    <value>Bundesland ({0})</value>
   </data>
   <data name="Connections_States_Other">
-    <value>Staaten ({0})</value>
+    <value>Bundesländer ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_One">
     <value>Tor-Land ({0})</value>
@@ -1724,7 +1724,7 @@
     <value>Es scheint, als sei der Proton VPN Service deaktiviert. Du musst ihn aktivieren, um dich verbinden zu können.</value>
   </data>
   <data name="Dialogs_DisabledService_Title">
-    <value>Windows Dienst aktivieren, um fortzufahren</value>
+    <value>Windows-Dienst aktivieren, um fortzufahren</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
     <value>Proton Free verbindet dich automatisch mit dem schnellsten verfügbaren freien Server aus unserem {0} freien Land. Dies ist normalerweise der Server, der deinem Standort am nächsten ist.</value>
@@ -1768,7 +1768,7 @@ Eine hohe Latenzzeit kann deine Verbindung verlangsamen.</value>
     <value>Was ist Latenz?</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Deine Verbindung wurde deaktiviert, da du einen Server benutzt, der P2P-Traffic nicht unterstützt. P2P wird auf kostenlosen Servern nicht unterstützt. Bitte nutze einen anderen Server für P2P.</value>
+    <value>Deine Verbindung wurde deaktiviert, weil du einen Server verwendest, der keinen Peer-to-Peer-Datenaustausch (P2P) unterstützt. P2P wird auf kostenlosen Servern nicht unterstützt. Bitte verwende einen anderen Server für P2P.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
     <value>P2P-Traffic erkannt</value>
@@ -1899,7 +1899,7 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <value>Was ist die Serverauslastung?</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
-    <value>Intelligentes Routing</value>
+    <value>Smart Routing</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Vielleicht später</value>
@@ -2027,6 +2027,36 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   <data name="Dialogs_Welcome_Title">
     <value>Willkommen bei Proton VPN</value>
   </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>Ab sofort steht dir der Zugriff auf die dedizierten Server deiner Organisation über die Hauptseitenleiste zur Verfügung.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>Gateways wurden verschoben</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>Wir haben unser Design überarbeitet und einige Dinge umgestellt, um die App benutzerfreundlicher zu gestalten.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>Neues Aussehen, gleicher Schutz</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>Ergänze erweiterte Profileinstellungen wie NetShield und Portweiterleitung oder richte „Verbinden und Los” ein, um eine Website deiner Wahl zu starten, wenn eine Verbindung aufgebaut wird.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Noch leistungsfähigere Profile</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>Jetzt ist es noch einfacher, sich wieder mit deinen bevorzugten Servern zu verbinden. Lasse dir deine letzten Verbindungen auf dem Startbildschirm anzeigen oder hefte sie für schnellen Zugriff an.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>Zuletzt verwendete Verbindungen</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Anzeigen</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>Neue Funktionen</value>
+  </data>
   <data name="Exit_Confirmation_Title">
     <value>Proton VPN beenden?</value>
   </data>
@@ -2079,7 +2109,7 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <value>Dein ISP (Internet Service Provider) ist das Unternehmen, das dich mit dem Internet verbindet. </value>
   </data>
   <data name="Flyouts_Isp_Description2">
-    <value>Sie können deine Online-Aktivitäten aufzeichnen. In einigen Ländern können sie deine Daten an Werbetreibende verkaufen. In anderen können sie verpflichtet werden, sie an die Regierung weiterzugeben.</value>
+    <value>ISPs können deine Online-Aktivitäten aufzeichnen. In einigen Ländern können sie deine Daten an Werbetreibende verkaufen. In anderen können sie verpflichtet werden, sie an die Regierung weiterzugeben.</value>
   </data>
   <data name="Flyouts_Isp_Description3">
     <value>Ein VPN verbirgt deine IP-Adresse und schützt dich so vor Eingriffen des ISP.</value>
@@ -2097,37 +2127,37 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <value>Sperrt den gesamten Internetzugang, wenn du nicht mit Proton VPN verbunden bist</value>
   </data>
   <data name="Flyouts_KillSwitch_Info">
-    <value>Deine IP-Adresse könnte sichtbar werden, wenn deine VPN-Verbindung abbricht</value>
+    <value>Deine IP-Adresse könnte sichtbar werden, wenn deine VPN-Verbindung abbricht.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>Wenn deine VPN-Verbindung unterbrochen wird, wirst du vom Internet getrennt, bis das VPN wiederhergestellt ist.</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Connected">
-    <value>Der erweiterter Kill Switch gilt auch dann, wenn du die Verbindung zum VPN absichtlich trennst</value>
+    <value>Der erweiterter Kill Switch gilt auch dann, wenn du die Verbindung zum VPN absichtlich trennst.</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Disconnected">
-    <value>Um wieder online zu gehen, musst du wieder eine Verbindung zum VPN herstellen oder den erweiterten Kill Switch deaktivieren</value>
+    <value>Um wieder online zu gehen, musst du wieder eine Verbindung zum VPN herstellen oder den erweiterten Kill Switch deaktivieren.</value>
   </data>
   <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
     <value>Du bist geschützt vor Werbung, Trackern und Malware.</value>
   </data>
   <data name="Flyouts_NetShield_Info">
-    <value>Schütz dich selbst vor Werbung, Trackern und Malware auf Webseiten und Apps</value>
+    <value>Schütz dich selbst vor Werbung, Trackern und Malware auf Websites und in Apps.</value>
   </data>
   <data name="Flyouts_NetShield_MalwareOnly_Success">
-    <value>Du bist nur vor Malware geschützt</value>
+    <value>Du bist nur vor Malware geschützt.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Description">
     <value>Blockiere Werbung, Tracker und Malware mit VPN Plus.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
-    <value>Genieße werbefreies Surfen</value>
+    <value>Genieße das Surfen ohne Werbung</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Aktive Portnummer</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Gib die aktive Portnummer in deine BitTorrent-App ein, um deine P2P-Geschwindigkeit zu verbessern</value>
+    <value>Gib die aktive Portnummer in deine BitTorrent-App ein, um deine P2P-Geschwindigkeit zu verbessern.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Verbessert die P2P-Downloadgeschwindigkeit</value>
@@ -2136,7 +2166,7 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <value>Erhöhe die Leistung von Peer-to-Peer (P2P) Filesharing mit VPN Plus.</value>
   </data>
   <data name="Flyouts_PortForwarding_Upsell_Title">
-    <value>Verbessert die P2P-Geschwindigkeit</value>
+    <value>P2P-Geschwindigkeit verbessern</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
     <value>Um die Portweiterleitung zu verwenden, stelle eine Verbindung zu einem P2P-Server her.</value>
@@ -2184,7 +2214,7 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <value>Dies zeigt an, wie viele Daten pro Sekunde über Proton VPN übertragen werden.</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>Die Geschwindigkeit basiert auf der aktuellen Aktivität deines Geräts - sie stellt nicht die maximale Geschwindigkeit des VPNs dar.</value>
+    <value>Die Geschwindigkeit basiert auf der aktuellen Aktivität deines Geräts. Sie stellt nicht die maximale Geschwindigkeit des VPNs dar.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Download</value>
@@ -2201,10 +2231,10 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
-    <value>Ausgeschlossene Anwendung ({0})</value>
+    <value>Ausgeschlossene App ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
-    <value>Ausgeschlossene Anwendungen ({0})</value>
+    <value>Ausgeschlossene Apps ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
     <value>Ausgeschlossene IP-Adresse ({0})</value>
@@ -2213,7 +2243,7 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <value>Ausgeschlossene IP-Adressen ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Info">
-    <value>Ermöglicht vertrauenswürdigen Anwendungen und IP-Adressen die Verbindung ohne VPN-Schutz</value>
+    <value>Ermöglicht vertrauenswürdigen Apps und IP-Adressen die Verbindung ohne VPN-Schutz</value>
   </data>
   <data name="Flyouts_SplitTunneling_Inverse_Info">
     <value>Nur diese Anwendungen und IP-Adressen werden über VPN verbunden. Der gesamte andere Datenverkehr ist ungeschützt.</value>
@@ -2586,7 +2616,7 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <value>Konto</value>
   </data>
   <data name="Home_TitleBar_Menu_ExitTheApp">
-    <value>App verlassen</value>
+    <value>Die App verlassen</value>
   </data>
   <data name="Home_TitleBar_Menu_Help">
     <value>Hilfe</value>

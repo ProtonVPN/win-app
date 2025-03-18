@@ -197,7 +197,7 @@
     <value>Adicionar</value>
   </data>
   <data name="Common_Actions_Back">
-    <value>Voltar</value>
+    <value>Recuar</value>
   </data>
   <data name="Common_Actions_Cancel">
     <value>Cancelar</value>
@@ -222,7 +222,7 @@
     <value>Eliminar</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Desligar</value>
+    <value>Desconectar</value>
   </data>
   <data name="Common_Actions_DisconnectFrom">
     <value>Desconectar de {0}</value>
@@ -241,7 +241,7 @@
     <value>Sair do Proton VPN</value>
   </data>
   <data name="Common_Actions_GotIt">
-    <value>Entendido</value>
+    <value>Entendi</value>
   </data>
   <data name="Common_Actions_Install">
     <value>Instalar</value>
@@ -262,10 +262,10 @@
     <value>Tente de novo</value>
   </data>
   <data name="Common_Actions_Update">
-    <value>Atualizar</value>
+    <value>Actualizar</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>Alterar a subscrição</value>
+    <value>Actualizar</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
     <value>O kill switch avançado está ativado. Para utilizar a internet sem VPN, desative o kill switch avançado.</value>
@@ -277,7 +277,7 @@
     <value>Será desconectado da VPN.</value>
   </data>
   <data name="Common_Links_LearnMore">
-    <value>Saiba mais</value>
+    <value>Mais informação</value>
   </data>
   <data name="Common_Message_Loading">
     <value>A carregar...</value>
@@ -472,14 +472,14 @@
     <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
   </data>
   <data name="Connections_Profiles_Delete">
-    <value>Eliminar o perfil</value>
+    <value>Eliminar perfil</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
     <value>«{0}» será removido permanentemente.</value>
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
-    <value>Eliminar o perfil?</value>
+    <value>Eliminar perfil?</value>
   </data>
   <data name="Connections_Profiles_Empty_Description">
     <value>Os perfis são conexões guardadas com a sua escolha de localização, servidor e protocolo.</value>
@@ -516,7 +516,7 @@
     <value>Adicionar definições personalizadas</value>
   </data>
   <data name="Connections_Random">
-    <value>Aleatório</value>
+    <value>Aleatória</value>
   </data>
   <data name="Connections_Recents_One">
     <value>Recente ({0})</value>
@@ -531,7 +531,7 @@
     <value>Ainda não há recentes.</value>
   </data>
   <data name="Connections_Recents_Pinned_One">
-    <value>Fixado ({0})</value>
+    <value>Fixados ({0})</value>
   </data>
   <data name="Connections_Recents_Pinned_Other">
     <value>Fixados ({0})</value>
@@ -640,14 +640,14 @@
     <value>P2P</value>
   </data>
   <data name="Countries_P2P_Cities">
-    <value>Cidade P2P ({0})</value>
+    <value>Cidades P2P ({0})</value>
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_P2P_Description">
     <value>Transfira ficheiros através de redes P2P (peer-to-peer) e melhore a sua experiência em jogos online e chamadas de vídeo.</value>
   </data>
   <data name="Countries_Page_FreeUser_Description">
-    <value>Desbloqueie a seleção do país com a VPN Plus</value>
+    <value>Desbloqueie a seleção de países com o VPN Plus</value>
   </data>
   <data name="Countries_SearchPlaceholder">
     <value>Quero navegar a partir de...</value>
@@ -678,7 +678,7 @@
     <value>Utilize a rede Tor sobre a sua ligação VPN para uma privacidade adicional.</value>
   </data>
   <data name="Countries_TryDifferentKeyword">
-    <value>Tente uma palavra-chave diferente.</value>
+    <value>Tente outra palavra-chave.</value>
   </data>
   <data name="Country_Fastest">
     <value>País mais rápido</value>
@@ -1768,7 +1768,7 @@ Uma latência alta pode diminuir a sua conexão.</value>
     <value>O que é a latência?</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>A sua ligação foi desativada porque utiliza um servidor que não suporta tráfego peer-to-peer (P2P). P2P não é suportado em servidores gratuitos. Utilize um servidor diferente para P2P.</value>
+    <value>A sua ligação foi desativada porque está a utilizar um servidor que não suporta tráfego peer-to-peer (P2P). P2P não é suportado em servidores gratuitos. Utilize um servidor diferente para P2P.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
     <value>Tráfego P2P detetado</value>
@@ -1790,7 +1790,7 @@ Uma latência alta pode diminuir a sua conexão.</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting">
-    <value>O que é torrent?</value>
+    <value>O que é um torrent?</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting_Description">
@@ -1839,7 +1839,7 @@ Uma latência alta pode diminuir a sua conexão.</value>
     <value>Os registos de erro ajudam-nos a chegar à raiz do seu problema. Se não os incluir, poderemos não conseguir investigar.</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
-    <value>Soluções rápidas</value>
+    <value>Correções rápidas</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Footer">
     <value>Não funcionou?</value>
@@ -1863,7 +1863,7 @@ Uma latência alta pode diminuir a sua conexão.</value>
     <value>Obrigado pelos seus comentários. Entraremos em contacto consigo assim que possível.</value>
   </data>
   <data name="Dialogs_ReportIssue_SendReport">
-    <value>Enviar o relatório</value>
+    <value>Enviar relatório</value>
   </data>
   <data name="Dialogs_ReportIssue_Steps">
     <value>Passo {0} de {1}</value>
@@ -1917,7 +1917,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Conecte-se a um servidor Tor para aceder aos serviços ocultos e sítios web onion ao utilizar qualquer navegador.</value>
   </data>
   <data name="Dialogs_Tor_LearnMore">
-    <value>Como acessar a rede Tor</value>
+    <value>Como aceder à rede Tor</value>
   </data>
   <data name="Dialogs_Tor_Title">
     <value>Tor</value>
@@ -2010,7 +2010,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Assista a filmes e programas de TV de todo o mundo, sem comprometer a velocidade ou qualidade.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
-    <value>Boas-vindas ao VPN Plus</value>
+    <value>Bem-vindo à VPN Plus</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description1">
     <value>Parabéns! Desbloqueou funcionalidades de segurança e desempenho premium em todos os serviços Proton.</value>
@@ -2026,6 +2026,36 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Bem-vindo à Proton VPN</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>Agora pode aceder aos servidores dedicados da sua organização a partir da barra lateral principal.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>As portas de entrada foram movidas.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>Atualizámos o aspeto visual e alterámos algumas coisas para tornar a aplicação mais fácil de utilizar.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>Novo visual, mesma proteção</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>Adicione definições de perfil avançadas, como o NetShield e o encaminhamento de portas, ou configure o Conectar e pronto para iniciar um sítio web à sua escolha quando se ligar.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Perfis ainda mais poderosos</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>Agora é ainda mais fácil voltar a ligar-se aos seus servidores favoritos. Consulte as suas ligações mais recentes no ecrã inicial ou fixe-as para um acesso rápido.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>Aqui estão as ligações recentes</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Dar uma vista de olhos</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>Novidades</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Sair do Proton VPN?</value>
@@ -2197,7 +2227,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Velocidade</value>
   </data>
   <data name="Flyouts_Speed_Upload">
-    <value>Envios</value>
+    <value>Enviar</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
@@ -2237,7 +2267,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Divida o seu tráfego em túneis VPN e não VPN com o VPN Plus.</value>
   </data>
   <data name="Flyouts_SplitTunneling_Upsell_Title">
-    <value>Obtenha o melhor de ambos mundos</value>
+    <value>Tenha o melhor dos dois mundos</value>
   </data>
   <data name="Flyouts_Volume_Description">
     <value>Isto mostra quanto tráfego passou pela sua VPN.</value>
@@ -2250,7 +2280,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Volume</value>
   </data>
   <data name="Flyouts_Volume_Upload">
-    <value>Envios</value>
+    <value>Enviar</value>
     <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
   </data>
   <data name="Format_Milliseconds">
@@ -2407,7 +2437,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>A ligar a...</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
-    <value>Ligação padrão</value>
+    <value>Ligação predefinida</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>Ligação gratuita</value>
@@ -2433,7 +2463,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>A ligar</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectingSubLabel">
-    <value>A proteger a sua identidade digital...</value>
+    <value>Proteção da sua identidade digital...</value>
   </data>
   <data name="Home_ConnectionDetails_Country">
     <value>País</value>
@@ -2598,7 +2628,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Definições</value>
   </data>
   <data name="Home_TitleBar_Menu_Signout">
-    <value>Terminar a sessão</value>
+    <value>Terminar sessão</value>
   </data>
   <data name="Home_TitleBar_Menu_UpdateNow">
     <value>Atualizar agora</value>
@@ -2614,7 +2644,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_VpnStatus_Subtitle_Connecting">
-    <value>A proteger a sua identidade digital...</value>
+    <value>Proteção da sua identidade digital...</value>
   </data>
   <data name="Home_VpnStatus_Subtitle_Disconnected">
     <value>Não está protegido.</value>
@@ -2738,7 +2768,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Para que são utilizadas as redes P2P?</value>
   </data>
   <data name="Overlay_P2P_LearnMore">
-    <value>O que é o P2P?</value>
+    <value>O que é P2P?</value>
   </data>
   <data name="Overlay_P2P_Title">
     <value>P2P</value>
@@ -2970,7 +3000,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Acerca</value>
   </data>
   <data name="Settings_About_Changelog">
-    <value>Registo de alterações</value>
+    <value>Diário de alterações</value>
   </data>
   <data name="Settings_About_CurrentVersion">
     <value>Versão atual</value>
@@ -2979,7 +3009,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Erro ao carregar as informações do registo de alterações</value>
   </data>
   <data name="Settings_About_LearnMore">
-    <value>Saiba mais</value>
+    <value>Mais informação</value>
   </data>
   <data name="Settings_About_Licensing">
     <value>Licença</value>
@@ -2997,7 +3027,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Sair da aplicação</value>
   </data>
   <data name="Settings_Account_SignOut">
-    <value>Encerrar sessão</value>
+    <value>Terminar sessão</value>
   </data>
   <data name="Settings_AppVersion">
     <value>Versão da aplicação</value>
@@ -3102,7 +3132,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>O DNS personalizado está desativado porque está ligado a um perfil com o NetShield ativado.</value>
   </data>
   <data name="Settings_Connection_Default">
-    <value>Ligação padrão</value>
+    <value>Ligação predefinida</value>
   </data>
   <data name="Settings_Connection_Default_Fastest">
     <value>País mais rápido</value>
@@ -3123,7 +3153,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Kill switch</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced">
-    <value>Avançado</value>
+    <value>Avançadas</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Permita o acesso à internet apenas quando estiver conectado ao Proton VPN. O kill switch avançado permanecerá ativo mesmo após reiniciar o seu dispositivo.</value>
@@ -3153,7 +3183,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Bloqueie anúncios, malware e rastreadores</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
-    <value>Bloquear apenas malware</value>
+    <value>Bloquear só malware</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Description">
     <value>Não poderá se conectar a um servidor DNS personalizado quando o NetShield estiver ativado.</value>
@@ -3168,7 +3198,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Proteja-se de anúncios, malware e rastreadores nos sítios web e aplicações.</value>
   </data>
   <data name="Settings_Connection_NetShield_Footer">
-    <value>Alguns sítios web podem não carregar corretamente quando os anúncios e os rastreadores estão bloqueados.</value>
+    <value>Alguns websites podem não carregar corretamente quando os anúncios e os rastreadores estão bloqueados.</value>
   </data>
   <data name="Settings_Connection_NetShield_PrivacyPanel">
     <value>Painel de privacidade do NetShield</value>
@@ -3262,7 +3292,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Remover o IP</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
-    <value>Adicionar um endereço IPv4</value>
+    <value>Adicionar endereço IPv4</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
     <value>Padrão</value>
@@ -3280,7 +3310,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Continuar a editar</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Title">
-    <value>Descartar as alterações não guardadas?</value>
+    <value>Descartar alterações não guardadas?</value>
   </data>
   <data name="Settings_Features">
     <value>Funcionalidades VPN</value>
@@ -3292,7 +3322,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Início automático</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>Ligação automática</value>
+    <value>Conectar automaticamente</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>Liga-se automaticamente à sua ligação predefinida ao abrir o Proton VPN.</value>
@@ -3526,7 +3556,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>E-mail</value>
   </data>
   <data name="SignIn_Form_ForgotUsername">
-    <value>Esqueci-me do nome de utilizador</value>
+    <value>Esqueci o nome de utilizador</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_Help">
@@ -3736,7 +3766,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Aceda mais rapidamente, servidores menos lotados</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
-    <value>Obtenha o melhor de ambos mundos</value>
+    <value>Tenha o melhor dos dois mundos</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Browsing">
     <value>Navegue a partir de duas localizações em simultâneo com o tunelamento dividido</value>
