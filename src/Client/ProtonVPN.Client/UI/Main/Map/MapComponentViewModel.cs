@@ -51,6 +51,7 @@ public partial class MapComponentViewModel : ViewModelBase,
     private readonly IConnectionManager _connectionManager;
     private readonly ICoordinatesProvider _coordinatesProvider;
     private readonly IUpsellCarouselWindowActivator _upsellCarouselWindowActivator;
+    private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
 
     [ObservableProperty]
     private bool _isMainWindowVisible;
@@ -71,6 +72,7 @@ public partial class MapComponentViewModel : ViewModelBase,
         IConnectionManager connectionManager,
         ICoordinatesProvider coordinatesProvider,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
+        IMainWindowOverlayActivator mainWindowOverlayActivator,
         IViewModelHelper viewModelHelper)
         : base(viewModelHelper)
     {
@@ -79,6 +81,7 @@ public partial class MapComponentViewModel : ViewModelBase,
         _connectionManager = connectionManager;
         _coordinatesProvider = coordinatesProvider;
         _upsellCarouselWindowActivator = upsellCarouselWindowActivator;
+        _mainWindowOverlayActivator = mainWindowOverlayActivator;
 
         InvalidateActiveCountry();
     }
@@ -153,6 +156,7 @@ public partial class MapComponentViewModel : ViewModelBase,
                         Code = c.Code,
                         Latitude = coordinates.Value.Latitude,
                         Longitude = coordinates.Value.Longitude,
+                        IsUnderMaintenance = c.IsStandardUnderMaintenance
                     }
                     : null;
             })
@@ -161,10 +165,23 @@ public partial class MapComponentViewModel : ViewModelBase,
     }
 
     [RelayCommand]
-    private Task ConnectAsync(string countryCode)
+    private Task ConnectAsync(Country country)
     {
-        return _settings.VpnPlan.IsPaid
-            ? _connectionManager.ConnectAsync(VpnTriggerDimension.Map, new ConnectionIntent(new CountryLocationIntent(countryCode)))
-            : _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.WorldwideCoverage);
+        if (!_settings.VpnPlan.IsPaid)
+        {
+            return _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.WorldwideCoverage);
+        }
+
+        if (country == null || country.IsUnderMaintenance)
+        {
+            return _mainWindowOverlayActivator.ShowMessageAsync(new()
+            {
+                Title =  Localizer.Get("Connections_Country_UnderMaintenance_Title"),
+                Message =  Localizer.Get("Connections_Country_UnderMaintenance"),
+                PrimaryButtonText = Localizer.Get("Common_Actions_GotIt"),
+            });
+        }
+
+        return _connectionManager.ConnectAsync(VpnTriggerDimension.Map, new ConnectionIntent(new CountryLocationIntent(country.Code)));
     }
 }

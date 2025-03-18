@@ -373,13 +373,12 @@ public sealed partial class MapControl
         List<IFeature> pins = GetAllPins();
         foreach (GeometryFeature feature in pins.Cast<GeometryFeature>())
         {
-            if (feature.Geometry is Point point)
+            if (feature.Geometry is Point point &&
+                searchArea.Contains(point.ToMPoint()) &&
+                Countries.FirstOrDefault(c => c.Code == feature.GetCountryCode()) is Country country)
             {
-                if (searchArea.Contains(point.ToMPoint()))
-                {
-                    ConnectCommand.Execute(feature.GetCountryCode());
-                    break;
-                }
+                ConnectCommand.Execute(country);
+                break;
             }
         }
     }
@@ -1041,6 +1040,7 @@ public sealed partial class MapControl
             }
 
             feature.SetCountryCode(country.Code);
+            feature.SetIsUnderMaintenance(country.IsUnderMaintenance);
             feature.SetIsCurrentCountry(isCurrentCountry);
             feature.SetIsConnected(IsConnected && isCurrentCountry);
             feature.Styles.Add(style);

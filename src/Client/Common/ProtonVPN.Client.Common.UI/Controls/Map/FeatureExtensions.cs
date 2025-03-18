@@ -24,22 +24,26 @@ namespace ProtonVPN.Client.Common.UI.Controls.Map;
 
 public static class FeatureExtensions
 {
+    private const string TRUE_STRING = "true";
+    private const string FALSE_STRING = "false";
+
     private const string IS_CONNECTING = "IsConnecting";
     private const string IS_CONNECTED = "IsConnected";
     private const string IS_ON_HOVER = "IsOnHover";
     private const string IS_CURRENT_COUNRY = "IsCurrentCountry";
     private const string COUNTRY_CODE = "CountryCode";
+    private const string IS_UNDER_MAINTENANCE = "IsUnderMaintenance";
 
     public static bool IsConnecting(this IFeature feature)
     {
-        return feature[IS_CONNECTING] as string == "true";
+        return feature[IS_CONNECTING] as string == TRUE_STRING;
     }
 
     public static void SetIsConnecting(this IFeature feature, bool isConnecting)
     {
         if (isConnecting)
         {
-            feature[IS_CONNECTING] = "true";
+            feature[IS_CONNECTING] = TRUE_STRING;
         }
         else
         {
@@ -49,14 +53,14 @@ public static class FeatureExtensions
 
     public static bool IsConnected(this IFeature feature)
     {
-        return feature[IS_CONNECTED] as string == "true";
+        return feature[IS_CONNECTED] as string == TRUE_STRING;
     }
 
     public static void SetIsConnected(this IFeature feature, bool isConnected)
     {
         if (isConnected)
         {
-            feature[IS_CONNECTED] = "true";
+            feature[IS_CONNECTED] = TRUE_STRING;
         }
         else
         {
@@ -66,14 +70,14 @@ public static class FeatureExtensions
 
     public static bool IsCurrentCountry(this IFeature feature)
     {
-        return feature[IS_CURRENT_COUNRY] as string == "true";
+        return feature[IS_CURRENT_COUNRY] as string == TRUE_STRING;
     }
 
     public static void SetIsCurrentCountry(this IFeature feature, bool isCurrentCountry)
     {
         if (isCurrentCountry)
         {
-            feature[IS_CURRENT_COUNRY] = "true";
+            feature[IS_CURRENT_COUNRY] = TRUE_STRING;
         }
         else
         {
@@ -98,16 +102,26 @@ public static class FeatureExtensions
         return countryCode;
     }
 
+    public static void SetIsUnderMaintenance(this IFeature feature, bool isUnderMaintenance)
+    {
+        feature[IS_UNDER_MAINTENANCE] = isUnderMaintenance ? TRUE_STRING : FALSE_STRING;
+    }
+
+    public static bool IsUnderMaintenance(this IFeature feature)
+    {
+        return feature[IS_UNDER_MAINTENANCE] as string == TRUE_STRING;
+    }
+
     public static bool IsOnHover(this IFeature feature)
     {
-        return feature[IS_ON_HOVER] as string == "true";
+        return feature[IS_ON_HOVER] as string == TRUE_STRING;
     }
 
     public static void SetIsOnHover(this IFeature feature, bool isOnHover)
     {
         if (isOnHover)
         {
-            feature[IS_ON_HOVER] = "true";
+            feature[IS_ON_HOVER] = TRUE_STRING;
         }
         else
         {

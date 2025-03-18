@@ -3551,6 +3551,9 @@
   <data name="Connections_Gateways_Servers_Other" xml:space="preserve">
     <value>Dedicated servers ({0})</value>
     <comment>{0} is a placeholder for the number of servers (eg. Dedicated servers (5)). This string is used when the number is different than 1.</comment>
+  </data>  
+  <data name="Connections_Country_UnderMaintenance_Title" xml:space="preserve">
+    <value>Unable to connect</value>
   </data>
   <data name="Connections_Country_UnderMaintenance" xml:space="preserve">
     <value>All servers in this country are under maintenance</value>
