@@ -241,7 +241,7 @@
     <value>Keluar dari Proton VPN</value>
   </data>
   <data name="Common_Actions_GotIt">
-    <value>Mengerti</value>
+    <value>Dimengerti</value>
   </data>
   <data name="Common_Actions_Install">
     <value>Pasang</value>
@@ -1702,7 +1702,7 @@ Latensi yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Lalu lintas P2P terdeteksi</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
-    <value>Cara torrent dengan P2P</value>
+    <value>Cara mengambil torrent dengan P2P</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_Title">
@@ -1726,7 +1726,7 @@ Latensi yang tinggi dapat memperlambat koneksi Anda.</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhyUse">
-    <value>Mengapa menggunakan server P2P saat melakukan torrent?</value>
+    <value>Mengapa saya sebaiknya menggunakan server P2P pada saat mengambil torrent?</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhyUse_Description">
@@ -1753,7 +1753,7 @@ Latensi yang tinggi dapat memperlambat koneksi Anda.</value>
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
-    <value>Kirim log error</value>
+    <value>Kirimkan log error</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
@@ -1818,10 +1818,10 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Rendah (1-75%)</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Description">
-    <value>Tidak berpengaruh pada kecepatan VPN secara garis besar</value>
+    <value>Tidak berpotensi untuk memengaruhi kecepatan VPN</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Title">
-    <value>Sedang (76–90%)</value>
+    <value>Sedang (76-90%)</value>
   </data>
   <data name="Dialogs_ServerLoad_Title">
     <value>Apa itu muatan server?</value>
@@ -1952,6 +1952,36 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Dialogs_Welcome_Title">
     <value>Selamat datang di Proton VPN</value>
   </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>Anda kini dapat mengakses server khusus milik organisasi Anda dari bilah samping.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>Gateway telah berpindah</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>Kami telah memperbarui tata letak kami dan memindahkan sebagian fitur agar aplikasi kami lebih mudah untuk digunakan.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>Tampilan baru, perlindungan yang sama</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>Tambahkan berbagai pengaturan profil lanjutan seperti NetShield dan penerusan port, atau atur fitur Sambung dan Luncurkan untuk membuka situs pilihan Anda setiap kali Anda terhubung.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Profil yang lebih berdaya</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>Kini Anda dapat terhubung ulang ke server favorit Anda secara lebih mudah. Anda dapat melihat koneksi terkini Anda di layar beranda, atau menyematkan koneksi tertentu untuk akses yang cepat.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>Memperkenalkan fitur Terkini</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Lihat apa yang baru</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>Apa yang baru</value>
+  </data>
   <data name="Exit_Confirmation_Title">
     <value>Keluar dari Proton VPN?</value>
   </data>
@@ -2046,7 +2076,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Blokir iklan, pelacak, dan malware dengan VPN Plus.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
-    <value>Nikmati penjelajahan bebas iklan</value>
+    <value>Nikmati penjelajahan tanpa iklan</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Nomor port yang aktif</value>
@@ -2265,13 +2295,13 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
   </data>
   <data name="FreeConnections_P2PUpsell">
-    <value>Unduh berkas melalui BitTorrent dan berbagai protokol file sharing lainnya</value>
+    <value>Unduh berkas melalui BitTorrent dan protokol berbagi berkas lainnya</value>
   </data>
   <data name="FreeConnections_SecureCoreUpsell">
-    <value>Terapkan lapisan perlindungan tambahan pada koneksi VPN Anda</value>
+    <value>Tambahkan lapisan enkripsi tambahan ke koneksi VPN Anda</value>
   </data>
   <data name="FreeConnections_TorUpsell">
-    <value>Sandingkan jaringan Tor dengan koneksi VPN Anda untuk privasi yang lebih</value>
+    <value>Gunakan jaringan Tor melalui koneksi VPN Anda untuk privasi tambahan</value>
   </data>
   <data name="FreeConnections_WorldwideCoverageUpsell">
     <value>Dapatkan cakupan server di seluruh dunia dengan VPN Plus</value>
@@ -2499,7 +2529,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Pengaturan</value>
   </data>
   <data name="Home_TitleBar_Menu_Signout">
-    <value>Keluar dari akun</value>
+    <value>Keluar</value>
   </data>
   <data name="Home_TitleBar_Menu_UpdateNow">
     <value>Perbarui sekarang</value>
@@ -2521,7 +2551,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Anda tidak terlindung</value>
   </data>
   <data name="Home_VpnStatus_Title_Connected">
-    <value>Terlindung</value>
+    <value>Terlindungi</value>
   </data>
   <data name="LoadingPage_Tip">
     <value>Dunia yang lebih baik dimulai dengan privasi dan kemerdekaan digital.</value>
@@ -2715,7 +2745,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Sedang (76-90%)</value>
   </data>
   <data name="Overlay_ServerLoad_Title">
-    <value>Muatan Server</value>
+    <value>Beban Server</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
     <value>Smart Routing menggunakan server virtual untuk menyediakan cakupan VPN pada berbagai negara dengan pembatasan internet yang ketat.</value>
@@ -2910,7 +2940,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Bagikan laporan crash anonim</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports_Description">
-    <value>Laporan crash membantu kami dalam memperbaiki bug, mendeteksi firewall, dan menangkal pemblokiran VPN.</value>
+    <value>Laporan crash membantu kami dalam memperbaiki bug, mendeteksi firewall, dan menghindari pemblokiran VPN.</value>
   </data>
   <data name="Settings_Censorship_ShareStatistics">
     <value>Bagikan statistik pemakaian anonim</value>
@@ -2967,7 +2997,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Memungkinkan Anda untuk terhubung ke printer, speaker, dan perangkat lainnya yang terdapat pada jaringan lokal milik perangkat Anda.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
-    <value>Tipe NAT</value>
+    <value>NAT tipe</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
     <value>Anda tidak akan dapat menggunakan penerusan port dengan NAT Moderat.</value>
@@ -2976,7 +3006,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Aktifkan NAT Moderat?</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Description">
-    <value>Pilih jenis terjemahan alamat jaringan (NAT) untuk koneksi Anda.</value>
+    <value>Pilih tipe terjemahan alamat jaringan (NAT) untuk koneksi Anda.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate">
     <value>Moderat (tipe 2)</value>
@@ -3024,7 +3054,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Kill switch</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced">
-    <value>Tingkat lanjut</value>
+    <value>Lanjutan</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Membatasi agar akses internet hanya tersedia pada saat Anda terhubung ke Proton VPN. Kill switch lanjutan akan tetap aktif bahkan ketika Anda memulai ulang perangkat Anda.</value>
@@ -3054,7 +3084,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Blokir iklan, malware, dan pelacak</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
-    <value>Hanya blokir malware</value>
+    <value>Blokir malware saja</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Description">
     <value>Anda tidak akan dapat terhubung ke server DNS khusus pada saat NetShield sedang aktif.</value>
@@ -3291,13 +3321,13 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Protokol VPN menentukan bagaimana data antara server VPN dan perangkat Anda akan saling berpindah.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Description">
-    <value>Mapan, teruji, dan aman. OpenVPN dapat diandalkan dalam kondisi jaringan yang buruk, namun pada umumnya tidak secepat protokol lainnya.</value>
+    <value>Mapan, teruji, dan aman. OpenVPN dapat diandalkan dalam kondisi jaringan yang buruk, namun dapat tidak berfungsi secepat protokol lainnya.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Title">
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Description">
-    <value>Mapan, teruji, dan aman. OpenVPN kurang efisien dalam penggunaan baterai dibanding sebagian protokol lainnya.</value>
+    <value>Mapan, teruji, dan aman. OpenVPN tidak seefisien sebagian protokol lainnya dalam hal penggunaan baterai.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>

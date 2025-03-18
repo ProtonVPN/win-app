@@ -124,7 +124,7 @@
     <value>صفحه‌ی جزئیات اتصال</value>
   </data>
   <data name="Automation_Properties_Connection_Card_Component">
-    <value>Connection card</value>
+    <value>کارت اتصال</value>
   </data>
   <data name="Automation_Properties_Features_Bar">
     <value>نوار ویژگی‌ها</value>
@@ -200,7 +200,7 @@
     <value>بازگشت</value>
   </data>
   <data name="Common_Actions_Cancel">
-    <value>انصراف</value>
+    <value>لغو</value>
   </data>
   <data name="Common_Actions_Change">
     <value>تغییر</value>
@@ -222,7 +222,7 @@
     <value>حذف</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>قطع اتصال</value>
+    <value>قطع ارتباط</value>
   </data>
   <data name="Common_Actions_DisconnectFrom">
     <value>قصع اتصال از {0}</value>
@@ -241,7 +241,7 @@
     <value>Exit Proton VPN</value>
   </data>
   <data name="Common_Actions_GotIt">
-    <value>Got it</value>
+    <value>فهمیدم</value>
   </data>
   <data name="Common_Actions_Install">
     <value>Install</value>
@@ -253,25 +253,25 @@
     <value>حذف</value>
   </data>
   <data name="Common_Actions_Restart">
-    <value>Restart</value>
+    <value>راه‌اندازی مجدد</value>
   </data>
   <data name="Common_Actions_Save">
-    <value>Save</value>
+    <value>ذخیره</value>
   </data>
   <data name="Common_Actions_TryAgain">
-    <value>Try again</value>
+    <value>تلاش دوباره</value>
   </data>
   <data name="Common_Actions_Update">
     <value>به‌روزرسانی</value>
   </data>
   <data name="Common_Actions_Upgrade">
-    <value>ارتقاء</value>
+    <value>ارتقا</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>Advanced kill switch is enabled. To use the internet without VPN, disable advanced kill switch.</value>
+    <value>سوئیچ کشتار پیشرفته فعال است. برای استفاده از اینترنت بدون VPN، سوئیچ کشتار پیشرفته را غیرفعال کنید.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>Advanced kill switch is enabled. If you continue, you will be disconnected from the internet.</value>
+    <value>سوئیچ کشتار پیشرفته فعال است. اگر ادامه دهید، از اینترنت قطع اتصال می‌شوید.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>شما از اتصال VPN قطع می‌شوید.</value>
@@ -292,19 +292,19 @@
     <value>در حال به‌روزرسانی...</value>
   </data>
   <data name="Common_Tags_New">
-    <value>NEW</value>
+    <value>جدید</value>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
-    <value>Get the most from your VPN by updating to the latest version of the app.</value>
+    <value>از VPN تان با به‌روزرسانی به آخرین نسخه‌ی برنامه بیشترین استفاده را ببرید.</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues">
     <value>You're more likely to have issues on older versions of Proton VPN.</value>
   </data>
   <data name="Components_Update_UpdateAvailable">
-    <value>Update available</value>
+    <value>به‌روزرسانی موجود است</value>
   </data>
   <data name="Components_Update_UpdateProtonVpn">
-    <value>Update Proton VPN</value>
+    <value>به‌روزرسانی Proton VPN</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>ویرایش پروفایل</value>
@@ -323,7 +323,7 @@
     <value>آداپتور شبکه موجود نیست.</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
-    <value>گزارش اشکال</value>
+    <value>گزارش یک اشکال</value>
   </data>
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Proton VPN قادر به اتصال نیست چون سرور RPC در سیستمتان در دسترس نیست.</value>
@@ -479,7 +479,7 @@
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
-    <value>پروفایل حذف شود؟</value>
+    <value>حذف پروفایل?</value>
   </data>
   <data name="Connections_Profiles_Empty_Description">
     <value>پروفایل‌ها، اتصالات ذخیره شده هستند با مکان، سرور، و پروتکل منتخب شما.</value>
@@ -494,7 +494,7 @@
     <value>Give your profile a name</value>
   </data>
   <data name="Connections_Profiles_Name_Default">
-    <value>Untitled</value>
+    <value>بدون عنوان</value>
     <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
   </data>
   <data name="Connections_Profiles_Name_Duplicate">
@@ -1747,7 +1747,7 @@
 تأخیر زیاد می‌تواد اتصالتان را آهسته کند.</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Description">
-    <value>VPN ممکن است از حد معمول آهسته‌تر عمل کند</value>
+    <value>VPN ممکن است از حد معمول آهسته‌تر اجرا شود</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Title">
     <value>زیاد (۱۵۰ms+)</value>
@@ -1768,7 +1768,7 @@
     <value>تأخیر چیست؟</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers. Please use a different server for P2P.</value>
+    <value>اتصال شما غیرفعال شده است زیرا شما از سروری استفاده می کنید که از ترافیک نظیر به نظیر (P2P) پشتیبانی نمی کند. P2P در سرورهای رایگان پشتیبانی نمی شود. لطفاً از سرور دیگری برای P2P استفاده کنید.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
     <value>P2P traffic detected</value>
@@ -1825,7 +1825,7 @@
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
-    <value>ارسال لاگ خطا</value>
+    <value>ارسال لاگ‌های خطا</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
@@ -1863,14 +1863,14 @@
     <value>با تشکر از بازخورد شما. ما در اسرع وقت با شما تماس خواهیم گرفت.</value>
   </data>
   <data name="Dialogs_ReportIssue_SendReport">
-    <value>فرستادن گزارش</value>
+    <value>ارسال گزارش</value>
   </data>
   <data name="Dialogs_ReportIssue_Steps">
     <value>مرحله {0} از {1}</value>
     <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
   </data>
   <data name="Dialogs_ReportIssue_Title">
-    <value>گزارش اشکال</value>
+    <value>گزارش یک اشکال</value>
   </data>
   <data name="Dialogs_ServerLoad_Description">
     <value>بار سرور نشان می‌دهد که چقدر یک سرور به حداکثر ظرفیتش نزدیک است.
@@ -2027,6 +2027,36 @@
   <data name="Dialogs_Welcome_Title">
     <value>به Proton VPN خوش آمدید</value>
   </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>You can now access your organization’s dedicated servers from the main sidebar.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>Gateways have moved</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>We refreshed our designs and moved some things around to make the app easier to use.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>New look, same protection</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>Add advanced profile settings like NetShield and port forwarding, or set up Connect and Go to launch a website of your choice when you connect.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Even more powerful profiles</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>It's now even easier to reconnect to your favorite servers. View your most recent connections on the home screen, or pin them for quick access.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>Introducing Recents</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Take a look</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>What's new</value>
+  </data>
   <data name="Exit_Confirmation_Title">
     <value>Exit Proton VPN?</value>
   </data>
@@ -2046,7 +2076,7 @@
     <value>A VPN makes it looks like you're browsing from somewhere else, protecting you from surveillance and censorship.</value>
   </data>
   <data name="Flyouts_Country_Title">
-    <value>Country</value>
+    <value>کشور</value>
   </data>
   <data name="Flyouts_Country_Warning">
     <value>Connect to VPN to change your virtual location</value>
@@ -2064,7 +2094,7 @@
     <value>What is an IP address?</value>
   </data>
   <data name="Flyouts_IpAddress_Title">
-    <value>IP address</value>
+    <value>آدرس IP</value>
   </data>
   <data name="Flyouts_IpAddress_VpnIp">
     <value>VPN IP</value>
@@ -2121,7 +2151,7 @@
     <value>Block ads, trackers, and malware with VPN Plus.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
-    <value>Enjoy ad-free browsing</value>
+    <value>از مرور بدون تبلیغات لذت ببرید</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Active port number</value>
@@ -2148,28 +2178,28 @@
     <value>Which VPN protocol is the best?</value>
   </data>
   <data name="Flyouts_Protocol_Title">
-    <value>Protocol</value>
+    <value>پروتکل</value>
   </data>
   <data name="Flyouts_ServerLoad_Description">
     <value>Server load shows how close a server is to its maximum capacity. A high server load can slow down your connection.</value>
   </data>
   <data name="Flyouts_ServerLoad_High">
-    <value>High (91-100%)</value>
+    <value>سنگین (۹۱-۱۰۰٪)</value>
   </data>
   <data name="Flyouts_ServerLoad_High_Description">
-    <value>VPN may run slower than normal</value>
+    <value>VPN ممکن است از حد معمول آهسته‌تر اجرا شود</value>
   </data>
   <data name="Flyouts_ServerLoad_KnowledgeBaseLinkTitle">
-    <value>What is server load?</value>
+    <value>بار سرور چیست؟</value>
   </data>
   <data name="Flyouts_ServerLoad_Low">
-    <value>Low (1-75%)</value>
+    <value>سبک (۱-۷۵٪)</value>
   </data>
   <data name="Flyouts_ServerLoad_Low_Description">
-    <value>Lightning fast speeds</value>
+    <value>سرعت‌های بسیار بالا</value>
   </data>
   <data name="Flyouts_ServerLoad_Medium">
-    <value>Medium (76-90%)</value>
+    <value>متوسط (۷۶-۹۰٪)</value>
   </data>
   <data name="Flyouts_ServerLoad_Medium_Description">
     <value>Unlikely to affect connection speed</value>
@@ -2237,7 +2267,7 @@
     <value>Divide your traffic into VPN and non-VPN tunnels with VPN Plus.</value>
   </data>
   <data name="Flyouts_SplitTunneling_Upsell_Title">
-    <value>Get the best of both worlds</value>
+    <value>بهترین‌های هر دو جوانب را بگیرید</value>
   </data>
   <data name="Flyouts_Volume_Description">
     <value>This shows how much traffic has routed through your VPN.</value>
@@ -2385,7 +2415,7 @@
     <value>سرور اختصاصی</value>
   </data>
   <data name="Home_Account_SignOut">
-    <value>خروج از حساب</value>
+    <value>خروج</value>
   </data>
   <data name="Home_Account_SignOut_Confirmation_Title">
     <value>از حساب {0} خارج می‌شوید؟</value>
@@ -2407,7 +2437,7 @@
     <value>در حال اتصال به...</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
-    <value>Default connection</value>
+    <value>اتصال پیش‌فرض</value>
   </data>
   <data name="Home_ConnectionCard_Header_FreeConnection">
     <value>اتصال رایگان</value>
@@ -2430,10 +2460,10 @@
     <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
   </data>
   <data name="Home_ConnectionDetails_Connecting">
-    <value>Connecting</value>
+    <value>درحال اتصال</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectingSubLabel">
-    <value>Protecting your digital identity...</value>
+    <value>از هویت دیجیتالی‌تان محافظت می‌کند...</value>
   </data>
   <data name="Home_ConnectionDetails_Country">
     <value>کشور</value>
@@ -2462,7 +2492,7 @@
     <value>IP من</value>
   </data>
   <data name="Home_ConnectionDetails_Protected">
-    <value>Protected</value>
+    <value>محافظت شده</value>
   </data>
   <data name="Home_ConnectionDetails_Protocol">
     <value>پروتکل</value>
@@ -2484,19 +2514,19 @@
     <value>نشانی IP کاربر را نشان دهید</value>
   </data>
   <data name="Home_ConnectionDetails_State">
-    <value>استان</value>
+    <value>ایالت</value>
   </data>
   <data name="Home_ConnectionDetails_Title">
     <value>جزئیات اتصال</value>
   </data>
   <data name="Home_ConnectionDetails_Unprotected">
-    <value>Unprotected</value>
+    <value>محافظت نشده</value>
   </data>
   <data name="Home_ConnectionDetails_UnprotectedSubLabel">
     <value>Encrypt your online activity by connecting to VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
-    <value>Volume</value>
+    <value>حجم</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>Download volume</value>
@@ -2517,7 +2547,7 @@
     <value>اطلاعات بیشتر درباره اتصالات رایگان</value>
   </data>
   <data name="Home_Help_Title">
-    <value>راهنمایی</value>
+    <value>راهنما</value>
   </data>
   <data name="Home_Map_Landmark">
     <value>نقشه</value>
@@ -2580,25 +2610,25 @@
     <value>حذف پین</value>
   </data>
   <data name="Home_TitleBar_Menu_About">
-    <value>About</value>
+    <value>درباره</value>
   </data>
   <data name="Home_TitleBar_Menu_Account">
-    <value>Account</value>
+    <value>حساب</value>
   </data>
   <data name="Home_TitleBar_Menu_ExitTheApp">
     <value>Exit the app</value>
   </data>
   <data name="Home_TitleBar_Menu_Help">
-    <value>Help</value>
+    <value>راهنما</value>
   </data>
   <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
-    <value>What's the issue?</value>
+    <value>مشکل چیست؟</value>
   </data>
   <data name="Home_TitleBar_Menu_Settings">
-    <value>Settings</value>
+    <value>تنظیمات</value>
   </data>
   <data name="Home_TitleBar_Menu_Signout">
-    <value>Sign out</value>
+    <value>خروج</value>
   </data>
   <data name="Home_TitleBar_Menu_UpdateNow">
     <value>Update now</value>
@@ -2614,7 +2644,7 @@
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_VpnStatus_Subtitle_Connecting">
-    <value>Protecting your digital identity...</value>
+    <value>از هویت دیجیتالی‌تان محافظت می‌کند...</value>
   </data>
   <data name="Home_VpnStatus_Subtitle_Disconnected">
     <value>شما محافظت نشده‌اید</value>
@@ -2649,7 +2679,7 @@
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>Enter the code from your authenticator app.</value>
+    <value>کد سامانه تایید کننده را وارد نمایید.</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>احراز هویت دو مرحله‌ای</value>
@@ -2691,7 +2721,7 @@
     <value>To protect your IP address, kill switch is blocking your internet connection.</value>
   </data>
   <data name="Notifications_PortForwarding_CopyPortNumber">
-    <value>Copy port number</value>
+    <value>کپی کردن عدد port</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
     <value>این شماره را در برنامه BitTorrent خود تنظیم کنید تا از سرعت بیشتر بهره ببرید.</value>
@@ -2753,7 +2783,7 @@
     <value>What is a VPN profile?</value>
   </data>
   <data name="Overlay_Profile_Title">
-    <value>Profiles</value>
+    <value>نوع اتصال</value>
   </data>
   <data name="Overlay_SecureCore_Description1">
     <value>Secure Core connects you to your destination server via a second, maximum security VPN server.</value>
@@ -2765,56 +2795,56 @@
     <value>What is Secure Core?</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection">
-    <value>Secure Core
-VPN connection</value>
+    <value>اتصال VPN
+Secure Core</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
-    <value>Higher latency</value>
+    <value>تأخیر بیشتر</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection_Privacy">
-    <value>Advanced privacy</value>
+    <value>حریم خصوصی پیشرفته</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection">
-    <value>Standard
-VPN connection</value>
+    <value>اتصال VPN
+استاندارد</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection_Latency">
-    <value>Lower latency</value>
+    <value>تأخیر کمتر</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection_Privacy">
-    <value>High privacy</value>
+    <value>حریم خصوصی بالا</value>
   </data>
   <data name="Overlay_SecureCore_Title">
     <value>Secure Core</value>
   </data>
   <data name="Overlay_ServerLoad_Description">
-    <value>Server load shows how close a server is to its maximum capacity.
+    <value>بار سرور نشان می‌دهد که چقدر یک سرور به حداکثر ظرفیتش نزدیک است.
 
-A high server load can slow down your connection.</value>
+بار سرور سنگین می‌تواند سرعت اتصالتان را کاهش دهد.</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Description">
-    <value>VPN may run slower than normal</value>
+    <value>VPN ممکن است از حد معمول آهسته‌تر اجرا شود</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Title">
-    <value>High (91-100%)</value>
+    <value>سنگین (۹۱-۱۰۰٪)</value>
   </data>
   <data name="Overlay_ServerLoad_LearnMore">
-    <value>What is server load?</value>
+    <value>بار سرور چیست؟</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Description">
-    <value>Lightning fast speeds</value>
+    <value>سرعت‌های بسیار بالا</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Title">
-    <value>Low (1-75%)</value>
+    <value>سبک (۱-۷۵٪)</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Description">
-    <value>Unlikely to affect VPN speed</value>
+    <value>احتمال تأثیر بر سرعت VPN کم است</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Title">
-    <value>Medium (76-90%)</value>
+    <value>متوسط (۷۶-۹۰٪)</value>
   </data>
   <data name="Overlay_ServerLoad_Title">
-    <value>Server Load</value>
+    <value>بار ترافیکی سرور</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
     <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.</value>
@@ -2826,7 +2856,7 @@ A high server load can slow down your connection.</value>
     <value>Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>Servers are physically located in {0}, but you'll appear to be browsing from {1}</value>
+    <value>سرورها به‌صورت فیزیکی در {0} هستند، ولی شما به‌عنوان مرور از {1} دیده می‌شوید</value>
     <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
     Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
     Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
@@ -2838,10 +2868,10 @@ A high server load can slow down your connection.</value>
     <value>Smart Routing</value>
   </data>
   <data name="Overlay_Tor_Description">
-    <value>Connect to a Tor server to access hidden services and onion sites using any browser.</value>
+    <value>به یک سرور Tor وصل شوید تا به سرویس‌های مخفی و سایت‌های onion با هر مرورگری دسترسی یابید.</value>
   </data>
   <data name="Overlay_Tor_LearnMore">
-    <value>How to access the Tor network</value>
+    <value>چگونه به شبکه‌ی Tor دسترسی یابیم</value>
   </data>
   <data name="Overlay_Tor_Title">
     <value>Tor</value>
@@ -2904,7 +2934,7 @@ A high server load can slow down your connection.</value>
     <value>Configure your own VPN settings and connect in one click.</value>
   </data>
   <data name="Profiles_Page_Title">
-    <value>Profiles</value>
+    <value>نوع اتصال</value>
   </data>
   <data name="Search_InputBox_Placeholder">
     <value>Browse from...</value>
@@ -2914,11 +2944,11 @@ A high server load can slow down your connection.</value>
     <comment>The word used for one single city and one single United States state</comment>
   </data>
   <data name="Search_NoInput_Country">
-    <value>Country</value>
+    <value>کشور</value>
     <comment>The word used for one single country</comment>
   </data>
   <data name="Search_NoInput_Server">
-    <value>Server</value>
+    <value>سرور</value>
     <comment>The word used for one single server</comment>
   </data>
   <data name="Search_NoInput_TrySearchingFor">
@@ -2928,22 +2958,22 @@ A high server load can slow down your connection.</value>
     <value>Try a different keyword.</value>
   </data>
   <data name="Search_NoResults_Title">
-    <value>No results found</value>
+    <value>هیچ نتیجه‌ای یافت نشد</value>
   </data>
   <data name="Server">
-    <value>Server</value>
+    <value>سرور</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>سریع‌ترین سرور رایگان</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Gateway</value>
+    <value>دروازه</value>
   </data>
   <data name="Server_Feature_B2B_Description">
     <value>Access your organization's servers</value>
   </data>
   <data name="Server_Feature_None">
-    <value>Standard</value>
+    <value>استاندارد</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
@@ -2964,7 +2994,7 @@ A high server load can slow down your connection.</value>
     <value>سرور رایگان</value>
   </data>
   <data name="Servers">
-    <value>Servers</value>
+    <value>سرورها</value>
   </data>
   <data name="Settings_About">
     <value>درباره</value>
@@ -2985,19 +3015,19 @@ A high server load can slow down your connection.</value>
     <value>مجوزها</value>
   </data>
   <data name="Settings_About_Loading">
-    <value>در حال بارگیری</value>
+    <value>بارگذاری</value>
   </data>
   <data name="Settings_About_Title">
     <value>درباره</value>
   </data>
   <data name="Settings_Account_Account">
-    <value>Account</value>
+    <value>حساب</value>
   </data>
   <data name="Settings_Account_Exit">
     <value>Exit the app</value>
   </data>
   <data name="Settings_Account_SignOut">
-    <value>Sign out</value>
+    <value>خروج</value>
   </data>
   <data name="Settings_AppVersion">
     <value>نسخه برنامه</value>
@@ -3102,22 +3132,22 @@ A high server load can slow down your connection.</value>
     <value>Custom DNS is disabled because you're currently connected to a profile with NetShield enabled.</value>
   </data>
   <data name="Settings_Connection_Default">
-    <value>Default connection</value>
+    <value>اتصال پیش‌فرض</value>
   </data>
   <data name="Settings_Connection_Default_Fastest">
     <value>سریع‌ترین کشور</value>
   </data>
   <data name="Settings_Connection_Default_Fastest_Description">
-    <value>The best server based on your location</value>
+    <value>بهترین سرور بر اساس مکان شما</value>
   </data>
   <data name="Settings_Connection_Default_Last">
-    <value>Last connection</value>
+    <value>آخرین اتصال</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Your most recently used connection</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
-    <value>Recents</value>
+    <value>موارد اخیر</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>سوئیچ کشتار</value>
@@ -3126,25 +3156,25 @@ A high server load can slow down your connection.</value>
     <value>پیشرفته</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
-    <value>Only allow internet access when connected to Proton VPN. Advanced kill switch will remain active even when you restart your device.</value>
+    <value>فقط هنگامی که به Proton VPN متصلید اجازه دسترسی به اینترنت دهید. سوئیچ کشتار پیشرفته حتی بعد از راه‌اندازی دوباره دستگاه فعال می‌ماند.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>This will disable split tunneling.</value>
+    <value>این، تونل‌بندی بخشی را غیرفعال می‌کند.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Enable kill switch?</value>
+    <value>سوئیچ کشتار فعال شود؟</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Description">
-    <value>Protects your IP address by disconnecting you from the internet if you lose your VPN connection.</value>
+    <value>از نشانی IP تان با قطع اتصال از اینترنت هنگامی که اتصال VPN قطع می‌شود محافظت می‌کند.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Footer">
-    <value>When kill switch is on, you won't be able to connect to websites and apps excluded from your VPN connection through split tunneling.</value>
+    <value>هنگامی که سوئیچ کشتار فعال است، شما نمی‌توانید به وب‌سایت‌ها و برنامه‌هایی که با تونل‌بندی بخشی از اتصال VPN مستثنی کردید، وصل شوید.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard">
-    <value>Standard</value>
+    <value>استاندارد</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard_Description">
-    <value>Automatically disconnect from the internet if VPN connection is lost.</value>
+    <value>به‌طور خودکار از اینترنت هنگام از دست رفتن اتصال VPN قطع شوید.</value>
   </data>
   <data name="Settings_Connection_NetShield">
     <value>NetShield</value>
@@ -3153,22 +3183,22 @@ A high server load can slow down your connection.</value>
     <value>Block ads, malware and trackers</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
-    <value>Block malware only</value>
+    <value>تنها مسدود کردن بدافزار</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Description">
-    <value>You won't be able to connect with a custom DNS server when NetShield is enabled.</value>
+    <value>شما قادر به اتصال با یک سرور DNS سفارشی هنگامی که NetShield فعال است نخواهید بود.</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Information">
     <value>NetShield is not compatible with Custom DNS.</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Title">
-    <value>Enable NetShield?</value>
+    <value>NetShield فعال شود؟</value>
   </data>
   <data name="Settings_Connection_NetShield_Description">
-    <value>Protect yourself from ads, malware, and trackers on websites and apps.</value>
+    <value>از خودتان در برابر تبلیغات، بدافزار، و ردیاب‌ها در وب‌سایت‌ها و برنامه‌ها محافظت کنید.</value>
   </data>
   <data name="Settings_Connection_NetShield_Footer">
-    <value>Some websites may not load properly when ads and trackers are blocked.</value>
+    <value>بعضی وب‌سایت‌ها ممکن است درست بارگیری نشوند هنگامی که تبلیغات و ردیاب‌ها مسدود هستند.</value>
   </data>
   <data name="Settings_Connection_NetShield_PrivacyPanel">
     <value>NetShield Privacy Panel</value>
@@ -3177,28 +3207,28 @@ A high server load can slow down your connection.</value>
     <value>Port forwarding</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Active port:</value>
+    <value>Port فعال:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
-    <value>Copy port number</value>
+    <value>کپی کردن عدد port</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Description">
-    <value>You won't be able to use Moderate NAT when port forwarding is enabled.</value>
+    <value>شما قادر به استفاده از NAT متوسط هنگامی که port forwarding فعال است، نیستید.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Title">
-    <value>Enable port forwarding?</value>
+    <value>Port forwarding فعال شود؟</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Bypass firewalls to connect to P2P servers and devices in your local network.</value>
+    <value>دیوارهای آتش را دور بزنید تا به سرورهای P2P و دستگاه‌های موجود در شبکه محلی‌تان وصل شوید.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>To use port forwarding, please connect to a server that supports P2P.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Loading">
-    <value>Loading...</value>
+    <value>در حال بارگیری...</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications">
-    <value>Notifications</value>
+    <value>اعلان‌ها</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Get notified when the port forwarding number changes</value>
@@ -3220,67 +3250,67 @@ A high server load can slow down your connection.</value>
     <value>Change protocol in profiles</value>
   </data>
   <data name="Settings_Connection_SplitTunneling">
-    <value>Split tunneling</value>
+    <value>تونل‌سازی بخشی</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Add">
-    <value>Add app</value>
+    <value>افزودن برنامه</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
-    <value>App files</value>
+    <value>فایل‌های برنامه</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Header">
-    <value>Selected apps ({0})</value>
+    <value>برنامه‌های انتخابی ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
-    <value>Remove app</value>
+    <value>برداشتن برنامه</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>This will disable kill switch.</value>
+    <value>این، سوئیچ کشتار را غیرفعال می‌کند.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Enable split tunneling?</value>
+    <value>تونل‌بندی بخشی فعال شود؟</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
-    <value>Customize your connection by deciding which apps and IP addresses are protected by VPN.</value>
+    <value>اتصالتان را با تصمیم بر این‌که چه برنامه‌ها و نشانی‌های IP با VPN محافظت شوند سفارشی کنید.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Inverse</value>
+    <value>معکوس</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Only selected apps and IP addresses connect via VPN, all other traffic is unprotected</value>
+    <value>فقط برنامه‌ها و نشانی‌های IP انتخاب شده از طریق VPN وصل می‌شوند، ترافیک‌های دیگه شبکه محافظت نمی‌شوند</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>Add IP</value>
+    <value>افزودن IP</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
-    <value>Selected IP addresses ({0})</value>
+    <value>نشانی‌های IP انتخاب شده ({0})</value>
     <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
-    <value>Remove IP</value>
+    <value>حذف IP</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
-    <value>Add IPv4 address</value>
+    <value>افزودن آدرس IPv4</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Standard</value>
+    <value>استاندارد</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
-    <value>Selected apps and IP addresses are excluded from VPN connection</value>
+    <value>برنامه‌ها و نشانی‌های IP انتخاب شده از اتصال VPN مستثنی می‌شوند</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Action">
-    <value>Discard changes</value>
+    <value>لغو تغییرات</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Cancel">
-    <value>Keep editing</value>
+    <value>ادامه ویرایش</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Title">
-    <value>Discard unsaved changes?</value>
+    <value>تغییرات ذخیره نشده را نادیده می‌گیرید؟</value>
   </data>
   <data name="Settings_Features">
     <value>VPN features</value>
@@ -3486,7 +3516,7 @@ A high server load can slow down your connection.</value>
     <value>لاگ‌های سرویس</value>
   </data>
   <data name="Settings_Support_ReportIssue">
-    <value>گزارش اشکال</value>
+    <value>گزارش یک اشکال</value>
   </data>
   <data name="Settings_Support_SupportCenter">
     <value>مرکز پشتیبانی</value>
@@ -3504,7 +3534,7 @@ A high server load can slow down your connection.</value>
     <value>سرعت اتصالتان را تا ۴۰۰٪ با فناوری‌های بهبود بخشی به عملکرد افزایش دهید.</value>
   </data>
   <data name="SignIn_Form">
-    <value>Sign in form</value>
+    <value>فرم ورود به حساب</value>
   </data>
   <data name="SignIn_Form_AdvancedKillSwitchDescription">
     <value>Advanced kill switch is blocking your internet connection.</value>
@@ -3513,66 +3543,66 @@ A high server load can slow down your connection.</value>
     <value>The best secure VPN for speed</value>
   </data>
   <data name="SignIn_Form_CreateAccount">
-    <value>Create account</value>
+    <value>ساختن حساب</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="SignIn_Form_Description">
-    <value>Enter your Proton Account details.</value>
+    <value>اطلاعات حساب 'پروتون' خود را وارد کنید.</value>
   </data>
   <data name="SignIn_Form_DisableKillSwitch">
-    <value>Disable kill switch</value>
+    <value>غیرفعال کردن Kill Switch</value>
   </data>
   <data name="SignIn_Form_Email">
-    <value>Email</value>
+    <value>ایمیل</value>
   </data>
   <data name="SignIn_Form_ForgotUsername">
-    <value>Forgot username</value>
+    <value>فراموشی نام کاربری</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_Help">
-    <value>Help</value>
+    <value>راهنما</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_NoLogsPolicy">
-    <value>No-logs policy</value>
+    <value>سیاست عدم ثبت رویدادها</value>
   </data>
   <data name="SignIn_Form_OpenSource">
     <value>Open-source</value>
   </data>
   <data name="SignIn_Form_Password">
-    <value>Password</value>
+    <value>رمزعبور</value>
   </data>
   <data name="SignIn_Form_PasswordError">
-    <value>Enter your password</value>
+    <value>کلمه عبور خود را وارد نمایید</value>
     <comment>An error message is displayed when the user attempts to sign in without entering a password</comment>
   </data>
   <data name="SignIn_Form_ReportAnIssue">
-    <value>Report an issue</value>
+    <value>گزارش یک اشکال</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>Forgot password</value>
+    <value>فراموشی رمز عبور</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
-    <value>Sign in</value>
+    <value>ورود</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="SignIn_Form_SignInWithSso">
-    <value>Sign in with SSO</value>
+    <value>ورود با احراز هویت یکپارچه (SSO)</value>
   </data>
   <data name="SignIn_Form_SwissBased">
     <value>Swiss-based</value>
   </data>
   <data name="SignIn_Form_Title">
-    <value>Sign in</value>
+    <value>ورود</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
     <value>Support Center</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
-    <value>Email or username</value>
+    <value>ایمیل یا نام‌کاربری</value>
   </data>
   <data name="SignIn_Form_UsernameError">
     <value>Enter your email or username</value>
@@ -3585,7 +3615,7 @@ A high server load can slow down your connection.</value>
     <value>You are now protected</value>
   </data>
   <data name="SystemNotification_ConnectedTo">
-    <value>متصل به {0}.</value>
+    <value>متصل شده به {0}.</value>
     <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
   </data>
   <data name="SystemNotification_Disconnected">

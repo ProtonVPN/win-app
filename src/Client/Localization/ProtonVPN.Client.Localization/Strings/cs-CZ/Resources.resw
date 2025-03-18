@@ -510,10 +510,10 @@
     <value>P2P státy ({0})</value>
   </data>
   <data name="Connections_P2P_States_Many">
-    <value>P2P států ({0})</value>
+    <value>P2P státy ({0})</value>
   </data>
   <data name="Connections_P2P_States_Other">
-    <value>P2P států ({0})</value>
+    <value>P2P státy ({0})</value>
   </data>
   <data name="Connections_Profiles_One">
     <value>Profil ({0})</value>
@@ -522,10 +522,10 @@
     <value>Profily ({0})</value>
   </data>
   <data name="Connections_Profiles_Many">
-    <value>Profilů ({0})</value>
+    <value>Profily ({0})</value>
   </data>
   <data name="Connections_Profiles_Other">
-    <value>Profilů ({0})</value>
+    <value>Profily ({0})</value>
   </data>
   <data name="Connections_Profiles_Create">
     <value>Vytvořit profil</value>
@@ -633,28 +633,28 @@
     <value>Secure Core servery ({0})</value>
   </data>
   <data name="Connections_SeeCities_One">
-    <value>Ukázat město ({0})</value>
+    <value>Zobrazit město ({0})</value>
   </data>
   <data name="Connections_SeeCities_Few">
-    <value>Ukázat města ({0})</value>
+    <value>Zobrazit města ({0})</value>
   </data>
   <data name="Connections_SeeCities_Many">
-    <value>Ukázat města ({0})</value>
+    <value>Zobrazit města ({0})</value>
   </data>
   <data name="Connections_SeeCities_Other">
-    <value>Ukázat města ({0})</value>
+    <value>Zobrazit města ({0})</value>
   </data>
   <data name="Connections_SeeServers_One">
-    <value>Ukázat server ({0})</value>
+    <value>Zobrazit server ({0})</value>
   </data>
   <data name="Connections_SeeServers_Few">
-    <value>Ukázat servery ({0})</value>
+    <value>Zobrazit servery ({0})</value>
   </data>
   <data name="Connections_SeeServers_Many">
-    <value>Ukázat servery ({0})</value>
+    <value>Zobrazit servery ({0})</value>
   </data>
   <data name="Connections_SeeServers_Other">
-    <value>Ukázat servery ({0})</value>
+    <value>Zobrazit servery ({0})</value>
   </data>
   <data name="Connections_SeeStates_One">
     <value>Zobrazit stát ({0})</value>
@@ -1877,10 +1877,10 @@
     <value>Země se servery Free ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Many">
-    <value>Zemí se servery Free ({0})</value>
+    <value>Země se servery Free ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other">
-    <value>Zemí se servery Free ({0})</value>
+    <value>Země se servery Free ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Title">
     <value>Připojení Free</value>
@@ -2176,6 +2176,36 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>Vítejte v Proton VPN</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>K dedikovaným serverům vaší organizace můžete nyní přistupovat z postranního panelu.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>Brány byly přesunuty</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>Vylepšili jsme vzhled a uspořádali některé prvky tak, aby se aplikace snáze používala.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>Nový vzhled, stejná ochrana</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>Přidejte pokročilá nastavení profilu, jako je NetShield a přesměrování portů, nebo nastavte funkci Connect and Go, která při připojení spustí vybranou webovou stránku.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Ještě výkonnější profily</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>Připojení k oblíbeným serverům je nyní ještě snazší. Na domovské obrazovce si můžete zobrazit nedávná připojení nebo si je připnout pro rychlý přístup.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>Představujeme Nedávné</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Podívejte se</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>Co je nového</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Ukončit Proton VPN?</value>
@@ -2713,13 +2743,13 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
     <value>Reklama zablokována</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Few">
-    <value>Reklam zablokováno</value>
+    <value>Reklamy zablokovány</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Many">
-    <value>Reklam zablokováno</value>
+    <value>Reklamy zablokovány</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Other">
-    <value>Reklam zablokováno</value>
+    <value>Reklamy zablokovány</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Description">
     <value>Reklamy jsou propagační plochy nebo vyskakovací okna objevující se na webových stránkách nebo v aplikacích.</value>

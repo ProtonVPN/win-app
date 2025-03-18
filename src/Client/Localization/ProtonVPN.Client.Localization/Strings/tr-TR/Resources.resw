@@ -1727,16 +1727,16 @@
     <value>İlerlemek için Windows Hizmetini başlatın</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
-    <value>Proton Free otomatik olarak {0} Free ülkemizdeki en hızlı Free sunucusuyla bağlantınızı kurar. Bu sunucu normalde konumunuza en yakın sunucudur.</value>
+    <value>Proton Free, otomatik olarak {0} Free tarife ülkemizdeki en hızlı Free tarife sunucusuyla bağlantınızı kurar. Bu sunucu normalde konumunuza en yakın sunucudur.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free otomatik olarak {0} Free ülkemizdeki en hızlı Free sunucusuyla bağlantınızı kurar. Bu sunucu normalde konumunuza en yakın sunucudur.</value>
+    <value>Proton Free, otomatik olarak {0} Free tarife ülkemizdeki en hızlı Free tarife sunucusuyla bağlantınızı kurar. Bu sunucu normalde konumunuza en yakın sunucudur.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
-    <value>Free sunucuları ülkesi ({0})</value>
+    <value>Free tarifesi sunucuları ülkesi ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other">
-    <value>Free sunucuları ülkeleri ({0})</value>
+    <value>Free tarifesi sunucuları ülkeleri ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Title">
     <value>Free bağlantıları</value>
@@ -2027,6 +2027,36 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Dialogs_Welcome_Title">
     <value>Proton VPN hizmetine hoş geldiniz</value>
   </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>Artık kuruluşunuzun özel sunucularına ana kenar çubuğundan erişebilirsiniz.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>Ağ geçitleri taşındı</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>Tasarımlarımızı yeniledik ve uygulamanın kullanımını kolaylaştırmak için bazı şeylerin yerini değiştirdik.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>Yeni görünüm, aynı koruma</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>NetShield ve bağlantı noktası yönlendirme gibi gelişmiş profil ayarları ekleyin. Bağlandığınızda istediğiniz bir sitenin açılması için Bağlan ve git seçeneğini ayarlayın.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Daha da güçlü profiller</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>Sık kullandığınız sunuculara yeniden bağlanmak artık daha kolay. Son bağlantılarınızı giriş ekranında görüntüleyin veya hızlı erişmek için sabitleyin.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>Son kullanılanlar özelliği</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Göz atın</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>Yenilikler</value>
+  </data>
   <data name="Exit_Confirmation_Title">
     <value>Proton VPN uygulamasından çıkılsın mı?</value>
   </data>
@@ -2201,16 +2231,16 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
-    <value>Katılmayan uygulama ({0})</value>
+    <value>Katılmayacak uygulama ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
-    <value>Katılmayan uygulamalar ({0})</value>
+    <value>Katılmayacak uygulamalar ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
-    <value>Katılmayan IP adresi ({0})</value>
+    <value>Katılmayacak IP adresi ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
-    <value>Katılmayan IP adresleri ({0})</value>
+    <value>Katılmayacak IP adresleri ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Info">
     <value>Güvenilir uygulamaların ve IP adreslerinin VPN koruması olmadan bağlantı kurmasını sağlar</value>
@@ -3054,7 +3084,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>IPv6 trafiğini kullanım dışı bırak</value>
+    <value>IPv6 trafiğini kullanımdan kaldır</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
     <value>IPv6 adreslerine gelen bağlantıları engelleyerek IPv6 adresinin öğrenilmesini önler.</value>

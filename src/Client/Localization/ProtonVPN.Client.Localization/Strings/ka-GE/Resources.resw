@@ -238,7 +238,7 @@
     <value>ჩართვა</value>
   </data>
   <data name="Common_Actions_Exit_ProtonVPN">
-    <value>გასვლა Proton VPN-დან</value>
+    <value>გავიდე Proton VPN-დან</value>
   </data>
   <data name="Common_Actions_GotIt">
     <value>გავიგე</value>
@@ -259,7 +259,7 @@
     <value>შენახვა</value>
   </data>
   <data name="Common_Actions_TryAgain">
-    <value>თავიდან ცდა</value>
+    <value>კიდევ ცდა</value>
   </data>
   <data name="Common_Actions_Update">
     <value>განახლება</value>
@@ -268,10 +268,10 @@
     <value>გაუმჯობესება</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>Advanced kill switch is enabled. To use the internet without VPN, disable advanced kill switch.</value>
+    <value>Advanced kill switch ჩართულია ინტერნეტის VPN-ის გარეშე გამოსაყენებლად გათიშეთ Advanced kill switch.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>Advanced kill switch is enabled. If you continue, you will be disconnected from the internet.</value>
+    <value>Advanced kill switch ჩართულია თუ გააგრძელებთ, ინტერნეტი გაგეთიშებათ.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>VPN გაითიშება.</value>
@@ -372,10 +372,10 @@
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
   <data name="Connections_Cities_One">
-    <value>ქალაქი ({0})</value>
+    <value>City ({0})</value>
   </data>
   <data name="Connections_Cities_Other">
-    <value>ქალაქი ({0})</value>
+    <value>ქალაქები ({0})</value>
   </data>
   <data name="Connections_City">
     <value>ქალაქი</value>
@@ -387,10 +387,10 @@
     <value>ამ ქალაქში ყველა სერვერი ტექმომსახურებაზეა</value>
   </data>
   <data name="Connections_Countries_One">
-    <value>ქვეყანა ({0})</value>
+    <value>Country ({0})</value>
   </data>
   <data name="Connections_Countries_Other">
-    <value>ქვეყანა ({0})</value>
+    <value>ქვეყნები ({0})</value>
   </data>
   <data name="Connections_Country">
     <value>ქვეყანა</value>
@@ -408,10 +408,10 @@
     <value>უსწრაფესი</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>სერვერი Free ({0})</value>
+    <value>Free server ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>სერვერი Free ({0})</value>
+    <value>უფასო სერვერები ({0})</value>
   </data>
   <data name="Connections_Gateway">
     <value>კარიბჭე</value>
@@ -438,16 +438,16 @@
     <value>გამოყოფილი სერვერი ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_One">
-    <value>P2P ქალაქი ({0})</value>
+    <value>P2P city ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_Other">
-    <value>P2P ქალაქი ({0})</value>
+    <value>P2P ქალაქები ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_One">
-    <value>P2P ქვეყანა ({0})</value>
+    <value>P2P country ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_Other">
-    <value>P2P ქვეყანა ({0})</value>
+    <value>P2P ქვეყნები ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
     <value>P2P სერვერი ({0})</value>
@@ -456,10 +456,10 @@
     <value>P2P სერვერი ({0})</value>
   </data>
   <data name="Connections_P2P_States_One">
-    <value>P2P ქვეყანა ({0})</value>
+    <value>P2P state ({0})</value>
   </data>
   <data name="Connections_P2P_States_Other">
-    <value>P2P ქვეყანა ({0})</value>
+    <value>P2P შტატები ({0})</value>
   </data>
   <data name="Connections_Profiles_One">
     <value>პროფილი ({0})</value>
@@ -537,10 +537,10 @@
     <value>მიმაგრებული ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
-    <value>Secure Core-ის ქვეყანა ({0})</value>
+    <value>Secure Core country ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_Other">
-    <value>Secure Core-ის ქვეყანა ({0})</value>
+    <value>Secure Core-ის ქვეყნები ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
     <value>Secure Core-ის სერვერი ({0})</value>
@@ -576,10 +576,10 @@
     <value>ეს სერვერი ტექმომსახურებაშია</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>სერვერი ({0})</value>
+    <value>Server ({0})</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>სერვერი ({0})</value>
+    <value>სერვერები ({0})</value>
   </data>
   <data name="Connections_State">
     <value>მდგომარეობა</value>
@@ -593,22 +593,22 @@
     <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_States_One">
-    <value>შტატი ({0})</value>
+    <value>State ({0})</value>
   </data>
   <data name="Connections_States_Other">
     <value>შტატები ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_One">
-    <value>Tor-ის ქვეყანა ({0})</value>
+    <value>Tor country ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_Other">
-    <value>Tor-ის ქვეყანა ({0})</value>
+    <value>Tor ქვეყნები ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Tor-ის სერვერი ({0})</value>
+    <value>Tor server ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Tor-ის სერვერი ({0})</value>
+    <value>Tor-ის სერვერები ({0})</value>
   </data>
   <data name="Countries">
     <value>ქვეყნები</value>
@@ -1727,7 +1727,7 @@
     <value>გასაგრძელებლად ჩართეთ Windows-ის სერვისი</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
-    <value>Proton Free ავტომატურად მიუერთდება უსწრაფეს უფასო ხელმისაწვდომ სერვერს ჩვენი {0} უფასო ქვეყნიდან. ეს ჩვეულებრივ თქვენს მდებარეობასთან არსებული უახლოესი სერვერია.</value>
+    <value>Proton Free automatically connects you to the fastest available free server from our {0} free country. This will normally be the closest server to your location.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
     <value>Proton Free ავტომატურად მიუერთდება უსწრაფეს უფასო ხელმისაწვდომ სერვერს ჩვენი {0} უფასო ქვეყნიდან. ეს ჩვეულებრივ თქვენს მდებარეობასთან არსებული უახლოესი სერვერია.</value>
@@ -1768,7 +1768,7 @@
     <value>რა არის დაყოვნება?</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers. Please use a different server for P2P.</value>
+    <value>თქვენი შეერთება გათიშულია, რადგან იყენებთ სერვერს, რომელსაც P2P ტრაფიკის მხარდაჭერა არ გააჩნია. P2P მხარდაუჭერელია უფასო სერვერებზე. P2P-სთვის სხვა სერვერი აირჩიეთ.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
     <value>აღმოჩენილია P2P ტრაფიკი</value>
@@ -2013,7 +2013,7 @@
     <value>მოგესალმებათ VPN Plus</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description1">
-    <value>Congratulations! You unlocked premium security and performance features on all Proton services.</value>
+    <value>გილოცავთ! თქვენ განბლოკეთ ფასიანი უსაფრთხოების და წარმადობის ფუნქციები ყველა Proton-ის სერვისისთვის.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description2">
     <value>გაერთეთ Proton-ის კონფიდენციალობით.</value>
@@ -2026,6 +2026,36 @@
   </data>
   <data name="Dialogs_Welcome_Title">
     <value>მოგესალმებით Proton VPN-ში</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>You can now access your organization’s dedicated servers from the main sidebar.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>Gateways have moved</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>We refreshed our designs and moved some things around to make the app easier to use.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>New look, same protection</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>Add advanced profile settings like NetShield and port forwarding, or set up Connect and Go to launch a website of your choice when you connect.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Even more powerful profiles</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>It's now even easier to reconnect to your favorite servers. View your most recent connections on the home screen, or pin them for quick access.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>Introducing Recents</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Take a look</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>What's new</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>გავიდე Proton VPN-დან?</value>
@@ -2207,10 +2237,10 @@
     <value>გამორიცხული აპები ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
-    <value>ამოღებული IP მისამართი ({0})</value>
+    <value>Excluded IP address ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
-    <value>ამოღებული IP მისამართები ({0})</value>
+    <value>გამორიცხული IP მისამართები ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Info">
     <value>სანდო აპებისთვის და IP მისამართებისთვის VPN-ით დაცვის გარეშე დაკავშირების უფლების მიცემა</value>
@@ -3277,7 +3307,7 @@ VPN მიერთება</value>
     <value>ცვლილებების გაუქმება</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Cancel">
-    <value>ჩასწორების გაგრძელება</value>
+    <value>რედაქტირების გაგრძელება</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Title">
     <value>მოვაშორო შეუნახავი ცვლილებები?</value>
@@ -3380,7 +3410,7 @@ VPN მიერთება</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Settings_OverriddenByProfile_Title">
-    <value>მართეთ {0} პროფილებში</value>
+    <value>{0}-ის მართვა პროფილებში</value>
     <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
   </data>
   <data name="Settings_Page_Title">

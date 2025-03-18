@@ -175,7 +175,7 @@
     <value>接続ページ</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Profiles_Page">
-    <value>プロフィールページ</value>
+    <value>プロファイルページ</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Recents_Page">
     <value>最近のページ</value>
@@ -238,10 +238,10 @@
     <value>有効</value>
   </data>
   <data name="Common_Actions_Exit_ProtonVPN">
-    <value>Proton VPN を閉じる</value>
+    <value>Proton VPN を終了しますか</value>
   </data>
   <data name="Common_Actions_GotIt">
-    <value>了解</value>
+    <value>わかった</value>
   </data>
   <data name="Common_Actions_Install">
     <value>インストール</value>
@@ -259,7 +259,7 @@
     <value>保存</value>
   </data>
   <data name="Common_Actions_TryAgain">
-    <value>やり直す</value>
+    <value>再試行</value>
   </data>
   <data name="Common_Actions_Update">
     <value>更新</value>
@@ -274,7 +274,7 @@
     <value>高度なキルスイッチが有効になっているため、続行するとインターネットの接続が切断されます。</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
-    <value>VPNから接続解除されます</value>
+    <value>VPN から切断されます。</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>より詳しく</value>
@@ -307,7 +307,7 @@
     <value>Proton VPN をアップデート</value>
   </data>
   <data name="Connection_Error_EditProfile">
-    <value>プロフィールを編集</value>
+    <value>プロファイルを編集</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN はネットワークの問題によりクライアント証明書の取得に失敗しました。</value>
@@ -320,7 +320,7 @@
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
-    <value>ネットワークアダプターが見つかりません。</value>
+    <value>ネットワークアダプタが利用できません。</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>問題を報告</value>
@@ -341,7 +341,7 @@
     <value>ネットワークアダプタのバージョンが古くなっています。</value>
   </data>
   <data name="Connection_Error_Title">
-    <value>接続に失敗しました</value>
+    <value>接続に失敗</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
     <value>VPN サーバー証明書の検証中に問題が発生しました。これは、ネットワーク接続が改ざんされているか、接続しようとしているサーバーに構成の問題があることを示している可能性があります。 問題レポートを送信して、カスタマー サポートからサポートを受けてください。</value>
@@ -375,7 +375,7 @@
     <value>都市 ({0})</value>
   </data>
   <data name="Connections_City">
-    <value>町</value>
+    <value>都市</value>
   </data>
   <data name="Connections_City_Restricted">
     <value>この都市のサーバーは VPN Plus で利用できます</value>
@@ -390,7 +390,7 @@
     <value>国</value>
   </data>
   <data name="Connections_Country_Middle">
-    <value>中間国</value>
+    <value>中間の国</value>
   </data>
   <data name="Connections_Country_Restricted">
     <value>この国のサーバーは VPN Plus で利用できます</value>
@@ -399,7 +399,7 @@
     <value>この国のすべてのサーバーはメンテナンス中です</value>
   </data>
   <data name="Connections_Fastest">
-    <value>高速</value>
+    <value>最速</value>
   </data>
   <data name="Connections_Free_Servers_Other">
     <value>無料サーバー ({0})</value>
@@ -445,11 +445,11 @@
     <value>プロファイルを削除</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
-    <value>'{0}'は完全に削除されました。</value>
+    <value>「{0}」は完全に削除されました。</value>
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
-    <value>プロファイルを削除しますか？</value>
+    <value>プロファイルを削除?</value>
   </data>
   <data name="Connections_Profiles_Empty_Description">
     <value>プロファイルは、場所、サーバー、プロトコルを選択して保存された接続です。</value>
@@ -461,7 +461,7 @@
     <value>接続の種類と場所を選択</value>
   </data>
   <data name="Connections_Profiles_Name">
-    <value>プロフィールの名前</value>
+    <value>プロファイルに名前をつけてください</value>
   </data>
   <data name="Connections_Profiles_Name_Default">
     <value>名称未設定</value>
@@ -498,7 +498,7 @@
     <value>最近の接続はありません</value>
   </data>
   <data name="Connections_Recents_Pinned_Other">
-    <value>ピンされた({0})</value>
+    <value>ピン留め（{0}）</value>
   </data>
   <data name="Connections_SecureCore_Countries_Other">
     <value>Secure Core の国 ({0})</value>
@@ -513,7 +513,7 @@
     <value>サーバーを表示 ({0})</value>
   </data>
   <data name="Connections_SeeStates_Other">
-    <value>状態を見る({0})</value>
+    <value>州を表示({0})</value>
   </data>
   <data name="Connections_Server">
     <value>サーバー</value>
@@ -528,14 +528,14 @@
     <value>サーバー ({0})</value>
   </data>
   <data name="Connections_State">
-    <value>状態</value>
+    <value>州</value>
   </data>
   <data name="Connections_State_Restricted">
     <value>この都市のサーバーは VPN Plus で利用できます。</value>
     <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_State_UnderMaintenance">
-    <value>この州のサーバーはすべてメンテナンス中です。</value>
+    <value>この状態のサーバーはすべてメンテナンス中です.</value>
     <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_States_Other">
@@ -1646,7 +1646,7 @@
     <value>無料サーバーの変更回数が上限に達しました。</value>
   </data>
   <data name="Dialogs_Common_GetStarted">
-    <value>始めましょう</value>
+    <value>利用開始</value>
   </data>
   <data name="Dialogs_Common_SubscriptionExpired">
     <value>サブスクリプションの有効期限が切れました</value>
@@ -1770,7 +1770,7 @@
     <value>クイック修正</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Footer">
-    <value>動作しませんか？</value>
+    <value>うまく動作しませんか?</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Header">
     <value>これらのヒントは、問題をより早く解決するのに役立ちます。</value>
@@ -1818,7 +1818,7 @@
     <value>低 (1-75%)</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Description">
-    <value>VPN 速度に影響を与える可能性は低いです</value>
+    <value>VPN 速度に影響を与える可能性は低い</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Title">
     <value>中 (76-90%)</value>
@@ -1827,7 +1827,7 @@
     <value>サーバー負荷とは何ですか?</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
-    <value>Smart Routing</value>
+    <value>スマートルーティング</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>またあとで</value>
@@ -1869,7 +1869,7 @@
     <value>別のネットワークを使用する</value>
   </data>
   <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
-    <value>WiFi ネットワークを切り替えるか、モバイルデータを使用してみてください。</value>
+    <value>Wi-Fi ネットワークを切り替えるか、モバイルデータを使用してみてください。</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage">
     <value>ステータスページを確認してください</value>
@@ -1920,7 +1920,7 @@
     <value>どこからでも自由に閲覧</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>仮想的な場所を隠して、{0} の利用可能な国のいずれかからインターネットを体験してください。</value>
+    <value>仮想の位置を隠し、利用可能な{0}か国のいずれかからインターネットを体験してください。</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
     <value>一度に10台のデバイスを保護</value>
@@ -1952,6 +1952,36 @@
   <data name="Dialogs_Welcome_Title">
     <value>Proton VPNへようこそ</value>
   </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>あなたの組織専用のサーバーにメインサイドバーからアクセスできるようになりました。</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>ゲートウェイが移動されました</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>デザインを刷新し、いくつかの要素を移動させてアプリを使いやすくしました。</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>新しい外観、変わらない保護</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>NetShieldやポート転送などの高度なプロファイル設定を追加するか、接続時に選択したWebサイトを起動するように接続してください。</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>さらに強力なプロファイル</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>これでお気に入りのサーバーに再接続するのがさらに簡単になりました。ホーム画面で最近の接続を表示したり、クイックアクセスのためにピン留めしたりできます。</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>最近あったことを紹介</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>見てください</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>最新情報</value>
+  </data>
   <data name="Exit_Confirmation_Title">
     <value>Proton VPN を終了しますか?</value>
   </data>
@@ -1959,7 +1989,7 @@
     <value>VPN から切断しています...</value>
   </data>
   <data name="Exit_Title">
-    <value>Proton VPNを終了</value>
+    <value>Proton VPN を終了しますか</value>
   </data>
   <data name="Flyouts_Country_Description1">
     <value>VPN なしでネットにアクセスすると、位置情報に基づくインターネット制限の影響を受ける可能性があります。</value>
@@ -2046,7 +2076,7 @@
     <value>VPN Plus で広告・トラッカー・マルウェアをブロックしましょう。</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
-    <value>広告なしのインターネットをお楽しみください</value>
+    <value>広告なしのブラウジングをお楽しみください</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>アクティブなポート番号</value>
@@ -2076,31 +2106,31 @@
     <value>プロトコル</value>
   </data>
   <data name="Flyouts_ServerLoad_Description">
-    <value>サーバー負荷は、サーバーが最大容量にどの程度近づいているかを示します。サーバーの負荷が高いと、接続が遅くなる可能性があります。</value>
+    <value>サーバー負荷は、サーバーが最大容量にどの程度近づいているかを示します。サーバー負荷が高いと、接続が遅くなる可能性があります。</value>
   </data>
   <data name="Flyouts_ServerLoad_High">
-    <value>高い(91-100%)</value>
+    <value>高 (91-100%)</value>
   </data>
   <data name="Flyouts_ServerLoad_High_Description">
-    <value>VPNは通常より遅くなる可能性があります</value>
+    <value>VPN の実行が通常より遅くなる可能性があります</value>
   </data>
   <data name="Flyouts_ServerLoad_KnowledgeBaseLinkTitle">
-    <value>サーバー読み込みとは？</value>
+    <value>サーバー負荷とは何ですか?</value>
   </data>
   <data name="Flyouts_ServerLoad_Low">
-    <value>低い(1-75%)</value>
+    <value>低 (1-75%)</value>
   </data>
   <data name="Flyouts_ServerLoad_Low_Description">
-    <value>最高速の速度</value>
+    <value>超高速スピード</value>
   </data>
   <data name="Flyouts_ServerLoad_Medium">
-    <value>普通(76-90%)</value>
+    <value>中 (76-90%)</value>
   </data>
   <data name="Flyouts_ServerLoad_Medium_Description">
     <value>接続速度に影響を及ぼすことはなさそうです</value>
   </data>
   <data name="Flyouts_ServerLoad_Title">
-    <value>サーバー読み込み</value>
+    <value>サーバー負荷</value>
   </data>
   <data name="Flyouts_Speed_BoostedByVpnAccelerator">
     <value>VPN Acceleratorで強化</value>
@@ -2311,7 +2341,7 @@
     <value>安全なブラウジング</value>
   </data>
   <data name="Home_ConnectionCard_Header_ConnectingTo">
-    <value>接続中...</value>
+    <value>接続中：...</value>
   </data>
   <data name="Home_ConnectionCard_Header_DefaultConnection">
     <value>デフォルト接続</value>
@@ -2340,7 +2370,7 @@
     <value>接続中</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectingSubLabel">
-    <value>デジタルユーザー情報を保護しています...</value>
+    <value>デジタルアイデンティティを保護する...</value>
   </data>
   <data name="Home_ConnectionDetails_Country">
     <value>国</value>
@@ -2463,7 +2493,7 @@
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_Recents_Pin">
-    <value>ピン留め</value>
+    <value>ピン留めする</value>
   </data>
   <data name="Home_Recents_Restricted">
     <value>サーバーはVPN Plusで利用可能</value>
@@ -2493,7 +2523,7 @@
     <value>ヘルプ</value>
   </data>
   <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
-    <value>問題は何ですか?</value>
+    <value>何か問題ですか?</value>
   </data>
   <data name="Home_TitleBar_Menu_Settings">
     <value>設定</value>
@@ -2515,7 +2545,7 @@
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_VpnStatus_Subtitle_Connecting">
-    <value>デジタルユーザー情報を保護しています…</value>
+    <value>デジタルアイデンティティを保護する...</value>
   </data>
   <data name="Home_VpnStatus_Subtitle_Disconnected">
     <value>あなたは無防備です</value>
@@ -2607,7 +2637,7 @@
     <value>公衆Wi-Fiネットワークはセキュリティの脅威に対してより脆弱です。安全に閲覧するにはVPNに接続してください。</value>
   </data>
   <data name="Notifications_UnsecureWifi_Title">
-    <value>セキュリティ保護されていない WiFi 接続を検出</value>
+    <value>セキュリティ保護されていない Wi-Fi 接続を検出</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>今すぐアップデート</value>
@@ -2639,7 +2669,7 @@
     <value>P2Pネットワークは何に使われるのですか？</value>
   </data>
   <data name="Overlay_P2P_LearnMore">
-    <value>P2Pとは？</value>
+    <value>P2Pとは何ですか?</value>
   </data>
   <data name="Overlay_P2P_Title">
     <value>P2P</value>
@@ -2657,7 +2687,7 @@
     <value>プロファイル</value>
   </data>
   <data name="Overlay_SecureCore_Description1">
-    <value>Secure Coreは、秒、最大のセキュリティVPNサーバーを介して宛先サーバーに接続します。</value>
+    <value>Secure Coreは、最大限のセキュリティを備えた第2のVPNサーバーを経由して、目的のサーバーに接続します。</value>
   </data>
   <data name="Overlay_SecureCore_Description2">
     <value>この保護レベルが高いほど、レイテンシが高くなり、速度が遅くなる可能性があります。</value>
@@ -2670,7 +2700,7 @@
 VPN接続</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
-    <value>遅延増加</value>
+    <value>高いレイテンシー</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection_Privacy">
     <value>高度なプライバシー</value>
@@ -2680,7 +2710,7 @@ VPN接続</value>
 VPN接続</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection_Latency">
-    <value>少ない遅延</value>
+    <value>低レイテンシー</value>
   </data>
   <data name="Overlay_SecureCore_StandardConnection_Privacy">
     <value>高いプライバシー</value>
@@ -2694,28 +2724,28 @@ VPN接続</value>
 サーバーの負荷が高いと、接続が遅くなる可能性があります。</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Description">
-    <value>VPNは通常より遅くなる可能性があります</value>
+    <value>VPN の実行が通常より遅くなる可能性があります</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Title">
-    <value>高い(91-100%)</value>
+    <value>高 (91-100%)</value>
   </data>
   <data name="Overlay_ServerLoad_LearnMore">
-    <value>サーバー読み込みとは？</value>
+    <value>サーバー負荷とは何ですか?</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Description">
-    <value>とても早い速度</value>
+    <value>超高速スピード</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Title">
-    <value>低い(1-75%)</value>
+    <value>低 (1-75%)</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Description">
     <value>VPN 速度に影響を与える可能性は低い</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Title">
-    <value>普通(76-90%)</value>
+    <value>中 (76-90%)</value>
   </data>
   <data name="Overlay_ServerLoad_Title">
-    <value>サーバー読み込み</value>
+    <value>サーバー負荷</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
     <value>スマートルーティングは、仮想サーバーを使用して、到達困難な国でVPNカバレッジを提供します。</value>
@@ -2739,10 +2769,10 @@ VPN接続</value>
     <value>スマートルーティング</value>
   </data>
   <data name="Overlay_Tor_Description">
-    <value>Torサーバーに接続して、任意のブラウザを使用して隠しサービスやonionサイトにアクセスします。</value>
+    <value>Tor サーバーに接続し、任意のブラウザを使用して隠しサービスやオニオン サイトにアクセスします。</value>
   </data>
   <data name="Overlay_Tor_LearnMore">
-    <value>Torネットワークへのアクセス方法</value>
+    <value>Tor ネットワークにアクセスする方法</value>
   </data>
   <data name="Overlay_Tor_Title">
     <value>Tor</value>
@@ -2829,7 +2859,7 @@ VPN接続</value>
     <value>違うキーワードをお試しください。</value>
   </data>
   <data name="Search_NoResults_Title">
-    <value>結果が見つかりません</value>
+    <value>該当する項目がありません</value>
   </data>
   <data name="Server">
     <value>サーバー</value>
@@ -2844,7 +2874,7 @@ VPN接続</value>
     <value>組織のサーバーにアクセス</value>
   </data>
   <data name="Server_Feature_None">
-    <value>スタンダード</value>
+    <value>標準</value>
   </data>
   <data name="Server_Feature_P2P">
     <value>P2P</value>
@@ -2973,7 +3003,7 @@ VPN接続</value>
     <value>Moderate NAT ではポート転送を使用できません。</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
-    <value>モデレートNATを有効にしますか？</value>
+    <value>モデレート NAT を有効にする?</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Description">
     <value>接続のネットワーク アドレス変換タイプを選択します。</value>
@@ -2988,7 +3018,7 @@ VPN接続</value>
     <value>厳密(タイプ 3)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
-    <value>ネットワークに入るデータを制限します。 このオプションはより安全ですが、ピアツーピアのゲーム接続がより困難になる可能性があります。</value>
+    <value>ネットワークに入るデータを制限します。 このオプションはより安全ですが、ピアツーピア ゲーム接続がより困難になる可能性があります。</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
     <value>異なるネットワーク間のルートトラフィック</value>
@@ -3024,7 +3054,7 @@ VPN接続</value>
     <value>キルスイッチ</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced">
-    <value>高度な</value>
+    <value>拡張</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>インターネットへのアクセスは、Proton VPNに接続しているときのみ許可されます。高度なキルスイッチは、デバイスを再起動してもアクティブなままです。</value>
@@ -3042,7 +3072,7 @@ VPN接続</value>
     <value>キルスイッチがオンのとき、スプリットトンネルを通じてVPN接続から除外されたウェブサイトやアプリに接続することはできません。</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard">
-    <value>スタンダード</value>
+    <value>標準</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard_Description">
     <value>VPN接続が中断したらインターネットから自動的に接続を解除</value>
@@ -3054,7 +3084,7 @@ VPN接続</value>
     <value>広告やマルウェア、追跡をブロック</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
-    <value>マルウェアだけをブロック</value>
+    <value>マルウェアのみブロック</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Description">
     <value>NetShieldが有効な場合、カスタムDNSサーバーへの接続はできません。</value>
@@ -3069,7 +3099,7 @@ VPN接続</value>
     <value>ウェブサイトやアプリの使用中に、広告やマルウェア、追跡から保護</value>
   </data>
   <data name="Settings_Connection_NetShield_Footer">
-    <value>広告や追跡がブロックされると、いくつかのウェブサイトは正しく読み込まれない可能性があります。</value>
+    <value>広告やトラッカーがブロックされていると、一部の Web サイトが正しく読み込まれない場合があります。</value>
   </data>
   <data name="Settings_Connection_NetShield_PrivacyPanel">
     <value>NetShieldプライバシーパネル</value>
@@ -3078,7 +3108,7 @@ VPN接続</value>
     <value>ポート転送</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>アクティブポート：</value>
+    <value>有効なポート:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>ポート番号をコピー</value>
@@ -3096,7 +3126,7 @@ VPN接続</value>
     <value>ポート転送を使用するには、P2Pをサポートしているサーバーに接続してください。</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Loading">
-    <value>読み込み中…</value>
+    <value>読み込み中...</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications">
     <value>通知</value>
@@ -3147,7 +3177,7 @@ VPN接続</value>
     <value>どのアプリとIP アドレスをVPN によって保護するかを決定して、接続をカスタマイズします。</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>反対</value>
+    <value>反転</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>選択したアプリとIPアドレスのみがVPNを通して接続され、他のすべてのトラフィックは保護されません。</value>
@@ -3166,10 +3196,10 @@ VPN接続</value>
     <value>IPv4アドレスを追加</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>スタンダード</value>
+    <value>標準</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
-    <value>選択したアプリとIPアドレスがVPN接続から除外されます</value>
+    <value>選択したアプリと IP アドレスは VPN 接続から除外されます</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -3181,7 +3211,7 @@ VPN接続</value>
     <value>編集を続ける</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Title">
-    <value>保存せずに終了しますか?</value>
+    <value>保存されていない変更を削除しますか?</value>
   </data>
   <data name="Settings_Features">
     <value>VPN機能</value>
@@ -3414,14 +3444,14 @@ VPN接続</value>
     <value>スピードを追求した最高の安全なVPN</value>
   </data>
   <data name="SignIn_Form_CreateAccount">
-    <value>アカウントを作成</value>
+    <value>アカウントを作成する</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="SignIn_Form_Description">
     <value>Protonアカウントの詳細を入力</value>
   </data>
   <data name="SignIn_Form_DisableKillSwitch">
-    <value>キルスイッチを無効</value>
+    <value>キルスイッチを無効にする</value>
   </data>
   <data name="SignIn_Form_Email">
     <value>メール</value>
@@ -3456,7 +3486,7 @@ VPN接続</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
-    <value>サインイン</value>
+    <value>ログイン</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="SignIn_Form_SignInWithSso">
@@ -3466,17 +3496,17 @@ VPN接続</value>
     <value>スイス拠点</value>
   </data>
   <data name="SignIn_Form_Title">
-    <value>サインイン</value>
+    <value>ログイン</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
     <value>ヘルプセンター</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
-    <value>メールもしくはユーザー名</value>
+    <value>メールアドレスまたはユーザー名</value>
   </data>
   <data name="SignIn_Form_UsernameError">
-    <value>メールもしくはユーザー名を入力</value>
+    <value>メールアドレスまたはユーザー名を入力</value>
     <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
   </data>
   <data name="SignIn_KillSwitch_Disabled">
@@ -3486,7 +3516,7 @@ VPN接続</value>
     <value>あなたは今保護されています</value>
   </data>
   <data name="SystemNotification_ConnectedTo">
-    <value>{0} に接続しました。</value>
+    <value>{0} に接続完了.</value>
     <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
   </data>
   <data name="SystemNotification_Disconnected">
@@ -3500,7 +3530,7 @@ VPN接続</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Unit_BytesPerSecond">
-    <value>B / 秒</value>
+    <value>B/s</value>
     <comment>Unit for Bytes per second</comment>
   </data>
   <data name="Unit_ExabytesPerSecond">
@@ -3508,15 +3538,15 @@ VPN接続</value>
     <comment>Unit for Exabytes per second</comment>
   </data>
   <data name="Unit_GigabytesPerSecond">
-    <value>GB / 秒</value>
+    <value>GB/s</value>
     <comment>Unit for Gigabytes per second</comment>
   </data>
   <data name="Unit_KilobytesPerSecond">
-    <value>KB / 秒</value>
+    <value>KB/s</value>
     <comment>Unit for Kilobytes per second</comment>
   </data>
   <data name="Unit_MegabytesPerSecond">
-    <value>MB / 秒</value>
+    <value>MB/s</value>
     <comment>Unit for Megabytes per second</comment>
   </data>
   <data name="Unit_PetabytesPerSecond">
@@ -3524,7 +3554,7 @@ VPN接続</value>
     <comment>Unit for Petabytes per second</comment>
   </data>
   <data name="Unit_TerabytesPerSecond">
-    <value>TB / 秒</value>
+    <value>TB/s</value>
     <comment>Unit for Terabytes per second</comment>
   </data>
   <data name="UpsellBanner_NetShield_Description">

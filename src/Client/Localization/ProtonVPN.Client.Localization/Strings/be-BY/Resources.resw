@@ -378,10 +378,10 @@
     <value>Гарады ({0})</value>
   </data>
   <data name="Connections_Cities_Many">
-    <value>Гарадоў ({0})</value>
+    <value>Гарады ({0})</value>
   </data>
   <data name="Connections_Cities_Other">
-    <value>Гарадоў ({0})</value>
+    <value>Гарады ({0})</value>
   </data>
   <data name="Connections_City">
     <value>Горад</value>
@@ -399,10 +399,10 @@
     <value>Краіны ({0})</value>
   </data>
   <data name="Connections_Countries_Many">
-    <value>Краін ({0})</value>
+    <value>Краіны ({0})</value>
   </data>
   <data name="Connections_Countries_Other">
-    <value>Краін ({0})</value>
+    <value>Краіны ({0})</value>
   </data>
   <data name="Connections_Country">
     <value>Краіна</value>
@@ -420,16 +420,16 @@
     <value>Найхутчэйшае</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Cервер Free ({0})</value>
+    <value>Бясплатны сервер ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Few">
-    <value>Cерверы Free ({0})</value>
+    <value>Бясплатныя серверы ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Many">
-    <value>Cерверы Free ({0})</value>
+    <value>Бясплатныя серверы ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Cерверы Free ({0})</value>
+    <value>Бясплатныя серверы ({0})</value>
   </data>
   <data name="Connections_Gateway">
     <value>Шлюз</value>
@@ -474,22 +474,22 @@
     <value>Гарады P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_Many">
-    <value>Гарадоў P2P({0})</value>
+    <value>Гарады P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_Other">
-    <value>Гарадоў P2P ({0})</value>
+    <value>Гарады P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_One">
-    <value>Краіна P2P({0})</value>
+    <value>Краіна P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_Few">
     <value>Краіны P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_Many">
-    <value>Краін P2P ({0})</value>
+    <value>Краіны P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_Other">
-    <value>Краін P2P ({0})</value>
+    <value>Краіны P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
     <value>Сервер P2P ({0})</value>
@@ -615,10 +615,10 @@
     <value>Краіны Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_Many">
-    <value>Краін Secure Core ({0})</value>
+    <value>Краіны Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_Other">
-    <value>Краін Secure Core ({0})</value>
+    <value>Краіны Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
     <value>Сервер Secure Core ({0})</value>
@@ -1859,19 +1859,19 @@
     <value>Уключыце сэрвіс Windows для працягу</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
-    <value>Proton Free аўтаматычна падключае вас да самага хуткага даступнага сервера з {0} бясплатнай краіны. Звычайна гэта самы блізкі сервер адносна вашага месцазнаходжання.</value>
+    <value>Proton Free аўтаматычна падключае вас да найхутчэйшага даступнага сервера з нашай {0} бясплатнай краіны. Звычайна гэта самы блізкі сервер адносна вашага месцазнаходжання.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Few">
-    <value>Proton Free аўтаматычна падключае вас да самага хуткага даступнага сервера з {0} бясплатных краін. Звычайна гэта самы блізкі сервер адносна вашага месцазнаходжання.</value>
+    <value>Proton Free аўтаматычна падключае вас да найхутчэйшага даступнага сервера з нашых {0} бясплатных краін. Звычайна гэта самы блізкі сервер адносна вашага месцазнаходжання.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Many">
-    <value>Proton Free аўтаматычна падключае вас да самага хуткага даступнага сервера з {0} бясплатных краін. Звычайна гэта самы блізкі сервер адносна вашага месцазнаходжання.</value>
+    <value>Proton Free аўтаматычна падключае вас да найхутчэйшага даступнага сервера з нашых {0} бясплатных краін. Звычайна гэта самы блізкі сервер адносна вашага месцазнаходжання.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free аўтаматычна падключае вас да самага хуткага даступнага сервера з {0} бясплатных краін. Звычайна гэта самы блізкі сервер адносна вашага месцазнаходжання.</value>
+    <value>Proton Free аўтаматычна падключае вас да найхутчэйшага даступнага сервера з нашых {0} бясплатных краін. Звычайна гэта самы блізкі сервер адносна вашага месцазнаходжання.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
-    <value>Бясплатная краіна сервера ({0})</value>
+    <value>Бясплатная краіна сервераў ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Few">
     <value>Бясплатныя краіны сервераў ({0})</value>
@@ -2177,6 +2177,36 @@
   <data name="Dialogs_Welcome_Title">
     <value>Вітаем у Proton VPN</value>
   </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>Цяпер вы можаце атрымаць доступ да выдзеленых сервераў вашай арганізацыі з галоўнай бакавой панэлі.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>Шлюзы былі перанесены</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>Мы абнавілі наш дызайн і прыбралі некаторыя рэчы, каб зрабіць праграму прасцей у выкарыстанні.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>Новы выгляд, такая ж абарона</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>Дадайце дадатковыя налады профілю, такія як NetShield і перанакіраванне партоў, або наладзьце Connect and Go, каб запускаць сайт па вашаму выбару пры падключэнні.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Яшчэ больш магутныя профілі</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>Цяпер яшчэ прасцей падключыцца да любімых сервераў. Праглядзіце свае апошнія падключэнні на хатнім экране або замацуеце іх для хуткага доступу.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>Прадстаўляем апошнія</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Зірніце</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>Што новага</value>
+  </data>
   <data name="Exit_Confirmation_Title">
     <value>Выйсці з Proton VPN?</value>
   </data>
@@ -2363,16 +2393,16 @@
     <value>Выключаных праграм: {0}</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
-    <value>Выключаных IP-адрасоў: {0}</value>
+    <value>Выключаны IP-адрас ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_Few">
-    <value>Выключаных IP-адрасоў: {0}</value>
+    <value>Выключаныя IP-адрасы ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_Many">
-    <value>Выключаных IP-адрасоў: {0}</value>
+    <value>Выключаныя IP-адрасы ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
-    <value>Выключаных IP-адрасоў: {0}</value>
+    <value>Выключаныя IP-адрасы ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Info">
     <value>Дазваляе давераным праграмам і IP-адрасам падключацца без абароны па VPN</value>
@@ -2513,7 +2543,7 @@
     <value>{0} дзён {1} гадз</value>
   </data>
   <data name="Format_Time_DayHour_Other">
-    <value>{0} дзён {1} гадз</value>
+    <value>{0} дні {1} гадз</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} гадз</value>
