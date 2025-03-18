@@ -24,7 +24,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="using:ProtonVPN.Client.Common.UI.Controls.Map"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom" 
+             xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
@@ -49,14 +50,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Orientation="Horizontal"
                     Spacing="8">
 
-            <custom:SimpleCountryFlag CountryCode="{x:Bind Country.Code}"
-                                      FlagType="Country" />
+            <custom:SimpleCountryFlag x:Name="CountryFlag"
+                                      CountryCode="{x:Bind Country.Code}"
+                                      FlagType="Country" 
+                                      Margin="2,0,0,0"/>
 
             <TextBlock x:Name="CountryNameTextBlock"
                        VerticalAlignment="Center"
-                       FontSize="14"
+                       Style="{StaticResource BodyTextBlockStyle}"
                        Foreground="{ThemeResource TextNormColorBrush}"
-                       Text="{x:Bind Location}" />
+                       Text="{x:Bind Location}" 
+                       Margin="0,0,4,0"/>
+
+            <pathicons:Wrench x:Name="MaintenanceIcon"
+                              Size="Pixels16"
+                              Margin="0,0,4,0"
+                              Visibility="Collapsed" 
+                              Foreground="{ThemeResource TextWeakColorBrush}"/>
+            
         </StackPanel>
 
         <VisualStateManager.VisualStateGroups>
@@ -126,6 +137,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Storyboard>
                     </VisualTransition>
                 </VisualStateGroup.Transitions>
+            </VisualStateGroup>
+
+            <VisualStateGroup x:Name="MaintenanceStates">
+                <VisualState x:Name="UnderMaintenance">
+                    <VisualState.Setters>
+                        <Setter Target="CountryFlag.Opacity" Value="0.4" />
+                        <Setter Target="CountryNameTextBlock.Opacity" Value="0.4" />
+                        <Setter Target="CountryNameTextBlock.Margin" Value="0" />
+                        <Setter Target="MaintenanceIcon.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NotUnderMaintenance"/>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </Grid>

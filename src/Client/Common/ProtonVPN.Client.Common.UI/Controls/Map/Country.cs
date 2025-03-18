@@ -33,6 +33,8 @@ public class Country
 
     public double Latitude { get; set; } = 0;
 
+    public bool IsUnderMaintenance { get; set; } = true;
+
     public MPoint GetMapPoint()
     {
         return SphericalMercator.FromLonLat(Longitude, Latitude).ToMPoint();

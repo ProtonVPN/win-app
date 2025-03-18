@@ -35,6 +35,13 @@ public sealed partial class CountryCallout : INotifyPropertyChanged
     private const int ARROW_WIDTH = 16;
     private const double ARROW_HEIGHT = 7.5;
 
+    private const string VISUAL_STATE_GROUP_VISIBILITY = "VisibilityStates";
+    private const string VISUAL_STATE_VISIBLE = "Visible";
+    private const string VISUAL_STATE_COLLAPSED = "Collapsed";
+
+    private const string VISUAL_STATE_UNDER_MAINTENANCE = "UnderMaintenance";
+    private const string VISUAL_STATE_NOT_UNDER_MAINTENANCE = "NotUnderMaintenance";
+
     public event PropertyChangedEventHandler? PropertyChanged;
 
     public static readonly DependencyProperty CountryProperty = DependencyProperty.Register(
@@ -89,7 +96,8 @@ public sealed partial class CountryCallout : INotifyPropertyChanged
         Country = country;
         Visibility = Visibility.Visible;
 
-        VisualStateManager.GoToState(this, "Visible", true);
+        VisualStateManager.GoToState(this, VISUAL_STATE_VISIBLE, true);
+        VisualStateManager.GoToState(this, country.IsUnderMaintenance ? VISUAL_STATE_UNDER_MAINTENANCE : VISUAL_STATE_NOT_UNDER_MAINTENANCE, true);
     }
 
     public void Hide()
@@ -99,7 +107,7 @@ public sealed partial class CountryCallout : INotifyPropertyChanged
             return;
         }
 
-        VisualStateManager.GoToState(this, "Collapsed", true);
+        VisualStateManager.GoToState(this, VISUAL_STATE_COLLAPSED, true);
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
@@ -109,7 +117,7 @@ public sealed partial class CountryCallout : INotifyPropertyChanged
         LayoutUpdated += OnContentPanelLayoutUpdated;
 
         IList<VisualStateGroup> groups = VisualStateManager.GetVisualStateGroups(RootGrid);
-        VisualStateGroup? visibilityGroup = groups.FirstOrDefault(g => g.Name == "VisibilityStates");
+        VisualStateGroup? visibilityGroup = groups.FirstOrDefault(g => g.Name == VISUAL_STATE_GROUP_VISIBILITY);
 
         if (visibilityGroup != null)
         {
@@ -119,7 +127,7 @@ public sealed partial class CountryCallout : INotifyPropertyChanged
 
     private void OnCurrentVisibilityStateChanged(object sender, VisualStateChangedEventArgs e)
     {
-        if (e.NewState?.Name == "Collapsed")
+        if (e.NewState?.Name == VISUAL_STATE_COLLAPSED)
         {
             Visibility = Visibility.Collapsed;
         }
