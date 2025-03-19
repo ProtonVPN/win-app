@@ -17,9 +17,21 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Feedback.Diagnostics;
+using FluentAssertions;
+using ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;
 
-public interface INetworkLogWriter
+namespace ProtonVPN.Client.Logic.Feedback.Tests.Diagnostics;
+
+[TestClass]
+public class InstalledDriversLogTest : LogBaseTest
 {
-    Task WriteAsync();
+    [TestMethod]
+    public void ItShouldCreateLogFile()
+    {
+        // Act
+        new InstalledDriversLog(StaticConfig!).Write();
+
+        // Assert
+        File.Exists(Path.Combine(TMP_PATH, "Drivers.txt")).Should().BeTrue();
+    }
 }
