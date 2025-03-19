@@ -38,11 +38,12 @@ public class FeedbackLogicModule : Module
         builder.RegisterType<AttachmentsLoader>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<InstalledAppsLog>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<InstalledDriversLog>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<DriverInstallLog>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<UserSettingsLog>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NetworkAdapterLog>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<RoutingTableLog>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<NetworkLogWriter>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<DiagnosticLogWriter>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<AppInstallLog>().AsImplementedInterfaces().SingleInstance();
     }
 }

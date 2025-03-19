@@ -44,7 +44,7 @@ public class ReportIssueSender : IReportIssueSender
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly ISystemState _systemState;
     private readonly IDeviceIdCache _deviceIdCache;
-    private readonly INetworkLogWriter _networkLogWriter;
+    private readonly IDiagnosticLogWriter _diagnosticLogWriter;
     private readonly IAttachmentsLoader _attachmentsLoader;
 
     public ReportIssueSender(
@@ -53,7 +53,7 @@ public class ReportIssueSender : IReportIssueSender
         IUserAuthenticator userAuthenticator, 
         ISystemState systemState, 
         IDeviceIdCache deviceIdCache, 
-        INetworkLogWriter networkLogWriter, 
+        IDiagnosticLogWriter diagnosticLogWriter, 
         IAttachmentsLoader attachmentsLoader)
     {
         _settings = settings;
@@ -61,7 +61,7 @@ public class ReportIssueSender : IReportIssueSender
         _userAuthenticator = userAuthenticator;
         _systemState = systemState;
         _deviceIdCache = deviceIdCache;
-        _networkLogWriter = networkLogWriter;
+        _diagnosticLogWriter = diagnosticLogWriter;
         _attachmentsLoader = attachmentsLoader;
     }
 
@@ -76,7 +76,7 @@ public class ReportIssueSender : IReportIssueSender
 
     private async Task<Result> SendWithLogsAsync(KeyValuePair<string, string>[] fields)
     {
-        await _networkLogWriter.WriteAsync();
+        await _diagnosticLogWriter.WriteAsync();
         return await SendInternalAsync(fields, new AttachmentsToApiFiles(_attachmentsLoader.Get()));
     }
 

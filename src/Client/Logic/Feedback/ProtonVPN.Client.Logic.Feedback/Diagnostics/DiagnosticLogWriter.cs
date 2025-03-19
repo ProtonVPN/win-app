@@ -25,17 +25,17 @@ using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Logic.Feedback.Diagnostics;
 
-public class NetworkLogWriter : INetworkLogWriter
+public class DiagnosticLogWriter : IDiagnosticLogWriter
 {
-    private readonly IEnumerable<ILog> _networkLogs;
+    private readonly IEnumerable<ILog> _diagnosticLogFiles;
     private readonly ILogger _logger;
     private readonly IStaticConfiguration _config;
 
-    public NetworkLogWriter(IStaticConfiguration config, IEnumerable<ILog> networkLogs, ILogger logger)
+    public DiagnosticLogWriter(IStaticConfiguration config, IEnumerable<ILog> diagnosticLogFiles, ILogger logger)
     {
         _config = config;
         _logger = logger;
-        _networkLogs = networkLogs;
+        _diagnosticLogFiles = diagnosticLogFiles;
     }
 
     public async Task WriteAsync()
@@ -47,20 +47,20 @@ public class NetworkLogWriter : INetworkLogWriter
             using FileStream fs = new(_config.DiagnosticLogsZipFilePath, FileMode.Create);
             using ZipArchive arch = new(fs, ZipArchiveMode.Create);
 
-            foreach (ILog log in _networkLogs)
+            foreach (ILog logFile in _diagnosticLogFiles)
             {
                 try
                 {
-                    log.Write();
-                    arch.CreateEntryFromFile(log.Path, log.Filename);
-                    if (File.Exists(log.Path))
+                    logFile.Write();
+                    arch.CreateEntryFromFile(logFile.Path, logFile.Filename);
+                    if (File.Exists(logFile.Path))
                     {
-                        File.Delete(log.Path);
+                        File.Delete(logFile.Path);
                     }
                 }
                 catch (Exception e)
                 {
-                    _logger.Error<AppFileAccessFailedLog>($"Failed to create log file '{log.Path}'.", e);
+                    _logger.Error<AppFileAccessFailedLog>($"Failed to create log file '{logFile.Path}'.", e);
                 }
             }
         });
