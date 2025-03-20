@@ -24,6 +24,8 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.Files.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Files;
 
@@ -31,14 +33,17 @@ public class UserFileReaderWriter : IUserFileReaderWriter, IEventMessageReceiver
 {
     private readonly IFileReaderWriter _fileReaderWriter;
     private readonly IUserHashGenerator _userHashGenerator;
+    private readonly ILogger _logger;
 
     private readonly ResettableLazy<string?> _userId;
 
     public UserFileReaderWriter(IFileReaderWriter fileReaderWriter,
-        IUserHashGenerator userHashGenerator)
+        IUserHashGenerator userHashGenerator,
+        ILogger logger)
     {
         _fileReaderWriter = fileReaderWriter;
         _userHashGenerator = userHashGenerator;
+        _logger = logger;
 
         _userId = new(() => _userHashGenerator.Generate());
     }
@@ -50,8 +55,9 @@ public class UserFileReaderWriter : IUserFileReaderWriter, IEventMessageReceiver
         {
             return _fileReaderWriter.ReadOrNew<T>(GetFullFilePath(parameters), parameters.Serializer);
         }
-        catch
+        catch (Exception ex)
         {
+            _logger.Error<AppLog>("Failed to read the file.", ex);
             return new();
         }
     }
@@ -62,8 +68,9 @@ public class UserFileReaderWriter : IUserFileReaderWriter, IEventMessageReceiver
         {
             return _fileReaderWriter.Write<T>(value, GetFullFilePath(parameters), parameters.Serializer);
         }
-        catch
+        catch (Exception ex)
         {
+            _logger.Error<AppLog>("Failed to write the file.", ex);
             return FileOperationResult.Failed;
         }
     }
