@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,20 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Common.Messages;
-using ProtonVPN.Common.Core.Geographical;
+namespace ProtonVPN.Client.Common.Messages;
 
-namespace ProtonVPN.Client.Logic.Servers.Contracts.Messages;
-
-public class DeviceLocationChangedMessage : ValueChangedMessage<DeviceLocation?>
+public abstract class ValueChangedMessage<T>
 {
-    public bool HasCountryChangedAndHasValue { get; private set; }
+    public T? OldValue { get; }
+    public T? NewValue { get; }
 
-    public DeviceLocationChangedMessage(DeviceLocation? oldValue, DeviceLocation? newValue) 
-        : base(oldValue: oldValue, newValue: newValue)
+    protected ValueChangedMessage(T? oldValue, T? newValue)
     {
-        HasCountryChangedAndHasValue =
-            OldValue?.CountryCode != NewValue?.CountryCode &&
-            !string.IsNullOrEmpty(NewValue?.CountryCode);
+        OldValue = oldValue;
+        NewValue = newValue;
     }
 }

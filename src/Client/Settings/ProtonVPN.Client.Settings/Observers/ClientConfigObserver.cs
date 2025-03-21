@@ -21,9 +21,10 @@ using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Client.Common.Observers;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Configurations.Contracts;
@@ -37,13 +38,15 @@ public class ClientConfigObserver :
     PollingObserverBase,
     IClientConfigObserver,
     IEventMessageReceiver<LoggedInMessage>,
-    IEventMessageReceiver<LoggedOutMessage>
+    IEventMessageReceiver<LoggedOutMessage>,
+    IEventMessageReceiver<DeviceLocationChangedMessage>
 {
     private readonly List<int> _unsupportedWireGuardUdpPorts = [53];
 
     private readonly ISettings _settings;
     private readonly IApiClient _apiClient;
     private readonly IConfiguration _config;
+    private readonly IUserAuthenticator _userAuthenticator;
 
     protected override TimeSpan PollingInterval => _config.ClientConfigUpdateInterval;
 
@@ -52,12 +55,14 @@ public class ClientConfigObserver :
         IIssueReporter issueReporter,
         ISettings settings,
         IApiClient apiClient,
-        IConfiguration config)
+        IConfiguration config,
+        IUserAuthenticator userAuthenticator)
         : base(logger, issueReporter)
     {
         _settings = settings;
         _apiClient = apiClient;
         _config = config;
+        _userAuthenticator = userAuthenticator;
     }
 
     public void Receive(LoggedInMessage message)
@@ -68,6 +73,14 @@ public class ClientConfigObserver :
     public void Receive(LoggedOutMessage message)
     {
         StopTimer();
+    }
+
+    public async void Receive(DeviceLocationChangedMessage message)
+    {
+        if (message.HasCountryChangedAndHasValue && _userAuthenticator.IsLoggedIn)
+        {
+            TriggerAction.Run();
+        }
     }
 
     protected override async Task OnTriggerAsync()

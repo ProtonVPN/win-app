@@ -175,7 +175,7 @@ public class DeviceLocationObserver :
     {
         if (message.PropertyName == nameof(ISettings.DeviceLocation))
         {
-            _eventMessageSender.Send(new DeviceLocationChangedMessage(_settings.DeviceLocation));
+            _eventMessageSender.Send(new DeviceLocationChangedMessage((DeviceLocation?)message.OldValue, _settings.DeviceLocation));
         }
     }
 }
