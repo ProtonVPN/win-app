@@ -180,6 +180,7 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
             Server = new ServerDetailsEventData
             {
                 Name = _lastConnectionDetails?.Server.Name,
+                EntryIp = _lastConnectionDetails?.EntryIpAddress,
                 IsFree = _lastConnectionDetails?.Server.IsFree() ?? false,
                 IsB2B = _lastConnectionDetails?.Server.Features.IsB2B() ?? false,
                 SupportsTor = _lastConnectionDetails?.Server.Features.IsSupported(ServerFeatures.Tor) ?? false,
