@@ -254,6 +254,11 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
     public async Task HandleAsync(VpnStateIpcEntity message)
     {
+        if (_cachedMessage?.Status == VpnStatusIpcEntity.Connected && message.Status == VpnStatusIpcEntity.Pinging)
+        {
+            _statisticalEventManager.SetReconnectionAttempt(ConnectionStatus.Connected);
+        }
+
         _cachedMessage = message;
 
         IConnectionIntent connectionIntent = CurrentConnectionIntent ?? ConnectionIntent.Default;
