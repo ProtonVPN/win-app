@@ -21,6 +21,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -35,6 +36,7 @@ using Mapsui.Nts.Extensions;
 using Mapsui.Nts.Providers;
 using Mapsui.Providers;
 using Mapsui.Styles;
+using Mapsui.Utilities;
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -52,12 +54,17 @@ namespace ProtonVPN.Client.Common.UI.Controls.Map;
 public sealed partial class MapControl
 {
     // Resolution related consts
-    private const int MIN_RESOLUTION = 2000;
     private const int SIDE_MARGIN = 8;
     private const double MIN_BBOX_WIDTH = 4411437;
-    private const double MIN_BBOX_HEIGHT = 2445113;
+    private const double MIN_BBOX_HEIGHT = 2445113; 
+    private const double ZOOMED_IN_WORLD_RATIO = 0.10; // 10% of the world map
+    private const double ZOOMED_OUT_WORLD_RATIO = 0.80; // 80% of the world map
+    private const int ZOOM_LEVELS_COUNT = 10; // Number of zoom level
+
+    private static readonly double[] _zoomLevels = GenerateZoomLevels(ZOOMED_IN_WORLD_RATIO, ZOOMED_OUT_WORLD_RATIO, ZOOM_LEVELS_COUNT);
 
     // Animations related consts
+    private const int ZOOM_ANIMATION_DURATION_IN_MS = 1200;
     private const int PINS_LAYER_ANIMATION_DURATION_IN_MS = 200;
     private const int COUNTRY_CHANGE_ANIMATION_DURATION_IN_MS = 1000;
     private const int MAX_PIN_PULSE_COUNT = 3;
@@ -241,10 +248,10 @@ public sealed partial class MapControl
     };
 
     private MRect _mapBounds = new(
-        -50037508.34, // Min X
-        -20037508.34, // Min Y
-        30037508.34,  // Max X
-        30037508.34   // Max Y
+        -1.95e7, // Min X - West
+        -0.70e7, // Min Y - South
+        +1.95e7, // Max X - East
+        +1.75e7  // Max Y - North
     );
 
     private readonly Mapsui.Map _map = new()
@@ -281,13 +288,15 @@ public sealed partial class MapControl
         //_map.Layers.Add(GetUsaStatesLayer());
 
         _map.Navigator.OverridePanBounds = _mapBounds;
-        _map.Navigator.Limiter = new MaxZoomLimiter(MIN_RESOLUTION);
+        _map.Navigator.MouseWheelAnimation.Duration = ZOOM_ANIMATION_DURATION_IN_MS;
         _map.Home = (Navigator n) => n.ZoomToBox(_mapBounds);
 
         _map.Info += HandleMapClick;
         _map.Navigator.ViewportChanged += OnViewportChanged;
         MapCanvas.Children.Add(_countryCallout);
         Map.Renderer.StyleRenderers.Add(typeof(AnimatedCircleStyle), _animatedCirclesStyleSkiaRenderer);
+
+        Map.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY | ManipulationModes.TranslateInertia;
 
         Map.Map = _map;
         Map.Loaded += OnMapLoaded;
@@ -301,16 +310,27 @@ public sealed partial class MapControl
         Map.PointerPressed += OnPointerPressed;
         Map.PointerMoved += OnPointerMoved;
         Map.ManipulationStarted += OnManipulationStarted;
+        Map.ManipulationInertiaStarting += OnManipulationInertiaStarted;
         Map.PointerReleased += OnPointerReleased;
         Map.SizeChanged += OnMapSizeChanged;
+
         ActualThemeChanged += OnThemeChanged;
 
         InvalidateTheme();
     }
 
-    private void OnPointerPressed(object sender, PointerRoutedEventArgs e)
+    private void OnMapUnloaded(object sender, RoutedEventArgs e)
     {
-        Map.CapturePointer(e.Pointer);
+        _isUnloaded = true;
+
+        Map.PointerPressed -= OnPointerPressed;
+        Map.PointerMoved -= OnPointerMoved;
+        Map.ManipulationStarted -= OnManipulationStarted;
+        Map.ManipulationInertiaStarting -= OnManipulationInertiaStarted;
+        Map.PointerReleased -= OnPointerReleased;
+        Map.SizeChanged -= OnMapSizeChanged;
+
+        ActualThemeChanged -= OnThemeChanged;
     }
 
     private void OnThemeChanged(FrameworkElement sender, object args)
@@ -357,6 +377,50 @@ public sealed partial class MapControl
         _animatedCirclesStyleSkiaRenderer.ElementTheme = ActualTheme;
     }
 
+    private void InvalidateZoomLevels()
+    {
+        double worldResolution = ZoomHelper.CalculateResolutionForWorldSize(
+            _mapBounds.Width,
+            _mapBounds.Height,
+            _map.Navigator.Viewport.Width,
+            _map.Navigator.Viewport.Height);
+
+        double fullyZoomedInResolution = worldResolution * ZOOMED_IN_WORLD_RATIO;
+        double fullyZoomedOutResolution = worldResolution * ZOOMED_OUT_WORLD_RATIO;
+
+        List<double> resolutions = _zoomLevels
+            .Select(level => worldResolution * level)
+            .ToList();
+
+        _map.Navigator.OverrideZoomBounds = new MMinMax(
+            fullyZoomedInResolution,
+            fullyZoomedOutResolution);
+
+        _map.Navigator.OverrideResolutions = resolutions;
+    }
+
+    private static double[] GenerateZoomLevels(double minZoom, double maxZoom, int count, double exponent = 1.5)
+    {
+        if (count < 2)
+        {
+            return [];
+        }
+
+        double[] levels = new double[count];
+
+        for (int i = 0; i < count; i++)
+        {
+            double t = (double)i / (count - 1);
+            double adjusted = Math.Pow(t, exponent);
+            double zoom = minZoom + (maxZoom - minZoom) * adjusted;
+            levels[i] = Math.Round(zoom, 2);
+        }
+
+        Array.Reverse(levels);
+
+        return levels;
+    }
+
     private void OnMapSizeChanged(object sender, SizeChangedEventArgs e)
     {
         InvalidateCurrentCountry();
@@ -396,28 +460,33 @@ public sealed partial class MapControl
         );
     }
 
-    private void OnMapUnloaded(object sender, RoutedEventArgs e)
-    {
-        _isUnloaded = true;
-
-        Map.PointerPressed -= OnPointerPressed;
-        Map.PointerMoved -= OnPointerMoved;
-        Map.ManipulationStarted -= OnManipulationStarted;
-        Map.PointerReleased -= OnPointerReleased;
-        Map.SizeChanged -= OnMapSizeChanged;
-        ActualThemeChanged -= OnThemeChanged;
-    }
-
-    private void OnPointerReleased(object sender, PointerRoutedEventArgs e)
-    {
-        Map.ReleasePointerCapture(e.Pointer);
-        _isManipulationRunning = false;
-    }
-
     private void OnManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
     {
         _isManipulationRunning = true;
         _countryCallout.Hide();
+    }
+
+    private void OnManipulationInertiaStarted(object sender, ManipulationInertiaStartingRoutedEventArgs e)
+    {
+        Windows.Foundation.Point velocity = e.Velocities.Linear; // Velocity in pixels/ms
+        double velocityLength = Math.Sqrt(velocity.X * velocity.X + velocity.Y * velocity.Y);
+
+        // Parameters for scaling
+        double k = 0.001; // Tuning factor
+        double exp = 1.5; // Exponent to amplify high velocities
+
+        // Non-linear scaled deceleration
+        double deceleration = k * Math.Pow(velocityLength, exp);
+
+        // Clamp to avoid too small or too high deceleration
+        double minDeceleration = 0.005; // px/ms²
+        double maxDeceleration = 0.2;   // px/ms²
+
+        deceleration = Math.Clamp(deceleration, minDeceleration, maxDeceleration);
+
+        e.TranslationBehavior.DesiredDeceleration = deceleration;
+
+        e.Handled = true;
     }
 
     private void OnCountryCalloutLayoutUpdated(object? sender, object e)
@@ -444,12 +513,19 @@ public sealed partial class MapControl
             return;
         }
 
+        InvalidateZoomLevels();
+
         DispatcherQueue?.TryEnqueue(ToggleFeatures);
     }
 
     private bool _isMouseOnViewport;
     private bool _fadeInAnimationStarted;
     private bool _fadeOutAnimationStarted;
+
+    private void OnPointerPressed(object sender, PointerRoutedEventArgs e)
+    {
+        Map.CapturePointer(e.Pointer);
+    }
 
     private void OnPointerMoved(object sender, PointerRoutedEventArgs e)
     {
@@ -477,6 +553,12 @@ public sealed partial class MapControl
         }
 
         ToggleFeatures();
+    }
+
+    private void OnPointerReleased(object sender, PointerRoutedEventArgs e)
+    {
+        Map.ReleasePointerCapture(e.Pointer);
+        _isManipulationRunning = false;
     }
 
     private bool IsMouseOnViewport(Windows.Foundation.Point mousePosition)
