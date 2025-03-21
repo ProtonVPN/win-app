@@ -281,7 +281,12 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
                 {
                     if (CurrentConnectionDetails is null || !CurrentConnectionDetails.OriginalConnectionIntent.IsSameAs(connectionIntent))
                     {
-                        CurrentConnectionDetails = new ConnectionDetails(connectionIntent, server, physicalServer, vpnProtocol, message.EndpointPort);
+                        CurrentConnectionDetails = new ConnectionDetails(
+                            connectionIntent,
+                            server,
+                            physicalServer,
+                            vpnProtocol,
+                            message.EndpointPort);
                     }
                     else
                     {

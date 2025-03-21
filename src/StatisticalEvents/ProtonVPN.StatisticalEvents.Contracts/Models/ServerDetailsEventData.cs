@@ -23,6 +23,8 @@ public class ServerDetailsEventData
 {
     public string? Name { get; set; }
 
+    public string? EntryIp { get; set; }
+
     public bool IsFree { get; set; }
 
     public bool IsB2B { get; set; }

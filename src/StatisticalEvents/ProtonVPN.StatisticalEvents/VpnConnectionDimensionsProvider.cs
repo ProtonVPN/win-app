@@ -73,6 +73,7 @@ public class VpnConnectionDimensionsProvider : IVpnConnectionDimensionsProvider
             { "vpn_country", eventData.VpnCountry ?? DimensionMapperBase.NOT_AVAILABLE },
             { "user_country", eventData.UserCountry ?? DimensionMapperBase.NOT_AVAILABLE },
             { "server", eventData.Server?.Name ?? DimensionMapperBase.NOT_AVAILABLE },
+            { "entry_ip", eventData.Server?.EntryIp ?? DimensionMapperBase.NOT_AVAILABLE },
             { "port", eventData.Port > 0 ? eventData.Port.ToString() : DimensionMapperBase.NOT_AVAILABLE },
             { "isp", string.IsNullOrWhiteSpace(eventData.Isp) ? DimensionMapperBase.NOT_AVAILABLE : eventData.Isp },
         };
