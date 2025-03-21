@@ -473,6 +473,9 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
 
     private void SetAuthenticationStatus(AuthenticationStatus status, LogoutReason? logoutReason = null)
     {
+        string logoutReasonLogMessage = logoutReason is null ? "" : $" (Logout reason: {logoutReason})";
+        _logger.Info<AppLog>($"Changing authentication status to '{status}'{logoutReasonLogMessage}.");
+
         AuthenticationStatus = status;
 
         _eventMessageSender.Send(new AuthenticationStatusChanged(status));
