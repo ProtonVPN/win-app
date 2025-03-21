@@ -69,7 +69,11 @@ public class ServersObserver : PollingObserverBase, IServersObserver,
     {
         if (_userAuthenticator.IsLoggedIn)
         {
-            await _serversUpdater.UpdateAsync(ServersRequestParameter.ForceLoadsUpdate);
+            ServersRequestParameter serversRequestParameter = message.HasCountryChangedAndHasValue
+                ? ServersRequestParameter.ForceFullUpdate
+                : ServersRequestParameter.ForceLoadsUpdate;
+
+            await _serversUpdater.UpdateAsync(serversRequestParameter);
         }
     }
 

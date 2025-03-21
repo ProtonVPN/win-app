@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
@@ -31,6 +32,7 @@ public class ServersUpdater : IServersUpdater
     private readonly IServersCache _serversCache;
     private readonly IServerCountCache _serverCountCache;
     private readonly IConfiguration _config;
+    private readonly ISettings _settings;
     private readonly SemaphoreSlim _semaphore = new(1, 1);
 
     private DateTime _lastFullUpdateUtc = DateTime.MinValue;
@@ -40,12 +42,14 @@ public class ServersUpdater : IServersUpdater
         ILogger logger,
         IServersCache serversCache,
         IServerCountCache serverCountCache,
-        IConfiguration config)
+        IConfiguration config,
+        ISettings settings)
     {
         _logger = logger;
         _serversCache = serversCache;
         _serverCountCache = serverCountCache;
         _config = config;
+        _settings = settings;
     }
 
     public async Task UpdateAsync(ServersRequestParameter parameter, bool isToReprocessServers = false)
@@ -68,6 +72,10 @@ public class ServersUpdater : IServersUpdater
             {
                 _lastFullUpdateUtc = utcNow;
                 _lastLoadsUpdateUtc = utcNow;
+                if (parameter == ServersRequestParameter.ForceFullUpdate)
+                {
+                    _settings.LogicalsLastModifiedDate = DefaultSettings.LogicalsLastModifiedDate;
+                }
                 await _serversCache.UpdateAsync();
                 await _serverCountCache.UpdateAsync();
             }

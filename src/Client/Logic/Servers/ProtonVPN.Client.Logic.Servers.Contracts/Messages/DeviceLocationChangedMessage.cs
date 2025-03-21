@@ -17,14 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using CommunityToolkit.Mvvm.Messaging.Messages;
+using ProtonVPN.Client.Common.Messages;
 using ProtonVPN.Common.Core.Geographical;
 
 namespace ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 
 public class DeviceLocationChangedMessage : ValueChangedMessage<DeviceLocation?>
 {
-    public DeviceLocationChangedMessage(DeviceLocation? value) 
-        : base(value)
-    { }
+    public bool HasCountryChangedAndHasValue { get; private set; }
+
+    public DeviceLocationChangedMessage(DeviceLocation? oldValue, DeviceLocation? newValue) 
+        : base(oldValue: oldValue, newValue: newValue)
+    {
+        HasCountryChangedAndHasValue =
+            OldValue?.CountryCode != NewValue?.CountryCode &&
+            !string.IsNullOrEmpty(NewValue?.CountryCode);
+    }
 }
