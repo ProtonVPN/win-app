@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.Windows.AppLifecycle;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -28,6 +28,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
+using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Extensions;
@@ -38,6 +39,8 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
+using Windows.ApplicationModel.Activation;
+using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 
 namespace ProtonVPN.Client.Services.Bootstrapping;
 
@@ -60,6 +63,7 @@ public class Bootstrapper : IBootstrapper
     private readonly IConnectionManager _connectionManager;
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
+    private readonly IVpnPlanUpdater _vpnPlanUpdater;
 
     public Bootstrapper(
         IUrlsBrowser urlsBrowser,
@@ -75,7 +79,8 @@ public class Bootstrapper : IBootstrapper
         ILocalizationProvider localizer,
         IConnectionManager connectionManager,
         IMainWindowActivator mainWindowActivator,
-        IMainWindowOverlayActivator mainWindowOverlayActivator)
+        IMainWindowOverlayActivator mainWindowOverlayActivator,
+        IVpnPlanUpdater vpnPlanUpdater)
     {
         _urlsBrowser = urlsBrowser;
         _clientInstallsStatisticalEventSender = clientInstallsStatisticalEventSender;
@@ -91,6 +96,7 @@ public class Bootstrapper : IBootstrapper
         _connectionManager = connectionManager;
         _mainWindowActivator = mainWindowActivator;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
+        _vpnPlanUpdater = vpnPlanUpdater;
     }
 
     public async Task StartAsync(LaunchActivatedEventArgs args)
@@ -98,6 +104,8 @@ public class Bootstrapper : IBootstrapper
         try
         {
             IssueReportingInitializer.SetEnabled(_settings.IsShareCrashReportsEnabled);
+
+            AppInstance.GetCurrent().Activated += OnCurrentAppInstanceActivated;
 
             HandleCommandLineArguments();
 
@@ -167,6 +175,21 @@ public class Bootstrapper : IBootstrapper
 
         _mainWindowActivator.Exit();
         _serviceManager.Stop();
+    }
+
+    private void OnCurrentAppInstanceActivated(object? sender, AppActivationArguments e)
+    {
+        if (e.Kind == ExtendedActivationKind.Protocol)
+        {
+            HandleProtocolActivationArguments(e.Data as ProtocolActivatedEventArgs);
+        }
+    }
+
+    private void HandleProtocolActivationArguments(ProtocolActivatedEventArgs? args)
+    {
+        // TODO: Investigate why protocol activation arguments are always null
+        _mainWindowActivator.Activate();
+        _vpnPlanUpdater.UpdateAsync();
     }
 
     private void HandleCommandLineArguments()

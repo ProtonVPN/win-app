@@ -28,6 +28,7 @@ using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Installers;
 using ProtonVPN.Client.Localization.Building;
+using ProtonVPN.Client.Services.Bootstrapping.Activators;
 using ProtonVPN.Common.Legacy.OS.Net.Http;
 using RichardSzalay.MockHttp;
 using File = System.IO.File;
@@ -63,6 +64,7 @@ public class TestBase
         builder.Register(_ => Substitute.For<IConnectionsViewNavigator>()).As<IConnectionsViewNavigator>().SingleInstance();
         builder.Register(_ => Substitute.For<IEventMessageSender>()).As<IEventMessageSender>().SingleInstance();
         builder.Register(_ => Substitute.For<ILocalizerFactory>()).As<ILocalizerFactory>().SingleInstance();
+        builder.Register(_ => Substitute.For<IAppStartupActivator>()).As<IAppStartupActivator>().SingleInstance();
 
         HttpClient httpClient = MessageHandler!.ToHttpClient();
         httpClient.BaseAddress = new Uri("http://localhost");

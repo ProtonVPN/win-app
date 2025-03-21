@@ -36,6 +36,9 @@ public class StaticConfiguration : IStaticConfiguration
     public string ClientExePath { get; } = DefaultConfiguration.ClientExePath;
     public string ServiceExePath { get; } = DefaultConfiguration.ServiceExePath;
 
+    public string ProtocolActivationScheme { get; } = DefaultConfiguration.ProtocolActivationScheme;
+    public string LegacyProtocolActivationScheme { get; } = DefaultConfiguration.LegacyProtocolActivationScheme;
+
     public string StorageFolder { get; } = DefaultConfiguration.StorageFolder;
     public string ClientLogsFolder { get; } = DefaultConfiguration.ClientLogsFolder;
     public string ServiceLogsFolder { get; } = DefaultConfiguration.ServiceLogsFolder;
