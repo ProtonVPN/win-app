@@ -88,6 +88,10 @@ public static class DefaultConfiguration
     /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ProtonVPNService.exe</returns>
     public static string ServiceExePath => Path.Combine(_baseVersionDirectory.Value, "ProtonVPNService.exe");
 
+    public static string ProtocolActivationScheme = "proton-vpn";
+
+    public static string LegacyProtocolActivationScheme = "protonvpn";
+
     /// <returns>C:\Users\{user}\AppData\Local\Proton\Proton VPN\Storage</returns>
     public static string StorageFolder => _storageFolder.Value;
 

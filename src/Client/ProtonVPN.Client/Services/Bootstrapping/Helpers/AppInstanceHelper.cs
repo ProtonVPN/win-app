@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,17 +19,54 @@
 
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using Microsoft.Windows.AppLifecycle;
 
 namespace ProtonVPN.Client.Services.Bootstrapping.Helpers;
 
+/// <summary>
+/// Documentation on how to create single-instanced application 
+/// and why we should redirect protocol activation to the running instance can be found here:
+/// https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/applifecycle/applifecycle-single-instance
+/// </summary>
 public static class AppInstanceHelper
 {
-    private const string APPLICATION_NAME = "Proton VPN";
     private const int SW_SHOW = 5;
+
+    private static IntPtr _redirectEventHandle = IntPtr.Zero;
 
     private delegate bool EnumWindowsProc(nint hWnd, nint lParam);
 
-    public static void BringToForeground()
+    public static void RedirectActivation()
+    {
+        AppInstance? instance = AppInstance.GetInstances().FirstOrDefault(i => !i.IsCurrent);
+        if (instance is not null)
+        {
+            AppActivationArguments args = AppInstance.GetCurrent().GetActivatedEventArgs();
+
+            RedirectActivationTo(instance, args);
+        }
+    }
+
+    private static void RedirectActivationTo(AppInstance keyInstance, AppActivationArguments args)
+    {
+        _redirectEventHandle = CreateEvent(IntPtr.Zero, true, false, string.Empty);
+        Task.Run(() =>
+        {
+            keyInstance.RedirectActivationToAsync(args).AsTask().Wait();
+            SetEvent(_redirectEventHandle);
+        });
+
+        uint CWMO_DEFAULT = 0;
+        uint INFINITE = 0xFFFFFFFF;
+        _ = CoWaitForMultipleObjects(
+           CWMO_DEFAULT, INFINITE, 1,
+           [_redirectEventHandle], out uint handleIndex);
+
+        // Bring the window to the foreground
+        BringToForeground();
+    }
+
+    private static void BringToForeground()
     {
         Process currentProcess = Process.GetCurrentProcess();
         List<Process> processes = Process.GetProcessesByName(currentProcess.ProcessName)
@@ -79,7 +116,7 @@ public static class AppInstanceHelper
                 string? title = Marshal.PtrToStringUni(buffer);
                 Marshal.FreeHGlobal(buffer);
                 if (title is not null &&
-                    title.Equals(APPLICATION_NAME, StringComparison.InvariantCulture))
+                    title.Equals(App.APPLICATION_NAME, StringComparison.InvariantCulture))
                 {
                     mainWindowHandle = hWnd;
                     return false;
@@ -91,6 +128,15 @@ public static class AppInstanceHelper
 
         return mainWindowHandle;
     }
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+    private static extern IntPtr CreateEvent(IntPtr lpEventAttributes, bool bManualReset, bool bInitialState, string lpName);
+
+    [DllImport("kernel32.dll")]
+    private static extern bool SetEvent(IntPtr hEvent);
+
+    [DllImport("ole32.dll")]
+    private static extern uint CoWaitForMultipleObjects(uint dwFlags, uint dwMilliseconds, ulong nHandles, IntPtr[] pHandles, out uint dwIndex);
 
     [DllImport("user32.dll")]
     private static extern bool EnumWindows(EnumWindowsProc enumProc, nint lParam);

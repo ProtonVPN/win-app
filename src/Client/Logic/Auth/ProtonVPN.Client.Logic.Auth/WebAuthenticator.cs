@@ -33,8 +33,6 @@ namespace ProtonVPN.Client.Logic.Auth;
 
 public class WebAuthenticator : IWebAuthenticator
 {
-    private const string CUSTOM_PROTOCOL_PREFIX = "proton-vpn://";
-
     private const string UPGRADE_INTENT = "upgrade";
     private const string MANAGE_SUBSCRIPTION_INTENT = "manage-subscription";
     private const string SUBSCRIBE_ACCOUNT_ACTION = "subscribe-account";
@@ -44,11 +42,15 @@ public class WebAuthenticator : IWebAuthenticator
     private readonly IConfiguration _config;
     private readonly ILogger _logger;
 
+    protected string ActivationProtocol { get; }
+
     public WebAuthenticator(IApiClient apiClient, IConfiguration config, ILogger logger)
     {
         _apiClient = apiClient;
         _config = config;
         _logger = logger;
+
+        ActivationProtocol = $"{_config.ProtocolActivationScheme}://";
     }
 
     public Task<string> GetMyAccountUrlAsync()
@@ -120,7 +122,7 @@ public class WebAuthenticator : IWebAuthenticator
         return _config.Urls.AutoLoginBaseUrl + "?" +
                $"action={parameters.Action}&" +
                $"fullscreen={parameters.Fullscreen}&" +
-               $"redirect={CUSTOM_PROTOCOL_PREFIX + parameters.Redirect}&" +
+               $"redirect={ActivationProtocol + parameters.Redirect}&" +
                $"start={parameters.Start}&" +
                $"type={parameters.Type}" +
                "#selector=" + selector;

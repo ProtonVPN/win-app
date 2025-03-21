@@ -45,8 +45,6 @@ public class Program
 
         if (IsFirstInstance())
         {
-            AppProtocolHelper.Register();
-
             SetCurrentProcessExplicitAppUserModelID("Proton.VPN");
 
             Application.Start(_ =>
@@ -55,12 +53,10 @@ public class Program
                 SynchronizationContext.SetSynchronizationContext(context);
                 new App();
             });
-
-            AppProtocolHelper.Unregister();
         }
         else
         {
-            AppInstanceHelper.BringToForeground();
+            AppInstanceHelper.RedirectActivation();
         }
     }
 

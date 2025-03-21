@@ -34,6 +34,9 @@ public interface IStaticConfiguration
     string ClientExePath { get; }
     string ServiceExePath { get; }
 
+    string ProtocolActivationScheme { get; }
+    string LegacyProtocolActivationScheme { get; }
+
     string StorageFolder { get; }
     string ClientLogsFolder { get; }
     string ServiceLogsFolder { get; }

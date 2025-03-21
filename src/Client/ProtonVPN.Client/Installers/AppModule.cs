@@ -137,6 +137,7 @@ using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.Serialization.Installers;
 using ProtonVPN.StatisticalEvents.Installers;
 using ProtonVPN.Client.Services.Upselling;
+using ProtonVPN.Client.Services.Bootstrapping.Activators;
 
 namespace ProtonVPN.Client.Installers;
 
@@ -212,6 +213,8 @@ public class AppModule : Module
     private void RegisterLocalServices(ContainerBuilder builder)
     {
         builder.RegisterType<Bootstrapper>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<AppProtocolActivator>().AsImplementedInterfaces().SingleInstance().AutoActivate();
+        builder.RegisterType<AppStartupActivator>().AsImplementedInterfaces().SingleInstance().AutoActivate();
         builder.RegisterType<PageViewMapper>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<OverlayViewMapper>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<UIThreadDispatcher>().AsImplementedInterfaces().SingleInstance();
