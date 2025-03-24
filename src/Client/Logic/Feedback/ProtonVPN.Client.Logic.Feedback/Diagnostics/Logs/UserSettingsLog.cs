@@ -72,54 +72,76 @@ public class UserSettingsLog : LogBase
         yield return new(nameof(ISettings.VpnProtocol), _settings.VpnProtocol);
         yield return new(nameof(ISettings.Username), _settings.Username);
         yield return new($"{nameof(ISettings.VpnPlan)}.{nameof(ISettings.VpnPlan.Title)}", _settings.VpnPlan.Title);
+
         yield return new($"{nameof(ISettings.ConnectionCertificate)}.{nameof(ConnectionCertificate.RequestUtcDate)}", _settings.ConnectionCertificate?.RequestUtcDate);
         yield return new($"{nameof(ISettings.ConnectionCertificate)}.{nameof(ConnectionCertificate.RefreshUtcDate)}", _settings.ConnectionCertificate?.RefreshUtcDate);
         yield return new($"{nameof(ISettings.ConnectionCertificate)}.{nameof(ConnectionCertificate.ExpirationUtcDate)}", _settings.ConnectionCertificate?.ExpirationUtcDate);
+        
         yield return new($"{nameof(ISettings.ChangeServerAttempts)}.{nameof(ISettings.ChangeServerAttempts.AttemptsCount)}", _settings.ChangeServerAttempts.AttemptsCount);
         yield return new($"{nameof(ISettings.ChangeServerAttempts)}.{nameof(ISettings.ChangeServerAttempts.LastAttemptUtcDate)}", _settings.ChangeServerAttempts.LastAttemptUtcDate);
+
+        yield return new(nameof(ISettings.IsNotificationEnabled), _settings.IsNotificationEnabled);
+        yield return new(nameof(ISettings.IsAlternativeRoutingEnabled), _settings.IsAlternativeRoutingEnabled);
+        yield return new(nameof(ISettings.OpenVpnAdapter), _settings.OpenVpnAdapter);
+        yield return new(nameof(ISettings.IsIpv6LeakProtectionEnabled), _settings.IsIpv6LeakProtectionEnabled);
+        yield return new(nameof(ISettings.IsSmartReconnectEnabled), _settings.IsSmartReconnectEnabled);
         yield return new(nameof(ISettings.NatType), _settings.NatType);
         yield return new(nameof(ISettings.IsVpnAcceleratorEnabled), _settings.IsVpnAcceleratorEnabled);
+        yield return new(nameof(ISettings.LogicalsLastModifiedDate), _settings.LogicalsLastModifiedDate);
+
+        yield return new(nameof(ISettings.IsGlobalSettingsMigrationDone), _settings.IsGlobalSettingsMigrationDone);
+        yield return new(nameof(ISettings.IsUserSettingsMigrationDone), _settings.IsUserSettingsMigrationDone);
+
+        yield return new(nameof(ISettings.AreAutomaticUpdatesEnabled), _settings.AreAutomaticUpdatesEnabled);
+        yield return new(nameof(ISettings.IsBetaAccessEnabled), _settings.IsBetaAccessEnabled);
+
+        yield return new(nameof(ISettings.IsShareStatisticsEnabled), _settings.IsShareStatisticsEnabled);
+        yield return new(nameof(ISettings.IsShareCrashReportsEnabled), _settings.IsShareCrashReportsEnabled);
+
+        yield return new(nameof(ISettings.IsCustomDnsServersEnabled), _settings.IsCustomDnsServersEnabled);
+        yield return new(nameof(ISettings.CustomDnsServersList), _settings.CustomDnsServersList);
+
+        yield return new(nameof(ISettings.IsAutoConnectEnabled), _settings.IsAutoConnectEnabled);
+        yield return new(nameof(ISettings.IsAutoLaunchEnabled), _settings.IsAutoLaunchEnabled);
+        yield return new(nameof(ISettings.AutoLaunchMode), _settings.AutoLaunchMode);
+
+        yield return new(nameof(ISettings.IsKillSwitchEnabled), _settings.IsKillSwitchEnabled);
+        yield return new(nameof(ISettings.KillSwitchMode), _settings.KillSwitchMode);
+
+        yield return new(nameof(ISettings.IsNetShieldEnabled), _settings.IsNetShieldEnabled);
+        yield return new(nameof(ISettings.NetShieldMode), _settings.NetShieldMode);
+
+        yield return new(nameof(ISettings.IsPortForwardingEnabled), _settings.IsPortForwardingEnabled);
+        yield return new(nameof(ISettings.IsPortForwardingNotificationEnabled), _settings.IsPortForwardingNotificationEnabled);
+
+        yield return new(nameof(ISettings.IsSplitTunnelingEnabled), _settings.IsSplitTunnelingEnabled);
+        yield return new(nameof(ISettings.SplitTunnelingMode), _settings.SplitTunnelingMode);
+        yield return new(nameof(ISettings.SplitTunnelingStandardAppsList), _settings.SplitTunnelingStandardAppsList);
+        yield return new(nameof(ISettings.SplitTunnelingStandardIpAddressesList), _settings.SplitTunnelingStandardIpAddressesList);
+        yield return new(nameof(ISettings.SplitTunnelingInverseAppsList), _settings.SplitTunnelingInverseAppsList);
+        yield return new(nameof(ISettings.SplitTunnelingInverseIpAddressesList), _settings.SplitTunnelingInverseIpAddressesList);
+
+        yield return new(nameof(ISettings.SidebarWidth), _settings.SidebarWidth);
+        yield return new(nameof(ISettings.IsRecentsPaneOpened), _settings.IsRecentsPaneOpened);
+        yield return new(nameof(ISettings.IsNavigationPaneOpened), _settings.IsNavigationPaneOpened);
+        yield return new(nameof(ISettings.IsConnectionDetailsPaneOpened), _settings.IsConnectionDetailsPaneOpened);
+
         yield return new(nameof(ISettings.WindowWidth), _settings.WindowWidth);
         yield return new(nameof(ISettings.WindowHeight), _settings.WindowHeight);
         yield return new(nameof(ISettings.WindowXPosition), _settings.WindowXPosition);
         yield return new(nameof(ISettings.WindowYPosition), _settings.WindowYPosition);
         yield return new(nameof(ISettings.IsWindowMaximized), _settings.IsWindowMaximized);
-        yield return new(nameof(ISettings.IsNotificationEnabled), _settings.IsNotificationEnabled);
-        yield return new(nameof(ISettings.IsBetaAccessEnabled), _settings.IsBetaAccessEnabled);
-        yield return new(nameof(ISettings.AreAutomaticUpdatesEnabled), _settings.AreAutomaticUpdatesEnabled);
-        yield return new(nameof(ISettings.IsGlobalSettingsMigrationDone), _settings.IsGlobalSettingsMigrationDone);
-        yield return new(nameof(ISettings.IsShareStatisticsEnabled), _settings.IsShareStatisticsEnabled);
-        yield return new(nameof(ISettings.IsShareCrashReportsEnabled), _settings.IsShareCrashReportsEnabled);
-        yield return new(nameof(ISettings.IsAlternativeRoutingEnabled), _settings.IsAlternativeRoutingEnabled);
-        yield return new(nameof(ISettings.IsCustomDnsServersEnabled), _settings.IsCustomDnsServersEnabled);
-        yield return new(nameof(ISettings.IsNavigationPaneOpened), _settings.IsNavigationPaneOpened);
-        yield return new(nameof(ISettings.SidebarWidth), _settings.SidebarWidth);
-        yield return new(nameof(ISettings.IsRecentsPaneOpened), _settings.IsRecentsPaneOpened);
-        yield return new(nameof(ISettings.IsConnectionDetailsPaneOpened), _settings.IsConnectionDetailsPaneOpened);
-        yield return new(nameof(ISettings.OpenVpnAdapter), _settings.OpenVpnAdapter);
-        yield return new(nameof(ISettings.IsIpv6LeakProtectionEnabled), _settings.IsIpv6LeakProtectionEnabled);
-        yield return new(nameof(ISettings.IsAutoConnectEnabled), _settings.IsAutoConnectEnabled);
-        yield return new(nameof(ISettings.IsAutoLaunchEnabled), _settings.IsAutoLaunchEnabled);
-        yield return new(nameof(ISettings.AutoLaunchMode), _settings.AutoLaunchMode);
-        yield return new(nameof(ISettings.IsKillSwitchEnabled), _settings.IsKillSwitchEnabled);
-        yield return new(nameof(ISettings.KillSwitchMode), _settings.KillSwitchMode);
-        yield return new(nameof(ISettings.IsNetShieldEnabled), _settings.IsNetShieldEnabled);
-        yield return new(nameof(ISettings.NetShieldMode), _settings.NetShieldMode);
-        yield return new(nameof(ISettings.IsPortForwardingEnabled), _settings.IsPortForwardingEnabled);
-        yield return new(nameof(ISettings.IsPortForwardingNotificationEnabled), _settings.IsPortForwardingNotificationEnabled);
-        yield return new(nameof(ISettings.IsSplitTunnelingEnabled), _settings.IsSplitTunnelingEnabled);
-        yield return new(nameof(ISettings.IsSmartReconnectEnabled), _settings.IsSmartReconnectEnabled);
-        yield return new(nameof(ISettings.IsUserSettingsMigrationDone), _settings.IsUserSettingsMigrationDone);
-        yield return new(nameof(ISettings.SplitTunnelingMode), _settings.SplitTunnelingMode);
+
         yield return new(nameof(ISettings.WasWelcomeOverlayDisplayed), _settings.WasWelcomeOverlayDisplayed);
         yield return new(nameof(ISettings.WasWelcomePlusOverlayDisplayed), _settings.WasWelcomePlusOverlayDisplayed);
         yield return new(nameof(ISettings.WasWelcomeUnlimitedOverlayDisplayed), _settings.WasWelcomeUnlimitedOverlayDisplayed);
         yield return new(nameof(ISettings.WasWelcomeB2BOverlayDisplayed), _settings.WasWelcomeB2BOverlayDisplayed);
-        yield return new(nameof(ISettings.LogicalsLastModifiedDate), _settings.LogicalsLastModifiedDate);
+
         yield return new(nameof(ISettings.IsP2PInfoBannerDismissed), _settings.IsP2PInfoBannerDismissed);
         yield return new(nameof(ISettings.IsSecureCoreInfoBannerDismissed), _settings.IsSecureCoreInfoBannerDismissed);
         yield return new(nameof(ISettings.IsTorInfoBannerDismissed), _settings.IsTorInfoBannerDismissed);
         yield return new(nameof(ISettings.IsGatewayInfoBannerDismissed), _settings.IsGatewayInfoBannerDismissed);
+
         yield return new(nameof(ISettings.LastSeenWhatsNewOverlayVersion), _settings.LastSeenWhatsNewOverlayVersion);
     }
 
