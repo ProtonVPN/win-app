@@ -271,7 +271,7 @@
     <value>Il kill switch avanzato è abilitato. Per utilizzare Internet senza VPN, disabilita il kill switch avanzato.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>Il kill switch avanzato è abilitato. Se continui, ti disconnetterai da Internet.</value>
+    <value>Il kill switch avanzato è abilitato. Se continui, verrà effettuata la disconnessione da Internet.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>Verrai disconnesso dalla VPN.</value>
@@ -295,7 +295,7 @@
     <value>NOVITÀ</value>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
-    <value>Aggiorna l'app all'ultima versione per ottenere il massimo dalla tua VPN.</value>
+    <value>Per ottenere il massimo dalla tua VPN, aggiorna l'app all'ultima versione.</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues">
     <value>Se mantieni una delle versioni precedenti di Proton VPN, sarà più probabile riscontrare problemi.</value>
@@ -313,7 +313,7 @@
     <value>Proton VPN non è riuscito a recuperare il certificato di autenticazione a causa di un problema di rete.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>Tutti i server nella tua selezione sono attualmente non disponibili. Espandi la selezione o riprova più tardi.</value>
+    <value>I server nella tua selezione non sono disponibili. Espandi la selezione o riprova più tardi.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
     <value>La selezione del server per '{0}' non è disponibile. Seleziona un server diverso o riprova più tardi.</value>
@@ -1697,7 +1697,7 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_BaseFilteringEngine_Description">
-    <value>Il servizio Base Filtering Engine (BFE) sul tuo dispositivo Windows è disabilitato. Abilitalo per far sì che Proton VPN funzioni correttamente.</value>
+    <value>Il servizio Base Filtering Engine (BFE) sul tuo dispositivo Windows è disabilitato. Abilitalo per consentire a Proton VPN di funzionare correttamente.</value>
   </data>
   <data name="Dialogs_BaseFilteringEngine_HowToEnable">
     <value>Come abilitare Base Filtering Engine</value>
@@ -1730,7 +1730,7 @@
     <value>Proton Free ti connette automaticamente al server gratuito più veloce disponibile in {0} Paese gratuito. Solitamente è il server più vicino alla tua posizione.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free ti connette automaticamente al server gratuito più veloce disponibile nei nostri {0} paesi gratuiti. Solitamente è il server più vicino alla tua posizione.</value>
+    <value>Proton Free ti connette automaticamente al server gratuito più veloce disponibile in {0} Paesi gratuiti. Solitamente è il server più vicino alla tua posizione.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
     <value>Paese con server gratuiti ({0})</value>
@@ -1836,7 +1836,7 @@ Una latenza elevata può rallentare la connessione.</value>
     <value>Quale è il problema?</value>
   </data>
   <data name="Dialogs_ReportIssue_NoLogsWarning">
-    <value>I log degli errori ci aiutano a risalire alle origini del problema. Se non li includi, potremmo non riuscire ad analizzare e risolvere totalmente gli errori.</value>
+    <value>I log degli errori ci aiutano ad analizzare a fondo il problema. Se non li includi, ciò potrebbe risultare difficile.</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>Soluzioni veloci</value>
@@ -1905,7 +1905,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Forse più tardi</value>
   </data>
   <data name="Dialogs_SystemProxy_Description">
-    <value>Sembra che il tuo dispositivo stia utilizzando un server proxy. Ciò potrebbe interferire con la protezione VPN.</value>
+    <value>Sembra che il tuo dispositivo stia utilizzando un server proxy, che potrebbe interferire con la protezione VPN.</value>
   </data>
   <data name="Dialogs_SystemProxy_Disable">
     <value>Disabilita proxy</value>
@@ -1962,7 +1962,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Vuoi installare l'aggiornamento?</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Title_Restart">
-    <value>Riavvia Proton VPN per completare l'aggiornamento</value>
+    <value>Per completare l'aggiornamento, riavvia Proton VPN</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
     <value>Sembra che l'orologio del tuo sistema non sia sincronizzato. Ciò potrebbe causare problemi durante la connessione alla VPN.</value>
@@ -2034,10 +2034,10 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Nuova posizione per i gateway</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
-    <value>Abbiamo aggiornato l'interfaccia e spostato alcuni elementi per rendere l'app ancora più facile da usare.</value>
+    <value>Abbiamo aggiornato l'interfaccia e spostato alcuni elementi per rendere l'app più intuitiva.</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
-    <value>Nuovo look, stessa protezione</value>
+    <value>Nuovo look, protezione di sempre</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
     <value>Aggiungi impostazioni avanzate del profilo come NetShield e port forwarding, oppure configura Connettiti e Vai per avviare il sito web che preferisci al momento della connessione.</value>
@@ -2046,7 +2046,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Profili ancora più potenti</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Description">
-    <value>Riconnettersi ai server preferiti ora è ancora più semplice. Visualizza le tue connessioni più recenti nella schermata iniziale o fissale per trovarle velocemente.</value>
+    <value>Riconnettersi ai server preferiti ora è ancora più semplice. Visualizza le tue connessioni recenti nella schermata iniziale o fissale per un accesso più rapido.</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Title">
     <value>Connessioni recenti</value>
@@ -2070,7 +2070,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Navigare senza una VPN ti rende vulnerabile alle restrizioni imposte su Internet in base alla posizione.</value>
   </data>
   <data name="Flyouts_Country_Description2">
-    <value>I siti web possono utilizzare blocchi geografici per limitare l'accesso ai contenuti da luoghi specifici. I ​​governi possono anche ordinare ai fornitori di servizi Internet di bloccare determinati siti web nel loro Paese.</value>
+    <value>I siti web possono utilizzare blocchi geografici per limitare l'accesso ai contenuti da luoghi specifici e i ​​governi possono persino ordinare ai fornitori di servizi Internet di bloccare determinati siti web nel loro Paese.</value>
   </data>
   <data name="Flyouts_Country_Description3">
     <value>Una VPN fa sembrare che tu stia navigando da un altro luogo, proteggendoti dalla sorveglianza e dalla censura.</value>
@@ -2088,7 +2088,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Questo codice univoco può essere utilizzato dai siti web e dai fornitori di servizi Internet per collegare la tua posizione e la cronologia di navigazione al tuo dispositivo.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected2">
-    <value>Una VPN maschera il tuo indirizzo IP, facendo sì che risalire a te tramite le tue attività sia più difficile.</value>
+    <value>Una VPN maschera il tuo indirizzo IP, in modo tale che risalire a te tramite le tue attività risulti più difficile.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
     <value>Che cos'è un indirizzo IP?</value>
@@ -2106,7 +2106,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Il tuo indirizzo IP è visibile</value>
   </data>
   <data name="Flyouts_Isp_Description1">
-    <value>Il tuo fornitori di servizi Internet (ISP, Internet Service Provider) è la società che ti fornisce una connessione a Internet.</value>
+    <value>Il fornitore di servizi Internet (ISP, Internet Service Provider) è la società che ti fornisce una connessione a Internet.</value>
   </data>
   <data name="Flyouts_Isp_Description2">
     <value>Gli ISP possono registrare la tua attività online e, in alcuni Paesi, vendere i dati agli inserzionisti. In altri luoghi, è addirittura possibile che siano tenuti a consegnarli al governo.</value>
@@ -2133,7 +2133,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Se la connessione VPN si interrompe, Internet verrà disconnesso finché la VPN non sarà ripristinata</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Connected">
-    <value>Il kill switch avanzato si applica anche se ti disconnetti dalla VPN intenzionalmente</value>
+    <value>Il kill switch avanzato entra in azione anche se ti disconnetti dalla VPN intenzionalmente</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Disconnected">
     <value>Per tornare online, connettiti alla VPN o disattiva il kill switch avanzato</value>
@@ -2733,7 +2733,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Il tuo piano è stato riportato a Proton Free, ti stiamo ricollegando al server gratuito più veloce.</value>
   </data>
   <data name="Notifications_UnsecureWifi_Description">
-    <value>Le reti Wi-Fi pubbliche sono più vulnerabili alle minacce alla sicurezza. Connettiti alla VPN per navigare in sicurezza.</value>
+    <value>Le reti Wi-Fi pubbliche sono più vulnerabili alle minacce. Connettiti alla VPN per navigare in sicurezza.</value>
   </data>
   <data name="Notifications_UnsecureWifi_Title">
     <value>Rilevazione di una connessione Wi-Fi non protetta</value>

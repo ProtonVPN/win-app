@@ -1953,25 +1953,25 @@
     <value>歡迎使用 Proton VPN</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>You can now access your organization’s dedicated servers from the main sidebar.</value>
+    <value>現在，您可以從主要側邊欄存取您組織專用的伺服器。</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
-    <value>Gateways have moved</value>
+    <value>閘道已移動</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
-    <value>We refreshed our designs and moved some things around to make the app easier to use.</value>
+    <value>我們重新整理了設計，並移動了部份元件，讓應用程式更易於使用。</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
-    <value>New look, same protection</value>
+    <value>嶄新外觀、保護不變</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
-    <value>Add advanced profile settings like NetShield and port forwarding, or set up Connect and Go to launch a website of your choice when you connect.</value>
+    <value>新增 NetShield 與連接埠轉發等進階設定檔設定，或設定 Connect and Go 以在連線時啟動您所選擇的網站。</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Title">
-    <value>Even more powerful profiles</value>
+    <value>更強大的設定檔</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Description">
-    <value>It's now even easier to reconnect to your favorite servers. View your most recent connections on the home screen, or pin them for quick access.</value>
+    <value>現在重新連線到您最喜愛的伺服器更簡單了。在主畫面上檢視您最近的連線，或將連線釘選以便快速存取。</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Title">
     <value>介紹「最近使用」</value>
@@ -1980,7 +1980,7 @@
     <value>立即查看</value>
   </data>
   <data name="Dialogs_WhatsNew_Title">
-    <value>What's new</value>
+    <value>最新消息</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Exit Proton VPN?</value>

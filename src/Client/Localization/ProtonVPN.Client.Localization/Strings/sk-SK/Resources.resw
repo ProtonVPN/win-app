@@ -585,10 +585,10 @@
     <value>Nedávne ({0})</value>
   </data>
   <data name="Connections_Recents_Many">
-    <value>Nedávnych ({0})</value>
+    <value>Nedávne ({0})</value>
   </data>
   <data name="Connections_Recents_Other">
-    <value>Nedávnych ({0})</value>
+    <value>Nedávne ({0})</value>
   </data>
   <data name="Connections_Recents_Empty_Description">
     <value>Tu si môžete pozrieť históriu pripojení.</value>
@@ -663,10 +663,10 @@
     <value>Zobraziť štáty ({0})</value>
   </data>
   <data name="Connections_SeeStates_Many">
-    <value>Zobraziť štátov ({0})</value>
+    <value>Zobraziť štáty ({0})</value>
   </data>
   <data name="Connections_SeeStates_Other">
-    <value>Zobraziť štátov ({0})</value>
+    <value>Zobraziť štáty ({0})</value>
   </data>
   <data name="Connections_Server">
     <value>Server</value>

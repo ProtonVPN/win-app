@@ -1953,34 +1953,34 @@
     <value>Proton VPN에 오신 것을 환영합니다</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>You can now access your organization’s dedicated servers from the main sidebar.</value>
+    <value>이제 메인 사이드바에서 조직의 전용 서버에 접근할 수 있어요.</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
-    <value>Gateways have moved</value>
+    <value>게이트웨이 위치 변경</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
-    <value>We refreshed our designs and moved some things around to make the app easier to use.</value>
+    <value>앱을 더 쉽게 사용하실 수 있도록 새로 디자인하고 몇 가지 요소를 이동시켰어요.</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
-    <value>New look, same protection</value>
+    <value>달라 보여도, 똑같은 보호</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
-    <value>Add advanced profile settings like NetShield and port forwarding, or set up Connect and Go to launch a website of your choice when you connect.</value>
+    <value>NetShield 및 포트 포워딩과 같은 고급 프로필 설정을 추가하거나 연결 및 시작하기 기능을 설정하여 VPN 연결과 동시에 설정한 웹 사이트도 바로 열 수 있어요.</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Title">
-    <value>Even more powerful profiles</value>
+    <value>훨씬 더 강력한 프로필 기능</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Description">
-    <value>It's now even easier to reconnect to your favorite servers. View your most recent connections on the home screen, or pin them for quick access.</value>
+    <value>선호하는 서버로의 연결이 더욱 쉬워졌습니다. 홈 화면에서 가장 최근의 연결을 보거나, 빠른 접속을 위해 고정할 수 있죠.</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Title">
-    <value>Introducing Recents</value>
+    <value>새롭게 선보이는 최근 항목 보기</value>
   </data>
   <data name="Dialogs_WhatsNew_TakeALook">
-    <value>Take a look</value>
+    <value>둘러보기</value>
   </data>
   <data name="Dialogs_WhatsNew_Title">
-    <value>What's new</value>
+    <value>새로운 소식</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Proton VPN을 종료합니까?</value>

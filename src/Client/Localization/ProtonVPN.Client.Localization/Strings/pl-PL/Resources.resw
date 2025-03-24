@@ -423,13 +423,13 @@
     <value>Serwer planu Free ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Few">
-    <value>Serwery planu Free ({0})</value>
+    <value>Darmowe serwery ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Many">
-    <value>Serwery planu Free ({0})</value>
+    <value>Darmowe serwery ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Serwery planu Free ({0})</value>
+    <value>Darmowe serwery ({0})</value>
   </data>
   <data name="Connections_Gateway">
     <value>Brama</value>
@@ -447,7 +447,7 @@
     <value>Bramy ({0})</value>
   </data>
   <data name="Connections_Gateways_Many">
-    <value>Bram ({0})</value>
+    <value>Bramy ({0})</value>
   </data>
   <data name="Connections_Gateways_Other">
     <value>Bramy ({0})</value>
@@ -752,7 +752,7 @@
     <value>{0} miast</value>
   </data>
   <data name="Countries_City_Other">
-    <value>{0} miast</value>
+    <value>{0} miasta</value>
   </data>
   <data name="Countries_Connect">
     <value>Połącz</value>
@@ -1853,7 +1853,7 @@
     <value>Ulepsz konto, aby ponownie uzyskać dostęp do serwerów i funkcji planu Plus.</value>
   </data>
   <data name="Dialogs_DisabledService_Description">
-    <value>Wygląda na to, że usługa Proton VPN jest wyłączona. Będziesz musiał ponownie włączyć usługę, aby się połączyć.</value>
+    <value>Wygląda na to, że usługa Proton VPN jest wyłączona. Musisz ponownie włączyć usługę, aby się połączyć.</value>
   </data>
   <data name="Dialogs_DisabledService_Title">
     <value>Włącz usługę Windows, aby kontynuować</value>
@@ -1868,7 +1868,7 @@
     <value>Plan Proton Free automatycznie łączy użytkownika z najszybszym dostępnym serwerem spośród {0} darmowych krajów. Zazwyczaj będzie to serwer znajdujący się najbliżej lokalizacji użytkownika.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Plan Proton Free automatycznie łączy użytkownika z najszybszym dostępnym serwerem spośród {0} darmowych krajów. Zazwyczaj będzie to serwer znajdujący się najbliżej lokalizacji użytkownika.</value>
+    <value>Plan Proton Free automatycznie łączy użytkownika z najszybszym dostępnym serwerem spośród {0} darmowego kraju. Zazwyczaj będzie to serwer znajdujący się najbliżej lokalizacji użytkownika.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
     <value>Kraj z darmowym serwerem ({0})</value>
@@ -2145,7 +2145,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Ukryj swoją wirtualną lokalizację i korzystaj z Internetu spośród {0} dostępnych krajów.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>Ukryj swoją wirtualną lokalizację i korzystaj z Internetu spośród {0} dostępnych krajów.</value>
+    <value>Ukryj swoją wirtualną lokalizację i korzystaj z Internetu spośród {0} dostępnego kraju.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
     <value>Chroń 10 urządzeń jednocześnie</value>
@@ -2163,7 +2163,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Witaj w planie VPN Plus</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description1">
-    <value>Gratulacje! Odblokowałeś funkcje bezpieczeństwa i wydajności premium we wszystkich usługach Proton.</value>
+    <value>Gratulacje! Odblokowałeś(-aś) funkcje bezpieczeństwa i wydajności premium we wszystkich usługach Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description2">
     <value>Ciesz się najlepszą prywatnością z Proton.</value>
@@ -2235,7 +2235,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Adres IP sieci VPN maskuje prawdziwy adres IP użytkownika. Sprawia to, że przeglądanie wygląda tak, jakby odbywało się z lokalizacji VPN, dzięki czemu aktywność online nie może być powiązana z urządzeniem.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected1">
-    <value>Ten unikalny kod może być wykorzystywany przez strony internetowe i dostawców usług internetowych (ISP) do powiązania lokalizacji użytkownika i historii przeglądania z jego urządzeniem.</value>
+    <value>Ten unikatowy kod może być wykorzystywany przez strony internetowe i dostawców usług internetowych (ISP) do powiązania lokalizacji użytkownika i historii przeglądania z jego urządzeniem.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected2">
     <value>VPN maskuje adres IP użytkownika, utrudniając śledzenie jego aktywności.</value>
@@ -2274,7 +2274,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Twój dostawca może zobaczyć, jakie strony internetowe odwiedzasz</value>
   </data>
   <data name="Flyouts_KillSwitch_Advanced_Success">
-    <value>Blokuje cały dostęp do Internetu, gdy nie jesteś połączony z Proton VPN.</value>
+    <value>Blokuje cały dostęp do Internetu, gdy nie jesteś połączony(-a) z Proton VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Info">
     <value>Adres IP użytkownika może zostać ujawniony, jeśli połączenie VPN zostanie przerwane.</value>
@@ -2740,16 +2740,16 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_AdsBlocked_One">
-    <value>reklama zablokowana</value>
+    <value>Reklama zablokowana</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Few">
-    <value>reklamy zablokowane</value>
+    <value>Reklamy zablokowane</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Many">
-    <value>reklam zablokowanych</value>
+    <value>Reklam zablokowanych</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Other">
-    <value>reklam zablokowanych</value>
+    <value>Reklamy zablokowanej</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Description">
     <value>Reklamy to banery promocyjne lub wyskakujące okna, które pojawiają się na stronach internetowych i w aplikacjach.</value>
@@ -2777,7 +2777,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>elementów śledzących zatrzymanych</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Other">
-    <value>elementów śledzących zatrzymanych</value>
+    <value>elementu śledzącego zatrzymane</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Description">
     <value>Elementy śledzące to pliki cookies i strony trzecie, które zbierają, przechowują oraz sprzedają informacje o Twojej aktywności w sieci.</value>
@@ -3438,7 +3438,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Przejdź do profilów</value>
   </data>
   <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>Jesteś obecnie połączony z profilem VPN.
+    <value>Jesteś obecnie połączony(-a) z profilem VPN.
 
 • Jeżeli chcesz zmienić protokół dla tego połączenia, rozłącz się, a następnie edytuj swój profil.
 
@@ -3601,7 +3601,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>To ustawienie jest powiązane z aktywnym profilem.</value>
   </data>
   <data name="Settings_OverriddenByProfile_Description2">
-    <value>Edytuj profil, aby wprowadzić zmiany lub rozłącz się, aby edytować ogólne ustawienia VPN.</value>
+    <value>Edytuj profil, aby wprowadzić zmiany, lub rozłącz się, aby edytować ogólne ustawienia VPN.</value>
   </data>
   <data name="Settings_OverriddenByProfile_Tagline">
     <value>Te ustawienia są połączone z profilem '{0}' i można nimi zarządzać tylko w Profilach.</value>
@@ -4034,7 +4034,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>{0} krajach</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
-    <value>{0} krajach</value>
+    <value>{0} kraju</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
     <value>Otwarty kod źródłowy aplikacji VPN</value>

@@ -444,13 +444,13 @@
     <value>Шлюз ({0})</value>
   </data>
   <data name="Connections_Gateways_Few">
-    <value>Шлюзів ({0})</value>
+    <value>Шлюзи ({0})</value>
   </data>
   <data name="Connections_Gateways_Many">
-    <value>Шлюзи ({0})</value>
+    <value>Шлюзів ({0})</value>
   </data>
   <data name="Connections_Gateways_Other">
-    <value>Шлюзи ({0})</value>
+    <value>Шлюзів ({0})</value>
   </data>
   <data name="Connections_Gateways_Server">
     <value>Виділений сервер</value>
@@ -459,13 +459,13 @@
     <value>Виділений сервер ({0})</value>
   </data>
   <data name="Connections_Gateways_Servers_Few">
-    <value>Виділених серверів ({0})</value>
+    <value>Виділені сервери ({0})</value>
   </data>
   <data name="Connections_Gateways_Servers_Many">
-    <value>Виділені сервери ({0})</value>
+    <value>Виділених серверів ({0})</value>
   </data>
   <data name="Connections_Gateways_Servers_Other">
-    <value>Виділені сервери ({0})</value>
+    <value>Виділених серверів ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_One">
     <value>P2P city ({0})</value>
@@ -495,13 +495,13 @@
     <value>Сервер P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Few">
-    <value>Серверів P2P ({0})</value>
+    <value>Сервери P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Many">
-    <value>Сервери P2P ({0})</value>
+    <value>Серверів P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>Сервери P2P ({0})</value>
+    <value>Серверів P2P ({0})</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>P2P state ({0})</value>
@@ -597,7 +597,7 @@
     <value>Ще немає недавніх</value>
   </data>
   <data name="Connections_Recents_Pinned_One">
-    <value>Закріплених ({0})</value>
+    <value>Закріплений ({0})</value>
   </data>
   <data name="Connections_Recents_Pinned_Few">
     <value>Закріплені ({0})</value>
@@ -2525,7 +2525,7 @@
     <value>{0} день</value>
   </data>
   <data name="Format_Time_Day_Few">
-    <value>{0} днів</value>
+    <value>{0} дні</value>
   </data>
   <data name="Format_Time_Day_Many">
     <value>{0} днів</value>
@@ -2540,10 +2540,10 @@
     <value>{0} дні {1} год</value>
   </data>
   <data name="Format_Time_DayHour_Many">
-    <value>{0} дні {1} год</value>
+    <value>{0} днів {1} год</value>
   </data>
   <data name="Format_Time_DayHour_Other">
-    <value>{0} дні {1} год</value>
+    <value>{0} днів {1} год</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} год</value>

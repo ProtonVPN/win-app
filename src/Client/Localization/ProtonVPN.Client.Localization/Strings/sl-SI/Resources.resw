@@ -1859,16 +1859,16 @@
     <value>Enable Windows Service to continue</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
-    <value>Proton Free vas samodejno poveže z najhitrejšim razpoložljivim brezplačnim strežnikom iz {0} proste države. To bo običajno najbližji strežnik vaši lokaciji.</value>
+    <value>Proton Free vas samodejno poveže z najhitrejšim razpoložljivim brezplačnim strežnikom iz naše {0} brezplačne države. To bo običajno najbližji strežnik vaši lokaciji.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Two">
-    <value>Proton Free vas samodejno poveže z najhitrejšim razpoložljivim brezplačnim strežnikom iz {0} prostih držav. To bo običajno najbližji strežnik vaši lokaciji.</value>
+    <value>Proton Free vas samodejno poveže z najhitrejšim razpoložljivim brezplačnim strežnikom iz naših {0} brezplačnih držav. To bo običajno najbližji strežnik vaši lokaciji.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Few">
-    <value>Proton Free vas samodejno poveže z najhitrejšim razpoložljivim brezplačnim strežnikom iz naše brezplačne držav {0}. To bo običajno najbližji strežnik vaši lokaciji.</value>
+    <value>Proton Free vas samodejno poveže z najhitrejšim razpoložljivim brezplačnim strežnikom iz naših {0} brezplačnih držav. To bo običajno najbližji strežnik vaši lokaciji.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free vas samodejno poveže z najhitrejšim razpoložljivim brezplačnim strežnikom iz {0} prostih držav. To bo običajno najbližji strežnik vaši lokaciji.</value>
+    <value>Proton Free vas samodejno poveže z najhitrejšim razpoložljivim brezplačnim strežnikom iz naših {0} brezplačnih držav. To bo običajno najbližji strežnik vaši lokaciji.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
     <value>Država z brezplačnim strežnikom ({0})</value>
@@ -2525,25 +2525,25 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>{0} dan</value>
   </data>
   <data name="Format_Time_Day_Two">
-    <value>{0} dni</value>
+    <value>{0} dneva</value>
   </data>
   <data name="Format_Time_Day_Few">
-    <value>{0} dni</value>
+    <value>{0} dnevi</value>
   </data>
   <data name="Format_Time_Day_Other">
     <value>{0} dni</value>
   </data>
   <data name="Format_Time_DayHour_One">
-    <value>{0} dan {1} u</value>
+    <value>{0} dan {1} ur</value>
   </data>
   <data name="Format_Time_DayHour_Two">
-    <value>{0} dni {1} u</value>
+    <value>{0} dneva {1} ur</value>
   </data>
   <data name="Format_Time_DayHour_Few">
-    <value>{0} dni {1} u</value>
+    <value>{0} dnevi {1} ur</value>
   </data>
   <data name="Format_Time_DayHour_Other">
-    <value>{0} dni {1} u</value>
+    <value>{0} dni {1} ur</value>
   </data>
   <data name="Format_Time_Hours">
     <value>{0} ur</value>
@@ -3417,7 +3417,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Omogoči posredovanje vrat?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Obiščite požarne zidove za povezavo s strežniki P2P in napravami v vašem lokalnem omrežju.</value>
+    <value>Obidite požarne zidove za povezavo s strežniki P2P in napravami v vašem lokalnem omrežju.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Če želite uporabiti posredovanje vrat, se povežite s strežnikom, ki podpira P2P.</value>
@@ -3681,10 +3681,10 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Obnoviti privzete nastavitve?</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnTcp">
-    <value>OdprtVPN (TCP)</value>
+    <value>OpenVPN (TCP)</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnUdp">
-    <value>OdprtVPN (UDP)</value>
+    <value>OpenVPN (UDP)</value>
   </data>
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
@@ -4052,13 +4052,13 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>{0} varnih strežnikov</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">
-    <value>OdprtVPN (TCP)</value>
+    <value>OpenVPN (TCP)</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp_Description">
     <value>Established, well-tested, and secure</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp">
-    <value>OdprtVPN (UDP)</value>
+    <value>OpenVPN (UDP)</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
     <value>Established, well-tested, and secure</value>
