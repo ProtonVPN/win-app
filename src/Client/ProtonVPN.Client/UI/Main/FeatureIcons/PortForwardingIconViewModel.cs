@@ -28,6 +28,9 @@ namespace ProtonVPN.Client.UI.Main.FeatureIcons;
 
 public class PortForwardingIconViewModel : FeatureIconViewModelBase
 {
+    public override bool IsDimmed => IsFeatureEnabled 
+                                  && (!ConnectionManager.IsConnected || ConnectionManager.CurrentConnectionDetails?.IsP2P != true);
+
     protected override bool IsFeatureEnabled => ConnectionManager.IsConnected && CurrentProfile != null
         ? CurrentProfile.Settings.IsPortForwardingEnabled
         : Settings.IsPortForwardingEnabled;

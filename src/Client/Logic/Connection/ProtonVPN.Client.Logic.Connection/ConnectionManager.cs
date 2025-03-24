@@ -125,7 +125,6 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         _statisticalEventManager.SetConnectionAttempt(connectionTrigger);
 
         connectionIntent ??= _settings.VpnPlan.IsPaid ? ConnectionIntent.Default : ConnectionIntent.FreeDefault;
-        connectionIntent = ChangeConnectionIntent(connectionIntent, CreateNewIntentIfPortForwardingEnabled); // TODO: this should be removed as it leads to weird situation. There is already a warning on the PF widget if the feature is enabled and the user connects to a non P2P server. If we remove this, then we can also remove PF from the required reconnection settings list.
         connectionIntent = ChangeConnectionIntent(connectionIntent, CreateNewIntentIfUserPlanIsFree);
 
         CurrentConnectionIntent = connectionIntent;
@@ -161,7 +160,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         await _vpnServiceCaller.DisconnectAsync(request);
     }
 
-    protected IConnectionIntent CreateNewIntentIfUserPlanIsFree(IConnectionIntent connectionIntent)
+    private IConnectionIntent CreateNewIntentIfUserPlanIsFree(IConnectionIntent connectionIntent)
     {
         if (_settings.VpnPlan.IsPaid)
         {
@@ -169,7 +168,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         }
 
         ILocationIntent locationIntent = connectionIntent.Location.IsForPaidUsersOnly
-            ? new FreeServerLocationIntent()
+            ? FreeServerLocationIntent.Fastest
             : connectionIntent.Location;
 
         IFeatureIntent? featureIntent = connectionIntent.Feature is null || connectionIntent.Feature.IsForPaidUsersOnly
@@ -220,7 +219,6 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
             return false;
         }
 
-        connectionIntent = ChangeConnectionIntent(connectionIntent, CreateNewIntentIfPortForwardingEnabled);
         connectionIntent = ChangeConnectionIntent(connectionIntent, CreateNewIntentIfUserPlanIsFree);
 
         CurrentConnectionIntent = connectionIntent;
@@ -408,12 +406,5 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         }
 
         return newConnectionIntent;
-    }
-
-    private IConnectionIntent CreateNewIntentIfPortForwardingEnabled(IConnectionIntent connectionIntent)
-    {
-        return _settings.IsPortForwardingEnabled && !connectionIntent.IsPortForwardingSupported()
-            ? new ConnectionIntent(connectionIntent.Location, new P2PFeatureIntent())
-            : connectionIntent;
     }
 }

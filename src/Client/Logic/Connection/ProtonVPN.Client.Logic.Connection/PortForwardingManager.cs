@@ -33,44 +33,57 @@ public class PortForwardingManager : IPortForwardingManager, IEventMessageReceiv
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IEntityMapper _entityMapper;
     private readonly ILogger _logger;
+    private readonly IConnectionManager _connectionManager;
 
-    public int? ActivePort { get; private set; }
-    public PortMappingStatus Status { get; private set; }
-    public bool IsFetchingPort => Status is not PortMappingStatus.Stopped or
-        PortMappingStatus.Error or PortMappingStatus.DestroyPortMappingCommunication;
+    private int? _port;
+    private PortMappingStatus _status;
 
-    public PortForwardingManager(IEventMessageSender eventMessageSender,
-        IEntityMapper entityMapper, ILogger logger)
+    protected bool IsConnectedToNonP2PServer => _connectionManager.IsConnected && _connectionManager.CurrentConnectionDetails?.IsP2P != true;
+
+    public bool IsFetchingPort =>
+        !IsConnectedToNonP2PServer &&
+        _status is not PortMappingStatus.Stopped 
+                    or PortMappingStatus.Error 
+                    or PortMappingStatus.DestroyPortMappingCommunication;
+    
+    public int? ActivePort => IsConnectedToNonP2PServer ? null : _port;
+
+    public PortForwardingManager(
+        IEventMessageSender eventMessageSender,
+        IEntityMapper entityMapper, 
+        ILogger logger,
+        IConnectionManager connectionManager)
     {
         _eventMessageSender = eventMessageSender;
         _entityMapper = entityMapper;
         _logger = logger;
+        _connectionManager = connectionManager;
     }
 
     public void Receive(PortForwardingStateIpcEntity message)
     {
         PortForwardingState portForwardingState = _entityMapper.Map<PortForwardingStateIpcEntity, PortForwardingState>(message);
 
-        int? newActivePort = portForwardingState.MappedPort?.MappedPort?.ExternalPort;
-        if (ActivePort != newActivePort)
+        int? newPort = portForwardingState.MappedPort?.MappedPort?.ExternalPort;
+        if (_port != newPort)
         {
-            _logger.Info<AppLog>($"Port forwarding port changed from '{ActivePort}' to '{newActivePort}'.");
-            ActivePort = newActivePort;
-            NotifyPortChange(newActivePort);
+            _logger.Info<AppLog>($"Port forwarding port changed from '{_port}' to '{newPort}'.");
+            _port = newPort;
+            NotifyPortChange(newPort);
         }
 
         PortMappingStatus newStatus = portForwardingState.Status;
-        if (Status != newStatus)
+        if (_status != newStatus)
         {
-            _logger.Info<AppLog>($"Port forwarding status changed from '{Status}' to '{newStatus}'.");
-            Status = newStatus;
+            _logger.Info<AppLog>($"Port forwarding status changed from '{_status}' to '{newStatus}'.");
+            _status = newStatus;
             NotifyStatusChange(newStatus);
         }
     }
 
-    private void NotifyPortChange(int? newActivePort)
+    private void NotifyPortChange(int? newPort)
     {
-        _eventMessageSender.Send(new PortForwardingPortChangedMessage(newActivePort));
+        _eventMessageSender.Send(new PortForwardingPortChangedMessage(newPort));
     }
 
     private void NotifyStatusChange(PortMappingStatus newStatus)

@@ -143,7 +143,7 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
         }
         else if (connectionIntent.Feature is SecureCoreFeatureIntent secureCoreFeatureIntent)
         {
-            CountryLocationIntent countryLocationIntent = connectionIntent.Location as CountryLocationIntent ?? new CountryLocationIntent();
+            CountryLocationIntent countryLocationIntent = connectionIntent.Location as CountryLocationIntent ?? CountryLocationIntent.Fastest;
             return SmartSecureCoreServerListGenerator.Generate(secureCoreFeatureIntent, countryLocationIntent);
         }
         else
