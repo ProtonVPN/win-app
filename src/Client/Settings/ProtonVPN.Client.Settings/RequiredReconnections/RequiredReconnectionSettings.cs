@@ -48,9 +48,10 @@ public class RequiredReconnectionSettings : IRequiredReconnectionSettings
             {nameof(ISettings.CustomDnsServersList), () => settings.IsCustomDnsServersEnabled},
 
             {nameof(ISettings.IsPortForwardingEnabled), () =>
+                !settings.IsPortForwardingEnabled && // May need to reconnect to enable port forwarding only              
                 connectionManager.IsConnected &&
-                connectionManager.CurrentConnectionIntent is not null &&
-                !connectionManager.CurrentConnectionIntent.IsPortForwardingSupported()
+                connectionManager.CurrentConnectionIntent?.IsPortForwardingSupported() == true && // May need to reconnect if the current intent could support PF but...
+                connectionManager.CurrentConnectionDetails?.IsP2P != true // ...is not already connected to a P2P server
             },
         };
     }

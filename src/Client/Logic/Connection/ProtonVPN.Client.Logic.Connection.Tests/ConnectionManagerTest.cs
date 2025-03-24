@@ -100,7 +100,7 @@ public class ConnectionManagerTest
     [TestMethod]
     [DataRow(typeof(SecureCoreFeatureIntent))]
     [DataRow(typeof(TorFeatureIntent))]
-    public async Task ConnectAsync_Should_ChangeConnectionIntentWhenPortForwardingEnabledAsync(Type featureIntentType)
+    public async Task ConnectAsync_ShouldNot_ChangeConnectionIntentWhenPortForwardingEnabledAsync(Type featureIntentType)
     {
         // Arrange
         _settings!.IsPortForwardingEnabled.Returns(true);
@@ -114,8 +114,7 @@ public class ConnectionManagerTest
         await connectionManager.ConnectAsync(VpnTriggerDimension.Auto, connectionIntent);
 
         // Assert
-        Assert.IsFalse(connectionManager.CurrentConnectionIntent?.IsSameAs(connectionIntent));
-        Assert.IsTrue(connectionManager.CurrentConnectionIntent?.Feature is P2PFeatureIntent);
+        Assert.IsTrue(connectionManager.CurrentConnectionIntent?.IsSameAs(connectionIntent));
     }
 
     [TestMethod]
@@ -141,7 +140,7 @@ public class ConnectionManagerTest
     [TestMethod]
     [DataRow(typeof(SecureCoreFeatureIntent))]
     [DataRow(typeof(TorFeatureIntent))]
-    public async Task ReconnectAsync_Should_ChangeConnectionIntentWhenPortForwardingEnabledAsync(Type featureIntentType)
+    public async Task ReconnectAsync_ShouldNot_ChangeConnectionIntentWhenPortForwardingEnabledAsync(Type featureIntentType)
     {
         // Arrange
         _settings!.IsPortForwardingEnabled.Returns(true);
@@ -156,8 +155,7 @@ public class ConnectionManagerTest
         await connectionManager.ReconnectAsync();
 
         // Assert
-        Assert.IsFalse(connectionManager.CurrentConnectionIntent?.IsSameAs(connectionIntent));
-        Assert.IsTrue(connectionManager.CurrentConnectionIntent?.Feature is P2PFeatureIntent);
+        Assert.IsTrue(connectionManager.CurrentConnectionIntent?.IsSameAs(connectionIntent));
     }
 
     private ConnectionRequestIpcEntity GetConnectionRequestIpcEntity()
