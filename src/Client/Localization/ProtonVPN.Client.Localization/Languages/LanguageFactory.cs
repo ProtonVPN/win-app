@@ -77,7 +77,8 @@ public class LanguageFactory : ILanguageFactory
     public Language GetLanguage(string language)
     {
         return _languages.Value.FirstOrDefault(l => l.Id.EqualsIgnoringCase(language))
-            ?? new Language() { Id = language, Description = language };
+            ?? _languages.Value.FirstOrDefault(l => l.Id.StartsWith(language, StringComparison.OrdinalIgnoreCase))
+            ?? _languages.Value.FirstOrDefault();
     }
 
     private IList<Language> CreateLanguages()
