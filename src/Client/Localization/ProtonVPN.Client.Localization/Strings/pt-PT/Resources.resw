@@ -190,7 +190,7 @@
     <value>Cidades</value>
   </data>
   <data name="Common_Actions_ActionsFor">
-    <value>Ações para {0}</value>
+    <value>Acções para {0}</value>
     <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Add">
@@ -350,7 +350,7 @@
     <value>Não temos a certeza do que aconteceu aqui. Tente novamente ou contacte a nossa equipa de apoio ao cliente.</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
-    <value>Ver as correções</value>
+    <value>Ver as correcções</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
     <value>O adaptador WireGuard do seu dispositivo é utilizado. Desligue-se de qualquer outra VPN em execução no seu dispositivo e tente novamente.</value>

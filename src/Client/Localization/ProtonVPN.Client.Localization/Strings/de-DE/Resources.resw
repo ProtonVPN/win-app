@@ -2106,7 +2106,7 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <value>Deine IP-Adresse ist sichtbar</value>
   </data>
   <data name="Flyouts_Isp_Description1">
-    <value>Dein ISP (Internet Service Provider) ist das Unternehmen, das dich mit dem Internet verbindet. </value>
+    <value>Dein ISP (Internet Service Provider) ist das Unternehmen, das dich mit dem Internet verbindet.</value>
   </data>
   <data name="Flyouts_Isp_Description2">
     <value>ISPs können deine Online-Aktivitäten aufzeichnen. In einigen Ländern können sie deine Daten an Werbetreibende verkaufen. In anderen können sie verpflichtet werden, sie an die Regierung weiterzugeben.</value>
@@ -2261,7 +2261,7 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <value>Geschützte IP-Adressen ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Standard_Info">
-    <value>Diese Anwendungen und IP-Adressen verbinden sich ohne VPN-Schutz. Der gesamte andere Datenverkehr ist geschützt.</value>
+    <value>Diese Apps und IP-Adressen verbinden sich ohne VPN-Schutz. Der gesamte andere Datenverkehr ist geschützt.</value>
   </data>
   <data name="Flyouts_SplitTunneling_Upsell_Description">
     <value>Teile mit VPN Plus deinen Datenverkehr in VPN- und Nicht-VPN-Tunnel auf.</value>
@@ -2714,7 +2714,7 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
   <data name="Map_ConnectTo">
-    <value>Verbinden - {0}</value>
+    <value>Verbinden – {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
   </data>
   <data name="Notifications_KillSwitch_Description">
@@ -2907,7 +2907,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Bitte gib eine gültige URL ein.</value>
   </data>
   <data name="Profile_PortForwarding_Conflict_Description">
-    <value>Dadurch wird der NAT-Typ für dieses Profil in Strikt (Typ 3) geändert.</value>
+    <value>Dadurch wird der NAT-Typ für dieses Profil in Strikt (Typ 3) geändert.</value>
   </data>
   <data name="Profiles_Default_Gaming">
     <value>Gaming</value>

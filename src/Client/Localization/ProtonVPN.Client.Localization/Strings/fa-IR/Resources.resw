@@ -238,7 +238,7 @@
     <value>فعال‌سازی</value>
   </data>
   <data name="Common_Actions_Exit_ProtonVPN">
-    <value>Exit Proton VPN</value>
+    <value>بستن Proton VPN</value>
   </data>
   <data name="Common_Actions_GotIt">
     <value>فهمیدم</value>
@@ -2028,34 +2028,34 @@
     <value>به Proton VPN خوش آمدید</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>You can now access your organization’s dedicated servers from the main sidebar.</value>
+    <value>حالا شما می‌تونید به سرور‌های سازمانتون از نوار کناری اصلی متصل بشید.</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
-    <value>Gateways have moved</value>
+    <value>Gatewayها جابجا شد</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
-    <value>We refreshed our designs and moved some things around to make the app easier to use.</value>
+    <value>ما برنامه رو بازطراحی کردیم و اجزاء رو به صورتی جابجا کردیم تا استفاده از برنامه ساده‌تر بشه.</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
-    <value>New look, same protection</value>
+    <value>ظاهر جدید با همون سطح امنیتی</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
-    <value>Add advanced profile settings like NetShield and port forwarding, or set up Connect and Go to launch a website of your choice when you connect.</value>
+    <value>تنظیمات پیشرفته برای پروفایل‌ها قرار بدین، مثلا NetShield و Port Forwarding یا مثلا Connect and Go رو تنظیم کنید تا پس از اتصال به VPN مستقیم سایت مورد نظرتون باز بشه.</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Title">
-    <value>Even more powerful profiles</value>
+    <value>پروفایل‌های قدرتمندتر</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Description">
-    <value>It's now even easier to reconnect to your favorite servers. View your most recent connections on the home screen, or pin them for quick access.</value>
+    <value>اتصال به سرور‌های موردعلاقتون ساده‌تر شده. اتصالات اخیرتون روی Home Screen ببینید یا اون‌ها رو سنجاق کنید تا سریع‌تر بهشون دسترسی داشته باشید.</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Title">
-    <value>Introducing Recents</value>
+    <value>اتصالات اخیر</value>
   </data>
   <data name="Dialogs_WhatsNew_TakeALook">
-    <value>Take a look</value>
+    <value>نمایش</value>
   </data>
   <data name="Dialogs_WhatsNew_Title">
-    <value>What's new</value>
+    <value>تازه‌ها</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Exit Proton VPN?</value>

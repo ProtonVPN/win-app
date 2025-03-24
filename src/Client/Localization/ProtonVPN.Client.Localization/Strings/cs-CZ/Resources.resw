@@ -420,16 +420,16 @@
     <value>Nejrychlejší</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Bezplatný server ({0})</value>
+    <value>Server Free ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Few">
-    <value>Bezplatné servery ({0})</value>
+    <value>Servery Free ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Many">
-    <value>Bezplatné servery ({0})</value>
+    <value>Servery Free ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Bezplatné servery ({0})</value>
+    <value>Servery Free ({0})</value>
   </data>
   <data name="Connections_Gateway">
     <value>Brána</value>
@@ -4025,31 +4025,31 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
     <value>Obejděte cenzuru pomocí pokročilých funkcí bezpečnosti a ochrany soukromí</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
-    <value>{0} země</value>
+    <value>{0} zemi</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Few">
-    <value>{0} země</value>
+    <value>{0} zemích</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Many">
-    <value>{0} zemí</value>
+    <value>{0} zemích</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
-    <value>{0} zemí</value>
+    <value>{0} zemích</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
     <value>VPN s otevřeným zdrojovým kódem</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
-    <value>{0} bezpečný server</value>
+    <value>{0} bezpečnému serveru</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_Few">
-    <value>{0} bezpečné servery</value>
+    <value>{0} bezpečným serverům</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_Many">
-    <value>{0} bezpečných serverů</value>
+    <value>{0} bezpečným serverům</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
-    <value>{0} bezpečných serverů</value>
+    <value>{0} bezpečným serverům</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">
     <value>OpenVPN (TCP)</value>

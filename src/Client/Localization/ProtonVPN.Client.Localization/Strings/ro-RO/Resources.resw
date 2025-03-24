@@ -1875,7 +1875,7 @@ Latența mare vă poate încetini conexiunea.</value>
   </data>
   <data name="Dialogs_P2P_WhyUse_Description">
     <value>• Viteze crescute de încărcare și descărcare.
-• Nu există jurnalele de activitate.
+• Fără jurnale de activitate.
 • Vă ascundeți adresa IP față de furnizorul de servicii și partenerii de partajare.</value>
     <comment>obsolete</comment>
   </data>
@@ -1897,7 +1897,7 @@ Latența mare vă poate încetini conexiunea.</value>
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
-    <value>Trimitere jurnale erori</value>
+    <value>Trimitere jurnale de erori</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
@@ -2214,7 +2214,7 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
     <value>Pentru reveni online, conectați-vă la VPN sau dezactivați întrerupătorul de conexiune.</value>
   </data>
   <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
-    <value>Aveți protecție împotriva reclamelor, instrumentelor de urmărire și programelor malware.</value>
+    <value>Aveți protecție împotriva reclamelor, instrumentelor de urmărire și a programelor malițioase.</value>
   </data>
   <data name="Flyouts_NetShield_Info">
     <value>Vă protejați de reclame, instrumente de urmărire și programe malware de pe site-uri și aplicații.</value>
@@ -2662,7 +2662,7 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
     <value>Date salvate</value>
   </data>
   <data name="Home_NetShield_DataSaved_Description">
-    <value>Date salvate estimate prin blocarea reclamelor, instrumentelor de urmărire și a programelor malware nedorite.</value>
+    <value>Estimare date economisite prin blocarea reclamelor nedorite, instrumentelor de urmărire și a programelor malițioase.</value>
   </data>
   <data name="Home_NetShield_Landmark">
     <value>Statistici Netshield</value>
@@ -2873,7 +2873,7 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
     <value>P2P</value>
   </data>
   <data name="Overlay_Profile_Description1">
-    <value>Profilurile sunt conexiuni VPN personalizate pe care le puteți adapta nevoilor personale și slava pentru accesare rapidă.</value>
+    <value>Profilurile sunt conexiuni VPN personalizate pe care le puteți adapta nevoilor personale și salva pentru accesare rapidă.</value>
   </data>
   <data name="Overlay_Profile_Description2">
     <value>Setați-vă locul preferat ți optimizați-vă setările pentru securitate, performanță, jocuri sau orice alt scenariu.</value>
@@ -3603,7 +3603,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Asistență</value>
   </data>
   <data name="Settings_Support_DebugLogs">
-    <value>Jurnalele de depanare</value>
+    <value>Jurnale de depanare</value>
   </data>
   <data name="Settings_Support_DebugLogs_Application">
     <value>Jurnale aplicație</value>

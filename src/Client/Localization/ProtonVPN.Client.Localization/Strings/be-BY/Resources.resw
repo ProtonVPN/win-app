@@ -447,10 +447,10 @@
     <value>Шлюзы ({0})</value>
   </data>
   <data name="Connections_Gateways_Many">
-    <value>Шлюзоў ({0})</value>
+    <value>Шлюзы ({0})</value>
   </data>
   <data name="Connections_Gateways_Other">
-    <value>Шлюзоў ({0})</value>
+    <value>Шлюзы ({0})</value>
   </data>
   <data name="Connections_Gateways_Server">
     <value>Вылучаны сервер</value>
@@ -462,10 +462,10 @@
     <value>Вылучаныя серверы ({0})</value>
   </data>
   <data name="Connections_Gateways_Servers_Many">
-    <value>Вылучаных сервераў ({0})</value>
+    <value>Вылучаныя серверы ({0})</value>
   </data>
   <data name="Connections_Gateways_Servers_Other">
-    <value>Вылучаных сервераў ({0})</value>
+    <value>Вылучаныя серверы ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_One">
     <value>Горад P2P ({0})</value>
@@ -498,10 +498,10 @@
     <value>Серверы P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Many">
-    <value>Сервераў P2P ({0})</value>
+    <value>Серверы P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>Сервераў P2P ({0})</value>
+    <value>Серверы P2P ({0})</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>Штат P2P ({0})</value>
@@ -519,13 +519,13 @@
     <value>Профіль ({0})</value>
   </data>
   <data name="Connections_Profiles_Few">
-    <value>Профіляў ({0})</value>
+    <value>Профілі ({0})</value>
   </data>
   <data name="Connections_Profiles_Many">
-    <value>Профіляў ({0})</value>
+    <value>Профілі ({0})</value>
   </data>
   <data name="Connections_Profiles_Other">
-    <value>Профіляў ({0})</value>
+    <value>Профілі ({0})</value>
   </data>
   <data name="Connections_Profiles_Create">
     <value>Стварыць профіль</value>
@@ -627,10 +627,10 @@
     <value>Серверы Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_Many">
-    <value>Сервераў Secure Core ({0})</value>
+    <value>Серверы Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Сервераў Secure Core ({0})</value>
+    <value>Серверы Secure Core ({0})</value>
   </data>
   <data name="Connections_SeeCities_One">
     <value>Паглядзець горад ({0})</value>
@@ -639,10 +639,10 @@
     <value>Паглядзець гарады ({0})</value>
   </data>
   <data name="Connections_SeeCities_Many">
-    <value>Паглядзець гарадоў ({0})</value>
+    <value>Паглядзець гарады ({0})</value>
   </data>
   <data name="Connections_SeeCities_Other">
-    <value>Паглядзець гарадоў ({0})</value>
+    <value>Паглядзець гарады ({0})</value>
   </data>
   <data name="Connections_SeeServers_One">
     <value>Паглядзець сервер ({0})</value>
@@ -651,10 +651,10 @@
     <value>Паглядзець серверы ({0})</value>
   </data>
   <data name="Connections_SeeServers_Many">
-    <value>Паглядзець сервераў ({0})</value>
+    <value>Паглядзець серверы ({0})</value>
   </data>
   <data name="Connections_SeeServers_Other">
-    <value>Паглядзець сервераў ({0})</value>
+    <value>Паглядзець серверы ({0})</value>
   </data>
   <data name="Connections_SeeStates_One">
     <value>Паглядзець штат P2P ({0})</value>
@@ -1859,28 +1859,28 @@
     <value>Уключыце сэрвіс Windows для працягу</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
-    <value>Proton Free аўтаматычна падключае вас да найхутчэйшага даступнага сервера з нашай {0} бясплатнай краіны. Звычайна гэта самы блізкі сервер адносна вашага месцазнаходжання.</value>
+    <value>Proton Free аўтаматычна падключае вас да найхутчэйшага даступнага бясплатнага сервера з нашай {0} краіны. Звычайна гэта самы блізкі сервер адносна вашага месцазнаходжання.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Few">
-    <value>Proton Free аўтаматычна падключае вас да найхутчэйшага даступнага сервера з нашых {0} бясплатных краін. Звычайна гэта самы блізкі сервер адносна вашага месцазнаходжання.</value>
+    <value>Proton Free аўтаматычна падключае вас да найхутчэйшага даступнага бясплатнага сервера з нашых {0} краін. Звычайна гэта самы блізкі сервер адносна вашага месцазнаходжання.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Many">
-    <value>Proton Free аўтаматычна падключае вас да найхутчэйшага даступнага сервера з нашых {0} бясплатных краін. Звычайна гэта самы блізкі сервер адносна вашага месцазнаходжання.</value>
+    <value>Proton Free аўтаматычна падключае вас да найхутчэйшага даступнага бясплатнага сервера з нашых {0} краін. Звычайна гэта самы блізкі сервер адносна вашага месцазнаходжання.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free аўтаматычна падключае вас да найхутчэйшага даступнага сервера з нашых {0} бясплатных краін. Звычайна гэта самы блізкі сервер адносна вашага месцазнаходжання.</value>
+    <value>Proton Free аўтаматычна падключае вас да найхутчэйшага даступнага бясплатнага сервера з нашых {0} краін. Звычайна гэта самы блізкі сервер адносна вашага месцазнаходжання.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
-    <value>Бясплатная краіна сервераў ({0})</value>
+    <value>Краіна з бясплатнымі серверамі ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Few">
-    <value>Бясплатныя краіны сервераў ({0})</value>
+    <value>Краіны з бясплатнымі серверамі({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Many">
-    <value>Бясплатныя краіны сервераў ({0})</value>
+    <value>Краіны з бясплатнымі серверамі ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other">
-    <value>Бясплатныя краіны сервераў ({0})</value>
+    <value>Краіны з бясплатнымі серверамі ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Title">
     <value>Бясплатныя падключэнні</value>
@@ -2190,19 +2190,19 @@
     <value>Новы выгляд, такая ж абарона</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
-    <value>Дадайце дадатковыя налады профілю, такія як NetShield і перанакіраванне партоў, або наладзьце Connect and Go, каб запускаць сайт па вашаму выбару пры падключэнні.</value>
+    <value>Дадайце дадатковыя налады профілю, такія як NetShield і перанакіраванне партоў, або наладзьце функцыю Connect and Go, каб запускаць вэб-сайт па вашаму выбару пры падключэнні.</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Title">
     <value>Яшчэ больш магутныя профілі</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Description">
-    <value>Цяпер яшчэ прасцей падключыцца да любімых сервераў. Праглядзіце свае апошнія падключэнні на хатнім экране або замацуеце іх для хуткага доступу.</value>
+    <value>Цяпер яшчэ прасцей стала перападключацца да вашых абраных сервераў. Праглядайце свае нядаўнія падключэнні на галоўным экране або замацоўвайце іх для хуткага доступу.</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Title">
-    <value>Прадстаўляем апошнія</value>
+    <value>Уводзіны ў раздзел "Нядаўнія"</value>
   </data>
   <data name="Dialogs_WhatsNew_TakeALook">
-    <value>Зірніце</value>
+    <value>Паглядзець</value>
   </data>
   <data name="Dialogs_WhatsNew_Title">
     <value>Што новага</value>
@@ -2381,16 +2381,16 @@
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
-    <value>Выключаных праграм: {0}</value>
+    <value>Выключаная праграма: ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_Few">
-    <value>Выключаных праграм: {0}</value>
+    <value>Выключаныя праграмы: ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_Many">
-    <value>Выключаных праграм: {0}</value>
+    <value>Выключаныя праграмы: ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
-    <value>Выключаных праграм: {0}</value>
+    <value>Выключаныя праграмы: ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
     <value>Выключаны IP-адрас ({0})</value>
@@ -2746,10 +2746,10 @@
     <value>рэкламы заблакіраваны</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Many">
-    <value>рэклам заблакіраваны</value>
+    <value>рэклам было заблакіравана</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Other">
-    <value>рэклам заблакіраваны</value>
+    <value>рэклам было заблакіравана</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Description">
     <value>Рэклама і рэкламныя банеры або ўсплывальныя вокны, якія з'яўляецца на вэб-сайтах і ў праграмах.</value>
