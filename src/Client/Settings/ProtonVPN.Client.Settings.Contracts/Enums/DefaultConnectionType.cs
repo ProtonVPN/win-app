@@ -24,4 +24,5 @@ public enum DefaultConnectionType
     Fastest,
     Last,
     Recent,
+    Random,
 }

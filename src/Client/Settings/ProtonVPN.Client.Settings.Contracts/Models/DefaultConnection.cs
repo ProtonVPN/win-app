@@ -24,6 +24,7 @@ namespace ProtonVPN.Client.Settings.Contracts.Models;
 public struct DefaultConnection
 {
     public static DefaultConnection Fastest => new(DefaultConnectionType.Fastest);
+    public static DefaultConnection Random => new(DefaultConnectionType.Random);
     public static DefaultConnection Last => new(DefaultConnectionType.Last);
 
     public DefaultConnectionType Type { get; init; }

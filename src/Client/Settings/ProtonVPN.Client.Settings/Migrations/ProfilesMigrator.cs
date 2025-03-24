@@ -28,7 +28,9 @@ using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
+using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Settings.Migrations;
@@ -43,15 +45,18 @@ public class ProfilesMigrator : IProfilesMigrator
     private readonly IServersLoader _serversLoader;
     private readonly IProfilesManager _profilesManager;
     private readonly IRecentConnectionsManager _recentConnectionsManager;
+    private readonly ISettings _settings;
 
     public ProfilesMigrator(
         IServersLoader serversLoader,
         IProfilesManager profilesManager,
-        IRecentConnectionsManager recentConnectionsManager)
+        IRecentConnectionsManager recentConnectionsManager,
+        ISettings settings)
     {
         _serversLoader = serversLoader;
         _profilesManager = profilesManager;
         _recentConnectionsManager = recentConnectionsManager;
+        _settings = settings;
     }
 
     public void Migrate(List<LegacyProfile> legacyProfiles, string? quickConnectProfileId = null)
@@ -62,13 +67,26 @@ public class ProfilesMigrator : IProfilesMigrator
         }
 
         List<IConnectionProfile> connectionProfiles = MapProfilesToConnectionProfiles(legacyProfiles);
-        IConnectionProfile? quickConnectionProfile = MapQuickConnectProfileToConnectionProfile(legacyProfiles, quickConnectProfileId);
+        _profilesManager.OverrideProfiles(connectionProfiles);
 
-        _profilesManager.OverrideProfiles(connectionProfiles, quickConnectionProfile);
-
-        if (quickConnectionProfile is not null)
+        switch (quickConnectProfileId)
         {
-            _recentConnectionsManager.OverrideRecentConnections([], quickConnectionProfile);
+            case FASTEST_PROFILE_NAME:
+                _settings.DefaultConnection = DefaultConnection.Fastest;
+                break;
+            case RANDOM_PROFILE_NAME:
+                _settings.DefaultConnection = DefaultConnection.Random;
+                break;
+            default:
+                if (MapQuickConnectProfileToConnectionProfile(legacyProfiles, quickConnectProfileId) is IConnectionProfile quickConnectProfile)
+                {
+                    _recentConnectionsManager.OverrideRecentConnections([], quickConnectProfile);
+                }
+                else
+                {
+                    _settings.DefaultConnection = DefaultSettings.DefaultConnection;
+                }
+                break;
         }
     }
 
@@ -199,9 +217,7 @@ public class ProfilesMigrator : IProfilesMigrator
 
     private IConnectionProfile? MapQuickConnectProfileToConnectionProfile(List<LegacyProfile> profiles, string? quickConnectProfileId)
     {
-        if (!string.IsNullOrEmpty(quickConnectProfileId) &&
-            quickConnectProfileId != FASTEST_PROFILE_NAME &&
-            quickConnectProfileId != RANDOM_PROFILE_NAME)
+        if (!string.IsNullOrEmpty(quickConnectProfileId))
         {
             LegacyProfile? profile = profiles.FirstOrDefault(p => p.Id == quickConnectProfileId);
             if (profile is not null)

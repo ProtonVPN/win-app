@@ -106,7 +106,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </Grid>
                 </Grid>
 
-                <Border Padding="16,8"
+                <Border Padding="8,12,16,12"
                         Background="{ThemeResource InteractionDefaultColorBrush}"
                         CornerRadius="8"
                         Visibility="{x:Bind ViewModel.IsUpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">

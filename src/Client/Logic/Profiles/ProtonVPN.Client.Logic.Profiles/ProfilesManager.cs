@@ -62,7 +62,7 @@ public class ProfilesManager : IProfilesManager,
         return _profiles.FirstOrDefault(p => p.Id == profileId);
     }
 
-    public void OverrideProfiles(IEnumerable<IConnectionProfile> profiles, IConnectionProfile? quickConnectionProfile = null)
+    public void OverrideProfiles(IEnumerable<IConnectionProfile> profiles)
     {
         lock (_lock)
         {
@@ -71,11 +71,6 @@ public class ProfilesManager : IProfilesManager,
             foreach (IConnectionProfile profile in profiles)
             {
                 AddOrEditProfile(profile);
-            }
-
-            if (quickConnectionProfile is not null)
-            {
-                AddOrEditProfile(quickConnectionProfile);
             }
 
             SaveProfiles();
