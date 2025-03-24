@@ -180,8 +180,9 @@ public class UserSettingsMigrator : IUserSettingsMigrator
                     _settings.ConnectionKeyPair = deserializedValue;
                 }
             }
-            catch
+            catch (Exception e)
             {
+                _logger.Error<AppLog>($"Error while migrating connection key pairs.", e);
             }
         }
     }
@@ -206,8 +207,9 @@ public class UserSettingsMigrator : IUserSettingsMigrator
                     ExpirationUtcDate = DateTimeOffset.MinValue,
                 };
             }
-            catch
+            catch (Exception e)
             {
+                _logger.Error<AppLog>($"Error while migrating connection certificate.", e);
             }
         }
     }
@@ -236,8 +238,9 @@ public class UserSettingsMigrator : IUserSettingsMigrator
                     setter(deserializedValue);
                 }
             }
-            catch
+            catch (Exception e)
             {
+                _logger.Error<AppLog>($"Error while migrating user settings.", e);
             }
         }
     }
@@ -296,8 +299,9 @@ public class UserSettingsMigrator : IUserSettingsMigrator
                     _profilesMigrator.Migrate(deserializedValue, quickConnectProfileId);
                 }
             }
-            catch
+            catch(Exception e)
             {
+                _logger.Error<AppLog>($"Error while migrating profiles.", e);
             }
         }
     }

@@ -56,6 +56,12 @@ public partial class DefaultConnectionSettingsPageViewModel : SettingsPageViewMo
         set => SetDefaultConnectionType(value, DefaultConnectionType.Fastest);
     }
 
+    public bool IsRandomConnection
+    {
+        get => IsDefaultConnectionType(DefaultConnectionType.Random);
+        set => SetDefaultConnectionType(value, DefaultConnectionType.Random);
+    }
+
     public bool IsLastConnection
     {
         get => IsDefaultConnectionType(DefaultConnectionType.Last);
@@ -111,6 +117,7 @@ public partial class DefaultConnectionSettingsPageViewModel : SettingsPageViewMo
             CurrentDefaultConnection = defaultConnectionType switch
             {
                 DefaultConnectionType.Fastest => DefaultConnection.Fastest,
+                DefaultConnectionType.Random => DefaultConnection.Random,
                 DefaultConnectionType.Last => DefaultConnection.Last,
                 DefaultConnectionType.Recent when recentId.HasValue => new DefaultConnection(recentId.Value),
                 _ => DefaultSettings.DefaultConnection

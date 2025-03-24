@@ -1820,6 +1820,12 @@
   <data name="Settings_Connection_Default_Last_Description" xml:space="preserve">
     <value>Your most recently used connection</value>
   </data>
+  <data name="Settings_Connection_Default_Random" xml:space="preserve">
+    <value>Random country</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description" xml:space="preserve">
+    <value>Different server every time you connect</value>
+  </data>
   <data name="Settings_Connection_Protocol" xml:space="preserve">
     <value>Protocol</value>
   </data>

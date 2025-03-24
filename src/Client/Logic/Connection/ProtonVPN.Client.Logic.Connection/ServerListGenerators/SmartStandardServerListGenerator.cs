@@ -99,13 +99,13 @@ public class SmartStandardServerListGenerator : ServerListGeneratorBase, ISmartS
 
     private IEnumerable<Server> SortServers(ILocationIntent locationIntent, IEnumerable<Server> source)
     {
+        IOrderedEnumerable<Server> sortedServers = _settings.IsPortForwardingEnabled
+            ? source.OrderByDescending(s => s.Features.IsSupported(ServerFeatures.P2P) && s.IsPaidNonB2B())
+            : source.OrderByDescending(s => s.IsPaidNonB2B());
+
         return locationIntent.Kind == ConnectionIntentKind.Random
-            ? _settings.IsPortForwardingEnabled
-                ? source.OrderByDescending(s => s.Features.IsSupported(ServerFeatures.P2P)).ThenBy(_ => Random.Next())
-                : source.OrderBy(_ => Random.Next())
-            : _settings.IsPortForwardingEnabled
-                ? source.OrderByDescending(s => s.Features.IsSupported(ServerFeatures.P2P)).ThenBy(s => s.Score)
-                : source.OrderBy(s => s.Score);
+            ? sortedServers.ThenBy(_ => Random.Next())
+            : sortedServers.ThenBy(s => s.Score);
     }
 
     /// <summary>

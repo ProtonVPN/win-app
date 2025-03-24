@@ -122,6 +122,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         {
             DefaultConnectionType.Recent => GetById(defaultConnection.RecentId)?.ConnectionIntent ?? ConnectionIntent.Default,
             DefaultConnectionType.Last => GetMostRecentConnection()?.ConnectionIntent ?? ConnectionIntent.Default,
+            DefaultConnectionType.Random => new ConnectionIntent(CountryLocationIntent.Random),
             _ => ConnectionIntent.Default
         };
     }

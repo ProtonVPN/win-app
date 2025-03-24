@@ -68,6 +68,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </custom:BulletHeaderedContentControl>
                 </RadioButton>
 
+                <RadioButton AutomationProperties.AutomationId="RandomDefaultConnectionRadioButton"
+                             IsChecked="{x:Bind ViewModel.IsRandomConnection, Mode=TwoWay}"
+                             Style="{StaticResource DefaultConnectionRadioButtonStyle}">
+                    <custom:BulletHeaderedContentControl Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Random_Description')}"
+                                                         Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Random')}"
+                                                         Style="{StaticResource DefaultConnectionIntentBulletHeaderedContentControlStyle}">
+                        <custom:BulletHeaderedContentControl.BulletContent>
+                            <custom:SimpleCountryFlag Width="36"
+                                                      FlagType="Random" 
+                                                      Margin="0,2,0,0"/>
+                        </custom:BulletHeaderedContentControl.BulletContent>
+                    </custom:BulletHeaderedContentControl>
+                </RadioButton>
+
                 <RadioButton AutomationProperties.AutomationId="LastDefaultConnectionRadioButton"
                              IsChecked="{x:Bind ViewModel.IsLastConnection, Mode=TwoWay}"
                              Style="{StaticResource DefaultConnectionRadioButtonStyle}">
