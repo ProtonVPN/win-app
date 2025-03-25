@@ -64,7 +64,7 @@ public partial class ReportIssueResultPageViewModel : ReportIssuePageViewModelBa
     [RelayCommand(CanExecute = nameof(CanClose))]
     public void Close()
     {
-        _reportIssueWindowActivator.Exit();
+        _reportIssueWindowActivator.Hide();
     }
 
     public bool CanClose()

@@ -71,7 +71,7 @@ public partial class OneTimeAnnouncementShellViewModel : ShellViewModelBase<IOne
 
         if (ActiveAnnouncement?.Panel?.FullScreenImage?.Image is null)
         {
-            Exit();
+            Hide();
         }
     }
 

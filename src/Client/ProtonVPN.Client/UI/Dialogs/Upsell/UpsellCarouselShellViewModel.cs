@@ -97,8 +97,8 @@ public partial class UpsellCarouselShellViewModel : ShellViewModelBase<IUpsellCa
     private async Task UpgradeAsync()
     {
         await _accountUpgradeUrlLauncher.OpenAsync(WindowActivator.ModalSource);
-
-        WindowActivator.Exit();
+        
+        Hide();
     }
 
     private void MoveToFeature(UpsellFeatureType feature)
