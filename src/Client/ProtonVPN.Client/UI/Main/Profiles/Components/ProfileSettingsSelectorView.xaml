@@ -113,6 +113,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        ToolTipService.ToolTip="{x:Bind ViewModel.NetShieldLearnMoreUrl, Mode=OneTime}">
                                 <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                             </Hyperlink>
+                            <!-- Trailing empty run helps containing the hyperlink. Otherwise the clickable area of the hyperlink expands to the full line. -->
+                            <Run/>
                         </TextBlock>
                     </Grid>
                 </controls:SettingsExpander.Items>

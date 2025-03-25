@@ -79,6 +79,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        TextIndent="20">
                 • <Hyperlink NavigateUri="https://github.com/ProtonMail/go-srp">ProtonMail SRP library</Hyperlink> by Proton AG |
                 <Hyperlink NavigateUri="https://github.com/ProtonMail/go-srp/blob/master/LICENSE.txt">The MIT License</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph Margin="{StaticResource ParagraphMargin}">
                 Proton VPN Windows app includes the following 3rd party software:
@@ -87,121 +88,144 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 •
                 <Hyperlink NavigateUri="https://github.com/OpenVPN/openvpn">OpenVPN client</Hyperlink> by OpenVPN Inc. |
                 <Hyperlink NavigateUri="https://github.com/OpenVPN/openvpn/blob/master/COPYRIGHT.GPL">The GPL v2</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://github.com/OpenVPN/tap-windows6">OpenVPN TAP - Windows adapter</Hyperlink>
                 by OpenVPN Technologies, Inc., Alon Bar-Lev |
                 <Hyperlink NavigateUri="https://github.com/OpenVPN/tap-windows6/blob/master/COPYRIGHT.GPL">The GPL v2</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://autofac.org/">Autofac</Hyperlink> by Autofac Contributors |
                 <Hyperlink NavigateUri="https://licenses.nuget.org/MIT">The MIT License</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://github.com/kappa7194/base32">Albireo.Base32</Hyperlink> by Albireo |
                 <Hyperlink NavigateUri="https://github.com/kappa7194/base32/blob/master/LICENSE.txt">The MIT License</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://github.com/alexreinert/ARSoft.Tools.Net">ARSoft.Tools.Net</Hyperlink>
                 By Alexander Reinert |
                 <Hyperlink NavigateUri="https://github.com/alexreinert/ARSoft.Tools.Net/blob/master/LICENSE">Apache License 2.0</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://github.com/chrishaly/bc-csharp">bc-csharp</Hyperlink> by The Legion |
                 <Hyperlink NavigateUri="https://www.bouncycastle.org/licence.html">The MIT License</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://github.com/MatthewKing/DeviceId">DeviceId</Hyperlink> by Matthew King |
                 <Hyperlink NavigateUri="https://github.com/MatthewKing/DeviceId/blob/main/license.txt">The MIT License</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="http://dnsclient.michaco.net/">DnsClient</Hyperlink> by MichaCo |
                 <Hyperlink NavigateUri="https://github.com/MichaCo/DnsClient.NET/blob/master/LICENSE">Apache License 2.0</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://github.com/CommunityToolkit/dotnet">.NET Community Toolkit</Hyperlink>
                 by .NET Foundation and Contributors |
                 <Hyperlink NavigateUri="https://github.com/CommunityToolkit/dotnet/blob/main/License.md">The MIT License</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://github.com/grpc/grpc">grpc</Hyperlink> by Dropbox, Inc., Google Inc., Skyscanner Ltd., WeWork Companies Inc. |
                 <Hyperlink NavigateUri="https://github.com/grpc/grpc/blob/master/LICENSE">Apache License 2.0</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://www.newtonsoft.com/json">Newtonsoft.Json</Hyperlink> by James Newton-King |
                 <Hyperlink NavigateUri="https://licenses.nuget.org/MIT">The MIT License</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://logging.apache.org/log4net/">Apache log4net</Hyperlink> by The Apache Software Foundation |
                 <Hyperlink NavigateUri="https://logging.apache.org/log4net/license.html">Apache License 2.0</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://github.com/HavenDV/H.NotifyIcon">H.NotifyIcon</Hyperlink> by Konstantin S. |
                 <Hyperlink NavigateUri="https://github.com/HavenDV/H.NotifyIcon/blob/master/LICENSE.md">The MIT License</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://github.com/AArnott/pinvoke">PInvoke.Kernel32</Hyperlink> by Andrew Arnott |
                 <Hyperlink NavigateUri="https://raw.githubusercontent.com/AArnott/pinvoke/cf0176c42b/LICENSE">The MIT License</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://github.com/AArnott/pinvoke">PInvoke.Windows.Core</Hyperlink> by Andrew Arnott |
                 <Hyperlink NavigateUri="https://raw.githubusercontent.com/AArnott/pinvoke/cf0176c42b/LICENSE">The MIT License</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://github.com/AArnott/pinvoke">PInvoke.Windows.ShellScalingApi</Hyperlink>
                 by Andrew Arnott |
                 <Hyperlink NavigateUri="https://raw.githubusercontent.com/AArnott/pinvoke/cf0176c42b/LICENSE">The MIT License</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://github.com/App-vNext/Polly">Polly</Hyperlink> by Michael Wolfenden, App vNext |
                 <Hyperlink NavigateUri="https://opensource.org/licenses/BSD-3-Clause">The 3-Clause BSD License</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://github.com/Polly-Contrib/Polly.Contrib.WaitAndRetry">Polly.Contrib.WaitAndRetry</Hyperlink>
                 by Grant Dickinson |
                 <Hyperlink NavigateUri="https://opensource.org/licenses/BSD-3-Clause">The 3-Clause BSD License</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://github.com/DotNetPlus/ReswPlus">PluralNet</Hyperlink> by Rudy Huyn |
                 <Hyperlink NavigateUri="https://github.com/DotNetPlus/ReswPlus/blob/main/LICENSE">The MIT License</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://sentry.io">Sentry</Hyperlink> by Sentry Team and Contributors |
                 <Hyperlink NavigateUri="https://raw.githubusercontent.com/getsentry/sentry-dotnet/master/LICENSE">The MIT License</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://github.com/dahall/vanara">Vanara</Hyperlink> by David Hall |
                 <Hyperlink NavigateUri="https://github.com/dahall/Vanara/blob/master/LICENSE">The MIT License</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://github.com/AndrewKeepCoding/WinUI3Localizer">WinUI3Localizer</Hyperlink> by AndrewKeepCoding |
                 <Hyperlink NavigateUri="https://github.com/AndrewKeepCoding/WinUI3Localizer/blob/main/LICENSE.txt">The MIT License</Hyperlink>
+                <Run/>
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
                 <Hyperlink NavigateUri="https://github.com/dotMorten/WinUIEx">WinUIEx</Hyperlink> by Morten Nielsen |
                 <Hyperlink NavigateUri="https://github.com/dotMorten/WinUIEx/blob/main/LICENSE">The MIT License</Hyperlink>
+                <Run/>
             </Paragraph>
         </RichTextBlock>
     </custom:SettingsPageContentControl>

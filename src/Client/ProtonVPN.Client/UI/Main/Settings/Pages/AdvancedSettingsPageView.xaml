@@ -107,6 +107,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            ToolTipService.ToolTip="{x:Bind ViewModel.CustomDnsLearnMoreUrl, Mode=OneTime}">
                                     <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                                 </Hyperlink>
+                                <Run/>
                             </TextBlock>
                         </Grid>
                     </StackPanel>
@@ -140,6 +141,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        ToolTipService.ToolTip="{x:Bind ViewModel.NatTypeLearnMoreUrl, Mode=OneTime}">
                                 <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                             </Hyperlink>
+                            <Run/>
                         </TextBlock>
                     </toolkit:SettingsExpander.Description>
                     <toolkit:SettingsExpander.Items>
@@ -183,6 +185,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        ToolTipService.ToolTip="{x:Bind ViewModel.NatTypeLearnMoreUrl, Mode=OneTime}">
                                 <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                             </Hyperlink>
+                            <Run/>
                         </TextBlock>
                     </toolkit:SettingsCard.Description>
                     <toolkit:SettingsCard.ActionIcon>
@@ -206,6 +209,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    ToolTipService.ToolTip="{x:Bind ViewModel.NatTypeLearnMoreUrl, Mode=OneTime}">
                             <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                         </Hyperlink>
+                        <Run/>
                     </TextBlock>
                 </toolkit:SettingsCard.Description>
                 <toolkit:SettingsCard.ActionIcon>
@@ -259,6 +263,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    ToolTipService.ToolTip="{x:Bind ViewModel.Ipv6LeakProtectionLearnMoreUrl, Mode=OneTime}">
                             <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                         </Hyperlink>
+                        <Run/>
                     </TextBlock>
                 </toolkit:SettingsCard.Description>
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsIpv6LeakProtectionEnabled, Mode=TwoWay}"
