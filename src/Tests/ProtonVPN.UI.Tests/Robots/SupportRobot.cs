@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Threading;
 using FlaUI.Core.AutomationElements;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
@@ -42,6 +43,10 @@ public class SupportRobot
 
     public SupportRobot FillBugReportForm(string bugType)
     {
+        // Allow some time for the framework to process UI.
+        // Elements were found, but clicks were performed too early.
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+
         Element
             .ByName(bugType)
             .WaitUntilExists(TestConstants.FiveSecondsTimeout)
