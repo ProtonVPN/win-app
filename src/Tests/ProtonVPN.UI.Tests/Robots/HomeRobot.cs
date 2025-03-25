@@ -102,7 +102,7 @@ public class HomeRobot
 
     public HomeRobot ClickOnHelpButton()
     {
-        HelpButton.Click();
+        HelpButton.DoubleClick();
         return this;
     }
 

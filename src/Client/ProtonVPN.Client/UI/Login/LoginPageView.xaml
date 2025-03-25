@@ -90,7 +90,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Style="{ThemeResource PrimaryGhostButtonStyle}"
                                         Visibility="{x:Bind ViewModel.IsHelpVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <custom:GhostButton.Flyout>
-                            <MenuFlyout AutomationProperties.AutomationId="HelpFlyoutMenu">
+                            <MenuFlyout AutomationProperties.AutomationId="HelpFlyoutMenu"
+                                        ShouldConstrainToRootBounds="True">
                                 <MenuFlyoutItem Command="{x:Bind ViewModel.ResetPasswordCommand, Mode=OneTime}"
                                                 Style="{StaticResource HyperlinkMenuFlyoutItemStyle}"
                                                 Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_ResetPassword')}">

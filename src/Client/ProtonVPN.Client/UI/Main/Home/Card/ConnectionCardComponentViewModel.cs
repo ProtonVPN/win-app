@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,7 +23,6 @@ using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
-using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -60,10 +59,7 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
     private readonly IConnectionManager _connectionManager;
     private readonly ISettings _settings;
     private readonly IRecentConnectionsManager _recentConnectionsManager;
-    private readonly IChangeServerModerator _changeServerModerator;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
-    private readonly IMainViewNavigator _mainViewNavigator;
-    private readonly ISettingsViewNavigator _settingsViewNavigator;
     private readonly IServersLoader _serversLoader;
 
     [ObservableProperty]
@@ -198,20 +194,14 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
         IConnectionManager connectionManager,
         ISettings settings,
         IRecentConnectionsManager recentConnectionsManager,
-        IChangeServerModerator changeServerModerator,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
-        IMainViewNavigator mainViewNavigator,
-        ISettingsViewNavigator settingsViewNavigator,
         IServersLoader serversLoader)
         : base(viewModelHelper)
     {
         _connectionManager = connectionManager;
         _settings = settings;
         _recentConnectionsManager = recentConnectionsManager;
-        _changeServerModerator = changeServerModerator;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
-        _mainViewNavigator = mainViewNavigator;
-        _settingsViewNavigator = settingsViewNavigator;
         _serversLoader = serversLoader;
     }
 
@@ -348,13 +338,6 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
     private Task ShowTorInfoOverlayAsync()
     {
         return _mainWindowOverlayActivator.ShowTorInfoOverlayAsync();
-    }
-
-    [RelayCommand]
-    private async Task<bool> NavigateToDefaultConnectionSettingsAsync()
-    {
-        return await _mainViewNavigator.NavigateToSettingsViewAsync()
-            && await _settingsViewNavigator.NavigateToDefaultConnectionSettingsViewAsync(isDirectNavigation: true);
     }
 
     private void InvalidateConnectionStatus()

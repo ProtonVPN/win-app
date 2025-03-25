@@ -71,6 +71,7 @@
     <None Remove="UI\Main\Features\SplitTunneling\SplitTunnelingPageView.xaml" />
     <None Remove="UI\Main\Features\SplitTunneling\SplitTunnelingWidgetView.xaml" />
     <None Remove="UI\Main\Home\Card\ConnectionCardComponentView.xaml" />
+    <None Remove="UI\Main\Home\Card\DefaultConnections\DefaultConnectionSelectorView.xaml" />
     <None Remove="UI\Main\Home\Details\Connection\VpnSpeedComponent.xaml" />
     <None Remove="UI\Main\Home\Details\DetailsComponentView.xaml" />
     <None Remove="UI\Main\Home\Details\Connection\ConnectionDetailsPageView.xaml" />
@@ -698,6 +699,12 @@
 
   <ItemGroup>
     <PRIResource Remove="UI\Main\Home\Details\Contracts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\Home\Card\DefaultConnection\DefaultConnectionSelectorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

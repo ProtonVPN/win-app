@@ -36,7 +36,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <custom:GhostButton.Flyout>
             <MenuFlyout Placement="BottomEdgeAlignedLeft"
                         ShouldConstrainToRootBounds="True">
-
+                <!-- Constraining to root bounds allows the flyout to use acrylic brush as background -->
                 <MenuFlyoutItem Command="{x:Bind ViewModel.UpdateCommand, Mode=OneTime}"
                                 Style="{StaticResource TitleBarMenuFlyoutItemStyle}"
                                 Text="{x:Bind ViewModel.Localizer.Get('Home_TitleBar_Menu_UpdateNow')}"

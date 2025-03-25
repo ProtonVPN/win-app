@@ -99,7 +99,7 @@ public class ProfileRobot
         NetShieldDropDown.Click();
         // Remove when VPNWIN-2599 is implemented.
         Thread.Sleep(TestConstants.AnimationDelay);
-        NetShieldOffMenuItem.Click();
+        NetShieldOffMenuItem.DoubleClick();
         // Remove when VPNWIN-2599 is implemented.
         Thread.Sleep(TestConstants.AnimationDelay);
         return this;
@@ -137,11 +137,11 @@ public class ProfileRobot
 
         if (netShieldMode == NetShieldMode.BlockMalwareOnly)
         {
-            NetShieldLevelOneMenuItem.Click();
+            NetShieldLevelOneMenuItem.DoubleClick();
         }
         else if (netShieldMode == NetShieldMode.BlockAdsMalwareTrackers)
         {
-            NetShieldLevelTwoMenuItem.Click();
+            NetShieldLevelTwoMenuItem.DoubleClick();
         }
 
         return this;

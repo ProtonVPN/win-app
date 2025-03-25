@@ -46,4 +46,16 @@ public struct DefaultConnection
     public override int GetHashCode() => (Type, RecentId).GetHashCode();
     public static bool operator ==(DefaultConnection left, DefaultConnection right) => left.Equals(right);
     public static bool operator !=(DefaultConnection left, DefaultConnection right) => !(left == right);
+
+    public override string ToString()
+    {
+        string value = Type.ToString();
+
+        if (Type == DefaultConnectionType.Recent)
+        {
+            value += $" {RecentId}";
+        }
+
+        return value;
+    }
 }
