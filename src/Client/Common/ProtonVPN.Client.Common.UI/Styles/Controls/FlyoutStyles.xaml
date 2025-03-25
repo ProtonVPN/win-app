@@ -94,9 +94,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Thickness x:Key="MenuFlyoutItemThemePadding">0,8,8,8</Thickness>
     <Thickness x:Key="MenuFlyoutItemThemePaddingNarrow">0,8,8,8</Thickness>
 
-    <Style TargetType="Flyout" />
+    <x:Double x:Key="MenuFlyoutItemIconWidth">16</x:Double>
+    <x:Double x:Key="MenuFlyoutItemIconHeight">16</x:Double>
 
-    <Style TargetType="MenuFlyout" />
+    <Style TargetType="Flyout">
+        <Setter Property="ShouldConstrainToRootBounds" Value="True"/>
+    </Style>
+
+    <Style TargetType="MenuFlyout">
+        <Setter Property="ShouldConstrainToRootBounds" Value="True"/>
+    </Style>
 
     <Style TargetType="FlyoutPresenter">
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -236,8 +243,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Opacity="0" />
                         <Viewbox x:Name="IconRoot"
                                  Grid.Column="1"
-                                 Width="16"
-                                 Height="16"
+                                 Width="{StaticResource MenuFlyoutItemIconWidth}"
+                                 Height="{StaticResource MenuFlyoutItemIconHeight}"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Center"
                                  Visibility="Visible">
@@ -328,8 +335,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Opacity="0" />
                         <Viewbox x:Name="IconRoot"
                                  Grid.Column="1"
-                                 Width="16"
-                                 Height="16"
+                                 Width="{StaticResource MenuFlyoutItemIconWidth}"
+                                 Height="{StaticResource MenuFlyoutItemIconHeight}"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Center"
                                  Visibility="Visible">
@@ -415,8 +422,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Grid.ColumnDefinitions>
                         <Viewbox x:Name="IconRoot"
                                  Grid.Column="0"
-                                 Width="16"
-                                 Height="16"
+                                 Width="{StaticResource MenuFlyoutItemIconWidth}"
+                                 Height="{StaticResource MenuFlyoutItemIconHeight}"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Center"
                                  Visibility="{Binding Icon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}">
@@ -496,8 +503,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Grid.ColumnDefinitions>
                         <Viewbox x:Name="IconRoot"
                                  Grid.Column="0"
-                                 Width="16"
-                                 Height="16"
+                                 Width="{StaticResource MenuFlyoutItemIconWidth}"
+                                 Height="{StaticResource MenuFlyoutItemIconHeight}"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Center"
                                  Visibility="Visible">
@@ -552,6 +559,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style BasedOn="{StaticResource DefaultActivatableMenuFlyoutItemStyle}" TargetType="custom:ActivatableMenuFlyoutItem" />
 
     <Style x:Key="DefaultActivatableMenuFlyoutItemStyle" TargetType="custom:ActivatableMenuFlyoutItem" BasedOn="{StaticResource MenuFlyoutItemStyle}">
+        <Setter Property="IconWidth" Value="{StaticResource MenuFlyoutItemIconWidth}"/>
+        <Setter Property="IconHeight" Value="{StaticResource MenuFlyoutItemIconHeight}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:ActivatableMenuFlyoutItem">
@@ -584,19 +593,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         
                         <Viewbox x:Name="IconRoot"
                                  Grid.Column="1"
-                                 Width="16"
-                                 Height="16"
+                                 Width="{TemplateBinding IconWidth}"
+                                 Height="{TemplateBinding IconHeight}"
                                  Margin="8,0,0,0"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Center"
                                  Visibility="{Binding Icon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}">
                             <ContentPresenter x:Name="IconContent"
-                                              Content="{TemplateBinding Icon}" />
+                                              Content="{TemplateBinding Icon}" 
+                                              HorizontalAlignment="Center" 
+                                              HorizontalContentAlignment="Center"
+                                              VerticalAlignment="Center"/>
                         </Viewbox>
                         
                         <TextBlock x:Name="TextBlock"
                                    Grid.Column="2"
-                                   Margin="8,0,0,0"
+                                   Margin="8,0"
                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                    Foreground="{TemplateBinding Foreground}"

@@ -102,7 +102,7 @@ public class LoginRobot
         HelpButton.Click();
         // Remove when VPNWIN-2599 is implemented.
         Thread.Sleep(TestConstants.AnimationDelay);
-        ReportIssueMenuItem.Click();
+        ReportIssueMenuItem.DoubleClick();
     }
 
     public class Verifications : LoginRobot

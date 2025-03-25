@@ -57,7 +57,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <pathicons:ChevronDownFilled Size="Pixels16" />
                         </custom:GhostButton.RightIcon>
                         <custom:GhostButton.Flyout>
-                            <MenuFlyout Placement="BottomEdgeAlignedRight">
+                            <MenuFlyout Placement="BottomEdgeAlignedRight"
+                                        ShouldConstrainToRootBounds="True">
                                 <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.DisableKillSwitchCommand, Mode=OneTime}"
                                                                   IsActive="{x:Bind ViewModel.IsKillSwitchEnabled, Converter={StaticResource NotBooleanToBooleanConverter}}"
                                                                   Text="{x:Bind ViewModel.Localizer.Get('Common_States_Off')}">

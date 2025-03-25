@@ -106,9 +106,9 @@ public static class LocalizationExtensions
             CityLocationIntent cityIntent => cityIntent.City,
             StateLocationIntent stateIntent => stateIntent.State ?? string.Empty,
             GatewayServerLocationIntent gatewayServerIntent => ConcatenateLocations(localizer.GetCountryName(gatewayServerIntent.CountryCode), gatewayServerIntent.Name),
-            CountryLocationIntent countryIntent => useDetailedSubtitle && countryIntent.IsFastestCountry
-                ? localizer.Get("Settings_Connection_Default_Fastest_Description")
-                : string.Empty,
+            CountryLocationIntent when !useDetailedSubtitle => string.Empty,
+            CountryLocationIntent countryIntent when countryIntent.IsRandomCountry => localizer.Get("Settings_Connection_Default_Random_Description"),
+            CountryLocationIntent countryIntent when countryIntent.IsFastestCountry => localizer.Get("Settings_Connection_Default_Fastest_Description"),
             _ => string.Empty,
         };
     }

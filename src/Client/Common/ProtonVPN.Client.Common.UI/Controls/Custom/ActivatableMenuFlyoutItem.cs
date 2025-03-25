@@ -27,10 +27,28 @@ public class ActivatableMenuFlyoutItem : MenuFlyoutItem
     public static readonly DependencyProperty IsActiveProperty =
         DependencyProperty.Register(nameof(IsActive), typeof(bool), typeof(ActivatableMenuFlyoutItem), new PropertyMetadata(default));
 
+    public static readonly DependencyProperty IconWidthProperty =
+        DependencyProperty.Register(nameof(IconWidth), typeof(double), typeof(ActivatableMenuFlyoutItem), new PropertyMetadata(16.0));
+
+    public static readonly DependencyProperty IconHeightProperty =
+        DependencyProperty.Register(nameof(IconHeight), typeof(double), typeof(ActivatableMenuFlyoutItem), new PropertyMetadata(16.0));
+
     public bool IsActive
     {
         get => (bool)GetValue(IsActiveProperty);
         set => SetValue(IsActiveProperty, value);
+    }
+
+    public double IconWidth
+    {
+        get => (double)GetValue(IconWidthProperty);
+        set => SetValue(IconWidthProperty, value);
+    }
+
+    public double IconHeight
+    {
+        get => (double)GetValue(IconHeightProperty);
+        set => SetValue(IconHeightProperty, value);
     }
 
     public ActivatableMenuFlyoutItem()

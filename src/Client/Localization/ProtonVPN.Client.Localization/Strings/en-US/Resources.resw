@@ -162,6 +162,9 @@
   <data name="Common_Actions_Enable" xml:space="preserve">
     <value>Enable</value>
   </data>
+  <data name="Common_Actions_Customize" xml:space="preserve">
+    <value>Customize</value>
+  </data>
   <data name="Common_Links_LearnMore" xml:space="preserve">
     <value>Learn more</value>
   </data>

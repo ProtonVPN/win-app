@@ -24,6 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:controls="using:CommunityToolkit.WinUI.Controls"
              xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dc="using:ProtonVPN.Client.UI.Main.Home.Card.DefaultConnections"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
              xmlns:upsell="using:ProtonVPN.Client.UI.Main.Home.Upsell"
@@ -47,15 +48,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <StackPanel>
         <Grid HorizontalAlignment="Center"
               Background="Transparent"
-              ColumnSpacing="8"
-              PointerEntered="OnHeaderPointerEntered"
-              PointerExited="OnHeaderPointerExited">
+              ColumnSpacing="8">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="24" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="24" />
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="1"
@@ -93,22 +92,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        TextTrimming="CharacterEllipsis"
                        TextWrapping="WrapWholeWords" />
 
-            <custom:GhostButton x:Name="ChangeDefaultConnectionButton"
-                                Grid.Column="3"
-                                Margin="0,8,0,0"
-                                VerticalAlignment="Top"
-                                Command="{x:Bind ViewModel.NavigateToDefaultConnectionSettingsCommand, Mode=OneTime}"
-                                Opacity="0"
-                                Visibility="{x:Bind ViewModel.IsChangeDefaultConnectionOptionVisible}"
-                                ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionCard_ChangeDefaultConnection')}">
-                <custom:GhostButton.OpacityTransition>
-                    <ScalarTransition Duration="0:0:0.2" />
-                </custom:GhostButton.OpacityTransition>
-                <custom:GhostButton.LeftIcon>
-                    <pathicons:ChevronRight />
-                </custom:GhostButton.LeftIcon>
-            </custom:GhostButton>
-
+            <dc:DefaultConnectionSelectorView Grid.Column="3"
+                                              Margin="-6,8,0,0"
+                                              x:Name="DefaultConnectionSelector" 
+                                              VerticalAlignment="Top"
+                                              Visibility="{x:Bind ViewModel.IsChangeDefaultConnectionOptionVisible}"
+                                              ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionCard_ChangeDefaultConnection')}"/>
         </Grid>
 
         <Grid Margin="0,8,0,0"

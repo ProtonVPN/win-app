@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2025 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Client.UI.Main.Home.Card.DefaultConnections.DefaultConnectionSelectorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             x:DefaultBindMode="OneWay"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style x:Key="DefaultConnectionMenuFlyoutItemStyle" BasedOn="{StaticResource DefaultActivatableMenuFlyoutItemStyle}" TargetType="custom:ActivatableMenuFlyoutItem">
+            <Setter Property="IconWidth" Value="24" />
+            <Setter Property="IconHeight" Value="20" />
+        </Style>
+    </UserControl.Resources>
+
+    <custom:GhostButton AutomationProperties.AutomationId="DefaultConnectionSelectorButton">
+        <custom:GhostButton.Flyout>
+            <MenuFlyout Placement="BottomEdgeAlignedRight"
+                        ShouldConstrainToRootBounds="True">
+                <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.SwitchToFastestDefaultConnectionCommand, Mode=OneTime}"
+                                                  IsActive="{x:Bind ViewModel.IsFastestDefaultConnection}"
+                                                  Style="{StaticResource DefaultConnectionMenuFlyoutItemStyle}"
+                                                  Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Fastest')}">
+                    <custom:ActivatableMenuFlyoutItem.Icon>
+                        <ImageIcon Source="{ThemeResource FastestCountryFlagSource}" />
+                    </custom:ActivatableMenuFlyoutItem.Icon>
+                </custom:ActivatableMenuFlyoutItem>
+
+                <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.SwitchToRandomDefaultConnectionCommand, Mode=OneTime}"
+                                                  IsActive="{x:Bind ViewModel.IsRandomDefaultConnection}"
+                                                  Style="{StaticResource DefaultConnectionMenuFlyoutItemStyle}"
+                                                  Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Random')}">
+                    <custom:ActivatableMenuFlyoutItem.Icon>
+                        <ImageIcon Source="{ThemeResource RandomCountryFlagSource}" />
+                    </custom:ActivatableMenuFlyoutItem.Icon>
+                </custom:ActivatableMenuFlyoutItem>
+
+                <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.SwitchToLastDefaultConnectionCommand, Mode=OneTime}"
+                                                  IsActive="{x:Bind ViewModel.IsLastDefaultConnection}"
+                                                  Style="{StaticResource DefaultConnectionMenuFlyoutItemStyle}"
+                                                  Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Last')}">
+                    <custom:ActivatableMenuFlyoutItem.Icon>
+                        <ImageIcon Source="{ThemeResource LatestFlagSource}" />
+                    </custom:ActivatableMenuFlyoutItem.Icon>
+                </custom:ActivatableMenuFlyoutItem>
+
+                <MenuFlyoutSeparator />
+
+                <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.NavigateToDefaultConnectionSettingsCommand, Mode=OneTime}"
+                                                  IconHeight="16"
+                                                  Style="{StaticResource DefaultConnectionMenuFlyoutItemStyle}"
+                                                  Text="{x:Bind ViewModel.Localizer.Get('Common_Actions_Customize')}">
+                    <custom:ActivatableMenuFlyoutItem.Icon>
+                        <pathicons:CogWheel HorizontalAlignment="Center" />
+                    </custom:ActivatableMenuFlyoutItem.Icon>                    
+                </custom:ActivatableMenuFlyoutItem>
+
+            </MenuFlyout>
+        </custom:GhostButton.Flyout>
+        <custom:GhostButton.LeftIcon>
+            <pathicons:ChevronDownFilled />
+        </custom:GhostButton.LeftIcon>
+    </custom:GhostButton>
+</UserControl>

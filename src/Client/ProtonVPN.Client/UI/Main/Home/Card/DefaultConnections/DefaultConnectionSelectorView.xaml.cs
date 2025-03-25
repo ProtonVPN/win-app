@@ -18,19 +18,17 @@
  */
 
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Core.Bases;
 
-namespace ProtonVPN.Client.UI.Main.Home.Card;
+namespace ProtonVPN.Client.UI.Main.Home.Card.DefaultConnections;
 
-public sealed partial class ConnectionCardComponentView : IContextAware
+public sealed partial class DefaultConnectionSelectorView : IContextAware
 {
-    public ConnectionCardComponentViewModel ViewModel { get; }
+    public DefaultConnectionSelectorViewModel ViewModel { get; }
 
-    public ConnectionCardComponentView()
+    public DefaultConnectionSelectorView()
     {
-        ViewModel = App.GetService<ConnectionCardComponentViewModel>();
+        ViewModel = App.GetService<DefaultConnectionSelectorViewModel>();
 
         InitializeComponent();
 
@@ -51,14 +49,5 @@ public sealed partial class ConnectionCardComponentView : IContextAware
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Deactivate();
-    }
-
-    private void OnButtonIsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
-    {
-        // This code makes sure the button to connect/cancel/disconnect receives focus automatically when enabled
-        if (sender is Button button && button.IsEnabled)
-        {
-            button.Focus(FocusState.Programmatic);
-        }
     }
 }

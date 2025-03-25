@@ -81,6 +81,7 @@ using ProtonVPN.Client.UI.Main.Features.PortForwarding;
 using ProtonVPN.Client.UI.Main.Features.SplitTunneling;
 using ProtonVPN.Client.UI.Main.Home;
 using ProtonVPN.Client.UI.Main.Home.Card;
+using ProtonVPN.Client.UI.Main.Home.Card.DefaultConnections;
 using ProtonVPN.Client.UI.Main.Home.Details;
 using ProtonVPN.Client.UI.Main.Home.Details.Connection;
 using ProtonVPN.Client.UI.Main.Home.Details.Flyouts;
@@ -321,6 +322,7 @@ public class AppModule : Module
         RegisterViewModel<HomeComponentViewModel>(builder);
         RegisterViewModel<MapComponentViewModel>(builder).AutoActivate();
         RegisterViewModel<ConnectionCardComponentViewModel>(builder);
+        RegisterViewModel<DefaultConnectionSelectorViewModel>(builder);
         RegisterViewModel<ChangeServerComponentViewModel>(builder);
         RegisterViewModel<ConnectionCardUpsellBannerViewModel>(builder);
         RegisterViewModel<DetailsComponentViewModel>(builder);

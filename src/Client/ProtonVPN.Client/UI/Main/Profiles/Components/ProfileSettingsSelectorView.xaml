@@ -62,7 +62,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <pathicons:ChevronTinyDown Size="Pixels16" />
                     </custom:GhostButton.RightIcon>
                     <custom:GhostButton.Flyout>
-                        <MenuFlyout Placement="BottomEdgeAlignedRight">
+                        <MenuFlyout Placement="BottomEdgeAlignedRight"
+                                    ShouldConstrainToRootBounds="True">
                             <custom:ActivatableMenuFlyoutItem AutomationProperties.AutomationId="NetShieldOffMenuItem" 
                                                               Command="{x:Bind ViewModel.DisableNetShieldCommand, Mode=OneTime}"
                                                               IsActive="{x:Bind ViewModel.SelectedNetShieldMode.IsEnabled, Converter={StaticResource NotBooleanToBooleanConverter}}"
@@ -136,7 +137,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <pathicons:ChevronTinyDown Size="Pixels16" />
                     </custom:GhostButton.RightIcon>
                     <custom:GhostButton.Flyout>
-                        <MenuFlyout Placement="BottomEdgeAlignedRight">
+                        <MenuFlyout Placement="BottomEdgeAlignedRight"
+                                    ShouldConstrainToRootBounds="True">
                             <custom:ActivatableMenuFlyoutItem AutomationProperties.AutomationId="PortForwardingOffMenuItem" 
                                                               Command="{x:Bind ViewModel.DisablePortForwardingCommand, Mode=OneTime}"
                                                               IsActive="{x:Bind ViewModel.SelectedPortForwardingState.IsEnabled, Converter={StaticResource NotBooleanToBooleanConverter}}"
@@ -170,7 +172,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <pathicons:ChevronTinyDown Size="Pixels16" />
                     </custom:GhostButton.RightIcon>
                     <custom:GhostButton.Flyout>
-                        <MenuFlyout Placement="BottomEdgeAlignedRight">
+                        <MenuFlyout Placement="BottomEdgeAlignedRight"
+                                    ShouldConstrainToRootBounds="True">
                             <custom:ActivatableMenuFlyoutItem AutomationProperties.AutomationId="SmartProtocolMenuItem" 
                                                               Command="{x:Bind ViewModel.SelectSmartProtocolCommand, Mode=OneTime}"
                                                               IsActive="{x:Bind ViewModel.SelectedProtocol.IsSmartProtocol}"
@@ -211,7 +214,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <pathicons:ChevronTinyDown Size="Pixels16" />
                     </custom:GhostButton.RightIcon>
                     <custom:GhostButton.Flyout>
-                        <MenuFlyout Placement="BottomEdgeAlignedRight">
+                        <MenuFlyout Placement="BottomEdgeAlignedRight"
+                                    ShouldConstrainToRootBounds="True">
                             <custom:ActivatableMenuFlyoutItem AutomationProperties.AutomationId="StrictNatMenuItem" 
                                                               Command="{x:Bind ViewModel.EnableStrictNatCommand, Mode=OneTime}"
                                                               IsActive="{x:Bind ViewModel.SelectedNatType.IsStrictNat}"
