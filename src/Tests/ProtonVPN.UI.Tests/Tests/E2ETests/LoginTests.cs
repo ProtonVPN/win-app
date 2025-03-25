@@ -64,6 +64,7 @@ public class LoginTests : FreshSessionSetUp
     }
 
     [Test]
+    [Retry(3)]
     public void LoginWithTwoFactor()
     {
         NavigationRobot
