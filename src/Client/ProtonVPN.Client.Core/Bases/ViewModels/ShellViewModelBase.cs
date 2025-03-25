@@ -66,11 +66,6 @@ public abstract partial class ShellViewModelBase<TWindowActivator> : ShellViewMo
         WindowActivator.Hide();
     }
 
-    public void Exit()
-    {
-        WindowActivator.Exit();
-    }
-
     [RelayCommand]
     private void ActivateWindow()
     {
@@ -81,12 +76,6 @@ public abstract partial class ShellViewModelBase<TWindowActivator> : ShellViewMo
     private void HideWindow()
     {
         Hide();
-    }
-
-    [RelayCommand(CanExecute = nameof(CanClose))]
-    private void ExitWindow()
-    {
-        Exit();
     }
 }
 

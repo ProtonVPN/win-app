@@ -26,6 +26,4 @@ public interface IWindowActivatorAware : IActivationAware
     void Invoke();
 
     void Hide();
-
-    void Exit();
 }
