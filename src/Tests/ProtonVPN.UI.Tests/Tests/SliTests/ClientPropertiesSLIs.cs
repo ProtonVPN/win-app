@@ -54,6 +54,8 @@ public class ClientPropertiesSLIs : BaseTest
         {
             LoginRobot.Verify.IsLoginWindowDisplayed();
         });
+
+        Cleanup();
     }
 
     [TearDown]

@@ -388,7 +388,7 @@ publish prod release nexus:
   only:
     - /^release\/\d+\.\d+\.\d+/
   except:
-    - release/9.9.9
+    - /^release\/9\.9\.9.*/ 
   tags:
     - shared-medium
   image: $CI_REGISTRY/tpe/test-scripts
