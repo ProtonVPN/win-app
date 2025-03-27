@@ -580,6 +580,11 @@ public sealed partial class MapControl
 
     private void ToggleFeatures()
     {
+        if (_isUnloaded)
+        {
+            return;
+        }
+
         MRect searchArea = GetMouseBufferBounds();
         MPoint mousePosition = new(_currentMousePosition.X, _currentMousePosition.Y);
 
