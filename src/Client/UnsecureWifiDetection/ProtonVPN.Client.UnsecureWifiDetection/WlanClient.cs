@@ -30,81 +30,95 @@ public class WlanClient
 
     public static IReadOnlyCollection<WifiConnection> GetActiveWifiConnections()
     {
-        List<WifiConnection> list = [];
-        int result = WlanOpenHandle(2, nint.Zero, out _, out nint clientHandle);
-
-        if (result != ERROR_SUCCESS)
+        try
         {
-            return list;
-        }
+            List<WifiConnection> list = [];
+            int result = WlanOpenHandle(2, nint.Zero, out _, out nint clientHandle);
 
-        result = WlanEnumInterfaces(clientHandle, nint.Zero, out nint ptr);
-
-        if (result != ERROR_SUCCESS)
-        {
-            return list;
-        }
-
-        object? headerObject = Marshal.PtrToStructure(ptr, typeof(WlanInterfaceInfoListHeader));
-        if (headerObject is null)
-        {
-            return list;
-        }
-
-        WlanInterfaceInfoListHeader structure = (WlanInterfaceInfoListHeader)headerObject;
-        long num = ptr.ToInt64() + Marshal.SizeOf(structure);
-
-        for (int i = 0; i < structure.numberOfItems; i++)
-        {
-            object? interfaceInfoObject = Marshal.PtrToStructure(new nint(num), typeof(WlanInterfaceInfo));
-            if (interfaceInfoObject is null)
+            if (result != ERROR_SUCCESS)
             {
-                continue;
+                return list;
             }
 
-            WlanInterfaceInfo info = (WlanInterfaceInfo)interfaceInfoObject;
-            num += Marshal.SizeOf(info);
+            result = WlanEnumInterfaces(clientHandle, nint.Zero, out nint ptr);
 
-            Result<WlanConnectionAttributes> infoResult = GetInterfaceInfo(clientHandle, info.interfaceGuid);
-            if (!infoResult.Success)
+            if (result != ERROR_SUCCESS)
             {
-                continue;
+                return list;
             }
 
-            WlanConnectionAttributes interfaceInfo = infoResult.Value;
-            WifiConnection connection = new(
-                interfaceInfo.profileName,
-                interfaceInfo.wlanSecurityAttributes.securityEnabled);
+            object? headerObject = Marshal.PtrToStructure(ptr, typeof(WlanInterfaceInfoListHeader));
+            if (headerObject is null)
+            {
+                return list;
+            }
 
-            list.Add(connection);
+            WlanInterfaceInfoListHeader structure = (WlanInterfaceInfoListHeader)headerObject;
+            long num = ptr.ToInt64() + Marshal.SizeOf(structure);
+
+            for (int i = 0; i < structure.numberOfItems; i++)
+            {
+                object? interfaceInfoObject = Marshal.PtrToStructure(new nint(num), typeof(WlanInterfaceInfo));
+                if (interfaceInfoObject is null)
+                {
+                    continue;
+                }
+
+                WlanInterfaceInfo info = (WlanInterfaceInfo)interfaceInfoObject;
+                num += Marshal.SizeOf(info);
+
+                Result<WlanConnectionAttributes> infoResult = GetInterfaceInfo(clientHandle, info.interfaceGuid);
+                if (!infoResult.Success)
+                {
+                    continue;
+                }
+
+                WlanConnectionAttributes interfaceInfo = infoResult.Value;
+                WifiConnection connection = new(
+                    interfaceInfo.profileName,
+                    interfaceInfo.wlanSecurityAttributes.securityEnabled);
+
+                list.Add(connection);
+            }
+
+            WlanFreeMemory(ptr);
+            WlanCloseHandle(clientHandle, nint.Zero);
+
+            return list;
         }
-
-        WlanFreeMemory(ptr);
-        WlanCloseHandle(clientHandle, nint.Zero);
-
-        return list;
+        catch (DllNotFoundException)
+        {
+            return [];
+        }
     }
 
     public static Result<WlanConnectionAttributes> GetInterfaceInfo(nint client, Guid guid)
     {
-        int code = WlanQueryInterface(client, guid, WlanIntfOpcode.CurrentConnection, nint.Zero, out _, out nint ptr, out _);
-        if (code == ERROR_SUCCESS)
+        try
         {
-            try
+            int code = WlanQueryInterface(client, guid, WlanIntfOpcode.CurrentConnection, nint.Zero, out _, out nint ptr, out _);
+            if (code == ERROR_SUCCESS)
             {
-                object? result = Marshal.PtrToStructure(ptr, typeof(WlanConnectionAttributes));
+                try
+                {
+                    object? result = Marshal.PtrToStructure(ptr, typeof(WlanConnectionAttributes));
 
-                return result is not null
-                    ? Result.Ok((WlanConnectionAttributes)result)
-                    : Result.Fail<WlanConnectionAttributes>();
+                    return result is not null
+                        ? Result.Ok((WlanConnectionAttributes)result)
+                        : Result.Fail<WlanConnectionAttributes>();
+                }
+                finally
+                {
+                    WlanFreeMemory(ptr);
+                }
             }
-            finally
-            {
-                WlanFreeMemory(ptr);
-            }
+
+            return Result.Fail<WlanConnectionAttributes>();
         }
-
-        return Result.Fail<WlanConnectionAttributes>();
+        catch (DllNotFoundException)
+        {
+            return Result.Fail<WlanConnectionAttributes>();
+        }
     }
 
     [DllImport(WLAN_API)]
