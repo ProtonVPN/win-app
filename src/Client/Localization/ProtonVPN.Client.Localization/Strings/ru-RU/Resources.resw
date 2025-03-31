@@ -218,6 +218,9 @@
   <data name="Common_Actions_ContactUs">
     <value>Свяжитесь с нами</value>
   </data>
+  <data name="Common_Actions_Customize">
+    <value>Customize</value>
+  </data>
   <data name="Common_Actions_Delete">
     <value>Удалить</value>
   </data>
@@ -415,6 +418,9 @@
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>Все серверы в этой стране находятся на техническом обслуживании</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Unable to connect</value>
   </data>
   <data name="Connections_Fastest">
     <value>Самый быстрый</value>
@@ -3343,6 +3349,12 @@
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Последнее использованное подключение</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Random country</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Different server every time you connect</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Недавние</value>

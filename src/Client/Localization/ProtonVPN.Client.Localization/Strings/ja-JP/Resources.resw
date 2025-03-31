@@ -218,6 +218,9 @@
   <data name="Common_Actions_ContactUs">
     <value>お問い合わせ先</value>
   </data>
+  <data name="Common_Actions_Customize">
+    <value>カスタマイズ</value>
+  </data>
   <data name="Common_Actions_Delete">
     <value>削除</value>
   </data>
@@ -397,6 +400,9 @@
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>この国のすべてのサーバーはメンテナンス中です</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>接続できません</value>
   </data>
   <data name="Connections_Fastest">
     <value>最速</value>
@@ -3046,6 +3052,12 @@ VPN接続</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>最近使用した接続</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>ランダムな国</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>接続するたびに異なるサーバー</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>最近</value>

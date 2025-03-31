@@ -218,6 +218,9 @@
   <data name="Common_Actions_ContactUs">
     <value>Contattaci</value>
   </data>
+  <data name="Common_Actions_Customize">
+    <value>Personalizza</value>
+  </data>
   <data name="Common_Actions_Delete">
     <value>Elimina</value>
   </data>
@@ -403,6 +406,9 @@
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>Tutti i server di questo Paese sono in manutenzione.</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Connessione impossibile</value>
   </data>
   <data name="Connections_Fastest">
     <value>Più veloce</value>
@@ -3145,6 +3151,12 @@ Un carico elevato può rallentare la connessione.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>La tua connessione utilizzata più di recente</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Paese casuale</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Server diverso ogni volta che ti connetti</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Recenti</value>

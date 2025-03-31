@@ -218,6 +218,9 @@
   <data name="Common_Actions_ContactUs">
     <value>Звязацца з намі</value>
   </data>
+  <data name="Common_Actions_Customize">
+    <value>Наладзіць</value>
+  </data>
   <data name="Common_Actions_Delete">
     <value>Выдаліць</value>
   </data>
@@ -415,6 +418,9 @@
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>Усе серверы ў гэтай краіне на тэхнічным абслугоўванні</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Немагчыма падключыцца</value>
   </data>
   <data name="Connections_Fastest">
     <value>Найхутчэйшае</value>
@@ -3343,6 +3349,12 @@ Secure Core</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Апошняе выкарыстанае падключэнне</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Выпадковая краіна</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Кожны раз пры падключэнні іншы сервер</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Нядаўнія</value>

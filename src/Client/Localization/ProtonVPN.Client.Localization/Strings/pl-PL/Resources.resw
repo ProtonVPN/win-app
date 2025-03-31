@@ -218,6 +218,9 @@
   <data name="Common_Actions_ContactUs">
     <value>Skontaktuj się z nami</value>
   </data>
+  <data name="Common_Actions_Customize">
+    <value>Customize</value>
+  </data>
   <data name="Common_Actions_Delete">
     <value>Usuń</value>
   </data>
@@ -415,6 +418,9 @@
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>Wszystkie serwery w tym kraju są w trakcie przerwy technicznej</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Unable to connect</value>
   </data>
   <data name="Connections_Fastest">
     <value>Najszybsze</value>
@@ -3343,6 +3349,12 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Ostatnio używane połączenia</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Random country</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Different server every time you connect</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Ostatnie</value>

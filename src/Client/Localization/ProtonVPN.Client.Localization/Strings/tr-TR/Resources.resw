@@ -218,6 +218,9 @@
   <data name="Common_Actions_ContactUs">
     <value>Bizimle görüşün</value>
   </data>
+  <data name="Common_Actions_Customize">
+    <value>Özelleştir</value>
+  </data>
   <data name="Common_Actions_Delete">
     <value>Sil</value>
   </data>
@@ -403,6 +406,9 @@
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>Bu ülkedeki tüm sunucularda bakım yapılıyor</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Bağlantı kurulamadı</value>
   </data>
   <data name="Connections_Fastest">
     <value>En hızlı</value>
@@ -3145,6 +3151,12 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Son kullandığınız bağlantı</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Rastgele ülke</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Her bağlantı kurulduğunda farklı sunucu</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Son kullanılanlar</value>

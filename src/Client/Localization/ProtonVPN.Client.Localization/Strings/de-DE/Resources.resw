@@ -218,6 +218,9 @@
   <data name="Common_Actions_ContactUs">
     <value>Kontaktiere uns</value>
   </data>
+  <data name="Common_Actions_Customize">
+    <value>Anpassen</value>
+  </data>
   <data name="Common_Actions_Delete">
     <value>Löschen</value>
   </data>
@@ -403,6 +406,9 @@
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>Alle Server in diesem Land werden gerade gewartet</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Verbinden fehlgeschlagen</value>
   </data>
   <data name="Connections_Fastest">
     <value>Am schnellsten</value>
@@ -3145,6 +3151,12 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Deine zuletzt verwendete Verbindung</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Zufälliges Land</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Bei jeder neuen Verbindung einen anderen Server verwenden</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Letzte</value>

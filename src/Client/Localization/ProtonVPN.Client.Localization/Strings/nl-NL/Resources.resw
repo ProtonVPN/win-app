@@ -218,6 +218,9 @@
   <data name="Common_Actions_ContactUs">
     <value>Neem contact op</value>
   </data>
+  <data name="Common_Actions_Customize">
+    <value>Aanpassen</value>
+  </data>
   <data name="Common_Actions_Delete">
     <value>Verwijderen</value>
   </data>
@@ -403,6 +406,9 @@
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>Alle servers in dit land ondergaan onderhoud</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Kan geen verbinding maken</value>
   </data>
   <data name="Connections_Fastest">
     <value>Snelste</value>
@@ -3145,6 +3151,12 @@ VPN-verbinding</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Uw meest recent gebruikte verbinding</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Willekeurig land</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Een andere server elke keer wanneer u verbinding maakt</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Recente</value>
