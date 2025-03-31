@@ -19,10 +19,9 @@
 
 using ProtonVPN.Logging.Contracts;
 
-namespace ProtonVPN.Logging.Contracts.Categories
+namespace ProtonVPN.Logging.Contracts.Categories;
+
+public class AppLogCategory : ILogCategory
 {
-    public class AppLogCategory : ILogCategory
-    {
-        public string Category => "APP";
-    }
+    public string Category => "APP";
 }

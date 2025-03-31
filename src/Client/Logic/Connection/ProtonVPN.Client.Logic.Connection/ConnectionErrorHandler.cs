@@ -30,6 +30,7 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Logic.Connection;
 
@@ -86,6 +87,7 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
         // If the service disconnects and it is not the user intent, reconnect.
         if (vpnState.Status == VpnStatusIpcEntity.Disconnected &&
             vpnState.Error == VpnErrorTypeIpcEntity.None &&
+            !_connectionManager.IsDisconnected &&
             _connectionManager.CurrentConnectionIntent is not null)
         {
             return await ReconnectAsync();
@@ -178,7 +180,7 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
 
     private async Task<ConnectionErrorHandlerResult> ReconnectAsync()
     {
-        return await _connectionManager.ReconnectAsync()
+        return await _connectionManager.ReconnectAsync(VpnTriggerDimension.Auto)
             ? ConnectionErrorHandlerResult.Reconnecting
             : ConnectionErrorHandlerResult.NoAction;
     }

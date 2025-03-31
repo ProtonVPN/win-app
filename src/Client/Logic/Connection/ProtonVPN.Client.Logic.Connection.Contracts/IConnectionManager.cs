@@ -28,7 +28,6 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts;
 public interface IConnectionManager
 {
     ConnectionStatus ConnectionStatus { get; }
-    VpnErrorTypeIpcEntity CurrentError { get; }
     ConnectionDetails? CurrentConnectionDetails { get; }
     IConnectionIntent? CurrentConnectionIntent { get; }
 
@@ -40,7 +39,7 @@ public interface IConnectionManager
 
     Task ConnectAsync(VpnTriggerDimension vpnConnectionTrigger, IConnectionIntent? connectionIntent = null);
     Task<bool> ReconnectIfNotRecentlyReconnectedAsync();
-    Task<bool> ReconnectAsync();
+    Task<bool> ReconnectAsync(VpnTriggerDimension vpnConnectionTrigger);
     Task DisconnectAsync(VpnTriggerDimension vpnTriggerDimension);
 
     Task InitializeAsync(IConnectionIntent? connectionIntent);

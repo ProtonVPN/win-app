@@ -23,6 +23,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Common.Extensions;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models;
 
@@ -30,7 +31,7 @@ public class ConnectionDetails
 {
     public IConnectionIntent OriginalConnectionIntent { get; }
 
-    public DateTime EstablishedConnectionTimeUtc { get; }
+    public DateTime? EstablishedConnectionTimeUtc { get; private set; }
 
     public Server Server { get; private set; }
 
@@ -41,6 +42,8 @@ public class ConnectionDetails
     public string? ServerIpAddress { get; private set; }
 
     public int Port { get; private set; }
+
+    public VpnStatusIpcEntity Status { get; private set; }
 
     public string? EntryIpAddress => PhysicalServer.EntryIp;
     public string ExitCountryCode => Server.ExitCountry;
@@ -67,7 +70,6 @@ public class ConnectionDetails
         int port)
     {
         OriginalConnectionIntent = connectionIntent;
-        EstablishedConnectionTimeUtc = DateTime.UtcNow;
 
         Server = server;
         PhysicalServer = physicalServer;
@@ -91,5 +93,20 @@ public class ConnectionDetails
     public void UpdateIpAddress(string serverIpAddress)
     {
         ServerIpAddress = serverIpAddress;
+    }
+
+    public void UpdateStatus(VpnStatusIpcEntity status)
+    {
+        if (status == Status)
+        {
+            return;
+        }
+
+        Status = status;
+
+        if (status == VpnStatusIpcEntity.Connected)
+        {
+            EstablishedConnectionTimeUtc = DateTime.UtcNow;
+        }
     }
 }

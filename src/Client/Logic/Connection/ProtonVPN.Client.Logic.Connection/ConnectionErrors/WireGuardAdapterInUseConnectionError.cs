@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Logic.Connection.ConnectionErrors;
 
@@ -38,6 +39,6 @@ public class WireGuardAdapterInUseConnectionError : ConnectionErrorBase
 
     public override Task ExecuteActionAsync()
     {
-        return _connectionManager.ReconnectAsync();
+        return _connectionManager.ReconnectAsync(VpnTriggerDimension.Auto);
     }
 }

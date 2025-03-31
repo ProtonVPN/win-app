@@ -25,6 +25,7 @@ using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.ProcessCommunication.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Services.ProcessCommunication;
 
@@ -89,7 +90,7 @@ public class ServiceCommunicationErrorHandler : IServiceCommunicationErrorHandle
                     if (isStartCalled)
                     {
                         _logger.Info<AppServiceLog>("The service status is Running. Requesting reconnect (if a connection existed).");
-                        _connectionManager.ReconnectAsync();
+                        _connectionManager.ReconnectAsync(VpnTriggerDimension.Auto);
                     }
                     else
                     {

@@ -44,6 +44,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Common.Core.Helpers;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
@@ -192,7 +193,7 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
 
             if (needReconnection)
             {
-                await _connectionManager.ReconnectAsync();
+                await _connectionManager.ReconnectAsync(VpnTriggerDimension.NewConnection);
             }
         }
     }

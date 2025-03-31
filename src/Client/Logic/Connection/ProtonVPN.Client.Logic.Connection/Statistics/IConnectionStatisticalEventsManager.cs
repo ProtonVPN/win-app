@@ -19,27 +19,16 @@
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
-namespace ProtonVPN.Client.Logic.Connection;
+namespace ProtonVPN.Client.Logic.Connection.Statistics;
 
 public interface IConnectionStatisticalEventsManager
 {
-    bool HasSuccessfulConnection { get; }
+    void SetConnectionAttempt(VpnTriggerDimension trigger, ConnectionStatus connectionStatus);
 
-    IConnectionIntent? CurrentConnectionIntent { get; set; }
+    void SetDisconnectionAttempt(VpnTriggerDimension trigger, ConnectionStatus connectionStatus);
 
-    void SetConnectionAttempt(VpnTriggerDimension trigger, bool forceUpdate = true);
-
-    void SetReconnectionAttempt(ConnectionStatus connectionStatus);
-
-    void SetDisconnectionTrigger(VpnTriggerDimension trigger);
-
-    void SetConnectionCanceled(bool isCanceled);
-
-    void UpdateConnectionDetails(ConnectionDetails? details);
-
-    void HandleStatisticalEvents(ConnectionStatus connectionStatus, VpnErrorTypeIpcEntity error);
+    void OnVpnStateChanged(VpnStatusIpcEntity vpnStatus, VpnErrorTypeIpcEntity vpnError, ConnectionDetails? connectionDetails);
 }

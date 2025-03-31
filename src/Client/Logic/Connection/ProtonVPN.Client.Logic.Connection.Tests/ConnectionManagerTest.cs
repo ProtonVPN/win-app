@@ -24,6 +24,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Connection.GuestHole;
+using ProtonVPN.Client.Logic.Connection.Statistics;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
@@ -53,7 +54,6 @@ public class ConnectionManagerTest
     private IReconnectionRequestCreator? _reconnectionRequestCreator;
     private IDisconnectionRequestCreator? _disconnectionRequestCreator;
     private IServersLoader? _serversLoader;
-    private ISystemNetworkInterfaces? _networkInterfaces;
     private IGuestHoleServersFileStorage? _guestHoleServersFileStorage;
     private IGuestHoleConnectionRequestCreator? _guestHoleConnectionRequestCreator;
     private IConnectionStatisticalEventsManager? _statisticalEventManager;
@@ -70,7 +70,6 @@ public class ConnectionManagerTest
         _reconnectionRequestCreator = Substitute.For<IReconnectionRequestCreator>();
         _disconnectionRequestCreator = Substitute.For<IDisconnectionRequestCreator>();
         _serversLoader = Substitute.For<IServersLoader>();
-        _networkInterfaces = Substitute.For<ISystemNetworkInterfaces>();
         _guestHoleServersFileStorage = Substitute.For<IGuestHoleServersFileStorage>();
         _guestHoleConnectionRequestCreator = Substitute.For<IGuestHoleConnectionRequestCreator>();
         _statisticalEventManager = Substitute.For<IConnectionStatisticalEventsManager>();
@@ -91,7 +90,6 @@ public class ConnectionManagerTest
         _reconnectionRequestCreator = null;
         _disconnectionRequestCreator = null;
         _serversLoader = null;
-        _networkInterfaces = null;
         _guestHoleServersFileStorage = null;
         _guestHoleConnectionRequestCreator = null;
         _statisticalEventManager = null;
@@ -152,7 +150,7 @@ public class ConnectionManagerTest
 
         // Act
         await connectionManager.ConnectAsync(VpnTriggerDimension.Auto, connectionIntent);
-        await connectionManager.ReconnectAsync();
+        await connectionManager.ReconnectAsync(VpnTriggerDimension.Auto);
 
         // Assert
         Assert.IsTrue(connectionManager.CurrentConnectionIntent?.IsSameAs(connectionIntent));
@@ -191,7 +189,6 @@ public class ConnectionManagerTest
             _reconnectionRequestCreator!,
             _disconnectionRequestCreator!,
             _serversLoader!,
-            _networkInterfaces!,
             _guestHoleServersFileStorage!,
             _guestHoleConnectionRequestCreator!,
             _statisticalEventManager!);
