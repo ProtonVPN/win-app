@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Net.Http;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Handlers;
@@ -29,6 +30,8 @@ namespace ProtonVPN.Api
 {
     public class UpdateHttpClientFactory : IUpdateHttpClientFactory
     {
+        private const int DOWNLOAD_TIMEOUT_IN_MINUTES = 30;
+
         private readonly RetryingHandler _retryingHandler;
         private readonly LoggingHandlerBase _loggingHandlerBase;
         private readonly TlsPinnedCertificateHandler _tlsPinnedCertificateHandler;
@@ -71,7 +74,9 @@ namespace ProtonVPN.Api
                 .AddLastHandler(_sslCertificateHandler)
                 .Build();
 
-            return _httpClients.Client(innerHandler, _apiAppVersion.UserAgent);
+            IHttpClient client = _httpClients.Client(innerHandler, _apiAppVersion.UserAgent);
+            client.Timeout = TimeSpan.FromMinutes(DOWNLOAD_TIMEOUT_IN_MINUTES);
+            return client;
         }
     }
 }
