@@ -218,6 +218,9 @@
   <data name="Common_Actions_ContactUs">
     <value>Contáctenos</value>
   </data>
+  <data name="Common_Actions_Customize">
+    <value>Personalizar</value>
+  </data>
   <data name="Common_Actions_Delete">
     <value>Eliminar</value>
   </data>
@@ -403,6 +406,9 @@
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>Todos los servidores de este país están en mantenimiento.</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>No se puede conectar</value>
   </data>
   <data name="Connections_Fastest">
     <value>La más rápida</value>
@@ -3145,6 +3151,12 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Su conexión usada más recientemente</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>País aleatorio</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Diferente servidor cada vez que se conecta</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Recientes</value>

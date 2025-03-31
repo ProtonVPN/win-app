@@ -218,6 +218,9 @@
   <data name="Common_Actions_ContactUs">
     <value>Contactați-ne</value>
   </data>
+  <data name="Common_Actions_Customize">
+    <value>Personalizare</value>
+  </data>
   <data name="Common_Actions_Delete">
     <value>Ștergere</value>
   </data>
@@ -409,6 +412,9 @@
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>Toate serverele din această țară sunt în mentenanță.</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Nu se poate conecta</value>
   </data>
   <data name="Connections_Fastest">
     <value>Cel mai rapid</value>
@@ -710,7 +716,7 @@
     <comment>{0} represents a number of P2P cities in the country</comment>
   </data>
   <data name="Countries_P2P_Description">
-    <value>Descărcați fișiere prin rețele P2P (persoană-la-persoană) și îmbunătățiți-vă experiența de joc online și apelurile video.</value>
+    <value>Descărcați fișiere prin rețele P2P (persoană-la-persoană) și vă îmbunătățiți experiența de joc online și apelurile video.</value>
   </data>
   <data name="Countries_Page_FreeUser_Description">
     <value>Deblocați selectarea țării cu VPN Plus</value>
@@ -3244,6 +3250,12 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Ultima conexiune folosită</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Țară aleatorie</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Server diferit la fiecare conectare</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Recente</value>

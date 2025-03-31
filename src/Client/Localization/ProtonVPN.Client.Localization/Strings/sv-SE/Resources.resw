@@ -218,6 +218,9 @@
   <data name="Common_Actions_ContactUs">
     <value>Kontakta oss</value>
   </data>
+  <data name="Common_Actions_Customize">
+    <value>Anpassa</value>
+  </data>
   <data name="Common_Actions_Delete">
     <value>Ta bort</value>
   </data>
@@ -403,6 +406,9 @@
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>Alla servrar i detta land underhålls</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Kan inte ansluta</value>
   </data>
   <data name="Connections_Fastest">
     <value>Snabbast</value>
@@ -3145,6 +3151,12 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Din senast använda anslutning</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Slumpmässigt land</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Annan server varje gång du ansluter</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Senaste</value>

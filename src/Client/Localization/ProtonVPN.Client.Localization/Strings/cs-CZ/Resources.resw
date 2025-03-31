@@ -218,6 +218,9 @@
   <data name="Common_Actions_ContactUs">
     <value>Kontaktujte nás</value>
   </data>
+  <data name="Common_Actions_Customize">
+    <value>Přizpůsobit</value>
+  </data>
   <data name="Common_Actions_Delete">
     <value>Smazat</value>
   </data>
@@ -415,6 +418,9 @@
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>Na všech serverech v této zemi probíhá údržba</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Nelze se připojit</value>
   </data>
   <data name="Connections_Fastest">
     <value>Nejrychlejší</value>
@@ -3343,6 +3349,12 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Vaše poslední použité připojení</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Náhodná země</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Při každém připojení jiný server</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Nedávné</value>

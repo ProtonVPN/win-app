@@ -218,6 +218,9 @@
   <data name="Common_Actions_ContactUs">
     <value>聯絡我們</value>
   </data>
+  <data name="Common_Actions_Customize">
+    <value>Customize</value>
+  </data>
   <data name="Common_Actions_Delete">
     <value>刪除</value>
   </data>
@@ -397,6 +400,9 @@
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>此國家所有伺服器俱在維護中</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Unable to connect</value>
   </data>
   <data name="Connections_Fastest">
     <value>最快速</value>
@@ -3046,6 +3052,12 @@ VPN 連線</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>您最近一次使用的連線</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Random country</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Different server every time you connect</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>最近使用</value>

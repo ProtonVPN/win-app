@@ -218,6 +218,9 @@
   <data name="Common_Actions_ContactUs">
     <value>Ota yhteyttä</value>
   </data>
+  <data name="Common_Actions_Customize">
+    <value>Customize</value>
+  </data>
   <data name="Common_Actions_Delete">
     <value>Poista</value>
   </data>
@@ -403,6 +406,9 @@
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>Kaikki tämän maan palvelimet ovat huollossa</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Unable to connect</value>
   </data>
   <data name="Connections_Fastest">
     <value>Nopein</value>
@@ -3145,6 +3151,12 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Viimeksi käyttämäsi yhteys</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Random country</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Different server every time you connect</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Viimeisimmät</value>

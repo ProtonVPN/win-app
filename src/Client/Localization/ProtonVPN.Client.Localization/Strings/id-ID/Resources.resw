@@ -218,6 +218,9 @@
   <data name="Common_Actions_ContactUs">
     <value>Hubungi kami</value>
   </data>
+  <data name="Common_Actions_Customize">
+    <value>Sesuaikan</value>
+  </data>
   <data name="Common_Actions_Delete">
     <value>Hapus</value>
   </data>
@@ -397,6 +400,9 @@
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>Seluruh server di negara ini sedang dalam pemeliharaan</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Tidak dapat terhubung</value>
   </data>
   <data name="Connections_Fastest">
     <value>Tercepat</value>
@@ -2962,7 +2968,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Pengalihan lalu lintas alternatif</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
-    <value>Apabila layanan Proton diblokir karena pembatasan jaringan, kami akan mencoba untuk menghubungkan Anda ke situs kami melalui rute jaringan alternatif.</value>
+    <value>Apabila layanan Proton diblokir akibat pembatasan jaringan, kami akan mencoba untuk menggunakan rute jaringan alternatif demi menghubungkan Anda ke situs kami.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Server DNS khusus</value>
@@ -3012,7 +3018,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Moderat (tipe 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
-    <value>Menerapkan beberapa pembatasan bagi data yang memasuki jaringan Anda. Opsi ini merupakan opsi terbaik untuk permainan video online.</value>
+    <value>Menerapkan beberapa pembatasan bagi data yang memasuki jaringan Anda. Opsi ini merupakan opsi terbaik untuk permainan online.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict">
     <value>Ketat (tipe 3)</value>
@@ -3046,6 +3052,12 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Koneksi yang terakhir Anda gunakan</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Negara acak</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Server yang berbeda setiap kali Anda terhubung</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Terkini</value>
@@ -3700,7 +3712,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Amazon Prime Video</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Speed">
-    <value>Tonton dalam 4K tanpa hambatan, perlambatan, atau pembatasan</value>
+    <value>Tonton tayangan streaming dalam kualitas 4K tanpa buffering, hambatan, atau batas kecepatan</value>
   </data>
   <data name="Upsell_Carousel_Title">
     <value>Telusuri VPN Plus</value>

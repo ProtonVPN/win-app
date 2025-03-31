@@ -218,6 +218,9 @@
   <data name="Common_Actions_ContactUs">
     <value>Зв'язатися з нами</value>
   </data>
+  <data name="Common_Actions_Customize">
+    <value>Customize</value>
+  </data>
   <data name="Common_Actions_Delete">
     <value>Видалити</value>
   </data>
@@ -415,6 +418,9 @@
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>Усі сервери в цій країні на обслуговуванні</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Unable to connect</value>
   </data>
   <data name="Connections_Fastest">
     <value>Найшвидші</value>
@@ -3343,6 +3349,12 @@ VPN-з'єднання</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Ваше нещодавно використане з'єднання</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Random country</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Different server every time you connect</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Нещодавні</value>

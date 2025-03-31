@@ -218,6 +218,9 @@
   <data name="Common_Actions_ContactUs">
     <value>Fale conosco</value>
   </data>
+  <data name="Common_Actions_Customize">
+    <value>Personalizar</value>
+  </data>
   <data name="Common_Actions_Delete">
     <value>Excluir</value>
   </data>
@@ -403,6 +406,9 @@
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>Todos os servidores do país estão em manutenção</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Não foi possível conectar</value>
   </data>
   <data name="Connections_Fastest">
     <value>Mais rápido</value>
@@ -3145,6 +3151,12 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Sua conexão mais usada recentemente</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>País aleatório</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Servidor diferente toda vez que você se conecta</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Recentes</value>

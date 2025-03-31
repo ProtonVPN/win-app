@@ -218,6 +218,9 @@
   <data name="Common_Actions_ContactUs">
     <value>Επικοινωνήστε μαζί μας</value>
   </data>
+  <data name="Common_Actions_Customize">
+    <value>Προσαρμογή</value>
+  </data>
   <data name="Common_Actions_Delete">
     <value>Διαγραφή</value>
   </data>
@@ -403,6 +406,9 @@
   </data>
   <data name="Connections_Country_UnderMaintenance">
     <value>Όλοι οι διακομιστές σε αυτήν τη χώρα βρίσκονται υπό συντήρηση</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Δεν είναι δυνατή η σύνδεση</value>
   </data>
   <data name="Connections_Fastest">
     <value>Γρηγορότερο</value>
@@ -3145,6 +3151,12 @@
   </data>
   <data name="Settings_Connection_Default_Last_Description">
     <value>Η σύνδεση που χρησιμοποιήσατε πιο πρόσφατα</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Τυχαία χώρα</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Διαφορετικός διακομιστής κάθε φορά που συνδέεστε</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Πρόσφατα</value>
