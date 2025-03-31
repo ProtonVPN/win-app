@@ -61,11 +61,6 @@ public class ProfilesMigrator : IProfilesMigrator
 
     public void Migrate(List<LegacyProfile> legacyProfiles, string? quickConnectProfileId = null)
     {
-        if (legacyProfiles is null)
-        {
-            return;
-        }
-
         List<IConnectionProfile> connectionProfiles = MapProfilesToConnectionProfiles(legacyProfiles);
         _profilesManager.OverrideProfiles(connectionProfiles);
 

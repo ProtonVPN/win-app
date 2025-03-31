@@ -286,23 +286,24 @@ public class UserSettingsMigrator : IUserSettingsMigrator
 
     private void MigrateProfilesAndQuickConnectProfileId(Dictionary<string, string?> userSettings)
     {
-        userSettings.TryGetValue(GlobalSettingsMigrator.QUICK_CONNECT_PROFILE_ID_SETTING_KEY, out string? quickConnectProfileId);
-
-        if (userSettings.TryGetValue(GlobalSettingsMigrator.PROFILES_SETTING_KEY, out string? rawSettingValue) && rawSettingValue is not null)
+        try
         {
-            try
-            {
-                List<LegacyProfile>? deserializedValue = _jsonSerializer.DeserializeFromString<List<LegacyProfile>?>(rawSettingValue);
-                if (deserializedValue is not null)
-                {
-                    _logger.Info<AppLog>("Migrating profiles.");
-                    _profilesMigrator.Migrate(deserializedValue, quickConnectProfileId);
-                }
-            }
-            catch(Exception e)
-            {
-                _logger.Error<AppLog>($"Error while migrating profiles.", e);
-            }
+            _logger.Info<AppLog>("Migrating profiles.");
+
+            userSettings.TryGetValue(GlobalSettingsMigrator.QUICK_CONNECT_PROFILE_ID_SETTING_KEY, out string? quickConnectProfileId);
+
+            userSettings.TryGetValue(GlobalSettingsMigrator.PROFILES_SETTING_KEY, out string? rawProfiles);
+            List<LegacyProfile> legacyProfiles = 
+                rawProfiles is not null && 
+                _jsonSerializer.DeserializeFromString<List<LegacyProfile>?>(rawProfiles) is List<LegacyProfile> deserializedProfiles
+                    ? deserializedProfiles
+                    : [];
+
+            _profilesMigrator.Migrate(legacyProfiles, quickConnectProfileId);
+        }
+        catch (Exception e)
+        {
+            _logger.Error<AppLog>($"Error while migrating profiles.", e);
         }
     }
 
