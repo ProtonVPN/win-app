@@ -24,7 +24,6 @@ using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Profiles.Files;
-using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.Logic.Profiles;
 
@@ -34,7 +33,6 @@ public class ProfilesManager : IProfilesManager,
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IProfilesFileReaderWriter _profilesFileReaderWriter;
     private readonly IDefaultProfilesProvider _defaultProfilesProvider;
-    private readonly ISettings _settings;
 
     private readonly object _lock = new();
 
@@ -43,13 +41,11 @@ public class ProfilesManager : IProfilesManager,
     public ProfilesManager(
         IEventMessageSender eventMessageSender,
         IProfilesFileReaderWriter profilesFileReaderWriter,
-        IDefaultProfilesProvider defaultProfilesProvider,
-        ISettings settings)
+        IDefaultProfilesProvider defaultProfilesProvider)
     {
         _eventMessageSender = eventMessageSender;
         _profilesFileReaderWriter = profilesFileReaderWriter;
         _defaultProfilesProvider = defaultProfilesProvider;
-        _settings = settings;
     }
 
     public IOrderedEnumerable<IConnectionProfile> GetAll()
@@ -68,12 +64,10 @@ public class ProfilesManager : IProfilesManager,
         {
             _profiles.Clear();
 
-            foreach (IConnectionProfile profile in profiles)
-            {
-                AddOrEditProfile(profile);
-            }
+            _profiles.AddRange(_defaultProfilesProvider.GetDefaultProfiles());
+            _profiles.AddRange(profiles.DistinctBy(p => p.Id));
 
-            SaveProfiles();
+            SaveAndBroadcastProfileChanges(NotifyCollectionChangedAction.Reset);
         }
     }
 
