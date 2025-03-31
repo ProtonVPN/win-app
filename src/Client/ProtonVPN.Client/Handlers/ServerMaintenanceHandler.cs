@@ -25,6 +25,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Handlers;
 
@@ -54,7 +55,7 @@ public class ServerMaintenanceHandler : IHandler, IEventMessageReceiver<ServerLi
                 string reason = server is null ? "removed from the API" : "put under maintenance";
                 _logger.Info<AppLog>($"The current server {_connectionManager.CurrentConnectionDetails.ServerName} " +
                                      $"was {reason}, connecting to the default intent.");
-                await _connectionManager.ReconnectAsync();
+                await _connectionManager.ReconnectAsync(VpnTriggerDimension.Auto);
             }
         }
     }

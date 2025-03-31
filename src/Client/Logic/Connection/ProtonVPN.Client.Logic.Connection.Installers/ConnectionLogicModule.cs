@@ -25,6 +25,7 @@ using ProtonVPN.Client.Logic.Connection.GuestHole;
 using ProtonVPN.Client.Logic.Connection.NetworkingTraffic;
 using ProtonVPN.Client.Logic.Connection.RequestCreators;
 using ProtonVPN.Client.Logic.Connection.ServerListGenerators;
+using ProtonVPN.Client.Logic.Connection.Statistics;
 using ProtonVPN.Client.Logic.Connection.Validators;
 using ProtonVPN.EntityMapping.Common.Installers.Extensions;
 

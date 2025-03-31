@@ -62,20 +62,20 @@ public class VpnConnectionDimensionsProvider : IVpnConnectionDimensionsProvider
     {
         return new Dictionary<string, string>
         {
-            { "protocol", _vpnProtocolMapper.Map(eventData.Protocol) },
             { "outcome", _outcomeMapper.Map(eventData.Outcome) },
+            { "user_tier", _vpnPlanMapper.Map(eventData.VpnPlan) },
             { "vpn_status", _vpnStatusMapper.Map(eventData.VpnStatus) },
             { "vpn_trigger", _vpnTriggerMapper.Map(eventData.VpnTrigger) },
             { "network_type", _networkConnectionTypeMapper.Map(eventData.NetworkConnectionType) },
-            { "user_tier", _vpnPlanMapper.Map(eventData.VpnPlan) },
             { "server_features", _serverDetailsMapper.Map(eventData.Server) },
-            { "vpn_feature_intent", _vpnFeatureIntentMapper.Map(eventData.VpnFeatureIntent)  },
             { "vpn_country", eventData.VpnCountry ?? DimensionMapperBase.NOT_AVAILABLE },
             { "user_country", eventData.UserCountry ?? DimensionMapperBase.NOT_AVAILABLE },
+            { "protocol", _vpnProtocolMapper.Map(eventData.Protocol) },
             { "server", eventData.Server?.Name ?? DimensionMapperBase.NOT_AVAILABLE },
             { "entry_ip", eventData.Server?.EntryIp ?? DimensionMapperBase.NOT_AVAILABLE },
             { "port", eventData.Port > 0 ? eventData.Port.ToString() : DimensionMapperBase.NOT_AVAILABLE },
             { "isp", string.IsNullOrWhiteSpace(eventData.Isp) ? DimensionMapperBase.NOT_AVAILABLE : eventData.Isp },
+            { "vpn_feature_intent", _vpnFeatureIntentMapper.Map(eventData.VpnFeatureIntent)  },
         };
     }
 }

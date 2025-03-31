@@ -32,6 +32,7 @@ using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.UI.Main.Profiles.Contracts;
 using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.UI.Main.Profiles;
 
@@ -248,7 +249,7 @@ public partial class ProfilePageViewModel : PageViewModelBase<IMainViewNavigator
 
         if (isReconnectionRequired)
         {
-            return await _connectionManager.ReconnectAsync();
+            return await _connectionManager.ReconnectAsync(VpnTriggerDimension.NewConnection);
         }
         else if (IsConnectedToProfile() && haveSettingsChanged)
         {

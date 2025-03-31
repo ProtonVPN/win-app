@@ -35,6 +35,7 @@ using ProtonVPN.Client.Settings.Contracts.Conflicts.Bases;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.UI.Main;
 
@@ -257,7 +258,7 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
 
         if (isReconnectionRequired)
         {
-            return await ConnectionManager.ReconnectAsync();
+            return await ConnectionManager.ReconnectAsync(VpnTriggerDimension.NewConnection);
         }
 
         return true;

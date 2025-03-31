@@ -41,6 +41,7 @@ using ProtonVPN.Client.UI.Main.Settings;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.UI.Main.Widgets.Bases;
 using ProtonVPN.Client.UI.Main.Widgets.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.UI.Main.Features.Bases;
 
@@ -226,7 +227,7 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
 
         if (isReconnectionRequired)
         {
-            await ConnectionManager.ReconnectAsync();
+            await ConnectionManager.ReconnectAsync(VpnTriggerDimension.NewConnection);
         }
 
         return true;

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Logging.Contracts;
+namespace ProtonVPN.Client.Logic.Connection.Statistics;
 
-namespace ProtonVPN.Logging.Contracts.Categories;
-
-public class AppLogCategory : ILogCategory
+public enum AttemptType
 {
-    public string Category => "APP";
+    Connection,
+    Disconnection,
 }

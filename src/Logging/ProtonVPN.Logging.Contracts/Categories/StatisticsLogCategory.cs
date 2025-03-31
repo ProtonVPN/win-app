@@ -17,11 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Logging.Contracts;
-
 namespace ProtonVPN.Logging.Contracts.Categories;
 
-public class AppLogCategory : ILogCategory
+public class StatisticsLogCategory : ILogCategory
 {
-    public string Category => "APP";
+    public string Category => "STATS";
 }

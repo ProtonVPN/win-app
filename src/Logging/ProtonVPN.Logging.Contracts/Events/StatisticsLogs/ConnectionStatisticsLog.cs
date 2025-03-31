@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Categories;
 
-namespace ProtonVPN.Logging.Contracts.Categories;
+namespace ProtonVPN.Logging.Contracts.Events.StatisticsLogs;
 
-public class AppLogCategory : ILogCategory
+public class ConnectionStatisticsLog : LogEventBase<StatisticsLogCategory>
 {
-    public string Category => "APP";
+    protected override string Event => "CONN";
 }
