@@ -40,6 +40,9 @@ public class RegistryUri
     public static RegistryUri CreateCurrentUserUri(string path, string key)
         => new(RegistryHive.CurrentUser, path: path, key: key);
 
+    public static RegistryUri CreateClassesRootUri(string path, string key)
+        => new(RegistryHive.ClassesRoot, path: path, key: key);
+
     public override string ToString()
     {
         return $"'{HiveKey}':'{Path}':'{Key}'";

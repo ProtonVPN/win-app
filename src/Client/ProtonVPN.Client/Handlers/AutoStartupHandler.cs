@@ -33,7 +33,6 @@ public class AutoStartupHandler : IHandler, IEventMessageReceiver<SettingChanged
 
     public AutoStartupHandler(
         ISettings settings,
-        IRegistryEditor registryEditor,
         IAppStartupActivator appStartupActivator)
     {
         _settings = settings;
