@@ -32,31 +32,34 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Settings.Migrations;
 
 public class ProfilesMigrator : IProfilesMigrator
 {
-    private const int RANDOM_PROFILE_TYPE = 2;
     private const string FASTEST_PROFILE_NAME = "Fastest";
     private const string RANDOM_PROFILE_NAME = "Random";
-    private const ProfileCategory DEFAULT_MIGRATED_PROFILE_CATEGORY = ProfileCategory.Terminal;
 
     private readonly IServersLoader _serversLoader;
     private readonly IProfilesManager _profilesManager;
     private readonly IRecentConnectionsManager _recentConnectionsManager;
     private readonly ISettings _settings;
+    private readonly ILogger _logger;
 
     public ProfilesMigrator(
         IServersLoader serversLoader,
         IProfilesManager profilesManager,
         IRecentConnectionsManager recentConnectionsManager,
-        ISettings settings)
+        ISettings settings,
+        ILogger logger)
     {
         _serversLoader = serversLoader;
         _profilesManager = profilesManager;
         _recentConnectionsManager = recentConnectionsManager;
         _settings = settings;
+        _logger = logger;
     }
 
     public void Migrate(List<LegacyProfile> legacyProfiles, string? quickConnectProfileId = null)
@@ -91,7 +94,9 @@ public class ProfilesMigrator : IProfilesMigrator
 
         foreach (LegacyProfile legacyProfile in legacyProfiles)
         {
-            connectionProfiles.Add(GetConnectionProfile(legacyProfile));
+            IConnectionProfile connectionProfile = GetConnectionProfile(legacyProfile);
+            _logger.Info<AppLog>($"Migrated profile '{connectionProfile}'.");
+            connectionProfiles.Add(connectionProfile);
         }
 
         return connectionProfiles;
@@ -102,9 +107,9 @@ public class ProfilesMigrator : IProfilesMigrator
         ILocationIntent? locationIntent;
         IFeatureIntent? featureIntent = null;
 
-        Server? server = string.IsNullOrEmpty(legacyProfile.ServerId)
+        Server? server = string.IsNullOrWhiteSpace(legacyProfile.ServerId)
             ? null
-            : _serversLoader.GetById(legacyProfile.ServerId);
+            : GetServerById(legacyProfile, legacyProfile.ServerId);
 
         if (server is null)
         {
@@ -167,6 +172,18 @@ public class ProfilesMigrator : IProfilesMigrator
         return new ConnectionProfile(profileId, DateTime.UtcNow, profileIcon, profileSettings, profileOptions, locationIntent, featureIntent, profileName);
     }
 
+    private Server? GetServerById(LegacyProfile legacyProfile, string serverId)
+    {
+        Server? server = _serversLoader.GetById(serverId);
+
+        if (server is null)
+        {
+            _logger.Warn<AppLog>($"No server was found with ID '{serverId}'. The profile '{legacyProfile.Name}' ({legacyProfile.CountryCode}) will be migrated without the server.");
+        }
+
+        return server;
+    }
+
     private ConnectionIntentKind GetLegacyProfileConnectionIntentKind(LegacyProfile legacyProfile)
     {
         return ConnectionIntentKind.Fastest;
@@ -217,7 +234,9 @@ public class ProfilesMigrator : IProfilesMigrator
             LegacyProfile? profile = profiles.FirstOrDefault(p => p.Id == quickConnectProfileId);
             if (profile is not null)
             {
-                return GetConnectionProfile(profile);
+                IConnectionProfile connectionProfile = GetConnectionProfile(profile);
+                _logger.Info<AppLog>($"Migrated quick connect profile '{connectionProfile}'.");
+                return connectionProfile;
             }
         }
 
