@@ -149,14 +149,16 @@ public class ServersLoader : IServersLoader
     public IEnumerable<Server> GetServersByState(State state)
     {
         return GetPaidServersByFilter(s => s.ExitCountry == state.CountryCode
-                                        && s.State == state.Name);
+                                        && s.State == state.Name
+                                        && s.IsStandard());
     }
 
     public IEnumerable<Server> GetServersByCity(City city)
     {
         return GetPaidServersByFilter(s => s.ExitCountry == city.CountryCode
                                         && s.State == city.StateName
-                                        && s.City == city.Name);
+                                        && s.City == city.Name
+                                        && s.IsStandard());
     }
 
     public IEnumerable<Server> GetServersByFeatures(ServerFeatures serverFeatures)
