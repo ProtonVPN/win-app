@@ -18,7 +18,6 @@
  */
 
 using ProtonVPN.Client.Common.Enums;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 namespace ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 
