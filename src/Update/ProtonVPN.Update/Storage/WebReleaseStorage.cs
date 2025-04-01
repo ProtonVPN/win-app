@@ -88,6 +88,11 @@ public class WebReleaseStorage : IReleaseStorage
 
     private bool ReleaseFilter(ReleaseResponse r)
     {
+        if (Version.TryParse(r.Version, out Version version) && _config.CurrentVersion >= version)
+        {
+            return true;
+        }
+
         return (r.ReleaseDate is null || r.ReleaseDate <= DateTime.UtcNow) &&
                (r.SystemVersion?.Minimum is null ||
                 !Version.TryParse(r.SystemVersion.Minimum, out Version minimumOsVersion) ||
