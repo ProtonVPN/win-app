@@ -118,9 +118,9 @@ public static class LocalizationExtensions
         string title = localizer.GetConnectionIntentTitle(profile);
         string subtitle = localizer.GetConnectionIntentSubtitle(profile);
 
-        return profile != null && profile.Feature is SecureCoreFeatureIntent secureCoreIntent && secureCoreIntent.IsFastest
-            ? ConcatenateLocations(title, subtitle)
-            : $"{title} {subtitle}".Trim();
+        return profile != null && profile.Feature is SecureCoreFeatureIntent secureCoreIntent && !secureCoreIntent.IsFastest
+            ? $"{title} {subtitle}".Trim()
+            : ConcatenateLocations(title, subtitle);
     }
 
     public static string GetConnectionDetailsTitle(this ILocalizationProvider localizer, ConnectionDetails? connectionDetails)
