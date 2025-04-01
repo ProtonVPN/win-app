@@ -69,9 +69,11 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
     public void Activate()
     {
+        Logger.Debug<AppLog>($"Activating {typeof(TWindow)?.Name}.");
+
         if (Host == null)
         {
-            Logger.Info<AppLog>($"Activating {typeof(TWindow)?.Name}. No active instance, create one.");
+            Logger.Info<AppLog>($"No active instance for {typeof(TWindow)?.Name}, create one.");
             Activator.CreateInstance<TWindow>();
         }
 
@@ -88,9 +90,11 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
     public void Hide()
     {
+        Logger.Debug<AppLog>($"Hiding {typeof(TWindow)?.Name}.");
+
         if (Host == null)
         {
-            Logger.Error<AppLog>("Window has not been initialized");
+            Logger.Debug<AppLog>("Window has not been initialized");
             return;
         }
 
@@ -101,9 +105,11 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
     public void Exit()
     {
+        Logger.Debug<AppLog>($"Exiting {typeof(TWindow)?.Name}.");
+
         if (Host == null)
         {
-            Logger.Error<AppLog>("Window has not been initialized");
+            Logger.Debug<AppLog>("Window has not been initialized");
             return;
         }
 

@@ -24,6 +24,7 @@ namespace ProtonVPN.OperatingSystems.Registries.Contracts
         public object? ReadObject(RegistryUri uri);
         public int? ReadInt(RegistryUri uri);
         public string? ReadString(RegistryUri uri);
+        Dictionary<string, string> ReadAll(RegistryUri uri);
 
         /// <summary>Returns 'true' if successfully written or 'false' if an error occurred.</summary>
         public bool WriteInt(RegistryUri uri, int value);

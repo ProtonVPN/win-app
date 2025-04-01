@@ -24,7 +24,6 @@ using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
 using ProtonVPN.OperatingSystems.Registries.Contracts;
 
 namespace ProtonVPN.OperatingSystems.Registries;
-
 public class RegistryEditor : IRegistryEditor
 {
     private readonly ILogger _logger;
@@ -36,56 +35,44 @@ public class RegistryEditor : IRegistryEditor
 
     public object? ReadObject(RegistryUri uri)
     {
-        RegistryKey? key = null;
         try
         {
-            key = OpenBaseKey(uri.HiveKey).OpenSubKey(uri.Path);
-            if (key != null)
-            {
-                return key.GetValue(uri.Key);
-            }
-            _logger.Error<OperatingSystemRegistryAccessFailedLog>($"Failed to open registry path before reading {uri}.");
+            using RegistryKey? key = OpenBaseKey(uri.HiveKey).OpenSubKey(uri.Path);
+            return key?.GetValue(uri.Key);
         }
         catch (Exception ex)
         {
             _logger.Error<OperatingSystemRegistryAccessFailedLog>($"Failed to read registry {uri}.", ex);
+            return null;
         }
-        finally
-        {
-            key?.Close();
-        }
-        return null;
     }
 
     public int? ReadInt(RegistryUri uri)
     {
-        object? registryValue = ReadObject(uri);
-        if (registryValue is not null)
+        object? value = ReadObject(uri);
+        if (value == null)
         {
-            int result;
-            try
-            {
-                result = (int)registryValue;
-                return result;
-            }
-            catch
-            {
-            }
-            string? stringValue = null;
-            try
-            {
-                stringValue = registryValue.ToString();
-                if (int.TryParse(stringValue, out result))
-                {
-                    return result;
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.Error<AppLog>($"Failed when parsing registry value '{stringValue}' to int.", ex);
-            }
+            return null;
         }
+
+        if (value is int intValue)
+        {
+            return intValue;
+        }
+
+        if (int.TryParse(value.ToString(), out int parsedValue))
+        {
+            return parsedValue;
+        }
+
+        _logger.Error<AppLog>($"Failed to parse registry value '{value}' to int.");
         return null;
+    }
+
+    public string? ReadString(RegistryUri uri)
+    {
+        object? value = ReadObject(uri);
+        return value?.ToString();
     }
 
     private RegistryKey OpenBaseKey(RegistryHive registryHive)
@@ -93,56 +80,9 @@ public class RegistryEditor : IRegistryEditor
         return RegistryKey.OpenBaseKey(registryHive, RegistryView.Registry64);
     }
 
-    public string? ReadString(RegistryUri uri)
-    {
-        object? registryValue = ReadObject(uri);
-        if (registryValue is not null)
-        {
-            string result;
-            try
-            {
-                result = (string)registryValue;
-                return result;
-            }
-            catch
-            {
-                return registryValue.ToString();
-            }
-        }
-        return null;
-    }
-
     public bool WriteInt(RegistryUri uri, int value)
     {
         return WriteObject(uri, value, RegistryValueKind.DWord);
-    }
-
-    private bool WriteObject(RegistryUri uri, object value, RegistryValueKind valueKind)
-    {
-        bool isSuccess = false;
-        RegistryKey key = OpenBaseKey(uri.HiveKey).CreateSubKey(uri.Path, writable: true);
-        if (key == null)
-        {
-            string errorMessage = $"Failed to open registry path before writing to {uri}.";
-            _logger.Error<OperatingSystemRegistryAccessFailedLog>(errorMessage);
-        }
-        else
-        {
-            try
-            {
-                key.SetValue(uri.Key, value, valueKind);
-                isSuccess = true;
-            }
-            catch (Exception ex)
-            {
-                _logger.Error<OperatingSystemRegistryAccessFailedLog>($"Failed when writing {value} to {uri}", ex);
-            }
-            finally
-            {
-                key?.Close();
-            }
-        }
-        return isSuccess;
     }
 
     public bool WriteString(RegistryUri uri, string value)
@@ -150,27 +90,85 @@ public class RegistryEditor : IRegistryEditor
         return WriteObject(uri, value, RegistryValueKind.String);
     }
 
+    private bool WriteObject(RegistryUri uri, object value, RegistryValueKind valueKind)
+    {
+        try
+        {
+            using RegistryKey? key = OpenBaseKey(uri.HiveKey).CreateSubKey(uri.Path, writable: true);
+            if (key == null)
+            {
+                _logger.Error<OperatingSystemRegistryAccessFailedLog>($"Failed to open registry path before writing to {uri}.");
+                return false;
+            }
+
+            key.SetValue(uri.Key, value, valueKind);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<OperatingSystemRegistryAccessFailedLog>($"Failed to write {value} to {uri}.", ex);
+            return false;
+        }
+    }
+
     public bool? Delete(RegistryUri uri)
     {
-        bool? isSuccess = null;
-        RegistryKey? key = OpenBaseKey(uri.HiveKey).OpenSubKey(uri.Path, RegistryKeyPermissionCheck.ReadWriteSubTree);
-        if (key != null)
+        try
         {
-            try
+            using RegistryKey? key = OpenBaseKey(uri.HiveKey).OpenSubKey(uri.Path, RegistryKeyPermissionCheck.ReadWriteSubTree);
+            if (key == null)
             {
-                key.DeleteValue(uri.Key, throwOnMissingValue: false);
-                isSuccess = true;
+                return null;
             }
-            catch (Exception ex)
+
+            key.DeleteValue(uri.Key, throwOnMissingValue: false);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<OperatingSystemRegistryAccessFailedLog>($"Failed deleting registry {uri}.", ex);
+            return false;
+        }
+    }
+
+    public Dictionary<string, string> ReadAll(RegistryUri uri)
+    {
+        var result = new Dictionary<string, string>();
+
+        try
+        {
+            using RegistryKey? key = OpenBaseKey(uri.HiveKey).OpenSubKey(uri.Path);
+            if (key != null)
             {
-                isSuccess = false;
-                _logger.Error<OperatingSystemRegistryAccessFailedLog>($"Failed deleting registry {uri}.", ex);
+                foreach (string valueName in key.GetValueNames())
+                {
+                    object? value = key.GetValue(valueName);
+                    result[valueName] = ConvertRegistryValueToString(value);
+                }
             }
-            finally
+            else
             {
-                key?.Close();
+                _logger.Error<OperatingSystemRegistryAccessFailedLog>($"Failed to open registry path before reading all values: {uri}.");
             }
         }
-        return isSuccess;
+        catch (Exception ex)
+        {
+            _logger.Error<OperatingSystemRegistryAccessFailedLog>($"Failed to read all registry values from {uri}.", ex);
+        }
+
+        return result;
+    }
+
+    private static string ConvertRegistryValueToString(object? value)
+    {
+        return value switch
+        {
+            null => "NULL",
+            string str => str,
+            int i => i.ToString(),
+            long l => l.ToString(),
+            byte[] bytes => BitConverter.ToString(bytes), // Converts bytes to a hex string: "AA-BB-CC"
+            _ => value.ToString() ?? "UNKNOWN"
+        };
     }
 }

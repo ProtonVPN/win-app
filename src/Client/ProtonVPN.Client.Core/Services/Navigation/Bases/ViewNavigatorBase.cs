@@ -19,6 +19,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Common.Dispatching;
@@ -75,15 +76,17 @@ public abstract class ViewNavigatorBase : FrameActivatorBase, IViewNavigator
 
     public async Task<bool> GoBackAsync(bool forceNavigation = false)
     {
+        Logger.Debug<AppLog>($"Navigating backward on {GetType()?.Name}.");
+
         if (Host == null)
         {
-            Logger.Error<AppLog>("Frame has not been initialized");
+            Logger.Debug<AppLog>("Frame has not been initialized");
             return false;
         }
 
         if (!CanGoBack)
         {
-            Logger.Error<AppLog>("Backward navigation on that frame has been disabled");
+            Logger.Info<AppLog>("Backward navigation on that frame has been disabled");
             return false;
         }
 
@@ -171,15 +174,17 @@ public abstract class ViewNavigatorBase : FrameActivatorBase, IViewNavigator
 
     private async Task<bool> NavigateToAsync(Type pageType, object? parameter = null, bool clearNavigation = false, bool forceNavigation = false)
     {
+        Logger.Debug<AppLog>($"Navigating to {pageType?.Name} on {GetType()?.Name}.");
+
         if (Host == null)
         {
-            Logger.Error<AppLog>("Frame has not been initialized");
+            Logger.Debug<AppLog>("Frame has not been initialized");
             return false;
         }
 
         if (!CanNavigate)
         {
-            Logger.Error<AppLog>("Navigation on that frame has been disabled");
+            Logger.Info<AppLog>("Navigation on that frame has been disabled");
             return false;
         }
 
