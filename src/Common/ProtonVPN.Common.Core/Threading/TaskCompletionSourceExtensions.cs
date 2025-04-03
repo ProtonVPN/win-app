@@ -23,26 +23,27 @@ public static class TaskCompletionSourceExtensions
 {
     public static Task Wrap(this TaskCompletionSource<object?> source, Func<Task> action)
     {
-        return source.Wrap(async () =>
+        return source.WrapAsync(async () =>
         {
             await action();
             return null;
         });
     }
 
-    public static async Task Wrap<T>(this TaskCompletionSource<T?> source, Func<Task<T?>> function)
+    public static async Task WrapAsync<T>(this TaskCompletionSource<T?> source, Func<Task<T?>> function)
     {
         try
         {
-            source.SetResult(await function());
+            T? result = await function();
+            source.TrySetResult(result);
         }
         catch (OperationCanceledException)
         {
-            source.SetCanceled();
+            source.TrySetCanceled();
         }
         catch (Exception e)
         {
-            source.SetException(e);
+            source.TrySetException(e);
         }
     }
 }

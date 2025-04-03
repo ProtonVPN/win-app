@@ -38,11 +38,11 @@ public abstract class ObserverBase : IObserver
         TriggerAction = new SingleAction(OnSafeTriggerAsync);
     }
 
-    private void OnSafeTriggerAsync()
+    private async Task OnSafeTriggerAsync()
     {
         try
         {
-            OnTriggerAsync();
+            await OnTriggerAsync();
         }
         catch (Exception ex)
         {
