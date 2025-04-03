@@ -63,7 +63,7 @@ public static class AppInstanceHelper
            [_redirectEventHandle], out uint handleIndex);
 
         // Bring the window to the foreground
-        //BringToForeground();
+        BringToForeground();
     }
 
     private static void BringToForeground()

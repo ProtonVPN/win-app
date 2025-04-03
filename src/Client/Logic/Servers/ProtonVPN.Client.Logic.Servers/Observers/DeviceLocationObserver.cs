@@ -151,7 +151,7 @@ public class DeviceLocationObserver :
 
             await Task.Delay(delayInMs);
 
-            await OnTriggerAsync();
+            TriggerAction.Run();
         }
         finally
         {

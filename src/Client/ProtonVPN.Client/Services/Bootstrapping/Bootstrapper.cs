@@ -179,9 +179,15 @@ public class Bootstrapper : IBootstrapper
 
     private void OnCurrentAppInstanceActivated(object? sender, AppActivationArguments e)
     {
-        if (e.Kind == ExtendedActivationKind.Protocol)
+        switch (e.Kind)
         {
-            HandleProtocolActivationArguments(e.Data as ProtocolActivatedEventArgs);
+            case ExtendedActivationKind.Protocol:
+                HandleProtocolActivationArguments(e.Data as ProtocolActivatedEventArgs);
+                break;
+            default:
+                _logger.Debug<AppLog>($"Handle {e.Kind} activation - Activate window");
+                _mainWindowActivator.Activate();
+                break;
         }
     }
 
