@@ -119,32 +119,39 @@ public class SystemNetworkInterfaces : ISystemNetworkInterfaces
 
     public NetworkConnectionType? GetNetworkConnectionType()
     {
-        System.Net.NetworkInformation.NetworkInterface[] activeInterfaces = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces()
-            .Where(ni => ni.OperationalStatus == OperationalStatus.Up &&
-                         (ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
-                          ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211))
-            .ToArray();
-
-        foreach (System.Net.NetworkInformation.NetworkInterface networkInterface in activeInterfaces)
+        try
         {
-            IPInterfaceProperties ipProperties = networkInterface.GetIPProperties();
-            bool hasDefaultGateway = ipProperties.GatewayAddresses.Any(g =>
-                g.Address.AddressFamily == AddressFamily.InterNetwork &&
-                !g.Address.Equals(IPAddress.Any));
+            System.Net.NetworkInformation.NetworkInterface[] activeInterfaces = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces()
+                .Where(ni => ni.OperationalStatus == OperationalStatus.Up &&
+                             (ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
+                              ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211))
+                .ToArray();
 
-            if (!hasDefaultGateway)
+            foreach (System.Net.NetworkInformation.NetworkInterface networkInterface in activeInterfaces)
             {
-                continue;
-            }
+                IPInterfaceProperties ipProperties = networkInterface.GetIPProperties();
+                bool hasDefaultGateway = ipProperties.GatewayAddresses.Any(g =>
+                    g.Address.AddressFamily == AddressFamily.InterNetwork &&
+                    !g.Address.Equals(IPAddress.Any));
 
-            if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
-            {
-                return NetworkConnectionType.Wired;
+                if (!hasDefaultGateway)
+                {
+                    continue;
+                }
+
+                if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
+                {
+                    return NetworkConnectionType.Wired;
+                }
+                else if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Wireless80211)
+                {
+                    return NetworkConnectionType.Wifi;
+                }
             }
-            else if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Wireless80211)
-            {
-                return NetworkConnectionType.Wifi;
-            }
+        }
+        catch (NetworkInformationException ex)
+        {
+            _logger.Error<NetworkLog>("Failed to retreive a network connection type.", ex);
         }
 
         return NetworkConnectionType.Other;
