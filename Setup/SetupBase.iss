@@ -19,6 +19,8 @@
 
 #define ProtonInstallerName "ProtonInstaller.exe"
 #define Webview2InstallerName "MicrosoftEdgeWebview2Setup.exe"
+#define VcRedistX64Name "VC_redist.x64.exe"
+#define VcRedistArm64Name "VC_redist.arm64.exe"
 #define InstallLogPath "{app}\Install.log.txt"
 #define ClearAppDataClientArg "-DoUninstallActions"
 
@@ -696,6 +698,35 @@ begin
     Result := '';
 end;
 
+procedure InstallVisualCppRedistributableIfNotInstalled();
+var
+  TempFileName: string;
+  ResultCode: Integer;
+begin
+  if RegValueExists(HKLM, 'SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\{#Architecture}', 'Version') then begin
+    Log('Visual c++ redistributable package is already installed, skipping.');
+    Exit;
+  end;
+
+  if CompareText('{#Architecture}', 'x64') = 0 then
+    TempFileName := '{#VcRedistX64Name}'
+  else if CompareText('{#Architecture}', 'arm64') = 0 then
+    TempFileName := '{#VcRedistArm64Name}'
+  else begin
+    Log('Unsupported architecture {#Architecture} when trying to install visual c++ redistributable package.');
+    Exit;
+  end;
+
+  ExtractTemporaryFile(TempFileName);
+
+  if Exec(ExpandConstant('{tmp}\' + TempFileName), '/install /quiet /norestart', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then begin
+    Log('Successfully installed the latest visual c++ redistributable package.');
+  end
+  else begin
+    Log('Failed to install the latest visual c++ redistributable package. Error code: ' + IntToStr(ResultCode));
+  end;
+end;
+
 procedure CurStepChanged(CurStep: TSetupStep);
 var
   logfilepathname, logfilename, newfilepathname, langCode, launcherArgs, productArguments: String;
@@ -744,6 +775,9 @@ begin
     end;
   end
   else if CurStep = ssPostInstall then begin
+
+    InstallVisualCppRedistributableIfNotInstalled();
+
     if IsNotSilent then begin
       if not RegValueExists(HKLM, 'SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}', 'pv') then begin
         InstallationProgressLabel.Caption := CustomMessage('InstallingWebview2Runtime');
