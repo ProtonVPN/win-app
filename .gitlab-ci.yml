@@ -423,7 +423,7 @@ mirror:
     - git clone "$CI_REPOSITORY_URL" --branch master _APP_CLONE;
     - cd _APP_CLONE
     - git remote add public $PUBLIC_REPO_URL
-    - git push public master -f
+    - git push public master
     - git push public "$(git describe --abbrev=0)"
 
 i18n-sync-crowdin-redesign_2024:
