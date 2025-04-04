@@ -31,3 +31,5 @@ Source: "tap\arm64\tapprotonvpn.cat"; DestDir: "{app}\{#VersionFolder}\Resources
 Source: "tap\arm64\tapprotonvpn.sys"; DestDir: "{app}\{#VersionFolder}\Resources\tap";
 
 Source: "..\{#SourcePath}\runtimes\win-arm64\native\*"; DestDir: "{app}\{#VersionFolder}\runtimes\win-arm64\native";
+
+Source: "Dependencies\{#VcRedistArm64Name}"; Flags: dontcopy;
