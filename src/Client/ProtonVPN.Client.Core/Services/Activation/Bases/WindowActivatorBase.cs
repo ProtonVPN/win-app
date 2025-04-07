@@ -94,7 +94,7 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
         if (Host == null)
         {
-            Logger.Debug<AppLog>("Window has not been initialized");
+            Logger.Info<AppLog>($"Cannot hide {typeof(TWindow)?.Name}, the window has not been initialized");
             return;
         }
 
@@ -109,7 +109,7 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
         if (Host == null)
         {
-            Logger.Debug<AppLog>("Window has not been initialized");
+            Logger.Info<AppLog>($"Cannot exit {typeof(TWindow)?.Name}, the window has not been initialized");
             return;
         }
 
@@ -167,46 +167,34 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
     protected virtual void OnWindowActivated()
     {
-        Logger.Info<AppLog>($"Window '{GetHostTitle()}' is activated.");
-    }
-
-    private string? GetHostTitle()
-    {
-        try
-        {
-            return Host?.Title;
-        }
-        catch
-        {
-            return null;
-        }
+        Logger.Info<AppLog>($"Window '{typeof(TWindow)?.Name}' is activated.");
     }
 
     protected virtual void OnWindowClosing(WindowEventArgs e)
     {
-        Logger.Info<AppLog>($"Closing window '{GetHostTitle()}' requested.");
+        Logger.Info<AppLog>($"Closing window '{typeof(TWindow)?.Name}' requested.");
     }
 
     protected virtual void OnWindowCloseAborted()
     {
-        Logger.Info<AppLog>($"Closing window '{GetHostTitle()}' aborted.");
+        Logger.Info<AppLog>($"Closing window '{typeof(TWindow)?.Name}' aborted.");
     }
 
     protected virtual void OnWindowClosed()
     {
-        Logger.Info<AppLog>($"Window '{GetHostTitle()}' is closed.");
+        Logger.Info<AppLog>($"Window '{typeof(TWindow)?.Name}' is closed.");
 
         HandleClosedEvent = true;
     }
 
     protected virtual void OnWindowHidden()
     {
-        Logger.Info<AppLog>($"Window '{GetHostTitle()}' is hidden.");
+        Logger.Info<AppLog>($"Window '{typeof(TWindow)?.Name}' is hidden.");
     }
 
     protected virtual void OnWindowStateChanged()
     {
-        Logger.Info<AppLog>($"Window '{GetHostTitle()}' state has changed to {CurrentWindowState}.");
+        Logger.Info<AppLog>($"Window '{typeof(TWindow)?.Name}' state has changed to {CurrentWindowState}.");
     }
 
     protected virtual void OnWindowActivationStateChanged()

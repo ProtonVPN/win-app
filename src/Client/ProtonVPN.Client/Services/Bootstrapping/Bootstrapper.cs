@@ -185,7 +185,7 @@ public class Bootstrapper : IBootstrapper
                 HandleProtocolActivationArguments(e.Data as ProtocolActivatedEventArgs);
                 break;
             default:
-                _logger.Debug<AppLog>($"Handle {e.Kind} activation - Activate window");
+                _logger.Info<AppLog>($"Handle {e.Kind} activation - Activate window");
                 _mainWindowActivator.Activate();
                 break;
         }
@@ -193,7 +193,7 @@ public class Bootstrapper : IBootstrapper
 
     private void HandleProtocolActivationArguments(ProtocolActivatedEventArgs? args)
     {
-        _logger.Debug<AppLog>("Handle protocol activation - Activate window and refresh vpn plan");
+        _logger.Info<AppLog>("Handle protocol activation - Activate window and refresh vpn plan");
 
         // TODO: Investigate why protocol activation arguments are always null
         _mainWindowActivator.Activate();
@@ -276,7 +276,7 @@ public class Bootstrapper : IBootstrapper
         bool isAutoLaunchEnabled = _settings.IsAutoLaunchEnabled;
         bool isAutoLaunchModeOpenOnDesktop = _settings.AutoLaunchMode == AutoLaunchMode.OpenOnDesktop;
 
-        _logger.Debug<AppLog>($"Handle main window start condtions - HasAuthenticatedSessionData: {hasAuthenticatedSessionData}, IsAutoLaunchEnabled: {isAutoLaunchEnabled}, IsAutoLaunchModeOpenOnDesktop: {isAutoLaunchModeOpenOnDesktop}");
+        _logger.Info<AppLog>($"Handle main window start condtions - HasAuthenticatedSessionData: {hasAuthenticatedSessionData}, IsAutoLaunchEnabled: {isAutoLaunchEnabled}, IsAutoLaunchModeOpenOnDesktop: {isAutoLaunchModeOpenOnDesktop}");
 
         if (!hasAuthenticatedSessionData || !isAutoLaunchEnabled || isAutoLaunchModeOpenOnDesktop)
         {

@@ -172,7 +172,7 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
         VpnConnectionEventData eventData = CreateConnectionEventData(outcome);
 
         _vpnConnectionStatisticalEventSender.Send(eventData, connectionTimeInMs);
-        _logger.Debug<ConnectionStatisticsLog>($"vpn_connection event from {eventData.VpnTrigger} trigger. {eventData.Outcome}. Connection time: {connectionTimeInMs}ms");
+        _logger.Info<ConnectionStatisticsLog>($"vpn_connection event from {eventData.VpnTrigger} trigger. {eventData.Outcome}. Connection time: {connectionTimeInMs}ms");
     }
 
     private void SendDisconnectionEvent(OutcomeDimension outcome)
@@ -184,7 +184,7 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
         VpnConnectionEventData eventData = CreateConnectionEventData(outcome);
 
         _vpnDisconnectionStatisticalEventSender.Send(eventData, sessionTimeInMs);
-        _logger.Debug<ConnectionStatisticsLog>($"vpn_disconnection event from {eventData.VpnTrigger} trigger. {eventData.Outcome}. Session time: {sessionTimeInMs}ms");
+        _logger.Info<ConnectionStatisticsLog>($"vpn_disconnection event from {eventData.VpnTrigger} trigger. {eventData.Outcome}. Session time: {sessionTimeInMs}ms");
     }
 
     private VpnConnectionEventData CreateConnectionEventData(OutcomeDimension outcome)
@@ -206,7 +206,7 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
             VpnStatus = _currentAttemptConnectionStatus is ConnectionStatus.Connected
                 ? VpnStatusDimension.On
                 : VpnStatusDimension.Off,
-            VpnTrigger = _currentAttemptTrigger ?? VpnTriggerDimension.Auto,
+            VpnTrigger = _currentAttemptTrigger,
             NetworkConnectionType = _networkInterfaces.GetNetworkConnectionType(),
             Protocol = _lastKnownConnectionDetails?.Protocol,
             VpnFeatureIntent = vpnFeatureIntent,
