@@ -271,10 +271,10 @@
     <value>Fazer upgrade</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>O Kill switch avançado está ativado. Para usar a internet sem a VPN, desative-o.</value>
+    <value>O kill switch avançado está ativado. Para usar a Internet sem a VPN, desative-o.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>Kill switch avançado está ativado. Ao continuar, você perderá a conexão de internet.</value>
+    <value>O kill switch avançado está ativado. Ao continuar, você perderá a conexão de Internet.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>Você será desconectado da VPN.</value>
@@ -1359,7 +1359,7 @@
     <comment>The name of NI country</comment>
   </data>
   <data name="Country_val_NL">
-    <value>Países baixos</value>
+    <value>Países Baixos</value>
     <comment>The name of NL country</comment>
   </data>
   <data name="Country_val_NO">
@@ -1774,7 +1774,7 @@ Latências altas podem reduzir a velocidade da conexão.</value>
     <value>O que é latência?</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Sua conexão foi desativada porque você está usando um servidor que não oferece suporte a tráfego ponto a ponto (P2P). P2P não é compatível com servidores gratuitos. Use um servidor diferente para P2P.</value>
+    <value>Sua conexão foi desativada porque você está usando um servidor que não oferece suporte a tráfego peer-to-peer (P2P). P2P não é compatível com servidores gratuitos. Use um servidor diferente para P2P.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
     <value>Tráfego P2P detectado</value>
@@ -1792,7 +1792,7 @@ Latências altas podem reduzir a velocidade da conexão.</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhatIsP2PServer_Description">
-    <value>Servidores VPN P2P (ponto a ponto) desbloqueiam sites de torrent.</value>
+    <value>Servidores de VPN P2P (peer-to-peer) desbloqueiam sites de torrent.</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting">
@@ -1800,7 +1800,7 @@ Latências altas podem reduzir a velocidade da conexão.</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhatIsTorrenting_Description">
-    <value>O compartilhamento e download rápido de arquivos grandes em uma rede ponto a ponto (P2P).</value>
+    <value>O compartilhamento e download rápido de arquivos grandes em uma rede peer-to-peer (P2P).</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhyUse">
@@ -1881,7 +1881,7 @@ Latências altas podem reduzir a velocidade da conexão.</value>
   <data name="Dialogs_ServerLoad_Description">
     <value>A carga do servidor mostra o quão próximo um servidor está da capacidade máxima.
 
-Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
+Uma carga alta de servidor pode tornar sua conexão mais lenta.</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Description">
     <value>A VPN pode funcionar mais lentamente que o normal</value>
@@ -1893,7 +1893,7 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Velocidade ultrarrápida</value>
   </data>
   <data name="Dialogs_ServerLoad_LowRange_Title">
-    <value>Baixo (1–75%)</value>
+    <value>Baixa (1–75%)</value>
   </data>
   <data name="Dialogs_ServerLoad_MediumRange_Description">
     <value>É improvável que afete a velocidade da VPN</value>
@@ -1935,7 +1935,7 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Estes programas podem interferir com conexões VPN.</value>
   </data>
   <data name="Dialogs_Troubleshooting_CheckInternet">
-    <value>Verifique sua conexão com a internet</value>
+    <value>Verifique sua conexão com a Internet</value>
   </data>
   <data name="Dialogs_Troubleshooting_CheckInternet_Description">
     <value>Certifique-se de que você está on-line e que sua conexão está estável.</value>
@@ -1959,10 +1959,10 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Ajuda de conexão</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
-    <value>Isso encerrará sua conexão à VPN. Qualquer conexão ativa com a internet ficará temporariamente desprotegida.</value>
+    <value>Isso encerrará sua conexão à VPN. Qualquer conexão ativa com a Internet ficará temporariamente desprotegida.</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
-    <value>Isso encerrará sua conexão à VPN e desativar temporariamente o kill switch. Qualquer conexão ativa com a internet ficará temporariamente desprotegida. </value>
+    <value>Isso encerrará sua conexão à VPN e desativará temporariamente o kill switch. Qualquer conexão ativa com a Internet ficará temporariamente desprotegida. </value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Title_Install">
     <value>Instalar atualização?</value>
@@ -2103,25 +2103,25 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Endereço IP</value>
   </data>
   <data name="Flyouts_IpAddress_VpnIp">
-    <value>IP VPN</value>
+    <value>IP da VPN</value>
   </data>
   <data name="Flyouts_IpAddress_YourIp">
     <value>Seu IP</value>
   </data>
   <data name="Flyouts_IpAddress_YourIpIsVisible">
-    <value>Seu endereço de IP está visível</value>
+    <value>Seu endereço IP está visível</value>
   </data>
   <data name="Flyouts_Isp_Description1">
-    <value>Sua ISP (Provedora de Serviço de Internet) é a empresa que te conecta com a internet.</value>
+    <value>Seu ISP (Provedor de Serviços de Internet) é a empresa que faz a sua conexão com a Internet.</value>
   </data>
   <data name="Flyouts_Isp_Description2">
     <value>Eles podem registrar sua atividade on-line. Em alguns países, elas podem vender seus dados para anunciantes. Em outros, podem ser obrigadas a entregá-los ao governo.</value>
   </data>
   <data name="Flyouts_Isp_Description3">
-    <value>Uma VPN oculta seu endereço de IP, protegendo você de interferência do ISP.</value>
+    <value>Uma VPN oculta seu endereço IP, protegendo você de interferência do ISP.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
-    <value>Oque é um Provedor de Serviços de Internet (ISP)?</value>
+    <value>O que é um Provedor de Serviços de Internet (ISP)?</value>
   </data>
   <data name="Flyouts_Isp_Title">
     <value>Provedor</value>
@@ -2130,7 +2130,7 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Seu provedor pode ver quais sites você visita</value>
   </data>
   <data name="Flyouts_KillSwitch_Advanced_Success">
-    <value>Bloqueia todo o acesso à internet quando você não está conectado ao Proton VPN</value>
+    <value>Bloqueia todo o acesso à Internet quando você não está conectado ao Proton VPN</value>
   </data>
   <data name="Flyouts_KillSwitch_Info">
     <value>Seu endereço IP pode ser exposto se a sua conexão de VPN cair.</value>
@@ -2142,7 +2142,7 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>O kill switch avançado se aplica mesmo se você se desconectar intencionalmente da VPN</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Disconnected">
-    <value>Para voltar a ficar online, conecte-se ao VPN ou desabilite o interruptor de desligamento avançado</value>
+    <value>Para voltar a ficar on-line, conecte-se à VPN ou desative o kill switch avançado</value>
   </data>
   <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
     <value>Você tem proteção contra anúncios, rastreadores e malware.</value>
@@ -2166,10 +2166,10 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Insira o número da porta ativa em seu aplicativo BitTorrent para melhorar suas velocidades de P2P</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
-    <value>Melhora a velocidades de download ponto a ponto</value>
+    <value>Melhora a velocidade de download peer-to-peer</value>
   </data>
   <data name="Flyouts_PortForwarding_Upsell_Description">
-    <value>Sobrecarregue arquivo ponto a ponto (P2P) compartilhando performance com o VPN Plus.</value>
+    <value>Maximize o desempenho de compartilhamento peer-to-peer (P2P) de arquivos com o VPN Plus.</value>
   </data>
   <data name="Flyouts_PortForwarding_Upsell_Title">
     <value>Melhore a velocidade P2P</value>
@@ -2187,7 +2187,7 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Protocolo</value>
   </data>
   <data name="Flyouts_ServerLoad_Description">
-    <value>A carga do servidor mostra o quão próximo um servidor está da capacidade máxima.Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
+    <value>A carga do servidor mostra o quão próximo um servidor está da capacidade máxima. Uma carga alta de servidor pode tornar sua conexão mais lenta.</value>
   </data>
   <data name="Flyouts_ServerLoad_High">
     <value>Alta (91-100%)</value>
@@ -2199,7 +2199,7 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>O que é carga do servidor?</value>
   </data>
   <data name="Flyouts_ServerLoad_Low">
-    <value>Baixo (1–75%)</value>
+    <value>Baixa (1–75%)</value>
   </data>
   <data name="Flyouts_ServerLoad_Low_Description">
     <value>Velocidade ultrarrápida</value>
@@ -2227,13 +2227,13 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>Compreendendo e aumentando as velocidades de conexão VPN</value>
+    <value>Entendendo e aumentando as velocidades da conexão VPN</value>
   </data>
   <data name="Flyouts_Speed_Title">
     <value>Velocidade</value>
   </data>
   <data name="Flyouts_Speed_Upload">
-    <value>Envio</value>
+    <value>Upload</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
@@ -2261,10 +2261,10 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Aplicativos protegidos ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Protected_Ips_One">
-    <value>Endereço de IP protegido ({0})</value>
+    <value>Endereço IP protegido ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
-    <value>Endereços de IP protegidos ({0})</value>
+    <value>Endereços IP protegidos ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Standard_Info">
     <value>Apenas esses aplicativos e endereços IP se conectam por meio da VPN, o restante do tráfego fica desprotegido.</value>
@@ -2286,7 +2286,7 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Volume</value>
   </data>
   <data name="Flyouts_Volume_Upload">
-    <value>Envio</value>
+    <value>Upload</value>
     <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
   </data>
   <data name="Format_Milliseconds">
@@ -2529,7 +2529,7 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Desprotegido</value>
   </data>
   <data name="Home_ConnectionDetails_UnprotectedSubLabel">
-    <value>Criptografe sua atividade online conectando-se à VPN.</value>
+    <value>Criptografe sua atividade on-line conectando-se à VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
     <value>Volume</value>
@@ -2541,13 +2541,13 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Volume total</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Upload">
-    <value>Volume de envio:</value>
+    <value>Volume de upload:</value>
   </data>
   <data name="Home_ConnectionDetails_VpnIp">
-    <value>IP VPN</value>
+    <value>IP da VPN</value>
   </data>
   <data name="Home_ConnectionDetails_YourIpAddress">
-    <value>Seu endereço de IP</value>
+    <value>Seu endereço IP</value>
   </data>
   <data name="Home_FreeConnections_About">
     <value>Mais informação sobre as conexões gratuitas</value>
@@ -2754,7 +2754,7 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Atualize o Proton VPN para continuar</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Description">
-    <value>Nossos servidores P2P (peer-to-peer) permitem que você acesse redes P2P e ainda proteja seu endereço IP e sua atividade online.</value>
+    <value>Nossos servidores P2P (peer-to-peer) permitem que você acesse redes P2P e ainda proteja seu endereço IP e sua atividade on-line.</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Header">
     <value>O que é uma VPN P2P?</value>
@@ -2767,7 +2767,7 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Description">
     <value>  • Baixando arquivos torrent
-  • Melhorando o desempenho de jogos online e videochamadas
+  • Melhorando o desempenho de jogos on-line e videochamadas
   • Conectando-se a dispositivos de rede local (LAN)</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Header">
@@ -2826,7 +2826,7 @@ padrão</value>
   <data name="Overlay_ServerLoad_Description">
     <value>A carga do servidor mostra o quão próximo um servidor está da capacidade máxima.
 
-Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
+Uma carga alta de servidor pode tornar sua conexão mais lenta.</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Description">
     <value>A VPN pode funcionar mais lentamente que o normal</value>
@@ -2841,7 +2841,7 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Velocidade ultrarrápida</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Title">
-    <value>Baixo (1–75%)</value>
+    <value>Baixa (1–75%)</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Description">
     <value>É improvável que afete a velocidade da VPN</value>
@@ -3117,7 +3117,7 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Moderado (tipo 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
-    <value>Alguma restrição na entrada de dados na sua rede. Esta opção é melhor para videogames online.</value>
+    <value>Alguma restrição na entrada de dados na sua rede. Esta opção é melhor para jogos on-line.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict">
     <value>Estrito (tipo 3)</value>
@@ -3168,7 +3168,7 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Avançado</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
-    <value>Permitir acesso à Internet apenas quando conectado ao Proton VPN. O kill-switch avançado permanecerá ativo mesmo quando você reiniciar o dispositivo.</value>
+    <value>Permitir acesso à Internet apenas quando conectado ao Proton VPN. O kill switch avançado permanecerá ativo mesmo quando você reiniciar o dispositivo.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Description">
     <value>Isso desativará o tunelamento dividido.</value>
@@ -3186,7 +3186,7 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Padrão</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard_Description">
-    <value>Desconecte-se automaticamente da Internet se a conexão VPN for perdida.</value>
+    <value>Desconectar-se automaticamente da Internet se a conexão VPN for perdida.</value>
   </data>
   <data name="Settings_Connection_NetShield">
     <value>NetShield</value>
@@ -3367,7 +3367,7 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Atualizações automáticas</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Verificar e instalar automaticamente atualizações do Proton VPN</value>
+    <value>Procure e instale atualizações do Proton VPN automaticamente</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>Acesso beta</value>
@@ -3531,7 +3531,7 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Reportar um problema</value>
   </data>
   <data name="Settings_Support_SupportCenter">
-    <value>Centro de ajuda</value>
+    <value>Central de ajuda</value>
   </data>
   <data name="Settings_Theme_Dark">
     <value>Escuro</value>
@@ -3687,10 +3687,10 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Conecte-se à VPN com seu servidor de nomes de domínio (DNS) personalizado</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
-    <value>Acesse dispositivos na sua rede local (LAN) enquanto estiver conectado.</value>
+    <value>Acesse dispositivos na sua rede local (LAN) enquanto estiver conectado</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
-    <value>Aprimore sua experiência gamer ao mudar para o tipo de NAT 2 (moderado).</value>
+    <value>Aprimore sua experiência gamer ao mudar para o tipo de NAT 2 (moderado)</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices">
     <value>Conecte até 10 dispositivos ao mesmo tempo</value>
@@ -3751,7 +3751,7 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Defina um perfil como sua conexão padrão e conecte-se em 1 clique</value>
   </data>
   <data name="Upsell_Carousel_Profiles_Creation">
-    <value>Crie e salve suas próprias configurações de VPN com os perfis.</value>
+    <value>Crie e salve suas próprias configurações de VPN com os perfis</value>
   </data>
   <data name="Upsell_Carousel_Profiles_Customization">
     <value>Personalize sua localização, protocolo e definições</value>
@@ -3766,10 +3766,10 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Proteja-se contra ataques de rede</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Routing">
-    <value>Roteie por servidores ultrasseguros na Suíça, Suécia e Islândia.</value>
+    <value>Roteie por servidores ultrasseguros na Suíça, Suécia e Islândia</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Navegue em velocidades ainda mais rápidas (até 10 Gbps)</value>
+    <value>Navegue em velocidades ainda maiores (até 10 Gbps)</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
     <value>Aumente sua velocidade de conexão em até 400% com VPN Accelerator</value>
@@ -3787,10 +3787,10 @@ Uma carga alta do servidor pode tornar sua conexão mais lenta.</value>
     <value>Permita que aplicativos e endereços IP confiáveis se conectem diretamente à Internet, enquanto protege todo o resto com sua VPN</value>
   </data>
   <data name="Upsell_Carousel_Streaming">
-    <value>Assista a seus filmes e programas de TV favoritos.</value>
+    <value>Assista a seus filmes e programas de TV favoritos</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Access">
-    <value>Acesse TV e filmes com bloqueio geográfico de qualquer lugar do mundo.</value>
+    <value>Acesse TV e filmes com bloqueio geográfico de qualquer lugar do mundo</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Platforms_BBC">
     <value>BBC iPlayer</value>

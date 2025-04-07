@@ -2569,7 +2569,7 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>Les publicités sont des bannières promotionnelles ou des pop-ups qui s'affichent sur les sites internet et les applications.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Données enregistrées</value>
+    <value>Données économisées</value>
   </data>
   <data name="Home_NetShield_DataSaved_Description">
     <value>Estimation des données économisées en bloquant les publicités, traqueurs et logiciels malveillants.</value>
@@ -3459,7 +3459,7 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>Vitesse (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description">
-    <value>Protocole à la pointe de la technologie en matière de sécurité et de performance.</value>
+    <value>Protocole de pointe en matière de sécurité et de performance.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Title">
     <value>WireGuard</value>
@@ -3471,7 +3471,7 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>Stealth</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>Protocole à la pointe de la technologie en matière de sécurité et de performance.</value>
+    <value>Protocole de pointe en matière de sécurité et de performance.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
@@ -3754,7 +3754,7 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>Créez et enregistrez vos propres configurations VPN à l'aide de profils.</value>
   </data>
   <data name="Upsell_Carousel_Profiles_Customization">
-    <value>Personnalisez votre emplacement, protocole et paramètres</value>
+    <value>Personnalisez votre emplacement, votre protocole et vos paramètres</value>
   </data>
   <data name="Upsell_Carousel_SecureCore">
     <value>Ajoutez une protection supplémentaire à votre connexion.</value>
@@ -3872,7 +3872,7 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>WireGuard (TCP)</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tcp_Description">
-    <value>Protocole à la pointe de la technologie en matière de sécurité et de performance</value>
+    <value>Protocole de pointe en matière de sécurité et de performance</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tls">
     <value>Stealth</value>
@@ -3884,6 +3884,6 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>WireGuard (UDP)</value>
   </data>
   <data name="VpnProtocol_WireGuard_Udp_Description">
-    <value>Protocole à la pointe de la technologie en matière de sécurité et de performance</value>
+    <value>Protocole de pointe en matière de sécurité et de performance</value>
   </data>
 </root>

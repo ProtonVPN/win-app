@@ -2746,16 +2746,16 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_AdsBlocked_One">
-    <value>Reklama zablokována</value>
+    <value>Blokovaná reklama</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Few">
-    <value>Reklamy zablokovány</value>
+    <value>Blokované reklamy</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Many">
-    <value>Reklamy zablokovány</value>
+    <value>Blokované reklamy</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Other">
-    <value>Reklamy zablokovány</value>
+    <value>Blokované reklamy</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Description">
     <value>Reklamy jsou propagační plochy nebo vyskakovací okna objevující se na webových stránkách nebo v aplikacích.</value>
@@ -2774,16 +2774,16 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
     <value>Statistiky NetShield</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_One">
-    <value>Sledovací prvek zastaven</value>
+    <value>Zastavený sledovací prvek</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Few">
-    <value>Sledovací prvky zastaveny</value>
+    <value>Zastavené sledovací prvky</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Many">
-    <value>Sledovací prvky zastaveny</value>
+    <value>Zastavené sledovací prvky</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Other">
-    <value>Sledovací prvky zastaveny</value>
+    <value>Zastavené sledovací prvky</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Description">
     <value>Sledovací prvky jsou cookies a webové stránky třetích stran, které sbírají, uchovávají a prodávají informace o vaší webové aktivitě.</value>

@@ -228,7 +228,7 @@
     <value>Disconnetti</value>
   </data>
   <data name="Common_Actions_DisconnectFrom">
-    <value>Disconnesso da {0}</value>
+    <value>Disconnetti da {0}</value>
     <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -277,7 +277,7 @@
     <value>Il kill switch avanzato è abilitato. Se continui, verrà effettuata la disconnessione da Internet.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
-    <value>Verrai disconnesso dalla VPN.</value>
+    <value>La VPN verrà disconnessa.</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>Scopri di più</value>
@@ -620,7 +620,7 @@
     <value>Paesi</value>
   </data>
   <data name="Countries_All">
-    <value>Tutto</value>
+    <value>Tutti</value>
   </data>
   <data name="Countries_City_One">
     <value>{0} città</value>
@@ -1718,7 +1718,7 @@
     <value>Hai raggiunto il numero massimo di cambi gratuiti del server per ora</value>
   </data>
   <data name="Dialogs_Common_GetStarted">
-    <value>Per iniziare</value>
+    <value>Inizia</value>
   </data>
   <data name="Dialogs_Common_SubscriptionExpired">
     <value>Abbonamento scaduto</value>
@@ -1756,7 +1756,7 @@ Una latenza elevata può rallentare la connessione.</value>
     <value>La VPN potrebbe essere più lenta del solito</value>
   </data>
   <data name="Dialogs_Latency_HighRange_Title">
-    <value>Alta (150ms+)</value>
+    <value>Alta (oltre 150 ms)</value>
   </data>
   <data name="Dialogs_Latency_LowRange_Description">
     <value>Alta velocità</value>
@@ -1814,7 +1814,7 @@ Una latenza elevata può rallentare la connessione.</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_Protocol_Description">
-    <value>Un protocollo è un insieme di istruzioni che il tuo dispositivo segue per connettersi e comunicare con un server.</value>
+    <value>Il protocollo è un insieme di istruzioni che il tuo dispositivo segue per connettersi e comunicare con un server.</value>
   </data>
   <data name="Dialogs_Protocol_SwitchHeader">
     <value>Cambia il protocollo VPN</value>
@@ -2052,7 +2052,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Profili ancora più potenti</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Description">
-    <value>Riconnettersi ai server preferiti ora è ancora più semplice. Visualizza le tue connessioni recenti nella schermata iniziale o fissale per un accesso più rapido.</value>
+    <value>Riconnettersi ai server preferiti è ancora più semplice. Visualizza le tue connessioni recenti nella schermata iniziale o fissale per accedere più rapidamente.</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Title">
     <value>Connessioni recenti</value>
@@ -2067,7 +2067,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Vuoi uscire da Proton VPN?</value>
   </data>
   <data name="Exit_Message">
-    <value>Disconnessione dalla VPN...</value>
+    <value>Disconnessione dalla VPN in corso...</value>
   </data>
   <data name="Exit_Title">
     <value>Esci da Proton VPN</value>
@@ -2121,13 +2121,13 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Una VPN nasconde il tuo indirizzo IP, proteggendoti dalle interferenze dell'ISP.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
-    <value>Che cos'è un provider di servizi Internet (ISP)?</value>
+    <value>Che cos'è un fornitore di servizi Internet (ISP)?</value>
   </data>
   <data name="Flyouts_Isp_Title">
     <value>Fornitore</value>
   </data>
   <data name="Flyouts_Isp_Warning">
-    <value>Il tuo provider può vedere quali siti web visiti</value>
+    <value>Il tuo fornitore può vedere quali siti web visiti</value>
   </data>
   <data name="Flyouts_KillSwitch_Advanced_Success">
     <value>Blocca tutti gli accessi a Internet quando la connessione a Proton VPN non è attiva</value>
@@ -2157,7 +2157,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Blocca pubblicità, tracker e malware con VPN Plus.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
-    <value>Approfitta di una navigazione senza annunci</value>
+    <value>Goditi una navigazione senza annunci</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Numero di porta attiva</value>
@@ -2178,7 +2178,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Per utilizzare il port forwarding, connettiti a un server P2P</value>
   </data>
   <data name="Flyouts_Protocol_Description">
-    <value>Un protocollo VPN determina il modo in cui il traffico viene crittografato e trasmesso tramite la VPN.</value>
+    <value>Il protocollo VPN determina il modo in cui il traffico viene crittografato e trasmesso tramite la VPN.</value>
   </data>
   <data name="Flyouts_Protocol_KnowledgeBaseLinkTitle">
     <value>Qual è il protocollo VPN migliore?</value>
@@ -2227,13 +2227,13 @@ Un carico elevato può rallentare la connessione.</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>Comprendere e aumentare la velocità di connessione VPN</value>
+    <value>Scopri di più sulla velocità di connessione della VPN e su come aumentarla</value>
   </data>
   <data name="Flyouts_Speed_Title">
     <value>Velocità</value>
   </data>
   <data name="Flyouts_Speed_Upload">
-    <value>Caricamento</value>
+    <value>Upload</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
@@ -2273,7 +2273,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Separa il tuo traffico in tunnel VPN e non-VPN con VPN Plus.</value>
   </data>
   <data name="Flyouts_SplitTunneling_Upsell_Title">
-    <value>Ottieni il meglio di entrambi i mondi</value>
+    <value>Raddoppia i vantaggi</value>
   </data>
   <data name="Flyouts_Volume_Description">
     <value>Questo mostra la quantità di traffico instradato attraverso la tua VPN.</value>
@@ -2286,7 +2286,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Volume</value>
   </data>
   <data name="Flyouts_Volume_Upload">
-    <value>Caricamento</value>
+    <value>Upload</value>
     <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
   </data>
   <data name="Format_Milliseconds">
@@ -2498,7 +2498,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Il mio IP</value>
   </data>
   <data name="Home_ConnectionDetails_Protected">
-    <value>Protetto</value>
+    <value>Protezione attiva</value>
   </data>
   <data name="Home_ConnectionDetails_Protocol">
     <value>Protocollo</value>
@@ -2526,7 +2526,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Dettagli della connessione</value>
   </data>
   <data name="Home_ConnectionDetails_Unprotected">
-    <value>Non protetto</value>
+    <value>Protezione non attiva</value>
   </data>
   <data name="Home_ConnectionDetails_UnprotectedSubLabel">
     <value>Crittografa la tua attività online connettendoti alla VPN.</value>
@@ -2653,10 +2653,10 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Stai proteggendo la tua identità digitale...</value>
   </data>
   <data name="Home_VpnStatus_Subtitle_Disconnected">
-    <value>Non sei protetto</value>
+    <value>La protezione non è attiva</value>
   </data>
   <data name="Home_VpnStatus_Title_Connected">
-    <value>Protetto</value>
+    <value>Protezione attiva</value>
   </data>
   <data name="LoadingPage_Tip">
     <value>Un mondo migliore inizia dalla privacy e dalla libertà digitale.</value>
@@ -3105,10 +3105,10 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Tipo di NAT</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
-    <value>Non potrai utilizzare il port forwarding con NAT Moderato.</value>
+    <value>Non potrai utilizzare il port forwarding con NAT moderato.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
-    <value>Vuoi abilitare NAT Moderato?</value>
+    <value>Vuoi abilitare il NAT Moderato?</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Description">
     <value>Seleziona un tipo di traduzione dell'indirizzo di rete per la tua connessione.</value>
@@ -3168,7 +3168,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Avanzate</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
-    <value>Consenti l'accesso a Internet solamente quando sei connesso a Proton VPN. Il kill switch avanzato rimarrà attivo anche se il dispositivo viene riavviato.</value>
+    <value>Consenti l'accesso a Internet solamente quando la connessione a Proton VPN è attiva. Il kill switch avanzato rimarrà attivo anche se il dispositivo viene riavviato.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Description">
     <value>Questo disabiliterà split tunneling.</value>
@@ -3225,7 +3225,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Copia il numero della porta</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Description">
-    <value>Non potrai utilizzare NAT Moderato quando il port forwarding è abilitato.</value>
+    <value>Non potrai utilizzare il NAT Moderato quando il port forwarding è abilitato.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Title">
     <value>Vuoi abilitare port forwarding?</value>
@@ -3243,7 +3243,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Notifiche</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Ricevi una notifica quando cambia il numero di port forwarding</value>
+    <value>Ricevi una notifica quando cambia il numero di port forwarding.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocollo</value>
@@ -3288,7 +3288,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Personalizza la tua connessione decidendo quali app e indirizzi IP vengono protetti dalla VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Inversa</value>
+    <value>Inverso</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>Solamente le app e gli indirizzi IP selezionati si connettono tramite VPN, tutto il resto del traffico non è protetto</value>
@@ -3370,7 +3370,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Verifica e installa automaticamente gli aggiornamenti di Proton VPN</value>
   </data>
   <data name="Settings_General_BetaAccess">
-    <value>Accesso beta</value>
+    <value>Accesso a versioni beta</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
     <value>Ottieni l'accesso anticipato e aiutaci a testare le nuove versioni di Proton VPN</value>
@@ -3429,7 +3429,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Impostazioni</value>
   </data>
   <data name="Settings_Protocols_Explanation">
-    <value>Un protocollo VPN determina il modo in cui i dati si spostano tra un server VPN e il tuo dispositivo.</value>
+    <value>Il protocollo VPN determina il modo in cui i dati si spostano tra un server VPN e il tuo dispositivo.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Description">
     <value>Consolidato, ben testato e sicuro. OpenVPN è affidabile in condizioni di rete scadenti, ma potrebbe non essere veloce come altri protocolli.</value>
@@ -3552,7 +3552,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Il kill switch avanzato sta bloccando la tua connessione Internet.</value>
   </data>
   <data name="SignIn_Form_BestSecureVpnForSpeed">
-    <value>La miglior VPN sicura per la velocità</value>
+    <value>La miglior VPN: sicura e veloce</value>
   </data>
   <data name="SignIn_Form_CreateAccount">
     <value>Crea un account</value>
@@ -3597,7 +3597,7 @@ Un carico elevato può rallentare la connessione.</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
-    <value>Accesso</value>
+    <value>Accedi</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="SignIn_Form_SignInWithSso">
@@ -3607,7 +3607,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Con sede in Svizzera</value>
   </data>
   <data name="SignIn_Form_Title">
-    <value>Accesso</value>
+    <value>Accedi</value>
   </data>
   <data name="SignIn_Form_TroubleSigningIn">
     <value>Centro assistenza</value>
@@ -3624,7 +3624,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Kill switch disabilitato</value>
   </data>
   <data name="SystemNotification_Connected">
-    <value>Ora sei protetto</value>
+    <value>La protezione ora è attiva</value>
   </data>
   <data name="SystemNotification_ConnectedTo">
     <value>Connesso a {0}.</value>
@@ -3687,7 +3687,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Connettiti alla VPN con il tuo server dei nomi di dominio (DNS) personalizzato</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
-    <value>Accedi ai dispositivi sulla tua rete locale (LAN) mentre sei connesso</value>
+    <value>Accedi ai dispositivi sulla tua rete locale (LAN) durante la connessione</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
     <value>Migliora la tua esperienza di gioco passando al NAT di tipo 2 (moderato)</value>
@@ -3720,7 +3720,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Sicurezza e privacy su tutti i tuoi dispositivi</value>
   </data>
   <data name="Upsell_Carousel_NetShield">
-    <value>Approfitta di una navigazione senza annunci</value>
+    <value>Goditi una navigazione senza annunci</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Block">
     <value>Blocca annunci e tracker con NetShield</value>
@@ -3729,10 +3729,10 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Proteggi il tuo dispositivo dai malware</value>
   </data>
   <data name="Upsell_Carousel_P2P">
-    <value>Sblocca lo scaricamento peer-to-peer e la condivisione dei file (P2P)</value>
+    <value>Sblocca i download peer-to-peer e la condivisione dei file (P2P)</value>
   </data>
   <data name="Upsell_Carousel_P2P_Discretion">
-    <value>Nascondi il tuo indirizzo IP al fornitore di servizi Internet e agli altri membri delle condivisioni</value>
+    <value>Nascondi il tuo indirizzo IP al fornitore di servizi Internet e agli altri utenti</value>
   </data>
   <data name="Upsell_Carousel_P2P_PortForwarding">
     <value>Aumenta la velocità P2P con il port forwarding</value>
@@ -3741,14 +3741,14 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Velocità di upload e download aumentate</value>
   </data>
   <data name="Upsell_Carousel_Platforms_More">
-    <value>+ altro</value>
+    <value>+ altre</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
   </data>
   <data name="Upsell_Carousel_Profiles">
     <value>Ottieni un accesso rapido alle connessioni frequenti</value>
   </data>
   <data name="Upsell_Carousel_Profiles_Convenience">
-    <value>Imposta un profilo come connessione predefinita e connettiti con 1 clic</value>
+    <value>Imposta un profilo come connessione predefinita e connettiti con un clic</value>
   </data>
   <data name="Upsell_Carousel_Profiles_Creation">
     <value>Crea e salva le tue configurazioni VPN con Profili</value>
@@ -3778,7 +3778,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Accedi a server più veloci e meno affollati</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
-    <value>Ottieni il meglio di entrambi i mondi</value>
+    <value>Raddoppia i vantaggi</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Browsing">
     <value>Naviga da due località contemporaneamente con lo split tunneling</value>
@@ -3790,7 +3790,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Guarda in streaming i tuoi film e programmi TV preferiti</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Access">
-    <value>Accedi a TV e film limitati geograficamente da qualsiasi parte del mondo</value>
+    <value>Accedi a TV e film con restrizioni geografiche da qualsiasi parte del mondo</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Platforms_BBC">
     <value>BBC iPlayer</value>
@@ -3823,7 +3823,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Accedi a siti nascosti e siti onion</value>
   </data>
   <data name="Upsell_Carousel_Tor_Browsing">
-    <value>Naviga nella rete Tor utilizzando browser abituale</value>
+    <value>Naviga nella rete Tor utilizzando il tuo browser abituale</value>
   </data>
   <data name="Upsell_Carousel_Tor_Protection">
     <value>Proteggi i tuoi dati personali durante la navigazione</value>
@@ -3833,7 +3833,7 @@ Un carico elevato può rallentare la connessione.</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Controllato da esperti di sicurezza indipendenti</value>
+    <value>Sottoposta a controlli di esperti di sicurezza indipendenti</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
     <value>Evita la censura con funzionalità avanzate di sicurezza e privacy</value>
