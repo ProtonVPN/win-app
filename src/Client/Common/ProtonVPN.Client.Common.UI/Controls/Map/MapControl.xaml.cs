@@ -789,7 +789,7 @@ public sealed partial class MapControl
 
     private bool OnLayerAnimationTick()
     {
-        if (_activeAnimations.Count < 0 && _pinFadeAnimation is null)
+        if (_activeAnimations.Count <= 0 && _pinFadeAnimation is null)
         {
             return false;
         }

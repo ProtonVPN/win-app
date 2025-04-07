@@ -136,7 +136,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
     public async Task ConnectToGuestHoleAsync()
     {
-        _statisticalEventManager.SetConnectionAttempt(VpnTriggerDimension.Auto, ConnectionStatus);
+        //_statisticalEventManager.SetConnectionAttempt(VpnTriggerDimension.Auto, ConnectionStatus);
 
         IOrderedEnumerable<GuestHoleServerContract> servers = _guestHoleServersFileStorage.Get().OrderBy(_ => _random.Next());
         ConnectionRequestIpcEntity request = await _guestHoleConnectionRequestCreator.CreateAsync(servers);
@@ -147,7 +147,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
     public async Task DisconnectFromGuestHoleAsync()
     {
-        _statisticalEventManager.SetDisconnectionAttempt(VpnTriggerDimension.Auto, ConnectionStatus);
+        //_statisticalEventManager.SetDisconnectionAttempt(VpnTriggerDimension.Auto, ConnectionStatus);
 
         DisconnectionRequestIpcEntity request = _disconnectionRequestCreator.Create(VpnError.NoneKeepEnabledKillSwitch);
 

@@ -169,6 +169,15 @@ public class DeviceLocationObserver :
         };
 
         _settings.DeviceLocation = deviceLocation;
+
+        if (string.IsNullOrEmpty(deviceLocation.CountryCode))
+        {
+            Logger.Warn<AppLog>($"Device country location is unknown.");
+        }
+        if (string.IsNullOrEmpty(deviceLocation.IpAddress))
+        {
+            Logger.Warn<AppLog>($"Device IP is unknown.");
+        }
     }
 
     public void Receive(SettingChangedMessage message)

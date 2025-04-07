@@ -28,7 +28,7 @@ public class VpnConnectionEventData
 {
     public OutcomeDimension? Outcome { get; init; }
     public VpnStatusDimension? VpnStatus { get; init; }
-    public VpnTriggerDimension VpnTrigger { get; init; }
+    public VpnTriggerDimension? VpnTrigger { get; init; }
     public NetworkConnectionType? NetworkConnectionType { get; init; }
     public VpnProtocol? Protocol { get; init; }
     public VpnFeatureIntent? VpnFeatureIntent { get; init; }
