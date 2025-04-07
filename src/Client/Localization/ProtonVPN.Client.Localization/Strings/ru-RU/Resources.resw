@@ -371,7 +371,7 @@
     <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
   </data>
   <data name="Connection_Via_SecureCore">
-    <value>через {0}</value>
+    <value>используется {0}</value>
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
   <data name="Connections_Cities_One">
@@ -2393,7 +2393,7 @@
     <value>Исключённые приложения ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_Many">
-    <value>Исключённые приложения ({0})</value>
+    <value>Исключённые приложений ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
     <value>Исключённых приложений ({0})</value>
@@ -3132,7 +3132,7 @@
     <value>Просмотр трансляций США</value>
   </data>
   <data name="Profiles_Default_WorkSchool">
-    <value>Работа/Школа</value>
+    <value>Работа/школа</value>
   </data>
   <data name="Profiles_Page_Description">
     <value>Создайте свои настройки VPN и подключайтесь в одно нажатие.</value>
@@ -3366,7 +3366,7 @@
     <value>Продвинутый</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
-    <value>Разрешить доступ в Интернет только при подключении к Proton VPN. Продвинутый kill switch останется активным даже после перезагрузки устройства.</value>
+    <value>Разрешает доступ в Интернет только при подключении к Proton VPN. Продвинутый kill switch останется активным даже после перезагрузки устройства.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Description">
     <value>Это отключит раздельное туннелирование.</value>
@@ -3390,7 +3390,7 @@
     <value>NetShield</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
-    <value>Блокируйте рекламу, вредоносные программы и трекеры</value>
+    <value>Блокировать рекламу, вредоносные программы и трекеры</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
     <value>Блокировать только вредоносные программы</value>
@@ -3441,7 +3441,7 @@
     <value>Уведомления</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Получать уведомления об изменении номера переадресации портов</value>
+    <value>Получайте уведомления об изменении номера переадресации портов.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Протокол</value>
@@ -3505,7 +3505,7 @@
     <value>Добавить адрес IPv4</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Стандартный</value>
+    <value>Стандартное</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>Выбранные приложения и IP-адреса исключены из подключения через VPN</value>
@@ -3967,7 +3967,7 @@
     <value>Направляйте трафик через сверхзащищённые серверы в Швейцарии, Швеции и Исландии</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Просматривайте веб-страницы на еще более высоких скоростях (до 10 Гбит/с).</value>
+    <value>Просматривайте веб-страницы ещё быстрее (до 10 Гбит/с)</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
     <value>Увеличьте скорость подключения до 400 % с помощью VPN Accelerator</value>
@@ -4027,26 +4027,26 @@
     <value>Защищайте свои личные данные во время просмотра веб-страниц</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage">
-    <value>Доступ через {0} к {1}</value>
+    <value>Доступ через {0} в {1}</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Проверена независимыми специалистами по безопасности</value>
+    <value>Проверено независимыми специалистами по безопасности</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
     <value>Обходите цензуру с помощью передовых функций безопасности и приватности</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
-    <value>{0} страна</value>
+    <value>{0} стране</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Few">
-    <value>{0} страны</value>
+    <value>{0} странах</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Many">
-    <value>{0} страны</value>
+    <value>{0} странах</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
-    <value>{0} стран</value>
+    <value>{0} странах</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
     <value>VPN с открытым исходным кодом</value>
@@ -4058,7 +4058,7 @@
     <value>{0} защищённых сервера</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_Many">
-    <value>{0} защищённых сервера</value>
+    <value>{0} защищённых серверов</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
     <value>{0} защищённых серверов</value>

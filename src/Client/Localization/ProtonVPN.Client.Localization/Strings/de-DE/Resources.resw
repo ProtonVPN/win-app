@@ -2157,7 +2157,7 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <value>Blockiere Werbung, Tracker und Malware mit VPN Plus.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
-    <value>Genieße das Surfen ohne Werbung</value>
+    <value>Genieße Surfen ohne Werbung</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Aktive Portnummer</value>
@@ -3192,7 +3192,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>NetShield</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
-    <value>Blockiert Werbung, Malware und Tracker</value>
+    <value>Werbung, Malware und Tracker blockieren</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
     <value>Nur Malware blockieren</value>
@@ -3291,7 +3291,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Umkehren</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Nur ausgewählte Apps und IP-Adressen verbinden sich über VPN, der übrige Verkehr ist ungeschützt.</value>
+    <value>Nur ausgewählte Apps und IP-Adressen verbinden sich über VPN. Der übrige Verkehr ist ungeschützt.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
     <value>IP hinzufügen</value>
@@ -3720,7 +3720,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Sicherheit und Datenschutz auf all deinen Geräten</value>
   </data>
   <data name="Upsell_Carousel_NetShield">
-    <value>Genieße das Surfen ohne Werbung</value>
+    <value>Genieße Surfen ohne Werbung</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Block">
     <value>Blockiere Werbung und Tracker mit NetShield</value>
@@ -3732,7 +3732,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Schalte Peer-to-Peer-Downloads und File-Sharing (P2P) frei</value>
   </data>
   <data name="Upsell_Carousel_P2P_Discretion">
-    <value>Verstecke deine IP-Adresse vor deinem Dienstanbieter und anderen Nutzern</value>
+    <value>Verstecke deine IP-Adresse vor deinem Dienstanbieter und anderen Benutzer*innen</value>
   </data>
   <data name="Upsell_Carousel_P2P_PortForwarding">
     <value>Erhöhe die P2P-Geschwindigkeit mit Portweiterleitung</value>

@@ -219,7 +219,7 @@
     <value>Skontaktuj się z nami</value>
   </data>
   <data name="Common_Actions_Customize">
-    <value>Customize</value>
+    <value>Dostosuj</value>
   </data>
   <data name="Common_Actions_Delete">
     <value>Usuń</value>
@@ -420,7 +420,7 @@
     <value>Wszystkie serwery w tym kraju są w trakcie przerwy technicznej</value>
   </data>
   <data name="Connections_Country_UnderMaintenance_Title">
-    <value>Unable to connect</value>
+    <value>Nie można nawiązać połączenia</value>
   </data>
   <data name="Connections_Fastest">
     <value>Najszybsze</value>
@@ -2229,7 +2229,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Strony internetowe mogą wykorzystywać geoblokady do ograniczania treści w określonych lokalizacjach. Rządy mogą również nakazać dostawcom usług internetowych (ISP) blokowanie określonych witryn w ich kraju.</value>
   </data>
   <data name="Flyouts_Country_Description3">
-    <value>VPN sprawia, że przeglądanie wygląda tak, jakby odbywało się z innego miejsca, chroniąc użytkownika przed inwigilacją i cenzurą</value>
+    <value>VPN sprawia, że przeglądanie wygląda tak, jakby odbywało się z innego miejsca, chroniąc użytkownika przed inwigilacją i cenzurą.</value>
   </data>
   <data name="Flyouts_Country_Title">
     <value>Kraj</value>
@@ -2262,10 +2262,10 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Twój adres IP jest widoczny</value>
   </data>
   <data name="Flyouts_Isp_Description1">
-    <value>Twój ISP (dostawca internetu) to firma, która łączy Cię z Internetem.</value>
+    <value>Twój ISP (dostawca Internetu) to firma, która łączy Cię z Internetem.</value>
   </data>
   <data name="Flyouts_Isp_Description2">
-    <value>Mogą rejestrować Twoją aktywność online. W niektórych krajach mogą sprzedawać Twoje dane reklamodawcom. W innych mogą być zobowiązani do przekazania ich rządowi.</value>
+    <value>Może rejestrować Twoją aktywność online. W niektórych krajach może sprzedawać Twoje dane reklamodawcom. W innych dostawca może być zobowiązany do przekazania ich rządowi.</value>
   </data>
   <data name="Flyouts_Isp_Description3">
     <value>VPN ukrywa adres IP użytkownika, chroniąc go przed ingerencją dostawcy usług internetowych.</value>
@@ -2746,16 +2746,16 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_AdsBlocked_One">
-    <value>Reklama zablokowana</value>
+    <value>reklama zablokowana</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Few">
-    <value>Reklamy zablokowane</value>
+    <value>reklamy zablokowane</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Many">
     <value>Reklam zablokowanych</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Other">
-    <value>Reklamy zablokowanej</value>
+    <value>reklamy zablokowanej</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Description">
     <value>Reklamy to banery promocyjne lub wyskakujące okna, które pojawiają się na stronach internetowych i w aplikacjach.</value>
@@ -3117,7 +3117,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Gry</value>
   </data>
   <data name="Profiles_Default_MaxSecurity">
-    <value>Maksymalne bezpieczeństwo</value>
+    <value>Maks. bezpieczeństwo</value>
   </data>
   <data name="Profiles_Default_Office">
     <value>Biuro</value>
@@ -3132,7 +3132,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Streaming USA</value>
   </data>
   <data name="Profiles_Default_WorkSchool">
-    <value>Praca / Szkoła</value>
+    <value>Praca/szkoła</value>
   </data>
   <data name="Profiles_Page_Description">
     <value>Skonfiguruj własne ustawienia VPN i połącz się za pomocą jednego kliknięcia.</value>
@@ -3351,10 +3351,10 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Ostatnio używane połączenia</value>
   </data>
   <data name="Settings_Connection_Default_Random">
-    <value>Random country</value>
+    <value>Losowy kraj</value>
   </data>
   <data name="Settings_Connection_Default_Random_Description">
-    <value>Different server every time you connect</value>
+    <value>Inny serwer przy każdym połączeniu</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Ostatnie</value>
@@ -3393,7 +3393,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Zablokuj reklamy, złośliwe oprogramowanie i elementy śledzące</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
-    <value>Zablokuj złośliwe oprogramowanie</value>
+    <value>Zablokuj tylko złośliwe oprogramowanie</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Description">
     <value>Nie będzie można użyć funkcji NetShield po połączeniu się z niestandardowym serwerem DNS.</value>
@@ -3982,7 +3982,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Przeglądaj Internet z dwóch lokalizacji jednocześnie dzięki funkcji split tunneling</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Configuration">
-    <value>Zezwalaj zaufanym aplikacjom i adresom IP na bezpośrednie łączenie się z Internetem, jednocześnie chroniąc wszystko inne za pomocą sieci VPN.</value>
+    <value>Zezwalaj zaufanym aplikacjom i adresom IP na bezpośrednie łączenie się z Internetem, jednocześnie chroniąc wszystko inne za pomocą sieci VPN</value>
   </data>
   <data name="Upsell_Carousel_Streaming">
     <value>Streamuj ulubione filmy i programy telewizyjne</value>
