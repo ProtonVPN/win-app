@@ -21,7 +21,6 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -272,6 +271,8 @@ public sealed partial class MapControl
     private AnimationEntry<double>? _pinFadeAnimation;
     private readonly ConcurrentDictionary<AnimatedCircleStyle, List<AnimationEntry<AnimatedCircleStyle>>> _activeAnimations = [];
     private readonly AnimatedCirclesStyleSkiaRenderer _animatedCirclesStyleSkiaRenderer = new();
+
+    private readonly InputSystemCursor _handCursor = InputSystemCursor.Create(InputSystemCursorShape.Hand);
 
     public MapControl()
     {
@@ -625,7 +626,7 @@ public sealed partial class MapControl
                 StartPinScaleAnimations(feature, feature.GetHoverLostAnimationType());
             }
 
-            ProtectedCursor = InputSystemCursor.Create(InputSystemCursorShape.Arrow);
+            OverrideCursor(null);
             _countryCallout.Hide();
         }
         else if (closestFeature != _selectedPin)
@@ -660,7 +661,7 @@ public sealed partial class MapControl
 
                 _countryCallout.Show(country);
 
-                ProtectedCursor = InputSystemCursor.Create(InputSystemCursorShape.Hand);
+                OverrideCursor(_handCursor);
 
                 StartPinScaleAnimations(feature, feature.GetOnHoverAnimationType());
 
@@ -1308,5 +1309,15 @@ public sealed partial class MapControl
     private void InvalidateConnectPhrase()
     {
         _countryCallout.ConnectPhrase = ConnectPhrase;
+    }
+
+    private void OverrideCursor(InputCursor? cursor)
+    {
+        if (ProtectedCursor == cursor)
+        {
+            return;
+        }
+
+        ProtectedCursor = cursor;
     }
 }
