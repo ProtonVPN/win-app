@@ -124,7 +124,8 @@ public class WebAuthenticator : IWebAuthenticator
                $"fullscreen={parameters.Fullscreen}&" +
                $"redirect={ActivationProtocol + parameters.Redirect}&" +
                $"start={parameters.Start}&" +
-               $"type={parameters.Type}" +
+               $"type={parameters.Type}&" +
+               "app=vpn" +
                "#selector=" + selector;
     }
 
