@@ -38,7 +38,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </UserControl.Resources>
 
-    <Grid RowSpacing="32">
+    <Grid RowSpacing="24">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

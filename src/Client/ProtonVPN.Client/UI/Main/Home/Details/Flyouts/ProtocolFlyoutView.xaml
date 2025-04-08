@@ -36,7 +36,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    Style="{ThemeResource BodyStrongTextBlockStyle}"
                    Text="{x:Bind ViewModel.Localizer.Get('Flyouts_Protocol_Title')}" />
 
-        <Grid>
+        <Grid ColumnSpacing="16">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -56,17 +56,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Style="{StaticResource SecondaryButtonStyle}" />
         </Grid>
 
-        <StackPanel Orientation="Horizontal"
-                    Spacing="4">
+        <Grid ColumnSpacing="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-            <pathIcons:Shield2Bolt Foreground="{ThemeResource VpnGreenColor}"
-                                   Size="Pixels16" />
+            <pathIcons:Shield2Bolt Grid.Column="0"
+                                   Foreground="{ThemeResource VpnGreenColor}"
+                                   Size="Pixels16" 
+                                   VerticalAlignment="Top"
+                                   Margin="0,1,0,0"/>
 
-            <TextBlock Foreground="{ThemeResource VpnGreenColor}"
+            <TextBlock Grid.Column="1"
+                       Foreground="{ThemeResource VpnGreenColor}"
                        Style="{ThemeResource CaptionTextBlockStyle}"
                        Text="{x:Bind ViewModel.ProtocolDescription}"
                        TextWrapping="Wrap" />
-        </StackPanel>
+        </Grid>
 
         <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
                    Text="{x:Bind ViewModel.Localizer.Get('Flyouts_Protocol_Description')}"
