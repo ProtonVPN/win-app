@@ -60,8 +60,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        Text="{TemplateBinding Header}"
                                        TextWrapping="Wrap" />
 
-                            <ContentPresenter Grid.Row="1"
-                                              TextWrapping="Wrap" />
+                            <ScrollViewer Grid.Row="1"
+                                          HorizontalScrollBarVisibility="Disabled"
+                                          VerticalScrollBarVisibility="Auto"
+                                          Style="{StaticResource OffsetScrollViewer}">
+                                <ContentPresenter TextWrapping="Wrap" />
+                            </ScrollViewer>
                         </Grid>
 
                     </Grid>
