@@ -108,7 +108,7 @@ build-release-x64:
   artifacts:
     paths:
       - '**/*.deps.json'
-      - 'src/**'
+      - 'src/bin/win-x64/publish/**'
 
 build-release-arm64:
   extends: .build-script
@@ -125,7 +125,7 @@ build-release-arm64:
   artifacts:
     paths:
       - '**/*.deps.json'
-      - 'src/**'
+      - 'src/bin/win-arm64/publish/**'
 
 build-bti-x64:
   rules:
@@ -150,7 +150,7 @@ build-bti-x64:
   artifacts:
     paths:
       - '**/*.deps.json'
-      - 'src/**'
+      - 'src/bin/win-x64/BTI/publish/**'
 
 build-debug-x64:
   extends: .build-script
@@ -166,7 +166,7 @@ build-debug-x64:
   artifacts:
     paths:
       - '**/*.deps.json'
-      - 'src/**'
+      - 'src/bin/win-x64/publish/**'
 
 build-debug-arm64:
   extends: .build-script
@@ -185,7 +185,7 @@ build-debug-arm64:
   artifacts:
     paths:
       - '**/*.deps.json'
-      - 'src/**'
+      - 'src/bin/win-arm64/publish/**'
 
 gitleaks-scan-repository:
   needs: []
