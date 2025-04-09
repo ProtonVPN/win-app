@@ -197,7 +197,7 @@ namespace ProtonVPN.Vpn.PortMapping
                 ThrowIfReplyAwaitWasCancelled(cancellationToken);
                 return await task;
             }
-            task.IgnoreExceptions();
+            task.FireAndForget();
             ThrowIfReplyAwaitWasCancelled(cancellationToken);
             throw new TimeoutException($"The remote endpoint '{_endpoint}' did not reply to the query in time ({timeoutInMilliseconds}ms).");
         }

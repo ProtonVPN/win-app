@@ -32,7 +32,6 @@ public partial class GlobalSearchTest
 {
     private IServersLoader? _serversLoader;
     private ILocalizationProvider? _localizationProvider;
-    private ISettings? _settings;
     private GlobalSearch? _globalSearch;
 
     [TestInitialize]
@@ -124,8 +123,7 @@ public partial class GlobalSearchTest
         _localizationProvider.Get("Country_val_PK").Returns("Pakistan");
 
 
-        _settings = Substitute.For<ISettings>();
-        _globalSearch = new GlobalSearch(_serversLoader, _localizationProvider, _settings);
+        _globalSearch = new GlobalSearch(_serversLoader, _localizationProvider);
     }
 
     private Server CreateMockOfServer(string name, string city, string state, string countryCode, ServerFeatures features)
@@ -195,7 +193,6 @@ public partial class GlobalSearchTest
     {
         _serversLoader = null;
         _localizationProvider = null;
-        _settings = null;
         _globalSearch = null;
     }
 }

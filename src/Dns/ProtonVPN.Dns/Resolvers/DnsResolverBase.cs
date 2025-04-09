@@ -135,7 +135,7 @@ public abstract class DnsResolverBase
             }
         }
 
-        resolveTasks.ForEach(t => t.IgnoreExceptions());
+        resolveTasks.ForEach(t => t.FireAndForget());
         cancellationTokenSource.Cancel();
         return dnsResponse;
     }

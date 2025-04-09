@@ -41,7 +41,6 @@ public partial class App : Application
     public App()
     {
         IssueReportingInitializer.Run();
-
         InitializeComponent();
 
         Host = Microsoft.Extensions.Hosting.Host

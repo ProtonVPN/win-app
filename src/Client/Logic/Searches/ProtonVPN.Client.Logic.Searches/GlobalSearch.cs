@@ -24,7 +24,6 @@ using ProtonVPN.Client.Logic.Searches.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.Logic.Searches;
@@ -38,17 +37,14 @@ public partial class GlobalSearch : IGlobalSearch
     private readonly IServersLoader _serversLoader;
     //private readonly IProfilesManager _profilesManager;
     private readonly ILocalizationProvider _localizationProvider;
-    private readonly ISettings _settings;
 
     public GlobalSearch(IServersLoader serversLoader,
         //IProfilesManager profilesManager,
-        ILocalizationProvider localizationProvider,
-        ISettings settings)
+        ILocalizationProvider localizationProvider)
     {
         _serversLoader = serversLoader;
         //_profilesManager = profilesManager;
         _localizationProvider = localizationProvider;
-        _settings = settings;
     }
 
     public async Task<List<ILocation>> SearchAsync(string? input, ServerFeatures? serverFeatures = null)

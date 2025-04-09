@@ -87,7 +87,7 @@ public class GrpcServer : IGrpcServer
         if (!_cancellationTokenSource.Token.IsCancellationRequested)
         {
             _app = Create();
-            _app.RunAsync().ContinueWith(t => RecreateAndStartAsync()).IgnoreExceptions();
+            _app.RunAsync().ContinueWith(t => RecreateAndStartAsync()).FireAndForget();
         }
     }
 

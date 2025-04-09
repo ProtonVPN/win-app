@@ -20,6 +20,7 @@
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
@@ -76,8 +77,8 @@ public class ServersUpdater : IServersUpdater
                 {
                     _settings.LogicalsLastModifiedDate = DefaultSettings.LogicalsLastModifiedDate;
                 }
+                _serverCountCache.UpdateAsync().FireAndForget();
                 await _serversCache.UpdateAsync();
-                await _serverCountCache.UpdateAsync();
             }
             else if (parameter == ServersRequestParameter.ForceLoadsUpdate ||
                 utcNow - _lastLoadsUpdateUtc >= _config.MinimumServerLoadUpdateInterval)
@@ -92,7 +93,7 @@ public class ServersUpdater : IServersUpdater
         }
     }
 
-    public async Task ForceFullUpdateIfEmptyAsync()
+    public async Task ForceFullUpdateIfHasNoServersElseRequestIfOldAsync()
     {
         await _semaphore.WaitAsync();
         bool hasServers;
@@ -107,7 +108,11 @@ public class ServersUpdater : IServersUpdater
             _semaphore.Release();
         }
 
-        if (!hasServers)
+        if (hasServers)
+        {
+            await UpdateAsync(ServersRequestParameter.RequestIfOld);
+        }
+        else
         {
             _logger.Info<AppLog>("Fetching servers as the user has none.");
             await UpdateAsync(ServersRequestParameter.ForceFullUpdate);
