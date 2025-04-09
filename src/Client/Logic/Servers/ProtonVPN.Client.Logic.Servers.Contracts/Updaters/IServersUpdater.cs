@@ -22,6 +22,6 @@ namespace ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
 public interface IServersUpdater
 {
     Task UpdateAsync(ServersRequestParameter serversRequestParameter, bool isToReprocessServers = false);
-    Task ForceFullUpdateIfEmptyAsync();
+    Task ForceFullUpdateIfHasNoServersElseRequestIfOldAsync();
     Task ClearCacheAsync();
 }

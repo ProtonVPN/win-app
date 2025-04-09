@@ -97,7 +97,8 @@ public static class TaskExtensions
         }
     }
 
-    public static void IgnoreExceptions(this Task task)
+    /// <summary>Run this task in parallel without awaiting, and ignore any exceptions</summary>
+    public static void FireAndForget(this Task task)
     {
         task.ContinueWith(c => { AggregateException? ignored = c.Exception; },
             TaskContinuationOptions.OnlyOnFaulted |

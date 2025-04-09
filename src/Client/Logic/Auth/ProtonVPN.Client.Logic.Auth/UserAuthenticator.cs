@@ -33,6 +33,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
 using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
@@ -154,7 +155,7 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
                 if (authResult.Success)
                 {
                     await _connectionCertificateManager.ForceRequestNewCertificateAsync();
-                    await _serversUpdater.ForceFullUpdateIfEmptyAsync();
+                    await _serversUpdater.ForceFullUpdateIfHasNoServersElseRequestIfOldAsync();
                 }
             }
 
@@ -398,25 +399,17 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
                 return AuthResult.Fail(AuthError.GetSessionDetailsFailed);
             }
 
-            ApiResponseResult<UsersResponse> usersResponse = await _apiClient.GetUserAsync();
-
-            if (usersResponse.Success)
-            {
-                // After migration from previous version, there is no User ID. Global Settings should be set before User Settings.
-                if (string.IsNullOrWhiteSpace(_settings.UserId))
-                {
-                    _settings.UserId = usersResponse.Value.User.UserId;
-                }
-
-                _settings.Username = usersResponse.Value.User.GetUsername();
-                _settings.UserDisplayName = usersResponse.Value.User.GetDisplayName();
-                _settings.UserCreationDateUtc = DateTimeOffset.FromUnixTimeSeconds(usersResponse.Value.User.CreateTime).UtcDateTime;
-            }
+            Task<ApiResponseResult<UsersResponse>> usersResponseTask = GetUserAsync();
 
             if (string.IsNullOrWhiteSpace(_settings.UserId))
             {
-                await LogoutAsync(LogoutReason.SessionExpired);
-                return AuthResult.Fail(usersResponse);
+                ApiResponseResult<UsersResponse> usersResponse = await usersResponseTask;
+
+                if (string.IsNullOrWhiteSpace(_settings.UserId))
+                {
+                    await LogoutAsync(LogoutReason.SessionExpired);
+                    return AuthResult.Fail(usersResponse);
+                }
             }
 
             VpnPlanChangeResult vpnPlanChangeResult = await _vpnPlanUpdater.ForceUpdateAsync();
@@ -430,6 +423,20 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
             }
 
             hasPlanChanged = vpnPlanChangeResult.PlanChangeMessage?.HasChanged() ?? false;
+
+            Task serversUpdateTask;
+            if (hasPlanChanged)
+            {
+                _logger.Info<AppLog>("Reprocessing current servers and fetching new servers after VPN plan change.");
+                serversUpdateTask = _serversUpdater.UpdateAsync(ServersRequestParameter.ForceFullUpdate, isToReprocessServers: true);
+            }
+            else
+            {
+                serversUpdateTask = _serversUpdater.ForceFullUpdateIfHasNoServersElseRequestIfOldAsync();
+            }
+
+            await MigrateUserSettingsAsync(usersResponseTask, serversUpdateTask);
+
         }
         catch (Exception e)
         {
@@ -440,13 +447,19 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
 
         IsAutoLogin = isAutoLogin;
 
-        await MigrateUserSettingsAsync();
-
         DeleteKeyPairIfNotAutoLogin(isAutoLogin, _guestHoleManager.IsActive);
 
-        if (hasPlanChanged && !_guestHoleManager.IsActive)
+        if (!_guestHoleManager.IsActive)
         {
-            await _connectionCertificateManager.ForceRequestNewCertificateAsync();
+            if (hasPlanChanged)
+            {
+                _logger.Info<AppLog>("Requesting new certificate after VPN plan change.");
+                _connectionCertificateManager.ForceRequestNewCertificateAsync().FireAndForget();
+            }
+            else
+            {
+                _connectionCertificateManager.RequestNewCertificateAsync().FireAndForget();
+            }
         }
 
         if (isToSendLoggedInEvent)
@@ -455,6 +468,30 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
         }
 
         return AuthResult.Ok();
+    }
+
+    private async Task<ApiResponseResult<UsersResponse>> GetUserAsync()
+    {
+        ApiResponseResult<UsersResponse> response = await _apiClient.GetUserAsync();
+        if (response.Success)
+        {
+            // After migration from previous version, there is no User ID. Global Settings should be set before User Settings.
+            if (string.IsNullOrWhiteSpace(_settings.UserId))
+            {
+                _settings.UserId = response.Value.User.UserId;
+            }
+
+            _settings.Username = response.Value.User.GetUsername();
+            _settings.UserDisplayName = response.Value.User.GetDisplayName();
+            _settings.UserCreationDateUtc = DateTimeOffset.FromUnixTimeSeconds(response.Value.User.CreateTime).UtcDateTime;
+        }
+        return response;
+    }
+
+    private async Task MigrateUserSettingsAsync(Task<ApiResponseResult<UsersResponse>> usersResponseTask, Task serversUpdateTask)
+    {
+        await Task.WhenAll(usersResponseTask, serversUpdateTask);
+        _userSettingsMigrator.Migrate();
     }
 
     private bool IsUnauthSessionCreated()
@@ -498,12 +535,6 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
                 _eventMessageSender.Send(new LoggingOutMessage());
                 break;
         }
-    }
-
-    private async Task MigrateUserSettingsAsync()
-    {
-        await _serversUpdater.ForceFullUpdateIfEmptyAsync();
-        _userSettingsMigrator.Migrate();
     }
 
     private void SaveUnauthSessionDetails(UnauthSessionResponse response)

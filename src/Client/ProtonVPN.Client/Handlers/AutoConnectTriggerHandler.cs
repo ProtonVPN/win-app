@@ -21,6 +21,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
@@ -39,7 +40,8 @@ public class AutoConnectTriggerHandler : IHandler,
     IEventMessageReceiver<ServerListChangedMessage>,
     IEventMessageReceiver<RecentConnectionsChangedMessage>,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
-    IEventMessageReceiver<DeviceLocationChangedMessage>
+    IEventMessageReceiver<DeviceLocationChangedMessage>,
+    IEventMessageReceiver<ConnectionCertificateUpdatedMessage>
 {
     private readonly IConnectionManager _connectionManager;
     private readonly IRecentConnectionsManager _recentConnectionsManager;
@@ -107,6 +109,11 @@ public class AutoConnectTriggerHandler : IHandler,
         _isDeviceLocationChanged = true;
     }
 
+    public void Receive(ConnectionCertificateUpdatedMessage message)
+    {
+        TryAutoConnectAsync();
+    }
+
     private async void TryAutoConnectAsync()
     {
         if (_isHandled ||
@@ -114,7 +121,8 @@ public class AutoConnectTriggerHandler : IHandler,
             !_isServersListReady ||
             !_isRecentsListReady ||
             !_userAuthenticator.IsLoggedIn ||
-            !_isConnectionStatusReady)
+            !_isConnectionStatusReady ||
+            !HasValidConnectionCertificate())
         {
             return;
         }
@@ -127,6 +135,12 @@ public class AutoConnectTriggerHandler : IHandler,
         {
             await AutoConnectAsync();
         }
+    }
+
+    private bool HasValidConnectionCertificate()
+    {
+        ConnectionCertificate? certificate = _settings.ConnectionCertificate;
+        return certificate is not null && certificate.Value.ExpirationUtcDate > DateTimeOffset.UtcNow;
     }
 
     private async Task AutoConnectAsync()

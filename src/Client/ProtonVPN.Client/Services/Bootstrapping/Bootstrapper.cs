@@ -113,11 +113,9 @@ public class Bootstrapper : IBootstrapper
 
             HandleMainWindow();
 
-            _updatesManager.Initialize();
+            StartServiceAsync().FireAndForget();
 
-            await Task.WhenAll(
-                TryAuthenticateAsync(),
-                StartServiceAsync());
+            await TryAuthenticateAsync();
         }
         catch (Exception e)
         {
@@ -298,7 +296,22 @@ public class Bootstrapper : IBootstrapper
 
     private async Task StartServiceAsync()
     {
-        await _serviceManager.StartAsync();
-        _processCommunicationStarter.Start();
+        try
+        {
+            await _serviceManager.StartAsync();
+        }
+        catch
+        {
+        }
+
+        try
+        {
+            _processCommunicationStarter.Start();
+        }
+        catch
+        {
+        }
+
+        _updatesManager.Initialize();
     }
 }
