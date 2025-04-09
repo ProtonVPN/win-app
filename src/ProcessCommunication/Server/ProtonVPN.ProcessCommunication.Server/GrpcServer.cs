@@ -128,6 +128,11 @@ public class GrpcServer : IGrpcServer
         builder.Services.AddSingleton<IVpnController>(_vpnController);
         builder.Services.AddCodeFirstGrpc();
 
+        builder.Services.AddGrpc(options =>
+        {
+            options.EnableDetailedErrors = true;
+        });
+
         WebApplication app = builder.Build();
 
         app.UseMiddleware<NamedPipeAuthorizationMiddleware>(_logger, _issueReporter, _config, _pipeStreamProcessIdentifier,

@@ -80,9 +80,9 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
                 _logger.Info<ProcessCommunicationLog>($"Listener starting ({listener.Method.Name})");
                 await listener();
             }
-            catch
+            catch (Exception ex)
             {
-                _logger.Warn<ProcessCommunicationLog>($"Listener stopped ({listener.Method.Name})");
+                _logger.Warn<ProcessCommunicationLog>($"Listener stopped ({listener.Method.Name})", ex);
             }
 
             if (!_cancellationTokenSource.IsCancellationRequested)
