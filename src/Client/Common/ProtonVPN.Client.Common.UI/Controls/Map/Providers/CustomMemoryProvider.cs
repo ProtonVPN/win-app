@@ -36,6 +36,5 @@ public class CustomMemoryProvider : MemoryProvider
     {
         IFeature[] source = Features.ToArray();
         return Task.FromResult((IEnumerable<IFeature>)source.Where((IFeature f) => f != null).ToList());
-
     }
 }

@@ -21,6 +21,7 @@ using Mapsui;
 using NetTopologySuite.Geometries;
 
 namespace ProtonVPN.Client.Common.UI.Controls.Map.Extensions;
+
 public static class GeometryExtensions
 {
     public static MRect GetBoundingBox(this Geometry geometry)
@@ -36,7 +37,6 @@ public static class GeometryExtensions
             {
                 minX = coord.X;
             }
-
             if (coord.Y < minY)
             {
                 minY = coord.Y;

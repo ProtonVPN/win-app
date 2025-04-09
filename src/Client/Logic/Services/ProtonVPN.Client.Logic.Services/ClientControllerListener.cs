@@ -18,13 +18,11 @@
  */
 
 using System.Text;
-using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Messages;
 using ProtonVPN.Client.Contracts.ProcessCommunication;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.NetShield;
@@ -38,7 +36,6 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
 {
     private readonly ILogger _logger;
     private readonly IGrpcClient _grpcClient;
-    private readonly IUIThreadDispatcher _uiThreadDispatcher;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IServiceCommunicationErrorHandler _serviceCommunicationErrorHandler;
 
@@ -46,13 +43,11 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
 
     public ClientControllerListener(ILogger logger,
         IGrpcClient grpcClient,
-        IUIThreadDispatcher uiThreadDispatcher,
         IEventMessageSender eventMessageSender,
         IServiceCommunicationErrorHandler serviceCommunicationErrorHandler)
     {
         _logger = logger;
         _grpcClient = grpcClient;
-        _uiThreadDispatcher = uiThreadDispatcher;
         _eventMessageSender = eventMessageSender;
         _serviceCommunicationErrorHandler = serviceCommunicationErrorHandler;
     }
@@ -69,11 +64,11 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
 
     public void Start()
     {
-        KeepAliveAsync(StartVpnStateListenerAsync);
-        KeepAliveAsync(StartPortForwardingStateListenerAsync);
-        KeepAliveAsync(StartConnectionDetailsListenerAsync);
-        KeepAliveAsync(StartUpdateStateListenerAsync);
-        KeepAliveAsync(StartNetShieldStatisticListenerAsync);
+        _ = Task.Run(() => KeepAliveAsync(StartVpnStateListenerAsync));
+        _ = Task.Run(() => KeepAliveAsync(StartPortForwardingStateListenerAsync));
+        _ = Task.Run(() => KeepAliveAsync(StartConnectionDetailsListenerAsync));
+        _ = Task.Run(() => KeepAliveAsync(StartUpdateStateListenerAsync));
+        _ = Task.Run(() => KeepAliveAsync(StartNetShieldStatisticListenerAsync));
     }
 
     private async Task KeepAliveAsync(Func<Task> listener)
@@ -106,7 +101,7 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
             $"Error: '{state.Error}', EndpointIp: '{state.EndpointIp}', Label: '{state.Label}', " +
             $"VpnProtocol: '{state.VpnProtocol}', OpenVpnAdapter: '{state.OpenVpnAdapterType}'");
 
-            _uiThreadDispatcher.TryEnqueue(() => _eventMessageSender.Send(state));
+            _eventMessageSender.Send(state);
         }
     }
 
@@ -125,7 +120,7 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
             }
             _logger.Info<ProcessCommunicationLog>(logMessage.ToString());
 
-            _uiThreadDispatcher.TryEnqueue(() => _eventMessageSender.Send(state));
+            _eventMessageSender.Send(state);
         }
     }
 
@@ -137,7 +132,7 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
             _logger.Info<ProcessCommunicationLog>($"Received connection details change while " +
                 $"connected to server with IP '{connectionDetails.ServerIpAddress}'");
 
-            _uiThreadDispatcher.TryEnqueue(() => _eventMessageSender.Send(connectionDetails));
+            _eventMessageSender.Send(connectionDetails);
         }
     }
 
@@ -149,7 +144,7 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
             _logger.Info<ProcessCommunicationLog>(
                 $"Received update state change with status {state.Status}.");
 
-            _uiThreadDispatcher.TryEnqueue(() => _eventMessageSender.Send(state));
+            _eventMessageSender.Send(state);
         }
     }
 
@@ -164,7 +159,7 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
                 $"[Malware: '{netShieldStatistic.NumOfMaliciousUrlsBlocked}']" +
                 $"[Trackers: '{netShieldStatistic.NumOfTrackingUrlsBlocked}']");
 
-            _uiThreadDispatcher.TryEnqueue(() => _eventMessageSender.Send(netShieldStatistic));
+            _eventMessageSender.Send(netShieldStatistic);
         }
     }
 }

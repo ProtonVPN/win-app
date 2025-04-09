@@ -19,7 +19,6 @@
 
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Core.Bases;
-using ProtonVPN.Client.Core.Services.Activation;
 
 namespace ProtonVPN.Client.UI.Main.Map;
 
