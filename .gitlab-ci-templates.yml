@@ -9,7 +9,9 @@
     - redesign
   hooks:
     pre_get_sources_script:
-      - Get-Process | Where-Object { $_.Name -like "proton*" } | Stop-Process -Force
+      - Get-Process | Where-Object { $_.Name -like "proton*" } | Stop-Process -Force -ErrorAction Ignore
+      - Get-Process | Where-Object { $_.Name -like "unins0*" } | Stop-Process -Force -ErrorAction Ignore
+      - Test-Path "C:/Program Files/Proton/VPN" | Where-Object { $_ } | ForEach-Object { Remove-Item $_ -Recurse -Force }
   script:
     - ci\test-scripts\uninstall-app.ps1
     - ci\test-scripts\install-the-app.ps1
