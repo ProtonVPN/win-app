@@ -35,7 +35,6 @@ namespace ProtonVPN.UI.Tests.Tests.SliTests;
 [Workflow("api_measurements")]
 public class ApiSli
 {
-    private TestUserAuthenticator _userAuthenticator = new();
     private ProdTestApiClient _prodTestApiClient = new();
     private LokiPusher _lokiPusher = new();
 
@@ -67,9 +66,7 @@ public class ApiSli
         int totalIndividualServers = 0;
         int onlineIndividualServers = 0;
 
-        await _userAuthenticator.CreateSessionAsync(username, password);
-
-        JArray logicalServers = await _prodTestApiClient.GetLogicalServersLoggedInAsync();
+        JArray logicalServers = await _prodTestApiClient.GetLogicalServersLoggedInAsync(username, password);
         JArray totalServersByTier = new JArray(logicalServers.Where(server => (int)server["Tier"] == serverTier));
 
         foreach (JObject server in totalServersByTier)

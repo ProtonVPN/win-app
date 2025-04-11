@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Net;
+using System.Security;
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
@@ -46,8 +48,9 @@ public class ConnectionSLIs : SliSetUp
     [Duration, TestStatus]
     [Sli("specific_server_connect")]
     public async Task ConnectionToSpecificServer()
-    {
-        string serverName = await _prodTestApiClient.GetRandomSpecificPaidServerAsync();
+    { 
+        SecureString password = new NetworkCredential("", TestUserData.PlusUser.Password).SecurePassword;
+        string serverName = await _prodTestApiClient.GetRandomSpecificPaidServerAsync(TestUserData.PlusUser.Username, password);
 
         SidebarRobot
             .SearchFor(serverName)
