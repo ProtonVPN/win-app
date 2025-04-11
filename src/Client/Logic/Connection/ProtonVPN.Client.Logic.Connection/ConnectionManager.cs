@@ -213,7 +213,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
             return false;
         }
 
-        _statisticalEventManager.SetConnectionAttempt(connectionTrigger, ConnectionStatus);
+        _statisticalEventManager.SetReconnectionAttempt(connectionTrigger, ConnectionStatus);
 
         connectionIntent = ChangeConnectionIntent(connectionIntent, CreateNewIntentIfUserPlanIsFree);
 

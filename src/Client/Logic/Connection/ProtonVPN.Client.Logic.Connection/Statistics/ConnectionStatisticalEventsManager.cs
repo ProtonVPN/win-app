@@ -68,6 +68,16 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
         SetAttempt(AttemptType.Connection, trigger, currentConnectionStatus);
     }
 
+    public void SetReconnectionAttempt(VpnTriggerDimension trigger, ConnectionStatus currentConnectionStatus)
+    {
+        if (_currentAttemptType == AttemptType.Connection && trigger == VpnTriggerDimension.Auto)
+        {
+            return;
+        }
+
+        SetAttempt(AttemptType.Connection, trigger, currentConnectionStatus);
+    }
+
     public void SetDisconnectionAttempt(VpnTriggerDimension trigger, ConnectionStatus currentConnectionStatus)
     {
         SetAttempt(AttemptType.Disconnection, trigger, currentConnectionStatus);
@@ -92,7 +102,7 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
         }
         catch (Exception e)
         {
-            _logger.Debug<ConnectionStatisticsLog>($"Error while handling the vpn state change.", e);
+            _logger.Warn<ConnectionStatisticsLog>($"Error while handling the vpn state change.", e);
         }
     }
 
