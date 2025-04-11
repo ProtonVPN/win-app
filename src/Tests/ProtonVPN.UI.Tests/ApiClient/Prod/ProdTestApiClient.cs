@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -44,10 +45,10 @@ public class ProdTestApiClient
         };
     }
 
-    public async Task<string> GetRandomSpecificPaidServerAsync()
+    public async Task<string> GetRandomSpecificPaidServerAsync(string username, SecureString password)
     {
         JToken randomServer = null;
-        JArray logicals = await new ProdTestApiClient().GetLogicalServersUnauthorizedAsync();
+        JArray logicals = await new ProdTestApiClient().GetLogicalServersLoggedInAsync(username, password);
         List<JToken> filteredServers = logicals.Where(
             s => (int)s["Status"] == 1 &&
             (int)s["Tier"] == 2 &&
@@ -67,8 +68,11 @@ public class ProdTestApiClient
         return randomServer["Name"].ToString();
     }
 
-    public async Task<JArray> GetLogicalServersLoggedInAsync()
+    public async Task<JArray> GetLogicalServersLoggedInAsync(string username, SecureString password)
     {
+        TestUserAuthenticator _userAuthenticator = new();
+        await _userAuthenticator.CreateSessionAsync(username, password);
+
         HttpRequestMessage request = GetAuthorizedRequestMessage(HttpMethod.Get, "/vpn/logicals?SignServer=Server.EntryIP,Server.Label", AcessToken, UID);
         HttpResponseMessage response = await _client.SendAsync(request);
         response.EnsureSuccessStatusCode();
