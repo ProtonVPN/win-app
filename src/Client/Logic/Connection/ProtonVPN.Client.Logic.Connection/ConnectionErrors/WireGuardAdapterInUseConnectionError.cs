@@ -39,6 +39,6 @@ public class WireGuardAdapterInUseConnectionError : ConnectionErrorBase
 
     public override Task ExecuteActionAsync()
     {
-        return _connectionManager.ReconnectAsync(VpnTriggerDimension.Auto);
+        return _connectionManager.ReconnectAsync(VpnTriggerDimension.NewConnection);
     }
 }

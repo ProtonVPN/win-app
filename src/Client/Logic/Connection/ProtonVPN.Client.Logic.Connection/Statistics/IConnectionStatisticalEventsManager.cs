@@ -26,7 +26,9 @@ namespace ProtonVPN.Client.Logic.Connection.Statistics;
 
 public interface IConnectionStatisticalEventsManager
 {
-    void SetConnectionAttempt(VpnTriggerDimension trigger, ConnectionStatus connectionStatus);
+    void SetConnectionAttempt(VpnTriggerDimension trigger, ConnectionStatus connectionStatus); 
+    
+    void SetReconnectionAttempt(VpnTriggerDimension trigger, ConnectionStatus currentConnectionStatus);
 
     void SetDisconnectionAttempt(VpnTriggerDimension trigger, ConnectionStatus connectionStatus);
 
