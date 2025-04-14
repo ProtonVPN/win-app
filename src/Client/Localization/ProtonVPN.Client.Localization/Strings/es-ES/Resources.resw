@@ -408,7 +408,7 @@
     <value>Todos los servidores de este país están en mantenimiento</value>
   </data>
   <data name="Connections_Country_UnderMaintenance_Title">
-    <value>No se pudo conectar</value>
+    <value>No se puede conectar</value>
   </data>
   <data name="Connections_Fastest">
     <value>Más rápida</value>
