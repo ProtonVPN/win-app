@@ -28,6 +28,4 @@ public struct WindowPositionParameters
     public double? XPosition { get; set; }
 
     public double? YPosition { get; set; }
-
-    public bool IsMaximized { get; set; }
 }

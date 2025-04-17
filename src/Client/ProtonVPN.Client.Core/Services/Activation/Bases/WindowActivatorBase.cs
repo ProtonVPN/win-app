@@ -80,11 +80,6 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
         Host?.Show();
         Host?.SetForegroundWindow();
 
-        if (Host?.WindowState == WindowState.Minimized)
-        {
-            Host.WindowState = Settings.IsWindowMaximized ? WindowState.Maximized : WindowState.Normal; 
-        }
-
         OnWindowActivated();
     }
 
@@ -134,6 +129,7 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
             InvalidateWindowTitle();
             InvalidateWindowPosition();
+            InvalidateWindowState();
         }
     }
 
@@ -229,6 +225,14 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
     protected virtual void InvalidateWindowPosition()
     {
         Host?.CenterOnScreen();
+    }
+
+    protected virtual void InvalidateWindowState()
+    {
+        if (Host != null)
+        {
+            Host.WindowState = WindowState.Normal;
+        }
     }
 
     protected virtual void OnDpiChanged()

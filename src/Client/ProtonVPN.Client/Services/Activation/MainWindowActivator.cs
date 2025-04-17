@@ -86,6 +86,7 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
             InvalidateWindowTitleBarVisibility();
 
             InvalidateWindowPosition();
+            InvalidateWindowState();
         });
     }
 
@@ -102,7 +103,7 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
     {
         if (Host == null)
         {
-            Logger.Error<AppLog>("Window has not been initialized");
+            Logger.Info<AppLog>($"Cannot invalidate {typeof(MainWindow)?.Name} position, the window has not been initialized");
             return;
         }
 
@@ -114,20 +115,29 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
                     Height = Settings.WindowHeight,
                     XPosition = Settings.WindowXPosition,
                     YPosition = Settings.WindowYPosition,
-                    IsMaximized = Settings.IsWindowMaximized
                 }
                 : new()
                 {
                     Width = LOGIN_WINDOW_WIDTH,
                     Height = LOGIN_WINDOW_HEIGHT,
-                    IsMaximized = false,
                 };
 
         // Set window state to normal to apply size and position.
         Host.WindowState = WindowState.Normal;
         Host.SetPosition(parameters);
+    }
 
-        if (parameters.IsMaximized)
+    protected override void InvalidateWindowState()
+    {
+        if (Host == null)
+        {
+            Logger.Info<AppLog>($"Cannot invalidate {typeof(MainWindow)?.Name} state, the window has not been initialized");
+            return;
+        }
+
+        bool isToMaximize = _userAuthenticator.IsLoggedIn && Settings.IsWindowMaximized;
+
+        if (isToMaximize && (IsWindowVisible || Host.WindowState == WindowState.Minimized))
         {
             Host.WindowState = WindowState.Maximized;
         }
@@ -140,6 +150,7 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
         EfficiencyModeHelper.DisableEfficiencyMode();
 
         InvalidateWindowVisibilityState(true);
+        InvalidateWindowState();
     }
 
     protected override void OnWindowHidden()
