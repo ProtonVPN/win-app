@@ -442,6 +442,11 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
             SelectedThirdLevelLocationItem = ThirdLevelLocationItems.FirstOrDefault();
 
             InvalidateCurrentLocationIntent();
+
+            if (_currentFeatureIntent is SecureCoreFeatureIntent)
+            {
+                InvalidateCurrentFeatureIntent();
+            }
         }
     }
 
