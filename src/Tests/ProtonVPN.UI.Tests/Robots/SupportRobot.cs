@@ -72,7 +72,7 @@ public class SupportRobot
 
     public SupportRobot TickIncludeLogsCheckbox()
     {
-        IncludeLogsCheckbox.Click();
+        IncludeLogsCheckbox.ScrollIntoView().Click();
         return this;
     }
 
