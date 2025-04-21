@@ -2980,7 +2980,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Aktifkan server DNS khusus?</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
-    <value>Menghubungkan aplikasi ke jaringan Proton VPN menggunakan sistem nama domain (DNS) Anda. Hanya gunakan server DNS yang Anda percayai.</value>
+    <value>Menghubungkan aplikasi ke jaringan Proton VPN menggunakan nama domain (DNS) milik Anda. Mohon untuk hanya menggunakan server DNS yang Anda percayai.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>Server DNS ({0})</value>
@@ -3003,7 +3003,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Memungkinkan Anda untuk terhubung ke printer, speaker, dan perangkat lainnya yang terdapat pada jaringan lokal milik perangkat Anda.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
-    <value>NAT tipe</value>
+    <value>Tipe NAT</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
     <value>Anda tidak akan dapat menggunakan penerusan port dengan NAT Moderat.</value>
