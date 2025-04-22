@@ -700,12 +700,19 @@ end;
 
 procedure InstallVisualCppRedistributableIfNotInstalled();
 var
-  TempFileName: string;
+  TempFileName, Version, RegistryPath: string;
   ResultCode: Integer;
 begin
-  if RegValueExists(HKLM, 'SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\{#Architecture}', 'Version') then begin
-    Log('Visual c++ redistributable package is already installed, skipping.');
-    Exit;
+  RegistryPath := 'SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\{#Architecture}';
+  if RegValueExists(HKLM, RegistryPath, 'Version') then begin
+    if RegQueryStringValue(HKEY_LOCAL_MACHINE, RegistryPath, 'Version', Version) then begin
+      if (Length(Version) > 0) and (Version[1] = 'v') then
+        Delete(Version, 1, 1);
+      if CompareVersions(Version, '14.42.34438.0') >= 0 then begin
+        Log('The latest visual c++ redistributable package is already installed, skipping.');
+        Exit;
+      end;
+    end;
   end;
 
   if CompareText('{#Architecture}', 'x64') = 0 then
