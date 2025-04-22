@@ -16,7 +16,7 @@ void ServiceManager::Create(wstring name, wstring display_name, wstring file_pat
     }
     else
     {
-        path += L"\"" + file_path + L"\"";
+        path += file_path;
     }
 
     wil::unique_schandle sc_manager = GetServiceManagerHandle();
