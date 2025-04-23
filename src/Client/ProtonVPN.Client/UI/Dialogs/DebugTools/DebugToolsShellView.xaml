@@ -51,10 +51,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <ScrollViewer Grid.Row="1">
             <StackPanel>
 
-                <toolkit:SettingsCard Header="Intentional app crash"
+                <toolkit:SettingsCard Header="Restart client"
                                       IsTabStop="False"
                                       Style="{StaticResource DefaultSettingsCardStyle}">
-                    <Button Command="{x:Bind ViewModel.TriggerAppCrashCommand, Mode=OneTime}"
+                    <Button Command="{x:Bind ViewModel.TriggerRestartCommand, Mode=OneTime}"
+                            Content="Restart"
+                            Style="{StaticResource PrimaryButtonStyle}" />
+                </toolkit:SettingsCard>
+
+                <toolkit:SettingsCard Header="Intentional client crash"
+                                      IsTabStop="False"
+                                      Style="{StaticResource DefaultSettingsCardStyle}">
+                    <Button Command="{x:Bind ViewModel.TriggerClientCrashCommand, Mode=OneTime}"
                             Content="Trigger Crash"
                             Style="{StaticResource PrimaryButtonStyle}" />
                 </toolkit:SettingsCard>

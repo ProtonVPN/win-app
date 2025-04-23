@@ -22,6 +22,7 @@ using ProtonVPN.Client.Commands;
 using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Contracts.Services.Lifecycle;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Models.ReportIssue;
@@ -45,7 +46,7 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
 {
     public const string REPORT_ISSUE_CATEGORY_PLACEHOLDER = "what-is-the-issue-placeholder";
 
-    private readonly IBootstrapper _bootstrapper;
+    private readonly IAppExitInvoker _appExitInvoker;
     private readonly IUrlsBrowser _urlsBrowser;
     private readonly ISignOutHandler _signoutHandler;
     private readonly IWebAuthenticator _webAuthenticator;
@@ -70,7 +71,7 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
     public IAsyncRelayCommand UpdateCommand { get; }
 
     public TitleBarMenuViewModel(
-        IBootstrapper bootstrapper,
+        IAppExitInvoker appExitInvoker,
         IUrlsBrowser urlsBrowser,
         ISignOutHandler signoutHandler,
         IWebAuthenticator webAuthenticator,
@@ -87,7 +88,7 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
         IViewModelHelper viewModelHelper)
         : base(viewModelHelper)
     {
-        _bootstrapper = bootstrapper;
+        _appExitInvoker = appExitInvoker;
         _urlsBrowser = urlsBrowser;
         _signoutHandler = signoutHandler;
         _webAuthenticator = webAuthenticator;
@@ -168,9 +169,9 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
     }
 
     [RelayCommand]
-    private Task ExitApplicationAsync()
+    private async Task ExitApplicationAsync()
     {
-        return _bootstrapper.ExitAsync();
+        await _appExitInvoker.ExitWithConfirmationAsync();
     }
 
     [RelayCommand]

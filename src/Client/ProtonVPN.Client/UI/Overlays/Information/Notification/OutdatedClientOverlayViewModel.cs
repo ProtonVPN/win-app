@@ -37,7 +37,7 @@ public partial class OutdatedClientOverlayViewModel : OverlayViewModelBase<IMain
     private readonly IUrlsBrowser _urlsBrowser;
     private readonly IUpdateClientCommand _updateClientCommand;
     private readonly IUpdatesManager _updatesManager;
-    private readonly IAppExitInvoker _exitService;
+    private readonly IAppExitInvoker _appExitInvoker;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsCheckingForUpdate))]
@@ -56,7 +56,7 @@ public partial class OutdatedClientOverlayViewModel : OverlayViewModelBase<IMain
         IUrlsBrowser urlsBrowser,
         IUpdateClientCommand updateClientCommand,
         IUpdatesManager updatesManager,
-        IAppExitInvoker exitService,
+        IAppExitInvoker appExitInvoker,
         IMainWindowOverlayActivator overlayActivator,
         IViewModelHelper viewModelHelper)
         : base(overlayActivator, viewModelHelper)
@@ -64,7 +64,7 @@ public partial class OutdatedClientOverlayViewModel : OverlayViewModelBase<IMain
         _urlsBrowser = urlsBrowser;
         _updateClientCommand = updateClientCommand;
         _updatesManager = updatesManager;
-        _exitService = exitService;
+        _appExitInvoker = appExitInvoker;
     }
 
     protected override void OnActivated()
@@ -86,13 +86,13 @@ public partial class OutdatedClientOverlayViewModel : OverlayViewModelBase<IMain
             _urlsBrowser.BrowseTo(_urlsBrowser.DownloadsPage);
         }
 
-        Exit();
+        await ExitAsync();
     }
 
     [RelayCommand]
-    private void Exit()
+    private async Task ExitAsync()
     {
-        _exitService.Exit();
+        await _appExitInvoker.ForceExitAsync();
     }
 
     public void Receive(ClientUpdateStateChangedMessage message)

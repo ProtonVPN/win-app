@@ -26,7 +26,7 @@ public interface IGrpcClient
     IUpdateController UpdateController { get; }
     IVpnController VpnController { get; }
 
-    event EventHandler InvokingAppRestart;
+    event EventHandler InvokingClientRestart;
 
     void Stop();
     void CreateIfPipeNameChanged();

@@ -42,7 +42,7 @@ public class GrpcClient : IGrpcClient
     public IUpdateController UpdateController { get; private set; }
     public IVpnController VpnController { get; private set; }
 
-    public event EventHandler InvokingAppRestart;
+    public event EventHandler InvokingClientRestart;
 
     public GrpcClient(INamedPipesConnectionFactory namedPipesConnectionFactory,
         ILogger logger,
@@ -93,7 +93,7 @@ public class GrpcClient : IGrpcClient
 
         return GrpcChannel.ForAddress("http://localhost", new GrpcChannelOptions
         {
-            HttpHandler = new ResponseHandler(_logger, _issueReporter, _settings, InvokingAppRestart, socketsHttpHandler)
+            HttpHandler = new ResponseHandler(_logger, _issueReporter, _settings, InvokingClientRestart, socketsHttpHandler)
         });
     }
 

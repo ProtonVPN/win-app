@@ -66,6 +66,12 @@ public class Program
         return isFirstInstance;
     }
 
+    public static void ReleaseMutex()
+    {
+        _mutex?.ReleaseMutex();
+        _mutex?.Dispose();
+    }
+
     [DllImport("shell32.dll", SetLastError = true)]
     private static extern void SetCurrentProcessExplicitAppUserModelID([MarshalAs(UnmanagedType.LPWStr)] string appId);
 }
