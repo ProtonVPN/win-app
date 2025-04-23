@@ -100,7 +100,7 @@ public class UrlsBrowser : IUrlsBrowser
 
     public string IncreaseVpnSpeeds => "https://protonvpn.com/support/increase-vpn-speeds";
 
-    public string ActiveProxyLearnMore => "https://protonvpn.com/support/remove-proxy";
+    public string ActiveProxyLearnMore => "https://protonvpn.com/support/turn-off-proxy-windows";
 
     public string EnableBaseFilteringEngine => "https://protonvpn.com/support/how-to-enable-the-base-filtering-engine";
 
