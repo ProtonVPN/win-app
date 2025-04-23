@@ -21,6 +21,7 @@ namespace ProtonVPN.Client.Contracts.Services.Lifecycle;
 
 public interface IAppExitInvoker
 {
-    void Restart();
-    void Exit(int code = 0);
+    Task RestartAsync();
+    Task ExitWithConfirmationAsync();
+    Task ForceExitAsync();
 }

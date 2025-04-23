@@ -36,7 +36,7 @@ public class ServiceEnabler : IServiceEnabler
     private readonly IUIThreadDispatcher _uIThreadDispatcher;
     private readonly ILocalizationProvider _localizer;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
-    private readonly IAppExitInvoker _appExitInvoker;
+    private readonly Lazy<IAppExitInvoker> _appExitInvoker;
     private readonly SemaphoreSlim _semaphore = new(1, 1);
 
     public ServiceEnabler(
@@ -44,7 +44,7 @@ public class ServiceEnabler : IServiceEnabler
         IUIThreadDispatcher uIThreadDispatcher,
         ILocalizationProvider localizer,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
-        IAppExitInvoker appExitInvoker)
+        Lazy<IAppExitInvoker> appExitInvoker)
     {
         _logger = logger;
         _uIThreadDispatcher = uIThreadDispatcher;
@@ -105,9 +105,7 @@ public class ServiceEnabler : IServiceEnabler
         if (!service.IsEnabled())
         {
             _logger.Info<AppServiceLog>($"The service {service.Name} was not enabled. Shutting down the application.");
-
-            // Used Environment.Exit, because IMainWindowActivator.Exit causes circular dependency
-            _appExitInvoker.Exit();
+            await _appExitInvoker.Value.ForceExitAsync();
         }
     }
 }

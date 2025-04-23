@@ -21,6 +21,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Contracts.Services.Lifecycle;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -44,6 +45,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
+    private readonly IAppExitInvoker _appExitInvoker;
 
     [ObservableProperty]
     private Overlay _selectedOverlay;
@@ -74,7 +76,8 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         ISettings settings,
         IEventMessageSender eventMessageSender,
         IDebugToolsWindowActivator windowActivator,
-        IViewModelHelper viewModelHelper)
+        IViewModelHelper viewModelHelper,
+        IAppExitInvoker appExitInvoker)
         : base(windowActivator, viewModelHelper)
     {
         _serversUpdater = serversUpdater;
@@ -83,6 +86,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _settings = settings;
         _eventMessageSender = eventMessageSender;
+        _appExitInvoker = appExitInvoker;
 
         OverlaysList =
         [
@@ -101,7 +105,13 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     }
 
     [RelayCommand]
-    public void TriggerAppCrash()
+    public async Task TriggerRestartAsync()
+    {
+        await _appExitInvoker.RestartAsync();
+    }
+
+    [RelayCommand]
+    public void TriggerClientCrash()
     {
         throw new StackOverflowException("Intentional crash test");
     }

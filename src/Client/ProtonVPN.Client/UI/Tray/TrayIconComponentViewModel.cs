@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Contracts.Services.Lifecycle;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Models;
@@ -28,11 +29,9 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Recents.Contracts;
-using ProtonVPN.Client.Services.Bootstrapping;
 using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
@@ -43,12 +42,11 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<LoggedOutMessage>
 {
-    private readonly IBootstrapper _bootstrapper;
+    private readonly IAppExitInvoker _appExitInvoker;
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IRecentConnectionsManager _recentConnectionsManager;
     private readonly IConnectionManager _connectionManager;
     private readonly IUserAuthenticator _userAuthenticator;
-    private readonly IGuestHoleManager _guestHoleManager;
     private readonly IApplicationIconSelector _applicationIconSelector;
 
     public ImageSource IconSource => _applicationIconSelector.GetStatusIcon(GetIconStatusParameters());
@@ -61,22 +59,20 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
     public string OpenApplicationLabel => Localizer.GetFormat("Tray_Actions_OpenApplication", ApplicationName);
 
     public TrayIconComponentViewModel(
-        IBootstrapper bootstrapper,
+        IAppExitInvoker appExitInvoker,
         IMainWindowActivator mainWindowActivator,
         IRecentConnectionsManager recentConnectionsManager,
         IConnectionManager connectionManager,
         IUserAuthenticator userAuthenticator,
-        IGuestHoleManager guestHoleManager,
         IApplicationIconSelector applicationIconSelector,
         IViewModelHelper viewModelHelper)
         : base(viewModelHelper)
     {
-        _bootstrapper = bootstrapper;
+        _appExitInvoker = appExitInvoker;
         _mainWindowActivator = mainWindowActivator;
         _recentConnectionsManager = recentConnectionsManager;
         _connectionManager = connectionManager;
         _userAuthenticator = userAuthenticator;
-        _guestHoleManager = guestHoleManager;
         _applicationIconSelector = applicationIconSelector;
     }
 
@@ -89,7 +85,7 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
     [RelayCommand]
     public async Task ExitApplicationAsync()
     {
-        await _bootstrapper.ExitAsync();
+        await _appExitInvoker.ExitWithConfirmationAsync();
     }
 
     [RelayCommand(CanExecute = nameof(CanConnect))]

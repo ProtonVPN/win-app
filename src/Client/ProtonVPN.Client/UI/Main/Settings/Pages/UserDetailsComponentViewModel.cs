@@ -19,13 +19,13 @@
 
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Contracts.Services.Lifecycle;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
-using ProtonVPN.Client.Services.Bootstrapping;
 using ProtonVPN.Client.Services.SignoutHandling;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Extensions;
@@ -39,7 +39,7 @@ public partial class UserDetailsComponentViewModel : PageViewModelBase,
     private readonly ISignOutHandler _signoutHandler;
     private readonly ISettings _settings;
     private readonly IWebAuthenticator _webAuthenticator;
-    private readonly IBootstrapper _bootstrapper;
+    private readonly IAppExitInvoker _appExitInvoker;
 
     public string Username => _settings.GetUsername();
 
@@ -54,7 +54,7 @@ public partial class UserDetailsComponentViewModel : PageViewModelBase,
         ISignOutHandler signoutHandler,
         ISettings settings,
         IWebAuthenticator webAuthenticator,
-        IBootstrapper bootstrapper,
+        IAppExitInvoker appExitInvoker,
         IViewModelHelper viewModelHelper)
         : base(viewModelHelper)
     {
@@ -62,7 +62,7 @@ public partial class UserDetailsComponentViewModel : PageViewModelBase,
         _signoutHandler = signoutHandler;
         _settings = settings;
         _webAuthenticator = webAuthenticator;
-        _bootstrapper = bootstrapper;
+        _appExitInvoker = appExitInvoker;
     }
 
     public void Receive(VpnPlanChangedMessage message)
@@ -89,9 +89,9 @@ public partial class UserDetailsComponentViewModel : PageViewModelBase,
     }
 
     [RelayCommand]
-    private Task ExitApplicationAsync()
+    private async Task ExitApplicationAsync()
     {
-        return _bootstrapper.ExitAsync();
+        await _appExitInvoker.ExitWithConfirmationAsync();
     }
 
     [RelayCommand]

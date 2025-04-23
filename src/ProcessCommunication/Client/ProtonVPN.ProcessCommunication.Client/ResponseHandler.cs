@@ -35,19 +35,19 @@ public class ResponseHandler : DelegatingHandler
     private readonly ILogger _logger;
     private readonly IIssueReporter _issueReporter;
     private readonly ISettings _settings;
-    private readonly EventHandler _invokingAppRestart;
+    private readonly EventHandler _invokingClientRestart;
 
     private readonly bool _isToHandle;
     private bool _isAppRestartInvoked;
     private bool _is401UnauthorizedWithoutBeingBelowServiceVersionHandled;
 
-    public ResponseHandler(ILogger logger, IIssueReporter issueReporter, ISettings settings, EventHandler invokingAppRestart, HttpMessageHandler innerHandler)
+    public ResponseHandler(ILogger logger, IIssueReporter issueReporter, ISettings settings, EventHandler invokingClientRestart, HttpMessageHandler innerHandler)
         : base(innerHandler)
     {
         _logger = logger;
         _issueReporter = issueReporter;
         _settings = settings;
-        _invokingAppRestart = invokingAppRestart;
+        _invokingClientRestart = invokingClientRestart;
 
         _isToHandle = logger is not null && issueReporter is not null && settings is not null;
     }
@@ -153,7 +153,7 @@ public class ResponseHandler : DelegatingHandler
 
         _settings.LastProcessVersionMismatchRestartVersions = versions;
         _settings.LastProcessVersionMismatchRestartUtcDate = DateTimeOffset.UtcNow;
-        _invokingAppRestart?.Invoke(this, EventArgs.Empty);
+        _invokingClientRestart?.Invoke(this, EventArgs.Empty);
         _isAppRestartInvoked = true;
     }
 

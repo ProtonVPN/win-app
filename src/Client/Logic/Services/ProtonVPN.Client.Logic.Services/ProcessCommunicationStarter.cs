@@ -30,7 +30,6 @@ public class ProcessCommunicationStarter : IProcessCommunicationStarter
     private readonly IGrpcClient _grpcClient;
     private readonly ILogger _logger;
     private readonly IClientControllerListener _clientControllerListener;
-    private readonly IEnumerable<IServiceCaller> _serviceCallers;
     private readonly IAppExitInvoker _appExitInvoker;
 
     public ProcessCommunicationStarter(IGrpcClient grpcClient,
@@ -42,20 +41,14 @@ public class ProcessCommunicationStarter : IProcessCommunicationStarter
         _grpcClient = grpcClient;
         _logger = logger;
         _clientControllerListener = clientControllerListener;
-        _serviceCallers = serviceCallers;
         _appExitInvoker = appExitInvoker;
 
-        _grpcClient.InvokingAppRestart += OnInvokingAppRestart;
+        _grpcClient.InvokingClientRestart += OnInvokingClientRestartAsync;
     }
 
-    private void OnInvokingAppRestart(object sender, EventArgs e)
+    private async void OnInvokingClientRestartAsync(object? sender, EventArgs e)
     {
-        foreach (IServiceCaller serviceCaller in _serviceCallers)
-        {
-            serviceCaller.Stop();
-        }
-        _clientControllerListener.Stop();
-        _appExitInvoker.Restart();
+        await _appExitInvoker.RestartAsync();
     }
 
     public void Start()

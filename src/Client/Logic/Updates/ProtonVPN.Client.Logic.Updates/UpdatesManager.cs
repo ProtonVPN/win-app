@@ -208,7 +208,7 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
         if (_lastUpdateState.Status == AppUpdateStatus.AutoUpdated)
         {
             Logger.Info<AppUpdateLog>("Restarting app after auto update due to manual request.");
-            _appExitInvoker.Restart();
+            await _appExitInvoker.RestartAsync();
         }
         else if (_lastUpdateState.IsReady)
         {
@@ -233,7 +233,7 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
         try
         {
             _osProcesses.ElevatedProcess(_lastUpdateState.FilePath, _lastUpdateState.FileArguments).Start();
-            _appExitInvoker.Exit();
+            await _appExitInvoker.ForceExitAsync();
         }
         catch (System.ComponentModel.Win32Exception)
         {

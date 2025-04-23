@@ -24,6 +24,4 @@ namespace ProtonVPN.Client.Services.Bootstrapping;
 public interface IBootstrapper
 {
     Task StartAsync(LaunchActivatedEventArgs args);
-
-    Task ExitAsync();
 }
