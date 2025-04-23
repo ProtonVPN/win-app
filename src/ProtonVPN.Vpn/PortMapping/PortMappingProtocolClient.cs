@@ -116,14 +116,8 @@ namespace ProtonVPN.Vpn.PortMapping
 
         private void InvokeState(PortForwardingState state)
         {
-            if (state == null)
-            {
-                _logger.Warn<ConnectionLog>("Can't invoke null state.");
-            }
-            else
-            {
-                StateChanged?.Invoke(this, new(state));
-            }
+            state ??= PortForwardingState.Default;
+            StateChanged?.Invoke(this, new(state));
         }
 
         private PortForwardingState CreatePortForwardingState(PortMappingStatus status)

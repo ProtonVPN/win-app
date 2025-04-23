@@ -23,7 +23,14 @@ namespace ProtonVPN.Common.Legacy.PortForwarding;
 
 public class PortForwardingState
 {
-    public TemporaryMappedPort MappedPort { get; set; }
-    public PortMappingStatus Status { get; set; }
-    public DateTime TimestampUtc { get; set; } = DateTime.UtcNow;
+    public TemporaryMappedPort MappedPort { get; init; }
+    public PortMappingStatus Status { get; init; }
+    public DateTime TimestampUtc { get; init; } = DateTime.UtcNow;
+
+    public static readonly PortForwardingState Default = new()
+    {
+        MappedPort = null,
+        Status = PortMappingStatus.Stopped,
+        TimestampUtc = DateTime.UtcNow
+    };
 }
