@@ -59,6 +59,15 @@ public static class Program
             Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"..\..\"));
     }
 
+    private static string GetGuestHoleKey(string fileName)
+    {
+        string filePath = Path.Combine(GetRootDirectory(), "Setup", fileName);
+
+        return File.Exists(filePath)
+            ? File.ReadAllText(filePath)
+            : string.Empty;
+    }
+
     private static string GetFileContents()
     {
         string sentryDsn = GetEnvironmentVariable("SENTRY_DSN_V4");
@@ -69,6 +78,8 @@ public static class Program
         string btiCertificateValidation = GetEnvironmentVariable("BTI_CERT_VALIDATION");
         string btiDohUrls = GetEnvironmentVariable("BTI_DOH_URLS");
         string btiServerSignaturePublicKey = GetEnvironmentVariable("BTI_SERVER_SIGNATURE_PUBLIC_KEY");
+        string guestHoleKey1 = GetGuestHoleKey("key1.txt");
+        string guestHoleKey2 = GetGuestHoleKey("key2.txt");
 
         return $@"
 /*
@@ -103,6 +114,8 @@ public static class {_globalConfigType.Name}
     public const string BtiCertificateValidation = ""{btiCertificateValidation}"";
     public const string BtiDohProviders = ""{btiDohUrls}"";
     public const string BtiServerSignaturePublicKey = ""{btiServerSignaturePublicKey}"";
+    public const string GuestHoleKey1 = ""{guestHoleKey1}"";
+    public const string GuestHoleKey2 = ""{guestHoleKey2}"";
 }}
 ";
     }

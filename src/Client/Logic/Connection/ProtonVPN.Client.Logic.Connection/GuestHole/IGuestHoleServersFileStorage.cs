@@ -18,10 +18,10 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
-using ProtonVPN.Common.Legacy.FileStoraging;
 
 namespace ProtonVPN.Client.Logic.Connection.GuestHole;
 
-public interface IGuestHoleServersFileStorage : IFileStorageBase<IEnumerable<GuestHoleServerContract>>
+public interface IGuestHoleServersFileStorage
 {
+    Task<List<GuestHoleServerContract>> GetAsync();
 }

@@ -138,7 +138,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
     {
         //_statisticalEventManager.SetConnectionAttempt(VpnTriggerDimension.Auto, ConnectionStatus);
 
-        IOrderedEnumerable<GuestHoleServerContract> servers = _guestHoleServersFileStorage.Get().OrderBy(_ => _random.Next());
+        IOrderedEnumerable<GuestHoleServerContract> servers = (await _guestHoleServersFileStorage.GetAsync()).OrderBy(_ => _random.Next());
         ConnectionRequestIpcEntity request = await _guestHoleConnectionRequestCreator.CreateAsync(servers);
 
         _logger.Info<ConnectTriggerLog>("Guest hole connection requested.");
