@@ -46,6 +46,13 @@ include:
       stage: security
       cli-args: ""
 
+  - component: $CI_SERVER_HOST/proton/devops/cicd-components/community/test-image-asset/generate-image-assets@0.0.2
+    inputs:
+      product: windows_vpn
+      output_path: ./Setup
+      stage: guest-holes
+      allowed-to-fail: false
+
 # Commented because the validator fails since we allow self-approvals even though we require 2 approvers
 #  - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/project-settings-validator/scan-project@~latest
 #    inputs:
@@ -71,10 +78,11 @@ variables:
 workflow:
   rules:
     - if: '$CI_PIPELINE_SOURCE != "merge_request_event"'  # Disable Merge Request pipelines
-    
+
 stages:
   - release
   - bot # comes from translations/generator job
+  - guest-holes
   - build
   - security
   - test
@@ -85,7 +93,7 @@ stages:
   - deploy
   - publish-to-slack
   - mirror
-  
+
 .unit_test_setup_script: &unit_test_setup_script
   - nuget restore ProtonVPN.InstallActions.sln
   - cmd.exe /c BuildDependencies.bat bin gosrponly
@@ -94,7 +102,7 @@ stages:
   - src\bin\ProtonVPN.Builds.ConsoleJob.exe
   - dotnet restore ProtonVpn.sln
   - dotnet build ProtonVpn.sln
-  
+
 build-release-x64:
   extends: .build-script
   only:
@@ -139,7 +147,7 @@ build-bti-x64:
       when: always
     - when: manual
   extends:
-    - .build-bti-vars  
+    - .build-bti-vars
     - .build-script
   when: manual
   variables:
@@ -200,7 +208,7 @@ gitleaks-create-baseline:
 
 #project-settings-validator-scan-project:
 #  needs: []
-    
+
 grype-scan-code-dependencies:
   rules:
   - when: never
@@ -246,7 +254,7 @@ ui-tests-group-1:
     - schedules
   variables:
     CATEGORY: "1"
-    
+
 ui-tests-group-2:
   extends: .ui_test_execution_script
   except:
@@ -256,7 +264,7 @@ ui-tests-group-2:
     - schedules
   variables:
     CATEGORY: "2"
-    
+
 ui-tests-group-3:
   extends: .ui_test_execution_script
   except:
@@ -285,16 +293,16 @@ ui-tests-full-arm:
     CATEGORY: "ARM"
 
 unit-tests:
-  extends: 
+  extends:
     - .unit_test_config
   rules:
     - if: $CI_COMMIT_REF_PROTECTED != "true" && $CI_PIPELINE_SOURCE != "merge_request_event"
   script:
     - *unit_test_setup_script
     - dotnet test src\bin\*.Tests.dll --no-restore --no-build --logger "console;verbosity=normal"
-  
+
 unit-tests-with-coverage:
-  extends: 
+  extends:
     - .unit_test_config
   rules:
     - if: $CI_COMMIT_REF_PROTECTED == "true" && $CI_PIPELINE_SOURCE != "merge_request_event"
@@ -312,8 +320,9 @@ unit-tests-with-coverage:
 
 build-installer-release-x64:
   needs:
+    - generate-guest-holes
     - build-release-x64
-  extends: 
+  extends:
     - .build-installer
   only:
     - master
@@ -324,8 +333,9 @@ build-installer-release-x64:
 
 build-installer-debug-x64:
   needs:
+    - generate-guest-holes
     - build-debug-x64
-  extends: 
+  extends:
     - .build-installer
   except:
     - master
@@ -337,8 +347,9 @@ build-installer-debug-x64:
 
 build-installer-debug-arm64:
   needs:
+    - generate-guest-holes
     - build-debug-arm64
-  extends: 
+  extends:
     - .build-installer
   except:
     - master
@@ -350,8 +361,9 @@ build-installer-debug-arm64:
 
 build-installer-release-arm64:
   needs:
+    - generate-guest-holes
     - build-release-arm64
-  extends: 
+  extends:
     - .build-installer
   only:
     - master
@@ -366,7 +378,7 @@ build-BTI-installer-x64:
   except:
     - master
     - /^release.*$/
-  extends: 
+  extends:
     - .build-installer
   variables:
     BUILD_PATH: src/bin/win-x64/BTI/publish
@@ -382,7 +394,7 @@ prepare-internal-beta-release:
     - python ci\test-scripts\prepare-internal-beta.py
   only:
     - /^release.*$/
-    
+
 publish prod release nexus:
   stage: publish
   only:

@@ -5,7 +5,6 @@ import argparse
 import win32api
 import installer
 import ssh
-import guest_hole_server_loader
 import slack
 import hashlib
 
@@ -36,7 +35,6 @@ custom_parser.add_argument('hash', type=str, help='Commit hash string')
 custom_parser = subparsers.add_parser('prepare-ssh')
 custom_parser.add_argument('key', type=str, help='Private ssh key as a string')
 
-subparsers.add_parser('update-gh-list')
 subparsers.add_parser('send-slack-notification')
 
 if len(sys.argv) < 2:
@@ -86,10 +84,6 @@ elif args.command == 'add-commit-hash':
 elif args.command == 'prepare-ssh':
     print('Writing ssh key to the file')
     ssh.prepare(args.key)
-
-elif args.command == 'update-gh-list':
-    print('Executing guest hole server loader')
-    guest_hole_server_loader.load()
 
 elif args.command == 'send-slack-notification':
     print('Sending installer file to slack')

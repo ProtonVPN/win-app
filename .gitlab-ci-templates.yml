@@ -65,7 +65,6 @@
   tags:
     - windows-vpn-signer
   script:
-    - python ci\build-scripts\main.py update-gh-list
     - python ci\build-scripts\main.py app-installer $env:CI_COMMIT_SHORT_SHA ${PLATFORM}
   artifacts:
     paths:
