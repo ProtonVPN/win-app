@@ -46,10 +46,10 @@ public class P2PTrafficDetectionHandler : IHandler,
 
     public void Receive(P2PTrafficDetectedMessage message)
     {
-        _uiThreadDispatcher.TryEnqueue(HandleAsync);
+        _uiThreadDispatcher.TryEnqueue(async () => await HandleAsync());
     }
 
-    private async void HandleAsync()
+    private async Task HandleAsync()
     {
         MessageDialogParameters parameters = new()
         {

@@ -61,7 +61,7 @@ public partial class SettingsPageViewModel : PageViewModelBase<IMainViewNavigato
         if (IsActive && _connectionManager.IsConnected && _connectionManager.CurrentConnectionIntent is IConnectionProfile)
         {
             // When connected to a profile, force navigation to common settings page. Some settings might be overridden by the profile.
-            ForceNavigationToCommonSettingsAsync();
+            ExecuteOnUIThread(async () => await ForceNavigationToCommonSettingsAsync());
         }
     }
 

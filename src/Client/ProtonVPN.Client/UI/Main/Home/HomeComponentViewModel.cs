@@ -75,10 +75,10 @@ public partial class HomeComponentViewModel : ActivatableViewModelBase,
 
     public void Receive(AnnouncementListChangedMessage message)
     {
-        ExecuteOnUIThread(() =>
+        if (IsActive)
         {
-            OnPropertyChanged(nameof(IsUpdateAvailable));
-        });
+            ExecuteOnUIThread(InvalidateUpdateStatus);
+        }
     }
 
     protected override void OnActivated()

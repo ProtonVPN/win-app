@@ -75,7 +75,7 @@ public class ClientConfigObserver :
         StopTimer();
     }
 
-    public async void Receive(DeviceLocationChangedMessage message)
+    public void Receive(DeviceLocationChangedMessage message)
     {
         if (message.HasCountryChangedAndHasValue && _userAuthenticator.IsLoggedIn)
         {

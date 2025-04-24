@@ -55,13 +55,10 @@ public partial class VolumeFlyoutViewModel : ActivatableViewModelBase,
 
     public void Receive(NetworkTrafficChangedMessage message)
     {
-        ExecuteOnUIThread(() =>
+        if (IsActive)
         {
-            if (IsActive)
-            {
-                SetVolume();
-            }
-        });
+            ExecuteOnUIThread(SetVolume);
+        }
     }
 
     private void SetVolume()
