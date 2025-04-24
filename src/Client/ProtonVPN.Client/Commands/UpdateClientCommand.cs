@@ -19,12 +19,14 @@
 
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
+using ProtonVPN.Client.Services.Dispatching;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Extensions;
 
@@ -38,6 +40,7 @@ public class UpdateClientCommand : IUpdateClientCommand,
     private readonly IUpdatesManager _updatesManager;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
     private readonly IConnectionManager _connectionManager;
+    private readonly IUIThreadDispatcher _uiThreadDispatcher;
 
     private bool _isUpdating;
 
@@ -48,20 +51,22 @@ public class UpdateClientCommand : IUpdateClientCommand,
         ILocalizationProvider localizer,
         IUpdatesManager updatesManager,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        IUIThreadDispatcher uiThreadDispatcher)
     {
         _settings = settings;
         _localizer = localizer;
         _updatesManager = updatesManager;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _connectionManager = connectionManager;
+        _uiThreadDispatcher = uiThreadDispatcher;
 
         Command = new AsyncRelayCommand(UpdateAsync, CanUpdate);
     }
 
     public void Receive(ClientUpdateStateChangedMessage message)
     {
-        Command.NotifyCanExecuteChanged();
+        _uiThreadDispatcher.TryEnqueue(Command.NotifyCanExecuteChanged);
     }
 
     public bool CanUpdate()
@@ -76,9 +81,16 @@ public class UpdateClientCommand : IUpdateClientCommand,
             return;
         }
 
-        _isUpdating = true;
-        await _updatesManager.UpdateAsync();
-        _isUpdating = false;
+        try
+        {
+            _isUpdating = true;
+
+            await _updatesManager.UpdateAsync();
+        }
+        finally
+        {
+            _isUpdating = false;
+        }
     }
 
     private async Task<bool> IsAllowedToDisconnectAsync()

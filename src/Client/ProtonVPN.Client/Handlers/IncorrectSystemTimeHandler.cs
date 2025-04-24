@@ -58,10 +58,10 @@ public class IncorrectSystemTimeHandler : IHandler, IEventMessageReceiver<Incorr
 
     public void Receive(IncorrectSystemTimeMessage message)
     {
-        _uiThreadDispatcher.TryEnqueue(HandleAsync);
+        _uiThreadDispatcher.TryEnqueue(async () => await HandleAsync());
     }
 
-    private async void HandleAsync()
+    private async Task HandleAsync()
     {
         _mainWindowActivator.Activate();
 

@@ -55,22 +55,22 @@ public class WelcomeOverlayHandler : IHandler,
 
     public void Receive(HomePageDisplayedAfterLoginMessage message)
     {
-        _uiThreadDispatcher.TryEnqueue(() =>
+        _uiThreadDispatcher.TryEnqueue(async () =>
         {
             if (_settings.LastSeenWhatsNewOverlayVersion < DefaultSettings.WhatsNewOverlayVersion)
             {
                 _settings.LastSeenWhatsNewOverlayVersion = DefaultSettings.WhatsNewOverlayVersion;
-                _mainWindowOverlayActivator.ShowWhatsNewOverlayAsync();
+                await _mainWindowOverlayActivator.ShowWhatsNewOverlayAsync();
             }
             else if (!_settings.VpnPlan.IsB2B && !_settings.WasWelcomeOverlayDisplayed)
             {
                 _settings.WasWelcomeOverlayDisplayed = true;
-                _mainWindowOverlayActivator.ShowWelcomeOverlayAsync();
+                await _mainWindowOverlayActivator.ShowWelcomeOverlayAsync();
             }
             else if (_settings.VpnPlan.IsB2B && !_settings.WasWelcomeB2BOverlayDisplayed)
             {
                 _settings.WasWelcomeB2BOverlayDisplayed = true;
-                _mainWindowOverlayActivator.ShowWelcomeToVpnB2BOverlayAsync();
+                await _mainWindowOverlayActivator.ShowWelcomeToVpnB2BOverlayAsync();
             }
         });
     }
@@ -82,17 +82,17 @@ public class WelcomeOverlayHandler : IHandler,
             return;
         }
 
-        _uiThreadDispatcher.TryEnqueue(() =>
+        _uiThreadDispatcher.TryEnqueue(async () =>
         {
             if (_settings.VpnPlan.IsPlus && !_settings.WasWelcomePlusOverlayDisplayed)
             {
                 _settings.WasWelcomePlusOverlayDisplayed = true;
-                _mainWindowOverlayActivator.ShowWelcomeToVpnPlusOverlayAsync();
+                await _mainWindowOverlayActivator.ShowWelcomeToVpnPlusOverlayAsync();
             }
             else if (_settings.VpnPlan.IsUnlimited && !_settings.WasWelcomeUnlimitedOverlayDisplayed)
             {
                 _settings.WasWelcomeUnlimitedOverlayDisplayed = true;
-                _mainWindowOverlayActivator.ShowWelcomeToVpnUnlimitedOverlayAsync();
+                await _mainWindowOverlayActivator.ShowWelcomeToVpnUnlimitedOverlayAsync();
             }
         });
     }

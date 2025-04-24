@@ -79,12 +79,10 @@ public abstract partial class BannerViewModelBase : ViewModelBase,
     }
 
     protected virtual void BeforeAnnouncementChange()
-    {
-    }
+    { }
 
     protected virtual void AfterAnnouncementChange()
-    {
-    }
+    { }
 
     [RelayCommand(CanExecute = nameof(CanOpenAnnouncement))]
     private async Task OpenAnnouncementAsync()

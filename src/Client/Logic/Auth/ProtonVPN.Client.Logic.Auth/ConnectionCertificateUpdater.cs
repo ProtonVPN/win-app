@@ -50,6 +50,7 @@ public class ConnectionCertificateUpdater : IConnectionCertificateUpdater,
 
     private void Timer_OnTick(object? sender)
     {
+        // TODO: Does this need to be done on the UI thread?
         _uiThreadDispatcher.TryEnqueue(() => _connectionCertificateManager.RequestNewCertificateAsync());
     }
 

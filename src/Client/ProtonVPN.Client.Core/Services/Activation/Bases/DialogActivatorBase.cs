@@ -65,23 +65,26 @@ public abstract class DialogActivatorBase<TWindow> : WindowActivatorBase<TWindow
             return;
         }
 
-        if (message.IsMainWindowVisible)
+        UIThreadDispatcher.TryEnqueue(() => 
         {
-            if (_isHiddenAfterMainWindowClosed)
+            if (message.IsMainWindowVisible)
             {
-                Activate();
+                if (_isHiddenAfterMainWindowClosed)
+                {
+                    Activate();
+                }
             }
-        }
-        else if (Host.Visible)
-        {
-            _isHiddenAfterMainWindowClosed = true;
-            Hide();
-        }
+            else if (Host.Visible)
+            {
+                _isHiddenAfterMainWindowClosed = true;
+                Hide();
+            }
+        });
     }
 
     public void Receive(ApplicationStoppedMessage message)
     {
-        Exit();
+        UIThreadDispatcher.TryEnqueue(Exit);
     }
 
     protected override void InvalidateWindowPosition()

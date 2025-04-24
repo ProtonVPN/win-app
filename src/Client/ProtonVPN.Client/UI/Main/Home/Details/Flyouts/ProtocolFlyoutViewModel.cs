@@ -71,13 +71,10 @@ public partial class ProtocolFlyoutViewModel : ActivatableViewModelBase,
 
     public void Receive(ConnectionStatusChangedMessage message)
     {
-        ExecuteOnUIThread(() =>
+        if (IsActive)
         {
-            if (IsActive)
-            {
-                SetProtocol();
-            }
-        });
+            ExecuteOnUIThread(SetProtocol);
+        }
     }
 
     private void SetProtocol()

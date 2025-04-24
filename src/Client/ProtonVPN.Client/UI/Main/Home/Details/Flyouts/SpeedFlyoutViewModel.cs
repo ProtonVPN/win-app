@@ -69,13 +69,10 @@ public partial class SpeedFlyoutViewModel : ActivatableViewModelBase,
 
     public void Receive(NetworkTrafficChangedMessage message)
     {
-        ExecuteOnUIThread(() =>
+        if (IsActive)
         {
-            if (IsActive)
-            {
-                SetSpeed();
-            }
-        });
+            ExecuteOnUIThread(SetSpeed);
+        }
     }
 
     private void SetSpeed()
