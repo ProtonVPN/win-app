@@ -102,6 +102,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="BorderBrush" Value="{ThemeResource SignalWarningColorBrush}" />
     </Style>
 
+    <Style x:Key="BetaTagControlStyle" TargetType="custom:TagControl" BasedOn="{StaticResource DefaultTagControlStyle}">
+        <Setter Property="Foreground" Value="{ThemeResource TextHintColorBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource TextHintColorBrush}" />
+    </Style>
+
     <Style x:Key="VpnPlanTagControlStyle" TargetType="custom:TagControl" BasedOn="{StaticResource DefaultTagControlStyle}">
         <Setter Property="Background" Value="{ThemeResource InteractionDefaultEmptyColorBrush}" />
         <Setter Property="BorderBrush" Value="{ThemeResource BorderWeakColorBrush}" />

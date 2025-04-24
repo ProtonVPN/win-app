@@ -173,6 +173,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        Style="{ThemeResource BodyStrongTextBlockStyle}"
                                        Text="{x:Bind Version, Mode=OneTime}" />
                             <custom:TagControl VerticalAlignment="Center"
+                                               Style="{StaticResource BetaTagControlStyle}"
+                                               Text="{x:Bind BetaVersionLabel, Mode=OneTime}"
+                                               Visibility="{x:Bind BetaVersionLabel, Converter={StaticResource StringVisibilityConverter}, Mode=OneTime}" />
+                            <custom:TagControl VerticalAlignment="Center"
                                                Style="{StaticResource NewTagControlStyle}"
                                                Text="{x:Bind NewVersionLabel, Mode=OneTime}"
                                                Visibility="{x:Bind NewVersionLabel, Converter={StaticResource StringVisibilityConverter}, Mode=OneTime}" />

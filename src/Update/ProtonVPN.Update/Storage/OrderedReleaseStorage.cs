@@ -39,6 +39,7 @@ public class OrderedReleaseStorage : IReleaseStorage
     public async Task<IEnumerable<Release>> GetReleasesAsync()
     {
         return (await _storage.GetReleasesAsync())
-            .OrderByDescending(r => r);
+            .OrderByDescending(r => r)
+            .DistinctBy(r => r.Version);
     }
 }

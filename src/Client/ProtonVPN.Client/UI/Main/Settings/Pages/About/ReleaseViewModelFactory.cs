@@ -38,6 +38,7 @@ public class ReleaseViewModelFactory
         {
             Version = r.Version,
             NewVersionLabel = r.IsNew ? _localizer.Get("Common_Tags_New") : string.Empty,
+            BetaVersionLabel = r.IsEarlyAccess ? _localizer.Get("Common_Tags_Beta") : string.Empty,
             ReleaseDate = r.ReleaseDate,
             ChangeLog = r.ChangeLog,
         }).ToList();
