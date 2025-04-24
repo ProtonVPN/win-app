@@ -438,6 +438,24 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
             await MigrateUserSettingsAsync(usersResponseTask, serversUpdateTask);
 
         }
+        catch (HttpRequestException e)
+        {
+            _logger.Error<AppLog>("An Http request exception was thrown when updating the user info.", e);
+
+            if (!_guestHoleManager.IsActive)
+            {
+                _logger.Info<AppLog>("Attempt to complete login through guest hole.", e);
+
+                return await _guestHoleManager.ExecuteAsync<AuthResult>(async () => 
+                {
+                    AuthResult result = await CompleteLoginAsync(isAutoLogin, isToSendLoggedInEvent);
+
+                    await _guestHoleManager.DisconnectAsync();
+
+                    return result;
+                }) ?? AuthResult.Fail(); 
+            }
+        }
         catch (Exception e)
         {
             _logger.Error<AppLog>("An unexpected exception was thrown when updating the user info.", e);
