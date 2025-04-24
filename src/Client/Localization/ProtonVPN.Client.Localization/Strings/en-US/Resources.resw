@@ -182,6 +182,11 @@
   </data>
   <data name="Common_Tags_New" xml:space="preserve">
     <value>NEW</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
+  </data>
+  <data name="Common_Tags_Beta" xml:space="preserve">
+    <value>BETA</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
   </data>
   <data name="Connection_Intent_City_Server" xml:space="preserve">
     <value>{0} #{1}</value>

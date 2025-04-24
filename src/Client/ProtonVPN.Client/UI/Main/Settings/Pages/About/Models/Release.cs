@@ -25,6 +25,8 @@ public class Release
 
     public required string NewVersionLabel { get; set; }
 
+    public required string BetaVersionLabel { get; set; }
+
     public required DateTime? ReleaseDate { get; set; }
 
     public required IReadOnlyList<string> ChangeLog { get; set; }

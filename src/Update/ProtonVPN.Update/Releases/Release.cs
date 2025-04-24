@@ -55,11 +55,30 @@ public class Release : IRelease, IComparable, IComparable<IRelease>
 
     public int CompareTo(IRelease other)
     {
-        return Version.CompareTo(other.Version);
+        if (other == null)
+        {
+            return 1;
+        }
+
+        // Ascending order
+        int versionComparison = Version.CompareTo(other.Version);
+
+        if (versionComparison != 0)
+        {
+            return versionComparison;
+        }
+
+        // If versions are equal, early-access comes before stable
+        return other.IsEarlyAccess.CompareTo(IsEarlyAccess); 
     }
 
     public int CompareTo(object obj)
     {
-        return CompareTo((IRelease)obj);
+        if (obj is IRelease otherRelease)
+        {
+            return CompareTo(otherRelease);
+        }
+
+        throw new ArgumentException("Object is not an IRelease");
     }
 }

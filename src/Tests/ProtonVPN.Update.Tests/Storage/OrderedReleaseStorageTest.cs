@@ -18,6 +18,7 @@
  */
 
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -56,6 +57,10 @@ public class OrderedReleaseStorageTest
             new() {Version = new(5, 5, 5)},
             new() {Version = new(4, 4, 4)},
             new() {Version = new(3, 3, 3)},
+            new() {Version = new(2, 1, 1)},
+            new() {Version = new(2, 1, 10)},
+            new() {Version = new(2, 1, 9)},
+            new() {Version = new(2, 1, 100)},
             new() {Version = new(2, 1, 0)}
         };
 
@@ -65,5 +70,44 @@ public class OrderedReleaseStorageTest
         IEnumerable<Release> result = await storage.GetReleasesAsync();
 
         result.Should().BeInDescendingOrder();
+    }
+
+    [TestMethod]
+    public async Task Releases_ShouldHave_NoDuplicates()
+    {
+        Release[] releases = {
+            new() {Version = new(0, 1, 2)},
+            new() {Version = new(5, 5, 5)},
+            new() {Version = new(4, 4, 4)},
+            new() {Version = new(4, 4, 4)},
+            new() {Version = new(2, 1, 0)}
+        };
+
+        _origin.GetReleasesAsync().Returns(releases);
+        OrderedReleaseStorage storage = new OrderedReleaseStorage(_origin);
+
+        IEnumerable<Release> result = await storage.GetReleasesAsync();
+
+        result.Should().HaveCount(4);
+    }
+
+    [TestMethod]
+    public async Task Releases_ShouldKeep_StableReleaseOverEarlyAccess()
+    {
+        Release[] releases = {
+            new() {Version = new(1, 0, 0), IsEarlyAccess = true},
+            new() {Version = new(1, 0, 0), IsEarlyAccess = false},
+            new() {Version = new(2, 0, 0), IsEarlyAccess = false},
+            new() {Version = new(2, 0, 0), IsEarlyAccess = true},
+        };
+
+        _origin.GetReleasesAsync().Returns(releases);
+        OrderedReleaseStorage storage = new OrderedReleaseStorage(_origin);
+
+        IEnumerable<Release> result = await storage.GetReleasesAsync();
+
+        result.Should().HaveCount(2);
+        result.First().Should().Be(releases[2]);
+        result.Last().Should().Be(releases[1]);
     }
 }
