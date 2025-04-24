@@ -136,8 +136,6 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
     public async Task ConnectToGuestHoleAsync()
     {
-        //_statisticalEventManager.SetConnectionAttempt(VpnTriggerDimension.Auto, ConnectionStatus);
-
         IOrderedEnumerable<GuestHoleServerContract> servers = (await _guestHoleServersFileStorage.GetAsync()).OrderBy(_ => _random.Next());
         ConnectionRequestIpcEntity request = await _guestHoleConnectionRequestCreator.CreateAsync(servers);
 
@@ -147,8 +145,6 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
     public async Task DisconnectFromGuestHoleAsync()
     {
-        //_statisticalEventManager.SetDisconnectionAttempt(VpnTriggerDimension.Auto, ConnectionStatus);
-
         DisconnectionRequestIpcEntity request = _disconnectionRequestCreator.Create(VpnError.NoneKeepEnabledKillSwitch);
 
         await _vpnServiceCaller.DisconnectAsync(request);
@@ -276,9 +272,9 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
                 else if (server is null)
                 {
                     _logger.Error<AppLog>($"The status changed to Connected but the associated Server is null. Error: '{message.Error}' " +
-                                          $"NetworkBlocked: '{message.NetworkBlocked}' " +
-                                          $"Status: '{message.Status}' EntryIp: '{message.EndpointIp}' Label: '{message.Label}' " +
-                                          $"NetworkAdapterType: '{message.OpenVpnAdapterType}' VpnProtocol: '{message.VpnProtocol}'");
+                                            $"NetworkBlocked: '{message.NetworkBlocked}' " +
+                                            $"Status: '{message.Status}' EntryIp: '{message.EndpointIp}' Label: '{message.Label}' " +
+                                            $"NetworkAdapterType: '{message.OpenVpnAdapterType}' VpnProtocol: '{message.VpnProtocol}'");
 
                     // VPNWIN-2105 - Either (1) Reconnect without last server, or (2) Delete this comment
                     await ReconnectAsync(VpnTriggerDimension.Auto);
@@ -333,7 +329,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
         _eventMessageSender.Send(new ConnectionStatusChangedMessage(ConnectionStatus));
 
-        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Status updated to {ConnectionStatus}.{(IsConnected ? $" Connected to server {CurrentConnectionDetails?.ServerName}" : string.Empty)}");
+        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Status updated to {ConnectionStatus}{(_isGuestHoleActive ? " (Guest hole)" : string.Empty)}.{(IsConnected ? $" Connected to server {CurrentConnectionDetails?.ServerName}" : string.Empty)}");
 
         _statisticalEventManager.OnVpnStateChanged(status, error, CurrentConnectionDetails);
     }

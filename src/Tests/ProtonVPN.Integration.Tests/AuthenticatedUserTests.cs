@@ -53,6 +53,7 @@ public class AuthenticatedUserTests : TestBase
         SetAuthResponse();
         SetVpnInfoResponse();
         SetAuthCertificateResponse();
+        SetUserResponse();
     }
 
     protected void SetApiResponsesForAuthWithTwoFactor()
@@ -103,6 +104,15 @@ public class AuthenticatedUserTests : TestBase
         {
             StatusCode = HttpStatusCode.OK,
             Content = new StringContent(GetJsonMock("CertificateResponseMock"))
+        });
+    }
+
+    private void SetUserResponse()
+    {
+        MessageHandler!.When(HttpMethod.Get, "/core/v4/users").Respond(_ => new HttpResponseMessage
+        {
+            StatusCode = HttpStatusCode.OK,
+            Content = new StringContent(GetJsonMock("UserResponseMock"))
         });
     }
 
