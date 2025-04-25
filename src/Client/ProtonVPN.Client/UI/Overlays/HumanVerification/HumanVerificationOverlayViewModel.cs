@@ -26,6 +26,7 @@ using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Services.Verification.Messages;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.UI.Overlays.HumanVerification;
 
@@ -79,6 +80,13 @@ public partial class HumanVerificationOverlayViewModel : OverlayViewModelBase<IM
         _eventMessageSender.Send(new ResponseTokenMessage(token));
 
         Close();
+    }
+
+    protected override void OnActivated()
+    {
+        base.OnActivated();
+
+        Logger.Info<AppLog>($"Human verification triggered (url: {Url})");
     }
 
     private string GetCaptchaUrl()

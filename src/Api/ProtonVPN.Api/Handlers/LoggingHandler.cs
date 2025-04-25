@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -25,8 +25,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Categories;
-using ProtonVPN.Logging.Contracts.Events;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 
 namespace ProtonVPN.Api.Handlers;
@@ -45,30 +43,85 @@ public class LoggingHandler : LoggingHandlerBase
         HttpRequestMessage request,
         CancellationToken cancellationToken)
     {
-        string req = $"{request.Method.Method} \"{request.RequestUri}\"";
+        string formattedRequest = GetFormattedRequest(request);
         try
         {
-            _logger.Info<ApiRequestLog>(req);
-#if DEBUG
-            LogHttpHeaders<ApiRequestLog>($"{req} request", request.Headers);
-#endif
-            HttpResponseMessage result = await base.SendAsync(request, cancellationToken);
-            _logger.Info<ApiResponseLog>($"{req}: {(int)result.StatusCode} {result.StatusCode}");
-#if DEBUG
-            LogHttpHeaders<ApiResponseLog>($"{req} response", result.Headers);
-#endif
-            return result;
+            LogHttpRequest(formattedRequest, request);
+
+            HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
+
+            LogHttpResponse(formattedRequest, response);
+
+            return response;
         }
         catch (Exception ex)
         {
-            _logger.Error<ApiErrorLog>($"{req} failed: {ex.CombinedMessage()}");
+            LogHttpError(formattedRequest, ex);
             throw;
         }
     }
 
-    private void LogHttpHeaders<T>(string req, HttpHeaders headers) where T : LogEventBase<ApiLogCategory>, new()
+    protected override HttpResponseMessage Send(
+        HttpRequestMessage request,
+        CancellationToken cancellationToken)
     {
-        string mergedHeaders = string.Join(',', headers.Select(kvp => $"{kvp.Key}: [{string.Join("],[", kvp.Value)}]"));
-        _logger.Debug<T>($"{req} headers: {mergedHeaders}");
+        string formattedRequest = GetFormattedRequest(request);
+        try
+        {
+            LogHttpRequest(formattedRequest, request);
+
+            HttpResponseMessage response = base.Send(request, cancellationToken);
+
+            LogHttpResponse(formattedRequest, response);
+
+            return response;
+        }
+        catch (Exception ex)
+        {
+            LogHttpError(formattedRequest, ex);
+            throw;
+        }
+    }
+
+    private void LogHttpRequest(string formattedRequest, HttpRequestMessage request)
+    {
+        _logger.Info<ApiRequestLog>(formattedRequest);
+#if DEBUG
+        _logger.Debug<ApiRequestLog>($"{formattedRequest} request headers: {GetFormattedHeaders(request?.Headers)}");
+#endif
+    }
+
+    private void LogHttpResponse(string formattedRequest, HttpResponseMessage response)
+    {
+        _logger.Info<ApiResponseLog>($"{formattedRequest}: {GetFormattedResponse(response)}");
+#if DEBUG
+        _logger.Debug<ApiResponseLog>($"{formattedRequest} response headers: {GetFormattedHeaders(response.Headers)}");
+#endif
+    }
+
+    private void LogHttpError(string formattedRequest, Exception exception)
+    {
+        _logger.Error<ApiErrorLog>($"{formattedRequest} failed: {exception.CombinedMessage()}");
+    }
+
+    private string GetFormattedRequest(HttpRequestMessage request)
+    {
+        return request == null
+            ? string.Empty
+            : $"{request.Method.Method} \"{request.RequestUri}\"";
+    }
+
+    private string GetFormattedResponse(HttpResponseMessage response)
+    {
+        return response == null
+            ? string.Empty
+            : $"{(int)response?.StatusCode} {response?.StatusCode}\"";
+    }
+
+    private string GetFormattedHeaders(HttpHeaders headers)
+    {
+        return headers == null
+            ? string.Empty
+            : string.Join(',', headers.Select(kvp => $"{kvp.Key}: [{string.Join("],[", kvp.Value)}]"));
     }
 }
