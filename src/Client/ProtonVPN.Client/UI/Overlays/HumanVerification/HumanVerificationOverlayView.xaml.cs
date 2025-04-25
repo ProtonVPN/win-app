@@ -36,6 +36,7 @@ public sealed partial class HumanVerificationOverlayView : IContextAware
 {
     private const string CSP_HEADER = "Content-Security-Policy";
     private const int WEBVIEW_ADDED_HEIGHT = 124;
+
     private readonly ILogger _logger;
     private readonly IHumanVerificationConfig _humanVerificationConfig;
     private readonly IConfiguration _config;
@@ -53,7 +54,7 @@ public sealed partial class HumanVerificationOverlayView : IContextAware
         _config = App.GetService<IConfiguration>();
         _certificateValidator = App.GetService<ICertificateValidator>();
         _apiHostProvider = App.GetService<IApiHostProvider>();
-        _httpClient = new HttpClient(App.GetService<TlsPinnedCertificateHandler>());
+        _httpClient = App.GetService<IHumanVerificationHttpClientFactory>().GetHttpClient();
 
         ViewModel = App.GetService<HumanVerificationOverlayViewModel>();
         UserDataFolder = App.GetService<IConfiguration>().WebViewFolder;
@@ -126,9 +127,24 @@ public sealed partial class HumanVerificationOverlayView : IContextAware
     private void CoreWebView2_WebResourceRequested(CoreWebView2 sender, CoreWebView2WebResourceRequestedEventArgs args)
     {
         HttpRequestMessage request = new(new HttpMethod(args.Request.Method), args.Request.Uri);
+        HttpContent? content = null;
+
         foreach (KeyValuePair<string, string> pair in args.Request.Headers)
         {
-            request.Headers.Add(pair.Key, pair.Value);
+            if (IsContentHeader(pair.Key))
+            {
+                content ??= new ByteArrayContent(Array.Empty<byte>());
+                content.Headers.TryAddWithoutValidation(pair.Key, pair.Value);
+            }
+            else
+            {
+                request.Headers.TryAddWithoutValidation(pair.Key, pair.Value);
+            }
+        }
+
+        if (content != null)
+        { 
+            request.Content = content; 
         }
 
         if (_apiHostProvider.IsProxyActive())
@@ -229,5 +245,10 @@ public sealed partial class HumanVerificationOverlayView : IContextAware
         };
 
         return _certificateValidator.IsValid(validationParams);
+    }
+
+    private static bool IsContentHeader(string header)
+    {
+        return header.StartsWith("Content-", StringComparison.OrdinalIgnoreCase);
     }
 }
