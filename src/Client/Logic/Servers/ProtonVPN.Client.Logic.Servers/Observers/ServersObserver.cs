@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Common.Observers;
+using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
@@ -34,11 +35,14 @@ namespace ProtonVPN.Client.Logic.Servers.Observers;
 public class ServersObserver : PollingObserverBase, IServersObserver,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<LoggedOutMessage>,
-    IEventMessageReceiver<DeviceLocationChangedMessage>
+    IEventMessageReceiver<DeviceLocationChangedMessage>,
+    IEventMessageReceiver<MainWindowVisibilityChangedMessage>
 {
     private readonly IServersUpdater _serversUpdater;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IConfiguration _config;
+
+    private bool _isMainWindowVisible;
 
     protected override TimeSpan PollingInterval => TimeSpanExtensions.Min(_config.ServerLoadUpdateInterval, _config.ServerUpdateInterval);
 
@@ -79,6 +83,19 @@ public class ServersObserver : PollingObserverBase, IServersObserver,
 
     protected override async Task OnTriggerAsync()
     {
-        await _serversUpdater.UpdateAsync(ServersRequestParameter.RequestIfOld);
+        if (_isMainWindowVisible)
+        {
+            await _serversUpdater.UpdateAsync(ServersRequestParameter.RequestIfOld);
+        }
+    }
+
+    public void Receive(MainWindowVisibilityChangedMessage message)
+    {
+        _isMainWindowVisible = message.IsMainWindowVisible;
+
+        if (message.IsMainWindowVisible)
+        {
+            TriggerAction.Run();
+        }
     }
 }
