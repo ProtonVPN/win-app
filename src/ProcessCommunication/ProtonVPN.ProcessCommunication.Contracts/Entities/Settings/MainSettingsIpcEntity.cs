@@ -55,6 +55,9 @@ public class MainSettingsIpcEntity
     [DataMember(Order = 10)]
     public bool PortForwarding { get; set; }
 
+    [DataMember(Order = 11)]
+    public TimeSpan WireGuardConnectionTimeout { get; set; }
+
     public MainSettingsIpcEntity()
     {
         SplitTunnel = new();

@@ -140,6 +140,7 @@ public class BestPortWrapper : ISingleVpnConnection
             SplitTunnelMode = _config.SplitTunnelMode,
             VpnProtocol = vpnProtocol,
             PortForwarding = _config.PortForwarding,
+            WireGuardConnectionTimeout = _config.WireGuardConnectionTimeout,
         });
     }
 

@@ -62,6 +62,7 @@ public interface IGlobalSettings
     int TotalServerCount { get; set; }
     string? LastProcessVersionMismatchRestartVersions { get; set; }
     DateTimeOffset? LastProcessVersionMismatchRestartUtcDate { get; set; }
+    TimeSpan WireGuardConnectionTimeout { get; set; }
 
     Dictionary<string, Dictionary<string, string?>>? LegacySettingsByUsername { get; set; }
 }

@@ -36,8 +36,8 @@ public class VpnConfig
     public int NetShieldMode { get; }
     public bool SplitTcp { get; }
     public bool PortForwarding { get; }
-
     public bool ModerateNat { get; }
+    public TimeSpan WireGuardConnectionTimeout { get; }
 
     public VpnConfig(VpnConfigParameters parameters)
     {
@@ -55,6 +55,7 @@ public class VpnConfig
         SplitTcp = parameters.SplitTcp;
         ModerateNat = parameters.ModerateNat;
         PortForwarding = parameters.PortForwarding;
+        WireGuardConnectionTimeout = parameters.WireGuardConnectionTimeout;
     }
 
     private void AssertPortsValid(IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports)

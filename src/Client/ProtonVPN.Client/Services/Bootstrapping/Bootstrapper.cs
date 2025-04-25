@@ -41,7 +41,6 @@ namespace ProtonVPN.Client.Services.Bootstrapping;
 
 public class Bootstrapper : IBootstrapper
 {
-    private readonly IUrlsBrowser _urlsBrowser;
     private readonly IClientInstallsStatisticalEventSender _clientInstallsStatisticalEventSender;
     private readonly IProcessCommunicationStarter _processCommunicationStarter;
     private readonly ISettingsRestorer _settingsRestorer;
@@ -55,7 +54,6 @@ public class Bootstrapper : IBootstrapper
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
 
     public Bootstrapper(
-        IUrlsBrowser urlsBrowser,
         IClientInstallsStatisticalEventSender clientInstallsStatisticalEventSender,
         IProcessCommunicationStarter processCommunicationStarter,
         ISettingsRestorer settingsRestorer,
@@ -71,7 +69,6 @@ public class Bootstrapper : IBootstrapper
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         IVpnPlanUpdater vpnPlanUpdater)
     {
-        _urlsBrowser = urlsBrowser;
         _clientInstallsStatisticalEventSender = clientInstallsStatisticalEventSender;
         _processCommunicationStarter = processCommunicationStarter;
         _settingsRestorer = settingsRestorer;
@@ -145,7 +142,6 @@ public class Bootstrapper : IBootstrapper
                 {
                     _settings.Language = args[languageArgumentIndex];
                     i++;
-                    continue;
                 }
             }
             else if (arg.EqualsIgnoringCase("-RestoreDefaultSettings"))
@@ -159,6 +155,19 @@ public class Bootstrapper : IBootstrapper
             else if (arg.EqualsIgnoringCase("-ExitAppOnClose"))
             {
                 _mainWindowActivator.DisableHandleClosedEvent();
+            }
+            else if (arg.EqualsIgnoringCase("-WireGuardConnectionTimeoutInSeconds"))
+            {
+                int wireGuardTimeoutArgumentIndex = i + 1;
+                if (wireGuardTimeoutArgumentIndex < args.Length && int.TryParse(args[wireGuardTimeoutArgumentIndex], out int seconds))
+                {
+                    _settings.WireGuardConnectionTimeout = TimeSpan.FromSeconds(seconds);
+                    i++;
+                }
+                else
+                {
+                    _settings.WireGuardConnectionTimeout = DefaultSettings.WireGuardConnectionTimeout;
+                }
             }
         }
 
