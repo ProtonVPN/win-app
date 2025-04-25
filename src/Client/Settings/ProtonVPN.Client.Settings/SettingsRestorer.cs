@@ -57,5 +57,6 @@ public class SettingsRestorer : ISettingsRestorer
         _settings.IsIpv6LeakProtectionEnabled = DefaultSettings.IsIpv6LeakProtectionEnabled;
         _settings.IsSmartReconnectEnabled = DefaultSettings.IsSmartReconnectEnabled;
         _settings.DefaultConnection = DefaultSettings.DefaultConnection;
+        _settings.WireGuardConnectionTimeout = DefaultSettings.WireGuardConnectionTimeout;
     }
 }

@@ -53,6 +53,9 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
         [DataMember(Order = 10, IsRequired = true)]
         public bool PortForwarding { get; set; }
 
+        [DataMember(Order = 11, IsRequired = true)]
+        public TimeSpan WireGuardConnectionTimeout { get; set; }
+
         public VpnConfigIpcEntity()
         {
             Ports = new Dictionary<VpnProtocolIpcEntity, int[]>();

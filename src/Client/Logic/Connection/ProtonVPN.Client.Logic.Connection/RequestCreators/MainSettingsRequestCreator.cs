@@ -81,6 +81,7 @@ public class MainSettingsRequestCreator : IMainSettingsRequestCreator
             PortForwarding = _settings.IsPortForwardingEnabled,
             SplitTcp = _settings.IsVpnAcceleratorEnabled,
             OpenVpnAdapter = _entityMapper.Map<OpenVpnAdapter, OpenVpnAdapterIpcEntity>(_settings.OpenVpnAdapter),
+            WireGuardConnectionTimeout = _settings.WireGuardConnectionTimeout
         };
     }
 

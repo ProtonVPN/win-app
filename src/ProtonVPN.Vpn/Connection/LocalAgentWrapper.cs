@@ -176,7 +176,8 @@ internal class LocalAgentWrapper : ISingleVpnConnection
             PreferredProtocols = _vpnConfig.PreferredProtocols,
             NetShieldMode = vpnFeatures.NetShieldMode,
             SplitTcp = vpnFeatures.SplitTcp,
-            PortForwarding = vpnFeatures.PortForwarding
+            PortForwarding = vpnFeatures.PortForwarding,
+            WireGuardConnectionTimeout = _vpnConfig.WireGuardConnectionTimeout,
         };
     }
 

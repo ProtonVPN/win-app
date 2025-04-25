@@ -57,6 +57,7 @@ public class VpnConfigMapper : IMapper<VpnConfig, VpnConfigIpcEntity>
             PreferredProtocols = _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(leftEntity.PreferredProtocols),
             SplitTcp = leftEntity.SplitTcp,
             PortForwarding = leftEntity.PortForwarding,
+            WireGuardConnectionTimeout = leftEntity.WireGuardConnectionTimeout,
         };
     }
 
@@ -84,6 +85,7 @@ public class VpnConfigMapper : IMapper<VpnConfig, VpnConfigIpcEntity>
                 NetShieldMode = rightEntity.NetShieldMode,
                 SplitTcp = rightEntity.SplitTcp,
                 PortForwarding = rightEntity.PortForwarding,
+                WireGuardConnectionTimeout = rightEntity.WireGuardConnectionTimeout,
             });
     }
 }

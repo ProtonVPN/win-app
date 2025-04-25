@@ -242,6 +242,12 @@ public class GlobalSettings : IGlobalSettings
         set => _globalCache.SetValueType(value, SettingEncryption.Unencrypted);
     }
 
+    public TimeSpan WireGuardConnectionTimeout
+    {
+        get => _globalCache.GetValueType<TimeSpan>(SettingEncryption.Unencrypted) ?? DefaultSettings.WireGuardConnectionTimeout;
+        set => _globalCache.SetValueType<TimeSpan>(value, SettingEncryption.Unencrypted);
+    }
+
     public GlobalSettings(IGlobalSettingsCache globalSettingsCache)
     {
         _globalCache = globalSettingsCache;

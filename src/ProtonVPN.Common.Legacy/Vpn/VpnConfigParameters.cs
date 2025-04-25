@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using ProtonVPN.Common.Core.Networking;
 
@@ -35,6 +36,7 @@ public class VpnConfigParameters
     public bool SplitTcp { get; set; }
     public bool ModerateNat { get; set; }
     public bool PortForwarding { get; set; }
+    public TimeSpan WireGuardConnectionTimeout { get; set; }
 
     public VpnConfigParameters()
     {

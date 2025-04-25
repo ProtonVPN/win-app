@@ -100,6 +100,8 @@ public class UserSettingsLog : LogBase
 
         yield return new(nameof(IGlobalSettings.IsKillSwitchEnabled), _settings.IsKillSwitchEnabled);
         yield return new(nameof(IGlobalSettings.KillSwitchMode), _settings.KillSwitchMode);
+
+        yield return new(nameof(IGlobalSettings.WireGuardConnectionTimeout), _settings.WireGuardConnectionTimeout);
     }
 
     private IEnumerable<KeyValuePair<string, dynamic?>> GetUserSettings()

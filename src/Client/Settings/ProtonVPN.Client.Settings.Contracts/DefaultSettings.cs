@@ -82,6 +82,7 @@ public static class DefaultSettings
     public static int TotalCountryCount = 110;
     public static int TotalServerCount = 9000;
     public static int WhatsNewOverlayVersion = 1;
+    public static TimeSpan WireGuardConnectionTimeout = TimeSpan.FromSeconds(5);
 
     public static ChangeServerSettings ChangeServerSettings = new()
     {

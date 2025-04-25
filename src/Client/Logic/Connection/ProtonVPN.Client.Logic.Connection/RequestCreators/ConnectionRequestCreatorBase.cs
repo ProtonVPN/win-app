@@ -67,6 +67,7 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
             CustomDns = isCustomDnsEnabled
                 ? Settings.CustomDnsServersList.Where(s => s.IsActive).Select(s => s.IpAddress).ToList()
                 : [],
+            WireGuardConnectionTimeout = settings.WireGuardConnectionTimeout
         };
     }
 

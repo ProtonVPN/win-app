@@ -41,7 +41,8 @@ namespace ProtonVPN.Vpn.WireGuard;
 
 public class WireGuardConnection : IAdapterSingleVpnConnection
 {
-    private const int CONNECT_TIMEOUT = 5000;
+    private const int MIN_CONNECTION_TIMEOUT = 5000;
+    private const int MAX_CONNECTION_TIMEOUT = 30000;
 
     private readonly ILogger _logger;
     private readonly IConfiguration _config;
@@ -118,10 +119,11 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         await StartWireGuardService(cancellationToken);
 
         CancellationToken linkedCancellationToken = CreateLinkedCancellationToken(cancellationToken);
-        await Task.Delay(CONNECT_TIMEOUT, linkedCancellationToken);
+        int timeout = Math.Clamp((int)_vpnConfig.WireGuardConnectionTimeout.TotalMilliseconds, MIN_CONNECTION_TIMEOUT, MAX_CONNECTION_TIMEOUT);
+        await Task.Delay(timeout, linkedCancellationToken);
         if (!_isConnected)
         {
-            _logger.Warn<ConnectLog>("Timeout reached, disconnecting.");
+            _logger.Warn<ConnectLog>($"{timeout}ms timeout reached, disconnecting.");
             Disconnect(VpnError.AdapterTimeoutError);
         }
     }
