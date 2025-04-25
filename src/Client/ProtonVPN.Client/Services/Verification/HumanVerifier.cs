@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,6 +21,7 @@ using ProtonVPN.Api.Contracts.HumanVerification;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Services.Verification.Messages;
+using ProtonVPN.Client.Common.Dispatching;
 
 namespace ProtonVPN.Client.Services.Verification;
 
@@ -29,22 +30,25 @@ public class HumanVerifier : IHumanVerifier,
 {
     private readonly IMainWindowOverlayActivator _overlayActivator;
     private readonly IEventMessageSender _eventMessageSender;
+    private readonly IUIThreadDispatcher _uiThreadDispatcher;
 
     private string _resolvedToken = string.Empty;
 
     public HumanVerifier(
         IMainWindowOverlayActivator overlayActivator,
-        IEventMessageSender eventMessageSender)
+        IEventMessageSender eventMessageSender,
+        IUIThreadDispatcher uiThreadDispatcher)
     {
         _overlayActivator = overlayActivator;
         _eventMessageSender = eventMessageSender;
+        _uiThreadDispatcher = uiThreadDispatcher;
     }
 
     public async Task<string> VerifyAsync(string token)
     {
         _eventMessageSender.Send(new RequestTokenMessage(token));
 
-        await _overlayActivator.ShowHumanVerificationOverlayAsync();
+        await _uiThreadDispatcher.TryEnqueueAsync(_overlayActivator.ShowHumanVerificationOverlayAsync);
 
         return _resolvedToken;
     }
