@@ -414,7 +414,7 @@
     <value>Snabbast</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Free server ({0})</value>
+    <value>Free-server ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Other">
     <value>Free-servrar ({0})</value>

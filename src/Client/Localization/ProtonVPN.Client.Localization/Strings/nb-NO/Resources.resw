@@ -219,7 +219,7 @@
     <value>Kontakt oss</value>
   </data>
   <data name="Common_Actions_Customize">
-    <value>Customize</value>
+    <value>Tilpass</value>
   </data>
   <data name="Common_Actions_Delete">
     <value>Slett</value>
@@ -375,7 +375,7 @@
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
   <data name="Connections_Cities_One">
-    <value>City ({0})</value>
+    <value>By ({0})</value>
   </data>
   <data name="Connections_Cities_Other">
     <value>Byer ({0})</value>
@@ -390,7 +390,7 @@
     <value>Alle tjenere i denne byen er under vedlikehold</value>
   </data>
   <data name="Connections_Countries_One">
-    <value>Country ({0})</value>
+    <value>Land ({0})</value>
   </data>
   <data name="Connections_Countries_Other">
     <value>Land ({0})</value>
@@ -408,13 +408,13 @@
     <value>Alle tjenere i dette landet er under vedlikehold</value>
   </data>
   <data name="Connections_Country_UnderMaintenance_Title">
-    <value>Unable to connect</value>
+    <value>Kan ikke koble til</value>
   </data>
   <data name="Connections_Fastest">
     <value>Raskeste</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Free server ({0})</value>
+    <value>Gratis tjener ({0})</value>
   </data>
   <data name="Connections_Free_Servers_Other">
     <value>Gratis tjenere ({0})</value>
@@ -444,13 +444,13 @@
     <value>Dedikerte tjenere ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_One">
-    <value>P2P city ({0})</value>
+    <value>P2P-by ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_Other">
-    <value>P2P-land ({0})</value>
+    <value>P2P-byer ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_One">
-    <value>P2P country ({0})</value>
+    <value>P2P-land ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_Other">
     <value>P2P-land ({0})</value>
@@ -462,7 +462,7 @@
     <value>P2P-tjenere ({0})</value>
   </data>
   <data name="Connections_P2P_States_One">
-    <value>P2P state ({0})</value>
+    <value>P2P-stat ({0})</value>
   </data>
   <data name="Connections_P2P_States_Other">
     <value>P2P-stater ({0})</value>
@@ -537,22 +537,22 @@
     <value>Ingen nylige forbindelser enda</value>
   </data>
   <data name="Connections_Recents_Pinned_One">
-    <value>Festede ({0})</value>
+    <value>Festet ({0})</value>
   </data>
   <data name="Connections_Recents_Pinned_Other">
     <value>Festede ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_One">
-    <value>Secure Core country ({0})</value>
+    <value>Secure Core-land ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_Other">
     <value>Secure Core-land ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Secure Core tjener ({0})</value>
+    <value>Secure Core-tjener ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Secure Core tjenere ({0})</value>
+    <value>Secure Core-tjenere ({0})</value>
   </data>
   <data name="Connections_SeeCities_One">
     <value>Se by ({0})</value>
@@ -567,10 +567,10 @@
     <value>Se tjenere ({0})</value>
   </data>
   <data name="Connections_SeeStates_One">
-    <value>Vis stat ({0})</value>
+    <value>Se stat ({0})</value>
   </data>
   <data name="Connections_SeeStates_Other">
-    <value>Vis stater ({0})</value>
+    <value>Se stater ({0})</value>
   </data>
   <data name="Connections_Server">
     <value>Tjener</value>
@@ -582,7 +582,7 @@
     <value>Denne tjeneren er under vedlikehold</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Server ({0})</value>
+    <value>Tjener ({0})</value>
   </data>
   <data name="Connections_Servers_Other">
     <value>Tjenere ({0})</value>
@@ -599,19 +599,19 @@
     <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_States_One">
-    <value>State ({0})</value>
+    <value>Stat ({0})</value>
   </data>
   <data name="Connections_States_Other">
     <value>Stater ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_One">
-    <value>Tor country ({0})</value>
+    <value>Tor-land ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_Other">
     <value>Tor-land ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Tor server ({0})</value>
+    <value>Tor-tjener ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
     <value>Tor-tjenere ({0})</value>
@@ -1733,7 +1733,7 @@
     <value>Aktiver Windows-tjenesten for å fortsette</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
-    <value>Proton Free automatically connects you to the fastest available free server from our {0} free country. This will normally be the closest server to your location.</value>
+    <value>Proton Free kobler deg automatisk til den raskeste tilgjengelige gratis tjeneren fra vårt {0} gratis land. Dette vil normalt være den nærmeste tjeneren til din plassering.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
     <value>Proton Free kobler deg automatisk til den raskeste tilgjengelige tjeneren fra våre {0} gratis land. Dette vil normalt være den nærmeste tjeneren til din plassering.</value>
@@ -2034,34 +2034,34 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Velkommen til Proton VPN</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>You can now access your organization’s dedicated servers from the main sidebar.</value>
+    <value>Du kan nå få tilgang til organisasjonens dedikerte tjenere fra hovedsidefeltet.</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
-    <value>Gateways have moved</value>
+    <value>Porttjenere har flyttet</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
-    <value>We refreshed our designs and moved some things around to make the app easier to use.</value>
+    <value>Vi oppdaterte designene våre og flyttet rundt på noen ting for å gjøre appen enklere å bruke.</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
-    <value>New look, same protection</value>
+    <value>Nytt utseende, samme beskyttelse</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
-    <value>Add advanced profile settings like NetShield and port forwarding, or set up Connect and Go to launch a website of your choice when you connect.</value>
+    <value>Legg til avanserte profilinnstillinger som NetShield og viderekobling av porter, eller konfigurer "Koble til og kjør" for å starte et nettsted etter eget valg når du kobler til.</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Title">
-    <value>Even more powerful profiles</value>
+    <value>Enda kraftigere profiler</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Description">
-    <value>It's now even easier to reconnect to your favorite servers. View your most recent connections on the home screen, or pin them for quick access.</value>
+    <value>Det er nå enda enklere å koble til favoritttjenerne dine igjen. Se de nyeste tilkoblingene dine på startskjermen, eller fest dem for rask tilgang.</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Title">
-    <value>Introducing Recents</value>
+    <value>Nylige tilkoblinger</value>
   </data>
   <data name="Dialogs_WhatsNew_TakeALook">
-    <value>Take a look</value>
+    <value>Ta en titt</value>
   </data>
   <data name="Dialogs_WhatsNew_Title">
-    <value>What's new</value>
+    <value>Hva er nytt</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Avslutte Proton VPN?</value>
@@ -2243,7 +2243,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Ekskluderte apper ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
-    <value>Excluded IP address ({0})</value>
+    <value>Ekskludert IP-adresse ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
     <value>Ekskluderte IP-adresser ({0})</value>
@@ -3153,10 +3153,10 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Den sist brukte tilkoblingen</value>
   </data>
   <data name="Settings_Connection_Default_Random">
-    <value>Random country</value>
+    <value>Tilfeldig land</value>
   </data>
   <data name="Settings_Connection_Default_Random_Description">
-    <value>Different server every time you connect</value>
+    <value>Forskjellig tjener hver gang du kobler til</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Nylige</value>
