@@ -506,7 +506,7 @@ var
   IsRunningProcessFound: Boolean;
 begin
   Log('Using directory ' + Directory + ' to find previous app versions for deletion');
-  Processes := ['ProtonVPN.exe', 'ProtonVPNService.exe', 'ProtonVPN.WireGuardService.exe'];
+  Processes := ['ProtonVPN.exe', 'ProtonVPN.Client.exe', 'ProtonVPNService.exe', 'ProtonVPN.WireGuardService.exe'];
   if FindFirst(ExpandConstant(Directory + '\v*'), VersionFolder) then
   try
     repeat
