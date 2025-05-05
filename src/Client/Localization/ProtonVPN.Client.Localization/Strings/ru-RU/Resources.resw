@@ -219,7 +219,7 @@
     <value>Свяжитесь с нами</value>
   </data>
   <data name="Common_Actions_Customize">
-    <value>Customize</value>
+    <value>Настроить</value>
   </data>
   <data name="Common_Actions_Delete">
     <value>Удалить</value>
@@ -420,7 +420,7 @@
     <value>Все серверы в этой стране находятся на техническом обслуживании</value>
   </data>
   <data name="Connections_Country_UnderMaintenance_Title">
-    <value>Unable to connect</value>
+    <value>Не удается подключиться</value>
   </data>
   <data name="Connections_Fastest">
     <value>Самый быстрый</value>
@@ -3351,10 +3351,10 @@
     <value>Последнее использованное подключение</value>
   </data>
   <data name="Settings_Connection_Default_Random">
-    <value>Random country</value>
+    <value>Случайная страна</value>
   </data>
   <data name="Settings_Connection_Default_Random_Description">
-    <value>Different server every time you connect</value>
+    <value>Другой сервер при каждом подключении</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Недавние</value>
