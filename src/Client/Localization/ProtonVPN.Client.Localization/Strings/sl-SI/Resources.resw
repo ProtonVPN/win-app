@@ -2205,7 +2205,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>It's now even easier to reconnect to your favorite servers. View your most recent connections on the home screen, or pin them for quick access.</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Title">
-    <value>Introducing Recents</value>
+    <value>Predstavljamo nedavno</value>
   </data>
   <data name="Dialogs_WhatsNew_TakeALook">
     <value>Oglejte si</value>
@@ -2387,7 +2387,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
-    <value>Excluded app ({0})</value>
+    <value>Izključena applikacija ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_Two">
     <value>Excluded apps ({0})</value>
@@ -2417,10 +2417,10 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Only these apps and IP addresses connect through VPN. All other traffic is unprotected.</value>
   </data>
   <data name="Flyouts_SplitTunneling_Protected_Apps_One">
-    <value>Protected app ({0})</value>
+    <value>Zaščitena applikacija ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Protected_Apps_Two">
-    <value>Protected apps ({0})</value>
+    <value>Zaščitena applikacija ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Protected_Apps_Few">
     <value>Protected apps ({0})</value>
@@ -2592,10 +2592,10 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Zagotovite si svetovno pokritost z VPN Plus</value>
   </data>
   <data name="Gateway_Fastest">
-    <value>Fastest gateway</value>
+    <value>Najhitrejši prehod</value>
   </data>
   <data name="Gateway_Random">
-    <value>Random gateway</value>
+    <value>Naključni prehod</value>
   </data>
   <data name="Gateways_Page_Description">
     <value>Povežite se s prehodom za dostop do VPN vaše organizacije.</value>
@@ -3084,7 +3084,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Profile settings will override your VPN settings when connected.</value>
   </data>
   <data name="Profile_CustomSettings_Header">
-    <value>Add custom settings</value>
+    <value>Dodaj nastavitve po meri</value>
   </data>
   <data name="Profile_CustomSettings_Hide">
     <value>Skrij nastavitve</value>
@@ -3120,7 +3120,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Max security</value>
   </data>
   <data name="Profiles_Default_Office">
-    <value>Office</value>
+    <value>Pisarna</value>
   </data>
   <data name="Profiles_Default_P2P">
     <value>P2P</value>
@@ -3390,7 +3390,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>NetShield</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
-    <value>Block ads, malware and trackers</value>
+    <value>Blokirajte oglase, zlonamerno programsko opremo in sledilnike</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
     <value>Blokiraj samo zlonamerne programe</value>

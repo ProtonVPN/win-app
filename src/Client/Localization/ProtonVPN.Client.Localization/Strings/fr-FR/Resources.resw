@@ -3061,7 +3061,7 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>Connexion</value>
   </data>
   <data name="Settings_Connection_AdvancedSettings">
-    <value>Paramètres avancés</value>
+    <value>Paramètres Avancé</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting">
     <value>Routage alternatif</value>
@@ -3288,7 +3288,7 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>Personnalisez votre connexion en décidant quelles applications et adresses IP sont protégées par le VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Inverser</value>
+    <value>Inversé</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>Seules les applications et adresses IP sélectionnées se connectent par VPN. Tout le reste du trafic n'est pas protégé.</value>
@@ -3562,7 +3562,7 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>Saisissez les informations de votre compte Proton.</value>
   </data>
   <data name="SignIn_Form_DisableKillSwitch">
-    <value>Désactiver la fonctionnalité Arrêt d'urgence (kill switch)</value>
+    <value>Désactiver la fonctionnalité Arrêt d'urgence</value>
   </data>
   <data name="SignIn_Form_Email">
     <value>E-mail</value>
