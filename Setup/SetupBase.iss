@@ -79,7 +79,7 @@ Source: "..\{#SourcePath}\ProtonVPNService.deps.json"; DestDir: "{app}\{#Version
 Source: "..\{#SourcePath}\ProtonVPNService.runtimeconfig.json"; DestDir: "{app}\{#VersionFolder}"; AfterInstall: InstallService;
 
 Source: "..\{#SourcePath}\*.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
-Source: "..\{#SourcePath}\*.exe"; Excludes: "ProtonVPN.exe,ProtonVPN.Launcher.exe,ProtonVPNService.exe,createdump.exe"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
+Source: "..\{#SourcePath}\*.exe"; Excludes: "ProtonVPN.Launcher.exe,ProtonVPNService.exe,createdump.exe,RestartAgent.exe"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "..\{#SourcePath}\*.pri"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\{#SourcePath}\*.deps.json"; DestDir: "{app}\{#VersionFolder}";
 Source: "..\{#SourcePath}\Resources\ProtonVPN.InstallActions.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
