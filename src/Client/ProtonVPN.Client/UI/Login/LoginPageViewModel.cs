@@ -152,7 +152,10 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     {
         ExecuteOnUIThread(() =>
         {
-            if (message.PropertyName == nameof(ISettings.IsKillSwitchEnabled) && ChildViewNavigator.GetCurrentPageContext() is SignInPageViewModel)
+            if (message.PropertyName == nameof(ISettings.IsKillSwitchEnabled) &&
+                !_settings.IsKillSwitchEnabled &&
+                ParentViewNavigator.GetCurrentPageContext() is LoginPageViewModel && 
+                ChildViewNavigator.GetCurrentPageContext() is SignInPageViewModel)
             {
                 SetMessage(Localizer.Get("SignIn_KillSwitch_Disabled"), InfoBarSeverity.Success);
             }

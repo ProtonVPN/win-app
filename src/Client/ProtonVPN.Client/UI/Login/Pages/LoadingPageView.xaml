@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2025 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -29,31 +29,52 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       AutomationProperties.Name="{x:Bind ViewModel.Message}"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
-    
-    <Grid VerticalAlignment="Stretch"
-          HorizontalAlignment="Stretch">
 
-        <StackPanel Spacing="12"
+    <Grid HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch"
+          RowSpacing="16">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
+                    VerticalAlignment="Center"
+                    Spacing="12">
             <ProgressRing Width="36"
                           Height="36"
                           IsActive="True" />
 
-            <TextBlock Text="{x:Bind ViewModel.Message}"
-                       Style="{ThemeResource BodyStrongTextBlockStyle}" />
+            <TextBlock HorizontalAlignment="Center"
+                       Style="{ThemeResource BodyStrongTextBlockStyle}"
+                       Text="{x:Bind ViewModel.Message}"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Bottom"
-                    Spacing="8">
-            <pathIcons:Lightbulb Size="Pixels16"
-                                 Foreground="{ThemeResource TextWeakColor}"/>
-            <TextBlock Style="{ThemeResource CaptionTextBlockStyle}"
+        <Grid Grid.Row="1"
+              HorizontalAlignment="Left"
+              ColumnSpacing="8">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <pathIcons:Lightbulb Grid.Column="0"
+                                 VerticalAlignment="Top"
+                                 Foreground="{ThemeResource TextWeakColor}"
+                                 Size="Pixels16" />
+
+            <TextBlock Grid.Column="1"
+                       VerticalAlignment="Top"
                        Foreground="{ThemeResource TextWeakColor}"
-                       Text="{x:Bind ViewModel.Localizer.Get('LoadingPage_Tip')}" />
-        </StackPanel>
+                       Style="{ThemeResource CaptionTextBlockStyle}"
+                       Text="{x:Bind ViewModel.Localizer.Get('LoadingPage_Tip')}"
+                       TextWrapping="Wrap" />
+        </Grid>
 
     </Grid>
 </Page>

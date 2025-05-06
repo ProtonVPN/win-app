@@ -148,6 +148,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Content="{TemplateBinding Content}"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               ContentTransitions="{TemplateBinding ContentTransitions}"
+                                              TextWrapping="Wrap"
                                               Foreground="{TemplateBinding Foreground}"
                                               Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
