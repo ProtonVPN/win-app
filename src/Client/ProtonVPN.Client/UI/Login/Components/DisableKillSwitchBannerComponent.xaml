@@ -24,6 +24,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+             x:DefaultBindMode="OneWay" 
+             MaxHeight="120"
              mc:Ignorable="d">
 
     <Border Padding="12"
@@ -33,30 +35,37 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             BorderBrush="{ThemeResource SignalDangerColorBrush}"
             BorderThickness="1">
 
-        <Grid ColumnSpacing="12">
+        <Grid ColumnSpacing="12"
+              RowSpacing="8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
             <Image Grid.Column="0"
-                   VerticalAlignment="Center"
+                   Grid.Row="0"
+                   Grid.RowSpan="2"
+                   VerticalAlignment="Top"
                    Source="{StaticResource KillSwitchEnabledIllustrationSource}"
                    Width="40"
                    Height="40" />
 
             <TextBlock Grid.Column="1"
-                       VerticalAlignment="Center"
+                       Grid.Row="0"
                        Style="{ThemeResource BodyTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_AdvancedKillSwitchDescription')}" />
 
-            <custom:GhostButton Grid.Column="2"
+            <custom:GhostButton Grid.Column="1"
+                                Grid.Row="1"
+                                Margin="-5"
                                 Style="{ThemeResource PrimaryGhostButtonStyle}"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Right"
+                                HorizontalAlignment="Left"
                                 Command="{x:Bind ViewModel.DisableKillSwitchCommand}"
-                                Content="{x:Bind ViewModel.Localizer.Get('SignIn_Form_DisableKillSwitch')}" />
+                                Content="{x:Bind ViewModel.Localizer.Get('SignIn_Form_DisableKillSwitch')}"/>
 
         </Grid>
     </Border>
