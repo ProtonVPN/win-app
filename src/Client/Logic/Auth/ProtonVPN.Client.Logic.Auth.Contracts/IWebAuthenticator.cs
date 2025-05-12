@@ -25,7 +25,7 @@ namespace ProtonVPN.Client.Logic.Auth.Contracts;
 public interface IWebAuthenticator
 {
     Task<string> GetMyAccountUrlAsync();
-    Task<string> GetUpgradeAccountUrlAsync(ModalSource modalSource);
+    Task<string> GetUpgradeAccountUrlAsync(ModalSource modalSource, string? notificationReference = null);
     Task<string> GetAuthUrlAsync(AuthUrlParameters parameters);
     Task<string> GetAuthUrlAsync(string url, ModalSource modalSource, string notificationReference);
 }

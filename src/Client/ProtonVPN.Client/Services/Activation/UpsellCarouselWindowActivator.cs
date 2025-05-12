@@ -86,10 +86,14 @@ public class UpsellCarouselWindowActivator : DialogActivatorBase<UpsellCarouselW
             UpsellFeatureType.NetShield => ModalSource.NetShield,
             UpsellFeatureType.SecureCore => ModalSource.SecureCore,
             UpsellFeatureType.P2P => ModalSource.P2P,
-            UpsellFeatureType.MultipleDevices => ModalSource.MaxConnections,
-            UpsellFeatureType.Tor => ModalSource.Countries,
+            UpsellFeatureType.MultipleDevices => ModalSource.CarouselMultipleDevices,
+            UpsellFeatureType.Tor => ModalSource.Tor,
             UpsellFeatureType.SplitTunneling => ModalSource.SplitTunneling,
             UpsellFeatureType.Profiles => ModalSource.Profiles,
+            UpsellFeatureType.AdvancedSettings => ModalSource.CarouselCustomization,
+            UpsellFeatureType.ModerateNat => ModalSource.ModerateNat,
+            UpsellFeatureType.CustomDns => ModalSource.CustomDns,
+            UpsellFeatureType.AllowLanConnections => ModalSource.AllowLanConnections,
             _ => ModalSource.Undefined
         };
     }

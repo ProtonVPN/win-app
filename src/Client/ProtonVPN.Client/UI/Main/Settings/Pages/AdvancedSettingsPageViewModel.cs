@@ -240,7 +240,7 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
             ? IsCustomDnsServersOverridden
                 ? _profileEditor.TryRedirectToProfileAsync(Localizer.Get("Settings_Connection_Advanced_CustomDnsServers"), CurrentProfile!)
                 : ParentViewNavigator.NavigateToCustomDnsSettingsViewAsync()
-            : _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.AdvancedSettings);
+            : _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.CustomDns);
     }
 
     [RelayCommand]
@@ -252,7 +252,7 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
     [RelayCommand]
     private Task TriggerNatTypeUpsellProcessAsync()
     {
-        return _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.AdvancedSettings);
+        return _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.ModerateNat);
     }
 
     private bool IsNatType(NatType natType)

@@ -43,7 +43,7 @@ public class TorCountriesComponentViewModel : CountriesComponentViewModelBase
 
     public override int SortIndex { get; } = 3;
 
-    protected override ModalSource UpsellModalSource => ModalSource.Countries;
+    protected override ModalSource UpsellModalSource => ModalSource.Tor;
 
     public TorCountriesComponentViewModel(
         ISettings settings,

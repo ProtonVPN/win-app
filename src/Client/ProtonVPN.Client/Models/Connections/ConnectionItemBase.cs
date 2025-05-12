@@ -141,7 +141,7 @@ public abstract partial class ConnectionItemBase : ModelBase, IConnectionItem
                         SecureCoreFeatureIntent => UpsellFeatureType.SecureCore,
                         P2PFeatureIntent => UpsellFeatureType.P2P,
                         TorFeatureIntent => UpsellFeatureType.Tor,
-                        _ => null
+                        _ => UpsellFeatureType.WorldwideCoverage
                     }
                 }
             );

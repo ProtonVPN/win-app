@@ -31,5 +31,8 @@ public enum UpsellFeatureType
     Tor,
     SplitTunneling,
     Profiles,
-    AdvancedSettings
+    AdvancedSettings,
+    ModerateNat,
+    CustomDns,
+    AllowLanConnections
 }

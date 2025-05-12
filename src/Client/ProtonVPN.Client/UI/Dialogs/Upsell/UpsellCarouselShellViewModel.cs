@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,7 +23,6 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
-using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Services.Upselling;
@@ -33,9 +32,6 @@ namespace ProtonVPN.Client.UI.Dialogs.Upsell;
 
 public partial class UpsellCarouselShellViewModel : ShellViewModelBase<IUpsellCarouselWindowActivator, IUpsellCarouselViewNavigator>
 {
-    private static readonly int _firstUpsellFeatureIndex = 0;
-    private static readonly int _lastUpsellFeatureIndex = Enum.GetValues<UpsellFeatureType>().Length - 1;
-
     private readonly IAccountUpgradeUrlLauncher _accountUpgradeUrlLauncher;
 
     [ObservableProperty]
@@ -44,6 +40,12 @@ public partial class UpsellCarouselShellViewModel : ShellViewModelBase<IUpsellCa
     public ObservableCollection<IUpsellFeaturePage> UpsellFeaturePages { get; }
 
     public override string Title => Localizer.Get("Upsell_Carousel_Title");
+
+    private int CurrentPageIndex => SelectedUpsellFeaturePage is null
+        ? 0
+        : UpsellFeaturePages.IndexOf(SelectedUpsellFeaturePage);
+
+    private int LastPageIndex => UpsellFeaturePages.Count - 1;
 
     public UpsellCarouselShellViewModel(
         IUpsellCarouselWindowActivator windowActivator,
@@ -68,29 +70,25 @@ public partial class UpsellCarouselShellViewModel : ShellViewModelBase<IUpsellCa
     [RelayCommand]
     private void MoveToNextFeature()
     {
-        int currentFeatureIndex = (int)(SelectedUpsellFeaturePage?.Feature ?? 0);
-        int nextFeatureIndex = currentFeatureIndex + 1;
-        if (nextFeatureIndex > _lastUpsellFeatureIndex)
+        int nextPageIndex = CurrentPageIndex + 1;
+        if (nextPageIndex > LastPageIndex)
         {
-            nextFeatureIndex = _firstUpsellFeatureIndex;
+            nextPageIndex = 0;
         }
-        UpsellFeatureType nextFeature = (UpsellFeatureType)nextFeatureIndex;
 
-        MoveToFeature(nextFeature);
+        MoveToPage(nextPageIndex);
     }
 
     [RelayCommand]
     private void MoveToPreviousFeature()
     {
-        int currentFeatureIndex = (int)(SelectedUpsellFeaturePage?.Feature ?? 0);
-        int previousFeatureIndex = currentFeatureIndex - 1;
-        if (previousFeatureIndex < _firstUpsellFeatureIndex)
+        int previousPageIndex = CurrentPageIndex - 1;
+        if (previousPageIndex < 0)
         {
-            previousFeatureIndex = _lastUpsellFeatureIndex;
+            previousPageIndex = LastPageIndex;
         }
-        UpsellFeatureType previousFeature = (UpsellFeatureType)previousFeatureIndex;
 
-        MoveToFeature(previousFeature);
+        MoveToPage(previousPageIndex);
     }
 
     [RelayCommand]
@@ -101,9 +99,12 @@ public partial class UpsellCarouselShellViewModel : ShellViewModelBase<IUpsellCa
         Hide();
     }
 
-    private void MoveToFeature(UpsellFeatureType feature)
+    private void MoveToPage(int index)
     {
-        SelectedUpsellFeaturePage = UpsellFeaturePages.First(f => f.Feature == feature);
+        if (index >= 0 && index < UpsellFeaturePages.Count)
+        {
+            SelectedUpsellFeaturePage = UpsellFeaturePages[index];
+        }
     }
 
     partial void OnSelectedUpsellFeaturePageChanged(IUpsellFeaturePage? value)
