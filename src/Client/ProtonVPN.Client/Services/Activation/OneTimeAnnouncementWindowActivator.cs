@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,14 +21,17 @@ using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Activation.Bases;
 using ProtonVPN.Client.Core.Services.Selection;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Dialogs.OneTimeAnnouncement;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Services.Activation;
 
-public class OneTimeAnnouncementWindowActivator : DialogActivatorBase<OneTimeAnnouncementWindow>, IOneTimeAnnouncementWindowActivator
+public class OneTimeAnnouncementWindowActivator : DialogActivatorBase<OneTimeAnnouncementWindow>, IOneTimeAnnouncementWindowActivator,
+    IEventMessageReceiver<LoggedOutMessage>
 {
     public override string WindowTitle { get; } = "";
 
@@ -48,4 +51,16 @@ public class OneTimeAnnouncementWindowActivator : DialogActivatorBase<OneTimeAnn
                iconSelector,
                mainWindowActivator)
     { }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DisableHandleClosedEvent();
+    }
+
+    public void Receive(LoggedOutMessage message)
+    {
+        Hide();
+    }
 }

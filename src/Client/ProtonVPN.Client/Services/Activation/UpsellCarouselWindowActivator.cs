@@ -23,7 +23,9 @@ using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Activation.Bases;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Core.Services.Selection;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Dialogs.Upsell;
 using ProtonVPN.Logging.Contracts;
@@ -31,7 +33,8 @@ using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.Services.Activation;
 
-public class UpsellCarouselWindowActivator : DialogActivatorBase<UpsellCarouselWindow>, IUpsellCarouselWindowActivator
+public class UpsellCarouselWindowActivator : DialogActivatorBase<UpsellCarouselWindow>, IUpsellCarouselWindowActivator,
+    IEventMessageReceiver<LoggedOutMessage>
 {
     private readonly IUpsellDisplayStatisticalEventSender _upsellDisplayStatisticalEventSender;
     private readonly IUpsellCarouselViewNavigator _upsellCarouselViewNavigator;
@@ -89,5 +92,10 @@ public class UpsellCarouselWindowActivator : DialogActivatorBase<UpsellCarouselW
             UpsellFeatureType.Profiles => ModalSource.Profiles,
             _ => ModalSource.Undefined
         };
+    }
+
+    public void Receive(LoggedOutMessage message)
+    {
+        Hide();
     }
 }

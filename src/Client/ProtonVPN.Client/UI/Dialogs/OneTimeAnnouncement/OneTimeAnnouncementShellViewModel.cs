@@ -80,9 +80,9 @@ public partial class OneTimeAnnouncementShellViewModel : ShellViewModelBase<IOne
         ExecuteOnUIThread(InvalidateCurrentAnnouncement);
     }
 
-    protected override void OnActivated()
+    protected override void OnDeactivated()
     {
-        base.OnActivated();
+        base.OnDeactivated();
 
         if (ActiveAnnouncement is not null)
         {
