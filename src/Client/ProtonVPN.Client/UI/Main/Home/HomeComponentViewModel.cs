@@ -21,6 +21,7 @@ using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Announcements.Contracts;
+using ProtonVPN.Client.Logic.Announcements.Contracts.Entities;
 using ProtonVPN.Client.Logic.Announcements.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
@@ -37,7 +38,7 @@ public partial class HomeComponentViewModel : ActivatableViewModelBase,
     private readonly IUpdatesManager _updatesManager;
     private readonly IAnnouncementsProvider _announcementsProvider;
 
-    public bool IsUpdateAvailable => _updatesManager.IsUpdateAvailable && _announcementsProvider.GetActiveAndUnseenBanner() is null;
+    public bool IsUpdateAvailable => _updatesManager.IsUpdateAvailable && _announcementsProvider.GetActiveAndUnseenByType(AnnouncementType.ProminentBanner) is null;
 
     public bool IsConnected => _connectionManager.IsConnected;
 

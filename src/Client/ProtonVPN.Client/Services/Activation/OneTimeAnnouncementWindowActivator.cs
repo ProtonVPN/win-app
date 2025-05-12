@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Common.Dispatching;
+using ProtonVPN.Client.Core.Extensions;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Activation.Bases;
 using ProtonVPN.Client.Core.Services.Selection;
@@ -51,6 +52,15 @@ public class OneTimeAnnouncementWindowActivator : DialogActivatorBase<OneTimeAnn
                iconSelector,
                mainWindowActivator)
     { }
+
+
+    // TODO: remove this method after 2025 May promo campaign is over
+    protected override void OnAppThemeChanged()
+    {
+        base.OnAppThemeChanged();
+
+        Host?.ApplyTheme(Microsoft.UI.Xaml.ElementTheme.Dark);
+    }
 
     protected override void OnInitialized()
     {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,10 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
+
 namespace ProtonVPN.Client.UI.Main.Components.Banners;
 
 public sealed partial class BannerComponent
 {
+    public static readonly DependencyProperty FallbackContentProperty = DependencyProperty.Register(
+        nameof(FallbackContent),
+        typeof(object),
+        typeof(BannerComponent),
+        new PropertyMetadata(null));
+
+    public object FallbackContent
+    {
+        get => GetValue(FallbackContentProperty);
+        set => SetValue(FallbackContentProperty, value);
+    }
+
     public BannerViewModel ViewModel { get; }
 
     public BannerComponent()

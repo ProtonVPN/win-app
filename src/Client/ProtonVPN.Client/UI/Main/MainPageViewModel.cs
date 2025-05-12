@@ -24,6 +24,7 @@ using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Common.Messages;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
+using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -44,6 +45,7 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
     private const double EXPAND_SIDEBAR_WINDOW_WIDTH_THRESHOLD = 885;
     private const double EXPAND_WIDGETBAR_WINDOW_WIDTH_THRESHOLD = 1000;
 
+    private readonly IEventMessageSender _eventMessageSender;
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly ISettings _settings;
     private readonly IUserAuthenticator _userAuthenticator;
@@ -75,6 +77,7 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
     public bool IsHomePageDisplayed => ChildViewNavigator.GetCurrentPageContext() is null;
 
     public MainPageViewModel(
+        IEventMessageSender eventMessageSender,
         IMainWindowViewNavigator parentViewNavigator,
         IMainViewNavigator childViewNavigator,
         IMainWindowActivator mainWindowActivator,
@@ -84,6 +87,7 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
         IViewModelHelper viewModelHelper)
         : base(parentViewNavigator, childViewNavigator, viewModelHelper)
     {
+        _eventMessageSender = eventMessageSender;
         _mainWindowActivator = mainWindowActivator;
         _settings = settings;
         _userAuthenticator = userAuthenticator;
@@ -124,6 +128,8 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
         {
             _mainWindowActivator.Window.SizeChanged += OnMainWindowSizeChanged;
         }
+
+        _eventMessageSender.Send<HomePageDisplayedAfterLoginMessage>();
     }
 
     protected override void OnDeactivated()

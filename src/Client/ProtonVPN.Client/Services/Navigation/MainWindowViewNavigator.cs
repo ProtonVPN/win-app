@@ -29,6 +29,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Main;
 using ProtonVPN.Client.Common.Dispatching;
+using Microsoft.UI.Xaml.Navigation;
 
 namespace ProtonVPN.Client.Services.Navigation;
 
@@ -72,11 +73,6 @@ public class MainWindowViewNavigator : ViewNavigatorBase, IMainWindowViewNavigat
         UIThreadDispatcher.TryEnqueue(async () =>
         {
             await NavigateToDefaultAsync();
-
-            if (message.AuthenticationStatus == AuthenticationStatus.LoggedIn)
-            {
-                _eventMessageSender.Send(new HomePageDisplayedAfterLoginMessage());
-            }
         });
     }
 }

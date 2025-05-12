@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2024 Proton AG
+Copyright (c) 2025 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -15,12 +15,12 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
--->
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
 
 <Page x:Class="ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.ProfilesPageView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:banners="using:ProtonVPN.Client.UI.Main.Components.Banners"
       xmlns:controls="using:ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Controls"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -42,12 +42,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <custom:UpsellBanner Grid.Row="0"
-                             Title="{x:Bind ViewModel.Localizer.Get('Profiles_Page_Description')}"
-                             Command="{x:Bind ViewModel.UpgradeCommand, Mode=OneTime}"
-                             IllustrationSource="{StaticResource ProfilesUpsellSmallIllustrationSource}"
-                             Style="{StaticResource SidebarUpsellBannerStyle}"
-                             Visibility="{x:Bind ViewModel.IsUpsellBannerVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <banners:BannerComponent Grid.Row="0">
+            <banners:BannerComponent.FallbackContent>
+                <custom:UpsellBanner Title="{x:Bind ViewModel.Localizer.Get('Profiles_Page_Description')}"
+                                     Command="{x:Bind ViewModel.UpgradeCommand, Mode=OneTime}"
+                                     IllustrationSource="{StaticResource ProfilesUpsellSmallIllustrationSource}"
+                                     Style="{StaticResource SidebarUpsellBannerStyle}"
+                                     Visibility="{x:Bind ViewModel.IsUpsellBannerVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </banners:BannerComponent.FallbackContent>
+        </banners:BannerComponent>
 
         <StackPanel Grid.Row="1"
                     MaxWidth="240"
@@ -75,10 +78,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <Button Margin="0,24,0,0"
                     HorizontalAlignment="Center"
+                    AutomationProperties.AutomationId="CreateProfileButton"
                     Command="{x:Bind ViewModel.CreateProfileCommand, Mode=OneTime}"
                     Content="{x:Bind ViewModel.Localizer.Get('Connections_Profiles_Create')}"
-                    Style="{StaticResource PrimaryButtonStyle}"
-                    AutomationProperties.AutomationId="CreateProfileButton" />
+                    Style="{StaticResource PrimaryButtonStyle}" />
 
         </StackPanel>
 
