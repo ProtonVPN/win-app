@@ -35,12 +35,12 @@ public class ViewModelHelper : IViewModelHelper
     public IIssueReporter IssueReporter { get; }
 
     public ViewModelHelper(
-        IUIThreadDispatcher uIThreadDispatcher,
+        IUIThreadDispatcher uiThreadDispatcher,
         ILocalizationProvider localizationProvider,
         ILogger logger,
         IIssueReporter issueReporter)
     {
-        UIThreadDispatcher = uIThreadDispatcher;
+        UIThreadDispatcher = uiThreadDispatcher;
         Localizer = localizationProvider;
         Logger = logger;
         IssueReporter = issueReporter;

@@ -44,14 +44,14 @@ public partial class BannerViewModel : BannerViewModelBase
     protected override ModalSource ModalSource { get; } = ModalSource.PromoOffer;
 
     public BannerViewModel(
-        IUIThreadDispatcher uIThreadDispatcher,
+        IUIThreadDispatcher uiThreadDispatcher,
         IAnnouncementActivator announcementActivator,
         IAnnouncementsProvider announcementsProvider,
         IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender,
         IViewModelHelper viewModelHelper)
         : base(announcementActivator, announcementsProvider, upsellDisplayStatisticalEventSender, viewModelHelper)
     {
-        _countdownTimer = uIThreadDispatcher.GetTimer(TimeSpan.FromSeconds(1));
+        _countdownTimer = uiThreadDispatcher.GetTimer(TimeSpan.FromSeconds(1));
         _countdownTimer.Tick += OnCountdownTimerTick;
     }
 

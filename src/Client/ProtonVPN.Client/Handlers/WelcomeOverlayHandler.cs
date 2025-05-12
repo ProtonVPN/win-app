@@ -41,13 +41,13 @@ public class WelcomeOverlayHandler : IHandler,
 
     public WelcomeOverlayHandler(
         ISettings settings,
-        IUIThreadDispatcher uIThreadDispatcher,
+        IUIThreadDispatcher uiThreadDispatcher,
         IUserSettingsMigrator userSettingsMigrator,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         IUserAuthenticator userAuthenticator)
     {
         _settings = settings;
-        _uiThreadDispatcher = uIThreadDispatcher;
+        _uiThreadDispatcher = uiThreadDispatcher;
         _userSettingsMigrator = userSettingsMigrator;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _userAuthenticator = userAuthenticator;

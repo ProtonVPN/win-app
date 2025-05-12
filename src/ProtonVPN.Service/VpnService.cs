@@ -98,11 +98,19 @@ internal partial class VpnService : ServiceBase
         base.OnSessionChange(changeDescription);
     }
 
-    protected override void OnStart(string[] args)
+    protected override async void OnStart(string[] args)
     {
         try
         {
             _grpcServer.CreateAndStart();
+
+            if (!IsBfeServiceRunningAndEnabled())
+            {
+                _vpnConnection.Disconnect(VpnError.BaseFilteringEngineServiceNotRunning);
+                Stop();
+                return;
+            }
+
             _vpnConnection.Disconnect();
         }
         catch (Exception ex)
@@ -182,5 +190,29 @@ internal partial class VpnService : ServiceBase
     private void OnVpnStateChanged(object sender, Common.Legacy.EventArgs<VpnState> e)
     {
         _isConnected = e.Data.Status == VpnStatus.Connected;
+    }
+
+    private bool IsBfeServiceRunningAndEnabled()
+    {
+        string bfeServiceName = _staticConfig.BaseFilteringEngineServiceName;
+
+        try
+        {
+            using ServiceController serviceController = new(bfeServiceName);
+            ServiceStartMode bfeServiceStartType = serviceController.StartType;
+            ServiceControllerStatus bfeServiceStatus = serviceController.Status;
+
+            _logger.Info<AppServiceStartLog>($"´{bfeServiceName} Service - Start type: {bfeServiceStartType}, Status: {bfeServiceStatus}");
+
+            return bfeServiceStartType != ServiceStartMode.Disabled
+                && bfeServiceStatus == ServiceControllerStatus.Running;
+        }
+        catch (Exception e)
+        {
+            string errorMessage = $"Error checking BFE service status. Service name: {bfeServiceName}.";
+            _logger.Error<AppServiceStartLog>(errorMessage, e);
+            _issueReporter.CaptureError($"{errorMessage}. {e.Message}");
+            return true;
+        }
     }
 }

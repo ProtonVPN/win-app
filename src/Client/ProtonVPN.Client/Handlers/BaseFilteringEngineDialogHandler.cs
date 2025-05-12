@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,91 +20,94 @@
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Contracts.Services.Lifecycle;
 using ProtonVPN.Client.Core.Services.Activation;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Logic.Services.Contracts;
-using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
-using ProtonVPN.OperatingSystems.Services.Contracts;
 
 namespace ProtonVPN.Client.Handlers;
 
-public class BaseFilteringEngineDialogHandler : IBaseFilteringEngineDialogHandler
+public class BaseFilteringEngineDialogHandler : IHandler,
+    IEventMessageReceiver<ConnectionErrorMessage>
 {
     private readonly ILogger _logger;
     private readonly IUrlsBrowser _urlsBrowser;
-    private readonly IStaticConfiguration _staticConfiguration;
-    private readonly IServiceFactory _serviceFactory;
     private readonly ILocalizationProvider _localizer;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
-    private readonly IUIThreadDispatcher _uIThreadDispatcher;
+    private readonly IUIThreadDispatcher _uiThreadDispatcher;
+    private readonly IAppExitInvoker _appExitInvoker;
 
-    private readonly SemaphoreSlim _semaphore = new(1, 1);
+    private bool _isHandled;
 
     public BaseFilteringEngineDialogHandler(
         ILogger logger,
         IUrlsBrowser urlsBrowser,
-        IStaticConfiguration staticConfiguration,
-        IServiceFactory serviceFactory,
         ILocalizationProvider localizer,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
-        IUIThreadDispatcher uIThreadDispatcher)
+        IUIThreadDispatcher uiThreadDispatcher,
+        IAppExitInvoker appExitInvoker)
     {
         _logger = logger;
         _urlsBrowser = urlsBrowser;
-        _staticConfiguration = staticConfiguration;
-        _serviceFactory = serviceFactory;
         _localizer = localizer;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
-        _uIThreadDispatcher = uIThreadDispatcher;
+        _uiThreadDispatcher = uiThreadDispatcher;
+        _appExitInvoker = appExitInvoker;
     }
 
-    public async Task<bool> HandleAsync()
+    public void Receive(ConnectionErrorMessage message)
     {
-        await _semaphore.WaitAsync();
-
-        try
+        if (message.VpnError.IsBaseFilteringEngineError())
         {
-            return await _uIThreadDispatcher.TryEnqueueAsync(ShowOverlayAsync);
-        }
-        catch (Exception)
-        {
-            // The first call from bootstrapper calls this method too early and the UI is not yet ready.
-            return false;
-        }
-        finally
-        {
-            _semaphore.Release();
+            _uiThreadDispatcher.TryEnqueue(async () => await ShowOverlayAndExitAsync());
         }
     }
 
-    private async Task ShowOverlayAsync()
+    private async Task ShowOverlayAndExitAsync()
     {
-        IService bfeService = _serviceFactory.Get(_staticConfiguration.BaseFilteringEngineServiceName);
-        if (bfeService.IsEnabled() && bfeService.IsRunning())
+        if (_isHandled)
         {
             return;
         }
 
-        MessageDialogParameters parameters = new()
+        try
         {
-            Title = _localizer.GetFormat("Dialogs_BaseFilteringEngine_Title"),
-            Message = $"{_localizer.Get("Dialogs_BaseFilteringEngine_Description")}{Environment.NewLine}{Environment.NewLine}",
-            MessageType = DialogMessageType.RichText,
-            PrimaryButtonText = _localizer.Get("Common_Actions_Exit_ProtonVPN"),
-            TrailingInlineButton = new InlineTextButton()
+            _isHandled = true;
+
+            _logger.Warn<AppServiceLog>($"Base Filtering Engine (BFE) service is disabled.");
+
+            MessageDialogParameters parameters = new()
             {
-                Text = _localizer.Get("Dialogs_BaseFilteringEngine_HowToEnable"),
-                Url = _urlsBrowser.EnableBaseFilteringEngine,
-            },
-            UseVerticalLayoutForButtons = true,
-        };
+                Title = _localizer.GetFormat("Dialogs_BaseFilteringEngine_Title"),
+                Message = $"{_localizer.Get("Dialogs_BaseFilteringEngine_Description")}{Environment.NewLine}{Environment.NewLine}",
+                MessageType = DialogMessageType.RichText,
+                PrimaryButtonText = _localizer.Get("Common_Actions_Exit_ProtonVPN"),
+                TrailingInlineButton = new InlineTextButton()
+                {
+                    Text = _localizer.Get("Dialogs_BaseFilteringEngine_HowToEnable"),
+                    Url = _urlsBrowser.EnableBaseFilteringEngine,
+                },
+                UseVerticalLayoutForButtons = true,
+            };
 
-        await _mainWindowOverlayActivator.ShowMessageAsync(parameters);
+            await _mainWindowOverlayActivator.ShowMessageAsync(parameters);
 
-        _logger.Warn<AppServiceLog>("Base Filtering Engine (BFE) service is disabled. Shutting down the application.");
+            _logger.Warn<AppServiceLog>("Shutting down the application.");
 
-        Environment.Exit(0);
+            await _appExitInvoker.ForceExitAsync();
+        }
+        catch (Exception e)
+        {
+            _logger.Error<AppServiceLog>("Failed to show BFE warning overlay.", e);
+        }
+        finally
+        {
+            _isHandled = false;
+        }
     }
 }

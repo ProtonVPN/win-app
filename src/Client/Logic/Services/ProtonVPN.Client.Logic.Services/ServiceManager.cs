@@ -30,18 +30,16 @@ public class ServiceManager : IServiceManager, IEventMessageReceiver<Application
 {
     private readonly IService _service;
     private readonly IServiceEnabler _serviceEnabler;
-    private readonly IBaseFilteringEngineDialogHandler _baseFilteringEngineDialogHandler;
+
     private readonly CancellationTokenSource _cancellationTokenSource = new();
 
     public ServiceManager(
         IServiceFactory serviceFactory,
         IStaticConfiguration configuration,
-        IServiceEnabler serviceEnabler,
-        IBaseFilteringEngineDialogHandler baseFilteringEngineDialogHandler)
+        IServiceEnabler serviceEnabler)
     {
         _service = serviceFactory.Get(configuration.ServiceName);
         _serviceEnabler = serviceEnabler;
-        _baseFilteringEngineDialogHandler = baseFilteringEngineDialogHandler;
     }
 
     public ServiceControllerStatus? GetStatus()
@@ -58,12 +56,6 @@ public class ServiceManager : IServiceManager, IEventMessageReceiver<Application
     public async Task StartAsync()
     {
         if (_cancellationTokenSource.IsCancellationRequested)
-        {
-            return;
-        }
-
-        bool result = await _baseFilteringEngineDialogHandler.HandleAsync();
-        if (!result)
         {
             return;
         }

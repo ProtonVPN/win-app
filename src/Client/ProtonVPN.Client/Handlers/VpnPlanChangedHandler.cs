@@ -43,7 +43,7 @@ public class VpnPlanChangedHandler : IHandler,
     IEventMessageReceiver<VpnPlanChangedMessage>
 {
     private readonly ILogger _logger;
-    private readonly IUIThreadDispatcher _uIThreadDispatcher;
+    private readonly IUIThreadDispatcher _uiThreadDispatcher;
     private readonly ILocalizationProvider _localizer;
     private readonly IConnectionManager _connectionManager;
     private readonly IUserAuthenticator _userAuthenticator;
@@ -57,7 +57,7 @@ public class VpnPlanChangedHandler : IHandler,
 
     public VpnPlanChangedHandler(
         ILogger logger,
-        IUIThreadDispatcher uIThreadDispatcher,
+        IUIThreadDispatcher uiThreadDispatcher,
         ILocalizationProvider localizer,
         IConnectionManager connectionManager,
         IUserAuthenticator userAuthenticator,
@@ -68,7 +68,7 @@ public class VpnPlanChangedHandler : IHandler,
         IAccountUpgradeUrlLauncher accountUpgradeUrlLauncher)
     {
         _logger = logger;
-        _uIThreadDispatcher = uIThreadDispatcher;
+        _uiThreadDispatcher = uiThreadDispatcher;
         _localizer = localizer;
         _connectionManager = connectionManager;
         _userAuthenticator = userAuthenticator;
@@ -89,7 +89,7 @@ public class VpnPlanChangedHandler : IHandler,
         if (message.HasMaxTierChanged())
         {
             _logger.Info<AppLog>("Navigating to Home page due to max tier change.");
-            await _uIThreadDispatcher.TryEnqueueAsync(ResetNavigationAsync);
+            await _uiThreadDispatcher.TryEnqueueAsync(ResetNavigationAsync);
         }
 
         if (message.IsDowngrade())
@@ -122,7 +122,7 @@ public class VpnPlanChangedHandler : IHandler,
     private async Task NotifyUserOfSubscriptionExpirationAsync()
     {
         _subscriptionExpiredNotificationSender.Send();
-        await _uIThreadDispatcher.TryEnqueueAsync(ShowSubscriptionExpiredDialogAsync);
+        await _uiThreadDispatcher.TryEnqueueAsync(ShowSubscriptionExpiredDialogAsync);
     }
 
     private async Task ShowSubscriptionExpiredDialogAsync()

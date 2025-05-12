@@ -39,13 +39,13 @@ public class NotificationActivationHandler : IHandler,
     private readonly IAccountUpgradeUrlLauncher _accountUpgradeUrlLauncher;
 
     public NotificationActivationHandler(
-        IUIThreadDispatcher uIThreadDispatcher,
+        IUIThreadDispatcher uiThreadDispatcher,
         IMainWindowActivator mainWindowActivator,
         IPortForwardingManager portForwardingManager,
         IPortForwardingClipboardService portForwardingClipboardService,
         IAccountUpgradeUrlLauncher accountUpgradeUrlLauncher)
     {
-        _uiThreadDispatcher = uIThreadDispatcher;
+        _uiThreadDispatcher = uiThreadDispatcher;
         _mainWindowActivator = mainWindowActivator;
         _portForwardingClipboardService = portForwardingClipboardService;
         _accountUpgradeUrlLauncher = accountUpgradeUrlLauncher;
