@@ -446,14 +446,19 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
             {
                 _logger.Info<AppLog>("Attempt to complete login through guest hole.", e);
 
-                return await _guestHoleManager.ExecuteAsync<AuthResult>(async () => 
+                AuthResult? result = await _guestHoleManager.ExecuteAsync<AuthResult>(async () =>
                 {
                     AuthResult result = await CompleteLoginAsync(isAutoLogin, isToSendLoggedInEvent);
 
                     await _guestHoleManager.DisconnectAsync();
 
                     return result;
-                }) ?? AuthResult.Fail(); 
+                });
+
+                if (result != null)
+                {
+                    return result;
+                }
             }
         }
         catch (Exception e)
