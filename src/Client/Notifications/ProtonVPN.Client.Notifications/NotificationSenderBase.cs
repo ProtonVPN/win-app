@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,21 +18,29 @@
  */
 
 using Microsoft.Toolkit.Uwp.Notifications;
-using ProtonVPN.Client.Core.Services.Notification;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
-namespace ProtonVPN.Client.Services.Notification;
+namespace ProtonVPN.Client.Notifications;
 
-public class AppNotificationSender : IAppNotificationSender
+public abstract class NotificationSenderBase
 {
-    // Quick setup for app notifications
-    // Works perfectly but it references Uwp libraries.
-    // Should we have a look at https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/notifications/app-notifications/app-notifications-quickstart?tabs=cs
+    private readonly ILogger _logger;
 
-    public void Send(string title, string text)
+    public NotificationSenderBase(ILogger logger)
     {
-        new ToastContentBuilder()
-            .AddText(title)
-            .AddText(text)
-            .Show();
+        _logger = logger;
+    }
+
+    protected void Send(ToastContentBuilder notification)
+    {
+        try
+        {
+            notification.Show();
+        }
+        catch (Exception e)
+        {
+            _logger.Error<AppLog>("Failed to display a system notification.", e);
+        }
     }
 }

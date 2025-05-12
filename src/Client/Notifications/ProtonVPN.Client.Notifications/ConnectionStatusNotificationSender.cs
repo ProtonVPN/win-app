@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -30,10 +30,11 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Extensions;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Notifications;
 
-public class ConnectionStatusNotificationSender : IConnectionStatusNotificationSender,
+public class ConnectionStatusNotificationSender : NotificationSenderBase, IConnectionStatusNotificationSender,
     IEventMessageReceiver<MainWindowVisibilityChangedMessage>
 {
     private readonly ISettings _settings;
@@ -45,10 +46,12 @@ public class ConnectionStatusNotificationSender : IConnectionStatusNotificationS
     private bool _isMainWindowVisible;
 
     public ConnectionStatusNotificationSender(
+        ILogger logger,
         ISettings settings,
         ILocalizationProvider localizer,
         IGuestHoleManager guestHoleManager,
         IConnectionManager connectionManager)
+        : base(logger)
     {
         _settings = settings;
         _localizer = localizer;
@@ -77,7 +80,7 @@ public class ConnectionStatusNotificationSender : IConnectionStatusNotificationS
 
         AddDescription(notification, currentStatus);
 
-        notification.Show();
+        Send(notification);
     }
 
     public void Receive(MainWindowVisibilityChangedMessage message)

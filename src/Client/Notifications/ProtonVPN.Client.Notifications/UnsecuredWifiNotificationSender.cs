@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,10 +23,11 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.UnsecureWifiDetection.Contracts;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Notifications;
 
-public class UnsecuredWifiNotificationSender :
+public class UnsecuredWifiNotificationSender : NotificationSenderBase,
     IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private readonly ILocalizationProvider _localizer;
@@ -38,8 +39,10 @@ public class UnsecuredWifiNotificationSender :
     private bool IsCurrentWifiSecure => string.IsNullOrEmpty(_currentUnsecureWifiName);
 
     public UnsecuredWifiNotificationSender(
+        ILogger logger,
         ILocalizationProvider localizationProvider,
         INetworkClient networkClient)
+        : base(logger)
     {
         _localizer = localizationProvider;
 
@@ -70,10 +73,9 @@ public class UnsecuredWifiNotificationSender :
 
     public void Send()
     {
-        new ToastContentBuilder()
+        Send(new ToastContentBuilder()
             .AddText(_localizer.Get("Notifications_UnsecureWifi_Title"))
-            .AddText(_localizer.Get("Notifications_UnsecureWifi_Description"))
-            .Show();
+            .AddText(_localizer.Get("Notifications_UnsecureWifi_Description")));
     }
 
     private void OnWifiChangeDetected(object? sender, WifiChangeEventArgs e)

@@ -24,10 +24,11 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Notifications.Contracts;
 using ProtonVPN.Client.Notifications.Contracts.Arguments;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Notifications;
 
-public class SubscriptionExpiredNotificationSender : ISubscriptionExpiredNotificationSender,
+public class SubscriptionExpiredNotificationSender : NotificationSenderBase, ISubscriptionExpiredNotificationSender,
     IEventMessageReceiver<MainWindowVisibilityChangedMessage>
 {
     private readonly ILocalizationProvider _localizer;
@@ -36,8 +37,10 @@ public class SubscriptionExpiredNotificationSender : ISubscriptionExpiredNotific
     private bool _isMainWindowVisible;
 
     public SubscriptionExpiredNotificationSender(
+        ILogger logger,
         ILocalizationProvider localizer, 
         IConnectionManager connectionManager)
+        : base(logger)
     {
         _localizer = localizer;
         _connectionManager = connectionManager;
@@ -61,7 +64,7 @@ public class SubscriptionExpiredNotificationSender : ISubscriptionExpiredNotific
         tcb.AddText(_localizer.Get("Dialogs_Common_UpgradeToGetPlusFeatures"));
         tcb.AddButton(_localizer.Get("Common_Actions_Upgrade"), ToastActivationType.Foreground, NotificationArguments.UPGRADE);
 
-        tcb.Show();
+        Send(tcb);
     }
 
     public void Receive(MainWindowVisibilityChangedMessage message)

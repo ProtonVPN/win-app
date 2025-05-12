@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,17 +22,21 @@ using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Notifications;
 
-public class ConnectionErrorNotificationSender : IConnectionErrorNotificationSender,
+public class ConnectionErrorNotificationSender : NotificationSenderBase, IConnectionErrorNotificationSender,
     IEventMessageReceiver<MainWindowVisibilityChangedMessage>
 {
     private readonly ILocalizationProvider _localizer;
 
     private bool _isMainWindowVisible;
 
-    public ConnectionErrorNotificationSender(ILocalizationProvider localizer)
+    public ConnectionErrorNotificationSender(
+        ILogger logger,
+        ILocalizationProvider localizer)
+        : base(logger)
     {
         _localizer = localizer;
     }
@@ -47,7 +51,7 @@ public class ConnectionErrorNotificationSender : IConnectionErrorNotificationSen
         ToastContentBuilder tcb = new();
         tcb.AddText(_localizer.Get("SystemNotification_Disconnected"));
         tcb.AddText(_localizer.Get("Notifications_SessionLimit_Description"));
-        tcb.Show();
+        Send(tcb);
     }
 
     public void Receive(MainWindowVisibilityChangedMessage message)

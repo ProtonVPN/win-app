@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -51,7 +51,6 @@ using ProtonVPN.Client.Services.Enabling;
 using ProtonVPN.Client.Services.Lifecycle;
 using ProtonVPN.Client.Services.Mapping;
 using ProtonVPN.Client.Services.Navigation;
-using ProtonVPN.Client.Services.Notification;
 using ProtonVPN.Client.Services.PortForwarding;
 using ProtonVPN.Client.Services.ProcessCommunication;
 using ProtonVPN.Client.Services.Selection;
@@ -248,8 +247,6 @@ public class AppModule : Module
         builder.RegisterType<DebugToolsWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<TroubleshootingWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<OneTimeAnnouncementWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
-
-        builder.RegisterType<AppNotificationSender>().AsSelf().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<ApplicationIconSelector>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ApplicationThemeSelector>().AsSelf().AsImplementedInterfaces().SingleInstance();

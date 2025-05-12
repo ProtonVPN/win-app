@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,26 +22,29 @@ using ProtonVPN.Client.Common.Helpers;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Notifications.Contracts;
 using ProtonVPN.Client.Notifications.Contracts.Arguments;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Notifications;
 
-public class PortForwardingNewPortNotificationSender : IPortForwardingNewPortNotificationSender
+public class PortForwardingNewPortNotificationSender : NotificationSenderBase, IPortForwardingNewPortNotificationSender
 {
     private readonly ILocalizationProvider _localizer;
 
-    public PortForwardingNewPortNotificationSender(ILocalizationProvider localizationProvider)
+    public PortForwardingNewPortNotificationSender(
+        ILogger logger,
+        ILocalizationProvider localizationProvider)
+        : base(logger)
     {
         _localizer = localizationProvider;
     }
 
     public void Send(int activePort)
     {
-        new ToastContentBuilder()
+        Send(new ToastContentBuilder()
             .AddText($"{_localizer.Get("Settings_Connection_PortForwarding_ActivePort")} {activePort}")
             .AddText(_localizer.Get("Notifications_PortForwarding_Description"))
             // No need to use current theme for this icon, it was design team's decision to use light icon in this case
             .AddAppLogoOverride(new Uri(AssetPathHelper.GetAbsoluteAssetPath("Illustrations", "Light", "port-forwarding-on.png")))
-            .AddButton(_localizer.Get("Notifications_PortForwarding_CopyPortNumber"), ToastActivationType.Foreground, NotificationArguments.COPY_PORT_FORWARDING_PORT_TO_CLIPBOARD)
-            .Show();
+            .AddButton(_localizer.Get("Notifications_PortForwarding_CopyPortNumber"), ToastActivationType.Foreground, NotificationArguments.COPY_PORT_FORWARDING_PORT_TO_CLIPBOARD));
     }
 }
