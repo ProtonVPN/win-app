@@ -24,6 +24,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Validators;
+using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -43,6 +44,7 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
     private readonly INetworkAdapterValidator _networkAdapterValidator;
     private readonly IConnectionManager _connectionManager;
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
+
     private VpnErrorTypeIpcEntity _error = VpnErrorTypeIpcEntity.None;
     private VpnStatusIpcEntity _status = VpnStatusIpcEntity.Disconnected;
 
@@ -102,6 +104,11 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
         _error = vpnState.Error;
         _status = vpnState.Status;
 
+        if (error == VpnError.BaseFilteringEngineServiceNotRunning)
+        {
+            return HandleBaseFilteringEngineServiceNotRunning();
+        }
+
         if (error == VpnError.NoTapAdaptersError)
         {
             return await HandleNoTapAdaptersErrorAsync();
@@ -157,6 +164,11 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
         {
             _connectionCertificateManager.DeleteKeyPairAndCertificateIfMatches(connectionCertificatePem);
         }
+    }
+
+    private ConnectionErrorHandlerResult HandleBaseFilteringEngineServiceNotRunning()
+    {
+        return SendConnectionErrorMessage(VpnError.BaseFilteringEngineServiceNotRunning);
     }
 
     private async Task<ConnectionErrorHandlerResult> HandleNoTapAdaptersErrorAsync()

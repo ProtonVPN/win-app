@@ -31,7 +31,6 @@ public partial class TroubleshootingShellViewModel : ShellViewModelBase<ITrouble
     private readonly IUrlsBrowser _urlsBrowser;
 
     public TroubleshootingShellViewModel(
-        IUIThreadDispatcher uIThreadDispatcher,
         IUrlsBrowser urlsBrowser,
         ITroubleshootingWindowActivator windowActivator,
         IViewModelHelper viewModelHelper)

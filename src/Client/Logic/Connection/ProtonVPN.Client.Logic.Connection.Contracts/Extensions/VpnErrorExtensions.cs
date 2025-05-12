@@ -113,4 +113,9 @@ public static class VpnErrorExtensions
     {
         return _sessionLimitErrors.Contains(error);
     }
+
+    public static bool IsBaseFilteringEngineError(this VpnError error)
+    {
+        return error is VpnError.BaseFilteringEngineServiceNotRunning;
+    }
 }

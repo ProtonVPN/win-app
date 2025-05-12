@@ -33,7 +33,7 @@ namespace ProtonVPN.Client.Services.Enabling;
 public class ServiceEnabler : IServiceEnabler
 {
     private readonly ILogger _logger;
-    private readonly IUIThreadDispatcher _uIThreadDispatcher;
+    private readonly IUIThreadDispatcher _uiThreadDispatcher;
     private readonly ILocalizationProvider _localizer;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
     private readonly Lazy<IAppExitInvoker> _appExitInvoker;
@@ -41,13 +41,13 @@ public class ServiceEnabler : IServiceEnabler
 
     public ServiceEnabler(
         ILogger logger,
-        IUIThreadDispatcher uIThreadDispatcher,
+        IUIThreadDispatcher uiThreadDispatcher,
         ILocalizationProvider localizer,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         Lazy<IAppExitInvoker> appExitInvoker)
     {
         _logger = logger;
-        _uIThreadDispatcher = uIThreadDispatcher;
+        _uiThreadDispatcher = uiThreadDispatcher;
         _localizer = localizer;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _appExitInvoker = appExitInvoker;
@@ -64,7 +64,7 @@ public class ServiceEnabler : IServiceEnabler
 
         try
         {
-            await _uIThreadDispatcher.TryEnqueueAsync(() => ShowOverlayAsync(service));
+            await _uiThreadDispatcher.TryEnqueueAsync(() => ShowOverlayAsync(service));
         }
         catch (Exception)
         {

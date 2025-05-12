@@ -62,7 +62,6 @@ public partial class ReportIssueShellViewModel : ShellViewModelBase<IReportIssue
     public bool IsUpdateAvailable => _updatesManager.IsUpdateAvailable;
 
     public ReportIssueShellViewModel(
-        IUIThreadDispatcher uIThreadDispatcher,
         IUpdatesManager updatesManager,
         IReportIssueWindowActivator windowActivator,
         IReportIssueViewNavigator childViewNavigator,

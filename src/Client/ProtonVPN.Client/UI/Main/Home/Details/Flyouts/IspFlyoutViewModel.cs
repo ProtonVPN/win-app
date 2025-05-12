@@ -42,7 +42,6 @@ public partial class IspFlyoutViewModel : ActivatableViewModelBase,
     public bool IsDeviceExposed => !string.IsNullOrWhiteSpace(_settings.DeviceLocation?.Isp);
 
     public IspFlyoutViewModel(
-        IUIThreadDispatcher uIThreadDispatcher,
         IUrlsBrowser urlsBrowser,
         ISettings settings,
         IViewModelHelper viewModelHelper)

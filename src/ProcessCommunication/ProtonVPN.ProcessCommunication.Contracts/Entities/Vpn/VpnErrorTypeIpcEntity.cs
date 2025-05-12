@@ -91,6 +91,9 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
         MissingConnectionCertificate,
 
         [EnumMember]
+        BaseFilteringEngineServiceNotRunning,
+
+        [EnumMember]
         CertificateExpired = 86101,
 
         [EnumMember]

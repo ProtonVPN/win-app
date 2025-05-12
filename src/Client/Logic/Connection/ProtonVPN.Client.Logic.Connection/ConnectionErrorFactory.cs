@@ -45,7 +45,9 @@ public class ConnectionErrorFactory : IConnectionErrorFactory
     {
         return vpnError switch
         {
-            VpnError.None or VpnError.NoneKeepEnabledKillSwitch => GetConnectionError<NoConnectionError>(),
+            VpnError.None or 
+            VpnError.NoneKeepEnabledKillSwitch or 
+            VpnError.BaseFilteringEngineServiceNotRunning => GetConnectionError<NoConnectionError>(),
 
             VpnError.NoServers when _connectionManager.CurrentConnectionIntent is IConnectionProfile =>
                 GetConnectionError<NoServersForProfileConnectionError>(),

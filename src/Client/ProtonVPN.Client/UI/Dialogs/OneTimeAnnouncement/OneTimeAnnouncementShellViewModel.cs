@@ -51,7 +51,6 @@ public partial class OneTimeAnnouncementShellViewModel : ShellViewModelBase<IOne
     public ImageSource? ImageSource => ActiveAnnouncement?.Panel?.FullScreenImage?.Image?.LocalPath?.ToImageSource();
 
     public OneTimeAnnouncementShellViewModel(
-        IUIThreadDispatcher uIThreadDispatcher,
         IAnnouncementsProvider announcementsProvider,
         IAnnouncementActivator announcementActivator,
         IOneTimeAnnouncementWindowActivator windowActivator,

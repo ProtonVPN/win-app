@@ -49,7 +49,6 @@ public partial class SidebarComponentViewModel : HostViewModelBase<ISidebarViewN
     public ObservableCollection<IConnectionPage> ConnectionPages { get; }
 
     public SidebarComponentViewModel(
-        IUIThreadDispatcher uIThreadDispatcher,
         ISidebarViewNavigator childViewNavigator,
         ILocalizationProvider localizer,
         ILogger logger,
