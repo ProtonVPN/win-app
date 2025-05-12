@@ -26,6 +26,7 @@ using ProtonVPN.Client.Logic.Announcements.Contracts;
 using ProtonVPN.Client.Logic.Announcements.Contracts.Entities;
 using ProtonVPN.Client.Logic.Announcements.Contracts.Messages;
 using ProtonVPN.Client.Models.Announcements;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Components.Banners;
 
@@ -34,15 +35,20 @@ public abstract partial class BannerViewModelBase : ViewModelBase,
 {
     private readonly IAnnouncementsProvider _announcementsProvider;
     private readonly IAnnouncementActivator _announcementActivator;
+    private readonly IUpsellDisplayStatisticalEventSender _upsellDisplayStatisticalEventSender;
+
+    protected abstract ModalSource ModalSource { get; }
 
     protected BannerViewModelBase(
         IAnnouncementActivator announcementActivator,
         IAnnouncementsProvider announcementsProvider,
+        IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender,
         IViewModelHelper viewModelHelper)
         : base(viewModelHelper)
     {
         _announcementsProvider = announcementsProvider;
         _announcementActivator = announcementActivator;
+        _upsellDisplayStatisticalEventSender = upsellDisplayStatisticalEventSender;
     }
 
     [ObservableProperty]
@@ -71,6 +77,11 @@ public abstract partial class BannerViewModelBase : ViewModelBase,
             {
                 ActiveAnnouncement = null;
                 return;
+            }
+
+            if (ActiveAnnouncement?.Id != announcement.Id)
+            {
+                _upsellDisplayStatisticalEventSender.Send(ModalSource, announcement.Reference);
             }
 
             BeforeAnnouncementChange();

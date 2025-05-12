@@ -32,9 +32,22 @@ public enum ModalSource
     VpnAccelerator,
     SplitTunneling,
     CustomDns,
+    AllowLanConnections,
     ModerateNat,
     ChangeServer,
     PromoOffer,
     Downgrade,
-    MaxConnections
-}
+    MaxConnections,
+    CarouselCountries,
+    CarouselCustomization,
+    CarouselMultipleDevices,
+    CarouselNetShield,
+    CarouselP2P,
+    CarouselSecureCore,
+    CarouselSpeed,
+    CarouselSplitTunneling,
+    CarouselStreaming,
+    CarouselTor,
+    Account,
+    Tor
+}          

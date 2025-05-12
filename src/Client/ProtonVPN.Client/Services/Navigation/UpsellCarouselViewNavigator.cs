@@ -52,7 +52,10 @@ public class UpsellCarouselViewNavigator : ViewNavigatorBase, IUpsellCarouselVie
             UpsellFeatureType.Tor => NavigateToTorViewAsync(),
             UpsellFeatureType.SplitTunneling => NavigateToSplitTunnelingViewAsync(),
             UpsellFeatureType.Profiles => NavigateToProfilesViewAsync(),
-            UpsellFeatureType.AdvancedSettings => NavigateToAdvancedSettingsViewAsync(),
+            UpsellFeatureType.AdvancedSettings
+                or UpsellFeatureType.CustomDns
+                or UpsellFeatureType.ModerateNat
+                or UpsellFeatureType.AllowLanConnections => NavigateToAdvancedSettingsViewAsync(),
             _ => NavigateToDefaultAsync(),
         };
     }

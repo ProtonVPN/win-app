@@ -17,9 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
+
 namespace ProtonVPN.StatisticalEvents.Contracts;
 
 public interface IUpsellSuccessStatisticalEventSender
 {
-    void Send(ModalSource modalSource, string oldPlan, string newPlan, string? reference = null);
+    void Send(ModalSource modalSource, VpnPlan oldPlan, VpnPlan newPlan, string? reference = null);
 }

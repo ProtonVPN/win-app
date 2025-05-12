@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Common.Core.StatisticalEvents;
 using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.StatisticalEvents.DimensionBuilders;
@@ -40,18 +41,18 @@ public class UpsellSuccessStatisticalEventSender : StatisticalEventSenderBase<Up
         _statisticalEventSender = statisticalEventSender;
     }
 
-    public void Send(ModalSource modalSource, string oldPlan, string newPlan, string? reference = null)
+    public void Send(ModalSource modalSource, VpnPlan oldPlan, VpnPlan newPlan, string? reference = null)
     {
         StatisticalEvent statisticalEvent = Create(modalSource, oldPlan, newPlan, reference);
         _statisticalEventSender.EnqueueAsync(statisticalEvent);
     }
 
-    private StatisticalEvent Create(ModalSource modalSource, string oldPlan, string newPlan, string? reference)
+    private StatisticalEvent Create(ModalSource modalSource, VpnPlan oldPlan, VpnPlan newPlan, string? reference)
     {
         StatisticalEvent statisticalEvent = CreateStatisticalEvent();
         statisticalEvent.Dimensions = _upsellDimensionBuilder.Build(modalSource, reference);
-        statisticalEvent.Dimensions["user_plan"] = oldPlan;
-        statisticalEvent.Dimensions.Add("upgraded_user_plan", newPlan);
+        statisticalEvent.Dimensions["user_plan"] = _upsellDimensionBuilder.GetUserPlan(oldPlan);
+        statisticalEvent.Dimensions.Add("upgraded_user_plan", _upsellDimensionBuilder.GetUserPlan(newPlan));
         return statisticalEvent;
     }
 }

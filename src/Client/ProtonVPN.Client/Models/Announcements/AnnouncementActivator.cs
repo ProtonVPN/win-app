@@ -18,12 +18,11 @@
  */
 
 using ProtonVPN.Client.Logic.Announcements.Contracts.Entities;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Services.Upselling;
 using ProtonVPN.Common.Core.Extensions;
-using ProtonVPN.Logging.Contracts.Events.AppLogs;
-using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.Models.Announcements;
@@ -31,17 +30,17 @@ namespace ProtonVPN.Client.Models.Announcements;
 public class AnnouncementActivator : IAnnouncementActivator
 {
     private readonly ILogger _logger;
-    private readonly IUrlsBrowser _urlsBrowser;
     private readonly IWebAuthenticator _webAuthenticator;
+    private readonly IAccountUpgradeUrlLauncher _accountUpgradeUrlLauncher;
 
     public AnnouncementActivator(
         ILogger logger,
-        IUrlsBrowser urlsBrowser,
-        IWebAuthenticator webAuthenticator)
+        IWebAuthenticator webAuthenticator,
+        IAccountUpgradeUrlLauncher accountUpgradeUrlLauncher)
     {
         _logger = logger;
-        _urlsBrowser = urlsBrowser;
         _webAuthenticator = webAuthenticator;
+        _accountUpgradeUrlLauncher = accountUpgradeUrlLauncher;
     }
 
     public async Task ActivateAsync(Announcement? announcement)
@@ -52,13 +51,14 @@ public class AnnouncementActivator : IAnnouncementActivator
         {
             string baseUrl = announcement?.Panel?.Button?.Url ?? string.Empty;
             List<string> behaviors = announcement?.Panel?.Button?.Behaviors ?? new();
+            ModalSource modalSource = ModalSource.PromoOffer;
             string reference = announcement?.Reference ?? string.Empty;
 
             string url = behaviors.Contains("AutoLogin")
-                ? await _webAuthenticator.GetAuthUrlAsync(baseUrl, ModalSource.PromoOffer, reference)
+                ? await _webAuthenticator.GetAuthUrlAsync(baseUrl, modalSource, reference)
                 : baseUrl;
 
-            _urlsBrowser.BrowseTo(url);
+            _accountUpgradeUrlLauncher.Open(url, modalSource, reference);
         }
         else
         {

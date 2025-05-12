@@ -22,6 +22,7 @@ using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Logic.Announcements.Contracts;
 using ProtonVPN.Client.Logic.Announcements.Contracts.Entities;
 using ProtonVPN.Client.Models.Announcements;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Components.Banners;
 
@@ -33,13 +34,16 @@ public partial class ProminentBannerViewModel : BannerViewModelBase
 
     public ProminentBannerStyle BannerStyle => ActiveAnnouncement?.Panel is null ? ProminentBannerStyle.Regular : ActiveAnnouncement.Panel.Style;
 
-    protected override AnnouncementType AnnouncementType => AnnouncementType.ProminentBanner;
+    protected override AnnouncementType AnnouncementType { get; } = AnnouncementType.ProminentBanner;
+
+    protected override ModalSource ModalSource { get; } = ModalSource.Account;
 
     public ProminentBannerViewModel(
         IAnnouncementActivator announcementActivator,
         IAnnouncementsProvider announcementsProvider,
+        IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender,
         IViewModelHelper viewModelHelper)
-        : base(announcementActivator, announcementsProvider, viewModelHelper)
+        : base(announcementActivator, announcementsProvider, upsellDisplayStatisticalEventSender, viewModelHelper)
     { }
 
     protected override void AfterAnnouncementChange()

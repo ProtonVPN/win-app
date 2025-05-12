@@ -58,9 +58,9 @@ public class WebAuthenticator : IWebAuthenticator
         return Task.FromResult(_config.Urls.AccountUrl);
     }
 
-    public async Task<string> GetUpgradeAccountUrlAsync(ModalSource modalSource)
+    public async Task<string> GetUpgradeAccountUrlAsync(ModalSource modalSource, string? notificationReference = null)
     {
-        string redirectUrl = GetRedirectUrl(modalSource);
+        string redirectUrl = GetRedirectUrl(modalSource, notificationReference);
 
         AuthUrlParameters parameters = new()
         {

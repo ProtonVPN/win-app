@@ -25,11 +25,13 @@ using ProtonVPN.Client.Common.UI.Extensions;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
+using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Announcements.Contracts;
 using ProtonVPN.Client.Logic.Announcements.Contracts.Entities;
 using ProtonVPN.Client.Logic.Announcements.Contracts.Messages;
 using ProtonVPN.Client.Models.Announcements;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Dialogs.OneTimeAnnouncement;
 
@@ -38,6 +40,7 @@ public partial class OneTimeAnnouncementShellViewModel : ShellViewModelBase<IOne
 {
     private readonly IAnnouncementsProvider _announcementsProvider;
     private readonly IAnnouncementActivator _announcementActivator;
+    private readonly IUpsellDisplayStatisticalEventSender _upsellDisplayStatisticalEventSender;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ButtonText))]
@@ -52,11 +55,13 @@ public partial class OneTimeAnnouncementShellViewModel : ShellViewModelBase<IOne
         IAnnouncementsProvider announcementsProvider,
         IAnnouncementActivator announcementActivator,
         IOneTimeAnnouncementWindowActivator windowActivator,
-        IViewModelHelper viewModelHelper)
+        IViewModelHelper viewModelHelper,
+        IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
         : base(windowActivator, viewModelHelper)
     {
         _announcementsProvider = announcementsProvider;
         _announcementActivator = announcementActivator;
+        _upsellDisplayStatisticalEventSender = upsellDisplayStatisticalEventSender;
     }
 
     private void InvalidateCurrentAnnouncement()
@@ -78,6 +83,16 @@ public partial class OneTimeAnnouncementShellViewModel : ShellViewModelBase<IOne
     public void Receive(AnnouncementListChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateCurrentAnnouncement);
+    }
+
+    protected override void OnActivated()
+    {
+        base.OnActivated();
+
+        if (ActiveAnnouncement is not null)
+        {
+            _upsellDisplayStatisticalEventSender.Send(ModalSource.PromoOffer, ActiveAnnouncement.Reference);
+        }
     }
 
     protected override void OnDeactivated()

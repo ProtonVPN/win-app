@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts;
 
@@ -38,15 +39,19 @@ public class UpsellDimensionBuilder : IUpsellDimensionBuilder
 
     public Dictionary<string, string> Build(ModalSource modalSource, string? reference = null)
     {
+        VpnPlan vpnPlan = _settings.VpnPlan;
         string? country = _settings.DeviceLocation?.CountryCode;
         return new()
         {
             { "modal_source", ModalSourceTranslator.Translate(modalSource) },
-            { "user_plan", _settings.VpnPlan.Title ?? "n/a" },
+            { "user_plan", GetUserPlan(vpnPlan) },
+            { "user_tier", GetUserTier(vpnPlan) },
             { "vpn_status", _connectionManager.IsConnected ? "on" : "off" },
             { "user_country", string.IsNullOrWhiteSpace(country) ? "n/a" : country },
+            { "new_free_plan_ui", "yes" },
             { "days_since_account_creation", GetDaysSinceAccountCreation() },
-            { "reference", string.IsNullOrWhiteSpace(reference) ? "n/a" : reference }
+            { "reference", string.IsNullOrWhiteSpace(reference) ? "n/a" : reference },
+            { "is_credential_less_enabled", "off" }
         };
     }
 
@@ -73,5 +78,21 @@ public class UpsellDimensionBuilder : IUpsellDimensionBuilder
             : daysSinceAccountCreation <= 14
             ? "8-14"
             : ">14";
+    }
+
+    private string GetUserTier(VpnPlan vpnPlan)
+    {
+        return vpnPlan.MaxTier switch
+        {
+            0 => "free",
+            1 or 2 => "paid",
+            3 => "internal",
+            _ => "n/a"
+        };
+    }
+
+    public string GetUserPlan(VpnPlan vpnPlan)
+    {
+        return vpnPlan.Title ?? "n/a";
     }
 }

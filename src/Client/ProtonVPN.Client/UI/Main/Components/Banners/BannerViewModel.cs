@@ -25,6 +25,7 @@ using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Announcements.Contracts;
 using ProtonVPN.Client.Logic.Announcements.Contracts.Entities;
 using ProtonVPN.Client.Models.Announcements;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Components.Banners;
 
@@ -38,14 +39,17 @@ public partial class BannerViewModel : BannerViewModelBase
 
     public ImageSource? LargeIllustrationSource => ActiveAnnouncement?.Panel?.FullScreenImage?.Image?.LocalPath?.ToImageSource();
 
-    protected override AnnouncementType AnnouncementType => AnnouncementType.Banner;
+    protected override AnnouncementType AnnouncementType { get; } = AnnouncementType.Banner;
+
+    protected override ModalSource ModalSource { get; } = ModalSource.PromoOffer;
 
     public BannerViewModel(
         IUIThreadDispatcher uIThreadDispatcher,
         IAnnouncementActivator announcementActivator,
         IAnnouncementsProvider announcementsProvider,
+        IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender,
         IViewModelHelper viewModelHelper)
-        : base(announcementActivator, announcementsProvider, viewModelHelper)
+        : base(announcementActivator, announcementsProvider, upsellDisplayStatisticalEventSender, viewModelHelper)
     {
         _countdownTimer = uIThreadDispatcher.GetTimer(TimeSpan.FromSeconds(1));
         _countdownTimer.Tick += OnCountdownTimerTick;

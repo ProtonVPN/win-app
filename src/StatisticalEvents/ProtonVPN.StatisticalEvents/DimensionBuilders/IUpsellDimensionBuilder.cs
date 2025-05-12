@@ -18,6 +18,7 @@
  */
 
 using System.Collections.Generic;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.StatisticalEvents.DimensionBuilders;
@@ -25,4 +26,6 @@ namespace ProtonVPN.StatisticalEvents.DimensionBuilders;
 public interface IUpsellDimensionBuilder
 {
     Dictionary<string, string> Build(ModalSource modalSource, string? reference = null);
+
+    string GetUserPlan(VpnPlan vpnPlan);
 }
