@@ -2860,7 +2860,7 @@
     <value>Кращий світ починається з приватності та цифрової свободи.</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
-    <value>Виникла помилка при отриманні даних про сесію. Будь ласка, спробуйте ще раз.</value>
+    <value>Під час отримання подробиць сеансу сталася помилка. Спробуйте ще раз.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Неправильний код. Повторіть спробу.</value>
@@ -2870,13 +2870,13 @@
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_SsoAuthFailed">
-    <value>Помилка автентифікації SSO. Будь ласка, спробуйте ще раз.</value>
+    <value>Збій автентифікації SSO. Повторіть спробу.</value>
   </data>
   <data name="Login_Error_TwoFactorAuthFailed">
-    <value>Неправильне ім'я користувача або пароль. Будь ласка, спробуйте ще раз.</value>
+    <value>Неправильне ім'я користувача або пароль. Спробуйте ще раз.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
-    <value>Помилка двофакторної аутентифікації. Будь ласка, увійдіть знову.</value>
+    <value>Збій двоетапної перевірки. Увійдіть знову.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>Автентифікація</value>
@@ -2907,14 +2907,14 @@
     <value>Шоста цифра</value>
   </data>
   <data name="Login_TwoFactor_EnterCode">
-    <value>Введіть свій код</value>
+    <value>Введіть код</value>
   </data>
   <data name="Main_Loading_SigningIn">
     <value>Виконується вхід до облікового запису...</value>
     <comment>Message in the loading screen when signing in or starting the app</comment>
   </data>
   <data name="Main_Loading_SigningOut">
-    <value>Виконується вихід, будь ласка, зачекайте...</value>
+    <value>Виконується вихід з облікового запису...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
   <data name="Map_ConnectTo">
@@ -2934,7 +2934,7 @@
     <value>Ви досягли ліміту пристроїв. Щоб під'єднати цей пристрій до VPN, від'єднайте інший.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
-    <value>Ваш тарифний план було знижено до Proton Free, і ми повторно підключаємо вас до найшвидшого безплатного сервера.</value>
+    <value>Ваш тарифний план змінено до Proton Free, і триває повторне під'єднання до найшвидшого безплатного сервера.</value>
   </data>
   <data name="Notifications_UnsecureWifi_Description">
     <value>Загальнодоступні мережі Wi-Fi є більш вразливими до загроз безпеці. Під'єднайтеся до VPN, щоб захиститися.</value>
@@ -2943,16 +2943,16 @@
     <value>Виявлено незахищене з'єднання Wi-Fi</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
-    <value>Оновити зараз</value>
+    <value>Оновити</value>
   </data>
   <data name="Overlay_OutdatedClient_Message">
-    <value>Ця версія програми застаріла. Для продовження використання Proton VPN.</value>
+    <value>Ця версія програми застаріла. Оновіть програму, щоб і надалі використовувати Proton VPN.</value>
   </data>
   <data name="Overlay_OutdatedClient_Title">
-    <value>Оновити Proton VPN для продовження</value>
+    <value>Оновіть Proton VPN, щоб продовжити</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Description">
-    <value>Наші P2P (пірингові) сервери дозволяють вам отримувати доступ до P2P-мереж, захищаючи при цьому вашу IP-адресу та активність в Інтернеті.</value>
+    <value>Наші сервери P2P (peer-to-peer) забезпечують доступ до мереж P2P, захищаючи вашу IP-адресу та діяльність в інтернеті.</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Header">
     <value>Що таке P2P VPN?</value>
@@ -2961,15 +2961,15 @@
     <value>Мережі P2P дозволяють двом пристроям з'єднуватися і передавати дані без проходження через центральний сервер. </value>
   </data>
   <data name="Overlay_P2P_Bullet2_Header">
-    <value>Що таке P2P-мережа?</value>
+    <value>Що таке мережа P2P?</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Description">
-    <value>  •  Завантаження торент файлів
-  •  Покращення продуктивності онлайн-ігор і відеодзвінків
-  •  Підключення до пристроїв локальної мережі (LAN)</value>
+    <value>  •  Завантаження торент-файлів
+  •  Покращення продуктивності онлайн-ігор та відеовикликів
+  •  Під'єднання до пристроїв у локальній мережі (LAN)</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Header">
-    <value>Для чого використовуються P2P-мережі?</value>
+    <value>Для чого використовуються мережі P2P?</value>
   </data>
   <data name="Overlay_P2P_LearnMore">
     <value>Що таке P2P?</value>
@@ -2999,8 +2999,8 @@
     <value>Що таке Secure Core?</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection">
-    <value>Secure Core
-VPN-з'єднання</value>
+    <value>VPN-з'єднання
+Secure Core</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
     <value>Вища затримка</value>
@@ -3022,9 +3022,9 @@ VPN-з'єднання</value>
     <value>Secure Core</value>
   </data>
   <data name="Overlay_ServerLoad_Description">
-    <value>Навантаження на сервер показує, наскільки сервер близький до своєї максимальної потужності.
+    <value>Навантаження сервера показує відсоток використання своєї максимальної потужності.
 
-Високе навантаження на сервер може сповільнити ваше з'єднання.</value>
+Високе навантаження може сповільнити ваше з'єднання.</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Description">
     <value>VPN може працювати повільніше</value>
@@ -3045,7 +3045,7 @@ VPN-з'єднання</value>
     <value>Майже не впливає на швидкість VPN</value>
   </data>
   <data name="Overlay_ServerLoad_MediumRange_Title">
-    <value>Середнє (76-90%)</value>
+    <value>Середнє (76–90%)</value>
   </data>
   <data name="Overlay_ServerLoad_Title">
     <value>Завантаження сервера</value>
@@ -3060,7 +3060,7 @@ VPN-з'єднання</value>
     <value>Smart Routing зазвичай використовується для обходу законів, що порушують приватність, та інших форм цензури.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>Сервери фізично розташовані в {0}, але вам буде здаватися, що ви переглядаєте сторінки з {1}</value>
+    <value>Сервери фізично розташовані в {0}, але здаватиметься, що ви користуєтеся інтернетом з {1}</value>
     <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
     Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
     Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
@@ -3114,7 +3114,7 @@ VPN-з'єднання</value>
     <value>Ця дія змінить тип NAT для цього профілю на суворий (тип 3).</value>
   </data>
   <data name="Profiles_Default_Gaming">
-    <value>Геймінг</value>
+    <value>Ігри</value>
   </data>
   <data name="Profiles_Default_MaxSecurity">
     <value>Максимальна безпека</value>
@@ -3135,7 +3135,7 @@ VPN-з'єднання</value>
     <value>Робота/Школа</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Налаштуйте власні параметри VPN і підключайтеся в один клац.</value>
+    <value>Налаштуйте власні параметри VPN і під'єднуйтеся одним натиском.</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>Профілі</value>
@@ -3195,7 +3195,7 @@ VPN-з'єднання</value>
     <value>Tor</value>
   </data>
   <data name="Server_Free">
-    <value>Free сервер</value>
+    <value>Сервер Free</value>
   </data>
   <data name="Servers">
     <value>Сервери</value>
@@ -3265,13 +3265,13 @@ VPN-з'єднання</value>
     <value>Альтернативна маршрутизація</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
-    <value>Якщо послуги Proton заблоковані через мережеві обмеження, ми спробуємо використати альтернативний мережевий маршрут, щоб під'єднати вас до наших сайтів.</value>
+    <value>Якщо служби Proton блокуються мережевими обмеженнями, ми спробуємо використати альтернативний спосіб маршрутизації для з'єднання з нашими сайтами.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
-    <value>Користувацькі DNS сервери</value>
+    <value>Власні DNS-сервери</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
-    <value>Ви не зможете використовувати NetShield при підключенні до власного DNS-сервера.</value>
+    <value>Ви не зможете використовувати NetShield, якщо під'єднані до власного DNS-сервера.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
     <value>Увімкнути власні DNS сервери?</value>
@@ -3280,7 +3280,7 @@ VPN-з'єднання</value>
     <value>Під'єднайтесь до Proton VPN, використовуючи власну систему доменних імен (DNS). Використовуйте лише ті DNS-сервери, яким ви довіряєте.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
-    <value>DNS сервери ({0})</value>
+    <value>DNS-сервери ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
@@ -3297,31 +3297,31 @@ VPN-з'єднання</value>
     <value>LAN-з'єднання</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Дозволяє під'єднуватись до принтерів, динаміків та інших пристроїв у локальній мережі вашого пристрою.</value>
+    <value>Дає можливість під'єднуватися до принтерів, гучномовців та інших пристроїв у локальній мережі вашого пристрою.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>NAT Type</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
-    <value>Ви не зможете використовувати переадресацію портів з помірним NAT.</value>
+    <value>Ви не зможете використовувати переспрямування портів, увімкнувши помірний NAT.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
     <value>Увімкнути помірне NAT?</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Description">
-    <value>Виберіть тип трансляції мережевої адреси для вашого з'єднання.</value>
+    <value>Виберіть тип трансляції мережевої адреси для свого з'єднання.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate">
     <value>Помірний (тип 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
-    <value>Деяке обмеження на вхід даних у вашу мережу. Цей варіант найкраще підходить для онлайн-відеоігор.</value>
+    <value>Певні обмеження щодо даних, які входять до вашої мережі. Цей параметр оптимальний для онлайн-відеоігор.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict">
     <value>Суворий (тип 3)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
-    <value>Обмежує доступ до даних у вашій мережі. Цей варіант безпечніший, але може ускладнити з'єднання в пірингових іграх.</value>
+    <value>Обмеження щодо даних, які входять до вашої мережі. Цей параметр безпечніший, але може ускладнити безпосередні з'єднання peer-to-peer в іграх.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
     <value>Маршрутизація трафіку між різними мережами.</value>
@@ -3366,10 +3366,10 @@ VPN-з'єднання</value>
     <value>Розширений</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
-    <value>Дозволяти доступ до інтернету тільки при підключенні до Proton VPN. Удосконалений вимикач залишається активним навіть після перезавантаження пристрою.</value>
+    <value>Дозволяти доступ до інтернету лише за наявності активного з'єднання Proton VPN. Розширений Kill Switch залишатиметься активним навіть після перезавантаження пристрою.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Це унеможливить роздільне прокладання тунелів.</value>
+    <value>Увімкнення цієї функції деактивує роздільне тунелювання.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Conflict_Title">
     <value>Увімкнути Kill Switch?</value>
@@ -3384,7 +3384,7 @@ VPN-з'єднання</value>
     <value>Стандартний</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Standard_Description">
-    <value>Автоматично відключається від інтернету, якщо VPN-з'єднання втрачено.</value>
+    <value>Автоматичне від'єднання від інтернету, якщо втрачено VPN-з'єднання.</value>
   </data>
   <data name="Settings_Connection_NetShield">
     <value>NetShield</value>
@@ -3396,7 +3396,7 @@ VPN-з'єднання</value>
     <value>Блокувати лише зловмисні програми</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Description">
-    <value>Якщо увімкнено NetShield, ви не зможете з'єднатися з користувацьким DNS-сервером.</value>
+    <value>Якщо ввімкнено NetShield, ви не зможете використовувати власний DNS-сервер.</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Information">
     <value>NetShield несумісний із власним DNS.</value>
@@ -3423,10 +3423,10 @@ VPN-з'єднання</value>
     <value>Копіювати номер порту</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Description">
-    <value>Ви не зможете використовувати помірний NAT, якщо увімкнено переадресацію портів.</value>
+    <value>Не можна використовувати помірне NAT, якщо ввімкнено переспрямування портів.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Conflict_Title">
-    <value>Увімкнути пересилання порту?</value>
+    <value>Увімкнути переспрямування портів?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
     <value>Обхід мережевих екранів для можливості з'єднання з P2P-серверами та пристроями у вашій локальній мережі.</value>
@@ -3441,7 +3441,7 @@ VPN-з'єднання</value>
     <value>Сповіщення</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Отримуйте сповіщення про зміну номера переадресації порту</value>
+    <value>Отримувати сповіщення про зміну номера порту переспрямування</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Протокол</value>
@@ -3466,21 +3466,21 @@ VPN-з'єднання</value>
     <value>Додати програму</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
-    <value>Файли додатка</value>
+    <value>Файли програм</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Header">
-    <value>Вибрані додатки ({0})</value>
+    <value>Вибрані програми ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
-    <value>Вилучити додаток</value>
+    <value>Вилучити програму</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Це призведе до вимкнення kill switch.</value>
+    <value>Ця дія призведе до вимкнення Kill Switch.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Увімкнути розділення тунелю?</value>
+    <value>Увімкнути роздільне тунелювання?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Налаштуйте своє з'єднання, визначивши програми та IP-адреси, які захищаються VPN.</value>
@@ -3489,17 +3489,17 @@ VPN-з'єднання</value>
     <value>Інвертувати</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Тільки вибрані програми та IP-адреси під'єднаються через VPN, весь інший трафік є незахищеним</value>
+    <value>Лише вибрані програми та IP-адреси під'єднуються через VPN, а весь інший трафік не захищається</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>Додати IP</value>
+    <value>Додати IP-адресу</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
-    <value>Обрані IP-адреси ({0})</value>
+    <value>Вибрані IP-адреси ({0})</value>
     <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
-    <value>Вилучити IP</value>
+    <value>Вилучити IP-адресу</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
     <value>Додати адресу IPv4</value>
@@ -3541,19 +3541,19 @@ VPN-з'єднання</value>
     <value>Найшвидше з'єднання</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Latest">
-    <value>Останнє підключення</value>
+    <value>Останнє з'єднання</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
     <value>Автозапуск</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Description">
-    <value>Proton VPN автоматично відкриється під час входу на ваш пристрій</value>
+    <value>Proton VPN автоматично відкриватиметься під час входу до системи</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
-    <value>Відкрити на комп'ютері</value>
+    <value>Відкрити на робочому столі</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
-    <value>Згорнути до системного трею</value>
+    <value>Згорнути до системного лотка</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
     <value>Згорнути до панелі завдань</value>
@@ -3565,13 +3565,13 @@ VPN-з'єднання</value>
     <value>Автоматичні оновлення</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Автоматична перевірка та встановлення оновлень Proton VPN</value>
+    <value>Автоматично перевіряти і встановлювати оновлення Proton VPN</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>Бета доступ</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>Отримайте ранній доступ та допоможіть нам протестувати нові версії Proton VPN</value>
+    <value>Отримайте ранній доступ і допоможіть нам тестувати нові версії Proton VPN</value>
   </data>
   <data name="Settings_General_Language">
     <value>Мова</value>
@@ -3580,13 +3580,13 @@ VPN-з'єднання</value>
     <value>Сповіщення</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Отримуйте сповіщення про поточні активності Proton VPN</value>
+    <value>Отримувати сповіщення про поточну діяльність Proton VPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>Драйвер мережі OpenVPN</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver_Description">
-    <value>Мережеві драйвери можуть впливати на швидкість з'єднання. Новий TUN-адаптер забезпечує вищу швидкість і перемикається на TAP-адаптер, якщо виникають проблеми зі з'єднанням.</value>
+    <value>Мережеві драйвери можуть впливати на швидкість вашого з'єднання. Новий адаптер TUN забезпечує вищу швидкість і перемикається на адаптер TAP у разі виникнення проблем зі з'єднанням.</value>
   </data>
   <data name="Settings_General_Theme">
     <value>Тема</value>
@@ -3595,7 +3595,7 @@ VPN-з'єднання</value>
     <value>Темна</value>
   </data>
   <data name="Settings_General_Theme_Default">
-    <value>Типовий</value>
+    <value>Типово</value>
   </data>
   <data name="Settings_General_Theme_Light">
     <value>Світла</value>
@@ -3657,19 +3657,19 @@ VPN-з'єднання</value>
     <value>Швидкість (UDP)</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Description">
-    <value>Найсучасніший протокол для безпеки та продуктивності.</value>
+    <value>Найдосконаліший протокол для безпеки та швидкодії.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTcp_Title">
     <value>WireGuard</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Description">
-    <value>Долає VPN-блокування, приховуючи ваше VPN-з'єднання від цензорів. Stealth стійкий до DPI (глибокої перевірки пакетів), але може бути не таким швидким, як інші протоколи.</value>
+    <value>Обходить блокування VPN, приховуючи ваше VPN-з'єднання від цензорів. Stealth стійкий до DPI (глибокої перевірки пакетів), але може бути не таким швидким, як інші протоколи.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Title">
     <value>Stealth</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Description">
-    <value>Найсучасніший протокол для безпеки та продуктивності.</value>
+    <value>Найдосконаліший протокол для безпеки та швидкодії.</value>
   </data>
   <data name="Settings_Protocols_WireGuardUdp_Title">
     <value>WireGuard</value>
@@ -3687,7 +3687,7 @@ VPN-з'єднання</value>
     <value>Відновити типові налаштування</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Message">
-    <value>Це призведе до скидання налаштувань Proton VPN до початкового стану.</value>
+    <value>Ця дія призведе до скидання налаштувань Proton VPN до початкового стану.</value>
   </data>
   <data name="Settings_RestoreDefault_Confirmation_Title">
     <value>Відновити типові налаштування?</value>
@@ -3735,7 +3735,7 @@ VPN-з'єднання</value>
     <value>Темна</value>
   </data>
   <data name="Settings_Theme_Default">
-    <value>За замовчуванням</value>
+    <value>Типово</value>
   </data>
   <data name="Settings_Theme_Light">
     <value>Світла</value>
@@ -3747,17 +3747,17 @@ VPN-з'єднання</value>
     <value>Форма входу</value>
   </data>
   <data name="SignIn_Form_AdvancedKillSwitchDescription">
-    <value>Розширений вимикач блокує підключення до Інтернету.</value>
+    <value>Розширений Kill Switch блокує ваше інтернет-з'єднання.</value>
   </data>
   <data name="SignIn_Form_BestSecureVpnForSpeed">
     <value>Найкраща безпечна VPN для швидкості</value>
   </data>
   <data name="SignIn_Form_CreateAccount">
-    <value>Створити обліковий запис</value>
+    <value>Зареєструватися</value>
     <comment>A button inside sign in form</comment>
   </data>
   <data name="SignIn_Form_Description">
-    <value>Введіть дані вашого облікового запису Proton.</value>
+    <value>Введіть дані свого облікового запису Proton.</value>
   </data>
   <data name="SignIn_Form_DisableKillSwitch">
     <value>Вимкнути Kill Switch</value>
@@ -3783,7 +3783,7 @@ VPN-з'єднання</value>
     <value>Пароль</value>
   </data>
   <data name="SignIn_Form_PasswordError">
-    <value>Введіть ваш пароль</value>
+    <value>Введіть свій пароль</value>
     <comment>An error message is displayed when the user attempts to sign in without entering a password</comment>
   </data>
   <data name="SignIn_Form_ReportAnIssue">
@@ -3791,7 +3791,7 @@ VPN-з'єднання</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_ResetPassword">
-    <value>Не пам’ятаю пароль</value>
+    <value>Не пам'ятаю пароль</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_SignIn">
@@ -3812,14 +3812,14 @@ VPN-з'єднання</value>
     <comment>A button at the bottom of the login window inside Get help popup</comment>
   </data>
   <data name="SignIn_Form_Username">
-    <value>Електронна пошта або ім'я користувача</value>
+    <value>Е-пошта чи ім'я користувача</value>
   </data>
   <data name="SignIn_Form_UsernameError">
     <value>Потрібно ввести облікові дані</value>
     <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
   </data>
   <data name="SignIn_KillSwitch_Disabled">
-    <value>Перемикач вимкнено</value>
+    <value>Kill Switch вимкнено</value>
   </data>
   <data name="SystemNotification_Connected">
     <value>Тепер ви захищені</value>
@@ -3882,22 +3882,22 @@ VPN-з'єднання</value>
     <value>Розблокуйте розширені налаштування VPN</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Під'єднайтеся до VPN за допомогою власного сервера доменних імен (DNS)</value>
+    <value>Під'єднуйтеся до VPN за допомогою власного сервера доменних імен (DNS)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>Доступ до пристроїв у локальній мережі (LAN) під час під'єднання</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
-    <value>Покращуйте свій ігровий досвід, переключившись на тип NAT 2 (помірний)</value>
+    <value>Вдоскональте свій ігровий процес, перемкнувшись на NAT Type 2 (помірний)</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices">
     <value>Під'єднайте до 10 пристроїв одночасно</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms">
-    <value>Використовувати Proton VPN на різних платформах</value>
+    <value>Використовуйте Proton VPN на різних платформах</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
-    <value>Android та Android TV</value>
+    <value>Android і Android TV</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
     <value>Браузер</value>
@@ -3915,19 +3915,19 @@ VPN-з'єднання</value>
     <value>iOS</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Privacy">
-    <value>Безпека та конфіденційність на всіх ваших пристроях</value>
+    <value>Безпека і приватність на всіх ваших пристроях</value>
   </data>
   <data name="Upsell_Carousel_NetShield">
     <value>Насолоджуйтеся відсутністю реклами</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Block">
-    <value>Блокувати рекламу і трекери з NetShield</value>
+    <value>Блокуйте рекламу і стеження за допомогою NetShield</value>
   </data>
   <data name="Upsell_Carousel_NetShield_Protection">
     <value>Захистіть свій пристрій від зловмисних програм</value>
   </data>
   <data name="Upsell_Carousel_P2P">
-    <value>Розблокувати пірингові завантаження та обмін файлами (P2P)</value>
+    <value>Завантаження peer-to-peer (P2P) та обмін файлами</value>
   </data>
   <data name="Upsell_Carousel_P2P_Discretion">
     <value>Приховайте вашу IP-адресу від постачальника послуг та однорангових вузлів</value>
@@ -3939,7 +3939,7 @@ VPN-з'єднання</value>
     <value>Збільшена швидкість завантаження і вивантаження</value>
   </data>
   <data name="Upsell_Carousel_Platforms_More">
-    <value>+ ще</value>
+    <value>+ інші</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
   </data>
   <data name="Upsell_Carousel_Profiles">
@@ -3955,10 +3955,10 @@ VPN-з'єднання</value>
     <value>Налаштуйте своє розташування, протокол та інші параметри</value>
   </data>
   <data name="Upsell_Carousel_SecureCore">
-    <value>Додайте ще один рівень захисту до вашого з'єднання</value>
+    <value>Додайте ще один рівень захисту для свого з’єднання</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Encryption">
-    <value>Подвійте ваше шифрування за допомогою захищеного ядра</value>
+    <value>Подвійне шифрування за допомогою Secure Core</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Protection">
     <value>Захистіть себе від мережевих атак</value>
@@ -3985,7 +3985,7 @@ VPN-з'єднання</value>
     <value>Дозвольте довіреним програмам та IP-адресам встановлювати пряме інтернет-з'єднання, одночасно захищаючи все інше за допомогою VPN</value>
   </data>
   <data name="Upsell_Carousel_Streaming">
-    <value>Транслюйте ваші улюблені фільми та ТБ шоу</value>
+    <value>Транслюйте свої улюблені фільми та телешоу</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Access">
     <value>Доступ до заблокованого телебачення та фільмів з будь-якої точки світу</value>
@@ -4009,19 +4009,19 @@ VPN-з'єднання</value>
     <value>Amazon Prime Video</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Speed">
-    <value>Дивіться в 4K без буферизації, уповільнення або динамічного масштабування частоти</value>
+    <value>Перегляд у форматі 4K без буферизації, сповільнення чи обмежень швидкості</value>
   </data>
   <data name="Upsell_Carousel_Title">
     <value>Ознайомтеся з VPN Plus</value>
   </data>
   <data name="Upsell_Carousel_Tor">
-    <value>Під'єднайтеся до мережі Tor для додаткової конфіденційності</value>
+    <value>Доступ до мережі Tor для додаткової приватності</value>
   </data>
   <data name="Upsell_Carousel_Tor_Access">
-    <value>Доступ до прихованих сайтів та сайтів-цибулин</value>
+    <value>Доступ до прихованих та onion-сайтів</value>
   </data>
   <data name="Upsell_Carousel_Tor_Browsing">
-    <value>Переглядайте мережу Tor за допомогою звичайного браузера</value>
+    <value>Користуйтеся мережею Tor за допомогою звичайного браузера</value>
   </data>
   <data name="Upsell_Carousel_Tor_Protection">
     <value>Захистіть свої персональні дані під час перегляду вебсторінок</value>
@@ -4082,18 +4082,18 @@ VPN-з'єднання</value>
     <value>WireGuard (TCP)</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tcp_Description">
-    <value>Найсучасніший протокол для безпеки та продуктивності</value>
+    <value>Найдосконаліший протокол для безпеки та швидкодії</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tls">
     <value>Stealth</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tls_Description">
-    <value>Долає VPN-блокування, приховуючи ваше з'єднання від цензорів</value>
+    <value>Обходить блокування VPN, приховуючи ваше з'єднання від цензорів</value>
   </data>
   <data name="VpnProtocol_WireGuard_Udp">
     <value>WireGuard (UDP)</value>
   </data>
   <data name="VpnProtocol_WireGuard_Udp_Description">
-    <value>Найсучасніший протокол для безпеки та продуктивності</value>
+    <value>Найдосконаліший протокол для безпеки та швидкодії</value>
   </data>
 </root>
