@@ -30,5 +30,6 @@
         <PackageReference Include="System.Formats.Asn1" />
         <PackageReference Include="System.Net.Http" />
         <PackageReference Include="System.Text.Json" />
+        <PackageReference Include="TimeZoneConverter" />
     </ItemGroup>
 </Project>

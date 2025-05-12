@@ -90,6 +90,7 @@
     <PackageVersion Include="System.Text.Json" Version="9.0.1" />
     <PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.6.0" />
     <PackageVersion Include="System.ValueTuple" Version="4.5.0" />
+    <PackageVersion Include="TimeZoneConverter" Version="7.0.0" />
     <PackageVersion Include="Vanara.PInvoke.PowrProf" Version="4.0.4" />
     <PackageVersion Include="Vanara.PInvoke.Security" Version="4.0.4" />
     <PackageVersion Include="Vanara.PInvoke.User32" Version="4.0.4" />

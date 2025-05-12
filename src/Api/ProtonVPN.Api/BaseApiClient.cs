@@ -34,6 +34,7 @@ using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
+using TimeZoneConverter;
 
 namespace ProtonVPN.Api;
 
@@ -163,6 +164,16 @@ public class BaseApiClient : IClientBase
         request.Headers.Add("x-pm-appversion", _appVersion.AppVersion);
         request.Headers.Add("x-pm-locale", Settings.Language);
         request.Headers.Add("User-Agent", _appVersion.UserAgent);
+
+        try
+        {
+            request.Headers.Add("x-pm-timezone", TZConvert.WindowsToIana(TimeZoneInfo.Local.Id));
+        }
+        catch (Exception e)
+        {
+            Logger.Error<ApiLog>("Failed to set x-pm-timezone header", e);
+        }
+
         return request;
     }
 

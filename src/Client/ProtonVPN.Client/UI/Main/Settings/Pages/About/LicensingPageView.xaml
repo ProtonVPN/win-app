@@ -211,6 +211,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Paragraph>
             <Paragraph TextIndent="20">
                 •
+                <Hyperlink NavigateUri="https://github.com/mattjohnsonpint/TimeZoneConverter">TimeZoneConverter</Hyperlink> by Matt Johnson-Pint |
+                <Hyperlink NavigateUri="https://github.com/mattjohnsonpint/TimeZoneConverter/blob/main/LICENSE.txt">The MIT License</Hyperlink>
+                <Run/>
+            </Paragraph>
+            <Paragraph TextIndent="20">
+                •
                 <Hyperlink NavigateUri="https://github.com/dahall/vanara">Vanara</Hyperlink> by David Hall |
                 <Hyperlink NavigateUri="https://github.com/dahall/Vanara/blob/master/LICENSE">The MIT License</Hyperlink>
                 <Run/>
