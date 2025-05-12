@@ -27,7 +27,6 @@ public interface IAnnouncementsProvider
     Announcement? GetActiveById(string id);
 
     Announcement? GetActiveAndUnseenByType(AnnouncementType type);
-    Announcement? GetActiveAndUnseenBanner();
 
     void MarkAsSeen(string id);
     void Delete(string id);

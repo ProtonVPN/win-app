@@ -91,8 +91,10 @@ public partial class OneTimeAnnouncementShellViewModel : ShellViewModelBase<IOne
     }
 
     [RelayCommand]
-    public async Task OpenAnnouncementAsync()
+    public Task OpenAnnouncement()
     {
-        await _announcementActivator.ActivateAsync(ActiveAnnouncement);
+        Hide();
+
+        return _announcementActivator.ActivateAsync(ActiveAnnouncement);
     }
 }

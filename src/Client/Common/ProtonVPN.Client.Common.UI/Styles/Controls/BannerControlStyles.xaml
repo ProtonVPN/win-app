@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2024 Proton AG
+Copyright (c) 2025 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -37,69 +37,77 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter.Value>
                 <ControlTemplate TargetType="custom:BannerControl">
 
-                    <Grid Padding="{TemplateBinding Padding}"
-                          Background="{ThemeResource BackgroundNormColorBrush}"
-                          BorderBrush="{ThemeResource PrimaryColorBrush}"
-                          BorderThickness="{TemplateBinding BorderThickness}"
-                          ColumnSpacing="8"
-                          CornerRadius="{TemplateBinding CornerRadius}"
-                          RowSpacing="8">
+                    <Grid>
+                        <Grid Padding="{TemplateBinding Padding}"
+                              Background="{ThemeResource BackgroundNormColorBrush}"
+                              BorderBrush="{ThemeResource PrimaryColorBrush}"
+                              BorderThickness="{TemplateBinding BorderThickness}"
+                              ColumnSpacing="8"
+                              CornerRadius="{TemplateBinding CornerRadius}"
+                              RowSpacing="8">
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
 
-                        <StackPanel x:Name="BannerImage"
+                            <StackPanel x:Name="BannerImage"
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Spacing="4">
+
+                                <Button Padding="0"
+                                        HorizontalAlignment="Left"
+                                        AutomationProperties.AutomationId="BannerImageActionButton"
+                                        Command="{Binding ActionCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                        Style="{StaticResource RowButtonStyle}"
+                                        Visibility="{Binding LargeIllustrationSource, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}">
+
+                                    <Image MaxWidth="350"
+                                           Source="{TemplateBinding LargeIllustrationSource}"
+                                           Stretch="Uniform" />
+
+                                </Button>
+
+                                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Text="{TemplateBinding Footer}"
+                                           TextAlignment="Left"
+                                           TextWrapping="Wrap"
+                                           Visibility="{Binding Footer, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+                            </StackPanel>
+
+                            <Button x:Name="BannerActionButton"
                                     Grid.Row="0"
-                                    Grid.Column="0"
-                                    Spacing="4">
-
-                            <Button HorizontalAlignment="Left"
-                                    AutomationProperties.AutomationId="BannerImageActionButton"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Right"
+                                    AutomationProperties.AutomationId="BannerActionButton"
                                     Command="{Binding ActionCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                    Style="{StaticResource RowButtonStyle}"
-                                    Visibility="{Binding LargeIllustrationSource, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}">
+                                    Content="{TemplateBinding ActionButtonText}"
+                                    Style="{StaticResource PrimaryButtonStyle}"
+                                    Visibility="{Binding IsActionButtonVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-                                <Image Source="{TemplateBinding LargeIllustrationSource}"
-                                       MaxWidth="350"
-                                       Stretch="Uniform" />
+                        </Grid>
 
-                            </Button>
-
-                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Text="{TemplateBinding Footer}"
-                                       TextAlignment="Left"
-                                       TextWrapping="Wrap"
-                                       Visibility="{Binding Footer, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
-                        </StackPanel>
-
-                        <Button x:Name="BannerActionButton"
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                HorizontalAlignment="Right"
-                                AutomationProperties.AutomationId="BannerActionButton"
-                                Command="{Binding ActionCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                Content="{TemplateBinding ActionButtonText}"
-                                Style="{StaticResource PrimaryButtonStyle}"
-                                Visibility="{Binding IsActionButtonVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" />
-
-                        <custom:GhostButton x:Name="DismissButton"
-                                            Grid.Row="0"
-                                            Grid.Column="2"
+                        <Button x:Name="DismissButton"
+                                Style="{ThemeResource SecondaryButtonStyle}"
+                                            Margin="0,-12,0,0"
                                             HorizontalAlignment="Right"
+                                            VerticalAlignment="Top"
+                                            Padding="4"
                                             AutomationProperties.AutomationId="BannerDismissButton"
+                                            BorderThickness="1"
                                             Command="{Binding DismissCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                            CornerRadius="16"
                                             Visibility="{Binding IsDismissButtonVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <pathicons:Cross Size="Pixels16" />
-                        </custom:GhostButton>
+                        </Button>
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup>

@@ -63,15 +63,16 @@ public abstract partial class BannerViewModelBase : ViewModelBase,
 
     public void Receive(AnnouncementListChangedMessage message)
     {
-        Announcement? announcement = _announcementsProvider.GetActiveAndUnseenBanner();
-        if (announcement?.Type != AnnouncementType)
-        {
-            ActiveAnnouncement = null;
-            return;
-        }
+        Announcement? announcement = _announcementsProvider.GetActiveAndUnseenByType(AnnouncementType);
 
         ExecuteOnUIThread(() =>
         {
+            if (announcement is null)
+            {
+                ActiveAnnouncement = null;
+                return;
+            }
+
             BeforeAnnouncementChange();
             ActiveAnnouncement = announcement;
             AfterAnnouncementChange();

@@ -30,13 +30,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <custom:BannerControl Margin="0,8,0,0"
-                          ActionButtonText="{x:Bind ViewModel.ActionButtonText}"
-                          ActionCommand="{x:Bind ViewModel.OpenAnnouncementCommand, Mode=OneTime}"
-                          DismissCommand="{x:Bind ViewModel.DismissAnnouncementCommand, Mode=OneTime}"
-                          Footer="{x:Bind ViewModel.Footer}"
-                          IsActionButtonVisible="{x:Bind ViewModel.IsActionButtonVisible}"
-                          IsDismissButtonVisible="{x:Bind ViewModel.IsDismissButtonVisible}"
-                          LargeIllustrationSource="{x:Bind ViewModel.LargeIllustrationSource}"
-                          Visibility="{x:Bind ViewModel.ActiveAnnouncement, Converter={StaticResource NotNullToVisibilityConverter}}" />
+    <Grid>
+        <custom:BannerControl Margin="0,8,0,0"
+                              RequestedTheme="Dark"
+                              ActionButtonText="{x:Bind ViewModel.ActionButtonText}"
+                              ActionCommand="{x:Bind ViewModel.OpenAnnouncementCommand, Mode=OneTime}"
+                              DismissCommand="{x:Bind ViewModel.DismissAnnouncementCommand, Mode=OneTime}"
+                              Footer="{x:Bind ViewModel.Footer}"
+                              IsActionButtonVisible="{x:Bind ViewModel.IsActionButtonVisible}"
+                              IsDismissButtonVisible="{x:Bind ViewModel.IsDismissButtonVisible}"
+                              LargeIllustrationSource="{x:Bind ViewModel.LargeIllustrationSource}"
+                              Visibility="{x:Bind ViewModel.ActiveAnnouncement, Converter={StaticResource NotNullToVisibilityConverter}}" />
+
+        <ContentPresenter Content="{x:Bind FallbackContent}"
+                          Visibility="{x:Bind ViewModel.ActiveAnnouncement, Converter={StaticResource NullToVisibilityConverter}}"/>
+    </Grid>
+
 </UserControl>

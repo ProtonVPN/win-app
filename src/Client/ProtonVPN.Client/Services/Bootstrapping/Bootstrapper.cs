@@ -126,7 +126,7 @@ public class Bootstrapper : IBootstrapper
 
         // TODO: Investigate why protocol activation arguments are always null
         _mainWindowActivator.Activate();
-        _vpnPlanUpdater.UpdateAsync();
+        _vpnPlanUpdater.ForceUpdateAsync();
     }
 
     private void HandleCommandLineArguments()

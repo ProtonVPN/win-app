@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -174,17 +174,6 @@ public class AnnouncementsProvider : IAnnouncementsProvider, IAnnouncementsUpdat
             .OrderBy(a => a.EndDateTimeUtc)
             .FirstOrDefault(a => a.Type == type && a.IsActiveAndUnseen())
         );
-    }
-
-    public Announcement? GetActiveAndUnseenBanner()
-    {
-        return GetWithReadLock(() =>
-        {
-            return _announcements
-                .OrderBy(a => a.EndDateTimeUtc)
-                .FirstOrDefault(a => a.IsActiveAndUnseen() &&
-                    (a.Type == AnnouncementType.Banner || a.Type == AnnouncementType.ProminentBanner));
-        });
     }
 
     public void MarkAsSeen(string id)
