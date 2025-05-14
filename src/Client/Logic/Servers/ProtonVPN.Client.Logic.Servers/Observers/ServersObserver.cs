@@ -93,7 +93,7 @@ public class ServersObserver : PollingObserverBase, IServersObserver,
     {
         _isMainWindowVisible = message.IsMainWindowVisible;
 
-        if (message.IsMainWindowVisible)
+        if (message.IsMainWindowVisible && _userAuthenticator.IsLoggedIn)
         {
             TriggerAction.Run();
         }
