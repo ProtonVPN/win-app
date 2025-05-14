@@ -28,7 +28,6 @@ public class ClipboardEditor : IClipboardEditor
 {
     private const int MAX_CLIPBOARD_TRIES = 4;
     private const int BASE_CLIPBOARD_RETRY_TIME_IN_MILLISECONDS = 100;
-    private const bool LEAVE_CLIPBOARD_VALUE_AFTER_APP_EXIT = true;
 
     private readonly ILogger _logger;
 
@@ -64,16 +63,19 @@ public class ClipboardEditor : IClipboardEditor
         }
     }
 
-    public string GetText()
+    public async Task<string> GetTextAsync()
     {
         try
         {
-            return Clipboard.GetContent().ToString() ?? string.Empty;
+            DataPackageView data = Clipboard.GetContent();
+
+            return data != null && data.Contains(StandardDataFormats.Text)
+                ? (await data.GetTextAsync()).Trim()
+                : string.Empty;
         }
-        catch (Exception exception) 
+        catch (Exception e)
         {
-            string logMessage = $"Error when retrieving text from clipboard.";
-            _logger.Error<OperatingSystemLog>(logMessage, exception);
+            _logger.Error<OperatingSystemLog>("Error when retrieving text from clipboard.", e);
             return string.Empty;
         }
     }

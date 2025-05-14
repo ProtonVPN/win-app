@@ -23,5 +23,5 @@ public interface IClipboardEditor
 {
     Task SetTextAsync(string text);
 
-    string GetText();
+    Task<string> GetTextAsync();
 }

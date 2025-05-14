@@ -18,7 +18,6 @@
  */
 
 using System.Text;
-using Windows.ApplicationModel.DataTransfer;
 using Windows.System;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -203,7 +202,7 @@ public sealed partial class TwoFactorPageView : IContextAware
             : (keyInt - (int)VirtualKey.NumberPad0).ToString();
     }
 
-    private void OnPaste(object sender, TextControlPasteEventArgs e)
+    private async void OnPasteAsync(object sender, TextControlPasteEventArgs e)
     {
         if (sender is not TextBox)
         {
@@ -212,7 +211,7 @@ public sealed partial class TwoFactorPageView : IContextAware
 
         e.Handled = true;
 
-        string clipboardText = _clipboardEditor.GetText();
+        string clipboardText = await _clipboardEditor.GetTextAsync();
         clipboardText = FilterNonDigits(clipboardText);
         clipboardText = clipboardText.Substring(0, Math.Min(clipboardText.Length, NUM_OF_DIGITS));
 
