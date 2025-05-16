@@ -20,6 +20,7 @@
 using System.Threading;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
+using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
@@ -53,6 +54,12 @@ public class HomeRobot
     protected Element UpgradeYourServerLabel = Element.ByName("Upgrade to choose any server.");
     protected Element ServerChangesUpsellLabel = Element.ByName("Get unlimited server changes with VPN Plus.");
     protected Element UpgradeButton = Element.ByName("Upgrade");
+    protected Element DefaultConnectionSelectorButton = Element.ByAutomationId("DefaultConnectionSelectorButton");
+    protected Element FastestCountryOption = Element.ByName("Fastest country");
+    protected Element RandomCountryOption = Element.ByName("Random country");
+    protected Element LastConnectionOption = Element.ByName("Last connection");
+    protected Element CustomizeOption = Element.ByName("Customize");
+    protected Element CustomizeCardConnectionTitleLabel = Element.ByName("Default connection");
 
     public HomeRobot DismissWelcomeModal()
     {
@@ -237,6 +244,39 @@ public class HomeRobot
                     break;
             }
 
+            return this;
+        }
+
+        public HomeRobot SelectVpnConnectionOption(VpnConnectionOptions option)
+        {
+            DefaultConnectionSelectorButton.Click();
+            // This sleep added becuase of animation
+            Thread.Sleep(TestConstants.AnimationDelay);
+
+            switch (option)
+            {
+                case VpnConnectionOptions.Fast:
+                    FastestCountryOption.DoubleClick();
+                    break;
+
+                case VpnConnectionOptions.Random:
+                    RandomCountryOption.DoubleClick();
+                    break;
+
+                case VpnConnectionOptions.Last:
+                    LastConnectionOption.DoubleClick();
+                    break;
+
+                case VpnConnectionOptions.Customized:
+                    CustomizeOption.DoubleClick();
+                    break;
+            }
+            return this;
+        }
+
+        public Verifications DoesCustomizedCardTitleEqual(string title)
+        {
+            CustomizeCardConnectionTitleLabel.TextEquals(title);
             return this;
         }
     }

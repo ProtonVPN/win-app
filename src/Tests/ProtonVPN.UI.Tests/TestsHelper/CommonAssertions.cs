@@ -19,8 +19,10 @@
 
 using System.Net;
 using System.Net.Sockets;
+using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Tools;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.UiTools;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 
@@ -84,5 +86,13 @@ public static class CommonAssertions
         {
             return false;
         }
+    }
+
+    public static T AssertChecked<T>(this T desiredElement) where T : Element
+    {
+        AutomationElement element = UiActions.WaitUntilExists(desiredElement);
+        RadioButton radioButton = new RadioButton(element.FrameworkAutomationElement);
+        Assert.That(radioButton.IsChecked, Is.True, $"Radio button '{desiredElement.SelectorName}' should be checked.");
+        return desiredElement;
     }
 }

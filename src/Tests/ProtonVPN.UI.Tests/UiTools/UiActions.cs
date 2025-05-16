@@ -247,4 +247,11 @@ public static class UiActions
 
         return null;
     }
+
+    public static bool IsChecked<T>(this T desiredElement) where T : Element
+    {
+        AutomationElement element = WaitUntilExists(desiredElement);
+        RadioButton radioButton = new RadioButton(element.FrameworkAutomationElement);
+        return radioButton.IsChecked;
+    }
 }

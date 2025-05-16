@@ -17,12 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Security.AccessControl;
 using System.Threading;
 using FlaUI.Core.Input;
 using FlaUI.Core.WindowsAPI;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
+using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
@@ -39,6 +42,7 @@ public class SettingRobot
     protected Element SettingsButton = Element.ByAutomationId("SettingsButton");
     protected Element LastDefaultConnectionRadioButton = Element.ByAutomationId("LastDefaultConnectionRadioButton");
     protected Element FastestDefaultConnectionRadioButton = Element.ByAutomationId("FastestDefaultConnectionRadioButton");
+    protected Element RandomDefaultConnectionRadioButton = Element.ByAutomationId("RandomDefaultConnectionRadioButton");
 
     protected Element NetShieldSettingsCard = Element.ByAutomationId("NetShieldSettingsCard");
     protected Element ProtocolSettingsCard = Element.ByAutomationId("ProtocolSettingsCard");
@@ -387,6 +391,28 @@ public class SettingRobot
             AutoConnectToggle.IsToggled();
             return this;
         }
+    }
+
+    public SettingRobot SelectDefaultConnectionType(VpnConnectionOptions option)
+    {
+        switch (option)
+        {
+            case VpnConnectionOptions.Fast:
+                FastestDefaultConnectionRadioButton.Click();
+                FastestDefaultConnectionRadioButton.AssertChecked();
+                break;
+
+            case VpnConnectionOptions.Random:
+                RandomDefaultConnectionRadioButton.Click();
+                RandomDefaultConnectionRadioButton.AssertChecked();
+                break;
+
+            case VpnConnectionOptions.Last:
+                LastDefaultConnectionRadioButton.Click();
+                LastDefaultConnectionRadioButton.AssertChecked();
+                break;
+        }
+        return this;
     }
 
     public Verifications Verify => new();

@@ -48,4 +48,12 @@ public static class TestConstants
         OpenVpnTcp,
         WireGuardTls,
     }
+
+    public enum VpnConnectionOptions
+    {
+        Fast,
+        Random,
+        Last,
+        Customized
+    }
 }

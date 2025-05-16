@@ -22,6 +22,7 @@ using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -29,6 +30,9 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("1")]
 public class ConnectionTests : FreshSessionSetUp
 {
+    private const string FAST_CONNECTION = "Fastest country";
+    private const string RANDOM_COUNTRY = "Random country";
+
     [SetUp]
     public void TestInitialize()
     {
@@ -205,5 +209,26 @@ public class ConnectionTests : FreshSessionSetUp
             .CloseClientViaCloseButton();
 
         NetworkUtils.VerifyIpAddressMatchesWithRetry(ipAddressConnected);
+    }
+
+    [Test]
+    public void ConnectToVpnFastestCountryAndRandomCountry()
+    {
+        NavigationRobot
+           .Verify.IsOnHomePage()
+                  .IsOnConnectionsPage();
+        HomeRobot
+            .Verify.IsDisconnected()
+            .SelectVpnConnectionOption(VpnConnectionOptions.Fast)
+            .ConnectViaConnectionCard()
+            .Verify.DoesConnectionCardTitleEqual(FAST_CONNECTION)
+            .Disconnect();
+
+        HomeRobot
+            .Verify.IsDisconnected()
+            .SelectVpnConnectionOption(VpnConnectionOptions.Random)
+            .ConnectViaConnectionCard()
+            .Verify.DoesConnectionCardTitleEqual(RANDOM_COUNTRY)
+            .Disconnect();
     }
 }

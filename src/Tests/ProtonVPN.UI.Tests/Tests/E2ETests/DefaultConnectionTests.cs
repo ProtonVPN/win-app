@@ -20,6 +20,7 @@
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -32,6 +33,7 @@ public class DefaultConnectionTests : BaseTest
     private const string FASTEST_COUNTRY = "Fastest country";
     private const string STREAMING_PROFILE = "Streaming US";
     private const string STREAMING_COUNTRY = "United States";
+    private const string DEFAULT_CONNECTION = "Default connection";
 
     [OneTimeSetUp]
     public void SetUp()
@@ -81,6 +83,20 @@ public class DefaultConnectionTests : BaseTest
             .Verify.IsConnected()
             .Disconnect()
             .Verify.IsDisconnected();
+    }
+
+    [Test]
+    public void DefaultConnection()
+    {
+        HomeRobot
+            .Verify.IsDisconnected()
+            .SelectVpnConnectionOption(VpnConnectionOptions.Customized)
+            .Verify.DoesCustomizedCardTitleEqual(DEFAULT_CONNECTION);
+
+        SettingRobot
+            .SelectDefaultConnectionType(VpnConnectionOptions.Fast)
+            .SelectDefaultConnectionType(VpnConnectionOptions.Random)
+            .SelectDefaultConnectionType(VpnConnectionOptions.Last);
     }
 
     [OneTimeTearDown]

@@ -33,6 +33,7 @@ public class LoginTests : FreshSessionSetUp
     private const string INCORRECT_CREDENTIALS_ERROR = "The password is not correct. Please try again with a different password.";
     private const string INCORRECT_2FA_CODE_ERROR = "Incorrect code. Please try again.";
     private const string INCORRECT_2FA_CODE = "123456";
+    private const string INCORRECT_USERNAME_ERROR = "Invalid username";
 
     [Test]
     public void LoginWithPlusUser()
@@ -85,6 +86,17 @@ public class LoginTests : FreshSessionSetUp
             .Login(TestUserData.TwoFactorUser)
             .EnterTwoFactorCode(INCORRECT_2FA_CODE)
             .Verify.IsErrorMessageDisplayed(INCORRECT_2FA_CODE_ERROR);
+    }
+
+    [Test]
+    public void LoginWithWhitespaceUsername()
+    {
+        NavigationRobot
+            .Verify.IsOnLoginPage();
+
+        LoginRobot
+            .Login(TestUserData.IncorrectUserWithWhitespace)
+            .Verify.IsErrorMessageDisplayed(INCORRECT_USERNAME_ERROR);
     }
 
     private void LoginWithUser(TestUserData user)
