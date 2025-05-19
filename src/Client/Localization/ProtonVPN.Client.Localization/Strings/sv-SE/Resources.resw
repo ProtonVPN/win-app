@@ -1703,7 +1703,7 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_BaseFilteringEngine_Description">
-    <value>The Base Filtering Engine (BFE) service on your Windows device is disabled. This service needs to be enabled for Proton VPN to work properly.</value>
+    <value>Tjänsten Base Filtering Engine (BFE) på din Windows-enhet är inaktiverad. Denna tjänst behöver aktiveras för att Proton VPN ska fungera korrekt.</value>
   </data>
   <data name="Dialogs_BaseFilteringEngine_HowToEnable">
     <value>Hur man aktiverar Base Filtering Engine</value>

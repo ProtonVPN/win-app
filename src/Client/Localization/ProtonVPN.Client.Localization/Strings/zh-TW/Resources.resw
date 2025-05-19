@@ -1893,7 +1893,7 @@
     <value>This will disconnect you from VPN and temporarily disable kill switch. Any active internet connections will be temporarily unprotected.</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Title_Install">
-    <value>Install update?</value>
+    <value>安裝更新？</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Title_Restart">
     <value>Restart Proton VPN to complete update</value>
@@ -1989,13 +1989,13 @@
     <value>最新消息</value>
   </data>
   <data name="Exit_Confirmation_Title">
-    <value>Exit Proton VPN?</value>
+    <value>退出 Proton VPN?</value>
   </data>
   <data name="Exit_Message">
     <value>Disconnecting from VPN...</value>
   </data>
   <data name="Exit_Title">
-    <value>Exit Proton VPN</value>
+    <value>退出 Proton VPN</value>
   </data>
   <data name="Flyouts_Country_Description1">
     <value>Browsing without a VPN leaves you vulnerable to location-based internet restrictions.</value>
@@ -2523,7 +2523,7 @@
     <value>帳號</value>
   </data>
   <data name="Home_TitleBar_Menu_ExitTheApp">
-    <value>Exit the app</value>
+    <value>結束應用程式</value>
   </data>
   <data name="Home_TitleBar_Menu_Help">
     <value>幫助</value>
@@ -2699,7 +2699,7 @@
     <value>This higher level of protection may cause higher latency and slower speeds.</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore">
-    <value>What is Secure Core?</value>
+    <value>什麼是 Secure Core？</value>
   </data>
   <data name="Overlay_SecureCore_SecureCoreConnection">
     <value>Secure Core
@@ -2808,7 +2808,7 @@ VPN 連線</value>
     <value>Connect and Go</value>
   </data>
   <data name="Profile_Options_Url">
-    <value>Website URL</value>
+    <value>網站 網址</value>
   </data>
   <data name="Profile_Options_Url_Error">
     <value>Enter a valid URL</value>
@@ -3114,7 +3114,7 @@ VPN 連線</value>
     <value>當廣告與追蹤器被封鎖時，部分網站可能無法正常載入。</value>
   </data>
   <data name="Settings_Connection_NetShield_PrivacyPanel">
-    <value>NetShield Privacy Panel</value>
+    <value>NetShield 隱私面板</value>
   </data>
   <data name="Settings_Connection_PortForwarding">
     <value>通訊埠轉送</value>
@@ -3518,7 +3518,7 @@ VPN 連線</value>
     <value>電子郵件或使用者名稱</value>
   </data>
   <data name="SignIn_Form_UsernameError">
-    <value>Enter your email or username</value>
+    <value>輸入您的電郵位址或使用者名稱</value>
     <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
   </data>
   <data name="SignIn_KillSwitch_Disabled">
@@ -3600,7 +3600,7 @@ VPN 連線</value>
     <value>在不同平臺上使用Proton VPN</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
-    <value>Android and Android TV</value>
+    <value>Android 和 Android TV</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
     <value>瀏覽器</value>
