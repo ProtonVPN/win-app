@@ -18,6 +18,9 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using ProtonVPN.Common.Legacy.Helpers;
 using ProtonVPN.IssueReporting.Contracts;
@@ -40,24 +43,66 @@ public class IssueReporter : IIssueReporter
         [CallerLineNumber] int sourceLineNumber = 0)
     {
         CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
+        IEnumerable<string> fingerprint = GenerateExceptionFingerprint(e);
+
         SentrySdk.ConfigureScope(scope =>
         {
             scope.Level = SentryLevel.Error;
             scope.SetTag("captured_in",
                 $"{callerProfile.SourceClassName}.{callerProfile.SourceMemberName}:{callerProfile.SourceLineNumber}");
+
+            scope.SetFingerprint(fingerprint);
             SentrySdk.CaptureException(e);
         });
     }
 
-    public void CaptureError(string message)
+    private IEnumerable<string> GenerateExceptionFingerprint(Exception e)
     {
-        SentrySdk.CaptureEvent(new SentryEvent { Message = message, Level = SentryLevel.Error });
+        string exceptionTypeName = string.Empty;
+        string classFullName = string.Empty;
+        string methodName = string.Empty;
+        int? line = null;
+        
+        try
+        {
+            exceptionTypeName = e.GetType()?.FullName;
+            StackTrace stackTrace = new(e, true);
+            for (int i = 0; i < stackTrace.FrameCount; i++)
+            {
+                StackFrame frame = stackTrace.GetFrame(i);
+                MethodBase method = frame?.GetMethod();
+                classFullName = method?.DeclaringType?.FullName;
+                methodName = method?.Name;
+                line = frame?.GetFileLineNumber();
+
+                // Our line of code that ended up triggering the Exception
+                if (classFullName is not null && classFullName.Contains("ProtonVPN"))
+                {
+                    break;
+                }
+            }
+        }
+        catch
+        {
+            yield break;
+        }
+
+        yield return $"Exception: {exceptionTypeName}";
+        yield return $"Type: {classFullName}";
+        yield return $"Method: {methodName}()";
+        yield return $"Line: {line}";
     }
 
-    public void CaptureMessage(string message, string description = null)
+    public void CaptureError(string message, string description = null)
+    {
+        CaptureMessage(SentryLevel.Error, message, description);
+    }
+
+    private void CaptureMessage(SentryLevel level, string message, string description)
     {
         SentrySdk.ConfigureScope(scope =>
         {
+            scope.Level = level;
             if (!string.IsNullOrWhiteSpace(description))
             {
                 scope.TransactionName = description;
@@ -67,5 +112,10 @@ public class IssueReporter : IIssueReporter
             scope.SetFingerprint([message]);
             SentrySdk.CaptureMessage(message);
         });
+    }
+
+    public void CaptureMessage(string message, string description = null)
+    {
+        CaptureMessage(SentryLevel.Info, message, description);
     }
 }

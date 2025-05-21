@@ -211,7 +211,7 @@ internal partial class VpnService : ServiceBase
         {
             string errorMessage = $"Error checking BFE service status. Service name: {bfeServiceName}.";
             _logger.Error<AppServiceStartLog>(errorMessage, e);
-            _issueReporter.CaptureError($"{errorMessage}. {e.Message}");
+            _issueReporter.CaptureError(errorMessage, e.Message);
             return true;
         }
     }
