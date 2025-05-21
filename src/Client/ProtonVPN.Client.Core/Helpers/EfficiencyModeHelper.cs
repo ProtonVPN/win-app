@@ -36,13 +36,20 @@ public static class EfficiencyModeHelper
 
     private static void SetEfficiencyMode(bool value)
     {
-        // Important note: in .Net Framework if your executable assembly manifest doesn't explicitly state
-        // that your exe assembly is compatible with Windows 8.1 and Windows 10.0, System.Environment.OSVersion
-        // will return Windows 8 version, which is 6.2, instead of 6.3 and 10.0!
-        if (Environment.OSVersion.Platform == PlatformID.Win32NT &&
-            Environment.OSVersion.Version >= new Version(10, 0, 16299))
+        try
         {
-            EfficiencyModeUtilities.SetEfficiencyMode(value);
+            // Important note: in .Net Framework if your executable assembly manifest doesn't explicitly state
+            // that your exe assembly is compatible with Windows 8.1 and Windows 10.0, System.Environment.OSVersion
+            // will return Windows 8 version, which is 6.2, instead of 6.3 and 10.0!
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT &&
+                Environment.OSVersion.Version >= new Version(10, 0, 16299))
+            {
+                EfficiencyModeUtilities.SetEfficiencyMode(value);
+            }
+        }
+        catch (Exception)
+        {
+            // Could not set efficiency mode, ignore
         }
     }
 }
