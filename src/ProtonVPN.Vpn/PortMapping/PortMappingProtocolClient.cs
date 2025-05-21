@@ -25,6 +25,7 @@ using System.Threading.Tasks;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.PortForwarding;
+using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
 using ProtonVPN.Vpn.Gateways;
@@ -41,12 +42,14 @@ namespace ProtonVPN.Vpn.PortMapping
         private const ushort MIN_TIMEOUT_MILLISECONDS = 250;
         private const ushort MAX_TIMEOUT_MILLISECONDS = 64000;
         private const uint REQUESTED_LEASE_TIME_SECONDS = 7200;
-        private const byte OPERATION = (byte)TransportProtocol.TCP;
+        private const byte TCP_OPERATION = (byte)TransportProtocol.TCP;
+        private const byte UDP_OPERATION = (byte)TransportProtocol.UDP;
 
         private readonly ILogger _logger;
         private readonly IUdpClientWrapper _udpClientWrapper;
         private readonly IMessageSerializerProxy _messageSerializerProxy;
         private readonly IGatewayCache _gatewayCache;
+        private readonly IIssueReporter _issueReporter;
 
         private IPEndPoint _endpoint;
         private HelloReplyMessage _helloReply;
@@ -60,12 +63,14 @@ namespace ProtonVPN.Vpn.PortMapping
         public PortMappingProtocolClient(ILogger logger,
             IUdpClientWrapper udpClientWrapper,
             IMessageSerializerProxy messageSerializerProxy,
-            IGatewayCache gatewayCache)
+            IGatewayCache gatewayCache,
+            IIssueReporter issueReporter)
         {
             _logger = logger;
             _udpClientWrapper = udpClientWrapper;
             _messageSerializerProxy = messageSerializerProxy;
             _gatewayCache = gatewayCache;
+            _issueReporter = issueReporter;
         }
 
         public async Task StartAsync()
@@ -83,7 +88,7 @@ namespace ProtonVPN.Vpn.PortMapping
             {
                 InitializeUdpClient();
                 await SendHelloMessageAsync(cancellationToken);
-                await SendPortMappingMessageAsync(cancellationToken);
+                await SendPortMappingMessagesAsync(cancellationToken);
             }
             catch (Exception e)
             {
@@ -131,11 +136,7 @@ namespace ProtonVPN.Vpn.PortMapping
 
         private void InitializeUdpClient()
         {
-            IPAddress gatewayIPAddress = _gatewayCache.Get();
-            if (gatewayIPAddress == null)
-            {
-                throw new Exception("The default gateway is missing and NAT-PMP can't start without it.");
-            }
+            IPAddress gatewayIPAddress = _gatewayCache.Get() ?? throw new Exception("The default gateway is missing and NAT-PMP can't start without it.");
             _endpoint = new IPEndPoint(gatewayIPAddress, NAT_PMP_PORT);
             _udpClientWrapper.Start(_endpoint);
             _logger.Info<ConnectionLog>($"Starting NAT-PMP communication with gateway {_endpoint}.");
@@ -209,50 +210,120 @@ namespace ProtonVPN.Vpn.PortMapping
             return _udpClientWrapper.Receive();
         }
 
-        private async Task SendPortMappingMessageAsync(CancellationToken cancellationToken, PortMappingQueryMessage query = null)
+        private async Task SendPortMappingMessagesAsync(CancellationToken cancellationToken, PortMappingQueryMessages queryMessages = null)
         {
             ChangeState(PortMappingStatus.PortMappingCommunication);
-            query ??= CreatePortMappingQueryMessage();
-            byte[] serializedQuery = _messageSerializerProxy.ToBytes(query);
-            byte[] serializedReply = await SendMessageWithTimeoutAsync(serializedQuery, cancellationToken);
-            PortMappingReplyMessage reply = _messageSerializerProxy.FromBytes<PortMappingReplyMessage>(serializedReply);
-            if (reply.IsSuccess())
-            {
-                SavePortMappingAndScheduleRenewal(reply, cancellationToken);
-            }
-            else
-            {
-                HandlePortMappingUnsuccessfulResponse(reply);
-            }
+
+            queryMessages ??= new();
+            queryMessages.TcpQuery ??= CreateTcpPortMappingQueryMessage();
+            queryMessages.UdpQuery ??= CreateUdpPortMappingQueryMessage();
+
+            PortMappingReplyMessage tcpReply = await SendPortMappingMessageAsync(queryMessages.TcpQuery, cancellationToken);
+            PortMappingReplyMessage udpReply = await SendPortMappingMessageAsync(queryMessages.UdpQuery, cancellationToken);
+
+            HandlePortMappingResponses(tcpReply: tcpReply, udpReply: udpReply, cancellationToken);
         }
 
-        private void HandlePortMappingUnsuccessfulResponse(PortMappingReplyMessage reply)
+        private PortMappingQueryMessage CreateTcpPortMappingQueryMessage()
         {
-            _logger.Error<ConnectionLog>("Port mapping response was not successful. " +
-                $"ResultCode: {reply.ResultCode}, Operation: {reply.Operation}.");
-            SetMappedPort(null);
-            ChangeState(PortMappingStatus.Error);
+            return CreatePortMappingQueryMessage(TCP_OPERATION);
         }
 
-        private void SetMappedPort(TemporaryMappedPort mappedPort)
-        {
-            _mappedPort = mappedPort;
-        }
-
-        private PortMappingQueryMessage CreatePortMappingQueryMessage()
+        private PortMappingQueryMessage CreatePortMappingQueryMessage(byte operation)
         {
             return new()
             {
-                Operation = OPERATION,
+                Operation = operation,
                 RequestedLeaseTimeSecond = REQUESTED_LEASE_TIME_SECONDS
             };
         }
 
-        private void SavePortMappingAndScheduleRenewal(PortMappingReplyMessage reply, CancellationToken cancellationToken)
+        private PortMappingQueryMessage CreateUdpPortMappingQueryMessage()
         {
-            TemporaryMappedPort mappedPort = CreateTemporaryMappedPort(reply);
+            return CreatePortMappingQueryMessage(UDP_OPERATION);
+        }
+
+        private async Task<PortMappingReplyMessage> SendPortMappingMessageAsync(PortMappingQueryMessage queryMessage, CancellationToken cancellationToken)
+        {
+            try
+            {
+                byte[] serializedQuery = _messageSerializerProxy.ToBytes(queryMessage);
+                byte[] serializedReply = await SendMessageWithTimeoutAsync(serializedQuery, cancellationToken);
+                return _messageSerializerProxy.FromBytes<PortMappingReplyMessage>(serializedReply);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error<ConnectionLog>("An exception occurred when sending a NAT-PMP request or receiving the response.", ex);
+                return null;
+            }
+        }
+
+        private void HandlePortMappingResponses(PortMappingReplyMessage tcpReply, PortMappingReplyMessage udpReply, CancellationToken cancellationToken)
+        {
+            if (HasRequestFailed(tcpReply) && HasRequestFailed(udpReply))
+            {
+                HandlePortMappingUnsuccessfulResponses(tcpReply: tcpReply, udpReply: udpReply);
+                return;
+            }
+
+            if (HasRequestFailed(tcpReply))
+            {
+                _logger.Error<ConnectionLog>($"Port mapping TCP response was not successful. " +
+                    $"[ResultCode: {tcpReply?.ResultCode}, Operation: {tcpReply?.Operation}]");
+                tcpReply = udpReply;
+            }
+            if (HasRequestFailed(udpReply))
+            {
+                _logger.Error<ConnectionLog>($"Port mapping UDP response was not successful. " +
+                    $"[ResultCode: {udpReply?.ResultCode}, Operation: {udpReply?.Operation}]");
+                udpReply = tcpReply;
+            }
+
+            TemporaryMappedPort mappedTcpPort = CreateTemporaryMappedPort(tcpReply);
+            TemporaryMappedPort mappedUdpPort = CreateTemporaryMappedPort(udpReply);
+
+            if (mappedTcpPort.MappedPort != mappedUdpPort.MappedPort)
+            {
+                _logger.Error<ConnectionLog>($"The NAT-PMP ports of the TCP and UDP replies do not match. " +
+                    $"The logic will proceed by using the TCP ports. [TCP: {mappedTcpPort.MappedPort}, UDP: {mappedUdpPort.MappedPort}]");
+                _issueReporter.CaptureMessage("NAT-PMP TCP and UDP ports don't match.",
+                    $"[NAT-PMP] TCP: {mappedTcpPort.MappedPort}, UDP: {mappedUdpPort.MappedPort}");
+            }
+
+            int portDurationInSeconds = (int)Math.Truncate(tcpReply.LifetimeSeconds / 2.0);
+
+            // Both TCP and UDP mapped ports should be the same (Although they might not if the server is not correctly configured),
+            // TCP is saved because it is the most relevant protocol between the two
+            SavePortMappingAndScheduleRenewal(mappedTcpPort, portDurationInSeconds, cancellationToken);
+        }
+
+        private bool HasRequestFailed(PortMappingReplyMessage reply)
+        {
+            return reply is null || !reply.IsSuccess();
+        }
+
+        private void HandlePortMappingUnsuccessfulResponses(PortMappingReplyMessage tcpReply, PortMappingReplyMessage udpReply)
+        {
+            _logger.Error<ConnectionLog>($"Port mapping responses were not successful. " +
+                $"[TCP ResultCode: {tcpReply?.ResultCode}, Operation: {tcpReply?.Operation}]" +
+                $"[UDP ResultCode: {udpReply?.ResultCode}, Operation: {udpReply?.Operation}]");
+            SetMappedPort(null);
+            ChangeState(PortMappingStatus.Error);
+        }
+
+        private TemporaryMappedPort CreateTemporaryMappedPort(PortMappingReplyMessage reply)
+        {
+            return new()
+            {
+                MappedPort = new(internalPort: reply.InternalPort, externalPort: reply.ExternalPort),
+                Lifetime = TimeSpan.FromSeconds(reply.LifetimeSeconds),
+                ExpirationDateUtc = DateTime.UtcNow.AddSeconds(reply.LifetimeSeconds)
+            };
+        }
+
+        private void SavePortMappingAndScheduleRenewal(TemporaryMappedPort mappedPort, int portDurationInSeconds, CancellationToken cancellationToken)
+        {
             SetMappedPort(mappedPort);
-            int portDurationInSeconds = (int)Math.Truncate(reply.LifetimeSeconds / 2.0);
 
             try
             {
@@ -276,14 +347,9 @@ namespace ProtonVPN.Vpn.PortMapping
             }
         }
 
-        private TemporaryMappedPort CreateTemporaryMappedPort(PortMappingReplyMessage reply)
+        private void SetMappedPort(TemporaryMappedPort mappedPort)
         {
-            return new()
-            {
-                MappedPort = new(internalPort: reply.InternalPort, externalPort: reply.ExternalPort),
-                Lifetime = TimeSpan.FromSeconds(reply.LifetimeSeconds),
-                ExpirationDateUtc = DateTime.UtcNow.AddSeconds(reply.LifetimeSeconds)
-            };
+            _mappedPort = mappedPort;
         }
 
         private async Task RenewPortMappingAsync(MappedPort mappedPort, CancellationToken cancellationToken)
@@ -296,11 +362,18 @@ namespace ProtonVPN.Vpn.PortMapping
             {
                 try
                 {
-                    PortMappingQueryMessage query = CreatePortMappingQueryMessage();
-                    query.InternalPort = (ushort)mappedPort.InternalPort;
-                    query.ExternalPort = (ushort)mappedPort.ExternalPort;
+                    PortMappingQueryMessage tcpQuery = CreateTcpPortMappingQueryMessage();
+                    tcpQuery.InternalPort = (ushort)mappedPort.InternalPort;
+                    tcpQuery.ExternalPort = (ushort)mappedPort.ExternalPort;
+
+                    PortMappingQueryMessage udpQuery = CreateUdpPortMappingQueryMessage();
+                    udpQuery.InternalPort = (ushort)mappedPort.InternalPort;
+                    udpQuery.ExternalPort = (ushort)mappedPort.ExternalPort;
+
+                    PortMappingQueryMessages queryMessages = new() { TcpQuery = tcpQuery, UdpQuery = udpQuery };
+
                     _logger.Info<ConnectionLog>($"Port mapping renewal started for pair {mappedPort}.");
-                    await SendPortMappingMessageAsync(cancellationToken, query);
+                    await SendPortMappingMessagesAsync(cancellationToken, queryMessages: queryMessages);
                 }
                 catch (Exception e)
                 {
@@ -368,7 +441,7 @@ namespace ProtonVPN.Vpn.PortMapping
             {
                 if (mappedPort != null)
                 {
-                    await SendDestroyPortMappingMessageAsync(mappedPort, stopCancellationToken);
+                    await SendDestroyPortMappingMessagesAsync(mappedPort, stopCancellationToken);
                 }
             }
             catch (Exception e)
@@ -384,15 +457,45 @@ namespace ProtonVPN.Vpn.PortMapping
             return cancellationTokenSource.Token;
         }
 
-        private async Task SendDestroyPortMappingMessageAsync(MappedPort mappedPort, CancellationToken cancellationToken)
+        private async Task SendDestroyPortMappingMessagesAsync(MappedPort mappedPort, CancellationToken cancellationToken)
         {
             ChangeState(PortMappingStatus.DestroyPortMappingCommunication);
-            _logger.Info<ConnectionLog>($"Requesting to destroy mapped port pair {mappedPort}.");
-            PortMappingQueryMessage query = CreateDestroyPortMappingQueryMessage(mappedPort);
+
+            _logger.Info<ConnectionLog>($"Requesting to destroy mapped TCP port pair {mappedPort}.");
+            await SendDestroyPortMappingMessageAsync(CreateDestroyTcpPortMappingQueryMessage(mappedPort), mappedPort, cancellationToken);
+
+            _logger.Info<ConnectionLog>($"Requesting to destroy mapped UDP port pair {mappedPort}.");
+            await SendDestroyPortMappingMessageAsync(CreateDestroyUdpPortMappingQueryMessage(mappedPort), mappedPort, cancellationToken);
+        }
+
+        private PortMappingQueryMessage CreateDestroyTcpPortMappingQueryMessage(MappedPort mappedPort)
+        {
+            return CreateDestroyPortMappingQueryMessage(mappedPort, TCP_OPERATION);
+        }
+
+        private PortMappingQueryMessage CreateDestroyPortMappingQueryMessage(MappedPort mappedPort, byte operation)
+        {
+            return new()
+            {
+                Operation = operation,
+                RequestedLeaseTimeSecond = 0,
+                InternalPort = (ushort)mappedPort.InternalPort,
+                ExternalPort = 0,
+            };
+        }
+
+        private PortMappingQueryMessage CreateDestroyUdpPortMappingQueryMessage(MappedPort mappedPort)
+        {
+            return CreateDestroyPortMappingQueryMessage(mappedPort, UDP_OPERATION);
+        }
+
+        private async Task SendDestroyPortMappingMessageAsync(PortMappingQueryMessage query, MappedPort mappedPort, CancellationToken cancellationToken)
+        {
             byte[] serializedQuery = _messageSerializerProxy.ToBytes(query);
             byte[] serializedReply = await SendMessageWithSingleTryAsync(serializedQuery, cancellationToken);
             PortMappingReplyMessage reply = _messageSerializerProxy.FromBytes<PortMappingReplyMessage>(serializedReply);
-            if (reply.IsSuccess() && reply.InternalPort == mappedPort.InternalPort && 
+
+            if (!HasRequestFailed(reply) && reply.InternalPort == mappedPort.InternalPort &&
                 reply.ExternalPort == 0 && reply.LifetimeSeconds == 0)
             {
                 _logger.Info<ConnectionLog>($"Successful port mapping destruction. Operation: {reply.Operation}.");
@@ -440,17 +543,6 @@ namespace ProtonVPN.Vpn.PortMapping
             }
 
             throw new Exception("The single try message failed to get a reply. A new message was sent.", exception);
-        }
-
-        private PortMappingQueryMessage CreateDestroyPortMappingQueryMessage(MappedPort mappedPort)
-        {
-            return new()
-            {
-                Operation = OPERATION,
-                RequestedLeaseTimeSecond = 0,
-                InternalPort = (ushort)mappedPort.InternalPort,
-                ExternalPort = 0,
-            };
         }
 
         public void RepeatState()

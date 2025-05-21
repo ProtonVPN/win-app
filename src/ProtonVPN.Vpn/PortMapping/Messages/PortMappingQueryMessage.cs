@@ -19,15 +19,14 @@
 
 using ProtonVPN.Vpn.PortMapping.Messages.Common;
 
-namespace ProtonVPN.Vpn.PortMapping.Messages
-{
-    public class PortMappingQueryMessage : MessageBase
-    {
-        public int Length => 12;
+namespace ProtonVPN.Vpn.PortMapping.Messages;
 
-        public ushort Reserved { get; set; }
-        public ushort InternalPort { get; set; }
-        public ushort ExternalPort { get; set; }
-        public uint RequestedLeaseTimeSecond { get; set; }
-    }
+public class PortMappingQueryMessage : MessageBase
+{
+    public int Length => 12;
+
+    public ushort Reserved { get; set; }
+    public ushort InternalPort { get; set; }
+    public ushort ExternalPort { get; set; }
+    public uint RequestedLeaseTimeSecond { get; set; }
 }
