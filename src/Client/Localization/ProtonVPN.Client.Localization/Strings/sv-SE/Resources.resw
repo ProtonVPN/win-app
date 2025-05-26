@@ -2076,7 +2076,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Att surfa utan VPN gör dig sårbar för platsbaserade internetrestriktioner.</value>
   </data>
   <data name="Flyouts_Country_Description2">
-    <value>Websites can use geoblocks to restrict content to certain locations. Governments can also instruct ISPs (Internet Service Providers) to block certain websites in their country.</value>
+    <value>Webbplatser kan använda geoblockering för att begränsa innehåll till vissa platser. Regeringar kan också uppmana internetleverantörer att blockera vissa webbplatser i sitt land.</value>
   </data>
   <data name="Flyouts_Country_Description3">
     <value>En VPN får det att se ut som att du surfar från någon annanstans och skyddar dig från övervakning och censur.</value>
@@ -2091,7 +2091,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Din VPN-IP maskerar din riktiga IP-adress. Detta gör att det ser ut som att du surfar från din VPN-plats, så din aktivitet online inte kan inte länkas till din enhet.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected1">
-    <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device.</value>
+    <value>Den här unika koden kan användas av webbplatser och internetleverantörer för att länka din plats och webbhistorik till din enhet.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected2">
     <value>En VPN maskerar din IP-adress vilket gör det svårare för din aktivitet att spåras tillbaka till dig.</value>
@@ -2169,7 +2169,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Förbättrar peer-to-peer nedladdningshastigheter</value>
   </data>
   <data name="Flyouts_PortForwarding_Upsell_Description">
-    <value>Supercharge peer-to-peer (P2P) file sharing performance with VPN Plus.</value>
+    <value>Öka prestandan för peer-to-peer (P2P) fildelning med VPN Plus.</value>
   </data>
   <data name="Flyouts_PortForwarding_Upsell_Title">
     <value>Förbättra P2P-hastigheten</value>
@@ -2220,7 +2220,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Detta visar hur mycket data som överförs genom Proton VPN varje sekund.</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>Speed is based on your device's current activity — it doesn't represent the VPN's maximum speed.</value>
+    <value>Hastigheten baseras på din enhets nuvarande aktivitet — det representerar inte VPN:s maximala hastighet.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Nedladdning</value>
@@ -2795,7 +2795,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Secure Core ansluter dig till din destinationsserver via en andra VPN-server med maximal säkerhet.</value>
   </data>
   <data name="Overlay_SecureCore_Description2">
-    <value>This higher level of protection may cause higher latency and slower speeds.</value>
+    <value>Denna högre skyddsnivå kan orsaka högre latens och lägre hastigheter.</value>
   </data>
   <data name="Overlay_SecureCore_LearnMore">
     <value>Vad är Secure Core?</value>
@@ -2853,13 +2853,13 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Serverbelastning</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.</value>
+    <value>Smart Routing använder virtuella servrar för att tillhandahålla VPN-täckning i svåråtkomliga länder.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>När du ansluter till en Smart Routing-server ser det ut som om du surfar i ditt destinationsland, även om den fysiska servern finns någon annanstans.</value>
   </data>
   <data name="Overlay_SmartRouting_Description3">
-    <value>Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+    <value>Smart Routing används typiskt för att kringgå lagar som begränsar integriteten och andra former av censur.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
     <value>Servrar är fysiskt placerade i {0}, men du ser ut att surfa från {1}</value>
@@ -3418,7 +3418,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Redigera din profil för att göra ändringar, eller koppla från för att redigera dina allmänna VPN-inställningar.</value>
   </data>
   <data name="Settings_OverriddenByProfile_Tagline">
-    <value>These settings are connected to '{0}' profile and can only be managed in Profiles.</value>
+    <value>Dessa inställningar är anslutna till profilen ”{0}” och kan endast hanteras i profiler.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Settings_OverriddenByProfile_Title">

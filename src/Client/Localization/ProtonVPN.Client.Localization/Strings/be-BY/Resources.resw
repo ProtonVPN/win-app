@@ -3514,13 +3514,13 @@ Secure Core</value>
     <value>VPN Accelerator</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Action">
-    <value>Адхіліць змены</value>
+    <value>Скасаваць змены</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Cancel">
     <value>Працягнуць рэдагаванне</value>
   </data>
   <data name="Settings_DiscardChanges_Confirmation_Title">
-    <value>Адхіліць незахаваныя змены?</value>
+    <value>Скасаваць незахаваныя змены?</value>
   </data>
   <data name="Settings_Features">
     <value>Функцыі VPN</value>
