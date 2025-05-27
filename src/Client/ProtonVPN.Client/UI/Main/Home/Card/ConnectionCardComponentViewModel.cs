@@ -61,6 +61,7 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
     private readonly IRecentConnectionsManager _recentConnectionsManager;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
     private readonly IServersLoader _serversLoader;
+    private readonly IMainWindowActivator _mainWindowActivator;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(ConnectCommand))]
@@ -189,13 +190,16 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
         _ => CurrentConnectionIntent?.Location
     }).GetFlagType(CurrentConnectionStatus is ConnectionStatus.Connected);
 
+    public bool IsMainWindowFocused => _mainWindowActivator.IsWindowFocused;
+
     public ConnectionCardComponentViewModel(
         IViewModelHelper viewModelHelper,
         IConnectionManager connectionManager,
         ISettings settings,
         IRecentConnectionsManager recentConnectionsManager,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
-        IServersLoader serversLoader)
+        IServersLoader serversLoader,
+        IMainWindowActivator mainWindowActivator)
         : base(viewModelHelper)
     {
         _connectionManager = connectionManager;
@@ -203,6 +207,7 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
         _recentConnectionsManager = recentConnectionsManager;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _serversLoader = serversLoader;
+        _mainWindowActivator = mainWindowActivator;
     }
 
     public void Receive(ConnectionStatusChangedMessage message)

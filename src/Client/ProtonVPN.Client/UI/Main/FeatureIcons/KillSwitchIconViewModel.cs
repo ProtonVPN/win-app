@@ -36,7 +36,7 @@ public class KillSwitchIconViewModel : FeatureIconViewModelBase
     protected KillSwitchMode KillSwitchMode => Settings.KillSwitchMode;
 
     public KillSwitchIconViewModel(
-                IConnectionManager connectionManager,
+        IConnectionManager connectionManager,
         ISettings settings,
         IApplicationThemeSelector themeSelector,
         IViewModelHelper viewModelHelper)

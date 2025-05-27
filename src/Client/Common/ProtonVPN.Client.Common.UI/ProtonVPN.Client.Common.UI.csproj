@@ -2024,6 +2024,9 @@
         <Content Update="Assets\Illustrations\protocol-thumbnail.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\report.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\routing-thumbnail.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>

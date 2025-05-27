@@ -31,6 +31,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
+using ProtonVPN.Client.Services.Activation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Dialogs.DebugTools.Models;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
@@ -43,6 +44,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     private readonly IVpnServiceCaller _vpnServiceCaller;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
+    private readonly INpsSurveyWindowActivator _npsSurveyWindowActivator;
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IAppExitInvoker _appExitInvoker;
@@ -73,6 +75,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         IServersUpdater serversUpdater,
         IUserAuthenticator userAuthenticator,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
+        INpsSurveyWindowActivator npsSurveyWindowActivator,
         ISettings settings,
         IEventMessageSender eventMessageSender,
         IDebugToolsWindowActivator windowActivator,
@@ -84,6 +87,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         _vpnServiceCaller = vpnServiceCaller;
         _userAuthenticator = userAuthenticator;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
+        _npsSurveyWindowActivator = npsSurveyWindowActivator;
         _settings = settings;
         _eventMessageSender = eventMessageSender;
         _appExitInvoker = appExitInvoker;
@@ -205,5 +209,11 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         {
             Error = SelectedError
         });
+    }
+
+    [RelayCommand]
+    public void ShowNpsSurvey()
+    {
+        _npsSurveyWindowActivator.Activate();
     }
 }

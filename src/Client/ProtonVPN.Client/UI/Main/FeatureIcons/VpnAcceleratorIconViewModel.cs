@@ -31,7 +31,7 @@ public class VpnAcceleratorIconViewModel : FeatureIconViewModelBase
     protected override bool IsFeatureEnabled => Settings.VpnPlan.IsPaid && Settings.IsVpnAcceleratorEnabled;
 
     public VpnAcceleratorIconViewModel(
-            IConnectionManager connectionManager,
+        IConnectionManager connectionManager,
         ISettings settings,
         IApplicationThemeSelector themeSelector,
         IViewModelHelper viewModelHelper)

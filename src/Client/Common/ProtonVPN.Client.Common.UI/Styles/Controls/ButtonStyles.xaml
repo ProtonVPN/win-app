@@ -31,34 +31,34 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="AccentButtonBackground" ResourceKey="InteractionNormColorBrush" />
             <StaticResource x:Key="AccentButtonBackgroundPointerOver" ResourceKey="InteractionNormHoverColorBrush" />
             <StaticResource x:Key="AccentButtonBackgroundPressed" ResourceKey="InteractionNormActiveColorBrush" />
-            <StaticResource x:Key="AccentButtonBackgroundDisabled" ResourceKey="InteractionWeakColorBrush" />
+            <StaticResource x:Key="AccentButtonBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
 
             <StaticResource x:Key="AccentButtonForeground" ResourceKey="TextOnPrimaryColorBrush" />
             <StaticResource x:Key="AccentButtonForegroundPointerOver" ResourceKey="TextOnPrimaryColorBrush" />
             <StaticResource x:Key="AccentButtonForegroundPressed" ResourceKey="TextOnPrimaryColorBrush" />
-            <StaticResource x:Key="AccentButtonForegroundDisabled" ResourceKey="TextHintColorBrush" />
+            <StaticResource x:Key="AccentButtonForegroundDisabled" ResourceKey="TextDisabledColorBrush" />
 
             <StaticResource x:Key="AccentButtonBorderBrush" ResourceKey="InteractionNormColorBrush" />
             <StaticResource x:Key="AccentButtonBorderBrushPointerOver" ResourceKey="InteractionNormHoverColorBrush" />
             <StaticResource x:Key="AccentButtonBorderBrushPressed" ResourceKey="InteractionNormActiveColorBrush" />
-            <StaticResource x:Key="AccentButtonBorderBrushDisabled" ResourceKey="InteractionWeakColorBrush" />
+            <StaticResource x:Key="AccentButtonBorderBrushDisabled" ResourceKey="BorderWeakColorBrush" />
 
             <!--  Secondary Button Brushes  -->
 
             <StaticResource x:Key="ButtonBackground" ResourceKey="InteractionExceptionColorBrush" />
             <StaticResource x:Key="ButtonBackgroundPointerOver" ResourceKey="InteractionExceptionHoverColorBrush" />
             <StaticResource x:Key="ButtonBackgroundPressed" ResourceKey="InteractionExceptionActiveColorBrush" />
-            <StaticResource x:Key="ButtonBackgroundDisabled" ResourceKey="InteractionWeakColorBrush" />
+            <StaticResource x:Key="ButtonBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
 
             <StaticResource x:Key="ButtonForeground" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ButtonForegroundPointerOver" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ButtonForegroundPressed" ResourceKey="TextNormColorBrush" />
-            <StaticResource x:Key="ButtonForegroundDisabled" ResourceKey="TextHintColorBrush" />
+            <StaticResource x:Key="ButtonForegroundDisabled" ResourceKey="TextDisabledColorBrush" />
 
             <StaticResource x:Key="ButtonBorderBrush" ResourceKey="BorderWeakColorBrush" />
             <StaticResource x:Key="ButtonBorderBrushPointerOver" ResourceKey="BorderWeakColorBrush" />
             <StaticResource x:Key="ButtonBorderBrushPressed" ResourceKey="BorderWeakColorBrush" />
-            <StaticResource x:Key="ButtonBorderBrushDisabled" ResourceKey="InteractionWeakColorBrush" />
+            <StaticResource x:Key="ButtonBorderBrushDisabled" ResourceKey="BorderWeakColorBrush" />
 
             <!--  Tertiary Button Brushes  -->
 
@@ -86,34 +86,34 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <StaticResource x:Key="AccentButtonBackground" ResourceKey="InteractionNormColorBrush" />
             <StaticResource x:Key="AccentButtonBackgroundPointerOver" ResourceKey="InteractionNormHoverColorBrush" />
             <StaticResource x:Key="AccentButtonBackgroundPressed" ResourceKey="InteractionNormActiveColorBrush" />
-            <StaticResource x:Key="AccentButtonBackgroundDisabled" ResourceKey="InteractionWeakColorBrush" />
+            <StaticResource x:Key="AccentButtonBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
 
             <StaticResource x:Key="AccentButtonForeground" ResourceKey="TextOnPrimaryColorBrush" />
             <StaticResource x:Key="AccentButtonForegroundPointerOver" ResourceKey="TextOnPrimaryColorBrush" />
             <StaticResource x:Key="AccentButtonForegroundPressed" ResourceKey="TextOnPrimaryColorBrush" />
-            <StaticResource x:Key="AccentButtonForegroundDisabled" ResourceKey="TextHintColorBrush" />
+            <StaticResource x:Key="AccentButtonForegroundDisabled" ResourceKey="TextDisabledColorBrush" />
 
             <StaticResource x:Key="AccentButtonBorderBrush" ResourceKey="InteractionNormColorBrush" />
             <StaticResource x:Key="AccentButtonBorderBrushPointerOver" ResourceKey="InteractionNormHoverColorBrush" />
             <StaticResource x:Key="AccentButtonBorderBrushPressed" ResourceKey="InteractionNormActiveColorBrush" />
-            <StaticResource x:Key="AccentButtonBorderBrushDisabled" ResourceKey="InteractionWeakColorBrush" />
+            <StaticResource x:Key="AccentButtonBorderBrushDisabled" ResourceKey="BorderWeakColorBrush" />
 
             <!--  Secondary Button Brushes  -->
 
             <StaticResource x:Key="ButtonBackground" ResourceKey="InteractionExceptionColorBrush" />
             <StaticResource x:Key="ButtonBackgroundPointerOver" ResourceKey="InteractionExceptionHoverColorBrush" />
             <StaticResource x:Key="ButtonBackgroundPressed" ResourceKey="InteractionExceptionActiveColorBrush" />
-            <StaticResource x:Key="ButtonBackgroundDisabled" ResourceKey="InteractionWeakColorBrush" />
+            <StaticResource x:Key="ButtonBackgroundDisabled" ResourceKey="InteractionDefaultColorBrush" />
 
             <StaticResource x:Key="ButtonForeground" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ButtonForegroundPointerOver" ResourceKey="TextNormColorBrush" />
             <StaticResource x:Key="ButtonForegroundPressed" ResourceKey="TextNormColorBrush" />
-            <StaticResource x:Key="ButtonForegroundDisabled" ResourceKey="TextHintColorBrush" />
+            <StaticResource x:Key="ButtonForegroundDisabled" ResourceKey="TextDisabledColorBrush" />
 
             <StaticResource x:Key="ButtonBorderBrush" ResourceKey="BorderWeakColorBrush" />
             <StaticResource x:Key="ButtonBorderBrushPointerOver" ResourceKey="BorderWeakColorBrush" />
             <StaticResource x:Key="ButtonBorderBrushPressed" ResourceKey="BorderWeakColorBrush" />
-            <StaticResource x:Key="ButtonBorderBrushDisabled" ResourceKey="InteractionWeakColorBrush" />
+            <StaticResource x:Key="ButtonBorderBrushDisabled" ResourceKey="BorderWeakColorBrush" />
 
             <!--  Tertiary Button Brushes  -->
 

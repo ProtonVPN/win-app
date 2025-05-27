@@ -24,5 +24,6 @@ public enum AnnouncementType
     Standard = 0,
     OneTime = 1,
     Banner = 2,
-    ProminentBanner = 3
+    ProminentBanner = 3,
+    NpsSurvey = 4,
 }

@@ -83,6 +83,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/DimmableImageStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/SettingsSectionControlStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/TagControlStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/RatingSelectorStyles.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 

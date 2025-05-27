@@ -138,6 +138,7 @@ using ProtonVPN.Serialization.Installers;
 using ProtonVPN.StatisticalEvents.Installers;
 using ProtonVPN.Client.Services.Upselling;
 using ProtonVPN.Client.Services.Bootstrapping.Activators;
+using ProtonVPN.Client.UI.Dialogs.NpsSurvey;
 
 namespace ProtonVPN.Client.Installers;
 
@@ -247,6 +248,7 @@ public class AppModule : Module
         builder.RegisterType<DebugToolsWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<TroubleshootingWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<OneTimeAnnouncementWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<NpsSurveyWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<ApplicationIconSelector>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ApplicationThemeSelector>().AsSelf().AsImplementedInterfaces().SingleInstance();
@@ -411,6 +413,7 @@ public class AppModule : Module
 
         RegisterViewModel<DebugToolsShellViewModel>(builder);
         RegisterViewModel<OneTimeAnnouncementShellViewModel>(builder).AutoActivate();
+        RegisterViewModel<NpsSurveyShellViewModel>(builder).AutoActivate();
         RegisterViewModel<TroubleshootingShellViewModel>(builder);
 
         builder.RegisterType<ReleaseViewModelFactory>().SingleInstance();

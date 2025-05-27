@@ -111,6 +111,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
     <BitmapImage x:Key="DefaultHyperlinkIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/hyperlink-default.png" />
 
+    <BitmapImage x:Key="ReportIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/report.png" />
     <BitmapImage x:Key="ReportSentIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/report-success.png" />
     <BitmapImage x:Key="ReportErrorIllustrationSource"

@@ -3323,6 +3323,39 @@
   <data name="Dialogs_BaseFilteringEngine_HowToEnable" xml:space="preserve">
     <value>How to enable Base Filtering Engine</value>
   </data>
+  <data name="Dialogs_NpsSurvey_Title" xml:space="preserve">
+    <value>How likely are you to recommend Proton VPN to a friend?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription" xml:space="preserve">
+    <value>0 is very unlikely</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription" xml:space="preserve">
+    <value>10 is very likely</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel" xml:space="preserve">
+    <value>Please let us know why you gave that rating</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional" xml:space="preserve">
+    <value>Optional</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle" xml:space="preserve">
+    <value>Thanks for your feedback</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle" xml:space="preserve">
+    <value>Your feedback helps us improve Proton VPN.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle" xml:space="preserve">
+    <value>Something went wrong</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle" xml:space="preserve">
+    <value>We couldn't send your feedback. Please check your connection and try again.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain" xml:space="preserve">
+    <value>Try again</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously" xml:space="preserve">
+    <value>Share anonymously</value>
+  </data>
   <data name="Connections_Profiles_Name" xml:space="preserve">
     <value>Give your profile a name</value>
   </data>
@@ -3946,5 +3979,9 @@
   <data name="Map_ConnectTo" xml:space="preserve">
     <value>Connect - {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NpsSurvey_Title" xml:space="preserve">
+    <value>Proton VPN - Survey</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
 </root>

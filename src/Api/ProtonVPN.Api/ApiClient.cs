@@ -29,6 +29,7 @@ using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Api.Contracts.Events;
 using ProtonVPN.Api.Contracts.Features;
 using ProtonVPN.Api.Contracts.Geographical;
+using ProtonVPN.Api.Contracts.NpsSurvey;
 using ProtonVPN.Api.Contracts.Partners;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Api.Contracts.Servers;
@@ -270,6 +271,19 @@ public class ApiClient : BaseApiClient, IApiClient
     {
         HttpRequestMessage request = GetRequest(HttpMethod.Get, "feature/v2/frontend");
         return await SendRequest<FeatureFlagsResponse>(request, "Get feature flags");
+    }
+
+    public async Task<ApiResponseResult<BaseResponse>> SubmitNpsSurveyAsync(NpsSurveyRequest npsSurveyRequest)
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "vpn/v1/nps/submit");
+        request.Content = GetJsonContent(npsSurveyRequest);
+        return await SendRequest<BaseResponse>(request, "Submit NPS survey");
+    }
+
+    public async Task<ApiResponseResult<BaseResponse>> DismissNpsSurveyAsync()
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "vpn/v1/nps/dismiss");
+        return await SendRequest<BaseResponse>(request, "Dismiss NPS survey");
     }
 
     private async Task<ApiResponseResult<T>> SendRequest<T>(HttpRequestMessage request, string logDescription)

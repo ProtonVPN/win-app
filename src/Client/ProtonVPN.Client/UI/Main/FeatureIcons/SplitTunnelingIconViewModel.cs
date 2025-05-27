@@ -32,7 +32,7 @@ public class SplitTunnelingIconViewModel : FeatureIconViewModelBase
     protected override bool IsFeatureEnabled => Settings.IsSplitTunnelingEnabled;
 
     public SplitTunnelingIconViewModel(
-            IConnectionManager connectionManager,
+        IConnectionManager connectionManager,
         ISettings settings,
         IApplicationThemeSelector themeSelector,
         IViewModelHelper viewModelHelper)

@@ -38,7 +38,7 @@ public class NetShieldIconViewModel : FeatureIconViewModelBase
         : Settings.NetShieldMode;
 
     public NetShieldIconViewModel(
-                IConnectionManager connectionManager,
+        IConnectionManager connectionManager,
         ISettings settings,
         IApplicationThemeSelector themeSelector,
         IViewModelHelper viewModelHelper)

@@ -48,6 +48,8 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
     protected WindowActivationState CurrentActivationState { get; private set; }
 
+    public bool IsWindowFocused => CurrentActivationState != WindowActivationState.Deactivated;
+
     public event EventHandler? HostDpiChanged;
 
     public event EventHandler? HostSizeChanged;

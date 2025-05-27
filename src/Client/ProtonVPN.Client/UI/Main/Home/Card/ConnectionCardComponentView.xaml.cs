@@ -19,7 +19,6 @@
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Core.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Home.Card;
@@ -56,7 +55,7 @@ public sealed partial class ConnectionCardComponentView : IContextAware
     private void OnButtonIsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
     {
         // This code makes sure the button to connect/cancel/disconnect receives focus automatically when enabled
-        if (sender is Button button && button.IsEnabled)
+        if (sender is Button button && button.IsEnabled && ViewModel.IsMainWindowFocused)
         {
             button.Focus(FocusState.Programmatic);
         }

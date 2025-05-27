@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -46,17 +46,14 @@ public class AnnouncementMapper : IMapper<AnnouncementResponse, Announcement>
     {
         try
         {
-            if (leftEntity?.Offer != null)
+            Announcement announcement = CreateAnnouncement(leftEntity);
+            if (announcement is not null && !HasFailedFullscreenImage(leftEntity, announcement))
             {
-                Announcement announcement = CreateAnnouncement(leftEntity);
-                if (announcement is not null && !HasFailedFullscreenImage(leftEntity, announcement))
-                {
-                    return announcement;
-                }
-                else if (announcement is not null)
-                {
-                    _logger.Error<AppLog>($"Failed to fetch full screen image of announcement with ID '{leftEntity.Id}'.");
-                }
+                return announcement;
+            }
+            else if (announcement is not null)
+            {
+                _logger.Error<AppLog>($"Failed to fetch full screen image of announcement with ID '{leftEntity.Id}'.");
             }
         }
         catch (Exception ex)
@@ -68,7 +65,7 @@ public class AnnouncementMapper : IMapper<AnnouncementResponse, Announcement>
 
     private bool HasFailedFullscreenImage(AnnouncementResponse leftEntity, Announcement announcement)
     {
-        return leftEntity.Offer.Panel?.FullScreenImage?.Source?.Count > 0 && 
+        return leftEntity.Offer?.Panel?.FullScreenImage?.Source?.Count > 0 && 
                announcement?.Panel?.FullScreenImage?.Image is null;
     }
 
@@ -81,15 +78,17 @@ public class AnnouncementMapper : IMapper<AnnouncementResponse, Announcement>
             Reference = announcementResponse.Reference,
             StartDateTimeUtc = MapTimestampToDateTimeUtc(announcementResponse.StartTimestamp),
             EndDateTimeUtc = MapTimestampToDateTimeUtc(announcementResponse.EndTimestamp),
-            Url = announcementResponse.Offer.Url,
-            Icon = _imageCache.Get(AnnouncementConstants.STORAGE_FOLDER, announcementResponse.Offer.Icon),
-            Label = announcementResponse.Offer.Label,
-            Panel = announcementResponse.Offer.Panel is null
-                ? _entityMapper.Map<ProminentBannerResponse, Panel>(announcementResponse.Offer.ProminentBanner)
-                : _entityMapper.Map<OfferPanelResponse, Panel>(announcementResponse.Offer.Panel),
+            Url = announcementResponse.Offer?.Url,
+            Icon = !string.IsNullOrEmpty(announcementResponse.Offer?.Icon)
+                ? _imageCache.Get(AnnouncementConstants.STORAGE_FOLDER, announcementResponse.Offer.Icon)
+                : null,
+            Label = announcementResponse.Offer?.Label,
+            Panel = announcementResponse.Offer?.Panel is null
+                ? _entityMapper.Map<ProminentBannerResponse, Panel>(announcementResponse.Offer?.ProminentBanner)
+                : _entityMapper.Map<OfferPanelResponse, Panel>(announcementResponse.Offer?.Panel),
             Seen = false,
-            ShowCountdown = announcementResponse.Offer.Panel?.ShowCountdown ?? false,
-            IsDismissible = announcementResponse.Offer.Panel?.IsDismissible ?? true
+            ShowCountdown = announcementResponse.Offer?.Panel?.ShowCountdown ?? false,
+            IsDismissible = announcementResponse.Offer?.Panel?.IsDismissible ?? true
         };
     }
 

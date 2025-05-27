@@ -36,7 +36,7 @@ public class PortForwardingIconViewModel : FeatureIconViewModelBase
         : Settings.IsPortForwardingEnabled;
 
     public PortForwardingIconViewModel(
-            IConnectionManager connectionManager,
+        IConnectionManager connectionManager,
         ISettings settings,
         IApplicationThemeSelector themeSelector,
         IViewModelHelper viewModelHelper)

@@ -27,6 +27,8 @@ public interface IMainWindowActivator : IWindowActivator
 {
     bool IsWindowVisible { get; }
 
+    bool IsWindowFocused { get; }
+
     Size CurrentWindowSize { get; }
 
     Window? Window { get; }

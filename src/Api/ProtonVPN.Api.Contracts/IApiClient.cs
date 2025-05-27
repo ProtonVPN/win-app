@@ -26,6 +26,7 @@ using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Api.Contracts.Events;
 using ProtonVPN.Api.Contracts.Features;
 using ProtonVPN.Api.Contracts.Geographical;
+using ProtonVPN.Api.Contracts.NpsSurvey;
 using ProtonVPN.Api.Contracts.Partners;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
 using ProtonVPN.Api.Contracts.Servers;
@@ -67,4 +68,6 @@ public interface IApiClient : IClientBase
     Task<ApiResponseResult<BaseResponse>> PostAuthenticatedStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents);
     Task<ApiResponseResult<UsersResponse>> GetUserAsync();
     Task<ApiResponseResult<FeatureFlagsResponse>> GetFeatureFlagsAsync();
+    Task<ApiResponseResult<BaseResponse>> SubmitNpsSurveyAsync(NpsSurveyRequest request);
+    Task<ApiResponseResult<BaseResponse>> DismissNpsSurveyAsync();
 }
