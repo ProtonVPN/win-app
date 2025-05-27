@@ -102,6 +102,11 @@ public static class DefaultSettings
         return isPaidUser;
     }
 
+    public static bool IsLocalAreaNetworkAccessAllowed(bool isPaidUser)
+    {
+        return isPaidUser;
+    }
+
     public static List<SplitTunnelingApp> SplitTunnelingAppsList()
     {
         return DefaultAppsHelper.GetBrowserApps().ToList();

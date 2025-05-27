@@ -33,6 +33,7 @@ namespace ProtonVPN.Service.Firewall;
 internal class Firewall : IFirewall, IStartable
 {
     private const string PERMIT_APP_FILTER_NAME = "ProtonVPN permit app";
+    private const int LOCAL_TRAFFIC_WEIGHT = 2;
 
     private readonly ILogger _logger;
     private readonly IDriver _calloutDriver;
@@ -63,6 +64,8 @@ internal class Firewall : IFirewall, IStartable
     }
 
     public bool LeakProtectionEnabled { get; private set; }
+
+    public bool? IsLocalAreaNetworkAccessEnabled => _lastParams?.IsLocalAreaNetworkAccessEnabled;
 
     public void Start()
     {
@@ -156,22 +159,22 @@ internal class Firewall : IFirewall, IStartable
 
         if (firewallParams.SessionType != _lastParams.SessionType)
         {
-            List<Guid> previousVariableFilters = GetFirewallGuidsByType(FirewallItemType.VariableFilter);
-            List<Guid> previousInterfaceFilters = GetFirewallGuidsByType(FirewallItemType.PermitInterfaceFilter);
+            List<Guid> previousFilters = GetFirewallGuidsByTypes(FirewallItemType.VariableFilter, FirewallItemType.LocalNetworkFilter);
+            List<Guid> previousInterfaceFilters = GetFirewallGuidsByTypes(FirewallItemType.PermitInterfaceFilter);
 
             ApplyFilters(firewallParams);
 
-            RemoveItems(previousVariableFilters, _lastParams.SessionType);
+            RemoveItems(previousFilters, _lastParams.SessionType);
             RemoveItems(previousInterfaceFilters, _lastParams.SessionType);
         }
 
         if (firewallParams.AddInterfaceFilters && firewallParams.InterfaceIndex != _lastParams.InterfaceIndex)
         {
-            List<Guid> previousGuids = GetFirewallGuidsByType(FirewallItemType.PermitInterfaceFilter);
+            List<Guid> previousGuids = GetFirewallGuidsByTypes(FirewallItemType.PermitInterfaceFilter);
             PermitFromNetworkInterface(4, firewallParams);
             RemoveItems(previousGuids, _lastParams.SessionType);
 
-            previousGuids = GetFirewallGuidsByType(FirewallItemType.DnsCalloutFilter);
+            previousGuids = GetFirewallGuidsByTypes(FirewallItemType.DnsCalloutFilter);
             _dnsCalloutFiltersAdded = false;
             CreateDnsCalloutFilter(4, firewallParams);
             RemoveItems(previousGuids, _lastParams.SessionType);
@@ -181,12 +184,24 @@ internal class Firewall : IFirewall, IStartable
         {
             if (firewallParams.DnsLeakOnly)
             {
-                RemoveItems(GetFirewallGuidsByType(FirewallItemType.VariableFilter), _lastParams.SessionType);
-                RemoveItems(GetFirewallGuidsByType(FirewallItemType.BlockOutsideOpenVpnFilter), _lastParams.SessionType);
+                RemoveItems(GetFirewallGuidsByTypes(FirewallItemType.VariableFilter, FirewallItemType.LocalNetworkFilter), _lastParams.SessionType);
+                RemoveItems(GetFirewallGuidsByTypes(FirewallItemType.BlockOutsideOpenVpnFilter), _lastParams.SessionType);
             }
             else
             {
                 EnableBaseLeakProtection(firewallParams);
+            }
+        }
+
+        if (firewallParams.IsLocalAreaNetworkAccessEnabled != _lastParams.IsLocalAreaNetworkAccessEnabled)
+        {
+            if (firewallParams.IsLocalAreaNetworkAccessEnabled)
+            {
+                PermitPrivateNetwork(LOCAL_TRAFFIC_WEIGHT, firewallParams);
+            }
+            else
+            {
+                RemoveItems(GetFirewallGuidsByTypes(FirewallItemType.LocalNetworkFilter), _lastParams.SessionType);
             }
         }
 
@@ -230,10 +245,10 @@ internal class Firewall : IFirewall, IStartable
         }
     }
 
-    private List<Guid> GetFirewallGuidsByType(FirewallItemType type)
+    private List<Guid> GetFirewallGuidsByTypes(params FirewallItemType[] firewallItemTypes)
     {
         return _firewallItems
-            .Where(item => type == item.ItemType)
+            .Where(item => firewallItemTypes.Contains(item.ItemType))
             .Select(item => item.Guid)
             .ToList();
     }
@@ -250,9 +265,9 @@ internal class Firewall : IFirewall, IStartable
         PermitFromNetworkInterface(4, firewallParams);
         PermitFromProcesses(4, firewallParams);
 
-        PermitIpv4Loopback(2, firewallParams);
-        PermitIpv6Loopback(2, firewallParams);
-        PermitPrivateNetwork(2, firewallParams);
+        PermitIpv4Loopback(LOCAL_TRAFFIC_WEIGHT, firewallParams);
+        PermitIpv6Loopback(LOCAL_TRAFFIC_WEIGHT, firewallParams);
+        PermitPrivateNetwork(LOCAL_TRAFFIC_WEIGHT, firewallParams);
 
         BlockAllIpv4Network(1, firewallParams);
         BlockAllIpv6Network(1, firewallParams);
@@ -266,7 +281,7 @@ internal class Firewall : IFirewall, IStartable
             return;
         }
 
-        List<Guid> filters = GetFirewallGuidsByType(FirewallItemType.BlockOutsideOpenVpnFilter);
+        List<Guid> filters = GetFirewallGuidsByTypes(FirewallItemType.BlockOutsideOpenVpnFilter);
         if (filters.Count > 0)
         {
             RemoveItems(filters, firewallParams.SessionType);
@@ -393,7 +408,7 @@ internal class Firewall : IFirewall, IStartable
         _ipLayer.ApplyToIpv4(layer =>
         {
             Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateNetInterfaceFilter(
-                new DisplayData("ProtonVPN permit VPN tunnel", "Permit TAP adapter traffic"),
+                new DisplayData("ProtonVPN permit VPN tunnel", "Permit tunnel interface traffic"),
                 Action.SoftPermit,
                 layer,
                 firewallParams.InterfaceIndex,
@@ -405,7 +420,7 @@ internal class Firewall : IFirewall, IStartable
         _ipLayer.ApplyToIpv6(layer =>
         {
             Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateNetInterfaceFilter(
-                new DisplayData("ProtonVPN permit VPN tunnel", "Permit TAP adapter traffic"),
+                new DisplayData("ProtonVPN permit VPN tunnel", "Permit tunnel interface traffic"),
                 Action.SoftPermit,
                 layer,
                 firewallParams.InterfaceIndex,
@@ -571,6 +586,11 @@ internal class Firewall : IFirewall, IStartable
 
     private void PermitPrivateNetwork(uint weight, FirewallParams firewallParams)
     {
+        if (!firewallParams.IsLocalAreaNetworkAccessEnabled)
+        {
+            return;
+        }
+
         List<NetworkAddress> networkAddresses = new()
         {
             new("10.0.0.0", "255.0.0.0"),
@@ -592,7 +612,7 @@ internal class Firewall : IFirewall, IStartable
                     weight,
                     networkAddress,
                     firewallParams.Persistent);
-                _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
+                _firewallItems.Add(new FirewallItem(FirewallItemType.LocalNetworkFilter, guid));
             });
         }
     }

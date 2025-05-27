@@ -46,7 +46,8 @@ public class ServiceSettingChangeHandler : IHandler, IEventMessageReceiver<Setti
             {nameof(ISettings.IsPortForwardingEnabled), () => true},
             {nameof(ISettings.IsVpnAcceleratorEnabled), () => true},
             {nameof(ISettings.NatType), () => true},
-            {nameof(ISettings.IsShareCrashReportsEnabled), () => true}
+            {nameof(ISettings.IsShareCrashReportsEnabled), () => true},
+            {nameof(ISettings.IsLocalAreaNetworkAccessEnabled), () => true},
         };
     }
 

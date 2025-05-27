@@ -78,6 +78,15 @@ public class ServiceSettings : IServiceSettings
         }
     }
 
+    public bool IsLocalAreaNetworkAccessEnabled
+    {
+        get
+        {
+            Load();
+            return _settings.IsLocalAreaNetworkAccessEnabled;
+        }
+    }
+
     public VpnProtocol VpnProtocol
     {
         get

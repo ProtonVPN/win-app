@@ -113,6 +113,10 @@ namespace ProtonVPN.Service.SplitTunneling
             }
         }
 
+        public void AssigningIp(VpnState state)
+        {
+        }
+
         private void DisableSplitTunnel()
         {
             Disable();

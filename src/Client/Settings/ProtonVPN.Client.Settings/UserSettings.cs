@@ -174,6 +174,21 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
+    public bool IsLocalAreaNetworkAccessEnabled
+    {
+        get
+        {
+            if (VpnPlan.IsPaid)
+            {
+                return _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsLocalAreaNetworkAccessAllowed(true);
+            }
+
+            // Free users can't use this feature
+            return false;
+        }
+        set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
     public bool IsNotificationEnabled
     {
         get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsNotificationEnabled;

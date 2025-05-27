@@ -119,6 +119,9 @@ internal class Bootstrapper
                     case VpnStatus.Disconnected:
                         instance.OnVpnDisconnected(state);
                         break;
+                    case VpnStatus.AssigningIp:
+                        instance.AssigningIp(state);
+                        break;
                 }
             }
         };

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.Settings;
@@ -36,6 +35,7 @@ public class SettingsRestorer : ISettingsRestorer
         // Note: Some settings should not be restored, such as Language, Theme, Share statistics...
 
         _settings.IsNetShieldEnabled = DefaultSettings.IsNetShieldEnabled(_settings.VpnPlan.IsPaid);
+        _settings.IsLocalAreaNetworkAccessEnabled = DefaultSettings.IsLocalAreaNetworkAccessAllowed(_settings.VpnPlan.IsPaid);
         _settings.NetShieldMode = DefaultSettings.NetShieldMode;
         _settings.IsKillSwitchEnabled = DefaultSettings.IsKillSwitchEnabled;
         _settings.KillSwitchMode = DefaultSettings.KillSwitchMode;

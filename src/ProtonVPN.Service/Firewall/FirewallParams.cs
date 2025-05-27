@@ -40,6 +40,8 @@ namespace ProtonVPN.Service.Firewall
 
         public bool PermanentStateAfterReboot { get; set; }
 
+        public bool IsLocalAreaNetworkAccessEnabled { get; set; }
+
         public SessionType SessionType => Persistent ? SessionType.Permanent : SessionType.Dynamic;
     }
 }

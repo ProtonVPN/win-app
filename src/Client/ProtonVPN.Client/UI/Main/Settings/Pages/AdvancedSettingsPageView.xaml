@@ -75,13 +75,33 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               Style="{StaticResource ToggleSwitchStyle}" />
             </toolkit:SettingsCard>
 
+            <toolkit:SettingsCard AutomationProperties.AutomationId="LanConnectionsSettingsCard"
+                                  Command="{x:Bind ViewModel.TriggerLanConnectonsUpsellProcessCommand, Mode=OneTime}"
+                                  Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections_Description')}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections')}"
+                                  IsTabStop="False"
+                                  IsActionIconVisible="False"
+                                  IsClickEnabled="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToBooleanConverter}}"
+                                  Style="{StaticResource DefaultSettingsCardStyle}"
+                                  Visibility="{x:Bind ViewModel.IsLocalAreaNetworkSettingVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid>
+                    <ToggleSwitch IsOn="{x:Bind ViewModel.IsLocalAreaNetworkAccessEnabled, Mode=TwoWay}"
+                                  Style="{StaticResource ToggleSwitchStyle}"
+                                  Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <Image Height="24"
+                           Source="{ThemeResource VpnPlusIllustrationSource}"
+                           Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                </Grid>
+            </toolkit:SettingsCard>
+
             <toolkit:SettingsCard AutomationProperties.AutomationId="CustomDnsServersSettingsCard"
                                   Command="{x:Bind ViewModel.NavigateToCustomDnsServersPageCommand, Mode=OneTime}"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers')}"
                                   IsClickEnabled="True"
+                                  IsActionIconVisible="{x:Bind ViewModel.IsPaidUser}"
                                   Style="{StaticResource DefaultSettingsCardStyle}">
                 <toolkit:SettingsCard.ActionIcon>
-                    <pathicons:ChevronRight />
+                    <pathicons:ChevronRight Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 </toolkit:SettingsCard.ActionIcon>
                 <toolkit:SettingsCard.Description>
                     <StackPanel Orientation="Vertical"
@@ -200,6 +220,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                   Command="{x:Bind ViewModel.TriggerNatTypeUpsellProcessCommand, Mode=OneTime}"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType')}"
                                   IsClickEnabled="True"
+                                  IsActionIconVisible="False"
                                   Style="{StaticResource DefaultSettingsCardStyle}"
                                   Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToVisibilityConverter}}">
                 <toolkit:SettingsCard.Description>
@@ -212,9 +233,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Run/>
                     </TextBlock>
                 </toolkit:SettingsCard.Description>
-                <toolkit:SettingsCard.ActionIcon>
-                    <pathicons:ChevronRight />
-                </toolkit:SettingsCard.ActionIcon>
                 <Image Height="24"
                        Source="{ThemeResource VpnPlusIllustrationSource}" />
             </toolkit:SettingsCard>

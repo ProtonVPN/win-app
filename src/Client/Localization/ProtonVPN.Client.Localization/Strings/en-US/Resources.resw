@@ -1790,7 +1790,7 @@
     <value>LAN connections</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description" xml:space="preserve">
-    <value>Allows you to connect to printers, speakers, and other devices in your device's local network.</value>
+    <value>Allows connections to printers, speakers, and other devices in your local network.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType" xml:space="preserve">
     <value>NAT type</value>

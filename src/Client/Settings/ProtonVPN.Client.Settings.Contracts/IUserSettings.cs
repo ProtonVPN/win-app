@@ -48,6 +48,7 @@ public interface IUserSettings
     ConnectionCertificate? ConnectionCertificate { get; set; }
     NatType NatType { get; set; }
     bool IsVpnAcceleratorEnabled { get; set; }
+    bool IsLocalAreaNetworkAccessEnabled { get; set; }
     bool IsNotificationEnabled { get; set; }
     bool IsShareStatisticsEnabled { get; set; }
     bool IsIpv6LeakProtectionEnabled { get; set; }

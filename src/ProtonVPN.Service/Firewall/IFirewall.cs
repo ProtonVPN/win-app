@@ -26,5 +26,7 @@ namespace ProtonVPN.Service.Firewall
         void DisableLeakProtection();
 
         bool LeakProtectionEnabled { get; }
+
+        bool? IsLocalAreaNetworkAccessEnabled { get; }
     }
 }

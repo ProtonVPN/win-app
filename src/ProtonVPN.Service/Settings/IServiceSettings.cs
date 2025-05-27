@@ -30,6 +30,7 @@ public interface IServiceSettings
     SplitTunnelSettingsIpcEntity SplitTunnelSettings { get; }
     bool Ipv6LeakProtection { get; }
     bool IsShareCrashReportsEnabled { get; }
+    bool IsLocalAreaNetworkAccessEnabled { get; }
     VpnProtocol VpnProtocol { get; }
     OpenVpnAdapter OpenVpnAdapter { get; }
 

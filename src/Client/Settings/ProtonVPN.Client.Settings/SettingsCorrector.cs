@@ -38,6 +38,7 @@ public class SettingsCorrector : ISettingsCorrector
             // by ISettings will be not this one, but a correct one due to its implementation which
             // checks if the user is paid or free and returns the right value.
             _settings.IsNetShieldEnabled = DefaultSettings.IsNetShieldEnabled(true);
+            _settings.IsLocalAreaNetworkAccessEnabled = DefaultSettings.IsLocalAreaNetworkAccessAllowed(true);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,15 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Service.Firewall
+namespace ProtonVPN.Service.Firewall;
+
+internal enum FirewallItemType
 {
-    internal enum FirewallItemType
-    {
-        DnsFilter,
-        DnsCalloutFilter,
-        PermitInterfaceFilter,
-        PermitFilter,
-        VariableFilter,
-        BlockOutsideOpenVpnFilter,
-    }
+    DnsFilter,
+    DnsCalloutFilter,
+    PermitInterfaceFilter,
+    PermitFilter,
+    VariableFilter,
+    BlockOutsideOpenVpnFilter,
+    LocalNetworkFilter,
 }

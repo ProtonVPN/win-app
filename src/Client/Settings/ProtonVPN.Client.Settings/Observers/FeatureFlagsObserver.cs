@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -41,6 +41,8 @@ public class FeatureFlagsObserver :
     private readonly IApiClient _apiClient;
     private readonly IConfiguration _config;
     private readonly IEventMessageSender _eventMessageSender;
+
+    public bool IsLocalAreaNetworkAllowedForPaidUsersOnly => IsFlagEnabled("IsLocalAreaNetworkAllowedForPaidUsersOnly");
 
     protected override TimeSpan PollingInterval => _config.FeatureFlagsUpdateInterval;
 

@@ -111,6 +111,10 @@ public class StatusManager
                 {
                     InvokeStateChange(VpnStatus.Disconnected, VpnError.InterfaceHasForwardingEnabled);
                 }
+                else if (line.Contains("Startup complete"))
+                {
+                    InvokeStateChange(VpnStatus.AssigningIp);
+                }
                 else if (line.Contains("SOCKET ERROR:"))
                 {
                     if (_socketErrorCount >= MAX_SOCKET_ERRORS)

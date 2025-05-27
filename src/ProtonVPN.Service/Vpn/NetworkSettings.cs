@@ -57,6 +57,10 @@ public class NetworkSettings : IVpnStateAware
     {
     }
 
+    public void AssigningIp(VpnState state)
+    {
+    }
+
     public void OnVpnConnecting(VpnState state)
     {
         if (state.VpnProtocol == VpnProtocol.OpenVpnTcp || state.VpnProtocol == VpnProtocol.OpenVpnUdp)

@@ -81,6 +81,16 @@ public class KillSwitch : IVpnStateAware, IServiceSettingsAware, IStartable
         return UpdatedLeakProtectionStatus(state) ?? _firewall.LeakProtectionEnabled;
     }
 
+    public void AssigningIp(VpnState state)
+    {
+        // AssigningIp VPN status for WireGuard is fired when WireGuard finishes its startup "Startup complete"
+        // Only then the interface is up and we can get its index to permit it on the firewall.
+        if (state.VpnProtocol.IsWireGuard())
+        {
+            EnableLeakProtection();
+        }
+    }
+
     private void UpdateLeakProtectionStatus(VpnState state)
     {
         switch (UpdatedLeakProtectionStatus(state))
@@ -110,6 +120,13 @@ public class KillSwitch : IVpnStateAware, IServiceSettingsAware, IStartable
         }
 
         _killSwitchMode = killSwitchMode;
+
+        if (_firewall.IsLocalAreaNetworkAccessEnabled.HasValue &&
+            settings.IsLocalAreaNetworkAccessEnabled != _firewall.IsLocalAreaNetworkAccessEnabled &&
+            _lastVpnState.Status == VpnStatus.Connected)
+        {
+            EnableLeakProtection();
+        }
     }
 
     private void HandleKillSwitchModeChange(KillSwitchMode killSwitchMode)
@@ -146,7 +163,8 @@ public class KillSwitch : IVpnStateAware, IServiceSettingsAware, IStartable
             DnsLeakOnly = dnsLeakOnly,
             InterfaceIndex = interfaceIndex,
             AddInterfaceFilters = interfaceIndex > 0,
-            Persistent = persistent
+            Persistent = persistent,
+            IsLocalAreaNetworkAccessEnabled = _serviceSettings.IsLocalAreaNetworkAccessEnabled,
         };
         _firewall.EnableLeakProtection(firewallParams);
     }

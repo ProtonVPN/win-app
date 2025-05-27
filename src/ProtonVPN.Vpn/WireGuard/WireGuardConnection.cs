@@ -239,6 +239,9 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
                 OnVpnDisconnected(state);
                 NetworkTraffic = NetworkTraffic.Zero;
                 break;
+            case VpnStatus.AssigningIp:
+                InvokeStateChange(VpnStatus.AssigningIp);
+                break;
         }
     }
 

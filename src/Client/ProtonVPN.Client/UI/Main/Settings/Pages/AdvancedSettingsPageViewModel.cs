@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -36,6 +36,7 @@ using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Common.Core.Networking;
@@ -48,12 +49,16 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
     IEventMessageReceiver<ProfilesChangedMessage>
 {
     private readonly IUrlsBrowser _urlsBrowser;
+    private readonly IFeatureFlagsObserver _featureFlagsObserver;
 
     private readonly IUpsellCarouselWindowActivator _upsellCarouselWindowActivator;
     private readonly IProfileEditor _profileEditor;
 
     [ObservableProperty]
     private bool _isAlternativeRoutingEnabled;
+
+    [ObservableProperty]
+    private bool _isLocalAreaNetworkAccessEnabled;
 
     [ObservableProperty]
     private bool _isIpv6LeakProtectionEnabled;
@@ -101,6 +106,8 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
 
     public string Ipv6LeakProtectionLearnMoreUrl => _urlsBrowser.Ipv6LeakProtectionLearnMore;
 
+    public bool IsLocalAreaNetworkSettingVisible => _featureFlagsObserver.IsLocalAreaNetworkAllowedForPaidUsersOnly;
+
     public bool IsStrictNatType
     {
         get => IsNatType(NatType.Strict);
@@ -135,6 +142,7 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
 
     public AdvancedSettingsPageViewModel(
         IUrlsBrowser urlsBrowser,
+        IFeatureFlagsObserver featureFlagsObserver,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
@@ -155,6 +163,7 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
                viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
+        _featureFlagsObserver = featureFlagsObserver;
         _upsellCarouselWindowActivator = upsellCarouselWindowActivator;
         _profileEditor = profileEditor;
 
@@ -164,6 +173,7 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
             ChangedSettingArgs.Create(() => Settings.IsAlternativeRoutingEnabled, () => IsAlternativeRoutingEnabled),
             ChangedSettingArgs.Create(() => Settings.OpenVpnAdapter, () => CurrentOpenVpnAdapter),
             ChangedSettingArgs.Create(() => Settings.IsIpv6LeakProtectionEnabled, () => IsIpv6LeakProtectionEnabled),
+            ChangedSettingArgs.Create(() => Settings.IsLocalAreaNetworkAccessEnabled, () => IsLocalAreaNetworkAccessEnabled),
         ];
     }
 
@@ -231,6 +241,7 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
         IsAlternativeRoutingEnabled = Settings.IsAlternativeRoutingEnabled;
         IsIpv6LeakProtectionEnabled = Settings.IsIpv6LeakProtectionEnabled;
         CurrentOpenVpnAdapter = Settings.OpenVpnAdapter;
+        IsLocalAreaNetworkAccessEnabled = Settings.IsLocalAreaNetworkAccessEnabled;
     }
 
     [RelayCommand]
@@ -240,7 +251,19 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
             ? IsCustomDnsServersOverridden
                 ? _profileEditor.TryRedirectToProfileAsync(Localizer.Get("Settings_Connection_Advanced_CustomDnsServers"), CurrentProfile!)
                 : ParentViewNavigator.NavigateToCustomDnsSettingsViewAsync()
-            : _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.CustomDns);
+            : TriggerAdvancedSettingsUpsellProcessAsync(UpsellFeatureType.CustomDns);
+    }
+
+    [RelayCommand]
+    private Task TriggerLanConnectonsUpsellProcessAsync()
+    {
+        return TriggerAdvancedSettingsUpsellProcessAsync(UpsellFeatureType.AllowLanConnections);
+    }
+
+    [RelayCommand]
+    private Task TriggerNatTypeUpsellProcessAsync()
+    {
+        return TriggerAdvancedSettingsUpsellProcessAsync(UpsellFeatureType.ModerateNat);
     }
 
     [RelayCommand]
@@ -249,10 +272,9 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
         return _profileEditor.TryRedirectToProfileAsync(Localizer.Get("Settings_Connection_Advanced_NatType"), CurrentProfile!);
     }
 
-    [RelayCommand]
-    private Task TriggerNatTypeUpsellProcessAsync()
+    private Task TriggerAdvancedSettingsUpsellProcessAsync(UpsellFeatureType upsellFeatureType)
     {
-        return _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.ModerateNat);
+        return _upsellCarouselWindowActivator.ActivateAsync(upsellFeatureType);
     }
 
     private bool IsNatType(NatType natType)

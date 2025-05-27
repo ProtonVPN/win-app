@@ -26,5 +26,6 @@ namespace ProtonVPN.Service.Vpn
         void OnVpnConnected(VpnState state);
         void OnVpnConnecting(VpnState state);
         void OnVpnDisconnected(VpnState state);
+        void AssigningIp(VpnState state);
     }
 }

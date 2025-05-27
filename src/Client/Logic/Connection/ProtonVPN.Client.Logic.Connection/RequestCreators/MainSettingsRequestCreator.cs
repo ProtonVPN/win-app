@@ -23,6 +23,7 @@ using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
@@ -33,13 +34,16 @@ namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 public class MainSettingsRequestCreator : IMainSettingsRequestCreator
 {
     private readonly ISettings _settings;
+    private readonly IFeatureFlagsObserver _featureFlagsObserver;
     private readonly IEntityMapper _entityMapper;
 
     public MainSettingsRequestCreator(
-        ISettings settings, 
+        ISettings settings,
+        IFeatureFlagsObserver featureFlagsObserver,
         IEntityMapper entityMapper)
     {
         _settings = settings;
+        _featureFlagsObserver = featureFlagsObserver;
         _entityMapper = entityMapper;
     }
 
@@ -78,6 +82,7 @@ public class MainSettingsRequestCreator : IMainSettingsRequestCreator
             NetShieldMode = _settings.IsNetShieldEnabled ? (int)_settings.NetShieldMode : 0,
             Ipv6LeakProtection = _settings.IsIpv6LeakProtectionEnabled,
             IsShareCrashReportsEnabled = _settings.IsShareCrashReportsEnabled,
+            IsLocalAreaNetworkAccessEnabled = !_featureFlagsObserver.IsLocalAreaNetworkAllowedForPaidUsersOnly || _settings.IsLocalAreaNetworkAccessEnabled,
             PortForwarding = _settings.IsPortForwardingEnabled,
             SplitTcp = _settings.IsVpnAcceleratorEnabled,
             OpenVpnAdapter = _entityMapper.Map<OpenVpnAdapter, OpenVpnAdapterIpcEntity>(_settings.OpenVpnAdapter),

@@ -47,15 +47,18 @@ public class MainSettingsIpcEntity
     public bool IsShareCrashReportsEnabled { get; set; }
 
     [DataMember(Order = 8)]
-    public VpnProtocolIpcEntity VpnProtocol { get; set; }
+    public bool IsLocalAreaNetworkAccessEnabled { get; set; }
 
     [DataMember(Order = 9)]
-    public OpenVpnAdapterIpcEntity OpenVpnAdapter { get; set; }
+    public VpnProtocolIpcEntity VpnProtocol { get; set; }
 
     [DataMember(Order = 10)]
-    public bool PortForwarding { get; set; }
+    public OpenVpnAdapterIpcEntity OpenVpnAdapter { get; set; }
 
     [DataMember(Order = 11)]
+    public bool PortForwarding { get; set; }
+
+    [DataMember(Order = 12)]
     public TimeSpan WireGuardConnectionTimeout { get; set; }
 
     public MainSettingsIpcEntity()
