@@ -107,6 +107,10 @@ public class StatusManager
                 {
                     _lastError = VpnError.WireGuardAdapterInUseError;
                 }
+                else if (line.Contains("interface has Forwarding/WeakHostSend enabled"))
+                {
+                    InvokeStateChange(VpnStatus.Disconnected, VpnError.InterfaceHasForwardingEnabled);
+                }
                 else if (line.Contains("SOCKET ERROR:"))
                 {
                     if (_socketErrorCount >= MAX_SOCKET_ERRORS)

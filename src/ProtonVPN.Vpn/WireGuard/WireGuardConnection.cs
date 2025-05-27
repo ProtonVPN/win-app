@@ -269,7 +269,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
 
     private void OnVpnDisconnected(EventArgs<VpnState> state)
     {
-        if (state.Data.Error == VpnError.Unknown)
+        if (state.Data.Error is VpnError.Unknown or VpnError.InterfaceHasForwardingEnabled)
         {
             Disconnect(state.Data.Error);
             return;

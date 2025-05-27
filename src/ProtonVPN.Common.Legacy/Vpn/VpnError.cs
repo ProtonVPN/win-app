@@ -44,6 +44,7 @@ public enum VpnError
     NoServerValidationPublicKey,
     MissingConnectionCertificate,
     BaseFilteringEngineServiceNotRunning,
+    InterfaceHasForwardingEnabled,
 
     CertificateExpired = 86101,
     CertificateRevoked = 86102,

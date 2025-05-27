@@ -111,6 +111,7 @@ public class Module
                     candidates,
                     serverValidator,
                     endpointScanner,
+                    c.Resolve<IIssueReporter>(),
                     new HandlingRequestsWrapper(
                         logger,
                         taskQueue,

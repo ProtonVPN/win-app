@@ -94,6 +94,9 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
         BaseFilteringEngineServiceNotRunning,
 
         [EnumMember]
+        InterfaceHasForwardingEnabled,
+
+        [EnumMember]
         CertificateExpired = 86101,
 
         [EnumMember]

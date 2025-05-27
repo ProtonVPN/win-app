@@ -19,12 +19,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Common.Legacy.Vpn;
+using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
@@ -41,6 +43,7 @@ namespace ProtonVPN.Vpn.Connection
         private readonly IVpnEndpointCandidates _candidates;
         private readonly IServerValidator _serverValidator;
         private readonly IEndpointScanner _endpointScanner;
+        private readonly IIssueReporter _issueReporter;
         private readonly ISingleVpnConnection _origin;
 
         private VpnState _state;
@@ -50,18 +53,21 @@ namespace ProtonVPN.Vpn.Connection
         private bool _isToConnect;
         private bool _isToReconnect;
         private bool _isToDiscardProtocol;
+        private bool _isToSendDiscardedProtocolEvent = true;
 
         public ReconnectingWrapper(
             ILogger logger,
             IVpnEndpointCandidates candidates,
             IServerValidator serverValidator,
             IEndpointScanner endpointScanner,
+            IIssueReporter issueReporter,
             ISingleVpnConnection origin)
         {
             _logger = logger;
             _candidates = candidates;
             _serverValidator = serverValidator;
             _endpointScanner = endpointScanner;
+            _issueReporter = issueReporter;
             _origin = origin;
 
             _origin.StateChanged += Origin_StateChanged;
@@ -143,7 +149,7 @@ namespace ProtonVPN.Vpn.Connection
 
             if (IsToHandleAdapterError())
             {
-                OnAdapterError(_state.VpnProtocol);
+                OnAdapterError(_state.VpnProtocol, _state.Error);
             }
             else if (_state.Status == VpnStatus.Disconnected && _isToConnect)
             {
@@ -174,18 +180,25 @@ namespace ProtonVPN.Vpn.Connection
                    (_state.Status is VpnStatus.Disconnecting or VpnStatus.Disconnected);
         }
 
-        private void OnAdapterError(VpnProtocol protocol)
+        private void OnAdapterError(VpnProtocol protocol, VpnError vpnError)
         {
             _isToDiscardProtocol = false;
-            if (_config.PreferredProtocols.Contains(protocol))
+
+            if (vpnError == VpnError.InterfaceHasForwardingEnabled)
             {
-                _logger.Info<ConnectLog>($"Discarding protocol '{protocol}'.");
-                _config.PreferredProtocols.Remove(protocol);
+                HandleInterfaceForwardingError();
             }
-            else if (protocol != VpnProtocol.Smart)
+            else
             {
-                _logger.Warn<ConnectLog>($"Failed to find {protocol} in the preferred protocols list: " +
-                    $"[{string.Join(", ", _config.PreferredProtocols)}]");
+                if (_config.PreferredProtocols.Contains(protocol))
+                {
+                    DiscardProtocol(protocol);
+                }
+                else if (protocol != VpnProtocol.Smart)
+                {
+                    _logger.Warn<ConnectLog>($"Failed to find {protocol} in the preferred protocols list: " +
+                        $"[{string.Join(", ", _config.PreferredProtocols)}]");
+                }
             }
 
             if (_config.PreferredProtocols.Count == 0)
@@ -201,6 +214,38 @@ namespace ProtonVPN.Vpn.Connection
                 _isToConnect = true;
                 _isToReconnect = true;
             }
+        }
+
+        private void HandleInterfaceForwardingError()
+        {
+            List<VpnProtocol> wireGuardProtocols = new[] {
+                    VpnProtocol.WireGuardUdp,
+                    VpnProtocol.WireGuardTcp,
+                    VpnProtocol.WireGuardTls
+                }
+            .Where(_config.PreferredProtocols.Contains)
+            .ToList();
+
+            if (wireGuardProtocols.Count > 0)
+            {
+                wireGuardProtocols.ForEach(DiscardProtocol);
+
+                if (_isToSendDiscardedProtocolEvent)
+                {
+                    _isToSendDiscardedProtocolEvent = false;
+                    _issueReporter.CaptureMessage("WireGuard protocols discarded due to interface Forwarding being enabled.");
+                }
+            }
+            else
+            {
+                _logger.Warn<ConnectLog>("Preferred protocols did not contain any WireGuard protocols.");
+            }
+        }
+
+        private void DiscardProtocol(VpnProtocol protocol)
+        {
+            _logger.Info<ConnectLog>($"Discarding protocol '{protocol}'.");
+            _config.PreferredProtocols.Remove(protocol);
         }
 
         private async Task PingAndConnectAsync()
@@ -311,8 +356,9 @@ namespace ProtonVPN.Vpn.Connection
 
         private bool IsAdapterError(VpnError error)
         {
-            return error == VpnError.ServerUnreachable || 
-                   error == VpnError.AdapterTimeoutError;
+            return error == VpnError.ServerUnreachable ||
+                   error == VpnError.AdapterTimeoutError ||
+                   error == VpnError.InterfaceHasForwardingEnabled;
         }
 
         private bool IsToReconnect(VpnState state)

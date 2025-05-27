@@ -44,6 +44,7 @@ public static class VpnErrorExtensions
             VpnError.TapAdapterInUseError or
             VpnError.NoTapAdaptersError or
             VpnError.TapRequiresUpdateError or
-            VpnError.WireGuardAdapterInUseError;
+            VpnError.WireGuardAdapterInUseError or
+            VpnError.InterfaceHasForwardingEnabled;
     }
 }

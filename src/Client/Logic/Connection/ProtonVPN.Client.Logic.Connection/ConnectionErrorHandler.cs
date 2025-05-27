@@ -24,7 +24,6 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Validators;
-using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
