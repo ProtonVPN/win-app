@@ -46,19 +46,19 @@ set x86buildParams=%buildParams% /p:Platform=Win32
 set x64buildParams=%buildParams% /p:Platform=%PLATFORM%
 
 if not defined GOSRPONLY (
-    echo compiling ProtonVPN.IPFilter.dll
+    echo compiling ProtonVPN.IPFilter.dll %time%
     msbuild src\ProtonVPN.IpFilter\ProtonVPN.IpFilter.vcxproj %x64buildParams% || exit /b %ERRORLEVEL%
 
-    echo compiling ProtonVPN.NetworkUtil.dll
+    echo compiling ProtonVPN.NetworkUtil.dll %time%
     msbuild src\ProtonVPN.NetworkUtil\ProtonVPN.NetworkUtil.vcxproj %x64buildParams% || exit /b %ERRORLEVEL%
 
-    echo compiling ProtonVPN.InstallActions.x86.dll
+    echo compiling ProtonVPN.InstallActions.x86.dll %time%
     msbuild src\ProtonVPN.InstallActions\ProtonVPN.InstallActions.vcxproj %x86buildParams% || exit /b %ERRORLEVEL%
 
-    echo compiling ProtonVPN.InstallActions.dll
+    echo compiling ProtonVPN.InstallActions.dll %time%
     msbuild src\ProtonVPN.InstallActions\ProtonVPN.InstallActions.vcxproj %x64buildParams% || exit /b %ERRORLEVEL%
 
-    echo compiling LocalAgent.dll
+    echo compiling LocalAgent.dll %time%
     
     if "%PLATFORM%"=="x64" (
         pushd %currentDir%src\ProtonVPN.LocalAgent\localAgentWin
@@ -84,7 +84,7 @@ if not defined GOSRPONLY (
     )
 )
 
-echo compiling GoSrp.dll
+echo compiling GoSrp.dll %time%
 
 if "%PLATFORM%"=="x64" (
     pushd %currentDir%src\srp\windows\cshared
@@ -106,3 +106,5 @@ if "%PLATFORM%"=="arm64" (
         
     xcopy %currentDir%src\srp\windows\cshared\GoSrp.dll %resourcesDir% /y
 )
+
+echo Dependencies done %time%
