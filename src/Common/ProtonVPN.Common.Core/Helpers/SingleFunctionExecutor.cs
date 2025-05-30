@@ -63,7 +63,9 @@ public class SingleFunctionExecutor
             _semaphore.Release();
         }
 
-        if (delay is not null)
+        if (delay is not null &&
+            delay.Value > TimeSpan.Zero &&
+            delay.Value.TotalMilliseconds < int.MaxValue)
         {
             await Task.Delay(delay.Value);
         }
