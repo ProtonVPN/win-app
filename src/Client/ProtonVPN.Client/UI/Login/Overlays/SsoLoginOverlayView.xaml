@@ -24,14 +24,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                xmlns:icons="using:ProtonVPN.Client.Common.UI.Assets.Icons"
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-               Padding="16"
+               Padding="0,8,0,0"
                x:DefaultBindMode="OneWay"
                CloseButtonCommand="{x:Bind ViewModel.CloseOverlayCommand}"
                Style="{StaticResource CaptchaContentDialogStyle}"
                mc:Ignorable="d">
 
-    <Grid Width="400"
-          Height="560">
+    <Grid Width="700"
+          Height="530">
 
         <icons:LoadingLogo x:Name="LoadingLogo"
                            Width="120"

@@ -128,8 +128,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </UIElement.RenderTransform>
 
                         <Grid HorizontalAlignment="Stretch"
-                              ColumnSpacing="8"
-                              Grid.ColumnDefinitions="Auto,*,Auto,Auto">
+                              ColumnSpacing="8">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
 
                             <StackPanel x:Name="IconArea"
                                         Grid.Column="0"
@@ -175,18 +181,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Orientation="Vertical"
                                         Spacing="4">
 
+                                <!-- LineHeight="20" is for Windows 10. Remove this line when we drop support for Windows 10. -->
                                 <TextBlock x:Name="Title"
-                                           FontSize="{StaticResource BodyStrongFontSize}"
-                                           FontWeight="{StaticResource BodyStrongFontWeight}"
-                                           LineHeight="{StaticResource BodyStrongLineHeight}"
+                                           Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                           LineHeight="20"
                                            Text="{TemplateBinding Title}"
                                            TextWrapping="WrapWholeWords"
                                            Visibility="{Binding Text, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
+                                <!-- LineHeight="20" is for Windows 10. Remove this line when we drop support for Windows 10. -->
                                 <TextBlock x:Name="Message"
-                                           FontSize="{StaticResource BodyFontSize}"
-                                           FontWeight="{StaticResource BodyFontWeight}"
-                                           LineHeight="{StaticResource BodyLineHeight}"
+                                           Style="{ThemeResource BodyTextBlockStyle}"
+                                           LineHeight="20"
                                            Text="{TemplateBinding Message}"
                                            TextWrapping="WrapWholeWords"
                                            Visibility="{Binding Text, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />

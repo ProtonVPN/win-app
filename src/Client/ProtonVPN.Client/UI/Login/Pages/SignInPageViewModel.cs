@@ -175,6 +175,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
                 IsToShowPasswordError = string.IsNullOrWhiteSpace(Password);
                 break;
             case SignInFormType.SSO:
+                Username = Username.Trim();
                 IsToShowUsernameError = string.IsNullOrWhiteSpace(Username) || !Username.IsValidEmailAddress();
                 break;
         }
