@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -52,6 +52,8 @@ public partial class KillSwitchWidgetViewModel : FeatureWidgetViewModelBase
         ? Localizer.Get("Flyouts_KillSwitch_Advanced_Success")
         : Localizer.Get("Flyouts_KillSwitch_Standard_Success");
 
+    public bool IsAdvancedKillSwitchInfoMessageVisible => IsAdvancedKillSwitchEnabled && ConnectionManager.IsDisconnected;
+
     public bool IsKillSwitchEnabled => Settings.IsKillSwitchEnabled;
 
     public KillSwitchMode KillSwitchMode => Settings.KillSwitchMode;
@@ -62,8 +64,7 @@ public partial class KillSwitchWidgetViewModel : FeatureWidgetViewModelBase
     public bool IsWarningMessageVisible => IsKillSwitchEnabled
                                         && KillSwitchMode == KillSwitchMode.Advanced;
 
-    public bool IsSuccessMessageVisible => IsKillSwitchEnabled
-                                        && (KillSwitchMode == KillSwitchMode.Advanced || ConnectionManager.IsConnected);
+    public bool IsSuccessMessageVisible => IsKillSwitchEnabled && ConnectionManager.IsConnected;
 
     public override bool IsRestricted => false;
 
@@ -153,6 +154,7 @@ public partial class KillSwitchWidgetViewModel : FeatureWidgetViewModelBase
         OnPropertyChanged(nameof(KillSwitchMode));
         OnPropertyChanged(nameof(IsStandardKillSwitchEnabled));
         OnPropertyChanged(nameof(IsAdvancedKillSwitchEnabled));
+        OnPropertyChanged(nameof(IsAdvancedKillSwitchInfoMessageVisible));
     }
 
     protected override void OnConnectionStatusChanged()
@@ -160,6 +162,7 @@ public partial class KillSwitchWidgetViewModel : FeatureWidgetViewModelBase
         OnPropertyChanged(nameof(WarningMessage));
         OnPropertyChanged(nameof(IsInfoMessageVisible));
         OnPropertyChanged(nameof(IsSuccessMessageVisible));
+        OnPropertyChanged(nameof(IsAdvancedKillSwitchInfoMessageVisible));
     }
 
     protected override bool IsOnFeaturePage(PageViewModelBase? currentPageContext)

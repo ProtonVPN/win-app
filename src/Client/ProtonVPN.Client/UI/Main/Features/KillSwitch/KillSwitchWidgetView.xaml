@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2024 Proton AG
+Copyright (c) 2025 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -88,6 +88,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <Border Height="1"
                         Background="{ThemeResource BorderWeakColorBrush}" />
+
+                <custom:BulletContentControl Content="{x:Bind ViewModel.Localizer.Get('Flyouts_KillSwitch_Info_Disconnected')}"
+                                             Visibility="{x:Bind ViewModel.IsAdvancedKillSwitchInfoMessageVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <custom:BulletContentControl.BulletContent>
+                        <pathicons:CircleSlash Foreground="{ThemeResource TextWeakColorBrush}"
+                                               Size="Pixels16" />
+                    </custom:BulletContentControl.BulletContent>
+                </custom:BulletContentControl>
 
                 <custom:BulletContentControl Content="{x:Bind ViewModel.InfoMessage}"
                                              Visibility="{x:Bind ViewModel.IsInfoMessageVisible, Converter={StaticResource BooleanToVisibilityConverter}}">

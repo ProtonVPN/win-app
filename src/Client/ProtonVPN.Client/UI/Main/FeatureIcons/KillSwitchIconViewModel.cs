@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -24,6 +24,7 @@ using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Extensions;
 
 namespace ProtonVPN.Client.UI.Main.FeatureIcons;
 
@@ -34,6 +35,8 @@ public class KillSwitchIconViewModel : FeatureIconViewModelBase
     protected override bool IsFeatureEnabled => Settings.IsKillSwitchEnabled;
 
     protected KillSwitchMode KillSwitchMode => Settings.KillSwitchMode;
+
+    public bool IsDisconnectedAndAdvancedKillSwitchActive => ConnectionManager.IsDisconnected && Settings.IsAdvancedKillSwitchActive();
 
     public KillSwitchIconViewModel(
         IConnectionManager connectionManager,

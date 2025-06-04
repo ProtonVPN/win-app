@@ -37,10 +37,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:DimmableImage">
-                    <Image x:Name="Image" Stretch="Uniform"
+                    <Image x:Name="Image"
+                           Stretch="Uniform"
                            Width="{TemplateBinding Width}"
                            Height="{TemplateBinding Height}"
-                           Opacity="1" 
+                           Opacity="1"
                            Source="{Binding IconSource, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=OneWay}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="OpacityLevels">

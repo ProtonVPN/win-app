@@ -1633,6 +1633,12 @@
   <data name="Home_ConnectionDetails_Volume_Total" xml:space="preserve">
     <value>Total volume</value>
   </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated" xml:space="preserve">
+    <value>Advanced kill switch activated</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection" xml:space="preserve">
+    <value>Connect to VPN to restore your internet connection.</value>
+  </data>
   <data name="Home_Help_Title" xml:space="preserve">
     <value>Help</value>
   </data>
@@ -3895,6 +3901,9 @@
   </data>
   <data name="Flyouts_KillSwitch_Warning_Connected" xml:space="preserve">
     <value>Advanced kill switch applies even if you intentionally disconnect from VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected" xml:space="preserve">
+    <value>Advanced kill switch disables your internet to protect your IP address while you're not connected to Proton VPN.</value>
   </data>
   <data name="Flyouts_NetShield_Info" xml:space="preserve">
     <value>Protect yourself from ads, trackers, and malware on websites and apps</value>

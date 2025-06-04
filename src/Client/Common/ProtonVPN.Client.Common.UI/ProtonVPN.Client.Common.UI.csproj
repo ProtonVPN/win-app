@@ -652,6 +652,7 @@
         <None Remove="Assets\Icons\LatencyLow.xaml" />
         <None Remove="Assets\Icons\LatencyMedium.xaml" />
         <None Remove="Assets\Icons\LoadingLogo.xaml" />
+        <None Remove="Assets\Icons\no-wifi.svg" />
         <None Remove="Assets\Icons\profile.png" />
         <None Remove="Assets\Icons\Profiles\AnonymousProfileIcon.xaml" />
         <None Remove="Assets\Icons\Profiles\BotProfileIcon.xaml" />
@@ -1836,6 +1837,9 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Flags\ZW.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\no-wifi.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Icons\profile.png">

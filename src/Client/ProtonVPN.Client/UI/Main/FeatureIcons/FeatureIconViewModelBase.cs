@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -68,7 +68,7 @@ public abstract class FeatureIconViewModelBase : ViewModelBase,
 
     public void Receive(ThemeChangedMessage message)
     {
-        ExecuteOnUIThread(InvalidateIcon);
+        ExecuteOnUIThread(InvalidateAllProperties);
     }
 
     public void Receive(LoggedInMessage message)
@@ -85,11 +85,7 @@ public abstract class FeatureIconViewModelBase : ViewModelBase,
     {
         if (GetSettingsChangedForIconUpdate().Contains(message.PropertyName))
         {
-            ExecuteOnUIThread(() =>
-            {
-                InvalidateIcon();
-                InvalidateIsDimmed();
-            });
+            ExecuteOnUIThread(InvalidateAllProperties);
         }
     }
 
@@ -109,14 +105,4 @@ public abstract class FeatureIconViewModelBase : ViewModelBase,
     protected abstract ImageSource GetImageSource();
 
     protected abstract IEnumerable<string> GetSettingsChangedForIconUpdate();
-
-    private void InvalidateIcon()
-    {
-        OnPropertyChanged(nameof(Icon));
-    }
-
-    private void InvalidateIsDimmed()
-    {
-        OnPropertyChanged(nameof(IsDimmed));
-    }
 }

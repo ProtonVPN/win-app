@@ -24,6 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pathIcons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             xmlns:icons="using:ProtonVPN.Client.Common.UI.Assets.Icons"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
@@ -59,6 +60,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                       Foreground="{ThemeResource VpnGreenColorBrush}"
                                       Visibility="Collapsed" />
 
+                <Image x:Name="NoWiFiIcon"
+                       Width="22"
+                       Height="20"
+                       Source="{StaticResource NoWiFiIconSource}"
+                       Visibility="Collapsed" />
             </Grid>
 
             <TextBlock x:Name="ProtectionTitle"
@@ -90,6 +96,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="ConnectionStates">
+
+                <VisualState x:Name="DisconnectedWithAdvancedKillSwitchActive">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsDisconnectedAndAdvancedKillSwitchActive}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ProtectionTitle.Foreground" Value="{ThemeResource SignalWarningColorBrush}" />
+                        <Setter Target="NoWiFiIcon.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
 
                 <VisualState x:Name="Connecting">
                     <VisualState.StateTriggers>

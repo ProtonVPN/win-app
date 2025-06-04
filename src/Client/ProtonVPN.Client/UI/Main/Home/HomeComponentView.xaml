@@ -166,9 +166,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <VisualStateGroup x:Name="ConnectionStates">
 
-                <VisualState x:Name="Connecting">
+                <VisualState x:Name="ConnectingOrIsNotConnectedAndAdvancedKillSwitchIsActive">
                     <VisualState.StateTriggers>
                         <StateTrigger IsActive="{x:Bind ViewModel.IsConnecting}" />
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsNotConnectedAndAdvancedKillSwitchActive}" />
                     </VisualState.StateTriggers>
                     <Storyboard>
                         <ColorAnimation EnableDependentAnimation="True"

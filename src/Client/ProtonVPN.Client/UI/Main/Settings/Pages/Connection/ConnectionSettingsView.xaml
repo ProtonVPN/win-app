@@ -123,7 +123,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                              IsClickEnabled="True"
                                              Style="{StaticResource GridSettingsCardStyle}">
                         <custom:GridSettingsCard.FeatureIcon>
-                            <featureicons:KillSwitchIconView />
+                            <featureicons:KillSwitchIconView Width="32" />
                         </custom:GridSettingsCard.FeatureIcon>
                         <custom:GridSettingsCard.ActionIcon>
                             <pathicons:ChevronRight />

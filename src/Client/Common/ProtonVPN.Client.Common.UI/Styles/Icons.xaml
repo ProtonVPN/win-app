@@ -113,4 +113,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <BitmapImage x:Key="DataIcon"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/NetShield/data-saved.png" />
 
+    <SvgImageSource x:Key="NoWiFiIconSource"
+                    UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/no-wifi.svg" />
+
 </ResourceDictionary>
