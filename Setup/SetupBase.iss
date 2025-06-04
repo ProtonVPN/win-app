@@ -67,8 +67,7 @@ SignTool=signtool sign /a /tr http://timestamp.sectigo.com /td SHA256 /fd SHA256
 SetupWindowTitle={#MyAppName}
 
 [Registry]
-Root: HKCR; Subkey: "ProtonVPN"; Flags: uninsdeletekey;
-Root: HKCR; Subkey: "AppUserModelId\{#AppUserModelID}"; Flags: uninsdeletekey;
+Root: HKLM; Subkey: Software\Proton AG\Proton VPN; Flags: uninsdeletekey dontcreatekey;
 
 [Files]
 Source: "..\{#SourcePath}\ProtonVPN.Launcher.exe"; DestDir: "{app}"; Flags: signonce;

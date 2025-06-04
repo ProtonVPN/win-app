@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -28,6 +28,7 @@ namespace ProtonVPN.Client;
 public class Program
 {
     private const string SINGLE_INSTANCE_APP_MUTEX_NAME = "{588dc704-8eac-4a43-9345-ec7186b23f05}";
+    private const string APP_USER_MODEL_ID = "Proton.VPN";
 
     private static Mutex? _mutex; // The variable is kept to hold the Mutex lock
 
@@ -40,12 +41,13 @@ public class Program
         if (args.ContainsIgnoringCase("-DoUninstallActions"))
         {
             UninstallActions.DeleteClientData();
+            UninstallActions.DeleteRegistryKeys(APP_USER_MODEL_ID, App.APPLICATION_NAME);
             return;
         }
 
         if (IsFirstInstance())
         {
-            SetCurrentProcessExplicitAppUserModelID("Proton.VPN");
+            SetCurrentProcessExplicitAppUserModelID(APP_USER_MODEL_ID);
 
             Application.Start(_ =>
             {

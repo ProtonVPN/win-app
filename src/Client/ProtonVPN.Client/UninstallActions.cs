@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.Win32;
 using ProtonVPN.Configurations.Defaults;
 
 namespace ProtonVPN.Client;
@@ -34,6 +35,55 @@ public static class UninstallActions
         }
         catch
         {
+        }
+    }
+
+    /// <summary>
+    /// Deletes registry keys and values associated with Proton VPN startup configuration.
+    /// </summary>
+    /// <remarks>
+    /// <para>The following registry keys and values will be deleted:</para>
+    /// <para>- HKCU\Software\Classes\protonvpn</para>
+    /// <para>- HKCU\Software\Classes\proton-vpn</para>
+    /// <para>- HKCU\Software\Classes\AppUserModelId\{appUserModelId}</para>
+    /// <para>- HKCU\Software\Microsoft\Windows\CurrentVersion\Run (Value name: {appName})</para>
+    /// <para>- HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run (Value name: {appName})</para>
+    /// </remarks>
+    public static void DeleteRegistryKeys(string appUserModelId, string appName)
+    {
+        try
+        {
+            DeleteSubKeyTree($"Software\\Classes\\AppUserModelId\\{appUserModelId}");
+            DeleteSubKeyTree($"Software\\Classes\\{DefaultConfiguration.ProtocolActivationScheme}");
+            DeleteSubKeyTree($"Software\\Classes\\{DefaultConfiguration.LegacyProtocolActivationScheme}");
+
+            DeleteValue(@"Software\Microsoft\Windows\CurrentVersion\Run", appName);
+            DeleteValue(@"Software\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run", appName);
+        }
+        catch (Exception)
+        {
+        }
+    }
+
+    private static void DeleteSubKeyTree(string keyPath)
+    {
+        using (RegistryKey? key = Registry.CurrentUser.OpenSubKey(keyPath))
+        {
+            if (key != null)
+            {
+                Registry.CurrentUser.DeleteSubKeyTree(keyPath);
+            }
+        }
+    }
+
+    private static void DeleteValue(string subKey, string name)
+    {
+        using (RegistryKey? registryKey = Registry.CurrentUser.OpenSubKey(subKey, true))
+        {
+            if (registryKey != null && registryKey.GetValue(name) != null)
+            {
+                registryKey.DeleteValue(name);
+            }
         }
     }
 }
