@@ -25,6 +25,8 @@ public interface IDispatcherTimer
 
     bool IsEnabled { get; }
 
+    TimeSpan Interval { get; set; }
+
     void Start();
 
     void Stop();

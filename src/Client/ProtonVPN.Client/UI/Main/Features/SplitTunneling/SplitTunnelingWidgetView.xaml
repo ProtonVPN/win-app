@@ -73,14 +73,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <MenuFlyoutSeparator />
                                 <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.EnableStandardSplitTunnelingCommand, Mode=OneTime}"
                                                                   IsActive="{x:Bind ViewModel.IsStandardSplitTunnelingEnabled}"
-                                                                  Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_Standard')}">
+                                                                  Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_Standard_Short')}">
                                     <custom:ActivatableMenuFlyoutItem.Icon>
                                         <ImageIcon Source="{ThemeResource SplitTunnelingStandardIllustrationSource}" />
                                     </custom:ActivatableMenuFlyoutItem.Icon>
                                 </custom:ActivatableMenuFlyoutItem>
                                 <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.EnableInverseSplitTunnelingCommand, Mode=OneTime}"
                                                                   IsActive="{x:Bind ViewModel.IsInverseSplitTunnelingEnabled}"
-                                                                  Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_Inverse')}">
+                                                                  Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_Inverse_Short')}">
                                     <custom:ActivatableMenuFlyoutItem.Icon>
                                         <ImageIcon Source="{ThemeResource SplitTunnelingInverseIllustrationSource}" />
                                     </custom:ActivatableMenuFlyoutItem.Icon>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -24,6 +24,15 @@ namespace ProtonVPN.Client.UI.Main.Components;
 
 public sealed partial class ActivePortComponentView : IContextAware
 {
+    public static readonly DependencyProperty IsCompactProperty =
+        DependencyProperty.Register(nameof(IsCompact), typeof(bool), typeof(ActivePortComponentView), new PropertyMetadata(false));
+
+    public bool IsCompact
+    {
+        get => (bool)GetValue(IsCompactProperty);
+        set => SetValue(IsCompactProperty, value);
+    }
+
     public ActivePortComponentViewModel ViewModel { get; }
 
     public ActivePortComponentView()

@@ -144,6 +144,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <!--  BackgroundStrongColor + InteractionDefaultActiveColor  -->
             <SolidColorBrush x:Key="BackgroundStrongActiveColorBrush" Color="{StaticResource BackgroundStrongActiveColor}" />
 
+            <!--  InteractionWeakHoverColor + SignalDangerColor (20%)  -->
+            <SolidColorBrush x:Key="InteractionWeakDangerHoverColorBrush" Color="{StaticResource InteractionWeakDangerHoverColor}" />
+            <!--  InteractionWeakActiveColor + SignalDangerColor (20%)  -->
+            <SolidColorBrush x:Key="InteractionWeakDangerActiveColorBrush" Color="{StaticResource InteractionWeakDangerActiveColor}" />
+
             <!--  Acrylic/Mica Brushes  -->
 
             <!--  Window Background (mixed with Mica effect)  -->
@@ -298,6 +303,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <SolidColorBrush x:Key="BackgroundStrongHoverColorBrush" Color="{StaticResource BackgroundStrongHoverColor}" />
             <!--  BackgroundStrongColor + InteractionDefaultActiveColor  -->
             <SolidColorBrush x:Key="BackgroundStrongActiveColorBrush" Color="{StaticResource BackgroundStrongActiveColor}" />
+
+            <!--  InteractionWeakHoverColor + SignalDangerColor (40%)  -->
+            <SolidColorBrush x:Key="InteractionWeakDangerHoverColorBrush" Color="{StaticResource InteractionWeakDangerHoverColor}" />
+            <!--  InteractionWeakActiveColor + SignalDangerColor (40%)  -->
+            <SolidColorBrush x:Key="InteractionWeakDangerActiveColorBrush" Color="{StaticResource InteractionWeakDangerActiveColor}" />
 
             <!--  Acrylic/Mica Brushes  -->
 

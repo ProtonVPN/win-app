@@ -215,7 +215,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Command="{x:Bind ViewModel.CancelConnectionCommand, Mode=OneTime}"
                     Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Cancel')}"
                     IsEnabledChanged="OnButtonIsEnabledChanged"
-                    Style="{StaticResource LargeSecondaryButtonStyle}"
+                    Style="{StaticResource LargeDisruptiveSecondaryButtonStyle}"
                     TabIndex="5"
                     Visibility="{x:Bind ViewModel.IsConnecting, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
@@ -228,7 +228,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Command="{x:Bind ViewModel.DisconnectCommand, Mode=OneTime}"
                     Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Disconnect')}"
                     IsEnabledChanged="OnButtonIsEnabledChanged"
-                    Style="{StaticResource LargeSecondaryButtonStyle}"
+                    Style="{StaticResource LargeDisruptiveSecondaryButtonStyle}"
                     TabIndex="6"
                     Visibility="{x:Bind ViewModel.IsConnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
 

@@ -32,7 +32,6 @@ using ProtonVPN.Common.Core.Networking;
 namespace ProtonVPN.Client.UI.Main.Home.Details.Flyouts;
 
 public partial class SpeedFlyoutViewModel : ActivatableViewModelBase,
-    IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<NetworkTrafficChangedMessage>
 {
     private readonly IUrlsBrowser _urlsBrowser;
@@ -51,9 +50,7 @@ public partial class SpeedFlyoutViewModel : ActivatableViewModelBase,
 
     public string FormattedUploadSpeed => Localizer.GetFormattedSpeed(UploadSpeed);
 
-    public bool IsVpnAcceleratorTaglineVisible => _settings.IsVpnAcceleratorEnabled && _settings.VpnPlan.IsPaid;
-
-    public string IncreaseVpnSpeedsUri => _urlsBrowser.IncreaseVpnSpeeds;
+    public string UnderstandTrafficUri => _urlsBrowser.TrafficLearnMore;
 
     public SpeedFlyoutViewModel(
         IUrlsBrowser urlsBrowser,
@@ -82,15 +79,6 @@ public partial class SpeedFlyoutViewModel : ActivatableViewModelBase,
         UploadSpeed = (long)speed.BytesUploaded;
     }
 
-    public void Receive(SettingChangedMessage message)
-    {
-        if (message.PropertyName is (nameof(ISettings.IsVpnAcceleratorEnabled)) or
-            (nameof(ISettings.VpnPlan)))
-        {
-            ExecuteOnUIThread(InvalidateTagline);
-        }
-    }
-
     protected override void OnActivated()
     {
         base.OnActivated();
@@ -104,10 +92,5 @@ public partial class SpeedFlyoutViewModel : ActivatableViewModelBase,
 
         OnPropertyChanged(nameof(FormattedDownloadSpeed));
         OnPropertyChanged(nameof(FormattedUploadSpeed));
-    }
-
-    private void InvalidateTagline()
-    {
-        OnPropertyChanged(nameof(IsVpnAcceleratorTaglineVisible));
     }
 }

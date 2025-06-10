@@ -40,7 +40,7 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
 {
     private const double SIDEBAR_COMPACT_WIDTH = 62.0;
     private const double WIDGETBAR_MIN_WIDTH = 72.0;
-    private const double WIDGETBAR_MAX_WIDTH = 98.0;
+    private const double WIDGETBAR_MAX_WIDTH = 110.0;
 
     private const double EXPAND_SIDEBAR_WINDOW_WIDTH_THRESHOLD = 885;
     private const double EXPAND_WIDGETBAR_WINDOW_WIDTH_THRESHOLD = 1000;

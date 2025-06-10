@@ -31,6 +31,12 @@ public class DispatcherTimer : IDispatcherTimer
         remove => _timer.Tick += value;
     }
 
+    public TimeSpan Interval
+    {
+        get => _timer.Interval;
+        set => _timer.Interval = value;
+    }   
+
     public bool IsEnabled => _timer.IsEnabled;
 
     public DispatcherTimer(TimeSpan interval)

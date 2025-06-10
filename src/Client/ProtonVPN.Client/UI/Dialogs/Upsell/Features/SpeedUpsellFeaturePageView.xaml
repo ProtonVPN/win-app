@@ -36,7 +36,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <custom:UpsellFeatureContentControl Header="{x:Bind ViewModel.Title}"
                                         IllustrationSource="{x:Bind ViewModel.LargeIllustrationSource, Mode=OneTime}">
         <StackPanel Spacing="{StaticResource UpsellBulletSpacing}">
-            <custom:BulletHeaderedContentControl Header="{x:Bind ViewModel.Localizer.Get('Upsell_Carousel_Speed_Acceleration')}">
+            <custom:BulletHeaderedContentControl Header="{x:Bind ViewModel.Localizer.Get('Upsell_Carousel_Speed_Traffic')}">
                 <custom:BulletHeaderedContentControl.BulletContent>
                     <pathicons:Rocket Size="Pixels24" />
                 </custom:BulletHeaderedContentControl.BulletContent>
@@ -44,6 +44,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <custom:BulletHeaderedContentControl Header="{x:Bind ViewModel.Localizer.Get('Upsell_Carousel_Speed_Access')}">
                 <custom:BulletHeaderedContentControl.BulletContent>
                     <pathicons:Servers Size="Pixels24" />
+                </custom:BulletHeaderedContentControl.BulletContent>
+            </custom:BulletHeaderedContentControl>
+            <custom:BulletHeaderedContentControl Header="{x:Bind ViewModel.Localizer.Get('Upsell_Carousel_Speed_Acceleration')}">
+                <custom:BulletHeaderedContentControl.BulletContent>
+                    <pathicons:Bolt Size="Pixels24" />
                 </custom:BulletHeaderedContentControl.BulletContent>
             </custom:BulletHeaderedContentControl>
         </StackPanel>

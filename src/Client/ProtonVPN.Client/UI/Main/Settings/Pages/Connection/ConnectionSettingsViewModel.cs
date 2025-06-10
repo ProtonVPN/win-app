@@ -65,11 +65,15 @@ public partial class ConnectionSettingsViewModel : ActivatableViewModelBase,
 
     public string NetShieldSettingsState => Localizer.GetToggleValue(IsNetShieldEnabled);
 
-    public string KillSwitchSettingsState => Localizer.GetToggleValue(_settings.IsKillSwitchEnabled);
+    public string KillSwitchSettingsState => _settings.IsKillSwitchEnabled
+        ? Localizer.GetKillSwitchMode(_settings.KillSwitchMode)
+        : Localizer.GetToggleValue(false);
 
     public string PortForwardingSettingsState => Localizer.GetToggleValue(IsPortForwardingEnabled);
 
-    public string SplitTunnelingSettingsState => Localizer.GetToggleValue(_settings.IsSplitTunnelingEnabled);
+    public string SplitTunnelingSettingsState => _settings.IsSplitTunnelingEnabled
+        ? Localizer.GetSplitTunnelingMode(_settings.SplitTunnelingMode, useShortVersion: true)
+        : Localizer.GetToggleValue(false);
 
     protected VpnProtocol Protocol => AreSettingsOverridden
         ? CurrentProfile!.Settings.VpnProtocol

@@ -64,17 +64,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </StackPanel>
         </Grid>
 
-        <StackPanel Orientation="Horizontal"
-                    Spacing="4"
-                    Visibility="{x:Bind ViewModel.IsVpnAcceleratorTaglineVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <pathIcons:Bolt Foreground="{ThemeResource VpnGreenColor}"
-                            Size="Pixels16" />
-
-            <TextBlock Foreground="{ThemeResource VpnGreenColor}"
-                       Style="{ThemeResource CaptionTextBlockStyle}"
-                       Text="{x:Bind ViewModel.Localizer.Get('Flyouts_Speed_BoostedByVpnAccelerator')}" />
-        </StackPanel>
-
         <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
             <Run Text="{x:Bind ViewModel.Localizer.Get('Flyouts_Speed_Description1')}" />
             <LineBreak />
@@ -85,7 +74,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <custom:IllustratedHyperlinkButton AutomationProperties.AutomationId="LearnMoreHyperlinkButton"
                                            Content="{x:Bind ViewModel.Localizer.Get('Flyouts_Speed_KnowledgeBaseLinkTitle')}"
                                            IllustrationSource="{StaticResource SpeedThumbnailIllustrationSource}"
-                                           NavigateUri="{x:Bind ViewModel.IncreaseVpnSpeedsUri}" />
+                                           NavigateUri="{x:Bind ViewModel.UnderstandTrafficUri}" />
 
     </StackPanel>
 </UserControl>

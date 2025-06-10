@@ -26,9 +26,9 @@ public class UpsellCarrouselRobot
     protected Element CloseButton = Element.ByAutomationId("Close");
     protected Element NextUpsellButton = Element.ByAutomationId("MoveToNextUpsellFeatureButton");
     protected Element BackUpsellButton = Element.ByAutomationId("MoveToPreviousUpsellFeatureButton");
-    protected Element ServersUpsellDescription = Element.ByName("Open source VPN");
-    protected Element SpeedUpsellTitle = Element.ByName("Browse at even higher speeds (up to 10 Gbps)");
-    protected Element StreamingUpsellTitles = Element.ByName("Stream your favorite movies and TV shows");
+    protected Element ServersUpsellDescription = Element.ByName("Select any country from our worldwide network");
+    protected Element SpeedUpsellTitle = Element.ByName("Browse at even higher speeds");
+    protected Element StreamingUpsellTitle = Element.ByName("Stream your favorite movies and TV shows");
     protected Element NetshieldUpsellTitle = Element.ByName("Enjoy ad-free browsing");
     protected Element SecureCoreUpsellTitle = Element.ByName("Add another layer of protection to your connection");
     protected Element P2pUpsellTitle = Element.ByName("Unlock peer-to-peer downloads and file sharing (P2P)");
@@ -74,7 +74,7 @@ public class UpsellCarrouselRobot
 
         public Verifications IsStreamingUpsellDisplayed()
         {
-            StreamingUpsellTitles.WaitUntilDisplayed();
+            StreamingUpsellTitle.WaitUntilDisplayed();
             UpgradeButton.WaitUntilDisplayed();
             return this;
         }

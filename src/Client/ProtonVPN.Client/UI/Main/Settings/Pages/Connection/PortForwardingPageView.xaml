@@ -76,8 +76,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <controls:SettingsExpander.Items>
 
-                    <components:ActivePortComponentView Margin="-4,0,0,0"/>
-                    
+                    <components:ActivePortComponentView />
+
                 </controls:SettingsExpander.Items>
                 
             </controls:SettingsExpander>

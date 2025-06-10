@@ -149,8 +149,8 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
             IsSplitTunnelingEnabled
                 ? SplitTunnelingMode switch
                 {
-                    SplitTunnelingMode.Standard => "Settings_Connection_SplitTunneling_Standard",
-                    SplitTunnelingMode.Inverse => "Settings_Connection_SplitTunneling_Inverse",
+                    SplitTunnelingMode.Standard => "Settings_Connection_SplitTunneling_Standard_Short",
+                    SplitTunnelingMode.Inverse => "Settings_Connection_SplitTunneling_Inverse_Short",
                     _ => throw new ArgumentOutOfRangeException(nameof(ISettings.SplitTunnelingMode))
                 }
                 : "Common_States_Off");

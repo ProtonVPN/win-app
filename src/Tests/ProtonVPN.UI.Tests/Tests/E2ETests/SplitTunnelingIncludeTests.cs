@@ -47,7 +47,7 @@ public class SplitTunnelingIncludeTests : BaseTest
             .OpenSplitTunnelingSettings();
         SplitTunnelingRobot
             .ToggleSplitTunnelingSwitch()
-            .SelectInverseMode()
+            .SelectIncludeMode()
             .AddIpAddress(IP_ADDRESS_TO_INCLUDE);
 
         SettingRobot.ApplySettings()

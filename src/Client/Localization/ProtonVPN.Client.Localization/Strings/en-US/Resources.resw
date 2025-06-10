@@ -1361,7 +1361,7 @@
     <value>Gateways have moved</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Description" xml:space="preserve">
-    <value>You can now access your organization’s dedicated servers from the main sidebar.</value>
+    <value>You can now access your organization's dedicated servers from the main sidebar.</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Title" xml:space="preserve">
     <value>Introducing Recents</value>
@@ -1467,7 +1467,7 @@
     <comment>Unit for Terabytes per second</comment>
   </data>
   <data name="Format_SpeedUnit" xml:space="preserve">
-    <value>Speed ({0})</value>
+    <value>Current traffic ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Time_Day_One" xml:space="preserve">
@@ -1513,7 +1513,31 @@
   <data name="Format_Time_HoursMinutesSeconds_Short" xml:space="preserve">
     <value>hh\:mm\:ss</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '\' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
+  </data>  
+  <data name="Format_Time_Seconds_Ago_One" xml:space="preserve">
+    <value>{0} second ago</value>
+    <comment>Format a time as a number of seconds elapsed. {0} is a placeholder for the number of seconds (eg. 1 second ago).</comment>
   </data>
+  <data name="Format_Time_Seconds_Ago_Other" xml:space="preserve">
+    <value>{0} seconds ago</value>
+    <comment>Format a time as a number of seconds elapsed. {0} is a placeholder for the number of seconds (eg. 10 seconds ago).</comment>
+  </data>
+  <data name="Format_Time_Minutes_Ago_One" xml:space="preserve">
+    <value>{0} minute ago</value>
+    <comment>Format a time as a number of minutes elapsed. {0} is a placeholder for the number of minutes (eg. 1 minute ago).</comment>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other" xml:space="preserve">
+    <value>{0} minutes ago</value>
+    <comment>Format a time as a number of minutes elapsed. {0} is a placeholder for the number of minutes (eg. 10 minutes ago).</comment>
+  </data>
+  <data name="Format_Time_Hours_Ago_One" xml:space="preserve">
+    <value>{0} hour ago</value>
+    <comment>Format a time as a number of hours elapsed. {0} is a placeholder for the number of hours (eg. 1 hour ago).</comment>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other" xml:space="preserve">
+    <value>{0} hours ago</value>
+    <comment>Format a time as a number of hours elapsed. {0} is a placeholder for the number of hours (eg. 10 hours ago).</comment>
+  </data>  
   <data name="Home_Account_SignOut" xml:space="preserve">
     <value>Sign out</value>
   </data>
@@ -1591,7 +1615,7 @@
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_Volume" xml:space="preserve">
-    <value>Volume</value>
+    <value>Total traffic</value>
   </data>
   <data name="Home_ConnectionDetails_MyIp" xml:space="preserve">
     <value>My IP</value>
@@ -1793,7 +1817,7 @@
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections" xml:space="preserve">
-    <value>LAN connections</value>
+    <value>Allow LAN connections</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description" xml:space="preserve">
     <value>Allows connections to printers, speakers, and other devices in your local network.</value>
@@ -2292,6 +2316,10 @@
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy" xml:space="preserve">
     <value>Copy port number</value>
   </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged" xml:space="preserve">
+    <value>Last changed: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
   <data name="Settings_Connection_PortForwarding_Description" xml:space="preserve">
     <value>Bypass firewalls to connect to P2P servers and devices in your local network.</value>
   </data>
@@ -2318,7 +2346,11 @@
     <value>Customize your connection by deciding which apps and IP addresses are protected by VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse" xml:space="preserve">
-    <value>Inverse</value>
+    <value>Include mode</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short" xml:space="preserve">
+    <value>Include</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description" xml:space="preserve">
     <value>Only selected apps and IP addresses connect via VPN, all other traffic is unprotected</value>
@@ -2337,7 +2369,11 @@
     <value>Add IPv4 address</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard" xml:space="preserve">
-    <value>Standard</value>
+    <value>Exclude mode</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short" xml:space="preserve">
+    <value>Exclude</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description" xml:space="preserve">
     <value>Selected apps and IP addresses are excluded from VPN connection</value>
@@ -2695,7 +2731,7 @@
     <value>Public Wi-Fi networks are more vulnerable to security threats. Connect to VPN to browse safely.</value>
   </data>
   <data name="Notifications_SessionLimit_Description" xml:space="preserve">
-    <value>You’ve reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
+    <value>You've reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp" xml:space="preserve">
     <value>OpenVPN (TCP)</value>
@@ -3144,13 +3180,16 @@
     <value>Route through ultra secure servers in Switzerland, Sweden, and Iceland</value>
   </data>
   <data name="Upsell_Carousel_Speed" xml:space="preserve">
-    <value>Browse at even higher speeds (up to 10 Gbps)</value>
+    <value>Browse at even higher speeds</value>
   </data>
-  <data name="Upsell_Carousel_Speed_Acceleration" xml:space="preserve">
-    <value>Increase your connection speeds by up to 400% with VPN Accelerator</value>
+  <data name="Upsell_Carousel_Speed_Traffic" xml:space="preserve">
+    <value>Get connection speeds of up to 10 Gbps</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access" xml:space="preserve">
     <value>Access faster, less crowded servers</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration" xml:space="preserve">
+    <value>Browse up to 400% faster with VPN Accelerator</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling" xml:space="preserve">
     <value>Get the best of both worlds</value>
@@ -3204,14 +3243,14 @@
     <value>Access over {0} in {1}</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_Audit" xml:space="preserve">
-    <value>Audited by independent security experts</value>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection" xml:space="preserve">
+    <value>Select any country from our worldwide network</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship" xml:space="preserve">
-    <value>Bypass censorship with advanced security and privacy features</value>
+    <value>Bypass censorship with advanced security features</value>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource" xml:space="preserve">
-    <value>Open source VPN</value>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features" xml:space="preserve">
+    <value>Secure streaming, torrenting, and more</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One" xml:space="preserve">
     <value>{0} country</value>
@@ -3818,7 +3857,7 @@
     <value>Which VPN protocol is the best?</value>
   </data>
   <data name="Flyouts_Volume_Title" xml:space="preserve">
-    <value>Volume</value>
+    <value>Total traffic</value>
   </data>
   <data name="Flyouts_Volume_Download" xml:space="preserve">
     <value>Download</value>
@@ -3829,10 +3868,10 @@
     <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Description" xml:space="preserve">
-    <value>This shows how much traffic has routed through your VPN.</value>
+    <value>Shows the total amount of data passed through the VPN tunnel since you connected.</value>
   </data>
   <data name="Flyouts_Speed_Title" xml:space="preserve">
-    <value>Speed</value>
+    <value>Current traffic</value>
   </data>
   <data name="Flyouts_Speed_Download" xml:space="preserve">
     <value>Download</value>
@@ -3846,13 +3885,13 @@
     <value>Boosted by VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description1" xml:space="preserve">
-    <value>This shows how much data gets transmitted through Proton VPN each second.</value>
+    <value>Shows how much data goes through the VPN tunnel in real time.</value>
   </data>
   <data name="Flyouts_Speed_Description2" xml:space="preserve">
-    <value>Speed is based on your device's current activity — it doesn't represent the VPN's maximum speed.</value>
+    <value>This is based on your device's current activity. In most cases, it doesn't represent the VPN's maximum speed.</value>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle" xml:space="preserve">
-    <value>Understanding and increasing VPN connection speeds</value>
+    <value>VPN speed and traffic explained</value>
   </data>
   <data name="Search_NoInput_TrySearchingFor" xml:space="preserve">
     <value>Try searching for...</value>

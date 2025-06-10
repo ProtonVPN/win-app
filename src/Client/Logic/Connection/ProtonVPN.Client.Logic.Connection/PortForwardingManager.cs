@@ -35,6 +35,7 @@ public class PortForwardingManager : IPortForwardingManager, IEventMessageReceiv
     private readonly ILogger _logger;
     private readonly IConnectionManager _connectionManager;
 
+    private DateTime _lastPortChangeTimeUtc;
     private int? _port;
     private PortMappingStatus _status;
 
@@ -47,6 +48,8 @@ public class PortForwardingManager : IPortForwardingManager, IEventMessageReceiv
                     or PortMappingStatus.DestroyPortMappingCommunication;
     
     public int? ActivePort => IsConnectedToNonP2PServer ? null : _port;
+
+    public DateTime? LastPortChangeTimeUtc => ActivePort.HasValue ? _lastPortChangeTimeUtc : null;
 
     public PortForwardingManager(
         IEventMessageSender eventMessageSender,
@@ -69,6 +72,7 @@ public class PortForwardingManager : IPortForwardingManager, IEventMessageReceiv
         {
             _logger.Info<AppLog>($"Port forwarding port changed from '{_port}' to '{newPort}'.");
             _port = newPort;
+            _lastPortChangeTimeUtc = DateTime.UtcNow;
             NotifyPortChange(newPort);
         }
 

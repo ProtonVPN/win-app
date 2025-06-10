@@ -136,15 +136,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Flyout>
     </UserControl.Resources>
 
-    <custom:WidgetButton x:Name="WidgetButton"
-                         Command="{x:Bind ViewModel.InvokeCommand, Mode=OneTime}"
-                         IsActive="{x:Bind ViewModel.IsSelected}"
-                         OnHoverFlyout="{StaticResource WidgetFlyout}"
-                         Style="{StaticResource SideWidgetButtonStyle}"
-                         Text="{x:Bind ViewModel.Header}"
-                         Visibility="{x:Bind ViewModel.IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
-        <featureicons:PortForwardingIconView Width="{StaticResource FeatureBarDimmableImageSize}"
-                                             Height="{StaticResource FeatureBarDimmableImageSize}" />
-    </custom:WidgetButton>
+    <StackPanel Orientation="Vertical">
+
+        <custom:WidgetButton x:Name="WidgetButton"
+                             Command="{x:Bind ViewModel.InvokeCommand, Mode=OneTime}"
+                             IsActive="{x:Bind ViewModel.IsSelected}"
+                             OnHoverFlyout="{StaticResource WidgetFlyout}"
+                             Style="{StaticResource SideWidgetButtonStyle}"
+                             Text="{x:Bind ViewModel.Header}"
+                             Visibility="{x:Bind ViewModel.IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <featureicons:PortForwardingIconView Width="{StaticResource FeatureBarDimmableImageSize}"
+                                                 Height="{StaticResource FeatureBarDimmableImageSize}" />
+        </custom:WidgetButton>
+
+        <components:ActivePortComponentView IsCompact="True"
+                                            Margin="0,2" 
+                                            Visibility="{x:Bind ViewModel.IsActivePortComponentVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+    </StackPanel>
 
 </UserControl>

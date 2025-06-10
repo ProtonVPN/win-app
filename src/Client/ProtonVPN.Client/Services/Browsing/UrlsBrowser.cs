@@ -106,6 +106,8 @@ public class UrlsBrowser : IUrlsBrowser
 
     public string ProfileLearnMore => "https://protonvpn.com/support/connection-profiles";
 
+    public string TrafficLearnMore => "https://protonvpn.com/support/traffic-stats";
+
     public void BrowseTo(string url)
     {
         try

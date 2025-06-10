@@ -28,7 +28,8 @@ public class SplitTunnelingRobot
     protected Element SplitTunnelingSwitch = Element.ByAutomationId("SplitTunnelingSwitch");
     protected Element IpAddressTextBox = Element.ByAutomationId("IpAddressTextBox");
     protected Element AddIpAddressButton = Element.ByAutomationId("AddIpAddressButton");
-    protected Element InverseModeRadioButton = Element.ByName("Inverse");
+    protected Element ExcludeModeRadioButton = Element.ByName("Exclude mode");
+    protected Element IncludeModeRadioButton = Element.ByName("Include mode");
     protected Element TrashIcon = Element.ByAutomationId("RemoveIpAddressButton");
 
     public SplitTunnelingRobot ToggleSplitTunnelingSwitch()
@@ -51,9 +52,15 @@ public class SplitTunnelingRobot
         return this;
     }
 
-    public SplitTunnelingRobot SelectInverseMode()
+    public SplitTunnelingRobot SelectExcludeMode()
     {
-        InverseModeRadioButton.Click();
+        ExcludeModeRadioButton.Click();
+        return this;
+    }
+
+    public SplitTunnelingRobot SelectIncludeMode()
+    {
+        IncludeModeRadioButton.Click();
         return this;
     }
 

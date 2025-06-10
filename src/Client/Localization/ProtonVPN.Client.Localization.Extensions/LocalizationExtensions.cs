@@ -427,6 +427,30 @@ public static class LocalizationExtensions
             }, itemsCount);
     }
 
+    public static string GetKillSwitchMode(this ILocalizationProvider localizer, KillSwitchMode mode)
+    { 
+        return mode switch
+        {
+            KillSwitchMode.Standard => localizer.Get("Settings_Connection_KillSwitch_Standard"),
+            KillSwitchMode.Advanced => localizer.Get("Settings_Connection_KillSwitch_Advanced"),
+            _ => throw new NotSupportedException($"Kill switch mode '{mode}' is not supported.")
+        };
+    }
+
+    public static string GetSplitTunnelingMode(this ILocalizationProvider localizer, SplitTunnelingMode mode, bool useShortVersion = false)
+    {
+        return mode switch
+        { 
+            SplitTunnelingMode.Standard => useShortVersion
+                ? localizer.Get("Settings_Connection_SplitTunneling_Standard_Short")
+                : localizer.Get("Settings_Connection_SplitTunneling_Standard"),
+            SplitTunnelingMode.Inverse => useShortVersion
+                ? localizer.Get("Settings_Connection_SplitTunneling_Inverse_Short")
+                : localizer.Get("Settings_Connection_SplitTunneling_Inverse"),
+            _ => throw new NotSupportedException($"Split tunneling mode '{mode}' is not supported.")
+        };
+    }
+
     public static string GetSplitTunnelingGroupName(this ILocalizationProvider localizer, SplitTunnelingGroupType groupType, int itemsCount)
     {
         return localizer.GetPluralFormat(
@@ -438,5 +462,23 @@ public static class LocalizationExtensions
                 SplitTunnelingGroupType.ExcludedIpAddresses => "Flyouts_SplitTunneling_Excluded_Ips",
                 _ => throw new NotSupportedException($"Group type '{groupType}' is not supported.")
             }, itemsCount);
+    }
+
+    public static string GetFormattedElapsedTime(this ILocalizationProvider localizer, DateTime utcDate)
+    {
+        DateTime utcNow = DateTime.UtcNow;
+        TimeSpan timeDifference = utcNow - utcDate;
+
+        DateTime localDateTime = utcDate.ToLocalTime();
+        string formattedLocalDateTime = $"{localDateTime.ToShortDateString()}, {localDateTime.ToShortTimeString()}";
+
+        return timeDifference switch
+        {
+            _ when timeDifference < TimeSpan.Zero => formattedLocalDateTime,
+            _ when timeDifference < TimeSpan.FromMinutes(1) => localizer.GetPluralFormat("Format_Time_Seconds_Ago", timeDifference.Seconds),
+            _ when timeDifference < TimeSpan.FromHours(1) => localizer.GetPluralFormat("Format_Time_Minutes_Ago", timeDifference.Minutes),
+            _ when timeDifference < TimeSpan.FromDays(1) => localizer.GetPluralFormat("Format_Time_Hours_Ago", timeDifference.Hours),
+            _ => formattedLocalDateTime
+        };
     }
 }

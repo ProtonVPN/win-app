@@ -99,11 +99,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </controls:SettingsExpander.Items>
             </controls:SettingsExpander>
 
-            <TextBlock Margin="0,8,0,0"
-                       Foreground="{ThemeResource TextWeakColorBrush}"
-                       Style="{StaticResource CaptionTextBlockStyle}"
-                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_KillSwitch_Footer')}" />
-
         </StackPanel>
 
     </custom:SettingsPageContentControl>

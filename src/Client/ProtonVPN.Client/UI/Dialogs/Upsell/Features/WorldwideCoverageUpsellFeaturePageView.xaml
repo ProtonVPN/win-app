@@ -36,19 +36,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <custom:UpsellFeatureContentControl Header="{x:Bind ViewModel.Title}"
                                         IllustrationSource="{x:Bind ViewModel.LargeIllustrationSource, Mode=OneTime}">
         <StackPanel Spacing="{StaticResource UpsellBulletSpacing}">
-            <custom:BulletHeaderedContentControl Header="{x:Bind ViewModel.Localizer.Get('Upsell_Carousel_WorldwideCoverage_OpenSource')}">
+            <custom:BulletHeaderedContentControl Header="{x:Bind ViewModel.Localizer.Get('Upsell_Carousel_WorldwideCoverage_Selection')}">
                 <custom:BulletHeaderedContentControl.BulletContent>
-                    <pathicons:Code Size="Pixels24" />
-                </custom:BulletHeaderedContentControl.BulletContent>
-            </custom:BulletHeaderedContentControl>
-            <custom:BulletHeaderedContentControl Header="{x:Bind ViewModel.Localizer.Get('Upsell_Carousel_WorldwideCoverage_Audit')}">
-                <custom:BulletHeaderedContentControl.BulletContent>
-                    <pathicons:Magnifier Size="Pixels24" />
+                    <pathicons:Earth Size="Pixels24" />
                 </custom:BulletHeaderedContentControl.BulletContent>
             </custom:BulletHeaderedContentControl>
             <custom:BulletHeaderedContentControl Header="{x:Bind ViewModel.Localizer.Get('Upsell_Carousel_WorldwideCoverage_Censorship')}">
                 <custom:BulletHeaderedContentControl.BulletContent>
-                    <pathicons:Alias Size="Pixels24" />
+                    <pathicons:Shield2Bolt Size="Pixels24" />
+                </custom:BulletHeaderedContentControl.BulletContent>
+            </custom:BulletHeaderedContentControl>
+            <custom:BulletHeaderedContentControl Header="{x:Bind ViewModel.Localizer.Get('Upsell_Carousel_WorldwideCoverage_Features')}">
+                <custom:BulletHeaderedContentControl.BulletContent>
+                    <pathicons:Lock Size="Pixels24" />
                 </custom:BulletHeaderedContentControl.BulletContent>
             </custom:BulletHeaderedContentControl>
         </StackPanel>

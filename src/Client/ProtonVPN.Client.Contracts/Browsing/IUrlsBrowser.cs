@@ -57,6 +57,7 @@ public interface IUrlsBrowser
     string ActiveProxyLearnMore { get; }
     string EnableBaseFilteringEngine { get; }
     string ProfileLearnMore { get; }
+    string TrafficLearnMore { get; }
 
     void BrowseTo(string url);
 }
