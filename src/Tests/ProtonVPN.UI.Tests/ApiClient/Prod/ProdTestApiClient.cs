@@ -141,7 +141,7 @@ public class ProdTestApiClient
 
     private HttpRequestMessage GetAuthorizedRequestMessage(HttpMethod method, string requestUri, string accessToken, string uniqueSessionId)
     {
-        HttpRequestMessage request = new(method, requestUri);
+        HttpRequestMessage request = GetUnauthorizedRequestMessage(method, requestUri);
         request.Headers.Add("x-pm-uid", uniqueSessionId);
         request.Headers.Add("Authorization", $"Bearer {accessToken}");
 
