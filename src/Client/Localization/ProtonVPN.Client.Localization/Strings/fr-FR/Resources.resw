@@ -3061,7 +3061,7 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>Connexion</value>
   </data>
   <data name="Settings_Connection_AdvancedSettings">
-    <value>Paramètres Avancé</value>
+    <value>Paramètres avancés</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting">
     <value>Routage alternatif</value>
