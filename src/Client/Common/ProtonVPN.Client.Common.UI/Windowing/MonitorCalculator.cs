@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,220 +19,203 @@
 
 using System;
 using System.Runtime.InteropServices;
-using ProtonVPN.Client.Common.UI.Extensions;
-using ProtonVPN.Client.Common.UI.Windowing.System;
+using Vanara.PInvoke;
 using Windows.Foundation;
+using static Vanara.PInvoke.SHCore;
+using static Vanara.PInvoke.Shell32;
+using static Vanara.PInvoke.User32;
 
 namespace ProtonVPN.Client.Common.UI.Windowing;
 
-public class MonitorCalculator
+public static class MonitorCalculator
 {
     private const int DEFAULT_WINDOW_WIDTH = 636;
     private const int DEFAULT_WINDOW_HEIGHT = 589;
 
-    /// <summary>Return the nearest monitor if the point is not contained by any monitor</summary>
-    private const uint MONITOR_DEFAULTTONEAREST = 0x00000002;
-    /// <summary>The effective DPI. This value should be used when determining the correct scale factor for scaling UI elements.
-    /// This incorporates the scale factor set by the user for this specific display.</summary>
-    private const uint MDT_EFFECTIVE_DPI = 0;
-
-    [DllImport("user32.dll", SetLastError = true)]
-    [return: MarshalAs(UnmanagedType.Bool)]
-    private static extern bool GetCursorPos(ref W32Point pt);
-
-    [DllImport("user32.dll", SetLastError = true)]
-    [return: MarshalAs(UnmanagedType.Bool)]
-    private static extern bool GetMonitorInfo(IntPtr hMonitor, ref W32MonitorInfo lpmi);
-
-    [DllImport("user32.dll")]
-    private static extern IntPtr MonitorFromPoint(W32Point pt, uint dwFlags);
-
-    [DllImport("user32.dll")]
-    private static extern IntPtr MonitorFromRect(W32Rect lprc, uint dwFlags);
-
-    [DllImport("Shcore.dll")]
-    private static extern uint GetDpiForMonitor(IntPtr hMonitor, uint dpiType, ref uint dpiX, ref uint dpiY);
-
-    public static W32Point? CalculateWindowCenteredInCursorMonitor(double windowWidth, double windowHeight)
+    public static Point? CalculateWindowCenteredInCursor(double windowWidth, double windowHeight)
     {
-        try
-        {
-            W32Point? nullableCursorPosition = GetCursorPosition();
-            if (nullableCursorPosition is null)
-            {
-                return null; // Error when obtaining mouse cursor position
-            }
-            W32Point cursorPosition = nullableCursorPosition.Value;
-
-            Monitor? monitor = GetCursorMonitor(cursorPosition);
-            if (monitor is null)
-            {
-                return null; // Error when obtaining monitor information
-            }
-
-            W32Point screenCenterPoint = CalculateScreenCenterPoint(monitor);
-
-            return CalculateWindowCenteredInPoint(screenCenterPoint, monitor, windowWidth, windowHeight);
-        }
-        catch
+        POINT? cursorPosition = GetCursorPosition();
+        if (cursorPosition is null)
         {
             return null;
         }
-    }
 
-    private static W32Point CalculateScreenCenterPoint(Monitor monitor)
-    {
-        Rect screen = monitor.WorkArea;
-        return new()
+        Monitor? monitor = GetCursorMonitor(cursorPosition.Value);
+        if (monitor is null)
         {
-            X = (int)Math.Round(screen.Left + ((screen.Right - screen.Left) / 2.0)),
-            Y = (int)Math.Round(screen.Top + ((screen.Bottom - screen.Top) / 2.0))
-        };
-    }
-
-    private static W32Point? GetCursorPosition()
-    {
-        W32Point point = new();
-        return GetCursorPos(ref point) ? point : null;
-    }
-
-    private static Monitor? GetCursorMonitor(W32Point cursorPosition)
-    {
-        IntPtr monitorHandle = MonitorFromPoint(cursorPosition, MONITOR_DEFAULTTONEAREST);
-        return GetMonitorByHandle(monitorHandle);
-    }
-
-    private static Monitor? GetMonitorByHandle(IntPtr monitorHandle)
-    {
-        W32MonitorInfo monitorInfo = new()
-        {
-            Size = Marshal.SizeOf(typeof(W32MonitorInfo))
-        };
-        bool hasMonitorInfo = GetMonitorInfo(monitorHandle, ref monitorInfo);
-
-        uint dpiX = 0;
-        uint dpiY = 0;
-        uint result = GetDpiForMonitor(monitorHandle, MDT_EFFECTIVE_DPI, ref dpiX, ref dpiY);
-
-        if (hasMonitorInfo && result == 0)
-        {
-            return new Monitor(monitorInfo, new Point(x: dpiX, y: dpiY));
+            return null;
         }
-        return null;
+
+        return CalculateWindowCenteredInPoint(cursorPosition.Value.ToPoint(), monitor, windowWidth, windowHeight);
     }
 
-    private static W32Point CalculateWindowCenteredInPoint(W32Point centerPoint,
-        Monitor monitor, double windowWidth, double windowHeight)
+    public static Point? CalculateWindowCenteredInCursorMonitor(double windowWidth, double windowHeight)
     {
-        Rect monitorRect = monitor.WorkArea;
-        double offsetX = Math.Round((windowWidth / 2.0) * (monitor.Dpi.X / 96.0));
-        double offsetY = Math.Round((windowHeight / 2.0) * (monitor.Dpi.Y / 96.0));
+        POINT? cursorPosition = GetCursorPosition();
+        if (cursorPosition is null)
+        {
+            return null;
+        }
 
-        double top = centerPoint.Y - offsetY;
+        Monitor? monitor = GetCursorMonitor(cursorPosition.Value);
+        if (monitor is null)
+        {
+            return null;
+        }
+
+        Point screenCenter = CalculateScreenCenterPoint(monitor);
+        return CalculateWindowCenteredInPoint(screenCenter, monitor, windowWidth, windowHeight);
+    }
+
+    public static Rect? GetValidWindowSizeAndPosition(Rect windowRect)
+    {
+        Monitor? monitor = GetWindowMonitor(windowRect.ToRECT());
+        if (monitor is null)
+        {
+            return null;
+        }
+
+        double windowWidth = windowRect.Width;
+        double windowHeight = windowRect.Height;
+
+        RECT workArea = monitor.WorkArea;
+
+        bool needsCentering =
+            windowRect.Top < workArea.top ||
+            windowRect.Bottom > workArea.bottom ||
+            windowRect.Left < workArea.left ||
+            windowRect.Right > workArea.right;
+
+        if (windowWidth > workArea.Width || windowHeight > workArea.Height)
+        {
+            windowWidth = Math.Min(DEFAULT_WINDOW_WIDTH, workArea.Width);
+            windowHeight = Math.Min(DEFAULT_WINDOW_HEIGHT, workArea.Height);
+            needsCentering = true;
+        }
+
+        if (needsCentering)
+        {
+            Point screenCenter = CalculateScreenCenterPoint(monitor);
+            Point topLeft = CalculateWindowCenteredInPoint(screenCenter, monitor, windowWidth, windowHeight);
+            return new Rect(topLeft.X, topLeft.Y, topLeft.X + windowWidth, topLeft.Y + windowHeight);
+        }
+
+        return windowRect;
+    }
+
+    public static TaskbarEdge GetTaskbarEdge()
+    {
+        APPBARDATA appBarData = new()
+        { cbSize = (uint)Marshal.SizeOf<APPBARDATA>() };
+        if (SHAppBarMessage(ABM.ABM_GETTASKBARPOS, ref appBarData) == IntPtr.Zero)
+        {
+            return TaskbarEdge.Unknown;
+        }
+
+        return (TaskbarEdge)appBarData.uEdge;
+    }
+
+    private static Point ToPoint(this POINT point)
+    {
+        return new Point(point.X, point.Y);
+    }
+
+    private static Rect ToRect(this RECT rect)
+    {
+        return new Rect(rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top);
+    }
+
+    private static POINT ToPOINT(this Point point)
+    {
+        return new POINT((int)point.X, (int)point.Y);
+    }
+
+    private static RECT ToRECT(this Rect rect)
+    {
+        return new RECT((int)rect.X, (int)rect.Y, (int)(rect.X + rect.Width), (int)(rect.Y + rect.Height));
+    }
+
+    private static POINT? GetCursorPosition()
+    {
+        return GetCursorPos(out POINT pt) ? pt : null;
+    }
+
+    private static Monitor? GetCursorMonitor(POINT point)
+    {
+        HMONITOR hMonitor = MonitorFromPoint(point, MonitorFlags.MONITOR_DEFAULTTONEAREST);
+        return GetMonitorByHandle(hMonitor);
+    }
+
+    private static Monitor? GetWindowMonitor(RECT rect)
+    {
+        HMONITOR hMonitor = MonitorFromRect(rect, MonitorFlags.MONITOR_DEFAULTTONEAREST);
+        return GetMonitorByHandle(hMonitor);
+    }
+
+    private static Monitor? GetMonitorByHandle(HMONITOR hMonitor)
+    {
+        // Declare the MONITORINFO structure before using it
+        MONITORINFOEX monitorInfo = new()
+        {
+            cbSize = (uint)Marshal.SizeOf(typeof(MONITORINFOEX)) // Initialize the structure size
+        };
+
+        // Fix the syntax and ensure the structure is passed correctly
+        if (!GetMonitorInfo(hMonitor, ref monitorInfo))
+        {
+            return null;
+        }
+
+        if (GetDpiForMonitor(hMonitor, MONITOR_DPI_TYPE.MDT_EFFECTIVE_DPI, out uint dpiX, out uint dpiY) != 0)
+        {
+            return null;
+        }
+
+        return new Monitor(monitorInfo, new POINT((int)dpiX, (int)dpiY));
+    }
+
+    private static Point CalculateScreenCenterPoint(Monitor monitor)
+    {
+        RECT work = monitor.WorkArea;
+        return new Point(
+            work.left + (work.Width / 2),
+            work.top + (work.Height / 2));
+    }
+
+    private static Point CalculateWindowCenteredInPoint(Point centerPoint, Monitor monitor, double windowWidth, double windowHeight)
+    {
+        double scaleX = monitor.Dpi.X / 96.0;
+        double scaleY = monitor.Dpi.Y / 96.0;
+
+        int offsetX = (int)Math.Round(windowWidth / 2.0 * scaleX);
+        int offsetY = (int)Math.Round(windowHeight / 2.0 * scaleY);
+
         double left = centerPoint.X - offsetX;
+        double top = centerPoint.Y - offsetY;
 
-        Rect screen = new(new Point(monitorRect.Left, monitorRect.Top), new Point(monitorRect.Right, monitorRect.Bottom));
-        Rect window = new(new Point(left, top), new Point(left + windowWidth, top + windowHeight));
+        RECT screen = monitor.WorkArea;
 
-        top = window.Top;
-        left = window.Left;
-
-        if (!screen.Contains(window))
+        // Clamp to screen bounds
+        if (left < screen.left)
         {
-            if (window.Top < screen.Top)
-            {
-                double diff = Math.Abs(screen.Top - window.Top);
-                top = window.Top + diff;
-            }
-
-            if (window.Bottom > screen.Bottom)
-            {
-                double diff = window.Bottom - screen.Bottom;
-                top = window.Top - diff;
-            }
-
-            if (window.Left < screen.Left)
-            {
-                double diff = Math.Abs(screen.Left - window.Left);
-                left = window.Left + diff;
-            }
-
-            if (window.Right > screen.Right)
-            {
-                double diff = window.Right - screen.Right;
-                left = window.Left - diff;
-            }
+            left = screen.left;
         }
 
-        return new W32Point() { X = (int)left, Y = (int)top };
-    }
-
-    public static W32Point? CalculateWindowCenteredInCursor(double windowWidth, double windowHeight)
-    {
-        try
+        if (top < screen.top)
         {
-            W32Point? nullableCursorPosition = GetCursorPosition();
-            if (nullableCursorPosition is null)
-            {
-                return null; // Error when obtaining mouse cursor position
-            }
-            W32Point cursorPosition = nullableCursorPosition.Value;
-
-            Monitor? monitor = GetCursorMonitor(cursorPosition);
-            if (monitor is null)
-            {
-                return null; // Error when obtaining monitor information
-            }
-
-            return CalculateWindowCenteredInPoint(cursorPosition, monitor, windowWidth, windowHeight);
+            top = screen.top;
         }
-        catch
+
+        if (left + windowWidth > screen.right)
         {
-            return null;
+            left = screen.right - (int)(windowWidth * scaleX);
         }
-    }
 
-    public static W32Rect? GetValidWindowSizeAndPosition(W32Rect windowRectangle)
-    {
-        try
+        if (top + windowHeight > screen.bottom)
         {
-            Monitor? monitor = GetWindowMonitor(windowRectangle);
-            if (monitor is null)
-            {
-                return null; // Error when obtaining monitor information
-            }
-
-            int windowWidth = windowRectangle.Right - windowRectangle.Left;
-            int windowHeight = windowRectangle.Bottom - windowRectangle.Top;
-            bool isToCenterWindowInMonitor = 
-                windowRectangle.Top < monitor.WorkArea.Top ||
-                windowRectangle.Bottom > monitor.WorkArea.Bottom ||
-                windowRectangle.Left < monitor.WorkArea.Left ||
-                windowRectangle.Right > monitor.WorkArea.Right;
-            if (windowWidth > monitor.WorkArea.Width || windowHeight > monitor.WorkArea.Height)
-            {
-                windowWidth = Math.Min(DEFAULT_WINDOW_WIDTH, (int)monitor.WorkArea.Width);
-                windowHeight = Math.Min(DEFAULT_WINDOW_HEIGHT, (int)monitor.WorkArea.Height);
-                isToCenterWindowInMonitor = true;
-            }
-
-            if (isToCenterWindowInMonitor)
-            {
-                W32Point screenCenterPoint = CalculateScreenCenterPoint(monitor);
-                W32Point windowTopLeftCornerPoint = CalculateWindowCenteredInPoint(screenCenterPoint, monitor, windowWidth, windowHeight);
-                return new W32Rect(windowTopLeftCornerPoint, windowWidth, windowHeight);
-            }
-            return windowRectangle;
+            top = screen.bottom - (int)(windowHeight * scaleY);
         }
-        catch
-        {
-            return null;
-        }
-    }
 
-    private static Monitor? GetWindowMonitor(W32Rect windowRectangle)
-    {
-        IntPtr monitorHandle = MonitorFromRect(windowRectangle, MONITOR_DEFAULTTONEAREST);
-        return GetMonitorByHandle(monitorHandle);
+        return new Point(left, top);
     }
 }

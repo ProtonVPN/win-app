@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -25,6 +25,15 @@ namespace ProtonVPN.Client.UI.Main.Home.Card;
 
 public sealed partial class ConnectionCardComponentView : IContextAware
 {
+    public static readonly DependencyProperty ButtonsAlignmentProperty =
+        DependencyProperty.Register(nameof(ButtonsAlignment), typeof(HorizontalAlignment), typeof(ConnectionCardComponentView), new PropertyMetadata(HorizontalAlignment.Center));
+
+    public HorizontalAlignment ButtonsAlignment
+    {
+        get => (HorizontalAlignment)GetValue(ButtonsAlignmentProperty);
+        set => SetValue(ButtonsAlignmentProperty, value);
+    }
+
     public ConnectionCardComponentViewModel ViewModel { get; }
 
     public ConnectionCardComponentView()

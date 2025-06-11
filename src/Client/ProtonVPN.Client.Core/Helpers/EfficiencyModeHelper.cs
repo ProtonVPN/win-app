@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,8 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using H.NotifyIcon.EfficiencyMode;
 using System;
+using H.NotifyIcon.EfficiencyMode;
+using ProtonVPN.Common.Core.Helpers;
 
 namespace ProtonVPN.Client.Core.Helpers;
 
@@ -42,7 +43,7 @@ public static class EfficiencyModeHelper
             // that your exe assembly is compatible with Windows 8.1 and Windows 10.0, System.Environment.OSVersion
             // will return Windows 8 version, which is 6.2, instead of 6.3 and 10.0!
             if (Environment.OSVersion.Platform == PlatformID.Win32NT &&
-                Environment.OSVersion.Version >= new Version(10, 0, 16299))
+                OSVersion.IsOrHigherThan(OSVersion.EfficiencyModeMinimumWindowsVersion))
             {
                 EfficiencyModeUtilities.SetEfficiencyMode(value);
             }

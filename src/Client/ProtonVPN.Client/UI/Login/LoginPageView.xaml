@@ -77,7 +77,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <components:DisableKillSwitchBannerComponent />
 
                         <InfoBar AutomationProperties.AutomationId="LoginPageMessage"
-                                 IsOpen="{x:Bind ViewModel.IsMessageVisible}"
+                                 IsOpen="{x:Bind ViewModel.IsMessageVisible, Mode=TwoWay}"
                                  Message="{x:Bind ViewModel.Message}"
                                  Severity="{x:Bind ViewModel.MessageType}" />
 

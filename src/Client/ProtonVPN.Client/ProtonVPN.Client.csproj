@@ -40,6 +40,9 @@
     <None Remove="UI\Dialogs\ReportIssue\Pages\ReportIssueResultPageView.xaml" />
     <None Remove="UI\Dialogs\ReportIssue\ReportIssueShellView.xaml" />
     <None Remove="UI\Dialogs\ReportIssue\ReportIssueWindow.xaml" />
+    <None Remove="UI\Dialogs\Tray\Pages\TrayLoginPageView.xaml" />
+    <None Remove="UI\Dialogs\Tray\Pages\TrayMainPageView.xaml" />
+    <None Remove="UI\Dialogs\Tray\TrayAppShellView.xaml" />
     <None Remove="UI\Dialogs\Upsell\Features\ProfilesUpsellFeaturePageView.xaml" />
     <None Remove="UI\Dialogs\Upsell\UpsellCarouselShellView.xaml" />
     <None Remove="UI\Login\Components\DisableKillSwitchBannerComponent.xaml" />
@@ -85,6 +88,8 @@
     <None Remove="UI\Main\Home\Details\Location\LocationDetailsPageView.xaml" />
     <None Remove="UI\Main\Home\HomeComponentView.xaml" />
     <None Remove="UI\Main\Home\Map\MapComponentView.xaml" />
+    <None Remove="UI\Main\Home\Status\ConnectionStatusGradientView.xaml" />
+    <None Remove="UI\Main\Home\Status\ConnectionStatusHeaderView.xaml" />
     <None Remove="UI\Main\Home\Upsell\ChangeServerComponentView.xaml" />
     <None Remove="UI\Main\Home\Upsell\ConnectionCardUpsellBannerView.xaml" />
     <None Remove="UI\Main\MainPageView.xaml" />
@@ -137,6 +142,7 @@
     <None Remove="UI\Overlays\Welcome\WelcomeToVpnB2BOverlayView.xaml" />
     <None Remove="UI\Overlays\Welcome\WelcomeToVpnPlusOverlayView.xaml" />
     <None Remove="UI\Overlays\Welcome\WelcomeToVpnUnlimitedOverlayView.xaml" />
+    <None Remove="UI\Tray\TrayAppWindow.xaml" />
     <None Remove="UI\Tray\TrayIconComponentView.xaml" />
     <None Remove="UI\Update\UpdateComponent.xaml" />
   </ItemGroup>
@@ -699,6 +705,42 @@
 
   <ItemGroup>
     <PRIResource Remove="UI\Main\Home\Details\Contracts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\Home\Status\ConnectionStatusHeaderView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\Home\Status\ConnectionStatusGradientView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Dialogs\Tray\Pages\TrayMainPageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Dialogs\Tray\Pages\TrayLoginPageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Dialogs\Tray\TrayAppShellView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Tray\TrayAppWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

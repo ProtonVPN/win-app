@@ -639,14 +639,11 @@
         <None Remove="Assets\Flags\ZM.svg" />
         <None Remove="Assets\Flags\ZW.svg" />
         <None Remove="Assets\Icons\ActivePortNumber.xaml" />
-        <None Remove="Assets\Icons\App\proton-vpn-off.svg" />
-        <None Remove="Assets\Icons\App\proton-vpn-on.svg" />
-        <None Remove="Assets\Icons\App\vpn-off.ico" />
-        <None Remove="Assets\Icons\App\vpn-on.ico" />
-        <None Remove="Assets\Icons\App\vpn-tray-error.ico" />
-        <None Remove="Assets\Icons\App\vpn-tray-not-logged-in.ico" />
-        <None Remove="Assets\Icons\App\vpn-tray-protected.ico" />
-        <None Remove="Assets\Icons\App\vpn-tray-unprotected.ico" />
+        <None Remove="Assets\Icons\App\badge-error-w10.ico" />
+        <None Remove="Assets\Icons\App\badge-protected-w10.ico" />
+        <None Remove="Assets\Icons\App\badge-unprotected-w10.ico" />
+        <None Remove="Assets\Icons\App\badge-warning-w10.ico" />
+        <None Remove="Assets\Icons\App\badge-warning.ico" />
         <None Remove="Assets\Icons\App\vpn-tray-warning.ico" />
         <None Remove="Assets\Icons\LatencyHigh.xaml" />
         <None Remove="Assets\Icons\LatencyLow.xaml" />
@@ -892,6 +889,9 @@
         <PackageReference Include="System.Formats.Asn1" />
         <PackageReference Include="System.Text.Json" />
 		<PackageReference Include="Mapsui.WinUI" />
+		<PackageReference Include="Vanara.PInvoke.SHCore" />
+		<PackageReference Include="Vanara.PInvoke.Shell32" />
+		<PackageReference Include="Vanara.PInvoke.User32" />
     </ItemGroup>
     <ItemGroup>
         <Page Update="Controls\Map\MapControl.xaml">
@@ -1092,6 +1092,30 @@
         <Content Update="Assets\Flags\Light\Random.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Icons\App\badge-error-w10.ico">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\badge-error.ico">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\badge-protected-w10.ico">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\badge-protected.ico">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\badge-unprotected-w10.ico">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\badge-unprotected.ico">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\badge-warning-w10.ico">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\badge-warning.ico">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Icons\App\proton-vpn-off.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1102,21 +1126,6 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Icons\App\vpn-on.ico">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Assets\Icons\App\vpn-tray-error.ico">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Assets\Icons\App\vpn-tray-not-logged-in.ico">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Assets\Icons\App\vpn-tray-protected.ico">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Assets\Icons\App\vpn-tray-unprotected.ico">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Update="Assets\Icons\App\vpn-tray-warning.ico">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Flags\AD.svg">
@@ -1837,6 +1846,21 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Flags\ZW.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\vpn-tray-error.ico">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\vpn-tray-not-logged-in.ico">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\vpn-tray-protected.ico">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\vpn-tray-unprotected.ico">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Icons\App\vpn-tray-warning.ico">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Icons\no-wifi.svg">

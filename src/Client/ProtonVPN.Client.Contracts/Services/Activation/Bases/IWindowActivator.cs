@@ -23,6 +23,8 @@ public interface IWindowActivator
 {
     string WindowTitle { get; }
 
+    bool IsWindowVisible { get; }
+
     event EventHandler? HostDpiChanged;
 
     event EventHandler? HostSizeChanged;

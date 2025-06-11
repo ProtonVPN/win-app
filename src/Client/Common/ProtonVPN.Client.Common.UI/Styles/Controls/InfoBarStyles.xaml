@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2024 Proton AG
+Copyright (c) 2025 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -20,16 +20,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons">
+                    xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+                    xmlns:triggers="using:CommunityToolkit.WinUI">
 
     <ResourceDictionary.ThemeDictionaries>
 
         <ResourceDictionary x:Key="Light">
 
-            <StaticResource x:Key="InfoBarErrorSeverityBackgroundBrush" ResourceKey="BackgroundNormColorBrush" />
-            <StaticResource x:Key="InfoBarWarningSeverityBackgroundBrush" ResourceKey="BackgroundNormColorBrush" />
-            <StaticResource x:Key="InfoBarSuccessSeverityBackgroundBrush" ResourceKey="BackgroundNormColorBrush" />
-            <StaticResource x:Key="InfoBarInformationalSeverityBackgroundBrush" ResourceKey="BackgroundNormColorBrush" />
+            <StaticResource x:Key="InfoBarErrorSeverityBackgroundBrush" ResourceKey="BannerBackgroundColorBrush" />
+            <StaticResource x:Key="InfoBarWarningSeverityBackgroundBrush" ResourceKey="BannerBackgroundColorBrush" />
+            <StaticResource x:Key="InfoBarSuccessSeverityBackgroundBrush" ResourceKey="BannerBackgroundColorBrush" />
+            <StaticResource x:Key="InfoBarInformationalSeverityBackgroundBrush" ResourceKey="BannerBackgroundColorBrush" />
 
             <StaticResource x:Key="InfoBarErrorSeverityBorderBrush" ResourceKey="SignalDangerColorBrush" />
             <StaticResource x:Key="InfoBarWarningSeverityBorderBrush" ResourceKey="SignalWarningColorBrush" />
@@ -55,10 +56,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <ResourceDictionary x:Key="Dark">
 
-            <StaticResource x:Key="InfoBarErrorSeverityBackgroundBrush" ResourceKey="BackgroundNormColorBrush" />
-            <StaticResource x:Key="InfoBarWarningSeverityBackgroundBrush" ResourceKey="BackgroundNormColorBrush" />
-            <StaticResource x:Key="InfoBarSuccessSeverityBackgroundBrush" ResourceKey="BackgroundNormColorBrush" />
-            <StaticResource x:Key="InfoBarInformationalSeverityBackgroundBrush" ResourceKey="BackgroundNormColorBrush" />
+            <StaticResource x:Key="InfoBarErrorSeverityBackgroundBrush" ResourceKey="BannerBackgroundColorBrush" />
+            <StaticResource x:Key="InfoBarWarningSeverityBackgroundBrush" ResourceKey="BannerBackgroundColorBrush" />
+            <StaticResource x:Key="InfoBarSuccessSeverityBackgroundBrush" ResourceKey="BannerBackgroundColorBrush" />
+            <StaticResource x:Key="InfoBarInformationalSeverityBackgroundBrush" ResourceKey="BannerBackgroundColorBrush" />
 
             <StaticResource x:Key="InfoBarErrorSeverityBorderBrush" ResourceKey="SignalDangerColorBrush" />
             <StaticResource x:Key="InfoBarWarningSeverityBorderBrush" ResourceKey="SignalWarningColorBrush" />
@@ -131,10 +132,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               ColumnSpacing="8">
 
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
                             <StackPanel x:Name="IconArea"
@@ -153,8 +153,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   ContentTemplate="{TemplateBinding ContentTemplate}"
                                                   Visibility="{Binding Content, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
-                                <Grid Grid.Column="0"
-                                      Margin="{StaticResource DefaultInfoBarIllustrationMargin}"
+                                <Grid Margin="{StaticResource DefaultInfoBarIllustrationMargin}"
                                       VerticalAlignment="Top"
                                       Visibility="{Binding Content, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}">
                                     <pathicons:InfoCircleFilled x:Name="InformationalSeverityIcon"
@@ -166,9 +165,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                  Size="Pixels20"
                                                                  Visibility="Collapsed" />
                                     <pathicons:ExclamationTriangleFilled x:Name="WarningSeverityIcon"
-                                                                       Foreground="{ThemeResource InfoBarWarningSeverityIconForeground}"
-                                                                       Size="Pixels20"
-                                                                       Visibility="Collapsed" />
+                                                                         Foreground="{ThemeResource InfoBarWarningSeverityIconForeground}"
+                                                                         Size="Pixels20"
+                                                                         Visibility="Collapsed" />
                                     <pathicons:CheckmarkCircleFilled x:Name="SuccessSeverityIcon"
                                                                      Foreground="{ThemeResource InfoBarSuccessSeverityIconForeground}"
                                                                      Size="Pixels20"
@@ -177,7 +176,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             </StackPanel>
 
-                            <StackPanel Grid.Column="1"
+                            <StackPanel x:Name="ContentArea"
+                                        Grid.Column="1"
                                         Orientation="Vertical"
                                         Spacing="4">
 
@@ -197,17 +197,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            TextWrapping="WrapWholeWords"
                                            Visibility="{Binding Text, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
+                                <ContentPresenter x:Name="ActionArea"
+                                                  Grid.Row="1"
+                                                  Grid.Column="1"
+                                                  Margin="-5,4,0,0"
+                                                  HorizontalAlignment="Left"
+                                                  VerticalAlignment="Center"
+                                                  Content="{TemplateBinding ActionButton}"
+                                                  Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}"/>
+
                             </StackPanel>
 
-                            <ContentPresenter Grid.Column="2"
-                                              Margin="0,-8"
-                                              VerticalAlignment="Center"
-                                              Content="{TemplateBinding ActionButton}" />
-
                             <Button Name="CloseButton"
-                                    Grid.Column="3"
-                                    Margin="0,-8"
-                                    VerticalAlignment="Center"
+                                    Grid.Column="2"
+                                    Margin="8,0,0,0"
+                                    VerticalAlignment="Top"
                                     Command="{TemplateBinding CloseButtonCommand}"
                                     CommandParameter="{TemplateBinding CloseButtonCommandParameter}"
                                     Style="{TemplateBinding CloseButtonStyle}">

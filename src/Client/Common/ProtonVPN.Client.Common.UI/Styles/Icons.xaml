@@ -33,14 +33,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <BitmapImage x:Key="ProtonVpnErrorTrayIcon"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/App/vpn-tray-error.ico" />
+    <BitmapImage x:Key="ProtonVpnWarningTrayIcon"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/App/vpn-tray-warning.ico" />
     <BitmapImage x:Key="ProtonVpnLoggedOutTrayIcon"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/App/vpn-tray-not-logged-in.ico" />
     <BitmapImage x:Key="ProtonVpnProtectedTrayIcon"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/App/vpn-tray-protected.ico" />
     <BitmapImage x:Key="ProtonVpnUnprotectedTrayIcon"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/App/vpn-tray-unprotected.ico" />
-    <BitmapImage x:Key="ProtonVpnWarningTrayIcon"
-                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/App/vpn-tray-warning.ico" />
 
     <BitmapImage x:Key="Streaming10PlayIcon"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Icons/Streaming/10play.png" />

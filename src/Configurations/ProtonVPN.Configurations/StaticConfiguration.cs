@@ -46,6 +46,7 @@ public class StaticConfiguration : IStaticConfiguration
     public string ImageCacheFolder { get; } = DefaultConfiguration.ImageCacheFolder;
     public string UpdatesFolder { get; } = DefaultConfiguration.UpdatesFolder;
     public string WebViewFolder { get; } = DefaultConfiguration.WebViewFolder;
+    public string AssetsFolder { get; } = DefaultConfiguration.AssetsFolder;
 
     public string ClientLogsFilePath { get; } = DefaultConfiguration.ClientLogsFilePath;
     public string ServiceLogsFilePath { get; } = DefaultConfiguration.ServiceLogsFilePath;

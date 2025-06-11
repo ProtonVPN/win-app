@@ -55,6 +55,7 @@ public static class ModalSourceTranslator
             ModalSource.CarouselTor => "home_carousel_tor",
             ModalSource.Account => "account",
             ModalSource.Tor => "tor",
+            ModalSource.Tray => "tray",
             _ => "n/a",
         };
     }

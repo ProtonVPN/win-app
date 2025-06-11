@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2025 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<Page x:Class="ProtonVPN.Client.UI.Dialogs.Tray.Pages.TrayMainPageView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:card="using:ProtonVPN.Client.UI.Main.Home.Card"
+      xmlns:components="using:ProtonVPN.Client.UI.Main.Components"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:ProtonVPN.Client.UI.Dialogs.Tray.Pages"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+      xmlns:recents="using:ProtonVPN.Client.UI.Main.Sidebar.Connections.Recents"
+      xmlns:status="using:ProtonVPN.Client.UI.Main.Home.Status"
+      x:DefaultBindMode="OneWay"
+      AutomationProperties.AutomationId="TrayMainPage"
+      AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_Main_Page')}"
+      NavigationCacheMode="Required"
+      mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <x:Double x:Key="ConnectionStatusGradientHeight">266.0</x:Double>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <status:ConnectionStatusGradientView Grid.Row="0"
+                                             Grid.RowSpan="4"
+                                             Height="{StaticResource ConnectionStatusGradientHeight}"
+                                             VerticalAlignment="Top"
+                                             IsHitTestVisible="False" />
+
+        <status:ConnectionStatusHeaderView Grid.Row="0"
+                                           Margin="20,20,20,4"
+                                           HorizontalAlignment="Center"
+                                           UseSimplifiedVersion="True" />
+
+        <card:ConnectionCardComponentView Grid.Row="1"
+                                          Margin="20" 
+                                          ButtonsAlignment="Stretch"/>
+
+        <Border Grid.Row="2"
+                Padding="8,8,16,8"
+                BorderBrush="{ThemeResource BorderWeakColorBrush}"
+                BorderThickness="0,1,0,0"
+                Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <recents:RecentsPageView />
+        </Border>
+
+        <custom:UpsellBanner Grid.Row="2"
+                             Margin="20,8"
+                             Title="{x:Bind ViewModel.Localizer.Get('FreeConnections_WorldwideCoverageUpsell')}"
+                             Description="{x:Bind ViewModel.UpsellBannerTagline}"
+                             Command="{x:Bind ViewModel.UpgradeCommand, Mode=OneTime}"
+                             IllustrationSource="{StaticResource WorldwideCoverageUpsellSmallIllustrationSource}"
+                             Visibility="{x:Bind ViewModel.IsUpsellBannerVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                             VerticalAlignment="Center"/>
+
+        <components:ConnectionErrorComponent x:Name="ConnectionErrorComponent"
+                                             Grid.Row="0"
+                                             Grid.RowSpan="4"
+                                             Margin="20"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Top" />
+    </Grid>
+</Page>

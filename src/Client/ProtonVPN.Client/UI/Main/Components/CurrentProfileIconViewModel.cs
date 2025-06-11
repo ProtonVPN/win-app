@@ -30,7 +30,7 @@ using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 
 namespace ProtonVPN.Client.UI.Main.Components;
 
-public partial class CurrentProfileIconViewModel : ActivatableViewModelBase,
+public partial class CurrentProfileIconViewModel : ViewModelBase,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<ProfilesChangedMessage>
 {

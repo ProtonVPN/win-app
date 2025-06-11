@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,15 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Runtime.InteropServices;
+namespace ProtonVPN.Client.Core.Enums;
 
-namespace ProtonVPN.Client.Common.UI.Windowing.System;
-
-[StructLayout(LayoutKind.Sequential)]
-public struct W32MonitorInfo
+public enum AppIconStatus
 {
-    public int Size;
-    public W32Rect Monitor;
-    public W32Rect WorkArea;
-    public uint Flags;
+    None,
+    Warning,
+    Error,
+    Connected,
+    Disconnected
 }

@@ -18,6 +18,7 @@
  */
 
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -54,6 +55,8 @@ public abstract class ConnectionPageViewModelBase : ConnectionListViewModelBase<
     public abstract IconElement Icon { get; }
 
     public virtual bool IsAvailable => true;
+
+    public bool IsActivePage => ParentViewNavigator.GetCurrentPageContext() == this;
 
     protected ConnectionPageViewModelBase(
         IConnectionsViewNavigator parentViewNavigator,
@@ -108,6 +111,13 @@ public abstract class ConnectionPageViewModelBase : ConnectionListViewModelBase<
     protected virtual void OnServerListChanged()
     {
         FetchItems();
+    }
+
+    protected override void OnNavigation(NavigationEventArgs e)
+    {
+        base.OnNavigation(e);
+
+        OnPropertyChanged(nameof(IsActivePage));
     }
 
     protected override void OnActivated()

@@ -2901,6 +2901,9 @@
     <value>Open {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn" xml:space="preserve">
+    <value>Open app to sign in</value>
+  </data>
   <data name="Exit_Confirmation_Title" xml:space="preserve">
     <value>Exit Proton VPN?</value>
   </data>

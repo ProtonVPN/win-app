@@ -33,6 +33,7 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
@@ -43,15 +44,15 @@ namespace ProtonVPN.Client.Services.Activation;
 
 public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowActivator,
     IEventMessageReceiver<AuthenticationStatusChanged>,
-    IEventMessageReceiver<WindowsSessionEndingMessage>
+    IEventMessageReceiver<WindowsSessionEndingMessage>,
+    IEventMessageReceiver<AppIconStatusChangedMessage>
 {
     private const int LOGIN_WINDOW_WIDTH = 1016;
     private const int LOGIN_WINDOW_HEIGHT = 659;
 
     private readonly IUserAuthenticator _userAuthenticator;
+    private readonly IConnectionManager _connectionManager;
     private readonly IEventMessageSender _eventMessageSender;
-
-    public bool IsWindowVisible { get; private set; }
 
     public Size CurrentWindowSize => new(Host?.Width ?? 0, Host?.Height ?? 0);
 
@@ -67,10 +68,12 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
         ILocalizationProvider localizer,
         IApplicationIconSelector iconSelector,
         IUserAuthenticator userAuthenticator,
+        IConnectionManager connectionManager,
         IEventMessageSender eventMessageSender)
         : base(logger, uiThreadDispatcher, themeSelector, settings, localizer, iconSelector)
     {
         _userAuthenticator = userAuthenticator;
+        _connectionManager = connectionManager;
         _eventMessageSender = eventMessageSender;
     }
 
@@ -90,10 +93,16 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
         });
     }
 
+    public void Receive(AppIconStatusChangedMessage message)
+    {
+        UIThreadDispatcher.TryEnqueue(InvalidateBadgeIcon);
+    }
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
 
+        InvalidateBadgeIcon();
         InvalidateWindowTitleBarVisibility();
 
         _eventMessageSender.Send(new ApplicationStartingMessage());
@@ -149,8 +158,7 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
 
         EfficiencyModeHelper.DisableEfficiencyMode();
 
-        InvalidateWindowVisibilityState(true);
-        InvalidateWindowState();
+        InvalidateBadgeIcon();
     }
 
     protected override void OnWindowHidden()
@@ -160,8 +168,6 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
         EfficiencyModeHelper.EnableEfficiencyMode();
 
         SaveWindowPosition();
-
-        InvalidateWindowVisibilityState(false);
     }
 
     protected override void OnWindowStateChanged()
@@ -170,8 +176,6 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
 
         SaveWindowState();
         SaveWindowPosition();
-
-        InvalidateWindowVisibilityState(CurrentWindowState is not WindowState.Minimized);
     }
 
     protected override void OnWindowClosing(WindowEventArgs e)
@@ -198,6 +202,18 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
         SaveWindowPosition();
 
         _eventMessageSender.Send(new ApplicationStoppedMessage());
+    }
+
+    protected override void OnWindowVisibilityChanged()
+    {
+        base.OnWindowVisibilityChanged();
+
+        _eventMessageSender.Send(new MainWindowVisibilityChangedMessage { IsMainWindowVisible = IsWindowVisible });
+    }
+
+    private void InvalidateBadgeIcon()
+    {
+        Host?.SetBadge(IconSelector.GetTaskbarBadgeIcon());
     }
 
     private void SaveWindowState()
@@ -227,16 +243,6 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
         catch (Exception ex)
         {
             Logger.Error<AppLog>("An exception occurred when saving the window position.", ex);
-        }
-    }
-
-    private void InvalidateWindowVisibilityState(bool isWindowVisible)
-    {
-        if (IsWindowVisible != isWindowVisible)
-        {
-            IsWindowVisible = isWindowVisible;
-
-            _eventMessageSender.Send(new MainWindowVisibilityChangedMessage { IsMainWindowVisible = isWindowVisible });
         }
     }
 

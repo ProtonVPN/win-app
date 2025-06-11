@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Core.Models;
+using ProtonVPN.Client.Core.Enums;
 
-public struct IconStatusParameters
+namespace ProtonVPN.Client.Core.Messages;
+
+public class AppIconStatusChangedMessage
 {
-    public bool IsAuthenticated { get; set; }
-    public bool IsConnected { get; set; }
-    public bool HasError { get; set; }
+    public AppIconStatus Status { get; }
+
+    public AppIconStatusChangedMessage(AppIconStatus status)
+    {
+        Status = status;
+    }
 }

@@ -21,7 +21,9 @@ namespace ProtonVPN.Client.Core.Bases.ViewModels;
 
 public abstract partial class ActivatableViewModelBase : ViewModelBase, IActivationAware
 {
-    public bool IsActive { get; private set; }
+    private int _activationCount = 0;
+
+    public bool IsActive => _activationCount > 0;
 
     protected ActivatableViewModelBase(IViewModelHelper viewModelHelper) : base(viewModelHelper)
     {
@@ -29,20 +31,24 @@ public abstract partial class ActivatableViewModelBase : ViewModelBase, IActivat
 
     public void Activate()
     {
-        if (!IsActive)
-        {
-            IsActive = true;
+        bool wasInactive = !IsActive;
 
+        _activationCount++;
+
+        if (wasInactive && IsActive)
+        {
             OnActivated();
         }
     }
 
     public void Deactivate()
     {
-        if (IsActive)
-        {
-            IsActive = false;
+        bool wasActive = IsActive;
 
+        _activationCount--;
+
+        if (wasActive && !IsActive)
+        {
             OnDeactivated();
         }
     }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,23 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Runtime.InteropServices;
+namespace ProtonVPN.Client.Common.UI.Windowing;
 
-namespace ProtonVPN.Client.Common.UI.Windowing.System;
-
-[StructLayout(LayoutKind.Sequential)]
-public struct W32Point
+public enum TaskbarEdge
 {
-    public int X = 0;
-    public int Y = 0;
-
-    public W32Point()
-    {
-    }
-
-    public W32Point(int x, int y)
-    {
-        X = x;
-        Y = y;
-    }
+    Left = 0,
+    Top = 1,
+    Right = 2,
+    Bottom = 3,
+    Unknown = -1
 }

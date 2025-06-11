@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,15 +20,13 @@
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
+using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Models;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Home.Card.DefaultConnections;
 
@@ -36,6 +34,7 @@ public partial class DefaultConnectionSelectorViewModel : ActivatableViewModelBa
     IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly ISettings _settings;
+    private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IMainViewNavigator _mainViewNavigator;
     private readonly ISettingsViewNavigator _settingsViewNavigator;
 
@@ -50,11 +49,13 @@ public partial class DefaultConnectionSelectorViewModel : ActivatableViewModelBa
     public DefaultConnectionSelectorViewModel(
         IViewModelHelper viewModelHelper,
         ISettings settings,
+        IMainWindowActivator mainWindowActivator,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator)
         : base(viewModelHelper)
     {
         _settings = settings;
+        _mainWindowActivator = mainWindowActivator;
         _mainViewNavigator = mainViewNavigator;
         _settingsViewNavigator = settingsViewNavigator;
     }
@@ -106,6 +107,8 @@ public partial class DefaultConnectionSelectorViewModel : ActivatableViewModelBa
     [RelayCommand]
     private async Task<bool> NavigateToDefaultConnectionSettingsAsync()
     {
+        _mainWindowActivator.Activate();
+
         return await _mainViewNavigator.NavigateToSettingsViewAsync()
             && await _settingsViewNavigator.NavigateToDefaultConnectionSettingsViewAsync(isDirectNavigation: true);
     }

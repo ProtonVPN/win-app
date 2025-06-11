@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -27,13 +27,15 @@ using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Common.Interop;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Common.UI.Windowing;
-using ProtonVPN.Client.Common.UI.Windowing.System;
 using ProtonVPN.Client.Core.Helpers;
 using Windows.Foundation;
 using Windows.Graphics;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using WinUIEx;
+using ProtonVPN.Common.Core.Helpers;
+using Icon = System.Drawing.Icon;
+using static Vanara.PInvoke.Shell32;
 
 namespace ProtonVPN.Client.Core.Extensions;
 
@@ -105,7 +107,7 @@ public static class WindowExtensions
 
     public static Point GetRelativePosition(this Window window, UIElement element)
     {
-        var root = window.Content as FrameworkElement;
+        FrameworkElement? root = window.Content as FrameworkElement;
 
         if (root == null || element == null)
         {
@@ -126,7 +128,7 @@ public static class WindowExtensions
         int scaledHeight = (int)(height * scaleAdjustment);
 
         // Scale the gap
-        RectInt32 scaledGap = new RectInt32
+        RectInt32 scaledGap = new()
         {
             X = (int)(gap.X * scaleAdjustment),
             Y = (int)(gap.Y * scaleAdjustment),
@@ -134,7 +136,7 @@ public static class WindowExtensions
             Height = (int)(gap.Height * scaleAdjustment)
         };
 
-        List<RectInt32> dragRects = new List<RectInt32>();
+        List<RectInt32> dragRects = new();
 
         // Left area
         if (scaledGap.X > 0)
@@ -191,7 +193,7 @@ public static class WindowExtensions
     {
         if (parameters.XPosition is null || parameters.YPosition is null)
         {
-            W32Point? point = MonitorCalculator.CalculateWindowCenteredInCursorMonitor(parameters.Width, parameters.Height);
+            Point? point = MonitorCalculator.CalculateWindowCenteredInCursorMonitor(parameters.Width, parameters.Height);
             if (point is not null)
             {
                 parameters.XPosition = point.Value.X;
@@ -201,18 +203,19 @@ public static class WindowExtensions
 
         if (parameters.XPosition is not null && parameters.YPosition is not null)
         {
-            W32Rect windowRectangle = new(
-                new W32Point((int)parameters.XPosition, (int)parameters.YPosition),
-                width: (int)parameters.Width,
-                height: (int)parameters.Height);
-            W32Rect? validWindowRectangle = MonitorCalculator.GetValidWindowSizeAndPosition(windowRectangle);
+            Rect windowRectangle = new(
+                parameters.XPosition.Value,
+                parameters.YPosition.Value,
+                parameters.Width,
+                parameters.Height);
+            Rect? validWindowRectangle = MonitorCalculator.GetValidWindowSizeAndPosition(windowRectangle);
             if (validWindowRectangle is not null)
             {
                 window.MoveAndResize(
                     x: validWindowRectangle.Value.Left,
                     y: validWindowRectangle.Value.Top,
-                    width: validWindowRectangle.Value.GetWidth(),
-                    height: validWindowRectangle.Value.GetHeight());
+                    width: validWindowRectangle.Value.Width,
+                    height: validWindowRectangle.Value.Height);
             }
         }
     }
@@ -257,5 +260,81 @@ public static class WindowExtensions
 
         window.Move(monitorArea.X, monitorArea.Y);
         window.CenterOnScreen();
+    }
+
+    public static void MoveNearTrayOnPrimaryMonitor(this Window window, double width, double height, double margin)
+    {
+        // Get the primary monitor area and taskbar edge
+        RectInt32 monitorArea = DisplayArea.Primary.WorkArea;
+        TaskbarEdge taskbarEdge = MonitorCalculator.GetTaskbarEdge();
+
+        double scaleAdjustment = window.GetDpiForWindow() / 96.0;
+
+        // Scale the dimensions
+        int scaledWidth = (int)(width * scaleAdjustment);
+        int scaledHeight = (int)(height * scaleAdjustment);
+        int scaledMargin = (int)(margin * scaleAdjustment);
+
+        int coercedWidth = Math.Min(monitorArea.Width - (2 * scaledMargin), scaledWidth);
+        int coercedHeight = Math.Min(monitorArea.Height - (2 * scaledMargin), scaledHeight);
+
+        int x = taskbarEdge switch
+        {
+            TaskbarEdge.Left => monitorArea.X + scaledMargin,
+            _ => monitorArea.X + monitorArea.Width - coercedWidth - scaledMargin
+        };
+        int y = taskbarEdge switch
+        {
+            TaskbarEdge.Top => monitorArea.Y + scaledMargin,
+            _ => monitorArea.Y + monitorArea.Height - coercedHeight - scaledMargin
+        };
+
+        window.MoveAndResize(x, y, coercedWidth / scaleAdjustment, coercedHeight / scaleAdjustment);
+    }
+
+    private static readonly Lazy<ITaskbarList3?> _taskbar = new(() =>
+    {
+        try
+        {
+            var taskbar = new ITaskbarList3();
+            taskbar.HrInit();
+            return taskbar;
+        }
+        catch
+        {
+            return null;
+        }
+    });
+
+    public static void SetBadge(this Window window, Icon? badgeIcon)
+    {
+        try
+        {
+            if (IsTaskbarBadgeSupported())
+            {
+                IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+
+                _taskbar.Value?.SetOverlayIcon(hWnd, badgeIcon?.Handle ?? IntPtr.Zero, string.Empty);
+            }
+        }
+        catch { }
+    }
+
+    public static void ClearBadge(this Window window)
+    {
+        window.SetBadge(null);
+    }
+
+    private static bool IsTaskbarBadgeSupported()
+    {
+        try
+        {
+            return OSVersion.IsOrHigherThan(OSVersion.TaskbarBadgeMinimumWindowsVersion)
+                && _taskbar.Value != null;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
     }
 }

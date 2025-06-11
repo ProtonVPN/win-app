@@ -89,6 +89,13 @@ public partial class ConnectionCardUpsellBannerViewModel : ActivatableViewModelB
         return _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.WorldwideCoverage);
     }
 
+    protected override void OnActivated()
+    {
+        base.OnActivated();
+
+        InvalidateBanner();
+    }
+
     private void InvalidateBanner()
     {
         OnPropertyChanged(nameof(IsBannerVisible));

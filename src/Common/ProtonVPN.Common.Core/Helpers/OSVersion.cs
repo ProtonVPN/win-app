@@ -24,7 +24,10 @@ public static class OSVersion
     private static readonly Lazy<Version> _version = new(CreateVersion);
     private static readonly Lazy<string> _versionString = new(_version.Value.ToString);
     private static readonly Lazy<string> _platformVersionString = new(CreatePlatformVersionString);
-    private static readonly Version _windows11Version = new(10, 0, 22000);
+
+    public static readonly Version Windows11Version = new(10, 0, 22000); // Windows 11 21H2
+    public static readonly Version TaskbarBadgeMinimumWindowsVersion = new(6, 1, 7600); // Windows 7 RTM
+    public static readonly Version EfficiencyModeMinimumWindowsVersion = new(10, 0, 16299); // Windows 10 1709 (Fall Creators)
 
     private static Version CreateVersion()
     {
@@ -56,6 +59,11 @@ public static class OSVersion
 
     public static bool IsWindows11OrHigher()
     {
-        return Environment.OSVersion.Version >= _windows11Version;
+        return IsOrHigherThan(Windows11Version);
+    }
+
+    public static bool IsOrHigherThan(Version version)
+    {
+        return Environment.OSVersion.Version >= version;
     }
 }

@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
+/*
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,37 +17,37 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Runtime.InteropServices;
+using Microsoft.UI.Xaml;
+using ProtonVPN.Client.Core.Bases;
 
-namespace ProtonVPN.Client.Common.UI.Windowing.System;
+namespace ProtonVPN.Client.UI.Main.Home.Status;
 
-[StructLayout(LayoutKind.Sequential)]
-public struct W32Rect
+public sealed partial class ConnectionStatusGradientView : IContextAware
 {
-    public int Left = 0;
-    public int Top = 0;
-    public int Right = 0;
-    public int Bottom = 0;
+    public ConnectionStatusGradientViewModel ViewModel { get; }
 
-    public W32Rect()
+    public ConnectionStatusGradientView()
     {
+        ViewModel = App.GetService<ConnectionStatusGradientViewModel>();
+
+        InitializeComponent();
+
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
     }
 
-    public W32Rect(W32Point topLeftCorner, int width, int height)
+    public object GetContext()
     {
-        Left = topLeftCorner.X;
-        Top = topLeftCorner.Y;
-        Right = topLeftCorner.X + width;
-        Bottom = topLeftCorner.Y + height;
+        return ViewModel;
     }
 
-    public readonly int GetWidth()
+    private void OnLoaded(object sender, RoutedEventArgs e)
     {
-        return Right - Left;
+        ViewModel.Activate();
     }
 
-    public readonly int GetHeight()
+    private void OnUnloaded(object sender, RoutedEventArgs e)
     {
-        return Bottom - Top;
+        ViewModel.Deactivate();
     }
 }

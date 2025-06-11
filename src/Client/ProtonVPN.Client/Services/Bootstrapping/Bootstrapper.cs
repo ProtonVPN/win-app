@@ -18,6 +18,7 @@
  */
 
 using Microsoft.Windows.AppLifecycle;
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
@@ -52,6 +53,7 @@ public class Bootstrapper : IBootstrapper
     private readonly ILogger _logger;
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
+    private readonly IUIThreadDispatcher _uiThreadDispatcher;
 
     public Bootstrapper(
         IClientInstallsStatisticalEventSender clientInstallsStatisticalEventSender,
@@ -67,7 +69,8 @@ public class Bootstrapper : IBootstrapper
         IConnectionManager connectionManager,
         IMainWindowActivator mainWindowActivator,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
-        IVpnPlanUpdater vpnPlanUpdater)
+        IVpnPlanUpdater vpnPlanUpdater,
+        IUIThreadDispatcher uiThreadDispatcher)
     {
         _clientInstallsStatisticalEventSender = clientInstallsStatisticalEventSender;
         _processCommunicationStarter = processCommunicationStarter;
@@ -80,6 +83,7 @@ public class Bootstrapper : IBootstrapper
         _logger = logger;
         _mainWindowActivator = mainWindowActivator;
         _vpnPlanUpdater = vpnPlanUpdater;
+        _uiThreadDispatcher = uiThreadDispatcher;
     }
 
     public async Task StartAsync(LaunchActivatedEventArgs args)
@@ -108,16 +112,19 @@ public class Bootstrapper : IBootstrapper
 
     private void OnCurrentAppInstanceActivated(object? sender, AppActivationArguments e)
     {
-        switch (e.Kind)
+        _uiThreadDispatcher.TryEnqueue(() =>
         {
-            case ExtendedActivationKind.Protocol:
-                HandleProtocolActivationArguments(e.Data as ProtocolActivatedEventArgs);
-                break;
-            default:
-                _logger.Info<AppLog>($"Handle {e.Kind} activation - Activate window");
-                _mainWindowActivator.Activate();
-                break;
-        }
+            switch (e.Kind)
+            {
+                case ExtendedActivationKind.Protocol:
+                    HandleProtocolActivationArguments(e.Data as ProtocolActivatedEventArgs);
+                    break;
+                default:
+                    _logger.Info<AppLog>($"Handle {e.Kind} activation - Activate window");
+                    _mainWindowActivator.Activate();
+                    break;
+            }
+        });
     }
 
     private void HandleProtocolActivationArguments(ProtocolActivatedEventArgs? args)

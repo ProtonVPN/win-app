@@ -51,7 +51,8 @@ public class UpsellDimensionBuilder : IUpsellDimensionBuilder
             { "new_free_plan_ui", "yes" },
             { "days_since_account_creation", GetDaysSinceAccountCreation() },
             { "reference", string.IsNullOrWhiteSpace(reference) ? "n/a" : reference },
-            { "is_credential_less_enabled", "off" }
+            { "is_credential_less_enabled", "off" },
+            { "flow_type", "external" }
         };
     }
 

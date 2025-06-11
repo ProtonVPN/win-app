@@ -17,14 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Drawing;
 using Microsoft.UI.Xaml.Media;
-using ProtonVPN.Client.Core.Models;
+using ProtonVPN.Client.Core.Enums;
 
 namespace ProtonVPN.Client.Core.Services.Selection;
 
 public interface IApplicationIconSelector
 {
+    AppIconStatus AppIconStatus { get; }
+
     string GetAppIconPath();
 
-    ImageSource GetStatusIcon(IconStatusParameters parameters);
+    ImageSource GetStatusIcon();
+
+    Icon? GetTaskbarBadgeIcon();
+
+    void OnAuthenticationErrorTriggered();
+    void OnAuthenticationErrorDismissed(); 
+    void OnConnectionErrorTriggered();
+    void OnConnectionErrorDismissed();
 }

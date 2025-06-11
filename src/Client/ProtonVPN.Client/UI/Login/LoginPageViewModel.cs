@@ -29,6 +29,7 @@ using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
+using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
@@ -51,6 +52,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     private readonly ITroubleshootingWindowActivator _troubleshootingWindowActivator;
     private readonly ISettings _settings;
     private readonly IDebugToolsWindowActivator _debugToolsWindowActivator;
+    private readonly IApplicationIconSelector _applicationIconSelector;
 
     [ObservableProperty]
     private string _message;
@@ -75,6 +77,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
         ITroubleshootingWindowActivator troubleshootingWindowActivator,
         ISettings settings,
         IDebugToolsWindowActivator debugToolsWindowActivator,
+        IApplicationIconSelector applicationIconSelector,
         IViewModelHelper viewModelHelper)
         : base( parentViewNavigator, childViewNavigator, viewModelHelper)
     {
@@ -84,6 +87,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
         _troubleshootingWindowActivator = troubleshootingWindowActivator;
         _settings = settings;
         _debugToolsWindowActivator = debugToolsWindowActivator;
+        _applicationIconSelector = applicationIconSelector;
 
         _message = string.Empty;
     }
@@ -256,5 +260,17 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     private void ClearMessage()
     {
         IsMessageVisible = false;
+    }
+
+    partial void OnIsMessageVisibleChanged(bool value)
+    {
+        if (IsMessageVisible && MessageType == InfoBarSeverity.Error)
+        {
+            _applicationIconSelector.OnAuthenticationErrorTriggered();
+        }
+        else
+        {
+            _applicationIconSelector.OnAuthenticationErrorDismissed();
+        }
     }
 }

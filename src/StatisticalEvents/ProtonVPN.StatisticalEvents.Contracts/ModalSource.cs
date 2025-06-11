@@ -49,5 +49,6 @@ public enum ModalSource
     CarouselStreaming,
     CarouselTor,
     Account,
-    Tor
+    Tor,
+    Tray
 }          

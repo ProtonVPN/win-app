@@ -155,9 +155,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <SolidColorBrush x:Key="WindowBackgroundColorBrush" Opacity="0.9" Color="{StaticResource BackgroundNormColor}" />
 
             <!--  Banners  -->
-            <SolidColorBrush x:Key="BannerBackgroundColorBrush" Opacity="0.9" Color="{StaticResource BackgroundNormColor}" />
+            <AcrylicBrush x:Key="BannerBackgroundColorBrush"
+                          FallbackColor="{StaticResource BackgroundNormColor}"
+                          TintColor="{StaticResource BackgroundNormColor}"
+                          TintOpacity="0.6" />
 
-            <!--  Pane Overlay  -->
+            <!--  Pane Overlay  -->            
             <AcrylicBrush x:Key="PaneOverlayBackgroundColorBrush"
                           FallbackColor="{StaticResource BackgroundNormColor}"
                           TintColor="{StaticResource BackgroundNormColor}"
@@ -313,11 +316,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <!--  Window Background (mixed with Mica effect)  -->
             <SolidColorBrush x:Key="WindowBackgroundColorBrush" Opacity="0.9" Color="{StaticResource BackgroundNormColor}" />
-            
-            <!--  Banners  -->
-            <SolidColorBrush x:Key="BannerBackgroundColorBrush" Opacity="0.9" Color="{StaticResource BackgroundNormColor}" />
 
-            <!--  Pane Overlay  -->
+            <!--  Banners  -->
+            <AcrylicBrush x:Key="BannerBackgroundColorBrush"
+                          FallbackColor="{StaticResource BackgroundNormColor}"
+                          TintColor="{StaticResource BackgroundNormColor}"
+                          TintOpacity="0.6" />
+
+            <!--  Pane Overlay  -->            
             <AcrylicBrush x:Key="PaneOverlayBackgroundColorBrush"
                           FallbackColor="{StaticResource BackgroundNormColor}"
                           TintColor="{StaticResource BackgroundNormColor}"

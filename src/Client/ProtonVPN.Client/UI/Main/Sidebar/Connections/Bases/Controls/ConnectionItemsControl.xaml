@@ -45,7 +45,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Thickness x:Key="LocationSubItemsFlyoutContentMargin">-4,-4,-8,-4</Thickness>
         <Thickness x:Key="LocationSubItemsFlyoutContentPadding">0,0,16,0</Thickness>
 
-        <FlyoutPlacementMode x:Key="LocationSubItemsFlyoutPlacement">RightEdgeAlignedTop</FlyoutPlacementMode>
+        <FlyoutPlacementMode x:Key="ContextualFlyoutPlacement">BottomEdgeAlignedRight</FlyoutPlacementMode>
+        <FlyoutPlacementMode x:Key="ServersFlyoutPlacement">RightEdgeAlignedTop</FlyoutPlacementMode>
 
         <Thickness x:Key="LocationItemHeaderMargin">0,-1,0,0</Thickness>
 
@@ -194,7 +195,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Flyout Closed="{x:Bind OnCollapseCountry}"
                             Closing="OnMenuFlyoutClosing"
                             Opening="{x:Bind OnExpandCountry}"
-                            Placement="{StaticResource LocationSubItemsFlyoutPlacement}">
+                            Placement="{StaticResource ServersFlyoutPlacement}">
 
                         <Grid MinWidth="{StaticResource LocationSubItemsFlyoutMinWidth}"
                               MaxHeight="{StaticResource LocationSubItemsFlyoutMaxHeight}">
@@ -298,7 +299,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Flyout Closed="{x:Bind OnCollapseState}"
                             Closing="OnMenuFlyoutClosing"
                             Opening="{x:Bind OnExpandState}"
-                            Placement="{StaticResource LocationSubItemsFlyoutPlacement}">
+                            Placement="{StaticResource ServersFlyoutPlacement}">
 
                         <Grid MinWidth="{StaticResource LocationSubItemsFlyoutMinWidth}"
                               MaxHeight="{StaticResource LocationSubItemsFlyoutMaxHeight}"
@@ -375,7 +376,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Flyout Closed="{x:Bind OnCollapseCity}"
                             Closing="OnMenuFlyoutClosing"
                             Opening="{x:Bind OnExpandCity}"
-                            Placement="{StaticResource LocationSubItemsFlyoutPlacement}"
+                            Placement="{StaticResource ServersFlyoutPlacement}"
                             ScrollViewer.HorizontalScrollMode="Disabled">
 
                         <Grid MinWidth="{StaticResource LocationSubItemsFlyoutMinWidth}"
@@ -496,7 +497,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Flyout Closed="{x:Bind OnCollapseGateway}"
                             Closing="OnMenuFlyoutClosing"
                             Opening="{x:Bind OnExpandGateway}"
-                            Placement="{StaticResource LocationSubItemsFlyoutPlacement}">
+                            Placement="{StaticResource ServersFlyoutPlacement}">
 
                         <Grid MinWidth="{StaticResource LocationSubItemsFlyoutMinWidth}"
                               MaxHeight="{StaticResource LocationSubItemsFlyoutMaxHeight}">
@@ -599,7 +600,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <custom:DualConnectionRowButton.SecondaryCommandFlyout>
                     <MenuFlyout Closing="OnMenuFlyoutClosing"
-                                Placement="{StaticResource LocationSubItemsFlyoutPlacement}"
+                                Placement="{StaticResource ContextualFlyoutPlacement}"
                                 ShouldConstrainToRootBounds="True">
                         <MenuFlyoutItem Command="{x:Bind PinCommand, Mode=OneTime}"
                                         Text="{x:Bind Localizer.Get('Home_Recents_Pin')}"
@@ -661,7 +662,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <custom:DualConnectionRowButton.SecondaryCommandFlyout>
                     <MenuFlyout Closing="OnMenuFlyoutClosing"
-                                Placement="{StaticResource LocationSubItemsFlyoutPlacement}"
+                                Placement="{StaticResource ContextualFlyoutPlacement}"
                                 ShouldConstrainToRootBounds="True">
                         <MenuFlyoutItem Command="{x:Bind EditProfileCommand}"
                                         Text="{x:Bind Localizer.Get('Common_Actions_Edit')}">

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,36 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Common.UI.Windowing.System;
-using Windows.Foundation;
+using Vanara.PInvoke;
+using static Vanara.PInvoke.User32;
 
 namespace ProtonVPN.Client.Common.UI.Windowing;
 
 public class Monitor
 {
-    public int Size;
-    public Rect Area;
-    /// <summary>The WorkArea is the Area of the monitor minus the Windows taskbar</summary>
-    public Rect WorkArea;
-    public uint Flags;
-    public Point Dpi;
+    public RECT Area { get; }
+    public RECT WorkArea { get; }
+    public POINT Dpi { get; }
+    public MonitorInfoFlags Flags { get; }
 
-    public Monitor()
-    {
-    }
+    public int Width => Area.Width;
 
-    public Monitor(W32MonitorInfo w32MonitorInfo, Point dpi)
+    public int Height => Area.Height;
+
+    public Monitor(MONITORINFOEX monitorInfo, POINT dpi)
     {
-        Size = w32MonitorInfo.Size;
-        Area = W32RectToRect(w32MonitorInfo.Monitor);
-        WorkArea = W32RectToRect(w32MonitorInfo.WorkArea);
-        Flags = w32MonitorInfo.Flags;
+        Area = monitorInfo.rcMonitor;
+        WorkArea = monitorInfo.rcWork;
         Dpi = dpi;
-    }
-
-    private static Rect W32RectToRect(W32Rect w32Rect)
-    {
-        return new(new Point(w32Rect.Left, w32Rect.Top),
-                   new Point(w32Rect.Right, w32Rect.Bottom));
+        Flags = monitorInfo.dwFlags;
     }
 }

@@ -138,6 +138,9 @@ using ProtonVPN.Serialization.Installers;
 using ProtonVPN.StatisticalEvents.Installers;
 using ProtonVPN.Client.Services.Upselling;
 using ProtonVPN.Client.Services.Bootstrapping.Activators;
+using ProtonVPN.Client.UI.Dialogs.Tray;
+using ProtonVPN.Client.UI.Dialogs.Tray.Pages;
+using ProtonVPN.Client.UI.Main.Home.Status;
 using ProtonVPN.Client.UI.Dialogs.NpsSurvey;
 
 namespace ProtonVPN.Client.Installers;
@@ -245,6 +248,9 @@ public class AppModule : Module
         builder.RegisterType<UpsellCarouselWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<UpsellCarouselViewNavigator>().AsSelf().AsImplementedInterfaces().SingleInstance();
 
+        builder.RegisterType<TrayAppWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<TrayAppViewNavigator>().AsSelf().AsImplementedInterfaces().SingleInstance();
+
         builder.RegisterType<DebugToolsWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<TroubleshootingWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<OneTimeAnnouncementWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
@@ -324,6 +330,8 @@ public class AppModule : Module
         RegisterViewModel<DefaultConnectionSelectorViewModel>(builder);
         RegisterViewModel<ChangeServerComponentViewModel>(builder);
         RegisterViewModel<ConnectionCardUpsellBannerViewModel>(builder);
+        RegisterViewModel<ConnectionStatusGradientViewModel>(builder);
+        RegisterViewModel<ConnectionStatusHeaderViewModel>(builder);
         RegisterViewModel<DetailsComponentViewModel>(builder);
         RegisterViewModel<ConnectionDetailsPageViewModel>(builder).AutoActivate();
         RegisterViewModel<LocationDetailsPageViewModel>(builder);
@@ -365,6 +373,10 @@ public class AppModule : Module
         RegisterViewModel<ReportIssueCategoryPageViewModel>(builder);
         RegisterViewModel<ReportIssueContactPageViewModel>(builder);
         RegisterViewModel<ReportIssueResultPageViewModel>(builder);
+
+        RegisterViewModel<TrayAppShellViewModel>(builder);
+        RegisterViewModel<TrayLoginPageViewModel>(builder);
+        RegisterViewModel<TrayMainPageViewModel>(builder);
 
         RegisterViewModel<UpsellCarouselShellViewModel>(builder);
         RegisterViewModel<AdvancedSettingsUpsellFeaturePageViewModel>(builder);

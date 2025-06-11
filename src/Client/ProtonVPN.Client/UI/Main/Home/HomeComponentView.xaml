@@ -30,6 +30,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:local="using:ProtonVPN.Client.UI.Main.Home"
              xmlns:map="using:ProtonVPN.Client.UI.Main.Map"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:status="using:ProtonVPN.Client.UI.Main.Home.Status"
              xmlns:update="using:ProtonVPN.Client.UI.Update"
              xmlns:widgets="using:ProtonVPN.Client.UI.Main.Widgets"
              x:DefaultBindMode="OneWay"
@@ -42,7 +43,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <x:Double x:Key="FadeInOpacity">1</x:Double>
         <x:Double x:Key="FadeOutOpacity">0.4</x:Double>
 
-        <Duration x:Key="ConnectionStatusBackgroundAnimationDuration">0:0:1</Duration>
         <Duration x:Key="OpacityAnimationDuration">0:0:5</Duration>
     </UserControl.Resources>
 
@@ -72,21 +72,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               RightOffset="{x:Bind WidgetsBarWidth}"
                               TopOffset="{x:Bind MapTopOffset}" />
 
-        <!--  Connection status background  -->
-        <Grid Grid.Row="0"
-              Grid.RowSpan="4"
-              Grid.Column="0"
-              Grid.ColumnSpan="5"
-              Height="{StaticResource ConnectionStatusGradientHeight}"
-              VerticalAlignment="Top"
-              IsHitTestVisible="False">
-
-            <Border Background="{ThemeResource GradientFadingColorBrush}" />
-
-            <Border x:Name="StatusGradient"
-                    Background="{ThemeResource GradientUnprotectedColorBrush}" />
-
-        </Grid>
+        <status:ConnectionStatusGradientView Grid.Row="0"
+                                             Grid.RowSpan="4"
+                                             Grid.Column="0"
+                                             Grid.ColumnSpan="5"
+                                             Height="{StaticResource ConnectionStatusGradientHeight}"
+                                             VerticalAlignment="Top"
+                                             IsHitTestVisible="False" />
 
         <!--  Connection details background  -->
         <Border Grid.Row="0"
@@ -163,66 +155,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Visibility="{x:Bind IsHomeDisplayed, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
         <VisualStateManager.VisualStateGroups>
-
-            <VisualStateGroup x:Name="ConnectionStates">
-
-                <VisualState x:Name="ConnectingOrIsNotConnectedAndAdvancedKillSwitchIsActive">
-                    <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsConnecting}" />
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsNotConnectedAndAdvancedKillSwitchActive}" />
-                    </VisualState.StateTriggers>
-                    <Storyboard>
-                        <ColorAnimation EnableDependentAnimation="True"
-                                        Storyboard.TargetName="StatusGradient"
-                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)"
-                                        To="{ThemeResource GradientConnectingStartColor}"
-                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
-                        <ColorAnimation EnableDependentAnimation="True"
-                                        Storyboard.TargetName="StatusGradient"
-                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)"
-                                        To="{ThemeResource GradientConnectingEndColor}"
-                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
-                    </Storyboard>
-                </VisualState>
-
-                <VisualState x:Name="Connected">
-                    <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsConnected}" />
-                    </VisualState.StateTriggers>
-                    <Storyboard>
-                        <ColorAnimation EnableDependentAnimation="True"
-                                        Storyboard.TargetName="StatusGradient"
-                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)"
-                                        To="{ThemeResource GradientProtectedStartColor}"
-                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
-                        <ColorAnimation EnableDependentAnimation="True"
-                                        Storyboard.TargetName="StatusGradient"
-                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)"
-                                        To="{ThemeResource GradientProtectedEndColor}"
-                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
-                    </Storyboard>
-                </VisualState>
-
-                <VisualState x:Name="Disconnected">
-                    <VisualState.StateTriggers>
-                        <StateTrigger IsActive="True" />
-                    </VisualState.StateTriggers>
-                    <Storyboard>
-                        <ColorAnimation EnableDependentAnimation="True"
-                                        Storyboard.TargetName="StatusGradient"
-                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)"
-                                        To="{ThemeResource GradientUnprotectedStartColor}"
-                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
-                        <ColorAnimation EnableDependentAnimation="True"
-                                        Storyboard.TargetName="StatusGradient"
-                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)"
-                                        To="{ThemeResource GradientUnprotectedEndColor}"
-                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
-                    </Storyboard>
-                </VisualState>
-
-            </VisualStateGroup>
-
             <VisualStateGroup x:Name="NavigationStates">
                 <VisualState x:Name="OnHomePage">
                     <VisualState.StateTriggers>

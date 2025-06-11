@@ -113,6 +113,9 @@ public static class DefaultConfiguration
     /// <returns>C:\Users\{user}\AppData\Local\Proton\Proton VPN\WebView2</returns>
     public static string WebViewFolder => Path.Combine(_localAppDataProtonVpnPath.Value, "WebView2");
 
+    /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ProtonVPN.Client.Common.UI\Assets</returns>
+    public static string AssetsFolder => Path.Combine(_baseVersionDirectory.Value, "ProtonVPN.Client.Common.UI", "Assets");
+
     /// <returns>C:\Users\{user}\AppData\Local\Proton\Proton VPN\Logs\client-logs.txt</returns>
     public static string ClientLogsFilePath => Path.Combine(ClientLogsFolder, "client-logs.txt");
 

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2025 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="ProtonVPN.Client.UI.Main.Home.Status.ConnectionStatusHeaderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="using:ProtonVPN.Client.UI.Main.Home.Status"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pathIcons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             x:DefaultBindMode="OneWay"
+             mc:Ignorable="d">
+
+    <Grid ColumnSpacing="8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0"
+              Margin="0,-2,0,2">
+
+            <ProgressRing x:Name="LoadingSpinner"
+                          Width="20"
+                          Height="20"
+                          IsActive="False" />
+
+            <pathIcons:LockOpenFilled2 x:Name="UnprotectedIcon"
+                                       Foreground="{ThemeResource SignalDangerColorBrush}"
+                                       Visibility="Collapsed" />
+
+            <pathIcons:LockFilled x:Name="ProtectedIcon"
+                                  Foreground="{ThemeResource VpnGreenColorBrush}"
+                                  Visibility="Collapsed" />
+
+            <Image x:Name="NoWiFiIcon"
+                   Width="22"
+                   Height="20"
+                   Source="{StaticResource NoWiFiIconSource}"
+                   Visibility="Collapsed" />
+
+        </Grid>
+
+        <TextBlock x:Name="ProtectionTitle"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   AutomationProperties.AutomationId="ProtectionTitle"
+                   AutomationProperties.Name="{x:Bind ViewModel.ProtectionTitle}"
+                   Foreground="{ThemeResource TextNormColorBrush}"
+                   Style="{ThemeResource BodyStrongTextBlockStyle}"
+                   Text="{x:Bind ViewModel.ProtectionTitle}" />
+
+        <TextBlock x:Name="ProtectionDescription"
+                   Grid.Row="0"
+                   Grid.Column="2"
+                   AutomationProperties.AutomationId="ProtectionDescription"
+                   AutomationProperties.Name="{x:Bind ViewModel.ProtectionDescription}"
+                   Foreground="{ThemeResource TextWeakColorBrush}"
+                   Style="{ThemeResource BodyTextBlockStyle}"
+                   TextTrimming="CharacterEllipsis"
+                   TextWrapping="NoWrap"
+                   Visibility="{x:Bind UseSimplifiedVersion, Converter={StaticResource NotBooleanToVisibilityConverter}}">
+            <Run Text="• " />
+            <Run Text="{x:Bind ViewModel.ProtectionDescription}" />
+        </TextBlock>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="ConnectionStates">
+
+                <VisualState x:Name="Connecting">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsConnecting}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LoadingSpinner.IsActive" Value="True" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="DisconnectedWithAdvancedKillSwitchActive">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsDisconnectedAndAdvancedKillSwitchActive}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ProtectionTitle.Foreground" Value="{ThemeResource SignalWarningColorBrush}" />
+                        <Setter Target="NoWiFiIcon.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="Disconnected">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsDisconnected}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ProtectionTitle.Foreground" Value="{ThemeResource SignalDangerColorBrush}" />
+                        <Setter Target="UnprotectedIcon.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="Connected">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsConnected}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ProtectionTitle.Foreground" Value="{ThemeResource VpnGreenColorBrush}" />
+                        <Setter Target="ProtectedIcon.Visibility" Value="Visible" />
+                        <Setter Target="ProtectionDescription.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="Default" />
+
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+
+</UserControl>

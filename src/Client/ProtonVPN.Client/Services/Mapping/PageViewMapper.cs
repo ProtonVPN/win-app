@@ -22,6 +22,7 @@ using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Services.Mapping.Bases;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
+using ProtonVPN.Client.UI.Dialogs.Tray.Pages;
 using ProtonVPN.Client.UI.Dialogs.Upsell.Features;
 using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Login.Pages;
@@ -97,5 +98,8 @@ public class PageViewMapper : ViewMapperBase<PageViewModelBase, Page>, IPageView
         ConfigureMapping<TorUpsellFeaturePageViewModel, TorUpsellFeaturePageView>();
         ConfigureMapping<WorldwideCoverageUpsellFeaturePageViewModel, WorldwideCoverageUpsellFeaturePageView>();
         ConfigureMapping<ProfilesUpsellFeaturePageViewModel, ProfilesUpsellFeaturePageView>();
+
+        ConfigureMapping<TrayLoginPageViewModel, TrayLoginPageView>();
+        ConfigureMapping<TrayMainPageViewModel, TrayMainPageView>();
     }
 }

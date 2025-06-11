@@ -40,7 +40,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           AutomationProperties.AutomationControlType="ListItem"
                           AutomationProperties.AutomationId="ConnectionsPageItem"
                           AutomationProperties.Name="{x:Bind Header}"
-                          IsSelected="{x:Bind IsActive}"
+                          IsSelected="{x:Bind IsActivePage}"
                           Visibility="{x:Bind IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Grid ColumnSpacing="8">
                     <Grid.ColumnDefinitions>

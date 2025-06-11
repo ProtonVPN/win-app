@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2024 Proton AG
+Copyright (c) 2025 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -92,12 +92,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        TextTrimming="CharacterEllipsis"
                        TextWrapping="WrapWholeWords" />
 
-            <dc:DefaultConnectionSelectorView Grid.Column="3"
+            <dc:DefaultConnectionSelectorView x:Name="DefaultConnectionSelector"
+                                              Grid.Column="3"
                                               Margin="-6,8,0,0"
-                                              x:Name="DefaultConnectionSelector" 
                                               VerticalAlignment="Top"
-                                              Visibility="{x:Bind ViewModel.IsChangeDefaultConnectionOptionVisible}"
-                                              ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionCard_ChangeDefaultConnection')}"/>
+                                              ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Home_ConnectionCard_ChangeDefaultConnection')}"
+                                              Visibility="{x:Bind ViewModel.IsChangeDefaultConnectionOptionVisible}" />
         </Grid>
 
         <Grid Margin="0,8,0,0"
@@ -175,15 +175,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         </custom:GhostButton>
 
-        <Grid MinWidth="{StaticResource MinButtonSpaceWidth}"
-              Margin="0,16,0,0"
-              HorizontalAlignment="Center"
-              ColumnSpacing="12">
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <controls:UniformGrid x:Name="ButtonsContainer"
+                              MinWidth="{StaticResource MinButtonSpaceWidth}"
+                              Margin="0,16,0,0"
+                              HorizontalAlignment="{x:Bind ButtonsAlignment}"
+                              ColumnSpacing="12"
+                              Columns="1"
+                              RowSpacing="12">
 
             <upsell:ChangeServerComponentView x:Name="ConnectionCardChangeServerComponent"
                                               Grid.Column="0"
@@ -194,8 +192,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Visibility="{x:Bind ViewModel.IsChangeServerOptionVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
             <Button x:Name="ConnectionCardConnectButton"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
                     MinWidth="{StaticResource MinButtonWidth}"
                     HorizontalAlignment="Stretch"
                     AutomationProperties.AutomationId="ConnectionCardConnectButton"
@@ -207,8 +203,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Visibility="{x:Bind ViewModel.IsDisconnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
             <Button x:Name="ConnectionCardCancelButton"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
                     MinWidth="{StaticResource MinButtonWidth}"
                     HorizontalAlignment="Stretch"
                     AutomationProperties.AutomationId="ConnectionCardCancelButton"
@@ -220,8 +214,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Visibility="{x:Bind ViewModel.IsConnecting, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
             <Button x:Name="ConnectionCardDisconnectButton"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
                     MinWidth="{StaticResource MinButtonWidth}"
                     HorizontalAlignment="Stretch"
                     AutomationProperties.AutomationId="ConnectionCardDisconnectButton"
@@ -232,26 +224,40 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     TabIndex="6"
                     Visibility="{x:Bind ViewModel.IsConnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-        </Grid>
+        </controls:UniformGrid>
 
         <upsell:ConnectionCardUpsellBannerView />
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="ButtonsLayout">
-                <VisualState x:Name="ChangeServerLayout">
+
+                <VisualState x:Name="SingleButtonLayout">
                     <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsChangeServerOptionVisible}" />
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsChangeServerOptionVisible, Converter={StaticResource NotBooleanToBooleanConverter}}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="ConnectionCardConnectButton.(Grid.Column)" Value="1" />
-                        <Setter Target="ConnectionCardConnectButton.(Grid.ColumnSpan)" Value="1" />
-                        <Setter Target="ConnectionCardCancelButton.(Grid.Column)" Value="1" />
-                        <Setter Target="ConnectionCardCancelButton.(Grid.ColumnSpan)" Value="1" />
-                        <Setter Target="ConnectionCardDisconnectButton.(Grid.Column)" Value="1" />
-                        <Setter Target="ConnectionCardDisconnectButton.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="ButtonsContainer.Columns" Value="1" />
                     </VisualState.Setters>
                 </VisualState>
-                <VisualState x:Name="StandardLayout" />
+
+                <VisualState x:Name="HorizontalLayout">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1000" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ButtonsContainer.Columns" Value="2" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="VerticalLayout">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ButtonsContainer.Columns" Value="1" />
+                    </VisualState.Setters>
+                </VisualState>
+
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </StackPanel>

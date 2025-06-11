@@ -34,4 +34,6 @@ public interface IConnectionPage : IActivationAware, INavigatorAware, INotifyPro
     IconElement Icon { get; }
 
     bool IsAvailable { get; }
+
+    bool IsActivePage { get; }
 }

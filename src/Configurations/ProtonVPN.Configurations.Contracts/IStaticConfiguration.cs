@@ -44,6 +44,7 @@ public interface IStaticConfiguration
     string ImageCacheFolder { get; }
     string UpdatesFolder { get; }
     string WebViewFolder { get; }
+    string AssetsFolder { get; }
 
     string ClientLogsFilePath { get; }
     string ServiceLogsFilePath { get; }

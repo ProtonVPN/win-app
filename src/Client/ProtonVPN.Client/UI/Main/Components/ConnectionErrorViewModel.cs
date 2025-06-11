@@ -21,6 +21,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
+using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -35,6 +36,7 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
     IEventMessageReceiver<LoggingOutMessage>
 {
     private readonly IConnectionErrorFactory _connectionErrorFactory;
+    private readonly IApplicationIconSelector _applicationIconSelector;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(TriggerActionButtonCommand))]
@@ -54,10 +56,12 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
 
     public ConnectionErrorViewModel(
         IConnectionErrorFactory connectionErrorFactory,
+        IApplicationIconSelector applicationIconSelector,
         IViewModelHelper viewModelHelper)
         : base(viewModelHelper)
     {
         _connectionErrorFactory = connectionErrorFactory;
+        _applicationIconSelector = applicationIconSelector;
     }
 
     public void Receive(ConnectionErrorMessage message)
@@ -112,5 +116,17 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
     private bool CanCloseError()
     {
         return IsConnectionErrorVisible;
+    }
+    
+    partial void OnIsConnectionErrorVisibleChanged(bool value)
+    {
+        if (IsConnectionErrorVisible)
+        {
+            _applicationIconSelector.OnConnectionErrorTriggered();
+        }
+        else
+        {
+            _applicationIconSelector.OnConnectionErrorDismissed();
+        }
     }
 }

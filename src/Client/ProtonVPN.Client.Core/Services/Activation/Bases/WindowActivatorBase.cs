@@ -48,6 +48,8 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
     protected WindowActivationState CurrentActivationState { get; private set; }
 
+    public bool IsWindowVisible { get; private set; }
+
     public bool IsWindowFocused => CurrentActivationState != WindowActivationState.Deactivated;
 
     public event EventHandler? HostDpiChanged;
@@ -81,6 +83,7 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
         Host?.Show();
         Host?.SetForegroundWindow();
+        Host?.Activate();
 
         OnWindowActivated();
     }
@@ -127,8 +130,8 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
         if (Host != null)
         {
             Host.ExtendsContentIntoTitleBar = true;
-            Host.AppWindow?.SetIcon(IconSelector.GetAppIconPath());
 
+            InvalidateWindowIcon();
             InvalidateWindowTitle();
             InvalidateWindowPosition();
             InvalidateWindowState();
@@ -166,6 +169,9 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
     protected virtual void OnWindowActivated()
     {
         Logger.Info<AppLog>($"Window '{typeof(TWindow)?.Name}' is activated.");
+
+        InvalidateWindowVisibilityState(true);
+        InvalidateWindowState();
     }
 
     protected virtual void OnWindowClosing(WindowEventArgs e)
@@ -188,11 +194,20 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
     protected virtual void OnWindowHidden()
     {
         Logger.Info<AppLog>($"Window '{typeof(TWindow)?.Name}' is hidden.");
+
+        InvalidateWindowVisibilityState(false);
     }
 
     protected virtual void OnWindowStateChanged()
     {
         Logger.Info<AppLog>($"Window '{typeof(TWindow)?.Name}' state has changed to {CurrentWindowState}.");
+
+        InvalidateWindowVisibilityState(CurrentWindowState is not WindowState.Minimized);
+    }
+
+    protected virtual void OnWindowVisibilityChanged()
+    {
+        Logger.Info<AppLog>($"Window '{typeof(TWindow)?.Name}' visibility has changed to {(IsWindowVisible ? "Visible" : "Hidden" )}");
     }
 
     protected virtual void OnWindowActivationStateChanged()
@@ -224,6 +239,11 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
         Host?.ApplyTheme(CurrentAppTheme);
     }
 
+    protected virtual void InvalidateWindowIcon()
+    {
+        Host?.AppWindow?.SetIcon(IconSelector.GetAppIconPath());
+    }
+
     protected virtual void InvalidateWindowPosition()
     {
         Host?.CenterOnScreen();
@@ -252,6 +272,16 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
         if (Host != null)
         {
             Host.Title = WindowTitle;
+        }
+    }
+
+    private void InvalidateWindowVisibilityState(bool isWindowVisible)
+    {
+        if (IsWindowVisible != isWindowVisible)
+        {
+            IsWindowVisible = isWindowVisible;
+
+            OnWindowVisibilityChanged();
         }
     }
 

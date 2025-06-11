@@ -18,7 +18,6 @@
  */
 
 using Microsoft.Toolkit.Uwp.Notifications;
-using ProtonVPN.Client.Common.Helpers;
 using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -30,6 +29,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Extensions;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Notifications;
@@ -41,6 +41,7 @@ public class ConnectionStatusNotificationSender : NotificationSenderBase, IConne
     private readonly ILocalizationProvider _localizer;
     private readonly IGuestHoleManager _guestHoleManager;
     private readonly IConnectionManager _connectionManager;
+    private readonly IConfiguration _configuration;
 
     private ConnectionStatus _lastStatus;
     private bool _isMainWindowVisible;
@@ -50,13 +51,15 @@ public class ConnectionStatusNotificationSender : NotificationSenderBase, IConne
         ISettings settings,
         ILocalizationProvider localizer,
         IGuestHoleManager guestHoleManager,
-        IConnectionManager connectionManager)
+        IConnectionManager connectionManager,
+        IConfiguration configuration)
         : base(logger)
     {
         _settings = settings;
         _localizer = localizer;
         _guestHoleManager = guestHoleManager;
         _connectionManager = connectionManager;
+        _configuration = configuration;
     }
 
     public void Send(ConnectionStatus currentStatus)
@@ -118,7 +121,7 @@ public class ConnectionStatusNotificationSender : NotificationSenderBase, IConne
         }
         else if (connectionStatus == ConnectionStatus.Disconnected && _settings.IsAdvancedKillSwitchActive())
         {
-            notification.AddAppLogoOverride(new Uri(AssetPathHelper.GetAbsoluteAssetPath("Illustrations", "kill-switch-protected.png")));
+            notification.AddAppLogoOverride(new Uri(Path.Combine(_configuration.AssetsFolder, "Illustrations", "kill-switch-protected.png")));
             description = _localizer.Get("Notifications_KillSwitch_Description");
         }
 

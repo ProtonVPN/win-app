@@ -76,23 +76,10 @@ public sealed partial class CurrentProfileIconView : IContextAware
         ViewModel = App.GetService<CurrentProfileIconViewModel>();
 
         InitializeComponent();
-
-        Loaded += OnLoaded;
-        Unloaded += OnUnloaded;
     }
 
     public object GetContext()
     {
         return ViewModel;
-    }
-
-    private void OnLoaded(object sender, RoutedEventArgs e)
-    {
-        ViewModel.Activate();
-    }
-
-    private void OnUnloaded(object sender, RoutedEventArgs e)
-    {
-        ViewModel.Deactivate();
     }
 }
