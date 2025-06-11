@@ -30,6 +30,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("1")]
 public class ConnectionTests : FreshSessionSetUp
 {
+    private const string COUNTRY_CODE = "AU";
     private const string FAST_CONNECTION = "Fastest country";
     private const string RANDOM_COUNTRY = "Random country";
 
@@ -57,9 +58,7 @@ public class ConnectionTests : FreshSessionSetUp
 
         string ipAddressConnected = NetworkUtils.GetIpAddressWithRetry();
 
-        Assert.That(ipAddressNotConnected.Equals(ipAddressConnected), Is.False,
-            $"User was not connected to VPN server. IP Address not connected: {ipAddressNotConnected}." +
-            $" IP Address connected: {ipAddressConnected}");
+        HomeRobot.Verify.AssertVpnConnectionEstablished(ipAddressNotConnected, ipAddressConnected);
 
         NavigationRobot
             .Verify.IsOnConnectionDetailsPage();
@@ -186,17 +185,14 @@ public class ConnectionTests : FreshSessionSetUp
         Thread.Sleep(TestConstants.FiveSecondsTimeout);
 
         string ipAddressAfterClientKill = NetworkUtils.GetIpAddressWithRetry();
-        Assert.That(ipAddressBeforeClientKill.Equals(ipAddressAfterClientKill), Is.True,
-            $"VPN Connection was lost after app was killed. IP Address before client was killed: {ipAddressBeforeClientKill}." +
-            $" IP Address after client was killed: {ipAddressAfterClientKill}");
+
+        HomeRobot.Verify.AssertVpnConnectionAfterKill(ipAddressBeforeClientKill, ipAddressAfterClientKill);
 
         LaunchApp(isFreshStart: false);
         HomeRobot.Verify.IsConnected();
 
         string ipAddressAfterClientIsRestored = NetworkUtils.GetIpAddressWithRetry();
-        Assert.That(ipAddressBeforeClientKill.Equals(ipAddressAfterClientIsRestored), Is.True,
-            $"VPN Connection was lost/reconnected after client was resumed. IP Address before client was killed: {ipAddressAfterClientIsRestored}." +
-            $" IP Address after client was restored: {ipAddressAfterClientIsRestored}");
+        HomeRobot.Verify.AssertVpnConnectionAfterRestored(ipAddressBeforeClientKill, ipAddressAfterClientIsRestored);
     }
 
     [Test]
@@ -230,5 +226,48 @@ public class ConnectionTests : FreshSessionSetUp
             .ConnectViaConnectionCard()
             .Verify.DoesConnectionCardTitleEqual(RANDOM_COUNTRY)
             .Disconnect();
+    }
+
+    [Test]
+    public void ConnectToSecureCoreServerCountriesListAndDisconnectViaCountry()
+    {
+        ConnectToSecureCoreAndVerify(COUNTRY_CODE);
+
+        SidebarRobot.DisconnectViaCountry(COUNTRY_CODE);
+
+        HomeRobot.Verify.IsDisconnected();
+    }
+
+    [Test]
+    public void ConnectToSecureCoreServerCountriesListAndDisconnect()
+    {
+        ConnectToSecureCoreAndVerify(COUNTRY_CODE);
+        
+        HomeRobot
+            .Disconnect()
+            .Verify.IsDisconnected();
+    }
+
+    private void ConnectToSecureCoreAndVerify(string countryCode)
+    {
+        string ipBefore = NetworkUtils.GetIpAddressWithRetry();
+
+        NavigationRobot
+           .Verify.IsOnHomePage()
+                  .IsOnConnectionsPage();
+
+        SidebarRobot
+            .NavigateToSecureCoreCountriesTab()
+            .ConnectToCountry(countryCode);
+
+        HomeRobot
+            .Verify.IsConnecting()
+                   .IsConnected();
+
+        string ipAfter = NetworkUtils.GetIpAddressWithRetry();
+
+        HomeRobot.Verify.AssertVpnConnectionEstablished(ipBefore, ipAfter);
+
+        NavigationRobot.Verify.IsOnConnectionDetailsPage();
     }
 }

@@ -18,6 +18,7 @@
  */
 
 using System.Threading;
+using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
 using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
@@ -277,6 +278,32 @@ public class HomeRobot
         public Verifications DoesCustomizedCardTitleEqual(string title)
         {
             CustomizeCardConnectionTitleLabel.TextEquals(title);
+            return this;
+        }
+
+        public Verifications AssertVpnConnectionEstablished(string ipAddressBefore, string ipAddressAfter)
+        {
+            Assert.That(ipAddressBefore.Equals(ipAddressAfter), Is.False,
+                $"User was not connected to VPN server. IP Address not connected: {ipAddressBefore}. " +
+                $"IP Address connected: {ipAddressAfter}");
+            return this;
+        }
+
+        public Verifications AssertVpnConnectionAfterKill(string ipAddressBeforeKill, string ipAddressAfterKill)
+        {
+            Assert.That(ipAddressBeforeKill.Equals(ipAddressAfterKill), Is.True,
+                $"VPN Connection was lost after app was killed. " +
+                $"IP Address before client was killed: {ipAddressBeforeKill}. " +
+                $"IP Address after client was killed: {ipAddressAfterKill}");
+            return this;
+        }
+
+        public Verifications AssertVpnConnectionAfterRestored(string ipAddressBeforeKill, string ipAddressAfterRestore)
+        {
+            Assert.That(ipAddressBeforeKill.Equals(ipAddressAfterRestore), Is.True,
+                $"VPN Connection was lost/reconnected after client was resumed. " +
+                $"IP Address before client was killed: {ipAddressBeforeKill}. " +
+                $"IP Address after client was restored: {ipAddressAfterRestore}");
             return this;
         }
     }
