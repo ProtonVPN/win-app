@@ -1,0 +1,3889 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account_VpnPlan_Free">
+    <value>Proton VPN Free</value>
+  </data>
+  <data name="Automation_Properties_ConnectionDetails_Page">
+    <value>Kapcsolat részletei oldal</value>
+  </data>
+  <data name="Automation_Properties_Connection_Card_Component">
+    <value>Kapcsolat kártya</value>
+  </data>
+  <data name="Automation_Properties_Features_Bar">
+    <value>Funkciók sáv</value>
+  </data>
+  <data name="Automation_Properties_Home_Page">
+    <value>Kezdőlap</value>
+  </data>
+  <data name="Automation_Properties_KillSwitch_Page">
+    <value>Vészkapcsoló oldal</value>
+  </data>
+  <data name="Automation_Properties_LocationDetails_Page">
+    <value>Hely adatai oldal</value>
+  </data>
+  <data name="Automation_Properties_Login_Page">
+    <value>Bejelentkezés oldal</value>
+  </data>
+  <data name="Automation_Properties_Main_Page">
+    <value>Kezdőoldal</value>
+  </data>
+  <data name="Automation_Properties_NetShield_Page">
+    <value>NetShield oldal</value>
+  </data>
+  <data name="Automation_Properties_PortForwarding_Page">
+    <value>Port továbbítás oldal</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page">
+    <value>Profil oldal</value>
+  </data>
+  <data name="Automation_Properties_Settings_Advanced_Page">
+    <value>Speciális beállítások oldal</value>
+  </data>
+  <data name="Automation_Properties_Settings_Common_Page">
+    <value>Általános beállítások oldal</value>
+  </data>
+  <data name="Automation_Properties_Settings_Page">
+    <value>Beállítások oldal</value>
+  </data>
+  <data name="Automation_Properties_Sidebar">
+    <value>Oldalsáv</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Countries_Page">
+    <value>Országok oldal</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
+    <value>Átjáró oldal</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Page">
+    <value>Kapcsolatok oldal</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Profiles_Page">
+    <value>Profilok oldal</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Recents_Page">
+    <value>Legutóbbiak oldal</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Search_Results_Page">
+    <value>Keresési eredmények</value>
+  </data>
+  <data name="Automation_Properties_SplitTunneling_Page">
+    <value>Osztott alagút oldal</value>
+  </data>
+  <data name="Cities">
+    <value>Városok</value>
+  </data>
+  <data name="Common_Actions_ActionsFor">
+    <value>{0} műveletei</value>
+    <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_Add">
+    <value>Hozzáadás</value>
+  </data>
+  <data name="Common_Actions_Back">
+    <value>Vissza</value>
+  </data>
+  <data name="Common_Actions_Cancel">
+    <value>Mégsem</value>
+  </data>
+  <data name="Common_Actions_Change">
+    <value>Módosítás</value>
+  </data>
+  <data name="Common_Actions_Close">
+    <value>Bezárás</value>
+  </data>
+  <data name="Common_Actions_Connect">
+    <value>Kapcsolódás</value>
+  </data>
+  <data name="Common_Actions_ConnectTo">
+    <value>Kapcsolódás: {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_ContactUs">
+    <value>Lépjen velünk kapcsolatba</value>
+  </data>
+  <data name="Common_Actions_Customize">
+    <value>Testreszabás</value>
+  </data>
+  <data name="Common_Actions_Delete">
+    <value>Törlés</value>
+  </data>
+  <data name="Common_Actions_Disconnect">
+    <value>Kapcsolat bontása</value>
+  </data>
+  <data name="Common_Actions_DisconnectFrom">
+    <value>Lecsatlakozás: {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_Duplicate">
+    <value>Duplikálás</value>
+  </data>
+  <data name="Common_Actions_Edit">
+    <value>Szerkesztés</value>
+  </data>
+  <data name="Common_Actions_Enable">
+    <value>Engedélyezés</value>
+  </data>
+  <data name="Common_Actions_Exit_ProtonVPN">
+    <value>Kilépés a Proton VPN-ből</value>
+  </data>
+  <data name="Common_Actions_GotIt">
+    <value>Értem</value>
+  </data>
+  <data name="Common_Actions_Install">
+    <value>Telepítés</value>
+  </data>
+  <data name="Common_Actions_Reconnect">
+    <value>Újrakapcsolódás</value>
+  </data>
+  <data name="Common_Actions_Remove">
+    <value>Eltávolítás</value>
+  </data>
+  <data name="Common_Actions_Restart">
+    <value>Újraindítás</value>
+  </data>
+  <data name="Common_Actions_Save">
+    <value>Mentés</value>
+  </data>
+  <data name="Common_Actions_TryAgain">
+    <value>Próbálja újra</value>
+  </data>
+  <data name="Common_Actions_Update">
+    <value>Frissítés</value>
+  </data>
+  <data name="Common_Actions_Upgrade">
+    <value>Előfizetés</value>
+  </data>
+  <data name="Common_Confirmation_KillSwitch_Message">
+    <value>Fejlett vészkapcsoló engedélyezve. Az internet VPN nélküli használatához kapcsolja ki a fejlett vészkapcsolót.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
+    <value>Fejlett vészkapcsoló engedélyezve. Ha folytatja, megszakad az internetkapcsolat.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnected_Message">
+    <value>Megszakad a VPN-kapcsolat.</value>
+  </data>
+  <data name="Common_Links_LearnMore">
+    <value>További információk</value>
+  </data>
+  <data name="Common_Message_Loading">
+    <value>Betöltés...</value>
+  </data>
+  <data name="Common_States_Off">
+    <value>Ki</value>
+  </data>
+  <data name="Common_States_On">
+    <value>Be</value>
+  </data>
+  <data name="Common_States_Updating">
+    <value>Frissítés...</value>
+  </data>
+  <data name="Common_Tags_New">
+    <value>ÚJ</value>
+  </data>
+  <data name="Components_Update_GetMostFromYourVpn">
+    <value>Hozza ki a legtöbbet a VPN-ből az alkalmazás legújabb verziójára való frissítéssel.</value>
+  </data>
+  <data name="Components_Update_MoreLikelyIssues">
+    <value>A Proton VPN régebbi verzióinál nagyobb valószínűséggel jelentkeznek problémák.</value>
+  </data>
+  <data name="Components_Update_UpdateAvailable">
+    <value>Frissítés érhető el</value>
+  </data>
+  <data name="Components_Update_UpdateProtonVpn">
+    <value>Proton VPN frissítése</value>
+  </data>
+  <data name="Connection_Error_EditProfile">
+    <value>Profil szerkesztése</value>
+  </data>
+  <data name="Connection_Error_MissingConnectionCertificate">
+    <value>A Proton VPN-nek nem sikerült lekérni a hitelesítési tanúsítványt hálózati probléma miatt.</value>
+  </data>
+  <data name="Connection_Error_NoServers">
+    <value>A kiválasztott összes kiszolgáló egyike sem érhető el. Kérjük, bővítse a választékot, vagy próbálja meg később újra.</value>
+  </data>
+  <data name="Connection_Error_NoServers_Profile">
+    <value>A '{0}' szerver kiválasztása nem elérhető. Válasszon másik szervert, vagy próbálja meg később újra.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Connection_Error_NoTapAdapters">
+    <value>A hálózati adapter hiányzik.</value>
+  </data>
+  <data name="Connection_Error_ReportAnIssue">
+    <value>Hibajelentés</value>
+  </data>
+  <data name="Connection_Error_RpcServerUnavailable">
+    <value>A Proton VPN nem tud csatlakozni, mert az RPC-kiszolgáló nem elérhető az Ön rendszerén.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedFreeUser">
+    <value>Kérjük csatlakoztasson le egy másik eszközt, hogy ezt csatlakoztatni tudja, vagy váltson a Plus csomagra, hogy egyszerre akár 10 eszközt tudjon csatlakoztatni.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedPaidUser">
+    <value>Elérte a csatlakoztatható eszközök maximális számát. Válasszon le egy másik eszközt, hogy ezzel csatlakozhasson.</value>
+  </data>
+  <data name="Connection_Error_TapAdapterInUse">
+    <value>A hálózati adapter jelenleg használatban van.</value>
+  </data>
+  <data name="Connection_Error_TapRequiresUpdate">
+    <value>A hálózati adapter verziója elavult.</value>
+  </data>
+  <data name="Connection_Error_Title">
+    <value>Sikertelen kapcsolódás</value>
+  </data>
+  <data name="Connection_Error_TlsCertificate">
+    <value>Probléma van a VPN-kiszolgáló tanúsítványának ellenőrzésével. Ez azt jelezheti, hogy a hálózati kapcsolatot megfigyelik, vagy a kiválasztott szerver konfigurációja hibás. Kérjen segítséget ügyfélszolgálatunktól a probléma jelentés segítségével.</value>
+  </data>
+  <data name="Connection_Error_Unknown">
+    <value>Nem tudjuk, hogy mi történt. Kérjük, próbálja meg újra, vagy lépjen kapcsolatba az ügyfélszolgálattal.</value>
+  </data>
+  <data name="Connection_Error_ViewPossibleSolutions">
+    <value>Javítások megtekintése</value>
+  </data>
+  <data name="Connection_Error_WireGuardAdapterInUse">
+    <value>A készülék WireGuard adaptere használatban van. Kapcsolódjon le az eszközén futó bármely más VPN-ről, majd próbálja meg újra.</value>
+  </data>
+  <data name="Connection_Intent_AutoSelected">
+    <value>Automatikusan kiválasztva a következők közül:</value>
+    <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
+  </data>
+  <data name="Connection_Intent_City_Server">
+    <value>{0} #{1}</value>
+    <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the number associated to the server (eg. Zurich #20)</comment>
+  </data>
+  <data name="Connection_Intent_Country_Server">
+    <value>{0} #{1}</value>
+    <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
+  </data>
+  <data name="Connection_Via_SecureCore">
+    <value>{0}-on keresztül</value>
+    <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
+  </data>
+  <data name="Connections_Cities_One">
+    <value>Város ({0})</value>
+  </data>
+  <data name="Connections_Cities_Other">
+    <value>Városok ({0})</value>
+  </data>
+  <data name="Connections_City">
+    <value>Város</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>Ebben a városban lévő szerverek VPN Plus csomaggal érhetők el</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>Ebben a városban lévő szerverek karbantartás alatt állnak</value>
+  </data>
+  <data name="Connections_Countries_One">
+    <value>Ország ({0})</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>Országok ({0})</value>
+  </data>
+  <data name="Connections_Country">
+    <value>Ország</value>
+  </data>
+  <data name="Connections_Country_Middle">
+    <value>Közbenső ország</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>Ebben a városban lévő szerverek VPN Plus csomaggal érhetők el</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>Ebben a városban lévő szerverek karbantartás alatt állnak</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Nem sikerült csatlakozni</value>
+  </data>
+  <data name="Connections_Fastest">
+    <value>Leggyorsabb</value>
+  </data>
+  <data name="Connections_Free_Servers_One">
+    <value>Ingyenes szerver ({0})</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>Ingyenes szerverek ({0})</value>
+  </data>
+  <data name="Connections_Gateway">
+    <value>Átjáró</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>Ezen az átjárón lévő szerverek VPN Plus csomaggal érhetők el</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>Ezen az átjárón lévő szerverek karbantartás alatt állnak</value>
+  </data>
+  <data name="Connections_Gateways_One">
+    <value>Átjáró ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>Átjárók ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Server">
+    <value>Dedikált szerver</value>
+  </data>
+  <data name="Connections_Gateways_Servers_One">
+    <value>Dedikált szerver ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>Dedikált szerverek ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_One">
+    <value>P2P város ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>P2P városok ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_One">
+    <value>P2P ország ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>P2P országok ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_One">
+    <value>P2P szerver ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>P2P szerverek ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_One">
+    <value>P2P állapota ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>P2P állapota ({0})</value>
+  </data>
+  <data name="Connections_Profiles_One">
+    <value>Profil ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Other">
+    <value>Profilok ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Create">
+    <value>Profil létrehozása</value>
+    <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
+  </data>
+  <data name="Connections_Profiles_Delete">
+    <value>Profil törlése</value>
+  </data>
+  <data name="Connections_Profiles_Delete_Message">
+    <value>"{0}' véglegesen törlésre kerül</value>
+    <comment>{0} is a placeholder for the name of the profile.</comment>
+  </data>
+  <data name="Connections_Profiles_Delete_Title">
+    <value>Profil törlése?</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Description">
+    <value>A profilok mentett kapcsolatok, amelyekben Ön választhatja ki a helyet, a szervert és a protokollt.</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Title">
+    <value>Első profil létrehozása</value>
+  </data>
+  <data name="Connections_Profiles_Location_Header">
+    <value>A kapcsolat típusának és helyének kiválasztása</value>
+  </data>
+  <data name="Connections_Profiles_Name">
+    <value>Adjon nevet a profiljának</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default">
+    <value>Névtelen</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate">
+    <value>{0} másolata</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
+  </data>
+  <data name="Connections_Profiles_New">
+    <value>Új profil</value>
+    <comment>"New profile" is more appropriate when you already have a profile</comment>
+  </data>
+  <data name="Connections_Profiles_NotAvailable_Tooltip">
+    <value>A profilok VPN Plus csomaggal érhetők el</value>
+    <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
+  </data>
+  <data name="Connections_Profiles_Settings_Description">
+    <value>A profilbeállítások felülírják a VPN-beállításokat, amikor csatlakozik.</value>
+  </data>
+  <data name="Connections_Profiles_Settings_Header">
+    <value>Egyéni beállítások hozzáadása</value>
+  </data>
+  <data name="Connections_Random">
+    <value>Véletlen</value>
+  </data>
+  <data name="Connections_Recents_One">
+    <value>Legutóbbi ({0})</value>
+  </data>
+  <data name="Connections_Recents_Other">
+    <value>Legutóbbiak ({0})</value>
+  </data>
+  <data name="Connections_Recents_Empty_Description">
+    <value>Tekintse meg a kapcsolati előzményeket itt.</value>
+  </data>
+  <data name="Connections_Recents_Empty_Title">
+    <value>Még nincsenek előzmények</value>
+  </data>
+  <data name="Connections_Recents_Pinned_One">
+    <value>Kitűzött ({0})</value>
+  </data>
+  <data name="Connections_Recents_Pinned_Other">
+    <value>Kitűzöttek ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_One">
+    <value>Secure Core ország ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>Secure Core országok ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_One">
+    <value>Secure Core szerver ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>Secure Core szerverek ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_One">
+    <value>Város megtekintése ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Other">
+    <value>Városok megtekintése ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_One">
+    <value>Szerver megtekintése ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Other">
+    <value>Szerverek megtekintése ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_One">
+    <value>Állam megtekintése ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Other">
+    <value>Államok megtekintése ({0})</value>
+  </data>
+  <data name="Connections_Server">
+    <value>Szerver</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>A szerver csak VPN Plus csomaggal érhető el</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>A szerver karbantartás alatt áll</value>
+  </data>
+  <data name="Connections_Servers_One">
+    <value>Szerver ({0})</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>Szerverek ({0})</value>
+  </data>
+  <data name="Connections_State">
+    <value>Állapot</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Az ebben az államban lévő kiszolgálók a VPN Plus segítségével érhetők el.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>Ebben az államban minden szerver karbantartás alatt áll.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_One">
+    <value>({0}) állam</value>
+  </data>
+  <data name="Connections_States_Other">
+    <value>({0}) állam</value>
+  </data>
+  <data name="Connections_Tor_Countries_One">
+    <value>Tor ország ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>Tor országok ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_One">
+    <value>Tor szerver ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>Tor szerverek ({0})</value>
+  </data>
+  <data name="Countries">
+    <value>Országok</value>
+  </data>
+  <data name="Countries_All">
+    <value>Összes</value>
+  </data>
+  <data name="Countries_City_One">
+    <value>{0} város</value>
+  </data>
+  <data name="Countries_City_Other">
+    <value>{0} város</value>
+  </data>
+  <data name="Countries_Connect">
+    <value>Kapcsolódás</value>
+    <comment>Connect button label on a country row in the countries tab</comment>
+  </data>
+  <data name="Countries_Fastest">
+    <value>Leggyorsabb ország</value>
+  </data>
+  <data name="Countries_NoSearchResults">
+    <value>Nincs találat</value>
+  </data>
+  <data name="Countries_NumberOfServers">
+    <value>Szerverek ({0})</value>
+    <comment>{0} represents a number of servers</comment>
+  </data>
+  <data name="Countries_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Countries_P2P_Cities">
+    <value>P2P városok ({0})</value>
+    <comment>{0} represents a number of P2P cities in the country</comment>
+  </data>
+  <data name="Countries_P2P_Description">
+    <value>Töltsön le fájlokat P2P (peer-to-peer) hálózatokon keresztül, és fokozza az online játék- és videohívási élményt.</value>
+  </data>
+  <data name="Countries_Page_FreeUser_Description">
+    <value>Oldja fel az országválasztékot a VPN Plusszal</value>
+  </data>
+  <data name="Countries_SearchPlaceholder">
+    <value>Böngészés innen...</value>
+  </data>
+  <data name="Countries_Section_Header">
+    <value>VPN kapcsolat</value>
+  </data>
+  <data name="Countries_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>Még egy titkosítási réteg hozzáadása a VPN-kapcsolathoz.</value>
+  </data>
+  <data name="Countries_ServerLoad">
+    <value>Szerver terheltség</value>
+  </data>
+  <data name="Countries_SmartRouting">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Countries_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Countries_TorServers">
+    <value>Tor szerverek ({0})</value>
+    <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>Használja a VPN kapcsolatát miközben a Tor hálózathoz van csatlakozva extra adatvédelemért.</value>
+  </data>
+  <data name="Countries_TryDifferentKeyword">
+    <value>Kérjük, próbálkozzon másik külcsszóval</value>
+  </data>
+  <data name="Country_Fastest">
+    <value>Leggyorsabb ország</value>
+  </data>
+  <data name="Country_Fastest_ExcludingMyCountry">
+    <value>Leggyorsabb (kivéve az én országom)</value>
+  </data>
+  <data name="Country_Random">
+    <value>Véletlenszerű ország</value>
+  </data>
+  <data name="Country_Random_ExcludingMyCountry">
+    <value>Véletlenszerű (kivéve az én országom)</value>
+  </data>
+  <data name="Country_val_AD">
+    <value>Andorra</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE">
+    <value>Egyesült Arab Emírségek</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF">
+    <value>Afganisztán</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG">
+    <value>Antigua és Barbuda</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI">
+    <value>Anguilla</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL">
+    <value>Albánia</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM">
+    <value>Örményország</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO">
+    <value>Angola</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ">
+    <value>Antarktisz</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR">
+    <value>Argentína</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS">
+    <value>Amerikai Szamoa</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT">
+    <value>Ausztria</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU">
+    <value>Ausztrália</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW">
+    <value>Aruba</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX">
+    <value>Aland-szigetek</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ">
+    <value>Azerbajdzsán</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA">
+    <value>Bosznia-Hercegovina</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB">
+    <value>Barbados</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD">
+    <value>Banglades</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE">
+    <value>Belgium</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF">
+    <value>Burkina Faso</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG">
+    <value>Bulgária</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH">
+    <value>Bahrein</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI">
+    <value>Burundi</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ">
+    <value>Benin</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL">
+    <value>Saint-Barthélemy</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM">
+    <value>Bermuda</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN">
+    <value>Brunei Darussalam Állam</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO">
+    <value>Bolívia</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ">
+    <value>Bonaire, Sint Eustatius és Saba</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR">
+    <value>Brazília</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS">
+    <value>Bahama-szigetek</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT">
+    <value>Bhután</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV">
+    <value>Bouvet-sziget</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW">
+    <value>Botswana</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY">
+    <value>Belarusz</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ">
+    <value>Belize</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA">
+    <value>Kanada</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC">
+    <value>Kókusz (Keeling)-szigetek</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD">
+    <value>Kongói Demokratikus Köztársaság</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF">
+    <value>Közép-afrikai Köztársaság</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG">
+    <value>Kongó</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH">
+    <value>Svájc</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI">
+    <value>Elefántcsontpart</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK">
+    <value>Cook-szigetek</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL">
+    <value>Chile</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM">
+    <value>Kamerun</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN">
+    <value>Kína</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO">
+    <value>Kolumbia</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR">
+    <value>Costa Rica</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU">
+    <value>Kuba</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV">
+    <value>Zöld-foki-szigetek</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW">
+    <value>Curacao</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX">
+    <value>Karácsony-sziget</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY">
+    <value>Ciprus</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ">
+    <value>Csehország</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE">
+    <value>Németország</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ">
+    <value>Dzsibuti</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK">
+    <value>Dánia</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM">
+    <value>Dominikai Közösség</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO">
+    <value>Dominikai Köztársaság</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ">
+    <value>Algéria</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC">
+    <value>Ecuador</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE">
+    <value>Észtország</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG">
+    <value>Egyiptom</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH">
+    <value>Nyugat-Szahara</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER">
+    <value>Eritrea</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES">
+    <value>Spanyolország</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET">
+    <value>Etiópia</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI">
+    <value>Finnország</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ">
+    <value>Fidzsi-szigetek</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK">
+    <value>Falkland-szigetek (Malvinas)</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM">
+    <value>Mikronézia</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO">
+    <value>Feröer-szigetek</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR">
+    <value>Franciaország</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA">
+    <value>Gabon</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB">
+    <value>Egyesült Királyság</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD">
+    <value>Grenada</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE">
+    <value>Grúzia</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF">
+    <value>Francia Guyana</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG">
+    <value>Guernsey</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH">
+    <value>Ghána</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI">
+    <value>Gibraltár</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL">
+    <value>Grönland</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM">
+    <value>Gambia</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN">
+    <value>Guinea</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP">
+    <value>Guadeloupe</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ">
+    <value>Egyenlítői-Guinea</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR">
+    <value>Görögország</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS">
+    <value>Déli-Georgia és Déli-Sandwich-szigetek</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT">
+    <value>Guatemala</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU">
+    <value>Guam</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW">
+    <value>Bissau-Guinea</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY">
+    <value>Guyana</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK">
+    <value>Hongkong</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM">
+    <value>Heard-sziget és McDonald-szigetek</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN">
+    <value>Honduras</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR">
+    <value>Horvátország</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT">
+    <value>Haiti</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU">
+    <value>Magyarország</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID">
+    <value>Indonézia</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE">
+    <value>Írország</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL">
+    <value>Izrael</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM">
+    <value>Man-sziget</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN">
+    <value>India</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO">
+    <value>Brit Indiai-óceáni Terület</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ">
+    <value>Irak</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR">
+    <value>Irán</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS">
+    <value>Izland</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT">
+    <value>Olaszország</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE">
+    <value>Jersey</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM">
+    <value>Jamaica</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO">
+    <value>Jordánia</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP">
+    <value>Japán</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE">
+    <value>Kenya</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG">
+    <value>Kirgizisztán</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH">
+    <value>Kambodzsa</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI">
+    <value>Kiribati</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM">
+    <value>Comore-szigetek</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN">
+    <value>Saint Kitts és Nevis</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP">
+    <value>Észak-Korea</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR">
+    <value>Dél-Korea</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW">
+    <value>Kuvait</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY">
+    <value>Kajmán-szigetek</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ">
+    <value>Kazahsztán</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA">
+    <value>Laosz</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB">
+    <value>Libanon</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC">
+    <value>Saint Lucia</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI">
+    <value>Liechtenstein</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK">
+    <value>Srí Lanka</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR">
+    <value>Libéria</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS">
+    <value>Lesotho</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT">
+    <value>Litvánia</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU">
+    <value>Luxemburg</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV">
+    <value>Lettország</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY">
+    <value>Líbia</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA">
+    <value>Marokkó</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC">
+    <value>Monaco</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD">
+    <value>Moldova</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME">
+    <value>Montenegró</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF">
+    <value>Saint Martin (francia rész)</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG">
+    <value>Madagaszkár</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH">
+    <value>Marshall-szigetek</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK">
+    <value>Macedónia</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML">
+    <value>Mali</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM">
+    <value>Mianmar</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN">
+    <value>Mongólia</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO">
+    <value>Makaó</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP">
+    <value>Északi-Mariana-szigetek</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ">
+    <value>Martinique</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR">
+    <value>Mauritánia</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS">
+    <value>Montserrat</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT">
+    <value>Málta</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU">
+    <value>Mauritius</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV">
+    <value>Maldív-szigetek</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW">
+    <value>Malawi</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX">
+    <value>Mexikó</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY">
+    <value>Malajzia</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ">
+    <value>Mozambik</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA">
+    <value>Namíbia</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC">
+    <value>Új-Kaledónia</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE">
+    <value>Niger</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF">
+    <value>Norfolk-sziget</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG">
+    <value>Nigéria</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI">
+    <value>Nicaragua</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL">
+    <value>Hollandia</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO">
+    <value>Norvégia</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP">
+    <value>Nepál</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR">
+    <value>Nauru</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU">
+    <value>Niue</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ">
+    <value>Új-Zéland</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM">
+    <value>Omán</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA">
+    <value>Panama</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE">
+    <value>Peru</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF">
+    <value>Francia Polinézia</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG">
+    <value>Pápua Új-Guinea</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH">
+    <value>Fülöp-szigetek</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK">
+    <value>Pakisztán</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL">
+    <value>Lengyelország</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM">
+    <value>Saint-Pierre és Miquelon</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN">
+    <value>Pitcairn-szigetek</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR">
+    <value>Puerto Rico</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS">
+    <value>Palesztina</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT">
+    <value>Portugália</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW">
+    <value>Palau</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY">
+    <value>Paraguay</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA">
+    <value>Katar</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE">
+    <value>Réunion</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO">
+    <value>Románia</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS">
+    <value>Szerbia</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU">
+    <value>Oroszország</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW">
+    <value>Ruanda</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA">
+    <value>Szaúd-Arábia</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB">
+    <value>Salamon-szigetek</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC">
+    <value>Seychelle-szigetek</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD">
+    <value>Szudán</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE">
+    <value>Svédország</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG">
+    <value>Szingapúr</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH">
+    <value>Szent Ilona</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI">
+    <value>Szlovénia</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ">
+    <value>Svalbard és Jan Mayen</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK">
+    <value>Szlovákia</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL">
+    <value>Sierra Leone</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM">
+    <value>San Marino</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN">
+    <value>Szenegál</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO">
+    <value>Szomália</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR">
+    <value>Suriname</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS">
+    <value>Dél-Szudán</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST">
+    <value>Sao Tomé és Príncipe</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV">
+    <value>Salvador</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX">
+    <value>Sint Maarten (holland rész)</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY">
+    <value>Sziriai Arab Köztársaság</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ">
+    <value>Szváziföld</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC">
+    <value>Turks- és Caicos-szigetek</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD">
+    <value>Csád</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF">
+    <value>Francia Déli Területek</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG">
+    <value>Togo</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH">
+    <value>Thaiföld</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ">
+    <value>Tádzsikisztán</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK">
+    <value>Tokelau-szigetek</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL">
+    <value>Kelet-Timor</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM">
+    <value>Türkmenisztán</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN">
+    <value>Tunézia</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO">
+    <value>Tonga</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR">
+    <value>Törökország</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT">
+    <value>Trinidad és Tobago</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV">
+    <value>Tuvalu</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW">
+    <value>Tajvan</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ">
+    <value>Tanzánia</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA">
+    <value>Ukrajna</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG">
+    <value>Uganda</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK">
+    <value>Egyesült Királyság</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM">
+    <value>Amerikai Egyesült Államok lakatlan külbirtokai</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US">
+    <value>Amerikai Egyesült Államok</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY">
+    <value>Uruguay</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ">
+    <value>Üzbegisztán</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA">
+    <value>Vatikán</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC">
+    <value>Saint Vincent és a Grenadine-szigetek</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE">
+    <value>Venezuela</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG">
+    <value>Brit Virgin-szigetek</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI">
+    <value>Amerikai Virgin-szigetek</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN">
+    <value>Vietnám</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU">
+    <value>Vanuatu</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF">
+    <value>Wallis és Futuna</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS">
+    <value>Szamoa</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_YE">
+    <value>Jemen</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT">
+    <value>Mayotte</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA">
+    <value>Dél-Afrika</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM">
+    <value>Zambia</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW">
+    <value>Zimbabwe</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ">
+    <value>Ismeretlen</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Description">
+    <value>A BFE (Base Filtering Engine) szolgáltatás a Windows-eszközön le van tiltva. Ezt a szolgáltatást engedélyezni kell a Proton VPN megfelelő működéséhez.</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable">
+    <value>Az alap szűrőmotor engedélyezése</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title">
+    <value>Engedélyezze az alap szűrőmotort a folytatáshoz</value>
+  </data>
+  <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
+    <value>Tegyen szert korlátlan szerverváltásra a VPN Plusszal.</value>
+  </data>
+  <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
+    <value>Elérte a maximális számú ingyenes szerver váltás számát.</value>
+  </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>Kezdés</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>Lejárt az előfizetés</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Fizessen elő, hogy újra hozzáférhessen a Plus szerverekhez és funkciókhoz.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description">
+    <value>Úgy tűnik, hogy a Proton VPN szolgáltatása le van tiltva. A csatlakozáshoz újra engedélyeznie kell a szolgáltatást.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title">
+    <value>A folytatáshoz engedélyezze a Windows szolgáltatást</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_One">
+    <value>A Proton Free automatikusan a leggyorsabb elérhető ingyenes szerverhez csatlakozik az {0} ingyenes országunkból. Ez általában az Önhöz legközelebbi szerver lesz.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Other">
+    <value>A Proton Free automatikusan a leggyorsabb elérhető ingyenes szerverhez csatlakozik az {0} ingyenes országunkból. Ez általában az Önhöz legközelebbi szerver lesz.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_One">
+    <value>Ingyenes szerver országok ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Other">
+    <value>Ingyenes szerver országok ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Title">
+    <value>Free kapcsolat</value>
+  </data>
+  <data name="Dialogs_Latency_Description">
+    <value>A késleltetés azt mutatja, hogy mennyi időbe telik, amíg egy szerver válaszol a kérésekre.
+
+A magas késleltetés lelassíthatja a kapcsolatot.</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Description">
+    <value>A VPN a megszokottnál lassabban futhat</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Title">
+    <value>Magas (150ms+)</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Description">
+    <value>Villámgyors sebesség</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Title">
+    <value>Alacsony (1ms - 50ms)</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Description">
+    <value>Nem valószínű, hogy befolyásolja a VPN sebességet</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Title">
+    <value>Közepes (50ms - 150ms)</value>
+  </data>
+  <data name="Dialogs_Latency_Title">
+    <value>Mi az a késleltetés?</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description">
+    <value>A kapcsolatot letiltottuk, mert olyan kiszolgálót használ, amely nem támogatja a P2P (peer-to-peer) forgalmat. A P2P nincs támogatva az ingyenes kiszolgálókon. Kérjük, használjon másik szervert a P2P-hez.</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Title">
+    <value>P2P forgalom észlelve</value>
+  </data>
+  <data name="Dialogs_P2P_HowToTorrentLink">
+    <value>Hogyan kell torrentezni P2P-rel</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_Title">
+    <value>P2P</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsP2PServer">
+    <value>Mi az a P2P szerver?</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsP2PServer_Description">
+    <value>A P2P (peer-to-peer) VPN-kiszolgálók feloldják a torrentoldalak blokkolását.</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsTorrenting">
+    <value>Mi az a torrentezés?</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsTorrenting_Description">
+    <value>Nagyméretű fájlok gyors megosztása és letöltése egy P2P-hálózaton keresztül.</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhyUse">
+    <value>Miért érdemes P2P-kiszolgálót használni torrentezéskor?</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhyUse_Description">
+    <value>- Megnövelt feltöltési és letöltési sebesség
+- Nincs tevékenységi napló
+- IP-címének elrejtése a szolgáltató és a kapcsolódó felek elől</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_Protocol_Description">
+    <value>A protokoll olyan utasítások összessége, amelyeket az eszköz követ a szerverhez való csatlakozáshoz és a vele való kommunikációhoz.</value>
+  </data>
+  <data name="Dialogs_Protocol_SwitchHeader">
+    <value>VPN protokoll változtatása</value>
+  </data>
+  <data name="Dialogs_Protocol_Title">
+    <value>Mi az a VPN protokoll?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email">
+    <value>E-mail cím</value>
+    <comment>The label for user e-mail address in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
+    <value>példa@domain.com</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
+    <value>Hibanapló beküldése</value>
+    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
+    <value>A hibanaplók megmutatják, mi ment rosszul, és milyen műveletek vezettek a problémához. Ezeket mindig csak arra használjuk, hogy segítsük a mérnökeinket a hibák kijavításában.</value>
+    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Header">
+    <value>Mi a probléma?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_NoLogsWarning">
+    <value>A hibanaplók segítenek a probléma felderítésében. Ha nem mellékeli ezeket, előfordulhat, hogy nem tudjuk teljes mértékben kivizsgálni.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes">
+    <value>Gyors javítások</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Footer">
+    <value>Nem működött?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Header">
+    <value>Ezek a tippek segíthetnek problémája gyorsabban megoldásában.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_DoneAction">
+    <value>Kész</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail">
+    <value>Valami hiba történt</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail_Description">
+    <value>Nem sikerült elküldeni a jelentést. Ellenőrizze a hálózati kapcsolatot, és próbálja meg újra.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success">
+    <value>Jelentés elküldve</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success_Description">
+    <value>Köszönjük a visszajelzést. Hamarosan válaszolunk.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_SendReport">
+    <value>Bejelentés elküldése</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Steps">
+    <value>{0} / {1} lépés</value>
+    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Title">
+    <value>Hibajelentés</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Description">
+    <value>A szerverterhelés azt mutatja, hogy a szerver milyen közel van a maximális kapacitásához.
+
+A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Description">
+    <value>A VPN a megszokottnál lassabban futhat</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Title">
+    <value>Magas (91-100%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Description">
+    <value>Villámgyors sebesség</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Title">
+    <value>Alacsony (1-75%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Description">
+    <value>Nem valószínű, hogy befolyásolja a VPN sebességet</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Title">
+    <value>Közepes (76-90%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Title">
+    <value>Mit értünk szerverterhelés alatt?</value>
+  </data>
+  <data name="Dialogs_SmartRouting_Title">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>Talán később</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description">
+    <value>Úgy tűnik, hogy az eszköze proxy-kiszolgálót használ. Ez zavarhatja a VPN-védelmet.</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Disable">
+    <value>Proxy letiltása</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Title">
+    <value>Proxy szerver észlelve</value>
+  </data>
+  <data name="Dialogs_Tor_Description">
+    <value>Csatlakozzon egy Tor-kiszolgálóhoz, hogy bármilyen böngészővel hozzáférjen rejtett szolgáltatásokhoz és onion oldalakhoz.</value>
+  </data>
+  <data name="Dialogs_Tor_LearnMore">
+    <value>Hogyan lehet a Tor hálózatot elérni</value>
+  </data>
+  <data name="Dialogs_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>Kapcsolja ki a vírusirtó vagy tűzfal szoftvert</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>Ezek a programok zavarhatják a VPN-kapcsolatokat.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>Ellenőrizze az internetkapcsolatát</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>Győződjön meg róla, hogy online van, és hogy a kapcsolat stabil.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>Ezek a gyorsjavítások segíthetnek a Protonhoz való csatlakozásban.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>Használjon egy másik hálózatot</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>Próbáljon meg Wi-Fi hálózatot váltani, vagy használja helyette a mobil adatátvitelt.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>Ellenőrizze a státusz oldalunkat</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>Csak azért, hogy megbizonyosodjon arról, hogy a Proton szolgáltatásai a szokásos módon működnek.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>Kapcsolati segítség</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
+    <value>Ez megszakítja a VPN-hez való kapcsolódást. Minden aktív internetkapcsolat átmenetileg védtelen lesz.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
+    <value>Ez megszakítja a VPN-hez való kapcsolódást, és ideiglenesen letiltja a vészkapcsolót. Minden aktív internetkapcsolat átmenetileg védtelen lesz.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install">
+    <value>Telepítse a frissítést?</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart">
+    <value>Indítsa újra a Proton VPN-t a frissítés befejezéséhez</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Description">
+    <value>Úgy tűnik, hogy a rendszer órája pontatlan. Ez problémákat okozhat a VPN-hez való csatlakozáskor.</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_PrimaryButton">
+    <value>A rendszeróra frissítése</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Title">
+    <value>Rendszeróra frissítése</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>Egyszerű. Zökkenőmentes. Biztonságos. Védje magát online, és férjen hozzá biztonságosan a szervezet webhelyeihez, szoftvereihez és fájljaihoz.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Üdvözli a Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>Böngésszen privát módon, férjen hozzá a blokkolt tartalmakhoz, és élvezze a digitális szabadságot adat- és sebességkorlátozás nélkül.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>Hitelesített, naplózás nélküli VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>Az Ön tevékenységét a svájci adatvédelmi törvények védik. Soha nem követjük Önt online, és nem osztjuk meg adatait harmadik féllel.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>Szabadon böngészhet bárhonnan</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
+    <value>Rejtse el virtuális tartózkodási helyét, és élvezze az internetet az {0} elérhető ország bármelyikéből.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>Rejtse el virtuális tartózkodási helyét, és élvezze az internetet az {0} elérhető ország bármelyikéből.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>Védjen 10 eszközt egyszerre</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>Terjessze ki a VPN-védelmet az asztali számítógépére, mobiljára, böngészőjére, TV-jére és még sok másra. </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>Lejátszás nagy felbontásban</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>Nézzen filmeket és tévéműsorokat a világ minden tájáról, anélkül, hogy a sebesség vagy a minőség terén kompromisszumot kellene kötnie.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>Üdvözli a VPN Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description1">
+    <value>Gratulálunk! Ön feloldotta a prémium biztonsági és teljesítményfunkciókat az összes Proton szolgáltatásban.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description2">
+    <value>Élvezze a Proton magánéletének legjavát.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>Üdvözli a Proton Unlimited</value>
+  </data>
+  <data name="Dialogs_Welcome_Message">
+    <value>Felkészülés az új VPN-élményre. Azonnal készen lesz.</value>
+  </data>
+  <data name="Dialogs_Welcome_Title">
+    <value>Üdvözli a Proton VPN</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>Mostantól a fő oldalsávról elérheti a szervezet dedikált szervereit.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>Az átjárók át lettek helyezve</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>Felfrissítettük a dizájnunkat, és néhány dolgot áthelyeztünk, hogy az alkalmazás könnyebben használható legyen.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>Új megjelenés, ugyanaz a védelem</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>Adjon hozzá speciális profilbeállításokat, például NetShield és port átirányítás, vagy állítsa be a Connect and Go funkciót, hogy a csatlakozáskor elinduljon egy Ön által kiválasztott weboldal.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Még hatékonyabb profilok</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>Most még egyszerűbb újra csatlakozni kedvenc szervereidhez. A kezdőképernyőn megtekintheti a legutóbbi kapcsolatait, vagy a gyors hozzáférés érdekében kitűzheti őket.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>Legutóbbiak megjelenítése</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Megtekintés</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>Újdonságok</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>Kilépés a Proton VPN-ből?</value>
+  </data>
+  <data name="Exit_Message">
+    <value>VPN-ről való lecsatlakozás...</value>
+  </data>
+  <data name="Exit_Title">
+    <value>Kilépés a Proton VPN-ből</value>
+  </data>
+  <data name="Flyouts_Country_Description1">
+    <value>A VPN nélküli böngészés kiszolgáltatottá teszi Önt a helyalapú internetkorlátozásoknak.</value>
+  </data>
+  <data name="Flyouts_Country_Description2">
+    <value>A webhelyek földrajzi hely szerint korlátozhatják a tartalmat bizonyos helyekre. A kormányok arra is utasíthatják az internetszolgáltatókat (ISP-k), hogy blokkoljanak bizonyos weboldalakat az országukban.</value>
+  </data>
+  <data name="Flyouts_Country_Description3">
+    <value>A VPN olyan látszatot kelt, mintha máshonnan böngészne, így megvédi Önt a megfigyeléstől és a cenzúrától.</value>
+  </data>
+  <data name="Flyouts_Country_Title">
+    <value>Ország</value>
+  </data>
+  <data name="Flyouts_Country_Warning">
+    <value>Csatlakozzon a VPN-hez a virtuális hely megváltoztatásához</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Connected">
+    <value>A VPN IP-je elrejti az Ön valódi IP-címét. Ez azt a látszatot kelti, mintha a VPN-helyéről böngészne, így az online tevékenységét nem lehet összekapcsolni az eszközével.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected1">
+    <value>Ezt az egyedi kódot a webhelyek és az internetszolgáltatók (internetszolgáltatók) arra használhatják, hogy az Ön tartózkodási helyét és böngészési előzményeit az Ön eszközéhez kössék.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2">
+    <value>A VPN elrejti az IP-címét, így nehezebbé teszi, hogy tevékenységét visszavezessék Önhöz.</value>
+  </data>
+  <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
+    <value>Mi az az IP-cím?</value>
+  </data>
+  <data name="Flyouts_IpAddress_Title">
+    <value>IP-cím</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIp">
+    <value>VPN IP</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIp">
+    <value>Az ön IP címe</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIpIsVisible">
+    <value>Az Ön IP-címe látható</value>
+  </data>
+  <data name="Flyouts_Isp_Description1">
+    <value>Az internetszolgáltató (ISP) az a vállalat, amelyik az internethez csatlakoztatja Önt.</value>
+  </data>
+  <data name="Flyouts_Isp_Description2">
+    <value>Naplózhatják az Ön online tevékenységét. Egyes országokban eladhatják az Ön adatait a hirdetőknek. Más országokban kötelezhetik őket arra, hogy átadják azokat a kormánynak.</value>
+  </data>
+  <data name="Flyouts_Isp_Description3">
+    <value>A VPN elrejti az IP-címét, így védve Önt az internetszolgáltatók esetleges beavatkozásaitól.</value>
+  </data>
+  <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
+    <value>Mi az internetszolgáltató?</value>
+  </data>
+  <data name="Flyouts_Isp_Title">
+    <value>Szolgáltató</value>
+  </data>
+  <data name="Flyouts_Isp_Warning">
+    <value>A szolgáltatója láthatja, hogy milyen webhelyeket látogat meg</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success">
+    <value>Letiltja az összes internet-hozzáférést, amikor nem csatlakozik a Proton VPN-hez</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info">
+    <value>Az IP-címe nyilvánosságra kerülhet, ha a VPN-kapcsolat megszakad</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success">
+    <value>Ha a VPN-kapcsolat megszakad, akkor a VPN helyreállításáig nem lesz kapcsolatban az internettel.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected">
+    <value>A fejlett vészkapcsoló akkor is érvényes, ha szándékosan megszakítja a VPN-hez való kapcsolódást.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected">
+    <value>Ha újra online szeretne lenni, csatlakozzon a VPN-hez, vagy tiltsa le a fejlett vészkapcsolót.</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
+    <value>Védve van a hirdetésekkel, nyomkövetőkkel és rosszindulatú szoftverekkel szemben.</value>
+  </data>
+  <data name="Flyouts_NetShield_Info">
+    <value>Védekezzen a hirdetések, nyomkövetők és rosszindulatú szoftverek ellen a weboldalakon és alkalmazásokban</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success">
+    <value>Csak a rosszindulatú szoftverektől van védve</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description">
+    <value>Blokkolja a hirdetéseket, nyomkövetőket és rosszindulatú szoftvereket a VPN Plus-szal.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title">
+    <value>Élvezze a reklámmentes böngészést</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort">
+    <value>Aktív portszám</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info">
+    <value>Adja meg az aktív portszámot a BitTorrent alkalmazásban a P2P sebesség javításához</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info">
+    <value>Javítja a peer-to-peer letöltési sebességet</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description">
+    <value>Turbózza fel a peer-to-peer (P2P) fájlmegosztás teljesítményét a VPN Plus segítségével.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title">
+    <value>P2P sebesség növelése</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning">
+    <value>Portátirányítás használatához csatlakozzon egy P2P-szerverhez</value>
+  </data>
+  <data name="Flyouts_Protocol_Description">
+    <value>A VPN-protokoll határozza meg, hogy a forgalom hogyan kerül titkosításra és továbbításra a VPN-en keresztül.</value>
+  </data>
+  <data name="Flyouts_Protocol_KnowledgeBaseLinkTitle">
+    <value>Melyik VPN protokoll a legjobb?</value>
+  </data>
+  <data name="Flyouts_Protocol_Title">
+    <value>Protokoll</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Description">
+    <value>A szerverterhelés megmutatja, hogy egy szerver mennyire van közel a maximális kapacitásához. A magas szerverterhelés lelassíthatja a kapcsolatot.</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High">
+    <value>Magas (91-100%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High_Description">
+    <value>A VPN a megszokottnál lassabban futhat</value>
+  </data>
+  <data name="Flyouts_ServerLoad_KnowledgeBaseLinkTitle">
+    <value>Mit értünk szerverterhelés alatt?</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low">
+    <value>Alacsony (1-75%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low_Description">
+    <value>Villámgyors sebesség</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium">
+    <value>Közepes (76-90%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium_Description">
+    <value>Nem valószínű, hogy befolyásolja a kapcsolat sebességét</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Title">
+    <value>Szerver terheltség</value>
+  </data>
+  <data name="Flyouts_Speed_BoostedByVpnAccelerator">
+    <value>A VPN Accelerator segítségével gyorsítva</value>
+  </data>
+  <data name="Flyouts_Speed_Description1">
+    <value>Ez azt mutatja, hogy másodpercenként mennyi adatot továbbít a Proton VPN.</value>
+  </data>
+  <data name="Flyouts_Speed_Description2">
+    <value>A sebesség az eszköz aktuális aktivitásán alapul - nem a VPN maximális sebességét jelenti.</value>
+  </data>
+  <data name="Flyouts_Speed_Download">
+    <value>Letöltés</value>
+    <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
+  </data>
+  <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
+    <value>A VPN-kapcsolat sebességének megértése és növelése</value>
+  </data>
+  <data name="Flyouts_Speed_Title">
+    <value>Sebesség</value>
+  </data>
+  <data name="Flyouts_Speed_Upload">
+    <value>Feltöltés</value>
+    <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
+    <value>Kizárt alkalmazás ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
+    <value>Kizárt alkalmazások ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
+    <value>Kizárt IP cím ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
+    <value>Kizárt IP címek ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Info">
+    <value>Lehetővé teszi, hogy megbízható alkalmazások és IP-címek VPN-védelem nélkül csatlakozhassanak</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info">
+    <value>Csak ezek az alkalmazások és IP-címek csatlakoznak VPN-en keresztül. Minden más forgalom védtelen.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_One">
+    <value>Védett alkalmazás ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
+    <value>Védett alkalmazások ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_One">
+    <value>Védett IP-cím ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
+    <value>Védett IP-címek ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info">
+    <value>Ezek az alkalmazások és IP-címek VPN-védelem nélkül csatlakoznak. Minden más forgalom védett.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description">
+    <value>Ossza fel a forgalmat VPN és nem VPN alagutakra a VPN Plus segítségével.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title">
+    <value>Mindkét világból a legjobbat kapja</value>
+  </data>
+  <data name="Flyouts_Volume_Description">
+    <value>Ez megmutatja, hogy mennyi adatforgalom haladt át a VPN-jén.</value>
+  </data>
+  <data name="Flyouts_Volume_Download">
+    <value>Letöltés</value>
+    <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
+  </data>
+  <data name="Flyouts_Volume_Title">
+    <value>Mennyiség</value>
+  </data>
+  <data name="Flyouts_Volume_Upload">
+    <value>Feltöltés</value>
+    <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
+  </data>
+  <data name="Format_Milliseconds">
+    <value>{0}ms</value>
+    <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
+  </data>
+  <data name="Format_Size_Bytes">
+    <value>{0} B</value>
+    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
+  </data>
+  <data name="Format_Size_Exabytes">
+    <value>{0} EB</value>
+    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
+  </data>
+  <data name="Format_Size_Gigabytes">
+    <value>{0} GB</value>
+    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
+  </data>
+  <data name="Format_Size_Kilobytes">
+    <value>{0} KB</value>
+    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
+  </data>
+  <data name="Format_Size_Megabytes">
+    <value>{0} MB</value>
+    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
+  </data>
+  <data name="Format_Size_Petabytes">
+    <value>{0} PB</value>
+    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
+  </data>
+  <data name="Format_Size_Terabytes">
+    <value>{0} TB</value>
+    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_SpeedUnit">
+    <value>Sebesség ({0})</value>
+    <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
+  </data>
+  <data name="Format_Speed_BytesPerSecond">
+    <value>{0} B/mp</value>
+    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
+  </data>
+  <data name="Format_Speed_ExabytesPerSecond">
+    <value>{0} EB/mp</value>
+    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
+  </data>
+  <data name="Format_Speed_GigabytesPerSecond">
+    <value>{0} GB/mp</value>
+    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
+  </data>
+  <data name="Format_Speed_KilobytesPerSecond">
+    <value>{0} KB/mp</value>
+    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
+  </data>
+  <data name="Format_Speed_MegabytesPerSecond">
+    <value>{0} MB/mp</value>
+    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
+  </data>
+  <data name="Format_Speed_PetabytesPerSecond">
+    <value>{0} PB/mp</value>
+    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
+  </data>
+  <data name="Format_Speed_TerabytesPerSecond">
+    <value>{0} TB/mp</value>
+    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
+  </data>
+  <data name="Format_Time_Day_One">
+    <value>{0} nap</value>
+  </data>
+  <data name="Format_Time_Day_Other">
+    <value>{0} nap</value>
+  </data>
+  <data name="Format_Time_DayHour_One">
+    <value>{0} nap {1} óra</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
+    <value>{0} nap {1} óra</value>
+  </data>
+  <data name="Format_Time_Hours">
+    <value>{0} óra</value>
+    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutes">
+    <value>{0} óra {1} perc</value>
+    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutesSeconds_Short">
+    <value>hh\:mm\:ss</value>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
+  </data>
+  <data name="Format_Time_Minutes">
+    <value>{0} perc</value>
+    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds">
+    <value>{0} perc {1} másodperc</value>
+    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds_Short">
+    <value>mm\:ss</value>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
+  </data>
+  <data name="Format_Time_Seconds">
+    <value>{0} mp</value>
+    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>Fájlok letöltése BitTorrent és más fájlmegosztó protokollokon keresztül</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>Még egy titkosítási réteg hozzáadása a VPN-kapcsolathoz</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>Használja a VPN kapcsolatát miközben a Tor hálózathoz van csatlakozva extra adatvédelemért</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>Világszintű lefedettség a VPN Plusszal</value>
+  </data>
+  <data name="Gateway_Fastest">
+    <value>Leggyorsabb átjáró</value>
+  </data>
+  <data name="Gateway_Random">
+    <value>Véletlenszerű átjáró</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>Csatlakozzon egy átjáróhoz, hogy hozzáférjen a szervezet VPN-jéhez.</value>
+  </data>
+  <data name="Gateways_Page_Title">
+    <value>Átjárók</value>
+  </data>
+  <data name="Gateways_Server">
+    <value>Dedikált szerver</value>
+  </data>
+  <data name="Home_Account_SignOut">
+    <value>Kijelentkezés</value>
+  </data>
+  <data name="Home_Account_SignOut_Confirmation_Title">
+    <value>Kijelentkezik innen {0}?</value>
+    <comment>{0} is a placeholder for the username</comment>
+  </data>
+  <data name="Home_Account_Title">
+    <value>Saját fiók</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Alapértelmezett kapcsolat módosítása</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeServer">
+    <value>Szerver váltása</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_BrowseSafely">
+    <value>Biztonságos böngészés innen</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_ConnectingTo">
+    <value>Kapcsolódás ehhez...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_DefaultConnection">
+    <value>Alapértelmezett kapcsolat</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_FreeConnection">
+    <value>Free kapcsolat</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_LastConnectedTo">
+    <value>Utoljára csatlakozva</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_Recommended">
+    <value>Ajánlott</value>
+  </data>
+  <data name="Home_ConnectionCard_Landmark">
+    <value>Kapcsolat kártya</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_ConnectionDetails_City">
+    <value>Város</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectedFor">
+    <value>Kapcsolódva</value>
+    <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Connecting">
+    <value>Kapcsolódás</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectingSubLabel">
+    <value>Védje digitális személyazonosságát...</value>
+  </data>
+  <data name="Home_ConnectionDetails_Country">
+    <value>Ország</value>
+  </data>
+  <data name="Home_ConnectionDetails_Gateway">
+    <value>Átjáró</value>
+  </data>
+  <data name="Home_ConnectionDetails_Hide">
+    <value>A kapcsolat részleteinek elrejtése</value>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP">
+    <value>Elrejtés</value>
+    <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP_Description">
+    <value>IP cím elrejtése</value>
+  </data>
+  <data name="Home_ConnectionDetails_Isp">
+    <value>Szolgáltató</value>
+  </data>
+  <data name="Home_ConnectionDetails_Landmark">
+    <value>Kapcsolat adatai</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_ConnectionDetails_MyIp">
+    <value>Az IP-címem</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protected">
+    <value>Védett</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protocol">
+    <value>Protokoll</value>
+  </data>
+  <data name="Home_ConnectionDetails_Server">
+    <value>Szerver</value>
+  </data>
+  <data name="Home_ConnectionDetails_ServerLoad">
+    <value>Szerver terheltség</value>
+  </data>
+  <data name="Home_ConnectionDetails_Show">
+    <value>Kapcsolat részleteinek megjelenítése</value>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP">
+    <value>Megjelenítés</value>
+    <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP_Description">
+    <value>IP cím megjelenítése</value>
+  </data>
+  <data name="Home_ConnectionDetails_State">
+    <value>Állapot</value>
+  </data>
+  <data name="Home_ConnectionDetails_Title">
+    <value>Kapcsolat adatai</value>
+  </data>
+  <data name="Home_ConnectionDetails_Unprotected">
+    <value>Nem védett</value>
+  </data>
+  <data name="Home_ConnectionDetails_UnprotectedSubLabel">
+    <value>Titkosítsa online tevékenységét VPN-hez való csatlakozással.</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume">
+    <value>Mennyiség</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Download">
+    <value>Letöltött mennyiség</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Total">
+    <value>Teljes mennyiség</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Upload">
+    <value>Feltöltött mennyiség</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnIp">
+    <value>VPN IP</value>
+  </data>
+  <data name="Home_ConnectionDetails_YourIpAddress">
+    <value>Az Ön IP-címe</value>
+  </data>
+  <data name="Home_FreeConnections_About">
+    <value>További információk az ingyenes kapcsolatokról</value>
+  </data>
+  <data name="Home_Help_Title">
+    <value>Segítség</value>
+  </data>
+  <data name="Home_Map_Landmark">
+    <value>Térkép</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_One">
+    <value>Reklám blokkolva</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>Reklám blokkolva</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>A hirdetések a weboldalakon és alkalmazásokban megjelenő promóciós reklámok vagy felugró ablakok.</value>
+  </data>
+  <data name="Home_NetShield_DataSaved">
+    <value>Adatmennyiség megtakarítva</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>A nem kívánt hirdetések, nyomkövetők és rosszindulatú programok blokkolásával megtakarított adatmennyiség becsült értéke.</value>
+  </data>
+  <data name="Home_NetShield_Landmark">
+    <value>NetShield statisztikák</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_NetShield_Title">
+    <value>NetShield statisztikák</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_One">
+    <value>Nyomkövető leállítva</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>Nyomkövető leállítva</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>A nyomkövetők olyan sütik és harmadik féltől származó webhelyek, amelyek információkat gyűjtenek, tárolnak és értékesítenek az Ön internetes tevékenységéről.</value>
+  </data>
+  <data name="Home_Page_Title">
+    <value>Otthoni</value>
+  </data>
+  <data name="Home_Recents_Landmark">
+    <value>Legutóbbi kapcsolatok</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_Recents_Pin">
+    <value>Rögzítés</value>
+  </data>
+  <data name="Home_Recents_Restricted">
+    <value>A szerver VPN Plusszal érhető el</value>
+  </data>
+  <data name="Home_Recents_SecondaryActions_ToolTip">
+    <value>Műveletek</value>
+  </data>
+  <data name="Home_Recents_ServerUnderMaintenance">
+    <value>Szerver karbantartás alatt</value>
+  </data>
+  <data name="Home_Recents_Title">
+    <value>Előzmények</value>
+  </data>
+  <data name="Home_Recents_Unpin">
+    <value>Feloldás</value>
+  </data>
+  <data name="Home_TitleBar_Menu_About">
+    <value>Névjegy</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Account">
+    <value>Fiók</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp">
+    <value>Kilépés az alkalmazásból</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help">
+    <value>Segítség</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
+    <value>Mi a probléma?</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings">
+    <value>Beállítások</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout">
+    <value>Kijelentkezés</value>
+  </data>
+  <data name="Home_TitleBar_Menu_UpdateNow">
+    <value>Frissítés</value>
+  </data>
+  <data name="Home_Update_UpdateAvailable">
+    <value>Frissítés érhető el</value>
+  </data>
+  <data name="Home_Update_UpdateReady">
+    <value>Frissítés készen áll</value>
+  </data>
+  <data name="Home_VpnStatus_Landmark">
+    <value>VPN állapota</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Connecting">
+    <value>Védje digitális személyazonosságát...</value>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Disconnected">
+    <value>Ön védtelen</value>
+  </data>
+  <data name="Home_VpnStatus_Title_Connected">
+    <value>Védett</value>
+  </data>
+  <data name="LoadingPage_Tip">
+    <value>Egy jobb világ a magánélet védelmével és a digitális szabadsággal kezdődik.</value>
+  </data>
+  <data name="Login_Error_GetSessionDetailsFailed">
+    <value>Hiba történt a munkamenet adatainak lekérdezésekor. Próbálja meg újra.</value>
+  </data>
+  <data name="Login_Error_IncorrectTwoFactorCode">
+    <value>Hibás kód. Próbálja meg újra.</value>
+  </data>
+  <data name="Login_Error_SessionExpired">
+    <value>A munkamenet lejárt. Jelentkezzen be újra.</value>
+    <comment>The message displayed in Login window when expired session is detected</comment>
+  </data>
+  <data name="Login_Error_SsoAuthFailed">
+    <value>Az SSO-hitelesítés sikertelen. Próbálja meg újra.</value>
+  </data>
+  <data name="Login_Error_TwoFactorAuthFailed">
+    <value>Helytelen felhasználónév vagy jelszó. Próbálja meg újra.</value>
+  </data>
+  <data name="Login_Error_TwoFactorFailed">
+    <value>A kétlépcsős hitelesítés sikertelen. Jelentkezzen be újra.</value>
+  </data>
+  <data name="Login_TwoFactorForm_Authenticate">
+    <value>Hitelesítés</value>
+    <comment>Authenticate button inside two factor form during login</comment>
+  </data>
+  <data name="Login_TwoFactorForm_Subtitle">
+    <value>Írja be a kódot a hitelesítő alkalmazásból.</value>
+  </data>
+  <data name="Login_TwoFactorForm_Title">
+    <value>Kétlépcsős hitelesítés</value>
+  </data>
+  <data name="Login_TwoFactor_Digit1">
+    <value>Első számjegy</value>
+  </data>
+  <data name="Login_TwoFactor_Digit2">
+    <value>Második számjegy</value>
+  </data>
+  <data name="Login_TwoFactor_Digit3">
+    <value>Harmadik számjegy</value>
+  </data>
+  <data name="Login_TwoFactor_Digit4">
+    <value>Negyedik számjegy</value>
+  </data>
+  <data name="Login_TwoFactor_Digit5">
+    <value>Ötödik számjegy</value>
+  </data>
+  <data name="Login_TwoFactor_Digit6">
+    <value>Hatodik számjegy</value>
+  </data>
+  <data name="Login_TwoFactor_EnterCode">
+    <value>Adja meg a kódot</value>
+  </data>
+  <data name="Main_Loading_SigningIn">
+    <value>Bejelentkezés, kis türelmet...</value>
+    <comment>Message in the loading screen when signing in or starting the app</comment>
+  </data>
+  <data name="Main_Loading_SigningOut">
+    <value>Kijelentkezés, kis türelmet...</value>
+    <comment>Message in the loading screen when signing out</comment>
+  </data>
+  <data name="Map_ConnectTo">
+    <value>Csatlakozás - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="Notifications_KillSwitch_Description">
+    <value>Az IP-cím védelme érdekében a vészkapcsoló blokkolja az internetkapcsolatot.</value>
+  </data>
+  <data name="Notifications_PortForwarding_CopyPortNumber">
+    <value>Port számának másolása</value>
+  </data>
+  <data name="Notifications_PortForwarding_Description">
+    <value>A nagyobb sebesség érdekében állítsa be ezt a számot a BitTorrent alkalmazásban.</value>
+  </data>
+  <data name="Notifications_SessionLimit_Description">
+    <value>Elérte a maximális eszközlimitet. A VPN-hez való újbóli csatlakozáshoz kérjük, válassza le a kapcsolatot egy másik eszközről.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>A díjcsomagját visszaállítottuk Proton Free-re, és visszakapcsoljuk a leggyorsabb ingyenes szerverre.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Description">
+    <value>A nyilvános Wi-Fi hálózatok sokkal sebezhetőbbek a biztonsági fenyegetésekkel szemben. A biztonságos böngészéshez csatlakozzon VPN-nel.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Title">
+    <value>Nem biztonságos Wi-Fi kapcsolat észlelve</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Action">
+    <value>Frissítés</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Message">
+    <value>Ez az alkalmazásverzió elavult. A Proton VPN további használatához frissítenie kell az alkalmazást.</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Title">
+    <value>Proton VPN frissítése a folytatáshoz</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Description">
+    <value>P2P (peer-to-peer) szervereink lehetővé teszik a P2P-hálózatok elérését, miközben az IP-címét és online tevékenységét is védi.</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Header">
+    <value>Mi az a P2P VPN?</value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Description">
+    <value>A P2P-hálózatok lehetővé teszik két eszköz összekapcsolását és az adatátvitelt anélkül, hogy egy központi szerveren keresztül haladnának. </value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Header">
+    <value>Mi az a P2P hálózat?</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Description">
+    <value>  • Torrent fájlok letöltése
+  • Online játékok és videohívások teljesítményének javítása
+  • Csatlakozás helyi hálózati (LAN) eszközökhöz</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Header">
+    <value>Mire szolgálnak a P2P-hálózatok?</value>
+  </data>
+  <data name="Overlay_P2P_LearnMore">
+    <value>Mi az a P2P?</value>
+  </data>
+  <data name="Overlay_P2P_Title">
+    <value>P2P</value>
+  </data>
+  <data name="Overlay_Profile_Description1">
+    <value>A profilok olyan egyéni VPN-kapcsolatok, amelyeket a saját igényeihez igazíthat, és a gyors hozzáférés érdekében elmenthet.</value>
+  </data>
+  <data name="Overlay_Profile_Description2">
+    <value>Állítsa be a kívánt helyet, és optimalizálja a beállításokat a biztonság, a teljesítmény, a játék vagy bármely más cél érdekében.</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore">
+    <value>Mi az a VPN profil?</value>
+  </data>
+  <data name="Overlay_Profile_Title">
+    <value>Profilok</value>
+  </data>
+  <data name="Overlay_SecureCore_Description1">
+    <value>A Secure Core egy második, maximális biztonságú VPN- szerveren keresztül csatlakoztatja Önt a célszerverhez.</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2">
+    <value>Ez a magasabb szintű védelem nagyobb késleltetést és lassabb sebességet okozhat.</value>
+  </data>
+  <data name="Overlay_SecureCore_LearnMore">
+    <value>Mi az a Secure Core?</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection">
+    <value>Secure Core
+VPN kapcsolat</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
+    <value>Nagyobb késleltetés</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Privacy">
+    <value>Fejlett adatvédelem</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection">
+    <value>Standard
+VPN kapcsolat</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Latency">
+    <value>Alacsonyabb késleltetés</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Privacy">
+    <value>Magas adatvédelem</value>
+  </data>
+  <data name="Overlay_SecureCore_Title">
+    <value>Secure Core</value>
+  </data>
+  <data name="Overlay_ServerLoad_Description">
+    <value>A szerverterhelés azt mutatja, hogy a szerver milyen közel van a maximális kapacitásához.
+
+A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Description">
+    <value>A VPN a megszokottnál lassabban futhat</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Title">
+    <value>Magas (91-100%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_LearnMore">
+    <value>Mit értünk szerverterhelés alatt?</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Description">
+    <value>Villámgyors sebesség</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Title">
+    <value>Alacsony (1-75%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Description">
+    <value>Nem valószínű, hogy befolyásolja a VPN sebességet</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Title">
+    <value>Közepes (76-90%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_Title">
+    <value>Szerver terheltség</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description1">
+    <value>A Smart Routing virtuális szervereket használ, hogy VPN-lefedettséget biztosítson a nehezen elérhető országokban.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2">
+    <value>Amikor csatlakozik egy Smart Routing- szerverhez, úgy tűnik, hogy a célországban böngészik, még akkor is, ha a fizikai szerver máshol található.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3">
+    <value>A Smart Routingot általában az adatvédelmi törvények és a cenzúra egyéb formáinak megkerülésére használják.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Header">
+    <value>A szerverek fizikailag {0}-ban találhatók, de úgy fog látszani, mintha Ön {1}-ből böngészne.</value>
+    <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
+    Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
+    Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
+  </data>
+  <data name="Overlay_SmartRouting_LearnMore">
+    <value>Mi az az Smart Routing?</value>
+  </data>
+  <data name="Overlay_SmartRouting_Title">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Overlay_Tor_Description">
+    <value>Csatlakozzon egy Tor-kiszolgálóhoz, hogy bármilyen böngészővel hozzáférjen rejtett szolgáltatásokhoz és onion-os oldalakhoz.</value>
+  </data>
+  <data name="Overlay_Tor_LearnMore">
+    <value>Hogyan lehet a Tor hálózatot elérni</value>
+  </data>
+  <data name="Overlay_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Profile_CustomSettings_Description">
+    <value>A profilbeállítások felülírják a VPN-beállításokat, amikor csatlakozik.</value>
+  </data>
+  <data name="Profile_CustomSettings_Header">
+    <value>Egyéni beállítások hozzáadása</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide">
+    <value>Beállítások elrejtése</value>
+  </data>
+  <data name="Profile_CustomSettings_Show">
+    <value>Beállítások megjelenítése</value>
+  </data>
+  <data name="Profile_NatType_Conflict_Description">
+    <value>Ez letiltja a portátirányítást ehhez a profilhoz.</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description">
+    <value>Ez letiltja az egyéni DNS-t ehhez a profilhoz.</value>
+  </data>
+  <data name="Profile_Options_Description">
+    <value>Automatikusan megnyithatja a kiválasztott webhelyet, amikor csatlakozik ehhez a profilhoz.</value>
+  </data>
+  <data name="Profile_Options_Header">
+    <value>Csatlakozás és indítás</value>
+  </data>
+  <data name="Profile_Options_Url">
+    <value>Weboldal URL</value>
+  </data>
+  <data name="Profile_Options_Url_Error">
+    <value>Adjon meg egy érvényes URL-t</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description">
+    <value>Ezzel a profil NAT-típusa Strictre (3. típus) változik.</value>
+  </data>
+  <data name="Profiles_Default_Gaming">
+    <value>Játék</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity">
+    <value>Maximális biztonság</value>
+  </data>
+  <data name="Profiles_Default_Office">
+    <value>Iroda</value>
+  </data>
+  <data name="Profiles_Default_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection">
+    <value>Véletlenszerű kapcsolat</value>
+  </data>
+  <data name="Profiles_Default_Streaming">
+    <value>Videózás USA</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool">
+    <value>Munka/Iskola</value>
+  </data>
+  <data name="Profiles_Page_Description">
+    <value>Állítsa össze saját VPN-beállításait és csatlakozzon egyetlen kattintással.</value>
+  </data>
+  <data name="Profiles_Page_Title">
+    <value>Profilok</value>
+  </data>
+  <data name="Search_InputBox_Placeholder">
+    <value>Böngészés a...</value>
+  </data>
+  <data name="Search_NoInput_CityOrState">
+    <value>Város vagy amerikai állam</value>
+    <comment>The word used for one single city and one single United States state</comment>
+  </data>
+  <data name="Search_NoInput_Country">
+    <value>Ország</value>
+    <comment>The word used for one single country</comment>
+  </data>
+  <data name="Search_NoInput_Server">
+    <value>Szerver</value>
+    <comment>The word used for one single server</comment>
+  </data>
+  <data name="Search_NoInput_TrySearchingFor">
+    <value>Próbáljon keresni...</value>
+  </data>
+  <data name="Search_NoResults_Description">
+    <value>Próbáljon ki egy másik kulcsszót.</value>
+  </data>
+  <data name="Search_NoResults_Title">
+    <value>Nincs találat</value>
+  </data>
+  <data name="Server">
+    <value>Szerver</value>
+  </data>
+  <data name="Server_Fastest_Free">
+    <value>A leggyorsabb ingyenes szerver</value>
+  </data>
+  <data name="Server_Feature_B2B">
+    <value>Átjáró</value>
+  </data>
+  <data name="Server_Feature_B2B_Description">
+    <value>Hozzáférés a szervezet szervereihez</value>
+  </data>
+  <data name="Server_Feature_None">
+    <value>Alap</value>
+  </data>
+  <data name="Server_Feature_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Server_Feature_P2P_Description">
+    <value>Torrentre optimalizált</value>
+  </data>
+  <data name="Server_Feature_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description">
+    <value>Kettős védelem</value>
+  </data>
+  <data name="Server_Feature_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Server_Free">
+    <value>Ingyenes szerver</value>
+  </data>
+  <data name="Servers">
+    <value>Szerverek</value>
+  </data>
+  <data name="Settings_About">
+    <value>Névjegy</value>
+  </data>
+  <data name="Settings_About_Changelog">
+    <value>Változások listája</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Aktuális verzió</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>Nem sikerült betölteni a változásnapló információit.</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>További információk</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Licencelés</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Betöltés</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>Névjegy</value>
+  </data>
+  <data name="Settings_Account_Account">
+    <value>Fiók</value>
+  </data>
+  <data name="Settings_Account_Exit">
+    <value>Kilépés az alkalmazásból</value>
+  </data>
+  <data name="Settings_Account_SignOut">
+    <value>Kijelentkezés</value>
+  </data>
+  <data name="Settings_AppVersion">
+    <value>Alkalmazás verzió</value>
+  </data>
+  <data name="Settings_Censorship_Footer">
+    <value>Ezek a statisztikák nem tartalmazzák az Ön IP-címét, és nem használhatók fel az Ön azonosítására. Soha nem osztjuk meg ezeket harmadik felekkel.</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports">
+    <value>Névtelen összeomlási jelentések megosztása</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports_Description">
+    <value>Az összeomlásjelentések segítenek a hibák kijavításában, a tűzfalak felismerésében és a VPN korlátozások elkerülésében.</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics">
+    <value>Anonim használati statisztikák megosztása</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics_Description">
+    <value>A használati adatok segítenek leküzdeni a VPN-blokkolásokat és javítani az alkalmazás teljesítményét.</value>
+  </data>
+  <data name="Settings_Common_Apply">
+    <value>Alkalmaz</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
+  <data name="Settings_Connection">
+    <value>Kapcsolat</value>
+  </data>
+  <data name="Settings_Connection_AdvancedSettings">
+    <value>Speciális beállítások</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting">
+    <value>Alternatív útválasztás</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
+    <value>Ha a Proton szolgáltatásai hálózati korlátozások miatt blokkolva vannak, megpróbálunk alternatív hálózati útvonalakat használni, hogy csatlakoztassuk Önt a webhelyeinkhez.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers">
+    <value>Egyéni DNS szerverek</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
+    <value>Nem tudja használni a NetShieldet, ha egyéni DNS-kiszolgálóval van összekapcsolva.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
+    <value>Egyéni DNS-kiszolgálók engedélyezése?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
+    <value>Egyéni DNS szerverek használata a Proton VPN-hez való kapcsolódáskor. Csak olyan DNS-kiszolgálókat használjon, amelyekben megbízik.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+    <value>DNS szerverek ({0})</value>
+    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
+    <value>IPv4 címek hozzáadása</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
+    <value>IPv6-forgalom letiltása</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
+    <value>Megakadályozza az IPv6 kiszivárgását az IPv6-címekhez való kapcsolatok blokkolásával.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections">
+    <value>LAN kapcsolat</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_Description">
+    <value>Lehetővé teszi a nyomtatókhoz, hangszórókhoz és más eszközökhöz való csatlakozást a készülék helyi hálózatában.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType">
+    <value>NAT típus</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
+    <value>Mérsékelt NAT esetén nem tud porttovábbítást használni.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
+    <value>Mérsékelt NAT engedélyezése?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Description">
+    <value>Válassza ki a hálózati címfordítás típusát a kapcsolathoz.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate">
+    <value>Mérsékelt (típus 2)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
+    <value>A hálózatba belépő adatok bizonyos korlátozása. Ez az opció online videojátékokhoz a legjobb.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict">
+    <value>Szigorú (3. típus)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict_Description">
+    <value>Korlátozza a hálózatba belépő adatokat. Ez az opció biztonságosabb, de megnehezítheti a peer-to-peer játékkapcsolatokat.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
+    <value>A különböző hálózatok közötti forgalom átirányítása.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
+    <value>Hálózatok összekapcsolására hídképzést használ. A TUN nagyobb sebességet biztosít, mint a TAP, de kevésbé stabil lehet.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
+    <value>Az egyéni DNS nem kapcsolható be, mert olyan profilhoz csatlakozik, amelyben engedélyezve van a NetShield.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
+    <value>Az egyéni DNS le van tiltva, mivel jelenleg egy olyan profilhoz csatlakozik, amelyben a NetShield engedélyezve van.</value>
+  </data>
+  <data name="Settings_Connection_Default">
+    <value>Alapértelmezett kapcsolat</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>Leggyorsabb ország</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>A legjobb szerver az Ön tartózkodási helye alapján</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>Legutóbbi kapcsolat</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>A legutóbb használt kapcsolat az Ön tartózkodási helyén</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Véletlenszerű ország</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Minden egyes csatlakozáskor más szerver</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Előzmények</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch">
+    <value>Vészkapcsoló</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced">
+    <value>Speciális</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced_Description">
+    <value>Csak akkor engedélyezze az internet-hozzáférést, ha csatlakozik a Proton VPN-hez. A fejlett vészkapcsoló akkor is aktív marad, ha újraindítja a készüléket.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Conflict_Description">
+    <value>Ez letiltja a megosztott alagútépítést.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Conflict_Title">
+    <value>Vészkapcsoló bekapcsolása?</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Description">
+    <value>Megvédi az IP-címét azáltal, hogy megszakítja az internetkapcsolatát, ha megszakad a VPN-kapcsolat.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Footer">
+    <value>Ha a vészkapcsoló be van kapcsolva, nem tud csatlakozni a VPN-kapcsolatból a megosztott alagútépítéssel kizárt webhelyekhez és alkalmazásokhoz.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard">
+    <value>Alap</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard_Description">
+    <value>Automatikusan megszakítja az internetkapcsolatot, ha a VPN-kapcsolat megszakad.</value>
+  </data>
+  <data name="Settings_Connection_NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
+    <value>Hirdetések, rosszindulatú programok és nyomkövetők blokkolása</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockMalwareOnly">
+    <value>Csak a rosszindulatú programok blokkolása</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Description">
+    <value>Nem tud csatlakozni egyéni DNS-kiszolgálóval, ha a NetShield engedélyezve van.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information">
+    <value>A NetShield nem kompatibilis az egyéni DNS-sel.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Title">
+    <value>NetShield engedélyezése?</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Description">
+    <value>Védekezzen a hirdetések, rosszindulatú programok és nyomkövetők ellen a webhelyeken és alkalmazásokban.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Footer">
+    <value>Előfordulhat, hogy egyes webhelyek nem töltődnek be megfelelően, ha a hirdetések és a nyomkövetők blokkolva vannak.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_PrivacyPanel">
+    <value>NetShield adatvédelmi panel</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding">
+    <value>Port átirányítás</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort">
+    <value>Aktív port:</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
+    <value>Port számának másolása</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Description">
+    <value>Nem tudja használni a Mérsékelt NAT-ot, ha a port átirányítás engedélyezve van.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Title">
+    <value>Porttovábbítás engedélyezése?</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Description">
+    <value>A tűzfalak megkerülése a P2P-kiszolgálókhoz és a helyi hálózaton belüli eszközökhöz való csatlakozáshoz.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Footer">
+    <value>A porttovábbítás használatához csatlakozzon olyan kiszolgálóhoz, amely támogatja a P2P-t.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Loading">
+    <value>Betöltés...</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications">
+    <value>Értesítések</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications_Description">
+    <value>Értesítést kap, ha a porttovábbítási szám megváltozik</value>
+  </data>
+  <data name="Settings_Connection_Protocol">
+    <value>Protokoll</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Action">
+    <value>Ugrás a profilokhoz</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Message">
+    <value>Jelenleg egy VPN-profilhoz van csatlakoztatva.
+
+• A kapcsolat protokolljának megváltoztatásához bontsa meg a kapcsolatot, majd szerkessze a profilját.
+
+• Más VPN-kapcsolatok protokolljának megváltoztatásához először le kell választania a profilját.</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Title">
+    <value>Protokoll módosítása profilokban</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling">
+    <value>Osztott alagút</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Add">
+    <value>Alkalmazás hozzáadása</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
+    <value>Alkalmazás fájlok</value>
+    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Header">
+    <value>Kiválasztott alkalmazások ({0})</value>
+    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Remove">
+    <value>Alkalmazás eltávolítása</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
+    <value>Ez kikapcsolja a vészkapcsolót.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
+    <value>Osztott alagút bekapcsolása?</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Description">
+    <value>Eldöntheti, hogy mely alkalmazásokat és IP-címeket védje a VPN.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse">
+    <value>Fordított</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Description">
+    <value>Csak a kiválasztott alkalmazások és IP-címek csatlakoznak VPN-en keresztül, minden más forgalom védtelen.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
+    <value>IP hozzáadása</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
+    <value>Kiválasztott IP-címek ({0})</value>
+    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
+    <value>IP eltávolítása</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
+    <value>IPv4 címek hozzáadása</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard">
+    <value>Alap</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Description">
+    <value>A kiválasztott alkalmazások és IP-címek ki vannak zárva a VPN-kapcsolatból</value>
+  </data>
+  <data name="Settings_Connection_VpnAccelerator">
+    <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Módosítások elvetése</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Szerkesztés folytatása</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Elveti a nem mentett módosításokat?</value>
+  </data>
+  <data name="Settings_Features">
+    <value>VPN funkciók</value>
+  </data>
+  <data name="Settings_General">
+    <value>Általános</value>
+  </data>
+  <data name="Settings_General_AutoStartup">
+    <value>Automatikus indítás</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect">
+    <value>Automatikus csatlakozás</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Description">
+    <value>Automatikusan csatlakozik az alapértelmezett kapcsolatához, amikor a Proton VPN megnyílik.</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
+    <value>Leggyorsabb kapcsolat</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Latest">
+    <value>Legutóbbi kapcsolat</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch">
+    <value>Automatikus indítás</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Description">
+    <value>A Proton VPN automatikusan megnyílik, amikor bejelentkezik az eszközre</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
+    <value>Megnyitás az asztalon</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
+    <value>Kicsinyítés az értesítési területre</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
+    <value>Kicsinyítés a tálcára</value>
+  </data>
+  <data name="Settings_General_AutoStartup_Description">
+    <value>Az alkalmazás automatikus indításának vagy csatlakoztatásának beállítása</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates">
+    <value>Automatikus frissítések</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates_Description">
+    <value>A Proton VPN frissítések automatikus keresése és telepítése</value>
+  </data>
+  <data name="Settings_General_BetaAccess">
+    <value>Béta hozzáférés</value>
+  </data>
+  <data name="Settings_General_BetaAccess_Description">
+    <value>Szerezzen korai hozzáférést, és segítsen tesztelni a Proton VPN új verzióit</value>
+  </data>
+  <data name="Settings_General_Language">
+    <value>Nyelv</value>
+  </data>
+  <data name="Settings_General_Notifications">
+    <value>Értesítések</value>
+  </data>
+  <data name="Settings_General_Notifications_Description">
+    <value>Értesüljön a folyamatban lévő Proton VPN tevékenységekről</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver">
+    <value>OpenVPN hálózati illesztőprogram</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver_Description">
+    <value>A hálózati illesztőprogramok befolyásolhatják a kapcsolat sebességét. Az új TUN-adapter nagyobb sebességet biztosít, és a TAP-adapterre vált vissza, ha bármilyen csatlakozási problémával találkozik.</value>
+  </data>
+  <data name="Settings_General_Theme">
+    <value>Téma</value>
+  </data>
+  <data name="Settings_General_Theme_Dark">
+    <value>Sötét</value>
+  </data>
+  <data name="Settings_General_Theme_Default">
+    <value>Alapértelmezett</value>
+  </data>
+  <data name="Settings_General_Theme_Light">
+    <value>Világos</value>
+  </data>
+  <data name="Settings_Improve">
+    <value>Proton javítása</value>
+  </data>
+  <data name="Settings_Improve_Censorship">
+    <value>Segítsen nekünk a cenzúra elleni harcban</value>
+  </data>
+  <data name="Settings_OperatingSystemVersion">
+    <value>Operációs rendszer verzió</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description1">
+    <value>Ez a beállítás az aktív profiljához kapcsolódik.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2">
+    <value>A módosítások elvégzéséhez szerkesztheti profilját, vagy megszakíthatja a kapcsolatot az általános VPN-beállítások szerkesztéséhez.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline">
+    <value>Ezek a beállítások a „{0}” profilhoz kapcsolódnak, és csak a Profilok menüpontban kezelhetők.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Title">
+    <value>{0} kezelése a Profilok között</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
+  <data name="Settings_Page_Title">
+    <value>Beállítások</value>
+  </data>
+  <data name="Settings_Protocols_Explanation">
+    <value>A VPN protokoll határozza meg, hogy az adatok hogyan kerülnek továbbításra a VPN-szerver és az Ön eszköze között.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Description">
+    <value>Bevált, alaposan tesztelt és biztonságos. Az OpenVPN rossz hálózati körülmények között is megbízható, de esetleg lassabb lehet, mint más protokollok.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Description">
+    <value>Bevált, alaposan tesztelt és biztonságos. Az OpenVPN kevésbé energiahatékony, mint néhány más protokoll.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_Recommended">
+    <value>Ajánlott</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Description">
+    <value>Automatikusan kiválasztja a legjobb protokollt a kapcsolathoz.</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Title">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_Protocols_TcpCategory">
+    <value>Megbízhatóság (TCP)</value>
+  </data>
+  <data name="Settings_Protocols_UdpCategory">
+    <value>Sebesség (UDP)</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>A legkorszerűbb protokoll a biztonság és a teljesítmény tekintetében.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>Legyőzi a VPN-korlátozásokat azáltal, hogy elrejti a VPN-kapcsolatát a cenzorok elől. A Stealth ellenáll a DPI-nek (deep packet inspection), de esetleg lassabb lehet, mint más protokollok.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Description">
+    <value>A legkorszerűbb protokoll a biztonság és a teljesítmény tekintetében.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Reconnection_Title">
+    <value>Újracsatlakozás a módosítások alkalmazásához</value>
+  </data>
+  <data name="Settings_RestoreDefault">
+    <value>Alapértelmezett beállítások visszaállítása</value>
+  </data>
+  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
+    <value>Visszaállítás és újracsatlakozás</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Action">
+    <value>Alapértelmezett beállítások visszaállítása</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Message">
+    <value>Ez visszaállítja a Proton VPN beállításait az eredeti állapotukba.</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Title">
+    <value>Alapértelmezett beállítások visszaállítása?</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnTcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnUdp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardUdp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="Settings_Support">
+    <value>Támogatás</value>
+  </data>
+  <data name="Settings_Support_DebugLogs">
+    <value>Hibakeresési naplók</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Application">
+    <value>Alkalmazás naplók</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_ErrorMessage">
+    <value>A naplók mappa nem található.</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Service">
+    <value>Szolgáltatási naplók</value>
+  </data>
+  <data name="Settings_Support_ReportIssue">
+    <value>Hibajelentés</value>
+  </data>
+  <data name="Settings_Support_SupportCenter">
+    <value>Súgóközpont</value>
+  </data>
+  <data name="Settings_Theme_Dark">
+    <value>Sötét</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Alapértelmezett</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Világos</value>
+  </data>
+  <data name="Settings_VpnAccelerator_Description">
+    <value>Növelje a kapcsolat sebességét akár 400%-kal a teljesítménynövelő technológiák segítségével.</value>
+  </data>
+  <data name="SignIn_Form">
+    <value>Bejelentkezési űrlap</value>
+  </data>
+  <data name="SignIn_Form_AdvancedKillSwitchDescription">
+    <value>A haladó vészkapcsoló blokkolja az internetkapcsolatot.</value>
+  </data>
+  <data name="SignIn_Form_BestSecureVpnForSpeed">
+    <value>A legjobb biztonságos VPN a sebességért</value>
+  </data>
+  <data name="SignIn_Form_CreateAccount">
+    <value>Fiók létrehozása</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_Description">
+    <value>Írja be a Proton fiókja adatait.</value>
+  </data>
+  <data name="SignIn_Form_DisableKillSwitch">
+    <value>Vészkapcsoló kikapcsolása</value>
+  </data>
+  <data name="SignIn_Form_Email">
+    <value>E-mail</value>
+  </data>
+  <data name="SignIn_Form_ForgotUsername">
+    <value>Elfelejtett felhasználónév</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_Help">
+    <value>Segítség</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_NoLogsPolicy">
+    <value>Nincs naplózás</value>
+  </data>
+  <data name="SignIn_Form_OpenSource">
+    <value>Nyílt forráskódú</value>
+  </data>
+  <data name="SignIn_Form_Password">
+    <value>Jelszó</value>
+  </data>
+  <data name="SignIn_Form_PasswordError">
+    <value>Adja meg a jelszavát</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a password</comment>
+  </data>
+  <data name="SignIn_Form_ReportAnIssue">
+    <value>Hibajelentés</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_ResetPassword">
+    <value>Elfelejtett jelszó</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_SignIn">
+    <value>Bejelentkezés</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_SignInWithSso">
+    <value>Bejelentkezés SSO használatával</value>
+  </data>
+  <data name="SignIn_Form_SwissBased">
+    <value>Svájci székhelyű</value>
+  </data>
+  <data name="SignIn_Form_Title">
+    <value>Bejelentkezés</value>
+  </data>
+  <data name="SignIn_Form_TroubleSigningIn">
+    <value>Súgóközpont</value>
+    <comment>A button at the bottom of the login window inside Get help popup</comment>
+  </data>
+  <data name="SignIn_Form_Username">
+    <value>E-mail cím vagy felhasználónév</value>
+  </data>
+  <data name="SignIn_Form_UsernameError">
+    <value>Adja meg e-mail címét vagy felhasználónevét</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
+  </data>
+  <data name="SignIn_KillSwitch_Disabled">
+    <value>A vészkapcsoló kikapcsolva</value>
+  </data>
+  <data name="SystemNotification_Connected">
+    <value>Ön mostantól védett</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>Kapcsolódva: {0}.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>Leválasztva</value>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
+    <value>Kilépés</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication">
+    <value>{0} megnyitása</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Unit_BytesPerSecond">
+    <value>B/mp</value>
+    <comment>Unit for Bytes per second</comment>
+  </data>
+  <data name="Unit_ExabytesPerSecond">
+    <value>EB/mp</value>
+    <comment>Unit for Exabytes per second</comment>
+  </data>
+  <data name="Unit_GigabytesPerSecond">
+    <value>GB/mp</value>
+    <comment>Unit for Gigabytes per second</comment>
+  </data>
+  <data name="Unit_KilobytesPerSecond">
+    <value>KB/mp</value>
+    <comment>Unit for Kilobytes per second</comment>
+  </data>
+  <data name="Unit_MegabytesPerSecond">
+    <value>MB/mp</value>
+    <comment>Unit for Megabytes per second</comment>
+  </data>
+  <data name="Unit_PetabytesPerSecond">
+    <value>PB/mp</value>
+    <comment>Unit for Petabytes per second</comment>
+  </data>
+  <data name="Unit_TerabytesPerSecond">
+    <value>TB/mp</value>
+    <comment>Unit for Terabytes per second</comment>
+  </data>
+  <data name="UpsellBanner_NetShield_Description">
+    <value>Hirdetések, nyomkövetők és rosszindulatú programok blokkolása webhelyeken és alkalmazásokban</value>
+  </data>
+  <data name="UpsellBanner_NetShield_Title">
+    <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>Váltson nagyobb csomagra tetszőleges szerver kiválasztásához.</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>Nem a kívánt ország?</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>Haladó VPN testreszabás feloldása</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>Csatlakozás a VPN-hez az egyéni domain név szerverrel (DNS)</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>A helyi hálózaton (LAN) lévő eszközök elérése kapcsolódás közben</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>Növelje játékélményét a 2. típusú (mérsékelt) NAT-ra váltással</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>Kapcsoljon rá akár 10 készüléket egyszerre</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>Proton VPN használata különböző felületeken</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>Android és Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>Böngésző</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>Biztonság és adatvédelem minden eszközén</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>Élvezze a reklámmentes böngészést</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>Reklámok és nyomkövetők blokkolása a NetShield segítségével</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>Védje eszközét a rosszindulatú szoftverektől</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>Peer-to-peer letöltések és fájlmegosztás (P2P) feloldása</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>IP-címének elrejtése a szolgáltató és a kapcsolódó felek elől</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>P2P sebesség növelése port átirányítással</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>Megnövelt feltöltési és letöltési sebesség</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ továbbiak</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_Profiles">
+    <value>Gyors hozzáférés a rendszeres kapcsolatokhoz</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience">
+    <value>Állítson be egy profilt alapértelmezett kapcsolatként, és csatlakozzon 1 kattintással</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Creation">
+    <value>Saját VPN-konfigurációk létrehozása és mentése a Profilok segítségével</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization">
+    <value>Hely, protokoll és beállítások testreszabása</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>Adjon hozzá egy újabb védelmi réteget a kapcsolatához</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>Duplázza meg a titkosítást a Secure Core segítségével</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>Védje magát a hálózati támadásoktól</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>Küldjön adatot teljesen biztonságos svájci, svéd és izlandi szervereken keresztül</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>Böngészés még nagyobb sebességgel (akár 10 Gbps)</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>Növelje a kapcsolódási sebességet akár 400%-kal a VPN Acceleratorral</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>Hozzáférés gyorsabb, kevésbé forgalmas szerverekhez</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>Mindkét világból a legjobbat kapja</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>Böngészés egyszerre két helyről az osztott alagút segítségével</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>Engedélyezze, hogy megbízható alkalmazások és IP-címek közvetlenül csatlakozhassanak az internethez, miközben minden mást a VPN véd</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>Nézze kedvenc filmjeit és tévéműsorait</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>Hozzáférés a földrajzi korlátozás alá eső TV-hez és filmekhez a világ bármely pontjáról</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Hulu">
+    <value>Hulu</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>Nézze 4K-ban, pufferelés, lassulás vagy torlódás nélkül</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>VPN Plus felfedezése</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>Hozzáférés a Tor-hálózathoz az extra adatvédelem érdekében</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>Hozzáférés rejtett oldalakhoz és onion oldalakhoz</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>Böngésszen a Tor-hálózatban a szokásos böngészőjével</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>Személyes adatainak megvédése böngészés közben</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>Hozzáférés több, mint {0}-hez {1}-ban/ben</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
+    <value>Független biztonsági szakértők által ellenőrzött</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>A cenzúra megkerülése magas szintű biztonsági és adatvédelmi funkciókkal</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
+    <value>{0} ország</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>{0} ország</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
+    <value>Nyílt forráskódú VPN</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
+    <value>{0} biztonságos szerver</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>{0} biztonságos szerver</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp_Description">
+    <value>Megalapozott, jól bevált és biztonságos</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp_Description">
+    <value>Megalapozott, jól bevált és biztonságos</value>
+  </data>
+  <data name="VpnProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp_Description">
+    <value>A legkorszerűbb protokoll a biztonság és a teljesítmény érdekében</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls_Description">
+    <value>Legyőzi a VPN korlátozásokat a kapcsolat elrejtésével a cenzorok elől</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp_Description">
+    <value>A legkorszerűbb protokoll a biztonság és a teljesítmény érdekében</value>
+  </data>
+</root>

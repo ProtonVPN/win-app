@@ -85,10 +85,12 @@ Source: "..\{#SourcePath}\Resources\ProtonVPN.InstallActions.dll"; DestDir: "{ap
 
 ;Source: "..\{#SourcePath}\be-BY\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\be-BY"; Flags: signonce;
 Source: "..\{#SourcePath}\en-us\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\en-us"; Flags: signonce;
+Source: "..\{#SourcePath}\ca-ES\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\ca-ES"; Flags: signonce;
 Source: "..\{#SourcePath}\cs-CZ\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\cs-CZ"; Flags: signonce;
 Source: "..\{#SourcePath}\de-DE\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\de-DE"; Flags: signonce;
 Source: "..\{#SourcePath}\fa-IR\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\fa-IR"; Flags: signonce;
 Source: "..\{#SourcePath}\fr-FR\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\fr-FR"; Flags: signonce;
+Source: "..\{#SourcePath}\hu-HU\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\hu-HU"; Flags: signonce;
 Source: "..\{#SourcePath}\nl-NL\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\nl-NL"; Flags: signonce;
 Source: "..\{#SourcePath}\hr-HR\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\hr-HR"; Flags: signonce;
 Source: "..\{#SourcePath}\id-ID\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\id-ID"; Flags: signonce;
@@ -113,6 +115,7 @@ Source: "..\{#SourcePath}\sk-SK\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#Ve
 Source: "..\{#SourcePath}\nn-NO\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\nn-NO"; Flags: signonce;
 Source: "..\{#SourcePath}\nb-NO\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\nb-NO"; Flags: signonce;
 Source: "..\{#SourcePath}\sl-SI\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\sl-SI"; Flags: signonce;
+Source: "..\{#SourcePath}\zh-CN\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\zh-CN"; Flags: signonce;
 
 Source: "..\{#SourcePath}\Resources\ProtonVPN.InstallActions.x86.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
 Source: "..\{#SourcePath}\Resources\LocalAgent.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
@@ -154,11 +157,13 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopShortcuts}";
 
 [Languages]
 Name: "en_US"; MessagesFile: "compiler:Default.isl,Strings\Default.isl"
+Name: "ca_ES"; MessagesFile: "compiler:Languages\Catalan.isl,Strings\Catalan.isl"
 Name: "cs_CZ"; MessagesFile: "compiler:Languages\Czech.isl,Strings\Czech.isl"
 Name: "ja_JP"; MessagesFile: "compiler:Languages\Japanese.isl,Strings\Japanese.isl"
 Name: "de_DE"; MessagesFile: "compiler:Languages\German.isl,Strings\German.isl"
 Name: "fi_FI"; MessagesFile: "compiler:Languages\Finnish.isl,Strings\Finnish.isl"
 Name: "fr_FR"; MessagesFile: "compiler:Languages\French.isl,Strings\French.isl"
+Name: "hu_HU"; MessagesFile: "compiler:Languages\Hungarian.isl,Strings\Hungarian.isl"
 Name: "nl_NL"; MessagesFile: "compiler:Languages\Dutch.isl,Strings\Dutch.isl"
 Name: "it_IT"; MessagesFile: "compiler:Languages\Italian.isl,Strings\Italian.isl"
 Name: "nb_NO"; MessagesFile: "compiler:Languages\Norwegian.isl,Strings\Norwegian.isl"

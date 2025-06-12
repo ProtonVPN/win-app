@@ -1,0 +1,3785 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account_VpnPlan_Free">
+    <value>Proton VPN Free</value>
+  </data>
+  <data name="Automation_Properties_ConnectionDetails_Page">
+    <value>连接详细信息页面</value>
+  </data>
+  <data name="Automation_Properties_Connection_Card_Component">
+    <value>连接信息</value>
+  </data>
+  <data name="Automation_Properties_Features_Bar">
+    <value>功能栏</value>
+  </data>
+  <data name="Automation_Properties_Home_Page">
+    <value>首页</value>
+  </data>
+  <data name="Automation_Properties_KillSwitch_Page">
+    <value>终止开关</value>
+  </data>
+  <data name="Automation_Properties_LocationDetails_Page">
+    <value>节点详情</value>
+  </data>
+  <data name="Automation_Properties_Login_Page">
+    <value>登录</value>
+  </data>
+  <data name="Automation_Properties_Main_Page">
+    <value>主页</value>
+  </data>
+  <data name="Automation_Properties_NetShield_Page">
+    <value>安全防护</value>
+  </data>
+  <data name="Automation_Properties_PortForwarding_Page">
+    <value>端口转发</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page">
+    <value>个人资料</value>
+  </data>
+  <data name="Automation_Properties_Settings_Advanced_Page">
+    <value>高级设置</value>
+  </data>
+  <data name="Automation_Properties_Settings_Common_Page">
+    <value>通用设置</value>
+  </data>
+  <data name="Automation_Properties_Settings_Page">
+    <value>设置</value>
+  </data>
+  <data name="Automation_Properties_Sidebar">
+    <value>侧边栏</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Countries_Page">
+    <value>国家</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
+    <value>网关</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Page">
+    <value>连接</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Profiles_Page">
+    <value>配置文件</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Recents_Page">
+    <value>最近访问</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Search_Results_Page">
+    <value>搜索结果</value>
+  </data>
+  <data name="Automation_Properties_SplitTunneling_Page">
+    <value>分流设置</value>
+  </data>
+  <data name="Cities">
+    <value>城市</value>
+  </data>
+  <data name="Common_Actions_ActionsFor">
+    <value>{0}相关操作</value>
+    <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_Add">
+    <value>添加</value>
+  </data>
+  <data name="Common_Actions_Back">
+    <value>返回</value>
+  </data>
+  <data name="Common_Actions_Cancel">
+    <value>取消</value>
+  </data>
+  <data name="Common_Actions_Change">
+    <value>更改</value>
+  </data>
+  <data name="Common_Actions_Close">
+    <value>关闭</value>
+  </data>
+  <data name="Common_Actions_Connect">
+    <value>连接</value>
+  </data>
+  <data name="Common_Actions_ConnectTo">
+    <value>连接到{0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_ContactUs">
+    <value>联系我们</value>
+  </data>
+  <data name="Common_Actions_Customize">
+    <value>自定义</value>
+  </data>
+  <data name="Common_Actions_Delete">
+    <value>删除</value>
+  </data>
+  <data name="Common_Actions_Disconnect">
+    <value>断开连接</value>
+  </data>
+  <data name="Common_Actions_DisconnectFrom">
+    <value>已断开与{0}的连接</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_Duplicate">
+    <value>复制</value>
+  </data>
+  <data name="Common_Actions_Edit">
+    <value>编辑</value>
+  </data>
+  <data name="Common_Actions_Enable">
+    <value>启用</value>
+  </data>
+  <data name="Common_Actions_Exit_ProtonVPN">
+    <value>退出 Proton VPN</value>
+  </data>
+  <data name="Common_Actions_GotIt">
+    <value>好的</value>
+  </data>
+  <data name="Common_Actions_Install">
+    <value>安装</value>
+  </data>
+  <data name="Common_Actions_Reconnect">
+    <value>重新连接</value>
+  </data>
+  <data name="Common_Actions_Remove">
+    <value>注销</value>
+  </data>
+  <data name="Common_Actions_Restart">
+    <value>重启</value>
+  </data>
+  <data name="Common_Actions_Save">
+    <value>保存</value>
+  </data>
+  <data name="Common_Actions_TryAgain">
+    <value>重试</value>
+  </data>
+  <data name="Common_Actions_Update">
+    <value>更新</value>
+  </data>
+  <data name="Common_Actions_Upgrade">
+    <value>升级账户</value>
+  </data>
+  <data name="Common_Confirmation_KillSwitch_Message">
+    <value>高级 Kill Switch 已开启。要在没有 VPN 的情况下使用互联网，请禁用高级 Kill Switch 。</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
+    <value>高级 Kill Switch 已启用。如果您继续，您将被断开连接。</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnected_Message">
+    <value>断开 VPN 连接。</value>
+  </data>
+  <data name="Common_Links_LearnMore">
+    <value>了解详情</value>
+  </data>
+  <data name="Common_Message_Loading">
+    <value>正在载入…</value>
+  </data>
+  <data name="Common_States_Off">
+    <value>关闭</value>
+  </data>
+  <data name="Common_States_On">
+    <value>启用</value>
+  </data>
+  <data name="Common_States_Updating">
+    <value>更新中…</value>
+  </data>
+  <data name="Common_Tags_New">
+    <value>新功能</value>
+  </data>
+  <data name="Components_Update_GetMostFromYourVpn">
+    <value>通过更新到最新版本的应用程序从您的 VPN 中获得最大的收益。</value>
+  </data>
+  <data name="Components_Update_MoreLikelyIssues">
+    <value>您更有可能在使用旧版本的 Proton VPN 时遇到问题。</value>
+  </data>
+  <data name="Components_Update_UpdateAvailable">
+    <value>有可用更新</value>
+  </data>
+  <data name="Components_Update_UpdateProtonVpn">
+    <value>升级 Proton VPN</value>
+  </data>
+  <data name="Connection_Error_EditProfile">
+    <value>修改个人资料</value>
+  </data>
+  <data name="Connection_Error_MissingConnectionCertificate">
+    <value>由于网络问题，Proton VPN 无法获取身份验证证书。</value>
+  </data>
+  <data name="Connection_Error_NoServers">
+    <value>您选择的所有服务器均不可用。请扩大选择范围或稍后再试。</value>
+  </data>
+  <data name="Connection_Error_NoServers_Profile">
+    <value>您为 ' {0} ' 选择的服务器不可用。请选择其他服务器或稍后再试。</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Connection_Error_NoTapAdapters">
+    <value>缺少网络适配器。</value>
+  </data>
+  <data name="Connection_Error_ReportAnIssue">
+    <value>报告问题</value>
+  </data>
+  <data name="Connection_Error_RpcServerUnavailable">
+    <value>Proton VPN 无法连接，因为 RPC 服务器在您的系统上不可用。</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedFreeUser">
+    <value>您已达到最大设备限制。请断开另一台设备以连接这台设备，或升级到 PLUS 以同时连接多达 10 台设备。</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedPaidUser">
+    <value>您已达到最大设备限制。请断开另一个设备以连接此设备。</value>
+  </data>
+  <data name="Connection_Error_TapAdapterInUse">
+    <value>您的网络适配器正被使用。</value>
+  </data>
+  <data name="Connection_Error_TapRequiresUpdate">
+    <value>网络适配器版本已过期。</value>
+  </data>
+  <data name="Connection_Error_Title">
+    <value>连接失败</value>
+  </data>
+  <data name="Connection_Error_TlsCertificate">
+    <value>VPN 服务器的证书未能通过验证，这意味着当前网络环境可能已遭到监控，或者服务器配置存在问题。请填写问题反馈以便我们的客服为您提供帮助。</value>
+  </data>
+  <data name="Connection_Error_Unknown">
+    <value>我们不清楚这里发生了什么。请重试或联系我们的客户支持团队。</value>
+  </data>
+  <data name="Connection_Error_ViewPossibleSolutions">
+    <value>查看修复方法</value>
+  </data>
+  <data name="Connection_Error_WireGuardAdapterInUse">
+    <value>您设备的 WireGuard 适配器正在使用中。断开设备上运行的任何其他 VPN，然后再试一次。</value>
+  </data>
+  <data name="Connection_Intent_AutoSelected">
+    <value>自动选择</value>
+    <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
+  </data>
+  <data name="Connection_Intent_City_Server">
+    <value>{0}#{1}</value>
+    <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the number associated to the server (eg. Zurich #20)</comment>
+  </data>
+  <data name="Connection_Intent_Country_Server">
+    <value>{0}#{1}</value>
+    <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
+  </data>
+  <data name="Connection_Via_SecureCore">
+    <value>经由{0}中转</value>
+    <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
+  </data>
+  <data name="Connections_Cities_Other">
+    <value>城市（{0}）</value>
+  </data>
+  <data name="Connections_City">
+    <value>城市 / 区县</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>该城市的服务器可用 VPN Plus 服务</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>所有在该城市的服务器均在维护</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>国家/地区（{0}）</value>
+  </data>
+  <data name="Connections_Country">
+    <value>国家/地区</value>
+  </data>
+  <data name="Connections_Country_Middle">
+    <value>中间国家</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>该国家的服务器可用 VPN Plus 服务</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>此国家的所有服务器都在维护中</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>无法连接</value>
+  </data>
+  <data name="Connections_Fastest">
+    <value>最快</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>免费服务器（{0}）</value>
+  </data>
+  <data name="Connections_Gateway">
+    <value>网关</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>该网关的服务器可用 VPN Plus 服务</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>此网关中的所有服务器都在维护中</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>网关 ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Server">
+    <value>专用服务器</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>专用服务器 ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>P2P 城市 ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>P2P 国家 ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>P2P 服务器 ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>P2P 州 ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Other">
+    <value>配置文件 ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Create">
+    <value>添加收藏</value>
+    <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
+  </data>
+  <data name="Connections_Profiles_Delete">
+    <value>删除收藏</value>
+  </data>
+  <data name="Connections_Profiles_Delete_Message">
+    <value>'{0}' 将被永久删除。</value>
+    <comment>{0} is a placeholder for the name of the profile.</comment>
+  </data>
+  <data name="Connections_Profiles_Delete_Title">
+    <value>删除收藏?</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Description">
+    <value>配置文件已保存到您选择位置、服务器和协议的连接。</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Title">
+    <value>创建您的第一个配置</value>
+  </data>
+  <data name="Connections_Profiles_Location_Header">
+    <value>选择连接的类型和位置</value>
+  </data>
+  <data name="Connections_Profiles_Name">
+    <value>为您的个人资料命名</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default">
+    <value>未命名</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate">
+    <value>{0} 的副本</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
+  </data>
+  <data name="Connections_Profiles_New">
+    <value>新配置</value>
+    <comment>"New profile" is more appropriate when you already have a profile</comment>
+  </data>
+  <data name="Connections_Profiles_NotAvailable_Tooltip">
+    <value>VPN Plus 提供的配置</value>
+    <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
+  </data>
+  <data name="Connections_Profiles_Settings_Description">
+    <value>连接时，配置文件设置将覆盖 VPN 设置。</value>
+  </data>
+  <data name="Connections_Profiles_Settings_Header">
+    <value>添加自定义设置</value>
+  </data>
+  <data name="Connections_Random">
+    <value>随机</value>
+  </data>
+  <data name="Connections_Recents_Other">
+    <value>最近使用 ({0})</value>
+  </data>
+  <data name="Connections_Recents_Empty_Description">
+    <value>在此查看您的连接历史记录。</value>
+  </data>
+  <data name="Connections_Recents_Empty_Title">
+    <value>尚无最近记录</value>
+  </data>
+  <data name="Connections_Recents_Pinned_Other">
+    <value>已固定 ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>Secure Core 国家/地区（{0}）</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>Secure Core 服务器 ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Other">
+    <value>查看城市 ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Other">
+    <value>查看服务器 ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Other">
+    <value>查看州 ({0})</value>
+  </data>
+  <data name="Connections_Server">
+    <value>服务器</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>VPN Plus 提供的服务器</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>该服务器正在维护中</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>服务器 ({0})</value>
+  </data>
+  <data name="Connections_State">
+    <value>省份/地区</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>该州的服务器可用 VPN Plus 服务。</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>所有在该州的服务器均在维护。</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_Other">
+    <value>州 ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>Tor 国家/地区（{0}）</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>Tor 服务器（{0}）</value>
+  </data>
+  <data name="Countries">
+    <value>国家</value>
+  </data>
+  <data name="Countries_All">
+    <value>全部</value>
+  </data>
+  <data name="Countries_City_Other">
+    <value>{0} 个城市</value>
+  </data>
+  <data name="Countries_Connect">
+    <value>连接</value>
+    <comment>Connect button label on a country row in the countries tab</comment>
+  </data>
+  <data name="Countries_Fastest">
+    <value>最快的地域</value>
+  </data>
+  <data name="Countries_NoSearchResults">
+    <value>您要的没找到</value>
+  </data>
+  <data name="Countries_NumberOfServers">
+    <value>服务器 ({0})</value>
+    <comment>{0} represents a number of servers</comment>
+  </data>
+  <data name="Countries_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Countries_P2P_Cities">
+    <value>P2P 城市 ({0})</value>
+    <comment>{0} represents a number of P2P cities in the country</comment>
+  </data>
+  <data name="Countries_P2P_Description">
+    <value>通过 P2P (点对点) 网络下载文件，增强您的在线游戏和视频通话体验。</value>
+  </data>
+  <data name="Countries_Page_FreeUser_Description">
+    <value>升级为VPN Plus以选择国家或地区</value>
+  </data>
+  <data name="Countries_SearchPlaceholder">
+    <value>我想要浏览...</value>
+  </data>
+  <data name="Countries_Section_Header">
+    <value>VPN 连接数</value>
+  </data>
+  <data name="Countries_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>为 VPN 连接增添一层额外保护.</value>
+  </data>
+  <data name="Countries_ServerLoad">
+    <value>服务器负载</value>
+  </data>
+  <data name="Countries_SmartRouting">
+    <value>智能路由</value>
+  </data>
+  <data name="Countries_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Countries_TorServers">
+    <value>Tor 服务器（{0}）</value>
+    <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>经 Tor 网络，连接 VPN，更强隐私.</value>
+  </data>
+  <data name="Countries_TryDifferentKeyword">
+    <value>换个关键词试试</value>
+  </data>
+  <data name="Country_Fastest">
+    <value>最快的地域</value>
+  </data>
+  <data name="Country_Fastest_ExcludingMyCountry">
+    <value>最快 (不包括我国)</value>
+  </data>
+  <data name="Country_Random">
+    <value>随机国家</value>
+  </data>
+  <data name="Country_Random_ExcludingMyCountry">
+    <value>随机 (不包括我国)</value>
+  </data>
+  <data name="Country_val_AD">
+    <value>安道尔</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE">
+    <value>阿联酋</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF">
+    <value>阿富汗</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG">
+    <value>安提瓜和巴布达</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI">
+    <value>安圭拉</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL">
+    <value>阿尔巴尼亚</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM">
+    <value>亚美尼亚</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO">
+    <value>安哥拉</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ">
+    <value>南极洲</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR">
+    <value>阿根廷</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS">
+    <value>美属萨摩亚</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT">
+    <value>奥地利</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU">
+    <value>澳大利亚</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW">
+    <value>阿鲁巴</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX">
+    <value>奥兰群岛</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ">
+    <value>阿塞拜疆</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA">
+    <value>波斯尼亚和黑塞哥维那</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB">
+    <value>巴巴多斯</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD">
+    <value>孟加拉国</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE">
+    <value>比利时</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF">
+    <value>布基纳法索</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG">
+    <value>保加利亚</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH">
+    <value>巴林</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI">
+    <value>布隆迪</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ">
+    <value>贝宁</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL">
+    <value>圣巴泰勒米</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM">
+    <value>百慕大</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN">
+    <value>文莱达鲁萨兰</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO">
+    <value>玻利维亚</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ">
+    <value>荷兰加勒比区</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR">
+    <value>巴西</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS">
+    <value>巴哈马</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT">
+    <value>不丹</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV">
+    <value>布韦岛</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW">
+    <value>博茨瓦纳</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY">
+    <value>白俄罗斯</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ">
+    <value>伯利兹</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA">
+    <value>加拿大</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC">
+    <value>科科斯（基林）群岛</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD">
+    <value>刚果（金）</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF">
+    <value>中非共和国</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG">
+    <value>刚果（布）</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH">
+    <value>瑞士</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI">
+    <value>科特迪瓦</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK">
+    <value>库克群岛</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL">
+    <value>智利</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM">
+    <value>喀麦隆</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN">
+    <value>中国</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO">
+    <value>哥伦比亚</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR">
+    <value>哥斯达黎加</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU">
+    <value>古巴</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV">
+    <value>佛得角</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW">
+    <value>库拉索</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX">
+    <value>圣诞岛</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY">
+    <value>塞浦路斯</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ">
+    <value>捷克</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE">
+    <value>德国</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ">
+    <value>吉布提</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK">
+    <value>丹麦</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM">
+    <value>多米尼克</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO">
+    <value>多米尼加共和国</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ">
+    <value>阿尔及利亚</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC">
+    <value>厄瓜多尔</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE">
+    <value>爱沙尼亚</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG">
+    <value>埃及</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH">
+    <value>西撒哈拉</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER">
+    <value>厄立特里亚</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES">
+    <value>西班牙</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET">
+    <value>埃塞俄比亚</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI">
+    <value>芬兰</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ">
+    <value>斐济</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK">
+    <value>福克兰群岛（马尔维纳斯）</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM">
+    <value>密克罗尼西亚</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO">
+    <value>法罗群岛</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR">
+    <value>法国</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA">
+    <value>加蓬</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB">
+    <value>英国</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD">
+    <value>格林纳达</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE">
+    <value>格鲁吉亚</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF">
+    <value>法属圭亚那</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG">
+    <value>根西</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH">
+    <value>加纳</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI">
+    <value>直布罗陀</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL">
+    <value>格陵兰</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM">
+    <value>冈比亚</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN">
+    <value>几内亚</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP">
+    <value>瓜德罗普</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ">
+    <value>赤道几内亚</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR">
+    <value>希腊</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS">
+    <value>南乔治亚岛和南桑威奇群岛</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT">
+    <value>危地马拉</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU">
+    <value>关岛</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW">
+    <value>几内亚比绍</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY">
+    <value>圭亚那</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK">
+    <value>中国香港</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM">
+    <value>赫德岛和麦克唐纳群岛</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN">
+    <value>洪都拉斯</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR">
+    <value>克罗地亚</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT">
+    <value>海地</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU">
+    <value>匈牙利</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID">
+    <value>印度尼西亚</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE">
+    <value>爱尔兰</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL">
+    <value>以色列</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM">
+    <value>马恩岛</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN">
+    <value>印度</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO">
+    <value>英属印度洋领地</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ">
+    <value>伊拉克</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR">
+    <value>伊朗</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS">
+    <value>冰岛</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT">
+    <value>意大利</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE">
+    <value>泽西</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM">
+    <value>牙买加</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO">
+    <value>约旦</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP">
+    <value>日本</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE">
+    <value>肯尼亚</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG">
+    <value>吉尔吉斯斯坦</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH">
+    <value>柬埔寨</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI">
+    <value>基里巴斯</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM">
+    <value>科摩罗</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN">
+    <value>圣基茨和尼维斯</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP">
+    <value>朝鲜</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR">
+    <value>韩国</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW">
+    <value>科威特</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY">
+    <value>开曼群岛</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ">
+    <value>哈萨克斯坦</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA">
+    <value>老挝</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB">
+    <value>黎巴嫩</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC">
+    <value>圣卢西亚</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI">
+    <value>列支敦士登</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK">
+    <value>斯里兰卡</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR">
+    <value>利比里亚</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS">
+    <value>莱索托</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT">
+    <value>立陶宛</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU">
+    <value>卢森堡</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV">
+    <value>拉脱维亚</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY">
+    <value>利比亚</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA">
+    <value>摩洛哥</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC">
+    <value>摩纳哥</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD">
+    <value>摩尔多瓦</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME">
+    <value>黑山</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF">
+    <value>法属圣马丁</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG">
+    <value>马达加斯加</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH">
+    <value>马绍尔群岛</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK">
+    <value>北马其顿共和国</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML">
+    <value>马里</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM">
+    <value>缅甸</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN">
+    <value>蒙古</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO">
+    <value>中国澳门</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP">
+    <value>北马里亚纳群岛</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ">
+    <value>马提尼克</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR">
+    <value>毛里塔尼亚</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS">
+    <value>蒙特塞拉特</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT">
+    <value>马耳他</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU">
+    <value>毛里求斯</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV">
+    <value>马尔代夫</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW">
+    <value>马拉维</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX">
+    <value>墨西哥</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY">
+    <value>马来西亚</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ">
+    <value>莫桑比克</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA">
+    <value>纳米比亚</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC">
+    <value>新喀里多尼亚</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE">
+    <value>尼日尔</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF">
+    <value>诺福克岛</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG">
+    <value>尼日利亚</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI">
+    <value>尼加拉瓜</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL">
+    <value>荷兰</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO">
+    <value>挪威</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP">
+    <value>尼泊尔</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR">
+    <value>瑙鲁</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU">
+    <value>纽埃</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ">
+    <value>新西兰</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM">
+    <value>阿曼</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA">
+    <value>巴拿马</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE">
+    <value>秘鲁</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF">
+    <value>法属波利尼西亚</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG">
+    <value>巴布亚新几内亚</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH">
+    <value>菲律宾</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK">
+    <value>巴基斯坦</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL">
+    <value>波兰</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM">
+    <value>圣皮埃尔和密克隆</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN">
+    <value>皮特凯恩</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR">
+    <value>波多黎各</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS">
+    <value>巴勒斯坦</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT">
+    <value>葡萄牙</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW">
+    <value>帕劳</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY">
+    <value>巴拉圭</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA">
+    <value>卡塔尔</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE">
+    <value>留尼汪</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO">
+    <value>罗马尼亚</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS">
+    <value>塞尔维亚</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU">
+    <value>俄罗斯</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW">
+    <value>卢旺达</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA">
+    <value>沙特阿拉伯</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB">
+    <value>所罗门群岛</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC">
+    <value>塞舌尔</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD">
+    <value>苏丹</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE">
+    <value>瑞典</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG">
+    <value>新加坡</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH">
+    <value>圣赫勒拿、阿森松和特里斯坦-达库尼亚</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI">
+    <value>斯洛文尼亚</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ">
+    <value>斯瓦尔巴和扬马延</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK">
+    <value>斯洛伐克</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL">
+    <value>塞拉利昂</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM">
+    <value>圣马力诺</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN">
+    <value>塞内加尔</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO">
+    <value>索马里</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR">
+    <value>苏里南</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS">
+    <value>南苏丹</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST">
+    <value>圣多美与普林西比</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV">
+    <value>萨尔瓦多</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX">
+    <value>荷属圣马丁</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY">
+    <value>叙利亚</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ">
+    <value>斯威士兰</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC">
+    <value>特克斯和凯科斯群岛</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD">
+    <value>乍得</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF">
+    <value>法属南部领地</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG">
+    <value>多哥</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH">
+    <value>泰国</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ">
+    <value>塔吉克斯坦</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK">
+    <value>托克劳</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL">
+    <value>东帝汶</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM">
+    <value>土库曼斯坦</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN">
+    <value>突尼斯</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO">
+    <value>汤加</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR">
+    <value>土耳其</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT">
+    <value>特立尼达和多巴哥</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV">
+    <value>图瓦卢</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW">
+    <value>台湾</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ">
+    <value>坦桑尼亚</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA">
+    <value>乌克兰</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG">
+    <value>乌干达</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK">
+    <value>英国</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM">
+    <value>美国本土外小岛屿</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US">
+    <value>美国</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY">
+    <value>乌拉圭</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ">
+    <value>乌兹别克斯坦</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA">
+    <value>梵蒂冈</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC">
+    <value>圣文森特和格林纳丁斯</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE">
+    <value>委内瑞拉</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG">
+    <value>英属维尔京群岛</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI">
+    <value>美属维尔京群岛</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN">
+    <value>越南</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU">
+    <value>瓦努阿图</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF">
+    <value>瓦利斯和富图纳</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS">
+    <value>萨摩亚</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_YE">
+    <value>也门</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT">
+    <value>马约特</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA">
+    <value>南非</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM">
+    <value>赞比亚</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW">
+    <value>津巴布韦</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ">
+    <value>未知</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Description">
+    <value>您 Windows 设备上的基础过滤引擎 (BFE) 服务已禁用。要使 Proton VPN 正常工作，必须启用该服务。</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable">
+    <value>如何启用基础过滤引擎</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title">
+    <value>启用基础过滤引擎以继续</value>
+  </data>
+  <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
+    <value>使用 VPN Plus 获得无限制的服务器更改。</value>
+  </data>
+  <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
+    <value>目前您已达到免费服务器更改的最大数量</value>
+  </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>入门</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>订阅已过期</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>升级后可再次使用 Plus 服务器和功能。</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description">
+    <value>似乎 Proton VPN 服务被禁用了。您需要重新启用服务才能连接。</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title">
+    <value>启用 Windows 服务以继续</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Other">
+    <value>Proton Free 会自动将您连接到 {0} 个免费国家中最快的可用免费服务器。这通常是离您最近的服务器。</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Other">
+    <value>免费服务器所在的国家 ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Title">
+    <value>免费连接</value>
+  </data>
+  <data name="Dialogs_Latency_Description">
+    <value>延迟反映了服务器响应请求所需的时间。
+
+高延迟会导致网速变慢。</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Description">
+    <value>VPN可能会导致网速比平常时候更慢</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Title">
+    <value>高延迟（150毫秒以上）</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Description">
+    <value>快如闪电</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Title">
+    <value>低延迟（1毫秒~50毫秒间）</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Description">
+    <value>不大可能影响 VPN 的速度</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Title">
+    <value>中等延迟（50毫秒~150毫秒间）</value>
+  </data>
+  <data name="Dialogs_Latency_Title">
+    <value>延迟是什么？</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description">
+    <value>您的连接已被禁用，因为您使用的服务器不支持点对点 (P2P) 流量。免费服务器不支持 P2P。请使用其他服务器进行 P2P。</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Title">
+    <value>检测到 P2P 流量</value>
+  </data>
+  <data name="Dialogs_P2P_HowToTorrentLink">
+    <value>如何通过P2P进行种子下载</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_Title">
+    <value>P2P</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsP2PServer">
+    <value>什么是 P2P 服务器？</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsP2PServer_Description">
+    <value>P2P (点对点) VPN 服务器可解锁种子网站。</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsTorrenting">
+    <value>什么是种子？</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsTorrenting_Description">
+    <value>通过点对点 (P2P) 网络快速共享和下载大文件。</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhyUse">
+    <value>为什么用 P2P 服务器进行种子下载？</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhyUse_Description">
+    <value>• 上传和下载速度更快
+• 无活动记录
+• 向服务提供商和种子用户隐藏你的 IP 地址</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_Protocol_Description">
+    <value>协议是设备同服务器连接、通讯的方法所按照的一系列规范。</value>
+  </data>
+  <data name="Dialogs_Protocol_SwitchHeader">
+    <value>切换VPN协议</value>
+  </data>
+  <data name="Dialogs_Protocol_Title">
+    <value>VPN协议是什么？</value>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email">
+    <value>电子邮箱</value>
+    <comment>The label for user e-mail address in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
+    <value>example@domain.com</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
+    <value>发送错误日志</value>
+    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
+    <value>错误日志会向我们显示出错的原因，以及哪些操作导致了您的问题。我们只会使用它们来帮助工程师修复错误。</value>
+    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Header">
+    <value>有什么问题吗？</value>
+  </data>
+  <data name="Dialogs_ReportIssue_NoLogsWarning">
+    <value>错误日志有助于我们找出问题的根源。如果您不提供，我们可能无法进行全面调查。</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes">
+    <value>快速修复</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Footer">
+    <value>未能正常工作？</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Header">
+    <value>这些提示可能有助更快排除问题。</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_DoneAction">
+    <value>完成</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail">
+    <value>出了点问题</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail_Description">
+    <value>我们无法发送您的报告。请检查您的连接并重试。</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success">
+    <value>报告已发送</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success_Description">
+    <value>感谢您的反馈。我们将尽快与您联系。</value>
+  </data>
+  <data name="Dialogs_ReportIssue_SendReport">
+    <value>提交反馈</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Steps">
+    <value>第 {0} 步，共 {1} 步</value>
+    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Title">
+    <value>报告问题</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Description">
+    <value>服务器负载反映了某个服务器距离达到其可用资源上限还有多少。
+
+高服务器负载会导致您的网速变慢。</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Description">
+    <value>VPN可能会导致网速比平常时候更慢</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Title">
+    <value>高延迟（91-100%）</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Description">
+    <value>快如闪电</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Title">
+    <value>低延迟（1-75%）</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Description">
+    <value>不大可能影响 VPN 的速度</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Title">
+    <value>中延迟（76-90%）</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Title">
+    <value>服务器负载是什么？</value>
+  </data>
+  <data name="Dialogs_SmartRouting_Title">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>以后再说</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description">
+    <value>您的设备似乎正在使用代理服务器。这可能会干扰您的 VPN 保护。</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Disable">
+    <value>停用代理</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Title">
+    <value>检测到代理服务器</value>
+  </data>
+  <data name="Dialogs_Tor_Description">
+    <value>连接到 Tor 服务器，使用任何浏览器访问隐藏服务和洋葱站点。</value>
+  </data>
+  <data name="Dialogs_Tor_LearnMore">
+    <value>如何接入 Tor 网络</value>
+  </data>
+  <data name="Dialogs_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>关闭杀毒软件或防火墙</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>这些程序可能干扰 VPN 连接。</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>检查您的网络连接</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>请确保您在线，并且您的连接是稳定的。</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>这些快速解决方案可能会帮助您连接到 Proton 。</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>使用不同的网络</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>尝试切换 Wi-Fi 网络，或改用移动数据。</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>检查我们的状态页面</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>确保 Proton 的服务正常运行。</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>连接帮助</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
+    <value>这将断开您的 VPN 连接。任何活动的互联网连接都将暂时不受保护。</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
+    <value>这将断开你的 VPN 连接，并暂时禁用 Kill Switch。任何活动的互联网连接都将暂时不受保护。</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install">
+    <value>安装更新？</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart">
+    <value>重启 Proton VPN 以完成更新</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Description">
+    <value>看起来你的系统时钟不同步。这可能会导致连接 VPN 时出现问题。</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_PrimaryButton">
+    <value>如何更新系统时钟</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Title">
+    <value>更新系统时钟</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>简单、无缝、且安全。保护自己的在线安全，安全访问您组织的网站、软件和文件。</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>欢迎使用 Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>私密浏览、访问被屏蔽的内容，享受无数据或速度限制的数字自由。</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>经过认证的无记录 VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>活动由瑞士的隐私法保护。我们永远不会记录您的网上活动，也永远不会与第三方共享您的信息。</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>随时随地自由浏览</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>隐藏您的虚拟位置，在 {0} 个可用国家体验互联网。</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>可同时保护 10 台设备</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>将 VPN 保护扩展到台式机、手机、浏览器、电视等。 </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>高分辨率流媒体</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>观看来自世界各地的电影和电视节目，速度和质量都不会打折扣。</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>欢迎使用 VPN Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description1">
+    <value>恭喜您！您已解锁 Proton 所有服务的高级安全和性能功能。</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description2">
+    <value>享受 Proton 隐私的最佳体验。</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>欢迎使用 Proton Unlimited</value>
+  </data>
+  <data name="Dialogs_Welcome_Message">
+    <value>我们正在为您准备新的 VPN 体验。只需稍等片刻。</value>
+  </data>
+  <data name="Dialogs_Welcome_Title">
+    <value>欢迎使用 Proton VPN</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>您现在可以从主侧边栏访问您组织的专用服务器</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>网关位置已变更</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>我们更新了产品设计，并优化了功能布局，以提升应用的使用便捷性。</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>全新面貌，保护依旧</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>新增NetShield和端口转发等高级配置文件设置，或设置Connect and Go以便在连接时自动打开您指定的网站。</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>更强大的配置文件</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>现在重新连接至您最爱的服务器变得更为便捷。您可在主屏幕上查看最近的连接记录，或将其置顶以便快速访问。</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>近期动态</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>开始</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>更新内容</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>退出 Proton VPN？</value>
+  </data>
+  <data name="Exit_Message">
+    <value>正在断开 VPN...</value>
+  </data>
+  <data name="Exit_Title">
+    <value>退出 Proton VPN</value>
+  </data>
+  <data name="Flyouts_Country_Description1">
+    <value>在没有 VPN 的情况下浏览，您很容易受到基于位置的互联网限制。</value>
+  </data>
+  <data name="Flyouts_Country_Description2">
+    <value>网站可以使用地理封锁来限制某些地区的内容。各国政府也可以指示 ISP（互联网服务提供商）屏蔽本国的某些网站。</value>
+  </data>
+  <data name="Flyouts_Country_Description3">
+    <value>VPN 可以让您看起来像是在其他地方浏览，保护您免受监视和审查。</value>
+  </data>
+  <data name="Flyouts_Country_Title">
+    <value>国家/地区</value>
+  </data>
+  <data name="Flyouts_Country_Warning">
+    <value>连接 VPN 以更改您的虚拟位置</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Connected">
+    <value>您的 VPN IP 屏蔽了您真实 IP 地址。这让您看起来像是在 VPN 所在地浏览，因此您的在线活动无法与您的设备联系起来。</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected1">
+    <value>网站和 ISP（互联网服务提供商）可使用此唯一代码将您的位置和浏览历史记录与您的设备联系起来。</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2">
+    <value>VPN 屏蔽了你的 IP 地址，使你的活动更难被追踪到。</value>
+  </data>
+  <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
+    <value>什么是 IP 地址？</value>
+  </data>
+  <data name="Flyouts_IpAddress_Title">
+    <value>IP 地址</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIp">
+    <value>VPN IP</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIp">
+    <value>您的 IP</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIpIsVisible">
+    <value>您的 IP 地址可见</value>
+  </data>
+  <data name="Flyouts_Isp_Description1">
+    <value>您的 ISP（互联网服务提供商）是为您连接互联网的公司。</value>
+  </data>
+  <data name="Flyouts_Isp_Description2">
+    <value>他们可以记录您的在线活动。在一些国家，他们可以将您的数据卖给广告商。在其他国家，他们可能被要求将数据交给政府。</value>
+  </data>
+  <data name="Flyouts_Isp_Description3">
+    <value>VPN 隐藏了您的 IP 地址，保护您不受互联网服务供应商的干扰。</value>
+  </data>
+  <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
+    <value>什么是互联网服务提供商（ISP）？</value>
+  </data>
+  <data name="Flyouts_Isp_Title">
+    <value>提供商</value>
+  </data>
+  <data name="Flyouts_Isp_Warning">
+    <value>您的服务提供商可以看到您访问的网站</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success">
+    <value>在您未连接 Proton VPN 时阻止所有互联网访问</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info">
+    <value>如果 VPN 连接中断，您的 IP 地址可能会被暴露</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success">
+    <value>如果 VPN 连接中断，在 VPN 恢复之前，您将无法上网</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected">
+    <value>即使故意断开 VPN 连接，高级 Kill Switch 也会启动</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected">
+    <value>要重新联网，请连接 VPN 或禁用高级 Kill Switch</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
+    <value>保护您免受广告、跟踪器和恶意软件的侵害</value>
+  </data>
+  <data name="Flyouts_NetShield_Info">
+    <value>保护自己免受网站和应用程序上的广告、跟踪器和恶意软件的侵害</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success">
+    <value>只保护您免受恶意软件的侵害</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description">
+    <value>使用 VPN Plus 阻止广告、跟踪器和恶意软件。</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title">
+    <value>享受无广告浏览</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort">
+    <value>使用中的端口号</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info">
+    <value>将活动端口号输入到您的BitTorrent客户端中，以提升点对点（P2P）传输速度。</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info">
+    <value>提高点对点下载速度</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description">
+    <value>使用 VPN Plus 提高点对点 (P2P) 文件共享性能。</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title">
+    <value>提高 P2P 速度</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning">
+    <value>要使用端口转发，请连接 P2P 服务器</value>
+  </data>
+  <data name="Flyouts_Protocol_Description">
+    <value>VPN 协议决定流量如何加密并通过 VPN 传输。</value>
+  </data>
+  <data name="Flyouts_Protocol_KnowledgeBaseLinkTitle">
+    <value>哪种 VPN 协议最好？</value>
+  </data>
+  <data name="Flyouts_Protocol_Title">
+    <value>协议</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Description">
+    <value>服务器负载显示服务器有多接近满载。荷载高，网速会慢。</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High">
+    <value>高延迟（91-100%）</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High_Description">
+    <value>VPN可能会导致网速比平常时候更慢</value>
+  </data>
+  <data name="Flyouts_ServerLoad_KnowledgeBaseLinkTitle">
+    <value>服务器负载是什么？</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low">
+    <value>低延迟（1-75%）</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low_Description">
+    <value>快如闪电</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium">
+    <value>中延迟（76-90%）</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium_Description">
+    <value>不大可能影响连接速度</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Title">
+    <value>服务器负载</value>
+  </data>
+  <data name="Flyouts_Speed_BoostedByVpnAccelerator">
+    <value>由 VPN Accelerator 助力</value>
+  </data>
+  <data name="Flyouts_Speed_Description1">
+    <value>这显示了 Proton VPN 每秒传输的数据量。</value>
+  </data>
+  <data name="Flyouts_Speed_Description2">
+    <value>速度基于您设备当前的活动，并不代表 VPN 的最高速度。</value>
+  </data>
+  <data name="Flyouts_Speed_Download">
+    <value>下载</value>
+    <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
+  </data>
+  <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
+    <value>了解并提高 VPN 连接速度</value>
+  </data>
+  <data name="Flyouts_Speed_Title">
+    <value>速度</value>
+  </data>
+  <data name="Flyouts_Speed_Upload">
+    <value>上传</value>
+    <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
+    <value>已排除的应用 ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
+    <value>已排除IP地址 ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Info">
+    <value>允许受信任的应用程序和 IP 地址在没有 VPN 保护的情况下进行连接</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info">
+    <value>只有这些应用程序和 IP 地址可以通过 VPN 连接。所有其他流量都不受保护。</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
+    <value>受保护的应用 ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
+    <value>受保护的 IP 地址 ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info">
+    <value>这些应用程序和 IP 地址无需 VPN 保护即可连接。所有其他流量均受保护。</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description">
+    <value>使用 VPN Plus 将流量分为 VPN 和非 VPN 隧道。</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title">
+    <value>两全其美</value>
+  </data>
+  <data name="Flyouts_Volume_Description">
+    <value>这显示了有多少流量通过 VPN。</value>
+  </data>
+  <data name="Flyouts_Volume_Download">
+    <value>下载</value>
+    <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
+  </data>
+  <data name="Flyouts_Volume_Title">
+    <value>总流量</value>
+  </data>
+  <data name="Flyouts_Volume_Upload">
+    <value>上传</value>
+    <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
+  </data>
+  <data name="Format_Milliseconds">
+    <value>{0}毫秒</value>
+    <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
+  </data>
+  <data name="Format_Size_Bytes">
+    <value>{0}B</value>
+    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
+  </data>
+  <data name="Format_Size_Exabytes">
+    <value>{0}EB</value>
+    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
+  </data>
+  <data name="Format_Size_Gigabytes">
+    <value>{0}GB</value>
+    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
+  </data>
+  <data name="Format_Size_Kilobytes">
+    <value>{0}KB</value>
+    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
+  </data>
+  <data name="Format_Size_Megabytes">
+    <value>{0}MB</value>
+    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
+  </data>
+  <data name="Format_Size_Petabytes">
+    <value>{0}PB</value>
+    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
+  </data>
+  <data name="Format_Size_Terabytes">
+    <value>{0}TB</value>
+    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_SpeedUnit">
+    <value>速度 ({0})</value>
+    <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
+  </data>
+  <data name="Format_Speed_BytesPerSecond">
+    <value>每秒{0}B</value>
+    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
+  </data>
+  <data name="Format_Speed_ExabytesPerSecond">
+    <value>每秒{0}EB</value>
+    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
+  </data>
+  <data name="Format_Speed_GigabytesPerSecond">
+    <value>每秒{0}GB</value>
+    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
+  </data>
+  <data name="Format_Speed_KilobytesPerSecond">
+    <value>每秒{0}KB</value>
+    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
+  </data>
+  <data name="Format_Speed_MegabytesPerSecond">
+    <value>每秒{0}MB</value>
+    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
+  </data>
+  <data name="Format_Speed_PetabytesPerSecond">
+    <value>每秒{0}PB</value>
+    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
+  </data>
+  <data name="Format_Speed_TerabytesPerSecond">
+    <value>每秒{0}TB</value>
+    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
+  </data>
+  <data name="Format_Time_Day_Other">
+    <value>{0}天</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
+    <value>{0}天{1}小时</value>
+  </data>
+  <data name="Format_Time_Hours">
+    <value>{0} 小时</value>
+    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutes">
+    <value>{0}小时{1}分钟</value>
+    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutesSeconds_Short">
+    <value>hh\:mm\:ss</value>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
+  </data>
+  <data name="Format_Time_Minutes">
+    <value>{0} 分钟</value>
+    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds">
+    <value>{0}分钟{1}秒</value>
+    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds_Short">
+    <value>mm\:ss</value>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
+  </data>
+  <data name="Format_Time_Seconds">
+    <value>{0}秒</value>
+    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>通过 BitTorrent 和其他文件共享协议下载文件</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>为 VPN 连接增添一层额外保护</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>经 Tor 网络，连接 VPN，更强隐私</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>开通 VPN Plus，获得全球覆盖</value>
+  </data>
+  <data name="Gateway_Fastest">
+    <value>最快的网关</value>
+  </data>
+  <data name="Gateway_Random">
+    <value>随机网关</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>连接到网关以访问您组织的 VPN。</value>
+  </data>
+  <data name="Gateways_Page_Title">
+    <value>网关</value>
+  </data>
+  <data name="Gateways_Server">
+    <value>专用服务器</value>
+  </data>
+  <data name="Home_Account_SignOut">
+    <value>登出</value>
+  </data>
+  <data name="Home_Account_SignOut_Confirmation_Title">
+    <value>要从 {0} 退出吗？</value>
+    <comment>{0} is a placeholder for the username</comment>
+  </data>
+  <data name="Home_Account_Title">
+    <value>我的账户</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>更改默认连接</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeServer">
+    <value>切换服务器</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_BrowseSafely">
+    <value>安全浏览</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_ConnectingTo">
+    <value>正在连接...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_DefaultConnection">
+    <value>默认连接</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_FreeConnection">
+    <value>免费连接</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_LastConnectedTo">
+    <value>最后连接至</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_Recommended">
+    <value>推荐</value>
+  </data>
+  <data name="Home_ConnectionCard_Landmark">
+    <value>连接信息</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_ConnectionDetails_City">
+    <value>城市 / 区县</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectedFor">
+    <value>已连接</value>
+    <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Connecting">
+    <value>正在连接</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectingSubLabel">
+    <value>保护您的数字身份...</value>
+  </data>
+  <data name="Home_ConnectionDetails_Country">
+    <value>国家/地区</value>
+  </data>
+  <data name="Home_ConnectionDetails_Gateway">
+    <value>网关</value>
+  </data>
+  <data name="Home_ConnectionDetails_Hide">
+    <value>隐藏连接详情</value>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP">
+    <value>隐藏</value>
+    <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP_Description">
+    <value>隐藏用户IP地址</value>
+  </data>
+  <data name="Home_ConnectionDetails_Isp">
+    <value>提供商</value>
+  </data>
+  <data name="Home_ConnectionDetails_Landmark">
+    <value>连接详情</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_ConnectionDetails_MyIp">
+    <value>我的 IP</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protected">
+    <value>已受到保护</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protocol">
+    <value>协议</value>
+  </data>
+  <data name="Home_ConnectionDetails_Server">
+    <value>服务器</value>
+  </data>
+  <data name="Home_ConnectionDetails_ServerLoad">
+    <value>服务器负载</value>
+  </data>
+  <data name="Home_ConnectionDetails_Show">
+    <value>显示连接详情</value>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP">
+    <value>显示</value>
+    <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP_Description">
+    <value>显示用户IP地址</value>
+  </data>
+  <data name="Home_ConnectionDetails_State">
+    <value>省份/地区</value>
+  </data>
+  <data name="Home_ConnectionDetails_Title">
+    <value>连接详情</value>
+  </data>
+  <data name="Home_ConnectionDetails_Unprotected">
+    <value>未受保护</value>
+  </data>
+  <data name="Home_ConnectionDetails_UnprotectedSubLabel">
+    <value>通过连接 VPN 加密您的在线活动。</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume">
+    <value>总流量</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Download">
+    <value>下载流量</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Total">
+    <value>总流量</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Upload">
+    <value>上传流量</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnIp">
+    <value>VPN IP</value>
+  </data>
+  <data name="Home_ConnectionDetails_YourIpAddress">
+    <value>您的 IP 地址</value>
+  </data>
+  <data name="Home_FreeConnections_About">
+    <value>有关免费连接的更多信息</value>
+  </data>
+  <data name="Home_Help_Title">
+    <value>帮助</value>
+  </data>
+  <data name="Home_Map_Landmark">
+    <value>地图</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>屏蔽广告</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>广告是出现在网站和应用程序上的促销横幅或弹出窗口。</value>
+  </data>
+  <data name="Home_NetShield_DataSaved">
+    <value>节省流量</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>通过拦截不需要的广告、跟踪器和恶意软件，估算节省的数据。</value>
+  </data>
+  <data name="Home_NetShield_Landmark">
+    <value>NetShield 统计数据</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_NetShield_Title">
+    <value>NetShield 统计数据</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>屏蔽跟踪器</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>跟踪器是收集、存储和出售有关你的网络活动信息的 cookie 和第三方网站。</value>
+  </data>
+  <data name="Home_Page_Title">
+    <value>首页</value>
+  </data>
+  <data name="Home_Recents_Landmark">
+    <value>最近连接</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_Recents_Pin">
+    <value>固定</value>
+  </data>
+  <data name="Home_Recents_Restricted">
+    <value>VPN Plus 提供的服务器</value>
+  </data>
+  <data name="Home_Recents_SecondaryActions_ToolTip">
+    <value>操作</value>
+  </data>
+  <data name="Home_Recents_ServerUnderMaintenance">
+    <value>服务器维护中</value>
+  </data>
+  <data name="Home_Recents_Title">
+    <value>最近</value>
+  </data>
+  <data name="Home_Recents_Unpin">
+    <value>取消收藏</value>
+  </data>
+  <data name="Home_TitleBar_Menu_About">
+    <value>关于</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Account">
+    <value>账户</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp">
+    <value>退出应用</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help">
+    <value>帮助</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
+    <value>有什么问题吗？</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings">
+    <value>设置</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout">
+    <value>登出</value>
+  </data>
+  <data name="Home_TitleBar_Menu_UpdateNow">
+    <value>立即更新</value>
+  </data>
+  <data name="Home_Update_UpdateAvailable">
+    <value>有可用更新</value>
+  </data>
+  <data name="Home_Update_UpdateReady">
+    <value>更新准备就绪</value>
+  </data>
+  <data name="Home_VpnStatus_Landmark">
+    <value>VPN 状态</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Connecting">
+    <value>保护您的数字身份...</value>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Disconnected">
+    <value>您不受保护</value>
+  </data>
+  <data name="Home_VpnStatus_Title_Connected">
+    <value>保护中</value>
+  </data>
+  <data name="LoadingPage_Tip">
+    <value>更美好的世界始于隐私和数字自由。</value>
+  </data>
+  <data name="Login_Error_GetSessionDetailsFailed">
+    <value>获取会话详细信息时发生错误。请重试。</value>
+  </data>
+  <data name="Login_Error_IncorrectTwoFactorCode">
+    <value>验证码错误，请重试。</value>
+  </data>
+  <data name="Login_Error_SessionExpired">
+    <value>您的会话已过期。请重新登录。</value>
+    <comment>The message displayed in Login window when expired session is detected</comment>
+  </data>
+  <data name="Login_Error_SsoAuthFailed">
+    <value>SSO 身份验证失败。请重试。</value>
+  </data>
+  <data name="Login_Error_TwoFactorAuthFailed">
+    <value>用户名或密码不正确，请重试。</value>
+  </data>
+  <data name="Login_Error_TwoFactorFailed">
+    <value>双因素验证失败。请重新登录。</value>
+  </data>
+  <data name="Login_TwoFactorForm_Authenticate">
+    <value>认证账户</value>
+    <comment>Authenticate button inside two factor form during login</comment>
+  </data>
+  <data name="Login_TwoFactorForm_Subtitle">
+    <value>输入身份验证器中的验证码。</value>
+  </data>
+  <data name="Login_TwoFactorForm_Title">
+    <value>双因素身份验证 (2FA)</value>
+  </data>
+  <data name="Login_TwoFactor_Digit1">
+    <value>第一位数字</value>
+  </data>
+  <data name="Login_TwoFactor_Digit2">
+    <value>第二位数字</value>
+  </data>
+  <data name="Login_TwoFactor_Digit3">
+    <value>第三位数字</value>
+  </data>
+  <data name="Login_TwoFactor_Digit4">
+    <value>第四位数字</value>
+  </data>
+  <data name="Login_TwoFactor_Digit5">
+    <value>第五位数字</value>
+  </data>
+  <data name="Login_TwoFactor_Digit6">
+    <value>第六位数字</value>
+  </data>
+  <data name="Login_TwoFactor_EnterCode">
+    <value>请输入您的代码</value>
+  </data>
+  <data name="Main_Loading_SigningIn">
+    <value>登录中，请稍候…</value>
+    <comment>Message in the loading screen when signing in or starting the app</comment>
+  </data>
+  <data name="Main_Loading_SigningOut">
+    <value>正在登出, 请稍候...</value>
+    <comment>Message in the loading screen when signing out</comment>
+  </data>
+  <data name="Map_ConnectTo">
+    <value>连接 - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="Notifications_KillSwitch_Description">
+    <value>为了保护您的 IP 地址，Kill Switch 会阻止您的互联网连接。</value>
+  </data>
+  <data name="Notifications_PortForwarding_CopyPortNumber">
+    <value>复制端口号</value>
+  </data>
+  <data name="Notifications_PortForwarding_Description">
+    <value>在 BitTorrent 程序中使用此端口号即可加速。</value>
+  </data>
+  <data name="Notifications_SessionLimit_Description">
+    <value>您已达到最大设备限制。要重新连接 VPN，请从其他设备断开连接。</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>您的计划已降级为 Proton Free 计划，我们将为您重新连接最快的免费服务器。</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Description">
+    <value>公共 Wi-Fi 网络更容易受到安全威胁。连接到 VPN 以安全浏览。</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Title">
+    <value>检测到不安全的 Wi-Fi 连接</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Action">
+    <value>立即更新</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Message">
+    <value>此应用版本已过时。您必须更新应用才能继续使用 Proton VPN。</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Title">
+    <value>更新 Proton VPN 以继续</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Description">
+    <value>我们的 P2P（点对点）服务器可让您访问 P2P 网络，同时还能保护您的 IP 地址和在线活动。</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Header">
+    <value>什么是 P2P VPN？</value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Description">
+    <value>P2P 网络允许两台设备连接并传输数据，而无需通过中央服务器。</value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Header">
+    <value>什么是 P2P 网络？</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Description">
+    <value> • 下载种子文件
+ • 提高在线游戏和视频通话性能
+ • 连接局域网（LAN）设备</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Header">
+    <value>P2P 网络有什么用途？</value>
+  </data>
+  <data name="Overlay_P2P_LearnMore">
+    <value>P2P 是什么？</value>
+  </data>
+  <data name="Overlay_P2P_Title">
+    <value>P2P</value>
+  </data>
+  <data name="Overlay_Profile_Description1">
+    <value>配置文件是自定义的 VPN 连接，您可以根据自己的需要进行定制，并保存起来以便快速访问。</value>
+  </data>
+  <data name="Overlay_Profile_Description2">
+    <value>设置您的首选位置，并针对安全、性能、游戏或任何其他情况优化设置。</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore">
+    <value>什么是 VPN 配置文件？</value>
+  </data>
+  <data name="Overlay_Profile_Title">
+    <value>收藏</value>
+  </data>
+  <data name="Overlay_SecureCore_Description1">
+    <value>Secure Core 通过第二个最高安全级别的 VPN 服务器将您连接到目的地服务器。</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2">
+    <value>这种更高级别的保护可能会导致更高的延迟和更慢的速度。</value>
+  </data>
+  <data name="Overlay_SecureCore_LearnMore">
+    <value>什么是 Secure Core？</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection">
+    <value>Secure Core
+VPN 连接</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
+    <value>延迟较高</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Privacy">
+    <value>隐私性更高</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection">
+    <value>标准
+VPN 连接</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Latency">
+    <value>延迟较低</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Privacy">
+    <value>隐私性高</value>
+  </data>
+  <data name="Overlay_SecureCore_Title">
+    <value>Secure Core</value>
+  </data>
+  <data name="Overlay_ServerLoad_Description">
+    <value>服务器负载反映了某个服务器距离达到其可用资源上限还有多少。
+
+高服务器负载会导致您的网速变慢。</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Description">
+    <value>VPN可能会导致网速比平常时候更慢</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Title">
+    <value>高延迟（91-100%）</value>
+  </data>
+  <data name="Overlay_ServerLoad_LearnMore">
+    <value>服务器负载是什么？</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Description">
+    <value>快如闪电</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Title">
+    <value>低延迟（1-75%）</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Description">
+    <value>不大可能影响 VPN 的速度</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Title">
+    <value>中延迟（76-90%）</value>
+  </data>
+  <data name="Overlay_ServerLoad_Title">
+    <value>服务器负载</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description1">
+    <value>智能路由使用虚拟服务器在难以到达的国家提供 VPN 覆盖。</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2">
+    <value>当您连接到智能路由服务器时，虽然物理服务器位于其他地方，但您似乎是在目的地国家浏览。</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3">
+    <value>智能路由通常用于规避反隐私法和其他形式的审查。</value>
+  </data>
+  <data name="Overlay_SmartRouting_Header">
+    <value>服务器实际位于 {0}，但您似乎是从 {1} 浏览的</value>
+    <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
+    Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
+    Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
+  </data>
+  <data name="Overlay_SmartRouting_LearnMore">
+    <value>什么是 Smart Routing？</value>
+  </data>
+  <data name="Overlay_SmartRouting_Title">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Overlay_Tor_Description">
+    <value>连接到 Tor 服务器，使用任何浏览器访问隐藏服务和洋葱站点。</value>
+  </data>
+  <data name="Overlay_Tor_LearnMore">
+    <value>如何接入 Tor 网络</value>
+  </data>
+  <data name="Overlay_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Profile_CustomSettings_Description">
+    <value>连接时，配置文件设置将覆盖 VPN 设置。</value>
+  </data>
+  <data name="Profile_CustomSettings_Header">
+    <value>添加自定义设置</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide">
+    <value>隐藏设置</value>
+  </data>
+  <data name="Profile_CustomSettings_Show">
+    <value>显示设置</value>
+  </data>
+  <data name="Profile_NatType_Conflict_Description">
+    <value>这将禁用此配置文件的端口转发功能。</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description">
+    <value>这将为此配置文件禁用自定义 DNS。</value>
+  </data>
+  <data name="Profile_Options_Description">
+    <value>当您连接到此配置文件时，将自动打开您选择的网站。</value>
+  </data>
+  <data name="Profile_Options_Header">
+    <value>连接并开始</value>
+  </data>
+  <data name="Profile_Options_Url">
+    <value>网站 URL</value>
+  </data>
+  <data name="Profile_Options_Url_Error">
+    <value>输入一个有效的 URL</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description">
+    <value>这将把此配置文件的 NAT 类型更改为严格（类型 3）。</value>
+  </data>
+  <data name="Profiles_Default_Gaming">
+    <value>游戏</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity">
+    <value>最高安全</value>
+  </data>
+  <data name="Profiles_Default_Office">
+    <value>办公</value>
+  </data>
+  <data name="Profiles_Default_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection">
+    <value>随机连接</value>
+  </data>
+  <data name="Profiles_Default_Streaming">
+    <value>美国流媒体</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool">
+    <value>工作/学校</value>
+  </data>
+  <data name="Profiles_Page_Description">
+    <value>配置您自己的 VPN 设置并在一次点击时连接。</value>
+  </data>
+  <data name="Profiles_Page_Title">
+    <value>收藏</value>
+  </data>
+  <data name="Search_InputBox_Placeholder">
+    <value>从...浏览</value>
+  </data>
+  <data name="Search_NoInput_CityOrState">
+    <value>城市或美国州县</value>
+    <comment>The word used for one single city and one single United States state</comment>
+  </data>
+  <data name="Search_NoInput_Country">
+    <value>国家/地区</value>
+    <comment>The word used for one single country</comment>
+  </data>
+  <data name="Search_NoInput_Server">
+    <value>服务器</value>
+    <comment>The word used for one single server</comment>
+  </data>
+  <data name="Search_NoInput_TrySearchingFor">
+    <value>寻找…</value>
+  </data>
+  <data name="Search_NoResults_Description">
+    <value>尝试另一个关键字。</value>
+  </data>
+  <data name="Search_NoResults_Title">
+    <value>您要的没找到</value>
+  </data>
+  <data name="Server">
+    <value>服务器</value>
+  </data>
+  <data name="Server_Fastest_Free">
+    <value>最快的免费服务器</value>
+  </data>
+  <data name="Server_Feature_B2B">
+    <value>网关</value>
+  </data>
+  <data name="Server_Feature_B2B_Description">
+    <value>访问您组织的服务器</value>
+  </data>
+  <data name="Server_Feature_None">
+    <value>普通</value>
+  </data>
+  <data name="Server_Feature_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Server_Feature_P2P_Description">
+    <value>种子优化</value>
+  </data>
+  <data name="Server_Feature_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description">
+    <value>双重保护</value>
+  </data>
+  <data name="Server_Feature_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Server_Free">
+    <value>免费服务器</value>
+  </data>
+  <data name="Servers">
+    <value>服务器</value>
+  </data>
+  <data name="Settings_About">
+    <value>关于</value>
+  </data>
+  <data name="Settings_About_Changelog">
+    <value>更新记录</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>当前版本</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>加载更新日志信息失败。</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>了解详情</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>许可协议</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>加载中</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>关于</value>
+  </data>
+  <data name="Settings_Account_Account">
+    <value>账户</value>
+  </data>
+  <data name="Settings_Account_Exit">
+    <value>退出应用</value>
+  </data>
+  <data name="Settings_Account_SignOut">
+    <value>登出</value>
+  </data>
+  <data name="Settings_AppVersion">
+    <value>App 版本</value>
+  </data>
+  <data name="Settings_Censorship_Footer">
+    <value>这些统计数据不包含您的 IP 地址，因此无法用于识别您的身份。我们绝不会与第三方分享它们。</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports">
+    <value>分享匿名的崩溃报告</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports_Description">
+    <value>崩溃报告会帮助我们修复错误、检测防火墙并避免 VPN 阻塞。</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics">
+    <value>分享匿名的使用统计数据</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics_Description">
+    <value>使用数据会帮助我们克服 VPN 阻塞、提高应用性能。</value>
+  </data>
+  <data name="Settings_Common_Apply">
+    <value>应用</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
+  <data name="Settings_Connection">
+    <value>连接</value>
+  </data>
+  <data name="Settings_Connection_AdvancedSettings">
+    <value>高级设置</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting">
+    <value>备用线路</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
+    <value>若 Proton 服务被网络限制封锁，我们将使用备用线路连接到我们的站点。</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers">
+    <value>自定义 DNS 服务器</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
+    <value>当连接到自定义 DNS 服务器时，您将无法使用 NetShield。</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
+    <value>启用自定义 DNS 服务器？</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
+    <value>连接到 Proton VPN 时使用您设定的DNS服务器。请只填写您信任的 DNS 服务器。</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+    <value>DNS 服务器 ({0})</value>
+    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
+    <value>添加 IPv4 地址</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
+    <value>禁用 IPv6 流量</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
+    <value>通过阻止与 IPv6 地址的连接，防止 IPv6 泄露。</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections">
+    <value>LAN 连接</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_Description">
+    <value>可以让您连接到本地网络的打印机、扬声器及其他设备。</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType">
+    <value>NAT 类型</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
+    <value>您无法使用 Moderate NAT 进行端口转发。</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
+    <value>开启保守 NAT 模式?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Description">
+    <value>选择 VPN 连接的网络地址转换（NAT）类型。</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate">
+    <value>中等（类型 2）</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
+    <value>阻止部分数据进入您的网络。该类型适合于在线游戏。</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict">
+    <value>严格（类型 3）</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict_Description">
+    <value>阻止数据进入您的网络。该类型更为安全，但网络游戏建立 P2P 连接会更困难。</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
+    <value>不同网络之间的路由流量。</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
+    <value>使用桥接技术连接网络。TUN 的速度比 TAP 快，但稳定性可能较差。</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
+    <value>自定义 DNS 无法打开，因为您连接的是已启用 NetShield 的配置文件。</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
+    <value>自定义 DNS 已禁用，因为您当前连接的是已启用 NetShield 的配置文件。</value>
+  </data>
+  <data name="Settings_Connection_Default">
+    <value>默认连接</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>最快的地域</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>从所在位置来看最适合的服务器</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>上次连接</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>近期连接</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>随机国家/地区</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>每次连接都使用不同的服务器</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>最近的</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch">
+    <value>Kill Switch</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced">
+    <value>高级</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced_Description">
+    <value>只有连接到 Proton VPN 时才允许访问互联网。即使重新启动设备，高级 Kill Switch 也会保持激活状态。</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Conflict_Description">
+    <value>这将禁用拆分隧道。</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Conflict_Title">
+    <value>启用 Kill Switch ?</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Description">
+    <value>如果失去 VPN 连接，会断开与互联网的连接，从而保护你的 IP 地址。</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Footer">
+    <value>当 Kill Switch 开启时，您将无法通过分割隧道连接到网站和被排除在您的 VPN 连接之外的应用。</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard">
+    <value>普通</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard_Description">
+    <value>如果 VPN 连接丢失，会自动断开与互联网的连接。</value>
+  </data>
+  <data name="Settings_Connection_NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
+    <value>拦截广告、恶意软件和跟踪器</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockMalwareOnly">
+    <value>仅屏蔽恶意软件</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Description">
+    <value>启用 NetShield 后，您将无法连接自定义 DNS 服务器。</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information">
+    <value>NetShield 与自定义 DNS 不兼容。</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Title">
+    <value>启用 NetShield？</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Description">
+    <value>保护自己免受网站和应用程序上的广告、恶意软件和跟踪器的侵害。</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Footer">
+    <value>屏蔽了广告和跟踪器，某些网站可能加载不正常。</value>
+  </data>
+  <data name="Settings_Connection_NetShield_PrivacyPanel">
+    <value>NetShield 隐私面板</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding">
+    <value>端口转发</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort">
+    <value>当前端口：</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
+    <value>复制端口号</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Description">
+    <value>启用端口转发后，将无法使用 Moderate NAT。</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Title">
+    <value>启用端口转发？</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Description">
+    <value>绕过防火墙连接到本地网络中的 P2P 服务器和设备。</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Footer">
+    <value>要使用端口转发，请连接到支持 P2P 的服务器。</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Loading">
+    <value>正在载入…</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications">
+    <value>通知</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications_Description">
+    <value>在转发端口号改变时收到通知</value>
+  </data>
+  <data name="Settings_Connection_Protocol">
+    <value>协议</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Action">
+    <value>转到配置文件</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Message">
+    <value>您目前连接的是 VPN 配置文件。
+
+• 要更改此连接的协议，请断开连接，然后编辑您的配置文件。
+
+• 要为其他 VPN 连接更改协议，您需要先断开与配置文件的连接。</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Title">
+    <value>改变配置文件中的协议</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling">
+    <value>线路分离</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Add">
+    <value>添加应用程序</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
+    <value>应用程序文件</value>
+    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Header">
+    <value>选定的应用 ({0})</value>
+    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Remove">
+    <value>移除应用</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
+    <value>这将禁用 Kill Switch 。</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
+    <value>启用拆分隧道？</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Description">
+    <value>选择哪些应用以及 IP 地址由 VPN 保护，自定义连接方式。</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse">
+    <value>反向</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Description">
+    <value>仅选定的应用和 IP 地址通过 VPN连接，所有其他流量都不受保护</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
+    <value>添加 IP</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
+    <value>选定的 IP 地址 ({0})</value>
+    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
+    <value>删除 IP</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
+    <value>添加 IPv4 地址</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard">
+    <value>普通</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Description">
+    <value>挑选不经 VPN 连接的应用和 IP 地址</value>
+  </data>
+  <data name="Settings_Connection_VpnAccelerator">
+    <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>放弃更改</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>继续更改</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>放弃未保存的更改？</value>
+  </data>
+  <data name="Settings_Features">
+    <value>VPN 功能</value>
+  </data>
+  <data name="Settings_General">
+    <value>常规​​​​​</value>
+  </data>
+  <data name="Settings_General_AutoStartup">
+    <value>开机自动启动</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect">
+    <value>自动连接</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Description">
+    <value>当 Proton VPN 打开时，自动连接到您的默认连接。</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
+    <value>最佳线路</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Latest">
+    <value>上次连接</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch">
+    <value>自动运行</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Description">
+    <value>当您登录到您的设备时，Proton VPN 将自动打开</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
+    <value>在桌面上打开</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
+    <value>最小化到系统托盘</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
+    <value>最小化到任务栏</value>
+  </data>
+  <data name="Settings_General_AutoStartup_Description">
+    <value>设置应用程序自动启动或连接</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates">
+    <value>自动更新</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates_Description">
+    <value>自动检查并安装 Proton VPN 更新</value>
+  </data>
+  <data name="Settings_General_BetaAccess">
+    <value>测试版访问</value>
+  </data>
+  <data name="Settings_General_BetaAccess_Description">
+    <value>提前体验并帮助我们测试新版 Proton VPN</value>
+  </data>
+  <data name="Settings_General_Language">
+    <value>语言</value>
+  </data>
+  <data name="Settings_General_Notifications">
+    <value>通知</value>
+  </data>
+  <data name="Settings_General_Notifications_Description">
+    <value>提醒您 Proton VPN 正在进行的活动</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver">
+    <value>OpenVPN 网络驱动程序</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver_Description">
+    <value>网络驱动程序会影响连接速度。新的 TUN 适配器能提供更高的速度，如果遇到任何连接问题，它还能依靠 TAP 适配器。</value>
+  </data>
+  <data name="Settings_General_Theme">
+    <value>主题</value>
+  </data>
+  <data name="Settings_General_Theme_Dark">
+    <value>深色</value>
+  </data>
+  <data name="Settings_General_Theme_Default">
+    <value>默认</value>
+  </data>
+  <data name="Settings_General_Theme_Light">
+    <value>浅色</value>
+  </data>
+  <data name="Settings_Improve">
+    <value>帮 Proton 做得更好</value>
+  </data>
+  <data name="Settings_Improve_Censorship">
+    <value>和我们一起对抗审查</value>
+  </data>
+  <data name="Settings_OperatingSystemVersion">
+    <value>操作系统版本</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description1">
+    <value>此设置与您的活动配置文件相关联。</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2">
+    <value>编辑您的配置文件以进行更改，或断开连接以编辑一般 VPN 设置。</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline">
+    <value>这些设置已连接到 '{0}' 并且只能在配置文件中管理。</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Title">
+    <value>管理配置文件中的 {0}</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
+  <data name="Settings_Page_Title">
+    <value>设置</value>
+  </data>
+  <data name="Settings_Protocols_Explanation">
+    <value>VPN 协议决定数据如何在 VPN 服务器和设备间传输。</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Description">
+    <value>成熟、久经考验、且安全。OpenVPN 在网络条件差的情况下也很可靠，但速度可能不如其他协议。</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Description">
+    <value>成熟、久经考验、且安全。与其他一些协议相比，OpenVPN 的电池效率较低。</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_Recommended">
+    <value>推荐</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Description">
+    <value>自动为连接选择最佳协议。</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Title">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_Protocols_TcpCategory">
+    <value>稳定优先 (TCP)</value>
+  </data>
+  <data name="Settings_Protocols_UdpCategory">
+    <value>速度优先 (UDP)</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>安全性和性能上最先进的协议</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>通过隐藏你的 VPN 连接，克服审查员对 VPN 的封锁。
+Stealth 具有抗 DPI（深度数据包检查）能力，但速度可能不如其他协议。</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Description">
+    <value>安全性和性能上最先进的协议</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Reconnection_Title">
+    <value>重新连接以应用更改</value>
+  </data>
+  <data name="Settings_RestoreDefault">
+    <value>恢复默认设置</value>
+  </data>
+  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
+    <value>恢复并重新连接</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Action">
+    <value>恢复默认设置</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Message">
+    <value>这将重置您的 Proton VPN 设置为原始状态。</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Title">
+    <value>恢复默认设置?</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnTcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnUdp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardUdp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="Settings_Support">
+    <value>帮助</value>
+  </data>
+  <data name="Settings_Support_DebugLogs">
+    <value>调试日志</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Application">
+    <value>应用程序日志</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_ErrorMessage">
+    <value>找不到日志目录。</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Service">
+    <value>服务日志</value>
+  </data>
+  <data name="Settings_Support_ReportIssue">
+    <value>报告问题</value>
+  </data>
+  <data name="Settings_Support_SupportCenter">
+    <value>支持中心</value>
+  </data>
+  <data name="Settings_Theme_Dark">
+    <value>深色</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>默认</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>浅色</value>
+  </data>
+  <data name="Settings_VpnAccelerator_Description">
+    <value>利用性能增强技术，连接速度提高达 400%。</value>
+  </data>
+  <data name="SignIn_Form">
+    <value>登录表单</value>
+  </data>
+  <data name="SignIn_Form_AdvancedKillSwitchDescription">
+    <value>高级 Kill Switch 正在阻止您的网络连接。</value>
+  </data>
+  <data name="SignIn_Form_BestSecureVpnForSpeed">
+    <value>速度最佳的安全 VPN</value>
+  </data>
+  <data name="SignIn_Form_CreateAccount">
+    <value>创建账户</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_Description">
+    <value>请输入您的 Proton 账户详细信息</value>
+  </data>
+  <data name="SignIn_Form_DisableKillSwitch">
+    <value>禁用 Kill Switch</value>
+  </data>
+  <data name="SignIn_Form_Email">
+    <value>电子邮箱</value>
+  </data>
+  <data name="SignIn_Form_ForgotUsername">
+    <value>忘记用户名</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_Help">
+    <value>帮助</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_NoLogsPolicy">
+    <value>无日志原则</value>
+  </data>
+  <data name="SignIn_Form_OpenSource">
+    <value>开放源代码</value>
+  </data>
+  <data name="SignIn_Form_Password">
+    <value>密码</value>
+  </data>
+  <data name="SignIn_Form_PasswordError">
+    <value>输入您的密码</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a password</comment>
+  </data>
+  <data name="SignIn_Form_ReportAnIssue">
+    <value>报告问题</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_ResetPassword">
+    <value>忘记密码</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_SignIn">
+    <value>登录</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_SignInWithSso">
+    <value>使用SSO登录</value>
+  </data>
+  <data name="SignIn_Form_SwissBased">
+    <value>立足瑞士</value>
+  </data>
+  <data name="SignIn_Form_Title">
+    <value>登录</value>
+  </data>
+  <data name="SignIn_Form_TroubleSigningIn">
+    <value>支持中心</value>
+    <comment>A button at the bottom of the login window inside Get help popup</comment>
+  </data>
+  <data name="SignIn_Form_Username">
+    <value>邮箱或用户名</value>
+  </data>
+  <data name="SignIn_Form_UsernameError">
+    <value>输入您的电子邮件或用户名</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
+  </data>
+  <data name="SignIn_KillSwitch_Disabled">
+    <value>Kill Switch 已禁用</value>
+  </data>
+  <data name="SystemNotification_Connected">
+    <value>您现在受到保护</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>连接至 {0}.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>已断开</value>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
+    <value>退出</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication">
+    <value>打开 {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Unit_BytesPerSecond">
+    <value>B/s</value>
+    <comment>Unit for Bytes per second</comment>
+  </data>
+  <data name="Unit_ExabytesPerSecond">
+    <value>EB/s</value>
+    <comment>Unit for Exabytes per second</comment>
+  </data>
+  <data name="Unit_GigabytesPerSecond">
+    <value>GB/s</value>
+    <comment>Unit for Gigabytes per second</comment>
+  </data>
+  <data name="Unit_KilobytesPerSecond">
+    <value>KB/s</value>
+    <comment>Unit for Kilobytes per second</comment>
+  </data>
+  <data name="Unit_MegabytesPerSecond">
+    <value>MB/s</value>
+    <comment>Unit for Megabytes per second</comment>
+  </data>
+  <data name="Unit_PetabytesPerSecond">
+    <value>PB/s</value>
+    <comment>Unit for Petabytes per second</comment>
+  </data>
+  <data name="Unit_TerabytesPerSecond">
+    <value>TB/s</value>
+    <comment>Unit for Terabytes per second</comment>
+  </data>
+  <data name="UpsellBanner_NetShield_Description">
+    <value>屏蔽网站和应用中的广告、跟踪器和恶意软件</value>
+  </data>
+  <data name="UpsellBanner_NetShield_Title">
+    <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>升级套餐，任意选择服务器.</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>想连到别的某个地方？</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>VPN 高级自定义</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>使用自定义域名服务器（DNS）连接 VPN</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>连接时访问局域网（LAN）上的设备</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>切换到 NAT 类型 2（中等），提升您的游戏体验</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>支持10台设备同时连接</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>在不同平台上使用 Proton VPN</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>Android 和 Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>浏览器</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>所有设备上均有安全和隐私</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>无广告浏览</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>使用 NetShield 阻止广告和跟踪器</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>免受恶意软件侵害</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>解锁点对点下载和文件共享（P2P）</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>对网络运营商和其他人隐藏 IP 地址</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>利用端口转发提高 P2P 速度</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>上传下载更快</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ 更多</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_Profiles">
+    <value>快速访问常用链接</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience">
+    <value>将配置文件设为默认连接，只需点击一下即可连接</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Creation">
+    <value>使用配置文件创建和保存自己的 VPN 配置</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization">
+    <value>自定义您的位置、协议和设置</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>为您的连接添加另一层保护</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>使用 Secure Core 将加密加倍</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>抵御网络攻击</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>通过瑞士、瑞典和冰岛的强化安全服务器中转数据</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>以更高的速度浏览（高达 10 Gbps）</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>使用 VPN Accelerator 将连接速度提高 400%</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>访问速度更快，占用较低的服务器</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>两全其美</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>利用拆分隧道技术同时从两个地址浏览</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>允许受信任的应用和IP地址直接连接到互联网，同时使用VPN保护其他所有内容。</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>流畅播放您喜爱的电影和电视节目</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>从世界任何地方访问受地理位置限制的电影和电视</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Hulu">
+    <value>Hulu</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>畅享4K超清，无缓冲、不卡顿、不限速</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>探索 VPN Plus</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>访问 Tor 网络，获得更多隐私</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>访问私密网站和洋葱站点</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>使用普通浏览器浏览 Tor 网络</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>在浏览时保护您的个人数据</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>连通{1}的{0}</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
+    <value>由独立安全专家进行审核</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>利用先进的安全和隐私功能绕过审查</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>{0} 个国家/地区</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
+    <value>开源的 VPN</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>{0} 台安全服务器</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp_Description">
+    <value>成熟、久经考验且安全可靠</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp_Description">
+    <value>成熟、久经考验且安全可靠</value>
+  </data>
+  <data name="VpnProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp_Description">
+    <value>安全性和性能上最先进的协议</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls_Description">
+    <value>通过隐藏您的连接来克服 VPN 的阻挡，使您不受审查员的监视</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp_Description">
+    <value>安全性和性能上最先进的协议</value>
+  </data>
+</root>
