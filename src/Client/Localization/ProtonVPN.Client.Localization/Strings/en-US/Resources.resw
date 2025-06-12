@@ -1375,6 +1375,24 @@
   <data name="Dialogs_WhatsNew_Profiles_Description" xml:space="preserve">
     <value>Add advanced profile settings like NetShield and port forwarding, or set up Connect and Go to launch a website of your choice when you connect.</value>
   </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title" xml:space="preserve">
+    <value>New system tray app</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description" xml:space="preserve">
+    <value>You can now connect, disconnect, and change your default connection from the system tray.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title" xml:space="preserve">
+    <value>LAN connections</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description" xml:space="preserve">
+    <value>You can now connect to printers, speakers, and other devices on your local network (LAN), bypassing the VPN tunnel.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title" xml:space="preserve">
+    <value>Active port number</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description" xml:space="preserve">
+    <value>When port forwarding is enabled, you'll now see your active port number on the home screen.</value>
+  </data>
   <data name="Dialogs_WhatsNew_TakeALook" xml:space="preserve">
     <value>Take a look</value>
   </data>

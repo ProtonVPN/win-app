@@ -698,6 +698,7 @@
         <None Remove="Assets\Icons\Streaming\sling.png" />
         <None Remove="Assets\Icons\Streaming\syfy.png" />
         <None Remove="Assets\Icons\Streaming\tf1.png" />
+        <None Remove="Assets\Illustrations\active-port-number.png" />
         <None Remove="Assets\Illustrations\Dark\free-countries.svg" />
         <None Remove="Assets\Illustrations\Dark\kill-switch-off.png" />
         <None Remove="Assets\Illustrations\Dark\kill-switch-on-advanced.png" />
@@ -727,7 +728,9 @@
         <None Remove="Assets\Illustrations\kill-switch-on-level-1.png" />
         <None Remove="Assets\Illustrations\kill-switch-on-level-2.png" />
         <None Remove="Assets\Illustrations\kill-switch-protected.png" />
+        <None Remove="Assets\Illustrations\lan-connections.png" />
         <None Remove="Assets\Illustrations\latency.png" />
+        <None Remove="Assets\Illustrations\Light\active-port-number.png" />
         <None Remove="Assets\Illustrations\Light\free-countries.svg" />
         <None Remove="Assets\Illustrations\Light\kill-switch-off.png" />
         <None Remove="Assets\Illustrations\Light\kill-switch-on-advanced.png" />
@@ -744,6 +747,7 @@
         <None Remove="Assets\Illustrations\Light\split-tunneling-inverse.png" />
         <None Remove="Assets\Illustrations\Light\split-tunneling-off.png" />
         <None Remove="Assets\Illustrations\Light\split-tunneling-standard.png" />
+        <None Remove="Assets\Illustrations\Light\taskbar-app.png" />
         <None Remove="Assets\Illustrations\Light\vpn-accelerator-off.png" />
         <None Remove="Assets\Illustrations\Light\vpn-accelerator-on.png" />
         <None Remove="Assets\Illustrations\Light\vpn-feature-protocol.png" />
@@ -1959,6 +1963,9 @@
         <Content Update="Assets\Icons\Streaming\tf1.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\Dark\active-port-number.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\certified-no-logs.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1975,6 +1982,9 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\Dark\split-tunneling-standard.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Dark\taskbar-app.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\Dark\vpn-feature-protocol.png">
@@ -2025,6 +2035,12 @@
         <Content Update="Assets\Illustrations\kill-switch-protected.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="Assets\Illustrations\lan-connections.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\active-port-number.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Illustrations\Light\redesign.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -2038,6 +2054,9 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\Light\split-tunneling-standard.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\Light\taskbar-app.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\Light\vpn-feature-protocol.png">

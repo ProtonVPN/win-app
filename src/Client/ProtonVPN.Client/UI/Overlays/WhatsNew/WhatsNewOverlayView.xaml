@@ -57,6 +57,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Spacing" Value="12" />
         </Style>
 
+        <Style x:Key="TextGroupImageStyle" TargetType="Image">
+            <Setter Property="Width" Value="64" />
+            <Setter Property="Stretch" Value="Uniform" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+
+        <Style x:Key="VpnPlusImageStyle" TargetType="Image">
+            <Setter Property="Height" Value="20" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
     </ContentDialog.Resources>
 
     <Grid Margin="0,0,0,48">
@@ -79,6 +91,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </StackPanel>
 
         <ScrollViewer Grid.Row="1"
+                      Padding="0,0,6,0"
                       Margin="110,24,110,0">
             <Grid ColumnSpacing="12"
                   RowSpacing="16">
@@ -90,78 +103,55 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Image Grid.Row="0"
                        Grid.Column="0"
-                       Width="64"
-                       VerticalAlignment="Top"
-                       Source="{ThemeResource EncryptedLockIllustrationSource}"
-                       Stretch="Uniform" />
+                       Source="{ThemeResource TaskbarAppIllustrationSource}"
+                       Style="{StaticResource TextGroupImageStyle}" />
                 <StackPanel Grid.Row="0"
                             Grid.Column="1"
                             Style="{StaticResource TextGroupStackPanelStyle}">
                     <TextBlock Style="{StaticResource LocalTitleTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Dialogs_WhatsNew_NewLook_Title')}" />
+                               Text="{x:Bind ViewModel.Localizer.Get('Dialogs_WhatsNew_TrayApp_Title')}" />
                     <TextBlock Style="{StaticResource LocalDescriptionTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Dialogs_WhatsNew_NewLook_Description')}" />
+                               Text="{x:Bind ViewModel.Localizer.Get('Dialogs_WhatsNew_TrayApp_Description')}" />
                 </StackPanel>
 
                 <Image Grid.Row="1"
                        Grid.Column="0"
-                       Width="64"
-                       VerticalAlignment="Top"
-                       Source="{ThemeResource GatewaysIllustrationSource}"
-                       Visibility="{x:Bind ViewModel.IsGatewaysSectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                       Source="{ThemeResource LanConnectionsIllustrationSource}"
+                       Style="{StaticResource TextGroupImageStyle}" />
                 <StackPanel Grid.Row="1"
                             Grid.Column="1"
-                            Style="{StaticResource TextGroupStackPanelStyle}"
-                            Visibility="{x:Bind ViewModel.IsGatewaysSectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBlock Style="{StaticResource LocalTitleTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Dialogs_WhatsNew_Gateways_Title')}" />
+                            Style="{StaticResource TextGroupStackPanelStyle}">
+                    <StackPanel Style="{StaticResource TitleWithBadgePanelStyle}">
+                        <TextBlock Style="{StaticResource LocalTitleTextBlockStyle}"
+                                   Text="{x:Bind ViewModel.Localizer.Get('Dialogs_WhatsNew_LanConnections_Title')}" />
+                        <Image Source="{ThemeResource VpnPlusIllustrationSource}"
+                               Style="{StaticResource VpnPlusImageStyle}"
+                               Visibility="{x:Bind ViewModel.IsSubscriptionBadgeVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    </StackPanel>
                     <TextBlock Style="{StaticResource LocalDescriptionTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Dialogs_WhatsNew_Gateways_Description')}" />
+                               Text="{x:Bind ViewModel.Localizer.Get('Dialogs_WhatsNew_LanConnections_Description')}" />
                 </StackPanel>
 
                 <Image Grid.Row="2"
                        Grid.Column="0"
-                       Width="64"
-                       VerticalAlignment="Top"
-                       Source="{ThemeResource RecentsIllustrationSource}" />
+                       Source="{ThemeResource ActivePortNumberIllustrationSource}"
+                       Style="{StaticResource TextGroupImageStyle}" />
                 <StackPanel Grid.Row="2"
                             Grid.Column="1"
                             Style="{StaticResource TextGroupStackPanelStyle}">
                     <StackPanel Style="{StaticResource TitleWithBadgePanelStyle}">
                         <TextBlock Style="{StaticResource LocalTitleTextBlockStyle}"
-                                   Text="{x:Bind ViewModel.Localizer.Get('Dialogs_WhatsNew_Recents_Title')}" />
-                        <Image Height="20"
-                               HorizontalAlignment="Right"
-                               Source="{ThemeResource VpnPlusIllustrationSource}"
+                                   Text="{x:Bind ViewModel.Localizer.Get('Dialogs_WhatsNew_PortNumber_Title')}" />
+                        <Image Source="{ThemeResource VpnPlusIllustrationSource}"
+                               Style="{StaticResource VpnPlusImageStyle}"
                                Visibility="{x:Bind ViewModel.IsSubscriptionBadgeVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     </StackPanel>
                     <TextBlock Style="{StaticResource LocalDescriptionTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Dialogs_WhatsNew_Recents_Description')}" />
-                </StackPanel>
-
-                <Image Grid.Row="3"
-                       Grid.Column="0"
-                       Width="64"
-                       VerticalAlignment="Top"
-                       Source="{ThemeResource ProfilesIllustrationSource}" />
-                <StackPanel Grid.Row="3"
-                            Grid.Column="1"
-                            Style="{StaticResource TextGroupStackPanelStyle}">
-                    <StackPanel Style="{StaticResource TitleWithBadgePanelStyle}">
-                        <TextBlock Style="{StaticResource LocalTitleTextBlockStyle}"
-                                   Text="{x:Bind ViewModel.Localizer.Get('Dialogs_WhatsNew_Profiles_Title')}" />
-                        <Image Height="20"
-                               HorizontalAlignment="Right"
-                               Source="{ThemeResource VpnPlusIllustrationSource}"
-                               Visibility="{x:Bind ViewModel.IsSubscriptionBadgeVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    </StackPanel>
-                    <TextBlock Style="{StaticResource LocalDescriptionTextBlockStyle}"
-                               Text="{x:Bind ViewModel.Localizer.Get('Dialogs_WhatsNew_Profiles_Description')}" />
+                               Text="{x:Bind ViewModel.Localizer.Get('Dialogs_WhatsNew_PortNumber_Description')}" />
                 </StackPanel>
             </Grid>
         </ScrollViewer>

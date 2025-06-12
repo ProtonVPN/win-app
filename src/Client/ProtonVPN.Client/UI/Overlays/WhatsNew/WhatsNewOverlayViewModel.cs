@@ -33,7 +33,7 @@ public partial class WhatsNewOverlayViewModel : OverlayViewModelBase<IMainWindow
 
     public bool IsSubscriptionBadgeVisible => !_settings.VpnPlan.IsPaid;
 
-    public bool IsGatewaysSectionVisible => _settings.VpnPlan.IsB2B;
+    public bool IsB2BSectionVisible => _settings.VpnPlan.IsB2B;
 
     public WhatsNewOverlayViewModel(
         ISettings settings,
@@ -49,7 +49,7 @@ public partial class WhatsNewOverlayViewModel : OverlayViewModelBase<IMainWindow
         ExecuteOnUIThread(() =>
         {
             OnPropertyChanged(nameof(IsSubscriptionBadgeVisible));
-            OnPropertyChanged(nameof(IsGatewaysSectionVisible));
+            OnPropertyChanged(nameof(IsB2BSectionVisible));
         });
     }
 }

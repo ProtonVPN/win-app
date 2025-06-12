@@ -39,7 +39,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Thickness x:Key="DefaultTagControlBorderThickness">1</Thickness>
     <Thickness x:Key="DefaultTagControlPadding">4,2</Thickness>
 
-
     <Style TargetType="custom:TagControl" BasedOn="{StaticResource DefaultTagControlStyle}"/>
 
     <Style x:Key="DefaultTagControlStyle" TargetType="custom:TagControl">
