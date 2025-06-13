@@ -32,6 +32,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Login.Bases;
 using ProtonVPN.Client.UI.Login.Enums;
 using ProtonVPN.Client.UI.Login.Overlays;
@@ -48,6 +49,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IApiAvailabilityVerifier _apiAvailabilityVerifier;
     private readonly IGuestHoleManager _guestHoleManager;
+    private readonly ISessionSettings _sessionSettings;
     private readonly SsoLoginOverlayViewModel _ssoLoginOverlayViewModel;
 
     [ObservableProperty]
@@ -114,6 +116,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         IEventMessageSender eventMessageSender,
         IApiAvailabilityVerifier apiAvailabilityVerifier,
         IGuestHoleManager guestHoleManager,
+        ISessionSettings sessionSettings,
         SsoLoginOverlayViewModel ssoLoginOverlayViewModel,
         IViewModelHelper viewModelHelper)
         : base(parentViewNavigator, viewModelHelper)
@@ -123,6 +126,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         _eventMessageSender = eventMessageSender;
         _apiAvailabilityVerifier = apiAvailabilityVerifier;
         _guestHoleManager = guestHoleManager;
+        _sessionSettings = sessionSettings;
         _ssoLoginOverlayViewModel = ssoLoginOverlayViewModel;
     }
 
@@ -185,7 +189,8 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
 
     private bool CanSignIn()
     {
-        return !IsSigningIn;
+        return !IsSigningIn 
+            && _userAuthenticator.AuthenticationStatus == AuthenticationStatus.LoggedOut;
     }
 
     private async Task<AuthResult> HandleSrpLoginAsync()
@@ -284,6 +289,21 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         base.OnActivated();
 
         _userAuthenticator.ClearUnauthSessionDetails();
+
+        if (_userAuthenticator.IsAutoLogin != true && SignInCommand.CanExecute(null))
+        {
+            if (!string.IsNullOrEmpty(_sessionSettings.Username))
+            {
+                Username = _sessionSettings.Username.Trim();
+
+                if (!string.IsNullOrEmpty(_sessionSettings.Password)) 
+                {
+                    Password = _sessionSettings.Password.Trim();
+
+                    SignInCommand.Execute(null);
+                }
+            }
+        }
     }
 
     partial void OnSignInFormTypeChanged(SignInFormType oldValue, SignInFormType newValue)

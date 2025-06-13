@@ -34,6 +34,7 @@ public class SettingsModule : Module
     {
         builder.RegisterType<Settings>().As<ISettings>().SingleInstance();
         builder.RegisterType<GlobalSettings>().As<IGlobalSettings>().SingleInstance();
+        builder.RegisterType<SessionSettings>().As<ISessionSettings>().SingleInstance();
 
         builder.RegisterType<UserSettingsFileReaderWriter>().As<IUserSettingsFileReaderWriter>().SingleInstance();
         builder.RegisterType<GlobalSettingsFileReaderWriter>().As<IGlobalSettingsFileReaderWriter>().SingleInstance();

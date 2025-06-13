@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,7 +19,6 @@
 
 using Microsoft.Windows.AppLifecycle;
 using ProtonVPN.Client.Common.Dispatching;
-using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
@@ -50,6 +49,7 @@ public class Bootstrapper : IBootstrapper
     private readonly IUpdatesManager _updatesManager;
     private readonly IGlobalSettingsMigrator _globalSettingsMigrator;
     private readonly ISettings _settings;
+    private readonly ISessionSettings _sessionSettings;
     private readonly ILogger _logger;
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
@@ -64,6 +64,7 @@ public class Bootstrapper : IBootstrapper
         IUpdatesManager updatesManager,
         IGlobalSettingsMigrator settingsMigrator,
         ISettings settings,
+        ISessionSettings sessionSettings,
         ILogger logger,
         ILocalizationProvider localizer,
         IConnectionManager connectionManager,
@@ -80,6 +81,7 @@ public class Bootstrapper : IBootstrapper
         _updatesManager = updatesManager;
         _globalSettingsMigrator = settingsMigrator;
         _settings = settings;
+        _sessionSettings = sessionSettings;
         _logger = logger;
         _mainWindowActivator = mainWindowActivator;
         _vpnPlanUpdater = vpnPlanUpdater;
@@ -119,6 +121,7 @@ public class Bootstrapper : IBootstrapper
                 case ExtendedActivationKind.Protocol:
                     HandleProtocolActivationArguments(e.Data as ProtocolActivatedEventArgs);
                     break;
+
                 default:
                     _logger.Info<AppLog>($"Handle {e.Kind} activation - Activate window");
                     _mainWindowActivator.Activate();
@@ -174,6 +177,24 @@ public class Bootstrapper : IBootstrapper
                 else
                 {
                     _settings.WireGuardConnectionTimeout = DefaultSettings.WireGuardConnectionTimeout;
+                }
+            }
+            else if (arg.EqualsIgnoringCase("-username") || arg.EqualsIgnoringCase("-u"))
+            {
+                int usernameIndex = i + 1;
+                if (usernameIndex < args.Length)
+                {
+                    _sessionSettings.Username = args[usernameIndex];
+                    i++;
+                }
+            }
+            else if (arg.EqualsIgnoringCase("-password") || arg.EqualsIgnoringCase("-p"))
+            {
+                int passwordIndex = i + 1;
+                if (passwordIndex < args.Length)
+                {
+                    _sessionSettings.Password = args[passwordIndex];
+                    i++;
                 }
             }
         }
