@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,6 +23,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Legacy.Vpn;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
@@ -32,9 +33,11 @@ namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 
 public class GuestHoleConnectionRequestCreator : ConnectionRequestCreatorBase, IGuestHoleConnectionRequestCreator
 {
+    private readonly IConfiguration _config;
     private readonly IConnectionKeyManager _connectionKeyManager;
 
     public GuestHoleConnectionRequestCreator(
+        IConfiguration config,
         ILogger logger,
         ISettings settings,
         IEntityMapper entityMapper,
@@ -42,20 +45,22 @@ public class GuestHoleConnectionRequestCreator : ConnectionRequestCreatorBase, I
         IMainSettingsRequestCreator mainSettingsRequestCreator)
         : base(logger, settings, entityMapper, mainSettingsRequestCreator)
     {
+        _config = config;
         _connectionKeyManager = connectionKeyManager;
     }
 
     public async Task<ConnectionRequestIpcEntity> CreateAsync(IEnumerable<GuestHoleServerContract> servers)
     {
         MainSettingsIpcEntity settings = GetSettings();
-        settings.VpnProtocol = VpnProtocolIpcEntity.WireGuardTls;
+        settings.OpenVpnAdapter = OpenVpnAdapterIpcEntity.Tap;
+        settings.VpnProtocol = VpnProtocolIpcEntity.Smart;
 
         ConnectionRequestIpcEntity request = new()
         {
             RetryId = Guid.NewGuid(),
             Config = GetVpnConfig(settings),
             Credentials = await GetVpnCredentialsAsync(),
-            Protocol = VpnProtocolIpcEntity.WireGuardTls,
+            Protocol = VpnProtocolIpcEntity.Smart,
             Servers = GetVpnServers(servers),
             Settings = settings,
         };
@@ -68,17 +73,31 @@ public class GuestHoleConnectionRequestCreator : ConnectionRequestCreatorBase, I
         return new()
         {
             VpnProtocol = settings.VpnProtocol,
-            PreferredProtocols = [ VpnProtocolIpcEntity.WireGuardTls ],
-            Ports = { { VpnProtocolIpcEntity.WireGuardTls, Settings.WireGuardTlsPorts } },
+            PreferredProtocols = [
+                VpnProtocolIpcEntity.WireGuardTls,
+                VpnProtocolIpcEntity.OpenVpnTcp,
+            ],
+            Ports = {
+                { VpnProtocolIpcEntity.WireGuardTls, Settings.WireGuardTlsPorts },
+                { VpnProtocolIpcEntity.OpenVpnTcp, Settings.OpenVpnTcpPorts },
+            },
         };
     }
 
     protected override Task<VpnCredentialsIpcEntity> GetVpnCredentialsAsync()
     {
         VpnCredentialsIpcEntity credentials = EntityMapper.Map<VpnCredentials, VpnCredentialsIpcEntity>(
-            new VpnCredentials(_connectionKeyManager.GenerateTemporaryKeyPair()));
+            new VpnCredentials(
+                _connectionKeyManager.GenerateTemporaryKeyPair(),
+                AddSuffixToUsername(_config.GuestHoleVpnUsername),
+                _config.GuestHoleVpnPassword));
 
         return Task.FromResult(credentials);
+    }
+
+    private string AddSuffixToUsername(string username)
+    {
+        return username + _config.VpnUsernameSuffix;
     }
 
     private VpnServerIpcEntity[] GetVpnServers(IEnumerable<GuestHoleServerContract> servers)

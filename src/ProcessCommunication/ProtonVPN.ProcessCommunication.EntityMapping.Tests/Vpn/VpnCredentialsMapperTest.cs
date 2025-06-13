@@ -71,7 +71,9 @@ public class VpnCredentialsMapperTest
             DateTime.UtcNow.AddDays(1),
             new AsymmetricKeyPair(
                 new SecretKey("PVPN", KeyAlgorithm.Ed25519),
-                new PublicKey("PVPN", KeyAlgorithm.Ed25519)));
+                new PublicKey("PVPN", KeyAlgorithm.Ed25519)),
+            "username",
+            "password");
 
         VpnCredentialsIpcEntity result = _mapper.Map(entityToTest);
 
@@ -79,6 +81,8 @@ public class VpnCredentialsMapperTest
         Assert.AreEqual(entityToTest.ClientCertPem, result.Certificate.Pem);
         Assert.AreEqual(entityToTest.ClientCertificateExpirationDateUtc, result.Certificate.ExpirationDateUtc);
         Assert.AreEqual(_expectedAsymmetricKeyPairIpcEntity, result.ClientKeyPair);
+        Assert.AreEqual(entityToTest.Username, result.Username);
+        Assert.AreEqual(entityToTest.Password, result.Password);
     }
 
     [TestMethod]
@@ -87,7 +91,9 @@ public class VpnCredentialsMapperTest
         VpnCredentialsIpcEntity entityToTest = new()
         {
             Certificate = CreateCertificate(),
-            ClientKeyPair = new AsymmetricKeyPairIpcEntity()
+            ClientKeyPair = new AsymmetricKeyPairIpcEntity(),
+            Username = "username",
+            Password = "password",
         };
 
         VpnCredentials result = _mapper.Map(entityToTest);
@@ -96,6 +102,8 @@ public class VpnCredentialsMapperTest
         Assert.AreEqual(entityToTest.Certificate.Pem, result.ClientCertPem);
         Assert.AreEqual(entityToTest.Certificate.ExpirationDateUtc, result.ClientCertificateExpirationDateUtc);
         Assert.AreEqual(_expectedAsymmetricKeyPair, result.ClientKeyPair);
+        Assert.AreEqual(entityToTest.Username, result.Username);
+        Assert.AreEqual(entityToTest.Password, result.Password);
     }
 
     private ConnectionCertificateIpcEntity CreateCertificate()

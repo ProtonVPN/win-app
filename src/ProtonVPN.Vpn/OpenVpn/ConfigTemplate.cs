@@ -50,9 +50,17 @@ public class ConfigTemplate
             .AppendLine("key-direction 1")
             .AppendLine("disable-dco")
             .AppendLine(GetTlsAuth())
-            .AppendLine(GetCertificate())
-            .AppendLine("<cert>").AppendLine(vpnCredentials.ClientCertPem.Trim()).AppendLine("</cert>")
-            .AppendLine("<key>").AppendLine(vpnCredentials.ClientKeyPair.SecretKey.Pem).AppendLine("</key>");
+            .AppendLine(GetCertificate());
+
+        if (!string.IsNullOrEmpty(vpnCredentials.Username) && !string.IsNullOrEmpty(vpnCredentials.Password))
+        {
+            sb.AppendLine("auth-user-pass");
+        }
+        else
+        {
+            sb.AppendLine("<cert>").AppendLine(vpnCredentials.ClientCertPem.Trim()).AppendLine("</cert>");
+            sb.AppendLine("<key>").AppendLine(vpnCredentials.ClientKeyPair.SecretKey.Pem).AppendLine("</key>");
+        }
 
         return sb.ToString();
     }

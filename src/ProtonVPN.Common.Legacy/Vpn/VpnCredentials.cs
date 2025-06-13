@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -28,21 +28,31 @@ public readonly struct VpnCredentials
     public VpnCredentials(
         string clientCertPem,
         DateTime? clientCertificateExpirationDateUtc,
-        AsymmetricKeyPair clientKeyPair)
+        AsymmetricKeyPair clientKeyPair,
+        string username,
+        string password)
     {
         Ensure.NotNull(clientKeyPair, nameof(clientKeyPair));
 
         ClientCertPem = clientCertPem;
         ClientCertificateExpirationDateUtc = clientCertificateExpirationDateUtc;
         ClientKeyPair = clientKeyPair;
+        Username = username;
+        Password = password;
     }
 
-    public VpnCredentials(AsymmetricKeyPair clientKeyPair) : this(string.Empty, null, clientKeyPair)
+    public VpnCredentials(AsymmetricKeyPair clientKeyPair) : this(string.Empty, null, clientKeyPair, string.Empty, string.Empty)
     {
     }
 
+    public VpnCredentials(AsymmetricKeyPair clientKeyPair, string username, string password) : this(string.Empty, null, clientKeyPair, username, password)
+    {
+    }
+
+    public string Username { get; }
+    public string Password { get; }
+
     public string ClientCertPem { get; }
     public DateTime? ClientCertificateExpirationDateUtc { get; }
-
     public AsymmetricKeyPair ClientKeyPair { get; }
 }

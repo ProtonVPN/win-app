@@ -30,6 +30,8 @@ public partial class Configuration : StaticConfiguration, IConfiguration
     public string ApiVersion => Get();
     public string ServerValidationPublicKey => Get();
 
+    public string GuestHoleVpnUsername => Get();
+    public string GuestHoleVpnPassword => Get();
     public string VpnUsernameSuffix => Get();
     public string DoHVerifyApiHost => Get();
 

@@ -117,7 +117,9 @@ public class ConnectionRequestMapperTest
             new VpnConfig(new VpnConfigParameters()),
             new VpnCredentials(string.Empty, DateTime.UtcNow.AddDays(1), new AsymmetricKeyPair(
                 new SecretKey("PVPN", KeyAlgorithm.Unknown),
-                new PublicKey("PVPN", KeyAlgorithm.Unknown))));
+                new PublicKey("PVPN", KeyAlgorithm.Unknown)),
+                "username",
+                "password"));
 
 
         ConnectionRequestIpcEntity result = _mapper.Map(entityToTest);

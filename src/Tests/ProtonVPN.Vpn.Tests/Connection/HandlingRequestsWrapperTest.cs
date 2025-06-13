@@ -58,7 +58,9 @@ public class HandlingRequestsWrapperTest
             DateTime.UtcNow.AddDays(1),
             new AsymmetricKeyPair(
                 new SecretKey("U2VjcmV0S2V5", KeyAlgorithm.Unknown),
-                new PublicKey("UHVibGljS2V5", KeyAlgorithm.Unknown)));
+                new PublicKey("UHVibGljS2V5", KeyAlgorithm.Unknown)),
+            "username",
+            "password");
         _config = new VpnConfig(new VpnConfigParameters());
     }
 

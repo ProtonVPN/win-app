@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -43,7 +43,9 @@ public class VpnCredentialsMapper : IMapper<VpnCredentials, VpnCredentialsIpcEnt
                 Pem = leftEntity.ClientCertPem ?? string.Empty,
                 ExpirationDateUtc = leftEntity.ClientCertificateExpirationDateUtc ?? DateTime.MinValue,
             },
-            ClientKeyPair = _entityMapper.Map<AsymmetricKeyPair, AsymmetricKeyPairIpcEntity>(leftEntity.ClientKeyPair)
+            ClientKeyPair = _entityMapper.Map<AsymmetricKeyPair, AsymmetricKeyPairIpcEntity>(leftEntity.ClientKeyPair),
+            Username = leftEntity.Username,
+            Password = leftEntity.Password,
         };
     }
 
@@ -51,6 +53,8 @@ public class VpnCredentialsMapper : IMapper<VpnCredentials, VpnCredentialsIpcEnt
     {
         return new(rightEntity.Certificate.Pem,
             rightEntity.Certificate.ExpirationDateUtc,
-            _entityMapper.Map<AsymmetricKeyPairIpcEntity, AsymmetricKeyPair>(rightEntity.ClientKeyPair));
+            _entityMapper.Map<AsymmetricKeyPairIpcEntity, AsymmetricKeyPair>(rightEntity.ClientKeyPair),
+            rightEntity.Username,
+            rightEntity.Password);
     }
 }
