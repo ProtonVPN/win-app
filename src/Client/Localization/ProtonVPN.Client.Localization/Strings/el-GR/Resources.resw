@@ -294,8 +294,13 @@
   <data name="Common_States_Updating">
     <value>Ενημέρωση...</value>
   </data>
+  <data name="Common_Tags_Beta">
+    <value>BETA</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
   <data name="Common_Tags_New">
     <value>ΝΕΟ</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
     <value>Αξιοποιήστε στο έπακρο το VPN σας κάνοντας ενημέρωση στην πιο πρόσφατη έκδοση της εφαρμογής.</value>
@@ -1773,6 +1778,39 @@
   <data name="Dialogs_Latency_Title">
     <value>Τι είναι ο χρόνος αδράνειας;</value>
   </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>Παρακαλούμε αιτιολογήστε τη βαθμολογία σας.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>Αδυναμία αποστολής των σχολίων σας. Παρακαλούμε ελέγξτε τη σύνδεσή σας και προσπαθήστε ξανά.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>Κάτι πήγε στραβά</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>10 είναι το πιθανότερο</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>0 είναι το πλέον απίθανο</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>Προαιρετικό</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>Μοιραστείτε ανώνυμα</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>Τα σχόλιά σας μας βοηθούν να βελτιώσουμε το Proton VPN.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>Ευχαριστούμε για τα σχόλιά σας</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>Πόσο πιθανό είναι να προτείνετε το Proton VPN σε έναν φίλο;</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>Προσπαθήστε ξανά</value>
+  </data>
   <data name="Dialogs_P2PDetection_Description">
     <value>Η σύνδεση σας έχει απενεργοποιηθεί επειδή χρησιμοποιείτε διακομιστές που δεν υποστηρίζουν κίνηση από χρήστες P2P. Το P2P δεν υποστηρίζεται σε δωρεάν διακομιστές. Παρακαλώ δοκιμάστε διαφορετικό server για P2P.</value>
   </data>
@@ -2039,11 +2077,23 @@
   <data name="Dialogs_WhatsNew_Gateways_Title">
     <value>Οι πύλες έχουν μετακινηθεί</value>
   </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>Μπορείτε πλέον να συνδεθείτε σε εκτυπωτές, ηχεία και άλλες συσκευές στο τοπικό σας δίκτυο (LAN), παρακάμπτοντας τη σήραγγα VPN.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>Τοπικές συνδέσεις (LAN)</value>
+  </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
     <value>Ανανεώσαμε τη σχεδίασή μας και μετακινήσαμε ορισμένα πράγματα για να κάνουμε την εφαρμογή πιο εύχρηστη.</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
     <value>Νέα εμφάνιση, ίδια προστασία</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>Όταν η προώθηση θυρών είναι ενεργοποιημένη, θα βλέπετε τώρα τον αριθμό της ενεργής θύρας σας στην αρχική οθόνη.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>Ενεργός αριθμός θύρας</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
     <value>Προσθέστε προηγμένες ρυθμίσεις προφίλ όπως NetShield και port forwarding, ή προσαρμόστε το Σύνδεση και Μετάβαση ώστε να ανοίγει ο ιστότοπος της επιλογής σας κατά τη σύνδεσή σας.</value>
@@ -2062,6 +2112,12 @@
   </data>
   <data name="Dialogs_WhatsNew_Title">
     <value>Τι νέο υπάρχει</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>Μπορείτε τώρα να συνδεθείτε, να αποσυνδεθείτε και να αλλάξετε την προεπιλεγμένη σύνδεσή σας από το εικονίδιο της περιοχής ειδοποιήσεων.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>New system tray app</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Έξοδος απο το Proton VPN?</value>
@@ -2134,6 +2190,9 @@
   </data>
   <data name="Flyouts_KillSwitch_Info">
     <value>Η διεύθυνση IP σας θα μπορεί να εκτεθεί εάν διακοπεί η VPN σύνδεσή σας</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>Προηγμένο kill switch απενεργοποιεί το διαδίκτυο σας για να προστατεύσει τη διεύθυνση IP σας όταν δεν είστε συνδεδεμένοι στο Proton VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>Αν διακοπεί η VPN σύνδεσή σας, θα αποσυνδεθείτε από το διαδίκτυο μέχρι να αποκατασταθεί το VPN</value>
@@ -2217,20 +2276,20 @@
     <value>Ενισχύεται από το VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description1">
-    <value>Αυτό δείχνει πόσα δεδομένα μεταδίδονται μέσω του Proton VPN κάθε δευτερόλεπτο.</value>
+    <value>Δείχνει πόσα δεδομένα περνούν μέσα από τη σήραγγα VPN σε πραγματικό χρόνο.</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>Η ταχύτητα βασίζεται στην τρέχουσα δραστηριότητα της συσκευής σας — δεν αντιπροσωπεύει τη μέγιστη ταχύτητα του VPN.</value>
+    <value>Αυτό βασίζεται στην τρέχουσα δραστηριότητα της συσκευής σας. Στις περισσότερες περιπτώσεις, δεν αντιπροσωπεύει τη μέγιστη ταχύτητα του VPN.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Λήψη</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>Κατανόηση και αύξηση των ταχυτήτων σύνδεσης VPN</value>
+    <value>Επεξήγηση ταχύτητας και κίνησης VPN</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>Ταχύτητα</value>
+    <value>Τρέχουσα κίνηση</value>
   </data>
   <data name="Flyouts_Speed_Upload">
     <value>Ανέβασμα</value>
@@ -2276,14 +2335,14 @@
     <value>Αξιοποιήστε στο έπακρο και τους δύο κόσμους</value>
   </data>
   <data name="Flyouts_Volume_Description">
-    <value>Αυτό δείχνει πόση κίνηση έχει δρομολογηθεί μέσω του VPN σας.</value>
+    <value>Εμφανίζει το συνολικό ποσό δεδομένων που έχουν περάσει μέσω της σήραγγας VPN από τότε που συνδεθήκατε.</value>
   </data>
   <data name="Flyouts_Volume_Download">
     <value>Λήψη</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>Τόμος</value>
+    <value>Συνολική κίνηση</value>
   </data>
   <data name="Flyouts_Volume_Upload">
     <value>Ανέβασμα</value>
@@ -2322,7 +2381,7 @@
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Ταχύτητα ({0})</value>
+    <value>Τρέχουσα κίνηση ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2377,6 +2436,12 @@
     <value>hh\:mm\:ss</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
+  <data name="Format_Time_Hours_Ago_One">
+    <value>{0} ώρα πριν</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>{0} ώρες πριν</value>
+  </data>
   <data name="Format_Time_Minutes">
     <value>{0} λεπ</value>
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
@@ -2389,9 +2454,21 @@
     <value>mm\:ss</value>
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
+  <data name="Format_Time_Minutes_Ago_One">
+    <value>{0} λεπτό πριν</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>{0} λεπτά πριν</value>
+  </data>
   <data name="Format_Time_Seconds">
     <value>{0} δλ</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_One">
+    <value>{0} δευτερόλεπτο πριν</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>{0} δευτερόλεπτα πριν</value>
   </data>
   <data name="FreeConnections_P2PUpsell">
     <value>Λήψη αρχείων μέσω BitTorrent και άλλων πρωτοκόλλων κοινής χρήσης αρχείων</value>
@@ -2458,8 +2535,14 @@
     <value>Κάρτα σύνδεσης</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>Ενεργοποιήθηκε η προηγμένη λειτουργία kill switch</value>
+  </data>
   <data name="Home_ConnectionDetails_City">
     <value>Πόλη</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>Συνδεθείτε στο VPN για να αποκαταστήσετε την σύνδεσή σας στο διαδίκτυο.</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
     <value>Συνδεδεμένο για</value>
@@ -2532,7 +2615,7 @@
     <value>Κρυπτογραφήστε τη δραστηριότητά σας στο διαδίκτυο συνδέοντας το VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
-    <value>Τόμος</value>
+    <value>Συνολική κίνηση</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>Λήψη όγκου</value>
@@ -2743,6 +2826,10 @@
   </data>
   <data name="Notifications_UnsecureWifi_Title">
     <value>Εντοπίστηκε μην ασφαλής σύνδεση WiFi</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Proton VPN - Έρευνα</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Ενημέρωση Τώρα</value>
@@ -3096,10 +3183,10 @@
     <value>Αποτρέπει τις διαρροές IPv6 αποκλείοντας συνδέσεις σε διευθύνσεις IPv6.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
-    <value>Τοπικές συνδέσεις (LAN)</value>
+    <value>Επιτρέψτε τις συνδέσεις LAN</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Σας επιτρέπει να συνδέεστε σε εκτυπωτές, ηχεία και άλλες συσκευές στο τοπικό δίκτυο της συσκευής σας.</value>
+    <value>Επιτρέπει συνδέσεις σε εκτυπωτές, ηχεία και άλλες συσκευές στο τοπικό σας δίκτυο.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>Τύπος NAT</value>
@@ -3236,6 +3323,10 @@
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Για να χρησιμοποιήσετε την προώθηση θυρών, συνδεθείτε σε έναν διακομιστή που υποστηρίζει P2P.</value>
   </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>Τελευταία αλλαγή: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
   <data name="Settings_Connection_PortForwarding_Loading">
     <value>Φόρτωση...</value>
   </data>
@@ -3288,10 +3379,14 @@
     <value>Προσαρμόστε τη σύνδεσή σας αποφασίζοντας ποιες εφαρμογές και διευθύνσεις IP προστατεύονται από VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Αντίστροφο</value>
+    <value>Λειτουργία συμπερίληψης</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>Μόνο επιλεγμένες εφαρμογές και διευθύνσεις IP συνδέονται μέσω VPN, όλη η άλλη κίνηση δεν προστατεύεται</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>Συμπερίληψη</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
     <value>Προσθήκη IP</value>
@@ -3307,10 +3402,14 @@
     <value>Προσθήκη διεύθυνσης IPv4</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Τυπικό</value>
+    <value>Λειτουργία εξαίρεσης</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>Επιλεγμένες εφαρμογές και διευθύνσεις IP εξαιρούνται από τη σύνδεση VPN</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>Εξαίρεση</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -3640,6 +3739,9 @@
     <value>Άνοιγμα {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>Άνοιγμα εφαρμογής για είσοδο</value>
+  </data>
   <data name="Unit_BytesPerSecond">
     <value>B/δλ</value>
     <comment>Unit for Bytes per second</comment>
@@ -3769,13 +3871,16 @@
     <value>Περιηγηθείτε μέσω υπέρ ασφαλών διακομιστών στην Ελβετία, τη Σουηδία και την Ισλανδία</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Περιηγηθείτε με ακόμα υψηλότερες ταχύτητες (έως 10 Gbps)</value>
+    <value>Περιηγηθείτε σε ακόμα υψηλότερες ταχύτητες</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Αυξήστε τις ταχύτητες σύνδεσης σας έως και 400% με το VPN Accelerator</value>
+    <value>Περιηγηθείτε έως και 400% πιο γρήγορα με το VPN Accelerator</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>Αποκτήστε πρόσβαση σε ταχύτερους και λιγότερο πολυσύχναστους διακομιστές</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>Αποκτήστε ταχύτητες σύνδεσης έως και 10 Gbps</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
     <value>Αξιοποιήστε στο έπακρο και τους δύο κόσμους</value>
@@ -3832,11 +3937,8 @@
     <value>Έχετε πρόσβαση σε πάνω από {0} σε {1}</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Ελεγμένο από ανεξάρτητους ειδικούς διασφάλισης</value>
-  </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>Παράκαμψη της λογοκρισίας στο διαδίκτυο με προηγμένες λειτουργίες ασφάλειας και απορρήτου</value>
+    <value>Παράκαμψη της λογοκρισίας με προηγμένες λειτουργίες ασφάλειας</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
     <value>{0} χώρα</value>
@@ -3844,8 +3946,11 @@
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
     <value>{0} χώρες</value>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
-    <value>VPN ανοιχτού κώδικα</value>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>Ασφαλής ροή, χρήση torrents, και πολλά άλλα</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>Επιλέξτε οποιαδήποτε χώρα από το παγκόσμιο δίκτυο μας</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
     <value>{0} διασφαλισμένος διακομιστής</value>

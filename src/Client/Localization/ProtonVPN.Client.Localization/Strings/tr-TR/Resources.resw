@@ -294,8 +294,13 @@
   <data name="Common_States_Updating">
     <value>Güncelleniyor...</value>
   </data>
+  <data name="Common_Tags_Beta">
+    <value>Beta</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
   <data name="Common_Tags_New">
     <value>YENİ</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
     <value>Uygulamayı son sürüme güncelleyerek VPN hizmetinizden en iyi şekilde yararlanın.</value>
@@ -1773,6 +1778,39 @@ Yüksek gecikme değeri bağlantınızı yavaşlatabilir.</value>
   <data name="Dialogs_Latency_Title">
     <value>Gecikme nedir?</value>
   </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>Lütfen neden bu puanı verdiğinizi bize anlatın</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>Geri bildiriminiz gönderilemedi. Lütfen bağlantınızı denetleyip yeniden deneyin.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>Bir sorun çıktı</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>10 çok öneririm</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>0 hiç önermem</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>İsteğe bağlı</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>Anonim olarak paylaş</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>Geri bildiriminiz Proton VPN uygulamasını geliştirmemize yardımcı olur.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>Geri bildiriminiz için teşekkürler</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>Proton VPN hizmetini bir arkadaşınıza önerme olasılığınız nedir?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>Yeniden dene</value>
+  </data>
   <data name="Dialogs_P2PDetection_Description">
     <value>Eşler arası (P2P) trafiği desteklemeyen bir sunucu kullandığınız için bağlantınız kapatıldı. P2P, ücretsiz sunucularda desteklenmez. Lütfen P2P için başka bir sunucu kullanın.</value>
   </data>
@@ -2034,16 +2072,28 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Proton VPN hizmetine hoş geldiniz</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>Artık kuruluşunuzun özel sunucularına ana kenar çubuğundan erişebilirsiniz.</value>
+    <value>Artık kuruluşunuz için size ayrılmış sunuculara ana kenar çubuğundan erişebilirsiniz.</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
     <value>Ağ geçitleri taşındı</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>Artık VPN tünelini atlayarak yazıcılarla, hoparlörlerle ve yerel ağınızdaki (LAN) diğer aygıtlarla bağlantı kurabilirsiniz.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>Yerel ağ bağlantıları</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
     <value>Tasarımlarımızı yeniledik ve uygulamanın kullanımını kolaylaştırmak için bazı şeylerin yerini değiştirdik.</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
     <value>Yeni görünüm, aynı koruma</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>Bağlantı noktası yönlendirmeyi kullandığınızda, etkin bağlantı noktası numaranızı ana ekranda görebilirsiniz.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>Etkin bağlantı noktası</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
     <value>NetShield ve bağlantı noktası yönlendirme gibi gelişmiş profil ayarları ekleyin. Bağlandığınızda istediğiniz bir sitenin açılması için Bağlan ve git seçeneğini ayarlayın.</value>
@@ -2062,6 +2112,12 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   </data>
   <data name="Dialogs_WhatsNew_Title">
     <value>Yenilikler</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>Artık sistem tepsisinden bağlantı kurabilir, bağlantıyı kesebilir ve varsayılan bağlantınızı değiştirebilirsiniz.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>Yeni sistem tepsisi uygulaması</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Proton VPN uygulamasından çıkılsın mı?</value>
@@ -2134,6 +2190,9 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   </data>
   <data name="Flyouts_KillSwitch_Info">
     <value>VPN bağlantınız kesilirse IP adresiniz açığa çıkabilir</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>Gelişmiş bağlantı kesici, Proton VPN bağlantısı olmadığında IP adresinizi korumak için internetinizi kapatır.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>VPN bağlantınız kesilirse, VPN bağlantısı yeniden kurulana kadar internet bağlantınız kesilir</value>
@@ -2217,20 +2276,20 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>VPN Accelerator ile güçlendirilmiş</value>
   </data>
   <data name="Flyouts_Speed_Description1">
-    <value>Burada Proton VPN üzerinden her saniye ne kadar veri iletildiği görüntülenir.</value>
+    <value>Gerçek zamanlı olarak VPN tünelinden ne kadar veri geçtiğini görüntüler.</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>Hız, aygıtınızın o anda yaptığı işlemlerle ilgilidir. En yüksek VPN hızını göstermez.</value>
+    <value>Bu değer, aygıtınızın o anki etkinliğine bağlıdır. Çoğu durumda, en yüksek VPN hızını göstermez.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>İndirme</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>VPN bağlantı hızlarını anlamak ve artırmak</value>
+    <value>VPN hızı ve trafiği açıklaması</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>Hız</value>
+    <value>Güncel trafik</value>
   </data>
   <data name="Flyouts_Speed_Upload">
     <value>Yükleme</value>
@@ -2276,14 +2335,14 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Her iki dünyanın da en iyisini elde edin</value>
   </data>
   <data name="Flyouts_Volume_Description">
-    <value>Bu, VPN bağlantınız üzerinden ne kadar trafik geçtiğini gösterir.</value>
+    <value>Bağlantı kurduğunuzdan beri VPN tüneli üzerinden geçen toplam veri miktarını gösterir.</value>
   </data>
   <data name="Flyouts_Volume_Download">
     <value>İndirme</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>Veri miktarı</value>
+    <value>Toplam trafik</value>
   </data>
   <data name="Flyouts_Volume_Upload">
     <value>Yükleme</value>
@@ -2322,7 +2381,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Hız ({0})</value>
+    <value>Güncel trafik ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2377,6 +2436,12 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>hh\:mm\:ss</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
+  <data name="Format_Time_Hours_Ago_One">
+    <value>{0} saat önce</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>{0} saat önce</value>
+  </data>
   <data name="Format_Time_Minutes">
     <value>{0} dk</value>
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
@@ -2389,9 +2454,21 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>mm\:ss</value>
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
+  <data name="Format_Time_Minutes_Ago_One">
+    <value>{0} dakika önce</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>{0} dakika önce</value>
+  </data>
   <data name="Format_Time_Seconds">
     <value>{0} sn</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_One">
+    <value>{0} saniye önce</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>{0} saniye önce</value>
   </data>
   <data name="FreeConnections_P2PUpsell">
     <value>Dosyaları BitTorrent ve diğer dosya paylaşım iletişim kuralları üzerinden indirin</value>
@@ -2458,8 +2535,14 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Bağlantı kartı</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>Gelişmiş bağlantı kesici açıldı</value>
+  </data>
   <data name="Home_ConnectionDetails_City">
     <value>İl</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>İnternet bağlantınızı yeniden açmak için VPN bağlantısı kurun.</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
     <value>Bağlantı süresi</value>
@@ -2532,7 +2615,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>VPN bağlantısı ile çevrim içi etkinliğinizi şifreleyin.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
-    <value>Veri miktarı</value>
+    <value>Toplam trafik</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>İndirilen veri</value>
@@ -2743,6 +2826,10 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   </data>
   <data name="Notifications_UnsecureWifi_Title">
     <value>Güvenli olmayan Wi-Fi bağlantısı algılandı</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Proton VPN - Anket</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Güncelle</value>
@@ -3096,10 +3183,10 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>IPv6 adreslerine gelen bağlantıları engelleyerek IPv6 adresinin öğrenilmesini önler.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
-    <value>Yerel ağ bağlantıları</value>
+    <value>Yerel ağ bağlantılarına izin verilsin</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Aygıtınızın aynı yerel ağda bulunan yazıcı, hoparlörler gibi diğer aygıtlara bağlanmasını sağlar.</value>
+    <value>Yerel ağınızdaki yazıcılarla, hoparlörlerle ve diğer aygıtlarla bağlantı kurulmasını sağlar.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>NAT Type</value>
@@ -3236,6 +3323,10 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Bağlantı noktası yönlendirmeyi kullanmak için lütfen P2P destekleyen bir sunucuya bağlanın.</value>
   </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>Son değiştirilme: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
   <data name="Settings_Connection_PortForwarding_Loading">
     <value>Yükleniyor...</value>
   </data>
@@ -3288,10 +3379,14 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Hangi uygulamaların ve IP adreslerinin VPN tarafından korunacağını seçerek bağlantınızı özelleştirin.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Tersine çevir</value>
+    <value>Katma kipi</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>Yalnızca seçilmiş uygulamalar ve IP adresleri VPN üzerinden bağlanır, diğer tüm trafik korumasızdır</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>Kat</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
     <value>IP adresi ekle</value>
@@ -3307,10 +3402,14 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>IPv4 adresi ekle</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Standart</value>
+    <value>Katmama kipi</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>Seçilmiş uygulamalar ve IP adresleri VPN bağlantısının dışında bırakılır</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>Katma</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -3640,6 +3739,9 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>{0} aç</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>Oturum açmak için uygulamayı açın</value>
+  </data>
   <data name="Unit_BytesPerSecond">
     <value>B/s</value>
     <comment>Unit for Bytes per second</comment>
@@ -3769,13 +3871,16 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>İsviçre, İsveç ve İzlanda'daki çok yüksek güvenlikli sunucuları kullanın</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Daha da yüksek hızlarda gezinin (10 Gb/sn değerine varan)</value>
+    <value>Daha yüksek hızlarla gezinin</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>VPN Accelerator ile bağlantı hızınızı %400 oranında artırın</value>
+    <value>VPN Accelerator ile %400 oranına kadar daha hızlı gezinin</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>Daha hızlı ve daha az kalabalık sunuculara erişin</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>10 Gb/sn değerine varan bağlantı hızları elde edin</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
     <value>İki dünyanın da en iyisini edinin</value>
@@ -3832,11 +3937,8 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>{0} ile {1} erişim</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Bağımsız güvenlik uzmanları tarafından denetlenmiştir</value>
-  </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>Gelişmiş güvenlik ve gizlilik özellikleriyle engelleri aşın</value>
+    <value>Gelişmiş güvenlik özellikleriyle sansürü aşın</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
     <value>{0} ülke</value>
@@ -3844,8 +3946,11 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
     <value>{0} ülke</value>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
-    <value>Açık kaynak kodlu VPN</value>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>Güvenli yayın akışı izleme, torrent indirme ve daha fazlası</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>Dünya çapındaki ağımızdan herhangi bir ülke seçin</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
     <value>{0} güvenli sunucu</value>

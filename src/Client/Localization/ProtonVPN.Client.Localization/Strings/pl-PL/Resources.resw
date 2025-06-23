@@ -294,8 +294,13 @@
   <data name="Common_States_Updating">
     <value>Aktualizowanie…</value>
   </data>
+  <data name="Common_Tags_Beta">
+    <value>BETA</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
   <data name="Common_Tags_New">
     <value>NOWOŚĆ</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
     <value>Wykorzystaj w pełni możliwości VPN, aktualizując aplikację do najnowszej wersji.</value>
@@ -1917,6 +1922,39 @@ Wysokie opóźnienie może spowolnić połączenie.</value>
   <data name="Dialogs_Latency_Title">
     <value>Co to jest opóźnienie?</value>
   </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>Please let us know why you gave that rating</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>We couldn't send your feedback. Please check your connection and try again.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>Something went wrong</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>10 is very likely</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>0 is very unlikely</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>Optional</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>Share anonymously</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>Your feedback helps us improve Proton VPN.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>Thanks for your feedback</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>How likely are you to recommend Proton VPN to a friend?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>Try again</value>
+  </data>
   <data name="Dialogs_P2PDetection_Description">
     <value>Twoje połączenie zostało wyłączone, ponieważ serwer, którego używasz, nie wspiera ruchu peer-to-peer (P2P). Ruch P2P nie jest wspierany na darmowych serwerach. Użyj innego serwera dla ruchu P2P.</value>
   </data>
@@ -2184,16 +2222,28 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Witaj w Proton VPN</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>Masz teraz dostęp do dedykowanych serwerów organizacji z poziomu głównego panelu bocznego.</value>
+    <value>You can now access your organization's dedicated servers from the main sidebar.</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
     <value>Bramy zostały przeniesione</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>You can now connect to printers, speakers, and other devices on your local network (LAN), bypassing the VPN tunnel.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>LAN connections</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
     <value>Odświeżyliśmy interfejs i przenieśliśmy kilka rzeczy, aby ułatwić korzystanie z aplikacji.</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
     <value>Nowy wygląd, ta sama ochrona</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>When port forwarding is enabled, you'll now see your active port number on the home screen.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>Active port number</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
     <value>Dodawaj zaawansowane ustawienia profilu, jak funkcja NetShield czy przekierowanie portów, lub skonfiguruj praktyczną funkcję uruchamiania wybranej strony internetowej po połączeniu.</value>
@@ -2212,6 +2262,12 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
   </data>
   <data name="Dialogs_WhatsNew_Title">
     <value>Co nowego</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>You can now connect, disconnect, and change your default connection from the system tray.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>New system tray app</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Wyjść z Proton VPN?</value>
@@ -2284,6 +2340,9 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
   </data>
   <data name="Flyouts_KillSwitch_Info">
     <value>Adres IP użytkownika może zostać ujawniony, jeśli połączenie VPN zostanie przerwane.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>Advanced kill switch disables your internet to protect your IP address while you're not connected to Proton VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>Jeśli połączenie VPN zostanie przerwane, użytkownik zostanie odłączony od Internetu do momentu przywrócenia połączenia VPN.</value>
@@ -2367,20 +2426,20 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Przyśpieszono przez VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description1">
-    <value>Pokazuje, jaka ilość danych jest przesyłana przez Proton VPN w ciągu sekundy.</value>
+    <value>Shows how much data goes through the VPN tunnel in real time.</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>Prędkość bazuje na bieżącej aktywności Twojego urządzenia – nie przedstawia maksymalnej prędkości połączenia VPN.</value>
+    <value>This is based on your device's current activity. In most cases, it doesn't represent the VPN's maximum speed.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Pobieranie</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>Zrozumienie i zwiększanie prędkości połączeń VPN</value>
+    <value>VPN speed and traffic explained</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>Prędkość</value>
+    <value>Current traffic</value>
   </data>
   <data name="Flyouts_Speed_Upload">
     <value>Wysyłanie</value>
@@ -2450,14 +2509,14 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Uzyskaj to, co najlepsze z obu światów</value>
   </data>
   <data name="Flyouts_Volume_Description">
-    <value>Pokazuje, ile danych przesłano przez sieć VPN.</value>
+    <value>Shows the total amount of data passed through the VPN tunnel since you connected.</value>
   </data>
   <data name="Flyouts_Volume_Download">
     <value>Pobrano</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>Dane</value>
+    <value>Total traffic</value>
   </data>
   <data name="Flyouts_Volume_Upload">
     <value>Wysłano</value>
@@ -2496,7 +2555,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Prędkość ({0})</value>
+    <value>Current traffic ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2563,6 +2622,18 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>gg\:mm\:ss</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
+  <data name="Format_Time_Hours_Ago_One">
+    <value>{0} hour ago</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Few">
+    <value>{0} hours ago</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Many">
+    <value>{0} hours ago</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>{0} hours ago</value>
+  </data>
   <data name="Format_Time_Minutes">
     <value>{0} min</value>
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
@@ -2575,9 +2646,33 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>mm\:ss</value>
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
+  <data name="Format_Time_Minutes_Ago_One">
+    <value>{0} minute ago</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Few">
+    <value>{0} minutes ago</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Many">
+    <value>{0} minutes ago</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>{0} minutes ago</value>
+  </data>
   <data name="Format_Time_Seconds">
     <value>{0} s</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_One">
+    <value>{0} second ago</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Few">
+    <value>{0} seconds ago</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Many">
+    <value>{0} seconds ago</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>{0} seconds ago</value>
   </data>
   <data name="FreeConnections_P2PUpsell">
     <value>Pobieraj pliki za pośrednictwem protokołów udostępniania plików, takich jak BitTorrent</value>
@@ -2644,8 +2739,14 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Karta połączenia</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>Advanced kill switch activated</value>
+  </data>
   <data name="Home_ConnectionDetails_City">
     <value>Miasto</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>Connect to VPN to restore your internet connection.</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
     <value>Połączono</value>
@@ -2718,7 +2819,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Zaszyfruj aktywność online, łącząc się z siecią VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
-    <value>Dane</value>
+    <value>Total traffic</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>Pobrano</value>
@@ -2931,7 +3032,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Ustaw ten numer portu w aplikacji BitTorrent dla lepszej prędkości.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
-    <value>Osiągnięto maksymalny limit urządzeń. Aby połączyć się z siecią VPN, odłącz inne urządzenie.</value>
+    <value>You've reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Twój plan został obniżony do planu Proton Free. Nastąpi ponowne połączenie z najszybszym darmowym serwerem.</value>
@@ -2941,6 +3042,10 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
   </data>
   <data name="Notifications_UnsecureWifi_Title">
     <value>Wykryto niezabezpieczone połączenie Wi-Fi</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Proton VPN - Survey</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Zaktualizuj teraz</value>
@@ -3294,10 +3399,10 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Zapobiega wyciekom IPv6, blokując połączenia z adresami IPv6.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
-    <value>Połączenia LAN</value>
+    <value>Allow LAN connections</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Umożliwia połączenie z drukarkami, głośnikami i innymi urządzeniami w sieci lokalnej urządzenia.</value>
+    <value>Allows connections to printers, speakers, and other devices in your local network.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>Typ NAT</value>
@@ -3434,6 +3539,10 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Aby użyć przekierowania portów, połącz się z serwerem, który wspiera ruch P2P.</value>
   </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>Last changed: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
   <data name="Settings_Connection_PortForwarding_Loading">
     <value>Ładowanie…</value>
   </data>
@@ -3486,10 +3595,14 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Dostosuj połączenie, decydując, które aplikacje i adresy IP będą chronione przez VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Odwrócony</value>
+    <value>Include mode</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>Tylko wybrane aplikacje i adresy IP zostaną uwzględnione w połączeniu VPN. Pozostały ruch sieciowy nie będzie chroniony</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>Include</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
     <value>Dodaj adres IP</value>
@@ -3505,10 +3618,14 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Dodaj adres IPv4</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Standardowy</value>
+    <value>Exclude mode</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>Wybrane aplikacje i adresy IP zostaną wykluczone z połączenia VPN</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>Exclude</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -3838,6 +3955,9 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Otwórz {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>Open app to sign in</value>
+  </data>
   <data name="Unit_BytesPerSecond">
     <value>B/s</value>
     <comment>Unit for Bytes per second</comment>
@@ -3967,13 +4087,16 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Przekieruj ruch przez ultrabezpieczne serwery w Szwajcarii, Szwecji i Islandii</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Przeglądaj Internet z jeszcze większą prędkością (do 10 Gb/s)</value>
+    <value>Browse at even higher speeds</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Zwiększ prędkość połączenia nawet o 400% dzięki funkcji VPN Accelerator</value>
+    <value>Browse up to 400% faster with VPN Accelerator</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>Szybszy dostęp do mniej obciążonych serwerów</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>Get connection speeds of up to 10 Gbps</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
     <value>Uzyskaj to, co najlepsze z obu światów</value>
@@ -4030,11 +4153,8 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Dostęp do ponad {0} w {1}</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Zweryfikowane przez niezależnych ekspertów ds. bezpieczeństwa</value>
-  </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>Omiń cenzurę za pomocą zaawansowanych funkcji bezpieczeństwa i prywatności</value>
+    <value>Bypass censorship with advanced security features</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
     <value>{0} kraju</value>
@@ -4048,8 +4168,11 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
     <value>{0} kraju</value>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
-    <value>Otwarty kod źródłowy aplikacji VPN</value>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>Secure streaming, torrenting, and more</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>Select any country from our worldwide network</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
     <value>{0} bezpiecznego serwera</value>

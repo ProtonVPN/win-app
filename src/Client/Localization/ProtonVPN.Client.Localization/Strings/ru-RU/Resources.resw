@@ -294,8 +294,13 @@
   <data name="Common_States_Updating">
     <value>Обновляется…...</value>
   </data>
+  <data name="Common_Tags_Beta">
+    <value>BETA</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
   <data name="Common_Tags_New">
     <value>НОВОЕ</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
     <value>Получите максимум от VPN, обновив приложение до последней версии.</value>
@@ -1917,6 +1922,39 @@
   <data name="Dialogs_Latency_Title">
     <value>Что такое задержка?</value>
   </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>Please let us know why you gave that rating</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>We couldn't send your feedback. Please check your connection and try again.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>Something went wrong</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>10 is very likely</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>0 is very unlikely</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>Optional</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>Share anonymously</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>Your feedback helps us improve Proton VPN.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>Thanks for your feedback</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>How likely are you to recommend Proton VPN to a friend?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>Try again</value>
+  </data>
   <data name="Dialogs_P2PDetection_Description">
     <value>Ваше соединение было отключено, потому что вы используете сервер, не поддерживающий трафик peer-to-peer (P2P). P2P не поддерживается на бесплатных серверах. Пожалуйста, используйте другой сервер для P2P.</value>
   </data>
@@ -2184,16 +2222,28 @@
     <value>Добро пожаловать в Proton VPN</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>Теперь доступ к выделенным серверам вашей организации можно получить на главной боковой панели.</value>
+    <value>You can now access your organization's dedicated servers from the main sidebar.</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
     <value>Шлюзы переместились</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>You can now connect to printers, speakers, and other devices on your local network (LAN), bypassing the VPN tunnel.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>LAN connections</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
     <value>Чтобы приложение было удобнее, мы обновили дизайн и переместили некоторые элементы.</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
     <value>Новый вид, защита прежняя</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>When port forwarding is enabled, you'll now see your active port number on the home screen.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>Active port number</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
     <value>Добавляйте в профиль дополнительные настройки: NetShield, переадресацию портов или функцию Connect and Go, чтобы при подключении автоматически открывался выбранный вами сайт.</value>
@@ -2212,6 +2262,12 @@
   </data>
   <data name="Dialogs_WhatsNew_Title">
     <value>Что нового</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>You can now connect, disconnect, and change your default connection from the system tray.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>New system tray app</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Выйти из Proton VPN?</value>
@@ -2284,6 +2340,9 @@
   </data>
   <data name="Flyouts_KillSwitch_Info">
     <value>При обрыве подключения к VPN может быть раскрыт ваш IP-адрес</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>Advanced kill switch disables your internet to protect your IP address while you're not connected to Proton VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>Если подключение к VPN оборвется, до его восстановления вы будете отключены от Интернета</value>
@@ -2367,20 +2426,20 @@
     <value>Ускорено VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description1">
-    <value>Это количество данных, передаваемых через Proton VPN каждую секунду.</value>
+    <value>Shows how much data goes through the VPN tunnel in real time.</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>Скорость зависит от текущей активности вашего устройства и не отражает максимальную скорость работы VPN.</value>
+    <value>This is based on your device's current activity. In most cases, it doesn't represent the VPN's maximum speed.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Скачивание</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>Понимание и повышение скорости VPN-соединения</value>
+    <value>VPN speed and traffic explained</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>Скорость</value>
+    <value>Current traffic</value>
   </data>
   <data name="Flyouts_Speed_Upload">
     <value>Загрузка</value>
@@ -2450,14 +2509,14 @@
     <value>Получите лучшее из обоих миров</value>
   </data>
   <data name="Flyouts_Volume_Description">
-    <value>Показывает, сколько трафика прошло через VPN.</value>
+    <value>Shows the total amount of data passed through the VPN tunnel since you connected.</value>
   </data>
   <data name="Flyouts_Volume_Download">
     <value>Скачивание</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>Объём</value>
+    <value>Total traffic</value>
   </data>
   <data name="Flyouts_Volume_Upload">
     <value>Загрузка</value>
@@ -2496,7 +2555,7 @@
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Скорость ({0})</value>
+    <value>Current traffic ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2563,6 +2622,18 @@
     <value>чч\:мм\:сс</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
+  <data name="Format_Time_Hours_Ago_One">
+    <value>{0} hour ago</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Few">
+    <value>{0} hours ago</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Many">
+    <value>{0} hours ago</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>{0} hours ago</value>
+  </data>
   <data name="Format_Time_Minutes">
     <value>{0} мин</value>
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
@@ -2575,9 +2646,33 @@
     <value>мм\:сс</value>
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
+  <data name="Format_Time_Minutes_Ago_One">
+    <value>{0} minute ago</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Few">
+    <value>{0} minutes ago</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Many">
+    <value>{0} minutes ago</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>{0} minutes ago</value>
+  </data>
   <data name="Format_Time_Seconds">
     <value>{0} с</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_One">
+    <value>{0} second ago</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Few">
+    <value>{0} seconds ago</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Many">
+    <value>{0} seconds ago</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>{0} seconds ago</value>
   </data>
   <data name="FreeConnections_P2PUpsell">
     <value>Скачивайте файлы через BitTorrent и другие протоколы обмена файлами</value>
@@ -2644,8 +2739,14 @@
     <value>Карточка подключения</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>Advanced kill switch activated</value>
+  </data>
   <data name="Home_ConnectionDetails_City">
     <value>Город</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>Connect to VPN to restore your internet connection.</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
     <value>Подключено к</value>
@@ -2718,7 +2819,7 @@
     <value>Подключитесь к VPN, чтобы зашифровать свои действия в сети.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
-    <value>Скачано</value>
+    <value>Total traffic</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>Объём скачивания</value>
@@ -2931,7 +3032,7 @@
     <value>Установите это число в приложении BitTorrent для увеличения скорости.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
-    <value>Достигнуто максимальное количество устройств. Чтобы переподключиться к VPN, отключитесь от другого устройства.</value>
+    <value>You've reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Вы переведены на более дешёвый тариф Proton Free, и мы снова подключаем вас к самому быстрому бесплатному серверу.</value>
@@ -2941,6 +3042,10 @@
   </data>
   <data name="Notifications_UnsecureWifi_Title">
     <value>Обнаружено незащищенное подключение к Wi-Fi</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Proton VPN - Survey</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Обновить</value>
@@ -3294,10 +3399,10 @@
     <value>Предотвращает утечку IPv6-трафика, блокируя соединения с IPv6-адресами.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
-    <value>Подключения по LAN</value>
+    <value>Allow LAN connections</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Позволяет подключаться к принтерам, колонкам и другим устройствам в локальной сети устройства.</value>
+    <value>Allows connections to printers, speakers, and other devices in your local network.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>Тип NAT</value>
@@ -3434,6 +3539,10 @@
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Чтобы использовать переадресацию портов, подключитесь к серверу с поддержкой P2P.</value>
   </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>Last changed: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
   <data name="Settings_Connection_PortForwarding_Loading">
     <value>Загружается...</value>
   </data>
@@ -3486,10 +3595,14 @@
     <value>Настройте своё подключение, определив, какие приложения и IP-адреса будут защищены VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Обратное</value>
+    <value>Include mode</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>Только выбранные приложения и IP-адреса подключаются через VPN, весь остальной трафик не защищён</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>Include</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
     <value>Добавить IP</value>
@@ -3505,10 +3618,14 @@
     <value>Добавить адрес IPv4</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Стандартное</value>
+    <value>Exclude mode</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>Выбранные приложения и IP-адреса исключены из подключения через VPN</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>Exclude</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -3838,6 +3955,9 @@
     <value>Открыть {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>Open app to sign in</value>
+  </data>
   <data name="Unit_BytesPerSecond">
     <value>Б/с</value>
     <comment>Unit for Bytes per second</comment>
@@ -3967,13 +4087,16 @@
     <value>Направляйте трафик через сверхзащищённые серверы в Швейцарии, Швеции и Исландии</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Просматривайте веб-страницы ещё быстрее (до 10 Гбит/с)</value>
+    <value>Browse at even higher speeds</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Увеличьте скорость подключения до 400 % с помощью VPN Accelerator</value>
+    <value>Browse up to 400% faster with VPN Accelerator</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>Получите доступ к более быстрым и менее загруженным серверам</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>Get connection speeds of up to 10 Gbps</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
     <value>Получите лучшее из обоих миров</value>
@@ -4030,11 +4153,8 @@
     <value>Доступ через {0} в {1}</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Проверено независимыми специалистами по безопасности</value>
-  </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>Обходите цензуру с помощью передовых функций безопасности и приватности</value>
+    <value>Bypass censorship with advanced security features</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
     <value>{0} стране</value>
@@ -4048,8 +4168,11 @@
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
     <value>{0} странах</value>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
-    <value>VPN с открытым исходным кодом</value>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>Secure streaming, torrenting, and more</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>Select any country from our worldwide network</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
     <value>{0} защищённый сервер</value>

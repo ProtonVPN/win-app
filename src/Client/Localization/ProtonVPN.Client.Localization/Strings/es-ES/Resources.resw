@@ -294,8 +294,13 @@
   <data name="Common_States_Updating">
     <value>Actualizando...</value>
   </data>
+  <data name="Common_Tags_Beta">
+    <value>BETA</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
   <data name="Common_Tags_New">
     <value>NUEVO</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
     <value>Actualiza a la última versión de la aplicación para aprovechar al máximo tu VPN.</value>
@@ -1773,6 +1778,39 @@ La latencia alta puede ralentizar tu conexión.</value>
   <data name="Dialogs_Latency_Title">
     <value>¿Qué es la latencia?</value>
   </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>Cuéntanos por qué ha dado esa calificación.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>No se ha podido enviar tus comentarios. Verifica la conexión y vuelve a intentarlo.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>Se ha producido un error.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>10: Muy probable</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>0: Muy improbable</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>Opcional</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>Compartir de forma anónima</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>Tus comentarios nos ayudan a mejorar Proton VPN.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>Gracias por tus comentarios</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>¿Qué tanto recomendarías Proton VPN a un amigo?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>Volver a intentar</value>
+  </data>
   <data name="Dialogs_P2PDetection_Description">
     <value>Tu conexión ha sido desactivada porque estás usando un servidor que no soporta el tráfico peer-to-peer (P2P). P2P no es compatible con servidores gratuitos. Por favor, utiliza un servidor distinto para P2P.</value>
   </data>
@@ -2039,11 +2077,23 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   <data name="Dialogs_WhatsNew_Gateways_Title">
     <value>Se han movido las puertas de enlace.</value>
   </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>Ahora puedes conectarte a impresoras, altavoces y otros dispositivos en tu red local (LAN), evitando el túnel VPN.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>Conexiones LAN</value>
+  </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
     <value>Hemos actualizado nuestros diseños y movimos algunas cosas para que la aplicación sea fácil de usar.</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
     <value>Aspecto nuevo, misma protección</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>Cuando la redirección de puertos está activada, verás tu número de puerto activo en la pantalla de inicio.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>Número de puerto activo</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
     <value>Añade ajustes de perfil avanzados como NetShield y reenvío de puertos, o configura Conectar y listo para iniciar un sitio web de tu elección cuando te conectes.</value>
@@ -2062,6 +2112,12 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   </data>
   <data name="Dialogs_WhatsNew_Title">
     <value>Novedades</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>Ahora puedes conectar, desconectar y cambiar tu conexión por defecto desde la bandeja del sistema.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>Nueva aplicación de la bandeja del sistema</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>¿Salir de Proton VPN?</value>
@@ -2134,6 +2190,9 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   </data>
   <data name="Flyouts_KillSwitch_Info">
     <value>Tu dirección IP podría ser expuesta si tu conexión VPN cae</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>El interruptor de bloqueo avanzado desactiva tu internet para proteger tu dirección IP mientras no estás conectado a Proton VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>Si tu conexión VPN cae, se te desconectará de internet hasta que la VPN se restaure.</value>
@@ -2217,20 +2276,20 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Potenciada por VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description1">
-    <value>Esto muestra cuántos datos son transmitidos mediante Proton VPN cada segundo.</value>
+    <value>Muestra cuántos datos pasan por el túnel VPN en tiempo real.</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>La velocidad se basa en la actividad actual de tu dispositivo y no representa la velocidad máxima de la VPN.</value>
+    <value>Esto se basa en la actividad actual de tu dispositivo. En la mayoría de los casos, no representa la velocidad máxima de la VPN.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Descarga</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>Entender y aumentar las velocidades de conexión VPN</value>
+    <value>Explicación de la velocidad y el tráfico de la VPN</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>Velocidad</value>
+    <value>Tráfico actual</value>
   </data>
   <data name="Flyouts_Speed_Upload">
     <value>Carga</value>
@@ -2276,14 +2335,14 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Obtén lo mejor de ambos mundos</value>
   </data>
   <data name="Flyouts_Volume_Description">
-    <value>Esto muestra cuánto tráfico se ha redirigido a través de la VPN.</value>
+    <value>Muestra la cantidad total de datos pasados a través del túnel VPN desde que te conectaste.</value>
   </data>
   <data name="Flyouts_Volume_Download">
     <value>Descarga</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>Volumen</value>
+    <value>Tráfico total</value>
   </data>
   <data name="Flyouts_Volume_Upload">
     <value>Carga</value>
@@ -2322,7 +2381,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Velocidad ({0})</value>
+    <value>Tráfico actual ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2377,6 +2436,12 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>hh\:mm\:ss</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
+  <data name="Format_Time_Hours_Ago_One">
+    <value>Hace {0} hora</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>hace {0} horas</value>
+  </data>
   <data name="Format_Time_Minutes">
     <value>{0} min</value>
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
@@ -2389,9 +2454,21 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>mm\:ss</value>
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
+  <data name="Format_Time_Minutes_Ago_One">
+    <value>Hace {0} minuto</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>Hace {0} minutos</value>
+  </data>
   <data name="Format_Time_Seconds">
     <value>{0} seg</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_One">
+    <value>Hace {0} segundo</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>Hace {0} segundos</value>
   </data>
   <data name="FreeConnections_P2PUpsell">
     <value>Descarga archivos con BitTorrent y otros protocolos de intercambio de archivos</value>
@@ -2458,8 +2535,14 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Tarjeta de conexión</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>Interruptor de bloqueo avanzado activado</value>
+  </data>
   <data name="Home_ConnectionDetails_City">
     <value>Ciudad</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>Conéctate a una VPN para restaurar tu conexión a internet.</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
     <value>Conectado por</value>
@@ -2532,7 +2615,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Conéctate a una VPN para cifrar tu actividad online.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
-    <value>Volumen</value>
+    <value>Tráfico total</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>Volumen de descarga</value>
@@ -2733,7 +2816,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Establece este número en tu aplicación BitTorrent para obtener mayor velocidad.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
-    <value>Ha alcanzado el límite máximo de dispositivos. Para reconectarse a una VPN, desconecte alguno de sus dispositivos.</value>
+    <value>Has alcanzado tu límite máximo de dispositivos. Para reconectarte a la VPN, desconéctate de otro dispositivo.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Se ha cambiado tu plan a Proton Free y te estamos reconectando al servidor gratuito más rápido.</value>
@@ -2743,6 +2826,10 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   </data>
   <data name="Notifications_UnsecureWifi_Title">
     <value>Se ha detectado una conexión wifi no segura.</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Encuesta de Proton VPN</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Actualizar ahora</value>
@@ -3096,7 +3183,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Previene las filtraciones de IPv6 mediante el bloqueo de las conexiones a direcciones IPv6.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
-    <value>Conexiones LAN</value>
+    <value>Permitir las conexiones LAN</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
     <value>Te permite conectarte a impresoras, altavoces y otros dispositivos en tu red local.</value>
@@ -3236,6 +3323,10 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Para usar la redirección de puertos, conéctate a un servidor que admita P2P.</value>
   </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>Último cambio: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
   <data name="Settings_Connection_PortForwarding_Loading">
     <value>Cargando...</value>
   </data>
@@ -3288,10 +3379,14 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Personaliza la conexión decidiendo qué aplicaciones y direcciones IP deseas proteger con VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Invertir</value>
+    <value>Modo de inclusión</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>Solo las aplicaciones y direcciones IP seleccionadas se conectan mediante VPN, el resto del tráfico está desprotegido</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>Incluir</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
     <value>Añadir dirección IP</value>
@@ -3307,10 +3402,14 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Añadir dirección IPv4</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Estándar</value>
+    <value>Modo de exclusión</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>Las aplicaciones y direcciones IP seleccionadas están excluidas de la conexión VPN.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>Excluir</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -3640,6 +3739,9 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Abrir {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>Abrir la aplicación para iniciar sesión</value>
+  </data>
   <data name="Unit_BytesPerSecond">
     <value>B/s</value>
     <comment>Unit for Bytes per second</comment>
@@ -3769,13 +3871,16 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Enrutamiento a través de servidores ultraseguros en Suiza, Suecia e Islandia</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Navega a velocidades aún mayores (hasta 10 Gbps)</value>
+    <value>Navega a velocidades aún más altas</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Aumenta la velocidad de tu conexión en hasta un 400 % con VPN Accelerator</value>
+    <value>Navega hasta un 400% más rápido con VPN Accelerator</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>Accede a servidores más rápidos y menos concurridos</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>Obtén velocidades de conexión de hasta 10 Gbps</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
     <value>Obtén lo mejor de ambos mundos</value>
@@ -3832,11 +3937,8 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Acceso a más de {0} en {1}</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Sometido a auditoría por expertos en seguridad independientes</value>
-  </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>Evita la censura con funciones avanzadas de seguridad y privacidad</value>
+    <value>Evita la censura con funciones avanzadas de seguridad</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
     <value>{0} país</value>
@@ -3844,8 +3946,11 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
     <value>{0} países</value>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
-    <value>VPN de código abierto</value>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>Streaming, descarga de torrents y más, todo más seguro</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>Selecciona cualquier país de nuestra red mundial</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
     <value>{0} servidor seguro</value>

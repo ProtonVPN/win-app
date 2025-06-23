@@ -294,8 +294,13 @@
   <data name="Common_States_Updating">
     <value>در حال به‌روزرسانی...</value>
   </data>
+  <data name="Common_Tags_Beta">
+    <value>BETA</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
   <data name="Common_Tags_New">
     <value>جدید</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
     <value>از VPN تان با به‌روزرسانی به آخرین نسخه‌ی برنامه بیشترین استفاده را ببرید.</value>
@@ -1773,6 +1778,39 @@
   <data name="Dialogs_Latency_Title">
     <value>تأخیر چیست؟</value>
   </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>Please let us know why you gave that rating</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>We couldn't send your feedback. Please check your connection and try again.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>Something went wrong</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>10 is very likely</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>0 is very unlikely</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>Optional</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>Share anonymously</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>Your feedback helps us improve Proton VPN.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>Thanks for your feedback</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>How likely are you to recommend Proton VPN to a friend?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>Try again</value>
+  </data>
   <data name="Dialogs_P2PDetection_Description">
     <value>اتصال شما غیرفعال شده است زیرا شما از سروری استفاده می کنید که از ترافیک نظیر به نظیر (P2P) پشتیبانی نمی کند. P2P در سرورهای رایگان پشتیبانی نمی شود. لطفاً از سرور دیگری برای P2P استفاده کنید.</value>
   </data>
@@ -2034,16 +2072,28 @@
     <value>به Proton VPN خوش آمدید</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>حالا شما می‌تونید به سرور‌های سازمانتون از نوار کناری اصلی متصل بشید.</value>
+    <value>You can now access your organization's dedicated servers from the main sidebar.</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
     <value>Gatewayها جابجا شد</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>You can now connect to printers, speakers, and other devices on your local network (LAN), bypassing the VPN tunnel.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>LAN connections</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
     <value>ما برنامه رو بازطراحی کردیم و اجزاء رو به صورتی جابجا کردیم تا استفاده از برنامه ساده‌تر بشه.</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
     <value>ظاهر جدید با همون سطح امنیتی</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>When port forwarding is enabled, you'll now see your active port number on the home screen.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>Active port number</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
     <value>تنظیمات پیشرفته برای پروفایل‌ها قرار بدین، مثلا NetShield و Port Forwarding یا مثلا Connect and Go رو تنظیم کنید تا پس از اتصال به VPN مستقیم سایت مورد نظرتون باز بشه.</value>
@@ -2062,6 +2112,12 @@
   </data>
   <data name="Dialogs_WhatsNew_Title">
     <value>تازه‌ها</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>You can now connect, disconnect, and change your default connection from the system tray.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>New system tray app</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Exit Proton VPN?</value>
@@ -2134,6 +2190,9 @@
   </data>
   <data name="Flyouts_KillSwitch_Info">
     <value>Your IP address could be exposed if your VPN connection drops</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>Advanced kill switch disables your internet to protect your IP address while you're not connected to Proton VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>If your VPN connection drops, you'll be disconnected from the internet until VPN is restored</value>
@@ -2217,20 +2276,20 @@
     <value>شتاب داده با VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description1">
-    <value>This shows how much data gets transmitted through Proton VPN each second.</value>
+    <value>Shows how much data goes through the VPN tunnel in real time.</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>Speed is based on your device's current activity — it doesn't represent the VPN's maximum speed.</value>
+    <value>This is based on your device's current activity. In most cases, it doesn't represent the VPN's maximum speed.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>بارگیری</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>Understanding and increasing VPN connection speeds</value>
+    <value>VPN speed and traffic explained</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>سرعت</value>
+    <value>Current traffic</value>
   </data>
   <data name="Flyouts_Speed_Upload">
     <value>بارگذاری</value>
@@ -2276,14 +2335,14 @@
     <value>بهترین‌های هر دو جوانب را بگیرید</value>
   </data>
   <data name="Flyouts_Volume_Description">
-    <value>This shows how much traffic has routed through your VPN.</value>
+    <value>Shows the total amount of data passed through the VPN tunnel since you connected.</value>
   </data>
   <data name="Flyouts_Volume_Download">
     <value>بارگیری</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>حجم</value>
+    <value>Total traffic</value>
   </data>
   <data name="Flyouts_Volume_Upload">
     <value>بارگذاری</value>
@@ -2322,7 +2381,7 @@
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Speed ({0})</value>
+    <value>Current traffic ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2377,6 +2436,12 @@
     <value>hh\:mm\:ss</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
+  <data name="Format_Time_Hours_Ago_One">
+    <value>{0} hour ago</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>{0} hours ago</value>
+  </data>
   <data name="Format_Time_Minutes">
     <value>{0} دقیقه</value>
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
@@ -2389,9 +2454,21 @@
     <value>mm\:ss</value>
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
+  <data name="Format_Time_Minutes_Ago_One">
+    <value>{0} minute ago</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>{0} minutes ago</value>
+  </data>
   <data name="Format_Time_Seconds">
     <value>{0} ثانیه</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_One">
+    <value>{0} second ago</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>{0} seconds ago</value>
   </data>
   <data name="FreeConnections_P2PUpsell">
     <value>از طریق BitTorrent و پروتکل‌های اشتراک گذاری فایل دیگر بارگیری کنید</value>
@@ -2458,8 +2535,14 @@
     <value>کارت اتصال</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>Advanced kill switch activated</value>
+  </data>
   <data name="Home_ConnectionDetails_City">
     <value>شهر</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>Connect to VPN to restore your internet connection.</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
     <value>متصل به مدت</value>
@@ -2532,7 +2615,7 @@
     <value>Encrypt your online activity by connecting to VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
-    <value>حجم</value>
+    <value>Total traffic</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>Download volume</value>
@@ -2733,7 +2816,7 @@
     <value>این شماره را در برنامه BitTorrent خود تنظیم کنید تا از سرعت بیشتر بهره ببرید.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
-    <value>You’ve reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
+    <value>You've reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Your plan has been downgraded to Proton Free, and we're reconnecting you to the fastest free server.</value>
@@ -2743,6 +2826,10 @@
   </data>
   <data name="Notifications_UnsecureWifi_Title">
     <value>Unsecured Wi-Fi connection detected</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Proton VPN - Survey</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Update now</value>
@@ -3096,10 +3183,10 @@ Secure Core</value>
     <value>Prevents IPv6 leaks by blocking connections to IPv6 addresses.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
-    <value>اتصالات LAN</value>
+    <value>Allow LAN connections</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>به شما اجازه می‌دهد تا به چاپگرها، بلندگوها، و دستگا‌ه‌های دیگر موجود در شبکه محلی دستگاهتان وصل شوید.</value>
+    <value>Allows connections to printers, speakers, and other devices in your local network.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>نوع NAT</value>
@@ -3236,6 +3323,10 @@ Secure Core</value>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>To use port forwarding, please connect to a server that supports P2P.</value>
   </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>Last changed: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
   <data name="Settings_Connection_PortForwarding_Loading">
     <value>در حال بارگیری...</value>
   </data>
@@ -3288,10 +3379,14 @@ Secure Core</value>
     <value>اتصالتان را با تصمیم بر این‌که چه برنامه‌ها و نشانی‌های IP با VPN محافظت شوند سفارشی کنید.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>معکوس</value>
+    <value>Include mode</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>فقط برنامه‌ها و نشانی‌های IP انتخاب شده از طریق VPN وصل می‌شوند، ترافیک‌های دیگه شبکه محافظت نمی‌شوند</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>Include</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
     <value>افزودن IP</value>
@@ -3307,10 +3402,14 @@ Secure Core</value>
     <value>افزودن آدرس IPv4</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>استاندارد</value>
+    <value>Exclude mode</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>برنامه‌ها و نشانی‌های IP انتخاب شده از اتصال VPN مستثنی می‌شوند</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>Exclude</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -3640,6 +3739,9 @@ Secure Core</value>
     <value>باز کردن {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>Open app to sign in</value>
+  </data>
   <data name="Unit_BytesPerSecond">
     <value>B/s</value>
     <comment>Unit for Bytes per second</comment>
@@ -3769,13 +3871,16 @@ Secure Core</value>
     <value>ارتباط از طریق سرورهای فوق امن در سوییس، سوئد و ایسلند</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>مرور وب تا حتی سرعت‌های بیشتر (تا ۱۰ گیگابیت بر ثانیه)</value>
+    <value>Browse at even higher speeds</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Increase your connection speeds by up to 400% with VPN Accelerator</value>
+    <value>Browse up to 400% faster with VPN Accelerator</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>دسترسی به سرورهای کم جمعیت‌تر و سریع‌تر</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>Get connection speeds of up to 10 Gbps</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
     <value>بهترین‌های هر دو جوانب را بگیرید</value>
@@ -3832,11 +3937,8 @@ Secure Core</value>
     <value>دسترسی به {0} سرور در {1} کشور</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Audited by independent security experts</value>
-  </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>Bypass censorship with advanced security and privacy features</value>
+    <value>Bypass censorship with advanced security features</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
     <value>{0} کشور</value>
@@ -3844,8 +3946,11 @@ Secure Core</value>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
     <value>{0} کشورها</value>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
-    <value>Open source VPN</value>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>Secure streaming, torrenting, and more</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>Select any country from our worldwide network</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
     <value>{0} سرور امن</value>

@@ -294,8 +294,13 @@
   <data name="Common_States_Updating">
     <value>Oppdaterer...</value>
   </data>
+  <data name="Common_Tags_Beta">
+    <value>BETA</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
   <data name="Common_Tags_New">
     <value>NY</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
     <value>Få mest mulig ut av VPN-et ditt ved å oppdatere til den nyeste versjonen av appen.</value>
@@ -1773,6 +1778,39 @@ Høy latens kan redusere tilkoblingen.</value>
   <data name="Dialogs_Latency_Title">
     <value>Hva er latens?</value>
   </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>Fortell oss hvorfor du ga den vurderingen</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>Vi kunne ikke sende tilbakemeldingen. Kontroller tilkoblingen og prøv på nytt.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>Noe gikk galt</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>10 er svært sannsynlig</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>0 er svært usannsynlig</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>Valgfritt</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>Del anonymt</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>Din tilbakemelding hjelper oss med å forbedre Proton VPN.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>Takk for tilbakemeldingen din</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>Hvor sannsynlig er det at du vil anbefale Proton VPN til en venn?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>Prøv igjen</value>
+  </data>
   <data name="Dialogs_P2PDetection_Description">
     <value>Tilkoblingen din er deaktivert fordi du bruker en tjener som ikke støtter node-til-node-trafikk (P2P). P2P støttes ikke på gratis tjenere. Bruk en annen tjener for P2P.</value>
   </data>
@@ -2039,11 +2077,23 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   <data name="Dialogs_WhatsNew_Gateways_Title">
     <value>Porttjenere har flyttet</value>
   </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>Du kan nå koble til skrivere, høyttalere og andre enheter på ditt lokale nettverk (LAN), og omgå VPN-tunnelen.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>LAN-forbindelser</value>
+  </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
     <value>Vi oppdaterte designene våre og flyttet rundt på noen ting for å gjøre appen enklere å bruke.</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
     <value>Nytt utseende, samme beskyttelse</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>Når du aktiverer portvideresending, vil du se det aktive portnummeret ditt på startskjermen.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>Aktivt portnummer</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
     <value>Legg til avanserte profilinnstillinger som NetShield og viderekobling av porter, eller konfigurer "Koble til og kjør" for å starte et nettsted etter eget valg når du kobler til.</value>
@@ -2062,6 +2112,12 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   </data>
   <data name="Dialogs_WhatsNew_Title">
     <value>Hva er nytt</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>Du kan nå koble til, koble fra, og endre din standard tilkobling fra systemstatusfeltet.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>Ny systemstatusfelt-app</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Avslutte Proton VPN?</value>
@@ -2134,6 +2190,9 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   </data>
   <data name="Flyouts_KillSwitch_Info">
     <value>IP-adressen din kan bli eksponert hvis VPN-tilkoblingen din faller ut</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>Avansert nødstopp deaktiverer internettforbindelsen din for å beskytte IP-adressen din inntil du er koblet til Proton VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>Hvis VPN-tilkoblingen din brytes, blir du koblet fra internett til VPN-et er gjenopprettet</value>
@@ -2217,20 +2276,20 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Styrket av VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description1">
-    <value>Dette viser hvor mye data som overføres gjennom Proton VPN hvert sekund.</value>
+    <value>Viser hvor mye data som går gjennom VPN-tunnelen i sanntid.</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>Hastigheten er basert på enhetens nåværende aktivitet – den representerer ikke VPN-ens maksimale hastighet.</value>
+    <value>Dette avhenger av enhetens nåværende aktivitet. I de fleste tilfeller representerer ikke dette VPN-ens maksimale hastighet.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Nedlasting</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>Forstå og øke VPN-tilkoblingshastigheter</value>
+    <value>VPN-hastighet og trafikk forklart</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>Hastighet</value>
+    <value>Nåværende trafikk</value>
   </data>
   <data name="Flyouts_Speed_Upload">
     <value>Opplasting</value>
@@ -2276,14 +2335,14 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Få det beste fra to verdener</value>
   </data>
   <data name="Flyouts_Volume_Description">
-    <value>Dette viser hvor mye trafikk som er rutet gjennom VPN-en.</value>
+    <value>Viser den totale mengden data som er overført gjennom VPN-tunnelen siden du koblet til.</value>
   </data>
   <data name="Flyouts_Volume_Download">
     <value>Nedlastet</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>Volum</value>
+    <value>Total trafikk</value>
   </data>
   <data name="Flyouts_Volume_Upload">
     <value>Opplastet</value>
@@ -2322,7 +2381,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Hastighet ({0})</value>
+    <value>Nåværende trafikk ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2377,6 +2436,12 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>tt\:mm\:ss</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
+  <data name="Format_Time_Hours_Ago_One">
+    <value>{0} time siden</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>{0} timer siden</value>
+  </data>
   <data name="Format_Time_Minutes">
     <value>{0} min</value>
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
@@ -2389,9 +2454,21 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>mm\:ss</value>
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
+  <data name="Format_Time_Minutes_Ago_One">
+    <value>{0} minutt siden</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>{0} minutter siden</value>
+  </data>
   <data name="Format_Time_Seconds">
     <value>{0} sek</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_One">
+    <value>{0} sekund siden</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>{0} sekunder siden</value>
   </data>
   <data name="FreeConnections_P2PUpsell">
     <value>Last ned filer gjennom BitTorrent og andre fildelingsprotokoller</value>
@@ -2458,8 +2535,14 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Tilkoblingskort</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>Avansert nødstopp aktivert</value>
+  </data>
   <data name="Home_ConnectionDetails_City">
     <value>By</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>Koble til VPN for å gjenopprette internett-tilkoblingen din.</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
     <value>Tilkoblet for</value>
@@ -2532,7 +2615,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Krypter nettaktiviteten din ved å koble til VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
-    <value>Volum</value>
+    <value>Total trafikk</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>Last ned volum</value>
@@ -2743,6 +2826,10 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   </data>
   <data name="Notifications_UnsecureWifi_Title">
     <value>Usikret Wi-Fi-tilkobling oppdaget</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Proton VPN - Spørreundersøkelse</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Oppdater nå</value>
@@ -3096,10 +3183,10 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Forhindrer IPv6-lekkasjer ved å blokkere tilkoblinger til IPv6-adresser.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
-    <value>LAN-forbindelser</value>
+    <value>Tillat LAN-forbindelser</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Lar deg koble til skrivere, høyttalere og andre enheter i enhetens lokale nettverk.</value>
+    <value>Tillater tilkoblinger til skrivere, høyttalere og andre enheter på ditt lokale nettverk.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>NAT-type</value>
@@ -3236,6 +3323,10 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>For å bruke portviderekobling må du koble til en tjener som støtter P2P.</value>
   </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>Sist endret: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
   <data name="Settings_Connection_PortForwarding_Loading">
     <value>Laster inn...</value>
   </data>
@@ -3288,10 +3379,14 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Tilpass tilkoblingen din ved å bestemme hvilke apper og IP-adresser som er beskyttet av VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Omvendt</value>
+    <value>Inkluderingsmodus</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>Bare valgte apper og IP-adresser kobles til via VPN, all annen trafikk er ubeskyttet.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>Inkluder</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
     <value>Legg til IP</value>
@@ -3307,10 +3402,14 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Legg til IPv4-adresse</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Standard</value>
+    <value>Ekskluderingsmodus</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>Valgte apper og IP-adresser er ekskludert fra VPN-tilkoblingen.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>Ekskluder</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -3640,6 +3739,9 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Åpne {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>Åpne appen for å logge på</value>
+  </data>
   <data name="Unit_BytesPerSecond">
     <value>B/s</value>
     <comment>Unit for Bytes per second</comment>
@@ -3769,13 +3871,16 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Rute gjennom ultrasikre tjenere i Sveits, Sverige og Island.</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Surf med enda høyere hastigheter (opptil 10 Gbps).</value>
+    <value>Surf med enda høyere hastigheter</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Øk forbindelseshastighetene dine med opptil 400% med VPN Accelerator</value>
+    <value>Surf opptil 400 % raskere med VPN Accelerator</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>Få tilgang til raskere, mindre overfylte tjenere</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>Få tilkoblingshastigheter på opptil 10 Gbps</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
     <value>Få det beste fra to verdener</value>
@@ -3832,11 +3937,8 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Få tilgang til over {0} i {1}</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Revidert av uavhengige sikkerhetseksperter</value>
-  </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>Omgå sensur med avanserte sikkerhets- og personvernfunksjoner</value>
+    <value>Omgå sensur med avanserte sikkerhetsfunksjoner</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
     <value>{0} land</value>
@@ -3844,8 +3946,11 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
     <value>{0} land</value>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
-    <value>Åpen kildekode VPN</value>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>Sikker strømming, torrenter og mer</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>Velg et hvilket som helst land fra vårt verdensomspennende nettverk</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
     <value>{0} sikker tjener</value>

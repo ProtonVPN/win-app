@@ -294,8 +294,13 @@
   <data name="Common_States_Updating">
     <value>Aktualizácia...</value>
   </data>
+  <data name="Common_Tags_Beta">
+    <value>BETA</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
   <data name="Common_Tags_New">
     <value>NOVÉ</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
     <value>Ak chcete VPN využívať naplno, aktualizujte si najnovšiu verziu aplikácie.</value>
@@ -1917,6 +1922,39 @@ Vysoká latencia môže spomaliť vaše pripojenie.</value>
   <data name="Dialogs_Latency_Title">
     <value>Čo je to latencia?</value>
   </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>Please let us know why you gave that rating</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>We couldn't send your feedback. Please check your connection and try again.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>Something went wrong</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>10 is very likely</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>0 is very unlikely</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>Optional</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>Share anonymously</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>Your feedback helps us improve Proton VPN.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>Thanks for your feedback</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>How likely are you to recommend Proton VPN to a friend?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>Try again</value>
+  </data>
   <data name="Dialogs_P2PDetection_Description">
     <value>Vaše pripojenie bolo deaktivované, pretože používate server, ktorý nepodporuje prevádzku peer-to-peer (P2P). P2P nie je podporované na bezplatných serveroch. Pre P2P použite iný server.</value>
   </data>
@@ -2184,16 +2222,28 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Víta vás Proton VPN</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>K vyhradeným serverom vašej organizácie môžete teraz pristupovať z bočného panelu.</value>
+    <value>You can now access your organization's dedicated servers from the main sidebar.</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
     <value>Brány boli presunuté</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>You can now connect to printers, speakers, and other devices on your local network (LAN), bypassing the VPN tunnel.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>LAN connections</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
     <value>Vylepšili sme náš dizajn a presunuli niektoré veci, aby sa aplikácia ľahšie používala.</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
     <value>Nový vzhľad, tá istá ochrana</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>When port forwarding is enabled, you'll now see your active port number on the home screen.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>Active port number</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
     <value>Pridajte pokročilé nastavenia profilu, ako je NetShield a presmerovanie portov, alebo nastavte funkciu Pripojiť a spustiť, aby sa po pripojení otvorila webová stránka podľa vášho výberu.</value>
@@ -2212,6 +2262,12 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   </data>
   <data name="Dialogs_WhatsNew_Title">
     <value>Čo je nové</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>You can now connect, disconnect, and change your default connection from the system tray.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>New system tray app</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Ukončiť Proton VPN?</value>
@@ -2284,6 +2340,9 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   </data>
   <data name="Flyouts_KillSwitch_Info">
     <value>Vaša IP adresa môže byť odhalená, ak sa VPN pripojenie preruší</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>Advanced kill switch disables your internet to protect your IP address while you're not connected to Proton VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>Ak sa VPN pripojenie preruší, zostanete bez pripojenia na internet, kým sa VPN neobnoví</value>
@@ -2367,20 +2426,20 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Zrýchlené pomocou VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description1">
-    <value>Tento údaj zobrazuje, koľko údajov sa každú sekundu prenesie prostredníctvom Proton VPN.</value>
+    <value>Shows how much data goes through the VPN tunnel in real time.</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>Rýchlosť je založená na aktuálnej aktivite vášho zariadenia — nepredstavuje maximálnu rýchlosť siete VPN.</value>
+    <value>This is based on your device's current activity. In most cases, it doesn't represent the VPN's maximum speed.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Sťahovanie</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>Pochopenie a zvýšenie rýchlosti VPN pripojenia</value>
+    <value>VPN speed and traffic explained</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>Rýchlosť</value>
+    <value>Current traffic</value>
   </data>
   <data name="Flyouts_Speed_Upload">
     <value>Nahrávanie</value>
@@ -2450,14 +2509,14 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Získajte to najlepšie z oboch svetov</value>
   </data>
   <data name="Flyouts_Volume_Description">
-    <value>Zobrazuje, koľko dát prešlo cez vašu VPN.</value>
+    <value>Shows the total amount of data passed through the VPN tunnel since you connected.</value>
   </data>
   <data name="Flyouts_Volume_Download">
     <value>Sťahovanie</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>Objem</value>
+    <value>Total traffic</value>
   </data>
   <data name="Flyouts_Volume_Upload">
     <value>Nahrávanie</value>
@@ -2496,7 +2555,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Rýchlosť ({0})</value>
+    <value>Current traffic ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2563,6 +2622,18 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>hh\:mm\:ss</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
+  <data name="Format_Time_Hours_Ago_One">
+    <value>{0} hour ago</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Few">
+    <value>{0} hours ago</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Many">
+    <value>{0} hours ago</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>{0} hours ago</value>
+  </data>
   <data name="Format_Time_Minutes">
     <value>{0} min</value>
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
@@ -2575,9 +2646,33 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>mm\:ss</value>
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
+  <data name="Format_Time_Minutes_Ago_One">
+    <value>{0} minute ago</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Few">
+    <value>{0} minutes ago</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Many">
+    <value>{0} minutes ago</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>{0} minutes ago</value>
+  </data>
   <data name="Format_Time_Seconds">
     <value>{0} s</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_One">
+    <value>{0} second ago</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Few">
+    <value>{0} seconds ago</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Many">
+    <value>{0} seconds ago</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>{0} seconds ago</value>
   </data>
   <data name="FreeConnections_P2PUpsell">
     <value>Sťahujte súbory cez BitTorrent a iné protokoly na zdieľanie súborov</value>
@@ -2644,8 +2739,14 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Pripojovacia karta</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>Advanced kill switch activated</value>
+  </data>
   <data name="Home_ConnectionDetails_City">
     <value>Mesto</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>Connect to VPN to restore your internet connection.</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
     <value>Pripojené</value>
@@ -2718,7 +2819,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Šifrujte svoje online aktivity pripojením k VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
-    <value>Množstvo dát</value>
+    <value>Total traffic</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>Stiahnutý objem dát</value>
@@ -2931,7 +3032,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Nastavte toto číslo vo vašej aplikácii BitTorrent pre najvyššie rýchlosti.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
-    <value>Dosiahli ste maximálny limit počtu zariadení. Ak sa chcete znovu pripojiť k VPN, odpojte sa v inom zariadení.</value>
+    <value>You've reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Vaša tarifa bola znížená na Proton Free a prepájame vás k najrýchlejšiemu bezplatnému serveru.</value>
@@ -2941,6 +3042,10 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   </data>
   <data name="Notifications_UnsecureWifi_Title">
     <value>Bolo zistené nezabezpečené WiFi pripojenie</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Proton VPN - Survey</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Aktualizovať teraz</value>
@@ -3294,10 +3399,10 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Zabraňuje únikom IPv6 blokovaním pripojenia k adresám IPv6.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
-    <value>LAN pripojenia</value>
+    <value>Allow LAN connections</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Umožňuje pripojiť tlačiarne, reproduktory a ďalšie zariadenia vo vašej lokálnej sieti.</value>
+    <value>Allows connections to printers, speakers, and other devices in your local network.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>Typ NAT</value>
@@ -3434,6 +3539,10 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Ak chcete použiť presmerovanie portov, pripojte sa k serveru, ktorý podporuje P2P.</value>
   </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>Last changed: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
   <data name="Settings_Connection_PortForwarding_Loading">
     <value>Načítavanie...</value>
   </data>
@@ -3486,10 +3595,14 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Prispôsobte si pripojenie tým, že sa rozhodnete, ktoré aplikácie a IP adresy budú chránené pomocou VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Inverzný</value>
+    <value>Include mode</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>Cez VPN sa pripájajú iba vybrané aplikácie a IP adresy, všetka ďalšia prevádzka je nechránená</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>Include</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
     <value>Pridať IP</value>
@@ -3505,10 +3618,14 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Pridať adresu IPv4</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Štandardný</value>
+    <value>Exclude mode</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>Vybrané aplikácie a IP adresy sú vylúčené z pripojenia VPN</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>Exclude</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -3838,6 +3955,9 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Otvoriť {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>Open app to sign in</value>
+  </data>
   <data name="Unit_BytesPerSecond">
     <value>B/s</value>
     <comment>Unit for Bytes per second</comment>
@@ -3967,13 +4087,16 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Smerovanie cez mimoriadne zabezpečené servery vo Švajčiarsku, Švédsku a Islande</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Prehliadanie pri ešte vyšších rýchlostiach (až do 10 Gb/s)</value>
+    <value>Browse at even higher speeds</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Zvýšte rýchlosť pripojenia až o 400 % pomocou nástroja VPN Accelerator</value>
+    <value>Browse up to 400% faster with VPN Accelerator</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>Získajte prístup k rýchlejším, menej vyťaženým serverom</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>Get connection speeds of up to 10 Gbps</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
     <value>Získajte to najlepšie z oboch svetov</value>
@@ -4030,11 +4153,8 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Prístup cez {0} v {1}</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Auditované nezávislými bezpečnostnými expertmi</value>
-  </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>Obchádzajte cenzúru pomocou pokročilých funkcií zabezpečenia a ochrany súkromia</value>
+    <value>Bypass censorship with advanced security features</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
     <value>{0} krajina</value>
@@ -4048,8 +4168,11 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
     <value>{0} krajín</value>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
-    <value>Open source VPN</value>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>Secure streaming, torrenting, and more</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>Select any country from our worldwide network</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
     <value>{0} bezpečný server</value>

@@ -294,8 +294,13 @@
   <data name="Common_States_Updating">
     <value>Frissítés...</value>
   </data>
+  <data name="Common_Tags_Beta">
+    <value>BETA</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
   <data name="Common_Tags_New">
     <value>ÚJ</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
     <value>Hozza ki a legtöbbet a VPN-ből az alkalmazás legújabb verziójára való frissítéssel.</value>
@@ -1773,6 +1778,39 @@ A magas késleltetés lelassíthatja a kapcsolatot.</value>
   <data name="Dialogs_Latency_Title">
     <value>Mi az a késleltetés?</value>
   </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>Please let us know why you gave that rating</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>We couldn't send your feedback. Please check your connection and try again.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>Something went wrong</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>10 is very likely</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>0 is very unlikely</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>Optional</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>Share anonymously</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>Your feedback helps us improve Proton VPN.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>Thanks for your feedback</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>How likely are you to recommend Proton VPN to a friend?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>Try again</value>
+  </data>
   <data name="Dialogs_P2PDetection_Description">
     <value>A kapcsolatot letiltottuk, mert olyan kiszolgálót használ, amely nem támogatja a P2P (peer-to-peer) forgalmat. A P2P nincs támogatva az ingyenes kiszolgálókon. Kérjük, használjon másik szervert a P2P-hez.</value>
   </data>
@@ -2034,16 +2072,28 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Üdvözli a Proton VPN</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>Mostantól a fő oldalsávról elérheti a szervezet dedikált szervereit.</value>
+    <value>You can now access your organization's dedicated servers from the main sidebar.</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
     <value>Az átjárók át lettek helyezve</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>You can now connect to printers, speakers, and other devices on your local network (LAN), bypassing the VPN tunnel.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>LAN connections</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
     <value>Felfrissítettük a dizájnunkat, és néhány dolgot áthelyeztünk, hogy az alkalmazás könnyebben használható legyen.</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
     <value>Új megjelenés, ugyanaz a védelem</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>When port forwarding is enabled, you'll now see your active port number on the home screen.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>Active port number</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
     <value>Adjon hozzá speciális profilbeállításokat, például NetShield és port átirányítás, vagy állítsa be a Connect and Go funkciót, hogy a csatlakozáskor elinduljon egy Ön által kiválasztott weboldal.</value>
@@ -2062,6 +2112,12 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   </data>
   <data name="Dialogs_WhatsNew_Title">
     <value>Újdonságok</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>You can now connect, disconnect, and change your default connection from the system tray.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>New system tray app</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Kilépés a Proton VPN-ből?</value>
@@ -2134,6 +2190,9 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   </data>
   <data name="Flyouts_KillSwitch_Info">
     <value>Az IP-címe nyilvánosságra kerülhet, ha a VPN-kapcsolat megszakad</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>Advanced kill switch disables your internet to protect your IP address while you're not connected to Proton VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>Ha a VPN-kapcsolat megszakad, akkor a VPN helyreállításáig nem lesz kapcsolatban az internettel.</value>
@@ -2217,20 +2276,20 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>A VPN Accelerator segítségével gyorsítva</value>
   </data>
   <data name="Flyouts_Speed_Description1">
-    <value>Ez azt mutatja, hogy másodpercenként mennyi adatot továbbít a Proton VPN.</value>
+    <value>Shows how much data goes through the VPN tunnel in real time.</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>A sebesség az eszköz aktuális aktivitásán alapul - nem a VPN maximális sebességét jelenti.</value>
+    <value>This is based on your device's current activity. In most cases, it doesn't represent the VPN's maximum speed.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Letöltés</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>A VPN-kapcsolat sebességének megértése és növelése</value>
+    <value>VPN speed and traffic explained</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>Sebesség</value>
+    <value>Current traffic</value>
   </data>
   <data name="Flyouts_Speed_Upload">
     <value>Feltöltés</value>
@@ -2276,14 +2335,14 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Mindkét világból a legjobbat kapja</value>
   </data>
   <data name="Flyouts_Volume_Description">
-    <value>Ez megmutatja, hogy mennyi adatforgalom haladt át a VPN-jén.</value>
+    <value>Shows the total amount of data passed through the VPN tunnel since you connected.</value>
   </data>
   <data name="Flyouts_Volume_Download">
     <value>Letöltés</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>Mennyiség</value>
+    <value>Total traffic</value>
   </data>
   <data name="Flyouts_Volume_Upload">
     <value>Feltöltés</value>
@@ -2322,7 +2381,7 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Sebesség ({0})</value>
+    <value>Current traffic ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2377,6 +2436,12 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>hh\:mm\:ss</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
+  <data name="Format_Time_Hours_Ago_One">
+    <value>{0} hour ago</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>{0} hours ago</value>
+  </data>
   <data name="Format_Time_Minutes">
     <value>{0} perc</value>
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
@@ -2389,9 +2454,21 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>mm\:ss</value>
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
+  <data name="Format_Time_Minutes_Ago_One">
+    <value>{0} minute ago</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>{0} minutes ago</value>
+  </data>
   <data name="Format_Time_Seconds">
     <value>{0} mp</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_One">
+    <value>{0} second ago</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>{0} seconds ago</value>
   </data>
   <data name="FreeConnections_P2PUpsell">
     <value>Fájlok letöltése BitTorrent és más fájlmegosztó protokollokon keresztül</value>
@@ -2458,8 +2535,14 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Kapcsolat kártya</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>Advanced kill switch activated</value>
+  </data>
   <data name="Home_ConnectionDetails_City">
     <value>Város</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>Connect to VPN to restore your internet connection.</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
     <value>Kapcsolódva</value>
@@ -2532,7 +2615,7 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Titkosítsa online tevékenységét VPN-hez való csatlakozással.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
-    <value>Mennyiség</value>
+    <value>Total traffic</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>Letöltött mennyiség</value>
@@ -2733,7 +2816,7 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>A nagyobb sebesség érdekében állítsa be ezt a számot a BitTorrent alkalmazásban.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
-    <value>Elérte a maximális eszközlimitet. A VPN-hez való újbóli csatlakozáshoz kérjük, válassza le a kapcsolatot egy másik eszközről.</value>
+    <value>You've reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>A díjcsomagját visszaállítottuk Proton Free-re, és visszakapcsoljuk a leggyorsabb ingyenes szerverre.</value>
@@ -2743,6 +2826,10 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   </data>
   <data name="Notifications_UnsecureWifi_Title">
     <value>Nem biztonságos Wi-Fi kapcsolat észlelve</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Proton VPN - Survey</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Frissítés</value>
@@ -3096,10 +3183,10 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Megakadályozza az IPv6 kiszivárgását az IPv6-címekhez való kapcsolatok blokkolásával.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
-    <value>LAN kapcsolat</value>
+    <value>Allow LAN connections</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Lehetővé teszi a nyomtatókhoz, hangszórókhoz és más eszközökhöz való csatlakozást a készülék helyi hálózatában.</value>
+    <value>Allows connections to printers, speakers, and other devices in your local network.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>NAT típus</value>
@@ -3236,6 +3323,10 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>A porttovábbítás használatához csatlakozzon olyan kiszolgálóhoz, amely támogatja a P2P-t.</value>
   </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>Last changed: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
   <data name="Settings_Connection_PortForwarding_Loading">
     <value>Betöltés...</value>
   </data>
@@ -3288,10 +3379,14 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Eldöntheti, hogy mely alkalmazásokat és IP-címeket védje a VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Fordított</value>
+    <value>Include mode</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>Csak a kiválasztott alkalmazások és IP-címek csatlakoznak VPN-en keresztül, minden más forgalom védtelen.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>Include</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
     <value>IP hozzáadása</value>
@@ -3307,10 +3402,14 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>IPv4 címek hozzáadása</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Alap</value>
+    <value>Exclude mode</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>A kiválasztott alkalmazások és IP-címek ki vannak zárva a VPN-kapcsolatból</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>Exclude</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -3640,6 +3739,9 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>{0} megnyitása</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>Open app to sign in</value>
+  </data>
   <data name="Unit_BytesPerSecond">
     <value>B/mp</value>
     <comment>Unit for Bytes per second</comment>
@@ -3769,13 +3871,16 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Küldjön adatot teljesen biztonságos svájci, svéd és izlandi szervereken keresztül</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Böngészés még nagyobb sebességgel (akár 10 Gbps)</value>
+    <value>Browse at even higher speeds</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Növelje a kapcsolódási sebességet akár 400%-kal a VPN Acceleratorral</value>
+    <value>Browse up to 400% faster with VPN Accelerator</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>Hozzáférés gyorsabb, kevésbé forgalmas szerverekhez</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>Get connection speeds of up to 10 Gbps</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
     <value>Mindkét világból a legjobbat kapja</value>
@@ -3832,11 +3937,8 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Hozzáférés több, mint {0}-hez {1}-ban/ben</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Független biztonsági szakértők által ellenőrzött</value>
-  </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>A cenzúra megkerülése magas szintű biztonsági és adatvédelmi funkciókkal</value>
+    <value>Bypass censorship with advanced security features</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
     <value>{0} ország</value>
@@ -3844,8 +3946,11 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
     <value>{0} ország</value>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
-    <value>Nyílt forráskódú VPN</value>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>Secure streaming, torrenting, and more</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>Select any country from our worldwide network</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
     <value>{0} biztonságos szerver</value>

@@ -294,8 +294,13 @@
   <data name="Common_States_Updating">
     <value>S'està actualitzant...</value>
   </data>
+  <data name="Common_Tags_Beta">
+    <value>BETA</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
   <data name="Common_Tags_New">
     <value>NOU</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
     <value>Aprofiteu al màxim la vostra VPN tot actualitzant-la a la darrera versió de l'aplicació.</value>
@@ -1774,6 +1779,39 @@ Una latència alta pot alentir la connexió.</value>
   <data name="Dialogs_Latency_Title">
     <value>Què és la latència?</value>
   </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>Feu-nos saber per què heu donat aquesta puntuació.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>No hem pogut enviar els vostres comentaris. Comproveu la vostra connexió i torneu-ho a provar.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>Alguna cosa ha anat malament.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>10: Molt probable</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>0: Molt improbable</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>Opcional</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>Comparteix de manera anònima</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>Els vostres comentaris ens ajuden a millorar Proton VPN.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>Gràcies pels vostres comentaris</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>Amb quina probabilitat recomanaríeu Proton VPN a un amic?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>Torneu-ho a provar</value>
+  </data>
   <data name="Dialogs_P2PDetection_Description">
     <value>La vostra connexió s'ha desactivat perquè esteu utilitzant un servidor que no admet trànsit d'extrem a extrem (P2P). P2P no està permès en servidors gratuïts. Utilitzeu un servidor diferent per a P2P.</value>
   </data>
@@ -2040,11 +2078,23 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   <data name="Dialogs_WhatsNew_Gateways_Title">
     <value>S'han mogut les passarel·les.</value>
   </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>Ara us podeu connectar a impressores, altaveus, i altres dispositius de la vostra xarxa local (LAN), evitant el túnel VPN.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>Connexions LAN</value>
+  </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
     <value>Hem actualitzat els nostres dissenys i hem mogut algunes coses per fer que l'aplicació sigui més fàcil d'utilitzar.</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
     <value>Nou aspecte, amb la mateixa protecció</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>Quan la redirecció de ports estigui habilitada, veureu el número de port actiu a la pantalla d'inici.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>Número de port actiu</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
     <value>Afegiu preferències de perfil avançades com ara NetShield i reenviament de ports, o configureu Connecta i continueu per llançar un lloc web que trieu quan us connecteu.</value>
@@ -2063,6 +2113,12 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   </data>
   <data name="Dialogs_WhatsNew_Title">
     <value>Novetats</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>Ara podeu connectar-vos, desconnectar-vos i canviar la connexió predeterminada des de la safata del sistema.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>Nova aplicació de safata del sistema</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Vol sortir de Proton VPN?</value>
@@ -2135,6 +2191,9 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   </data>
   <data name="Flyouts_KillSwitch_Info">
     <value>La vostra adreça IP podria quedar exposada si la vostra connexió VPN cau.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>El kill switch avançat us desactiva internet per protegir la vostra adreça IP mentre no esteu connectat a Proton VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>Si la vostra connexió VPN cau, se us desconnectarà d'internet fins que la VPN es restableixi.</value>
@@ -2218,20 +2277,20 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Potenciat per VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description1">
-    <value>Això mostra quantes dades es transmeten a través de Proton VPN cada segon.</value>
+    <value>Mostra quantes dades passen pel túnel VPN en temps real.</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>La velocitat es basa en l'activitat actual del vostre dispositiu. No representa la velocitat màxima de la VPN.</value>
+    <value>Això es basa en l'activitat actual del vostre dispositiu. En la majoria de casos, no representa la velocitat màxima de la VPN.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Descarrega</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>Entendre i augmentar les velocitats de connexió VPN</value>
+    <value>Explicació de la velocitat i trànsit de la VPN</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>Velocitat</value>
+    <value>Trànsit actual</value>
   </data>
   <data name="Flyouts_Speed_Upload">
     <value>Carrega</value>
@@ -2277,14 +2336,14 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Aconseguiu el millor d'ambdós mons</value>
   </data>
   <data name="Flyouts_Volume_Description">
-    <value>Això mostra el volum de trànsit que ha passat per la vostra VPN.</value>
+    <value>Mostra la quantitat total de dades que han passat pel túnel VPN des que us heu connectat.</value>
   </data>
   <data name="Flyouts_Volume_Download">
     <value>Descarrega</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>Volum</value>
+    <value>Trànsit total</value>
   </data>
   <data name="Flyouts_Volume_Upload">
     <value>Carrega</value>
@@ -2323,7 +2382,7 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Velocitat ({0})</value>
+    <value>Trànsit actual ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2378,6 +2437,12 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>hh\:mm\:ss</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
+  <data name="Format_Time_Hours_Ago_One">
+    <value>Fa {0} hora</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>Fa {0} hores</value>
+  </data>
   <data name="Format_Time_Minutes">
     <value>{0} min</value>
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
@@ -2390,9 +2455,21 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>mm\:ss</value>
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
+  <data name="Format_Time_Minutes_Ago_One">
+    <value>Fa {0} minut</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>Fa {0} minuts</value>
+  </data>
   <data name="Format_Time_Seconds">
     <value>{0} seg</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_One">
+    <value>Fa {0} segon</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>Fa {0} segons</value>
   </data>
   <data name="FreeConnections_P2PUpsell">
     <value>Descarregueu fitxers a través de BitTorrent i altres protocols de compartició de fitxers</value>
@@ -2459,8 +2536,14 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Targeta de connexió</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>S'ha activat el kill switch avançat.</value>
+  </data>
   <data name="Home_ConnectionDetails_City">
     <value>Ciutat</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>Connecteu-vos a la VPN per restaurar la connexió a internet.</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
     <value>Connectat durant</value>
@@ -2533,7 +2616,7 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Xifreu l'activitat en línia connectant-vos a la VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
-    <value>Volum</value>
+    <value>Trànsit total</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>Volum de descàrrega</value>
@@ -2734,7 +2817,7 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Establiu aquest número a la vostra aplicació BitTorrent per obtenir més velocitat.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
-    <value>Heu assolit el vostre límit màxim de dispositius. Per tornar a connectar la VPN, desconnecteu-vos d'un altre dispositiu.</value>
+    <value>Heu arribat al límit màxim de dispositius. Per tornar a connectar la VPN, desconnecteu-vos d'algun dispositiu.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>El vostre pla s'ha rebaixat a Proton Free i us tornem a connectar al servidor gratuït més ràpid.</value>
@@ -2744,6 +2827,10 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   </data>
   <data name="Notifications_UnsecureWifi_Title">
     <value>S'ha detectat una connexió Wi-Fi no segura.</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Enquesta de Proton VPN</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Actualitza ara</value>
@@ -3097,10 +3184,10 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Evita filtracions d'IPv6 bloquejant les connexions a adreces IPv6.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
-    <value>Connexions LAN</value>
+    <value>Permet connexions LAN</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Us permet connectar-vos a impressores, altaveus i altres dispositius de la xarxa local del dispositiu.</value>
+    <value>Permet connexions a impressores, altaveus i altres dispositius de la vostra xarxa local.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>Tipus de NAT</value>
@@ -3237,6 +3324,10 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Per utilitzar la redirecció de ports, connecteu-vos a un servidor que suporti P2P.</value>
   </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>Últim canvi: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
   <data name="Settings_Connection_PortForwarding_Loading">
     <value>S'està carregant...</value>
   </data>
@@ -3289,10 +3380,14 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Personalitzeu la vostra connexió decidint quines aplicacions i adreces IP estan protegides per VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Invers</value>
+    <value>Mode d'inclusió</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>Només les aplicacions i adreces IP seleccionades es connecten via VPN. La resta del trànsit està desprotegit.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>Inclusió</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
     <value>Afegeix una IP</value>
@@ -3308,10 +3403,14 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Afegeix una adreça IPv4</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Estàndard</value>
+    <value>Mode d'exclusió</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>Les aplicacions i adreces IP seleccionades s'exclouen de la connexió VPN</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>Exclusió</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -3641,6 +3740,9 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Obre {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>Obriu 'l'aplicació per iniciar la sessió</value>
+  </data>
   <data name="Unit_BytesPerSecond">
     <value>B/s</value>
     <comment>Unit for Bytes per second</comment>
@@ -3770,13 +3872,16 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Dirigiu el vostre trànsit a través de servidors ultra segurs a Suïssa, Suècia i Islàndia.</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Navegueu a velocitats encara més altes (fins a 10 Gbps)</value>
+    <value>Navegueu a velocitats encara més altes</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Augmenteu les vostres velocitats de connexió fins a un 400% amb el VPN Accelerator</value>
+    <value>Navegueu fins a un 400% més ràpidament amb VPN Accelerator</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>Accediu a servidors més ràpids i menys saturats</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>Obtingueu velocitats de connexió de fins a 10 Gbps.</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
     <value>Aconseguiu el millor d'ambdós mons</value>
@@ -3833,11 +3938,8 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Accediu a més de {0} en {1}</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>Auditat per experts en seguretat independents</value>
-  </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>Eviteu la censura amb funcions avançades de seguretat i privadesa</value>
+    <value>Eviteu la censura amb funcions avançades de seguretat</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
     <value>{0} país</value>
@@ -3845,8 +3947,11 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
     <value>{0} països</value>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
-    <value>VPN de codi obert</value>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>Reproducció en continu, descàrregues amb torrent i molt més de manera segura</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>Seleccioneu qualsevol país de la nostra xarxa mundial</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
     <value>{0} servidor segur</value>

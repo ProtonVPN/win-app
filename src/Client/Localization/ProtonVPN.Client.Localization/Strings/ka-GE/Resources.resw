@@ -294,8 +294,13 @@
   <data name="Common_States_Updating">
     <value>განახლება...</value>
   </data>
+  <data name="Common_Tags_Beta">
+    <value>BETA</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
   <data name="Common_Tags_New">
     <value>ახალი</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
     <value>მიიღეთ VPN-ისგან უფრო მეტი აპის ბოლო ვერსიამდე განახლებით.</value>
@@ -1773,6 +1778,39 @@
   <data name="Dialogs_Latency_Title">
     <value>რა არის დაყოვნება?</value>
   </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>Please let us know why you gave that rating</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>We couldn't send your feedback. Please check your connection and try again.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>Something went wrong</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>10 is very likely</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>0 is very unlikely</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>Optional</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>Share anonymously</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>Your feedback helps us improve Proton VPN.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>Thanks for your feedback</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>How likely are you to recommend Proton VPN to a friend?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>Try again</value>
+  </data>
   <data name="Dialogs_P2PDetection_Description">
     <value>თქვენი შეერთება გათიშულია, რადგან იყენებთ სერვერს, რომელსაც P2P ტრაფიკის მხარდაჭერა არ გააჩნია. P2P მხარდაუჭერელია უფასო სერვერებზე. P2P-სთვის სხვა სერვერი აირჩიეთ.</value>
   </data>
@@ -2034,16 +2072,28 @@
     <value>მოგესალმებით Proton VPN-ში</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>You can now access your organization’s dedicated servers from the main sidebar.</value>
+    <value>You can now access your organization's dedicated servers from the main sidebar.</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
     <value>Gateways have moved</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>You can now connect to printers, speakers, and other devices on your local network (LAN), bypassing the VPN tunnel.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>LAN connections</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
     <value>We refreshed our designs and moved some things around to make the app easier to use.</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
     <value>New look, same protection</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>When port forwarding is enabled, you'll now see your active port number on the home screen.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>Active port number</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
     <value>Add advanced profile settings like NetShield and port forwarding, or set up Connect and Go to launch a website of your choice when you connect.</value>
@@ -2062,6 +2112,12 @@
   </data>
   <data name="Dialogs_WhatsNew_Title">
     <value>What's new</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>You can now connect, disconnect, and change your default connection from the system tray.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>New system tray app</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>გავიდე Proton VPN-დან?</value>
@@ -2134,6 +2190,9 @@
   </data>
   <data name="Flyouts_KillSwitch_Info">
     <value>თქვენი IP მისამართი, შეიძლება, გამჟღავნდეს, თუ VPN გაითიშება</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>Advanced kill switch disables your internet to protect your IP address while you're not connected to Proton VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>If your VPN connection drops, you'll be disconnected from the internet until VPN is restored</value>
@@ -2217,20 +2276,20 @@
     <value>აჩქარებულია VPN Accelerator-ით</value>
   </data>
   <data name="Flyouts_Speed_Description1">
-    <value>ეს გაჩვენებთ, რამდენი მონაცემი გადაიცემა Proton VPN-ით წამში.</value>
+    <value>Shows how much data goes through the VPN tunnel in real time.</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>Speed is based on your device's current activity — it doesn't represent the VPN's maximum speed.</value>
+    <value>This is based on your device's current activity. In most cases, it doesn't represent the VPN's maximum speed.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>გადმოწერა</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>VPN მიერთების სიჩქარის გაგება და გაზრდა</value>
+    <value>VPN speed and traffic explained</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>სიჩქარე</value>
+    <value>Current traffic</value>
   </data>
   <data name="Flyouts_Speed_Upload">
     <value>ატვირთვა</value>
@@ -2276,14 +2335,14 @@
     <value>მიიღეთ საუკეთესო ორივე სამყაროდან</value>
   </data>
   <data name="Flyouts_Volume_Description">
-    <value>ესა ჩვენებს, რამდენი ტრაფიკი გატარდა თქვენს VPN-ში.</value>
+    <value>Shows the total amount of data passed through the VPN tunnel since you connected.</value>
   </data>
   <data name="Flyouts_Volume_Download">
     <value>გადმოწერა</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>მოცულობა</value>
+    <value>Total traffic</value>
   </data>
   <data name="Flyouts_Volume_Upload">
     <value>ატვირთვა</value>
@@ -2322,7 +2381,7 @@
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>სიჩქარე ({0})</value>
+    <value>Current traffic ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2377,6 +2436,12 @@
     <value>სს\:წწ\:წწ</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
+  <data name="Format_Time_Hours_Ago_One">
+    <value>{0} hour ago</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>{0} hours ago</value>
+  </data>
   <data name="Format_Time_Minutes">
     <value>{0} წთ</value>
     <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
@@ -2389,9 +2454,21 @@
     <value>მმ\:წწ</value>
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
+  <data name="Format_Time_Minutes_Ago_One">
+    <value>{0} minute ago</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>{0} minutes ago</value>
+  </data>
   <data name="Format_Time_Seconds">
     <value>{0} წმ</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_One">
+    <value>{0} second ago</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>{0} seconds ago</value>
   </data>
   <data name="FreeConnections_P2PUpsell">
     <value>გადმოწერეთ ფაილები BitTorrent-ით და სხვა ფაილების გაზიარების პროტოკოლებით</value>
@@ -2458,8 +2535,14 @@
     <value>მიერთების ბარათი</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>Advanced kill switch activated</value>
+  </data>
   <data name="Home_ConnectionDetails_City">
     <value>ქალაქი</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>Connect to VPN to restore your internet connection.</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
     <value>დაკავშირებულია</value>
@@ -2532,7 +2615,7 @@
     <value>დაშიფრეთ თქვენი აქტივობა ინტერნეტში VPN-თან მიერთებით</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
-    <value>მოცულობა</value>
+    <value>Total traffic</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>გადმოწერილი მოცულობა</value>
@@ -2733,7 +2816,7 @@
     <value>დააყენეთ ეს რიცხვი BitTorrent-ის თქვენ აპლიკაციაში უფრო მეტი სიჩქარის მისაღებად.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
-    <value>You’ve reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
+    <value>You've reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>თქვენი სატარიფო გეგმა ჩამოწეულია Proton Free-ზე და ჩვენ თავიდან დაგაკავშირებთ უსწრაფეს უფასო სერვერთან.</value>
@@ -2743,6 +2826,10 @@
   </data>
   <data name="Notifications_UnsecureWifi_Title">
     <value>აღმოჩენილია დაუცველი უსადენო კავშირი</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Proton VPN - Survey</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>ახლა განახლება</value>
@@ -3096,10 +3183,10 @@ VPN მიერთება</value>
     <value>თავიდან იცილებს IPv6 გაჟონვებს IPv6 მისამართებთან მიერთების დაბლოკვით.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
-    <value>LAN შეერთებები</value>
+    <value>Allow LAN connections</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>საშუალებას გაძლევთ, დაუკავშირდეთ პრინტერებს, დინამიკებს და სხვა მოწყობილობებს თქვენი მოწყობილობის ლოკალურ ქსელში.</value>
+    <value>Allows connections to printers, speakers, and other devices in your local network.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>NAT-ის ტიპი</value>
@@ -3236,6 +3323,10 @@ VPN მიერთება</value>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>იმისათვის, რომ გამოიყენოთ პორტის გადამისამართება, დაუკავშირდით სერვერს, რომელსაც P2P-ის მხარდაჭერა გააჩნია</value>
   </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>Last changed: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
   <data name="Settings_Connection_PortForwarding_Loading">
     <value>ჩატვირთვა...</value>
   </data>
@@ -3288,10 +3379,14 @@ VPN მიერთება</value>
     <value>მოირგეთ თქვენი მიერთება, გადაწყვიტეთ, რომელი აპები და IP მისამართები იქნებიან VPN-ით დაცული.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>შებრუნება</value>
+    <value>Include mode</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>მხოლოდ, არჩეული აპები და IP მისამართები გამოიყენებენ VPN-ს. დანარჩენი ყველაფერი დაუცველი იქნება</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>Include</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
     <value>IP-ის დამატება</value>
@@ -3307,10 +3402,14 @@ VPN მიერთება</value>
     <value>IPv4 მისამართის დამატება</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>სტანდარტული</value>
+    <value>Exclude mode</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>მონიშნული აპები და IP მისამართები ამოღებულია VPN მიერთებიდან</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>Exclude</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
@@ -3640,6 +3739,9 @@ VPN მიერთება</value>
     <value>{0}-ის გახსნა</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>Open app to sign in</value>
+  </data>
   <data name="Unit_BytesPerSecond">
     <value>ბ/წმ</value>
     <comment>Unit for Bytes per second</comment>
@@ -3769,13 +3871,16 @@ VPN მიერთება</value>
     <value>დააროუტეთ თქვენი ტრაფიკი ჩვენს ზედაცულ სერვერებზე, რომლებიც შვეიცარიაში, შვედეთში და ისლანდიაში მდებარეობს</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>იმუშავეთ კიდევ უფრო სწრაფად (10 გბ/წმ-მდე)</value>
+    <value>Browse at even higher speeds</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>გაზარდეთ თქვენი მიერთების სიჩქარე 400%-მდე VPN-ის ამაჩქარებელთან ერთად</value>
+    <value>Browse up to 400% faster with VPN Accelerator</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>იქონიეთ წვდომა უფრო სწრაფ, ნაკლებად დატვირთულ სერვერებთან</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>Get connection speeds of up to 10 Gbps</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
     <value>მიიღეთ საუკეთესო ორივე სამყაროდან</value>
@@ -3832,11 +3937,8 @@ VPN მიერთება</value>
     <value>მიიღეთ წვდომა {0}-ზე {1}-ში</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_Audit">
-    <value>აუდიტი დამოუკიდებელი უსაფრთხოების ექსპერტებისგან</value>
-  </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>დააღწიეთ თავი ცენზურას დამატებითი უსაფრთხოებისა და კონფიდენციალობის ფუნქციებით</value>
+    <value>Bypass censorship with advanced security features</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
     <value>{0} ქვეყანა</value>
@@ -3844,8 +3946,11 @@ VPN მიერთება</value>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
     <value>{0} ქვეყანა</value>
   </data>
-  <data name="Upsell_Carousel_WorldwideCoverage_OpenSource">
-    <value>ღია კოდის მქონე VPN</value>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>Secure streaming, torrenting, and more</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>Select any country from our worldwide network</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
     <value>{0} დაცული სერვერი</value>
