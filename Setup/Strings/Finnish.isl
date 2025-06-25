@@ -1,4 +1,4 @@
-[CustomMessages]
+﻿[CustomMessages]
 InstallerTitle=Proton VPN on valmis asennettavaksi
 InstallOtherApps=Valitse muut asennettavat Proton-sovellukset. Nämä palvelut kuuluvat tilaukseesi.
 FreeTrial=Ilmainen kokeilu
