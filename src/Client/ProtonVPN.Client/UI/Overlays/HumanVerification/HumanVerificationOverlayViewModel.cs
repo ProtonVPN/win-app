@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -40,8 +40,6 @@ public partial class HumanVerificationOverlayViewModel : OverlayViewModelBase<IM
 
     private string _token = string.Empty;
 
-    public bool IsDarkTheme => _themeSelector.GetTheme() == ElementTheme.Dark;
-
     public string Url => GetCaptchaUrl();
 
     public HumanVerificationOverlayViewModel(
@@ -68,9 +66,13 @@ public partial class HumanVerificationOverlayViewModel : OverlayViewModelBase<IM
 
     public void Receive(ThemeChangedMessage message)
     {
+        if (!IsActive)
+        {
+            return;
+        }
+
         ExecuteOnUIThread(() =>
         {
-            OnPropertyChanged(nameof(IsDarkTheme));
             OnPropertyChanged(nameof(Url));
         });
     }
@@ -91,7 +93,8 @@ public partial class HumanVerificationOverlayViewModel : OverlayViewModelBase<IM
 
     private string GetCaptchaUrl()
     {
-        string relativeUri = $"core/v4/captcha?Token={_token}{(IsDarkTheme ? "&Dark=1" : string.Empty)}";
+        bool isDarkTheme = _themeSelector.GetTheme() == ElementTheme.Dark;
+        string relativeUri = $"core/v4/captcha?Token={_token}{(isDarkTheme ? "&Dark=1" : string.Empty)}";
         Uri requestUri = new(_apiHostProvider.GetBaseUri(), relativeUri);
         return requestUri.AbsoluteUri;
     }

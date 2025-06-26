@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -88,7 +88,32 @@ public sealed partial class HumanVerificationOverlayView : IContextAware
 
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
+        CleanupWebView();
         ViewModel.Deactivate();
+    }
+
+    private void CleanupWebView()
+    {
+        try
+        {
+            if (WebView2 is null)
+            {
+                return;
+            }
+
+            WebView2.CoreWebView2Initialized -= OnCoreWebView2InitializedAsync;
+            WebView2.WebMessageReceived -= WebView2_WebMessageReceived;
+
+            if (WebView2?.CoreWebView2 != null)
+            {
+                WebView2.CoreWebView2.ServerCertificateErrorDetected -= OnServerCertificateErrorDetected;
+                WebView2.CoreWebView2.WebResourceRequested -= CoreWebView2_WebResourceRequested;
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<AppLog>("Failed to cleanup WebView2 event handlers.", ex);
+        }
     }
 
     private void InitializeWebView()
