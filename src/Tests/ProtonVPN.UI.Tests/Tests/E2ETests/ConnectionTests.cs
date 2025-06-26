@@ -19,6 +19,7 @@
 
 using System.Threading;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -30,7 +31,8 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("1")]
 public class ConnectionTests : FreshSessionSetUp
 {
-    private const string COUNTRY_CODE = "AU";
+    private const string COUNTRY_NAME = "France";
+    private static readonly string COUNTRY_CODE = CountryCodes.GetCode(COUNTRY_NAME);
     private const string FAST_CONNECTION = "Fastest country";
     private const string RANDOM_COUNTRY = "Random country";
 
@@ -231,7 +233,7 @@ public class ConnectionTests : FreshSessionSetUp
     [Test]
     public void ConnectToSecureCoreServerCountriesListAndDisconnectViaCountry()
     {
-        ConnectToSecureCoreAndVerify(COUNTRY_CODE);
+        ConnectToServerListAndVerify(COUNTRY_CODE, CountriesTab.SecureCore);
 
         SidebarRobot.DisconnectViaCountry(COUNTRY_CODE);
 
@@ -241,24 +243,46 @@ public class ConnectionTests : FreshSessionSetUp
     [Test]
     public void ConnectToSecureCoreServerCountriesListAndDisconnect()
     {
-        ConnectToSecureCoreAndVerify(COUNTRY_CODE);
+        ConnectToServerListAndVerify(COUNTRY_CODE, CountriesTab.SecureCore);
         
         HomeRobot
             .Disconnect()
             .Verify.IsDisconnected();
     }
 
-    private void ConnectToSecureCoreAndVerify(string countryCode)
+    [Test]
+    public void ConnectToP2PServerCountriesListAndDisconnectViaCountry()
+    {
+        ConnectToServerListAndVerify(COUNTRY_CODE, CountriesTab.P2P);
+
+        SidebarRobot.DisconnectViaCountry(COUNTRY_CODE);
+
+        HomeRobot.Verify.IsDisconnected();
+    }
+
+    [Test]
+    public void ConnectToTorServerCountriesListAndDisconnectViaCountry()
+    {
+        ConnectToServerListAndVerify(COUNTRY_CODE, CountriesTab.Tor);
+
+        SidebarRobot.DisconnectViaCountry(COUNTRY_CODE);
+
+        HomeRobot.Verify.IsDisconnected();
+    }
+
+    private void ConnectToServerListAndVerify(string countryCode, CountriesTab? tab)
     {
         string ipBefore = NetworkUtils.GetIpAddressWithRetry();
 
         NavigationRobot
-           .Verify.IsOnHomePage()
-                  .IsOnConnectionsPage();
+            .Verify.IsOnHomePage()
+                   .IsOnConnectionsPage();
 
-        SidebarRobot
-            .NavigateToSecureCoreCountriesTab()
-            .ConnectToCountry(countryCode);
+        SidebarRobot.SearchFor(COUNTRY_NAME);
+
+        SidebarRobot.NavigateToCountriesTabAfterSearch(tab.Value.ToString());
+
+        SidebarRobot.ConnectToCountry(countryCode);
 
         HomeRobot
             .Verify.IsConnecting()

@@ -19,8 +19,6 @@
 
 using System;
 using System.Threading;
-using FlaUI.Core.AutomationElements;
-using FlaUI.Core.Conditions;
 using FlaUI.Core.Input;
 using FlaUI.Core.Tools;
 using FlaUI.Core.WindowsAPI;
@@ -140,10 +138,11 @@ public class SidebarRobot
         ProfilesListItem.Click();
         return this;
     }
-
+   
     public SidebarRobot ConnectViaServerList(string connectionValue)
     {
         Element countryButton = Element.ByAutomationId($"Connect_to_{connectionValue}");
+        countryButton.ScrollIntoView();
         countryButton.FindChild(Element.ByAutomationId("ConnectionRowHeader")).Click();
         return this;
     }
@@ -345,6 +344,12 @@ public class SidebarRobot
         // Remove when VPNWIN-2599 is implemented.
         Thread.Sleep(TestConstants.AnimationDelay);
 
+        return this;
+    }
+
+    public SidebarRobot NavigateToCountriesTabAfterSearch(string tabName)
+    {
+        SearchResultsPage.ClickTabByName(tabName);
         return this;
     }
 

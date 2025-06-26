@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using FlaUI.Core.AutomationElements;
@@ -254,4 +255,17 @@ public static class UiActions
         RadioButton radioButton = new RadioButton(element.FrameworkAutomationElement);
         return radioButton.IsChecked;
     }
+
+    public static T ClickTabByName<T>(this T desiredElement, string partialName) where T : Element
+    {
+        AutomationElement element = WaitUntilExists(desiredElement);
+
+        AutomationElement tabItem = element
+            .FindAllDescendants(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.TabItem))
+            .FirstOrDefault(t => t.Name.Contains(partialName, StringComparison.OrdinalIgnoreCase)) 
+            ?? throw new Exception($"TabItem containing '{partialName}' not found.");
+
+        tabItem.AsTabItem().Select();
+        return desiredElement;
+    }   
 }
