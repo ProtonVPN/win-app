@@ -2072,16 +2072,16 @@
     <value>Welkom bij Proton VPN</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>You can now access your organization's dedicated servers from the main sidebar.</value>
+    <value>U heeft nu toegang tot de specifieke servers van uw organisatie vanuit de hoofdnavigatie.</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
     <value>Gateways zijn verplaatst</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
-    <value>You can now connect to printers, speakers, and other devices on your local network (LAN), bypassing the VPN tunnel.</value>
+    <value>U kunt nu verbinden met printers, luidsprekers en andere apparaten op uw lokale netwerk (LAN), door de VPN-tunnel te omzeilen.</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Title">
-    <value>LAN connections</value>
+    <value>LAN-verbindingen</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
     <value>We hebben onze ontwerpen vernieuwd en enkele dingen verplaatst om de app gemakkelijker te kunnen gebruiken.</value>
@@ -2090,10 +2090,10 @@
     <value>Nieuw uiterlijk, dezelfde beveiliging</value>
   </data>
   <data name="Dialogs_WhatsNew_PortNumber_Description">
-    <value>When port forwarding is enabled, you'll now see your active port number on the home screen.</value>
+    <value>Wanneer port forwarding is ingeschakeld, ziet u nu uw actieve poortnummer op het startscherm.</value>
   </data>
   <data name="Dialogs_WhatsNew_PortNumber_Title">
-    <value>Active port number</value>
+    <value>Actief poortnummer</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
     <value>Voeg geavanceerde profielinstellingen toe zoals NetShield en port forwarding, of stel Verbinden en doorgaan in om naar een specifieke website te gaan als u verbinding maakt.</value>
@@ -2114,10 +2114,10 @@
     <value>Wat is er nieuw</value>
   </data>
   <data name="Dialogs_WhatsNew_TrayApp_Description">
-    <value>You can now connect, disconnect, and change your default connection from the system tray.</value>
+    <value>U kunt nu verbinden, loskoppelen en uw standaard verbinding vanuit de taakbalk wijzigen.</value>
   </data>
   <data name="Dialogs_WhatsNew_TrayApp_Title">
-    <value>New system tray app</value>
+    <value>Nieuwe taakbalk app</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Proton VPN sluiten?</value>
@@ -2192,7 +2192,7 @@
     <value>Uw IP-adres kan worden blootgesteld als uw VPN-verbinding wegvalt</value>
   </data>
   <data name="Flyouts_KillSwitch_Info_Disconnected">
-    <value>Advanced kill switch disables your internet to protect your IP address while you're not connected to Proton VPN.</value>
+    <value>Geavanceerde IP-beveiliging schakelt u internet uit om uw IP-adres te beschermen terwijl u niet bent verbonden met Proton VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>Als uw VPN-verbinding wegvalt, wordt u losgekoppeld van het internet totdat de VPN is hersteld</value>
@@ -2276,20 +2276,20 @@
     <value>Geboost door VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description1">
-    <value>Shows how much data goes through the VPN tunnel in real time.</value>
+    <value>Toont hoeveel data er in realtime door de VPN-tunnel gaat.</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>This is based on your device's current activity. In most cases, it doesn't represent the VPN's maximum speed.</value>
+    <value>Dit is gebaseerd op de huidige activiteit van uw apparaat. In de meeste gevallen vertegenwoordigt het niet de maximale snelheid van de VPN.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Download</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>VPN speed and traffic explained</value>
+    <value>VPN-snelheid en verkeer uitgelegd</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>Current traffic</value>
+    <value>Huidig verkeer</value>
   </data>
   <data name="Flyouts_Speed_Upload">
     <value>Upload</value>
@@ -2335,14 +2335,14 @@
     <value>Krijg het beste van beide werelden</value>
   </data>
   <data name="Flyouts_Volume_Description">
-    <value>Shows the total amount of data passed through the VPN tunnel since you connected.</value>
+    <value>Toont de totale hoeveelheid gegevens die via de VPN-tunnel zijn doorgegeven sinds u verbinding maakte.</value>
   </data>
   <data name="Flyouts_Volume_Download">
     <value>Download</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>Total traffic</value>
+    <value>Totaal verkeer</value>
   </data>
   <data name="Flyouts_Volume_Upload">
     <value>Upload</value>
@@ -2381,7 +2381,7 @@
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Current traffic ({0})</value>
+    <value>Huidig verkeer ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2437,10 +2437,10 @@
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
   <data name="Format_Time_Hours_Ago_One">
-    <value>{0} hour ago</value>
+    <value>{0} uur geleden</value>
   </data>
   <data name="Format_Time_Hours_Ago_Other">
-    <value>{0} hours ago</value>
+    <value>{0} uren geleden</value>
   </data>
   <data name="Format_Time_Minutes">
     <value>{0} min</value>
@@ -2455,20 +2455,20 @@
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
   <data name="Format_Time_Minutes_Ago_One">
-    <value>{0} minute ago</value>
+    <value>{0} minuut geleden</value>
   </data>
   <data name="Format_Time_Minutes_Ago_Other">
-    <value>{0} minutes ago</value>
+    <value>{0} minuten geleden</value>
   </data>
   <data name="Format_Time_Seconds">
     <value>{0} sec</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
   </data>
   <data name="Format_Time_Seconds_Ago_One">
-    <value>{0} second ago</value>
+    <value>{0} seconde geleden</value>
   </data>
   <data name="Format_Time_Seconds_Ago_Other">
-    <value>{0} seconds ago</value>
+    <value>{0} seconden geleden</value>
   </data>
   <data name="FreeConnections_P2PUpsell">
     <value>Download bestanden via BitTorrent en andere protocollen voor bestandsdeling</value>
@@ -2536,13 +2536,13 @@
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
-    <value>Advanced kill switch activated</value>
+    <value>Geavanceerde IP-beveiliging geactiveerd</value>
   </data>
   <data name="Home_ConnectionDetails_City">
     <value>Stad</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
-    <value>Connect to VPN to restore your internet connection.</value>
+    <value>Maak verbinding met VPN om uw internetverbinding te herstellen.</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
     <value>Verbonden</value>
@@ -2615,7 +2615,7 @@
     <value>Versleutel uw online activiteit door te verbinden met VPN.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
-    <value>Total traffic</value>
+    <value>Totaal verkeer</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>Downloadvolume</value>
@@ -2816,7 +2816,7 @@
     <value>Stel dit nummer in uw BitTorrent-app in voor hogere snelheid.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
-    <value>You've reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
+    <value>U hebt uw maximale apparaatlimiet bereikt. Om opnieuw verbinding te maken met VPN, verbreek de verbinding van een ander apparaat.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Uw abonnement is gedowngraded naar Proton Free, en we verbinden u opnieuw met de snelste gratis server.</value>
@@ -2828,7 +2828,7 @@
     <value>Onveilige wifi-verbinding gedetecteerd</value>
   </data>
   <data name="NpsSurvey_Title">
-    <value>Proton VPN - Survey</value>
+    <value>Proton VPN - Enquête</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_OutdatedClient_Action">
@@ -3183,10 +3183,10 @@ VPN-verbinding</value>
     <value>Voorkomt IPv6-lekken door verbindingen naar IPv6-adressen te blokkeren.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
-    <value>Allow LAN connections</value>
+    <value>LAN-verbindingen toestaan</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Allows connections to printers, speakers, and other devices in your local network.</value>
+    <value>Maakt verbindingen met printers, luidsprekers en andere apparaten in uw lokale netwerk mogelijk.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>NAT-type</value>
@@ -3324,7 +3324,7 @@ VPN-verbinding</value>
     <value>Maak verbinding met een server die P2P ondersteunt om port forwarding te gebruiken.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_LastChanged">
-    <value>Last changed: {0}</value>
+    <value>Laatst gewijzigd: {0}</value>
     <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
   </data>
   <data name="Settings_Connection_PortForwarding_Loading">
@@ -3379,13 +3379,13 @@ VPN-verbinding</value>
     <value>Pas uw verbinding aan door te beslissen welke apps en IP-adressen worden beschermd door VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Include mode</value>
+    <value>Toevoeg-modus</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>Alleen geselecteerde apps en IP-adressen maken verbinding via VPN. Al het andere verkeer is onbeschermd</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
-    <value>Include</value>
+    <value>Inclusief</value>
     <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
@@ -3402,13 +3402,13 @@ VPN-verbinding</value>
     <value>IPv4-adres toevoegen</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Exclude mode</value>
+    <value>Uitsluit-modus</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>Geselecteerde apps en IP-adressen zijn uitgesloten van de VPN-verbinding</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Short">
-    <value>Exclude</value>
+    <value>Exclusief</value>
     <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
@@ -3740,7 +3740,7 @@ VPN-verbinding</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
-    <value>Open app to sign in</value>
+    <value>Open app om in te loggen</value>
   </data>
   <data name="Unit_BytesPerSecond">
     <value>B/s</value>
@@ -3871,16 +3871,16 @@ VPN-verbinding</value>
     <value>Routeer via ultrabeveiligde servers in Zwitserland, Zweden en IJsland</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Browse at even higher speeds</value>
+    <value>Surf met nog hogere snelheden</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Browse up to 400% faster with VPN Accelerator</value>
+    <value>Surf tot wel 400% sneller met VPN Accelerator</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>Krijg toegang tot snellere, minder drukke servers</value>
   </data>
   <data name="Upsell_Carousel_Speed_Traffic">
-    <value>Get connection speeds of up to 10 Gbps</value>
+    <value>Ontvang verbindingssnelheden tot wel 10 Gbps</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
     <value>Krijg het beste van beide werelden</value>
@@ -3938,7 +3938,7 @@ VPN-verbinding</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>Bypass censorship with advanced security features</value>
+    <value>Omzeil censuur met geavanceerde beveiligingsfuncties</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
     <value>{0} land</value>
@@ -3947,10 +3947,10 @@ VPN-verbinding</value>
     <value>{0} landen</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Features">
-    <value>Secure streaming, torrenting, and more</value>
+    <value>Veilig streaming, torrenten en meer</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Selection">
-    <value>Select any country from our worldwide network</value>
+    <value>Selecteer een willekeurig land uit ons wereldwijde netwerk</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
     <value>{0} beveiligde server</value>

@@ -2276,7 +2276,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Boostas av VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description1">
-    <value>Shows how much data goes through the VPN tunnel in real time.</value>
+    <value>Visar hur mycket data som går genom VPN-tunneln i realtid.</value>
   </data>
   <data name="Flyouts_Speed_Description2">
     <value>This is based on your device's current activity. In most cases, it doesn't represent the VPN's maximum speed.</value>
@@ -2286,7 +2286,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>VPN speed and traffic explained</value>
+    <value>VPN-hastighet och trafik förklaras</value>
   </data>
   <data name="Flyouts_Speed_Title">
     <value>Nuvarande trafik</value>

@@ -1926,7 +1926,7 @@
     <value>Растлумачце, чаму вы так нас ацанілі</value>
   </data>
   <data name="Dialogs_NpsSurvey_ErrorSubtitle">
-    <value>Мы не можам адправіць ваш водгук. Праверце сваё злучэнне і паўтарыце спробу.</value>
+    <value>Мы не можам адправіць ваш водгук. Праверце сваё падключэнне і паўтарыце спробу.</value>
   </data>
   <data name="Dialogs_NpsSurvey_ErrorTitle">
     <value>Нешта пайшло не так</value>
@@ -2228,7 +2228,7 @@
     <value>Шлюзы былі перанесены</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
-    <value>Цяпер вы можаце падключацца да прынтараў, дынамікаў і іншых прылад у лакальнай сетцы (LAN) абыходзячы тунэль VPN.</value>
+    <value>Цяпер вы можаце падключацца да прынтараў, дынамікаў і іншых прылад у лакальнай сетцы (LAN), абыходзячы тунэль VPN.</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Title">
     <value>Падключэнні па лакальнай сетцы</value>
@@ -3540,7 +3540,7 @@ Secure Core</value>
     <value>Падключайцеся да сервера з падтрымкай P2P, каб скарыстацца функцыяй перанакіравання партоў.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_LastChanged">
-    <value>Апошняя змена: {0}</value>
+    <value>Апошняе змяненне: {0}</value>
     <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
   </data>
   <data name="Settings_Connection_PortForwarding_Loading">
