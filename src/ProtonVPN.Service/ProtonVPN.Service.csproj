@@ -71,7 +71,6 @@
         <PackageReference Include="Autofac" />
         <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" />
         <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" />
-        <PackageReference Include="PInvoke.Kernel32" />
         <PackageReference Include="Polly" />
         <PackageReference Include="protobuf-net.Grpc" />
         <PackageReference Include="protobuf-net.Grpc.Native" />

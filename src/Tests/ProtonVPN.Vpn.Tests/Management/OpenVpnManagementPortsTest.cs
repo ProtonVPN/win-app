@@ -35,8 +35,8 @@ namespace ProtonVPN.Vpn.Tests.Management
             int result = ports.Port();
             // Assert
             result.Should()
-                .BeGreaterOrEqualTo(49152).And
-                .BeLessOrEqualTo(65535);
+                .BeGreaterThanOrEqualTo(49152).And
+                .BeLessThanOrEqualTo(65535);
         }
     }
 }
