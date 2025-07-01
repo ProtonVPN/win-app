@@ -121,7 +121,9 @@ public class Bootstrapper : IBootstrapper
                 case ExtendedActivationKind.Protocol:
                     HandleProtocolActivationArguments(e.Data as ProtocolActivatedEventArgs);
                     break;
-
+                case ExtendedActivationKind.StartupTask:
+                    _logger.Info<AppLog>($"Handle startup activation - App is already started, do nothing");
+                    break;
                 default:
                     _logger.Info<AppLog>($"Handle {e.Kind} activation - Activate window");
                     _mainWindowActivator.Activate();
