@@ -88,14 +88,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <ScrollViewer Grid.Row="2"
                       IsTabStop="False"
                       VerticalScrollBarVisibility="Auto">
-            <ItemsRepeater DataContext="{x:Bind ViewModel}"
+            <ItemsControl DataContext="{x:Bind ViewModel}"
                            ItemsSource="{x:Bind ViewModel.Suggestions}"
                            Margin="0,12">
-                <ItemsRepeater.ItemTemplate>
+                <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="reportissue:IssueSuggestion">
                         <Grid>
                             <Border x:Name="proxy"
-                                    aprop:AncestorSource.AncestorType="ItemsRepeater" />
+                                    aprop:AncestorSource.AncestorType="ItemsControl" />
                             <toolkit:SettingsCard AutomationProperties.AutomationId="IssueSuggestionSettingsCard"
                                                   AutomationProperties.Name="{x:Bind Name, Mode=OneTime}"
                                                   Command="{Binding DataContext.DataContext.BrowseLinkCommand, ElementName=proxy}"
@@ -114,8 +114,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </toolkit:SettingsCard>
                         </Grid>
                     </DataTemplate>
-                </ItemsRepeater.ItemTemplate>
-            </ItemsRepeater>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </ScrollViewer>
 
         <TextBlock Grid.Row="3"

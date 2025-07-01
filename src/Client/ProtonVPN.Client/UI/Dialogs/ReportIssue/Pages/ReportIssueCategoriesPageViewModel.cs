@@ -17,9 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Api.Contracts.ReportAnIssue;
+using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Models.ReportIssue;
 using ProtonVPN.Client.Core.Services.Navigation;
@@ -35,7 +35,7 @@ public partial class ReportIssueCategoriesPageViewModel : ReportIssuePageViewMod
 
     private SemaphoreSlim _semaphore = new(1);
 
-    public ObservableCollection<IssueCategory> Categories { get; }
+    public SmartObservableCollection<IssueCategory> Categories { get; }
 
     public ReportIssueCategoriesPageViewModel(
         IReportIssueDataProvider dataProvider,
@@ -76,12 +76,7 @@ public partial class ReportIssueCategoriesPageViewModel : ReportIssuePageViewMod
         {
             List<IssueCategoryResponse> categories = await _dataProvider.GetCategoriesAsync();
 
-            Categories.Clear();
-
-            foreach (IssueCategoryResponse category in categories)
-            {
-                Categories.Add(ReportIssueMapper.Map(category));
-            }
+            Categories.Reset(categories.Select(ReportIssueMapper.Map));
         }
         finally
         {
