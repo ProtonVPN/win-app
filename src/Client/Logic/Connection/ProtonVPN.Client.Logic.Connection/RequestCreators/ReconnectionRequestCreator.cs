@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -25,6 +25,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
@@ -64,22 +65,25 @@ public class ReconnectionRequestCreator : ConnectionRequestCreator, IReconnectio
             config.PreferredProtocols = preferredProtocols;
         }
 
+        IEnumerable<PhysicalServer> physicalServers = GetReconnectionPhysicalServers(connectionIntent,
+            EntityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(config.PreferredProtocols));
+
         ConnectionRequestIpcEntity request = new()
         {
             RetryId = Guid.NewGuid(),
             Config = config,
             Credentials = await GetVpnCredentialsAsync(),
             Protocol = VpnProtocolIpcEntity.Smart,
-            Servers = PhysicalServersToVpnServerIpcEntities(GetReconnectionPhysicalServers(connectionIntent)),
+            Servers = PhysicalServersToVpnServerIpcEntities(physicalServers),
             Settings = settings,
         };
 
         return request;
     }
 
-    private IEnumerable<PhysicalServer> GetReconnectionPhysicalServers(IConnectionIntent connectionIntent)
+    private IEnumerable<PhysicalServer> GetReconnectionPhysicalServers(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols)
     {
-        IEnumerable<PhysicalServer> intentServers = IntentServerListGenerator.Generate(connectionIntent);
+        IEnumerable<PhysicalServer> intentServers = IntentServerListGenerator.Generate(connectionIntent, preferredProtocols);
 
         if (IsToBypassSmartServerListGenerator(connectionIntent))
         {
@@ -91,11 +95,11 @@ public class ReconnectionRequestCreator : ConnectionRequestCreator, IReconnectio
         if (connectionIntent.Feature is SecureCoreFeatureIntent secureCoreFeatureIntent)
         {
             CountryLocationIntent countryLocationIntent = connectionIntent.Location is CountryLocationIntent cli ? cli : new CountryLocationIntent();
-            smartList = SmartSecureCoreServerListGenerator.Generate(secureCoreFeatureIntent, countryLocationIntent).ToList();
+            smartList = SmartSecureCoreServerListGenerator.Generate(secureCoreFeatureIntent, countryLocationIntent, preferredProtocols).ToList();
         }
         else
         {
-            smartList = SmartStandardServerListGenerator.Generate(connectionIntent).ToList();
+            smartList = SmartStandardServerListGenerator.Generate(connectionIntent, preferredProtocols).ToList();
         }
 
         smartList.AddRange(intentServers.Where(ips => !smartList.Any(slps => slps.Id == ips.Id)));

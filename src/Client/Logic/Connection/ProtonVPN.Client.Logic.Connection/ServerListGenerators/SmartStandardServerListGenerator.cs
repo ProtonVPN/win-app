@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Geographical;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -53,12 +54,12 @@ public class SmartStandardServerListGenerator : ServerListGeneratorBase, ISmartS
         _logger = logger;
     }
 
-    public IEnumerable<PhysicalServer> Generate(IConnectionIntent connectionIntent)
+    public IEnumerable<PhysicalServer> Generate(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols)
     {
         _logger.Debug<AppLog>($"Generating smart servers list for intent: {connectionIntent}");
 
-        IEnumerable<Server> availableServers = GetUnfilteredServers(connectionIntent.Location);
-        List<Server> pickedServers = new();
+        IEnumerable<Server> availableServers = GetUnfilteredServers(connectionIntent.Location, preferredProtocols);
+        List<Server> pickedServers = [];
 
         DeviceLocation? deviceLocation = _settings.DeviceLocation;
 
@@ -89,12 +90,12 @@ public class SmartStandardServerListGenerator : ServerListGeneratorBase, ISmartS
 
         _logger.Debug<AppLog>($"Picked servers: {string.Join(", ", pickedServers.Select(s => s.Name))}");
 
-        return SelectDistinctPhysicalServers(pickedServers);
+        return SelectDistinctPhysicalServers(pickedServers, preferredProtocols);
     }
 
-    private IEnumerable<Server> GetUnfilteredServers(ILocationIntent locationIntent)
+    private IEnumerable<Server> GetUnfilteredServers(ILocationIntent locationIntent, IList<VpnProtocol> preferredProtocols)
     {
-        return SortServers(locationIntent, _serversLoader.GetServers().Where(s => s.IsAvailable()));
+        return SortServers(locationIntent, _serversLoader.GetServers().Where(s => s.IsAvailable(preferredProtocols)));
     }
 
     private IEnumerable<Server> SortServers(ILocationIntent locationIntent, IEnumerable<Server> source)

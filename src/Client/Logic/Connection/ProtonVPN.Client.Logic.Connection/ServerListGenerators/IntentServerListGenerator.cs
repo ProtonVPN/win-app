@@ -28,6 +28,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Logic.Connection.ServerListGenerators;
 
@@ -47,9 +48,9 @@ public class IntentServerListGenerator : ServerListGeneratorBase, IIntentServerL
         _serversLoader = serversLoader;
     }
 
-    public IEnumerable<PhysicalServer> Generate(IConnectionIntent connectionIntent)
+    public IEnumerable<PhysicalServer> Generate(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols)
     {
-        IEnumerable<Server> servers = _serversLoader.GetServers();
+        IEnumerable<Server> servers = _serversLoader.GetServers().Where(s => s.IsAvailable(preferredProtocols));
         ILocationIntent locationIntent = connectionIntent.Location;
         IFeatureIntent? featureIntent = connectionIntent.Feature;
 
@@ -69,7 +70,7 @@ public class IntentServerListGenerator : ServerListGeneratorBase, IIntentServerL
             : featureIntent.FilterServers(servers);
 
         return SortServers(servers, locationIntent, isPortForwardingEnabled)
-            .SelectMany(SelectPhysicalServers)
+            .SelectMany(s => SelectPhysicalServers(s, preferredProtocols))
             .DistinctBy(s => new { s.EntryIp, s.Label })
             .Take(MAX_GENERATED_PHYSICAL_SERVERS);
     }

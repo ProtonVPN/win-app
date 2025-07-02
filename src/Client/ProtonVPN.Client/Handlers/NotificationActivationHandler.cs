@@ -53,7 +53,7 @@ public class NotificationActivationHandler : IHandler,
 
     public void Receive(NotificationActivationMessage message)
     {
-        _mainWindowActivator.Activate();
+        _uiThreadDispatcher.TryEnqueue(_mainWindowActivator.Activate);
 
         HandleCustomActivationActionAsync(message.Argument);
     }

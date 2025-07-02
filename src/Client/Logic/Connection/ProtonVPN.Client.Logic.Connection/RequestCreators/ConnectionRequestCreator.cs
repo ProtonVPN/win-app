@@ -26,6 +26,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
@@ -70,14 +71,16 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
     public virtual async Task<ConnectionRequestIpcEntity> CreateAsync(IConnectionIntent connectionIntent)
     {
         MainSettingsIpcEntity settings = GetSettings(connectionIntent);
+        VpnConfigIpcEntity config = GetVpnConfig(settings, connectionIntent);
+        List<VpnProtocol> preferredProtocols = EntityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(config.PreferredProtocols);
 
         ConnectionRequestIpcEntity request = new()
         {
             RetryId = Guid.NewGuid(),
-            Config = GetVpnConfig(settings, connectionIntent),
+            Config = config,
             Credentials = await GetVpnCredentialsAsync(),
             Protocol = settings.VpnProtocol,
-            Servers = PhysicalServersToVpnServerIpcEntities(GetPhysicalServers(connectionIntent)),
+            Servers = PhysicalServersToVpnServerIpcEntities(GetPhysicalServers(connectionIntent, preferredProtocols)),
             Settings = settings,
         };
 
@@ -135,20 +138,20 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
         };
     }
 
-    protected IEnumerable<PhysicalServer> GetPhysicalServers(IConnectionIntent connectionIntent)
+    protected IEnumerable<PhysicalServer> GetPhysicalServers(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols)
     {
         if (IsToBypassSmartServerListGenerator(connectionIntent))
         {
-            return IntentServerListGenerator.Generate(connectionIntent);
+            return IntentServerListGenerator.Generate(connectionIntent, preferredProtocols);
         }
         else if (connectionIntent.Feature is SecureCoreFeatureIntent secureCoreFeatureIntent)
         {
             CountryLocationIntent countryLocationIntent = connectionIntent.Location as CountryLocationIntent ?? CountryLocationIntent.Fastest;
-            return SmartSecureCoreServerListGenerator.Generate(secureCoreFeatureIntent, countryLocationIntent);
+            return SmartSecureCoreServerListGenerator.Generate(secureCoreFeatureIntent, countryLocationIntent, preferredProtocols);
         }
         else
         {
-            return SmartStandardServerListGenerator.Generate(connectionIntent);
+            return SmartStandardServerListGenerator.Generate(connectionIntent, preferredProtocols);
         }
     }
 

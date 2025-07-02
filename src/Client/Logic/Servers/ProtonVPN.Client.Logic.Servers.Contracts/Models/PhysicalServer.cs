@@ -31,7 +31,35 @@ public class PhysicalServer : ILocation
     public required sbyte Status { get; set; }
     public required string X25519PublicKey { get; init; }
     public required string Signature { get; init; }
-    public Dictionary<VpnProtocol, string> RelayIpByProtocol { get; init; } = new();
+    public Dictionary<VpnProtocol, string> RelayIpByProtocol { get; init; } = [];
 
     public bool IsUnderMaintenance() => Status == 0;
+
+    public bool IsAvailable(IList<VpnProtocol> preferredProtocols)
+    {
+        return !IsUnderMaintenance() && HasEntryIp(preferredProtocols);
+    }
+
+    private bool HasEntryIp(IList<VpnProtocol> preferredProtocols)
+    {
+        if (!string.IsNullOrEmpty(EntryIp))
+        {
+            return true;
+        }
+
+        if (RelayIpByProtocol.Count == 0)
+        {
+            return false;
+        }
+
+        foreach (VpnProtocol protocol in preferredProtocols)
+        {
+            if (RelayIpByProtocol.ContainsKey(protocol))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

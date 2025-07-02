@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,10 +20,14 @@
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 
 public interface ISmartSecureCoreServerListGenerator
 {
-    IEnumerable<PhysicalServer> Generate(SecureCoreFeatureIntent secureCoreFeatureIntent, CountryLocationIntent countryLocationIntent);
+    IEnumerable<PhysicalServer> Generate(
+        SecureCoreFeatureIntent secureCoreFeatureIntent,
+        CountryLocationIntent countryLocationIntent,
+        IList<VpnProtocol> preferredProtocols);
 }

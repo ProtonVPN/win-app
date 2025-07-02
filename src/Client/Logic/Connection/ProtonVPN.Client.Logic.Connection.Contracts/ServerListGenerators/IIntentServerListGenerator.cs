@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,10 +19,11 @@
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 
 public interface IIntentServerListGenerator
 {
-    IEnumerable<PhysicalServer> Generate(IConnectionIntent connectionIntent);
+    IEnumerable<PhysicalServer> Generate(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols);
 }

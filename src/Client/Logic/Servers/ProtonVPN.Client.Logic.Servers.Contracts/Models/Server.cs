@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
@@ -46,7 +47,9 @@ public class Server : ILocation
 
     public bool IsUnderMaintenance() => Status == 0;
 
-    public bool IsAvailable() => !IsUnderMaintenance() && Servers is not null && Servers.Any(s => !s.IsUnderMaintenance());
+    public bool IsAvailable(IList<VpnProtocol> preferredProtocols) => !IsUnderMaintenance() &&
+                                                                     Servers is not null &&
+                                                                     Servers.Any(s => s.IsAvailable(preferredProtocols));
 
     public bool IsStandard() => Features.IsStandard();
 

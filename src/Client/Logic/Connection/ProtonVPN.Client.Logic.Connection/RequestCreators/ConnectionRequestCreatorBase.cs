@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -73,8 +73,8 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
 
     protected IList<VpnProtocolIpcEntity> GetPreferredSmartProtocols()
     {
-        List<VpnProtocol> preferredProtocols = new();
-        List<VpnProtocol> fallbackProtocols = new();
+        List<VpnProtocol> preferredProtocols = [];
+        List<VpnProtocol> fallbackProtocols = [];
 
         SetProtocolBucket(VpnProtocol.WireGuardUdp, preferredProtocols, fallbackProtocols);
         SetProtocolBucket(VpnProtocol.WireGuardTcp, preferredProtocols, fallbackProtocols);

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Logic.Connection.ServerListGenerators;
 
@@ -50,12 +51,13 @@ public class SmartSecureCoreServerListGenerator : ServerListGeneratorBase, ISmar
     }
 
     public IEnumerable<PhysicalServer> Generate(SecureCoreFeatureIntent secureCoreFeatureIntent,
-        CountryLocationIntent countryLocationIntent)
+        CountryLocationIntent countryLocationIntent,
+        IList<VpnProtocol> preferredProtocols)
     {
-        List<Server> pickedServers = GenerateIntentServers(secureCoreFeatureIntent, countryLocationIntent).ToList();
+        List<Server> pickedServers = GenerateIntentServers(secureCoreFeatureIntent, countryLocationIntent, preferredProtocols).ToList();
         if (pickedServers.Count == 0)
         {
-            return _intentServerListGenerator.Generate(new ConnectionIntent(countryLocationIntent, secureCoreFeatureIntent));
+            return _intentServerListGenerator.Generate(new ConnectionIntent(countryLocationIntent, secureCoreFeatureIntent), preferredProtocols);
         }
 
         string? entryCountry = GetEntryCountry(pickedServers, secureCoreFeatureIntent);
@@ -63,7 +65,7 @@ public class SmartSecureCoreServerListGenerator : ServerListGeneratorBase, ISmar
         string? excludedCountry = countryLocationIntent.IsToExcludeMyCountry
            ? _settings.DeviceLocation?.CountryCode
            : null;
-        IEnumerable<Server> unfilteredServers = GetSecureCoreServers(countryLocationIntent.Kind);
+        IEnumerable<Server> unfilteredServers = GetSecureCoreServers(countryLocationIntent.Kind, preferredProtocols);
 
         if (exitCountry is not null)
         {
@@ -78,18 +80,19 @@ public class SmartSecureCoreServerListGenerator : ServerListGeneratorBase, ISmar
         AddServerIfNotAlreadyListed(pickedServers, unfilteredServers,
             s => IsDifferentExitAndEntry(s, exitCountry: exitCountry, entryCountry: entryCountry, excludedCountry: excludedCountry));
 
-        return SelectDistinctPhysicalServers(pickedServers);
+        return SelectDistinctPhysicalServers(pickedServers, preferredProtocols);
     }
 
     private IEnumerable<Server> GenerateIntentServers(SecureCoreFeatureIntent secureCoreFeatureIntent,
-        CountryLocationIntent countryLocationIntent)
+        CountryLocationIntent countryLocationIntent,
+        IList<VpnProtocol> preferredProtocols)
     {
         IEnumerable<Server> servers = _serversLoader.GetServers();
         servers = countryLocationIntent.FilterServers(servers, _settings.DeviceLocation);
         servers = secureCoreFeatureIntent.FilterServers(servers);
 
         return SortServers(countryLocationIntent.Kind, servers)
-            .Where(s => s.IsAvailable())
+            .Where(s => s.IsAvailable(preferredProtocols))
             .Take(MAX_GENERATED_INTENT_LOGICAL_SERVERS);
     }
 
@@ -100,9 +103,9 @@ public class SmartSecureCoreServerListGenerator : ServerListGeneratorBase, ISmar
             : source.OrderBy(s => s.Score);
     }
 
-    private IEnumerable<Server> GetSecureCoreServers(ConnectionIntentKind kind)
+    private IEnumerable<Server> GetSecureCoreServers(ConnectionIntentKind kind, IList<VpnProtocol> preferredProtocols)
     {
-        return SortServers(kind, _serversLoader.GetServers().Where(s => s.IsAvailable() && s.Features.IsSupported(ServerFeatures.SecureCore)));
+        return SortServers(kind, _serversLoader.GetServers().Where(s => s.IsAvailable(preferredProtocols) && s.Features.IsSupported(ServerFeatures.SecureCore)));
     }
 
     private bool IsSameExitDifferentEntry(Server server, string exitCountry, string? entryCountry, string? excludedCountry)

@@ -20,6 +20,7 @@
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Logic.Connection.ServerListGenerators;
 
@@ -29,16 +30,16 @@ public abstract class ServerListGeneratorBase
 
     protected abstract int MaxPhysicalServersPerLogical { get; }
 
-    protected IEnumerable<PhysicalServer> SelectDistinctPhysicalServers(List<Server> pickedServers)
+    protected IEnumerable<PhysicalServer> SelectDistinctPhysicalServers(List<Server> pickedServers, IList<VpnProtocol> preferredProtocols)
     {
         return pickedServers
-            .SelectMany(SelectPhysicalServers)
+            .SelectMany(s => SelectPhysicalServers(s, preferredProtocols))
             .DistinctBy(s => new { s.EntryIp, s.Label });
     }
 
-    protected IEnumerable<PhysicalServer> SelectPhysicalServers(Server server)
+    protected IEnumerable<PhysicalServer> SelectPhysicalServers(Server server, IList<VpnProtocol> preferredProtocols)
     {
-        return server.Servers?.Where(s => !s.IsUnderMaintenance()).OrderBy(_ => Random.Next()).Take(MaxPhysicalServersPerLogical) ?? [];
+        return server.Servers?.Where(s => s.IsAvailable(preferredProtocols)).OrderBy(_ => Random.Next()).Take(MaxPhysicalServersPerLogical) ?? [];
     }
 
     protected string? GetCity(List<Server> pickedServers, CityLocationIntent? cityLocationIntent)
