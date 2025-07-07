@@ -1,6 +1,6 @@
 ﻿[CustomMessages]
 InstallerTitle=Proton VPN está pronto para ser instalado
-InstallOtherApps=Selecione outros aplicativos Proton para instalar. Esses serviços estão inclusos no seu plano.
+InstallOtherApps=Selecione outros aplicativos da Proton para instalar. Esses serviços estão inclusos no seu plano.
 FreeTrial=Avaliação gratuita
 Free=Gratuito
 ProtonMailDescription=E-mail criptografado que é privado por padrão.
