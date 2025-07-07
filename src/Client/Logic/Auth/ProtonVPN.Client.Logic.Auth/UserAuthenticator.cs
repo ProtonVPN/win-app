@@ -29,7 +29,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
-using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
@@ -155,7 +155,7 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
                 if (authResult.Success)
                 {
                     await _connectionCertificateManager.ForceRequestNewCertificateAsync();
-                    await _serversUpdater.ForceFullUpdateIfHasNoServersElseRequestIfOldAsync();
+                    await _serversUpdater.UpdateAsync();
                 }
             }
 
@@ -428,11 +428,11 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
             if (hasPlanChanged)
             {
                 _logger.Info<AppLog>("Reprocessing current servers and fetching new servers after VPN plan change.");
-                serversUpdateTask = _serversUpdater.UpdateAsync(ServersRequestParameter.ForceFullUpdate, isToReprocessServers: true);
+                serversUpdateTask = _serversUpdater.ForceUpdateAsync();
             }
             else
             {
-                serversUpdateTask = _serversUpdater.ForceFullUpdateIfHasNoServersElseRequestIfOldAsync();
+                serversUpdateTask = _serversUpdater.UpdateAsync();
             }
 
             await MigrateUserSettingsAsync(usersResponseTask, serversUpdateTask);

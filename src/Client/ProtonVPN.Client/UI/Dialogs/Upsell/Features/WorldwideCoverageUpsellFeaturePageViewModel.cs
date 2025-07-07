@@ -32,12 +32,12 @@ namespace ProtonVPN.Client.UI.Dialogs.Upsell.Features;
 public class WorldwideCoverageUpsellFeaturePageViewModel : UpsellFeaturePageViewModelBase,
     IEventMessageReceiver<ServerListChangedMessage>
 {
-    private readonly IServerCountCache _serverCountCache;
+    private readonly IServersLoader _serversLoader;
 
     public override string Title
         => Localizer.GetFormat("Upsell_Carousel_WorldwideCoverage",
-                Localizer.GetPluralFormat("Upsell_Carousel_WorldwideCoverage_Servers", _serverCountCache.GetServerCount()),
-                Localizer.GetPluralFormat("Upsell_Carousel_WorldwideCoverage_Countries", _serverCountCache.GetCountryCount()));
+                Localizer.GetPluralFormat("Upsell_Carousel_WorldwideCoverage_Servers", _serversLoader.GetServerCount()),
+                Localizer.GetPluralFormat("Upsell_Carousel_WorldwideCoverage_Countries", _serversLoader.GetCountryCount()));
 
     public override ImageSource SmallIllustrationSource { get; } = ResourceHelper.GetIllustration("WorldwideCoverageUpsellSmallIllustrationSource");
 
@@ -45,13 +45,13 @@ public class WorldwideCoverageUpsellFeaturePageViewModel : UpsellFeaturePageView
 
     public WorldwideCoverageUpsellFeaturePageViewModel(
         IUpsellCarouselViewNavigator upsellCarouselViewNavigator,
-        IServerCountCache serverCountCache,
+        IServersLoader serversLoader,
         IViewModelHelper viewModelHelper)
         : base(upsellCarouselViewNavigator,
                viewModelHelper,
                UpsellFeatureType.WorldwideCoverage)
     {
-        _serverCountCache = serverCountCache;
+        _serversLoader = serversLoader;
     }
 
     public void Receive(ServerListChangedMessage message)

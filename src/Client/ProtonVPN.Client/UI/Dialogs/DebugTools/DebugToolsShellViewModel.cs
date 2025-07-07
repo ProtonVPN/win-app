@@ -28,10 +28,9 @@ using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
-using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
-using ProtonVPN.Client.Services.Activation;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Dialogs.DebugTools.Models;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
@@ -123,7 +122,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     [RelayCommand]
     public async Task TriggerLogicalsRefreshAsync()
     {
-        await _serversUpdater.UpdateAsync(ServersRequestParameter.ForceFullUpdate, true);
+        await _serversUpdater.ForceUpdateAsync();
     }
 
     [RelayCommand]

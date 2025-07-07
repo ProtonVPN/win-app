@@ -25,14 +25,16 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Files;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Geographical;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
-namespace ProtonVPN.Client.Logic.Servers;
+namespace ProtonVPN.Client.Logic.Servers.Cache;
 
 public class ServersCache : IServersCache
 {
@@ -40,11 +42,19 @@ public class ServersCache : IServersCache
     private readonly IEntityMapper _entityMapper;
     private readonly IServersFileReaderWriter _serversFileReaderWriter;
     private readonly IEventMessageSender _eventMessageSender;
+    private readonly IConfiguration _config;
     private readonly ISettings _settings;
     private readonly ILogger _logger;
 
     private readonly ReaderWriterLockSlim _lock = new();
-    private DeviceLocation? _deviceLocation;
+
+    private string? _deviceCountryLocation;
+
+    private sbyte? _userMaxTier; 
+    
+    private DateTime _lastFullUpdateUtc = DateTime.MinValue;
+    private DateTime _lastLoadsUpdateUtc = DateTime.MinValue;
+
     private IReadOnlyList<Server> _originalServers = [];
 
     private IReadOnlyList<Server> _filteredServers = [];
@@ -72,6 +82,7 @@ public class ServersCache : IServersCache
         IEntityMapper entityMapper,
         IServersFileReaderWriter serversFileReaderWriter,
         IEventMessageSender eventMessageSender,
+        IConfiguration config,
         ISettings settings,
         ILogger logger)
     {
@@ -79,8 +90,30 @@ public class ServersCache : IServersCache
         _entityMapper = entityMapper;
         _serversFileReaderWriter = serversFileReaderWriter;
         _eventMessageSender = eventMessageSender;
+        _config = config;
         _settings = settings;
         _logger = logger;
+    }
+
+    public bool IsEmpty()
+    {
+        return Servers is null || Servers.Count == 0;
+    }
+
+    public bool IsStale()
+    {
+        return _deviceCountryLocation != _settings.DeviceLocation?.CountryCode
+            || _userMaxTier != _settings.VpnPlan.MaxTier;
+    }
+
+    public bool IsOutdated()
+    {
+        return DateTime.UtcNow - _lastFullUpdateUtc >= _config.ServerUpdateInterval;
+    }
+
+    public bool IsLoadOutdated()
+    {
+        return DateTime.UtcNow - _lastLoadsUpdateUtc >= _config.MinimumServerLoadUpdateInterval;
     }
 
     private T GetWithReadLock<T>(Func<T> func)
@@ -98,41 +131,75 @@ public class ServersCache : IServersCache
 
     public void LoadFromFileIfEmpty()
     {
-        if (HasAnyServers())
+        if (IsEmpty())
         {
-            if (_deviceLocation != _settings.DeviceLocation)
-            {
-                _settings.LogicalsLastModifiedDate = DefaultSettings.LogicalsLastModifiedDate;
-            }
-        }
-        else
-        {
-            _logger.Info<AppLog>("Loading servers from file as the user has none.");
+            _logger.Info<AppLog>("Cache is empty, loading servers from file.");
+
             ServersFile file = _serversFileReaderWriter.Read();
-            if (file.Servers.Count == 0 || file.DeviceLocation != _settings.DeviceLocation)
-            {
-                _settings.LogicalsLastModifiedDate = DefaultSettings.LogicalsLastModifiedDate;
-            }
-            ProcessServers(file.DeviceLocation, file.Servers);
+            ProcessServers(file.DeviceCountryLocation, file.UserMaxTier, file.Servers);
+        }
+    }
+
+    public void Clear()
+    {
+        _lock.EnterWriteLock();
+        try
+        {
+            _lastFullUpdateUtc = DateTime.MinValue;
+            _lastLoadsUpdateUtc = DateTime.MinValue;
+
+            _deviceCountryLocation = null;
+            _userMaxTier = null;
+
+            _originalServers = [];
+            _filteredServers = [];
+            _freeCountries = [];
+            _countries = [];
+            _states = [];
+            _cities = [];
+            _gateways = [];
+            _secureCoreCountryPairs = [];
+        }
+        finally
+        {
+            _lock.ExitWriteLock();
         }
     }
 
     public async Task UpdateAsync()
     {
-        LoadFromFileIfEmpty();
         try
         {
             DeviceLocation? deviceLocation = _settings.DeviceLocation;
+            DateTime utcNow = DateTime.UtcNow;
+
             ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(deviceLocation);
-            if (response.LastModified.HasValue)
+            if (response.Success)
             {
-                _settings.LogicalsLastModifiedDate = response.LastModified.Value;
-            }
-            if (response.Success && !response.IsNotModified)
-            {
-                List<Server> servers = _entityMapper.Map<LogicalServerResponse, Server>(response.Value.Servers);
-                SaveToFile(deviceLocation, servers);
-                ProcessServers(deviceLocation, servers);
+                _lastFullUpdateUtc = utcNow;
+                _lastLoadsUpdateUtc = utcNow;
+
+                if (response.LastModified.HasValue)
+                {
+                    _settings.LogicalsLastModifiedDate = response.LastModified.Value;
+                }
+                
+                if (response.IsNotModified)
+                {
+                    _logger.Info<ApiLog>("API: Get servers response was not modified since last call, using cached data.");
+                }
+                else
+                {
+                    _logger.Info<ApiLog>("API: Get servers response was modified since last call, updating cached data.");
+
+                    List<Server> servers = _entityMapper.Map<LogicalServerResponse, Server>(response.Value.Servers);
+
+                    string deviceCountryLocation = deviceLocation?.CountryCode ?? string.Empty;
+                    sbyte userMaxTier = _settings.VpnPlan.MaxTier;
+
+                    SaveToFile(deviceCountryLocation, userMaxTier, servers);
+                    ProcessServers(deviceCountryLocation, userMaxTier, servers);
+                }
             }
         }
         catch (Exception e)
@@ -143,17 +210,18 @@ public class ServersCache : IServersCache
 
     public async Task UpdateLoadsAsync()
     {
-        if (!HasAnyServers())
-        {
-            return;
-        }
-
         try
         {
             DeviceLocation? deviceLocation = _settings.DeviceLocation;
+            DateTime utcNow = DateTime.UtcNow;
+
             ApiResponseResult<ServersResponse> response = await _apiClient.GetServerLoadsAsync(deviceLocation);
             if (response.Success)
             {
+                _lastLoadsUpdateUtc = utcNow;
+
+                _logger.Info<ApiLog>("API: Get server loads response received, updating cached data.");
+
                 List<Server> servers = Servers.ToList();
                 List<ServerLoad> serverLoads = _entityMapper.Map<LogicalServerResponse, ServerLoad>(response.Value.Servers);
 
@@ -181,8 +249,11 @@ public class ServersCache : IServersCache
                     }
                 }
 
-                SaveToFile(deviceLocation, servers);
-                ProcessServers(deviceLocation, servers);
+                string deviceCountryLocation = deviceLocation?.CountryCode ?? string.Empty;
+                sbyte userMaxTier = _settings.VpnPlan.MaxTier;
+
+                SaveToFile(deviceCountryLocation, userMaxTier, servers);
+                ProcessServers(deviceCountryLocation, userMaxTier, servers);
             }
         }
         catch (Exception e)
@@ -191,38 +262,37 @@ public class ServersCache : IServersCache
         }
     }
 
-    private void ProcessServers(DeviceLocation? deviceLocation, IReadOnlyList<Server> servers)
+    private void ProcessServers(string? deviceCountryLocation, sbyte? userMaxTier, IReadOnlyList<Server> servers)
     {
-        if (servers is not null && servers.Any())
+        IReadOnlyList<FreeCountry> freeCountries = GetFreeCountries(servers);
+        IReadOnlyList<Country> countries = GetCountries(servers);
+        IReadOnlyList<State> states = GetStates(servers);
+        IReadOnlyList<City> cities = GetCities(servers);
+        IReadOnlyList<Gateway> gateways = GetGateways(servers);
+        IReadOnlyList<SecureCoreCountryPair> secureCoreCountryPairs = GetSecureCoreCountryPairs(servers);
+        IReadOnlyList<Server> filteredServers = GetFilteredServers(servers);
+
+        _lock.EnterWriteLock();
+        try
         {
-            IReadOnlyList<FreeCountry> freeCountries = GetFreeCountries(servers);
-            IReadOnlyList<Country> countries = GetCountries(servers);
-            IReadOnlyList<State> states = GetStates(servers);
-            IReadOnlyList<City> cities = GetCities(servers);
-            IReadOnlyList<Gateway> gateways = GetGateways(servers);
-            IReadOnlyList<SecureCoreCountryPair> secureCoreCountryPairs = GetSecureCoreCountryPairs(servers);
-            IReadOnlyList<Server> filteredServers = GetFilteredServers(servers);
+            _deviceCountryLocation = deviceCountryLocation;
+            _userMaxTier = userMaxTier;
 
-            _lock.EnterWriteLock();
-            try
-            {
-                _deviceLocation = deviceLocation;
-                _originalServers = servers;
-                _filteredServers = filteredServers;
-                _freeCountries = freeCountries;
-                _countries = countries;
-                _states = states;
-                _cities = cities;
-                _gateways = gateways;
-                _secureCoreCountryPairs = secureCoreCountryPairs;
-            }
-            finally
-            {
-                _lock.ExitWriteLock();
-            }
-
-            _eventMessageSender.Send(new ServerListChangedMessage());
+            _originalServers = servers;
+            _filteredServers = filteredServers;
+            _freeCountries = freeCountries;
+            _countries = countries;
+            _states = states;
+            _cities = cities;
+            _gateways = gateways;
+            _secureCoreCountryPairs = secureCoreCountryPairs;
         }
+        finally
+        {
+            _lock.ExitWriteLock();
+        }
+
+        _eventMessageSender.Send(new ServerListChangedMessage());
     }
 
     private IReadOnlyList<FreeCountry> GetFreeCountries(IEnumerable<Server> servers)
@@ -274,7 +344,7 @@ public class ServersCache : IServersCache
             .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
                      && !string.IsNullOrWhiteSpace(s.State)
                      && s.IsPaidNonB2B())
-            .GroupBy(s => new { Country = s.ExitCountry, State = s.State })
+            .GroupBy(s => new { Country = s.ExitCountry, s.State })
             .Select(g => new State()
             {
                 CountryCode = g.Key.Country,
@@ -294,7 +364,7 @@ public class ServersCache : IServersCache
             .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
                      && !string.IsNullOrWhiteSpace(s.City)
                      && s.IsPaidNonB2B())
-            .GroupBy(s => new { Country = s.ExitCountry, State = s.State, City = s.City })
+            .GroupBy(s => new { Country = s.ExitCountry, s.State, s.City })
             .Select(g => new City()
             {
                 CountryCode = g.Key.Country,
@@ -329,7 +399,7 @@ public class ServersCache : IServersCache
             .Where(s => s.Features.IsSupported(ServerFeatures.SecureCore)
                      && !string.IsNullOrWhiteSpace(s.EntryCountry)
                      && !string.IsNullOrWhiteSpace(s.ExitCountry))
-            .GroupBy(s => new { EntryCountry = s.EntryCountry, ExitCountry = s.ExitCountry })
+            .GroupBy(s => new { s.EntryCountry, s.ExitCountry })
             .Select(g => new SecureCoreCountryPair()
             {
                 EntryCountry = g.Key.EntryCountry,
@@ -341,58 +411,33 @@ public class ServersCache : IServersCache
 
     private IReadOnlyList<Server> GetFilteredServers(IReadOnlyList<Server> servers)
     {
+        ServerTiers maxTier = (ServerTiers)_settings.VpnPlan.MaxTier;
+
         List<Server> filteredServers = [];
         foreach (Server server in servers)
         {
-            if (_settings.VpnPlan.MaxTier >= (sbyte)server.Tier)
+            if (server.Tier <= maxTier)
             {
+                // Add all the servers the user can access (based on his plan)
                 filteredServers.Add(server);
             }
             else if (server.Tier <= ServerTiers.Plus)
             {
+                // Include all the servers the user cannot access (but without the physical servers)
                 filteredServers.Add(server.CopyWithoutPhysicalServers());
             }
         }
         return filteredServers;
     }
 
-    private void SaveToFile(DeviceLocation? deviceLocation, List<Server> servers)
+    private void SaveToFile(string? deviceCountryLocation, sbyte? userMaxTier, List<Server> servers)
     {
         ServersFile serversFile = new()
         {
-            DeviceLocation = deviceLocation,
+            DeviceCountryLocation = deviceCountryLocation,
+            UserMaxTier = userMaxTier,
             Servers = servers,
         };
         _serversFileReaderWriter.Save(serversFile);
-    }
-
-    public bool HasAnyServers()
-    {
-        return Servers is not null && Servers.Count > 0;
-    }
-
-    public void Clear()
-    {
-        _lock.EnterWriteLock();
-        try
-        {
-            _originalServers = [];
-            _filteredServers = [];
-            _countries = [];
-            _states = [];
-            _cities = [];
-            _gateways = [];
-            _secureCoreCountryPairs = [];
-        }
-        finally
-        {
-            _lock.ExitWriteLock();
-        }
-    }
-
-    public void ReprocessServers()
-    {
-        _logger.Info<AppLog>("Reprocessing servers.");
-        ProcessServers(_deviceLocation, _originalServers);
     }
 }

@@ -19,7 +19,7 @@
 
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-namespace ProtonVPN.Client.Logic.Servers;
+namespace ProtonVPN.Client.Logic.Servers.Cache;
 
 public interface IServersCache
 {
@@ -31,11 +31,14 @@ public interface IServersCache
     IReadOnlyList<Gateway> Gateways { get; }
     IReadOnlyList<SecureCoreCountryPair> SecureCoreCountryPairs { get; }
 
-    bool HasAnyServers();
+    bool IsEmpty();
+    bool IsStale();
+    bool IsOutdated();
+    bool IsLoadOutdated();
 
+    void Clear();
     void LoadFromFileIfEmpty();
-    void ReprocessServers();
+
     Task UpdateAsync();
     Task UpdateLoadsAsync();
-    void Clear();
 }

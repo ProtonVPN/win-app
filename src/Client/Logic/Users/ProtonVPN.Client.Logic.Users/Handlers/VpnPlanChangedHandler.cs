@@ -20,7 +20,7 @@
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
@@ -62,7 +62,7 @@ public class VpnPlanChangedHandler : IEventMessageReceiver<VpnPlanChangedMessage
         await _connectionCertificateManager.ForceRequestNewCertificateAsync();
 
         _logger.Info<AppLog>("Reprocessing current servers and fetching new servers after VPN plan change.");
-        await _serversUpdater.UpdateAsync(ServersRequestParameter.ForceFullUpdate, isToReprocessServers: true);
+        await _serversUpdater.ForceUpdateAsync();
 
         if (isDowngrade)
         {

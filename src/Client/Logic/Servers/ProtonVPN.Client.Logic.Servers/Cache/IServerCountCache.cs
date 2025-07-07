@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Servers.Contracts;
+namespace ProtonVPN.Client.Logic.Servers.Cache;
 
 public interface IServerCountCache
 {

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Servers.Cache;
 using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Configurations.Contracts;
@@ -32,59 +32,53 @@ public class ServersUpdater : IServersUpdater
     private readonly ILogger _logger;
     private readonly IServersCache _serversCache;
     private readonly IServerCountCache _serverCountCache;
-    private readonly IConfiguration _config;
     private readonly ISettings _settings;
-    private readonly SemaphoreSlim _semaphore = new(1, 1);
 
-    private DateTime _lastFullUpdateUtc = DateTime.MinValue;
-    private DateTime _lastLoadsUpdateUtc = DateTime.MinValue;
+    private readonly SemaphoreSlim _semaphore = new(1, 1);
 
     public ServersUpdater(
         ILogger logger,
         IServersCache serversCache,
         IServerCountCache serverCountCache,
-        IConfiguration config,
         ISettings settings)
     {
         _logger = logger;
         _serversCache = serversCache;
         _serverCountCache = serverCountCache;
-        _config = config;
         _settings = settings;
     }
 
-    public async Task UpdateAsync(ServersRequestParameter parameter, bool isToReprocessServers = false)
+    public async Task UpdateAsync()
     {
         await _semaphore.WaitAsync();
 
         try
         {
-            if (isToReprocessServers)
-            {
-                // Because the API requests can fail or take a long time, the current servers are reprocessed
-                // beforehand to ensure the user is seeing or not seeing the correct servers already
-                _serversCache.ReprocessServers();
-            }
+            _logger.Info<AppLog>("Server update requested");
 
-            DateTime utcNow = DateTime.UtcNow;
+            _serversCache.LoadFromFileIfEmpty();
 
-            if (parameter == ServersRequestParameter.ForceFullUpdate ||
-                utcNow - _lastFullUpdateUtc >= _config.ServerUpdateInterval)
+            if (_serversCache.IsEmpty() || _serversCache.IsStale())
             {
-                _lastFullUpdateUtc = utcNow;
-                _lastLoadsUpdateUtc = utcNow;
-                if (parameter == ServersRequestParameter.ForceFullUpdate)
-                {
-                    _settings.LogicalsLastModifiedDate = DefaultSettings.LogicalsLastModifiedDate;
-                }
-                _serverCountCache.UpdateAsync().FireAndForget();
-                await _serversCache.UpdateAsync();
+                _logger.Info<AppLog>("Server cache is invalid, forcing full update");
+
+                await ForceUpdateServersAsync();
             }
-            else if (parameter == ServersRequestParameter.ForceLoadsUpdate ||
-                utcNow - _lastLoadsUpdateUtc >= _config.MinimumServerLoadUpdateInterval)
+            else if (_serversCache.IsOutdated())
             {
-                _lastLoadsUpdateUtc = utcNow;
-                await _serversCache.UpdateLoadsAsync();
+                _logger.Info<AppLog>("Server cache is outdated, updating");
+
+                await UpdateServersAsync();
+            }
+            else if (_serversCache.IsLoadOutdated())
+            {
+                _logger.Info<AppLog>("Load cache is outdated, updating");
+
+                await UpdateLoadsAsync();
+            }
+            else
+            {
+                _logger.Info<AppLog>("No server update needed, using cached servers");
             }
         }
         finally
@@ -93,29 +87,39 @@ public class ServersUpdater : IServersUpdater
         }
     }
 
-    public async Task ForceFullUpdateIfHasNoServersElseRequestIfOldAsync()
+    public async Task ForceUpdateAsync()
     {
         await _semaphore.WaitAsync();
-        bool hasServers;
 
         try
         {
+            _logger.Info<AppLog>("Force server update requested");
+
             _serversCache.LoadFromFileIfEmpty();
-            hasServers = _serversCache.HasAnyServers();
+
+            await ForceUpdateServersAsync();
         }
         finally
         {
             _semaphore.Release();
         }
+    }
 
-        if (hasServers)
+    public async Task ForceLoadsUpdateAsync()
+    {
+        await _semaphore.WaitAsync();
+
+        try
         {
-            await UpdateAsync(ServersRequestParameter.RequestIfOld);
+            _logger.Info<AppLog>("Force load update requested");
+
+            _serversCache.LoadFromFileIfEmpty();
+
+            await UpdateLoadsAsync();
         }
-        else
+        finally
         {
-            _logger.Info<AppLog>("Fetching servers as the user has none.");
-            await UpdateAsync(ServersRequestParameter.ForceFullUpdate);
+            _semaphore.Release();
         }
     }
 
@@ -125,13 +129,33 @@ public class ServersUpdater : IServersUpdater
 
         try
         {
-            _lastFullUpdateUtc = DateTime.MinValue;
-            _lastLoadsUpdateUtc = DateTime.MinValue;
+            _logger.Info<AppLog>("Clear server cache requested");
+
             _serversCache.Clear();
         }
         finally
         {
             _semaphore.Release();
         }
+    }
+
+    private Task ForceUpdateServersAsync()
+    {
+        _settings.LogicalsLastModifiedDate = DefaultSettings.LogicalsLastModifiedDate;
+
+        return UpdateServersAsync();
+    }
+
+    private Task UpdateServersAsync()
+    {
+        // No need to await here, the server count is not critical for the servers cache update
+        _serverCountCache.UpdateAsync().FireAndForget();
+
+        return _serversCache.UpdateAsync();
+    }
+
+    private Task UpdateLoadsAsync()
+    {
+        return _serversCache.UpdateLoadsAsync();
     }
 }

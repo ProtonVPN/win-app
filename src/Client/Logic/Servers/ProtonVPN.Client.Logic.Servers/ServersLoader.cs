@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Servers.Cache;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
@@ -27,10 +28,24 @@ namespace ProtonVPN.Client.Logic.Servers;
 public class ServersLoader : IServersLoader
 {
     private readonly IServersCache _serversCache;
+    private readonly IServerCountCache _serverCountCache;
 
-    public ServersLoader(IServersCache serversCache)
+    public ServersLoader(
+        IServersCache serversCache,
+        IServerCountCache serverCountCache)
     {
         _serversCache = serversCache;
+        _serverCountCache = serverCountCache;
+    }
+
+    public int GetServerCount()
+    {
+        return _serverCountCache.GetServerCount();
+    }
+
+    public int GetCountryCount()
+    {
+        return _serverCountCache.GetCountryCount();
     }
 
     public Server? GetById(string serverId)

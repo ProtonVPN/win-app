@@ -22,9 +22,9 @@ using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Observers;
-using ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
@@ -42,8 +42,6 @@ public class ServersObserver : PollingObserverBase, IServersObserver,
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IConfiguration _config;
 
-    private bool _isMainWindowVisible;
-
     protected override TimeSpan PollingInterval => TimeSpanExtensions.Min(_config.ServerLoadUpdateInterval, _config.ServerUpdateInterval);
 
     public ServersObserver(ILogger logger,
@@ -60,7 +58,7 @@ public class ServersObserver : PollingObserverBase, IServersObserver,
 
     public void Receive(LoggedInMessage message)
     {
-        StartTimerAndTriggerOnStart();
+        StartTimer();
     }
 
     public async void Receive(LoggedOutMessage message)
@@ -69,33 +67,24 @@ public class ServersObserver : PollingObserverBase, IServersObserver,
         await _serversUpdater.ClearCacheAsync();
     }
 
-    public async void Receive(DeviceLocationChangedMessage message)
+    public void Receive(DeviceLocationChangedMessage message)
     {
-        if (_userAuthenticator.IsLoggedIn)
-        {
-            ServersRequestParameter serversRequestParameter = message.HasCountryChangedAndHasValue
-                ? ServersRequestParameter.ForceFullUpdate
-                : ServersRequestParameter.ForceLoadsUpdate;
+        TriggerAction.Run();
+    }
 
-            await _serversUpdater.UpdateAsync(serversRequestParameter);
+    public void Receive(MainWindowVisibilityChangedMessage message)
+    {
+        if (message.IsMainWindowVisible)
+        {
+            TriggerAction.Run();
         }
     }
 
     protected override async Task OnTriggerAsync()
     {
-        if (_isMainWindowVisible)
+        if (_userAuthenticator.IsLoggedIn)
         {
-            await _serversUpdater.UpdateAsync(ServersRequestParameter.RequestIfOld);
-        }
-    }
-
-    public void Receive(MainWindowVisibilityChangedMessage message)
-    {
-        _isMainWindowVisible = message.IsMainWindowVisible;
-
-        if (message.IsMainWindowVisible && _userAuthenticator.IsLoggedIn)
-        {
-            TriggerAction.Run();
+            await _serversUpdater.UpdateAsync();
         }
     }
 }

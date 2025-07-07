@@ -43,7 +43,7 @@ public partial class TrayMainPageViewModel : PageViewModelBase<ITrayAppViewNavig
     private readonly IConnectionManager _connectionManager;
     private readonly IAccountUpgradeUrlLauncher _accountUpgradeUrlLauncher;
     private readonly IChangeServerModerator _changeServerModerator;
-    private readonly IServerCountCache _serverCountCache;
+    private readonly IServersLoader _serversLoader;
 
     public bool IsPaidUser => _settings.VpnPlan.IsPaid;
 
@@ -52,8 +52,8 @@ public partial class TrayMainPageViewModel : PageViewModelBase<ITrayAppViewNavig
 
     public string UpsellBannerTagline
         => Localizer.GetFormat("Upsell_Carousel_WorldwideCoverage",
-                Localizer.GetPluralFormat("Upsell_Carousel_WorldwideCoverage_Servers", _serverCountCache.GetServerCount()),
-                Localizer.GetPluralFormat("Upsell_Carousel_WorldwideCoverage_Countries", _serverCountCache.GetCountryCount()));
+                Localizer.GetPluralFormat("Upsell_Carousel_WorldwideCoverage_Servers", _serversLoader.GetServerCount()),
+                Localizer.GetPluralFormat("Upsell_Carousel_WorldwideCoverage_Countries", _serversLoader.GetCountryCount()));
 
     public TrayMainPageViewModel(
         ITrayAppViewNavigator parentViewNavigator,
@@ -62,7 +62,7 @@ public partial class TrayMainPageViewModel : PageViewModelBase<ITrayAppViewNavig
         IConnectionManager connectionManager,
         IAccountUpgradeUrlLauncher accountUpgradeUrlLauncher,
         IChangeServerModerator changeServerModerator,
-        IServerCountCache serverCountCache)
+        IServersLoader serversLoader)
         : base(parentViewNavigator,
                viewModelHelper)
     {
@@ -70,7 +70,7 @@ public partial class TrayMainPageViewModel : PageViewModelBase<ITrayAppViewNavig
         _connectionManager = connectionManager;
         _accountUpgradeUrlLauncher = accountUpgradeUrlLauncher;
         _changeServerModerator = changeServerModerator;
-        _serverCountCache = serverCountCache;
+        _serversLoader = serversLoader;
     }
 
     public void Receive(VpnPlanChangedMessage message)

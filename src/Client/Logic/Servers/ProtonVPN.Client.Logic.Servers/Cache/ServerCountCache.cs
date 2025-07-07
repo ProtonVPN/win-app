@@ -19,12 +19,11 @@
 
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
-using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 
-namespace ProtonVPN.Client.Logic.Servers;
+namespace ProtonVPN.Client.Logic.Servers.Cache;
 
 public class ServerCountCache : IServerCountCache
 {

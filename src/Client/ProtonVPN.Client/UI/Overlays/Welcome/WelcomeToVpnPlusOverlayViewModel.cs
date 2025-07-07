@@ -29,17 +29,17 @@ namespace ProtonVPN.Client.UI.Overlays.Welcome;
 public class WelcomeToVpnPlusOverlayViewModel : OverlayViewModelBase<IMainWindowOverlayActivator>,
     IEventMessageReceiver<ServerListChangedMessage>
 {
-    private readonly IServerCountCache _serverCountCache;
+    private readonly IServersLoader _serversLoader;
 
-    public int TotalCountries => _serverCountCache.GetCountryCount();
+    public int TotalCountries => _serversLoader.GetCountryCount();
 
     public WelcomeToVpnPlusOverlayViewModel(
         IMainWindowOverlayActivator mainWindowOverlayActivator,
-        IServerCountCache serverCountCache,
+        IServersLoader serversLoader,
         IViewModelHelper viewModelHelper)
         : base(mainWindowOverlayActivator, viewModelHelper)
     {
-        _serverCountCache = serverCountCache;
+        _serversLoader = serversLoader;
     }
 
     public void Receive(ServerListChangedMessage message)

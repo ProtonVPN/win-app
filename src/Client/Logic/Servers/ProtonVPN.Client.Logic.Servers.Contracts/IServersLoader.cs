@@ -24,6 +24,9 @@ namespace ProtonVPN.Client.Logic.Servers.Contracts;
 
 public interface IServersLoader
 {
+    int GetServerCount();
+    int GetCountryCount();
+
     Server? GetById(string serverId);
 
     IEnumerable<FreeCountry> GetFreeCountries();

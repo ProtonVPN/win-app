@@ -18,6 +18,7 @@
  */
 
 using Autofac;
+using ProtonVPN.Client.Logic.Servers.Cache;
 using ProtonVPN.Client.Logic.Servers.Files;
 using ProtonVPN.Client.Logic.Servers.Mappers;
 using ProtonVPN.Client.Logic.Servers.Observers;

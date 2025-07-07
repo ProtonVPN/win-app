@@ -17,11 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Servers.Contracts.Updaters;
+namespace ProtonVPN.Client.Logic.Servers.Contracts;
 
-public enum ServersRequestParameter
+public interface IServersUpdater
 {
-    RequestIfOld = 0,
-    ForceFullUpdate = 1,
-    ForceLoadsUpdate = 2
+    Task UpdateAsync();
+    Task ForceUpdateAsync();
+    Task ForceLoadsUpdateAsync();
+
+    Task ClearCacheAsync();
 }

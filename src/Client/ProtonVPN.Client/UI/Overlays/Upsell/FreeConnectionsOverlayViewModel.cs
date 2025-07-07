@@ -36,28 +36,25 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase<IMai
     IEventMessageReceiver<ServerListChangedMessage>
 {
     private readonly IServersLoader _serversLoader;
-    private readonly IServerCountCache _serverCountCache;
     private readonly IAccountUpgradeUrlLauncher _accountUpgradeUrlLauncher;
 
     public SmartObservableCollection<LocalizedCountry> FreeCountries { get; } = new();
 
     public string UpsellTagline
         => Localizer.GetFormat("Upsell_Carousel_WorldwideCoverage",
-                Localizer.GetPluralFormat("Upsell_Carousel_WorldwideCoverage_Servers", _serverCountCache.GetServerCount()),
-                Localizer.GetPluralFormat("Upsell_Carousel_WorldwideCoverage_Countries", _serverCountCache.GetCountryCount()));
+                Localizer.GetPluralFormat("Upsell_Carousel_WorldwideCoverage_Servers", _serversLoader.GetServerCount()),
+                Localizer.GetPluralFormat("Upsell_Carousel_WorldwideCoverage_Countries", _serversLoader.GetCountryCount()));
 
     public long FreeCountriesCount => FreeCountries.Count;
 
     public FreeConnectionsOverlayViewModel(
         IMainWindowOverlayActivator overlayActivator,
         IServersLoader serversLoader,
-        IServerCountCache serverCountCache,
         IAccountUpgradeUrlLauncher accountUpgradeUrlLauncher,
         IViewModelHelper viewModelHelper)
         : base(overlayActivator, viewModelHelper)
     {
         _serversLoader = serversLoader;
-        _serverCountCache = serverCountCache;
         _accountUpgradeUrlLauncher = accountUpgradeUrlLauncher;
         InvalidateFreeCountries();
     }

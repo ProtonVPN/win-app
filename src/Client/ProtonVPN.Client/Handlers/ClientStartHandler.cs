@@ -23,7 +23,7 @@ using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Servers;
+using ProtonVPN.Client.Logic.Servers.Cache;
 
 namespace ProtonVPN.Client.Handlers;
 

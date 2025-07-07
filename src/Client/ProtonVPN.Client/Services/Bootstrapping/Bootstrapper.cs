@@ -199,6 +199,10 @@ public class Bootstrapper : IBootstrapper
                     i++;
                 }
             }
+            else if (arg.EqualsIgnoringCase("-ResetLogicals"))
+            {
+                _settings.LogicalsLastModifiedDate = DefaultSettings.LogicalsLastModifiedDate;
+            }
         }
 
         HandleProtonInstallerArguments(args);

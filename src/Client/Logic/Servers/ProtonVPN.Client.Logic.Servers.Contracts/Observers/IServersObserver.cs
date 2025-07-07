@@ -22,5 +22,4 @@ using ProtonVPN.Client.Common.Observers;
 namespace ProtonVPN.Client.Logic.Servers.Contracts.Observers;
 
 public interface IServersObserver : IObserver
-{
-}
+{ }
