@@ -2045,7 +2045,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Proteja 10 dispositivos de uma só vez.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
-    <value>Estenda a proteção VPN ao seu desktop, dispositivo móvel, navegador, TV e muito mais.</value>
+    <value>Estenda a proteção VPN ao seu desktop, dispositivo móvel, navegador, TV e muito mais. </value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream">
     <value>Streaming em alta resolução</value>
@@ -2742,7 +2742,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Protegido</value>
   </data>
   <data name="LoadingPage_Tip">
-    <value>Um mundo melhor começa com privacidade e liberdade digital.</value>
+    <value>Um mundo melhor começa com privacidade e liberdade digital.</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>Ocorreu um erro ao recuperar os detalhes da sessão. Tente novamente.</value>

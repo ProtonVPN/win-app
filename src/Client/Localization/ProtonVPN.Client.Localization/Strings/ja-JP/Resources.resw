@@ -295,7 +295,7 @@
     <value>更新中...</value>
   </data>
   <data name="Common_Tags_Beta">
-    <value>BETA</value>
+    <value>ベータ</value>
     <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
   </data>
   <data name="Common_Tags_New">
@@ -1707,37 +1707,37 @@
     <value>遅延とは何ですか？</value>
   </data>
   <data name="Dialogs_NpsSurvey_CommentLabel">
-    <value>Please let us know why you gave that rating</value>
+    <value>評価の理由を教えてください</value>
   </data>
   <data name="Dialogs_NpsSurvey_ErrorSubtitle">
-    <value>We couldn't send your feedback. Please check your connection and try again.</value>
+    <value>お客様のフィードバックを送信できませんでした。接続を確認して、もう一度お試しください。</value>
   </data>
   <data name="Dialogs_NpsSurvey_ErrorTitle">
-    <value>Something went wrong</value>
+    <value>不具合が発生しました。</value>
   </data>
   <data name="Dialogs_NpsSurvey_HighRateDescription">
-    <value>10 is very likely</value>
+    <value>10はとても可能性が高い</value>
   </data>
   <data name="Dialogs_NpsSurvey_LowRateDescription">
-    <value>0 is very unlikely</value>
+    <value>0はとても可能性が低い</value>
   </data>
   <data name="Dialogs_NpsSurvey_Optional">
-    <value>Optional</value>
+    <value>任意</value>
   </data>
   <data name="Dialogs_NpsSurvey_ShareAnonymously">
-    <value>Share anonymously</value>
+    <value>匿名で共有</value>
   </data>
   <data name="Dialogs_NpsSurvey_SuccessSubtitle">
-    <value>Your feedback helps us improve Proton VPN.</value>
+    <value>お客様のフィードバックは、Proton VPN の改善に役立ちます。</value>
   </data>
   <data name="Dialogs_NpsSurvey_SuccessTitle">
-    <value>Thanks for your feedback</value>
+    <value>ご意見ありがとうございます</value>
   </data>
   <data name="Dialogs_NpsSurvey_Title">
-    <value>How likely are you to recommend Proton VPN to a friend?</value>
+    <value>Proton VPNを友人におすすめする可能性はどれくらいですか？</value>
   </data>
   <data name="Dialogs_NpsSurvey_TryAgain">
-    <value>Try again</value>
+    <value>再試行</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
     <value>このサーバーは P2P トラフィックに対応していないため、接続が解除されました。無料プランのサーバーは P2P に対応していません。P2P に対応した別のサーバーを選択してください。</value>
@@ -1997,16 +1997,16 @@
     <value>Proton VPNへようこそ</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>You can now access your organization's dedicated servers from the main sidebar.</value>
+    <value>あなたの組織専用のサーバーにメインサイドバーからアクセスできるようになりました。</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
     <value>ゲートウェイが移動されました</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
-    <value>You can now connect to printers, speakers, and other devices on your local network (LAN), bypassing the VPN tunnel.</value>
+    <value>お客様は現在、VPNトンネルをバイパスして、ローカルネットワーク (LAN) 上のプリンター、スピーカー、その他のデバイスに接続できます。</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Title">
-    <value>LAN connections</value>
+    <value>LAN 接続</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
     <value>デザインを刷新し、いくつかの要素を移動させてアプリを使いやすくしました。</value>
@@ -2015,10 +2015,10 @@
     <value>新しい外観、変わらない保護</value>
   </data>
   <data name="Dialogs_WhatsNew_PortNumber_Description">
-    <value>When port forwarding is enabled, you'll now see your active port number on the home screen.</value>
+    <value>ポート転送が有効の場合、ホーム画面でアクティブなポート番号を確認できるようになります。</value>
   </data>
   <data name="Dialogs_WhatsNew_PortNumber_Title">
-    <value>Active port number</value>
+    <value>アクティブなポート番号</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
     <value>NetShieldやポート転送などの高度なプロファイル設定を追加するか、接続時に選択したWebサイトを起動するように接続してください。</value>
@@ -2039,10 +2039,10 @@
     <value>最新情報</value>
   </data>
   <data name="Dialogs_WhatsNew_TrayApp_Description">
-    <value>You can now connect, disconnect, and change your default connection from the system tray.</value>
+    <value>システムトレイから、接続、接続解除、およびデフォルトの接続を変更できるようになりました。</value>
   </data>
   <data name="Dialogs_WhatsNew_TrayApp_Title">
-    <value>New system tray app</value>
+    <value>新規システムトレイアプリ</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Proton VPN を終了しますか?</value>
@@ -2117,7 +2117,7 @@
     <value>VPN接続が切れた場合、あなたのIPアドレスが公開される可能性があります</value>
   </data>
   <data name="Flyouts_KillSwitch_Info_Disconnected">
-    <value>Advanced kill switch disables your internet to protect your IP address while you're not connected to Proton VPN.</value>
+    <value>高度なキルスイッチは、Proton VPNに接続していない間、お客様のIPアドレスを保護するために、インターネットへの接続を無効化します。</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>VPN接続が切断された場合、VPNが復元されるまでインターネット接続が切れます</value>
@@ -2201,20 +2201,20 @@
     <value>VPN Acceleratorで強化</value>
   </data>
   <data name="Flyouts_Speed_Description1">
-    <value>Shows how much data goes through the VPN tunnel in real time.</value>
+    <value>VPNトンネルを通過するデータ量をリアルタイムで表示します。</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>This is based on your device's current activity. In most cases, it doesn't represent the VPN's maximum speed.</value>
+    <value>これはお客様のデバイスの現在のアクティビティに基づいています。ほとんどの場合、これはVPNの最大速度を表すものではありません。</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>ダウンロード</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>VPN speed and traffic explained</value>
+    <value>VPNの速度とトラフィックに関する解説</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>Current traffic</value>
+    <value>現在のトラフィック</value>
   </data>
   <data name="Flyouts_Speed_Upload">
     <value>アップロード</value>
@@ -2248,14 +2248,14 @@
     <value>両方の利点を最大限に活用</value>
   </data>
   <data name="Flyouts_Volume_Description">
-    <value>Shows the total amount of data passed through the VPN tunnel since you connected.</value>
+    <value>お客様が接続してからVPNトンネルを通過した総データ量を表示します。</value>
   </data>
   <data name="Flyouts_Volume_Download">
     <value>ダウンロード</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>Total traffic</value>
+    <value>合計トラフィック</value>
   </data>
   <data name="Flyouts_Volume_Upload">
     <value>アップロード</value>
@@ -2294,7 +2294,7 @@
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Current traffic ({0})</value>
+    <value>現在のトラフィック ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2344,7 +2344,7 @@
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
   <data name="Format_Time_Hours_Ago_Other">
-    <value>{0} hours ago</value>
+    <value>{0} 時間前</value>
   </data>
   <data name="Format_Time_Minutes">
     <value>{0} 分</value>
@@ -2359,14 +2359,14 @@
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
   <data name="Format_Time_Minutes_Ago_Other">
-    <value>{0} minutes ago</value>
+    <value>{0} 分前</value>
   </data>
   <data name="Format_Time_Seconds">
     <value>{0} 秒</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
   </data>
   <data name="Format_Time_Seconds_Ago_Other">
-    <value>{0} seconds ago</value>
+    <value>{0} 秒前</value>
   </data>
   <data name="FreeConnections_P2PUpsell">
     <value>BitTorrentやその他のファイル共有プロトコルでファイルをダウンロードする</value>
@@ -2434,13 +2434,13 @@
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
-    <value>Advanced kill switch activated</value>
+    <value>高度なキルスイッチが有効です</value>
   </data>
   <data name="Home_ConnectionDetails_City">
     <value>都市</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
-    <value>Connect to VPN to restore your internet connection.</value>
+    <value>お客様のインターネット接続を復元するためにVPNに接続してください。</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
     <value>へ接続</value>
@@ -2513,7 +2513,7 @@
     <value>VPNに接続してあなたのオンラインの活動記録を暗号化</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
-    <value>Total traffic</value>
+    <value>合計トラフィック</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>ダウンロード量</value>
@@ -2708,7 +2708,7 @@
     <value>速度を上げるために BitTorrent へこの番号を指定します。</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
-    <value>You've reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
+    <value>最大のデバイス数に達しました。VPNに再接続するには、他のデバイスで切断してください。</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>お客様のプランは Proton Free にダウングレードされ、最速の無料サーバーに再接続されます。</value>
@@ -2720,7 +2720,7 @@
     <value>セキュリティ保護されていない Wi-Fi 接続を検出</value>
   </data>
   <data name="NpsSurvey_Title">
-    <value>Proton VPN - Survey</value>
+    <value>Proton VPN アンケート</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_OutdatedClient_Action">
@@ -3075,10 +3075,10 @@ VPN接続</value>
     <value>IPv6アドレスへの接続をブロックすることで、IPv6リークを防ぎます。</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
-    <value>Allow LAN connections</value>
+    <value>LAN への接続を許可</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Allows connections to printers, speakers, and other devices in your local network.</value>
+    <value>お客様のローカル ネットワーク内のプリンター、スピーカー、その他のデバイスへの接続を許可します。</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>NATタイプ</value>
@@ -3216,7 +3216,7 @@ VPN接続</value>
     <value>ポート転送を使用するには、P2Pをサポートしているサーバーに接続してください。</value>
   </data>
   <data name="Settings_Connection_PortForwarding_LastChanged">
-    <value>Last changed: {0}</value>
+    <value>最終更新: {0}</value>
     <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
   </data>
   <data name="Settings_Connection_PortForwarding_Loading">
@@ -3271,13 +3271,13 @@ VPN接続</value>
     <value>どのアプリとIP アドレスをVPN によって保護するかを決定して、接続をカスタマイズします。</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Include mode</value>
+    <value>含めるモード</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>選択したアプリとIPアドレスのみがVPNを通して接続され、他のすべてのトラフィックは保護されません。</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
-    <value>Include</value>
+    <value>含める</value>
     <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
@@ -3294,13 +3294,13 @@ VPN接続</value>
     <value>IPv4アドレスを追加</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Exclude mode</value>
+    <value>除外モード</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>選択したアプリと IP アドレスは VPN 接続から除外されます</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Short">
-    <value>Exclude</value>
+    <value>除外</value>
     <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
@@ -3632,7 +3632,7 @@ VPN接続</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
-    <value>Open app to sign in</value>
+    <value>サインインするためにアプリを開く</value>
   </data>
   <data name="Unit_BytesPerSecond">
     <value>B/s</value>
@@ -3763,16 +3763,16 @@ VPN接続</value>
     <value>スイス、スウェーデン、アイスランドにあるセキュアなサーバーを経由</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Browse at even higher speeds</value>
+    <value>さらに高速なブラウジング</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Browse up to 400% faster with VPN Accelerator</value>
+    <value>VPN Acceleratorで最大400%スピードアップ</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>より高速で混雑していないサーバーにアクセス</value>
   </data>
   <data name="Upsell_Carousel_Speed_Traffic">
-    <value>Get connection speeds of up to 10 Gbps</value>
+    <value>接続速度は最大10 Gbps</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
     <value>両方の利点を最大限に活用</value>
@@ -3830,16 +3830,16 @@ VPN接続</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>Bypass censorship with advanced security features</value>
+    <value>高度なセキュリティ機能で検閲を回避</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
     <value>{0} か国</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Features">
-    <value>Secure streaming, torrenting, and more</value>
+    <value>安全なストリーミング、トレントなど</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Selection">
-    <value>Select any country from our worldwide network</value>
+    <value>世界中のネットワークからお好きな国をどれでも選択</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
     <value>{0} 台の安全なサーバー</value>

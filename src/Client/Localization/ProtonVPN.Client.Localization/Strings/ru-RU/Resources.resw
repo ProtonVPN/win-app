@@ -1929,31 +1929,31 @@
     <value>We couldn't send your feedback. Please check your connection and try again.</value>
   </data>
   <data name="Dialogs_NpsSurvey_ErrorTitle">
-    <value>Something went wrong</value>
+    <value>Что-то пошло не так</value>
   </data>
   <data name="Dialogs_NpsSurvey_HighRateDescription">
-    <value>10 is very likely</value>
+    <value>10 довольно вероятно</value>
   </data>
   <data name="Dialogs_NpsSurvey_LowRateDescription">
-    <value>0 is very unlikely</value>
+    <value>0 очень маловероятно</value>
   </data>
   <data name="Dialogs_NpsSurvey_Optional">
-    <value>Optional</value>
+    <value>Необязательно</value>
   </data>
   <data name="Dialogs_NpsSurvey_ShareAnonymously">
-    <value>Share anonymously</value>
+    <value>Поделиться анонимно</value>
   </data>
   <data name="Dialogs_NpsSurvey_SuccessSubtitle">
     <value>Your feedback helps us improve Proton VPN.</value>
   </data>
   <data name="Dialogs_NpsSurvey_SuccessTitle">
-    <value>Thanks for your feedback</value>
+    <value>Благодарим за отзыв</value>
   </data>
   <data name="Dialogs_NpsSurvey_Title">
     <value>How likely are you to recommend Proton VPN to a friend?</value>
   </data>
   <data name="Dialogs_NpsSurvey_TryAgain">
-    <value>Try again</value>
+    <value>Попробовать снова</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
     <value>Ваше соединение было отключено, потому что вы используете сервер, не поддерживающий трафик peer-to-peer (P2P). P2P не поддерживается на бесплатных серверах. Пожалуйста, используйте другой сервер для P2P.</value>
@@ -2231,7 +2231,7 @@
     <value>You can now connect to printers, speakers, and other devices on your local network (LAN), bypassing the VPN tunnel.</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Title">
-    <value>LAN connections</value>
+    <value>Подключения по LAN</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
     <value>Чтобы приложение было удобнее, мы обновили дизайн и переместили некоторые элементы.</value>
@@ -2243,7 +2243,7 @@
     <value>When port forwarding is enabled, you'll now see your active port number on the home screen.</value>
   </data>
   <data name="Dialogs_WhatsNew_PortNumber_Title">
-    <value>Active port number</value>
+    <value>Номер активного порта</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
     <value>Добавляйте в профиль дополнительные настройки: NetShield, переадресацию портов или функцию Connect and Go, чтобы при подключении автоматически открывался выбранный вами сайт.</value>
@@ -3032,7 +3032,7 @@
     <value>Установите это число в приложении BitTorrent для увеличения скорости.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
-    <value>You've reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
+    <value>Достигнуто максимальное количество устройств. Чтобы переподключиться к VPN, отключитесь от другого устройства.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Вы переведены на более дешёвый тариф Proton Free, и мы снова подключаем вас к самому быстрому бесплатному серверу.</value>
@@ -3399,7 +3399,7 @@
     <value>Предотвращает утечку IPv6-трафика, блокируя соединения с IPv6-адресами.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
-    <value>Allow LAN connections</value>
+    <value>Разрешить соединения по локальной сети</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
     <value>Allows connections to printers, speakers, and other devices in your local network.</value>
@@ -3595,7 +3595,7 @@
     <value>Настройте своё подключение, определив, какие приложения и IP-адреса будут защищены VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Include mode</value>
+    <value>Режим включения</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>Только выбранные приложения и IP-адреса подключаются через VPN, весь остальной трафик не защищён</value>
@@ -3618,7 +3618,7 @@
     <value>Добавить адрес IPv4</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Exclude mode</value>
+    <value>Режим исключения</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>Выбранные приложения и IP-адреса исключены из подключения через VPN</value>
