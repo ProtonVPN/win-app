@@ -53,8 +53,6 @@ public class NotificationActivationHandler : IHandler,
 
     public void Receive(NotificationActivationMessage message)
     {
-        _uiThreadDispatcher.TryEnqueue(_mainWindowActivator.Activate);
-
         HandleCustomActivationActionAsync(message.Argument);
     }
 
@@ -70,6 +68,9 @@ public class NotificationActivationHandler : IHandler,
                 {
                     await _portForwardingClipboardService.CopyActivePortToClipboardAsync();
                 });
+                break;
+            default:
+                _uiThreadDispatcher.TryEnqueue(_mainWindowActivator.Activate);
                 break;
         }
     }
