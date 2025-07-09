@@ -92,14 +92,7 @@ public static class FeatureExtensions
 
     public static string? GetCountryCode(this IFeature feature)
     {
-        string? countryCode = feature[COUNTRY_CODE] as string;
-
-        if (countryCode == "GB")
-        {
-            countryCode = "UK";
-        }
-
-        return countryCode;
+        return feature[COUNTRY_CODE] as string;
     }
 
     public static void SetIsUnderMaintenance(this IFeature feature, bool isUnderMaintenance)

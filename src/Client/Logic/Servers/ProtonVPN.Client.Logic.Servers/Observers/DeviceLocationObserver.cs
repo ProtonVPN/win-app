@@ -28,6 +28,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Observers;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -164,7 +165,7 @@ public class DeviceLocationObserver :
         DeviceLocation deviceLocation = new()
         {
             IpAddress = ipAddress,
-            CountryCode = countryCode,
+            CountryCode = countryCode.NormalizeCountryCode(),
             Isp = isp
         };
 

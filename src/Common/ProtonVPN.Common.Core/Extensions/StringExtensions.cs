@@ -367,4 +367,15 @@ public static class StringExtensions
 
         return secureString;
     }
+
+    public static string NormalizeCountryCode(this string countryCode)
+    {
+        if (string.Equals(countryCode, "GB", StringComparison.OrdinalIgnoreCase))
+        {
+            // Normalize GB to UK for consistency
+            return "UK";
+        }
+
+        return countryCode.Trim().ToUpperInvariant();
+    }
 }
