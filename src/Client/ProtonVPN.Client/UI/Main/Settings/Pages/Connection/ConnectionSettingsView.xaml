@@ -46,25 +46,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <custom:SettingsSectionControl Title="{x:Bind ViewModel.Localizer.Get('Settings_Connection')}">
             <StackPanel>
-                <Grid x:Name="SettingCardsGrid"
-                      ColumnSpacing="8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"
-                                          MinWidth="150" />
-                        <ColumnDefinition Width="*"
-                                          MinWidth="150" />
-                        <ColumnDefinition Width="*"
-                                          MinWidth="150" />
-                    </Grid.ColumnDefinitions>
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
+                <toolkit:UniformGrid x:Name="SettingCardsGrid" 
+                                     Columns="3"
+                                     ColumnSpacing="8">
 
                     <custom:GridSettingsCard x:Name="Item1"
-                                             Grid.Row="0"
-                                             Grid.Column="0"
                                              AutomationProperties.AutomationId="ProtocolSettingsCard"
                                              Command="{x:Bind ViewModel.NavigateToProtocolPageCommand, Mode=OneTime}"
                                              Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Protocol')}"
@@ -88,8 +74,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </custom:GridSettingsCard>
 
                     <custom:GridSettingsCard x:Name="Item2"
-                                             Grid.Row="0"
-                                             Grid.Column="1"
                                              AutomationProperties.AutomationId="NetShieldSettingsCard"
                                              Command="{x:Bind ViewModel.NavigateToNetShieldPageCommand, Mode=OneTime}"
                                              Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_NetShield')}"
@@ -114,8 +98,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </custom:GridSettingsCard>
 
                     <custom:GridSettingsCard x:Name="Item3"
-                                             Grid.Row="0"
-                                             Grid.Column="2"
                                              AutomationProperties.AutomationId="KillSwitchSettingsCard"
                                              Command="{x:Bind ViewModel.NavigateToKillSwitchPageCommand, Mode=OneTime}"
                                              Description="{x:Bind ViewModel.KillSwitchSettingsState}"
@@ -131,8 +113,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </custom:GridSettingsCard>
 
                     <custom:GridSettingsCard x:Name="Item4"
-                                             Grid.Row="1"
-                                             Grid.Column="0"
                                              AutomationProperties.AutomationId="PortForwardingSettingsCard"
                                              Command="{x:Bind ViewModel.NavigateToPortForwardingPageCommand, Mode=OneTime}"
                                              Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding')}"
@@ -157,8 +137,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </custom:GridSettingsCard>
 
                     <custom:GridSettingsCard x:Name="Item5"
-                                             Grid.Row="1"
-                                             Grid.Column="1"
                                              AutomationProperties.AutomationId="SplitTunnelingSettingsCard"
                                              Command="{x:Bind ViewModel.NavigateToSplitTunnelingPageCommand, Mode=OneTime}"
                                              Description="{x:Bind ViewModel.SplitTunnelingSettingsState}"
@@ -175,8 +153,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </custom:GridSettingsCard>
 
                     <custom:GridSettingsCard x:Name="Item6"
-                                             Grid.Row="1"
-                                             Grid.Column="2"
                                              AutomationProperties.AutomationId="VpnAcceleratorSettingsCard"
                                              Command="{x:Bind ViewModel.NavigateToVpnAcceleratorPageCommand, Mode=OneTime}"
                                              Description="{x:Bind ViewModel.VpnAcceleratorSettingsState}"
@@ -192,7 +168,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </custom:GridSettingsCard.ActionIcon>
                     </custom:GridSettingsCard>
 
-                </Grid>
+                </toolkit:UniformGrid>
 
                 <toolkit:SettingsCard AutomationProperties.AutomationId="AdvancedSettingsCard"
                                       Command="{x:Bind ViewModel.NavigateToAdvancedSettingsPageCommand, Mode=OneTime}"
@@ -212,55 +188,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
-                <!--  Default Wide (3x2) State  -->
+                <!--Default Wide (3x2) State-->
                 <VisualState x:Name="WideState">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="900" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <!--  Define 3x2 layout  -->
-                        <Setter Target="SettingCardsGrid.RowDefinitions" Value="Auto,Auto" />
-                        <Setter Target="SettingCardsGrid.ColumnDefinitions" Value="*,*,*" />
-
-                        <!--  Position items for 3x2 layout  -->
-                        <Setter Target="Item1.(Grid.Row)" Value="0" />
-                        <Setter Target="Item1.(Grid.Column)" Value="0" />
-                        <Setter Target="Item2.(Grid.Row)" Value="0" />
-                        <Setter Target="Item2.(Grid.Column)" Value="1" />
-                        <Setter Target="Item3.(Grid.Row)" Value="0" />
-                        <Setter Target="Item3.(Grid.Column)" Value="2" />
-                        <Setter Target="Item4.(Grid.Row)" Value="1" />
-                        <Setter Target="Item4.(Grid.Column)" Value="0" />
-                        <Setter Target="Item5.(Grid.Row)" Value="1" />
-                        <Setter Target="Item5.(Grid.Column)" Value="1" />
-                        <Setter Target="Item6.(Grid.Row)" Value="1" />
-                        <Setter Target="Item6.(Grid.Column)" Value="2" />
+                        <!--Define 3x2 layout-->
+                        <Setter Target="SettingCardsGrid.Columns" Value="3" />
                     </VisualState.Setters>
                 </VisualState>
 
-                <!--  Narrow (2x3) State  -->
+                <!--Narrow (2x3) State-->
                 <VisualState x:Name="NarrowState">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <!--  Define 2x3 layout  -->
-                        <Setter Target="SettingCardsGrid.RowDefinitions" Value="Auto,Auto,Auto" />
-                        <Setter Target="SettingCardsGrid.ColumnDefinitions" Value="*,*" />
-
-                        <!--  Position items for 2x3 layout  -->
-                        <Setter Target="Item1.(Grid.Row)" Value="0" />
-                        <Setter Target="Item1.(Grid.Column)" Value="0" />
-                        <Setter Target="Item2.(Grid.Row)" Value="0" />
-                        <Setter Target="Item2.(Grid.Column)" Value="1" />
-                        <Setter Target="Item3.(Grid.Row)" Value="1" />
-                        <Setter Target="Item3.(Grid.Column)" Value="0" />
-                        <Setter Target="Item4.(Grid.Row)" Value="1" />
-                        <Setter Target="Item4.(Grid.Column)" Value="1" />
-                        <Setter Target="Item5.(Grid.Row)" Value="2" />
-                        <Setter Target="Item5.(Grid.Column)" Value="0" />
-                        <Setter Target="Item6.(Grid.Row)" Value="2" />
-                        <Setter Target="Item6.(Grid.Column)" Value="1" />
+                        <!--Define 2x3 layout-->
+                        <Setter Target="SettingCardsGrid.Columns" Value="2" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
