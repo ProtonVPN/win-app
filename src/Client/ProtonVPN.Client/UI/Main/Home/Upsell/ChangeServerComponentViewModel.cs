@@ -47,6 +47,7 @@ public partial class ChangeServerComponentViewModel : ActivatableViewModelBase,
     public double DelayInSeconds => _changeServerModerator.GetDelayUntilNextAttempt().TotalSeconds;
     public double RemainingDelayInSeconds => _changeServerModerator.GetRemainingDelayUntilNextAttempt().TotalSeconds;
     public string? FormattedRemainingTime => Localizer.GetFormattedShortTime(_changeServerModerator.GetRemainingDelayUntilNextAttempt());
+    public bool HasTroubleConnecting => _changeServerModerator.HasTroubleConnecting();
 
     public ChangeServerComponentViewModel(
         IConnectionManager connectionManager,
@@ -99,7 +100,10 @@ public partial class ChangeServerComponentViewModel : ActivatableViewModelBase,
 
     private bool CanChangeServer()
     {
-        return _connectionManager.IsConnected && _changeServerModerator.CanChangeServer();
+        bool isConnectedOrHasTroubleConnecting = _connectionManager.IsConnected || 
+                                                 (_connectionManager.IsConnecting && _changeServerModerator.HasTroubleConnecting());
+
+        return isConnectedOrHasTroubleConnecting && _changeServerModerator.CanChangeServer();
     }
 
     [RelayCommand]
@@ -115,6 +119,7 @@ public partial class ChangeServerComponentViewModel : ActivatableViewModelBase,
         OnPropertyChanged(nameof(DelayInSeconds));
         OnPropertyChanged(nameof(RemainingDelayInSeconds));
         OnPropertyChanged(nameof(FormattedRemainingTime));
+        OnPropertyChanged(nameof(HasTroubleConnecting));
 
         ChangeServerCommand.NotifyCanExecuteChanged();
     }

@@ -39,12 +39,16 @@ public class ChangeServerModerator :
     IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
+    private const int TroubleConnectingDelaySeconds = 6;
+
     private readonly ISettings _settings;
     private readonly IConnectionManager _connectionManager;
     private readonly IEventMessageSender _eventMessageSender;
 
     private ChangeServerSettings _changeServerSettings;
     private ChangeServerAttempts _changeServerAttempts;
+    private DateTimeOffset? _connectionStartTime;
+    private bool _isConnecting;
 
     protected override TimeSpan PollingInterval { get; } = TimeSpan.FromSeconds(1);
 
@@ -92,6 +96,17 @@ public class ChangeServerModerator :
             : TimeSpan.FromSeconds(Math.Ceiling(remainingTime.TotalSeconds));
     }
 
+    public bool HasTroubleConnecting()
+    {
+        if (!_isConnecting || !_connectionStartTime.HasValue)
+        {
+            return false;
+        }
+
+        TimeSpan elapsedTime = DateTimeOffset.UtcNow - _connectionStartTime.Value;
+        return elapsedTime.TotalSeconds >= TroubleConnectingDelaySeconds;
+    }
+
     public void Receive(LoggedInMessage message)
     {
         InvalidateChangeServerAttempts();
@@ -116,6 +131,20 @@ public class ChangeServerModerator :
 
     public void Receive(ConnectionStatusChangedMessage message)
     {
+        // Track connection state for HasTroubleConnecting logic
+        switch (message.ConnectionStatus)
+        {
+            case ConnectionStatus.Connecting:
+                _isConnecting = true;
+                _connectionStartTime = DateTimeOffset.UtcNow;
+                break;
+            case ConnectionStatus.Connected:
+            case ConnectionStatus.Disconnected:
+                _isConnecting = false;
+                _connectionStartTime = null;
+                break;
+        }
+
         if (_connectionManager.IsConnected &&
             _connectionManager.CurrentConnectionIntent?.Location is FreeServerLocationIntent intent &&
            intent.Kind == ConnectionIntentKind.Random)
