@@ -1774,7 +1774,7 @@ Latensi yang tinggi dapat memperlambat koneksi Anda.</value>
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_P2P_WhyUse_Description">
-    <value>• Kecepatan unggahan dan unduhan yang ditingkatkan
+    <value>• Kecepatan unggahan dan unduhan yang lebih lesat
 • Tanpa log aktivitas
 • Sembunyikan alamat IP Anda dari penyedia layanan internet dan komputer lain pada jaringan Anda</value>
     <comment>obsolete</comment>
@@ -3681,7 +3681,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Sambungkan ke VPN dengan server nama domain (DNS) khusus Anda</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
-    <value>Akses perangkat di jaringan area lokal (LAN) Anda pada saat tersambung</value>
+    <value>Akses perangkat di jaringan area lokal (LAN) Anda pada saat terhubung ke VPN</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
     <value>Bawa pengalaman gaming Anda ke level selanjutnya dengan beralih ke NAT tipe 2 (moderat)</value>
@@ -3742,10 +3742,10 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Dapatkan akses kilat ke koneksi yang sering Anda gunakan</value>
   </data>
   <data name="Upsell_Carousel_Profiles_Convenience">
-    <value>Tentukan profil sebagai koneksi bawaan Anda dan hubungkan dengan 1 klik</value>
+    <value>Tentukan salah satu profil sebagai koneksi bawaan Anda dan hubungkan dengan sekali klik</value>
   </data>
   <data name="Upsell_Carousel_Profiles_Creation">
-    <value>Buat dan simpan konfigurasi VPN Anda sendiri dengan Profil</value>
+    <value>Buat dan simpan konfigurasi VPN Anda sendiri dengan fitur Profil</value>
   </data>
   <data name="Upsell_Carousel_Profiles_Customization">
     <value>Sesuaikan lokasi, protokol, dan pengaturan Anda</value>

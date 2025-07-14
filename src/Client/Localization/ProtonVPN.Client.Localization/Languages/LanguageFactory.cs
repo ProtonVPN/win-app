@@ -48,7 +48,7 @@ public class LanguageFactory : ILanguageFactory
         { "cs-CZ",  "Čeština - Czech" },
         { "fi-FI",  "Suomi - Finnish" },
         { "hu-HU",  "Magyar - Hungarian" },
-        { "id-ID",  "Bahasa (Indonesia) - Indonesian" },
+        { "id-ID",  "Bahasa Indonesia - Indonesian" },
         { "nb-NO",  "Norsk (bokmål) - Norwegian (Bokmal)" },
         { "pt-PT",  "Português (Portugal) - Portuguese (Portugal)" },
         { "ro-RO",  "Română - Romanian" },

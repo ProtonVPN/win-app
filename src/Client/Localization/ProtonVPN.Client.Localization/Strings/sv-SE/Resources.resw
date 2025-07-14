@@ -2078,7 +2078,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Gateways har flyttats</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
-    <value>You can now connect to printers, speakers, and other devices on your local network (LAN), bypassing the VPN tunnel.</value>
+    <value>Du kan nu ansluta till skrivare, högtalare och andra enheter på ditt lokala nätverk (LAN) och kringgå VPN-tunneln.</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Title">
     <value>LAN-anslutningar</value>
