@@ -33,14 +33,16 @@ using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Extensions;
 using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Core.Services.Selection;
-using WinUIEx;
+using System.Threading;
 
 namespace ProtonVPN.Client.Core.Services.Activation.Bases;
 
 public abstract class OverlayActivatorBase<TWindow> : WindowHostActivatorBase<TWindow>, IOverlayActivator
-    where TWindow : WindowEx
+    where TWindow : BaseWindow
 {
     protected readonly IOverlayViewMapper OverlayViewMapper;
+
+    private SemaphoreSlim _overlaySemaphore = new(0, 1);
 
     private ContentDialog? _currentOverlay;
 
@@ -110,6 +112,14 @@ public abstract class OverlayActivatorBase<TWindow> : WindowHostActivatorBase<TW
         return ShowOverlayAsync(overlayType, parameter);
     }
 
+    protected override void OnWindowLoaded()
+    {
+        base.OnWindowLoaded();        
+        
+        // Host ready, release the semaphore to allow showing overlays
+        _overlaySemaphore.Release();
+    }
+
     protected override void RegisterToHostEvents()
     {
         base.RegisterToHostEvents();
@@ -171,7 +181,12 @@ public abstract class OverlayActivatorBase<TWindow> : WindowHostActivatorBase<TW
     }
 
     private async Task<ContentDialogResult> ShowOverlayAsync(ContentDialog overlay, object? parameter = null)
-    {
+    {        
+        // Close current overlayViewModel if any, then register the new one. Cannot have two overlays at the same time
+        CloseCurrentOverlay();
+
+        await _overlaySemaphore.WaitAsync();
+
         try
         {
             RegisterOverlay(overlay);
@@ -189,22 +204,22 @@ public abstract class OverlayActivatorBase<TWindow> : WindowHostActivatorBase<TW
         catch (Exception e)
         {
             Logger.Error<AppLog>($"Error when trying to show message '{overlay}'", e);
-            throw;
+
+            return ContentDialogResult.None;
         }
         finally
         {
             UnregisterCurrentOverlay();
+
+            _overlaySemaphore.Release();
         }
     }
 
     private void RegisterOverlay(ContentDialog overlay)
     {
-        // Close current overlayViewModel if any, then register the new one. Cannot have two overlays at the same time
-        CloseCurrentOverlay();
-
         if (Host == null)
         {
-            throw new InvalidOperationException("Window has not been initialized.");
+            throw new InvalidOperationException("Host window has not been initialized.");
         }
 
         overlay.XamlRoot = Host.GetXamlRoot();

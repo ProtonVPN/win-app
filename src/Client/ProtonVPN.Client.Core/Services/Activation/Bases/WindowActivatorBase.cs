@@ -20,6 +20,7 @@
 using System;
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Common.Dispatching;
+using ProtonVPN.Client.Common.UI.Controls.Custom;
 using ProtonVPN.Client.Contracts.Services.Activation.Bases;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Extensions;
@@ -33,7 +34,7 @@ using WinUIEx;
 namespace ProtonVPN.Client.Core.Services.Activation.Bases;
 
 public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWindow>, IWindowActivator
-    where TWindow : WindowEx
+    where TWindow : BaseWindow
 {
     protected readonly ILocalizationProvider Localizer;
     protected readonly IApplicationIconSelector IconSelector;
@@ -46,11 +47,13 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
     protected WindowState CurrentWindowState { get; private set; }
 
-    protected WindowActivationState CurrentActivationState { get; private set; }
+    protected WindowActivationState CurrentActivationState { get; private set; } = WindowActivationState.Deactivated;
 
     public bool IsWindowVisible { get; private set; }
 
-    public bool IsWindowFocused => CurrentActivationState != WindowActivationState.Deactivated;
+    public bool IsWindowFocused { get; private set; }
+
+    private bool _isActivationPending;
 
     public event EventHandler? HostDpiChanged;
 
@@ -71,45 +74,48 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
         HandleClosedEvent = true;
     }
 
+    private void CreateWindowInstanceAndSetAutoActivation()
+    {
+        _isActivationPending = true;
+
+        Activator.CreateInstance<TWindow>();
+    }
+
     public void Activate()
     {
-        Logger.Debug<AppLog>($"Activating {typeof(TWindow)?.Name}.");
+        Logger.Debug<AppLog>($"Activating {HostTypeName}.");
 
         if (Host == null)
         {
-            Logger.Info<AppLog>($"No active instance for {typeof(TWindow)?.Name}, create one.");
-            Activator.CreateInstance<TWindow>();
+            Logger.Info<AppLog>($"No active instance for {HostTypeName}, create one.");
+            CreateWindowInstanceAndSetAutoActivation();
+            return;
         }
 
-        Host?.Show();
-        Host?.SetForegroundWindow();
-        Host?.Activate();
-
-        OnWindowActivated();
+        Host.Activate();
+        Host.SetForegroundWindow();
     }
 
     public void Hide()
     {
-        Logger.Debug<AppLog>($"Hiding {typeof(TWindow)?.Name}.");
+        Logger.Debug<AppLog>($"Hiding {HostTypeName}.");
 
         if (Host == null)
         {
-            Logger.Info<AppLog>($"Cannot hide {typeof(TWindow)?.Name}, the window has not been initialized");
+            Logger.Info<AppLog>($"Cannot hide {HostTypeName}, the window has not been initialized");
             return;
         }
 
         Host.Hide();
-
-        OnWindowHidden();
     }
 
     public void Exit()
     {
-        Logger.Debug<AppLog>($"Exiting {typeof(TWindow)?.Name}.");
+        Logger.Debug<AppLog>($"Exiting {HostTypeName}.");
 
         if (Host == null)
         {
-            Logger.Info<AppLog>($"Cannot exit {typeof(TWindow)?.Name}, the window has not been initialized");
+            Logger.Info<AppLog>($"Cannot exit {HostTypeName}, the window has not been initialized");
             return;
         }
 
@@ -121,21 +127,6 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
     public void DisableHandleClosedEvent()
     {
         HandleClosedEvent = false;
-    }
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        if (Host != null)
-        {
-            Host.ExtendsContentIntoTitleBar = true;
-
-            InvalidateWindowIcon();
-            InvalidateWindowTitle();
-            InvalidateWindowPosition();
-            InvalidateWindowState();
-        }
     }
 
     protected override void RegisterToHostEvents()
@@ -166,56 +157,78 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
         }
     }
 
-    protected virtual void OnWindowActivated()
+    protected override void OnInitialized()
     {
-        Logger.Info<AppLog>($"Window '{typeof(TWindow)?.Name}' is activated.");
+        base.OnInitialized();
 
-        InvalidateWindowVisibilityState(true);
+        if (Host != null)
+        {
+            Host.ExtendsContentIntoTitleBar = true;
+
+            InvalidateWindowIcon();
+            InvalidateWindowTitle();
+            InvalidateWindowPosition();
+            InvalidateWindowState();
+        }
+    }
+
+    protected override void OnWindowLoaded()
+    {
+        base.OnWindowLoaded();
+
+        if (_isActivationPending)
+        {
+            _isActivationPending = false;
+
+            Activate();
+        }
+
+        InvalidateWindowFocusState();
+    }
+
+    protected virtual void OnWindowOpened()
+    {
+        Logger.Info<AppLog>($"Window '{HostTypeName}' is opened.");
+
         InvalidateWindowState();
     }
 
-    protected virtual void OnWindowClosing(WindowEventArgs e)
+    protected virtual void OnWindowFocused()
     {
-        Logger.Info<AppLog>($"Closing window '{typeof(TWindow)?.Name}' requested.");
+        Logger.Info<AppLog>($"Window '{HostTypeName}' is focused.");
     }
 
-    protected virtual void OnWindowCloseAborted()
+    protected virtual void OnWindowUnfocused()
     {
-        Logger.Info<AppLog>($"Closing window '{typeof(TWindow)?.Name}' aborted.");
-    }
-
-    protected virtual void OnWindowClosed()
-    {
-        Logger.Info<AppLog>($"Window '{typeof(TWindow)?.Name}' is closed.");
-
-        HandleClosedEvent = true;
+        Logger.Info<AppLog>($"Window '{HostTypeName}' is unfocused.");
     }
 
     protected virtual void OnWindowHidden()
     {
-        Logger.Info<AppLog>($"Window '{typeof(TWindow)?.Name}' is hidden.");
+        Logger.Info<AppLog>($"Window '{HostTypeName}' is hidden.");
+    }
 
-        InvalidateWindowVisibilityState(false);
+    protected virtual void OnWindowClosing(WindowEventArgs e)
+    {
+        Logger.Info<AppLog>($"Closing window '{HostTypeName}' requested.");
+    }
+
+    protected virtual void OnWindowCloseAborted()
+    {
+        Logger.Info<AppLog>($"Closing window '{HostTypeName}' aborted.");
+    }
+
+    protected virtual void OnWindowClosed()
+    {
+        Logger.Info<AppLog>($"Window '{HostTypeName}' is closed.");
+
+        // Current window instance is closed. Reset handle closed event flag for the next instance.
+        HandleClosedEvent = true;
     }
 
     protected virtual void OnWindowStateChanged()
     {
-        Logger.Info<AppLog>($"Window '{typeof(TWindow)?.Name}' state has changed to {CurrentWindowState}.");
-
-        InvalidateWindowVisibilityState(CurrentWindowState is not WindowState.Minimized);
-    }
-
-    protected virtual void OnWindowVisibilityChanged()
-    {
-        Logger.Info<AppLog>($"Window '{typeof(TWindow)?.Name}' visibility has changed to {(IsWindowVisible ? "Visible" : "Hidden" )}");
-    }
-
-    protected virtual void OnWindowActivationStateChanged()
-    {
-        if (Host is IActivationStateAware activationStateAware)
-        {
-            activationStateAware.InvalidateTitleBarOpacity(CurrentActivationState);
-        }
+        Logger.Info<AppLog>($"Window '{HostTypeName}' state has changed to {CurrentWindowState}.");
     }
 
     protected override void OnLanguageChanged()
@@ -275,13 +288,52 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
         }
     }
 
-    private void InvalidateWindowVisibilityState(bool isWindowVisible)
+    private void InvalidateWindowVisibilityState()
     {
+        bool isWindowVisible = Host != null 
+            && Host.Visible
+            && CurrentWindowState is not WindowState.Minimized;
+
         if (IsWindowVisible != isWindowVisible)
         {
             IsWindowVisible = isWindowVisible;
 
-            OnWindowVisibilityChanged();
+            if (IsWindowVisible)
+            {
+                OnWindowOpened();
+            }
+            else
+            {
+                OnWindowHidden();
+            }
+        }
+    }
+
+    private void InvalidateWindowFocusState()
+    {
+        bool isWindowFocused = Host != null
+            && CurrentActivationState is not WindowActivationState.Deactivated;
+
+        if (IsWindowFocused != isWindowFocused)
+        {
+            IsWindowFocused = isWindowFocused;
+
+            if (IsWindowFocused)
+            {
+                InvalidateWindowVisibilityState();
+                if (IsWindowVisible)
+                {
+                    OnWindowFocused();
+                }
+            }
+            else
+            {
+                if (IsWindowVisible)
+                {
+                    OnWindowUnfocused();
+                }
+                InvalidateWindowVisibilityState();
+            }
         }
     }
 
@@ -295,6 +347,8 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
         if (e.Handled)
         {
             OnWindowCloseAborted();
+
+            InvalidateWindowVisibilityState();
         }
         else
         {
@@ -307,14 +361,27 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
     {
         CurrentWindowState = windowState;
 
-        OnWindowStateChanged();
+        if (IsWindowLoaded)
+        {
+            OnWindowStateChanged();
+
+            InvalidateWindowFocusState();
+        }
     }
 
     private void OnWindowActivationStateChanged(object sender, WindowActivatedEventArgs e)
     {
         CurrentActivationState = e.WindowActivationState;
 
-        OnWindowActivationStateChanged();
+        if (IsWindowLoaded)
+        {
+            if (Host is IActivationStateAware activationStateAware)
+            {
+                activationStateAware.InvalidateTitleBarOpacity(CurrentActivationState);
+            }
+
+            InvalidateWindowFocusState();
+        }
     }
 
     private void OnWindowSizeChanged(object sender, WindowSizeChangedEventArgs e)

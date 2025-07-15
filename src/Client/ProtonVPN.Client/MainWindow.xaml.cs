@@ -18,6 +18,7 @@
  */
 
 using System.Runtime.InteropServices;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Extensions;
@@ -41,7 +42,7 @@ public sealed partial class MainWindow : IActivationStateAware
     private IEventMessageSender EventMessageSender { get; }
 
     private IntPtr _hWnd;
-    private WindowProc _newWndProc;
+    private WindowProc? _newWndProc;
     private IntPtr _oldWndProc;
 
     public MainWindow()
@@ -54,12 +55,12 @@ public sealed partial class MainWindow : IActivationStateAware
 
         WindowActivator.Initialize(this);
         OverlayActivator.Initialize(this);
-
-        Activated += OnWindowActivated;
     }
 
-    private void OnWindowActivated(object sender, WindowActivatedEventArgs args)
+    protected override void OnActivated(object sender, WindowActivatedEventArgs e)
     {
+        base.OnActivated(sender, e);
+
         if (_hWnd != IntPtr.Zero)
         {
             return;

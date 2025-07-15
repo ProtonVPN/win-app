@@ -248,6 +248,12 @@ public class GlobalSettings : IGlobalSettings
         set => _globalCache.SetValueType<TimeSpan>(value, SettingEncryption.Unencrypted);
     }
 
+    public bool IsEfficiencyModeAllowed
+    {
+        get => _globalCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsEfficiencyModeAllowed;
+        set => _globalCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
     public GlobalSettings(IGlobalSettingsCache globalSettingsCache)
     {
         _globalCache = globalSettingsCache;

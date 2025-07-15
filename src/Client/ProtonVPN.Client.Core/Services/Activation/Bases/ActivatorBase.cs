@@ -28,6 +28,8 @@ public abstract class ActivatorBase<THost> : IActivator<THost>
 
     public THost? Host { get; private set; }
 
+    protected string HostTypeName { get; private set; } = string.Empty;
+
     protected ActivatorBase(
         ILogger logger)
     {
@@ -42,6 +44,8 @@ public abstract class ActivatorBase<THost> : IActivator<THost>
 
         if (Host != null)
         {
+            HostTypeName = Host.GetType().Name;
+
             RegisterToHostEvents();
 
             OnInitialized();
@@ -55,6 +59,8 @@ public abstract class ActivatorBase<THost> : IActivator<THost>
             OnReset();
 
             UnregisterFromHostEvents();
+
+            HostTypeName = string.Empty;
 
             Host = null;
         }

@@ -18,21 +18,20 @@ You should have received a copy of the GNU General Public License
 along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<wex:WindowEx x:Class="ProtonVPN.Client.UI.Dialogs.NpsSurvey.NpsSurveyWindow"
-              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-              xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
-              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-              xmlns:wex="using:WinUIEx"
-              xmlns:local="using:ProtonVPN.Client.UI.Dialogs.NpsSurvey"
-              Width="470"
-              Height="566"
-              x:DefaultBindMode="OneWay"
-              IsMaximizable="False"
-              IsMinimizable="False"
-              IsResizable="False"
-              mc:Ignorable="d">
+<custom:BaseWindow x:Class="ProtonVPN.Client.UI.Dialogs.NpsSurvey.NpsSurveyWindow"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:local="using:ProtonVPN.Client.UI.Dialogs.NpsSurvey"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   Width="470"
+                   Height="566"
+                   x:DefaultBindMode="OneWay"
+                   IsMaximizable="False"
+                   IsMinimizable="False"
+                   IsResizable="False"
+                   mc:Ignorable="d">
 
     <custom:WindowContentControl x:Name="WindowContainer"
                                  Background="{ThemeResource BackgroundNormColorBrush}"
@@ -46,4 +45,4 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <local:NpsSurveyShellView x:Name="Shell" />
 
     </custom:WindowContentControl>
-</wex:WindowEx>
+</custom:BaseWindow>

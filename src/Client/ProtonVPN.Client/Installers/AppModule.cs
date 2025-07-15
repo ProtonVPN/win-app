@@ -271,6 +271,8 @@ public class AppModule : Module
         builder.RegisterType<CoordinatesProvider>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<ServiceCommunicationErrorHandler>().AsImplementedInterfaces().SingleInstance();
+
+        builder.RegisterType<EfficiencyModeEnabler>().AsImplementedInterfaces().SingleInstance();
     }
 
     private void RegisterLocalHandlers(ContainerBuilder builder)

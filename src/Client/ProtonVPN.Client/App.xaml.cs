@@ -23,6 +23,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Installers;
 using ProtonVPN.Client.Services.Bootstrapping;
+using ProtonVPN.Client.UI.Dialogs.Tray;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.IssueReporting.Installers;
 
@@ -34,7 +36,9 @@ public partial class App : Application
 
     private const string WINDOWS_11_TYPOGRAPHY_RD_PATH = "ms-appx:///ProtonVPN.Client.Common.UI/Styles/Typography.xaml";
     private const string WINDOWS_10_TYPOGRAPHY_RD_PATH = "ms-appx:///ProtonVPN.Client.Common.UI/Styles/Typography_W10.xaml";
+
     public MainWindow? MainWindow { get; private set; }
+    public TrayAppWindow? TrayWindow { get; private set; }
 
     public IHost Host { get; }
 
@@ -63,15 +67,16 @@ public partial class App : Application
             ?? throw new ArgumentException($"{type} needs to be registered within Autofac.");
     }
 
-    protected override async void OnLaunched(LaunchActivatedEventArgs args)
+    protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
         base.OnLaunched(args);
 
         LoadTypographyResourceDictionary();
 
         MainWindow = new();
+        TrayWindow = new();
 
-        await GetService<IBootstrapper>().StartAsync(args);
+        GetService<IBootstrapper>().StartAsync(args).FireAndForget();
     }
 
     private void LoadTypographyResourceDictionary()

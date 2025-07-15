@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2024 Proton AG
+Copyright (c) 2025 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -18,21 +18,20 @@ You should have received a copy of the GNU General Public License
 along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<wex:WindowEx x:Class="ProtonVPN.Client.UI.Dialogs.OneTimeAnnouncement.OneTimeAnnouncementWindow"
-              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-              xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
-              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-              xmlns:wex="using:WinUIEx"
-              xmlns:local="using:ProtonVPN.Client.UI.Dialogs.OneTimeAnnouncement"
-              Width="748"
-              Height="670"
-              x:DefaultBindMode="OneWay"
-              IsMaximizable="False"
-              IsMinimizable="False"
-              IsResizable="False"
-              mc:Ignorable="d">
+<custom:BaseWindow x:Class="ProtonVPN.Client.UI.Dialogs.OneTimeAnnouncement.OneTimeAnnouncementWindow"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:local="using:ProtonVPN.Client.UI.Dialogs.OneTimeAnnouncement"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   Width="748"
+                   Height="670"
+                   x:DefaultBindMode="OneWay"
+                   IsMaximizable="False"
+                   IsMinimizable="False"
+                   IsResizable="False"
+                   mc:Ignorable="d">
 
     <custom:WindowContentControl x:Name="WindowContainer"
                                  Title="{x:Bind Shell.ViewModel.Title}"
@@ -46,4 +45,4 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <local:OneTimeAnnouncementShellView x:Name="Shell" />
 
     </custom:WindowContentControl>
-</wex:WindowEx>
+</custom:BaseWindow>

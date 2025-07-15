@@ -896,6 +896,7 @@
 		<PackageReference Include="Vanara.PInvoke.SHCore" />
 		<PackageReference Include="Vanara.PInvoke.Shell32" />
 		<PackageReference Include="Vanara.PInvoke.User32" />
+		<PackageReference Include="WinUIEx" />
     </ItemGroup>
     <ItemGroup>
         <Page Update="Controls\Map\MapControl.xaml">

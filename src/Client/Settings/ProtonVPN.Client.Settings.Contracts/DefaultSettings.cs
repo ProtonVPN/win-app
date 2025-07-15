@@ -83,6 +83,7 @@ public static class DefaultSettings
     public static int TotalServerCount = 9000;
     public static int WhatsNewOverlayVersion = 2;
     public static TimeSpan WireGuardConnectionTimeout = TimeSpan.FromSeconds(5);
+    public static bool IsEfficiencyModeAllowed = false;
 
     public static ChangeServerSettings ChangeServerSettings = new()
     {

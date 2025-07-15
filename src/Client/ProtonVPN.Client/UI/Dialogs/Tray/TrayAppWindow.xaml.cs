@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Services.Activation;
 
 namespace ProtonVPN.Client.UI.Dialogs.Tray;
@@ -31,14 +30,7 @@ public sealed partial class TrayAppWindow
         WindowActivator = App.GetService<TrayAppWindowActivator>();
 
         InitializeComponent();
-
-        WindowActivator.Initialize(this);
-
-        IsTitleBarVisible = false;
-        IsShownInSwitchers = false;
-        IsResizable = false;
-        IsMinimizable = false;
-        IsMaximizable = false;
-        IsAlwaysOnTop = true;
+        
+        WindowActivator.Initialize(this);        
     }
 }

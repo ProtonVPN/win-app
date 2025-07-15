@@ -102,9 +102,9 @@ public class Bootstrapper : IBootstrapper
 
             HandleMainWindow();
 
-            StartServiceAsync().FireAndForget();
-
-            await TryAuthenticateAsync();
+            await Task.WhenAll(
+                StartServiceAsync(),
+                TryAuthenticateAsync());
         }
         catch (Exception e)
         {
@@ -202,6 +202,10 @@ public class Bootstrapper : IBootstrapper
             else if (arg.EqualsIgnoringCase("-ResetLogicals"))
             {
                 _settings.LogicalsLastModifiedDate = DefaultSettings.LogicalsLastModifiedDate;
+            }
+            else if (arg.EqualsIgnoringCase("-AllowEfficiencyMode"))
+            {
+                _settings.IsEfficiencyModeAllowed = true;
             }
         }
 

@@ -23,10 +23,10 @@ using ProtonVPN.Client.Common.Messages;
 using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.Core.Extensions;
-using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Activation.Bases;
+using ProtonVPN.Client.Core.Services.Enabling;
 using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -53,6 +53,7 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IConnectionManager _connectionManager;
     private readonly IEventMessageSender _eventMessageSender;
+    private readonly IEfficiencyModeEnabler _efficiencyModeEnabler;
 
     public Size CurrentWindowSize => new(Host?.Width ?? 0, Host?.Height ?? 0);
 
@@ -69,12 +70,14 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
         IApplicationIconSelector iconSelector,
         IUserAuthenticator userAuthenticator,
         IConnectionManager connectionManager,
-        IEventMessageSender eventMessageSender)
+        IEventMessageSender eventMessageSender,
+        IEfficiencyModeEnabler efficiencyModeEnabler)
         : base(logger, uiThreadDispatcher, themeSelector, settings, localizer, iconSelector)
     {
         _userAuthenticator = userAuthenticator;
         _connectionManager = connectionManager;
         _eventMessageSender = eventMessageSender;
+        _efficiencyModeEnabler = efficiencyModeEnabler;
     }
 
     public void Receive(AuthenticationStatusChanged message)
@@ -106,6 +109,8 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
         InvalidateWindowTitleBarVisibility();
 
         _eventMessageSender.Send(new ApplicationStartingMessage());
+
+        _efficiencyModeEnabler.TryEnableEfficiencyMode();
     }
 
     protected override void InvalidateWindowPosition()
@@ -152,11 +157,13 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
         }
     }
 
-    protected override void OnWindowActivated()
+    protected override void OnWindowOpened()
     {
-        base.OnWindowActivated();
+        base.OnWindowOpened();
 
-        EfficiencyModeHelper.DisableEfficiencyMode();
+        _efficiencyModeEnabler.TryDisableEfficiencyMode();
+
+        _eventMessageSender.Send(new MainWindowVisibilityChangedMessage { IsMainWindowVisible = true });
 
         InvalidateBadgeIcon();
     }
@@ -165,9 +172,11 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
     {
         base.OnWindowHidden();
 
-        EfficiencyModeHelper.EnableEfficiencyMode();
+        _eventMessageSender.Send(new MainWindowVisibilityChangedMessage { IsMainWindowVisible = false });
 
         SaveWindowPosition();
+
+        _efficiencyModeEnabler.TryEnableEfficiencyMode();
     }
 
     protected override void OnWindowStateChanged()
@@ -202,13 +211,6 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
         SaveWindowPosition();
 
         _eventMessageSender.Send(new ApplicationStoppedMessage());
-    }
-
-    protected override void OnWindowVisibilityChanged()
-    {
-        base.OnWindowVisibilityChanged();
-
-        _eventMessageSender.Send(new MainWindowVisibilityChangedMessage { IsMainWindowVisible = IsWindowVisible });
     }
 
     private void InvalidateBadgeIcon()

@@ -17,15 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Common.Dispatching;
+using ProtonVPN.Client.Common.UI.Controls.Custom;
+using ProtonVPN.Client.Core.Extensions;
+using ProtonVPN.Client.Core.Messages;
+using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Client.Core.Extensions;
-using ProtonVPN.Client.Core.Services.Selection;
-using ProtonVPN.Client.Core.Messages;
 using WinUIEx;
 
 namespace ProtonVPN.Client.Core.Services.Activation.Bases;
@@ -33,14 +35,17 @@ namespace ProtonVPN.Client.Core.Services.Activation.Bases;
 public abstract class WindowHostActivatorBase<TWindow> : ActivatorBase<TWindow>,
     IEventMessageReceiver<LanguageChangedMessage>,
     IEventMessageReceiver<ThemeChangedMessage>
-    where TWindow : WindowEx
+    where TWindow : BaseWindow
 {
     protected readonly IUIThreadDispatcher UIThreadDispatcher;
     protected readonly ISettings Settings;
     protected readonly IApplicationThemeSelector ThemeSelector;
+
     protected FlowDirection CurrentFlowDirection { get; private set; }
 
     protected ElementTheme CurrentAppTheme { get; private set; }
+
+    protected bool IsWindowLoaded { get; private set; }
 
     protected WindowHostActivatorBase(
         ILogger logger,
@@ -64,6 +69,25 @@ public abstract class WindowHostActivatorBase<TWindow> : ActivatorBase<TWindow>,
         UIThreadDispatcher.TryEnqueue(InvalidateAppTheme);
     }
 
+    protected override void RegisterToHostEvents()
+    {
+        base.RegisterToHostEvents();
+
+        if (Host != null)
+        {
+            Host.Loaded += OnWindowLoaded;    
+        }
+    }
+
+    protected override void UnregisterFromHostEvents()
+    {
+        base.UnregisterFromHostEvents();
+
+        if (Host != null)
+        {
+            Host.Loaded -= OnWindowLoaded;
+        }
+    }
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -71,6 +95,9 @@ public abstract class WindowHostActivatorBase<TWindow> : ActivatorBase<TWindow>,
         InvalidateFlowDirection();
         InvalidateAppTheme();
     }
+
+    protected virtual void OnWindowLoaded()
+    { }
 
     protected virtual void OnLanguageChanged()
     {
@@ -95,5 +122,12 @@ public abstract class WindowHostActivatorBase<TWindow> : ActivatorBase<TWindow>,
         CurrentAppTheme = ThemeSelector.GetTheme();
 
         OnAppThemeChanged();
+    }
+
+    private void OnWindowLoaded(object? sender, EventArgs e)
+    {
+        IsWindowLoaded = true;
+
+        OnWindowLoaded();
     }
 }

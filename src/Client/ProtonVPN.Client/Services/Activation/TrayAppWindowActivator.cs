@@ -64,16 +64,6 @@ public class TrayAppWindowActivator : DialogActivatorBase<TrayAppWindow>, ITrayA
         _userAuthenticator = userAuthenticator;
     }
 
-    protected override void OnWindowActivationStateChanged()
-    {
-        base.OnWindowActivationStateChanged();
-
-        if (CurrentActivationState == WindowActivationState.Deactivated)
-        {
-           Hide();
-        }
-    }
-
     protected override void InvalidateWindowPosition()
     {
         double width = _userAuthenticator.IsLoggedIn
@@ -88,10 +78,17 @@ public class TrayAppWindowActivator : DialogActivatorBase<TrayAppWindow>, ITrayA
         Host?.MoveNearTrayOnPrimaryMonitor(width, height, TRAY_APP_MARGIN);
     }
 
-    protected override void OnWindowActivated()
+    protected override void OnWindowFocused()
     {
-        base.OnWindowActivated();
+        base.OnWindowFocused();
 
         InvalidateWindowPosition();
+    }
+
+    protected override void OnWindowUnfocused()
+    {
+        base.OnWindowUnfocused();
+
+        Hide();
     }
 }

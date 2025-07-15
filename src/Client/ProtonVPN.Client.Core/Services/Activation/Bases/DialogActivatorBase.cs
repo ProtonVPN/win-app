@@ -20,6 +20,7 @@
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Messages;
+using ProtonVPN.Client.Common.UI.Controls.Custom;
 using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.Core.Extensions;
 using ProtonVPN.Client.Core.Services.Selection;
@@ -27,14 +28,13 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
-using WinUIEx;
 
 namespace ProtonVPN.Client.Core.Services.Activation.Bases;
 
 public abstract class DialogActivatorBase<TWindow> : WindowActivatorBase<TWindow>,
     IEventMessageReceiver<MainWindowVisibilityChangedMessage>,
     IEventMessageReceiver<ApplicationStoppedMessage>
-    where TWindow : WindowEx
+    where TWindow : BaseWindow
 {
     protected readonly IMainWindowActivator MainWindowActivator;
 
