@@ -74,6 +74,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
     <Thickness x:Key="GridSettingsCardPadding">16</Thickness>
     <x:Double x:Key="SettingsCardMinWidth">120</x:Double>
     <x:Double x:Key="SettingsCardMinHeight">54</x:Double>
+    <x:Double x:Key="GridSettingsCardMinWidth">120</x:Double>
+    <x:Double x:Key="GridSettingsCardMinHeight">117</x:Double>
     <x:Double x:Key="SettingsCardDescriptionFontSize">12</x:Double>
     <x:Double x:Key="SettingsCardHeaderIconMaxSize">20</x:Double>
     <x:Double x:Key="SettingsCardLeftIndention">0</x:Double>
@@ -967,14 +969,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
         <Setter Property="BorderBrush" Value="{ThemeResource SettingsCardBorderBrush}" />
         <Setter Property="BorderThickness" Value="{ThemeResource SettingsCardBorderThickness}" />
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
-        <Setter Property="MinHeight" Value="{StaticResource SettingsCardMinHeight}" />
-        <Setter Property="MinWidth" Value="{StaticResource SettingsCardMinWidth}" />
+        <Setter Property="MinHeight" Value="{StaticResource GridSettingsCardMinHeight}" />
+        <Setter Property="MinWidth" Value="{StaticResource GridSettingsCardMinWidth}" />
         <Setter Property="IsTabStop" Value="True" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Right" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
-        <Setter Property="Padding" Value="{StaticResource SettingsCardPadding}" />
         <Setter Property="Padding" Value="{StaticResource GridSettingsCardPadding}" />
         <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}" />
         <Setter Property="FontWeight" Value="Normal" />

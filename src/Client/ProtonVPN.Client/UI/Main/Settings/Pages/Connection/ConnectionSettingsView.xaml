@@ -50,8 +50,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                      Columns="3"
                                      ColumnSpacing="8">
 
-                    <custom:GridSettingsCard x:Name="Item1"
-                                             AutomationProperties.AutomationId="ProtocolSettingsCard"
+                    <custom:GridSettingsCard AutomationProperties.AutomationId="ProtocolSettingsCard"
                                              Command="{x:Bind ViewModel.NavigateToProtocolPageCommand, Mode=OneTime}"
                                              Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Protocol')}"
                                              IsClickEnabled="True"
@@ -73,8 +72,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </custom:GridSettingsCard.ActionIcon>
                     </custom:GridSettingsCard>
 
-                    <custom:GridSettingsCard x:Name="Item2"
-                                             AutomationProperties.AutomationId="NetShieldSettingsCard"
+                    <custom:GridSettingsCard AutomationProperties.AutomationId="NetShieldSettingsCard"
                                              Command="{x:Bind ViewModel.NavigateToNetShieldPageCommand, Mode=OneTime}"
                                              Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_NetShield')}"
                                              IsClickEnabled="True"
@@ -97,8 +95,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </custom:GridSettingsCard.ActionIcon>
                     </custom:GridSettingsCard>
 
-                    <custom:GridSettingsCard x:Name="Item3"
-                                             AutomationProperties.AutomationId="KillSwitchSettingsCard"
+                    <custom:GridSettingsCard AutomationProperties.AutomationId="KillSwitchSettingsCard"
                                              Command="{x:Bind ViewModel.NavigateToKillSwitchPageCommand, Mode=OneTime}"
                                              Description="{x:Bind ViewModel.KillSwitchSettingsState}"
                                              Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_KillSwitch')}"
@@ -112,8 +109,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </custom:GridSettingsCard.ActionIcon>
                     </custom:GridSettingsCard>
 
-                    <custom:GridSettingsCard x:Name="Item4"
-                                             AutomationProperties.AutomationId="PortForwardingSettingsCard"
+                    <custom:GridSettingsCard AutomationProperties.AutomationId="PortForwardingSettingsCard"
                                              Command="{x:Bind ViewModel.NavigateToPortForwardingPageCommand, Mode=OneTime}"
                                              Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding')}"
                                              IsClickEnabled="True"
@@ -136,8 +132,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </custom:GridSettingsCard.ActionIcon>
                     </custom:GridSettingsCard>
 
-                    <custom:GridSettingsCard x:Name="Item5"
-                                             AutomationProperties.AutomationId="SplitTunnelingSettingsCard"
+                    <custom:GridSettingsCard AutomationProperties.AutomationId="SplitTunnelingSettingsCard"
                                              Command="{x:Bind ViewModel.NavigateToSplitTunnelingPageCommand, Mode=OneTime}"
                                              Description="{x:Bind ViewModel.SplitTunnelingSettingsState}"
                                              Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling')}"
@@ -152,8 +147,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </custom:GridSettingsCard.ActionIcon>
                     </custom:GridSettingsCard>
 
-                    <custom:GridSettingsCard x:Name="Item6"
-                                             AutomationProperties.AutomationId="VpnAcceleratorSettingsCard"
+                    <custom:GridSettingsCard AutomationProperties.AutomationId="VpnAcceleratorSettingsCard"
                                              Command="{x:Bind ViewModel.NavigateToVpnAcceleratorPageCommand, Mode=OneTime}"
                                              Description="{x:Bind ViewModel.VpnAcceleratorSettingsState}"
                                              Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_VpnAccelerator')}"
