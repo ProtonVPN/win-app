@@ -88,12 +88,14 @@ public class NavigationTests : FreshSessionSetUp
     [Test]
     public void KeyboardShortcutsNavigateToRelevantComponents()
     {
-        SettingRobot.OpenSettingsViaShortcut()
-           .Verify.IsSettingsPageDisplayed()
-           .CloseSettingsUsingEscButton()
-           .Verify.IsSettingsPageNotDisplayed();
-
         SidebarRobot
+            .Verify.IsSidebarConnectionsDisplayed()
+            .ShortcutTo(VirtualKeyShort.NUMPAD1)
+            .Verify.IsSidebarRecentsDisplayed()
+            .ShortcutTo(VirtualKeyShort.NUMPAD2)
+            .Verify.IsSidebarCountriesDisplayed()
+            .ShortcutTo(VirtualKeyShort.NUMPAD3)
+            .Verify.IsSidebarProfilesDisplayed()
             .ShortcutTo(VirtualKeyShort.KEY_1)
             .Verify.IsSidebarRecentsDisplayed()
             .ShortcutTo(VirtualKeyShort.KEY_2)
@@ -101,7 +103,29 @@ public class NavigationTests : FreshSessionSetUp
             .ShortcutTo(VirtualKeyShort.KEY_3)
             .Verify.IsSidebarProfilesDisplayed()
             .ShortcutTo(VirtualKeyShort.KEY_F)
-            .Verify.IsSidebarSearchResultsDisplayed();
+            .Verify.IsSidebarSearchResultsDisplayed()
+            .ExitSearchWithTab()
+            .Verify.IsSidebarConnectionsDisplayed();
+
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+
+        Window.Focus();
+
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+
+        SettingRobot
+            .OpenSettingsViaShortcut()
+            .Verify.IsSettingsPageDisplayed();
+
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+
+        Window.Focus();
+
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+
+        SettingRobot
+            .CloseSettingsUsingEscButton()
+            .Verify.IsSettingsPageNotDisplayed();
     }
 
     [Test]

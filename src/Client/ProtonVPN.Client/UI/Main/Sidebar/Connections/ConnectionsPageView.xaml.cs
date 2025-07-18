@@ -44,9 +44,13 @@ public sealed partial class ConnectionsPageView : IContextAware
         Unloaded += OnUnloaded;
 
         KeyboardAccelerators.AddHandler(OnCtrl1Invoked, VirtualKey.Number1, VirtualKeyModifiers.Control);
+        KeyboardAccelerators.AddHandler(OnCtrl1Invoked, VirtualKey.NumberPad1, VirtualKeyModifiers.Control);
         KeyboardAccelerators.AddHandler(OnCtrl2Invoked, VirtualKey.Number2, VirtualKeyModifiers.Control);
+        KeyboardAccelerators.AddHandler(OnCtrl2Invoked, VirtualKey.NumberPad2, VirtualKeyModifiers.Control);
         KeyboardAccelerators.AddHandler(OnCtrl3Invoked, VirtualKey.Number3, VirtualKeyModifiers.Control);
+        KeyboardAccelerators.AddHandler(OnCtrl3Invoked, VirtualKey.NumberPad3, VirtualKeyModifiers.Control);
         KeyboardAccelerators.AddHandler(OnCtrl4Invoked, VirtualKey.Number4, VirtualKeyModifiers.Control);
+        KeyboardAccelerators.AddHandler(OnCtrl4Invoked, VirtualKey.NumberPad4, VirtualKeyModifiers.Control);
 
         KeyboardAcceleratorPlacementMode = KeyboardAcceleratorPlacementMode.Hidden;
     }

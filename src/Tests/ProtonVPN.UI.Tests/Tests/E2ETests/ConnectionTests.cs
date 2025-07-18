@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
@@ -31,10 +32,13 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("1")]
 public class ConnectionTests : FreshSessionSetUp
 {
-    private const string COUNTRY_NAME = "France";
-    private static readonly string COUNTRY_CODE = CountryCodes.GetCode(COUNTRY_NAME);
     private const string FAST_CONNECTION = "Fastest country";
+
     private const string RANDOM_COUNTRY = "Random country";
+
+    // These 4 countries are all available options in the All, Secure Core, P2P, and Tor tabs.
+    // Trying United States first as it has the most servers available and there are less chances for them to be all under maintenance at the same time
+    private static readonly List<string> _countries = ["United States", "France", "Germany", "Hong Kong"];
 
     [SetUp]
     public void TestInitialize()
@@ -142,7 +146,12 @@ public class ConnectionTests : FreshSessionSetUp
         App.Dispose();
 
         LaunchApp(isFreshStart: false);
-        HomeRobot.Verify.IsConnected();
+
+        NavigationRobot
+            .Verify.IsOnMainPage();
+
+        HomeRobot
+            .Verify.IsConnected();
     }
 
     [Test]
@@ -160,7 +169,12 @@ public class ConnectionTests : FreshSessionSetUp
         App.Dispose();
 
         LaunchApp(isFreshStart: false);
-        HomeRobot.Verify.IsDisconnected();
+
+        NavigationRobot
+            .Verify.IsOnMainPage();
+
+        HomeRobot
+            .Verify.IsDisconnected();
     }
 
     [Test]
@@ -233,65 +247,77 @@ public class ConnectionTests : FreshSessionSetUp
     [Test]
     public void ConnectToSecureCoreServerCountriesListAndDisconnectViaCountry()
     {
-        ConnectToServerListAndVerify(COUNTRY_CODE, CountriesTab.SecureCore);
-
-        SidebarRobot.DisconnectViaCountry(COUNTRY_CODE);
-
-        HomeRobot.Verify.IsDisconnected();
-    }
-
-    [Test]
-    public void ConnectToSecureCoreServerCountriesListAndDisconnect()
-    {
-        ConnectToServerListAndVerify(COUNTRY_CODE, CountriesTab.SecureCore);
-        
-        HomeRobot
-            .Disconnect()
-            .Verify.IsDisconnected();
+        ConnectAndDisconnectViaSearchCountry(CountriesTab.SecureCore);
     }
 
     [Test]
     public void ConnectToP2PServerCountriesListAndDisconnectViaCountry()
     {
-        ConnectToServerListAndVerify(COUNTRY_CODE, CountriesTab.P2P);
-
-        SidebarRobot.DisconnectViaCountry(COUNTRY_CODE);
-
-        HomeRobot.Verify.IsDisconnected();
+        ConnectAndDisconnectViaSearchCountry(CountriesTab.P2P);
     }
 
     [Test]
     public void ConnectToTorServerCountriesListAndDisconnectViaCountry()
     {
-        ConnectToServerListAndVerify(COUNTRY_CODE, CountriesTab.Tor);
-
-        SidebarRobot.DisconnectViaCountry(COUNTRY_CODE);
-
-        HomeRobot.Verify.IsDisconnected();
+        ConnectAndDisconnectViaSearchCountry(CountriesTab.Tor);
     }
 
-    private void ConnectToServerListAndVerify(string countryCode, CountriesTab? tab)
+    private void ConnectAndDisconnectViaSearchCountry(CountriesTab tab)
     {
-        string ipBefore = NetworkUtils.GetIpAddressWithRetry();
+        string ipBeforeConnection = NetworkUtils.GetIpAddressWithRetry();
 
         NavigationRobot
             .Verify.IsOnHomePage()
                    .IsOnConnectionsPage();
 
-        SidebarRobot.SearchFor(COUNTRY_NAME);
+        SearchAndConnectToCountry(tab, out string countryCode);
 
-        SidebarRobot.NavigateToCountriesTabAfterSearch(tab.Value.ToString());
-
-        SidebarRobot.ConnectToCountry(countryCode);
+        string ipAfterConnection = NetworkUtils.GetIpAddressWithRetry();
 
         HomeRobot
-            .Verify.IsConnecting()
-                   .IsConnected();
+            .Verify.AssertVpnConnectionEstablished(ipBeforeConnection, ipAfterConnection);
 
-        string ipAfter = NetworkUtils.GetIpAddressWithRetry();
+        NavigationRobot
+            .Verify.IsOnConnectionDetailsPage();
 
-        HomeRobot.Verify.AssertVpnConnectionEstablished(ipBefore, ipAfter);
+        SidebarRobot.DisconnectViaCountry(countryCode);
 
-        NavigationRobot.Verify.IsOnConnectionDetailsPage();
+        HomeRobot
+            .Verify.IsDisconnected();
+        NavigationRobot
+            .Verify.IsOnLocationDetailsPage();
+
+        NetworkUtils.VerifyIpAddressMatchesWithRetry(ipBeforeConnection);
+    }
+
+    private void SearchAndConnectToCountry(CountriesTab tab, out string countryCode)
+    {
+        countryCode = string.Empty;
+        string failureMessages = string.Empty;
+
+        foreach (string country in _countries)
+        {
+            try
+            {
+                countryCode = CountryCodes.GetCode(country);
+
+                SidebarRobot
+                    .SearchFor(country)
+                    .NavigateToCountriesTabAfterSearch(tab)
+                    .ConnectToCountry(countryCode);
+
+                HomeRobot
+                    .Verify.IsConnecting()
+                           .IsConnected();
+
+                return;
+            }
+            catch (AssertionException e)
+            {
+                failureMessages += $"Failed to connect to {countryCode} ({tab}): {e.Message}\n";
+            }
+        }
+
+        Assert.Fail(failureMessages);
     }
 }

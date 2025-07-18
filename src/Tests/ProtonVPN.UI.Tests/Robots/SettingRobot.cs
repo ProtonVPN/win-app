@@ -17,11 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Security.AccessControl;
 using System.Threading;
 using FlaUI.Core.Input;
 using FlaUI.Core.WindowsAPI;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
@@ -82,6 +80,7 @@ public class SettingRobot
     public SettingRobot OpenSettings()
     {
         SettingsButton.Click();
+        Thread.Sleep(TestConstants.NavigationDelay);
         return this;
     }
 
@@ -94,42 +93,49 @@ public class SettingRobot
     public SettingRobot CloseSettings()
     {
         CloseSettingsButton.Invoke();
+        Thread.Sleep(TestConstants.NavigationDelay);
         return this;
     }
 
     public SettingRobot OpenNetShieldSettings()
     {
         NetShieldSettingsCard.Click();
+        Thread.Sleep(TestConstants.NavigationDelay);
         return this;
     }
 
     public SettingRobot OpenProtocolSettings()
     {
         ProtocolSettingsCard.Click();
+        Thread.Sleep(TestConstants.NavigationDelay);
         return this;
     }
 
     public SettingRobot OpenAdvancedSettings()
     {
         AdvancedSettingsCard.Click();
+        Thread.Sleep(TestConstants.NavigationDelay);
         return this;
     }
 
     public SettingRobot OpenPortForwardingSettings()
     {
         PortForwardingSettingsCard.Click();
+        Thread.Sleep(TestConstants.NavigationDelay);
         return this;
     }
 
     public SettingRobot OpenSplitTunnelingSettingsCard()
     {
         SplitTunnelingSettingsCard.Click();
+        Thread.Sleep(TestConstants.NavigationDelay);
         return this;
     }
 
     public SettingRobot OpenVpnAcceleratorSettingsCard()
     {
         VpnAcceleratorSettingsCard.Click();
+        Thread.Sleep(TestConstants.NavigationDelay);
         return this;
     }
 
@@ -137,6 +143,7 @@ public class SettingRobot
     {
         DefaultConnectionSettingsCard.ScrollIntoView();
         DefaultConnectionSettingsCard.Click();
+        Thread.Sleep(TestConstants.NavigationDelay);
         return this;
     }
 
@@ -150,12 +157,13 @@ public class SettingRobot
     public SettingRobot OpenAutoStartupSettings()
     {
         AutoStartupSettingsCard.Click();
+        Thread.Sleep(TestConstants.NavigationDelay);
         return this;
     }
 
     public SettingRobot ExpandAccountDropdown()
     {
-        AccountButton.Click();
+        AccountButton.Invoke();
         // Remove when VPNWIN-2599 is implemented.
         Thread.Sleep(TestConstants.AnimationDelay);
         return this;
@@ -173,6 +181,7 @@ public class SettingRobot
     {
         ReportIssueSettingsCard.ScrollIntoView();
         ReportIssueSettingsCard.Click();
+        Thread.Sleep(TestConstants.NavigationDelay);
         return this;
     }
 
@@ -185,6 +194,7 @@ public class SettingRobot
     public SettingRobot OpenAboutSection()
     {
         AboutSettingsCard.Click();
+        Thread.Sleep(TestConstants.NavigationDelay);
         return this;
     }
 

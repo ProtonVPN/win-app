@@ -76,6 +76,8 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
     private void CreateWindowInstanceAndSetAutoActivation()
     {
+        Logger.Info<AppLog>($"Creating instance of {HostTypeName}.");
+
         _isActivationPending = true;
 
         Activator.CreateInstance<TWindow>();
@@ -83,14 +85,13 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
     public void Activate()
     {
-        Logger.Debug<AppLog>($"Activating {HostTypeName}.");
-
         if (Host == null)
         {
-            Logger.Info<AppLog>($"No active instance for {HostTypeName}, create one.");
             CreateWindowInstanceAndSetAutoActivation();
             return;
         }
+
+        Logger.Info<AppLog>($"Activating {HostTypeName}.");
 
         Host.Activate();
         Host.SetForegroundWindow();
@@ -98,26 +99,24 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
     public void Hide()
     {
-        Logger.Debug<AppLog>($"Hiding {HostTypeName}.");
-
         if (Host == null)
         {
-            Logger.Info<AppLog>($"Cannot hide {HostTypeName}, the window has not been initialized");
             return;
         }
+
+        Logger.Info<AppLog>($"Hiding {HostTypeName}.");
 
         Host.Hide();
     }
 
     public void Exit()
     {
-        Logger.Debug<AppLog>($"Exiting {HostTypeName}.");
-
         if (Host == null)
         {
-            Logger.Info<AppLog>($"Cannot exit {HostTypeName}, the window has not been initialized");
             return;
         }
+
+        Logger.Info<AppLog>($"Exiting {HostTypeName}.");
 
         DisableHandleClosedEvent();
 

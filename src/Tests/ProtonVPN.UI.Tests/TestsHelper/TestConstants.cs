@@ -34,6 +34,7 @@ public static class TestConstants
     public static TimeSpan TwoMinutesTimeout => TimeSpan.FromMinutes(2);
     public static TimeSpan RetryInterval => TimeSpan.FromMilliseconds(200);
     public static TimeSpan AnimationDelay => TimeSpan.FromMilliseconds(500);
+    public static TimeSpan NavigationDelay => TimeSpan.FromMilliseconds(500);
 
     public static string AppFolderPath = @"C:\Program Files\Proton\VPN";
     public static string LauncherPath = @"C:\Program Files\Proton\VPN\ProtonVPN.Launcher.exe";

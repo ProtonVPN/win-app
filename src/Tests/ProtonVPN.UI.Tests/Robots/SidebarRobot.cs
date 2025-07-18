@@ -22,6 +22,7 @@ using System.Threading;
 using FlaUI.Core.Input;
 using FlaUI.Core.Tools;
 using FlaUI.Core.WindowsAPI;
+using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
@@ -37,6 +38,7 @@ public class SidebarRobot
     private const string FASTEST_PROFILE = "Fastest";
 
     protected Element SidebarComponent = Element.ByAutomationId("SidebarComponent");
+    protected Element ConnectionsPage = Element.ByAutomationId("ConnectionsPage");
     protected Element RecentsPage = Element.ByAutomationId("RecentsPage");
     protected Element CountriesPage = Element.ByAutomationId("CountriesPage");
     protected Element ProfilesPage = Element.ByAutomationId("ProfilesPage");
@@ -153,9 +155,9 @@ public class SidebarRobot
         return this;
     }
 
-    public SidebarRobot ConnectToCountry(string country)
+    public SidebarRobot ConnectToCountry(string countryCode)
     {
-        ConnectViaServerList(country);
+        ConnectViaServerList(countryCode);
         return this;
     }
 
@@ -299,6 +301,12 @@ public class SidebarRobot
         return this;
     }
 
+    public SidebarRobot ExitSearchWithTab()
+    {
+        Keyboard.Type(VirtualKeyShort.TAB);
+        return this;
+    }
+
     public SidebarRobot ScrollToProfile(string profileName)
     {
         Element profile = Element.ByAutomationId($"Actions_for_{profileName}");
@@ -347,9 +355,9 @@ public class SidebarRobot
         return this;
     }
 
-    public SidebarRobot NavigateToCountriesTabAfterSearch(string tabName)
+    public SidebarRobot NavigateToCountriesTabAfterSearch(CountriesTab tab)
     {
-        SearchResultsPage.ClickTabByName(tabName);
+        SearchResultsPage.ClickTabByName(tab.ToString());
         return this;
     }
 
@@ -429,6 +437,12 @@ public class SidebarRobot
         public Verifications IsProfileUpsellLabelDisplayed()
         {
             ProfileSidebarUpsellLabel.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsSidebarConnectionsDisplayed() 
+        {
+            ConnectionsPage.WaitUntilDisplayed();
             return this;
         }
 

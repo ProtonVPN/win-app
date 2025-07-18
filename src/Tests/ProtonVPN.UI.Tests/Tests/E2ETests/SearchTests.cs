@@ -35,7 +35,7 @@ public class SearchTests : FreshSessionSetUp
     [SetUp]
     public void SetUp()
     {
-        CommonUiFlows.FullLogin(TestUserData.VisionaryUser);
+        CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
 
     [Test]
@@ -78,7 +78,9 @@ public class SearchTests : FreshSessionSetUp
 
         HomeRobot.Verify.IsConnected();
 
-        SidebarRobot.DisconnectViaSpecificServer();
+        SidebarRobot
+            .ExpandSpecificServerList()
+            .DisconnectViaSpecificServer();
 
         HomeRobot.Verify.IsDisconnected();
     }
