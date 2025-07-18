@@ -39,6 +39,8 @@ namespace ProtonVPN.Dns.Tests.Resolvers;
 public class DnsOverUdpResolverTest
 {
     private const string HOST = "api.protonvpn.ch";
+    private const string NON_EXISTING_HOST = "g5f16gfds1gdsf5g16dsfg15fs5gfds651d61s651g6516gf1s6fdgfs.vhbverhu";
+
     private static readonly TimeSpan DNS_RESOLVE_TIMEOUT = TimeSpan.FromSeconds(30);
     private static readonly TimeSpan DEFAULT_DNS_TTL = TimeSpan.FromMinutes(20);
 
@@ -165,7 +167,7 @@ public class DnsOverUdpResolverTest
     {
         InitializeWithMockOfNameServersLoader();
         SetNonWorkingNameServers();
-        List<IPAddress> systemResult = new() { IPAddress.Parse("10.20.30.40"), IPAddress.Parse("50.60.70.80") };
+        List<IPAddress> systemResult = new() { IPAddress.Parse("8.8.8.8"), IPAddress.Parse("1.1.1.1") };
         AddSystemDnsResolverResult(HOST, systemResult);
 
         DnsResponse response = await ExecuteAsync();
@@ -228,10 +230,24 @@ public class DnsOverUdpResolverTest
     public async Task TestResolveAsync_WithNonExistentHost()
     {
         InitializeResolverWithRealNameServersLoader();
-        string host = "g5f16gfds1gdsf5g16dsfg15fs5gfds651d61s651g6516gf1s6fdgfs.vhbverhu";
-        AddSystemDnsResolverResult(host, new List<IPAddress>());
+        AddSystemDnsResolverResult(NON_EXISTING_HOST, []);
 
-        DnsResponse response = await ExecuteWithStopwatchAndCustomHostAsync(host);
+        DnsResponse response = await ExecuteWithStopwatchAndCustomHostAsync(NON_EXISTING_HOST);
+
+        Assert.AreEqual(null, response);
+        Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(20));
+    }
+
+    [TestMethod]
+    public async Task TestResolveAsync_WithNonPublicIpAddresses()
+    {
+        InitializeResolverWithRealNameServersLoader();
+        AddSystemDnsResolverResult(NON_EXISTING_HOST, [
+            IPAddress.Parse("127.9.9.9"),
+            IPAddress.Parse("10.2.0.1")
+        ]);
+
+        DnsResponse response = await ExecuteWithStopwatchAndCustomHostAsync(NON_EXISTING_HOST);
 
         Assert.AreEqual(null, response);
         Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(20));

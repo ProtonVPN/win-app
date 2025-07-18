@@ -159,7 +159,25 @@ public abstract class DnsResolverBase
             Logger.Error<DnsErrorLog>("Cannot create DNS response entity because no IP addresses were provided.");
             return null;
         }
-        IList<IpAddress> ipAddresses = systemTypeIpAddresses.Select(ia => new IpAddress(ia)).ToList();
+
+        List<IpAddress> ipAddresses = systemTypeIpAddresses.Select(ia => new IpAddress(ia)).ToList();
+
+        foreach (IpAddress ipAddress in ipAddresses.ToList())
+        {
+            if (!ipAddress.IsPublicIp())
+            {
+                Logger.Warn<DnsResponseLog>($"Resolved {ipAddress.ToString()} is not a public IP address, removing from the list.");
+
+                ipAddresses.Remove(ipAddress);
+            }
+        }
+
+        if (ipAddresses.Count == 0)
+        {
+            Logger.Error<DnsErrorLog>("Cannot create DNS response entity because all resolved IP addresses were not public IP addresses.");
+            return null;
+        }
+
         DnsResponse dnsResponse = new(host, GetTimeToLiveOrDefault(timeToLiveInSeconds), ipAddresses);
         Logger.Info<DnsResponseLog>($"Created DNS response entity for host '{dnsResponse.Host}' with " +
             $"{dnsResponse.IpAddresses.Count} IP addresses and an expiration date in UTC of " +
