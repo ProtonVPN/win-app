@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.Threading;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
 

@@ -96,20 +96,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <Button x:Name="SignInButton"
                             HorizontalAlignment="Stretch"
-                            HorizontalContentAlignment="Stretch"
                             AutomationProperties.AutomationId="SignInButton"
                             AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('SignIn_Form_SignIn')}"
                             Command="{x:Bind ViewModel.SignInCommand, Mode=OneTime}"
-                            Style="{StaticResource PrimaryButtonStyle}">
-                        <Grid HorizontalAlignment="Stretch">
-                            <TextBlock HorizontalAlignment="Center"
-                                       Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_SignIn')}" />
-                            <ProgressRing Width="16"
-                                          Height="16"
-                                          HorizontalAlignment="Right"
-                                          IsActive="{x:Bind ViewModel.IsSigningIn}" />
-                        </Grid>
-                    </Button>
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Content="{x:Bind ViewModel.Localizer.Get('SignIn_Form_SignIn')}" />
 
                     <Button HorizontalAlignment="Stretch"
                             HorizontalContentAlignment="Center"

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -29,6 +29,8 @@ namespace ProtonVPN.Client.Logic.Connection.GuestHole;
 
 public class GuestHoleManager : IGuestHoleManager, IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
+    private const int CONNECTED_FUNC_DELAY_IN_MS = 1000;
+
     private readonly ILogger _logger;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IGuestHoleConnector _guestHoleConnector;
@@ -51,21 +53,40 @@ public class GuestHoleManager : IGuestHoleManager, IEventMessageReceiver<Connect
         _guestHoleConnector = guestHoleConnector;
     }
 
-    public async Task<T?> ExecuteAsync<T>(Func<Task<Result>> onConnectedFunc) where T : Result
+    public async Task<T?> ExecuteAsync<T>(Func<Task<Result>> onConnectedFunc, CancellationToken cancellationToken) where T : Result
     {
         _onConnectedFunc = onConnectedFunc;
         _tcs = new TaskCompletionSource<Result?>();
 
         SetStatus(true);
-        await _guestHoleConnector.ConnectToGuestHoleAsync();
 
-        Result? result = await _tcs.Task;
-        if (result is null)
+        try
         {
-            await DisconnectAsync();
-        }
+            await _guestHoleConnector.ConnectToGuestHoleAsync();
 
-        return (T?)result;
+            Result? result = await _tcs.Task.WaitAsync(cancellationToken);
+            if (result is null)
+            {
+                await DisconnectAsync();
+            }
+
+            return (T?)result;
+        }
+        catch (GuestHoleException e)
+        {
+            _logger.Warn<GuestHoleLog>("Failed to connect to guest hole.", e);
+
+            HandleDisconnection();
+            return null;
+        }
+        catch (Exception) when (cancellationToken.IsCancellationRequested)
+        {
+            _logger.Info<GuestHoleLog>("Guest hole connection was cancelled.");
+
+            await DisconnectAsync();
+
+            throw;
+        }
     }
 
     private void SetStatus(bool isActive)
@@ -93,6 +114,7 @@ public class GuestHoleManager : IGuestHoleManager, IEventMessageReceiver<Connect
                 Result? result;
                 try
                 {
+                    await Task.Delay(CONNECTED_FUNC_DELAY_IN_MS);
                     result = await _onConnectedFunc();
                 }
                 catch (Exception e)
@@ -104,15 +126,20 @@ public class GuestHoleManager : IGuestHoleManager, IEventMessageReceiver<Connect
                 SetTaskCompletionSourceResult(result);
                 break;
             case ConnectionStatus.Disconnected:
-                if (!_wasConnected)
-                {
-                    SetTaskCompletionSourceResult(null);
-                }
-
-                SetStatus(false);
-                _logger.Info<GuestHoleLog>("Disconnected from guest hole.");
+                HandleDisconnection();
                 break;
         }
+    }
+
+    private void HandleDisconnection()
+    {
+        if (!_wasConnected)
+        {
+            SetTaskCompletionSourceResult(null);
+        }
+
+        SetStatus(false);
+        _logger.Info<GuestHoleLog>("Disconnected from guest hole.");
     }
 
     private void SetTaskCompletionSourceResult(Result? result)

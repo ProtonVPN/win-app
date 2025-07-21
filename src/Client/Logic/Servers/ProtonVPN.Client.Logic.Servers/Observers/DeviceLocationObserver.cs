@@ -22,6 +22,7 @@ using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Client.Common.Observers;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
@@ -52,6 +53,7 @@ public class DeviceLocationObserver :
     private readonly ISettings _settings;
     private readonly IConnectionManager _connectionManager;
     private readonly IEventMessageSender _eventMessageSender;
+    private readonly IUserAuthenticator _userAuthenticator;
 
     private bool _isFetchInProgress = false;
 
@@ -61,13 +63,15 @@ public class DeviceLocationObserver :
         IApiClient apiClient,
         ISettings settings,
         IConnectionManager connectionManager,
-        IEventMessageSender eventMessageSender)
+        IEventMessageSender eventMessageSender,
+        IUserAuthenticator userAuthenticator)
         : base(logger, issueReporter)
     {
         _apiClient = apiClient;
         _settings = settings;
         _connectionManager = connectionManager;
         _eventMessageSender = eventMessageSender;
+        _userAuthenticator = userAuthenticator;
 
         NetworkChange.NetworkAddressChanged += OnNetworkAddressChanged;
 
@@ -185,7 +189,10 @@ public class DeviceLocationObserver :
     {
         if (message.PropertyName == nameof(ISettings.DeviceLocation))
         {
-            _eventMessageSender.Send(new DeviceLocationChangedMessage((DeviceLocation?)message.OldValue, _settings.DeviceLocation));
+            _eventMessageSender.Send(new DeviceLocationChangedMessage(
+                (DeviceLocation?)message.OldValue,
+                _settings.DeviceLocation,
+                _userAuthenticator.IsLoggedIn));
         }
     }
 }

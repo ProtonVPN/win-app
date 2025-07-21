@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -137,6 +137,11 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
     public async Task ConnectToGuestHoleAsync()
     {
         IOrderedEnumerable<GuestHoleServerContract> servers = (await _guestHoleServersFileStorage.GetAsync()).OrderBy(_ => _random.Next());
+        if (!servers.Any())
+        {
+            throw new GuestHoleException("No guest hole servers provided.");
+        }
+
         ConnectionRequestIpcEntity request = await _guestHoleConnectionRequestCreator.CreateAsync(servers);
 
         _logger.Info<ConnectTriggerLog>("Guest hole connection requested.");

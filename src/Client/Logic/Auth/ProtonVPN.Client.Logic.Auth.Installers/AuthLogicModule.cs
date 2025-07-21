@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -26,10 +26,14 @@ public class AuthLogicModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         builder.RegisterType<UserAuthenticator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<UnauthSessionManager>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SrpAuthenticator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SsoAuthenticator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ConnectionCertificateManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ConnectionKeyManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ConnectionCertificateUpdater>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<UserHashGenerator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<WebAuthenticator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<UserSession>().AsImplementedInterfaces().SingleInstance();
     }
 }

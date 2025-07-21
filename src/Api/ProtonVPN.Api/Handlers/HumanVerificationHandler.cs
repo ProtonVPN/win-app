@@ -61,7 +61,7 @@ public class HumanVerificationHandler : HumanVerificationHandlerBase
         }
 
         HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
-        BaseResponse baseResponse = await _baseResponseDeserializer.DeserializeAsync(response);
+        BaseResponse baseResponse = await _baseResponseDeserializer.DeserializeAsync(response, cancellationToken);
         if (baseResponse == null)
         {
             return response;
@@ -103,7 +103,7 @@ public class HumanVerificationHandler : HumanVerificationHandlerBase
     {
         try
         {
-            await _semaphore.WaitAsync();
+            await _semaphore.WaitAsync(cancellationToken);
 
             string resolvedToken = await _humanVerifier.VerifyAsync(hvToken);
             if (!string.IsNullOrEmpty(resolvedToken))

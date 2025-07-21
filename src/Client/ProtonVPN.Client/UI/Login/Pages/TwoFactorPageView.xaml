@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2024 Proton AG
+Copyright (c) 2025 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -50,7 +50,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <custom:GhostButton Margin="0,0,0,24"
                             HorizontalAlignment="Left"
-                            Command="{x:Bind ViewModel.NavigateBackCommand, Mode=OneTime}"
+                            Command="{x:Bind ViewModel.GoBackCommand, Mode=OneTime}"
                             Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Back')}">
             <custom:GhostButton.LeftIcon>
                 <pathIcons:ArrowLeft />
@@ -200,21 +200,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Grid.ColumnSpan="7"
                     Margin="0,24,0,0"
                     HorizontalAlignment="Stretch"
-                    HorizontalContentAlignment="Stretch"
+                    HorizontalContentAlignment="Center"
                     AutomationProperties.AutomationId="AuthenticateWithTwoFactorButton"
                     AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Authenticate')}"
                     Command="{x:Bind ViewModel.AuthenticateCommand}"
                     CommandParameter="{x:Bind TwoFactorCode, Mode=TwoWay}"
-                    Style="{StaticResource PrimaryButtonStyle}">
-                <Grid HorizontalAlignment="Stretch">
-                    <TextBlock HorizontalAlignment="Center"
-                               Text="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Authenticate')}" />
-                    <ProgressRing Width="16"
-                                  Height="16"
-                                  HorizontalAlignment="Right"
-                                  IsActive="{x:Bind ViewModel.IsAuthenticating}" />
-                </Grid>
-            </Button>
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Content="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Authenticate')}" />
+
         </Grid>
     </StackPanel>
 

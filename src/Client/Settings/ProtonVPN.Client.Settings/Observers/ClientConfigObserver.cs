@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,7 +21,6 @@ using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.VpnConfig;
 using ProtonVPN.Client.Common.Observers;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
@@ -46,7 +45,6 @@ public class ClientConfigObserver :
     private readonly ISettings _settings;
     private readonly IApiClient _apiClient;
     private readonly IConfiguration _config;
-    private readonly IUserAuthenticator _userAuthenticator;
 
     protected override TimeSpan PollingInterval => _config.ClientConfigUpdateInterval;
 
@@ -55,19 +53,17 @@ public class ClientConfigObserver :
         IIssueReporter issueReporter,
         ISettings settings,
         IApiClient apiClient,
-        IConfiguration config,
-        IUserAuthenticator userAuthenticator)
+        IConfiguration config)
         : base(logger, issueReporter)
     {
         _settings = settings;
         _apiClient = apiClient;
         _config = config;
-        _userAuthenticator = userAuthenticator;
     }
 
     public void Receive(LoggedInMessage message)
     {
-        StartTimerAndTriggerOnStart();
+        StartTimer();
     }
 
     public void Receive(LoggedOutMessage message)
@@ -77,18 +73,28 @@ public class ClientConfigObserver :
 
     public void Receive(DeviceLocationChangedMessage message)
     {
-        if (message.HasCountryChangedAndHasValue && _userAuthenticator.IsLoggedIn)
+        if (message.HasCountryChangedAndHasValue && message.IsUserLoggedIn)
         {
             TriggerAction.Run();
         }
     }
 
+    public Task UpdateAsync(CancellationToken cancellationToken)
+    {
+        return MakeClientConfigRequestAsync(cancellationToken);
+    }
+
     protected override async Task OnTriggerAsync()
+    {
+        await MakeClientConfigRequestAsync(CancellationToken.None);
+    }
+
+    private async Task MakeClientConfigRequestAsync(CancellationToken cancellationToken)
     {
         try
         {
             Logger.Info<SettingsLog>("Retrieving Client Config");
-            ApiResponseResult<VpnConfigResponse> response = await _apiClient.GetVpnConfigAsync(_settings.DeviceLocation);
+            ApiResponseResult<VpnConfigResponse> response = await _apiClient.GetVpnConfigAsync(_settings.DeviceLocation, cancellationToken);
             if (response.Success)
             {
                 HandleVpnConfigResponse(response.Value);

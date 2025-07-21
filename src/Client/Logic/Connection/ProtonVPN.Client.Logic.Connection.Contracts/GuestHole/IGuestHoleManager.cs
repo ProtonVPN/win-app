@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,7 +23,7 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 
 public interface IGuestHoleManager
 {
-    public Task<T?> ExecuteAsync<T>(Func<Task<Result>> onConnectedFunc) where T : Result;
+    public Task<T?> ExecuteAsync<T>(Func<Task<Result>> onConnectedFunc, CancellationToken cancellationToken = default) where T : Result;
     public Task DisconnectAsync();
     bool IsActive { get; }
 }

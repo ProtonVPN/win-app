@@ -42,22 +42,39 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel Grid.Row="0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Spacing="12">
+                    Spacing="24">
             <ProgressRing Width="36"
                           Height="36"
                           IsActive="True" />
 
-            <TextBlock HorizontalAlignment="Center"
-                       Style="{ThemeResource BodyStrongTextBlockStyle}"
-                       Text="{x:Bind ViewModel.Message}"
-                       TextAlignment="Center"
-                       TextWrapping="Wrap" />
+            <StackPanel Spacing="8">
+                <TextBlock HorizontalAlignment="Center"
+                           Style="{ThemeResource BodyMediumStrongTextBlockStyle}"
+                           Text="{x:Bind ViewModel.Message}"
+                           TextAlignment="Center"
+                           TextWrapping="Wrap" />
+
+                <TextBlock HorizontalAlignment="Center"
+                           Foreground="{ThemeResource TextWeakColorBrush}"
+                           Style="{ThemeResource BodyTextBlockStyle}"
+                           Text="{x:Bind ViewModel.Localizer.Get('Main_Loading_SigningIn_Longer')}"
+                           TextAlignment="Center"
+                           TextWrapping="Wrap"
+                           Visibility="{x:Bind ViewModel.IsSignInTakingLongerThanExpected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </StackPanel>
+
+            <Button HorizontalAlignment="Center"
+                    AutomationProperties.AutomationId="CancelSignInButton"
+                    Command="{x:Bind ViewModel.CancelSignInCommand, Mode=OneTime}"
+                    Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Cancel')}"
+                    Style="{ThemeResource SecondaryButtonStyle}"
+                    Visibility="{x:Bind ViewModel.IsSigningIn, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </StackPanel>
 
         <Grid Grid.Row="1"
               HorizontalAlignment="Left"
               ColumnSpacing="8">
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />

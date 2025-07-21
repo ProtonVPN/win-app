@@ -22,6 +22,7 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
@@ -70,10 +71,10 @@ public class BaseApiClient : IClientBase
         return new(json, Encoding.UTF8, "application/json");
     }
 
-    protected async Task<ApiResponseResult<T>> GetApiResponseResult<T>(HttpResponseMessage response)
+    protected async Task<ApiResponseResult<T>> GetApiResponseResult<T>(HttpResponseMessage response, CancellationToken cancellationToken = default)
         where T : BaseResponse
     {
-        string body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+        string body = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
         try
         {
             T json = response.StatusCode is HttpStatusCode.NotModified

@@ -21,7 +21,6 @@ using ProtonVPN.Client.Logic.Servers.Cache;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Extensions;
-using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -48,9 +47,9 @@ public class ServersUpdater : IServersUpdater
         _settings = settings;
     }
 
-    public async Task UpdateAsync()
+    public async Task UpdateAsync(CancellationToken cancellationToken)
     {
-        await _semaphore.WaitAsync();
+        await _semaphore.WaitAsync(cancellationToken);
 
         try
         {
@@ -62,19 +61,19 @@ public class ServersUpdater : IServersUpdater
             {
                 _logger.Info<AppLog>("Server cache is invalid, forcing full update");
 
-                await ForceUpdateServersAsync();
+                await ForceUpdateServersAsync(cancellationToken);
             }
             else if (_serversCache.IsOutdated())
             {
                 _logger.Info<AppLog>("Server cache is outdated, updating");
 
-                await UpdateServersAsync();
+                await UpdateServersAsync(cancellationToken);
             }
             else if (_serversCache.IsLoadOutdated())
             {
                 _logger.Info<AppLog>("Load cache is outdated, updating");
 
-                await UpdateLoadsAsync();
+                await UpdateLoadsAsync(cancellationToken);
             }
             else
             {
@@ -87,9 +86,9 @@ public class ServersUpdater : IServersUpdater
         }
     }
 
-    public async Task ForceUpdateAsync()
+    public async Task ForceUpdateAsync(CancellationToken cancellationToken)
     {
-        await _semaphore.WaitAsync();
+        await _semaphore.WaitAsync(cancellationToken);
 
         try
         {
@@ -97,7 +96,7 @@ public class ServersUpdater : IServersUpdater
 
             _serversCache.LoadFromFileIfEmpty();
 
-            await ForceUpdateServersAsync();
+            await ForceUpdateServersAsync(cancellationToken);
         }
         finally
         {
@@ -105,7 +104,7 @@ public class ServersUpdater : IServersUpdater
         }
     }
 
-    public async Task ForceLoadsUpdateAsync()
+    public async Task ForceLoadsUpdateAsync(CancellationToken cancellationToken)
     {
         await _semaphore.WaitAsync();
 
@@ -115,7 +114,7 @@ public class ServersUpdater : IServersUpdater
 
             _serversCache.LoadFromFileIfEmpty();
 
-            await UpdateLoadsAsync();
+            await UpdateLoadsAsync(cancellationToken);
         }
         finally
         {
@@ -123,9 +122,9 @@ public class ServersUpdater : IServersUpdater
         }
     }
 
-    public async Task ClearCacheAsync()
+    public async Task ClearCacheAsync(CancellationToken cancellationToken)
     {
-        await _semaphore.WaitAsync();
+        await _semaphore.WaitAsync(cancellationToken);
 
         try
         {
@@ -139,23 +138,23 @@ public class ServersUpdater : IServersUpdater
         }
     }
 
-    private Task ForceUpdateServersAsync()
+    private Task ForceUpdateServersAsync(CancellationToken cancellationToken)
     {
         _settings.LogicalsLastModifiedDate = DefaultSettings.LogicalsLastModifiedDate;
 
-        return UpdateServersAsync();
+        return UpdateServersAsync(cancellationToken);
     }
 
-    private Task UpdateServersAsync()
+    private Task UpdateServersAsync(CancellationToken cancellationToken)
     {
         // No need to await here, the server count is not critical for the servers cache update
         _serverCountCache.UpdateAsync().FireAndForget();
 
-        return _serversCache.UpdateAsync();
+        return _serversCache.UpdateAsync(cancellationToken);
     }
 
-    private Task UpdateLoadsAsync()
+    private Task UpdateLoadsAsync(CancellationToken cancellationToken)
     {
-        return _serversCache.UpdateLoadsAsync();
+        return _serversCache.UpdateLoadsAsync(cancellationToken);
     }
 }

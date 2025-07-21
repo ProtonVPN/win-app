@@ -2146,7 +2146,15 @@
   </data>
   <data name="Main_Loading_SigningIn" xml:space="preserve">
     <value>Signing in, please wait...</value>
-    <comment>Message in the loading screen when signing in or starting the app</comment>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading" xml:space="preserve">
+    <value>Loading, please wait...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer" xml:space="preserve">
+    <value>This is taking longer than usual, but we're working on it.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut" xml:space="preserve">
     <value>Signing out, please wait...</value>

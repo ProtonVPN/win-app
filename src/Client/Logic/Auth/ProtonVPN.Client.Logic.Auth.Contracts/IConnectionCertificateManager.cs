@@ -24,7 +24,7 @@ public interface IConnectionCertificateManager
     void SetFeatures(IList<string> features);
     void DeleteKeyPairAndCertificate();
     void DeleteKeyPairAndCertificateIfMatches(string expiredCertificatePem);
-    Task RequestNewCertificateAsync(string? expiredCertificatePem = null);
-    Task ForceRequestNewCertificateAsync();
+    Task RequestNewCertificateAsync(CancellationToken cancellationToken = default, string? expiredCertificatePem = null);
+    Task ForceRequestNewCertificateAsync(CancellationToken cancellationToken = default);
     Task ForceRequestNewKeyPairAndCertificateAsync();
 }

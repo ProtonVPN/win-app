@@ -104,7 +104,7 @@ public class Bootstrapper : IBootstrapper
 
             await Task.WhenAll(
                 StartServiceAsync(),
-                TryAuthenticateAsync());
+                _userAuthenticator.AutoLoginUserAsync());
         }
         catch (Exception e)
         {
@@ -260,18 +260,6 @@ public class Bootstrapper : IBootstrapper
         if (!hasAuthenticatedSessionData || !isAutoLaunchEnabled || isAutoLaunchModeOpenOnDesktop)
         {
             _mainWindowActivator.Activate();
-        }
-    }
-
-    private async Task TryAuthenticateAsync()
-    {
-        if (_userAuthenticator.HasAuthenticatedSessionData())
-        {
-            await _userAuthenticator.AutoLoginUserAsync();
-        }
-        else
-        {
-            await _userAuthenticator.CreateUnauthSessionAsync();
         }
     }
 

@@ -23,4 +23,5 @@ namespace ProtonVPN.Client.Settings.Contracts.Observers;
 
 public interface IClientConfigObserver : IObserver
 {
+    Task UpdateAsync(CancellationToken cancellationToken);
 }

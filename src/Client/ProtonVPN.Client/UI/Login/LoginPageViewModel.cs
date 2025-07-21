@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -116,6 +116,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
                     {
                         case AuthError.IncorrectTwoFactorCode:
                             SetErrorMessage(Localizer.Get("Login_Error_IncorrectTwoFactorCode"));
+                            await ChildViewNavigator.NavigateToTwoFactorViewAsync();
                             break;
 
                         case AuthError.TwoFactorAuthFailed:
@@ -129,7 +130,12 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
                     }
                     break;
 
+                case LoginState.TwoFactorCancelled:
+                    await ChildViewNavigator.NavigateToSignInViewAsync();
+                    break;
+
                 case LoginState.Error:
+                    await ChildViewNavigator.NavigateToSignInViewAsync();
                     HandleAuthError(message);
                     break;
             }
@@ -168,6 +174,11 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
 
     private void HandleAuthError(LoginStateChangedMessage message)
     {
+        if (message.AuthError == AuthError.None)
+        {
+            return;
+        }
+
         switch (message.AuthError)
         {
             case AuthError.MissingGoSrpDll:

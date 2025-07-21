@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -26,11 +26,14 @@ public class DeviceLocationChangedMessage : ValueChangedMessage<DeviceLocation?>
 {
     public bool HasCountryChangedAndHasValue { get; private set; }
 
-    public DeviceLocationChangedMessage(DeviceLocation? oldValue, DeviceLocation? newValue) 
+    public bool IsUserLoggedIn { get; private set; }
+
+    public DeviceLocationChangedMessage(DeviceLocation? oldValue, DeviceLocation? newValue, bool isUserLoggedIn) 
         : base(oldValue: oldValue, newValue: newValue)
     {
         HasCountryChangedAndHasValue =
             OldValue?.CountryCode != NewValue?.CountryCode &&
             !string.IsNullOrEmpty(NewValue?.CountryCode);
+        IsUserLoggedIn = isUserLoggedIn;
     }
 }

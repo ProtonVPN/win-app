@@ -157,7 +157,7 @@ public class SettingsViewNavigator : ViewNavigatorBase, ISettingsViewNavigator,
         switch (message.AuthenticationStatus)
         {
             case AuthenticationStatus.LoggingOut:
-            case AuthenticationStatus.LoggingIn:
+            case AuthenticationStatus.LoggedIn:
                 // Force navigation to automatically discard any unsaved changes
                 UIThreadDispatcher.TryEnqueue(async () => await NavigateToCommonSettingsViewAsync(forceNavigation: true));
                 break;

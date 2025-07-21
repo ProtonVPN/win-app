@@ -53,19 +53,19 @@ public class VpnPlanUpdater : IVpnPlanUpdater
         _eventMessageSender = eventMessageSender;
     }
 
-    public async Task<VpnPlanChangeResult> ForceUpdateAsync()
+    public async Task<VpnPlanChangeResult> ForceUpdateAsync(CancellationToken cancellationToken = default)
     {
-        return await EnqueueRequestAsync(isToForceRequest: true);
+        return await EnqueueRequestAsync(isToForceRequest: true, cancellationToken);
     }
 
-    public async Task<VpnPlanChangeResult> UpdateAsync()
+    public async Task<VpnPlanChangeResult> UpdateAsync(CancellationToken cancellationToken = default)
     {
-        return await EnqueueRequestAsync(isToForceRequest: false);
+        return await EnqueueRequestAsync(isToForceRequest: false, cancellationToken);
     }
 
-    private async Task<VpnPlanChangeResult> EnqueueRequestAsync(bool isToForceRequest)
+    private async Task<VpnPlanChangeResult> EnqueueRequestAsync(bool isToForceRequest, CancellationToken cancellationToken)
     {
-        await _semaphore.WaitAsync();
+        await _semaphore.WaitAsync(cancellationToken);
 
         ApiResponseResult<VpnInfoWrapperResponse>? response = null;
         VpnPlanChangedMessage? vpnPlanChangedMessage = null;
@@ -78,7 +78,7 @@ public class VpnPlanUpdater : IVpnPlanUpdater
                 _logger.Info<AppLog>($"Requesting a VPN plan update (Force request: {isToForceRequest}) " +
                     $"(Minimum request date UTC: {_minimumRequestDateUtc})");
 
-                response = await _apiClient.GetVpnInfoResponse();
+                response = await _apiClient.GetVpnInfoResponse(cancellationToken);
 
                 if (response.Success)
                 {
@@ -98,6 +98,11 @@ public class VpnPlanUpdater : IVpnPlanUpdater
         }
         catch (Exception e)
         {
+            if (cancellationToken.IsCancellationRequested)
+            {
+                throw;
+            }
+
             _logger.Error<AppLog>("VPN plan request failed.", e);
         }
         finally

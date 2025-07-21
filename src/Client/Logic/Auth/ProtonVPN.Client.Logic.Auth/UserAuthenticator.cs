@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,8 +19,6 @@
 
 using System.Security;
 using ProtonVPN.Api.Contracts;
-using ProtonVPN.Api.Contracts.Auth;
-using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Api.Contracts.Users;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
@@ -33,9 +31,9 @@ using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
+using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Logging.Contracts.Events.UserLogs;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
@@ -44,9 +42,6 @@ namespace ProtonVPN.Client.Logic.Auth;
 
 public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<ClientOutdatedMessage>
 {
-    private const string SRP_LOGIN_INTENT = "Proton";
-    private const string SSO_LOGIN_INTENT = "SSO";
-
     private readonly ILogger _logger;
     private readonly IApiClient _apiClient;
     private readonly IConnectionCertificateManager _connectionCertificateManager;
@@ -58,9 +53,12 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
     private readonly IServersUpdater _serversUpdater;
     private readonly IUserSettingsMigrator _userSettingsMigrator;
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
-    private AuthResponse? _authResponse;
+    private readonly IUnauthSessionManager _unauthSessionManager;
+    private readonly ISrpAuthenticator _srpAuthenticator;
+    private readonly ISsoAuthenticator _ssoAuthenticator;
+    private readonly IClientConfigObserver _clientConfigObserver;
 
-    private readonly SemaphoreSlim _semaphore = new(1, 1);
+    private CancellationTokenSource _cts = new();
 
     public AuthenticationStatus AuthenticationStatus { get; private set; }
 
@@ -78,7 +76,11 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
         IConnectionManager connectionManager,
         IServersUpdater serversUpdater,
         IUserSettingsMigrator userSettingsMigrator,
-        IVpnPlanUpdater vpnPlanUpdater)
+        IVpnPlanUpdater vpnPlanUpdater,
+        IUnauthSessionManager unauthSessionManager,
+        ISrpAuthenticator srpAuthenticator,
+        ISsoAuthenticator ssoAuthenticator,
+        IClientConfigObserver clientConfigObserver)
     {
         _logger = logger;
         _apiClient = apiClient;
@@ -91,218 +93,189 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
         _serversUpdater = serversUpdater;
         _userSettingsMigrator = userSettingsMigrator;
         _vpnPlanUpdater = vpnPlanUpdater;
+        _unauthSessionManager = unauthSessionManager;
+        _srpAuthenticator = srpAuthenticator;
+        _ssoAuthenticator = ssoAuthenticator;
+        _clientConfigObserver = clientConfigObserver;
 
         _tokenClient.RefreshTokenExpired += OnTokenExpiredAsync;
     }
 
-    public async Task CreateUnauthSessionAsync()
-    {
-        await _semaphore.WaitAsync();
-
-        try
-        {
-            if (IsUnauthSessionCreated())
-            {
-                return;
-            }
-
-            _logger.Info<UserLog>("Requesting unauth session to initiate login process.");
-
-            ApiResponseResult<UnauthSessionResponse> unauthSessionResponse = await _apiClient.PostUnauthSessionAsync();
-
-            if (unauthSessionResponse.Success)
-            {
-                SaveUnauthSessionDetails(unauthSessionResponse.Value);
-            }
-        }
-        catch (Exception ex)
-        {
-            _logger.Error<ApiErrorLog>("An error occurred when requesting a new unauth session.", ex);
-        }
-        finally
-        {
-            _semaphore.Release();
-        }
-    }
-
     public async Task<AuthResult> LoginUserAsync(string username, SecureString password)
     {
+        SetAuthenticationStatus(AuthenticationStatus.LoggingIn);
         ClearAuthSessionDetails();
+        ResetCancellationTokenIfCancelled();
+
+        await _unauthSessionManager.CreateIfDoesNotExistAsync(_cts.Token);
+
         try
         {
-            AuthResult result = await AuthAsync(username, password);
+            AuthResult result = await _srpAuthenticator.LoginUserAsync(username, password, _cts.Token);
             if (result.Failure)
             {
+                if (result.Value != AuthError.TwoFactorRequired)
+                {
+                    SetAuthenticationStatus(AuthenticationStatus.LoggedOut);
+                }
+
                 return result;
             }
 
             return await CompleteLoginAsync(isAutoLogin: false, isToSendLoggedInEvent: true);
         }
-        catch
+        catch (Exception)
         {
+            if (_cts.IsCancellationRequested)
+            {
+                HandleAuthCancellation();
+
+                return AuthResult.Fail(AuthError.None);
+            }
+
             return await HandleLoginOverGuestHoleAsync(username, password);
         }
     }
 
     private async Task<AuthResult> HandleLoginOverGuestHoleAsync(string username, SecureString password)
     {
-        AuthResult? authResult = await _guestHoleManager.ExecuteAsync<AuthResult>(async () =>
+        try
         {
-            AuthResult authResult = await AuthAsync(username, password);
-            if (authResult.Success)
+            AuthResult? authResult = await _guestHoleManager.ExecuteAsync<AuthResult>(async () =>
             {
-                authResult = await CompleteLoginAsync(isAutoLogin: false, isToSendLoggedInEvent: false);
+                AuthResult authResult = await _srpAuthenticator.LoginUserAsync(username, password, _cts.Token);
                 if (authResult.Success)
                 {
-                    await _connectionCertificateManager.ForceRequestNewCertificateAsync();
-                    await _serversUpdater.UpdateAsync();
+                    authResult = await CompleteLoginAsync(isAutoLogin: false, isToSendLoggedInEvent: false);
                 }
-            }
 
-            if (authResult.Success || (authResult.Failure && authResult.Value != AuthError.TwoFactorRequired))
+                if (authResult.Success || (authResult.Failure && authResult.Value != AuthError.TwoFactorRequired))
+                {
+                    await _guestHoleManager.DisconnectAsync();
+                }
+
+                return authResult;
+            }, _cts.Token);
+
+            if (authResult != null)
             {
-                await _guestHoleManager.DisconnectAsync();
-            }
+                if (authResult.Success)
+                {
+                    SetAuthenticationStatus(AuthenticationStatus.LoggedIn);
+                    return authResult;
+                }
 
-            return authResult;
-        });
+                if (authResult.Value == AuthError.TwoFactorRequired)
+                {
+                    return AuthResult.Fail(AuthError.TwoFactorRequired);
+                }
 
-        if (authResult != null)
-        {
-            if (authResult.Success)
-            {
-                SetAuthenticationStatus(AuthenticationStatus.LoggedIn);
                 return authResult;
             }
 
-            if (authResult.Value == AuthError.TwoFactorRequired)
-            {
-                return AuthResult.Fail(AuthError.TwoFactorRequired);
-            }
+            SetAuthenticationStatus(AuthenticationStatus.LoggedOut);
 
-            return authResult;
+            return AuthResult.Fail(AuthError.GuestHoleFailed);
+        }
+        catch (Exception) when (_cts.IsCancellationRequested)
+        {
+            HandleAuthCancellation();
+
+            return AuthResult.Fail(AuthError.None);
+        }
+    }
+
+    private void ResetCancellationTokenIfCancelled()
+    {
+        if (!_cts.IsCancellationRequested)
+        {
+            return;
         }
 
-        return AuthResult.Fail(AuthError.GuestHoleFailed);
+        _cts.Dispose();
+        _cts = new();
     }
 
     public async Task<SsoAuthResult> StartSsoAuthAsync(string username)
     {
         _logger.Info<UserLog>("Trying to login user with SSO");
+
+        SetAuthenticationStatus(AuthenticationStatus.LoggingIn);
         ClearAuthSessionDetails();
+        ResetCancellationTokenIfCancelled();
 
-        if (!IsUnauthSessionCreated())
+        await _unauthSessionManager.CreateIfDoesNotExistAsync(_cts.Token);
+
+        try
         {
-            await CreateUnauthSessionAsync();
+            return await _ssoAuthenticator.StartSsoAuthAsync(username, _cts.Token);
         }
-
-        ApiResponseResult<AuthInfoResponse> authInfoResponse =
-            await _apiClient.GetAuthInfoResponse(new AuthInfoRequest { Username = username, Intent = SSO_LOGIN_INTENT });
-        if (!authInfoResponse.Success || string.IsNullOrEmpty(authInfoResponse.Value?.SsoChallengeToken))
+        catch (Exception) when (_cts.IsCancellationRequested)
         {
-            _logger.Error<UserLog>("Failed to login with SSO.");
-            return SsoAuthResult.FromAuthResult(AuthResult.Fail(authInfoResponse));
-        }
+            HandleAuthCancellation();
 
-        return SsoAuthResult.Ok(authInfoResponse.Value.SsoChallengeToken);
+            return SsoAuthResult.FromAuthResult(AuthResult.Fail(AuthError.None));
+        }
     }
 
     public async Task<AuthResult> CompleteSsoAuthAsync(string ssoResponseToken)
     {
-        if (string.IsNullOrEmpty(ssoResponseToken))
-        {
-            return AuthResult.Fail(AuthError.SsoAuthFailed);
-        }
-
-        ApiResponseResult<AuthResponse> authResponse = await _apiClient.GetAuthResponse(new AuthRequest { SsoResponseToken = ssoResponseToken });
-        if (authResponse.Failure)
-        {
-            return AuthResult.Fail(authResponse);
-        }
-
-        SaveAuthSessionDetails(authResponse.Value);
-
-        return await CompleteLoginAsync(isAutoLogin: false, isToSendLoggedInEvent: true);
-    }
-
-    public async Task<AuthResult> AuthAsync(string username, SecureString password)
-    {
-        if (!IsUnauthSessionCreated())
-        {
-            await CreateUnauthSessionAsync();
-        }
-
-        ApiResponseResult<AuthInfoResponse> authInfoResponse =
-            await _apiClient.GetAuthInfoResponse(new AuthInfoRequest { Username = username, Intent = SRP_LOGIN_INTENT });
-        if (!authInfoResponse.Success)
-        {
-            return AuthResult.Fail(authInfoResponse);
-        }
-
-        if (string.IsNullOrEmpty(authInfoResponse.Value.Salt))
-        {
-            return AuthResult.Fail("Incorrect login credentials. Please try again");
-        }
-
         try
         {
-            SrpPInvoke.GoProofs? proofs = SrpPInvoke.GenerateProofs(4, username, password, authInfoResponse.Value.Salt,
-                authInfoResponse.Value.Modulus, authInfoResponse.Value.ServerEphemeral);
-            if (proofs is null)
-            {
-                return AuthResult.Fail(AuthError.Unknown);
-            }
+            AuthResult result = await _ssoAuthenticator.CompleteSsoAuthAsync(ssoResponseToken, _cts.Token);
 
-            AuthRequest authRequest = GetAuthRequestData(proofs, authInfoResponse.Value.SrpSession, username);
-            ApiResponseResult<AuthResponse> response = await _apiClient.GetAuthResponse(authRequest);
-            if (response.Failure)
-            {
-                return AuthResult.Fail(response);
-            }
-
-            if (!Convert.ToBase64String(proofs.ExpectedServerProof).Equals(response.Value.ServerProof))
-            {
-                return AuthResult.Fail(AuthError.InvalidServerProof);
-            }
-
-            if ((response.Value.TwoFactor.Enabled & 1) != 0)
-            {
-                _authResponse = response.Value;
-                return AuthResult.Fail(AuthError.TwoFactorRequired);
-            }
-
-            SaveAuthSessionDetails(response.Value);
-
-            return AuthResult.Ok();
+            return result.Failure
+                ? result
+                : await CompleteLoginAsync(isAutoLogin: false, isToSendLoggedInEvent: true);
         }
-        catch (TypeInitializationException e) when (e.InnerException is DllNotFoundException)
+        catch (Exception) when (_cts.IsCancellationRequested)
         {
-            return AuthResult.Fail(AuthError.MissingGoSrpDll);
+            HandleAuthCancellation();
+
+            return AuthResult.Fail(AuthError.None);
         }
     }
 
     public async Task<AuthResult> SendTwoFactorCodeAsync(string code)
     {
-        TwoFactorRequest request = new() { TwoFactorCode = code };
-        ApiResponseResult<BaseResponse> response =
-            await _apiClient.GetTwoFactorAuthResponse(request, _authResponse?.AccessToken ?? string.Empty,
-                _authResponse?.UniqueSessionId ?? string.Empty);
+        SetAuthenticationStatus(AuthenticationStatus.LoggingIn);
+        ResetCancellationTokenIfCancelled();
 
-        if (response.Failure)
+        try
         {
-            return AuthResult.Fail(response.Value.Code == ResponseCodes.IncorrectLoginCredentials
-                ? AuthError.IncorrectTwoFactorCode
-                : AuthError.TwoFactorAuthFailed);
+            AuthResult result = await _srpAuthenticator.SendTwoFactorCodeAsync(code, _cts.Token);
+
+            return result.Failure
+                ? result
+                : await CompleteLoginAsync(isAutoLogin: false, isToSendLoggedInEvent: true);
         }
+        catch (Exception) when (_cts.IsCancellationRequested)
+        {
+            HandleAuthCancellation();
 
-        SaveAuthSessionDetails(_authResponse);
-
-        return await CompleteLoginAsync(isAutoLogin: false, isToSendLoggedInEvent: true);
+            return AuthResult.Fail(AuthError.TwoFactorCancelled);
+        }
     }
 
-    public async Task<AuthResult> AutoLoginUserAsync()
+    private void HandleAuthCancellation()
     {
-        return await CompleteLoginAsync(isAutoLogin: true, isToSendLoggedInEvent: true);
+        ResetCancellationTokenIfCancelled();
+        _unauthSessionManager.RecreateAsync(_cts.Token).FireAndForget();
+
+        SetAuthenticationStatus(AuthenticationStatus.LoggedOut);
+    }
+
+    public async Task AutoLoginUserAsync()
+    {
+        if (HasAuthenticatedSessionData())
+        {
+            SetAuthenticationStatus(AuthenticationStatus.LoggingIn);
+            await CompleteLoginAsync(isAutoLogin: true, isToSendLoggedInEvent: true);
+        }
+        else
+        {
+            await _unauthSessionManager.CreateIfDoesNotExistAsync(_cts.Token);
+        }
     }
 
     public async Task LogoutAsync(LogoutReason reason)
@@ -320,7 +293,7 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
 
             await SendLogoutRequestAsync();
 
-            await CreateUnauthSessionAsync();
+            await _unauthSessionManager.CreateIfDoesNotExistAsync(CancellationToken.None);
 
             ClearAuthSessionDetails();
 
@@ -346,22 +319,11 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
 
         if (!IsLoggedIn)
         {
-            await CreateUnauthSessionAsync();
+            await _unauthSessionManager.CreateIfDoesNotExistAsync(CancellationToken.None);
             return;
         }
 
         await LogoutAsync(LogoutReason.SessionExpired);
-    }
-
-    private AuthRequest GetAuthRequestData(SrpPInvoke.GoProofs proofs, string srpSession, string username)
-    {
-        return new AuthRequest
-        {
-            ClientEphemeral = Convert.ToBase64String(proofs.ClientEphemeral),
-            ClientProof = Convert.ToBase64String(proofs.ClientProof),
-            SrpSession = srpSession,
-            Username = username
-        };
     }
 
     private void ClearAuthSessionDetails()
@@ -372,26 +334,13 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
         _settings.RefreshToken = null;
     }
 
-    private void SaveAuthSessionDetails(AuthResponse? authResponse)
-    {
-        if (authResponse is null)
-        {
-            return;
-        }
-
-        _settings.UserId = authResponse.UserId;
-        _settings.AccessToken = authResponse.AccessToken;
-        _settings.UniqueSessionId = authResponse.UniqueSessionId;
-        _settings.RefreshToken = authResponse.RefreshToken;
-    }
-
     private async Task<AuthResult> CompleteLoginAsync(bool isAutoLogin, bool isToSendLoggedInEvent)
     {
+        IsAutoLogin = isAutoLogin;
+
         bool hasPlanChanged = false;
         try
         {
-            SetAuthenticationStatus(AuthenticationStatus.LoggingIn);
-
             if (!HasAuthenticatedSessionData())
             {
                 ClearAuthSessionDetails();
@@ -412,7 +361,7 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
                 }
             }
 
-            VpnPlanChangeResult vpnPlanChangeResult = await _vpnPlanUpdater.ForceUpdateAsync();
+            VpnPlanChangeResult vpnPlanChangeResult = await _vpnPlanUpdater.ForceUpdateAsync(_cts.Token);
 
             if (vpnPlanChangeResult.ApiResponse is not null &&
                 vpnPlanChangeResult.ApiResponse.Failure &&
@@ -428,23 +377,22 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
             if (hasPlanChanged)
             {
                 _logger.Info<AppLog>("Reprocessing current servers and fetching new servers after VPN plan change.");
-                serversUpdateTask = _serversUpdater.ForceUpdateAsync();
+                serversUpdateTask = _serversUpdater.ForceUpdateAsync(_cts.Token);
             }
             else
             {
-                serversUpdateTask = _serversUpdater.UpdateAsync();
+                serversUpdateTask = _serversUpdater.UpdateAsync(_cts.Token);
             }
 
             await MigrateUserSettingsAsync(usersResponseTask, serversUpdateTask);
-
         }
-        catch (HttpRequestException e)
+        catch (HttpRequestException e) when (!_cts.IsCancellationRequested)
         {
             _logger.Error<AppLog>("An Http request exception was thrown when updating the user info.", e);
 
             if (!_guestHoleManager.IsActive)
             {
-                _logger.Info<AppLog>("Attempt to complete login through guest hole.", e);
+                _logger.Info<AppLog>("Attempt to complete login through guest hole.");
 
                 AuthResult? result = await _guestHoleManager.ExecuteAsync<AuthResult>(async () =>
                 {
@@ -453,7 +401,7 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
                     await _guestHoleManager.DisconnectAsync();
 
                     return result;
-                });
+                }, _cts.Token);
 
                 if (result != null)
                 {
@@ -463,26 +411,30 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
         }
         catch (Exception e)
         {
+            if (_cts.IsCancellationRequested)
+            {
+                ClearAuthSessionDetails();
+                throw;
+            }
+
             _logger.Error<AppLog>("An unexpected exception was thrown when updating the user info.", e);
         }
 
-        ClearUnauthSessionDetails();
-
-        IsAutoLogin = isAutoLogin;
+        _unauthSessionManager.Revoke();
 
         DeleteKeyPairIfNotAutoLogin(isAutoLogin, _guestHoleManager.IsActive);
 
-        if (!_guestHoleManager.IsActive)
+        Task certificateAndClientConfigTask = Task.WhenAll(
+            GetCertificateTask(hasPlanChanged),
+            _clientConfigObserver.UpdateAsync(_cts.Token));
+
+        if (_guestHoleManager.IsActive)
         {
-            if (hasPlanChanged)
-            {
-                _logger.Info<AppLog>("Requesting new certificate after VPN plan change.");
-                _connectionCertificateManager.ForceRequestNewCertificateAsync().FireAndForget();
-            }
-            else
-            {
-                _connectionCertificateManager.RequestNewCertificateAsync().FireAndForget();
-            }
+            await certificateAndClientConfigTask;
+        }
+        else
+        {
+            certificateAndClientConfigTask.FireAndForget();
         }
 
         if (isToSendLoggedInEvent)
@@ -493,9 +445,16 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
         return AuthResult.Ok();
     }
 
+    private Task GetCertificateTask(bool hasPlanChanged)
+    {
+        return hasPlanChanged
+            ? _connectionCertificateManager.ForceRequestNewCertificateAsync(_cts.Token)
+            : _connectionCertificateManager.RequestNewCertificateAsync(_cts.Token);
+    }
+
     private async Task<ApiResponseResult<UsersResponse>> GetUserAsync()
     {
-        ApiResponseResult<UsersResponse> response = await _apiClient.GetUserAsync();
+        ApiResponseResult<UsersResponse> response = await _apiClient.GetUserAsync(_cts.Token);
         if (response.Success)
         {
             // After migration from previous version, there is no User ID. Global Settings should be set before User Settings.
@@ -515,20 +474,6 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
     {
         await Task.WhenAll(usersResponseTask, serversUpdateTask);
         _userSettingsMigrator.Migrate();
-    }
-
-    private bool IsUnauthSessionCreated()
-    {
-        return _settings.UnauthUniqueSessionId != null
-            && _settings.UnauthAccessToken != null
-            && _settings.UnauthRefreshToken != null;
-    }
-
-    public void ClearUnauthSessionDetails()
-    {
-        _settings.UnauthUniqueSessionId = null;
-        _settings.UnauthAccessToken = null;
-        _settings.UnauthRefreshToken = null;
     }
 
     private void SetAuthenticationStatus(AuthenticationStatus status, LogoutReason? logoutReason = null)
@@ -560,13 +505,6 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
         }
     }
 
-    private void SaveUnauthSessionDetails(UnauthSessionResponse response)
-    {
-        _settings.UnauthUniqueSessionId = response.UniqueSessionId;
-        _settings.UnauthAccessToken = response.AccessToken;
-        _settings.UnauthRefreshToken = response.RefreshToken;
-    }
-
     private void DeleteKeyPairIfNotAutoLogin(bool isAutoLogin, bool isGuestHoleActive)
     {
         if (!isAutoLogin && !isGuestHoleActive)
@@ -593,5 +531,11 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
         {
             await LogoutAsync(LogoutReason.ClientOutdated);
         }
+    }
+
+    public void CancelAuth()
+    {
+        _logger.Info<UserLog>("User has cancelled the authentication process.");
+        _cts.Cancel();
     }
 }

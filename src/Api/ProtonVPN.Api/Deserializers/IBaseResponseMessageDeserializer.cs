@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts.Common;
 
@@ -25,6 +26,6 @@ namespace ProtonVPN.Api.Deserializers
 {
     public interface IBaseResponseMessageDeserializer
     {
-        Task<BaseResponse> DeserializeAsync(HttpResponseMessage response);
+        Task<BaseResponse> DeserializeAsync(HttpResponseMessage response, CancellationToken cancellationToken);
     }
 }

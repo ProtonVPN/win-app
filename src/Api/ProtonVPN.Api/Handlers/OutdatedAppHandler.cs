@@ -44,7 +44,7 @@ namespace ProtonVPN.Api.Handlers
             CancellationToken cancellationToken)
         {
             HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
-            BaseResponse baseResponse = await _baseResponseDeserializer.DeserializeAsync(response);
+            BaseResponse baseResponse = await _baseResponseDeserializer.DeserializeAsync(response, cancellationToken);
             if (baseResponse == null)
             {
                 return response;

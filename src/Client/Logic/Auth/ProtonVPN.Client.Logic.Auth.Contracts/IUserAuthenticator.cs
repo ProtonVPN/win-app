@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -32,13 +32,11 @@ public interface IUserAuthenticator
 
     bool HasAuthenticatedSessionData();
 
-    Task CreateUnauthSessionAsync();
     Task<SsoAuthResult> StartSsoAuthAsync(string username);
     Task<AuthResult> CompleteSsoAuthAsync(string ssoResponseToken);
     Task<AuthResult> LoginUserAsync(string username, SecureString password);
-    Task<AuthResult> AuthAsync(string username, SecureString password);
     Task<AuthResult> SendTwoFactorCodeAsync(string code);
-    Task<AuthResult> AutoLoginUserAsync();
+    Task AutoLoginUserAsync();
     Task LogoutAsync(LogoutReason reason);
-    void ClearUnauthSessionDetails();
+    void CancelAuth();
 }

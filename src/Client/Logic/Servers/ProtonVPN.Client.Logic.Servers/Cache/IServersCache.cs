@@ -39,6 +39,6 @@ public interface IServersCache
     void Clear();
     void LoadFromFileIfEmpty();
 
-    Task UpdateAsync();
-    Task UpdateLoadsAsync();
+    Task UpdateAsync(CancellationToken cancellationToken);
+    Task UpdateLoadsAsync(CancellationToken cancellationToken);
 }

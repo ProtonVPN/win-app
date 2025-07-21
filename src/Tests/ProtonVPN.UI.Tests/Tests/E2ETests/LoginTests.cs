@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
+using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
@@ -97,6 +97,22 @@ public class LoginTests : FreshSessionSetUp
         LoginRobot
             .Login(TestUserData.IncorrectUserWithWhitespace)
             .Verify.IsErrorMessageDisplayed(INCORRECT_USERNAME_ERROR);
+    }
+
+    [Test]
+    public void CancelLogin()
+    {
+        NavigationRobot
+            .Verify.IsOnLoginPage();
+
+        LoginRobot
+            .Login(TestUserData.PlusUser);
+
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+
+        LoginRobot
+            .CancelLogin()
+            .Verify.IsLoginWindowDisplayed();
     }
 
     private void LoginWithUser(TestUserData user)

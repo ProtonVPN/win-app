@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,6 +20,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using Windows.System;
 
 namespace ProtonVPN.Client.UI.Login.Pages;
@@ -56,6 +57,11 @@ public sealed partial class SignInPageView : IContextAware
 
     private void OnUsernameTextBoxLoaded(object sender, RoutedEventArgs e)
     {
+        if (ViewModel.AuthError == AuthError.GuestHoleFailed)
+        {
+            return;
+        }
+
         UsernameTextBox.Focus(FocusState.Programmatic);
         UsernameTextBox.SelectAll();
     }

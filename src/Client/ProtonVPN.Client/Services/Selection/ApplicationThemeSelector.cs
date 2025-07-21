@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,13 +18,12 @@
  */
 
 using Microsoft.UI.Xaml;
+using ProtonVPN.Client.Core.Messages;
+using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.Client.Core.Services.Selection;
-using ProtonVPN.Client.Core.Messages;
 
 namespace ProtonVPN.Client.Services.Selection;
 
@@ -34,18 +33,15 @@ public class ApplicationThemeSelector : IApplicationThemeSelector,
 {
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
-    private readonly ILocalizationProvider _localizer;
 
     private readonly IList<ElementTheme> _themes;
 
     public ApplicationThemeSelector(
         ISettings settings,
-        IEventMessageSender eventMessageSender,
-        ILocalizationProvider localizer)
+        IEventMessageSender eventMessageSender)
     {
         _settings = settings;
         _eventMessageSender = eventMessageSender;
-        _localizer = localizer;
 
         _themes = Enum.GetValues<ElementTheme>();
     }
@@ -57,7 +53,9 @@ public class ApplicationThemeSelector : IApplicationThemeSelector,
 
     public ElementTheme GetTheme()
     {
-        return MapToElementTheme(_settings.Theme);
+        return MapToElementTheme(string.IsNullOrEmpty(_settings.UserId)
+            ? DefaultSettings.Theme
+            : _settings.Theme);
     }
 
     public void SetTheme(ElementTheme theme)

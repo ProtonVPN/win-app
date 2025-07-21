@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -91,7 +91,9 @@ public partial class TwoFactorPageViewModel : LoginPageViewModelBase
             }
             else
             {
-                _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.TwoFactorFailed, result.Value));
+                _eventMessageSender.Send(result.Value == AuthError.TwoFactorCancelled
+                    ? new LoginStateChangedMessage(LoginState.TwoFactorCancelled)
+                    : new LoginStateChangedMessage(LoginState.TwoFactorFailed, result.Value));
             }
         }
         catch (Exception ex)
@@ -123,5 +125,16 @@ public partial class TwoFactorPageViewModel : LoginPageViewModelBase
     protected override void OnDeactivated()
     {
         IsToShowError = false;
+    }
+
+    [RelayCommand]
+    private async Task<bool> GoBackAsync()
+    {
+        if (_guestHoleManager.IsActive)
+        {
+            await _guestHoleManager.DisconnectAsync();
+        }
+
+        return await ParentViewNavigator.NavigateToSignInViewAsync();
     }
 }

@@ -28,6 +28,7 @@ public enum AuthError
     TwoFactorRequired,
     IncorrectTwoFactorCode,
     TwoFactorAuthFailed,
+    TwoFactorCancelled,
     GuestHoleFailed,
     GetSessionDetailsFailed,
     SsoAuthFailed,

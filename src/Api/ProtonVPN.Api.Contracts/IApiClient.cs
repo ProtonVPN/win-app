@@ -18,6 +18,7 @@
  */
 
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts.Announcements;
 using ProtonVPN.Api.Contracts.Auth;
@@ -41,32 +42,32 @@ namespace ProtonVPN.Api.Contracts;
 
 public interface IApiClient : IClientBase
 {
-    Task<ApiResponseResult<UnauthSessionResponse>> PostUnauthSessionAsync();
-    Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequest authRequest);
-    Task<ApiResponseResult<AuthInfoResponse>> GetAuthInfoResponse(AuthInfoRequest authInfoRequest);
-    Task<ApiResponseResult<BaseResponse>> GetTwoFactorAuthResponse(TwoFactorRequest twoFactorRequest, string accessToken, string uid);
+    Task<ApiResponseResult<UnauthSessionResponse>> PostUnauthSessionAsync(CancellationToken cancellationToken = default);
+    Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequest authRequest, CancellationToken cancellationToken = default);
+    Task<ApiResponseResult<AuthInfoResponse>> GetAuthInfoResponse(AuthInfoRequest authInfoRequest, CancellationToken cancellationToken = default);
+    Task<ApiResponseResult<BaseResponse>> GetTwoFactorAuthResponse(TwoFactorRequest twoFactorRequest, string accessToken, string uid, CancellationToken cancellationToken = default);
     Task<ApiResponseResult<PhysicalServerWrapperResponse>> GetServerAsync(string serverId);
-    Task<ApiResponseResult<VpnInfoWrapperResponse>> GetVpnInfoResponse();
+    Task<ApiResponseResult<VpnInfoWrapperResponse>> GetVpnInfoResponse(CancellationToken cancellationToken = default);
     Task<ApiResponseResult<BaseResponse>> GetLogoutResponse();
     Task<ApiResponseResult<EventResponse>> GetEventResponse(string lastId = default);
-    Task<ApiResponseResult<ServersResponse>> GetServersAsync(DeviceLocation? deviceLocation);
+    Task<ApiResponseResult<ServersResponse>> GetServersAsync(DeviceLocation? deviceLocation, CancellationToken cancellationToken = default);
     Task<ApiResponseResult<ServerCountResponse>> GetServersCountAsync();
     Task<ApiResponseResult<ReportAnIssueFormResponse>> GetReportAnIssueFormData();
-    Task<ApiResponseResult<ServersResponse>> GetServerLoadsAsync(DeviceLocation? deviceLocation);
+    Task<ApiResponseResult<ServersResponse>> GetServerLoadsAsync(DeviceLocation? deviceLocation, CancellationToken cancellationToken);
     Task<ApiResponseResult<DeviceLocationResponse>> GetLocationDataAsync();
     Task<ApiResponseResult<BaseResponse>> ReportBugAsync(IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files);
     Task<ApiResponseResult<SessionsResponse>> GetSessions();
-    Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfigAsync(DeviceLocation? deviceLocation);
+    Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfigAsync(DeviceLocation? deviceLocation, CancellationToken cancellationToken = default);
     Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync(AnnouncementsRequest request);
     Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync();
     Task<ApiResponseResult<PartnersResponse>> GetPartnersAsync();
     Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync();
-    Task<ApiResponseResult<CertificateResponse>> RequestConnectionCertificateAsync(CertificateRequest request);
+    Task<ApiResponseResult<CertificateResponse>> RequestConnectionCertificateAsync(CertificateRequest request, CancellationToken cancellationToken = default);
     Task<ApiResponseResult<BaseResponse>> ApplyPromoCodeAsync(PromoCodeRequest promoCodeRequest);
     Task<ApiResponseResult<ForkedAuthSessionResponse>> ForkAuthSessionAsync(AuthForkSessionRequest request);
     Task<ApiResponseResult<BaseResponse>> PostUnauthenticatedStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents);
     Task<ApiResponseResult<BaseResponse>> PostAuthenticatedStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents);
-    Task<ApiResponseResult<UsersResponse>> GetUserAsync();
+    Task<ApiResponseResult<UsersResponse>> GetUserAsync(CancellationToken cancellationToken = default);
     Task<ApiResponseResult<FeatureFlagsResponse>> GetFeatureFlagsAsync();
     Task<ApiResponseResult<BaseResponse>> SubmitNpsSurveyAsync(NpsSurveyRequest request);
     Task<ApiResponseResult<BaseResponse>> DismissNpsSurveyAsync();

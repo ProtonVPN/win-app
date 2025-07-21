@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -29,7 +29,6 @@ using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
-using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Settings.Contracts;
@@ -84,6 +83,8 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
     [ObservableProperty]
     private bool _isToShowPasswordError;
 
+    private AuthError _authError;
+
     public bool IsSignInFormEnabled => !IsSigningIn;
 
     public bool IsSrpFormType => SignInFormType == SignInFormType.SRP;
@@ -106,6 +107,8 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
     };
 
     public string CreateAccountUrl => _urlsBrowser.CreateAccount;
+
+    public AuthError AuthError => _authError;
 
     private bool CanCreateAccount => !IsToShowCreateAccountSpinner;
 
@@ -189,8 +192,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
 
     private bool CanSignIn()
     {
-        return !IsSigningIn 
-            && _userAuthenticator.AuthenticationStatus == AuthenticationStatus.LoggedOut;
+        return !IsSigningIn;
     }
 
     private async Task<AuthResult> HandleSrpLoginAsync()
@@ -212,11 +214,14 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
 
     private void HandleSuccess()
     {
+        _authError = AuthError.None;
         _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.Success));
     }
 
     private void HandleError(AuthResult result)
     {
+        _authError = result.Value;
+
         switch (result.Value)
         {
             case AuthError.TwoFactorRequired:
@@ -243,17 +248,6 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
             SignInFormType.SSO => SignInFormType.SRP,
             _ => SignInFormType.SRP,
         };
-    }
-
-    public void Receive(LoggedInMessage message)
-    {
-        ExecuteOnUIThread(ClearInputs);
-    }
-
-    private void ClearInputs()
-    {
-        Username = string.Empty;
-        Password = string.Empty;
     }
 
     [RelayCommand(CanExecute = nameof(CanCreateAccount))]
@@ -287,8 +281,6 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
     protected override void OnActivated()
     {
         base.OnActivated();
-
-        _userAuthenticator.ClearUnauthSessionDetails();
 
         if (_userAuthenticator.IsAutoLogin != true && SignInCommand.CanExecute(null))
         {

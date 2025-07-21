@@ -38,9 +38,9 @@ public class LoginRobot
     protected Element SignInButton = Element.ByAutomationId("SignInButton");
     protected Element SsoWindow = Element.ByAutomationId("ContentScrollViewer");
     protected Element SignInWithSsoButton = Element.ByName("Sign in with SSO");
-    protected Element AuthenticateWithTwoFactorButton = Element.ByAutomationId("AuthenticateWithTwoFactorButton");
     protected Element HelpButton = Element.ByAutomationId("HelpButton");
     protected Element ReportIssueMenuItem = Element.ByAutomationId("ReportIssueMenuItem");
+    protected Element CancelSignInButton = Element.ByAutomationId("CancelSignInButton");
 
     public LoginRobot Login(TestUserData user)
     {
@@ -78,8 +78,6 @@ public class LoginRobot
         TwoFactorFifthDigit.SetText(twoFactorCode[4].ToString());
         TwoFactorLastDigit.SetText(twoFactorCode[5].ToString());
 
-        AuthenticateWithTwoFactorButton.Click();
-
         return this;
     }
 
@@ -103,6 +101,13 @@ public class LoginRobot
         // Remove when VPNWIN-2599 is implemented.
         Thread.Sleep(TestConstants.AnimationDelay);
         ReportIssueMenuItem.DoubleClick();
+    }
+
+    public LoginRobot CancelLogin()
+    {
+        CancelSignInButton.Click();
+
+        return this;
     }
 
     public class Verifications : LoginRobot

@@ -18,6 +18,7 @@
  */
 
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Api.Deserializers;
@@ -28,7 +29,7 @@ namespace ProtonVPN.Api.Tests.Deserializers
     {
         public BaseResponse ExpectedBaseResponse { get; set; }
 
-        public Task<BaseResponse> DeserializeAsync(HttpResponseMessage response)
+        public Task<BaseResponse> DeserializeAsync(HttpResponseMessage response, CancellationToken cancellationToken)
         {
             return Task.FromResult(ExpectedBaseResponse);
         }

@@ -82,15 +82,16 @@ public class ConnectionCertificateManager : IConnectionCertificateManager
         ForceNewKeyPairAndCertificate = 2
     }
 
-    public async Task RequestNewCertificateAsync(string? expiredCertificatePem = null)
+    public async Task RequestNewCertificateAsync(CancellationToken cancellationToken = default, string? expiredCertificatePem = null)
     {
         await EnqueueRequestAsync(NewCertificateRequestParameter.NewCertificateIfCurrentIsOld,
+            cancellationToken,
             expiredCertificatePem);
     }
 
-    public async Task ForceRequestNewCertificateAsync()
+    public async Task ForceRequestNewCertificateAsync(CancellationToken cancellationToken = default)
     {
-        await EnqueueRequestAsync(NewCertificateRequestParameter.ForceNewCertificate);
+        await EnqueueRequestAsync(NewCertificateRequestParameter.ForceNewCertificate, cancellationToken);
     }
 
     public async Task ForceRequestNewKeyPairAndCertificateAsync()
@@ -98,10 +99,12 @@ public class ConnectionCertificateManager : IConnectionCertificateManager
         await EnqueueRequestAsync(NewCertificateRequestParameter.ForceNewKeyPairAndCertificate);
     }
 
-    private async Task EnqueueRequestAsync(NewCertificateRequestParameter parameter,
+    private async Task EnqueueRequestAsync(
+        NewCertificateRequestParameter parameter,
+        CancellationToken cancellationToken = default,
         string? expiredCertificatePem = null)
     {
-        await _semaphore.WaitAsync();
+        await _semaphore.WaitAsync(cancellationToken);
 
         try
         {
@@ -111,7 +114,7 @@ public class ConnectionCertificateManager : IConnectionCertificateManager
                 LogNewCertificateRequest(parameter);
                 RegenerateKeyPairIfRequested(parameter);
                 IList<string> features = _features.ToList();
-                ApiResponseResult<CertificateResponse> response = await RequestAsync(features);
+                ApiResponseResult<CertificateResponse> response = await RequestAsync(features, cancellationToken);
                 if (response.Failure)
                 {
                     _logger.Error<UserCertificateRefreshErrorLog>("Connection certificate request failed with " +
@@ -170,27 +173,27 @@ public class ConnectionCertificateManager : IConnectionCertificateManager
         }
     }
 
-    private async Task<ApiResponseResult<CertificateResponse>> RequestAsync(IList<string> features)
+    private async Task<ApiResponseResult<CertificateResponse>> RequestAsync(IList<string> features, CancellationToken cancellationToken)
     {
         ApiResponseResult<CertificateResponse> certificateResponseData =
-            await RequestConnectionCertificateAsync(features);
+            await RequestConnectionCertificateAsync(features, cancellationToken);
 
         if (certificateResponseData.Failure && certificateResponseData.Value.Code == ResponseCodes.ClientPublicKeyConflict)
         {
             _logger.Warn<UserCertificateRefreshErrorLog>("New connection certificate failed because the " +
                                                          "client public key is already in use. Generating a new key pair and retrying.");
             _connectionKeyManager.RegenerateKeyPair();
-            certificateResponseData = await RequestConnectionCertificateAsync(features);
+            certificateResponseData = await RequestConnectionCertificateAsync(features, cancellationToken);
         }
 
         return certificateResponseData;
     }
 
-    private async Task<ApiResponseResult<CertificateResponse>> RequestConnectionCertificateAsync(IList<string> features)
+    private async Task<ApiResponseResult<CertificateResponse>> RequestConnectionCertificateAsync(IList<string> features, CancellationToken cancellationToken)
     {
         CertificateRequest certificateRequest = CreateCertificateRequestData(features);
         ApiResponseResult<CertificateResponse> certificateResponseData =
-            await _apiClient.RequestConnectionCertificateAsync(certificateRequest);
+            await _apiClient.RequestConnectionCertificateAsync(certificateRequest, cancellationToken);
 
         if (certificateResponseData.Success)
         {

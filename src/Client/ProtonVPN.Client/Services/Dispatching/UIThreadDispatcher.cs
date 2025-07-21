@@ -20,12 +20,10 @@
 using System.Runtime.CompilerServices;
 using CommunityToolkit.WinUI;
 using Microsoft.UI.Dispatching;
-using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
-using DispatcherTimer = ProtonVPN.Client.Services.Dispatching.DispatcherTimer;
 
 namespace ProtonVPN.Client.Services.Dispatching;
 

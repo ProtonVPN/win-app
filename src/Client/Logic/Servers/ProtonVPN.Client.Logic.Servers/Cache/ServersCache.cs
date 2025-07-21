@@ -25,7 +25,6 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Files;
-using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.Configurations.Contracts;
@@ -166,14 +165,14 @@ public class ServersCache : IServersCache
         }
     }
 
-    public async Task UpdateAsync()
+    public async Task UpdateAsync(CancellationToken cancellationToken)
     {
         try
         {
             DeviceLocation? deviceLocation = _settings.DeviceLocation;
             DateTime utcNow = DateTime.UtcNow;
 
-            ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(deviceLocation);
+            ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(deviceLocation, cancellationToken);
             if (response.Success)
             {
                 _lastFullUpdateUtc = utcNow;
@@ -205,17 +204,22 @@ public class ServersCache : IServersCache
         catch (Exception e)
         {
             _logger.Error<ApiErrorLog>("API: Get servers failed", e);
+
+            if (cancellationToken.IsCancellationRequested)
+            {
+                throw;
+            }
         }
     }
 
-    public async Task UpdateLoadsAsync()
+    public async Task UpdateLoadsAsync(CancellationToken cancellationToken)
     {
         try
         {
             DeviceLocation? deviceLocation = _settings.DeviceLocation;
             DateTime utcNow = DateTime.UtcNow;
 
-            ApiResponseResult<ServersResponse> response = await _apiClient.GetServerLoadsAsync(deviceLocation);
+            ApiResponseResult<ServersResponse> response = await _apiClient.GetServerLoadsAsync(deviceLocation, cancellationToken);
             if (response.Success)
             {
                 _lastLoadsUpdateUtc = utcNow;

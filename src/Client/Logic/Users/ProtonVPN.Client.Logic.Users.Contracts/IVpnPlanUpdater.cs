@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,6 +21,6 @@ namespace ProtonVPN.Client.Logic.Users.Contracts;
 
 public interface IVpnPlanUpdater
 {
-    Task<VpnPlanChangeResult> ForceUpdateAsync();
-    Task<VpnPlanChangeResult> UpdateAsync();
+    Task<VpnPlanChangeResult> ForceUpdateAsync(CancellationToken cancellationToken = default);
+    Task<VpnPlanChangeResult> UpdateAsync(CancellationToken cancellationToken = default);
 }

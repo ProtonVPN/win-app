@@ -20,6 +20,7 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Api.Contracts;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Configurations.Contracts;
 
@@ -31,11 +32,13 @@ namespace ProtonVPN.Api.Handlers;
 public class CancellingHandler : CancellingHandlerBase
 {
     private readonly IConfiguration _config;
+    private readonly IUserSession _userSession;
     private readonly CancellationHandle _cancellationHandle = new();
 
-    public CancellingHandler(IConfiguration config)
+    public CancellingHandler(IConfiguration config, IUserSession userSession)
     {
         _config = config;
+        _userSession = userSession;
     }
 
     protected override async Task<HttpResponseMessage> SendAsync(
@@ -47,18 +50,12 @@ public class CancellingHandler : CancellingHandlerBase
             _cancellationHandle.Cancel();
         }
 
-        return await base.SendAsync(request,
-            HasAuthorization(request) ? _cancellationHandle.Token : cancellationToken);
+        return await base.SendAsync(request, _userSession.IsLoggedIn ? _cancellationHandle.Token : cancellationToken);
     }
 
     private bool IsLogout(HttpRequestMessage request)
     {
         string endpoint = request.RequestUri.AbsoluteUri.Replace(_config.Urls.ApiUrl, "");
         return request.Method == HttpMethod.Delete && endpoint == "/auth";
-    }
-
-    private static bool HasAuthorization(HttpRequestMessage request)
-    {
-        return request.Headers.Authorization?.Scheme == "Bearer" && !string.IsNullOrEmpty(request.Headers.Authorization.Parameter);
     }
 }

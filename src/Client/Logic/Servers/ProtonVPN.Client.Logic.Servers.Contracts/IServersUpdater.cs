@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,9 +21,9 @@ namespace ProtonVPN.Client.Logic.Servers.Contracts;
 
 public interface IServersUpdater
 {
-    Task UpdateAsync();
-    Task ForceUpdateAsync();
-    Task ForceLoadsUpdateAsync();
+    Task UpdateAsync(CancellationToken cancellationToken = default);
+    Task ForceUpdateAsync(CancellationToken cancellationToken = default);
+    Task ForceLoadsUpdateAsync(CancellationToken cancellationToken = default);
 
-    Task ClearCacheAsync();
+    Task ClearCacheAsync(CancellationToken cancellationToken = default);
 }

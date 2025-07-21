@@ -27,4 +27,5 @@ public enum LoginState
     Success,
     TwoFactorRequired,
     TwoFactorFailed,
+    TwoFactorCancelled,
 }

@@ -80,6 +80,7 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
                 error.RequiresCertificateUpdate())
             {
                 await _connectionCertificateManager.RequestNewCertificateAsync(
+                    CancellationToken.None,
                     vpnState.ConnectionCertificatePem);
             }
             return ConnectionErrorHandlerResult.SameAsLast;
@@ -116,6 +117,7 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
         if (error == VpnError.CertificateExpired)
         {
             await _connectionCertificateManager.RequestNewCertificateAsync(
+                CancellationToken.None,
                 vpnState.ConnectionCertificatePem);
             // No need to reconnect, if the certificate was updated successfully,
             // ConnectionManager will inform the service about updated certificate.

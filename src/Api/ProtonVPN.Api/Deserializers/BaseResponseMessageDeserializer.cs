@@ -18,6 +18,7 @@
  */
 
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ProtonVPN.Api.Contracts.Common;
@@ -35,9 +36,9 @@ namespace ProtonVPN.Api.Deserializers
             _logger = logger;
         }
 
-        public async Task<BaseResponse> DeserializeAsync(HttpResponseMessage response)
+        public async Task<BaseResponse> DeserializeAsync(HttpResponseMessage response, CancellationToken cancellationToken)
         {
-            string content = await response.Content.ReadAsStringAsync();
+            string content = await response.Content.ReadAsStringAsync(cancellationToken);
             if (string.IsNullOrEmpty(content))
             {
                 return null;
