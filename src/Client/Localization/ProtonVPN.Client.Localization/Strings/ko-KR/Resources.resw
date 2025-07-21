@@ -271,10 +271,10 @@
     <value>업그레이드</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>향상된 킬 스위치가 활성화되었습니다. VPN 없이 인터넷을 사용하려면 향상된 킬 스위치를 비활성화 하십시오.</value>
+    <value>향상된 킬 스위치가 활성화되었습니다. VPN 없이 인터넷을 사용하려면 향상된 킬 스위치를 비활성화하세요.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>향상된 킬 스위치가 활성화되었습니다. 계속하면 인터넷에서 연결 해제됩니다.</value>
+    <value>향상된 킬 스위치가 활성화되었습니다. 계속하면 인터넷에서 연결이 해제됩니다.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>VPN 연결이 해제됩니다.</value>
@@ -491,7 +491,7 @@
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
   <data name="Connections_Profiles_Settings_Description">
-    <value>연결시 프로필 설정이 VPN 설정을 덮어쓰게 됩니다.</value>
+    <value>연결 시 프로필 설정이 VPN 설정을 덮어쓰게 됩니다.</value>
   </data>
   <data name="Connections_Profiles_Settings_Header">
     <value>사용자 지정 설정 추가</value>
@@ -1642,7 +1642,7 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_BaseFilteringEngine_Description">
-    <value>Windows 장치의 기본 필터링 엔진(BFE) 서비스가 비활성화되어 있습니다. Proton VPN이 제대로 작동하려면 이 서비스를 활성화해야 합니다.</value>
+    <value>Windows 장치의 기본 필터링 엔진 (BFE) 서비스가 비활성화되어 있습니다. Proton VPN이 제대로 작동하려면 이 서비스를 활성화해야 합니다.</value>
   </data>
   <data name="Dialogs_BaseFilteringEngine_HowToEnable">
     <value>기본 필터링 엔진 (BPE) 활성화 방법</value>
@@ -2832,13 +2832,13 @@ VPN 연결</value>
     <value>서버 부하율</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>스마트 라우팅은 가상 서버를 사용하여 접근하기 어려운 국가에서 VPN 커버리지를 제공합니다.</value>
+    <value>Smart Routing은 가상 서버를 사용하여 접근하기 어려운 국가에서 VPN 커버리지를 제공합니다.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
-    <value>스마트 라우팅 서버에 연결하면 물리적인 서버가 선택한 국가가 아닌 곳에 있더라도 선택한 국가에서 탐색하는 것처럼 보이게 됩니다.</value>
+    <value>Smart Routing 서버에 연결하면 물리적인 서버가 선택한 국가가 아닌 곳에 있더라도 선택한 국가에서 탐색하는 것처럼 보이게 됩니다.</value>
   </data>
   <data name="Overlay_SmartRouting_Description3">
-    <value>스마트 라우팅은 일반적으로 개인 정보 보호 방지법 및 기타 형태의 검열을 우회하는 데 사용됩니다.</value>
+    <value>Smart Routing은 일반적으로 개인 정보 보호 방지법 및 기타 형태의 검열을 우회하는 데 사용됩니다.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
     <value>{0}에 위치한 서버지만, {1}에서 브라우징하는 것으로 보일 것입니다</value>

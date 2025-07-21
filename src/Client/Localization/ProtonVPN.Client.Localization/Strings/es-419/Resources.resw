@@ -1779,10 +1779,10 @@ La latencia alta puede ralentizar la conexión.</value>
     <value>¿Qué es la latencia?</value>
   </data>
   <data name="Dialogs_NpsSurvey_CommentLabel">
-    <value>Cuéntenos por qué ha dado esa calificación.</value>
+    <value>Cuéntenos por qué dio esa calificación</value>
   </data>
   <data name="Dialogs_NpsSurvey_ErrorSubtitle">
-    <value>No se pudo enviar su reporte. Verifique la conexión y vuelva a intentarlo.</value>
+    <value>No se pudieron enviar sus comentarios. Verifique su conexión e inténtelo de nuevo.</value>
   </data>
   <data name="Dialogs_NpsSurvey_ErrorTitle">
     <value>Hubo un problema</value>
