@@ -22,6 +22,7 @@ using ProtonVPN.Client.Common.Messages;
 using ProtonVPN.Client.Contracts.ProcessCommunication;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
 using ProtonVPN.ProcessCommunication.Contracts;
@@ -64,11 +65,11 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
 
     public void Start()
     {
-        _ = Task.Run(() => KeepAliveAsync(StartVpnStateListenerAsync));
-        _ = Task.Run(() => KeepAliveAsync(StartPortForwardingStateListenerAsync));
-        _ = Task.Run(() => KeepAliveAsync(StartConnectionDetailsListenerAsync));
-        _ = Task.Run(() => KeepAliveAsync(StartUpdateStateListenerAsync));
-        _ = Task.Run(() => KeepAliveAsync(StartNetShieldStatisticListenerAsync));
+        Task.Run(() => KeepAliveAsync(StartVpnStateListenerAsync)).FireAndForget();
+        Task.Run(() => KeepAliveAsync(StartPortForwardingStateListenerAsync)).FireAndForget();
+        Task.Run(() => KeepAliveAsync(StartConnectionDetailsListenerAsync)).FireAndForget();
+        Task.Run(() => KeepAliveAsync(StartUpdateStateListenerAsync)).FireAndForget();
+        Task.Run(() => KeepAliveAsync(StartNetShieldStatisticListenerAsync)).FireAndForget();
     }
 
     private async Task KeepAliveAsync(Func<Task> listener)
