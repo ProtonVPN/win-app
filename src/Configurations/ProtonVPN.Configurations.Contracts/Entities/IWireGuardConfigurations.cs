@@ -27,7 +27,6 @@ public interface IWireGuardConfigurations
     string WintunAdapterHardwareId { get; }
     Guid WintunAdapterGuid { get; }
     Guid NtAdapterGuid { get; }
-    string TunAdapterName { get; }
 
     string DefaultDnsServer { get; }
     string DefaultClientAddress { get; }

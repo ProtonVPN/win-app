@@ -29,7 +29,6 @@ public class WireGuardConfigurations : IWireGuardConfigurations
     public string WintunAdapterHardwareId { get; set; } = string.Empty;
     public Guid WintunAdapterGuid { get; set; }
     public Guid NtAdapterGuid { get; set; }
-    public string TunAdapterName { get; set; } = string.Empty;
 
     public string DefaultDnsServer { get; set; } = string.Empty;
     public string DefaultClientAddress { get; set; } = string.Empty;

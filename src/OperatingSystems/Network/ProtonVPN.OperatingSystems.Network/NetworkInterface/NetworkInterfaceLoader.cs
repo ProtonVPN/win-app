@@ -53,8 +53,8 @@ public class NetworkInterfaceLoader : INetworkInterfaceLoader
             VpnProtocol.WireGuardTcp or VpnProtocol.WireGuardTls => _config.WireGuard.WintunAdapterGuid,
             _ => throw new Exception($"Can't provide GUID for protocol {protocol}")
         };
-        INetworkInterface networkInterface = _networkInterfaces.GetById(guid);
-        return networkInterface ?? _networkInterfaces.GetByName(_config.WireGuard.TunAdapterName);
+
+        return _networkInterfaces.GetById(guid);
     }
 
     public INetworkInterface GetByVpnProtocol(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)

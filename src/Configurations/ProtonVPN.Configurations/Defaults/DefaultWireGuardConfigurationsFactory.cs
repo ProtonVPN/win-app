@@ -36,7 +36,6 @@ public static class DefaultWireGuardConfigurationsFactory
             WintunAdapterHardwareId = "Wintun",
             WintunAdapterGuid = Guid.Parse("{AC128890-BDB1-CE5C-D1DB-EFB01DE370B2}"),
             NtAdapterGuid = Guid.Parse("{EAB2262D-9AB1-5975-7D92-334D06F4972B}"),
-            TunAdapterName = "ProtonVPN",
 
             DefaultDnsServer = "10.2.0.1",
             DefaultClientAddress = "10.2.0.2",
