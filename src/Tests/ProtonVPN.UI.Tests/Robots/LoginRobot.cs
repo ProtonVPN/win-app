@@ -41,6 +41,9 @@ public class LoginRobot
     protected Element HelpButton = Element.ByAutomationId("HelpButton");
     protected Element ReportIssueMenuItem = Element.ByAutomationId("ReportIssueMenuItem");
     protected Element CancelSignInButton = Element.ByAutomationId("CancelSignInButton");
+    protected Element DisableKillSwitchBtn = Element.ByAutomationId("DisableKillSwitchButton");
+    protected Element DisableKillSwitchLabel = Element.ByAutomationId("AdvancedKillSwitchDescriptionText");
+    protected Element KillSwitchDisabledLabel = Element.ByName("Kill switch is disabled");
 
     public LoginRobot Login(TestUserData user)
     {
@@ -106,7 +109,13 @@ public class LoginRobot
     public LoginRobot CancelLogin()
     {
         CancelSignInButton.Click();
+        return this;
+    }
 
+    public LoginRobot DisableKillSwitch()
+    {
+        DisableKillSwitchBtn.Click();
+        KillSwitchDisabledLabel.WaitUntilDisplayed();
         return this;
     }
 
@@ -122,6 +131,12 @@ public class LoginRobot
         {
             UsernameTextBox.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
             PasswordTextBox.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsAdvancedKillSwitchDisplayed()
+        {
+            DisableKillSwitchLabel.WaitUntilDisplayed(TestConstants.FiveSecondsTimeout);
             return this;
         }
     }

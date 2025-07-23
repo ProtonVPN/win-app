@@ -90,5 +90,7 @@ public class NavigationRobot
         public Verifications IsOnLocationDetailsPage() => IsOnPage(LocationDetailsPage);
 
         public Verifications IsOnConnectionDetailsPage() => IsOnPage(ConnectionDetailsPage);
+
+        public Verifications IsOnKillSwitchPage() => IsOnPage(KillSwitchPage);
     }
 }

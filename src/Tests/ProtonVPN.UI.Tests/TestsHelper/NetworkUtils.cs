@@ -23,6 +23,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
 using FlaUI.Core.Tools;
 using Microsoft.AspNetCore.Http;
@@ -37,6 +38,7 @@ public class NetworkUtils
 {
     [DllImport("dnsapi.dll", EntryPoint = "DnsFlushResolverCache")]
     public static extern uint DnsFlushResolverCache();
+    private static readonly HttpClient _httpClient = new();
 
     public static string GetDnsAddress(string adapterName)
     {
@@ -65,6 +67,13 @@ public class NetworkUtils
     {
         PingReply reply = new Ping().Send(GetDefaultGatewayAddress().ToString());
         Assert.That(reply.Status == IPStatus.Success, Is.True);
+    }
+
+    public static bool IsInternetAvailable()
+    {
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
+        JObject connectionData = GetConnectionDataAsync().GetAwaiter().GetResult();
+        return connectionData?["status"]?.ToString() == "success";
     }
 
     public static string GetIpAddressWithRetry()

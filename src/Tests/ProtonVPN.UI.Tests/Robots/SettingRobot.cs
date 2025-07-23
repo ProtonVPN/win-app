@@ -43,6 +43,7 @@ public class SettingRobot
     protected Element RandomDefaultConnectionRadioButton = Element.ByAutomationId("RandomDefaultConnectionRadioButton");
 
     protected Element NetShieldSettingsCard = Element.ByAutomationId("NetShieldSettingsCard");
+    protected Element KillSwitchSettingsCard = Element.ByAutomationId("KillSwitchSettingsCard");
     protected Element ProtocolSettingsCard = Element.ByAutomationId("ProtocolSettingsCard");
     protected Element AdvancedSettingsCard = Element.ByAutomationId("AdvancedSettingsCard");
     protected Element PortForwardingSettingsCard = Element.ByAutomationId("PortForwardingSettingsCard");
@@ -67,6 +68,9 @@ public class SettingRobot
     protected Element NetshieldToggle = Element.ByAutomationId("NetshieldToggle");
     protected Element NetShieldLevelOneRadioButton = Element.ByAutomationId("NetShieldLevelOne");
     protected Element NetShieldLevelTwoRadioButton = Element.ByAutomationId("NetShieldLevelTwo");
+    protected Element KillSwitchToggle = Element.ByAutomationId("KillSwitchToggle");
+    protected Element KillSiwtchStandardRadioButton = Element.ByAutomationId("StandardKillSwitchRadioButton");
+    protected Element KillSwitchAdvancedRadioButton = Element.ByAutomationId("AdvancedKillSwitchRadioButton");
 
     protected Element AutoLaunchToggle = Element.ByAutomationId("AutoLaunchToggle");
     protected Element AutoConnectToggle = Element.ByAutomationId("AutoConnectToggle");
@@ -76,7 +80,8 @@ public class SettingRobot
     protected Element WireGuardUdpProtocolRadioButton = Element.ByAutomationId("WireGuardUdpProtocolRadioButton");
     protected Element WireGuardTlsProtocolRadioButton = Element.ByAutomationId("WireGuardTlsProtocolRadioButton");
     protected Element WireGuardTcpProtocolRadioButton = Element.ByAutomationId("WireGuardTcpProtocolRadioButton");
-    
+    protected Element ExitProtonPopUp = Element.ByName("Exit Proton VPN?");
+
     public SettingRobot OpenSettings()
     {
         SettingsButton.Click();
@@ -101,6 +106,12 @@ public class SettingRobot
     {
         NetShieldSettingsCard.Click();
         Thread.Sleep(TestConstants.NavigationDelay);
+        return this;
+    }
+
+    public SettingRobot OpenKillSwitchSettings()
+    {
+        KillSwitchSettingsCard.Click();
         return this;
     }
 
@@ -216,6 +227,14 @@ public class SettingRobot
         return this;
     }
 
+    public SettingRobot ExitTheAppWithConfirmation()
+    {
+        ExitTheAppButton.DoubleClick();
+        ExitProtonPopUp.WaitUntilDisplayed();
+        PrimaryActionButton.Click();
+        return this;
+    }
+
     public SettingRobot SelectProtocol(TestConstants.Protocol protocol)
     {
         switch (protocol)
@@ -249,6 +268,21 @@ public class SettingRobot
         return this;
     }
 
+    public SettingRobot ToggleKillSwitchSetting()
+    {
+        KillSwitchToggle.Toggle();
+        return this;
+    }
+    public SettingRobot DisableKillSwitch()
+    {
+        if (KillSwitchToggle.IsToggled())
+        {
+            KillSwitchToggle.Toggle();
+            ApplyButton.Invoke();
+        }
+        return this;
+    }
+
     public SettingRobot ToggleAutoLaunchSetting()
     {
         AutoLaunchToggle.Toggle();
@@ -274,6 +308,20 @@ public class SettingRobot
 
         return this;
     }
+
+    public SettingRobot SelectKillSwitchMode(KillSwitchMode killSwitchMode)
+    {
+        if (killSwitchMode == KillSwitchMode.Standard)
+        {
+            KillSiwtchStandardRadioButton.Click();
+        }
+        else if (killSwitchMode == KillSwitchMode.Advanced)
+        {
+            KillSwitchAdvancedRadioButton.Click();
+        }
+
+        return this;
+    }  
 
     public SettingRobot ApplySettings()
     {
@@ -348,6 +396,12 @@ public class SettingRobot
         public Verifications IsNetshieldEnabledStateDisplayed()
         {
             NetShieldSettingsCard.FindChild(Element.ByName("On")).WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsKillSwitchDisabledStateDisplayed()
+        {
+            KillSwitchSettingsCard.FindChild(Element.ByName("Off")).WaitUntilDisplayed();
             return this;
         }
 

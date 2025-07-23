@@ -69,11 +69,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Run/>
                     </TextBlock>
                 </controls:SettingsExpander.Description>
-                <ToggleSwitch IsOn="{x:Bind ViewModel.IsKillSwitchEnabled, Mode=TwoWay}"
+                <ToggleSwitch AutomationProperties.AutomationId="KillSwitchToggle"
+                              IsOn="{x:Bind ViewModel.IsKillSwitchEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
                 <controls:SettingsExpander.Items>
                     <StackPanel Spacing="16">
-                        <RadioButton IsChecked="{x:Bind ViewModel.IsStandardKillSwitch, Mode=TwoWay}"
+                        <RadioButton AutomationProperties.AutomationId="StandardKillSwitchRadioButton"
+                                     IsChecked="{x:Bind ViewModel.IsStandardKillSwitch, Mode=TwoWay}"
                                      Style="{StaticResource KillSwitchRadioButtonStyle}">
                             <StackPanel>
                                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"
@@ -84,7 +86,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            TextWrapping="Wrap" />
                             </StackPanel>
                         </RadioButton>
-                        <RadioButton IsChecked="{x:Bind ViewModel.IsAdvancedKillSwitch, Mode=TwoWay}"
+                        <RadioButton AutomationProperties.AutomationId="AdvancedKillSwitchRadioButton"
+                                     IsChecked="{x:Bind ViewModel.IsAdvancedKillSwitch, Mode=TwoWay}"
                                      Style="{StaticResource KillSwitchRadioButtonStyle}">
                             <StackPanel>
                                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"

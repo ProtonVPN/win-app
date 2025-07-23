@@ -61,6 +61,7 @@ public class HomeRobot
     protected Element LastConnectionOption = Element.ByName("Last connection");
     protected Element CustomizeOption = Element.ByName("Customize");
     protected Element CustomizeCardConnectionTitleLabel = Element.ByName("Default connection");
+    protected Element ProtectedLabelAdvancedKillSwitch = Element.ByName("Advanced kill switch activated");
 
     public HomeRobot DismissWelcomeModal()
     {
@@ -155,6 +156,13 @@ public class HomeRobot
         public Verifications IsDisconnected()
         {
             UnprotectedLabel.WaitUntilDisplayed();
+            ConnectionCardConnectButton.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsAdvancedKillSwitchActivated()
+        {
+            ProtectedLabelAdvancedKillSwitch.WaitUntilDisplayed();
             ConnectionCardConnectButton.WaitUntilDisplayed();
             return this;
         }

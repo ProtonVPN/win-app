@@ -54,12 +54,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    Width="40"
                    Height="40" />
 
-            <TextBlock Grid.Column="1"
+            <TextBlock AutomationProperties.AutomationId="AdvancedKillSwitchDescriptionText"
+                       Grid.Column="1"
                        Grid.Row="0"
                        Style="{ThemeResource BodyTextBlockStyle}"
                        Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_AdvancedKillSwitchDescription')}" />
 
-            <custom:GhostButton Grid.Column="1"
+            <custom:GhostButton AutomationProperties.AutomationId="DisableKillSwitchButton"
+                                Grid.Column="1"
                                 Grid.Row="1"
                                 Margin="-5"
                                 Style="{ThemeResource PrimaryGhostButtonStyle}"

@@ -65,6 +65,15 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static bool IsToggled<T>(this T toggleElement) where T : Element
+    {
+        AutomationElement elementToCheck = WaitUntilExists(toggleElement);
+        elementToCheck.WaitUntilClickable(TestConstants.TenSecondsTimeout);
+
+        ToggleButton toggleButton = elementToCheck.AsToggleButton();
+        return toggleButton.ToggleState == FlaUI.Core.Definitions.ToggleState.On;
+    }
+
     public static T MoveMouse<T>(this T desiredElement, int offsetX = 0, int offsetY = 0) where T : Element
     {
         AutomationElement element = WaitUntilExists(desiredElement);
@@ -171,7 +180,7 @@ public static class UiActions
         Assert.That(element, Is.Null, $"Element {desiredElement.SelectorName} was found. But it should not exist.");
     }
 
-    public static void IsToggled<T>(this T desiredElement) where T : Element
+    public static void AssertIsToggled<T>(this T desiredElement) where T : Element
     {
         WaitUntilExists(desiredElement);
         AutomationElement element = FindFirstDescendantUsingChildren(desiredElement.Condition);
