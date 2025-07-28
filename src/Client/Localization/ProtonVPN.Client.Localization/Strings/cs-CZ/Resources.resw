@@ -318,7 +318,7 @@
     <value>Upravit profil</value>
   </data>
   <data name="Connection_Error_MissingConnectionCertificate">
-    <value>Proton VPN se nepodařilo načíst ověřovací certifikát kvůli problému se sítí.</value>
+    <value>Proton VPN se nepodařilo stáhnout ověřovací certifikát kvůli problému se sítí.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>Všechny servery ve vašem výběru jsou nedostupné. Rozšiřte prosím svůj výběr nebo to zkuste později.</value>
@@ -3010,9 +3010,17 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
   <data name="Login_TwoFactor_EnterCode">
     <value>Zadejte svůj kód</value>
   </data>
+  <data name="Main_Loading">
+    <value>Načítám, počkejte prosím...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
   <data name="Main_Loading_SigningIn">
     <value>Přihlašuji, počkejte prosím...</value>
-    <comment>Message in the loading screen when signing in or starting the app</comment>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>Trvá to déle než obvykle, ale pracujeme na tom.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
     <value>Odhlašuji, počkejte prosím...</value>

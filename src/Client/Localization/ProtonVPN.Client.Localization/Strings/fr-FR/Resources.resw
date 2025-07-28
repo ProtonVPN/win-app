@@ -2794,9 +2794,17 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   <data name="Login_TwoFactor_EnterCode">
     <value>Saisissez votre code</value>
   </data>
+  <data name="Main_Loading">
+    <value>Chargement en cours. Veuillez patienter...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
   <data name="Main_Loading_SigningIn">
     <value>La connexion est en cours. Veuillez patienter...</value>
-    <comment>Message in the loading screen when signing in or starting the app</comment>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>Cela prend plus de temps que d'habitude, mais nous y travaillons.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
     <value>La déconnexion est en cours. Veuillez patienter...</value>

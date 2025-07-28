@@ -3010,9 +3010,17 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
   <data name="Login_TwoFactor_EnterCode">
     <value>Wpisz kod</value>
   </data>
+  <data name="Main_Loading">
+    <value>Ładowanie. Poczekaj chwię...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
   <data name="Main_Loading_SigningIn">
     <value>Trwa logowanie. Poczekaj chwilę…</value>
-    <comment>Message in the loading screen when signing in or starting the app</comment>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>Trwa to dłużej niż zwykle, ale pracujemy nad tym.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
     <value>Trwa wylogowywanie. Poczekaj chwilę…</value>

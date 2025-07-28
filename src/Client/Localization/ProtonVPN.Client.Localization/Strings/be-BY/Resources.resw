@@ -428,7 +428,7 @@
     <value>Немагчыма падключыцца</value>
   </data>
   <data name="Connections_Fastest">
-    <value>Найхутчэйшае</value>
+    <value>Найхутчэйшыя</value>
   </data>
   <data name="Connections_Free_Servers_One">
     <value>Бясплатны сервер ({0})</value>
@@ -3010,9 +3010,17 @@
   <data name="Login_TwoFactor_EnterCode">
     <value>Увядзіце свой код.</value>
   </data>
+  <data name="Main_Loading">
+    <value>Загружаецца. Пачакайце…</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
   <data name="Main_Loading_SigningIn">
     <value>Адбываецца ўваход. Пачакайце…</value>
-    <comment>Message in the loading screen when signing in or starting the app</comment>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>Гэта заняло больш часу, чым звычайна. Адбываецца ўваход.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
     <value>Адбываецца выхад. Пачакайце…</value>

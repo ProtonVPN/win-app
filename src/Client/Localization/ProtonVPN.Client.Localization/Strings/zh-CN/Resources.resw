@@ -295,7 +295,7 @@
     <value>更新中…</value>
   </data>
   <data name="Common_Tags_Beta">
-    <value>BETA</value>
+    <value>公测版</value>
     <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
   </data>
   <data name="Common_Tags_New">
@@ -1707,37 +1707,37 @@
     <value>延迟是什么？</value>
   </data>
   <data name="Dialogs_NpsSurvey_CommentLabel">
-    <value>Please let us know why you gave that rating</value>
+    <value>请告诉我们您为何给予这样的评价</value>
   </data>
   <data name="Dialogs_NpsSurvey_ErrorSubtitle">
-    <value>We couldn't send your feedback. Please check your connection and try again.</value>
+    <value>我们无法发送您的反馈。请检查您的连接并重试。</value>
   </data>
   <data name="Dialogs_NpsSurvey_ErrorTitle">
-    <value>Something went wrong</value>
+    <value>出错了</value>
   </data>
   <data name="Dialogs_NpsSurvey_HighRateDescription">
-    <value>10 is very likely</value>
+    <value>10 代表非常推荐</value>
   </data>
   <data name="Dialogs_NpsSurvey_LowRateDescription">
-    <value>0 is very unlikely</value>
+    <value>0 代表不推荐</value>
   </data>
   <data name="Dialogs_NpsSurvey_Optional">
-    <value>Optional</value>
+    <value>选填</value>
   </data>
   <data name="Dialogs_NpsSurvey_ShareAnonymously">
-    <value>Share anonymously</value>
+    <value>匿名分享</value>
   </data>
   <data name="Dialogs_NpsSurvey_SuccessSubtitle">
-    <value>Your feedback helps us improve Proton VPN.</value>
+    <value>您的反馈有助于我们改进 Proton VPN。</value>
   </data>
   <data name="Dialogs_NpsSurvey_SuccessTitle">
-    <value>Thanks for your feedback</value>
+    <value>感谢您的反馈</value>
   </data>
   <data name="Dialogs_NpsSurvey_Title">
-    <value>How likely are you to recommend Proton VPN to a friend?</value>
+    <value>您向朋友推荐 Proton VPN 的可能性有多大？</value>
   </data>
   <data name="Dialogs_NpsSurvey_TryAgain">
-    <value>Try again</value>
+    <value>请重试</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
     <value>您的连接已被禁用，因为您使用的服务器不支持点对点 (P2P) 流量。免费服务器不支持 P2P。请使用其他服务器进行 P2P。</value>
@@ -1997,16 +1997,16 @@
     <value>欢迎使用 Proton VPN</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>You can now access your organization's dedicated servers from the main sidebar.</value>
+    <value>您现在可以从主侧边栏访问您组织的专用服务器</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
     <value>网关位置已变更</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
-    <value>You can now connect to printers, speakers, and other devices on your local network (LAN), bypassing the VPN tunnel.</value>
+    <value>现在，您可以绕过 VPN 通道，连接到本地网络 (LAN) 上的打印机、扬声器和其他设备。</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Title">
-    <value>LAN connections</value>
+    <value>LAN 连接</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
     <value>我们更新了产品设计，并优化了功能布局，以提升应用的使用便捷性。</value>
@@ -2015,10 +2015,10 @@
     <value>全新面貌，保护依旧</value>
   </data>
   <data name="Dialogs_WhatsNew_PortNumber_Description">
-    <value>When port forwarding is enabled, you'll now see your active port number on the home screen.</value>
+    <value>启用端口转发后，您将在主屏幕上看到您的活动端口号。</value>
   </data>
   <data name="Dialogs_WhatsNew_PortNumber_Title">
-    <value>Active port number</value>
+    <value>使用中的端口号</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
     <value>新增NetShield和端口转发等高级配置文件设置，或设置Connect and Go以便在连接时自动打开您指定的网站。</value>
@@ -2039,10 +2039,10 @@
     <value>更新内容</value>
   </data>
   <data name="Dialogs_WhatsNew_TrayApp_Description">
-    <value>You can now connect, disconnect, and change your default connection from the system tray.</value>
+    <value>现在，您可以在系统托盘中连接、断开和更改默认连接。</value>
   </data>
   <data name="Dialogs_WhatsNew_TrayApp_Title">
-    <value>New system tray app</value>
+    <value>全新系统托盘应用</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>退出 Proton VPN？</value>
@@ -2117,7 +2117,7 @@
     <value>如果 VPN 连接中断，您的 IP 地址可能会被暴露</value>
   </data>
   <data name="Flyouts_KillSwitch_Info_Disconnected">
-    <value>Advanced kill switch disables your internet to protect your IP address while you're not connected to Proton VPN.</value>
+    <value>当您未连接到 Proton VPN 时，高级 Kill Switch 会关闭您的互联网，以保护您的 IP 地址不被泄露。</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>如果 VPN 连接中断，在 VPN 恢复之前，您将无法上网</value>
@@ -2201,20 +2201,20 @@
     <value>由 VPN Accelerator 助力</value>
   </data>
   <data name="Flyouts_Speed_Description1">
-    <value>Shows how much data goes through the VPN tunnel in real time.</value>
+    <value>显示实时通过 VPN 隧道的数据量。</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>This is based on your device's current activity. In most cases, it doesn't represent the VPN's maximum speed.</value>
+    <value>这是基于您设备当前的活动。在大多数情况下，这并不代表 VPN 的最高速度。</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>下载</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>VPN speed and traffic explained</value>
+    <value>VPN 速度和流量说明</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>Current traffic</value>
+    <value>当前流量</value>
   </data>
   <data name="Flyouts_Speed_Upload">
     <value>上传</value>
@@ -2248,14 +2248,14 @@
     <value>两全其美</value>
   </data>
   <data name="Flyouts_Volume_Description">
-    <value>Shows the total amount of data passed through the VPN tunnel since you connected.</value>
+    <value>显示自连接以来通过 VPN 隧道的数据总量。</value>
   </data>
   <data name="Flyouts_Volume_Download">
     <value>下载</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>Total traffic</value>
+    <value>总流量</value>
   </data>
   <data name="Flyouts_Volume_Upload">
     <value>上传</value>
@@ -2294,7 +2294,7 @@
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Current traffic ({0})</value>
+    <value>当前流量 ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2344,7 +2344,7 @@
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
   <data name="Format_Time_Hours_Ago_Other">
-    <value>{0} hours ago</value>
+    <value>{0} 小时前</value>
   </data>
   <data name="Format_Time_Minutes">
     <value>{0} 分钟</value>
@@ -2359,14 +2359,14 @@
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
   <data name="Format_Time_Minutes_Ago_Other">
-    <value>{0} minutes ago</value>
+    <value>{0} 分钟前</value>
   </data>
   <data name="Format_Time_Seconds">
     <value>{0}秒</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
   </data>
   <data name="Format_Time_Seconds_Ago_Other">
-    <value>{0} seconds ago</value>
+    <value>{0} 秒前</value>
   </data>
   <data name="FreeConnections_P2PUpsell">
     <value>通过 BitTorrent 和其他文件共享协议下载文件</value>
@@ -2434,13 +2434,13 @@
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
-    <value>Advanced kill switch activated</value>
+    <value>高级 Kill Switch 已开启</value>
   </data>
   <data name="Home_ConnectionDetails_City">
     <value>城市 / 区县</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
-    <value>Connect to VPN to restore your internet connection.</value>
+    <value>连接 VPN 以恢复网络连接。</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectedFor">
     <value>已连接</value>
@@ -2513,7 +2513,7 @@
     <value>通过连接 VPN 加密您的在线活动。</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
-    <value>Total traffic</value>
+    <value>总流量</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>下载流量</value>
@@ -2686,9 +2686,17 @@
   <data name="Login_TwoFactor_EnterCode">
     <value>请输入您的代码</value>
   </data>
+  <data name="Main_Loading">
+    <value>登录中，请稍候…</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
   <data name="Main_Loading_SigningIn">
     <value>登录中，请稍候…</value>
-    <comment>Message in the loading screen when signing in or starting the app</comment>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>这需要比平时更长的时间，但我们正在努力。</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
     <value>正在登出, 请稍候...</value>
@@ -2708,7 +2716,7 @@
     <value>在 BitTorrent 程序中使用此端口号即可加速。</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
-    <value>You've reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
+    <value>您已达到最大设备限制。要重新连接 VPN，请从其他设备断开连接。</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>您的计划已降级为 Proton Free 计划，我们将为您重新连接最快的免费服务器。</value>
@@ -2720,7 +2728,7 @@
     <value>检测到不安全的 Wi-Fi 连接</value>
   </data>
   <data name="NpsSurvey_Title">
-    <value>Proton VPN - Survey</value>
+    <value>Proton VPN 调查问卷</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_OutdatedClient_Action">
@@ -3075,10 +3083,10 @@ VPN 连接</value>
     <value>通过阻止与 IPv6 地址的连接，防止 IPv6 泄露。</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
-    <value>Allow LAN connections</value>
+    <value>允许 LAN 连接</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Allows connections to printers, speakers, and other devices in your local network.</value>
+    <value>允许连至打印机、扬声器等局域网设备。</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>NAT 类型</value>
@@ -3216,7 +3224,7 @@ VPN 连接</value>
     <value>要使用端口转发，请连接到支持 P2P 的服务器。</value>
   </data>
   <data name="Settings_Connection_PortForwarding_LastChanged">
-    <value>Last changed: {0}</value>
+    <value>上次更改：{0}</value>
     <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
   </data>
   <data name="Settings_Connection_PortForwarding_Loading">
@@ -3271,13 +3279,13 @@ VPN 连接</value>
     <value>选择哪些应用以及 IP 地址由 VPN 保护，自定义连接方式。</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
-    <value>Include mode</value>
+    <value>包含模式</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
     <value>仅选定的应用和 IP 地址通过 VPN连接，所有其他流量都不受保护</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
-    <value>Include</value>
+    <value>包含</value>
     <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
@@ -3294,13 +3302,13 @@ VPN 连接</value>
     <value>添加 IPv4 地址</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
-    <value>Exclude mode</value>
+    <value>排除模式</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
     <value>挑选不经 VPN 连接的应用和 IP 地址</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Short">
-    <value>Exclude</value>
+    <value>排除</value>
     <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
@@ -3633,7 +3641,7 @@ Stealth 具有抗 DPI（深度数据包检查）能力，但速度可能不如�
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
-    <value>Open app to sign in</value>
+    <value>打开应用以登录</value>
   </data>
   <data name="Unit_BytesPerSecond">
     <value>B/s</value>
@@ -3764,16 +3772,16 @@ Stealth 具有抗 DPI（深度数据包检查）能力，但速度可能不如�
     <value>通过瑞士、瑞典和冰岛的强化安全服务器中转数据</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Browse at even higher speeds</value>
+    <value>浏览网速快上加快</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Browse up to 400% faster with VPN Accelerator</value>
+    <value>使用 VPN 加速器，浏览速度可提高 400%</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>访问速度更快，占用较低的服务器</value>
   </data>
   <data name="Upsell_Carousel_Speed_Traffic">
-    <value>Get connection speeds of up to 10 Gbps</value>
+    <value>连接速度最高可达 10 Gbps</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
     <value>两全其美</value>
@@ -3831,16 +3839,16 @@ Stealth 具有抗 DPI（深度数据包检查）能力，但速度可能不如�
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>Bypass censorship with advanced security features</value>
+    <value>利用先进的安全功能绕过审查</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
     <value>{0} 个国家/地区</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Features">
-    <value>Secure streaming, torrenting, and more</value>
+    <value>安全享受流媒体服务、种子下载等</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Selection">
-    <value>Select any country from our worldwide network</value>
+    <value>从我们的全球网络中选择任意国家/地区</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
     <value>{0} 台安全服务器</value>

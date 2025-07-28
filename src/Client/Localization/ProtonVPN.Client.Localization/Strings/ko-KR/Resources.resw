@@ -2686,9 +2686,17 @@
   <data name="Login_TwoFactor_EnterCode">
     <value>코드를 입력하세요</value>
   </data>
+  <data name="Main_Loading">
+    <value>로딩 중, 잠시 기다려 주세요...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
   <data name="Main_Loading_SigningIn">
     <value>로그인 중, 기다려 주세요…</value>
-    <comment>Message in the loading screen when signing in or starting the app</comment>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>예상 소요 시간보다 오래 걸리고 있으나, 여전히 처리 중입니다:</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
     <value>로그아웃 중, 기다려 주세요…</value>

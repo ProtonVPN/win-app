@@ -2794,9 +2794,17 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   <data name="Login_TwoFactor_EnterCode">
     <value>Introduce tu código</value>
   </data>
+  <data name="Main_Loading">
+    <value>Cargando. Espera...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
   <data name="Main_Loading_SigningIn">
     <value>Iniciando sesión. Espera...</value>
-    <comment>Message in the loading screen when signing in or starting the app</comment>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>Esto está tardando más de lo habitual, pero estamos trabajando en ello.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
     <value>Cerrando sesión, por favor, espera...</value>

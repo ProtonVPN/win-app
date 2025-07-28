@@ -2794,9 +2794,17 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   <data name="Login_TwoFactor_EnterCode">
     <value>Adja meg a kódot</value>
   </data>
+  <data name="Main_Loading">
+    <value>Loading, please wait...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
   <data name="Main_Loading_SigningIn">
     <value>Bejelentkezés, kis türelmet...</value>
-    <comment>Message in the loading screen when signing in or starting the app</comment>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>This is taking longer than usual, but we're working on it.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
     <value>Kijelentkezés, kis türelmet...</value>

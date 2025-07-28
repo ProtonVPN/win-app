@@ -2794,9 +2794,17 @@ Un carico elevato può rallentare la connessione.</value>
   <data name="Login_TwoFactor_EnterCode">
     <value>Inserisci il tuo codice</value>
   </data>
+  <data name="Main_Loading">
+    <value>Caricamento. Attendi...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
   <data name="Main_Loading_SigningIn">
     <value>Accesso in corso</value>
-    <comment>Message in the loading screen when signing in or starting the app</comment>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>Ci sta mettendo più del solito, ma ci stiamo lavorando.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
     <value>Uscita in corso</value>

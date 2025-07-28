@@ -2794,9 +2794,17 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   <data name="Login_TwoFactor_EnterCode">
     <value>Skriv inn koden din</value>
   </data>
+  <data name="Main_Loading">
+    <value>Laster inn, vent litt...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
   <data name="Main_Loading_SigningIn">
     <value>Logger på, vent litt...</value>
-    <comment>Message in the loading screen when signing in or starting the app</comment>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>Dette tar lengre tid enn vanlig, men vi jobber med det.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
     <value>Logger av, vent litt...</value>

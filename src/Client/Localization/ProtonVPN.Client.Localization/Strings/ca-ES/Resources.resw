@@ -2795,9 +2795,17 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   <data name="Login_TwoFactor_EnterCode">
     <value>Introduïu el vostre codi</value>
   </data>
+  <data name="Main_Loading">
+    <value>S'està carregant. Espereu...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
   <data name="Main_Loading_SigningIn">
     <value>S'està iniciant, espereu...</value>
-    <comment>Message in the loading screen when signing in or starting the app</comment>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>Això està trigant més del que és habitual, però hi estem treballant.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
     <value>S'està tancant la sessió, espereu...</value>

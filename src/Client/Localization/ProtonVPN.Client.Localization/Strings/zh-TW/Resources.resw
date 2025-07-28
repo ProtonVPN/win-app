@@ -2687,9 +2687,17 @@
   <data name="Login_TwoFactor_EnterCode">
     <value>輸入您的代碼</value>
   </data>
+  <data name="Main_Loading">
+    <value>正在載入，請稍候...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
   <data name="Main_Loading_SigningIn">
     <value>正在登入，請稍候...</value>
-    <comment>Message in the loading screen when signing in or starting the app</comment>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>這比平常花費更多時間，但我們正在努力處理。</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
     <value>正在登出，請稍候...</value>

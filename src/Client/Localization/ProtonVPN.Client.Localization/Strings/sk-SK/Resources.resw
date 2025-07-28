@@ -3010,9 +3010,17 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   <data name="Login_TwoFactor_EnterCode">
     <value>Zadajte váš kód</value>
   </data>
+  <data name="Main_Loading">
+    <value>Načítava sa, prosím počkajte...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
   <data name="Main_Loading_SigningIn">
     <value>Prihlasovanie, prosím čakajte...</value>
-    <comment>Message in the loading screen when signing in or starting the app</comment>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>Toto trvá dlhšie než zvyčajne, ale pracujeme na tom.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
     <value>Odhlasovanie, počkajte prosím...</value>

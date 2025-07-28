@@ -2686,9 +2686,17 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Login_TwoFactor_EnterCode">
     <value>Masukkan kode Anda</value>
   </data>
+  <data name="Main_Loading">
+    <value>Memuat aplikasi, mohon tunggu…</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
   <data name="Main_Loading_SigningIn">
     <value>Memasukkan Anda ke akun, mohon tunggu…</value>
-    <comment>Message in the loading screen when signing in or starting the app</comment>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>Proses ini memakan waktu lebih lama dari biasanya, namun kami masih berupaya untuk memasukkan Anda ke akun.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
     <value>Mengeluarkan Anda dari akun, mohon tunggu…</value>

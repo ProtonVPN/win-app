@@ -2794,9 +2794,17 @@
   <data name="Login_TwoFactor_EnterCode">
     <value>Voer uw code in</value>
   </data>
+  <data name="Main_Loading">
+    <value>Laden, een ogenblik geduld alstublieft...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
   <data name="Main_Loading_SigningIn">
     <value>Inloggen, een ogenblik geduld…...</value>
-    <comment>Message in the loading screen when signing in or starting the app</comment>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>Dit duurt langer dan gewoonlijk, maar we werken eraan.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
     <value>Uitloggen, een ogenblik geduld…</value>

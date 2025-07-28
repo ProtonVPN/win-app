@@ -2192,7 +2192,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Din IP-adress kan exponeras om din VPN-anslutning tappas</value>
   </data>
   <data name="Flyouts_KillSwitch_Info_Disconnected">
-    <value>Advanced kill switch disables your internet to protect your IP address while you're not connected to Proton VPN.</value>
+    <value>Avancerad kill switch inaktiverar din internetanslutning för att skydda din IP-adress när du inte är ansluten till Proton VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>Om din VPN-anslutning tappas kommer du att kopplas från från internet tills VPN återställs</value>
@@ -2536,7 +2536,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
-    <value>Advanced kill switch activated</value>
+    <value>Avancerad kill switch aktiverad</value>
   </data>
   <data name="Home_ConnectionDetails_City">
     <value>Ort</value>
@@ -2794,9 +2794,17 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Login_TwoFactor_EnterCode">
     <value>Ange din kod</value>
   </data>
+  <data name="Main_Loading">
+    <value>Laddar in, vänta …</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
   <data name="Main_Loading_SigningIn">
     <value>Loggar in, vänta …</value>
-    <comment>Message in the loading screen when signing in or starting the app</comment>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>Det här tar längre tid än vanligt, men vi jobbar på det.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
     <value>Loggar ut, vänta …</value>
