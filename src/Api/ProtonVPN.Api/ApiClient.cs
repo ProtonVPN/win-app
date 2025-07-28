@@ -51,7 +51,6 @@ namespace ProtonVPN.Api;
 public class ApiClient : BaseApiClient, IApiClient
 {
     private const int SERVERS_TIMEOUT_IN_SECONDS = 30;
-    private const int VPN_PLAN_RETRY_COUNT = 5;
     private const int SERVERS_RETRY_COUNT = 3;
     private const int CERTIFICATE_RETRY_COUNT = 5;
 
@@ -104,7 +103,6 @@ public class ApiClient : BaseApiClient, IApiClient
     public async Task<ApiResponseResult<VpnInfoWrapperResponse>> GetVpnInfoResponse(CancellationToken cancellationToken)
     {
         HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v2");
-        request.SetRetryCount(VPN_PLAN_RETRY_COUNT);
         return await SendRequest<VpnInfoWrapperResponse>(request, cancellationToken, "Get VPN info");
     }
 
