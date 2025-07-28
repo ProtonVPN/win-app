@@ -77,6 +77,8 @@ internal partial class VpnService : ServiceBase
         CancellationToken = _cancellationTokenSource.Token;
         CanHandleSessionChangeEvent = true;
 
+        AutoLog = false; // To disable the event logs "PowerEvent handled successfully by the service."
+
         InitializeComponent();
     }
 
@@ -100,6 +102,7 @@ internal partial class VpnService : ServiceBase
 
     protected override async void OnStart(string[] args)
     {
+        LogEvent("Service is starting");
         try
         {
             _grpcServer.CreateAndStart();
