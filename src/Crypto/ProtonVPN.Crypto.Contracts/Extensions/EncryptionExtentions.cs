@@ -39,11 +39,25 @@ public static class EncryptionExtensions
 
     public static byte[] Encrypt(this byte[] data)
     {
-        return ProtectedData.Protect(data, null, DataProtectionScope.CurrentUser);
+        try
+        {
+            return ProtectedData.Protect(data, null, DataProtectionScope.CurrentUser);
+        }
+        catch
+        {
+            return ProtectedData.Protect(data, null, DataProtectionScope.LocalMachine);
+        }
     }
 
     public static byte[] Decrypt(this byte[] data)
     {
-        return ProtectedData.Unprotect(data, null, DataProtectionScope.CurrentUser);
+        try
+        {
+            return ProtectedData.Unprotect(data, null, DataProtectionScope.CurrentUser);
+        }
+        catch
+        {
+            return ProtectedData.Unprotect(data, null, DataProtectionScope.LocalMachine);
+        }
     }
 }
