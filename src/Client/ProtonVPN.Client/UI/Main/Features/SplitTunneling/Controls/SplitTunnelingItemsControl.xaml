@@ -42,7 +42,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <DataTemplate x:Key="AppSplitTunnelingItemTemplate"
                       x:DataType="splittunneling:AppSplitTunnelingItem">
             <Grid ColumnSpacing="8"
-                  Margin="0,0,0,8">
+                  Margin="0,0,0,8"
+                  Background="Transparent"
+                  ToolTipService.ToolTip="{x:Bind App.AppFilePath}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />

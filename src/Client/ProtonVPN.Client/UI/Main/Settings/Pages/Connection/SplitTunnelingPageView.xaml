@@ -137,7 +137,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
                                         <CheckBox Grid.Column="0"
-                                                  IsChecked="{x:Bind IsActive, Mode=TwoWay}">
+                                                  IsChecked="{x:Bind IsActive, Mode=TwoWay}"
+                                                  ToolTipService.ToolTip="{x:Bind AppFilePath}">
                                             <Grid ColumnSpacing="8">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
@@ -181,7 +182,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
                                         <CheckBox Grid.Column="0"
-                                                  IsChecked="{x:Bind IsActive, Mode=TwoWay}">
+                                                  IsChecked="{x:Bind IsActive, Mode=TwoWay}"
+                                                  ToolTipService.ToolTip="{x:Bind AppFilePath}">
                                             <Grid ColumnSpacing="8">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
