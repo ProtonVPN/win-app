@@ -38,8 +38,6 @@ namespace ProtonVPN.Vpn.OpenVpn.Arguments
                 yield break;
             }
 
-            yield return "--pull-filter ignore \"dhcp-option DNS\"";
-
             foreach (var dns in _dns)
             {
                 yield return $"--dhcp-option DNS {dns}";

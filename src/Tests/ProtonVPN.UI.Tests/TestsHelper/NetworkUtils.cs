@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -26,36 +26,28 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using FlaUI.Core.Tools;
-using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
-using OpenQA.Selenium.Remote;
-using ProtonVPN.UI.Tests.Robots;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 
 public class NetworkUtils
 {
-    [DllImport("dnsapi.dll", EntryPoint = "DnsFlushResolverCache")]
-    public static extern uint DnsFlushResolverCache();
     private static readonly HttpClient _httpClient = new();
 
-    public static string GetDnsAddress(string adapterName)
+    [DllImport("dnsapi.dll", EntryPoint = "DnsFlushResolverCache")]
+    public static extern uint DnsFlushResolverCache();
+
+    public static List<string> GetDnsAddresses(string adapterName)
     {
-        string dnsAddress = null;
-        RetryResult<string> retry = Retry.WhileNull(
+        RetryResult<List<string>> retry = Retry.WhileEmpty(
             () =>
             {
-                dnsAddress = GetDnsAddressForAdapterByName(adapterName);
-                return dnsAddress;
+                return GetDnsAddressesForAdapterByName(adapterName);
             },
             TestConstants.FiveSecondsTimeout, TestConstants.RetryInterval);
 
-        if (!retry.Success)
-        {
-            dnsAddress = null;
-        }
-        return dnsAddress;
+        return retry.Result ?? new();
     }
 
     public static void FlushDns()
@@ -79,9 +71,11 @@ public class NetworkUtils
     public static string GetIpAddressWithRetry()
     {
         RetryResult<string> retry = Retry.WhileEmpty(
-            () => {
+            () =>
+            {
                 FlushDns();
-                return GetIpAddressAsync().Result; },
+                return GetIpAddressAsync().Result;
+            },
             TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
         return retry.Result ?? throw new HttpRequestException($"Failed to get IP Address. \n {retry.LastException.Message} \n {retry.LastException.StackTrace}");
     }
@@ -89,7 +83,8 @@ public class NetworkUtils
     public static string GetCountryNameWithRetry()
     {
         RetryResult<string> retry = Retry.WhileEmpty(
-            () => {
+            () =>
+            {
                 FlushDns();
                 return GetCountryNameAsync().Result;
             },
@@ -128,7 +123,7 @@ public class NetworkUtils
 
     public static void VerifyIpAddressMatchesWithRetry(string ipAddressToCompare)
     {
-        string ipAddressFomAPI = null; 
+        string ipAddressFomAPI = null;
         RetryResult<bool> retry = Retry.WhileFalse(
            () =>
            {
@@ -188,9 +183,9 @@ public class NetworkUtils
         }
     }
 
-    private static string GetDnsAddressForAdapterByName(string adapterName)
+    private static List<string> GetDnsAddressesForAdapterByName(string adapterName)
     {
-        string dnsAddress = null;
+        List<string> dnsAddresses = new();
         NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
         foreach (NetworkInterface adapter in adapters)
         {
@@ -200,10 +195,11 @@ public class NetworkUtils
             {
                 foreach (IPAddress dns in dnsServers)
                 {
-                    dnsAddress = dns.ToString();
+                    dnsAddresses.Add(dns.ToString());
                 }
             }
         }
-        return dnsAddress;
+
+        return dnsAddresses;
     }
 }

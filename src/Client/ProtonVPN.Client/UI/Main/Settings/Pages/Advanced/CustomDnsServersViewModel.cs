@@ -27,6 +27,7 @@ using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Services.Bootstrapping.Helpers;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
@@ -60,6 +61,8 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
     public bool IsCurrentAddressValid => string.IsNullOrWhiteSpace(CurrentIpAddress)
                                       || CanAddDnsServer();
 
+    public bool IsDragDropEnabled { get; }
+
     public CustomDnsServersViewModel(
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
@@ -88,6 +91,8 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
             ChangedSettingArgs.Create(() => Settings.IsCustomDnsServersEnabled, () => IsCustomDnsServersEnabled),
             ChangedSettingArgs.Create(() => Settings.CustomDnsServersList, () => GetCustomDnsServersList())
         ];
+
+        IsDragDropEnabled = !AppInstanceHelper.IsRunningAsAdmin();
     }
 
     [RelayCommand(CanExecute = nameof(CanAddDnsServer))]
@@ -118,15 +123,52 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
             && address.IsSingleIp;
     }
 
-    [RelayCommand]
     public void RemoveDnsServer(DnsServerViewModel server)
     {
         CustomDnsServers.Remove(server);
     }
 
+    public void MoveDnsServerUp(DnsServerViewModel server)
+    {
+        int currentIndex = CustomDnsServers.IndexOf(server);
+        if (currentIndex > 0)
+        {
+            CustomDnsServers.Move(currentIndex, currentIndex - 1);
+        }
+    }
+
+    public void MoveDnsServerDown(DnsServerViewModel server)
+    {
+        int currentIndex = CustomDnsServers.IndexOf(server);
+        if (currentIndex >= 0 && currentIndex < CustomDnsServers.Count - 1)
+        {
+            CustomDnsServers.Move(currentIndex, currentIndex + 1);
+        }
+    }
+
+    public bool CanMoveDnsServerUp(DnsServerViewModel dnsServerViewModel)
+    {
+        int currentIndex = CustomDnsServers.IndexOf(dnsServerViewModel);
+        return currentIndex > 0;
+    }
+
+    public bool CanMoveDnsServerDown(DnsServerViewModel dnsServerViewModel)
+    {
+        int currentIndex = CustomDnsServers.IndexOf(dnsServerViewModel);
+        return currentIndex >= 0 && currentIndex < CustomDnsServers.Count - 1;
+    }
+
     public void InvalidateCustomDnsServersCount()
     {
         OnPropertyChanged(nameof(ActiveCustomDnsServersCount));
+    }
+
+    private void InvalidateAllMoveCommands()
+    {
+        foreach (DnsServerViewModel server in CustomDnsServers)
+        {
+            server.InvalidateCommands();
+        }
     }
 
     protected override void OnRetrieveSettings()
@@ -145,6 +187,7 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
         OnPropertyChanged(nameof(HasCustomDnsServers));
 
         InvalidateCustomDnsServersCount();
+        InvalidateAllMoveCommands();
     }
 
     private List<CustomDnsServer> GetCustomDnsServersList()

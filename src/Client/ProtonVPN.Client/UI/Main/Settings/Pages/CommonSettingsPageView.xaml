@@ -257,20 +257,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </TextBlock>
             </StackPanel>
         </StackPanel>
-
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="VpnPlanStates">
-                <VisualState x:Name="PaidUser">
-                    <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsPaidUser, Mode=OneWay}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="VpnPlanBorder.BorderBrush" Value="{ThemeResource GradientVpnPlanBorderBrushColor}" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="FreeUser" />
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
     </custom:SettingsPageContentControl>
 
 </Page>

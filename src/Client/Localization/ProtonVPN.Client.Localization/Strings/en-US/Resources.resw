@@ -165,6 +165,12 @@
   <data name="Common_Actions_Customize" xml:space="preserve">
     <value>Customize</value>
   </data>
+  <data name="Common_Actions_MoveUp" xml:space="preserve">
+    <value>Move Up</value>
+  </data>
+  <data name="Common_Actions_MoveDown" xml:space="preserve">
+    <value>Move Down</value>
+  </data>
   <data name="Common_Links_LearnMore" xml:space="preserve">
     <value>Learn more</value>
   </data>
@@ -1825,6 +1831,9 @@
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description" xml:space="preserve">
     <value>Connect to Proton VPN using your own domain name system (DNS). Only use DNS servers that you trust.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer" xml:space="preserve">
+    <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header" xml:space="preserve">
     <value>DNS servers ({0})</value>

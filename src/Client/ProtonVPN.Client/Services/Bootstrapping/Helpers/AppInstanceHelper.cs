@@ -19,6 +19,7 @@
 
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Security.Principal;
 using Microsoft.Windows.AppLifecycle;
 
 namespace ProtonVPN.Client.Services.Bootstrapping.Helpers;
@@ -35,6 +36,20 @@ public static class AppInstanceHelper
     private static IntPtr _redirectEventHandle = IntPtr.Zero;
 
     private delegate bool EnumWindowsProc(nint hWnd, nint lParam);
+
+    public static bool IsRunningAsAdmin()
+    {
+        try
+        {
+            using WindowsIdentity identity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+        catch
+        {
+            return false;
+        }
+    }
 
     public static void RedirectActivation()
     {

@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Linq;
 using System.Threading;
 using FlaUI.Core.Tools;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -34,8 +35,8 @@ public class AdvancedSettingsRobot
     protected Element TrashButton = Element.ByAutomationId("TrashIcon");
     protected Element NatTypeCard = Element.ByAutomationId("NatTypeSettingsCard");
 
-    private string WireguardDnsAddress => NetworkUtils.GetDnsAddress("ProtonVPN");
-    private string OpenVpnDnsAddress => NetworkUtils.GetDnsAddress("ProtonVPN TUN");
+    private string WireguardDnsAddress => NetworkUtils.GetDnsAddresses("ProtonVPN").FirstOrDefault();
+    private string OpenVpnDnsAddress => NetworkUtils.GetDnsAddresses("ProtonVPN TUN").FirstOrDefault();
 
     public AdvancedSettingsRobot NavigateToCustomDns()
     {

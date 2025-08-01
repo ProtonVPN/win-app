@@ -350,9 +350,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
 
     private string GetDnsServers()
     {
-        return _vpnConfig.CustomDns.Count > 0
-            ? string.Join(",", _vpnConfig.CustomDns)
-            : _config.WireGuard.DefaultDnsServer;
+        return string.Join(",", [.. _vpnConfig.CustomDns, _config.WireGuard.DefaultDnsServer]);
     }
 
     private void CheckIfServiceIsRunning(object sender, ElapsedEventArgs e)

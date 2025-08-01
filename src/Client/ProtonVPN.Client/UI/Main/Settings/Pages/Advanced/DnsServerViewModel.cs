@@ -32,6 +32,10 @@ public partial class DnsServerViewModel : ViewModelBase
     private bool _isActive;
 
     public string IpAddress { get; }
+    public string MoveUpTooltip => Localizer.Get("Common_Actions_MoveUp");
+    public string MoveDownTooltip => Localizer.Get("Common_Actions_MoveDown");
+    public string RemoveTooltip => Localizer.Get("Common_Actions_Remove");    
+    public bool IsDragDropEnabled => _parentViewModel.IsDragDropEnabled;
 
     public DnsServerViewModel(
         CustomDnsServersViewModel parentViewModel,
@@ -57,6 +61,34 @@ public partial class DnsServerViewModel : ViewModelBase
     public void RemoveDnsServer()
     {
         _parentViewModel.RemoveDnsServer(this);
+    }
+
+    [RelayCommand(CanExecute = nameof(CanMoveDnsServerUp))]
+    public void MoveDnsServerUp()
+    {
+        _parentViewModel.MoveDnsServerUp(this);
+    }
+
+    [RelayCommand(CanExecute = nameof(CanMoveDnsServerDown))]
+    public void MoveDnsServerDown()
+    {
+        _parentViewModel.MoveDnsServerDown(this);
+    }
+
+    public bool CanMoveDnsServerUp()
+    {
+        return _parentViewModel.CanMoveDnsServerUp(this);
+    }
+
+    public bool CanMoveDnsServerDown()
+    {
+        return _parentViewModel.CanMoveDnsServerDown(this);
+    }
+
+    public void InvalidateCommands()
+    {
+        MoveDnsServerUpCommand.NotifyCanExecuteChanged();
+        MoveDnsServerDownCommand.NotifyCanExecuteChanged();
     }
 
     partial void OnIsActiveChanged(bool value)

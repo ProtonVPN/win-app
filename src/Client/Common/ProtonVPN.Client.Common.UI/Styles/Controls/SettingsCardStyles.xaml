@@ -1143,11 +1143,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                                                                      TargetElement="{Binding ElementName=PART_RootGrid}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="PART_ContentPresenter.(Grid.Row)" Value="1" />
-                                        <Setter Target="PART_ContentPresenter.(Grid.Column)" Value="1" />
-                                        <Setter Target="PART_ContentPresenter.HorizontalAlignment" Value="Stretch" />
-                                        <Setter Target="PART_ContentPresenter.HorizontalContentAlignment" Value="Left" />
-                                        <Setter Target="PART_ContentPresenter.Margin" Value="{StaticResource SettingsCardVerticalHeaderContentSpacing}" />
                                         <Setter Target="HeaderPanel.Margin" Value="0" />
                                     </VisualState.Setters>
                                 </VisualState>
@@ -1159,11 +1154,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
                                         <Setter Target="PART_HeaderIconPresenterHolder.Visibility" Value="Collapsed" />
-                                        <Setter Target="PART_ContentPresenter.(Grid.Row)" Value="1" />
-                                        <Setter Target="PART_ContentPresenter.(Grid.Column)" Value="1" />
-                                        <Setter Target="PART_ContentPresenter.HorizontalAlignment" Value="Stretch" />
-                                        <Setter Target="PART_ContentPresenter.HorizontalContentAlignment" Value="Left" />
-                                        <Setter Target="PART_ContentPresenter.Margin" Value="{StaticResource SettingsCardVerticalHeaderContentSpacing}" />
                                         <Setter Target="HeaderPanel.Margin" Value="0" />
                                     </VisualState.Setters>
                                 </VisualState>
@@ -1177,9 +1167,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                                         <Setter Target="PART_HeaderIconPresenterHolder.Visibility" Value="Collapsed" />
                                         <Setter Target="PART_DescriptionPresenter.Visibility" Value="Collapsed" />
                                         <Setter Target="PART_HeaderPresenter.Visibility" Value="Collapsed" />
-                                        <Setter Target="PART_ContentPresenter.(Grid.Row)" Value="1" />
-                                        <Setter Target="PART_ContentPresenter.(Grid.Column)" Value="1" />
-                                        <Setter Target="PART_ContentPresenter.HorizontalAlignment" Value="Left" />
                                     </VisualState.Setters>
                                 </VisualState>
 
@@ -1188,25 +1175,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                                         <triggers:IsEqualStateTrigger Value="{Binding ContentAlignment, RelativeSource={RelativeSource TemplatedParent}}"
                                                                       To="Vertical" />
                                     </VisualState.StateTriggers>
-                                    <VisualState.Setters>
-                                        <Setter Target="PART_ContentPresenter.(Grid.Row)" Value="1" />
-                                        <Setter Target="PART_ContentPresenter.(Grid.Column)" Value="1" />
-                                        <Setter Target="PART_ContentPresenter.HorizontalAlignment" Value="Stretch" />
-                                        <Setter Target="PART_ContentPresenter.HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" />
-                                        <Setter Target="PART_ContentPresenter.Margin" Value="{StaticResource SettingsCardVerticalHeaderContentSpacing}" />
-                                    </VisualState.Setters>
-                                </VisualState>
-                            </VisualStateGroup>
-
-                            <VisualStateGroup x:Name="ContentVisibilityStates">
-                                <VisualState x:Name="Visible" />
-                                <VisualState x:Name="Collapsed">
-                                    <VisualState.StateTriggers>
-                                        <triggers:IsNullOrEmptyStateTrigger Value="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" />
-                                    </VisualState.StateTriggers>
-                                    <VisualState.Setters>
-                                        <Setter Target="PART_ContentPresenter.Visibility" Value="Collapsed" />
-                                    </VisualState.Setters>
+                                    <VisualState.Setters/>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>

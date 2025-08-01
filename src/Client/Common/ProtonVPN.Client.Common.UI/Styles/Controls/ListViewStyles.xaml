@@ -122,7 +122,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="ItemContainerStyle" Value="{StaticResource GhostListViewItemStyle}" />
         <Setter Property="ItemContainerTransitions">
             <Setter.Value>
-                <TransitionCollection />
+                <TransitionCollection/>
             </Setter.Value>
         </Setter>
         <Setter Property="ItemsPanel">
