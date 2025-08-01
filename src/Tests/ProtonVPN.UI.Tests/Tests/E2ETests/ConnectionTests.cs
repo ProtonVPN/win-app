@@ -310,6 +310,8 @@ public class ConnectionTests : FreshSessionSetUp
                     .Verify.IsConnecting()
                            .IsConnected();
 
+                Thread.Sleep(1000);
+
                 return;
             }
             catch (AssertionException e)

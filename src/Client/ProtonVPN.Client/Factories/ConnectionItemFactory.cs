@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Models.Connections.Profiles;
 using ProtonVPN.Client.Models.Connections.Recents;
+using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.Factories;
 
@@ -40,6 +41,7 @@ public class ConnectionItemFactory : IConnectionItemFactory
     private readonly IProfilesManager _profilesManager;
     private readonly IProfileEditor _profileEditor;
     private readonly IUpsellCarouselWindowActivator _upsellCarouselWindowActivator;
+    private readonly ISettings _settings;
 
     public ConnectionItemFactory(
         ILocalizationProvider localizer,
@@ -49,7 +51,8 @@ public class ConnectionItemFactory : IConnectionItemFactory
         IRecentConnectionsManager recentConnectionsManager,
         IProfilesManager profilesManager,
         IProfileEditor profileEditor,
-        IUpsellCarouselWindowActivator upsellCarouselWindowActivator)
+        IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
+        ISettings settings)
     {
         _localizer = localizer;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
@@ -59,11 +62,12 @@ public class ConnectionItemFactory : IConnectionItemFactory
         _profilesManager = profilesManager;
         _profileEditor = profileEditor;
         _upsellCarouselWindowActivator = upsellCarouselWindowActivator;
+        _settings = settings;
     }
 
     public RecentConnectionItem GetRecent(IRecentConnection recentConnection)
     {
-        return new RecentConnectionItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, _recentConnectionsManager, recentConnection);
+        return new RecentConnectionItem(_localizer, _serversLoader, _connectionManager, _upsellCarouselWindowActivator, _settings, _recentConnectionsManager, recentConnection);
     }
 
     public ProfileConnectionItem GetProfile(IConnectionProfile profile)

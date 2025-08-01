@@ -32,6 +32,7 @@ using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
@@ -39,6 +40,7 @@ namespace ProtonVPN.Client.Models.Connections.Recents;
 
 public partial class RecentConnectionItem : ConnectionItemBase
 {
+    private readonly ISettings _settings;
     private readonly IRecentConnectionsManager _recentConnectionsManager;
 
     public IRecentConnection RecentConnection { get; }
@@ -93,6 +95,7 @@ public partial class RecentConnectionItem : ConnectionItemBase
         IServersLoader serversLoader,
         IConnectionManager connectionManager,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
+        ISettings settings,
         IRecentConnectionsManager recentConnectionsManager,
         IRecentConnection recentConnection)
         : base(localizer,
@@ -101,6 +104,7 @@ public partial class RecentConnectionItem : ConnectionItemBase
                upsellCarouselWindowActivator,
                false)
     {
+        _settings = settings;
         _recentConnectionsManager = recentConnectionsManager;
 
         RecentConnection = recentConnection;
@@ -120,7 +124,9 @@ public partial class RecentConnectionItem : ConnectionItemBase
 
     protected override bool MatchesActiveConnection(ConnectionDetails? currentConnectionDetails)
     {
-        return RecentConnection.ConnectionIntent.IsSameAs(currentConnectionDetails?.OriginalConnectionIntent);
+        return currentConnectionDetails != null
+            && RecentConnection.ConnectionIntent.IsSameAs(currentConnectionDetails.OriginalConnectionIntent)
+            && RecentConnection.ConnectionIntent.IsSupported(currentConnectionDetails.Server, _settings.DeviceLocation);
     }
 
     [RelayCommand(CanExecute = nameof(CanPin))]
