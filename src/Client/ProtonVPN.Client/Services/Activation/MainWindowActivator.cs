@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.Messages;
@@ -33,11 +34,11 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
-using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using Windows.Foundation;
+using Windows.Graphics;
 using WinUIEx;
 
 namespace ProtonVPN.Client.Services.Activation;
@@ -50,8 +51,10 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
     private const int LOGIN_WINDOW_WIDTH = 1016;
     private const int LOGIN_WINDOW_HEIGHT = 659;
 
+    private SizeInt32? _lastKnownWindowSize;
+    private PointInt32? _lastKnownWindowPosition;
+
     private readonly IUserAuthenticator _userAuthenticator;
-    private readonly IConnectionManager _connectionManager;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IEfficiencyModeEnabler _efficiencyModeEnabler;
 
@@ -61,6 +64,11 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
 
     public override string WindowTitle { get; } = App.APPLICATION_NAME;
 
+    protected bool IsUserInScope => _userAuthenticator.AuthenticationStatus is AuthenticationStatus.LoggedIn or AuthenticationStatus.LoggingOut;
+
+    protected bool IsWindowInRestoredState => Host?.AppWindow?.Presenter is OverlappedPresenter presenter
+                                           && presenter.State == OverlappedPresenterState.Restored;
+
     public MainWindowActivator(
         ILogger logger,
         IUIThreadDispatcher uiThreadDispatcher,
@@ -69,13 +77,11 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
         ILocalizationProvider localizer,
         IApplicationIconSelector iconSelector,
         IUserAuthenticator userAuthenticator,
-        IConnectionManager connectionManager,
         IEventMessageSender eventMessageSender,
         IEfficiencyModeEnabler efficiencyModeEnabler)
         : base(logger, uiThreadDispatcher, themeSelector, settings, localizer, iconSelector)
     {
         _userAuthenticator = userAuthenticator;
-        _connectionManager = connectionManager;
         _eventMessageSender = eventMessageSender;
         _efficiencyModeEnabler = efficiencyModeEnabler;
     }
@@ -113,6 +119,26 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
         _efficiencyModeEnabler.TryEnableEfficiencyMode();
     }
 
+    protected override void RegisterToHostEvents()
+    {
+        base.RegisterToHostEvents();
+
+        if (Host?.AppWindow != null)
+        {
+            Host.AppWindow.Changed += OnAppWindowChanged;
+        }
+    }
+
+    protected override void UnregisterFromHostEvents()
+    {
+        base.UnregisterFromHostEvents();
+
+        if (Host?.AppWindow != null)
+        {
+            Host.AppWindow.Changed -= OnAppWindowChanged;
+        }
+    }
+
     protected override void InvalidateWindowPosition()
     {
         if (Host == null)
@@ -138,7 +164,7 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
 
         // Set window state to normal to apply size and position.
         Host.WindowState = WindowState.Normal;
-        Host.SetPosition(parameters);
+        Host.MoveAndResize(parameters);
     }
 
     protected override void InvalidateWindowState()
@@ -213,6 +239,37 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
         _eventMessageSender.Send(new ApplicationStoppedMessage());
     }
 
+    private void OnAppWindowChanged(AppWindow sender, AppWindowChangedEventArgs args)
+    {
+        if (args.DidSizeChange)
+        {
+            UpdateLastKnownWindowSize();
+        }
+
+        if (args.DidPositionChange)
+        {
+            UpdateLastKnownWindowPosition();
+        }
+    }
+
+    private void UpdateLastKnownWindowSize()
+    {
+        if (IsUserInScope && IsWindowInRestoredState)
+        {
+            _lastKnownWindowSize = new SizeInt32(
+                Convert.ToInt32(Host!.Width), 
+                Convert.ToInt32(Host!.Height));
+        }
+    }
+
+    private void UpdateLastKnownWindowPosition()
+    {
+        if (IsUserInScope && IsWindowInRestoredState)
+        {
+            _lastKnownWindowPosition = Host!.AppWindow.Position;
+        }
+    }
+
     private void InvalidateBadgeIcon()
     {
         Host?.SetBadge(IconSelector.GetTaskbarBadgeIcon());
@@ -230,16 +287,18 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
     {
         try
         {
-            bool isUserInScope = _userAuthenticator.AuthenticationStatus
-                is AuthenticationStatus.LoggedIn
-                or AuthenticationStatus.LoggingOut;
-
-            if (isUserInScope && Host != null && CurrentWindowState == WindowState.Normal)
+            if (IsUserInScope)
             {
-                Settings.WindowXPosition = Host.AppWindow.Position.X;
-                Settings.WindowYPosition = Host.AppWindow.Position.Y;
-                Settings.WindowWidth = Convert.ToInt32(Host.Width);
-                Settings.WindowHeight = Convert.ToInt32(Host.Height);
+                if (_lastKnownWindowPosition.HasValue)
+                {
+                    Settings.WindowXPosition = _lastKnownWindowPosition.Value.X;
+                    Settings.WindowYPosition = _lastKnownWindowPosition.Value.Y;
+                }
+                if (_lastKnownWindowSize.HasValue)
+                {
+                    Settings.WindowWidth = _lastKnownWindowSize.Value.Width;
+                    Settings.WindowHeight = _lastKnownWindowSize.Value.Height;
+                }
             }
         }
         catch (Exception ex)

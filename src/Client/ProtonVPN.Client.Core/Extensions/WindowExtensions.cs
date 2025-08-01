@@ -26,21 +26,36 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Common.Interop;
 using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Common.UI.Controls.Custom;
 using ProtonVPN.Client.Common.UI.Windowing;
 using ProtonVPN.Client.Core.Helpers;
+using ProtonVPN.Common.Core.Helpers;
 using Windows.Foundation;
 using Windows.Graphics;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using WinUIEx;
-using ProtonVPN.Common.Core.Helpers;
-using Icon = System.Drawing.Icon;
 using static Vanara.PInvoke.Shell32;
+using Icon = System.Drawing.Icon;
 
 namespace ProtonVPN.Client.Core.Extensions;
 
 public static class WindowExtensions
 {
+    private static readonly Lazy<ITaskbarList3?> _taskbar = new(() =>
+    {
+        try
+        {
+            ITaskbarList3 taskbar = new();
+            taskbar.HrInit();
+            return taskbar;
+        }
+        catch
+        {
+            return null;
+        }
+    });
+
     public static void ApplyTheme(this Window window, ElementTheme theme)
     {
         window.AppWindow.TitleBar.BackgroundColor = Colors.Transparent;
@@ -189,35 +204,95 @@ public static class WindowExtensions
         window.AppWindow.TitleBar.SetDragRectangles(dragRects.ToArray());
     }
 
-    public static void SetPosition(this Window window, WindowPositionParameters parameters)
+    public static void MoveAndResize(this BaseWindow window, WindowPositionParameters parameters)
     {
-        if (parameters.XPosition is null || parameters.YPosition is null)
+        bool isPositionSpecified =
+            parameters.XPosition is not null &&
+            parameters.YPosition is not null;
+
+        PointInt32 cursorPosition = MonitorCalculator.GetCursorPosition();
+
+        DisplayArea displayArea = isPositionSpecified
+            ? DisplayArea.GetFromRect(parameters.ToRect(), DisplayAreaFallback.Nearest)
+            : DisplayArea.GetFromPoint(cursorPosition, DisplayAreaFallback.Primary);
+        RectInt32 workArea = displayArea.WorkArea;
+
+        // Get display area DPI
+        uint dpi = displayArea.GetDpi();
+
+        double maxWidth = workArea.Width.ToDips(dpi);
+        double maxHeight = workArea.Height.ToDips(dpi);
+
+        // Ensure the window size is within the work area limits
+        double windowWidth = Math.Clamp(parameters.Width, window.MinWidth, maxWidth);
+        double windowHeight = Math.Clamp(parameters.Height, window.MinHeight, maxHeight);
+
+        double windowPositionX;
+        double windowPositionY;
+        if (isPositionSpecified)
         {
-            Point? point = MonitorCalculator.CalculateWindowCenteredInCursorMonitor(parameters.Width, parameters.Height);
-            if (point is not null)
-            {
-                parameters.XPosition = point.Value.X;
-                parameters.YPosition = point.Value.Y;
-            }
+            // Ensure the window position is within the work area bounds
+            windowPositionX = Math.Clamp(parameters.XPosition!.Value, workArea.X, workArea.X + maxWidth - windowWidth);
+            windowPositionY = Math.Clamp(parameters.YPosition!.Value, workArea.Y, workArea.Y + maxHeight - windowHeight);
+        }
+        else
+        {
+            // No position specified, center the window on the current monitor.
+            windowPositionX = workArea.X + ((maxWidth - windowWidth) / 2);
+            windowPositionY = workArea.Y + ((maxHeight - windowHeight) / 2);
         }
 
-        if (parameters.XPosition is not null && parameters.YPosition is not null)
+        window.MoveAndResize(
+            x: windowPositionX.ToPixels(dpi),
+            y: windowPositionY.ToPixels(dpi),
+            width: windowWidth,
+            height: windowHeight);
+    }
+
+    public static void MoveNearTray(this BaseWindow window, double width, double height, double margin)
+    {
+        RectInt32? trayRect = MonitorCalculator.GetTrayRect();
+        PointInt32 cursorPosition = MonitorCalculator.GetCursorPosition();
+
+        // Determine the display area for the system tray.
+        // 1. Ideally use the tray rectangle if available.
+        // 2. If not available, for Windows 11 or higher, the system tray should always be on the primary display.
+        // 3. for Windows 10, use the display area where the cursor is located.
+        DisplayArea displayArea = trayRect.HasValue
+            ? DisplayArea.GetFromRect(trayRect.Value, DisplayAreaFallback.Primary)
+            : OSVersion.IsWindows11OrHigher()
+                ? DisplayArea.Primary
+                : DisplayArea.GetFromPoint(cursorPosition, DisplayAreaFallback.Primary);
+        RectInt32 workArea = displayArea.WorkArea;
+
+        // Get display area DPI and taskbard edge
+        uint dpi = displayArea.GetDpi();
+        TaskbarEdge taskbarEdge = MonitorCalculator.GetTaskbarEdge();
+
+        double maxWidth = workArea.Width.ToDips(dpi);
+        double maxHeight = workArea.Height.ToDips(dpi);
+
+        // Ensure the window size is within the work area limits
+        double windowWidth = Math.Clamp(width, window.MinWidth, maxWidth - (2 * margin));
+        double windowHeight = Math.Clamp(height, window.MinHeight, maxHeight - (2 * margin));
+
+        // Calculate the position based on the taskbar edge
+        double windowPositionX = taskbarEdge switch
         {
-            Rect windowRectangle = new(
-                parameters.XPosition.Value,
-                parameters.YPosition.Value,
-                parameters.Width,
-                parameters.Height);
-            Rect? validWindowRectangle = MonitorCalculator.GetValidWindowSizeAndPosition(windowRectangle);
-            if (validWindowRectangle is not null)
-            {
-                window.MoveAndResize(
-                    x: validWindowRectangle.Value.Left,
-                    y: validWindowRectangle.Value.Top,
-                    width: validWindowRectangle.Value.Width,
-                    height: validWindowRectangle.Value.Height);
-            }
-        }
+            TaskbarEdge.Left => workArea.X + margin, // Dock to the left
+            _ => workArea.X + maxWidth - windowWidth - margin // Dock to the right
+        };
+        double windowPositionY = taskbarEdge switch
+        {
+            TaskbarEdge.Top => workArea.Y + margin, // Dock to the top
+            _ => workArea.Y + maxHeight - windowHeight - margin // Dock to the bottom
+        };
+
+        window.MoveAndResize(
+            x: windowPositionX.ToPixels(dpi),
+            y: windowPositionY.ToPixels(dpi),
+            width: windowWidth,
+            height: windowHeight);
     }
 
     public static async Task<string> PickSingleFileAsync(this Window window, string filterName, string[] filterFileExtensions)
@@ -262,50 +337,6 @@ public static class WindowExtensions
         window.CenterOnScreen();
     }
 
-    public static void MoveNearTrayOnPrimaryMonitor(this Window window, double width, double height, double margin)
-    {
-        // Get the primary monitor area and taskbar edge
-        RectInt32 monitorArea = DisplayArea.Primary.WorkArea;
-        TaskbarEdge taskbarEdge = MonitorCalculator.GetTaskbarEdge();
-
-        double scaleAdjustment = window.GetDpiForWindow() / 96.0;
-
-        // Scale the dimensions
-        int scaledWidth = (int)(width * scaleAdjustment);
-        int scaledHeight = (int)(height * scaleAdjustment);
-        int scaledMargin = (int)(margin * scaleAdjustment);
-
-        int coercedWidth = Math.Min(monitorArea.Width - (2 * scaledMargin), scaledWidth);
-        int coercedHeight = Math.Min(monitorArea.Height - (2 * scaledMargin), scaledHeight);
-
-        int x = taskbarEdge switch
-        {
-            TaskbarEdge.Left => monitorArea.X + scaledMargin,
-            _ => monitorArea.X + monitorArea.Width - coercedWidth - scaledMargin
-        };
-        int y = taskbarEdge switch
-        {
-            TaskbarEdge.Top => monitorArea.Y + scaledMargin,
-            _ => monitorArea.Y + monitorArea.Height - coercedHeight - scaledMargin
-        };
-
-        window.MoveAndResize(x, y, coercedWidth / scaleAdjustment, coercedHeight / scaleAdjustment);
-    }
-
-    private static readonly Lazy<ITaskbarList3?> _taskbar = new(() =>
-    {
-        try
-        {
-            var taskbar = new ITaskbarList3();
-            taskbar.HrInit();
-            return taskbar;
-        }
-        catch
-        {
-            return null;
-        }
-    });
-
     public static void SetBadge(this Window window, Icon? badgeIcon)
     {
         try
@@ -336,5 +367,14 @@ public static class WindowExtensions
         {
             return false;
         }
+    }
+
+    private static RectInt32 ToRect(this WindowPositionParameters parameters)
+    {
+        return new RectInt32(
+            Convert.ToInt32(parameters.XPosition ?? 0),
+            Convert.ToInt32(parameters.YPosition ?? 0),
+            Convert.ToInt32(parameters.Width),
+            Convert.ToInt32(parameters.Height));
     }
 }

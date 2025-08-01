@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Activation.Bases;
@@ -33,11 +32,9 @@ namespace ProtonVPN.Client.Services.Activation;
 
 public class TrayAppWindowActivator : DialogActivatorBase<TrayAppWindow>, ITrayAppWindowActivator
 {
-    private const double TRAY_APP_LOGIN_WIDTH = 340;
-    private const double TRAY_APP_LOGIN_HEIGHT = 420;
-    private const double TRAY_APP_MAIN_WIDTH = 425;
-    private const double TRAY_APP_MAIN_HEIGHT = 620;
-    private const double TRAY_APP_FREE_MAIN_HEIGHT = 520;
+    private const double TRAY_APP_DEFAULT_WIDTH = 425;
+    private const double TRAY_APP_DEFAULT_HEIGHT = 620;
+    private const double TRAY_APP_FREE_USER_HEIGHT = 520;
     private const double TRAY_APP_MARGIN = 10;
 
     private readonly IUserAuthenticator _userAuthenticator;
@@ -66,16 +63,11 @@ public class TrayAppWindowActivator : DialogActivatorBase<TrayAppWindow>, ITrayA
 
     protected override void InvalidateWindowPosition()
     {
-        double width = _userAuthenticator.IsLoggedIn
-            ? TRAY_APP_MAIN_WIDTH
-            : TRAY_APP_LOGIN_WIDTH;
-        double height = _userAuthenticator.IsLoggedIn
-            ? Settings.VpnPlan.IsPaid
-                ? TRAY_APP_MAIN_HEIGHT
-                : TRAY_APP_FREE_MAIN_HEIGHT
-            : TRAY_APP_LOGIN_HEIGHT;
+        double height = _userAuthenticator.IsLoggedIn && !Settings.VpnPlan.IsPaid
+            ? TRAY_APP_FREE_USER_HEIGHT
+            : TRAY_APP_DEFAULT_HEIGHT;
 
-        Host?.MoveNearTrayOnPrimaryMonitor(width, height, TRAY_APP_MARGIN);
+        Host?.MoveNearTray(TRAY_APP_DEFAULT_WIDTH, height, TRAY_APP_MARGIN);
     }
 
     protected override void OnWindowFocused()

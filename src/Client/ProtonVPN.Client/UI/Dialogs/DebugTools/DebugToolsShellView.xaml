@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2024 Proton AG
+Copyright (c) 2025 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -50,6 +50,46 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <ScrollViewer Grid.Row="1">
             <StackPanel>
+
+                <toolkit:SettingsExpander Header="Window position"
+                                          IsExpanded="True"
+                                          IsTabStop="False"
+                                          Style="{StaticResource SettingsExpanderStyle}">
+                    <StackPanel HorizontalAlignment="Right"
+                                Orientation="Horizontal"
+                                Spacing="8">
+                        <Button Command="{x:Bind ViewModel.SetWindowPositionCommand, Mode=OneTime}"
+                                Content="Set"
+                                Style="{StaticResource PrimaryButtonStyle}" />
+                        <Button Command="{x:Bind ViewModel.ResetWindowPositionCommand, Mode=OneTime}"
+                                Content="Reset" />
+                    </StackPanel>
+                    <toolkit:SettingsExpander.Items>
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="8">
+                            <TextBlock Margin="0,0,0,1"
+                                       VerticalAlignment="Center"
+                                       Text="X:" />
+                            <TextBox MinWidth="70"
+                                     Text="{x:Bind ViewModel.XPosition, Mode=TwoWay}" />
+                            <TextBlock Margin="0,0,0,1"
+                                       VerticalAlignment="Center"
+                                       Text="Y:" />
+                            <TextBox MinWidth="70"
+                                     Text="{x:Bind ViewModel.YPosition, Mode=TwoWay}" />
+                            <TextBlock Margin="12,0,0,1"
+                                       VerticalAlignment="Center"
+                                       Text="W:" />
+                            <TextBox MinWidth="70"
+                                     Text="{x:Bind ViewModel.WindowWidth, Mode=TwoWay}" />
+                            <TextBlock Margin="0,0,0,1"
+                                       VerticalAlignment="Center"
+                                       Text="H:" />
+                            <TextBox MinWidth="70"
+                                     Text="{x:Bind ViewModel.WindowHeight, Mode=TwoWay}" />
+                        </StackPanel>
+                    </toolkit:SettingsExpander.Items>
+                </toolkit:SettingsExpander>
 
                 <toolkit:SettingsCard Header="Restart client"
                                       IsTabStop="False"
@@ -141,8 +181,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </toolkit:SettingsCard>
 
                 <toolkit:SettingsCard Header="Disconnect with session limit reached error"
-                                  IsTabStop="False"
-                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                                      IsTabStop="False"
+                                      Style="{StaticResource DefaultSettingsCardStyle}">
 
                     <StackPanel Orientation="Horizontal"
                                 Spacing="8">

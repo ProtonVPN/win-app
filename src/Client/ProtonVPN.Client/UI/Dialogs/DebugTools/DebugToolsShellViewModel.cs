@@ -21,9 +21,11 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.Services.Lifecycle;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
+using ProtonVPN.Client.Core.Extensions;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
@@ -56,6 +58,15 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
 
     [ObservableProperty]
     private VpnPlan _selectedVpnPlan;
+
+    [ObservableProperty]
+    private int _xPosition; 
+    [ObservableProperty]
+    private int _yPosition;
+    [ObservableProperty]
+    private int _windowWidth;
+    [ObservableProperty]
+    private int _windowHeight;
 
     public List<Overlay> OverlaysList { get; }
 
@@ -214,5 +225,31 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     public void ShowNpsSurvey()
     {
         _npsSurveyWindowActivator.Activate();
+    }
+
+    [RelayCommand]
+    public void SetWindowPosition()
+    {
+        (App.Current as App)?.MainWindow?.MoveAndResize(
+            new WindowPositionParameters()
+            {
+                XPosition = XPosition,
+                YPosition = YPosition,
+                Width = WindowWidth,
+                Height = WindowHeight
+            });
+    }
+
+    [RelayCommand]
+    public void ResetWindowPosition()
+    {
+        (App.Current as App)?.MainWindow?.MoveAndResize(
+            new WindowPositionParameters()
+            {
+                XPosition = null,
+                YPosition = null,
+                Width = DefaultSettings.WindowWidth,
+                Height = DefaultSettings.WindowHeight
+            });
     }
 }
