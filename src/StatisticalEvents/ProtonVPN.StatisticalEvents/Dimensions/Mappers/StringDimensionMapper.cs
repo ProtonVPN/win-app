@@ -17,34 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Users.Contracts.Messages;
+using ProtonVPN.StatisticalEvents.Dimensions.Mappers.Bases;
 
-namespace ProtonVPN.StatisticalEvents.DimensionMapping;
+namespace ProtonVPN.StatisticalEvents.Dimensions.Mappers;
 
-public class VpnPlanMapper : DimensionMapperBase, IDimensionMapper<VpnPlan?>
+public class StringDimensionMapper : DimensionMapperBase, IStringDimensionMapper
 {
-    public string Map(VpnPlan? vpnPlan)
+    public string Map(string? value)
     {
-        if (vpnPlan is null)
-        {
-            return "non-user";
-        }
-
-        if (!vpnPlan.Value.IsPaid)
-        {
-            return "free";
-        }
-
-        if (vpnPlan.Value.IsPaid)
-        {
-            return "paid";
-        }
-
-        if (vpnPlan.Value.MaxTier == 3)
-        {
-            return "internal";
-        }
-
-        return NOT_AVAILABLE;
+        return !string.IsNullOrWhiteSpace(value)
+            ? value
+            : NOT_AVAILABLE;
     }
 }

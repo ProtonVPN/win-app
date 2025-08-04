@@ -17,20 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
+using ProtonVPN.StatisticalEvents.Dimensions.Mappers.Bases;
 
-namespace ProtonVPN.StatisticalEvents.DimensionMapping;
+namespace ProtonVPN.StatisticalEvents.Dimensions.Mappers;
 
-public class OutcomeDimensionMapper : DimensionMapperBase, IDimensionMapper<OutcomeDimension?>
-{
-    public string Map(OutcomeDimension? outcome)
-    {
-        return outcome switch
-        {
-            OutcomeDimension.Success => "success",
-            OutcomeDimension.Failure => "failure",
-            OutcomeDimension.Aborted => "aborted",
-            _ => NOT_AVAILABLE
-        };
-    }
-}
+public interface IPortDimensionMapper : IDimensionMapper<int>
+{ }

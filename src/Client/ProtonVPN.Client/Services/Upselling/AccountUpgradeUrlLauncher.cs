@@ -73,7 +73,7 @@ public class AccountUpgradeUrlLauncher : IAccountUpgradeUrlLauncher,
     {
         try
         {
-            if (_currentAttemptModalSource.HasValue && message.HasChanged() && message.IsUpgrade())
+            if (_currentAttemptModalSource.HasValue && message.HasChanged() && !message.IsDowngrade())
             {
                 _upsellSuccessStatisticalEventSender.Send(_currentAttemptModalSource.Value, message.OldPlan, message.NewPlan, _currentAttemptReference);
             }

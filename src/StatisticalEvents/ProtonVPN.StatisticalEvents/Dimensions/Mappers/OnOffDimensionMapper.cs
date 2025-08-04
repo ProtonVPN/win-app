@@ -17,15 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
-using ProtonVPN.Client.Logic.Users.Contracts.Messages;
-using ProtonVPN.StatisticalEvents.Contracts;
+using ProtonVPN.StatisticalEvents.Dimensions.Mappers.Bases;
 
-namespace ProtonVPN.StatisticalEvents.DimensionBuilders;
+namespace ProtonVPN.StatisticalEvents.Dimensions.Mappers;
 
-public interface IUpsellDimensionBuilder
+public class OnOffDimensionMapper : OnOffDimensionMapperBase, IOnOffDimensionMapper
 {
-    Dictionary<string, string> Build(ModalSource modalSource, string? reference = null);
-
-    string GetUserPlan(VpnPlan vpnPlan);
+    public string Map(bool? value)
+    {
+        return value switch
+        {
+            true => ON,
+            false => OFF,
+            _ => NOT_AVAILABLE
+        };
+    }
 }

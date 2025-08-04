@@ -17,10 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
 using ProtonVPN.Common.Core.StatisticalEvents;
-using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.StatisticalEvents.Contracts;
+using ProtonVPN.StatisticalEvents.Dimensions.Builders;
 using ProtonVPN.StatisticalEvents.MeasurementGroups;
 using ProtonVPN.StatisticalEvents.Sending.Contracts;
 
@@ -29,27 +28,28 @@ namespace ProtonVPN.StatisticalEvents;
 public class ClientInstallsStatisticalEventSender : StatisticalEventSenderBase<ClientInstallsMeasurementGroup>,
     IClientInstallsStatisticalEventSender
 {
+    private readonly IClientInstallsDimensionsBuilder _dimensionsBuilder;
+    private readonly IUnauthenticatedStatisticalEventSender _statisticalEventSender;
     public override string Event => "client_launch";
 
-    private readonly IUnauthenticatedStatisticalEventSender _statisticalEventSender;
-
-    public ClientInstallsStatisticalEventSender(IUnauthenticatedStatisticalEventSender statisticalEventSender)
+    public ClientInstallsStatisticalEventSender(
+        IClientInstallsDimensionsBuilder dimensionsBuilder,
+        IUnauthenticatedStatisticalEventSender statisticalEventSender)
     {
+        _dimensionsBuilder = dimensionsBuilder;
         _statisticalEventSender = statisticalEventSender;
     }
 
     public void Send(bool isMailInstalled, bool isDriveInstalled, bool isPassInstalled)
     {
-        StatisticalEvent statisticalEvent = CreateStatisticalEvent();
-        statisticalEvent.Dimensions = new Dictionary<string, string>
-        {
-            { "client", "windows" },
-            { "product", "vpn" },
-            { "is_mail_installed", isMailInstalled.ToBooleanString() },
-            { "is_drive_installed", isDriveInstalled.ToBooleanString() },
-            { "is_pass_installed", isPassInstalled.ToBooleanString() },
-        };
-
+        StatisticalEvent statisticalEvent = Create(isMailInstalled, isDriveInstalled, isPassInstalled);
         _statisticalEventSender.EnqueueAsync(statisticalEvent);
+    }
+
+    private StatisticalEvent Create(bool isMailInstalled, bool isDriveInstalled, bool isPassInstalled)
+    {
+        StatisticalEvent statisticalEvent = CreateStatisticalEvent();
+        statisticalEvent.Dimensions = _dimensionsBuilder.Build(isMailInstalled, isDriveInstalled, isPassInstalled);
+        return statisticalEvent;
     }
 }

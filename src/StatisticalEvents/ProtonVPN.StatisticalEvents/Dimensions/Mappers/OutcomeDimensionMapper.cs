@@ -17,12 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
-using ProtonVPN.StatisticalEvents.Contracts.Models;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
+using ProtonVPN.StatisticalEvents.Dimensions.Mappers.Bases;
 
-namespace ProtonVPN.StatisticalEvents;
+namespace ProtonVPN.StatisticalEvents.Dimensions.Mappers;
 
-public interface IVpnConnectionDimensionsProvider
+public class OutcomeDimensionMapper : DimensionMapperBase, IOutcomeDimensionMapper
 {
-    Dictionary<string, string> GetDimensions(VpnConnectionEventData eventData);
+    private const string SUCCESS = "success";
+    private const string FAILURE = "failure";
+    private const string ABORTED = "aborted";
+
+    public string Map(OutcomeDimension? outcome)
+    {
+        return outcome switch
+        {
+            OutcomeDimension.Success => SUCCESS,
+            OutcomeDimension.Failure => FAILURE,
+            OutcomeDimension.Aborted => ABORTED,
+            _ => NOT_AVAILABLE
+        };
+    }
 }

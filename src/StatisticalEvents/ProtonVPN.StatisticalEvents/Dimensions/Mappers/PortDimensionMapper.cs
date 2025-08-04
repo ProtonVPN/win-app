@@ -17,9 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.StatisticalEvents.DimensionMapping;
+using ProtonVPN.StatisticalEvents.Dimensions.Mappers.Bases;
 
-public interface IDimensionMapper<T>
+namespace ProtonVPN.StatisticalEvents.Dimensions.Mappers;
+
+public class PortDimensionMapper : DimensionMapperBase, IPortDimensionMapper
 {
-    string Map(T input);
+    public string Map(int port)
+    {
+        return port > 0
+            ? port.ToString()
+            : NOT_AVAILABLE;
+    }
 }

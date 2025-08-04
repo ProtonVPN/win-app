@@ -19,6 +19,7 @@
 
 using ProtonVPN.Common.Core.StatisticalEvents;
 using ProtonVPN.StatisticalEvents.Contracts.Models;
+using ProtonVPN.StatisticalEvents.Dimensions.Builders;
 using ProtonVPN.StatisticalEvents.MeasurementGroups;
 using ProtonVPN.StatisticalEvents.Sending.Contracts;
 
@@ -26,11 +27,11 @@ namespace ProtonVPN.StatisticalEvents;
 
 public abstract class VpnStatisticalEventSenderBase : StatisticalEventSenderBase<VpnConnectionsMeasurementGroup>
 {
-    private readonly IVpnConnectionDimensionsProvider _dimensionsProvider;
+    private readonly IVpnConnectionDimensionsBuilder _dimensionsProvider;
     private readonly IAuthenticatedStatisticalEventSender _authenticatedStatisticalEventSender;
 
     protected VpnStatisticalEventSenderBase(
-        IVpnConnectionDimensionsProvider dimensionsProvider,
+        IVpnConnectionDimensionsBuilder dimensionsProvider,
         IAuthenticatedStatisticalEventSender statisticalEventSender)
     {
         _dimensionsProvider = dimensionsProvider;
@@ -44,7 +45,7 @@ public abstract class VpnStatisticalEventSenderBase : StatisticalEventSenderBase
     {
         StatisticalEvent statisticalEvent = CreateStatisticalEvent();
         statisticalEvent.Values.Add(valueKey, value);
-        statisticalEvent.Dimensions = _dimensionsProvider.GetDimensions(eventData);
+        statisticalEvent.Dimensions = _dimensionsProvider.Build(eventData);
 
         _authenticatedStatisticalEventSender.EnqueueAsync(statisticalEvent);
     }

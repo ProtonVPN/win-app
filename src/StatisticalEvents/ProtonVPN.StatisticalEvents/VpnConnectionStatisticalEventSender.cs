@@ -19,6 +19,7 @@
 
 using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Models;
+using ProtonVPN.StatisticalEvents.Dimensions.Builders;
 using ProtonVPN.StatisticalEvents.Sending.Contracts;
 
 namespace ProtonVPN.StatisticalEvents;
@@ -28,11 +29,10 @@ public class VpnConnectionStatisticalEventSender : VpnStatisticalEventSenderBase
     public override string Event => "vpn_connection";
 
     public VpnConnectionStatisticalEventSender(
-        IVpnConnectionDimensionsProvider dimensionsProvider,
+        IVpnConnectionDimensionsBuilder dimensionsProvider,
         IAuthenticatedStatisticalEventSender statisticalEventSender)
         : base(dimensionsProvider, statisticalEventSender)
-    {
-    }
+    { }
 
     public void Send(VpnConnectionEventData eventData, float timeToConnectionInMilliseconds)
     {

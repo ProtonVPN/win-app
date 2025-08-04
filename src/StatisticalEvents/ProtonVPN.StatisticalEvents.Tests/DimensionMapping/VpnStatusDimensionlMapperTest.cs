@@ -19,7 +19,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
-using ProtonVPN.StatisticalEvents.DimensionMapping;
+using ProtonVPN.StatisticalEvents.Dimensions.Mappers;
 
 namespace ProtonVPN.StatisticalEvents.Tests.DimensionMapping;
 

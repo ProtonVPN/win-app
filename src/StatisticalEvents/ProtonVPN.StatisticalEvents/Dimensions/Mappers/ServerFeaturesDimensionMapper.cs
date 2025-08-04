@@ -19,48 +19,57 @@
 
 using System.Collections.Generic;
 using ProtonVPN.StatisticalEvents.Contracts.Models;
+using ProtonVPN.StatisticalEvents.Dimensions.Mappers.Bases;
 
-namespace ProtonVPN.StatisticalEvents.DimensionMapping;
+namespace ProtonVPN.StatisticalEvents.Dimensions.Mappers;
 
-public class ServerFeaturesDimensionMapper : DimensionMapperBase, IDimensionMapper<ServerDetailsEventData>
+public class ServerFeaturesDimensionMapper : DimensionMapperBase, IServerFeaturesDimensionMapper
 {
+    private const string FREE = "free";
+    private const string TOR = "tor";
+    private const string P2P = "p2p";
+    private const string SECURE_CORE = "secureCore";
+    private const string PARTNERSHIP = "partnership";
+    private const string STREAMING = "streaming";
+    private const string IPV6 = "ipv6";
+
     public string Map(ServerDetailsEventData serverDetails)
     {
         List<string> features = [];
 
         if (serverDetails.IsFree)
         {
-            features.Add("free");
+            features.Add(FREE);
         }
 
         if (serverDetails.SupportsTor)
         {
-            features.Add("tor");
+            features.Add(TOR);
         }
 
         if (serverDetails.SupportsP2P)
         {
-            features.Add("p2p");
+            features.Add(P2P);
         }
 
         if (serverDetails.SecureCore)
         {
-            features.Add("secureCore");
+            features.Add(SECURE_CORE);
         }
 
         if (serverDetails.IsB2B)
         {
-            features.Add("partnership");
+            features.Add(PARTNERSHIP);
         }
 
         if (serverDetails.SupportsStreaming)
         {
-            features.Add("streaming");
+            features.Add(STREAMING);
         }
 
         if (serverDetails.SupportsIpv6)
         {
-            features.Add("ipv6");
+            features.Add(IPV6);
         }
 
         features.Sort();

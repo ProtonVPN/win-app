@@ -19,12 +19,12 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.StatisticalEvents.DimensionMapping;
+using ProtonVPN.StatisticalEvents.Dimensions.Mappers;
 
 namespace ProtonVPN.StatisticalEvents.Tests.DimensionMapping;
 
 [TestClass]
-public class VpnProtocolMapperTest : DimensionMapperTestBase<VpnProtocol, VpnProtocolMapper>
+public class VpnProtocolMapperTest : DimensionMapperTestBase<VpnProtocol, VpnProtocolDimensionMapper>
 {
-    protected override Func<VpnProtocolMapper, VpnProtocol?, string> MapFunction => (mapper, value) => mapper.Map(value);
+    protected override Func<VpnProtocolDimensionMapper, VpnProtocol?, string> MapFunction => (mapper, value) => mapper.Map(value);
 }

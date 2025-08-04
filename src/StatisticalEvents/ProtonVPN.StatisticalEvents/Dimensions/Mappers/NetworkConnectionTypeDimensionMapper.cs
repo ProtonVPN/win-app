@@ -17,18 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
+using ProtonVPN.OperatingSystems.Network.Contracts;
+using ProtonVPN.StatisticalEvents.Dimensions.Mappers.Bases;
 
-namespace ProtonVPN.StatisticalEvents.DimensionMapping;
+namespace ProtonVPN.StatisticalEvents.Dimensions.Mappers;
 
-public class VpnStatusDimensionMapper : DimensionMapperBase, IDimensionMapper<VpnStatusDimension?>
+public class NetworkConnectionTypeDimensionMapper : DimensionMapperBase, INetworkConnectionTypeDimensionMapper
 {
-    public string Map(VpnStatusDimension? vpnStatus)
+    private const string WIFI = "wifi";
+    private const string WIRED = "wired";
+    private const string MOBILE = "mobile"; // Not used on Windows
+    private const string OTHER = "other";
+
+    public string Map(NetworkConnectionType? networkConnectionType)
     {
-        return vpnStatus switch
+        return networkConnectionType switch
         {
-            VpnStatusDimension.On => "on",
-            VpnStatusDimension.Off => "off",
+            NetworkConnectionType.Wifi => WIFI,
+            NetworkConnectionType.Wired => WIRED,
+            NetworkConnectionType.Other => OTHER,
             _ => NOT_AVAILABLE
         };
     }

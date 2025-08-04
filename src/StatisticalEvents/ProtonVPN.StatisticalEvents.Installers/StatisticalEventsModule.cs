@@ -18,8 +18,8 @@
  */
 
 using Autofac;
-using ProtonVPN.StatisticalEvents.DimensionBuilders;
-using ProtonVPN.StatisticalEvents.DimensionMapping;
+using ProtonVPN.StatisticalEvents.Dimensions.Builders.Bases;
+using ProtonVPN.StatisticalEvents.Dimensions.Mappers.Bases;
 using ProtonVPN.StatisticalEvents.Files;
 using ProtonVPN.StatisticalEvents.Sending;
 
@@ -29,14 +29,29 @@ public class StatisticalEventsModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        builder.RegisterType<VpnConnectionDimensionsProvider>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<StatisticalEventsFileReaderWriter>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<UpsellDimensionBuilder>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<AuthenticatedStatisticalEventSender>().AsImplementedInterfaces().SingleInstance().AutoActivate();
         builder.RegisterType<UnauthenticatedStatisticalEventSender>().AsImplementedInterfaces().SingleInstance().AutoActivate();
 
-        RegisterSpecificSenders(builder);
         RegisterMappers(builder);
+        RegisterBuilders(builder);
+        RegisterSpecificSenders(builder);
+    }
+
+    private void RegisterMappers(ContainerBuilder builder)
+    {
+        builder.RegisterAssemblyTypes(typeof(IDimensionMapper).Assembly)
+           .Where(t => typeof(IDimensionMapper).IsAssignableFrom(t) && !t.IsAbstract && !t.IsInterface)
+           .AsImplementedInterfaces()
+           .SingleInstance();
+    }
+
+    private void RegisterBuilders(ContainerBuilder builder)
+    {
+        builder.RegisterAssemblyTypes(typeof(IDimensionsBuilder).Assembly)
+           .Where(t => typeof(IDimensionsBuilder).IsAssignableFrom(t) && !t.IsAbstract && !t.IsInterface)
+           .AsImplementedInterfaces()
+           .SingleInstance();
     }
 
     private void RegisterSpecificSenders(ContainerBuilder builder)
@@ -47,13 +62,5 @@ public class StatisticalEventsModule : Module
         builder.RegisterType<ClientInstallsStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<VpnConnectionStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<VpnDisconnectionStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
-    }
-
-    private void RegisterMappers(ContainerBuilder builder)
-    {
-        builder.RegisterAssemblyTypes(typeof(DimensionMapperBase).Assembly)
-           .Where(t => typeof(DimensionMapperBase).IsAssignableFrom(t) && !t.IsAbstract && !t.IsInterface)
-           .AsImplementedInterfaces()
-           .SingleInstance();
     }
 }

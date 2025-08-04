@@ -17,20 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.OperatingSystems.Network.Contracts;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
+using ProtonVPN.StatisticalEvents.Dimensions.Mappers.Bases;
 
-namespace ProtonVPN.StatisticalEvents.DimensionMapping;
+namespace ProtonVPN.StatisticalEvents.Dimensions.Mappers;
 
-public class NetworkConnectionTypeMapper : DimensionMapperBase, IDimensionMapper<NetworkConnectionType?>
-{
-    public string Map(NetworkConnectionType? networkConnectionType)
-    {
-        return networkConnectionType switch
-        {
-            NetworkConnectionType.Wired => "wired",
-            NetworkConnectionType.Wifi => "wifi",
-            NetworkConnectionType.Other => "other",
-            _ => NOT_AVAILABLE
-        };
-    }
-}
+public interface IVpnPlanTierDimensionMapper : IDimensionMapper<VpnPlan?>
+{ }

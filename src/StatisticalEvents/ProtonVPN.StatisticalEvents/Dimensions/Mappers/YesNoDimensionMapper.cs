@@ -17,9 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.StatisticalEvents.DimensionMapping;
+using ProtonVPN.StatisticalEvents.Dimensions.Mappers.Bases;
 
-public abstract class DimensionMapperBase
+namespace ProtonVPN.StatisticalEvents.Dimensions.Mappers;
+
+public class YesNoDimensionMapper : DimensionMapperBase, IYesNoDimensionMapper
 {
-    public const string NOT_AVAILABLE = "n/a";
+    public const string YES = "yes";
+    public const string NO = "no";
+
+    public string Map(bool? value)
+    {
+        return value switch
+        {
+            true => YES,
+            false => NO,
+            _ => NOT_AVAILABLE
+        };
+    }
 }

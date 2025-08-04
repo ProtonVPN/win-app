@@ -17,22 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.StatisticalEvents.Contracts.Models;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
+using ProtonVPN.StatisticalEvents.Dimensions.Mappers.Bases;
 
-namespace ProtonVPN.StatisticalEvents.DimensionMapping;
+namespace ProtonVPN.StatisticalEvents.Dimensions.Mappers;
 
-public class VpnFeatureIntentDimensionMapper : DimensionMapperBase, IDimensionMapper<VpnFeatureIntent?>
+public class VpnPlanNameDimensionMapper : DimensionMapperBase, IVpnPlanNameDimensionMapper
 {
-    public string Map(VpnFeatureIntent? featureIntent)
+    public string Map(VpnPlan? vpnPlan)
     {
-        return featureIntent switch
-        {
-            VpnFeatureIntent.Standard => "standard",
-            VpnFeatureIntent.SecureCore => "secure_core",
-            VpnFeatureIntent.P2P => "p2p",
-            VpnFeatureIntent.Tor => "tor",
-            VpnFeatureIntent.Gateway => "gateway",
-            _ => NOT_AVAILABLE
-        };
+        return vpnPlan?.Name ?? NOT_AVAILABLE;
     }
 }

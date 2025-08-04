@@ -20,7 +20,7 @@
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Common.Core.StatisticalEvents;
 using ProtonVPN.StatisticalEvents.Contracts;
-using ProtonVPN.StatisticalEvents.DimensionBuilders;
+using ProtonVPN.StatisticalEvents.Dimensions.Builders;
 using ProtonVPN.StatisticalEvents.MeasurementGroups;
 using ProtonVPN.StatisticalEvents.Sending.Contracts;
 
@@ -31,13 +31,14 @@ public class UpsellSuccessStatisticalEventSender : StatisticalEventSenderBase<Up
 {
     public override string Event => "upsell_success";
 
-    private readonly IUpsellDimensionBuilder _upsellDimensionBuilder;
+    private readonly IUpsellDimensionsBuilder _upsellDimensionsBuilder;
     private readonly IAuthenticatedStatisticalEventSender _statisticalEventSender;
 
-    public UpsellSuccessStatisticalEventSender(IUpsellDimensionBuilder upsellDimensionBuilder,
+    public UpsellSuccessStatisticalEventSender(
+        IUpsellDimensionsBuilder upsellDimensionBuilder,
         IAuthenticatedStatisticalEventSender statisticalEventSender)
     {
-        _upsellDimensionBuilder = upsellDimensionBuilder;
+        _upsellDimensionsBuilder = upsellDimensionBuilder;
         _statisticalEventSender = statisticalEventSender;
     }
 
@@ -50,9 +51,7 @@ public class UpsellSuccessStatisticalEventSender : StatisticalEventSenderBase<Up
     private StatisticalEvent Create(ModalSource modalSource, VpnPlan oldPlan, VpnPlan newPlan, string? reference)
     {
         StatisticalEvent statisticalEvent = CreateStatisticalEvent();
-        statisticalEvent.Dimensions = _upsellDimensionBuilder.Build(modalSource, reference);
-        statisticalEvent.Dimensions["user_plan"] = _upsellDimensionBuilder.GetUserPlan(oldPlan);
-        statisticalEvent.Dimensions.Add("upgraded_user_plan", _upsellDimensionBuilder.GetUserPlan(newPlan));
+        statisticalEvent.Dimensions = _upsellDimensionsBuilder.Build(modalSource, oldPlan, newPlan, reference);
         return statisticalEvent;
     }
 }

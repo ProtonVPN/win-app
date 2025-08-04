@@ -17,22 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
+using ProtonVPN.StatisticalEvents.Dimensions.Mappers.Bases;
 
-namespace ProtonVPN.StatisticalEvents.DimensionMapping;
+namespace ProtonVPN.StatisticalEvents.Dimensions.Mappers;
 
-public class VpnProtocolMapper : DimensionMapperBase, IDimensionMapper<VpnProtocol?>
+public class VpnPlanTierDimensionMapper : DimensionMapperBase, IVpnPlanTierDimensionMapper
 {
-    public string Map(VpnProtocol? protocol)
+    private const string NON_USER = "non-user";
+    private const string FREE = "free";
+    private const string PAID = "paid";
+    private const string INTERNAL = "internal";
+    private const string CREDENTIAL_LESS = "credential-less"; // Not used on Windows
+
+    public string Map(VpnPlan? vpnPlan)
     {
-        return protocol switch
+        return vpnPlan?.MaxTier switch
         {
-            VpnProtocol.Smart => "smart", // Should never be used
-            VpnProtocol.OpenVpnUdp => "openvpn_udp",
-            VpnProtocol.OpenVpnTcp => "openvpn_tcp",
-            VpnProtocol.WireGuardUdp => "wireguard_udp",
-            VpnProtocol.WireGuardTcp => "wireguard_tcp",
-            VpnProtocol.WireGuardTls => "wireguard_tls",
+            null => NON_USER,
+            0 => FREE,
+            1 or 2 => PAID,
+            3 => INTERNAL,
             _ => NOT_AVAILABLE
         };
     }
