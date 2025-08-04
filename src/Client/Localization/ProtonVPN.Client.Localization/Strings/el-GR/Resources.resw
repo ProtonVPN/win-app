@@ -249,6 +249,12 @@
   <data name="Common_Actions_Install">
     <value>Εγκατάσταση</value>
   </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Μετακίνηση προς τα Κάτω</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Μετακίνηση προς τα Πάνω</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Επανασύνδεση</value>
   </data>
@@ -3175,6 +3181,9 @@
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
     <value>Συνδεθείτε στο Proton VPN χρησιμοποιώντας το δικό σας σύστημα ονομάτων τομέα (DNS). Χρησιμοποιείτε μόνο διακομιστές DNS που εμπιστεύεστε.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>Θα προσπαθήσουμε να συνδεθούμε σε αυτούς τους διακομιστές στη σειρά. Εάν κανένας από αυτούς δε λειτουργεί, θα χρησιμοποιηθεί το προεπιλεγμένο DNS του Proton VPN.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>Διακομιστές DNS ({0})</value>

@@ -249,6 +249,12 @@
   <data name="Common_Actions_Install">
     <value>설치</value>
   </data>
+  <data name="Common_Actions_MoveDown">
+    <value>아래로 이동</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>위로 이동</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>재연결</value>
   </data>
@@ -3067,6 +3073,9 @@ VPN 연결</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
     <value>Proton VPN에 지정한 도메인 네임 시스템(DNS)을 통해 접속하게 됩니다. 신뢰하는 DNS 서버만 사용하세요.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>이 서버들에 순서대로 연결하도록 시도합니다. 어느 것도 작동하지 않는다면 기본 Proton VPN DNS가 사용됩니다.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS 서버 ({0})</value>

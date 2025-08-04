@@ -249,6 +249,12 @@
   <data name="Common_Actions_Install">
     <value>Installeer</value>
   </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Move Down</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Move Up</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Opnieuw verbinden</value>
   </data>
@@ -3175,6 +3181,9 @@ VPN-verbinding</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
     <value>Maak verbinding met Proton VPN via uw eigen DNS (domain name system). Gebruik alleen DNS-servers die u vertrouwt.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS-servers ({0})</value>

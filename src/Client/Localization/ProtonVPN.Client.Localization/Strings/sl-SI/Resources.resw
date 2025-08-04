@@ -249,6 +249,12 @@
   <data name="Common_Actions_Install">
     <value>Namesti</value>
   </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Move Down</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Move Up</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Ponovno vzpostavite povezavo</value>
   </data>
@@ -3391,6 +3397,9 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
     <value>Povežite se s Proton VPN z lastnim sistemom domenskih imen (DNS). Uporabljajte le strežnike DNS, ki jim zaupate.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS strežniki ({0})</value>

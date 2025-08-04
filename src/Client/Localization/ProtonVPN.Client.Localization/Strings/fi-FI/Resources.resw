@@ -249,6 +249,12 @@
   <data name="Common_Actions_Install">
     <value>Asenna</value>
   </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Move Down</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Move Up</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Yhdistä uudelleen</value>
   </data>
@@ -3175,6 +3181,9 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
     <value>Yhdistä Proton VPN omilla DNS-nimipalvelimillasi. Käytä vain DNS-palvelimia, joihin luotat.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS-palvelimet ({0})</value>

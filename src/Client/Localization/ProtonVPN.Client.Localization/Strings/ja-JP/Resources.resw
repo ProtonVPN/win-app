@@ -249,6 +249,12 @@
   <data name="Common_Actions_Install">
     <value>インストール</value>
   </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Move Down</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Move Up</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>再接続</value>
   </data>
@@ -3067,6 +3073,9 @@ VPN接続</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
     <value>独自のドメイン ネーム システム (DNS) を使用して Proton VPN に接続します。 信頼できる DNS サーバーのみを使用してください。</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS サーバー ({0})</value>

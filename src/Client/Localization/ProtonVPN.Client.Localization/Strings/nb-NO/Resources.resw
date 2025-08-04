@@ -249,6 +249,12 @@
   <data name="Common_Actions_Install">
     <value>Installer</value>
   </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Flytt ned</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Flytt opp</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Koble til på nytt</value>
   </data>
@@ -3175,6 +3181,9 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
     <value>Koble til Proton VPN ved å bruke ditt eget domenenavnsystem (DNS). Bruk kun DNS-tjenere du stoler på.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>Vi vil prøve å koble til disse tjenerne i rekkefølge. Hvis ingen av dem fungerer, vil standard Proton VPN DNS brukes.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS-tjenere ({0})</value>

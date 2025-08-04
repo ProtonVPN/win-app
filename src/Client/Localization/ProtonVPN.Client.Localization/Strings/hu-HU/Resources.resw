@@ -249,6 +249,12 @@
   <data name="Common_Actions_Install">
     <value>Telepítés</value>
   </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Move Down</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Move Up</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Újrakapcsolódás</value>
   </data>
@@ -3175,6 +3181,9 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
     <value>Egyéni DNS szerverek használata a Proton VPN-hez való kapcsolódáskor. Csak olyan DNS-kiszolgálókat használjon, amelyekben megbízik.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS szerverek ({0})</value>

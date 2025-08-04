@@ -249,6 +249,12 @@
   <data name="Common_Actions_Install">
     <value>Встановити</value>
   </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Move Down</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Move Up</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Повторно з'єднатись</value>
   </data>
@@ -3011,7 +3017,7 @@
     <value>Введіть код</value>
   </data>
   <data name="Main_Loading">
-    <value>Loading, please wait...</value>
+    <value>Триває завантаження...</value>
     <comment>Message in the loading screen when starting the app</comment>
   </data>
   <data name="Main_Loading_SigningIn">
@@ -3019,7 +3025,7 @@
     <comment>Message in the loading screen when signing in</comment>
   </data>
   <data name="Main_Loading_SigningIn_Longer">
-    <value>This is taking longer than usual, but we're working on it.</value>
+    <value>Це триває довше, ніж зазвичай, але ми працюємо над цим.</value>
     <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
@@ -3391,6 +3397,9 @@ VPN-з'єднання</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
     <value>Під'єднайтесь до Proton VPN, використовуючи власну систему доменних імен (DNS). Використовуйте лише ті DNS-сервери, яким ви довіряєте.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS-сервери ({0})</value>

@@ -249,6 +249,12 @@
   <data name="Common_Actions_Install">
     <value>Installera</value>
   </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Flytta ner</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Flytta upp</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Anslut igen</value>
   </data>
@@ -3175,6 +3181,9 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
     <value>Anslut till Proton VPN med ditt eget domännamnssystem (DNS). Använd endast DNS-servrar som du litar på.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS-servrar ({0})</value>

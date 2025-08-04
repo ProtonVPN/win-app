@@ -249,6 +249,12 @@
   <data name="Common_Actions_Install">
     <value>Instalovat</value>
   </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Přesunout dolů</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Přesunout nahoru</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Znovu připojit</value>
   </data>
@@ -3391,6 +3397,9 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
     <value>Připojení k Proton VPN pomocí vlastního DNS serveru. Používejte pouze DNS servery, kterým důvěřujete.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>Pokusíme se k těmto serverům připojit postupně. Pokud žádný z nich nebude fungovat, použije se výchozí DNS Proton VPN.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS servery ({0})</value>

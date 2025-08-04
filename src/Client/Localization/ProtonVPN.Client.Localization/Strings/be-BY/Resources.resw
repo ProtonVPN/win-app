@@ -249,6 +249,12 @@
   <data name="Common_Actions_Install">
     <value>Усталяваць</value>
   </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Перамясціць уніз</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Перамясціць уверх</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Перападключыцца</value>
   </data>
@@ -3391,6 +3397,9 @@ Secure Core</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
     <value>Падключайцеся да Proton VPN выкарыстоўваючы вашу ўласную сістэму даменных імён (DNS). Карыстайцеся толькі тымі серверамі DNS, якім вы давяраеце.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>Будзе зроблена спроба падключыцца да гэтых сервераў па парадку. Калі ніводны з іх працаваць не будзе, то будзе выкарыстоўвацца сервер DNS Proton VPN.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>Серверы DNS ({0})</value>

@@ -249,6 +249,12 @@
   <data name="Common_Actions_Install">
     <value>Kur</value>
   </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Aşağı taşı</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Yukarı Taşı</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Yeniden bağlan</value>
   </data>
@@ -2795,7 +2801,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Kodu yazın</value>
   </data>
   <data name="Main_Loading">
-    <value>Loading, please wait...</value>
+    <value>Lütfen yüklenirken bekleyin...</value>
     <comment>Message in the loading screen when starting the app</comment>
   </data>
   <data name="Main_Loading_SigningIn">
@@ -2803,7 +2809,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <comment>Message in the loading screen when signing in</comment>
   </data>
   <data name="Main_Loading_SigningIn_Longer">
-    <value>This is taking longer than usual, but we're working on it.</value>
+    <value>Bu işlem normalden biraz daha uzun sürdü. Üzerinde çalışıyoruz.</value>
     <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
@@ -3175,6 +3181,9 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
     <value>Kendi etki alanı adı sisteminizi (DNS) kullanarak Proton VPN bağlantısı kurun. Yalnızca güvendiğiniz DNS sunucularını kullanın.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>Sırayla bu sunuculara bağlantı kurmaya çalışacağız. Hiçbiri işe yaramazsa, varsayılan Proton VPN DNS kullanılacak.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS sunucuları ({0})</value>

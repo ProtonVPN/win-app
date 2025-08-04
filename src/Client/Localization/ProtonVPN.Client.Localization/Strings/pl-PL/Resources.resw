@@ -249,6 +249,12 @@
   <data name="Common_Actions_Install">
     <value>Zainstaluj</value>
   </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Przesuń w dół</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Przesuń w górę</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Połącz ponownie</value>
   </data>
@@ -3391,6 +3397,9 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
     <value>Połącz się z Proton VPN, używając własnego serwera DNS. Korzystaj tylko z zaufanych serwerów DNS.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>Spróbujemy połączyć się z tymi serwerami według kolejności. Jeśli żaden nie będzie działać, zostanie użyty domyślny serwer DNS Proton VPN.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>Serwery DNS ({0})</value>

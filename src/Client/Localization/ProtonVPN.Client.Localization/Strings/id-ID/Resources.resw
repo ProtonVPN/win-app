@@ -249,6 +249,12 @@
   <data name="Common_Actions_Install">
     <value>Pasang</value>
   </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Turunkan</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Naikkan</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Hubungkan Ulang</value>
   </data>
@@ -3068,6 +3074,9 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
     <value>Menghubungkan aplikasi ke jaringan Proton VPN menggunakan nama domain (DNS) milik Anda. Mohon untuk hanya menggunakan server DNS yang Anda percayai.</value>
   </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>Kami akan berusaha untuk terhubung ke server ini sesuai urutan. Apabila tidak ada satu pun dari server ini yang dapat digunakan, DNS bawaan milik Proton VPN akan digunakan.</value>
+  </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>Server DNS ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
@@ -3677,7 +3686,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>NetShield</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
-    <value>Tingkatkan untuk memilih server mana pun.</value>
+    <value>Tingkatkan untuk bebas memilih server mana saja.</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Title">
     <value>Bukan negara yang Anda inginkan?</value>

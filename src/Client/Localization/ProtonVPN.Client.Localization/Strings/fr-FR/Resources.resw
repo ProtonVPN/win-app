@@ -249,6 +249,12 @@
   <data name="Common_Actions_Install">
     <value>Installer</value>
   </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Déplacer vers le bas</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Déplacer vers le haut</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>Se reconnecter</value>
   </data>
@@ -3175,6 +3181,9 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
     <value>Connectez-vous à Proton VPN en utilisant votre propre système de noms de domaine (DNS). Utilisez uniquement des serveurs DNS auxquels vous faites confiance.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>Nous allons essayer de vous connecter à ces serveurs dans l'ordre. Si aucun ne fonctionne, le DNS de Proton VPN sera utilisé par défaut.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>Serveurs DNS ({0})</value>

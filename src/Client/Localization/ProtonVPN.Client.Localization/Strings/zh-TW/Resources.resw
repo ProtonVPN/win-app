@@ -249,6 +249,12 @@
   <data name="Common_Actions_Install">
     <value>安裝</value>
   </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Move Down</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Move Up</value>
+  </data>
   <data name="Common_Actions_Reconnect">
     <value>重新連線</value>
   </data>
@@ -3068,6 +3074,9 @@ VPN 連線</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
     <value>使用您自己的網域名稱系統 (DNS) 連線到 Proton VPN。請僅使用您信任的 DNS 伺服器。</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>伺服器 ({0})</value>
