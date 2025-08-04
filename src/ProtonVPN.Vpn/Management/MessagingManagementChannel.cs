@@ -1,4 +1,4 @@
-﻿/*
+﻿﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -72,7 +72,9 @@ namespace ProtonVPN.Vpn.Management
         {
             if (!message.IsByteCount)
             {
-                _logger.Info<ProtocolLog>($"Management -> {message}");
+                // Sanitize message to prevent log forging
+                string sanitizedMessage = message.ToString().Replace("\r", "").Replace("\n", "");
+                _logger.Info<ProtocolLog>($"Management -> {sanitizedMessage}");
             }
         }
 

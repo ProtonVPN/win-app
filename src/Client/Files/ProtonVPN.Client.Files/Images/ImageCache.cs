@@ -1,4 +1,4 @@
-﻿/*
+﻿﻿/*
  * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -19,6 +19,7 @@
 
 using System.Security.Cryptography;
 using System.Text;
+using System.Linq;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Client.Files.Contracts.Images;
 using ProtonVPN.Common.Core.Extensions;
@@ -139,7 +140,7 @@ public class ImageCache : IImageCache
         }
         catch (Exception ex)
         {
-            _logger.Error<AppLog>($"Failed to download image using URL {downloadUrl}", ex);
+            _logger.Error<AppLog>($"Failed to download image using URL {SanitizeForLog(downloadUrl)}", ex);
         }
 
         return null;
@@ -183,5 +184,18 @@ public class ImageCache : IImageCache
         {
             _logger.Error<AppLog>($"Failed to delete the cached image '{cachedImage.LocalPath}'.", ex);
         }
+    }
+    /// <summary>
+    /// Sanitizes user input for safe logging by removing newlines and control characters.
+    /// </summary>
+    private static string SanitizeForLog(string input)
+    {
+        if (input == null)
+            return string.Empty;
+        // Remove CR, LF, and other control characters
+        var sanitized = input.Replace("\r", "").Replace("\n", "");
+        // Optionally, remove other non-printable characters
+        sanitized = new string(sanitized.Where(c => !char.IsControl(c)).ToArray());
+        return sanitized;
     }
 }

@@ -1,4 +1,4 @@
-﻿/*
+﻿﻿/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -35,6 +35,11 @@ namespace ProtonVPN.Core.Service.Vpn
     {
         private readonly ILogger _logger;
 
+        private static string SanitizeForLog(string input)
+        {
+            if (input == null) return string.Empty;
+            return input.Replace("\r", "").Replace("\n", "");
+        }
         public event EventHandler<VpnStateIpcEntity> OnVpnStateChanged;
         public event EventHandler<PortForwardingStateIpcEntity> OnPortForwardingStateChanged;
         public event EventHandler<ConnectionDetailsIpcEntity> OnConnectionDetailsChanged;
@@ -49,9 +54,9 @@ namespace ProtonVPN.Core.Service.Vpn
 
         public async Task VpnStateChange(VpnStateIpcEntity state)
         {
-            _logger.Info<ProcessCommunicationLog>($"Received VPN Status '{state.Status}', NetworkBlocked: {state.NetworkBlocked} " +
-                $"Error: '{state.Error}', EndpointIp: '{state.EndpointIp}', Label: '{state.Label}', " +
-                $"VpnProtocol: '{state.VpnProtocol}', OpenVpnAdapter: '{state.OpenVpnAdapterType}'");
+            _logger.Info<ProcessCommunicationLog>($"Received VPN Status '{SanitizeForLog(state.Status)}', NetworkBlocked: {state.NetworkBlocked} " +
+                $"Error: '{SanitizeForLog(state.Error)}', EndpointIp: '{SanitizeForLog(state.EndpointIp)}', Label: '{SanitizeForLog(state.Label)}', " +
+                $"VpnProtocol: '{SanitizeForLog(state.VpnProtocol)}', OpenVpnAdapter: '{SanitizeForLog(state.OpenVpnAdapterType)}'");
             InvokeOnUiThread(() => OnVpnStateChanged?.Invoke(this, state));
         }
 

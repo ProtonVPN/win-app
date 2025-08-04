@@ -1,4 +1,4 @@
-﻿/*
+﻿﻿/*
  * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -53,7 +53,7 @@ public class AnnouncementMapper : IMapper<AnnouncementResponse, Announcement>
             }
             else if (announcement is not null)
             {
-                _logger.Error<AppLog>($"Failed to fetch full screen image of announcement with ID '{leftEntity.Id}'.");
+                _logger.Error<AppLog>($"Failed to fetch full screen image of announcement with ID '{leftEntity.Id?.Replace("\r", "").Replace("\n", "")}'.");
             }
         }
         catch (Exception ex)
