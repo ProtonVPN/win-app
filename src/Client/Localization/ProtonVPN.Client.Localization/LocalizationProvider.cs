@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,11 +20,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Microsoft.Extensions.Localization;
 using ProtonVPN.Client.Localization.Building;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ReswPlusLib;
 using WinUI3Localizer;
 
@@ -32,18 +35,44 @@ namespace ProtonVPN.Client.Localization;
 
 public class LocalizationProvider : ILocalizationProvider
 {
+    private readonly ILogger _logger;
     private readonly ISettings _settings;
     private readonly ILocalizer _localizer;
     private readonly IStringLocalizer _stringLocalizer;
     private readonly Lazy<Dictionary<string, string>> _fallbackLanguageDictionary;
 
-    public LocalizationProvider(ISettings settings, ILocalizerFactory localizerFactory)
+    public LocalizationProvider(
+        ILogger logger,
+        ISettings settings,
+        ILocalizerFactory localizerFactory)
     {
+        _logger = logger;
         _settings = settings;
         _localizer = localizerFactory.GetOrCreate();
         _stringLocalizer = new StringLocalizer(this);
 
         _fallbackLanguageDictionary = new Lazy<Dictionary<string, string>>(CreateFallbackLanguageDictionary);
+
+        ForceCurrentLanguageForPluralProvider();
+    }
+
+    public void ForceCurrentLanguageForPluralProvider()
+    {
+        // The library does not allow forcing the language via public interface therefore using reflection.
+        try
+        {
+            Type type = typeof(ResourceLoaderExtension);
+
+            FieldInfo providerField = type.GetField("_pluralProvider", BindingFlags.NonPublic | BindingFlags.Static);
+            providerField?.SetValue(null, null);
+
+            MethodInfo method = type.GetMethod("CreatePluralProvider", BindingFlags.NonPublic | BindingFlags.Static);
+            method?.Invoke(null, [_settings.Language]);
+        }
+        catch (Exception e)
+        {
+            _logger.Error<AppLog>("Failed to set language for plural provider.", e);
+        }
     }
 
     // Only sets the fallback dictionary on Release so that missing translations are easier to detect when on Debug 

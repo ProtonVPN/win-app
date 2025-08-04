@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -35,22 +35,26 @@ public class LocalizationService : ILocalizationService, IEventMessageReceiver<S
     private readonly ISettings _settings;
     private readonly ILanguageFactory _languageFactory;
     private readonly ILocalizer _localizer;
+    private readonly ILocalizationProvider _localizationProvider;
 
     public LocalizationService(IEventMessageSender eventMessageSender,
         ISettings settings,
         ILanguageFactory languageFactory,
-        ILocalizerFactory localizerFactory)
+        ILocalizerFactory localizerFactory,
+        ILocalizationProvider localizationProvider)
     {
         _eventMessageSender = eventMessageSender;
         _settings = settings;
         _languageFactory = languageFactory;
         _localizer = localizerFactory.GetOrCreate();
         _localizer.SetLanguage(settings.Language);
+        _localizationProvider = localizationProvider;
     }
 
     private void SetLanguage(string language)
     {
         _localizer.SetLanguage(language);
+        _localizationProvider.ForceCurrentLanguageForPluralProvider();
         _eventMessageSender.Send(new LanguageChangedMessage(language));
     }
 

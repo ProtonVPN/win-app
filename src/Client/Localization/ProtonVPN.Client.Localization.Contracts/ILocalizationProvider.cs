@@ -34,4 +34,6 @@ public interface ILocalizationProvider
     string GetPlural(string resourceKey, long number);
 
     string GetPluralFormat(string resourceKey, long number);
+
+    void ForceCurrentLanguageForPluralProvider();
 }
