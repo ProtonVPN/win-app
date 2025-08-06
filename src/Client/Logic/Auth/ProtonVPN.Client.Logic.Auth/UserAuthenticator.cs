@@ -293,7 +293,7 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
 
             await SendLogoutRequestAsync();
 
-            await _unauthSessionManager.CreateIfDoesNotExistAsync(CancellationToken.None);
+            await _unauthSessionManager.RecreateAsync(CancellationToken.None);
 
             ClearAuthSessionDetails();
 
