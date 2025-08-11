@@ -250,10 +250,10 @@
     <value>Встановити</value>
   </data>
   <data name="Common_Actions_MoveDown">
-    <value>Move Down</value>
+    <value>Перемістити вниз</value>
   </data>
   <data name="Common_Actions_MoveUp">
-    <value>Move Up</value>
+    <value>Перемістити вгору</value>
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Повторно з'єднатись</value>
@@ -3399,7 +3399,7 @@ VPN-з'єднання</value>
     <value>Під'єднайтесь до Proton VPN, використовуючи власну систему доменних імен (DNS). Використовуйте лише ті DNS-сервери, яким ви довіряєте.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
-    <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
+    <value>Ми спробуємо з’єднатися з цими серверами у вказаному порядку. Якщо жоден з них не працюватиме, використовуватиметься типовий DNS Proton VPN.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS-сервери ({0})</value>

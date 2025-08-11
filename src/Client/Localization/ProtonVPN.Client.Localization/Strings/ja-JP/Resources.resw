@@ -250,10 +250,10 @@
     <value>インストール</value>
   </data>
   <data name="Common_Actions_MoveDown">
-    <value>Move Down</value>
+    <value>下へ移動</value>
   </data>
   <data name="Common_Actions_MoveUp">
-    <value>Move Up</value>
+    <value>上へ移動</value>
   </data>
   <data name="Common_Actions_Reconnect">
     <value>再接続</value>
@@ -2693,7 +2693,7 @@
     <value>コードを入力してください</value>
   </data>
   <data name="Main_Loading">
-    <value>Loading, please wait...</value>
+    <value>読み込み中です。お待ちください...</value>
     <comment>Message in the loading screen when starting the app</comment>
   </data>
   <data name="Main_Loading_SigningIn">
@@ -2701,7 +2701,7 @@
     <comment>Message in the loading screen when signing in</comment>
   </data>
   <data name="Main_Loading_SigningIn_Longer">
-    <value>This is taking longer than usual, but we're working on it.</value>
+    <value>通常より時間がかかっていますが、現在対応中です。</value>
     <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
@@ -3075,7 +3075,7 @@ VPN接続</value>
     <value>独自のドメイン ネーム システム (DNS) を使用して Proton VPN に接続します。 信頼できる DNS サーバーのみを使用してください。</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
-    <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
+    <value>これらのサーバーに順番に接続しようとします。どれも動作しない場合は、デフォルトのProton VPN DNSが使用されます。</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS サーバー ({0})</value>

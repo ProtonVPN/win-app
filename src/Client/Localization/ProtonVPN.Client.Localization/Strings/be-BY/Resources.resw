@@ -3966,7 +3966,7 @@ Secure Core</value>
     <value>Адключана</value>
   </data>
   <data name="Tray_Actions_ExitApplication">
-    <value>Выхад</value>
+    <value>Выйсці</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>Адкрыць {0}</value>

@@ -250,10 +250,10 @@
     <value>Instalare</value>
   </data>
   <data name="Common_Actions_MoveDown">
-    <value>Move Down</value>
+    <value>Mutare în jos</value>
   </data>
   <data name="Common_Actions_MoveUp">
-    <value>Move Up</value>
+    <value>Mutare în sus</value>
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Reconectare</value>
@@ -3291,7 +3291,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Conectați-vă la Proton VPN folosind propriul sistem de nume de domeniu (DNS). Utilizați numai servere DNS în care aveți încredere.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
-    <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
+    <value>Conectarea la aceste servere se va încerca în ordine. Dacă niciunul dintre ele nu funcționează, va fi folosit DNS-ul implicit al Proton VPN.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>Servere DNS ({0})</value>
