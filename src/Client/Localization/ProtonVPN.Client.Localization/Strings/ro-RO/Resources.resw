@@ -2865,7 +2865,7 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
     <value>Cod incorect. Reîncercați.</value>
   </data>
   <data name="Login_Error_SessionExpired">
-    <value>Sesiunea a expirat. Reutentificați-vă.</value>
+    <value>Sesiunea a expirat. Reautentificați-vă.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_SsoAuthFailed">
