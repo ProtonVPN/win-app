@@ -53,6 +53,8 @@ public interface IStaticConfiguration
     string GuestHoleServersJsonFilePath { get; }
     string ServiceSettingsFilePath { get; }
     string LegacyAppLocalData { get; }
+    string IPv6PrefixTreeFilePath { get; }
+    string IPv6PersistedDataFilePath { get; }
 
     IOpenVpnConfigurations OpenVpn { get; }
     IWireGuardConfigurations WireGuard { get; }

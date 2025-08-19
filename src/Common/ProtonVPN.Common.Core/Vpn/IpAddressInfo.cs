@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,25 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Runtime.InteropServices;
+namespace ProtonVPN.Common.Core.Vpn;
 
-namespace ProtonVPN.Common.Legacy.OS.Net.Routing;
-
-[StructLayout(LayoutKind.Sequential)]
-public struct MibIPForwardRow
+public readonly struct IpAddressInfo
 {
-    internal uint DwForwardDest;
-    internal uint DwForwardMask;
-    internal uint DwForwardPolicy;
-    internal uint DwForwardNextHop;
-    internal uint DwForwardIfIndex;
-    internal uint DwForwardType;
-    internal uint DwForwardProto;
-    internal uint DwForwardAge;
-    internal uint DwForwardNextHopAS;
-    internal uint DwForwardMetric1;
-    internal uint DwForwardMetric2;
-    internal uint DwForwardMetric3;
-    internal uint DwForwardMetric4;
-    internal uint DwForwardMetric5;
+    public string Ipv4Address { get; init; }
+    public string Ipv6Address { get; init; }
+
+    public override string ToString()
+    {
+        return $"IPv4 '{(string.IsNullOrEmpty(Ipv4Address) ? "-" : Ipv4Address)}' " +
+               $"IPv6 '{(string.IsNullOrEmpty(Ipv6Address) ? "-" : Ipv6Address)}'";
+    }
 }

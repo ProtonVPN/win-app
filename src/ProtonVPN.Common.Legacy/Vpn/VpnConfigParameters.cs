@@ -36,12 +36,13 @@ public class VpnConfigParameters
     public bool SplitTcp { get; set; }
     public bool ModerateNat { get; set; }
     public bool PortForwarding { get; set; }
+    public bool IsIpv6Enabled { get; set; }
     public TimeSpan WireGuardConnectionTimeout { get; set; }
 
     public VpnConfigParameters()
     {
         Ports = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>();
-        CustomDns = new List<string>();
-        SplitTunnelIPs = new List<string>();
+        CustomDns = [];
+        SplitTunnelIPs = [];
     }
 }

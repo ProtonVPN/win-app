@@ -146,6 +146,10 @@ Source: "..\{#SourcePath}\Assets\Flags\*"; DestDir: "{app}\{#VersionFolder}\Prot
 
 Source: "..\{#SourcePath}\Assets\Map\Data\*"; DestDir: "{app}\{#VersionFolder}\ProtonVPN.Client.Common.UI\Assets\Map\Data";
 
+; Comes from iplist-builder repo artifacts
+Source: "..\data\ipv6_chaos_prefixtree.bin"; DestDir: "{app}\{#VersionFolder}\ServiceData\IPv6"; DestName: "PrefixTree.bin";
+Source: "..\{#SourcePath}\proton_vpn_ipv6chaos.dll"; DestDir: "{app}\{#VersionFolder}";
+
 Source: "Images\Proton*.bmp"; Flags: dontcopy;
 
 [Icons]

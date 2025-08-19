@@ -138,6 +138,7 @@ using ProtonVPN.Serialization.Installers;
 using ProtonVPN.StatisticalEvents.Installers;
 using ProtonVPN.Client.Services.Upselling;
 using ProtonVPN.Client.Services.Bootstrapping.Activators;
+using ProtonVPN.IPv6.Installers;
 using ProtonVPN.Client.UI.Dialogs.Tray;
 using ProtonVPN.Client.UI.Dialogs.Tray.Pages;
 using ProtonVPN.Client.UI.Main.Home.Status;
@@ -211,6 +212,7 @@ public class AppModule : Module
                .RegisterModule<NetworkModule>()
                .RegisterModule<UnsecureWifiDetectionModule>()
                .RegisterModule<StatisticalEventsModule>()
+               .RegisterModule<IPv6Module>()
                .RegisterModule<NetworkTimeProtocolsModule>();
     }
 

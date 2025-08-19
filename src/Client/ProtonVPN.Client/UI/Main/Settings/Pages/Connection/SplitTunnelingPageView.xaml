@@ -21,6 +21,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 <Page x:Class="ProtonVPN.Client.UI.Main.Settings.Connection.SplitTunnelingPageView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ap="using:ProtonVPN.Client.Common.UI.AttachedProperties"
       xmlns:connection="using:ProtonVPN.Client.UI.Main.Settings.Connection"
       xmlns:controls="using:CommunityToolkit.WinUI.Controls"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
@@ -28,7 +29,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:featureicons="using:ProtonVPN.Client.UI.Main.FeatureIcons"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
-      xmlns:ap="using:ProtonVPN.Client.Common.UI.AttachedProperties"
       x:DefaultBindMode="OneWay"
       AutomationProperties.AutomationId="SplitTunnelingPage"
       AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_SplitTunneling_Page')}"
@@ -72,13 +72,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    ToolTipService.ToolTip="{x:Bind ViewModel.LearnMoreUrl, Mode=OneTime}">
                             <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                         </Hyperlink>
-                        <Run/>
+                        <Run />
                     </TextBlock>
                 </controls:SettingsExpander.Description>
 
-                <ToggleSwitch IsOn="{x:Bind ViewModel.IsSplitTunnelingEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}"
-                              AutomationProperties.AutomationId="SplitTunnelingSwitch"/>
+                <ToggleSwitch AutomationProperties.AutomationId="SplitTunnelingSwitch"
+                              IsOn="{x:Bind ViewModel.IsSplitTunnelingEnabled, Mode=TwoWay}"
+                              Style="{StaticResource ToggleSwitchStyle}" />
                 <controls:SettingsExpander.Items>
                     <StackPanel Spacing="16">
                         <RadioButton IsChecked="{x:Bind ViewModel.IsStandardSplitTunneling, Mode=TwoWay}"
@@ -216,7 +216,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 HorizontalAlignment="Left"
                                 AutomationProperties.AutomationId="AddAppButton"
                                 Command="{x:Bind ViewModel.AddAppCommand, Mode=OneTime}"
-                                Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_Apps_Add')}" />
+                                Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Add')}" />
                     </Grid>
                 </controls:SettingsCard>
             </StackPanel>
@@ -238,6 +238,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
@@ -288,6 +289,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <DataTemplate x:DataType="connection:SplitTunnelingIpAddressViewModel">
                                     <Grid ColumnSpacing="8">
                                         <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
@@ -295,6 +297,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                   Content="{x:Bind IpAddress}"
                                                   IsChecked="{x:Bind IsActive, Mode=TwoWay}" />
                                         <custom:GhostButton Grid.Column="1"
+                                                            HorizontalAlignment="Left"
+                                                            AutomationProperties.AutomationId="ShowIpv6DisabledWarningButton"
+                                                            AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Common_Ipv6WarningButton')}"
+                                                            ToolTipService.ToolTip="{x:Bind Localizer.Get('Settings_Common_Ipv6WarningButton')}"
+                                                            Command="{x:Bind ShowIpv6DisabledWarningCommand, Mode=OneTime}"
+                                                            Visibility="{x:Bind IsInactiveDueToIpv6Disabled, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneTime}">
+                                            <custom:GhostButton.LeftIcon>
+                                                <pathicons:ExclamationCircle />
+                                            </custom:GhostButton.LeftIcon>
+                                        </custom:GhostButton>
+                                        <custom:GhostButton Grid.Column="2"
                                                             AutomationProperties.AutomationId="RemoveIpAddressButton"
                                                             AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_IpAddresses_Remove')}"
                                                             Command="{x:Bind RemoveIpAddressCommand, Mode=OneTime}"
@@ -308,22 +321,28 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </ItemsRepeater.ItemTemplate>
                         </ItemsRepeater>
 
-                        <TextBox Grid.Row="1"
-                                 Grid.Column="0"
-                                 KeyDown="{x:Bind ViewModel.OnIpAddressKeyDownHandler, Mode=OneTime}"
-                                 ap:FieldValidation.HasErrors="{x:Bind ViewModel.IsCurrentAddressValid, Converter={StaticResource NotBooleanToBooleanConverter}}"                      
-                                 PlaceholderText="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_IpAddresses_Watermark')}"
-                                 Text="{x:Bind ViewModel.CurrentIpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 Style="{StaticResource ValidationTextBoxStyle}"
-                                 AutomationProperties.AutomationId="IpAddressTextBox"
-                                 MinHeight="34"/>
+                        <TextBlock Grid.Row="1"
+                                   Style="{StaticResource CaptionStrongTextBlockStyle}"
+                                   Margin="0,0,0,8"
+                                   Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_IpAddresses_AddNew')}" />
 
-                        <Button Grid.Row="1"
-                                Grid.Column="1" 
+                        <TextBox Grid.Row="2"
+                                 Grid.Column="0"
+                                 MinHeight="34"
+                                 ap:FieldValidation.ErrorMessage="{x:Bind ViewModel.IpAddressError}"
+                                 ap:FieldValidation.HasErrors="{x:Bind ViewModel.IpAddressError, Converter={StaticResource NotNullToBooleanConverter}}"
+                                 AutomationProperties.AutomationId="IpAddressTextBox"
+                                 KeyDown="{x:Bind ViewModel.OnIpAddressKeyDownHandler, Mode=OneTime}"
+                                 PlaceholderText="{x:Bind ViewModel.Localizer.Get('Settings_Common_IpAddresses_Watermark')}"
+                                 Style="{StaticResource ValidationTextBoxStyle}"
+                                 Text="{x:Bind ViewModel.CurrentIpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <Button Grid.Row="2"
+                                Grid.Column="1"
                                 VerticalAlignment="Top"
                                 AutomationProperties.AutomationId="AddIpAddressButton"
                                 Command="{x:Bind ViewModel.AddIpAddressCommand, Mode=OneTime}"
-                                Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_IpAddresses_Add')}" />
+                                Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Add')}" />
                     </Grid>
                 </controls:SettingsCard>
             </StackPanel>

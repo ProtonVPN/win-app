@@ -21,6 +21,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Common.Attributes;
@@ -51,9 +52,10 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
     private readonly IMainWindowActivator _mainWindowActivator;
 
     [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(AddIpAddressCommand))]
-    [NotifyPropertyChangedFor(nameof(IsCurrentAddressValid))]
     private string? _currentIpAddress;
+
+    [ObservableProperty]
+    private string? _ipAddressError;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(SplitTunnelingFeatureIconSource))]
@@ -72,12 +74,11 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
     [NotifyPropertyChangedFor(nameof(SplitTunnelingFeatureIconSource))]
     private SplitTunnelingMode _currentSplitTunnelingMode;
 
+    private bool _wasIpv6WarningDisplayed;
+
     public ImageSource SplitTunnelingFeatureIconSource => GetFeatureIconSource(IsSplitTunnelingEnabled, CurrentSplitTunnelingMode);
 
     public string LearnMoreUrl => _urlsBrowser.SplitTunnelingLearnMore;
-
-    public bool IsCurrentAddressValid => string.IsNullOrWhiteSpace(CurrentIpAddress) 
-                                      || CanAddIpAddress();
 
     public bool IsStandardSplitTunneling
     {
@@ -163,6 +164,14 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         ];
     }
 
+    protected override void OnActivated()
+    {
+        base.OnActivated();
+
+        ResetCurrentIpAddress();
+        ResetIpAddressError();
+    }
+
     public static ImageSource GetFeatureIconSource(bool isEnabled, SplitTunnelingMode mode)
     {
         if (!isEnabled)
@@ -209,26 +218,73 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         return CurrentSplitTunnelingMode == SplitTunnelingMode.Standard ? StandardApps : InverseApps;
     }
 
-    [RelayCommand(CanExecute = nameof(CanAddIpAddress))]
-    public void AddIpAddress()
+    [RelayCommand]
+    public async Task AddIpAddressAsync()
     {
-        if (!NetworkAddress.TryParse(CurrentIpAddress, out NetworkAddress address))
+        NetworkAddress? address = GetValidatedCurrentIpAddress();
+        string? error = GetIpAddressError(address);
+
+        if (error != null || address == null)
         {
+            IpAddressError = error ?? Localizer.Get("Settings_Common_IpAddresses_Invalid");
             return;
         }
 
         ObservableCollection<SplitTunnelingIpAddressViewModel> ipAddresses = GetIpAddresses();
-        SplitTunnelingIpAddressViewModel? ipAddress = ipAddresses.FirstOrDefault(s => s.IpAddress == address.FormattedAddress);
-        if (ipAddress != null)
+        ipAddresses.Add(new(ViewModelHelper, Settings, this, address.Value.FormattedAddress));
+
+        ResetCurrentIpAddress();
+        ResetIpAddressError();
+
+        if (address?.IsIpV6 == true && !Settings.IsIpv6Enabled && !_wasIpv6WarningDisplayed)
         {
-            ipAddress.IsActive = true;
+            await ShowIpv6DisabledWarningInnerAsync();
+
+            // Show this warning only once per app launch
+            _wasIpv6WarningDisplayed = true;
         }
-        else
+    }
+
+    [RelayCommand]
+    public Task TriggerIpv6DisabledWarningAsync()
+    {
+        return ShowIpv6DisabledWarningInnerAsync();
+    }
+
+    private async Task ShowIpv6DisabledWarningInnerAsync()
+    {
+        if (CurrentSplitTunnelingMode != SplitTunnelingMode.Inverse)
         {
-            ipAddresses.Add(new(ViewModelHelper, this, address.FormattedAddress));
+            return;
         }
 
-        CurrentIpAddress = string.Empty;
+        await ShowIpv6DisabledWarningAsync();
+    }
+
+    protected override void OnIpv6WarningClosedWithPrimaryAction()
+    {
+        List<SplitTunnelingIpAddressViewModel> inverseIpAddresses = InverseIpAddresses.ToList();
+        InverseIpAddresses.Clear();
+
+        foreach (SplitTunnelingIpAddressViewModel ip in inverseIpAddresses)
+        {
+            InverseIpAddresses.Add(new(ViewModelHelper, Settings, this, ip.IpAddress, ip.IsActive));
+        }
+    }
+
+    private string? GetIpAddressError(NetworkAddress? address)
+    {
+        if (address == null)
+        {
+            return Localizer.Get("Settings_Common_IpAddresses_Invalid");
+        }
+
+        if (GetIpAddresses().FirstOrDefault(ip => ip.IpAddress == address.Value.FormattedAddress) != null)
+        {
+            return Localizer.Get("Settings_Common_IpAddresses_AlreadyExists");
+        }
+
+        return null;
     }
 
     private ObservableCollection<SplitTunnelingIpAddressViewModel> GetIpAddresses()
@@ -236,10 +292,9 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         return CurrentSplitTunnelingMode == SplitTunnelingMode.Standard ? StandardIpAddresses : InverseIpAddresses;
     }
 
-    public bool CanAddIpAddress()
+    private NetworkAddress? GetValidatedCurrentIpAddress()
     {
-        return NetworkAddress.TryParse(CurrentIpAddress, out NetworkAddress address)
-            && address.IsIpV4;
+        return NetworkAddress.TryParse(CurrentIpAddress, out NetworkAddress address) ? address : null;
     }
 
     public void RemoveApp(SplitTunnelingAppViewModel app)
@@ -300,7 +355,7 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         ipAddresses.Clear();
         foreach (SplitTunnelingIpAddress ip in settingsIpAddresses)
         {
-            ipAddresses.Add(new(ViewModelHelper, this, ip.IpAddress, ip.IsActive));
+            ipAddresses.Add(new(ViewModelHelper, Settings, this, ip.IpAddress, ip.IsActive));
         }
     }
 
@@ -360,7 +415,7 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
 
     public void OnIpAddressKeyDownHandler(object sender, KeyRoutedEventArgs e)
     {
-        if (e.Key == VirtualKey.Enter && CanAddIpAddress())
+        if (e.Key == VirtualKey.Enter)
         {
             AddIpAddressCommand.Execute(null);
         }
@@ -398,5 +453,20 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         }
 
         return isReconnectionRequired;
+    }
+
+    partial void OnCurrentIpAddressChanged(string? value)
+    {
+        ResetIpAddressError();
+    }
+
+    private void ResetIpAddressError()
+    {
+        IpAddressError = null;
+    }
+
+    private void ResetCurrentIpAddress()
+    {
+        CurrentIpAddress = null;
     }
 }

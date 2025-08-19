@@ -34,12 +34,20 @@ namespace ProtonVPN.Vpn.Tests.OpenVpn.Arguments;
 [SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]
 public class EndpointArgumentsTest
 {
+    private readonly VpnHost _vpnHost = new(
+            name: "proton.vpn",
+            ip: "135.27.46.203",
+            label: string.Empty,
+            x25519PublicKey: null,
+            signature: string.Empty,
+            isIpv6Supported: false,
+            relayIpByProtocol: null);
+
     [TestMethod]
     public void Enumerable_ShouldContain_ExpectedNumberOfOptions()
     {
         // Arrange
-        VpnEndpoint endpoint =
-            new(new VpnHost("abc.com", "4.5.6.7", string.Empty, null, string.Empty, null), VpnProtocol.OpenVpnUdp, 48965);
+        VpnEndpoint endpoint = new(_vpnHost, VpnProtocol.OpenVpnUdp, 48965);
         OpenVpnEndpointArguments subject = new(endpoint);
 
         // Act
@@ -53,8 +61,7 @@ public class EndpointArgumentsTest
     public void Enumerable_ShouldContain_RemoteOption()
     {
         // Arrange
-        VpnEndpoint endpoint =
-            new(new VpnHost("abc.com", "11.22.33.44", string.Empty, null, string.Empty, null), VpnProtocol.OpenVpnUdp, 61874);
+        VpnEndpoint endpoint = new(_vpnHost, VpnProtocol.OpenVpnUdp, 61874);
         OpenVpnEndpointArguments subject = new(endpoint);
 
         // Act
@@ -70,8 +77,7 @@ public class EndpointArgumentsTest
     public void Enumerable_ShouldMap_VpnProtocol(VpnProtocol protocol, string expected)
     {
         // Arrange
-        VpnEndpoint endpoint =
-            new(new VpnHost("abc.com", "7.7.7.7", string.Empty, null, string.Empty, null), protocol, 44444);
+        VpnEndpoint endpoint = new(_vpnHost, protocol, 44444);
         OpenVpnEndpointArguments subject = new(endpoint);
 
         // Act
@@ -86,8 +92,7 @@ public class EndpointArgumentsTest
     public void Enumerable_ShouldThrow_WhenProtocolIsNotSupported(VpnProtocol protocol)
     {
         // Arrange
-        VpnEndpoint endpoint =
-            new(new VpnHost("abc.com", "1.2.3.4", string.Empty, null, string.Empty, null), protocol, 54321);
+        VpnEndpoint endpoint = new(_vpnHost, protocol, 54321);
         OpenVpnEndpointArguments subject = new(endpoint);
 
         // Act

@@ -31,6 +31,7 @@ using ProtonVPN.StatisticalEvents.Contracts.Models;
 using ProtonVPN.Logging.Contracts.Events.StatisticsLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Observers;
 
 namespace ProtonVPN.Client.Logic.Connection.Statistics;
 
@@ -39,6 +40,7 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
     private readonly IVpnConnectionStatisticalEventSender _vpnConnectionStatisticalEventSender;
     private readonly IVpnDisconnectionStatisticalEventSender _vpnDisconnectionStatisticalEventSender;
     private readonly ISystemNetworkInterfaces _networkInterfaces;
+    private readonly IFeatureFlagsObserver _featureFlagsObserver;
     private readonly ISettings _settings;
     private readonly ILogger _logger;
 
@@ -53,12 +55,14 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
         IVpnConnectionStatisticalEventSender vpnConnectionStatisticalEventSender,
         IVpnDisconnectionStatisticalEventSender vpnDisconnectionStatisticalEventSender,
         ISystemNetworkInterfaces networkInterfaces,
+        IFeatureFlagsObserver featureFlagsObserver,
         ISettings settings,
         ILogger logger)
     {
         _vpnConnectionStatisticalEventSender = vpnConnectionStatisticalEventSender;
         _vpnDisconnectionStatisticalEventSender = vpnDisconnectionStatisticalEventSender;
         _networkInterfaces = networkInterfaces;
+        _featureFlagsObserver = featureFlagsObserver;
         _settings = settings;
         _logger = logger;
     }
@@ -225,6 +229,7 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
             VpnCountry = _lastKnownConnectionDetails?.ExitCountryCode,
             Port = _lastKnownConnectionDetails?.Port ?? 0,
             VpnPlan = _settings.VpnPlan,
+            IsIpv6Enabled = _featureFlagsObserver.IsIpv6SupportEnabled && _settings.IsIpv6Enabled,
             Server = new ServerDetailsEventData
             {
                 Name = _lastKnownConnectionDetails?.Server.Name,

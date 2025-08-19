@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,11 +21,14 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
+using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
 
 public partial class DnsServerViewModel : ViewModelBase
 {
+    private readonly ISettings _settings;
     private readonly CustomDnsServersViewModel _parentViewModel;
 
     [ObservableProperty]
@@ -37,24 +40,37 @@ public partial class DnsServerViewModel : ViewModelBase
     public string RemoveTooltip => Localizer.Get("Common_Actions_Remove");    
     public bool IsDragDropEnabled => _parentViewModel.IsDragDropEnabled;
 
+    public bool IsInactiveDueToIpv6Disabled => !_settings.IsIpv6Enabled &&
+                                               NetworkAddress.TryParse(IpAddress, out NetworkAddress address) &&
+                                               address.IsIpV6;
+
     public DnsServerViewModel(
+        ISettings settings,
         CustomDnsServersViewModel parentViewModel,
         IViewModelHelper viewModelHelper,
         string ipAddress)
-        : this(parentViewModel, viewModelHelper, ipAddress, true)
+        : this(settings, parentViewModel, viewModelHelper, ipAddress, true)
     { }
 
     public DnsServerViewModel(
+        ISettings settings,
         CustomDnsServersViewModel parentViewModel,
         IViewModelHelper viewModelHelper,
         string ipAddress,
         bool isActive)
         : base(viewModelHelper)
     {
+        _settings = settings;
         _parentViewModel = parentViewModel;
 
         _isActive = isActive;
         IpAddress = ipAddress;
+    }
+
+    [RelayCommand]
+    public Task ShowIpv6DisabledWarning()
+    {
+        return _parentViewModel.TriggerIpv6DisabledWarningAsync();
     }
 
     [RelayCommand]

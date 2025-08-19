@@ -173,7 +173,7 @@ namespace ProtonVPN.NetworkFilter
             return filterId;
         }
 
-        public Guid CreateRemoteNetworkIPv4Filter(
+        public Guid CreateRemoteNetworkIPFilter(
             DisplayData displayData,
             Action action,
             Layer layer,
@@ -182,7 +182,7 @@ namespace ProtonVPN.NetworkFilter
             bool persistent = false,
             Guid id = new())
         {
-            Guid filterId = IpFilterNative.CreateRemoteNetworkIPv4Filter(
+            Guid filterId = IpFilterNative.CreateRemoteNetworkIPFilter(
                 Session.Handle,
                 ProviderId,
                 Id,
@@ -343,6 +343,188 @@ namespace ProtonVPN.NetworkFilter
                 openVpnPath,
                 serverIpAddress,
                 (uint)(persistent ? 1 : 0),
+                id);
+
+            AddFilter(filterId);
+
+            return filterId;
+        }
+
+        public Guid PermitRouterSolicitationMessage(
+            DisplayData displayData,
+            Action action,
+            Layer layer,
+            uint weight,
+            bool persistent = false,
+            Guid id = new())
+        {
+            Guid filterId = IpFilterNative.PermitRouterSolicitationMessage(
+                Session.Handle,
+                ProviderId,
+                Id,
+                displayData,
+                layer,
+                action,
+                weight,
+                Guid.Empty,
+                Guid.Empty,
+                persistent,
+                id);
+
+            AddFilter(filterId);
+
+            return filterId;
+        }
+
+        public Guid PermitRouterAdvertisementMessage(
+            DisplayData displayData,
+            Action action,
+            Layer layer,
+            uint weight,
+            bool persistent = false,
+            Guid id = new())
+        {
+            Guid filterId = IpFilterNative.PermitRouterAdvertisementMessage(
+                Session.Handle,
+                ProviderId,
+                Id,
+                displayData,
+                layer,
+                action,
+                weight,
+                Guid.Empty,
+                Guid.Empty,
+                persistent,
+                id);
+
+            AddFilter(filterId);
+
+            return filterId;
+        }
+
+        public Guid PermitNeighborSolicitationMessage(
+            DisplayData displayData,
+            Action action,
+            Layer layer,
+            uint weight,
+            bool persistent = false,
+            Guid id = new())
+        {
+            Guid filterId = IpFilterNative.PermitNeighborSolicitationMessage(
+                Session.Handle,
+                ProviderId,
+                Id,
+                displayData,
+                layer,
+                action,
+                weight,
+                Guid.Empty,
+                Guid.Empty,
+                persistent,
+                id);
+
+            AddFilter(filterId);
+
+            return filterId;
+        }
+
+        public Guid PermitNeighborAdvertisementMessage(
+            DisplayData displayData,
+            Action action,
+            Layer layer,
+            uint weight,
+            bool persistent = false,
+            Guid id = new())
+        {
+            Guid filterId = IpFilterNative.PermitNeighborAdvertisementMessage(
+                Session.Handle,
+                ProviderId,
+                Id,
+                displayData,
+                layer,
+                action,
+                weight,
+                Guid.Empty,
+                Guid.Empty,
+                persistent,
+                id);
+
+            AddFilter(filterId);
+
+            return filterId;
+        }
+
+        public Guid PermitIcmpRedirectMessage(
+            DisplayData displayData,
+            Action action,
+            Layer layer,
+            uint weight,
+            bool persistent = false,
+            Guid id = new())
+        {
+            Guid filterId = IpFilterNative.PermitIcmpRedirectMessage(
+                Session.Handle,
+                ProviderId,
+                Id,
+                displayData,
+                layer,
+                action,
+                weight,
+                Guid.Empty,
+                Guid.Empty,
+                persistent,
+                id);
+
+            AddFilter(filterId);
+
+            return filterId;
+        }
+
+        public Guid PermitOutboundIpv6Dhcp(
+            DisplayData displayData,
+            Action action,
+            Layer layer,
+            uint weight,
+            bool persistent = false,
+            Guid id = new())
+        {
+            Guid filterId = IpFilterNative.PermitOutboundIpv6Dhcp(
+                Session.Handle,
+                ProviderId,
+                Id,
+                displayData,
+                layer,
+                action,
+                weight,
+                Guid.Empty,
+                Guid.Empty,
+                persistent,
+                id);
+
+            AddFilter(filterId);
+
+            return filterId;
+        }
+
+        public Guid PermitInboundIpv6Dhcp(
+            DisplayData displayData,
+            Action action,
+            Layer layer,
+            uint weight,
+            bool persistent = false,
+            Guid id = new())
+        {
+            Guid filterId = IpFilterNative.PermitInboundIpv6Dhcp(
+                Session.Handle,
+                ProviderId,
+                Id,
+                displayData,
+                layer,
+                action,
+                weight,
+                Guid.Empty,
+                Guid.Empty,
+                persistent,
                 id);
 
             AddFilter(filterId);

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,5 +23,8 @@ namespace ProtonVPN.Client.Settings.Contracts.Observers;
 
 public interface IFeatureFlagsObserver : IObserver
 {
+    bool IsIpv6SupportEnabled { get; }
     bool IsLocalAreaNetworkAllowedForPaidUsersOnly { get; }
+
+    Task UpdateAsync(CancellationToken cancellationToken);
 }

@@ -19,8 +19,9 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
-using ProtonVPN.Common.Legacy.OS.Net;
 
 namespace ProtonVPN.Vpn.OpenVpn.Arguments
 {
@@ -44,14 +45,18 @@ namespace ProtonVPN.Vpn.OpenVpn.Arguments
 
             foreach (string ip in _ips)
             {
-                var address = new NetworkAddress(ip);
+                if (!NetworkAddress.TryParse(ip, out NetworkAddress networkAddress))
+                {
+                    continue;
+                }
+
                 switch (_splitTunnelMode)
                 {
                     case SplitTunnelMode.Permit:
-                        yield return $"--route {address.Ip} {address.Mask} vpn_gateway 32000";
+                        yield return $"--route {networkAddress.Ip} {networkAddress.GetSubnetMaskString()} vpn_gateway 32000";
                         break;
                     case SplitTunnelMode.Block:
-                        yield return $"--route {address.Ip} {address.Mask} net_gateway metric";
+                        yield return $"--route {networkAddress.Ip} {networkAddress.GetSubnetMaskString()} net_gateway metric";
                         break;
                 }
             }

@@ -29,6 +29,7 @@ using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Configurations.Installers;
 using ProtonVPN.Crypto.Installers;
+using ProtonVPN.IPv6.Installers;
 using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
@@ -71,6 +72,7 @@ internal class Bootstrapper
                .RegisterModule<NetworkModule>()
                .RegisterModule<ConfigurationsModule>()
                .RegisterAssemblyModule<LoggingModule>()
+               .RegisterAssemblyModule<IPv6Module>()
                .RegisterAssemblyModule<UpdateModule>();
         _container = builder.Build();
     } 

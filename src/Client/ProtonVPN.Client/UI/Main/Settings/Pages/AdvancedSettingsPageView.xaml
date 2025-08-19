@@ -270,13 +270,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </toolkit:SettingsExpander.Items>
             </toolkit:SettingsExpander>
 
-            <toolkit:SettingsCard AutomationProperties.AutomationId="Ipv6LeakProtectionSettingsCard"
-                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_Ipv6LeakProtection')}"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="Ipv6SettingsCard"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_Ipv6')}"
                                   IsTabStop="False"
-                                  Style="{StaticResource DefaultSettingsCardStyle}">
+                                  Style="{StaticResource DefaultSettingsCardStyle}"
+                                  Visibility="{x:Bind ViewModel.IsIpv6SettingVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <toolkit:SettingsCard.Description>
                     <TextBlock TextWrapping="Wrap">
-                        <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_Ipv6LeakProtection_Description')}" />
+                        <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_Ipv6_Description')}" />
                         <Hyperlink NavigateUri="{x:Bind ViewModel.Ipv6LeakProtectionLearnMoreUrl, Mode=OneTime}"
                                    ToolTipService.ToolTip="{x:Bind ViewModel.Ipv6LeakProtectionLearnMoreUrl, Mode=OneTime}">
                             <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
@@ -284,9 +285,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Run/>
                     </TextBlock>
                 </toolkit:SettingsCard.Description>
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsIpv6Enabled, Mode=TwoWay}"
+                              Style="{StaticResource ToggleSwitchStyle}" />
+            </toolkit:SettingsCard>
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="Ipv6LeakProtectionSettingsCard"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_Ipv6LeakProtection')}"
+                                  Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_Ipv6LeakProtection_Description')}"
+                                  IsTabStop="False"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsIpv6LeakProtectionEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
             </toolkit:SettingsCard>
+
         </StackPanel>
     </custom:SettingsPageContentControl>
 

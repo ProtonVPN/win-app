@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Core.Vpn;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
@@ -25,6 +26,13 @@ namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
 public class ConnectionDetailsMapper : IMapper<ConnectionDetails, ConnectionDetailsIpcEntity>
 {
+    private readonly IEntityMapper _entityMapper;
+
+    public ConnectionDetailsMapper(IEntityMapper entityMapper)
+    {
+        _entityMapper = entityMapper;
+    }
+
     public ConnectionDetailsIpcEntity Map(ConnectionDetails leftEntity)
     {
         return leftEntity is null
@@ -33,7 +41,7 @@ public class ConnectionDetailsMapper : IMapper<ConnectionDetails, ConnectionDeta
             {
                 ClientIpAddress = leftEntity.ClientIpAddress,
                 ClientCountryIsoCode = leftEntity.ClientCountryIsoCode,
-                ServerIpAddress = leftEntity.ServerIpAddress,
+                ServerIpAddress = _entityMapper.Map<IpAddressInfo, VpnServerAddressIpcEntity>(leftEntity.ServerIpAddress),
             };
     }
 
@@ -45,7 +53,7 @@ public class ConnectionDetailsMapper : IMapper<ConnectionDetails, ConnectionDeta
             {
                 ClientIpAddress = rightEntity.ClientIpAddress,
                 ClientCountryIsoCode = rightEntity.ClientCountryIsoCode,
-                ServerIpAddress = rightEntity.ServerIpAddress,
+                ServerIpAddress = _entityMapper.Map<VpnServerAddressIpcEntity, IpAddressInfo>(rightEntity.ServerIpAddress),
             };
     }
 }

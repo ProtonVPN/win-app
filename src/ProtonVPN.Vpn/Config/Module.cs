@@ -26,6 +26,8 @@ using ProtonVPN.Configurations.Contracts.Entities;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.OperatingSystems.Network.Contracts;
+using ProtonVPN.OperatingSystems.Processes.Contracts;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Connection;
 using ProtonVPN.Vpn.ConnectionCertificates;
@@ -35,15 +37,14 @@ using ProtonVPN.Vpn.Management;
 using ProtonVPN.Vpn.NetShield;
 using ProtonVPN.Vpn.NetworkAdapters;
 using ProtonVPN.Vpn.OpenVpn;
-using ProtonVPN.Vpn.PortScanning;
 using ProtonVPN.Vpn.PortMapping;
 using ProtonVPN.Vpn.PortMapping.Serializers.Common;
 using ProtonVPN.Vpn.PortMapping.UdpClients;
+using ProtonVPN.Vpn.PortScanning;
 using ProtonVPN.Vpn.ServerValidation;
 using ProtonVPN.Vpn.SplitTunnel;
 using ProtonVPN.Vpn.SynchronizationEvent;
 using ProtonVPN.Vpn.WireGuard;
-using ProtonVPN.OperatingSystems.Network.Contracts;
 
 namespace ProtonVPN.Vpn.Config;
 
@@ -152,10 +153,10 @@ public class Module
                 new WireGuardService(logger, staticConfig, new SafeService(
                     new LoggingService(logger,
                         new SystemService(staticConfig.WireGuard.ServiceName, c.Resolve<IOsProcesses>())))),
+                new WireGuardConfigGenerator(config, x25519KeyGenerator),
                 new NtTrafficManager(staticConfig.WireGuard.ConfigFileName, logger),
                 new WintunTrafficManager(staticConfig.WireGuard.PipeName),
-                new StatusManager(logger, staticConfig.WireGuard.LogFilePath),
-                x25519KeyGenerator));
+                new StatusManager(logger, staticConfig.WireGuard.LogFilePath)));
     }
 
     private ISingleVpnConnection GetOpenVpnConnection(IComponentContext c)
@@ -175,6 +176,7 @@ public class Module
                 c.Resolve<INetworkInterfaceLoader>(),
                 c.Resolve<OpenVpnProcess>(),
                 c.Resolve<IRandomStringGenerator>(),
+                c.Resolve<ICommandLineCaller>(),
                 new ManagementClient(
                     logger,
                     gatewayCache,

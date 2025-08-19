@@ -34,7 +34,6 @@ using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Api.Contracts.Streaming;
 using ProtonVPN.Api.Contracts.Users;
 using ProtonVPN.Api.Contracts.VpnConfig;
-using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.Common.Core.StatisticalEvents;
 
@@ -56,7 +55,6 @@ public interface IApiClient : IClientBase
     Task<ApiResponseResult<ServersResponse>> GetServerLoadsAsync(DeviceLocation? deviceLocation, CancellationToken cancellationToken);
     Task<ApiResponseResult<DeviceLocationResponse>> GetLocationDataAsync();
     Task<ApiResponseResult<BaseResponse>> ReportBugAsync(IEnumerable<KeyValuePair<string, string>> fields, IEnumerable<File> files);
-    Task<ApiResponseResult<SessionsResponse>> GetSessions();
     Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfigAsync(DeviceLocation? deviceLocation, CancellationToken cancellationToken = default);
     Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync(AnnouncementsRequest request);
     Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync();
@@ -68,7 +66,8 @@ public interface IApiClient : IClientBase
     Task<ApiResponseResult<BaseResponse>> PostUnauthenticatedStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents);
     Task<ApiResponseResult<BaseResponse>> PostAuthenticatedStatisticalEventsAsync(StatisticalEventsBatch statisticalEvents);
     Task<ApiResponseResult<UsersResponse>> GetUserAsync(CancellationToken cancellationToken = default);
-    Task<ApiResponseResult<FeatureFlagsResponse>> GetFeatureFlagsAsync();
+    Task<ApiResponseResult<Ipv6FragmentsResponse>> GetIpv6FragmentsAsync(CancellationToken cancellationToken = default);
+    Task<ApiResponseResult<FeatureFlagsResponse>> GetFeatureFlagsAsync(CancellationToken cancellationToken = default);
     Task<ApiResponseResult<BaseResponse>> SubmitNpsSurveyAsync(NpsSurveyRequest request);
     Task<ApiResponseResult<BaseResponse>> DismissNpsSurveyAsync();
 }

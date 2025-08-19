@@ -18,50 +18,52 @@
  */
 using System.Runtime.Serialization;
 
-namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
+namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+
+[DataContract]
+public class VpnConfigIpcEntity
 {
-    [DataContract]
-    public class VpnConfigIpcEntity
+    [DataMember(Order = 1, IsRequired = true)]
+    public IDictionary<VpnProtocolIpcEntity, int[]> Ports { get; set; }
+
+    [DataMember(Order = 2, IsRequired = true)]
+    public List<string> CustomDns { get; set; }
+
+    [DataMember(Order = 3, IsRequired = true)]
+    public SplitTunnelModeIpcEntity SplitTunnelMode { get; set; }
+
+    [DataMember(Order = 4, IsRequired = true)]
+    public List<string> SplitTunnelIPs { get; set; }
+
+    [DataMember(Order = 5, IsRequired = true)]
+    public int NetShieldMode { get; set; }
+
+    [DataMember(Order = 6, IsRequired = true)]
+    public VpnProtocolIpcEntity VpnProtocol { get; set; }
+
+    [DataMember(Order = 7, IsRequired = true)]
+    public IList<VpnProtocolIpcEntity> PreferredProtocols { get; set; }
+
+    [DataMember(Order = 8, IsRequired = true)]
+    public bool ModerateNat { get; set; }
+
+    [DataMember(Order = 9, IsRequired = true)]
+    public bool SplitTcp { get; set; }
+
+    [DataMember(Order = 10, IsRequired = true)]
+    public bool PortForwarding { get; set; }
+
+    [DataMember(Order = 11, IsRequired = true)]
+    public bool IsIpv6Enabled { get; set; }
+
+    [DataMember(Order = 12, IsRequired = true)]
+    public TimeSpan WireGuardConnectionTimeout { get; set; }
+
+    public VpnConfigIpcEntity()
     {
-        [DataMember(Order = 1, IsRequired = true)]
-        public IDictionary<VpnProtocolIpcEntity, int[]> Ports { get; set; }
-
-        [DataMember(Order = 2, IsRequired = true)]
-        public List<string> CustomDns { get; set; }
-
-        [DataMember(Order = 3, IsRequired = true)]
-        public SplitTunnelModeIpcEntity SplitTunnelMode { get; set; }
-
-        [DataMember(Order = 4, IsRequired = true)]
-        public List<string> SplitTunnelIPs { get; set; }
-
-        [DataMember(Order = 5, IsRequired = true)]
-        public int NetShieldMode { get; set; }
-
-        [DataMember(Order = 6, IsRequired = true)]
-        public VpnProtocolIpcEntity VpnProtocol { get; set; }
-
-        [DataMember(Order = 7, IsRequired = true)]
-        public IList<VpnProtocolIpcEntity> PreferredProtocols { get; set; }
-
-        [DataMember(Order = 8, IsRequired = true)]
-        public bool ModerateNat { get; set; }
-
-        [DataMember(Order = 9, IsRequired = true)]
-        public bool SplitTcp { get; set; }
-
-        [DataMember(Order = 10, IsRequired = true)]
-        public bool PortForwarding { get; set; }
-
-        [DataMember(Order = 11, IsRequired = true)]
-        public TimeSpan WireGuardConnectionTimeout { get; set; }
-
-        public VpnConfigIpcEntity()
-        {
-            Ports = new Dictionary<VpnProtocolIpcEntity, int[]>();
-            CustomDns = new List<string>();
-            SplitTunnelIPs = new List<string>();
-            PreferredProtocols = new List<VpnProtocolIpcEntity>();
-        }
+        Ports = new Dictionary<VpnProtocolIpcEntity, int[]>();
+        CustomDns = [];
+        SplitTunnelIPs = [];
+        PreferredProtocols = [];
     }
 }

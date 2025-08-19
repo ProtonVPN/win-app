@@ -43,6 +43,7 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 using ConnectionDetails = ProtonVPN.Client.Logic.Connection.Contracts.Models.ConnectionDetails;
+using IpAddressInfo = ProtonVPN.Common.Core.Vpn.IpAddressInfo;
 
 namespace ProtonVPN.Client.Logic.Connection;
 
@@ -74,6 +75,8 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
     private bool _isGuestHoleActive;
 
     private VpnStateIpcEntity? _cachedMessage;
+    private IpAddressInfo? _cachedServerIpAddress;
+
     private VpnStatusIpcEntity? _currentStatus = VpnStatusIpcEntity.Disconnected;
     private VpnErrorTypeIpcEntity? _currentError = VpnErrorTypeIpcEntity.None;
 
@@ -273,6 +276,12 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
                     {
                         CurrentConnectionDetails.UpdateServer(server, physicalServer, vpnProtocol, message.EndpointPort);
                     }
+
+                    if (_cachedServerIpAddress is not null)
+                    {
+                        CurrentConnectionDetails.UpdateServerIpAddress(_cachedServerIpAddress.Value);
+                        _cachedServerIpAddress = null;
+                    }
                 }
                 else if (server is null)
                 {
@@ -341,13 +350,16 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
     public void Receive(ConnectionDetailsIpcEntity message)
     {
-        CurrentConnectionDetails?.UpdateIpAddress(message.ServerIpAddress);
+        IpAddressInfo serverIpAddress = _entityMapper.Map<VpnServerAddressIpcEntity, IpAddressInfo>(message.ServerIpAddress);
+        _cachedServerIpAddress = serverIpAddress;
+
+        CurrentConnectionDetails?.UpdateServerIpAddress(serverIpAddress);
 
         _eventMessageSender.Send(new ConnectionDetailsChangedMessage
         {
             ClientCountryCode = message.ClientCountryIsoCode,
             ClientIpAddress = message.ClientIpAddress,
-            ServerIpAddress = message.ServerIpAddress,
+            ServerIpAddress = serverIpAddress,
         });
     }
 

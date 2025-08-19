@@ -48,7 +48,9 @@ public class CommandLineCaller : ICommandLineCaller
     private void RunCommand(string arguments, bool isElevated)
     {
         string commandDescription = (isElevated ? "elevated " : "") + "command line argument";
+
         _logger.Info<ProcessStartLog>($"Running {commandDescription} '{arguments}'.");
+
         try
         {
             Process process = new()
@@ -66,11 +68,60 @@ public class CommandLineCaller : ICommandLineCaller
             }
             process.Start();
             process.WaitForExit(PROCESS_TIMEOUT_IN_MILLISECONDS);
+
             _logger.Info<ProcessStartLog>($"Finished running the {commandDescription} '{arguments}'.");
         }
-        catch
+        catch (Exception e)
         {
-            _logger.Error<ProcessStartLog>($"Failed to run {commandDescription} '{arguments}'.");
+            _logger.Error<ProcessStartLog>($"Failed to run {commandDescription} '{arguments}'.", e);
+        }
+    }
+
+    public async Task ExecuteMultipleAsync(List<string> commands)
+    {
+        ProcessStartInfo startInfo = new()
+        {
+            FileName = "cmd.exe",
+            UseShellExecute = false,
+            RedirectStandardInput = true,
+            RedirectStandardOutput = false,
+            RedirectStandardError = true,
+            CreateNoWindow = true,
+        };
+
+        try
+        {
+            Process? process = Process.Start(startInfo);
+
+            if (process == null)
+            {
+                _logger.Error<ProcessStartLog>("Failed to start cmd.exe process.");
+                return;
+            }
+
+            Task<string> errorTask = process.StandardError.ReadToEndAsync();
+
+            foreach (string command in commands)
+            {
+                process.StandardInput.WriteLine(command);
+            }
+
+            process.StandardInput.WriteLine("exit");
+            process.StandardInput.Flush();
+            process.StandardInput.Close();
+
+            await process.WaitForExitAsync().ConfigureAwait(false);
+
+            string errors = await errorTask.ConfigureAwait(false);
+
+            if (!string.IsNullOrEmpty(errors))
+            {
+                _logger.Error<ProcessStartLog>($"Failed to execute multiple commands. Errors: {errors}");
+            }
+        }
+        catch (Exception e)
+        {
+            _logger.Error<ProcessStartLog>("Failed to execute multiple commands.", e);
         }
     }
 }

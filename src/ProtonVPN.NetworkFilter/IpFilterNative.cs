@@ -464,7 +464,7 @@ namespace ProtonVPN.NetworkFilter
             return id;
         }
 
-        public static Guid CreateRemoteNetworkIPv4Filter(
+        public static Guid CreateRemoteNetworkIPFilter(
             IntPtr sessionHandle,
             Guid providerId,
             Guid sublayerId,
@@ -478,7 +478,7 @@ namespace ProtonVPN.NetworkFilter
             bool persistent = false,
             Guid id = new())
         {
-            AssertSuccess(() => PInvoke.CreateRemoteNetworkIPv4Filter(
+            AssertSuccess(() => PInvoke.CreateRemoteNetworkIPFilter(
                 sessionHandle,
                 ref providerId,
                 ref sublayerId,
@@ -598,6 +598,209 @@ namespace ProtonVPN.NetworkFilter
                 appPath,
                 serverIpAddress,
                 persistent,
+                ref id));
+
+            return id;
+        }
+
+        public static Guid PermitRouterSolicitationMessage(
+            IntPtr sessionHandle,
+            Guid providerId,
+            Guid sublayerId,
+            DisplayData displayData,
+            Layer layer,
+            Action action,
+            uint weight,
+            Guid calloutId,
+            Guid providerContextId,
+            bool persistent = false,
+            Guid id = new())
+        {
+            AssertSuccess(() => PInvoke.PermitRouterSolicitationMessage(
+                sessionHandle,
+                ref providerId,
+                ref sublayerId,
+                ref displayData,
+                (uint)layer,
+                (uint)action,
+                weight,
+                ref calloutId,
+                ref providerContextId,
+                (uint)(persistent ? 1 : 0),
+                ref id));
+
+            return id;
+        }
+
+        public static Guid PermitRouterAdvertisementMessage(
+            IntPtr sessionHandle,
+            Guid providerId,
+            Guid sublayerId,
+            DisplayData displayData,
+            Layer layer,
+            Action action,
+            uint weight,
+            Guid calloutId,
+            Guid providerContextId,
+            bool persistent = false,
+            Guid id = new())
+        {
+            AssertSuccess(() => PInvoke.PermitRouterAdvertisementMessage(
+                sessionHandle,
+                ref providerId,
+                ref sublayerId,
+                ref displayData,
+                (uint)layer,
+                (uint)action,
+                weight,
+                ref calloutId,
+                ref providerContextId,
+                (uint)(persistent ? 1 : 0),
+                ref id));
+
+            return id;
+        }
+
+        public static Guid PermitNeighborSolicitationMessage(
+            IntPtr sessionHandle,
+            Guid providerId,
+            Guid sublayerId,
+            DisplayData displayData,
+            Layer layer,
+            Action action,
+            uint weight,
+            Guid calloutId,
+            Guid providerContextId,
+            bool persistent = false,
+            Guid id = new())
+        {
+            AssertSuccess(() => PInvoke.PermitNeighborSolicitationMessage(
+                sessionHandle,
+                ref providerId,
+                ref sublayerId,
+                ref displayData,
+                (uint)layer,
+                (uint)action,
+                weight,
+                ref calloutId,
+                ref providerContextId,
+                (uint)(persistent ? 1 : 0),
+                ref id));
+
+            return id;
+        }
+
+        public static Guid PermitNeighborAdvertisementMessage(
+            IntPtr sessionHandle,
+            Guid providerId,
+            Guid sublayerId,
+            DisplayData displayData,
+            Layer layer,
+            Action action,
+            uint weight,
+            Guid calloutId,
+            Guid providerContextId,
+            bool persistent = false,
+            Guid id = new())
+        {
+            AssertSuccess(() => PInvoke.PermitNeighborAdvertisementMessage(
+                sessionHandle,
+                ref providerId,
+                ref sublayerId,
+                ref displayData,
+                (uint)layer,
+                (uint)action,
+                weight,
+                ref calloutId,
+                ref providerContextId,
+                (uint)(persistent ? 1 : 0),
+                ref id));
+
+            return id;
+        }
+
+        public static Guid PermitIcmpRedirectMessage(
+            IntPtr sessionHandle,
+            Guid providerId,
+            Guid sublayerId,
+            DisplayData displayData,
+            Layer layer,
+            Action action,
+            uint weight,
+            Guid calloutId,
+            Guid providerContextId,
+            bool persistent = false,
+            Guid id = new())
+        {
+            AssertSuccess(() => PInvoke.PermitIcmpRedirectMessage(
+                sessionHandle,
+                ref providerId,
+                ref sublayerId,
+                ref displayData,
+                (uint)layer,
+                (uint)action,
+                weight,
+                ref calloutId,
+                ref providerContextId,
+                (uint)(persistent ? 1 : 0),
+                ref id));
+
+            return id;
+        }
+
+        public static Guid PermitOutboundIpv6Dhcp(
+            IntPtr sessionHandle,
+            Guid providerId,
+            Guid sublayerId,
+            DisplayData displayData,
+            Layer layer,
+            Action action,
+            uint weight,
+            Guid calloutId,
+            Guid providerContextId,
+            bool persistent = false,
+            Guid id = new())
+        {
+            AssertSuccess(() => PInvoke.PermitOutboundIpv6Dhcp(
+                sessionHandle,
+                ref providerId,
+                ref sublayerId,
+                ref displayData,
+                (uint)layer,
+                (uint)action,
+                weight,
+                ref calloutId,
+                ref providerContextId,
+                (uint)(persistent ? 1 : 0),
+                ref id));
+
+            return id;
+        }
+
+        public static Guid PermitInboundIpv6Dhcp(
+            IntPtr sessionHandle,
+            Guid providerId,
+            Guid sublayerId,
+            DisplayData displayData,
+            Layer layer,
+            Action action,
+            uint weight,
+            Guid calloutId,
+            Guid providerContextId,
+            bool persistent = false,
+            Guid id = new())
+        {
+            AssertSuccess(() => PInvoke.PermitInboundIpv6Dhcp(
+                sessionHandle,
+                ref providerId,
+                ref sublayerId,
+                ref displayData,
+                (uint)layer,
+                (uint)action,
+                weight,
+                ref calloutId,
+                ref providerContextId,
+                (uint)(persistent ? 1 : 0),
                 ref id));
 
             return id;

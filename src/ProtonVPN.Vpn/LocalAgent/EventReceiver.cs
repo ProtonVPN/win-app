@@ -161,7 +161,11 @@ namespace ProtonVPN.Vpn.LocalAgent
                 {
                     ClientIpAddress = e.ConnectionDetails?.DeviceIp,
                     ClientCountryIsoCode = e.ConnectionDetails?.DeviceCountry,
-                    ServerIpAddress = e.ConnectionDetails?.ServerIpv4,
+                    ServerIpAddress = new()
+                    {
+                        Ipv4Address = e.ConnectionDetails?.ServerIpv4Address,
+                        Ipv6Address = e.ConnectionDetails?.ServerIpv6Address,
+                    }
                 };
                 SendConnectionDetails(_connectionDetails);
             }

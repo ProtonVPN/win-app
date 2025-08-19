@@ -52,6 +52,7 @@ public interface IUserSettings
     bool IsNotificationEnabled { get; set; }
     bool IsShareStatisticsEnabled { get; set; }
     bool IsIpv6LeakProtectionEnabled { get; set; }
+    bool IsIpv6Enabled { get; set; }
     bool IsCustomDnsServersEnabled { get; set; }
     List<CustomDnsServer> CustomDnsServersList { get; set; }
     bool IsAutoConnectEnabled { get; set; }
@@ -67,6 +68,7 @@ public interface IUserSettings
     List<SplitTunnelingApp> SplitTunnelingInverseAppsList { get; set; }
     List<SplitTunnelingIpAddress> SplitTunnelingStandardIpAddressesList { get; set; }
     List<SplitTunnelingIpAddress> SplitTunnelingInverseIpAddressesList { get; set; }
+    List<string> Ipv6Fragments { get; set; }
     ChangeServerAttempts ChangeServerAttempts { get; set; }
     DefaultConnection DefaultConnection { get; set; }
     bool WasWelcomeOverlayDisplayed { get; set; }

@@ -207,6 +207,12 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
+    public bool IsIpv6Enabled
+    {
+        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsIpv6Enabled;
+        set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
     public bool IsCustomDnsServersEnabled
     {
         get
@@ -327,6 +333,12 @@ public class UserSettings : GlobalSettings, IUserSettings
     {
         get => _userCache.GetListValueType<SplitTunnelingIpAddress>(SettingEncryption.Unencrypted) ?? DefaultSettings.SplitTunnelingIpAddressesList;
         set => _userCache.SetListValueType<SplitTunnelingIpAddress>(value, SettingEncryption.Unencrypted);
+    }
+
+    public List<string> Ipv6Fragments
+    {
+        get => _userCache.GetListReferenceType<string>(SettingEncryption.Unencrypted) ?? DefaultSettings.Ipv6Fragments;
+        set => _userCache.SetListReferenceType<string>(value, SettingEncryption.Unencrypted);
     }
 
     public ChangeServerAttempts ChangeServerAttempts

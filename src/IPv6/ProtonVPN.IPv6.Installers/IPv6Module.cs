@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -16,15 +16,15 @@
  * You should have received a copy of the GNU General Public License
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
-using System.Runtime.InteropServices;
 
-namespace ProtonVPN.Common.Legacy.OS.Net.Routing;
+using Autofac;
 
-[StructLayout(LayoutKind.Sequential)]
-public struct IPForwardTable
+namespace ProtonVPN.IPv6.Installers;
+
+public class IPv6Module : Module
 {
-    public uint Size;
-
-    [MarshalAs(UnmanagedType.ByValArray, SizeConst = 1)]
-    public MibIPForwardRow[] Table;
+    protected override void Load(ContainerBuilder builder)
+    {
+        builder.RegisterType<FakeIPv6AddressGenerator>().AsImplementedInterfaces().SingleInstance();
+    }
 }

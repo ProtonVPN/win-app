@@ -33,9 +33,16 @@ public struct VpnHost
     public string Label { get; }
     public PublicKey X25519PublicKey { get; }
     public string Signature { get; }
+    public bool IsIpv6Supported { get; }
     public Dictionary<VpnProtocol, string> RelayIpByProtocol { get; }
 
-    public VpnHost(string name, string ip, string label, PublicKey x25519PublicKey, string signature,
+    public VpnHost(
+        string name,
+        string ip,
+        string label,
+        PublicKey x25519PublicKey,
+        string signature,
+        bool isIpv6Supported,
         Dictionary<VpnProtocol, string> relayIpByProtocol)
     {
         AssertHostNameIsValid(name);
@@ -54,6 +61,7 @@ public struct VpnHost
         Label = label;
         X25519PublicKey = x25519PublicKey;
         Signature = signature;
+        IsIpv6Supported = isIpv6Supported;
         RelayIpByProtocol = relayIpByProtocol;
     }
 

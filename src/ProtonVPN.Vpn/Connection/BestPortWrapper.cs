@@ -117,31 +117,15 @@ public class BestPortWrapper : ISingleVpnConnection
             _vpnEndpoint = endpoint;
             _logger.Info<ConnectScanResultLog>($"Connecting to {endpoint.Server.Ip}:{endpoint.Port} " +
                 $"with protocol {endpoint.VpnProtocol} as it responded fastest.");
-            _origin.Connect(endpoint, _vpnCredentials, GetConfig(endpoint.VpnProtocol));
+
+            _config.UpdateVpnProtocol(endpoint.VpnProtocol);
+            _origin.Connect(endpoint, _vpnCredentials, _config);
         }
         else
         {
             _logger.Info<ConnectScanFailLog>("Disconnecting, as none of the VPN ports responded.");
             DelayedDisconnect(cancellationToken);
         }
-    }
-
-    private VpnConfig GetConfig(VpnProtocol vpnProtocol)
-    {
-        return new(new VpnConfigParameters
-        {
-            CustomDns = _config.CustomDns,
-            NetShieldMode = _config.NetShieldMode,
-            OpenVpnAdapter = _config.OpenVpnAdapter,
-            ModerateNat = _config.ModerateNat,
-            Ports = _config.Ports,
-            SplitTcp = _config.SplitTcp,
-            SplitTunnelIPs = _config.SplitTunnelIPs,
-            SplitTunnelMode = _config.SplitTunnelMode,
-            VpnProtocol = vpnProtocol,
-            PortForwarding = _config.PortForwarding,
-            WireGuardConnectionTimeout = _config.WireGuardConnectionTimeout,
-        });
     }
 
     private async void DelayedDisconnect(CancellationToken cancellationToken)

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -25,12 +25,14 @@ public class PhysicalServer : ILocation
 {
     public required string Id { get; init; }
     public required string EntryIp { get; init; }
+    // Is no longer used, but kept to not break the protobuf contract
     public required string ExitIp { get; init; }
     public required string Domain { get; init; }
     public required string Label { get; init; }
     public required sbyte Status { get; set; }
     public required string X25519PublicKey { get; init; }
     public required string Signature { get; init; }
+    public bool IsIpv6Supported { get; set; }
     public Dictionary<VpnProtocol, string> RelayIpByProtocol { get; init; } = [];
 
     public bool IsUnderMaintenance() => Status == 0;

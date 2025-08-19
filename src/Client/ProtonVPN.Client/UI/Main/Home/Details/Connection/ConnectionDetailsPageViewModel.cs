@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.History;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details.Connection;
@@ -35,6 +36,7 @@ public partial class ConnectionDetailsPageViewModel : PageViewModelBase<IDetails
     IEventMessageReceiver<ConnectionDetailsChangedMessage>,
     IEventMessageReceiver<NetworkTrafficChangedMessage>
 {
+    private readonly ISettings _settings;
     private readonly IConnectionManager _connectionManager;
     private readonly INetworkTrafficManager _networkTrafficManager;
 
@@ -57,12 +59,14 @@ public partial class ConnectionDetailsPageViewModel : PageViewModelBase<IDetails
     public string FormattedProtocol => Localizer.GetVpnProtocol(Protocol);
 
     public ConnectionDetailsPageViewModel(
+        ISettings settings,
         IConnectionManager connectionManager,
         INetworkTrafficManager networkTrafficManager,
         IDetailsViewNavigator viewNavigator,
         IViewModelHelper viewModelHelper)
         : base(viewNavigator, viewModelHelper)
     {
+        _settings = settings;
         _connectionManager = connectionManager;
         _networkTrafficManager = networkTrafficManager;
     }
@@ -101,7 +105,7 @@ public partial class ConnectionDetailsPageViewModel : PageViewModelBase<IDetails
 
     private void InvalidateServerIpAddress()
     {
-        ServerIpAddress = EmptyValueExtensions.GetValueOrDefault(_connectionManager.CurrentConnectionDetails?.ServerIpAddress);
+        ServerIpAddress = EmptyValueExtensions.GetValueOrDefault(_connectionManager.CurrentConnectionDetails?.ServerIpAddress?.Ipv4Address);
     }
 
     private void SetDetails()

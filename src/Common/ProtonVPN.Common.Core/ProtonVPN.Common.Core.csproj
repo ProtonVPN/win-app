@@ -19,5 +19,6 @@
         <PackageReference Include="System.Formats.Asn1" />
         <PackageReference Include="System.ServiceProcess.ServiceController" />
         <PackageReference Include="System.Text.Json" />
+        <PackageReference Include="Vanara.PInvoke.IpHlpApi" />
     </ItemGroup>
 </Project>

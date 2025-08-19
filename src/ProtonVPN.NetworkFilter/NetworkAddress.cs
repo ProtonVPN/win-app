@@ -19,21 +19,36 @@
 
 using System.Runtime.InteropServices;
 
-namespace ProtonVPN.NetworkFilter
+namespace ProtonVPN.NetworkFilter;
+
+[StructLayout(LayoutKind.Sequential)]
+public struct NetworkAddress
 {
-    [StructLayout(LayoutKind.Sequential)]
-    public struct NetworkAddress
+    private NetworkAddress(string address, string mask, int? prefix, bool isIpv6)
     {
-        public NetworkAddress(string address, string mask)
-        {
-            this.address = address;
-            this.mask = mask;
-        }
-
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string address;
-
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string mask;
+        Address = address;
+        Mask = mask;
+        Prefix = prefix ?? 128;
+        IsIpv6 = isIpv6;
     }
+
+    public static NetworkAddress FromIpv4(string address, string mask)
+    {
+        return new(address, mask, null, false);
+    }
+
+    public static NetworkAddress FromIpv6(string address, int? prefix)
+    {
+        return new(address, string.Empty, prefix, true);
+    }
+
+    [MarshalAs(UnmanagedType.LPStr)]
+    public string Address;
+
+    [MarshalAs(UnmanagedType.LPStr)]
+    public string Mask;
+
+    public int Prefix;
+
+    public bool IsIpv6;
 }

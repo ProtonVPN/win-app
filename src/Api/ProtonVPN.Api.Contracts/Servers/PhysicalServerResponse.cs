@@ -29,9 +29,6 @@ public class PhysicalServerResponse
     [JsonProperty("EntryIP")]
     public string EntryIp;
 
-    [JsonProperty("ExitIP")]
-    public string ExitIp;
-
     public string Domain;
 
     public sbyte Status;

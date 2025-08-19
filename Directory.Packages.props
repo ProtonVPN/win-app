@@ -96,6 +96,7 @@
     <PackageVersion Include="Vanara.PInvoke.SHCore" Version="4.1.6" />
     <PackageVersion Include="Vanara.PInvoke.Shell32" Version="4.1.6" />
     <PackageVersion Include="Vanara.PInvoke.User32" Version="4.1.6" />
+    <PackageVersion Include="Vanara.PInvoke.IpHlpApi" Version="4.1.6" />
     <PackageVersion Include="WinUI3Localizer" Version="2.3.0" />
     <PackageVersion Include="WinUIEx" Version="2.6.0" />
   </ItemGroup>

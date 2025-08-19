@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.KillSwitch;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
@@ -29,6 +30,8 @@ public interface IServiceSettings
     KillSwitchMode KillSwitchMode { get; }
     SplitTunnelSettingsIpcEntity SplitTunnelSettings { get; }
     bool Ipv6LeakProtection { get; }
+    bool IsIpv6FeatureFlagEnabled { get; }
+    List<string> Ipv6Fragments { get; }
     bool IsShareCrashReportsEnabled { get; }
     bool IsLocalAreaNetworkAccessEnabled { get; }
     VpnProtocol VpnProtocol { get; }

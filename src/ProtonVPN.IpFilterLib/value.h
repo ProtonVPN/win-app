@@ -36,6 +36,28 @@ namespace ipfilter
             FWP_V4_ADDR_AND_MASK addr;
         };
 
+        class IpAddressV6 : public Value
+        {
+        public:
+            IpAddressV6(const ip::AddressV6& addr);
+
+            virtual operator FWP_CONDITION_VALUE();
+
+        private:
+            ip::AddressV6 addr;
+        };
+
+        class IpAddressV6WithPrefix : public Value
+        {
+        public:
+            IpAddressV6WithPrefix(const ip::AddressV6& addr);
+
+            virtual operator FWP_CONDITION_VALUE();
+
+        private:
+            ip::AddressV6 addr;
+        };
+
         class Port : public Value
         {
         public:
@@ -45,6 +67,36 @@ namespace ipfilter
 
         private:
             unsigned short number;
+        };
+
+        class IcmpCode : public Value
+        {
+        public:
+            IcmpCode(unsigned short code);
+
+            virtual operator FWP_CONDITION_VALUE();
+
+        private:
+            unsigned short code;
+        };
+
+        class IcmpType : public Value
+        {
+        public:
+            IcmpType(unsigned short type);
+
+            virtual operator FWP_CONDITION_VALUE();
+
+        private:
+            unsigned short type;
+        };
+
+        class IcmpProtocol : public Value
+        {
+        public:
+            IcmpProtocol();
+
+            virtual operator FWP_CONDITION_VALUE();
         };
 
         class TcpProtocol : public Value

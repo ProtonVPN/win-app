@@ -97,8 +97,18 @@ public class GuestHoleManager : IGuestHoleManager, IEventMessageReceiver<Connect
 
     public async void Receive(ConnectionStatusChangedMessage message)
     {
-        if (!_isActive || _lastVpnStatus == message.ConnectionStatus)
+        if (!_isActive)
         {
+            return;
+        }
+
+        if (_lastVpnStatus == message.ConnectionStatus)
+        {
+            if (message.ConnectionStatus == ConnectionStatus.Disconnected)
+            {
+                HandleDisconnection();
+            }
+
             return;
         }
 

@@ -24,6 +24,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -34,13 +35,18 @@ namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 
 public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
 {
+    private readonly IFeatureFlagsObserver _featureFlagsObserver;
+
     protected ConnectionRequestCreatorBase(
         ILogger logger, 
         ISettings settings,
         IEntityMapper entityMapper,
+        IFeatureFlagsObserver featureFlagsObserver,
         IMainSettingsRequestCreator mainSettingsRequestCreator)
         : base(logger, settings, entityMapper, mainSettingsRequestCreator)
-    { }
+    {
+        _featureFlagsObserver = featureFlagsObserver;
+    }
 
     protected abstract Task<VpnCredentialsIpcEntity> GetVpnCredentialsAsync();
 
@@ -64,11 +70,36 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
                 ? GetPreferredSmartProtocols()
                 : [settings.VpnProtocol],
             Ports = GetPorts(),
-            CustomDns = isCustomDnsEnabled
-                ? Settings.CustomDnsServersList.Where(s => s.IsActive).Select(s => s.IpAddress).ToList()
-                : [],
-            WireGuardConnectionTimeout = settings.WireGuardConnectionTimeout
+            CustomDns = GetCustomDns(isCustomDnsEnabled),
+            IsIpv6Enabled = _featureFlagsObserver.IsIpv6SupportEnabled && Settings.IsIpv6Enabled,
+            WireGuardConnectionTimeout = settings.WireGuardConnectionTimeout,
         };
+    }
+
+    private List<string> GetCustomDns(bool isCustomDnsEnabled)
+    {
+        if (!isCustomDnsEnabled)
+        {
+            return [];
+        }
+
+        List<string> result = [];
+
+        IEnumerable<string> activeIpAddresses = Settings.CustomDnsServersList.Where(s => s.IsActive).Select(s => s.IpAddress);
+        foreach (string dns in activeIpAddresses)
+        {
+            if (NetworkAddress.TryParse(dns, out NetworkAddress ipAddress))
+            {
+                if (!Settings.IsIpv6Enabled && ipAddress.IsIpV6)
+                {
+                    continue;
+                }
+
+                result.Add(dns);
+            }
+        }
+
+        return result;
     }
 
     protected IList<VpnProtocolIpcEntity> GetPreferredSmartProtocols()

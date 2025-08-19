@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,4 +23,5 @@ public interface ICommandLineCaller
 {
     void Execute(string arguments);
     void ExecuteElevated(string arguments);
+    Task ExecuteMultipleAsync(List<string> commands);
 }

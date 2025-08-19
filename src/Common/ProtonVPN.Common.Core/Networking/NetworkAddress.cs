@@ -23,11 +23,12 @@ using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Common.Core.Networking;
 
-public readonly struct NetworkAddress
+public readonly record struct NetworkAddress
 {
     private const int MIN_SUBNET = 0;
     private const int MAX_SUBNET_IPV4 = 32;
     private const int MAX_SUBNET_IPV6 = 128;
+    private const string DEFAULT_IPV4_MASK = "255.255.255.255";
 
     public static NetworkAddress None => new(IPAddress.None);
 
@@ -44,9 +45,14 @@ public readonly struct NetworkAddress
     public bool IsSingleIp => !Subnet.HasValue
                            || Subnet == (IsIpV4 ? MAX_SUBNET_IPV4 : MAX_SUBNET_IPV6);
 
-    private NetworkAddress(IPAddress ip, int? subnet = null)
+    public NetworkAddress(IPAddress ip)
     {
         Ip = ip;
+    }
+
+    private NetworkAddress(IPAddress ip, int? subnet = null)
+        : this(ip)
+    {
         Subnet = subnet;
     }
 
@@ -104,6 +110,38 @@ public readonly struct NetworkAddress
         {
             return false;
         }
+    }
+
+    public string GetSubnetMaskString()
+    {
+        if (!IsIpV4)
+        {
+            throw new InvalidOperationException("Subnet mask conversion is only supported for IPv4 addresses.");
+        }
+
+        if (!Subnet.HasValue)
+        {
+            return DEFAULT_IPV4_MASK;
+        }
+
+        int cidr = Subnet.Value;
+        uint mask = cidr == 0 ? 0 : 0xFFFFFFFF << (32 - cidr);
+
+        byte[] bytes =
+        [
+            (byte)(mask >> 24),
+            (byte)(mask >> 16),
+            (byte)(mask >> 8),
+            (byte)mask
+        ];
+
+        return string.Join(".", bytes);
+    }
+
+    public bool IsGlobalUnicastAddress()
+    {
+        byte[] bytes = Ip.GetAddressBytes();
+        return Ip.AddressFamily == AddressFamily.InterNetworkV6 && (bytes[0] & 0xE0) == 0x20;
     }
 
     public override string ToString()

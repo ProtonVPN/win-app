@@ -190,7 +190,7 @@ public class VpnEndpointScanner : IEndpointScanner
                 break;
         }
 
-        return isAlive ? new VpnEndpoint(new VpnHost(server.Name, ip, server.Label, server.X25519PublicKey, server.Signature, null),
+        return isAlive ? new VpnEndpoint(new VpnHost(server.Name, ip, server.Label, server.X25519PublicKey, server.Signature, server.IsIpv6Supported, null),
             protocol, port) : VpnEndpoint.Empty;
     }
 

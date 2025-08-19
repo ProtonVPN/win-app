@@ -17,11 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Core.Vpn;
+
 namespace ProtonVPN.Common.Legacy.Vpn;
 
 public class ConnectionDetails
 {
     public string ClientIpAddress { get; set; }
-    public string ServerIpAddress { get; set; }
+    public IpAddressInfo ServerIpAddress { get; set; }
     public string ClientCountryIsoCode { get; set; }
 }

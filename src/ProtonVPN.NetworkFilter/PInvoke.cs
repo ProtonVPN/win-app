@@ -331,9 +331,9 @@ internal class PInvoke
 
     [DllImport(
         BINARY_NAME,
-        EntryPoint = "IPFilterCreateRemoteNetworkIPv4Filter",
+        EntryPoint = "IPFilterCreateRemoteNetworkIPFilter",
         CallingConvention = CallingConvention.Cdecl)]
-    public static extern uint CreateRemoteNetworkIPv4Filter(
+    public static extern uint CreateRemoteNetworkIPFilter(
         IntPtr sessionHandle,
         [In] ref Guid providerKey,
         [In] ref Guid sublayerKey,
@@ -408,6 +408,125 @@ internal class PInvoke
         uint weight,
         [MarshalAs(UnmanagedType.LPWStr)] string appPath,
         string serverIpAddress,
+        uint persistent,
+        [In, Out] ref Guid filterKey);
+
+    [DllImport(
+        BINARY_NAME,
+        EntryPoint = "PermitRouterSolicitationMessage",
+        CallingConvention = CallingConvention.Cdecl)]
+    public static extern uint PermitRouterSolicitationMessage(
+        IntPtr sessionHandle,
+        [In] ref Guid providerKey,
+        [In] ref Guid sublayerKey,
+        ref DisplayData displayData,
+        uint layer,
+        uint action,
+        uint weight,
+        [In] ref Guid calloutKey,
+        [In] ref Guid providerContextKey,
+        uint persistent,
+        [In, Out] ref Guid filterKey);
+
+    [DllImport(
+        BINARY_NAME,
+        EntryPoint = "PermitRouterAdvertisementMessage",
+        CallingConvention = CallingConvention.Cdecl)]
+    public static extern uint PermitRouterAdvertisementMessage(
+        IntPtr sessionHandle,
+        [In] ref Guid providerKey,
+        [In] ref Guid sublayerKey,
+        ref DisplayData displayData,
+        uint layer,
+        uint action,
+        uint weight,
+        [In] ref Guid calloutKey,
+        [In] ref Guid providerContextKey,
+        uint persistent,
+        [In, Out] ref Guid filterKey);
+
+    [DllImport(
+        BINARY_NAME,
+        EntryPoint = "PermitNeighborSolicitationMessage",
+        CallingConvention = CallingConvention.Cdecl)]
+    public static extern uint PermitNeighborSolicitationMessage(
+        IntPtr sessionHandle,
+        [In] ref Guid providerKey,
+        [In] ref Guid sublayerKey,
+        ref DisplayData displayData,
+        uint layer,
+        uint action,
+        uint weight,
+        [In] ref Guid calloutKey,
+        [In] ref Guid providerContextKey,
+        uint persistent,
+        [In, Out] ref Guid filterKey);
+
+    [DllImport(
+        BINARY_NAME,
+        EntryPoint = "PermitNeighborAdvertisementMessage",
+        CallingConvention = CallingConvention.Cdecl)]
+    public static extern uint PermitNeighborAdvertisementMessage(
+        IntPtr sessionHandle,
+        [In] ref Guid providerKey,
+        [In] ref Guid sublayerKey,
+        ref DisplayData displayData,
+        uint layer,
+        uint action,
+        uint weight,
+        [In] ref Guid calloutKey,
+        [In] ref Guid providerContextKey,
+        uint persistent,
+        [In, Out] ref Guid filterKey);
+
+    [DllImport(
+        BINARY_NAME,
+        EntryPoint = "PermitIcmpRedirectMessage",
+        CallingConvention = CallingConvention.Cdecl)]
+    public static extern uint PermitIcmpRedirectMessage(
+        IntPtr sessionHandle,
+        [In] ref Guid providerKey,
+        [In] ref Guid sublayerKey,
+        ref DisplayData displayData,
+        uint layer,
+        uint action,
+        uint weight,
+        [In] ref Guid calloutKey,
+        [In] ref Guid providerContextKey,
+        uint persistent,
+        [In, Out] ref Guid filterKey);
+
+    [DllImport(
+        BINARY_NAME,
+        EntryPoint = "PermitOutboundIpv6Dhcp",
+        CallingConvention = CallingConvention.Cdecl)]
+    public static extern uint PermitOutboundIpv6Dhcp(
+        IntPtr sessionHandle,
+        [In] ref Guid providerKey,
+        [In] ref Guid sublayerKey,
+        ref DisplayData displayData,
+        uint layer,
+        uint action,
+        uint weight,
+        [In] ref Guid calloutKey,
+        [In] ref Guid providerContextKey,
+        uint persistent,
+        [In, Out] ref Guid filterKey);
+
+    [DllImport(
+        BINARY_NAME,
+        EntryPoint = "PermitInboundIpv6Dhcp",
+        CallingConvention = CallingConvention.Cdecl)]
+    public static extern uint PermitInboundIpv6Dhcp(
+        IntPtr sessionHandle,
+        [In] ref Guid providerKey,
+        [In] ref Guid sublayerKey,
+        ref DisplayData displayData,
+        uint layer,
+        uint action,
+        uint weight,
+        [In] ref Guid calloutKey,
+        [In] ref Guid providerContextKey,
         uint persistent,
         [In, Out] ref Guid filterKey);
 }

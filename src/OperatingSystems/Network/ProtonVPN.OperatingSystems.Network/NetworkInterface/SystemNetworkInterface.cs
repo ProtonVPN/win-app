@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,6 +19,7 @@
 
 using System.Net;
 using System.Net.NetworkInformation;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.OperatingSystems.Network.Contracts;
 
 namespace ProtonVPN.OperatingSystems.Network.NetworkInterface;
@@ -26,7 +27,7 @@ namespace ProtonVPN.OperatingSystems.Network.NetworkInterface;
 /// <summary>
 /// Provides access to network interface on the system.
 /// </summary>
-public class SystemNetworkInterface : INetworkInterface
+public class SystemNetworkInterface : INetworkInterface, IEquatable<SystemNetworkInterface>
 {
     private readonly System.Net.NetworkInformation.NetworkInterface _networkInterface;
 
@@ -54,5 +55,38 @@ public class SystemNetworkInterface : INetworkInterface
             IPv4InterfaceProperties props = _networkInterface.GetIPProperties().GetIPv4Properties();
             return props != null ? Convert.ToUInt32(props.Index) : 0;
         }
+    }
+
+    public List<NetworkAddress> GetUnicastAddresses()
+    {
+        return _networkInterface
+            .GetIPProperties().UnicastAddresses
+            .Select(a => new NetworkAddress(a.Address))
+            .ToList();
+    }
+
+    public bool Equals(SystemNetworkInterface? other)
+    {
+        if (other is null)
+        {
+            return false;
+        }
+
+        if (ReferenceEquals(this, other))
+        {
+            return true;
+        }
+
+        return Id == other.Id;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return Equals(obj as SystemNetworkInterface);
+    }
+
+    public override int GetHashCode()
+    {
+        return Id != null ? Id.GetHashCode() : 0;
     }
 }

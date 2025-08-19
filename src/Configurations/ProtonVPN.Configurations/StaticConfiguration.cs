@@ -55,6 +55,8 @@ public class StaticConfiguration : IStaticConfiguration
     public string GuestHoleServersJsonFilePath { get; } = DefaultConfiguration.GuestHoleServersJsonFilePath;
     public string ServiceSettingsFilePath { get; } = DefaultConfiguration.ServiceSettingsFilePath;
     public string LegacyAppLocalData { get; } = DefaultConfiguration.LegacyAppLocalData;
+    public string IPv6PrefixTreeFilePath { get; } = DefaultConfiguration.IPv6PrefixTreeFilePath;
+    public string IPv6PersistedDataFilePath { get; } = DefaultConfiguration.IPv6PersistedDataFilePath;
 
     public IOpenVpnConfigurations OpenVpn { get; } = DefaultConfiguration.OpenVpn;
     public IWireGuardConfigurations WireGuard { get; } = DefaultConfiguration.WireGuard;

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,36 +22,38 @@ using System.Collections.Generic;
 using System.Linq;
 using ProtonVPN.OperatingSystems.Network.Contracts;
 
-namespace ProtonVPN.Service.Vpn
+namespace ProtonVPN.Service.Vpn;
+
+public class ObservableNetworkInterfaces : IObservableNetworkInterfaces
 {
-    public class ObservableNetworkInterfaces
+    private readonly ISystemNetworkInterfaces _networkInterfaces;
+
+    private List<string> _interfaces = [];
+
+    public ObservableNetworkInterfaces(ISystemNetworkInterfaces networkInterfaces)
     {
-        private readonly ISystemNetworkInterfaces _networkInterfaces;
+        _networkInterfaces = networkInterfaces;
 
-        private List<string> _interfaces = new List<string>();
+        networkInterfaces.NetworkAddressChanged += NetworkInterfaces_NetworkAddressChanged;
+    }
 
-        public ObservableNetworkInterfaces(ISystemNetworkInterfaces networkInterfaces)
+    public event EventHandler NetworkInterfacesAdded;
+
+    private void NetworkInterfaces_NetworkAddressChanged(object sender, EventArgs e)
+    {
+        INetworkInterface[] adapters = _networkInterfaces.GetInterfaces();
+        if (adapters.Length == 0)
         {
-            _networkInterfaces = networkInterfaces;
-
-            networkInterfaces.NetworkAddressChanged += NetworkInterfaces_NetworkAddressChanged;
+            return;
         }
 
-        public event EventHandler NetworkInterfacesAdded;
+        List<string> list = adapters.Where(a => !a.IsLoopback).Select(a => a.Id).ToList();
 
-        private void NetworkInterfaces_NetworkAddressChanged(object sender, EventArgs e)
+        if (_interfaces.Count != 0 && list.Except(_interfaces).Any())
         {
-            var adapters = _networkInterfaces.GetInterfaces();
-            if (!adapters.Any()) return;
-
-            var list = adapters.Where(a => !a.IsLoopback).Select(a => a.Id).ToList();
-
-            if (_interfaces.Any() && list.Except(_interfaces).Any())
-            {
-                NetworkInterfacesAdded?.Invoke(this, EventArgs.Empty);
-            }
-
-            _interfaces = list;
+            NetworkInterfacesAdded?.Invoke(this, EventArgs.Empty);
         }
+
+        _interfaces = list;
     }
 }

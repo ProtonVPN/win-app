@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -31,11 +31,13 @@ public class VpnConfig
     public SplitTunnelMode SplitTunnelMode { get; }
     public IReadOnlyCollection<string> SplitTunnelIPs { get; }
     public OpenVpnAdapter OpenVpnAdapter { get; set; }
-    public VpnProtocol VpnProtocol { get; }
+    public VpnProtocol VpnProtocol { get; private set; }
     public IList<VpnProtocol> PreferredProtocols { get; }
     public int NetShieldMode { get; }
     public bool SplitTcp { get; }
     public bool PortForwarding { get; }
+    public bool IsIpv6Enabled { get; }
+
     public bool ModerateNat { get; }
     public TimeSpan WireGuardConnectionTimeout { get; }
 
@@ -55,7 +57,13 @@ public class VpnConfig
         SplitTcp = parameters.SplitTcp;
         ModerateNat = parameters.ModerateNat;
         PortForwarding = parameters.PortForwarding;
+        IsIpv6Enabled = parameters.IsIpv6Enabled;
         WireGuardConnectionTimeout = parameters.WireGuardConnectionTimeout;
+    }
+
+    public void UpdateVpnProtocol(VpnProtocol protocol)
+    {
+        VpnProtocol = protocol;
     }
 
     private void AssertPortsValid(IReadOnlyDictionary<VpnProtocol, IReadOnlyCollection<int>> ports)

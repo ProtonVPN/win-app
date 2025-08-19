@@ -40,6 +40,9 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
         public string Signature { get; set; }
 
         [DataMember(Order = 6)]
+        public bool IsIpv6Supported { get; set; }
+
+        [DataMember(Order = 7)]
         public Dictionary<VpnProtocolIpcEntity, string> RelayIpByProtocol { get; set; }
     }
 }

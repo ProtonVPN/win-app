@@ -95,6 +95,7 @@ public class ServerValidatorTest
             label: SERVER_LABEL,
             x25519PublicKey: CreatePublicKey(),
             signature: SERVER_SIGNATURE,
+            isIpv6Supported: false,
             relayIpByProtocol: null);
     }
 
@@ -114,6 +115,7 @@ public class ServerValidatorTest
             label: null,
             x25519PublicKey: CreatePublicKey(),
             signature: SERVER_SIGNATURE,
+            isIpv6Supported: false,
             relayIpByProtocol: null);
 
         VpnError error = _serverValidator.Validate(server);
@@ -132,6 +134,7 @@ public class ServerValidatorTest
             label: SERVER_LABEL,
             x25519PublicKey: null,
             signature: SERVER_SIGNATURE,
+            isIpv6Supported: false,
             relayIpByProtocol: null);
 
         VpnError error = _serverValidator.Validate(server);
@@ -148,6 +151,7 @@ public class ServerValidatorTest
             label: SERVER_LABEL,
             x25519PublicKey: new PublicKey(new byte[1] { 1 }, KeyAlgorithm.X25519),
             signature: SERVER_SIGNATURE,
+            isIpv6Supported: false,
             relayIpByProtocol: null);
 
         VpnError error = _serverValidator.Validate(server);
@@ -171,6 +175,7 @@ public class ServerValidatorTest
             label: SERVER_LABEL,
             x25519PublicKey: CreatePublicKey(),
             signature: signature,
+            isIpv6Supported: false,
             relayIpByProtocol: null);
     }
 

@@ -49,7 +49,6 @@ public class PhysicalServerMapperTest
 
         Assert.AreEqual("host.protonvpn.com", server.Domain);
         Assert.AreEqual("127.0.0.1", server.EntryIp);
-        Assert.AreEqual("128.0.0.1", server.ExitIp);
         Assert.AreEqual("0", server.Label);
         Assert.AreEqual("signature", server.Signature);
         Assert.AreEqual(status, server.Status);
@@ -64,7 +63,6 @@ public class PhysicalServerMapperTest
             Id = "ID",
             Domain = "host.protonvpn.com",
             EntryIp = "127.0.0.1",
-            ExitIp = "128.0.0.1",
             Label = "0",
             Signature = "signature",
             Status = status,

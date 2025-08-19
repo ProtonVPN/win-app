@@ -37,7 +37,6 @@ using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Api.Contracts.Streaming;
 using ProtonVPN.Api.Contracts.Users;
 using ProtonVPN.Api.Contracts.VpnConfig;
-using ProtonVPN.Api.Contracts.VpnSessions;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.Common.Core.StatisticalEvents;
@@ -179,12 +178,6 @@ public class ApiClient : BaseApiClient, IApiClient
         return await SendRequest<BaseResponse>(request, CancellationToken.None, "Report bug");
     }
 
-    public async Task<ApiResponseResult<SessionsResponse>> GetSessions()
-    {
-        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/sessions");
-        return await SendRequest<SessionsResponse>(request, CancellationToken.None, "Get sessions");
-    }
-
     public async Task<ApiResponseResult<VpnConfigResponse>> GetVpnConfigAsync(DeviceLocation? deviceLocation, CancellationToken cancellationToken)
     {
         HttpRequestMessage request = GetAuthorizedRequestWithLocation(HttpMethod.Get, "vpn/v2/clientconfig", deviceLocation);
@@ -271,10 +264,16 @@ public class ApiClient : BaseApiClient, IApiClient
         return await SendRequest<UsersResponse>(request, cancellationToken, "Get user");
     }
 
-    public async Task<ApiResponseResult<FeatureFlagsResponse>> GetFeatureFlagsAsync()
+    public async Task<ApiResponseResult<Ipv6FragmentsResponse>> GetIpv6FragmentsAsync(CancellationToken cancellationToken = default)
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v1/ipv6-fragments");
+        return await SendRequest<Ipv6FragmentsResponse>(request, cancellationToken, "Get IPv6 fragments");
+    }
+
+    public async Task<ApiResponseResult<FeatureFlagsResponse>> GetFeatureFlagsAsync(CancellationToken cancellationToken = default)
     {
         HttpRequestMessage request = GetRequest(HttpMethod.Get, "feature/v2/frontend");
-        return await SendRequest<FeatureFlagsResponse>(request, CancellationToken.None, "Get feature flags");
+        return await SendRequest<FeatureFlagsResponse>(request, cancellationToken, "Get feature flags");
     }
 
     public async Task<ApiResponseResult<BaseResponse>> SubmitNpsSurveyAsync(NpsSurveyRequest npsSurveyRequest)

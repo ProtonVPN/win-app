@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,13 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
-using ProtonVPN.Api.Contracts.Common;
+using System.Runtime.InteropServices;
 
-namespace ProtonVPN.Api.Contracts.VpnSessions
+namespace ProtonVPN.IPv6.Interop;
+
+[StructLayout(LayoutKind.Sequential)]
+internal unsafe struct Ipv6AddrRaw
 {
-    public class SessionsResponse : BaseResponse
-    {
-        public IReadOnlyList<SessionResponse> Sessions { get; set; }
-    }
+    public fixed byte Bytes[16];
 }

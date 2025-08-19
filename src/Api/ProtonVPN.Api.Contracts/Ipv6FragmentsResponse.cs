@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,16 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Newtonsoft.Json;
+using System.Collections.Generic;
+using ProtonVPN.Api.Contracts.Common;
 
-namespace ProtonVPN.Api.Contracts.VpnSessions
+namespace ProtonVPN.Api.Contracts;
+
+public class Ipv6FragmentsResponse : BaseResponse
 {
-    public class SessionResponse
-    {
-        [JsonProperty("SessionID")]
-        public string SessionId { get; set; }
-        [JsonProperty("ExitIP")]
-        public string ExitIp { get; set; }
-        public string Protocol { get; set; }
-    }
+    public List<string> Fragments { get; set; }
 }

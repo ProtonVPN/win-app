@@ -44,6 +44,7 @@ public class VpnServerMapper : IMapper<VpnHost, VpnServerIpcEntity>
             Label = leftEntity.Label,
             X25519PublicKey = _entityMapper.Map<PublicKey, ServerPublicKeyIpcEntity>(leftEntity.X25519PublicKey),
             Signature = leftEntity.Signature,
+            IsIpv6Supported = leftEntity.IsIpv6Supported,
             RelayIpByProtocol = leftEntity.RelayIpByProtocol?.ToDictionary(
                 kvp => _entityMapper.Map<VpnProtocol, VpnProtocolIpcEntity>(kvp.Key),
                 kvp => kvp.Value)
@@ -64,6 +65,6 @@ public class VpnServerMapper : IMapper<VpnHost, VpnServerIpcEntity>
 
         return new(rightEntity.Name, rightEntity.Ip, rightEntity.Label,
             _entityMapper.Map<ServerPublicKeyIpcEntity, PublicKey>(rightEntity.X25519PublicKey),
-            rightEntity.Signature, relayIpByProtocol);
+            rightEntity.Signature, rightEntity.IsIpv6Supported, relayIpByProtocol);
     }
 }

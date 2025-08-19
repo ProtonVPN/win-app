@@ -182,6 +182,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\IPv6\ProtonVPN.IPv6.Installers\ProtonVPN.IPv6.Installers.csproj" />
     <ProjectReference Include="..\..\NetworkTimeProtocols\ProtonVPN.NetworkTimeProtocols.Contracts\ProtonVPN.NetworkTimeProtocols.Contracts.csproj" />
     <ProjectReference Include="..\..\NetworkTimeProtocols\ProtonVPN.NetworkTimeProtocols.Installers\ProtonVPN.NetworkTimeProtocols.Installers.csproj" />
     <ProjectReference Include="..\..\OperatingSystems\Network\ProtonVPN.OperatingSystems.Network.Installers\ProtonVPN.OperatingSystems.Network.Installers.csproj" />

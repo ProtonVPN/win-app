@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -27,9 +27,9 @@ using ProtonVPN.Service.Settings;
 
 namespace ProtonVPN.Service.Firewall;
 
-internal class Ipv6
+internal class Ipv6 : IIpv6
 {
-    private const string AppName = "ProtonVPN";
+    private const string APP_NAME = "ProtonVPN";
 
     private readonly ILogger _logger;
     private readonly IStaticConfiguration _staticConfig;
@@ -42,7 +42,7 @@ internal class Ipv6
         _serviceSettings = serviceSettings;
     }
 
-    public bool Enabled { get; private set; } = true;
+    public bool IsEnabled { get; private set; } = true;
 
     public Task DisableAsync()
     {
@@ -61,14 +61,18 @@ internal class Ipv6
 
     public void Enable()
     {
-        LoggingAction(NetworkUtil.EnableIPv6OnAllAdapters, "Enabling");
-        Enabled = true;
+        if (LoggingAction(NetworkUtil.EnableIPv6OnAllAdapters, "Enabling"))
+        {
+            IsEnabled = true;
+        }
     }
 
     private void Disable()
     {
-        LoggingAction(NetworkUtil.DisableIPv6OnAllAdapters, "Disabling");
-        Enabled = false;
+        if (LoggingAction(NetworkUtil.DisableIPv6OnAllAdapters, "Disabling"))
+        {
+            IsEnabled = false;
+        }
     }
 
     private void EnableOnVPNInterface()
@@ -76,17 +80,21 @@ internal class Ipv6
         LoggingAction(NetworkUtil.EnableIPv6, "Enabling on VPN interface");
     }
 
-    private void LoggingAction(Action<string, string> action, string actionMessage)
+    private bool LoggingAction(Action<string, string> action, string actionMessage)
     {
         try
         {
             _logger.Info<NetworkLog>($"IPv6: {actionMessage}");
-            action(AppName, _staticConfig.GetHardwareId(_serviceSettings.OpenVpnAdapter));
+            action(APP_NAME, _staticConfig.GetHardwareId(_serviceSettings.OpenVpnAdapter));
             _logger.Info<NetworkLog>($"IPv6: {actionMessage} succeeded");
+
+            return true;
         }
         catch (NetworkUtilException e)
         {
             _logger.Error<NetworkLog>($"IPV6: {actionMessage} failed, error code {e.Code}");
+
+            return false;
         }
     }
 }

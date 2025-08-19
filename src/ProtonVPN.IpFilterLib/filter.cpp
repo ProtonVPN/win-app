@@ -39,6 +39,9 @@ void IPFilterGetLayerKey(
     case (unsigned int)IPFilterLayer::OutboundIPPacketV4:
         spec = FWPM_LAYER_OUTBOUND_IPPACKET_V4;
         break;
+    case (unsigned int)IPFilterLayer::AppAuthRecvAcceptV6:
+        spec = FWPM_LAYER_ALE_AUTH_RECV_ACCEPT_V6;
+        break;
     default:
         throw std::invalid_argument("Invalid layer");
     }
@@ -365,7 +368,7 @@ unsigned int IPFilterCreateRemoteUDPPortFilter(
         filterKey);
 }
 
-unsigned int IPFilterCreateRemoteNetworkIPv4Filter(
+unsigned int IPFilterCreateRemoteNetworkIPFilter(
     IPFilterSessionHandle sessionHandle,
     GUID* providerKey,
     GUID* sublayerKey,
@@ -381,14 +384,25 @@ unsigned int IPFilterCreateRemoteNetworkIPv4Filter(
 {
     std::vector<ipfilter::condition::Condition> conditions{};
 
-    auto address = ipfilter::ip::makeAddressV4(addr->address);
-    auto mask = ipfilter::ip::makeAddressV4(addr->mask);
+    if (addr->isIpv6)
+    {
+        auto address = ipfilter::ip::makeAddressV6(addr->address, addr->prefix);
+        auto networkAddrCondition = ipfilter::condition::remoteIpV6AddressWithPrefix(
+            ipfilter::matcher::equal(),
+            ipfilter::value::IpAddressV6WithPrefix(address));
 
-    auto networkAddrCondition = ipfilter::condition::remoteIpNetworkAddressV4(
-        ipfilter::matcher::equal(),
-        ipfilter::value::IpNetworkAddressV4(address, mask));
+        conditions.push_back(networkAddrCondition);
+    }
+    else
+    {
+        auto address = ipfilter::ip::makeAddressV4(addr->address);
+        auto mask = ipfilter::ip::makeAddressV4(addr->mask);
+        auto networkAddrCondition = ipfilter::condition::remoteIpNetworkAddressV4(
+            ipfilter::matcher::equal(),
+            ipfilter::value::IpNetworkAddressV4(address, mask));
 
-    conditions.push_back(networkAddrCondition);
+        conditions.push_back(networkAddrCondition);
+    }
 
     return IPFilterCreateFilter(
         sessionHandle,
@@ -515,6 +529,252 @@ unsigned int BlockOutsideDns(
         calloutKey,
         nullptr,
         conditions,
+        persistent,
+        filterKey);
+}
+
+unsigned int PermitRouterSolicitationMessage(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const IPFilterDisplayData* displayData,
+    unsigned int layer,
+    unsigned int action,
+    unsigned int weight,
+    GUID* calloutKey,
+    GUID* providerContextKey,
+    BOOL persistent,
+    GUID* filterKey)
+{
+    return IPFilterCreateFilter(
+        sessionHandle,
+        providerKey,
+        sublayerKey,
+        displayData,
+        layer,
+        action,
+        weight,
+        calloutKey,
+        providerContextKey,
+        {
+            ipfilter::condition::icmpv6Protocol(ipfilter::matcher::equal()),
+            ipfilter::condition::icmpType(ipfilter::matcher::equal(), 133),
+            ipfilter::condition::icmpCode(ipfilter::matcher::equal(), 0),
+            ipfilter::condition::remoteIpV6Address(
+                ipfilter::matcher::equal(),
+                ipfilter::ip::AddressV6::linkLocalRouterMulticast())
+        },
+        persistent,
+        filterKey);
+}
+
+unsigned int PermitRouterAdvertisementMessage(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const IPFilterDisplayData* displayData,
+    unsigned int layer,
+    unsigned int action,
+    unsigned int weight,
+    GUID* calloutKey,
+    GUID* providerContextKey,
+    BOOL persistent,
+    GUID* filterKey)
+{
+    return IPFilterCreateFilter(
+        sessionHandle,
+        providerKey,
+        sublayerKey,
+        displayData,
+        layer,
+        action,
+        weight,
+        calloutKey,
+        providerContextKey,
+        {
+            ipfilter::condition::icmpv6Protocol(ipfilter::matcher::equal()),
+            ipfilter::condition::icmpType(ipfilter::matcher::equal(), 134),
+            ipfilter::condition::icmpCode(ipfilter::matcher::equal(), 0),
+            ipfilter::condition::remoteIpV6AddressWithPrefix(
+                ipfilter::matcher::equal(),
+                ipfilter::value::IpAddressV6WithPrefix(ipfilter::ip::AddressV6::linkLocal())),
+        },
+        persistent,
+        filterKey);
+}
+
+unsigned int PermitNeighborSolicitationMessage(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const IPFilterDisplayData* displayData,
+    unsigned int layer,
+    unsigned int action,
+    unsigned int weight,
+    GUID* calloutKey,
+    GUID* providerContextKey,
+    BOOL persistent,
+    GUID* filterKey)
+{
+    return IPFilterCreateFilter(
+        sessionHandle,
+        providerKey,
+        sublayerKey,
+        displayData,
+        layer,
+        action,
+        weight,
+        calloutKey,
+        providerContextKey,
+        {
+            ipfilter::condition::icmpv6Protocol(ipfilter::matcher::equal()),
+            ipfilter::condition::icmpType(ipfilter::matcher::equal(), 135),
+            ipfilter::condition::icmpCode(ipfilter::matcher::equal(), 0),
+        },
+        persistent,
+        filterKey);
+}
+
+unsigned int PermitNeighborAdvertisementMessage(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const IPFilterDisplayData* displayData,
+    unsigned int layer,
+    unsigned int action,
+    unsigned int weight,
+    GUID* calloutKey,
+    GUID* providerContextKey,
+    BOOL persistent,
+    GUID* filterKey)
+{
+    return IPFilterCreateFilter(
+        sessionHandle,
+        providerKey,
+        sublayerKey,
+        displayData,
+        layer,
+        action,
+        weight,
+        calloutKey,
+        providerContextKey,
+        {
+            ipfilter::condition::icmpv6Protocol(ipfilter::matcher::equal()),
+            ipfilter::condition::icmpType(ipfilter::matcher::equal(), 136),
+            ipfilter::condition::icmpCode(ipfilter::matcher::equal(), 0),
+        },
+        persistent,
+        filterKey);
+}
+
+unsigned int PermitIcmpRedirectMessage(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const IPFilterDisplayData* displayData,
+    unsigned int layer,
+    unsigned int action,
+    unsigned int weight,
+    GUID* calloutKey,
+    GUID* providerContextKey,
+    BOOL persistent,
+    GUID* filterKey)
+{
+    return IPFilterCreateFilter(
+        sessionHandle,
+        providerKey,
+        sublayerKey,
+        displayData,
+        layer,
+        action,
+        weight,
+        calloutKey,
+        providerContextKey,
+        {
+            ipfilter::condition::icmpv6Protocol(ipfilter::matcher::equal()),
+            ipfilter::condition::icmpType(ipfilter::matcher::equal(), 137),
+            ipfilter::condition::icmpCode(ipfilter::matcher::equal(), 0),
+            ipfilter::condition::remoteIpV6AddressWithPrefix(
+                ipfilter::matcher::equal(),
+                ipfilter::value::IpAddressV6WithPrefix(ipfilter::ip::AddressV6::linkLocal())),
+        },
+        persistent,
+        filterKey);
+}
+
+unsigned int PermitOutboundIpv6Dhcp(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const IPFilterDisplayData* displayData,
+    unsigned int layer,
+    unsigned int action,
+    unsigned int weight,
+    GUID* calloutKey,
+    GUID* providerContextKey,
+    BOOL persistent,
+    GUID* filterKey)
+{
+    return IPFilterCreateFilter(
+        sessionHandle,
+        providerKey,
+        sublayerKey,
+        displayData,
+        layer,
+        action,
+        weight,
+        calloutKey,
+        providerContextKey,
+        {
+            ipfilter::condition::tcpProtocol(ipfilter::matcher::equal(), ipfilter::value::TcpProtocol::udp()),
+            ipfilter::condition::remoteIpV6Address(
+                ipfilter::matcher::equal(),
+                ipfilter::value::IpAddressV6(ipfilter::ip::AddressV6::linkLocalDhcpMulticast())),
+            ipfilter::condition::remoteIpV6Address(
+                ipfilter::matcher::equal(),
+                ipfilter::value::IpAddressV6(ipfilter::ip::AddressV6::siteLocalDhcpMulticast())),
+            ipfilter::condition::remotePort(ipfilter::matcher::equal(), ipfilter::value::Port(547)),
+            ipfilter::condition::localIpV6AddressWithPrefix(
+                ipfilter::matcher::equal(),
+                ipfilter::value::IpAddressV6WithPrefix(ipfilter::ip::AddressV6::linkLocal())),
+            ipfilter::condition::localPort(ipfilter::matcher::equal(), ipfilter::value::Port(546)),
+        },
+        persistent,
+        filterKey);
+}
+
+unsigned int PermitInboundIpv6Dhcp(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const IPFilterDisplayData* displayData,
+    unsigned int layer,
+    unsigned int action,
+    unsigned int weight,
+    GUID* calloutKey,
+    GUID* providerContextKey,
+    BOOL persistent,
+    GUID* filterKey)
+{
+    auto linkLocal = ipfilter::value::IpAddressV6WithPrefix(ipfilter::ip::AddressV6::linkLocal());
+
+    return IPFilterCreateFilter(
+        sessionHandle,
+        providerKey,
+        sublayerKey,
+        displayData,
+        layer,
+        action,
+        weight,
+        calloutKey,
+        providerContextKey,
+        {
+            ipfilter::condition::tcpProtocol(ipfilter::matcher::equal(), ipfilter::value::TcpProtocol::udp()),
+            ipfilter::condition::remoteIpV6AddressWithPrefix(ipfilter::matcher::equal(), linkLocal),
+            ipfilter::condition::remotePort(ipfilter::matcher::equal(), ipfilter::value::Port(547)),
+            ipfilter::condition::localIpV6AddressWithPrefix(ipfilter::matcher::equal(), linkLocal),
+            ipfilter::condition::localPort(ipfilter::matcher::equal(), ipfilter::value::Port(546)),
+        },
         persistent,
         filterKey);
 }

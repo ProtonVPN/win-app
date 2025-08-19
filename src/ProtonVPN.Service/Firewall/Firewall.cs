@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -264,6 +264,7 @@ internal class Firewall : IFirewall, IStartable
         PermitDhcp(4, firewallParams);
         PermitFromNetworkInterface(4, firewallParams);
         PermitFromProcesses(4, firewallParams);
+        PermitNetworkDiscoveryProtocol(4, firewallParams);
 
         PermitIpv4Loopback(LOCAL_TRAFFIC_WEIGHT, firewallParams);
         PermitIpv6Loopback(LOCAL_TRAFFIC_WEIGHT, firewallParams);
@@ -386,7 +387,7 @@ internal class Firewall : IFirewall, IStartable
         _ipLayer.ApplyToIpv4(layer =>
         {
             Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateRemoteUdpPortFilter(
-                new DisplayData("ProtonVPN permit DHCP", "Permit 67 UDP port"),
+                new DisplayData("ProtonVPN permit DHCP IPv4", "Permit 67 UDP port"),
                 Action.SoftPermit,
                 layer,
                 weight,
@@ -394,6 +395,22 @@ internal class Firewall : IFirewall, IStartable
                 firewallParams.Persistent);
             _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
         });
+
+        Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).PermitOutboundIpv6Dhcp(
+            new DisplayData("ProtonVPN permit outbound DHCP IPv6", ""),
+            Action.SoftPermit,
+            Layer.AppAuthConnectV6,
+            weight,
+            firewallParams.Persistent);
+        _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
+
+        guid = _ipFilter.GetSublayer(firewallParams.SessionType).PermitInboundIpv6Dhcp(
+            new DisplayData("ProtonVPN permit inbound DHCP IPv6", ""),
+            Action.SoftPermit,
+            Layer.AppAuthRecvAcceptV6,
+            weight,
+            firewallParams.Persistent);
+        _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
     }
 
     private void PermitFromNetworkInterface(uint weight, FirewallParams firewallParams)
@@ -584,6 +601,53 @@ internal class Firewall : IFirewall, IStartable
         });
     }
 
+    private void PermitNetworkDiscoveryProtocol(uint weight, FirewallParams firewallParams)
+    {
+        Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).PermitRouterSolicitationMessage(
+            new DisplayData("ProtonVPN permit ICMP type 133, code 0.", ""),
+            Action.HardPermit,
+            Layer.AppAuthConnectV6,
+            weight,
+            firewallParams.Persistent);
+        _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
+
+        guid = _ipFilter.GetSublayer(firewallParams.SessionType).PermitRouterAdvertisementMessage(
+            new DisplayData("ProtonVPN permit ICMP type 134, code 0.", ""),
+            Action.HardPermit,
+            Layer.AppAuthRecvAcceptV6,
+            weight,
+            firewallParams.Persistent);
+        _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
+
+        _ipLayer.Apply(layer =>
+        {
+            guid = _ipFilter.GetSublayer(firewallParams.SessionType).PermitNeighborSolicitationMessage(
+                new DisplayData("ProtonVPN permit ICMP type 135, code 0.", ""),
+                Action.HardPermit,
+                layer,
+                weight,
+                firewallParams.Persistent);
+            _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
+
+            guid = _ipFilter.GetSublayer(firewallParams.SessionType).PermitNeighborAdvertisementMessage(
+                new DisplayData("ProtonVPN permit ICMP type 136, code 0.", ""),
+                Action.HardPermit,
+                layer,
+                weight,
+                firewallParams.Persistent);
+            _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
+
+        }, [Layer.AppAuthConnectV6, Layer.AppAuthRecvAcceptV6]);
+
+        guid = _ipFilter.GetSublayer(firewallParams.SessionType).PermitIcmpRedirectMessage(
+            new DisplayData("ProtonVPN permit ICMP type 137, code 0.", ""),
+            Action.HardPermit,
+            Layer.AppAuthRecvAcceptV6,
+            weight,
+            firewallParams.Persistent);
+        _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
+    }
+
     private void PermitPrivateNetwork(uint weight, FirewallParams firewallParams)
     {
         if (!firewallParams.IsLocalAreaNetworkAccessEnabled)
@@ -591,30 +655,46 @@ internal class Firewall : IFirewall, IStartable
             return;
         }
 
-        List<NetworkAddress> networkAddresses = new()
-        {
-            new("10.0.0.0", "255.0.0.0"),
-            new("169.254.0.0", "255.255.0.0"),
-            new("172.16.0.0", "255.240.0.0"),
-            new("192.168.0.0", "255.255.0.0"),
-            new("224.0.0.0", "240.0.0.0"),
-            new("255.255.255.255", "255.255.255.255")
-        };
+        List<NetworkAddress> networkAddresses = [
+            NetworkAddress.FromIpv4("10.0.0.0", "255.0.0.0"),
+            NetworkAddress.FromIpv4("169.254.0.0", "255.255.0.0"),
+            NetworkAddress.FromIpv4("172.16.0.0", "255.240.0.0"),
+            NetworkAddress.FromIpv4("192.168.0.0", "255.255.0.0"),
+            NetworkAddress.FromIpv4("224.0.0.0", "240.0.0.0"),
+            NetworkAddress.FromIpv4("255.255.255.255", "255.255.255.255"),
+            NetworkAddress.FromIpv6("fc00::", 7),
+            NetworkAddress.FromIpv6("fe80::", 10),
+        ];
 
         foreach (NetworkAddress networkAddress in networkAddresses)
         {
-            _ipLayer.ApplyToIpv4(layer =>
+            if (networkAddress.IsIpv6)
             {
-                Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateRemoteNetworkIPv4Filter(
-                    new DisplayData("ProtonVPN permit private network", ""),
-                    Action.HardPermit,
-                    layer,
-                    weight,
-                    networkAddress,
-                    firewallParams.Persistent);
-                _firewallItems.Add(new FirewallItem(FirewallItemType.LocalNetworkFilter, guid));
-            });
+                _ipLayer.ApplyToIpv6(layer =>
+                {
+                    PermitPrivateNetworkAddress(firewallParams, networkAddress, layer, weight);
+                });
+            }
+            else
+            {
+                _ipLayer.ApplyToIpv4(layer =>
+                {
+                    PermitPrivateNetworkAddress(firewallParams, networkAddress, layer, weight);
+                });
+            }
         }
+    }
+
+    private void PermitPrivateNetworkAddress(FirewallParams firewallParams, NetworkAddress networkAddress, Layer layer, uint weight)
+    {
+        Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateRemoteNetworkIPFilter(
+            new DisplayData("ProtonVPN permit private network", ""),
+            Action.HardPermit,
+            layer,
+            weight,
+            networkAddress,
+            firewallParams.Persistent);
+        _firewallItems.Add(new FirewallItem(FirewallItemType.LocalNetworkFilter, guid));
     }
 
     private void PermitFromProcesses(uint weight, FirewallParams firewallParams)

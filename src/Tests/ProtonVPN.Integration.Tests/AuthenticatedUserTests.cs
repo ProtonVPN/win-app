@@ -54,6 +54,7 @@ public class AuthenticatedUserTests : TestBase
         SetVpnInfoResponse();
         SetAuthCertificateResponse();
         SetUserResponse();
+        SetIpv6ragmentsResponse();
     }
 
     protected void SetApiResponsesForAuthWithTwoFactor()
@@ -113,6 +114,15 @@ public class AuthenticatedUserTests : TestBase
         {
             StatusCode = HttpStatusCode.OK,
             Content = new StringContent(GetJsonMock("UserResponseMock"))
+        });
+    }
+
+    private void SetIpv6ragmentsResponse()
+    {
+        MessageHandler!.When(HttpMethod.Get, "/vpn/v1/ipv6-fragments").Respond(_ => new HttpResponseMessage
+        {
+            StatusCode = HttpStatusCode.OK,
+            Content = new StringContent(GetJsonMock("IPv6FragmentsResponseMock"))
         });
     }
 

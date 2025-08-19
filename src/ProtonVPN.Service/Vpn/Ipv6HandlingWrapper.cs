@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,271 +20,423 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
-using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Common.Legacy.Vpn;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
+using ProtonVPN.IPv6.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.IPv6Logs;
+using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
+using ProtonVPN.OperatingSystems.Network.Contracts;
+using ProtonVPN.OperatingSystems.Processes.Contracts;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Vpn.Common;
 
-namespace ProtonVPN.Service.Vpn
+namespace ProtonVPN.Service.Vpn;
+
+internal class Ipv6HandlingWrapper : IVpnConnection
 {
-    internal class Ipv6HandlingWrapper : IVpnConnection
+    private const int MAX_FAKE_IPV6_ADDRESSES = 50;
+
+    private readonly IIpv6 _ipv6;
+    private readonly ILogger _logger;
+    private readonly IFirewall _firewall;
+    private readonly IServiceSettings _serviceSettings;
+    private readonly IFakeIPv6AddressGenerator _fakeIPv6AddressGenerator;
+    private readonly ICommandLineCaller _commandLineCaller;
+    private readonly INetworkInterfaceLoader _networkInterfaceLoader;
+    private readonly ISystemNetworkInterfaces _networkInterfaces;
+    private readonly IVpnConnection _origin;
+
+    private readonly SemaphoreSlim _networkSemaphore = new(1, 1);
+    private readonly SemaphoreSlim _ipv6Semaphore = new(1, 1);
+
+    private IReadOnlyList<VpnHost> _servers;
+    private VpnConfig _config;
+    private VpnCredentials _credentials;
+
+    private bool _connectRequested;
+    private bool _disconnectedReceived;
+    private volatile bool _networkChanged;
+
+    private VpnStatus? _vpnStatus = null;
+    private VpnProtocol? _lastConnectedProtocol;
+
+    private HashSet<NetworkAddress> _lastGlobalUnicastAddresses = [];
+    private List<NetworkAddress> _lastFakeIpv6Addresses = [];
+
+    public Ipv6HandlingWrapper(
+        IIpv6 ipv6,
+        ILogger logger,
+        IFirewall firewall,
+        IServiceSettings serviceSettings,
+        IFakeIPv6AddressGenerator fakeIPv6AddressGenerator,
+        ICommandLineCaller commandLineCaller,
+        INetworkInterfaceLoader networkInterfaceLoader,
+        ISystemNetworkInterfaces networkInterfaces,
+        IObservableNetworkInterfaces observableNetworkInterfaces,
+        IVpnConnection origin)
     {
-        private readonly IServiceSettings _serviceSettings;
-        private readonly IFirewall _firewall;
-        private readonly Ipv6 _ipv6;
-        private readonly ITaskQueue _taskQueue;
-        private readonly IVpnConnection _origin;
+        _ipv6 = ipv6;
+        _logger = logger;
+        _firewall = firewall;
+        _serviceSettings = serviceSettings;
+        _fakeIPv6AddressGenerator = fakeIPv6AddressGenerator;
+        _commandLineCaller = commandLineCaller;
+        _networkInterfaceLoader = networkInterfaceLoader;
+        _networkInterfaces = networkInterfaces;
+        _origin = origin;
 
-        private IReadOnlyList<VpnHost> _servers;
-        private VpnConfig _config;
-        private VpnCredentials _credentials;
+        _origin.StateChanged += OnStateChangedAsync;
 
-        private Task _ipv6Task = Task.CompletedTask;
-        private bool _connectRequested;
-        private bool _disconnectedReceived;
-        private volatile bool _networkChanged;
+        observableNetworkInterfaces.NetworkInterfacesAdded += OnNetworkInterfacesAddedAsync;
+        networkInterfaces.NetworkAddressChanged += OnNetworkAddressChangedAsync;
+    }
 
-        private VpnStatus _vpnStatus;
+    public event EventHandler<EventArgs<VpnState>> StateChanged;
 
-        public Ipv6HandlingWrapper(
-            IServiceSettings serviceSettings,
-            IFirewall firewall,
-            ObservableNetworkInterfaces networkInterfaces,
-            Ipv6 ipv6,
-            ITaskQueue taskQueue,
-            IVpnConnection origin)
+    public event EventHandler<ConnectionDetails> ConnectionDetailsChanged
+    {
+        add => _origin.ConnectionDetailsChanged += value;
+        remove => _origin.ConnectionDetailsChanged -= value;
+    }
+
+    public NetworkTraffic NetworkTraffic => _origin.NetworkTraffic;
+
+    public async void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnCredentials credentials)
+    {
+        _servers = servers;
+        _config = config;
+        _credentials = credentials;
+
+        _connectRequested = true;
+        _disconnectedReceived = false;
+
+        InvokeConnecting();
+
+        if (_serviceSettings.IsIpv6FeatureFlagEnabled)
         {
-            _serviceSettings = serviceSettings;
-            _firewall = firewall;
-            _ipv6 = ipv6;
-            _taskQueue = taskQueue;
-            _origin = origin;
+            await ConnectWithChaosAlgorithmAsync();
+        }
+        else
+        {
+            await ConnectDisablingIpv6Async();
+        }
+    }
 
-            _origin.StateChanged += Origin_StateChanged;
-            _serviceSettings.SettingsChanged += OnServiceSettingsChanged;
-            networkInterfaces.NetworkInterfacesAdded += NetworkInterfaces_NetworkInterfacesAdded;
+    public void ResetConnection()
+    {
+        _origin.ResetConnection();
+    }
+
+    public void Disconnect(VpnError error)
+    {
+        _connectRequested = false;
+        _disconnectedReceived = false;
+
+        _origin.Disconnect(error);
+    }
+
+    public void SetFeatures(VpnFeatures vpnFeatures)
+    {
+        _origin.SetFeatures(vpnFeatures);
+    }
+
+    public void RequestNetShieldStats()
+    {
+        _origin.RequestNetShieldStats();
+    }
+
+    public void RequestConnectionDetails()
+    {
+        _origin.RequestConnectionDetails();
+    }
+
+    private async Task ConnectWithChaosAlgorithmAsync()
+    {
+        if (!_ipv6.IsEnabled)
+        {
+            await RunIpv6ActionAsync(_ipv6.EnableAsync);
         }
 
-        public event EventHandler<EventArgs<VpnState>> StateChanged;
-
-        public event EventHandler<ConnectionDetails> ConnectionDetailsChanged
+        if (!_serviceSettings.Ipv6LeakProtection)
         {
-            add => _origin.ConnectionDetailsChanged += value;
-            remove => _origin.ConnectionDetailsChanged -= value;
+            _lastFakeIpv6Addresses.Clear();
+            ConnectOrigin();
+            return;
         }
 
-        public NetworkTraffic NetworkTraffic => _origin.NetworkTraffic;
+        HashSet<NetworkAddress> globalUnicastAddresses = GetGlobalUnicastAddresses();
 
-        public void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnCredentials credentials)
+        if (globalUnicastAddresses.Count == 0)
         {
-            _servers = servers;
-            _config = config;
-            _credentials = credentials;
-
-            _connectRequested = true;
-            _disconnectedReceived = false;
-
-            Queued(Connect);
+            _lastFakeIpv6Addresses.Clear();
+            ConnectOrigin();
+            return;
         }
 
-        public void ResetConnection()
+        LogGuaAddresses(globalUnicastAddresses);
+
+        _lastGlobalUnicastAddresses = globalUnicastAddresses;
+
+        List<NetworkAddress> fakeIpv6Addresses = await _fakeIPv6AddressGenerator.GenerateAddressesAsync(
+            _serviceSettings.Ipv6Fragments,
+            globalUnicastAddresses.Select(a => a.ToString()).ToList(),
+            MAX_FAKE_IPV6_ADDRESSES);
+
+        if (fakeIpv6Addresses.Count == 0)
         {
-            _origin.ResetConnection();
+            return;
         }
 
-        public void Disconnect(VpnError error)
-        {
-            _connectRequested = false;
-            _disconnectedReceived = false;
+        _lastFakeIpv6Addresses = fakeIpv6Addresses;
+        ConnectOrigin();
+    }
 
-            _origin.Disconnect(error);
+    private void ConnectOrigin()
+    {
+        _connectRequested = false;
+        _origin.Connect(_servers, _config, _credentials);
+    }
+
+    private async Task ConnectDisablingIpv6Async()
+    {
+        await _ipv6.EnableOnVPNInterfaceAsync();
+
+        if (_ipv6.IsEnabled && _serviceSettings.Ipv6LeakProtection)
+        {
+            await RunIpv6ActionAsync(_ipv6.DisableAsync);
+        }
+        else if (!_ipv6.IsEnabled && !_serviceSettings.Ipv6LeakProtection)
+        {
+            await RunIpv6ActionAsync(_ipv6.EnableAsync);
         }
 
-        public void SetFeatures(VpnFeatures vpnFeatures)
+        _networkChanged = false;
+
+        ConnectOrigin();
+    }
+
+    private async void OnStateChangedAsync(object sender, EventArgs<VpnState> e)
+    {
+        VpnState state = e.Data;
+
+        if (state.Status == _vpnStatus)
         {
-            _origin.SetFeatures(vpnFeatures);
+            return;
         }
 
-        public void RequestNetShieldStats()
-        {
-            _origin.RequestNetShieldStats();
-        }
+        _vpnStatus = state.Status;
+        _lastConnectedProtocol = state.Status == VpnStatus.Connected
+            ? state.VpnProtocol
+            : null;
 
-        public void RequestConnectionDetails()
+        if (_connectRequested)
         {
-            _origin.RequestConnectionDetails();
-        }
-
-        private async void Connect()
-        {
-            if (!_connectRequested)
-            {
-                return;
-            }
-
             InvokeConnecting();
-
-            await _ipv6.EnableOnVPNInterfaceAsync();
-
-            if (!_serviceSettings.Ipv6LeakProtection)
-            {
-                _connectRequested = false;
-                _origin.Connect(_servers, _config, _credentials);
-                return;
-            }
-
-            if (_ipv6Task.IsCompleted)
-            {
-                if (_ipv6.Enabled)
-                {
-                    _networkChanged = false;
-                    _ipv6Task = _ipv6.DisableAsync();
-                }
-                else
-                {
-                    _connectRequested = false;
-                    _origin.Connect(_servers, _config, _credentials);
-                    return;
-                }
-            }
-
-            await _ipv6Task;
-            Queued(Connect);
+            return;
         }
 
-        private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
+        InvokeStateChanged(state);
+
+        _disconnectedReceived = state.Status == VpnStatus.Disconnected;
+
+        if (_disconnectedReceived)
         {
-            VpnState state = e.Data;
-            _vpnStatus = e.Data.Status;
-
-            if (_connectRequested)
-            {
-                InvokeConnecting();
-                return;
-            }
-
-            InvokeStateChanged(state);
-
-            _disconnectedReceived = state.Status == VpnStatus.Disconnected;
-
-            if (_disconnectedReceived)
-            {
-                Disconnected();
-            }
+            await DisconnectedAsync();
         }
 
-        private async void Disconnected()
+        if (_serviceSettings.IsIpv6FeatureFlagEnabled)
         {
-            if (!_disconnectedReceived)
+            switch (state.Status)
             {
-                return;
-            }
-
-            if (_ipv6Task.IsCompleted)
-            {
-                if (!_firewall.LeakProtectionEnabled && !_ipv6.Enabled)
-                {
-                    _networkChanged = false;
-                    _ipv6Task = _ipv6.EnableAsync();
-                }
-                else
-                {
-                    _disconnectedReceived = false;
-
-                    return;
-                }
-            }
-
-            await _ipv6Task;
-            Queued(Disconnected);
-        }
-
-        private void NetworkInterfaces_NetworkInterfacesAdded(object sender, EventArgs e)
-        {
-            if (_networkChanged || !_connectRequested)
-            {
-                return;
-            }
-
-            _networkChanged = true;
-            Queued(NetworkChanged);
-        }
-
-        private async void NetworkChanged()
-        {
-            if (!_networkChanged || _disconnectedReceived)
-            {
-                return;
-            }
-
-            if (_ipv6Task.IsCompleted)
-            {
-                _networkChanged = false;
-
-                if (!_ipv6.Enabled)
-                {
-                    _ipv6Task = _ipv6.DisableAsync();
-                }
-                else
-                {
-                    return;
-                }
-            }
-
-            await _ipv6Task;
-            Queued(NetworkChanged);
-        }
-
-        private void InvokeConnecting()
-        {
-            VpnHost server = _servers.FirstOrDefault();
-            if (!server.IsEmpty())
-            {
-                InvokeStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty, server.Ip, 0,
-                    _config.VpnProtocol, openVpnAdapter: _config.OpenVpnAdapter, label: server.Label));
+                case VpnStatus.Connected when _lastFakeIpv6Addresses.Count > 0:
+                    INetworkInterface tunnelInterface = GetTunnelInterface();
+                    await AddInterfaceIpv6AddressesAsync(_lastFakeIpv6Addresses, tunnelInterface.Index);
+                    break;
+                case VpnStatus.Disconnected:
+                    _lastFakeIpv6Addresses.Clear();
+                    break;
             }
         }
+    }
 
-        private void InvokeStateChanged(VpnState state)
+    private async Task DisconnectedAsync()
+    {
+        if (!_disconnectedReceived)
         {
-            StateChanged?.Invoke(this, new EventArgs<VpnState>(state));
+            return;
         }
 
-        private void Queued(Action action)
+        if ((!_firewall.LeakProtectionEnabled || _serviceSettings.IsIpv6FeatureFlagEnabled) && !_ipv6.IsEnabled)
         {
-            _taskQueue.Enqueue(action);
+            _networkChanged = false;
+            await RunIpv6ActionAsync(_ipv6.EnableAsync);
+        }
+        else
+        {
+            _disconnectedReceived = false;
+        }
+    }
+
+    private async void OnNetworkInterfacesAddedAsync(object sender, EventArgs e)
+    {
+        if (_networkChanged || !_connectRequested)
+        {
+            return;
         }
 
-        private void OnServiceSettingsChanged(object sender, MainSettingsIpcEntity e)
+        _networkChanged = false;
+
+        if (!_ipv6.IsEnabled)
         {
-            Queued(ApplyIpv6Settings);
+            await RunIpv6ActionAsync(_ipv6.DisableAsync);
         }
+    }
 
-        private async void ApplyIpv6Settings()
+    private async void OnNetworkAddressChangedAsync(object sender, EventArgs e)
+    {
+        await _networkSemaphore.WaitAsync();
+
+        try
         {
-            if (_ipv6.Enabled == !_serviceSettings.Ipv6LeakProtection)
-            {
-                return;
-            }
-
             if (_vpnStatus != VpnStatus.Connected)
             {
                 return;
             }
 
-            if (_ipv6Task.IsCompleted)
+            HashSet<NetworkAddress> globalUnicastAddresses = GetGlobalUnicastAddresses();
+            if (_lastGlobalUnicastAddresses.SetEquals(globalUnicastAddresses))
             {
-                _ipv6Task = _serviceSettings.Ipv6LeakProtection ? _ipv6.DisableAsync() : _ipv6.EnableAsync();
+                return;
             }
 
-            await _ipv6Task;
+            if (globalUnicastAddresses.Count > 0)
+            {
+                LogGuaAddresses(globalUnicastAddresses);
+            }
 
-            Queued(ApplyIpv6Settings);
+            INetworkInterface tunnelInterface = GetTunnelInterface();
+
+            if (globalUnicastAddresses.Count == 0 && _lastGlobalUnicastAddresses.Count > 0)
+            {
+                _logger.Info<IPv6Log>("No GUA addresses detected after network addresses changed. Clearing previuos fake IPv6 addresses.");
+
+                _lastGlobalUnicastAddresses.Clear();
+
+                await DeleteInterfaceIpv6AddressesAsync(_lastFakeIpv6Addresses, tunnelInterface.Index);
+                _lastFakeIpv6Addresses.Clear();
+                return;
+            }
+
+            _lastGlobalUnicastAddresses = globalUnicastAddresses;
+
+            List<NetworkAddress> ipv6AddressesToRemove = _lastFakeIpv6Addresses.ToList();
+
+            await ApplyFakeIpv6AddressesAsync(tunnelInterface.Index);
+            await DeleteInterfaceIpv6AddressesAsync(ipv6AddressesToRemove, tunnelInterface.Index);
+        }
+        finally
+        {
+            _networkSemaphore.Release();
+        }
+    }
+
+    private void LogGuaAddresses(HashSet<NetworkAddress> globalUnicastAddresses)
+    {
+        _logger.Debug<NetworkLog>($"GUA addresses detected: {string.Join(", ", globalUnicastAddresses)}");
+    }
+
+    private async Task ApplyFakeIpv6AddressesAsync(uint tunnelInterfaceIndex)
+    {
+        List<NetworkAddress> fakeIpv6Addresses = await _fakeIPv6AddressGenerator.GenerateAddressesAsync(
+            _serviceSettings.Ipv6Fragments,
+            _lastGlobalUnicastAddresses.Select(a => a.ToString()).ToList(),
+            MAX_FAKE_IPV6_ADDRESSES);
+
+        if (fakeIpv6Addresses.Count > 0)
+        {
+            await AddInterfaceIpv6AddressesAsync(fakeIpv6Addresses, tunnelInterfaceIndex);
+
+            _lastFakeIpv6Addresses = fakeIpv6Addresses;
+        }
+    }
+
+    private async Task AddInterfaceIpv6AddressesAsync(List<NetworkAddress> addresses, uint interfaceIndex)
+    {
+        _logger.Info<IPv6Log>($"Adding {addresses.Count} fake IPv6 addresses to interface with index {interfaceIndex}.");
+
+        List<string> commands = addresses
+            .ToList()
+            .Select(address => $"netsh interface ipv6 add address {interfaceIndex} {address} skipassource=true")
+            .ToList();
+
+        await _commandLineCaller.ExecuteMultipleAsync(commands);
+    }
+
+    private async Task DeleteInterfaceIpv6AddressesAsync(List<NetworkAddress> addresses, uint interfaceIndex)
+    {
+        if (addresses.Count == 0)
+        {
+            return;
+        }
+
+        _logger.Info<IPv6Log>($"Deleting {addresses.Count} fake IPv6 addresses from interface with index {interfaceIndex}.");
+
+        List<string> commands = addresses
+            .ToList()
+            .Select(address => $"netsh interface ipv6 delete address {interfaceIndex} {address}")
+            .ToList();
+
+        await _commandLineCaller.ExecuteMultipleAsync(commands);
+    }
+
+    private HashSet<NetworkAddress> GetGlobalUnicastAddresses()
+    {
+        INetworkInterface tunnelInterface = GetTunnelInterface();
+
+        return _networkInterfaces
+            .GetInterfaces()
+            .Where(i => !i.Equals(tunnelInterface))
+            .SelectMany(i => i.GetUnicastAddresses())
+            .Where(a => a.IsGlobalUnicastAddress())
+            .ToHashSet();
+    }
+
+    private INetworkInterface GetTunnelInterface()
+    {
+        return _networkInterfaceLoader.GetByVpnProtocol(_lastConnectedProtocol ?? _config.VpnProtocol, _config.OpenVpnAdapter);
+    }
+
+    private void InvokeConnecting()
+    {
+        VpnHost server = _servers.FirstOrDefault();
+        if (!server.IsEmpty())
+        {
+            InvokeStateChanged(new VpnState(VpnStatus.Pinging, VpnError.None, string.Empty, server.Ip, 0,
+                _config.VpnProtocol, openVpnAdapter: _config.OpenVpnAdapter, label: server.Label));
+        }
+    }
+
+    private void InvokeStateChanged(VpnState state)
+    {
+        StateChanged?.Invoke(this, new EventArgs<VpnState>(state));
+    }
+
+    private async Task RunIpv6ActionAsync(Func<Task> action)
+    {
+        await _ipv6Semaphore.WaitAsync().ConfigureAwait(false);
+
+        try
+        {
+            await action().ConfigureAwait(false);
+        }
+        finally
+        {
+            _ipv6Semaphore.Release();
         }
     }
 }

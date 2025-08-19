@@ -23,12 +23,11 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
-using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
@@ -49,10 +48,10 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
     private readonly IGatewayCache _gatewayCache;
     private readonly Timer _serviceHealthCheckTimer = new();
     private readonly IWireGuardService _wireGuardService;
+    private readonly IWireGuardConfigGenerator _wireGuardConfigGenerator;
     private readonly NtTrafficManager _ntTrafficManager;
     private readonly WintunTrafficManager _wintunTrafficManager;
     private readonly StatusManager _statusManager;
-    private readonly IX25519KeyGenerator _x25519KeyGenerator;
     private readonly SingleAction _connectAction;
     private readonly SingleAction _disconnectAction;
 
@@ -70,26 +69,26 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         IConfiguration config,
         IGatewayCache gatewayCache,
         IWireGuardService wireGuardService,
+        IWireGuardConfigGenerator wireGuardConfigGenerator,
         NtTrafficManager ntTrafficManager,
         WintunTrafficManager wintunTrafficManager,
-        StatusManager statusManager,
-        IX25519KeyGenerator x25519KeyGenerator)
+        StatusManager statusManager)
     {
         _logger = logger;
         _config = config;
         _gatewayCache = gatewayCache;
         _wireGuardService = wireGuardService;
+        _wireGuardConfigGenerator = wireGuardConfigGenerator;
         _ntTrafficManager = ntTrafficManager;
         _wintunTrafficManager = wintunTrafficManager;
         _statusManager = statusManager;
-        _x25519KeyGenerator = x25519KeyGenerator;
 
         _ntTrafficManager.TrafficSent += OnTrafficSent;
         _wintunTrafficManager.TrafficSent += OnTrafficSent;
         _statusManager.StateChanged += OnStateChanged;
-        _connectAction = new SingleAction(ConnectAction);
+        _connectAction = new SingleAction(ConnectActionAsync);
         _connectAction.Completed += OnConnectActionCompleted;
-        _disconnectAction = new SingleAction(DisconnectAction);
+        _disconnectAction = new SingleAction(DisconnectActionAsync);
         _disconnectAction.Completed += OnDisconnectActionCompleted;
         _serviceHealthCheckTimer.Interval = config.ServiceCheckInterval.TotalMilliseconds;
         _serviceHealthCheckTimer.Elapsed += CheckIfServiceIsRunning;
@@ -108,15 +107,15 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         _connectAction.Run();
     }
 
-    private async Task ConnectAction(CancellationToken cancellationToken)
+    private async Task ConnectActionAsync(CancellationToken cancellationToken)
     {
         _logger.Info<ConnectStartLog>("Connect action started.");
         WriteConfig();
         UpdateGatewayCache();
         InvokeStateChange(VpnStatus.Connecting);
-        await EnsureServiceIsStopped(cancellationToken);
+        await EnsureServiceIsStoppedAsync(cancellationToken);
         _statusManager.Start();
-        await StartWireGuardService(cancellationToken);
+        await StartWireGuardServiceAsync(cancellationToken);
 
         CancellationToken linkedCancellationToken = CreateLinkedCancellationToken(cancellationToken);
         int timeout = Math.Clamp((int)_vpnConfig.WireGuardConnectionTimeout.TotalMilliseconds, MIN_CONNECTION_TIMEOUT, MAX_CONNECTION_TIMEOUT);
@@ -153,7 +152,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         _disconnectAction.Run();
     }
 
-    private async Task StartWireGuardService(CancellationToken cancellationToken)
+    private async Task StartWireGuardServiceAsync(CancellationToken cancellationToken)
     {
         _logger.Info<AppServiceStartLog>("Starting service.");
         try
@@ -166,7 +165,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         }
     }
 
-    private async Task DisconnectAction(CancellationToken cancellationToken)
+    private async Task DisconnectActionAsync(CancellationToken cancellationToken)
     {
         _logger.Info<DisconnectLog>("Disconnect action started.");
         if (_vpnStatus is not VpnStatus.Disconnected)
@@ -182,7 +181,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
 
         _serviceHealthCheckTimer.Stop();
         StopServiceDependencies();
-        await EnsureServiceIsStopped(cancellationToken);
+        await EnsureServiceIsStoppedAsync(cancellationToken);
         _isConnected = false;
         CancelDisconnectCancellationToken();
     }
@@ -204,7 +203,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         NetworkTraffic = total;
     }
 
-    private async Task EnsureServiceIsStopped(CancellationToken cancellationToken)
+    private async Task EnsureServiceIsStoppedAsync(CancellationToken cancellationToken)
     {
         while (_wireGuardService.Exists() && !_wireGuardService.IsStopped())
         {
@@ -294,9 +293,14 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
 
     private void WriteConfig()
     {
+        if (_endpoint is null)
+        {
+            return;
+        }
+
         CreateConfigDirectoryPathIfNotExists();
-        string template = CreateConfigString();
-        File.WriteAllText(_config.WireGuard.ConfigFilePath, template);
+        string configContent = _wireGuardConfigGenerator.GenerateConfig(_endpoint, _credentials, _vpnConfig);
+        File.WriteAllText(_config.WireGuard.ConfigFilePath, configContent);
     }
 
     private void CreateConfigDirectoryPathIfNotExists()
@@ -306,25 +310,6 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         {
             Directory.CreateDirectory(directoryPath);
         }
-    }
-
-    private string CreateConfigString()
-    {
-        SecretKey x25519SecretKey = GetX25519SecretKey();
-        return
-            $"[Interface]\n" +
-            $"PrivateKey = {x25519SecretKey.Base64}\n" +
-            $"Address = {_config.WireGuard.DefaultClientAddress}/32\n" +
-            $"DNS = {GetDnsServers()}\n" +
-            $"[Peer]\n" +
-            $"PublicKey = {_endpoint.Server.X25519PublicKey.Base64}\n" +
-            $"AllowedIPs = 0.0.0.0/0\n" +
-            $"Endpoint = {_endpoint.Server.Ip}:{_endpoint.Port}\n";
-    }
-
-    private SecretKey GetX25519SecretKey()
-    {
-        return _x25519KeyGenerator.FromEd25519SecretKey(_credentials.ClientKeyPair.SecretKey);
     }
 
     private void InvokeStateChange(VpnStatus status, VpnError error = VpnError.None)
@@ -338,19 +323,14 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
     {
         if (_vpnConfig is null)
         {
-            return new VpnState(status, error, _config.WireGuard.DefaultClientAddress,
+            return new VpnState(status, error, _config.WireGuard.DefaultClientIpv4Address,
                 _endpoint?.Server.Ip ?? string.Empty, _endpoint?.Port ?? 0, VpnProtocol.WireGuardUdp,
                 openVpnAdapter: null, label: _endpoint?.Server.Label ?? string.Empty);
         }
 
-        return new VpnState(status, error, _config.WireGuard.DefaultClientAddress,
+        return new VpnState(status, error, _config.WireGuard.DefaultClientIpv4Address,
             _endpoint?.Server.Ip ?? string.Empty, _endpoint?.Port ?? 0, _vpnConfig.VpnProtocol,
             _vpnConfig.PortForwarding, null, _endpoint?.Server.Label ?? string.Empty);
-    }
-
-    private string GetDnsServers()
-    {
-        return string.Join(",", [.. _vpnConfig.CustomDns, _config.WireGuard.DefaultDnsServer]);
     }
 
     private void CheckIfServiceIsRunning(object sender, ElapsedEventArgs e)

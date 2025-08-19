@@ -30,8 +30,11 @@ public class WireGuardConfigurations : IWireGuardConfigurations
     public Guid WintunAdapterGuid { get; set; }
     public Guid NtAdapterGuid { get; set; }
 
-    public string DefaultDnsServer { get; set; } = string.Empty;
-    public string DefaultClientAddress { get; set; } = string.Empty;
+    public string DefaultServerGatewayIpv4Address { get; set; } = string.Empty;
+    public string DefaultClientIpv4Address { get; set; } = string.Empty;
+
+    public string DefaultServerGatewayIpv6Address { get; set; } = string.Empty;
+    public string DefaultClientIpv6Address { get; set; } = string.Empty;
 
     public string ConfigFilePath { get; set; } = string.Empty;
     public string ServicePath { get; set; } = string.Empty;

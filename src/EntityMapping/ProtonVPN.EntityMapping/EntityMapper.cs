@@ -44,7 +44,7 @@ namespace ProtonVPN.EntityMapping
                     .Where(t => t.IsGenericType && t.GenericTypeArguments.Length == 2)
                     .Single();
                 mapperDictionary.Add(new Tuple<Type, Type>(
-                    genericInterface.GenericTypeArguments[0], 
+                    genericInterface.GenericTypeArguments[0],
                     genericInterface.GenericTypeArguments[1]), mapper);
             }
 

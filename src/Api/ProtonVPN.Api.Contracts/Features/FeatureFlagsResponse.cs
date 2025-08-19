@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -27,5 +27,4 @@ public class FeatureFlagsResponse : BaseResponse
 {
     [JsonProperty(PropertyName = "toggles")]
     public IList<FeatureFlagResponse> FeatureFlags { get; set; }
-
 }

@@ -166,7 +166,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="SelectionFlyout" Value="{StaticResource TextControlCommandBarSelectionFlyout}" />
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
         <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
-        <Setter Property="PlaceholderForeground" Value="{ThemeResource TextControlPlaceholderForeground}"/>
+        <Setter Property="PlaceholderForeground" Value="{ThemeResource TextControlPlaceholderForeground}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:SearchTextBox">
@@ -218,8 +218,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                  Size="Pixels16"
                                                  Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
 
-                            <custom:GhostButton Command="{TemplateBinding BackCommand}"
-                                                Margin="6,0,0,0"
+                            <custom:GhostButton Margin="6,0,0,0"
+                                                Command="{TemplateBinding BackCommand}"
                                                 Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}">
                                 <custom:GhostButton.LeftIcon>
                                     <pathicons:ArrowLeft x:Name="BackArrow"
@@ -368,7 +368,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="SelectionFlyout" Value="{StaticResource TextControlCommandBarSelectionFlyout}" />
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
         <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
-        <Setter Property="PlaceholderForeground" Value="{ThemeResource TextControlPlaceholderForeground}"/>
+        <Setter Property="PlaceholderForeground" Value="{ThemeResource TextControlPlaceholderForeground}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
@@ -470,13 +470,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </custom:GhostButton>
 
                         <ContentPresenter x:Name="DescriptionPresenter"
+                                          x:Load="False"
                                           Grid.Row="2"
                                           Grid.Column="0"
                                           Grid.ColumnSpan="2"
-                                          x:Load="False"
+                                          Margin="0,4,0,0"
                                           AutomationProperties.AccessibilityView="Raw"
                                           Content="{TemplateBinding Description}"
-                                          Foreground="{ThemeResource TextHintColorBrush}" />
+                                          FontSize="{StaticResource CaptionTextBlockFontSize}"
+                                          FontWeight="Normal"
+                                          Foreground="{ThemeResource TextWeakColorBrush}" />
 
                         <VisualStateManager.VisualStateGroups>
 
@@ -581,7 +584,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="SelectionFlyout" Value="{StaticResource TextControlCommandBarSelectionFlyout}" />
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
         <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
-        <Setter Property="PlaceholderForeground" Value="{ThemeResource TextControlPlaceholderForeground}"/>
+        <Setter Property="PlaceholderForeground" Value="{ThemeResource TextControlPlaceholderForeground}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
@@ -723,7 +726,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </VisualStateGroup>
 
                             <VisualStateGroup x:Name="ButtonStates">
-                                <VisualState x:Name="ButtonVisible"/>
+                                <VisualState x:Name="ButtonVisible" />
                                 <VisualState x:Name="ButtonCollapsed" />
                             </VisualStateGroup>
 
@@ -793,7 +796,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter.Value>
                 <ControlTemplate TargetType="PasswordBox">
                     <Grid>
-
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
@@ -873,7 +875,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    VerticalAlignment="Center"
                                    Foreground="{ThemeResource TextControlPlaceholderForeground}"
                                    IsHitTestVisible="False"
-                                   Text="{TemplateBinding PlaceholderText}"/>
+                                   Text="{TemplateBinding PlaceholderText}" />
 
                         <custom:GhostButton x:Name="RevealButton"
                                             Grid.Row="1"

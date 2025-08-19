@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Helpers;
 using ProtonVPN.Common.Legacy.KillSwitch;
@@ -66,6 +67,24 @@ public class ServiceSettings : IServiceSettings
         {
             Load();
             return _settings.Ipv6LeakProtection;
+        }
+    }
+
+    public bool IsIpv6FeatureFlagEnabled
+    {
+        get
+        {
+            Load();
+            return _settings.IsIpv6FeatureFlagEnabled;
+        }
+    }
+
+    public List<string> Ipv6Fragments
+    {
+        get
+        {
+            Load();
+            return _settings.Ipv6Fragments ??= [];
         }
     }
 

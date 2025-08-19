@@ -64,6 +64,9 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
     private bool _isIpv6LeakProtectionEnabled;
 
     [ObservableProperty]
+    private bool _isIpv6Enabled;
+
+    [ObservableProperty]
     [property: SettingName(nameof(ISettings.OpenVpnAdapter))]
     [NotifyPropertyChangedFor(nameof(IsTunAdapter))]
     [NotifyPropertyChangedFor(nameof(IsTapAdapter))]
@@ -107,6 +110,8 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
     public string Ipv6LeakProtectionLearnMoreUrl => _urlsBrowser.Ipv6LeakProtectionLearnMore;
 
     public bool IsLocalAreaNetworkSettingVisible => _featureFlagsObserver.IsLocalAreaNetworkAllowedForPaidUsersOnly;
+
+    public bool IsIpv6SettingVisible => _featureFlagsObserver.IsIpv6SupportEnabled;
 
     public bool IsStrictNatType
     {
@@ -174,6 +179,7 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
             ChangedSettingArgs.Create(() => Settings.OpenVpnAdapter, () => CurrentOpenVpnAdapter),
             ChangedSettingArgs.Create(() => Settings.IsIpv6LeakProtectionEnabled, () => IsIpv6LeakProtectionEnabled),
             ChangedSettingArgs.Create(() => Settings.IsLocalAreaNetworkAccessEnabled, () => IsLocalAreaNetworkAccessEnabled),
+            ChangedSettingArgs.Create(() => Settings.IsIpv6Enabled, () => IsIpv6Enabled),
         ];
     }
 
@@ -240,6 +246,7 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
         CurrentNatType = Settings.NatType;
         IsAlternativeRoutingEnabled = Settings.IsAlternativeRoutingEnabled;
         IsIpv6LeakProtectionEnabled = Settings.IsIpv6LeakProtectionEnabled;
+        IsIpv6Enabled = Settings.IsIpv6Enabled;
         CurrentOpenVpnAdapter = Settings.OpenVpnAdapter;
         IsLocalAreaNetworkAccessEnabled = Settings.IsLocalAreaNetworkAccessEnabled;
     }

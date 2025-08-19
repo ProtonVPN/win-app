@@ -20,6 +20,7 @@ enum class IPFilterLayer : unsigned int
     BindRedirectV6 = 5,
     AppConnectRedirectV4 = 6,
     OutboundIPPacketV4 = 7,
+    AppAuthRecvAcceptV6 = 8,
 };
 
 enum class IPFilterAction : unsigned int
@@ -41,6 +42,8 @@ struct IPFilterNetworkAddress
 {
     char* address;
     char* mask;
+    int prefix;
+    bool isIpv6;
 };
 
 unsigned int IPFilterCreateDynamicSession(
@@ -223,7 +226,7 @@ unsigned int IPFilterCreateRemoteUDPPortFilter(
     BOOL persistent,
     GUID * filterKey);
 
-unsigned int IPFilterCreateRemoteNetworkIPv4Filter(
+unsigned int IPFilterCreateRemoteNetworkIPFilter(
     IPFilterSessionHandle sessionHandle,
     GUID * providerKey,
     GUID * sublayerKey,
@@ -282,5 +285,70 @@ unsigned int BlockOutsideOpenVpn(
     unsigned int weight,
     const wchar_t* openVpnPath,
     const char* serverIpAddress,
+    BOOL persistent,
+    GUID* filterKey);
+
+unsigned int PermitRouterSolicitationMessage(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const IPFilterDisplayData* displayData,
+    unsigned int layer,
+    unsigned int action,
+    unsigned int weight,
+    GUID* calloutKey,
+    GUID* providerContextKey,
+    BOOL persistent,
+    GUID* filterKey);
+
+unsigned int PermitRouterAdvertisementMessage(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const IPFilterDisplayData* displayData,
+    unsigned int layer,
+    unsigned int action,
+    unsigned int weight,
+    GUID* calloutKey,
+    GUID* providerContextKey,
+    BOOL persistent,
+    GUID* filterKey);
+
+unsigned int PermitNeighborSolicitationMessage(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const IPFilterDisplayData* displayData,
+    unsigned int layer,
+    unsigned int action,
+    unsigned int weight,
+    GUID* calloutKey,
+    GUID* providerContextKey,
+    BOOL persistent,
+    GUID* filterKey);
+
+unsigned int PermitNeighborAdvertisementMessage(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const IPFilterDisplayData* displayData,
+    unsigned int layer,
+    unsigned int action,
+    unsigned int weight,
+    GUID* calloutKey,
+    GUID* providerContextKey,
+    BOOL persistent,
+    GUID* filterKey);
+
+unsigned int PermitIcmpRedirectMessage(
+    IPFilterSessionHandle sessionHandle,
+    GUID* providerKey,
+    GUID* sublayerKey,
+    const IPFilterDisplayData* displayData,
+    unsigned int layer,
+    unsigned int action,
+    unsigned int weight,
+    GUID* calloutKey,
+    GUID* providerContextKey,
     BOOL persistent,
     GUID* filterKey);

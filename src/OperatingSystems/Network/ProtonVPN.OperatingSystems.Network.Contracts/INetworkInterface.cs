@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using System.Net;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.OperatingSystems.Network.Contracts;
 
@@ -36,4 +37,6 @@ public interface INetworkInterface
     IPAddress DefaultGateway { get; }
 
     uint Index { get; }
+
+    List<NetworkAddress> GetUnicastAddresses();
 }

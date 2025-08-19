@@ -77,6 +77,7 @@ public class VpnServerMapperTest
             label: DateTime.UtcNow.Millisecond.ToString(),
             x25519PublicKey: new PublicKey("PVPN", KeyAlgorithm.Unknown),
             signature: DateTime.UtcNow.Ticks.ToString(),
+            isIpv6Supported: false,
             relayIpByProtocol: null);
 
         VpnServerIpcEntity result = _mapper.Map(entityToTest);
@@ -108,6 +109,7 @@ public class VpnServerMapperTest
             label: DateTime.UtcNow.Millisecond.ToString(),
             x25519PublicKey: new PublicKey("PVPN", KeyAlgorithm.Unknown),
             signature: DateTime.UtcNow.Ticks.ToString(),
+            isIpv6Supported: false,
             relayIpByProtocol: relayIpByProtocol);
 
         VpnServerIpcEntity result = _mapper.Map(entityToTest);

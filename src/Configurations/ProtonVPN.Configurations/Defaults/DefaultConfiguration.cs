@@ -27,6 +27,7 @@ public static class DefaultConfiguration
 {
     // Constants
     private const string LOGS_FOLDER_NAME = "Logs";
+    private const string IPV6_FOLDER_NAME = "IPv6";
 
     // Auxiliary fields
     /// <returns>C:\Program Files\Proton\VPN\v4.0.0</returns>
@@ -47,6 +48,9 @@ public static class DefaultConfiguration
 
     /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ServiceData\Logs</returns>
     private static readonly Lazy<string> _serviceLogsFolder = new(() => Path.Combine(_serviceDataPath.Value, LOGS_FOLDER_NAME));
+
+    /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ServiceData\IPv6</returns>
+    private static readonly Lazy<string> _ipv6DataFolder = new(() => Path.Combine(_serviceDataPath.Value, IPV6_FOLDER_NAME));
 
     /// <returns>C:\Users\{user}\AppData\Local</returns>
     private static readonly Lazy<string> _localAppDataPath = new(() => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
@@ -136,6 +140,12 @@ public static class DefaultConfiguration
 
     /// <returns>C:\Users\{user}\AppData\Local\ProtonVPN</returns>
     public static string LegacyAppLocalData => Path.Combine(_localAppDataPath.Value, "ProtonVPN");
+
+    /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ServiceData\IPv6\PrefixTree.bin</returns>
+    public static string IPv6PrefixTreeFilePath => Path.Combine(_ipv6DataFolder.Value, "PrefixTree.bin");
+
+    /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ServiceData\IPv6\PrefixTree.bin</returns>
+    public static string IPv6PersistedDataFilePath => Path.Combine(_ipv6DataFolder.Value, "PersistedData.csv");
 
     // C:\Program Files\Proton\VPN\v4.0.0\wintun.dll
     public static string WintunDriverPath => Path.Combine(_baseVersionDirectory.Value, "wintun.dll");

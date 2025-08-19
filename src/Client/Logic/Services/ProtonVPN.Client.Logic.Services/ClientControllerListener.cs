@@ -131,7 +131,7 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
             _grpcClient.ClientController.StreamConnectionDetailsChangeAsync(_cancellationTokenSource.Token))
         {
             _logger.Info<ProcessCommunicationLog>($"Received connection details change while " +
-                $"connected to server with IP '{connectionDetails.ServerIpAddress}'");
+                $"connected to server with {connectionDetails.ServerIpAddress}'");
 
             _eventMessageSender.Send(connectionDetails);
         }

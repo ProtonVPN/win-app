@@ -84,7 +84,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <x:Double x:Key="FlyoutThemeMaxWidth">456</x:Double>
     <x:Double x:Key="FlyoutThemeMinHeight">40</x:Double>
     <x:Double x:Key="FlyoutThemeMinWidth">96</x:Double>
-    <x:Double x:Key="FeatureFlyoutWidth">226</x:Double>
+    <x:Double x:Key="FeatureFlyoutWidth">250</x:Double>
 
     <Thickness x:Key="TitleBarMenuItemPadding">12,8</Thickness>
     <Thickness x:Key="TitleBarMenuItemMargin">0</Thickness>

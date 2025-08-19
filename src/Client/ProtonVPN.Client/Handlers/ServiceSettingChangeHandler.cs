@@ -48,6 +48,7 @@ public class ServiceSettingChangeHandler : IHandler, IEventMessageReceiver<Setti
             {nameof(ISettings.NatType), () => true},
             {nameof(ISettings.IsShareCrashReportsEnabled), () => true},
             {nameof(ISettings.IsLocalAreaNetworkAccessEnabled), () => true},
+            {nameof(ISettings.IsIpv6Enabled), () => true},
         };
     }
 

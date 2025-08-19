@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
@@ -57,8 +58,9 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
         IIntentServerListGenerator intentServerListGenerator,
         ISmartSecureCoreServerListGenerator smartSecureCoreServerListGenerator,
         ISmartStandardServerListGenerator smartStandardServerListGenerator,
+        IFeatureFlagsObserver featureFlagsObserver,
         IMainSettingsRequestCreator mainSettingsRequestCreator)
-        : base(logger, settings, entityMapper, mainSettingsRequestCreator)
+        : base(logger, settings, entityMapper, featureFlagsObserver, mainSettingsRequestCreator)
     {
         IntentServerListGenerator = intentServerListGenerator;
         SmartSecureCoreServerListGenerator = smartSecureCoreServerListGenerator;
@@ -158,7 +160,7 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
     protected VpnServerIpcEntity[] PhysicalServersToVpnServerIpcEntities(IEnumerable<PhysicalServer> physicalServers)
     {
         IEnumerable<VpnHost> hosts = physicalServers
-            .Select(s => new VpnHost(s.Domain, s.EntryIp, s.Label, GetServerPublicKey(s), s.Signature, s.RelayIpByProtocol));
+            .Select(s => new VpnHost(s.Domain, s.EntryIp, s.Label, GetServerPublicKey(s), s.Signature, s.IsIpv6Supported, s.RelayIpByProtocol));
         return EntityMapper.Map<VpnHost, VpnServerIpcEntity>(hosts).ToArray();
     }
 

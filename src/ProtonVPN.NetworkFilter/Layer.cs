@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,17 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.NetworkFilter
+namespace ProtonVPN.NetworkFilter;
+
+public enum Layer: uint
 {
-    public enum Layer: uint
-    {
-        AppFlowEstablishedV4 = 0,
-        AppFlowEstablishedV6 = 1,
-        AppAuthConnectV4 = 2,
-        AppAuthConnectV6 = 3,
-        BindRedirectV4 = 4,
-        BindRedirectV6 = 5,
-        AppConnectRedirectV4 = 6,
-        OutboundIPPacketV4 = 7,
-    }
+    AppFlowEstablishedV4 = 0,
+    AppFlowEstablishedV6 = 1,
+    AppAuthConnectV4 = 2,
+    AppAuthConnectV6 = 3,
+    BindRedirectV4 = 4,
+    BindRedirectV6 = 5,
+    AppConnectRedirectV4 = 6,
+    OutboundIPPacketV4 = 7,
+    AppAuthRecvAcceptV6 = 8,
 }

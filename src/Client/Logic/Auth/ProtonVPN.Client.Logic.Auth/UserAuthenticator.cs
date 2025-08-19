@@ -56,6 +56,7 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
     private readonly IUnauthSessionManager _unauthSessionManager;
     private readonly ISrpAuthenticator _srpAuthenticator;
     private readonly ISsoAuthenticator _ssoAuthenticator;
+    private readonly IFeatureFlagsObserver _featureFlagsObserver;
     private readonly IClientConfigObserver _clientConfigObserver;
 
     private CancellationTokenSource _cts = new();
@@ -80,6 +81,7 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
         IUnauthSessionManager unauthSessionManager,
         ISrpAuthenticator srpAuthenticator,
         ISsoAuthenticator ssoAuthenticator,
+        IFeatureFlagsObserver featureFlagsObserver,
         IClientConfigObserver clientConfigObserver)
     {
         _logger = logger;
@@ -96,6 +98,7 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
         _unauthSessionManager = unauthSessionManager;
         _srpAuthenticator = srpAuthenticator;
         _ssoAuthenticator = ssoAuthenticator;
+        _featureFlagsObserver = featureFlagsObserver;
         _clientConfigObserver = clientConfigObserver;
 
         _tokenClient.RefreshTokenExpired += OnTokenExpiredAsync;
@@ -292,8 +295,8 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
             _connectionCertificateManager.DeleteKeyPairAndCertificate();
 
             await SendLogoutRequestAsync();
-
             await _unauthSessionManager.RecreateAsync(CancellationToken.None);
+            await _featureFlagsObserver.UpdateAsync(CancellationToken.None);
 
             ClearAuthSessionDetails();
 
@@ -385,6 +388,11 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
             }
 
             await MigrateUserSettingsAsync(usersResponseTask, serversUpdateTask);
+
+            if (_settings.Ipv6Fragments.Count == 0)
+            {
+                await UpdateIpv6FragmentsAsync();
+            }
         }
         catch (HttpRequestException e) when (!_cts.IsCancellationRequested)
         {
@@ -424,17 +432,18 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
 
         DeleteKeyPairIfNotAutoLogin(isAutoLogin, _guestHoleManager.IsActive);
 
-        Task certificateAndClientConfigTask = Task.WhenAll(
+        Task postAuthInitializationTask = Task.WhenAll(
             GetCertificateTask(hasPlanChanged),
-            _clientConfigObserver.UpdateAsync(_cts.Token));
+            _clientConfigObserver.UpdateAsync(_cts.Token),
+            _featureFlagsObserver.UpdateAsync(_cts.Token));
 
         if (_guestHoleManager.IsActive)
         {
-            await certificateAndClientConfigTask;
+            await postAuthInitializationTask;
         }
         else
         {
-            certificateAndClientConfigTask.FireAndForget();
+            postAuthInitializationTask.FireAndForget();
         }
 
         if (isToSendLoggedInEvent)
@@ -468,6 +477,15 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
             _settings.UserCreationDateUtc = DateTimeOffset.FromUnixTimeSeconds(response.Value.User.CreateTime).UtcDateTime;
         }
         return response;
+    }
+
+    private async Task UpdateIpv6FragmentsAsync()
+    {
+        ApiResponseResult<Ipv6FragmentsResponse> response = await _apiClient.GetIpv6FragmentsAsync(_cts.Token);
+        if (response.Success)
+        {
+            _settings.Ipv6Fragments = response.Value.Fragments;
+        }
     }
 
     private async Task MigrateUserSettingsAsync(Task<ApiResponseResult<UsersResponse>> usersResponseTask, Task serversUpdateTask)

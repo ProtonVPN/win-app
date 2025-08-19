@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<PreserveCompilationContext>true</PreserveCompilationContext>
+		<OutputType>Library</OutputType>
+		<Nullable>enable</Nullable>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<OutputPath>..\..\bin\</OutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ProtonVPN.IPv6\ProtonVPN.IPv6.csproj" />
+	</ItemGroup>
+
+</Project>

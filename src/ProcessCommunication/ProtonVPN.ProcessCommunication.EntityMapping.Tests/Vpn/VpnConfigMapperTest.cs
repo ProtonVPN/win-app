@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -112,6 +112,7 @@ public class VpnConfigMapperTest
             SplitTcp = true,
             ModerateNat = true,
             PortForwarding = true,
+            IsIpv6Enabled = true,
         });
 
         VpnConfigIpcEntity result = _mapper.Map(entityToTest);
@@ -127,6 +128,7 @@ public class VpnConfigMapperTest
         Assert.AreEqual(_expectedVpnProtocolIpcEntities, result.PreferredProtocols);
         Assert.AreEqual(entityToTest.SplitTcp, result.SplitTcp);
         Assert.AreEqual(entityToTest.PortForwarding, result.PortForwarding);
+        Assert.AreEqual(entityToTest.IsIpv6Enabled, result.IsIpv6Enabled);
     }
 
     private void AssertPortsAreEquivalent(VpnConfig entityToTest, VpnConfigIpcEntity result)

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -49,7 +49,6 @@ public class LogicalServerMapper : IMapper<LogicalServerResponse, Server>
                 Domain = leftEntity.Domain,
                 Latitude = leftEntity.Location?.Lat ?? 0,
                 Longitude = leftEntity.Location?.Long ?? 0,
-                ExitIp = GetExitIpIfEqualInAllPhysicalServers(leftEntity.Servers),
                 Status = leftEntity.Status,
                 Tier = (ServerTiers)leftEntity.Tier,
                 Features = (ServerFeatures)leftEntity.Features,
@@ -59,14 +58,6 @@ public class LogicalServerMapper : IMapper<LogicalServerResponse, Server>
                 IsVirtual = !string.IsNullOrEmpty(leftEntity.HostCountry),
                 GatewayName = leftEntity.GatewayName,
             };
-    }
-
-    private string GetExitIpIfEqualInAllPhysicalServers(IEnumerable<PhysicalServerResponse> physicalServers)
-    {
-        return physicalServers?.Aggregate(
-            (string)null,
-            (ip, p) => ip == null || ip == p.ExitIp ? p.ExitIp : "",
-            ip => !string.IsNullOrEmpty(ip) ? ip : null);
     }
 
     public LogicalServerResponse Map(Server rightEntity)

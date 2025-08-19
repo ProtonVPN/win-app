@@ -17,12 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Newtonsoft.Json;
+
 namespace ProtonVPN.Vpn.LocalAgent.Contracts
 {
     public class ConnectionDetailsContract
     {
         public string DeviceIp { get; set;  }
+
         public string DeviceCountry { get; set; }
-        public string ServerIpv4 { get; set; }
+
+        [JsonProperty("ServerIpv4")]
+        public string ServerIpv4Address { get; set; }
+
+        [JsonProperty("ServerIpv6")]
+        public string ServerIpv6Address { get; set; }
     }
 }

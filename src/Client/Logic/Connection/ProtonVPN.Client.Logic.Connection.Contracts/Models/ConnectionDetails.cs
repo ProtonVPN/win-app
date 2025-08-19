@@ -24,6 +24,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Common.Extensions;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+using ProtonVPN.Common.Core.Vpn;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models;
 
@@ -39,7 +40,7 @@ public class ConnectionDetails
 
     public VpnProtocol Protocol { get; private set; }
 
-    public string? ServerIpAddress { get; private set; }
+    public IpAddressInfo? ServerIpAddress { get; private set; }
 
     public int Port { get; private set; }
 
@@ -60,6 +61,7 @@ public class ConnectionDetails
     public string ServerName => Server.Name;
     public double ServerLoad => Server.Load / 100D;
     public bool IsGateway => Server.Features.IsB2B();
+    public bool IsIpv6Supported => Server.Features.IsSupported(ServerFeatures.Ipv6);
     public string GatewayName => Server.GatewayName;
 
     public ConnectionDetails(
@@ -74,7 +76,6 @@ public class ConnectionDetails
         Server = server;
         PhysicalServer = physicalServer;
         Protocol = protocol;
-        ServerIpAddress = physicalServer.ExitIp;
         Port = port;
     }
 
@@ -90,7 +91,7 @@ public class ConnectionDetails
         Port = port;
     }
 
-    public void UpdateIpAddress(string serverIpAddress)
+    public void UpdateServerIpAddress(IpAddressInfo serverIpAddress)
     {
         ServerIpAddress = serverIpAddress;
     }

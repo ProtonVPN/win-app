@@ -37,6 +37,9 @@ using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Management;
 using ProtonVPN.Vpn.OpenVpn;
 using ProtonVPN.OperatingSystems.Network.Contracts;
+using System.Collections.Generic;
+using System.Linq;
+using ProtonVPN.OperatingSystems.Processes.Contracts;
 
 namespace ProtonVPN.Vpn.Connection;
 
@@ -50,6 +53,7 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
     private readonly IStaticConfiguration _config;
     private readonly INetworkInterfaceLoader _networkInterfaceLoader;
     private readonly OpenVpnProcess _process;
+    private readonly ICommandLineCaller _commandLineCaller;
     private readonly ManagementClient _managementClient;
 
     private readonly OpenVpnManagementPorts _managementPorts;
@@ -68,6 +72,7 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
         INetworkInterfaceLoader networkInterfaceLoader,
         OpenVpnProcess process,
         IRandomStringGenerator randomStringGenerator,
+        ICommandLineCaller commandLineCaller,
         ManagementClient managementClient)
     {
         _logger = logger;
@@ -75,6 +80,7 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
         _networkInterfaceLoader = networkInterfaceLoader;
         _process = process;
         _randomStringGenerator = randomStringGenerator;
+        _commandLineCaller = commandLineCaller;
         _managementClient = managementClient;
 
         _managementClient.VpnStateChanged += ManagementClient_StateChanged;
@@ -125,7 +131,7 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
             _endpoint,
             port,
             password,
-            _vpnConfig.CustomDns,
+            GetCustomDnsServers(_vpnConfig),
             _vpnConfig.SplitTunnelMode,
             _vpnConfig.SplitTunnelIPs,
             _vpnConfig.OpenVpnAdapter,
@@ -153,12 +159,20 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
         cancellationToken.ThrowIfCancellationRequested();
     }
 
+    private List<string> GetCustomDnsServers(VpnConfig config)
+    {
+        return config.CustomDns
+            .Where(dns => NetworkAddress.TryParse(dns, out NetworkAddress networkAddress) &&
+                          networkAddress.IsIpV4 || (networkAddress.IsIpV6 && config.IsIpv6Enabled)).ToList();
+    }
+
     private bool WriteConfig()
     {
         try
         {
+            bool isIpv6Enabled = _vpnConfig.IsIpv6Enabled && _endpoint.Server.IsIpv6Supported;
             ConfigTemplate template = new();
-            string content = template.GetConfig(_credentials);
+            string content = template.GetConfig(_credentials, isIpv6Enabled);
             File.WriteAllText(_config.OpenVpn.ConfigPath, content);
             return true;
         }

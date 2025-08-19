@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -44,21 +44,27 @@ public class MainSettingsIpcEntity
     public bool Ipv6LeakProtection { get; set; }
 
     [DataMember(Order = 7)]
-    public bool IsShareCrashReportsEnabled { get; set; }
+    public bool IsIpv6FeatureFlagEnabled { get; set; }
 
     [DataMember(Order = 8)]
-    public bool IsLocalAreaNetworkAccessEnabled { get; set; }
+    public List<string> Ipv6Fragments { get; set; }
 
     [DataMember(Order = 9)]
-    public VpnProtocolIpcEntity VpnProtocol { get; set; }
+    public bool IsShareCrashReportsEnabled { get; set; }
 
     [DataMember(Order = 10)]
-    public OpenVpnAdapterIpcEntity OpenVpnAdapter { get; set; }
+    public bool IsLocalAreaNetworkAccessEnabled { get; set; }
 
     [DataMember(Order = 11)]
-    public bool PortForwarding { get; set; }
+    public VpnProtocolIpcEntity VpnProtocol { get; set; }
 
     [DataMember(Order = 12)]
+    public OpenVpnAdapterIpcEntity OpenVpnAdapter { get; set; }
+
+    [DataMember(Order = 13)]
+    public bool PortForwarding { get; set; }
+
+    [DataMember(Order = 14)]
     public TimeSpan WireGuardConnectionTimeout { get; set; }
 
     public MainSettingsIpcEntity()

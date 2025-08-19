@@ -172,6 +172,26 @@ public abstract partial class SettingsPageViewModelBase : PageViewModelBase<ISet
     protected virtual void OnSettingsChanged(string propertyName)
     { }
 
+    protected virtual void OnIpv6WarningClosedWithPrimaryAction()
+    { }
+
+    protected async Task ShowIpv6DisabledWarningAsync()
+    {
+        ContentDialogResult result = await MainWindowOverlayActivator.ShowMessageAsync(new()
+        {
+            Title = Localizer.Get("Overlay_Ipv6Disabled_Title"),
+            Message = Localizer.Get("Overlay_Ipv6Disabled_Description"),
+            PrimaryButtonText = Localizer.Get("Overlay_Ipv6Disabled_PrimaryButton"),
+            SecondaryButtonText = Localizer.Get("Overlay_Ipv6Disabled_SecondaryButton"),
+        });
+
+        if (result == ContentDialogResult.Primary)
+        {
+            Settings.IsIpv6Enabled = true;
+            OnIpv6WarningClosedWithPrimaryAction();
+        }
+    }
+
     private async Task SaveSettingsAsync()
     {
         IEnumerable<ChangedSettingArgs> changedSettings = GetChangedSettings();

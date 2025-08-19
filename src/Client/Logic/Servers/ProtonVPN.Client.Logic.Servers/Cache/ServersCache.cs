@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -26,6 +26,8 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Files;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
@@ -35,7 +37,8 @@ using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Logic.Servers.Cache;
 
-public class ServersCache : IServersCache
+public class ServersCache : IServersCache,
+    IEventMessageReceiver<FeatureFlagsChangedMessage>
 {
     private readonly IApiClient _apiClient;
     private readonly IEntityMapper _entityMapper;
@@ -268,6 +271,8 @@ public class ServersCache : IServersCache
 
     private void ProcessServers(string? deviceCountryLocation, sbyte? userMaxTier, IReadOnlyList<Server> servers)
     {
+        SetIpv6Flags(servers);
+
         IReadOnlyList<FreeCountry> freeCountries = GetFreeCountries(servers);
         IReadOnlyList<Country> countries = GetCountries(servers);
         IReadOnlyList<State> states = GetStates(servers);
@@ -297,6 +302,22 @@ public class ServersCache : IServersCache
         }
 
         _eventMessageSender.Send(new ServerListChangedMessage());
+    }
+
+    private static void SetIpv6Flags(IEnumerable<Server> servers)
+    {
+        foreach (Server server in servers)
+        {
+            if (server.Servers is null)
+            {
+                continue;
+            }
+
+            foreach (PhysicalServer physicalServer in server.Servers)
+            {
+                physicalServer.IsIpv6Supported = server.Features.IsSupported(ServerFeatures.Ipv6);
+            }
+        }
     }
 
     private IReadOnlyList<FreeCountry> GetFreeCountries(IEnumerable<Server> servers)
@@ -443,5 +464,15 @@ public class ServersCache : IServersCache
             Servers = servers,
         };
         _serversFileReaderWriter.Save(serversFile);
+    }
+
+    public void Receive(FeatureFlagsChangedMessage message)
+    {
+        FeatureFlagChange? ipv6FeatureFlag = message.Changes.FirstOrDefault(f => f.Name == nameof(IFeatureFlagsObserver.IsIpv6SupportEnabled));
+        if (ipv6FeatureFlag is not null && ipv6FeatureFlag.NewValue == true)
+        {
+            _logger.Info<AppLog>("Reprocessing servers.");
+            ProcessServers(_deviceCountryLocation, _userMaxTier, _originalServers);
+        }
     }
 }

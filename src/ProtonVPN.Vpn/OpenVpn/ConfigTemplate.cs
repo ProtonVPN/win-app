@@ -24,7 +24,7 @@ namespace ProtonVPN.Vpn.OpenVpn;
 
 public class ConfigTemplate
 {
-    public string GetConfig(VpnCredentials vpnCredentials)
+    public string GetConfig(VpnCredentials vpnCredentials, bool isIpv6Supported)
     {
         StringBuilder sb = new();
         sb.AppendLine("client")
@@ -60,6 +60,12 @@ public class ConfigTemplate
         {
             sb.AppendLine("<cert>").AppendLine(vpnCredentials.ClientCertPem.Trim()).AppendLine("</cert>");
             sb.AppendLine("<key>").AppendLine(vpnCredentials.ClientKeyPair.SecretKey.Pem).AppendLine("</key>");
+        }
+
+        if (isIpv6Supported)
+        {
+            sb.AppendLine("push-peer-info");
+            sb.AppendLine("setenv UV_IPV6 1");
         }
 
         return sb.ToString();

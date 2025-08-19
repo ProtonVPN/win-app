@@ -121,6 +121,7 @@ public class UserSettingsLog : LogBase
 
         yield return new(nameof(IUserSettings.IsNotificationEnabled), _settings.IsNotificationEnabled);
         yield return new(nameof(IUserSettings.OpenVpnAdapter), _settings.OpenVpnAdapter);
+        yield return new(nameof(IUserSettings.IsIpv6Enabled), _settings.IsIpv6Enabled);
         yield return new(nameof(IUserSettings.IsIpv6LeakProtectionEnabled), _settings.IsIpv6LeakProtectionEnabled);
         yield return new(nameof(IUserSettings.IsSmartReconnectEnabled), _settings.IsSmartReconnectEnabled);
         yield return new(nameof(IUserSettings.NatType), _settings.NatType);

@@ -17,10 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
 using System.Net;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.Service.Vpn;
 
@@ -202,6 +204,11 @@ namespace ProtonVPN.Service.Tests.Vpn
             public IPAddress DefaultGateway => IPAddress.None;
 
             public uint Index => 0;
+
+            public List<NetworkAddress> GetUnicastAddresses()
+            {
+                return [];
+            }
         }
 
         #endregion

@@ -18,7 +18,6 @@
  */
 
 using System.Diagnostics;
-using System.Security.Policy;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;

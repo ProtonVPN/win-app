@@ -48,7 +48,7 @@ internal partial class VpnService : ServiceBase
     private readonly IOsProcesses _osProcesses;
     private readonly IVpnConnection _vpnConnection;
     private readonly IGrpcServer _grpcServer;
-    private readonly Ipv6 _ipv6;
+    private readonly IIpv6 _ipv6;
     private bool _isConnected;
 
     public VpnService(
@@ -57,7 +57,7 @@ internal partial class VpnService : ServiceBase
         IStaticConfiguration staticConfig,
         IOsProcesses osProcesses,
         IVpnConnection vpnConnection,
-        Ipv6 ipv6,
+        IIpv6 ipv6,
         IGrpcServer grpcServer,
         IPowerEventNotifier powerEventNotifier)
     {
@@ -134,7 +134,7 @@ internal partial class VpnService : ServiceBase
             _vpnConnection.Disconnect();
             StopWireGuardService();
 
-            if (!_ipv6.Enabled)
+            if (!_ipv6.IsEnabled)
             {
                 _ipv6.Enable();
             }

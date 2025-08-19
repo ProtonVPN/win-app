@@ -5,6 +5,10 @@
 
 #include "value.h"
 
+#ifndef IPPROTO_ICMPV6
+#define IPPROTO_ICMPV6 58
+#endif
+
 namespace ipfilter
 {
     namespace value
@@ -41,6 +45,45 @@ namespace ipfilter
             return value;
         }
 
+        IpAddressV6::IpAddressV6(const ip::AddressV6& addr) : addr(addr)
+        {
+        }
+
+        IpAddressV6::operator FWP_CONDITION_VALUE()
+        {
+            FWP_CONDITION_VALUE value{};
+            value.type = FWP_BYTE_ARRAY16_TYPE;
+
+            auto bytes = addr.toBytes();
+            auto* holder = new FWP_BYTE_ARRAY16{};
+
+            std::memcpy(holder->byteArray16, bytes.data(), 16);
+
+            value.byteArray16 = holder;
+
+            return value;
+        }
+
+        IpAddressV6WithPrefix::IpAddressV6WithPrefix(const ip::AddressV6& addr) : addr(addr)
+        {
+        }
+
+        IpAddressV6WithPrefix::operator FWP_CONDITION_VALUE()
+        {
+            FWP_CONDITION_VALUE value{};
+
+            value.type = FWP_V6_ADDR_MASK;
+            
+            auto* mask = new FWP_V6_ADDR_AND_MASK{};
+            auto bytes = addr.toBytes();
+            std::memcpy(mask->addr, bytes.data(), 16);
+            mask->prefixLength = addr.prefix();
+
+            value.v6AddrMask = mask;
+
+            return value;
+        }
+
         Port::Port(unsigned short number): number(number)
         {
         }
@@ -51,6 +94,48 @@ namespace ipfilter
 
             value.type = FWP_UINT16;
             value.uint16 = this->number;
+
+            return value;
+        }
+
+        IcmpCode::IcmpCode(unsigned short code) : code(code)
+        {
+        }
+
+        IcmpCode::operator FWP_CONDITION_VALUE()
+        {
+            FWP_CONDITION_VALUE value{};
+
+            value.type = FWP_UINT16;
+            value.uint16 = this->code;
+
+            return value;
+        }
+
+        IcmpType::IcmpType(unsigned short type) : type(type)
+        {
+        }
+
+        IcmpType::operator FWP_CONDITION_VALUE()
+        {
+            FWP_CONDITION_VALUE value{};
+
+            value.type = FWP_UINT16;
+            value.uint16 = this->type;
+
+            return value;
+        }
+
+        IcmpProtocol::IcmpProtocol()
+        {
+        }
+
+        IcmpProtocol::operator FWP_CONDITION_VALUE()
+        {
+            FWP_CONDITION_VALUE value{};
+
+            value.type = FWP_UINT8;
+            value.uint8 = IPPROTO_ICMPV6;
 
             return value;
         }

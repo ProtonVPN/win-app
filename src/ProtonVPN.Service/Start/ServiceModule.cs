@@ -28,9 +28,11 @@ using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.EntityMapping.Installers;
 using ProtonVPN.Files.Installers;
+using ProtonVPN.IPv6.Contracts;
 using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.OperatingSystems.Network.Contracts;
+using ProtonVPN.OperatingSystems.Processes.Contracts;
 using ProtonVPN.OperatingSystems.Processes.Installers;
 using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
@@ -83,8 +85,8 @@ internal class ServiceModule : Module
         builder.RegisterType<KillSwitch.KillSwitch>().AsImplementedInterfaces().AsSelf().SingleInstance();
         builder.RegisterType<VpnService>().SingleInstance();
         builder.RegisterType<ServiceSettings>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<Ipv6>().SingleInstance();
-        builder.RegisterType<ObservableNetworkInterfaces>().SingleInstance();
+        builder.RegisterType<Ipv6>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ObservableNetworkInterfaces>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<Firewall.Firewall>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<IpFilter>().AsImplementedInterfaces().AsSelf().SingleInstance();
@@ -141,11 +143,15 @@ internal class ServiceModule : Module
                 new QueuingRequestsWrapper(
                     c.Resolve<ITaskQueue>(),
                     new Ipv6HandlingWrapper(
-                        c.Resolve<IServiceSettings>(),
+                        c.Resolve<IIpv6>(),
+                        c.Resolve<ILogger>(),
                         c.Resolve<IFirewall>(),
-                        c.Resolve<ObservableNetworkInterfaces>(),
-                        c.Resolve<Ipv6>(),
-                        c.Resolve<ITaskQueue>(),
-                        connection))));
+                        c.Resolve<IServiceSettings>(),
+                        c.Resolve<IFakeIPv6AddressGenerator>(),
+                        c.Resolve<ICommandLineCaller>(),
+                        c.Resolve<INetworkInterfaceLoader>(),
+                        c.Resolve<ISystemNetworkInterfaces>(),
+                        c.Resolve<IObservableNetworkInterfaces>(),
+                        connection)))); 
     }
 }

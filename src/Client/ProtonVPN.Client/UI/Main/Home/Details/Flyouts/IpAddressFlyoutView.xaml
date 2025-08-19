@@ -54,7 +54,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </StackPanel>
 
         <Grid ColumnSpacing="24"
-              Visibility="{x:Bind ViewModel.IsConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
+              Visibility="{x:Bind ViewModel.IsConnectedWithIpv4, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -101,9 +101,84 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <TextBlock VerticalAlignment="Center"
                            Style="{ThemeResource SubtitleTextBlockStyle}"
-                           Text="{x:Bind ViewModel.ServerIpAddress}" />
+                           Text="{x:Bind ViewModel.ServerIpv4Address}" />
             </StackPanel>
         </Grid>
+
+        <StackPanel Visibility="{x:Bind ViewModel.IsConnectedWithIpv6, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid ColumnSpacing="16"
+                  RowSpacing="8">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Foreground="{ThemeResource TextWeakColor}"
+                           Style="{ThemeResource CaptionTextBlockStyle}"
+                           Text="{x:Bind ViewModel.Localizer.Get('Flyouts_IpAddress_YourIp')}" />
+
+                <Grid Grid.Row="0"
+                      Grid.Column="1"
+                      ColumnSpacing="4">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Style="{ThemeResource SubtitleTextBlockStyle}"
+                               Text="{x:Bind ViewModel.DeviceIpAddressOrHidden}" />
+
+                    <custom:GhostButton Grid.Column="1"
+                                        Command="{x:Bind ViewModel.ToggleIpAddressCommand, Mode=OneTime}">
+                        <custom:GhostButton.LeftIcon>
+                            <pathIcons:Eye Foreground="{ThemeResource TextWeakColor}"
+                                           Size="Pixels16" />
+                        </custom:GhostButton.LeftIcon>
+                    </custom:GhostButton>
+                </Grid>
+
+                <TextBlock Grid.Row="1"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Foreground="{ThemeResource TextWeakColor}"
+                           Style="{ThemeResource CaptionTextBlockStyle}"
+                           Text="{x:Bind ViewModel.Localizer.Get('Flyouts_IpAddress_VpnIpv4')}" />
+
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           VerticalAlignment="Center"
+                           Style="{ThemeResource SubtitleTextBlockStyle}"
+                           Text="{x:Bind ViewModel.ServerIpv4Address}" />
+
+                <TextBlock Grid.Row="2"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Foreground="{ThemeResource TextWeakColor}"
+                           Style="{ThemeResource CaptionTextBlockStyle}"
+                           Text="{x:Bind ViewModel.Localizer.Get('Flyouts_IpAddress_VpnIpv6')}" />
+
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           VerticalAlignment="Center"
+                           Style="{ThemeResource SubtitleTextBlockStyle}"
+                           Text="{x:Bind ViewModel.ServerIpv6Address}" />
+            </Grid>
+
+        </StackPanel>
 
         <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
                    Text="{x:Bind ViewModel.Description}" />

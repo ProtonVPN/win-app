@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -37,8 +37,11 @@ public static class DefaultWireGuardConfigurationsFactory
             WintunAdapterGuid = Guid.Parse("{AC128890-BDB1-CE5C-D1DB-EFB01DE370B2}"),
             NtAdapterGuid = Guid.Parse("{EAB2262D-9AB1-5975-7D92-334D06F4972B}"),
 
-            DefaultDnsServer = "10.2.0.1",
-            DefaultClientAddress = "10.2.0.2",
+            DefaultServerGatewayIpv4Address = "10.2.0.1",
+            DefaultClientIpv4Address = "10.2.0.2",
+
+            DefaultServerGatewayIpv6Address = "2a07:b944::2:1",
+            DefaultClientIpv6Address = "2a07:b944::2:2",
 
             ConfigFilePath = Path.Combine(commonAppDataProtonVpnPath, "WireGuard", $"{WIREGUARD_CONFIG_FILENAME}.conf"),
             ServicePath = Path.Combine(baseDirectory, "ProtonVPN.WireGuardService.exe"),

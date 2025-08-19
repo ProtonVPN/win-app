@@ -28,16 +28,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:advanced="using:ProtonVPN.Client.UI.Main.Settings.Pages.Advanced"
       xmlns:ap="using:ProtonVPN.Client.Common.UI.AttachedProperties"
-      NavigationCacheMode="Required"
       x:DefaultBindMode="OneWay"
+      NavigationCacheMode="Required"
       mc:Ignorable="d">
 
     <custom:SettingsPageContentControl x:Name="PageContentHost"
-                                       BackCommand="{x:Bind ViewModel.NavigateBackCommand, Mode=OneTime}"
-                                       IsBackButtonVisible="{x:Bind ViewModel.CanGoBack}"
-                                       CloseCommand="{x:Bind ViewModel.CloseCommand, Mode=OneTime}"
                                        ApplyCommand="{x:Bind ViewModel.ApplyCommand, Mode=OneTime}"
-                                       ApplyCommandText="{x:Bind ViewModel.ApplyCommandText}">
+                                       ApplyCommandText="{x:Bind ViewModel.ApplyCommandText}"
+                                       BackCommand="{x:Bind ViewModel.NavigateBackCommand, Mode=OneTime}"
+                                       CloseCommand="{x:Bind ViewModel.CloseCommand, Mode=OneTime}"
+                                       IsBackButtonVisible="{x:Bind ViewModel.CanGoBack}">
 
         <custom:SettingsPageContentControl.PageHeader>
             <custom:SettingsPageHeaderContentControl Header="{x:Bind ViewModel.Title}" />
@@ -46,9 +46,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel x:Name="ContentArea"
                     Spacing="16">
             <toolkit:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_Description')}"
-                               Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers')}"
-                               IsTabStop="False"
-                               Style="{StaticResource DefaultSettingsCardStyle}">
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers')}"
+                                  IsTabStop="False"
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsCustomDnsServersEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}"
                               AutomationProperties.AutomationId="CustomDnsToggle"/>
@@ -62,7 +62,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                            Text="{x:Bind ViewModel.Localizer.GetFormat('Settings_Connection_Advanced_CustomDnsServers_Header', ViewModel.ActiveCustomDnsServersCount)}" />
 
                 <toolkit:SettingsCard IsTabStop="False"
-                                   Style="{StaticResource VerticalSettingsCardStyle}">
+                                      Style="{StaticResource VerticalSettingsCardStyle}">
                     <Grid Margin="0,-8,0,0"
                           ColumnSpacing="8">
 
@@ -72,27 +72,35 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                        <TextBox Grid.Row="0"
+                        <TextBlock Grid.Row="0"
+                                   Margin="0,0,0,8"
+                                   Style="{StaticResource CaptionStrongTextBlockStyle}"
+                                   Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_AddNew')}" />
+
+                        <TextBox Grid.Row="1"
                                  Grid.Column="0"
-                                 PlaceholderText="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_Watermark')}"
+                                 PlaceholderText="{x:Bind ViewModel.Localizer.Get('Settings_Common_IpAddresses_Watermark')}"
                                  Text="{x:Bind ViewModel.CurrentIpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 ap:FieldValidation.HasErrors="{x:Bind ViewModel.IsCurrentAddressValid, Converter={StaticResource NotBooleanToBooleanConverter}}"     
+                                 Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description')}"
+                                 ap:FieldValidation.ErrorMessage="{x:Bind ViewModel.IpAddressError}"
+                                 ap:FieldValidation.HasErrors="{x:Bind ViewModel.IpAddressError, Converter={StaticResource NotNullToBooleanConverter}}"
                                  KeyDown="{x:Bind ViewModel.OnIpAddressKeyDownHandler, Mode=OneTime}"
                                  AutomationProperties.AutomationId="CustomDnsIpAddressBox"
                                  Style="{StaticResource ValidationTextBoxStyle}"
-                                 MinHeight="34"/>
+                                 MinHeight="34" />
 
-                        <Button Grid.Row="0"
+                        <Button Grid.Row="1"
                                 Grid.Column="1"
                                 VerticalAlignment="Top"
                                 Command="{x:Bind ViewModel.AddDnsServerCommand, Mode=OneTime}"
                                 Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Add')}"
                                 AutomationProperties.AutomationId="AddButton"/>
 
-                        <ListView Grid.Row="1"
+                        <ListView Grid.Row="2"
                                   Grid.Column="0"
                                   Grid.ColumnSpan="2"
                                   Margin="0,16,0,0"
@@ -116,18 +124,32 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
-                                        
+
                                         <pathicons:Dots Grid.Column="0"
                                                         Margin="8,0,0,0"
                                                         Size="Pixels16"
                                                         VerticalAlignment="Center"
                                                         Visibility="{x:Bind IsDragDropEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                         AutomationProperties.AutomationId="DnsItemDragHandle"/>
-                                        
-                                        <CheckBox Grid.Column="1"
-                                                  Content="{x:Bind IpAddress}"
-                                                  IsChecked="{x:Bind IsActive, Mode=TwoWay}" 
-                                                  AutomationProperties.AutomationId="DnsItemToggle"/>
+
+                                        <StackPanel Grid.Column="0"
+                                                    Spacing="2"
+                                                    Orientation="Horizontal">
+                                            <CheckBox Grid.Column="1"
+                                                      Content="{x:Bind IpAddress}"
+                                                      IsChecked="{x:Bind IsActive, Mode=TwoWay}"
+                                                      AutomationProperties.AutomationId="DnsItemToggle"/>
+                                            <custom:GhostButton HorizontalAlignment="Left"
+                                                                AutomationProperties.AutomationId="ShowIpv6DisabledWarningButton"
+                                                                AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Common_Ipv6WarningButton')}"
+                                                                ToolTipService.ToolTip="{x:Bind Localizer.Get('Settings_Common_Ipv6WarningButton')}"
+                                                                Command="{x:Bind ShowIpv6DisabledWarningCommand, Mode=OneTime}"
+                                                                Visibility="{x:Bind IsInactiveDueToIpv6Disabled, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneTime}">
+                                                <custom:GhostButton.LeftIcon>
+                                                    <pathicons:ExclamationCircle />
+                                                </custom:GhostButton.LeftIcon>
+                                            </custom:GhostButton>
+                                        </StackPanel>
 
                                         <StackPanel Orientation="Horizontal" 
                                                     Grid.Column="2" 
@@ -151,14 +173,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 </custom:GhostButton.LeftIcon>
                                             </custom:GhostButton>
                                         </StackPanel>
-                                        
+
                                         <custom:GhostButton Grid.Column="3"
                                                             Command="{x:Bind RemoveDnsServerCommand, Mode=OneTime}"
                                                             AutomationProperties.Name="{x:Bind RemoveTooltip}"
                                                             ToolTipService.ToolTip="{x:Bind RemoveTooltip}"
                                                             AutomationProperties.AutomationId="TrashIcon">
                                             <custom:GhostButton.LeftIcon>
-                                                <pathicons:Trash/>
+                                                <pathicons:Trash />
                                             </custom:GhostButton.LeftIcon>
                                         </custom:GhostButton>
                                     </Grid>

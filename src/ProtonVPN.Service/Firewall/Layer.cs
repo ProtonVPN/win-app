@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,24 +20,35 @@
 using ProtonVPN.NetworkFilter;
 using System;
 
-namespace ProtonVPN.Service.Firewall
+namespace ProtonVPN.Service.Firewall;
+
+public class IpLayer
 {
-    public class IpLayer
+    private static readonly Layer[] _ipv4Layers = { Layer.AppAuthConnectV4 };
+
+    private static readonly Layer[] _ipv6Layers = { Layer.AppAuthConnectV6 };
+
+    public void ApplyToIpv4(Action<Layer> action)
     {
-        private static readonly Layer[] Ipv4Layers = { Layer.AppAuthConnectV4 };
-
-        private static readonly Layer[] Ipv6Layers = { Layer.AppAuthConnectV6 };
-
-        public void ApplyToIpv4(Action<Layer> action)
+        foreach (Layer layer in _ipv4Layers)
         {
-            foreach (var layer in Ipv4Layers)
-                action(layer);
+            action(layer);
         }
+    }
 
-        public void ApplyToIpv6(Action<Layer> action)
+    public void ApplyToIpv6(Action<Layer> action)
+    {
+        foreach (Layer layer in _ipv6Layers)
         {
-            foreach (var layer in Ipv6Layers)
-                action(layer);
+            action(layer);
+        }
+    }
+
+    public void Apply(Action<Layer> action, Layer[] layers)
+    {
+        foreach (Layer layer in layers)
+        {
+            action(layer);
         }
     }
 }

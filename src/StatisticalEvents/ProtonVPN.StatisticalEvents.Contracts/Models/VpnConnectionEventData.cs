@@ -38,4 +38,5 @@ public class VpnConnectionEventData
     public required ServerDetailsEventData Server { get; init; }
     public int Port { get; init; }
     public string? Isp { get; init; }
+    public bool IsIpv6Enabled { get; init; }
 }

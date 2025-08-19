@@ -28,7 +28,7 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
         public string ClientIpAddress { get; set; }
 
         [DataMember(Order = 2)]
-        public string ServerIpAddress { get; set; }
+        public VpnServerAddressIpcEntity ServerIpAddress { get; set; }
 
         [DataMember(Order = 3)]
         public string ClientCountryIsoCode { get; set; }

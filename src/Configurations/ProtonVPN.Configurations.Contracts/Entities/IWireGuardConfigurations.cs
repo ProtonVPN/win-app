@@ -28,8 +28,11 @@ public interface IWireGuardConfigurations
     Guid WintunAdapterGuid { get; }
     Guid NtAdapterGuid { get; }
 
-    string DefaultDnsServer { get; }
-    string DefaultClientAddress { get; }
+    string DefaultServerGatewayIpv4Address { get; }
+    string DefaultClientIpv4Address { get; }
+
+    string DefaultServerGatewayIpv6Address { get; }
+    string DefaultClientIpv6Address { get; }
 
     string ConfigFilePath { get; }
     string ServicePath { get; }

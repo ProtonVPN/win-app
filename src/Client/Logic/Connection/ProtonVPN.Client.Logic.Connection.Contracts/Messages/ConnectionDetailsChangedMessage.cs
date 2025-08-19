@@ -17,11 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Core.Vpn;
+
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 
 public class ConnectionDetailsChangedMessage
 {
     public required string ClientCountryCode { get; init; }
     public required string ClientIpAddress { get; init; }
-    public required string ServerIpAddress { get; init; }
+    public required IpAddressInfo ServerIpAddress { get; init; }
 }

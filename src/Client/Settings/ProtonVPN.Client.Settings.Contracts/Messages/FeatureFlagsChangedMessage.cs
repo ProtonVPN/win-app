@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,4 +21,5 @@ namespace ProtonVPN.Client.Settings.Contracts.Messages;
 
 public class FeatureFlagsChangedMessage
 {
+    public List<FeatureFlagChange> Changes { get; set; } = [];
 }

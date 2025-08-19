@@ -53,7 +53,16 @@ public class HandlingRequestsWrapperTest
         _taskQueue = new TaskQueue();
         _origin = Substitute.For<ISingleVpnConnection>();
 
-        _endpoint = new VpnEndpoint(new VpnHost("proton.vpn", "135.27.46.203", string.Empty, null, string.Empty, null), VpnProtocol.OpenVpnTcp, 777);
+        VpnHost vpnHost = new(
+            name: "proton.vpn",
+            ip: "135.27.46.203",
+            label: string.Empty,
+            x25519PublicKey: null,
+            signature: string.Empty,
+            isIpv6Supported: false,
+            relayIpByProtocol: null);
+
+        _endpoint = new VpnEndpoint(vpnHost, VpnProtocol.OpenVpnTcp, 777);
         _credentials = new VpnCredentials("cert",
             DateTime.UtcNow.AddDays(1),
             new AsymmetricKeyPair(

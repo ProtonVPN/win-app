@@ -2,6 +2,13 @@ LIBRARY
 EXPORTS
 	BlockOutsideDns
 	BlockOutsideOpenVpn
+	PermitRouterSolicitationMessage
+	PermitRouterAdvertisementMessage
+	PermitNeighborSolicitationMessage
+	PermitNeighborAdvertisementMessage
+	PermitOutboundIpv6Dhcp
+	PermitInboundIpv6Dhcp
+	PermitIcmpRedirectMessage
 	IPFilterAbortTransaction
 	IPFilterCommitTransaction
 	IPFilterCreateAppFilter
@@ -13,7 +20,7 @@ EXPORTS
 	IPFilterCreateProvider
 	IPFilterCreateProviderContext
 	IPFilterCreateRemoteIPv4Filter
-	IPFilterCreateRemoteNetworkIPv4Filter
+	IPFilterCreateRemoteNetworkIPFilter
 	IPFilterCreateRemoteTCPPortFilter
 	IPFilterCreateRemoteUDPPortFilter
 	IPFilterCreateSession

@@ -35,6 +35,7 @@ public class Server : ILocation
     public required string Domain { get; init; }
     public required double Latitude { get; init; }
     public required double Longitude { get; init; }
+    // Is no longer used, but kept to not break the protobuf contract
     public string? ExitIp { get; init; }
     public sbyte Status { get; set; }
     public ServerTiers Tier { get; init; }
@@ -75,7 +76,6 @@ public class Server : ILocation
             Domain = Domain,
             Latitude = Latitude,
             Longitude = Longitude,
-            ExitIp = ExitIp,
             Status = Status,
             Tier = Tier,
             Features = Features,

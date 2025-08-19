@@ -29,11 +29,20 @@ namespace ipfilter
         Condition localIpV4Address(matcher::Matcher matcher,
                                    const value::IpAddressV4& addr);
 
+        Condition localIpV6AddressWithPrefix(matcher::Matcher matcher,
+                                             const value::IpAddressV6WithPrefix& addr);
+
         Condition remoteIpV4Address(matcher::Matcher matcher,
                                     const value::IpAddressV4& addr);
 
         Condition remoteIpNetworkAddressV4(matcher::Matcher matcher,
                                            const value::IpNetworkAddressV4& addr);
+
+        Condition remoteIpV6Address(matcher::Matcher matcher,
+                                    const value::IpAddressV6& addr);
+
+        Condition remoteIpV6AddressWithPrefix(matcher::Matcher matcher,
+                                              const value::IpAddressV6WithPrefix& addr);
 
         Condition remotePort(matcher::Matcher matcher, const value::Port& port);
 
@@ -51,5 +60,11 @@ namespace ipfilter
         Condition netInterface(matcher::Matcher matcher, const NetInterface& iface);
 
         Condition netInterfaceIndex(matcher::Matcher matcher, const NetInterface& iface);
+
+        Condition icmpv6Protocol(matcher::Matcher matcher);
+
+        Condition icmpType(matcher::Matcher matcher, UINT16 type);
+
+        Condition icmpCode(matcher::Matcher matcher, UINT16 code);
     }
 }

@@ -213,7 +213,8 @@ public class ClientControllerSender : IClientController, IClientControllerSender
     private async Task SendConnectionDetailsChangeAsync(ConnectionDetails connectionDetails)
     {
         _logger.Info<ProcessCommunicationLog>("Sending ConnectionDetails change while connected " +
-            $"to server with IP '{connectionDetails.ServerIpAddress}'");
+            $"to server with '{connectionDetails.ServerIpAddress}'");
+
         ConnectionDetailsIpcEntity connectionDetailsIpcEntity =
             _entityMapper.Map<ConnectionDetails, ConnectionDetailsIpcEntity>(connectionDetails);
         await _connectionDetailsChannel.Writer.WriteAsync(connectionDetailsIpcEntity);

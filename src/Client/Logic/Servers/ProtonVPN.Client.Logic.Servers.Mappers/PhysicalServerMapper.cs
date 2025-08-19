@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -34,7 +34,7 @@ public class PhysicalServerMapper : IMapper<PhysicalServerResponse, PhysicalServ
             {
                 Id = leftEntity.Id,
                 EntryIp = leftEntity.EntryIp,
-                ExitIp = leftEntity.ExitIp,
+                ExitIp = string.Empty,
                 Domain = leftEntity.Domain,
                 Label = leftEntity.Label,
                 Status = leftEntity.Status,

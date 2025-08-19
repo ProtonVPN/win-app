@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -40,12 +40,15 @@ namespace ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
 public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
 {
     [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(AddDnsServerCommand))]
-    [NotifyPropertyChangedFor(nameof(IsCurrentAddressValid))]
     private string _currentIpAddress;
 
     [ObservableProperty]
+    private string? _ipAddressError;
+
+    [ObservableProperty]
     private bool _isCustomDnsServersEnabled;
+
+    private bool _wasIpv6WarningDisplayed;
 
     public override string Title => Localizer.Get("Settings_Connection_Advanced_CustomDnsServers");
 
@@ -57,9 +60,6 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
     public bool HasCustomDnsServers => CustomDnsServers.Count > 0;
 
     public bool HasActiveCustomDnsServers => ActiveCustomDnsServersCount > 0;
-
-    public bool IsCurrentAddressValid => string.IsNullOrWhiteSpace(CurrentIpAddress)
-                                      || CanAddDnsServer();
 
     public bool IsDragDropEnabled { get; }
 
@@ -95,32 +95,73 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
         IsDragDropEnabled = !AppInstanceHelper.IsRunningAsAdmin();
     }
 
-    [RelayCommand(CanExecute = nameof(CanAddDnsServer))]
-    public void AddDnsServer()
+    protected override void OnActivated()
     {
-        if (!NetworkAddress.TryParse(CurrentIpAddress, out NetworkAddress address))
+        base.OnActivated();
+
+        ResetCurrentIpAddress();
+        ResetIpAddressError();
+    }
+
+    [RelayCommand]
+    public async Task AddDnsServerAsync()
+    {
+        NetworkAddress? address = GetValidatedCurrentIpAddress();
+        string? error = GetIpAddressError(address);
+
+        if (error != null || address == null)
         {
+            IpAddressError = error ?? Localizer.Get("Settings_Common_IpAddresses_Invalid");
             return;
         }
 
-        DnsServerViewModel? dnsServer = CustomDnsServers.FirstOrDefault(s => s.IpAddress == address.FormattedAddress);
-        if (dnsServer != null)
-        {
-            dnsServer.IsActive = true;
-        }
-        else
-        {
-            CustomDnsServers.Add(new(this, ViewModelHelper, address.FormattedAddress));
-        }
+        CustomDnsServers.Add(new(Settings, this, ViewModelHelper, address.Value.FormattedAddress));
+        ResetCurrentIpAddress();
 
-        CurrentIpAddress = string.Empty;
+        if (address?.IsIpV6 == true && !Settings.IsIpv6Enabled && !_wasIpv6WarningDisplayed)
+        {
+            await ShowIpv6DisabledWarningAsync();
+
+            // Show this warning only once per app launch
+            _wasIpv6WarningDisplayed = true;
+        }
     }
 
-    public bool CanAddDnsServer()
+    [RelayCommand]
+    public Task TriggerIpv6DisabledWarningAsync()
     {
-        return NetworkAddress.TryParse(CurrentIpAddress, out NetworkAddress address)
-            && address.IsIpV4 
-            && address.IsSingleIp;
+        return ShowIpv6DisabledWarningAsync();
+    }
+
+    protected override void OnIpv6WarningClosedWithPrimaryAction()
+    {
+        List<DnsServerViewModel> customDnsServers = CustomDnsServers.ToList();
+        CustomDnsServers.Clear();
+
+        foreach (DnsServerViewModel ip in customDnsServers)
+        {
+            CustomDnsServers.Add(new(Settings, this, ViewModelHelper, ip.IpAddress, ip.IsActive));
+        }
+    }
+
+    private string? GetIpAddressError(NetworkAddress? address)
+    {
+        if (address == null || !address.Value.IsSingleIp)
+        {
+            return Localizer.Get("Settings_Common_IpAddresses_Invalid");
+        }
+
+        if (CustomDnsServers.FirstOrDefault(ip => ip.IpAddress == address.Value.FormattedAddress) != null)
+        {
+            return Localizer.Get("Settings_Common_IpAddresses_AlreadyExists");
+        }
+
+        return null;
+    }
+
+    private NetworkAddress? GetValidatedCurrentIpAddress()
+    {
+        return NetworkAddress.TryParse(CurrentIpAddress, out NetworkAddress address) ? address : null;
     }
 
     public void RemoveDnsServer(DnsServerViewModel server)
@@ -163,6 +204,14 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
         OnPropertyChanged(nameof(ActiveCustomDnsServersCount));
     }
 
+    public void OnIpAddressKeyDownHandler(object sender, KeyRoutedEventArgs e)
+    {
+        if (e.Key == VirtualKey.Enter)
+        {
+            AddDnsServerCommand.Execute(null);
+        }
+    }
+
     private void InvalidateAllMoveCommands()
     {
         foreach (DnsServerViewModel server in CustomDnsServers)
@@ -178,7 +227,7 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
         CustomDnsServers.Clear();
         foreach (CustomDnsServer server in Settings.CustomDnsServersList)
         {
-            CustomDnsServers.Add(new(this, ViewModelHelper, server.IpAddress, server.IsActive));
+            CustomDnsServers.Add(new(Settings, this, ViewModelHelper, server.IpAddress, server.IsActive));
         }
     }
 
@@ -193,14 +242,6 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
     private List<CustomDnsServer> GetCustomDnsServersList()
     {
         return CustomDnsServers.Select(s => new CustomDnsServer(s.IpAddress, s.IsActive)).ToList();
-    }
-
-    public void OnIpAddressKeyDownHandler(object sender, KeyRoutedEventArgs e)
-    {
-        if (e.Key == VirtualKey.Enter && CanAddDnsServer())
-        {
-            AddDnsServerCommand.Execute(null);
-        }
     }
 
     protected override bool IsReconnectionRequiredDueToChanges(IEnumerable<ChangedSettingArgs> changedSettings)
@@ -222,5 +263,20 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
         }
 
         return isReconnectionRequired;
+    }
+
+    partial void OnCurrentIpAddressChanged(string value)
+    {
+        ResetIpAddressError();
+    }
+
+    private void ResetIpAddressError()
+    {
+        IpAddressError = null;
+    }
+
+    private void ResetCurrentIpAddress()
+    {
+        CurrentIpAddress = string.Empty;
     }
 }

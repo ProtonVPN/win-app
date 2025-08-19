@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,83 +23,98 @@ using System.Linq;
 using ProtonVPN.NetworkFilter;
 using Action = ProtonVPN.NetworkFilter.Action;
 
-namespace ProtonVPN.Service.Firewall
+namespace ProtonVPN.Service.Firewall;
+
+public class PermittedRemoteAddress : IFilterCollection
 {
-    public class PermittedRemoteAddress : IFilterCollection
+    private readonly IpLayer _ipLayer;
+    private readonly IpFilter _ipFilter;
+
+    private readonly Dictionary<string, List<Guid>> _list = new();
+
+    public PermittedRemoteAddress(IpFilter ipFilter, IpLayer ipLayer)
     {
-        private readonly IpLayer _ipLayer;
-        private readonly IpFilter _ipFilter;
+        _ipLayer = ipLayer;
+        _ipFilter = ipFilter;
+    }
 
-        private readonly Dictionary<string, List<Guid>> _list = new();
-
-        public PermittedRemoteAddress(IpFilter ipFilter, IpLayer ipLayer)
+    public void Add(string[] addresses, Action action)
+    {
+        foreach (string address in addresses)
         {
-            _ipLayer = ipLayer;
-            _ipFilter = ipFilter;
+            Add(address, action);
+        }
+    }
+
+    public void Add(string address, Action action)
+    {
+        if (_list.ContainsKey(address))
+        {
+            return;
         }
 
-        public void Add(string[] addresses, Action action)
+        if (!Common.Core.Networking.NetworkAddress.TryParse(address, out Common.Core.Networking.NetworkAddress networkAddress))
         {
-            foreach (string address in addresses)
-            {
-                Add(address, action);
-            }
+            return;
         }
 
-        public void Add(string address, Action action)
+        _list[address] = [];
+
+        if (networkAddress.IsIpV6)
         {
-            if (_list.ContainsKey(address))
+            _ipLayer.ApplyToIpv6(layer =>
             {
-                return;
-            }
-
-            Common.Legacy.OS.Net.NetworkAddress networkAddress = new(address);
-            if (!networkAddress.Valid())
-            {
-                return;
-            }
-
-            _list[address] = new List<Guid>();
-
-            _ipLayer.ApplyToIpv4(layer =>
-            {
-                Guid guid = _ipFilter.DynamicSublayer.CreateRemoteNetworkIPv4Filter(
+                Guid guid = _ipFilter.DynamicSublayer.CreateRemoteNetworkIPFilter(
                     new DisplayData("ProtonVPN permit remote address", ""),
                     action,
                     layer,
                     14,
-                    new NetworkAddress(networkAddress.Ip, networkAddress.Mask));
+                    NetworkAddress.FromIpv6(networkAddress.Ip.ToString(), networkAddress.Subnet));
 
                 _list[address].Add(guid);
             });
         }
-
-        public void Remove(string address)
+        else
         {
-            if (!_list.ContainsKey(address))
+            _ipLayer.ApplyToIpv4(layer =>
             {
-                return;
-            }
+                Guid guid = _ipFilter.DynamicSublayer.CreateRemoteNetworkIPFilter(
+                    new DisplayData("ProtonVPN permit remote address", ""),
+                    action,
+                    layer,
+                    14,
+                    NetworkAddress.FromIpv4(networkAddress.Ip.ToString(), networkAddress.GetSubnetMaskString()));
 
-            foreach (Guid guid in _list[address])
-            {
-                _ipFilter.DynamicSublayer.DestroyFilter(guid);
-            }
+                _list[address].Add(guid);
+            });
+        }
+    }
 
-            _list.Remove(address);
+    public void Remove(string address)
+    {
+        if (!_list.ContainsKey(address))
+        {
+            return;
         }
 
-        public void RemoveAll()
+        foreach (Guid guid in _list[address])
         {
-            if (_list.Count == 0)
-            {
-                return;
-            }
+            _ipFilter.DynamicSublayer.DestroyFilter(guid);
+        }
 
-            foreach (KeyValuePair<string, List<Guid>> element in _list.ToList())
-            {
-                Remove(element.Key);
-            }
+        _list.Remove(address);
+    }
+
+    public void RemoveAll()
+    {
+        if (_list.Count == 0)
+        {
+            return;
+        }
+
+        foreach (KeyValuePair<string, List<Guid>> element in _list.ToList())
+        {
+            Remove(element.Key);
         }
     }
 }

@@ -9,36 +9,40 @@ set publishDir=%currentDir%src\bin\win-%PLATFORM%\publish\
 set publishDirBTI=%currentDir%src\bin\win-%PLATFORM%\BTI\publish\
 set binDir=%currentDir%src\bin\
 set resourcesDir=%binDir%Resources\
+set mainDir=%binDir%
 
 if "%~1"=="publish" (
     set resourcesDir=%publishDir%Resources\
-)
-
-if "%~1"=="publish-BTI" (
+    set mainDir=%publishDir%
+) else if "%~1"=="publish-BTI" (
 	set resourcesDir=%publishDirBTI%Resources\
-)
+    set mainDir=%publishDirBTI%
+) else (
+    :: These dll files only need to be copied for development
+    :: In CI dll files are collected and packed with the installer
 
-if "%PLATFORM%"=="x64" (
-    xcopy %currentDir%Setup\Native\x64\wireguard.dll %binDir% /y
-    xcopy %currentDir%Setup\Native\x64\tunnel.dll %binDir% /y
-    xcopy %currentDir%Setup\Native\x64\wireguard-tunnel-tcp.dll %binDir% /y
-    xcopy %currentDir%Setup\Native\x64\wintun.dll %binDir% /y
-    xcopy %currentDir%Setup\Native\x64\libcrypto-3-x64.dll %resourcesDir% /y
-    xcopy %currentDir%Setup\Native\x64\libpkcs11-helper-1.dll %resourcesDir% /y
-    xcopy %currentDir%Setup\Native\x64\libssl-3-x64.dll %resourcesDir% /y
-    xcopy %currentDir%Setup\Native\x64\openvpn.exe %resourcesDir% /y
-    xcopy %currentDir%Setup\Native\x64\vcruntime140.dll %resourcesDir% /y
-)
+    if "%PLATFORM%"=="x64" (
+        xcopy %currentDir%Setup\Native\x64\wireguard.dll %binDir% /y
+        xcopy %currentDir%Setup\Native\x64\tunnel.dll %binDir% /y
+        xcopy %currentDir%Setup\Native\x64\wireguard-tunnel-tcp.dll %binDir% /y
+        xcopy %currentDir%Setup\Native\x64\wintun.dll %binDir% /y
+        xcopy %currentDir%Setup\Native\x64\libcrypto-3-x64.dll %resourcesDir% /y
+        xcopy %currentDir%Setup\Native\x64\libpkcs11-helper-1.dll %resourcesDir% /y
+        xcopy %currentDir%Setup\Native\x64\libssl-3-x64.dll %resourcesDir% /y
+        xcopy %currentDir%Setup\Native\x64\openvpn.exe %resourcesDir% /y
+        xcopy %currentDir%Setup\Native\x64\vcruntime140.dll %resourcesDir% /y
+    )
 
-if "%PLATFORM%"=="arm64" (
-    xcopy %currentDir%Setup\Native\arm64\wireguard.dll %binDir% /y
-    xcopy %currentDir%Setup\Native\arm64\tunnel.dll %binDir% /y
-    xcopy %currentDir%Setup\Native\arm64\wireguard-tunnel-tcp.dll %binDir% /y
-    xcopy %currentDir%Setup\Native\arm64\wintun.dll %binDir% /y
-    xcopy %currentDir%Setup\Native\arm64\libcrypto-3-arm64.dll %resourcesDir% /y
-    xcopy %currentDir%Setup\Native\arm64\libpkcs11-helper-1.dll %resourcesDir% /y
-    xcopy %currentDir%Setup\Native\arm64\libssl-3-arm64.dll %resourcesDir% /y
-    xcopy %currentDir%Setup\Native\arm64\openvpn.exe %resourcesDir% /y
+    if "%PLATFORM%"=="arm64" (
+        xcopy %currentDir%Setup\Native\arm64\wireguard.dll %binDir% /y
+        xcopy %currentDir%Setup\Native\arm64\tunnel.dll %binDir% /y
+        xcopy %currentDir%Setup\Native\arm64\wireguard-tunnel-tcp.dll %binDir% /y
+        xcopy %currentDir%Setup\Native\arm64\wintun.dll %binDir% /y
+        xcopy %currentDir%Setup\Native\arm64\libcrypto-3-arm64.dll %resourcesDir% /y
+        xcopy %currentDir%Setup\Native\arm64\libpkcs11-helper-1.dll %resourcesDir% /y
+        xcopy %currentDir%Setup\Native\arm64\libssl-3-arm64.dll %resourcesDir% /y
+        xcopy %currentDir%Setup\Native\arm64\openvpn.exe %resourcesDir% /y
+    )
 )
 
 set buildParams=/p:PlatformToolset=v143 /p:Configuration=Release /p:OutDir=%resourcesDir% /clp:ErrorsOnly
@@ -105,6 +109,15 @@ if "%PLATFORM%"=="arm64" (
     go build -buildmode c-shared -ldflags="-w -s" -trimpath -v -o GoSrp.dll main.go
         
     xcopy %currentDir%src\srp\windows\cshared\GoSrp.dll %resourcesDir% /y
+)
+
+set ipv6chaosFileName=proton_vpn_ipv6chaos.dll
+
+echo Fetching %ipv6chaosFileName% %time%
+
+curl -o "%mainDir%%ipv6chaosFileName%" "%IPV6_CHAOS_DLL_PATH%/v0.0.0/%PLATFORM%/%ipv6chaosFileName%"
+if %ERRORLEVEL% equ 0 (
+  echo file saved %mainDir%%ipv6chaosFileName%
 )
 
 echo Dependencies done %time%
