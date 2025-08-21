@@ -224,16 +224,16 @@ public static class WindowExtensions
         double maxHeight = workArea.Height.ToDips(dpi);
 
         // Ensure the window size is within the work area limits
-        double windowWidth = Math.Clamp(parameters.Width, window.MinWidth, maxWidth);
-        double windowHeight = Math.Clamp(parameters.Height, window.MinHeight, maxHeight);
+        double windowWidth = parameters.Width.Clamp(window.MinWidth, maxWidth);
+        double windowHeight = parameters.Height.Clamp(window.MinHeight, maxHeight);
 
         double windowPositionX;
         double windowPositionY;
         if (isPositionSpecified)
         {
             // Ensure the window position is within the work area bounds
-            windowPositionX = Math.Clamp(parameters.XPosition!.Value, workArea.X, workArea.X + maxWidth - windowWidth);
-            windowPositionY = Math.Clamp(parameters.YPosition!.Value, workArea.Y, workArea.Y + maxHeight - windowHeight);
+            windowPositionX = parameters.XPosition!.Value.Clamp(workArea.X, workArea.X + maxWidth - windowWidth);
+            windowPositionY = parameters.YPosition!.Value.Clamp(workArea.Y, workArea.Y + maxHeight - windowHeight);
         }
         else
         {
@@ -273,8 +273,8 @@ public static class WindowExtensions
         double maxHeight = workArea.Height.ToDips(dpi);
 
         // Ensure the window size is within the work area limits
-        double windowWidth = Math.Clamp(width, window.MinWidth, maxWidth - (2 * margin));
-        double windowHeight = Math.Clamp(height, window.MinHeight, maxHeight - (2 * margin));
+        double windowWidth = width.Clamp(window.MinWidth, maxWidth - (2 * margin));
+        double windowHeight = height.Clamp(window.MinHeight, maxHeight - (2 * margin));
 
         // Calculate the position based on the taskbar edge
         double windowPositionX = taskbarEdge switch
@@ -376,5 +376,17 @@ public static class WindowExtensions
             Convert.ToInt32(parameters.YPosition ?? 0),
             Convert.ToInt32(parameters.Width),
             Convert.ToInt32(parameters.Height));
+    }
+
+    private static double Clamp(this double value, double min, double max)
+    {
+        try
+        {
+            return min >= max ? max : Math.Clamp(value, min, max);
+        }
+        catch (Exception)
+        {
+            return Math.Min(min, max);
+        }
     }
 }
