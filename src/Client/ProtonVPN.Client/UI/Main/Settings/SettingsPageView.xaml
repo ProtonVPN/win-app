@@ -32,11 +32,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       mc:Ignorable="d">
 
     <ContentControl HorizontalAlignment="Stretch"
+                    IsTabStop="False"
                     IsHitTestVisible="{x:Bind IsHitTestVisible}"
                     Style="{StaticResource PaneContentControlStyle}"
                     Padding="0">
 
         <Frame x:Name="SettingsNavigationFrame"
+               TabFocusNavigation="Cycle"
                VerticalAlignment="Stretch"
                IsNavigationStackEnabled="{x:Bind Navigator.IsNavigationStackEnabled}" />
 

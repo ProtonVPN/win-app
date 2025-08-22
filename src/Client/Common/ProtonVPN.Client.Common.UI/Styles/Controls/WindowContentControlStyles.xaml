@@ -96,7 +96,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                                     <ContentPresenter Grid.Column="0"
                                                       Content="{TemplateBinding TitleBarLeftContent}"
-                                                      IsTabStop="True"
+                                                      IsTabStop="False"
                                                       VerticalAlignment="Center"
                                                       Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToBooleanConverter}}" />
 

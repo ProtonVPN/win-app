@@ -20,6 +20,9 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Common.UI.Controls.Custom;
+using ProtonVPN.Client.Common.UI.Extensions;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Controls;
 
@@ -46,13 +49,49 @@ public sealed partial class ConnectionItemsControl
     public ConnectionItemsControl()
     {
         InitializeComponent();
+        Loaded += OnConnectionItemsControlLoaded;
     }
 
+    private void OnConnectionItemsControlLoaded(object sender, RoutedEventArgs e)
+    {
+        WireUpButtonClickEvents();
+    }
+
+    private void WireUpButtonClickEvents()
+    {
+        IEnumerable<ServerConnectionRowButton> buttons = ConnectionItemsList.FindChildrenOfType<ServerConnectionRowButton>();
+        foreach (ServerConnectionRowButton button in buttons)
+        {
+            button.Click -= OnServerConnectionRowButtonClick;
+            button.Click += OnServerConnectionRowButtonClick;
+        }
+    }
+
+    private void OnServerConnectionRowButtonClick(object sender, RoutedEventArgs e)
+    {
+        FindAndCloseDualConnectionRowButtonFlyouts(XamlRoot.Content);
+    }
+
+    private void FindAndCloseDualConnectionRowButtonFlyouts(DependencyObject parent)
+    {
+        IEnumerable<DualConnectionRowButton> dualButtons = parent.FindChildrenOfType<DualConnectionRowButton>();
+        
+        foreach (DualConnectionRowButton dualButton in dualButtons)
+        {
+            FlyoutBase flyout = dualButton.SecondaryCommandFlyout;
+            if (flyout != null && flyout.IsOpen)
+            {
+                flyout.Hide();
+                return;
+            }
+        }
+    }
+           
     private void OnMenuFlyoutClosing(FlyoutBase sender, FlyoutBaseClosingEventArgs args)
     {
         Focus(FocusState.Programmatic);
     }
-
+        
     public void ResetContentScroll()
     {
         if (ConnectionItemsList?.Items.Count > 0)

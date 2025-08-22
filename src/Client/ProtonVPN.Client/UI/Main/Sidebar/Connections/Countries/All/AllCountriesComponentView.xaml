@@ -32,6 +32,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <banners:BannerComponent>
         <banners:BannerComponent.FallbackContent>
             <custom:UpsellBanner Title="{x:Bind ViewModel.Localizer.Get('FreeConnections_WorldwideCoverageUpsell')}"
+                                 IsTabStop="False"
                                  Command="{x:Bind ViewModel.UpgradeCommand, Mode=OneTime}"
                                  IllustrationSource="{StaticResource WorldwideCoverageUpsellSmallIllustrationSource}"
                                  Style="{StaticResource SidebarUpsellBannerStyle}"

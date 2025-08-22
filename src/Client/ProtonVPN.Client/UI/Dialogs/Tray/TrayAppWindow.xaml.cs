@@ -17,11 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
+using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Services.Activation;
 
 namespace ProtonVPN.Client.UI.Dialogs.Tray;
 
-public sealed partial class TrayAppWindow 
+public sealed partial class TrayAppWindow : IFocusAware
 {
     public TrayAppWindowActivator WindowActivator { get; }
 
@@ -32,5 +34,15 @@ public sealed partial class TrayAppWindow
         InitializeComponent();
         
         WindowActivator.Initialize(this);        
+    }
+
+    public void OnFocusChanged()
+    {
+        
+    }
+
+    public bool IsFocused()
+    {
+        return WindowActivator.IsWindowFocused;
     }
 }

@@ -66,6 +66,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Grid.ColumnDefinitions>
 
             <SplitView x:Name="MainSplitView"
+                       IsTabStop="False"
                        CompactPaneLength="{StaticResource SidebarComponentCompactWidth}"
                        DisplayMode="{x:Bind ViewModel.SidebarDisplayMode, Mode=TwoWay}"
                        IsPaneOpen="{x:Bind ViewModel.IsSidebarExpanded, Mode=TwoWay}"
@@ -91,6 +92,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Border Grid.Column="0"
                             Width="8">
                         <controls:PropertySizer x:Name="SidebarSizeGrip"
+                                                IsTabStop="False"
                                                 Margin="-8,0,0,0"
                                                 Binding="{x:Bind ViewModel.SidebarWidth, Mode=TwoWay}"
                                                 Maximum="{StaticResource SidebarComponentMaxWidth}"

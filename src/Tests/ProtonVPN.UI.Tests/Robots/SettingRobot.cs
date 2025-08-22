@@ -167,6 +167,7 @@ public class SettingRobot
 
     public SettingRobot OpenAutoStartupSettings()
     {
+        AutoStartupSettingsCard.ScrollIntoView();
         AutoStartupSettingsCard.Click();
         Thread.Sleep(TestConstants.NavigationDelay);
         return this;

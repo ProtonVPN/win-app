@@ -19,6 +19,7 @@
 
 using System.Windows.Input;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Input;
 
 namespace ProtonVPN.Client.Common.UI.Controls.Custom;
 
@@ -83,6 +84,13 @@ public class SettingsPageContentControl : PageContentControl
     public SettingsPageContentControl()
     {
         DefaultStyleKey = typeof(SettingsPageContentControl);
+        Loaded += OnSettingsPageContentControlLoaded;
+    }
+
+    private void OnSettingsPageContentControlLoaded(object sender, RoutedEventArgs e)
+    {
+        FrameworkElement? firstFocusableElement = (FrameworkElement?)FocusManager.FindFirstFocusableElement(this);
+        firstFocusableElement?.Focus(FocusState.Pointer);
     }
 
     protected override void InvalidateHeaderVisibility()

@@ -18,8 +18,10 @@
  */
 
 using Microsoft.UI.Xaml;
-using System.Windows.Input;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
+using System.Windows.Input;
+using Windows.System;
 
 namespace ProtonVPN.Client.Common.UI.Controls.Custom;
 
@@ -35,5 +37,23 @@ public class SearchTextBox : TextBox
     {
         get => (ICommand)GetValue(BackCommandProperty);
         set => SetValue(BackCommandProperty, value);
+    }
+
+    public SearchTextBox()
+    {
+        KeyDown += OnKeyDown;
+    }
+
+    private void OnKeyDown(object sender, KeyRoutedEventArgs e)
+    {
+        if (e.Key == VirtualKey.Escape)
+        {
+            e.Handled = true;
+
+            if (BackCommand?.CanExecute(null) == true)
+            {
+                BackCommand.Execute(null);
+            }
+        }
     }
 }

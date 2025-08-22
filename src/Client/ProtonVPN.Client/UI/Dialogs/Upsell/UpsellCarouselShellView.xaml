@@ -98,6 +98,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid>
 
         <Button Grid.Row="2"
+                TabIndex="0"
                 HorizontalAlignment="Center"
                 AutomationProperties.AutomationId="UpsellUpgradeButton"
                 Command="{x:Bind ViewModel.UpgradeCommand}"

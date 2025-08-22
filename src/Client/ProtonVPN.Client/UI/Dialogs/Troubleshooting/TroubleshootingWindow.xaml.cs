@@ -24,7 +24,7 @@ using ProtonVPN.Client.Services.Activation;
 
 namespace ProtonVPN.Client.UI.Dialogs.Troubleshooting;
 
-public sealed partial class TroubleshootingWindow : IActivationStateAware
+public sealed partial class TroubleshootingWindow : IFocusAware
 {
     public TroubleshootingWindowActivator WindowActivator { get; }
 
@@ -37,8 +37,13 @@ public sealed partial class TroubleshootingWindow : IActivationStateAware
         WindowActivator.Initialize(this);
     }
 
-    public void InvalidateTitleBarOpacity(WindowActivationState activationState)
+    public void OnFocusChanged()
     {
-        WindowContainer.TitleBarOpacity = activationState.GetTitleBarOpacity();
+        WindowContainer.TitleBarOpacity = this.GetTitleBarOpacity();
+    }
+
+    public bool IsFocused()
+    {
+        return WindowActivator.IsWindowFocused;
     }
 }

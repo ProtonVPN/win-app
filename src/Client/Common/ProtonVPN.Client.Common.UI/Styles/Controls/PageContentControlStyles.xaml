@@ -177,11 +177,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style BasedOn="{StaticResource SettingsPageContentControlStyle}" TargetType="custom:SettingsPageContentControl" />
 
     <Style x:Key="SettingsPageContentControlStyle" BasedOn="{StaticResource DefaultPageContentControlStyle}" TargetType="custom:SettingsPageContentControl">
+        <Setter Property="IsTabStop" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:SettingsPageContentControl">
 
                     <ContentControl x:Name="PageContainer"
+                                    IsTabStop="False"
                                     HorizontalAlignment="Stretch"
                                     HorizontalContentAlignment="Stretch">
                         <Grid x:Name="PageContentContainer"
@@ -216,6 +218,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <custom:GhostButton.LeftIcon>
                                         <pathicons:ArrowLeft Size="Pixels16" />
                                     </custom:GhostButton.LeftIcon>
+                                    <custom:GhostButton.KeyboardAccelerators>
+                                        <KeyboardAccelerator Key="Back" />
+                                    </custom:GhostButton.KeyboardAccelerators>
                                 </custom:GhostButton>
 
                                 <ContentPresenter x:Name="PART_HeaderPresenter"

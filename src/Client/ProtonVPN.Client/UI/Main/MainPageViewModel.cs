@@ -149,6 +149,11 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
         base.OnChildNavigation(e);
 
         OnPropertyChanged(nameof(IsHomePageDisplayed));
+
+        if (IsHomePageDisplayed)
+        {
+            _eventMessageSender.Send<NavigatedToHomePageMessage>();
+        }
     }
 
     private void OnMainWindowSizeChanged(object sender, WindowSizeChangedEventArgs args)

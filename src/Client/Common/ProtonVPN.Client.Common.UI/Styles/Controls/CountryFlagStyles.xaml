@@ -60,6 +60,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Style x:Key="DefaultSimpleCountryFlagStyle" TargetType="custom:SimpleCountryFlag">
         <Setter Property="Width" Value="24" />
+        <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:SimpleCountryFlag">
@@ -170,6 +171,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Style x:Key="DefaultComplexCountryFlagStyle" TargetType="custom:ComplexCountryFlag">
         <Setter Property="Width" Value="30" />
+        <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:ComplexCountryFlag">

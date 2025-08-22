@@ -37,6 +37,7 @@ using Windows.Storage.Pickers;
 using WinUIEx;
 using static Vanara.PInvoke.Shell32;
 using Icon = System.Drawing.Icon;
+using ProtonVPN.Client.Core.Bases;
 
 namespace ProtonVPN.Client.Core.Extensions;
 
@@ -317,9 +318,11 @@ public static class WindowExtensions
         }
     }
 
-    public static double GetTitleBarOpacity(this WindowActivationState activationState)
+    public static double GetTitleBarOpacity(this Window window)
     {
-        return activationState != WindowActivationState.Deactivated ? 1.0 : 0.6;
+        return window is IFocusAware focusAware && focusAware.IsFocused()
+            ? OpacityConstants.TITLE_BAR_FOCUSED
+            : OpacityConstants.TITLE_BAR_UNFOCUSED;
     }
 
     public static XamlRoot GetXamlRoot(this Window window)
@@ -388,5 +391,11 @@ public static class WindowExtensions
         {
             return Math.Min(min, max);
         }
+    }
+
+    public static class OpacityConstants
+    {
+        public const double TITLE_BAR_FOCUSED = 1.0;
+        public const double TITLE_BAR_UNFOCUSED = 0.6;
     }
 }

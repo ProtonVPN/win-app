@@ -19,8 +19,10 @@
 
 using System;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.UI.Controls.Custom;
+using ProtonVPN.Client.Common.UI.Keyboards;
 using ProtonVPN.Client.Contracts.Services.Activation.Bases;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Extensions;
@@ -29,6 +31,7 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using Windows.System;
 using WinUIEx;
 
 namespace ProtonVPN.Client.Core.Services.Activation.Bases;
@@ -50,6 +53,8 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
     protected WindowActivationState CurrentActivationState { get; private set; } = WindowActivationState.Deactivated;
 
     public bool IsWindowVisible { get; private set; }
+
+    public bool EnableExitOnEsc { get; protected set; }
 
     public bool IsWindowFocused { get; private set; }
 
@@ -140,7 +145,19 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
             Host.WindowStateChanged += OnWindowStateChanged;
             Host.Activated += OnWindowActivationStateChanged;
             Host.SizeChanged += OnWindowSizeChanged;
+
+            if (Host.Content is FrameworkElement content && EnableExitOnEsc)
+            {
+                content.KeyboardAccelerators.Add(KeyboardAcceleratorBuilder.Build(OnEscapeAccelerator, VirtualKey.Escape));
+            }
         }
+    }
+
+    protected virtual void OnEscapeAccelerator(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        Logger.Info<AppLog>($"Escape accelerator invoked in '{typeof(TWindow)?.Name}'.");
+        args.Handled = true;
+        Host?.Close();
     }
 
     protected override void UnregisterFromHostEvents()
@@ -153,6 +170,11 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
             Host.WindowStateChanged -= OnWindowStateChanged;
             Host.Activated -= OnWindowActivationStateChanged;
             Host.SizeChanged -= OnWindowSizeChanged;
+
+            if (Host.Content is FrameworkElement content && EnableExitOnEsc)
+            {
+                content.KeyboardAccelerators.Clear();
+            }
         }
     }
 
@@ -374,12 +396,12 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
         if (IsWindowLoaded)
         {
-            if (Host is IActivationStateAware activationStateAware)
-            {
-                activationStateAware.InvalidateTitleBarOpacity(CurrentActivationState);
-            }
-
             InvalidateWindowFocusState();
+
+            if (Host is IFocusAware focusAware)
+            {
+                focusAware.OnFocusChanged();
+            }
         }
     }
 

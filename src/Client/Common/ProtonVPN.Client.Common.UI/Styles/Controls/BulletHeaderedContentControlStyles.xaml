@@ -28,6 +28,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style BasedOn="{StaticResource DefaultBulletHeaderedContentControlStyle}" TargetType="custom:BulletHeaderedContentControl" />
 
     <Style x:Key="DefaultBulletHeaderedContentControlStyle" TargetType="custom:BulletHeaderedContentControl">
+        <Setter Property="IsTabStop" Value="False" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="BulletSize" Value="24" />

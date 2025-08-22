@@ -34,6 +34,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style x:Key="DefaultDimmableImageStyle" TargetType="custom:DimmableImage">
         <Setter Property="Width" Value="{StaticResource DefaultDimmableImageSize}"/>
         <Setter Property="Height" Value="{StaticResource DefaultDimmableImageSize}"/>
+        <Setter Property="IsTabStop" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:DimmableImage">

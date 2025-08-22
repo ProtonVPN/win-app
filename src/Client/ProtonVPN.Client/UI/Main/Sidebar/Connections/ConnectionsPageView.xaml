@@ -48,6 +48,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <ContentControl Grid.Column="0"
+                                    IsTabStop="False"
                                     Margin="-2,0,0,1"
                                     VerticalAlignment="Center"
                                     Content="{x:Bind Icon, Mode=OneTime}" />
@@ -85,12 +86,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Grid.ColumnDefinitions>
 
         <ItemsControl Grid.Row="0"
+                      IsTabStop="False"
                       Grid.Column="1"
                       ItemTemplate="{StaticResource ShortcutItemTemplate}"
                       ItemsSource="{x:Bind ViewModel.ConnectionPages, Mode=OneTime}" 
                       IsHitTestVisible="False"/>
 
-        <ListView Grid.Row="0"
+        <ListView x:Name="ConnectionsPagesList"
+                  Grid.Row="0"
                   Grid.Column="0"
                   AutomationProperties.AutomationControlType="List"
                   AutomationProperties.AutomationId="ConnectionsPagesList"

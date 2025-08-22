@@ -18,12 +18,15 @@
  */
 
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Core.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
 public sealed partial class CommonSettingsPageView : IContextAware
 {
+    private Control? _lastFocusedElement;
+
     public CommonSettingsPageViewModel ViewModel { get; }
 
     public CommonSettingsPageView()
@@ -36,6 +39,9 @@ public sealed partial class CommonSettingsPageView : IContextAware
         Unloaded += OnUnloaded;
 
         ViewModel.ResetContentScrollRequested += OnResetContentScrollRequested;
+        
+        cbLanguage.GotFocus += OnLanguageComboBoxGotFocus;
+        cbLanguage.SelectionChanged += OnLanguageSelectionChanged;
     }
 
     public object GetContext()
@@ -56,5 +62,29 @@ public sealed partial class CommonSettingsPageView : IContextAware
     private void OnResetContentScrollRequested(object? sender, EventArgs e)
     {
         PageContentHost.ResetContentScroll();
+    }
+
+    private void OnLanguageComboBoxGotFocus(object sender, RoutedEventArgs e)
+    {
+        _lastFocusedElement = sender as Control;
+    }
+
+    private void OnLanguageSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (cbLanguage.FocusState != FocusState.Unfocused)
+        {
+            _lastFocusedElement = cbLanguage;
+            
+            DispatcherQueue.TryEnqueue(RestoreFocusToLanguageComboBox);
+        }
+    }
+
+    private void RestoreFocusToLanguageComboBox()
+    {
+        if (_lastFocusedElement == cbLanguage && cbLanguage.IsLoaded)
+        {
+            cbLanguage.Focus(FocusState.Keyboard);
+            _lastFocusedElement = null;
+        }
     }
 }

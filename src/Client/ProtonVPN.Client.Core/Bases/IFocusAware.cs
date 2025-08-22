@@ -17,11 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
-
 namespace ProtonVPN.Client.Core.Bases;
 
-public interface IActivationStateAware
+public interface IFocusAware
 {
-    void InvalidateTitleBarOpacity(WindowActivationState activationState);
+    void OnFocusChanged();
+    bool IsFocused();
 }

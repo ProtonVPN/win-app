@@ -76,6 +76,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </UserControl.Resources>
 
     <ContentControl Style="{StaticResource TranslucentPaneContentControlStyle}"
+                    IsTabStop="False"
                     Padding="6">
         
         <Grid>
@@ -88,9 +89,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <ScrollViewer VerticalScrollBarVisibility="Auto" 
                           Style="{StaticResource SmallOffsetScrollViewer}">
-                <ItemsControl Grid.Row="0"
-                          ItemTemplateSelector="{StaticResource SideWidgetItemTemplateSelector}"
-                          ItemsSource="{x:Bind ViewModel.HeaderWidgets}">
+                <ItemsControl x:Name="HeaderWidgetsItemsControl"
+                              Grid.Row="0"
+                              ItemTemplateSelector="{StaticResource SideWidgetItemTemplateSelector}"
+                              ItemsSource="{x:Bind ViewModel.HeaderWidgets}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Spacing="6" />
@@ -105,7 +107,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     Background="{ThemeResource BorderWeakColorBrush}"
                     Visibility="{x:Bind ViewModel.HasHeaderAndFooterWidgets}" />
 
-            <ItemsControl Grid.Row="2"
+            <ItemsControl x:Name="FooterWidgetsItemsControl"
+                          Grid.Row="2" 
+                          IsTabStop="False"
                           ItemTemplateSelector="{StaticResource SideWidgetItemTemplateSelector}"
                           ItemsSource="{x:Bind ViewModel.FooterWidgets}">
                 <ItemsControl.ItemsPanel>

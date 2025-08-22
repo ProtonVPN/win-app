@@ -63,6 +63,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                   VerticalAlignment="Top">
 
                 <custom:ComplexCountryFlag Width="{StaticResource ConnectionCardFlagWidth}"
+                                           IsTabStop="False"
                                            Height="{StaticResource ConnectionCardFlagHeight}"
                                            EntryCountryCode="{x:Bind ViewModel.EntryCountry}"
                                            ExitCountryCode="{x:Bind ViewModel.ExitCountry}"

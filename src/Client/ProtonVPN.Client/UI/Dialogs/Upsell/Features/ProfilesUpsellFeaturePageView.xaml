@@ -34,6 +34,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Page.Resources>
 
     <custom:UpsellFeatureContentControl Header="{x:Bind ViewModel.Title}"
+                                        IsTabStop="False"
                                         IllustrationSource="{x:Bind ViewModel.LargeIllustrationSource, Mode=OneTime}">
         <StackPanel Spacing="{StaticResource UpsellBulletSpacing}">
             <custom:BulletHeaderedContentControl Header="{x:Bind ViewModel.Localizer.Get('Upsell_Carousel_Profiles_Creation')}">

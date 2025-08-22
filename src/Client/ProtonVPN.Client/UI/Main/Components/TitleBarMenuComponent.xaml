@@ -29,6 +29,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              mc:Ignorable="d">
 
     <custom:GhostButton Visibility="{x:Bind ViewModel.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        TabIndex="0"
                         AutomationProperties.AutomationId="TitleBarMenuButton">
         <custom:GhostButton.LeftIcon>
             <pathicons:ThreeDotsVertical Size="Pixels16" />

@@ -29,6 +29,11 @@ public class FocusStateToBooleanConverter : IValueConverter
     {
         try
         {
+            if (parameter != null)
+            {
+                return (FocusState)value == Enum.Parse<FocusState>((string)parameter);
+            }
+
             return (FocusState)value != FocusState.Unfocused;
         }
         catch (Exception)

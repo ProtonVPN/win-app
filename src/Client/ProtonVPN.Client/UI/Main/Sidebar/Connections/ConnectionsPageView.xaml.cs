@@ -72,6 +72,7 @@ public sealed partial class ConnectionsPageView : IContextAware
         {
             args.Handled = true;
             await Navigator.NavigateToRecentsViewAsync();
+            SetFocusToListView();
         }
     }
 
@@ -81,6 +82,7 @@ public sealed partial class ConnectionsPageView : IContextAware
         {
             args.Handled = true;
             await Navigator.NavigateToCountriesViewAsync();
+            SetFocusToListView();
         }
     }
 
@@ -90,6 +92,7 @@ public sealed partial class ConnectionsPageView : IContextAware
         {
             args.Handled = true;
             await Navigator.NavigateToProfilesViewAsync();
+            SetFocusToListView();
         }
     }
 
@@ -99,7 +102,13 @@ public sealed partial class ConnectionsPageView : IContextAware
         {
             args.Handled = true;
             await Navigator.NavigateToGatewaysViewAsync();
+            SetFocusToListView();
         }
+    }
+
+    private void SetFocusToListView()
+    {
+        ConnectionsPagesList.Focus(FocusState.Keyboard);
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)

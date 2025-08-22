@@ -24,7 +24,7 @@ using ProtonVPN.Client.Services.Activation;
 
 namespace ProtonVPN.Client.UI.Dialogs.Upsell;
 
-public sealed partial class UpsellCarouselWindow : IActivationStateAware
+public sealed partial class UpsellCarouselWindow : IFocusAware
 {
     public UpsellCarouselWindowActivator WindowActivator { get; }
 
@@ -37,8 +37,13 @@ public sealed partial class UpsellCarouselWindow : IActivationStateAware
         WindowActivator.Initialize(this);
     }
 
-    public void InvalidateTitleBarOpacity(WindowActivationState activationState)
+    public void OnFocusChanged()
     {
-        WindowContainer.TitleBarOpacity = activationState.GetTitleBarOpacity();
+        WindowContainer.TitleBarOpacity = this.GetTitleBarOpacity();
+    }
+
+    public bool IsFocused()
+    {
+        return WindowActivator.IsWindowFocused;
     }
 }

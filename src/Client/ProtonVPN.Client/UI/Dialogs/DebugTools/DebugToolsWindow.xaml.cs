@@ -18,13 +18,14 @@
  */
 
 using Microsoft.UI.Xaml;
+using ProtonVPN.Client.Common.Interop;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Extensions;
 using ProtonVPN.Client.Services.Activation;
 
 namespace ProtonVPN.Client.UI.Dialogs.DebugTools;
 
-public sealed partial class DebugToolsWindow : IActivationStateAware
+public sealed partial class DebugToolsWindow : IFocusAware
 {
     public DebugToolsWindowActivator WindowActivator { get; }
 
@@ -37,8 +38,13 @@ public sealed partial class DebugToolsWindow : IActivationStateAware
         WindowActivator.Initialize(this);
     }
 
-    public void InvalidateTitleBarOpacity(WindowActivationState activationState)
+    public void OnFocusChanged()
     {
-        WindowContainer.TitleBarOpacity = activationState.GetTitleBarOpacity();
+        WindowContainer.TitleBarOpacity = this.GetTitleBarOpacity();
+    }
+
+    public bool IsFocused()
+    {
+        return WindowActivator.IsWindowFocused;
     }
 }

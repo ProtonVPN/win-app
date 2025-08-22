@@ -56,6 +56,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <RadioButton AutomationProperties.AutomationId="FastestDefaultConnectionRadioButton"
                              IsChecked="{x:Bind ViewModel.IsFastestConnection, Mode=TwoWay}"
+                             TabIndex="0"
                              Style="{StaticResource DefaultConnectionRadioButtonStyle}">
                     <custom:BulletHeaderedContentControl Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Fastest_Description')}"
                                                          Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Fastest')}"
@@ -70,6 +71,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <RadioButton AutomationProperties.AutomationId="RandomDefaultConnectionRadioButton"
                              IsChecked="{x:Bind ViewModel.IsRandomConnection, Mode=TwoWay}"
+                             TabIndex="1"
                              Style="{StaticResource DefaultConnectionRadioButtonStyle}">
                     <custom:BulletHeaderedContentControl Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Random_Description')}"
                                                          Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Random')}"
@@ -84,6 +86,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <RadioButton AutomationProperties.AutomationId="LastDefaultConnectionRadioButton"
                              IsChecked="{x:Bind ViewModel.IsLastConnection, Mode=TwoWay}"
+                             TabIndex="2"
                              Style="{StaticResource DefaultConnectionRadioButtonStyle}">
                     <custom:BulletHeaderedContentControl Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Last_Description')}"
                                                          Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Last')}"
@@ -102,7 +105,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
                                Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Recents')}" />
 
-                    <ItemsRepeater ItemsSource="{x:Bind ViewModel.Recents}">
+                    <ItemsRepeater ItemsSource="{x:Bind ViewModel.Recents}"
+                                   TabFocusNavigation="Local">
 
                         <ItemsRepeater.Layout>
                             <StackLayout Spacing="16" />

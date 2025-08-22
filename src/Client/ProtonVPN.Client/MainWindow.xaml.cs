@@ -33,7 +33,7 @@ using static ProtonVPN.Client.Common.Interop.WindowHelper;
 
 namespace ProtonVPN.Client;
 
-public sealed partial class MainWindow : IActivationStateAware
+public sealed partial class MainWindow : IFocusAware
 {
     private const double TITLE_BAR_HEIGHT = 38.0;
 
@@ -93,12 +93,17 @@ public sealed partial class MainWindow : IActivationStateAware
         EventMessageSender.Send<WindowsSessionEndingMessage>();
     }
 
-    public void InvalidateTitleBarOpacity(WindowActivationState activationState)
+    public void OnFocusChanged()
     {
         if (WindowContainer != null)
         {
-            WindowContainer.TitleBarOpacity = activationState.GetTitleBarOpacity();
+            WindowContainer.TitleBarOpacity = this.GetTitleBarOpacity();
         }
+    }
+
+    public bool IsFocused()
+    {
+        return WindowActivator.IsWindowFocused;
     }
 
     public void InvalidateTitleBarVisibility(bool isTitleBarVisible)

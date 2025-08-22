@@ -36,6 +36,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <!--  Adds 16px to the width and 9px to the height to compensate  -->
 
     <custom:WindowContentControl x:Name="WindowContainer"
+                                 IsTabStop="False"
                                  Title="{x:Bind Shell.ViewModel.Title, Mode=OneWay}"
                                  IconSource="{StaticResource ProtonVpnOnApplicationIconSource}"
                                  Style="{StaticResource MainWindowContentControlStyle}">

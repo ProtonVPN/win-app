@@ -84,6 +84,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                              Grid.RowSpan="4"
                                              Margin="20"
                                              HorizontalAlignment="Center"
-                                             VerticalAlignment="Top" />
+                                             VerticalAlignment="Top"/>
     </Grid>
 </Page>

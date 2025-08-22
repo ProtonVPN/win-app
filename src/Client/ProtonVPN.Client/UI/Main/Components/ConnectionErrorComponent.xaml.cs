@@ -17,15 +17,34 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using ProtonVPN.Client.Extensions;
+
 namespace ProtonVPN.Client.UI.Main.Components;
 
 public sealed partial class ConnectionErrorComponent
-{
+{    
+    // FadeInOutAnimationDuration is 800ms + 500ms delay
+    private static readonly TimeSpan _animationDuration = TimeSpan.FromMilliseconds(1300);
+
     public ConnectionErrorViewModel ViewModel { get; }
 
     public ConnectionErrorComponent()
     {
         ViewModel = App.GetService<ConnectionErrorViewModel>();
         InitializeComponent();
+
+        ActionInfoBar.RegisterPropertyChangedCallback(InfoBar.IsOpenProperty, OnInfoBarIsOpenChangedAsync);
+    }
+
+    private async void OnInfoBarIsOpenChangedAsync(DependencyObject sender, DependencyProperty dp)
+    {
+        if (ActionInfoBar.IsOpen && this.IsParentWindowFocused())
+        {
+            await Task.Delay(_animationDuration);
+
+            ActionInfoBar.Focus(FocusState.Programmatic);
+        }
     }
 }

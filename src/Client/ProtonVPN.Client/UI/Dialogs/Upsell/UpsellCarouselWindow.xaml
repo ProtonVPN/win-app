@@ -38,6 +38,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <custom:WindowContentControl x:Name="WindowContainer"
                                  Title="{x:Bind Shell.ViewModel.Title}"
+                                 IsTabStop="False"
                                  IconSource="{ThemeResource VpnPlusIllustrationSource}"
                                  InnerBackground="{ThemeResource GradientUpsellBackgroundColorBrush}"
                                  TitleBarButtonsLength="46">

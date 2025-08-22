@@ -56,7 +56,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Grid MinHeight="29"
                   Margin="12,8,0,4"
                   HorizontalAlignment="Stretch"
-                  ColumnSpacing="12"
+                  ColumnSpacing="12" 
+                      IsTabStop="False"
                   Visibility="{x:Bind IsHeaderVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                 <Grid.ColumnDefinitions>
@@ -64,7 +65,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <Grid HorizontalAlignment="Left">
+                <Grid HorizontalAlignment="Left"
+                      IsTabStop="False">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -74,6 +76,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <ContentControl Grid.Row="0"
                                     Margin="0,0,8,0"
+                                    IsTabStop="False"
                                     VerticalAlignment="Center"
                                     Content="{x:Bind Icon}"
                                     Foreground="{ThemeResource TextWeakColorBrush}"
@@ -81,6 +84,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <TextBlock Grid.Column="1"
                                VerticalAlignment="Center"
+                                    IsTabStop="False"
                                Foreground="{ThemeResource TextWeakColorBrush}"
                                Style="{StaticResource BodyTextBlockStyle}"
                                Text="{x:Bind Header}"
@@ -89,6 +93,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <custom:GhostButton Grid.Column="2"
                                         Margin="8,0,0,0"
+                                        IsTabStop="True"
+                                        TabIndex="0"
                                         Command="{x:Bind ShowInfoOverlayCommand, Mode=OneTime}"
                                         Visibility="{x:Bind IsInfoButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <custom:GhostButton.RightIcon>
@@ -101,6 +107,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <custom:GhostButton Grid.Column="1"
                                     Command="{x:Bind ShowServerLoadInfoOverlayCommand, Mode=OneTime}"
                                     Content="{x:Bind Localizer.Get('Countries_ServerLoad')}"
+                                    IsTabStop="True"
+                                    TabIndex="1"
                                     Visibility="{x:Bind IsServerLoadInfoButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <custom:GhostButton.RightIcon>
                         <pathicons:InfoCircle Size="Pixels16" />
@@ -137,6 +145,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       x:DataType="connections:CountryLocationItemBase">
 
             <custom:DualConnectionRowExpander AutomationProperties.AutomationId="{x:Bind SecondaryCommandAutomationId}"
+                                              IsTabStop="False"
                                               AutomationProperties.Name="{x:Bind Header}"
                                               ToolTipService.ToolTip="{x:Bind ToolTip}"
                                               IsExpanded="{x:Bind IsCountryExpanded, Mode=TwoWay}">
@@ -316,6 +325,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                         Padding="4"
                                                         Description="{x:Bind Header}"
                                                         Header="{x:Bind Description}"
+                                                        IsTabStop="False"
                                                         IsHitTestVisible="False">
                                 <custom:ConnectionRowButton.Icon>
                                     <custom:SimpleCountryFlag Width="30"
@@ -355,6 +365,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       x:DataType="connections:CityLocationItemBase">
 
             <custom:DualConnectionRowButton AutomationProperties.AutomationId="{x:Bind SecondaryCommandAutomationId}"
+                                            UseSystemFocusVisuals="True"
                                             AutomationProperties.Name="{x:Bind Header}"
                                             ToolTipService.ToolTip="{x:Bind ToolTip}">
 
@@ -394,6 +405,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                         Padding="4"
                                                         Description="{x:Bind Header}"
                                                         Header="{x:Bind Description}"
+                                                        IsTabStop="False"
                                                         IsHitTestVisible="False">
                                 <custom:ConnectionRowButton.Icon>
                                     <custom:SimpleCountryFlag Width="30"
@@ -480,6 +492,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             ToolTipService.ToolTip="{x:Bind ToolTip}">
 
                 <custom:ConnectionRowButton ActionLabel="{x:Bind PrimaryActionLabel}"
+                                            TabIndex="0"
                                             Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                             Description="{x:Bind Description}"
                                             Header="{x:Bind Header}"
@@ -566,6 +579,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             ToolTipService.ToolTip="{x:Bind ToolTip}">
 
                 <custom:ConnectionRowButton ActionLabel="{x:Bind PrimaryActionLabel}"
+                                            TabIndex="0"
                                             AutomationProperties.AutomationId="{x:Bind PrimaryCommandAutomationId}"
                                             Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                             Description="{x:Bind Description}"
@@ -581,6 +595,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <custom:ConnectionRowButton.Icon>
                         <Grid Width="30">
                             <custom:ConnectionProfileIcon Width="30"
+                                                          IsTabStop="False"
                                                           Height="30"
                                                           CountryCode="{x:Bind ExitCountry}"
                                                           FlagType="{x:Bind FlagType}"
@@ -589,6 +604,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                           ProfileColor="{x:Bind Profile.Icon.Color}"
                                                           Visibility="{x:Bind IsProfileIntent, Converter={StaticResource BooleanToVisibilityConverter}}" />
                             <custom:ComplexCountryFlag Width="30"
+                                                       IsTabStop="False"
                                                        EntryCountryCode="{x:Bind EntryCountry}"
                                                        ExitCountryCode="{x:Bind ExitCountry}"
                                                        IsSecureCore="{x:Bind IsSecureCore}"
@@ -637,6 +653,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             ToolTipService.ToolTip="{x:Bind ToolTip}">
 
                 <custom:ConnectionRowButton ActionLabel="{x:Bind PrimaryActionLabel}"
+                                            TabIndex="0"
                                             AutomationProperties.AutomationId="{x:Bind PrimaryCommandAutomationId}"
                                             Command="{x:Bind ToggleConnectionCommand, Mode=OneTime}"
                                             Description="{x:Bind Description}"
@@ -651,6 +668,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             TorLabel="{x:Bind Localizer.Get('Countries_Tor')}">
                     <custom:ConnectionRowButton.Icon>
                         <custom:ConnectionProfileIcon Width="30"
+                                                      IsTabStop="False"
                                                       Height="30"
                                                       CountryCode="{x:Bind ExitCountryCode}"
                                                       FlagType="{x:Bind FlagType}"

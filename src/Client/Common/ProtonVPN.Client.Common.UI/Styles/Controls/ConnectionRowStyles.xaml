@@ -62,6 +62,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style x:Key="DefaultConnectionRowStyle" TargetType="custom:ConnectionRowButton">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Padding" Value="{ThemeResource ConnectionRowPadding}" />
+        <Setter Property="IsTabStop" Value="True"/>
+        <Setter Property="TabIndex" Value="0"/>
+        <Setter Property="CornerRadius" Value="8"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:ConnectionRowButton">
@@ -215,6 +218,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 </VisualState>
                             </VisualStateGroup>
 
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <VisualState.Storyboard>
+                                        <Storyboard>
+                                            <!-- Offset action container appearance to avoid visual glitch -->
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ConnectionRowActionContainer" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.01" Value="Visible" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState.Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused" />
+                            </VisualStateGroup>
+
                             <VisualStateGroup x:Name="DisabledStates">
                                 <VisualState x:Name="Restricted">
                                     <VisualState.StateTriggers>
@@ -251,6 +268,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style x:Key="DefaultServerConnectionRowStyle" TargetType="custom:ServerConnectionRowButton">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Padding" Value="{ThemeResource ConnectionRowPadding}" />
+        <Setter Property="CornerRadius" Value="8"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:ServerConnectionRowButton">
@@ -429,6 +447,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
 
     <Style x:Key="DefaultDualConnectionRowButtonStyle" TargetType="custom:DualConnectionRowButton">
+        <Setter Property="IsTabStop" Value="False" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
@@ -443,6 +462,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Button x:Name="SecondaryButton"
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2"
+                                TabIndex="2"
                                 HorizontalAlignment="Stretch"
                                 Command="{TemplateBinding SecondaryCommand}"
                                 CommandParameter="{TemplateBinding SecondaryCommandParameter}"
@@ -450,36 +470,46 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Style="{StaticResource RowButtonStyle}" />
 
                         <pathicons:ThreeDotsVertical x:Name="SecondaryButtonContent"
-                                          AutomationProperties.AutomationId="SecondaryButtonContent"
-                                          AutomationProperties.Name="SecondaryButtonContent"
-                                          Grid.Column="1"
-                                          Margin="8,0"
-                                          IsHitTestVisible="False"
-                                          Opacity="0" />
+                                                     IsTabStop="False"
+                                                     AutomationProperties.AutomationId="SecondaryButtonContent"
+                                                     AutomationProperties.Name="SecondaryButtonContent"
+                                                     Grid.Column="1"
+                                                     Margin="8,0"
+                                                     IsHitTestVisible="False" 
+                                                     Opacity="0.5"/>
 
                         <ContentPresenter x:Name="PrimaryButtonContainer"
+                                          IsTabStop="False"
                                           Grid.Column="0"
-                                          Grid.ColumnSpan="2"
                                           Content="{TemplateBinding Content}" />
 
                         <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="PointerStates">
-                                <VisualState x:Name="PointerOver">
-                                    <VisualState.Setters>
-                                        <Setter Target="SecondaryButtonContent.Opacity" Value="0.6" />
-                                        <Setter Target="PrimaryButtonContainer.(Grid.ColumnSpan)" Value="1" />
-                                    </VisualState.Setters>
-                                </VisualState>
-                                <VisualState x:Name="Normal" />
-                            </VisualStateGroup>
                             <VisualStateGroup x:Name="FlyoutStates">
                                 <VisualState x:Name="FlyoutOpened">
                                     <VisualState.Setters>
                                         <Setter Target="SecondaryButton.Background" Value="{ThemeResource InteractionDefaultHoverColorBrush}" />
-                                        <Setter Target="SecondaryButtonContent.Opacity" Value="0.6" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="FlyoutClosed" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <VisualState.StateTriggers>
+                                        <StateTrigger IsActive="{Binding IsPointerOver, ElementName=SecondaryButton}" />
+                                        <StateTrigger IsActive="{Binding FocusState, ElementName=SecondaryButton, Converter={StaticResource FocusStateToBooleanConverter}, ConverterParameter=Keyboard}" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="SecondaryButtonContent.Opacity" Value="1" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="PointerStates">
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Target="SecondaryButtonContent.Opacity" Value="0.7" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Normal" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                     </Grid>
@@ -524,7 +554,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                       Grid.Column="1"
                                                       Margin="8,0"
                                                       IsHitTestVisible="False"
-                                                      Opacity="0"
+                                                      Opacity="0.5"
                                                       RenderTransformOrigin="0.5,0.5">
                             <pathicons:ChevronRightFilled.RenderTransform>
                                 <RotateTransform x:Name="ExpanderButtonRotateTransform" Angle="0" />
@@ -534,7 +564,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <ContentPresenter x:Name="PrimaryButtonContainer"
                                           Grid.Row="0"
                                           Grid.Column="0"
-                                          Grid.ColumnSpan="2"
                                           Margin="1,0"
                                           Content="{TemplateBinding Content}" />
 
@@ -570,18 +599,27 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </VisualState.Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <VisualState.StateTriggers>
+                                        <!--<StateTrigger IsActive="{Binding IsPointerOver, ElementName=ExpanderButton}" />-->
+                                        <StateTrigger IsActive="{Binding FocusState, ElementName=ExpanderButton, Converter={StaticResource FocusStateToBooleanConverter}}" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="ExpanderButtonContent.Opacity" Value="1" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
                             <VisualStateGroup x:Name="PointerStates">
                                 <VisualState x:Name="PointerOver">
                                     <VisualState.Setters>
-                                        <Setter Target="ExpanderButtonContent.Opacity" Value="0.6" />
-                                        <Setter Target="PrimaryButtonContainer.(Grid.ColumnSpan)" Value="1" />
+                                        <Setter Target="ExpanderButtonContent.Opacity" Value="0.7" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="Normal" />
                             </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
+                        </VisualStateManager.VisualStateGroups>                    
                     </Grid>
-
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

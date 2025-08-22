@@ -56,6 +56,7 @@ public abstract class DialogActivatorBase<TWindow> : WindowActivatorBase<TWindow
                iconSelector)
     {
         MainWindowActivator = mainWindowActivator;
+        EnableExitOnEsc = true;
     }
 
     public void Receive(MainWindowVisibilityChangedMessage message)

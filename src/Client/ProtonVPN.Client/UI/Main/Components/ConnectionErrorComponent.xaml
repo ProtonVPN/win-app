@@ -27,14 +27,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <InfoBar Title="{x:Bind ViewModel.Localizer.Get('Connection_Error_Title')}"
+    <InfoBar Name="ActionInfoBar"
+             Title="{x:Bind ViewModel.Localizer.Get('Connection_Error_Title')}"
              AutomationProperties.AutomationId="ConnectionErrorPanel"
              CloseButtonCommand="{x:Bind ViewModel.CloseErrorCommand}"
              IsOpen="{x:Bind ViewModel.IsConnectionErrorVisible, Mode=TwoWay}"
              Message="{x:Bind ViewModel.ConnectionErrorMessage}"
              Severity="Error">
         <InfoBar.ActionButton>
-            <custom:GhostButton AutomationProperties.AutomationId="ActionButton"
+            <custom:GhostButton Name="ActionButton"
+                                AutomationProperties.AutomationId="ActionButton"
+                                AutomationProperties.Name="{x:Bind ViewModel.ActionButtonTitle}"
                                 Command="{x:Bind ViewModel.TriggerActionButtonCommand, Mode=OneTime}"
                                 Content="{x:Bind ViewModel.ActionButtonTitle}"
                                 Style="{StaticResource PrimaryGhostButtonStyle}"
