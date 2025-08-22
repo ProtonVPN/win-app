@@ -527,7 +527,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                       Padding="0,0,12,0"
                                                       HorizontalScrollBarVisibility="Disabled"
                                                       IsTabStop="False"
-                                                      VerticalScrollBarVisibility="Auto">
+                                                      VerticalScrollBarVisibility="Disabled">
                                             <ContentPresenter x:Name="Content"
                                                               Content="{TemplateBinding Content}"
                                                               ContentTemplate="{TemplateBinding ContentTemplate}"
