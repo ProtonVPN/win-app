@@ -27,6 +27,7 @@ using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
@@ -49,6 +50,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
     private readonly IApiAvailabilityVerifier _apiAvailabilityVerifier;
     private readonly IGuestHoleManager _guestHoleManager;
     private readonly ISessionSettings _sessionSettings;
+    private readonly IUnauthSessionManager _unauthSessionManager;
     private readonly SsoLoginOverlayViewModel _ssoLoginOverlayViewModel;
 
     [ObservableProperty]
@@ -120,6 +122,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         IApiAvailabilityVerifier apiAvailabilityVerifier,
         IGuestHoleManager guestHoleManager,
         ISessionSettings sessionSettings,
+        IUnauthSessionManager unauthSessionManager,
         SsoLoginOverlayViewModel ssoLoginOverlayViewModel,
         IViewModelHelper viewModelHelper)
         : base(parentViewNavigator, viewModelHelper)
@@ -130,6 +133,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         _apiAvailabilityVerifier = apiAvailabilityVerifier;
         _guestHoleManager = guestHoleManager;
         _sessionSettings = sessionSettings;
+        _unauthSessionManager = unauthSessionManager;
         _ssoLoginOverlayViewModel = ssoLoginOverlayViewModel;
     }
 
@@ -281,6 +285,8 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
     protected override void OnActivated()
     {
         base.OnActivated();
+
+        _unauthSessionManager.Revoke();
 
         if (_userAuthenticator.IsAutoLogin != true && SignInCommand.CanExecute(null))
         {

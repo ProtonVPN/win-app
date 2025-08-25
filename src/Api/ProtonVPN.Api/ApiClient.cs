@@ -213,12 +213,6 @@ public class ApiClient : BaseApiClient, IApiClient
         return await SendRequest<PartnersResponse>(request, CancellationToken.None, "Get partners");
     }
 
-    public async Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync()
-    {
-        HttpRequestMessage request = GetRequest(HttpMethod.Get, "domains/available?Type=login");
-        return await SendRequest<BaseResponse>(request, CancellationToken.None, "Check authentication server status");
-    }
-
     public async Task<ApiResponseResult<CertificateResponse>> RequestConnectionCertificateAsync(
         CertificateRequest certificateRequest,
         CancellationToken cancellationToken)

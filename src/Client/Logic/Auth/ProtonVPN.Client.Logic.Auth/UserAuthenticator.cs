@@ -296,9 +296,11 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
 
             await SendLogoutRequestAsync();
             await _unauthSessionManager.RecreateAsync(CancellationToken.None);
-            await _featureFlagsObserver.UpdateAsync(CancellationToken.None);
 
+            // First we need to clear auth session, otherwise feature flags will be
+            // fetched with auth session token instead of unauth
             ClearAuthSessionDetails();
+            await _featureFlagsObserver.UpdateAsync(CancellationToken.None);
 
             IsAutoLogin = null;
 

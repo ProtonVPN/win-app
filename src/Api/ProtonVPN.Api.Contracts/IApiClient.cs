@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -59,7 +59,6 @@ public interface IApiClient : IClientBase
     Task<ApiResponseResult<AnnouncementsResponse>> GetAnnouncementsAsync(AnnouncementsRequest request);
     Task<ApiResponseResult<StreamingServicesResponse>> GetStreamingServicesAsync();
     Task<ApiResponseResult<PartnersResponse>> GetPartnersAsync();
-    Task<ApiResponseResult<BaseResponse>> CheckAuthenticationServerStatusAsync();
     Task<ApiResponseResult<CertificateResponse>> RequestConnectionCertificateAsync(CertificateRequest request, CancellationToken cancellationToken = default);
     Task<ApiResponseResult<BaseResponse>> ApplyPromoCodeAsync(PromoCodeRequest promoCodeRequest);
     Task<ApiResponseResult<ForkedAuthSessionResponse>> ForkAuthSessionAsync(AuthForkSessionRequest request);
