@@ -2167,6 +2167,12 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
   <data name="Flyouts_IpAddress_VpnIp">
     <value>IP de VPN</value>
   </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv6</value>
+  </data>
   <data name="Flyouts_IpAddress_YourIp">
     <value>Su IP</value>
   </data>
@@ -2845,6 +2851,18 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
     <value>Encuesta de Proton VPN</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>Para incluir esta dirección, necesita permitir conexiones IPv6 a través del túnel VPN.</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>Activar IPv6</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>Ahora no</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>IPv6 está desactivado</value>
+  </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Actualizar ahora</value>
   </data>
@@ -3158,6 +3176,19 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
     <value>Aplicar</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>Ya se añadió la dirección.</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>Ingrese una dirección IPv4 o IPv6 válida</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Common_Ipv6WarningButton">
+    <value>Advertencia - más información</value>
+  </data>
   <data name="Settings_Connection">
     <value>Conexión</value>
   </data>
@@ -3172,6 +3203,10 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Servidores DNS personalizados</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>Añadir un servidor DNS nuevo</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
     <value>Cuando se conecte con un servidor DNS personalizado, no podrá usar NetShield.</value>
@@ -3189,15 +3224,20 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
     <value>Servidores DNS ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
-    <value>Agregar dirección IPv4</value>
-    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
+    <value>Ingrese la dirección IPv4 o IPv6 del servidor</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>Soporte IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>Desactivar tráfico IPv6</value>
+    <value>Protección contra filtraciones IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>Previene las filtraciones de IPv6 mediante el bloqueo de las conexiones a direcciones IPv6.</value>
+    <value>Evita filtraciones de datos al bloquear el tráfico IPv6 que no pasa a través del túnel VPN.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>Permite que el tráfico IPv6 pase a través del túnel VPN. Esto mejora la compatibilidad con los sitios web y servicios IPv6.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>Permitir las conexiones LAN</value>
@@ -3372,9 +3412,6 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
   <data name="Settings_Connection_SplitTunneling">
     <value>Túnel dividido</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_Add">
-    <value>Agregar aplicación</value>
-  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>Archivos de la aplicación</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
@@ -3405,8 +3442,8 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
     <value>Incluir</value>
     <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>Agregar dirección IP</value>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>Añadir nueva dirección IPv4 o IPv6</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>Direcciones IP seleccionadas ({0})</value>
@@ -3414,9 +3451,6 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
     <value>Eliminar la dirección IP</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
-    <value>Agregar dirección IPv4</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
     <value>Modo de exclusión</value>

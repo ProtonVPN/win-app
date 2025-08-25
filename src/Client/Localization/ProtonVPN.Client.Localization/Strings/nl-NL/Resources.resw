@@ -250,10 +250,10 @@
     <value>Installeer</value>
   </data>
   <data name="Common_Actions_MoveDown">
-    <value>Move Down</value>
+    <value>Omlaag verplaatsen</value>
   </data>
   <data name="Common_Actions_MoveUp">
-    <value>Move Up</value>
+    <value>Omhoog verplaatsen</value>
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Opnieuw verbinden</value>
@@ -2167,6 +2167,12 @@
   <data name="Flyouts_IpAddress_VpnIp">
     <value>VPN IP</value>
   </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv6</value>
+  </data>
   <data name="Flyouts_IpAddress_YourIp">
     <value>Uw IP</value>
   </data>
@@ -2845,6 +2851,18 @@
     <value>Proton VPN - Enquête</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>Om dit adres op te nemen, moet u IPv6-verbindingen via de VPN-tunnel toestaan.</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>IPv6 inschakelen</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>Niet nu</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>IPv6 is uitgeschakeld</value>
+  </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Nu updaten</value>
   </data>
@@ -3158,6 +3176,19 @@ VPN-verbinding</value>
     <value>Toepassen</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>Adres is al toegevoegd</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>Voer een geldig IPv4 of IPv6 adres in</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Common_Ipv6WarningButton">
+    <value>Waarschuwing - meer informatie</value>
+  </data>
   <data name="Settings_Connection">
     <value>Verbinding</value>
   </data>
@@ -3173,6 +3204,10 @@ VPN-verbinding</value>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Aangepaste DNS-servers</value>
   </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>Nieuwe DNS-server toevoegen</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
+  </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
     <value>U kunt NetShield niet gebruiken als u verbonden bent met een aangepaste DNS-server.</value>
   </data>
@@ -3183,21 +3218,26 @@ VPN-verbinding</value>
     <value>Maak verbinding met Proton VPN via uw eigen DNS (domain name system). Gebruik alleen DNS-servers die u vertrouwt.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
-    <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
+    <value>We zullen proberen om verbinding te maken met deze servers in volgorde. Als geen van hen werkt, zal de standaard Proton VPN DNS worden gebruikt.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS-servers ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
-    <value>IPv4-adres toevoegen</value>
-    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
+    <value>Voer het IPv4 of IPv6 adres van de server in</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>IPv6-ondersteuning</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>IPv6-verkeer uitschakelen</value>
+    <value>IPv6-lekbescherming</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>Voorkomt IPv6-lekken door verbindingen naar IPv6-adressen te blokkeren.</value>
+    <value>Voorkomt datalekken door IPv6-verkeer te blokkeren dat niet door de VPN-tunnel gaat.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>Toestaan dat IPv6 verkeer door de VPN tunnel wordt geleid. Dit verbetert de compatibiliteit met IPv6 websites en services.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>LAN-verbindingen toestaan</value>
@@ -3372,9 +3412,6 @@ VPN-verbinding</value>
   <data name="Settings_Connection_SplitTunneling">
     <value>Split tunneling</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_Add">
-    <value>App toevoegen</value>
-  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>Appbestanden</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
@@ -3405,8 +3442,8 @@ VPN-verbinding</value>
     <value>Inclusief</value>
     <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>IP toevoegen</value>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>Nieuw IPv4- of IPv6-adres toevoegen</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>Geselecteerde IP-adressen ({0})</value>
@@ -3414,9 +3451,6 @@ VPN-verbinding</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
     <value>IP verwijderen</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
-    <value>IPv4-adres toevoegen</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
     <value>Uitsluit-modus</value>

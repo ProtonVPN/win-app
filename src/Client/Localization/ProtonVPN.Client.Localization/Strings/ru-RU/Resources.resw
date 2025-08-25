@@ -2317,6 +2317,12 @@
   <data name="Flyouts_IpAddress_VpnIp">
     <value>VPN IP</value>
   </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv6</value>
+  </data>
   <data name="Flyouts_IpAddress_YourIp">
     <value>Ваш IP-адрес</value>
   </data>
@@ -3061,6 +3067,18 @@
     <value>Proton VPN - Survey</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>To include this address, you need to allow IPv6 connections through the VPN tunnel.</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>Enable IPv6</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>Not now</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>IPv6 is disabled</value>
+  </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Обновить</value>
   </data>
@@ -3374,6 +3392,19 @@
     <value>Применить</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>Address already added</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>Enter a valid IPv4 or IPv6 address</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Common_Ipv6WarningButton">
+    <value>Warning - learn more</value>
+  </data>
   <data name="Settings_Connection">
     <value>Подключение</value>
   </data>
@@ -3388,6 +3419,10 @@
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Пользовательские DNS-серверы</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>Add new DNS server</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
     <value>Вы не сможете использовать NetShield при подключении через пользовательский DNS-сервер.</value>
@@ -3405,15 +3440,20 @@
     <value>DNS-серверы ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
-    <value>Добавить адрес IPv4</value>
-    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
+    <value>Enter the server's IPv4 or IPv6 address</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>IPv6 support</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>Отключить IPv6-трафик</value>
+    <value>IPv6 leak protection</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>Предотвращает утечку IPv6-трафика, блокируя соединения с IPv6-адресами.</value>
+    <value>Prevents data leaks by blocking IPv6 traffic that doesn't pass through the VPN tunnel.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>Allows IPv6 traffic to pass through the VPN tunnel. This improves compatibility with IPv6 websites and services.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>Разрешить соединения по локальной сети</value>
@@ -3588,9 +3628,6 @@
   <data name="Settings_Connection_SplitTunneling">
     <value>Раздельное туннелирование</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_Add">
-    <value>Добавить приложение</value>
-  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>Файлы приложения</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
@@ -3621,8 +3658,8 @@
     <value>Include</value>
     <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>Добавить IP</value>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>Add new IPv4 or IPv6 address</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>Выбранные IP-адреса ({0})</value>
@@ -3630,9 +3667,6 @@
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
     <value>Удалить IP</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
-    <value>Добавить адрес IPv4</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
     <value>Режим исключения</value>

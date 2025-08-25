@@ -2167,6 +2167,12 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Flyouts_IpAddress_VpnIp">
     <value>VPN-IP</value>
   </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv6</value>
+  </data>
   <data name="Flyouts_IpAddress_YourIp">
     <value>Din IP</value>
   </data>
@@ -2845,6 +2851,18 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Proton VPN - Undersökning</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>För att inkludera denna adress måste du tillåta IPv6-anslutningar genom VPN-tunneln.</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>Aktivera IPv6</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>Inte nu</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>IPv6 är inaktiverat</value>
+  </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Uppdatera nu</value>
   </data>
@@ -3158,6 +3176,19 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Tillämpa</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>Adress redan tillagd</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>Ange en giltig IPv4- eller IPv6-adress</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Common_Ipv6WarningButton">
+    <value>Varning - lär dig mer</value>
+  </data>
   <data name="Settings_Connection">
     <value>Anslutning</value>
   </data>
@@ -3172,6 +3203,10 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Anpassade DNS-servrar</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>Lägg till ny DNS-server</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
     <value>Du kommer inte att kunna använda NetShield när du är ansluten till en anpassad DNS-server.</value>
@@ -3189,15 +3224,20 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>DNS-servrar ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
-    <value>Lägg till IPv4-adress</value>
-    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
+    <value>Ange serverns IPv4- eller IPv6-adress</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>Stöd för IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>Inaktivera IPv6-trafik</value>
+    <value>Skydd mot IPv6-läckage</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>Förhindrar IPv6-läckage genom att blockera anslutningar till IPv6-adresser.</value>
+    <value>Förhindrar dataläckage genom att blockera IPv6-trafik som inte passerar genom VPN-tunneln.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>Tillåter IPv6-trafik att passera genom VPN-tunneln. Detta förbättrar kompatibiliteten med IPv6-webbplatser och tjänster.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>Tillåt LAN-anslutningar</value>
@@ -3372,9 +3412,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Settings_Connection_SplitTunneling">
     <value>Split tunneling</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_Add">
-    <value>Lägg till app</value>
-  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>Appfiler</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
@@ -3405,8 +3442,8 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Inkludera</value>
     <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>Lägg till IP</value>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>Lägg till ny IPv4- eller IPv6-adress</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>Valda IP-adresser ({0})</value>
@@ -3414,9 +3451,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
     <value>Ta bort IP</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
-    <value>Lägg till IPv4-adress</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
     <value>Exkluderingsläge</value>

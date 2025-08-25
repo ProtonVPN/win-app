@@ -2167,6 +2167,12 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Flyouts_IpAddress_VpnIp">
     <value>VPN IP adresi</value>
   </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv6</value>
+  </data>
   <data name="Flyouts_IpAddress_YourIp">
     <value>IP adresiniz</value>
   </data>
@@ -2845,6 +2851,18 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Proton VPN - Anket</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>Bu adresi katmak için VPN tüneli üzerinde IPv6 bağlantılarının kurulmasına izin vermeniz gerekir.</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>IPv6 kullanılsın</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>Şimdi değil</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>IPv6 kullanım dışı bırakıldı</value>
+  </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Güncelle</value>
   </data>
@@ -3158,6 +3176,19 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Uygula</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>Adres zaten eklenmiş</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>Geçerli bir IPv4 veya IPv6 adresi yazın</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Common_Ipv6WarningButton">
+    <value>Uyarı - Ayrıntılı bilgi alın</value>
+  </data>
   <data name="Settings_Connection">
     <value>Bağlantı</value>
   </data>
@@ -3172,6 +3203,10 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Özel DNS sunucuları</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>Yeni DNS sunucusu ekle</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
     <value>Özel DNS sunucusu ile bağlandığınızda NetShield korumasını kullanamayacaksınız.</value>
@@ -3189,15 +3224,20 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>DNS sunucuları ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
-    <value>IPv4 adresi ekle</value>
-    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
+    <value>Sunucunun IPv4 ya da IPv6 adresini yazın</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>IPv6 desteği</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>IPv6 trafiğini kullanımdan kaldır</value>
+    <value>IPv6 sızıntı koruması</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>IPv6 adreslerine gelen bağlantıları engelleyerek IPv6 adresinin öğrenilmesini önler.</value>
+    <value>VPN tünelinden geçmeyen IPv6 trafiğini engelleyerek veri sızıntılarını önler.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>IPv6 trafiğinin VPN tüneli üzerinden geçmesini sağlar. Böylece, IPv6 siteleri ve hizmetleriyle uyumluluk artar.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>Yerel ağ bağlantılarına izin verilsin</value>
@@ -3372,9 +3412,6 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Settings_Connection_SplitTunneling">
     <value>Ayrılmış tünelleme</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_Add">
-    <value>Uygulama ekle</value>
-  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>Uygulama dosyaları</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
@@ -3405,8 +3442,8 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Kat</value>
     <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>IP adresi ekle</value>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>Yeni bir IPv4 veya IPv6 adresi ekle</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>Seçilmiş IP adresleri ({0})</value>
@@ -3414,9 +3451,6 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
     <value>IP adresini kaldır</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
-    <value>IPv4 adresi ekle</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
     <value>Katmama kipi</value>

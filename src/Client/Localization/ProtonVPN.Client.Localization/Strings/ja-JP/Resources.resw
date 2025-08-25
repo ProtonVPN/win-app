@@ -2092,6 +2092,12 @@
   <data name="Flyouts_IpAddress_VpnIp">
     <value>VPN IP</value>
   </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv6</value>
+  </data>
   <data name="Flyouts_IpAddress_YourIp">
     <value>あなたのIP</value>
   </data>
@@ -2737,6 +2743,18 @@
     <value>Proton VPN アンケート</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>このアドレスを含めるには、VPNトンネル経由のIPv6接続を許可する必要があります。</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>IPv6接続は有効です</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>後で</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>IPv6接続は無効です</value>
+  </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>今すぐアップデート</value>
   </data>
@@ -3050,6 +3068,19 @@ VPN接続</value>
     <value>適用</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>アドレスは既に追加されています</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>有効なIPv4またはIPv6アドレスを入力してください。</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Common_Ipv6WarningButton">
+    <value>警告 - 詳しくはこちら</value>
+  </data>
   <data name="Settings_Connection">
     <value>接続</value>
   </data>
@@ -3064,6 +3095,10 @@ VPN接続</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>カスタムDNSサーバー</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>新しいDNSサーバーを追加する</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
     <value>カスタム DNS サーバーに接続している場合は、NetShield を使用できません。</value>
@@ -3081,15 +3116,20 @@ VPN接続</value>
     <value>DNS サーバー ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
-    <value>IPv4アドレスを追加</value>
-    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
+    <value>サーバーのIPv4またはIPv6アドレスを入力してください。</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>IPv6対応</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>IPv6トラフィックを無効化</value>
+    <value>IPv6漏洩防止</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>IPv6アドレスへの接続をブロックすることで、IPv6リークを防ぎます。</value>
+    <value>VPNトンネルを通過しないIPv6トラフィックをブロックすることで、データ漏洩を防止します。</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>IPv6トラフィックをVPNトンネル経由で通過させます。これにより、IPv6対応のウェブサイトやサービスとの互換性が向上します。</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>LAN への接続を許可</value>
@@ -3264,9 +3304,6 @@ VPN接続</value>
   <data name="Settings_Connection_SplitTunneling">
     <value>スプリットトンネル</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_Add">
-    <value>アプリを追加</value>
-  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>アプリファイル</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
@@ -3297,8 +3334,8 @@ VPN接続</value>
     <value>含める</value>
     <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>IPを追加</value>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>新しいIPv4またはIPv6アドレスを追加する</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>選択したIPアドレス({0})</value>
@@ -3306,9 +3343,6 @@ VPN接続</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
     <value>IPを削除</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
-    <value>IPv4アドレスを追加</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
     <value>除外モード</value>

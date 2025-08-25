@@ -1713,7 +1713,7 @@ Latensi yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Apa itu latensi?</value>
   </data>
   <data name="Dialogs_NpsSurvey_CommentLabel">
-    <value>Beri tahu kami mengapa Anda memberikan penilaian tersebut</value>
+    <value>Mohon beri tahu kami mengapa Anda memberikan penilaian ini</value>
   </data>
   <data name="Dialogs_NpsSurvey_ErrorSubtitle">
     <value>Kami tidak dapat mengirimkan tanggapan Anda. Silakan periksa koneksi Anda dan coba lagi.</value>
@@ -2009,7 +2009,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Gateway telah berpindah</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
-    <value>Anda kini dapat sambungkan ke printer, speaker, dan perangkat lain di jaringan lokal Anda (LAN), dengan melewati terowongan VPN.</value>
+    <value>Anda kini dapat tersambung ke printer, speaker, dan perangkat lainnya pada jaringan lokal (LAN) Anda tanpa melalui terowongan VPN.</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Title">
     <value>Koneksi LAN</value>
@@ -2091,6 +2091,12 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Flyouts_IpAddress_VpnIp">
     <value>IP VPN</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv4</value>
   </data>
   <data name="Flyouts_IpAddress_YourIp">
     <value>IP Anda</value>
@@ -2737,6 +2743,18 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Proton VPN - Survei</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>Untuk menyertakan alamat ini, Anda perlu memberikan izin kepada koneksi IPv6 untuk melewati terowongan VPN.</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>Aktifkan IPv6</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>Tidak sekarang</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>IPv6 dinonaktifkan</value>
+  </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Perbarui sekarang</value>
   </data>
@@ -3050,6 +3068,19 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Terapkan</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>Alamat telah ditambahkan</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>Masukkan alamat IPv4 aatau IPv6 yang valid</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Common_Ipv6WarningButton">
+    <value>Peringatan - pelajari lebih lanjut</value>
+  </data>
   <data name="Settings_Connection">
     <value>Koneksi</value>
   </data>
@@ -3064,6 +3095,10 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Server DNS khusus</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>Tambah server DNS baru</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
     <value>Anda tidak akan dapat menggunakan NetShield pada saat Anda terhubung ke server DNS khusus.</value>
@@ -3081,15 +3116,20 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Server DNS ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
-    <value>Tambahkan alamat IPv4</value>
-    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
+    <value>Masukkan alamat IPv4 atau IPv6 server</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>Dukungan IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>Nonaktifkan lalu lintas IPv6</value>
+    <value>Perlindungan kebocoran IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>Mencegah kebocoran IPv6 dengan memblokir koneksi ke alamat IPv6.</value>
+    <value>Mencegah kebocoran data dengan memblokir lalu lintas IPv6 yang tidak melewati terowongan VPN.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>Memungkinkan lalu lintas IPv6 untuk melewati terowongan VPN. Hal ini akan meningkatkan kompatibilitas antara aplikasi VPN dengan situs web dan layanan IPv6.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>Izinkan sambungan LAN</value>
@@ -3264,9 +3304,6 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Settings_Connection_SplitTunneling">
     <value>Split tunneling</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_Add">
-    <value>Tambah aplikasi</value>
-  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>Berkas aplikasi</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
@@ -3297,8 +3334,8 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Sertakan</value>
     <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>Tambah IP</value>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>Tambah alamat IPv4 atau IPv6 baru</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>Alamat IP yang dipilih ({0})</value>
@@ -3306,9 +3343,6 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
     <value>Hapus IP</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
-    <value>Tambahkan alamat IPv4</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
     <value>Mode pengecualian</value>
@@ -3783,7 +3817,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Jelajahi internet pada kecepatan yang jauh lebih tinggi</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Jelajahi hingga 400% lebih cepat dengan VPN Accelerator</value>
+    <value>Jelajahi internet hingga 400% lebih cepat dengan VPN Accelerator</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>Akses server yang lebih cepat dan lengang</value>

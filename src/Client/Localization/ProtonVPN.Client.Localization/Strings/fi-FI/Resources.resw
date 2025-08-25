@@ -250,10 +250,10 @@
     <value>Asenna</value>
   </data>
   <data name="Common_Actions_MoveDown">
-    <value>Move Down</value>
+    <value>Siirrä alas</value>
   </data>
   <data name="Common_Actions_MoveUp">
-    <value>Move Up</value>
+    <value>Siirrä ylös</value>
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Yhdistä uudelleen</value>
@@ -312,7 +312,7 @@
     <value>Ota VPN:stä kaikki irti päivittämällä sovellus uusimpaan versioon.</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues">
-    <value>You're more likely to have issues on older versions of Proton VPN.</value>
+    <value>Ongelmia esiintyy todennäköisesti useammin vanhemmissa Proton VPN -versioissa.</value>
   </data>
   <data name="Components_Update_UpdateAvailable">
     <value>Päivitys saatavilla</value>
@@ -327,7 +327,7 @@
     <value>Proton VPN ei voinut noutaa todennusvarmennetta verkko-ongelman vuoksi.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>All servers in your selection are unavailable. Please expand your selection or try again later.</value>
+    <value>Kaikki valitsemasi palvelimet eivät ole käytettävissä. Laajenna valintaasi tai yritä uudelleen myöhemmin.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
     <value>Valitsemasi palvelin '{0}' ei ole käytettävissä. Valitse toinen palvelin tai kokeile myöhemmin uudelleen.</value>
@@ -367,7 +367,7 @@
     <value>Näytä korjaukset</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Your device's WireGuard adapter is in use. Disconnect from any other VPN running on your device, then try again.</value>
+    <value>Laitteesi WireGuard-sovitin on käytössä. Katkaise yhteys kaikista muista laitteellasi käynnissä olevista VPN-yhteyksistä ja yritä sitten uudelleen.</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Valittu automaattisesti seuraavista</value>
@@ -527,10 +527,10 @@
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
   <data name="Connections_Profiles_Settings_Description">
-    <value>Profile settings will override your VPN settings when connected.</value>
+    <value>Profiilin asetukset ohittavat VPN-asetuksesi yhdistettynä.</value>
   </data>
   <data name="Connections_Profiles_Settings_Header">
-    <value>Add custom settings</value>
+    <value>Lisää mukautetut asetukset</value>
   </data>
   <data name="Connections_Random">
     <value>Satunnainen</value>
@@ -1714,7 +1714,7 @@
     <comment>The name of ZZ (unknown or not specified) country</comment>
   </data>
   <data name="Dialogs_BaseFilteringEngine_Description">
-    <value>The Base Filtering Engine (BFE) service on your Windows device is disabled. This service needs to be enabled for Proton VPN to work properly.</value>
+    <value>Base Filtering Engine (BFE) -palvelu on poistettu käytöstä Windows-laitteellasi. Tämä palvelu on otettava käyttöön, jotta Proton VPN toimisi oikein.</value>
   </data>
   <data name="Dialogs_BaseFilteringEngine_HowToEnable">
     <value>Miten Base Filtering Engine otetaan käyttöön</value>
@@ -1738,7 +1738,7 @@
     <value>Päivitä tilauksesi palauttaaksesi Plus-palvelimet ja -ominaisuudet käyttöösi.</value>
   </data>
   <data name="Dialogs_DisabledService_Description">
-    <value>Looks like the Proton VPN Service is disabled. You'll need to re-enable the service to connect.</value>
+    <value>Näyttää siltä, että Proton VPN -palvelu on poistettu käytöstä. Palvelu on otettava uudelleen käyttöön yhdistääksesi.</value>
   </data>
   <data name="Dialogs_DisabledService_Title">
     <value>Jatka aktivoimalla Windows-palvelu</value>
@@ -1785,19 +1785,19 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
     <value>Mikä on viive?</value>
   </data>
   <data name="Dialogs_NpsSurvey_CommentLabel">
-    <value>Please let us know why you gave that rating</value>
+    <value>Kerro meille, miksi annoit kyseisen arvion</value>
   </data>
   <data name="Dialogs_NpsSurvey_ErrorSubtitle">
-    <value>We couldn't send your feedback. Please check your connection and try again.</value>
+    <value>Palautteen lähetys ei onnistunut. Tarkista yhteytesi ja yritä uudelleen.</value>
   </data>
   <data name="Dialogs_NpsSurvey_ErrorTitle">
     <value>Jotain meni pieleen</value>
   </data>
   <data name="Dialogs_NpsSurvey_HighRateDescription">
-    <value>10 is very likely</value>
+    <value>10 on hyvin todennäköistä</value>
   </data>
   <data name="Dialogs_NpsSurvey_LowRateDescription">
-    <value>0 is very unlikely</value>
+    <value>0 on hyvin epätodennäköistä</value>
   </data>
   <data name="Dialogs_NpsSurvey_Optional">
     <value>Valinnainen</value>
@@ -1806,13 +1806,13 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
     <value>Jaa anonyymisti</value>
   </data>
   <data name="Dialogs_NpsSurvey_SuccessSubtitle">
-    <value>Your feedback helps us improve Proton VPN.</value>
+    <value>Palautteesi auttaa meitä parantamaan Proton VPN:ää.</value>
   </data>
   <data name="Dialogs_NpsSurvey_SuccessTitle">
     <value>Kiitos palautteestasi</value>
   </data>
   <data name="Dialogs_NpsSurvey_Title">
-    <value>How likely are you to recommend Proton VPN to a friend?</value>
+    <value>Kuinka todennäköisesti suosittelisit Proton VPN:ää ystävällesi?</value>
   </data>
   <data name="Dialogs_NpsSurvey_TryAgain">
     <value>Yritä uudelleen</value>
@@ -1886,7 +1886,7 @@ Korkea viive voi hidastaa yhteyttäsi.</value>
     <value>Mikä on ongelmana?</value>
   </data>
   <data name="Dialogs_ReportIssue_NoLogsWarning">
-    <value>Error logs help us to get to the bottom of your issue. If you don't include them, we may not be able to investigate fully.</value>
+    <value>Virhelokit auttavat meitä selvittämään ongelmasi perusteellisesti. Jos et sisällytä niitä, emme välttämättä pysty tutkimaan asiaa täysin.</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes">
     <value>Pikaratkaisut</value>
@@ -1955,13 +1955,13 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Ehkä myöhemmin</value>
   </data>
   <data name="Dialogs_SystemProxy_Description">
-    <value>It looks like your device is using a proxy server. This may interfere with your VPN protection.</value>
+    <value>Näyttää siltä, että laitteesi käyttää välityspalvelinta. Tämä saattaa häiritä VPN-suojaustasi.</value>
   </data>
   <data name="Dialogs_SystemProxy_Disable">
     <value>Poista välityspalvelin käytöstä</value>
   </data>
   <data name="Dialogs_SystemProxy_Title">
-    <value>Proxy server detected</value>
+    <value>Välityspalvelin havaittu</value>
   </data>
   <data name="Dialogs_Tor_Description">
     <value>Yhdistä Tor-palvelimeen ja käytä piilotettuja palveluita ja onion-sivustoja millä tahansa selaimella.</value>
@@ -2003,10 +2003,10 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Yhteysapua</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
-    <value>This will disconnect you from VPN. Any active internet connections will be temporarily unprotected.</value>
+    <value>Tämä katkaisee yhteyden VPN:stä. Kaikki aktiiviset internetyhteydet ovat väliaikaisesti suojaamattomia.</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
-    <value>This will disconnect you from VPN and temporarily disable kill switch. Any active internet connections will be temporarily unprotected.</value>
+    <value>Tämä katkaisee yhteyden VPN:stä ja poistaa väliaikaisesti tappokytkimen käytöstä. Kaikki aktiiviset internet-yhteydet ovat väliaikaisesti suojaamattomia.</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Title_Install">
     <value>Asennetaanko päivitys?</value>
@@ -2063,7 +2063,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Tervetuloa VPN Plussaan</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description1">
-    <value>Congratulations! You unlocked premium security and performance features on all Proton services.</value>
+    <value>Onnittelut! Avasit kaikkien Proton-palveluiden premium-tason suojaus- ja suorituskykyominaisuudet.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description2">
     <value>Nauti Protonin parhaasta yksityisyydestä.</value>
@@ -2078,40 +2078,40 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Tervetuloa Proton VPN:ään</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>You can now access your organization's dedicated servers from the main sidebar.</value>
+    <value>Voit nyt käyttää organisaatiosi omia palvelimia pääsivupalkista.</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
     <value>Yhdyskäytävät ovet siirtyneet</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
-    <value>You can now connect to printers, speakers, and other devices on your local network (LAN), bypassing the VPN tunnel.</value>
+    <value>Voit nyt yhdistää tulostimiin, kaiuttimiin ja muihin laitteisiin paikallisessa verkossasi (LAN), ohittaen VPN-tunnelin.</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Title">
     <value>LAN-yhteydet</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
-    <value>We refreshed our designs and moved some things around to make the app easier to use.</value>
+    <value>Päivitimme ulkoasua ja siirtelimme joitakin asioita, jotta sovelluksen käyttäminen olisi helpompaa.</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
     <value>Uusi ulkoasu, sama suojaus</value>
   </data>
   <data name="Dialogs_WhatsNew_PortNumber_Description">
-    <value>When port forwarding is enabled, you'll now see your active port number on the home screen.</value>
+    <value>Kun porttiohjaus on käytössä, näet nyt aktiivisen porttinumerosi aloitusnäytöllä.</value>
   </data>
   <data name="Dialogs_WhatsNew_PortNumber_Title">
     <value>Aktiivisen portin numero</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
-    <value>Add advanced profile settings like NetShield and port forwarding, or set up Connect and Go to launch a website of your choice when you connect.</value>
+    <value>Lisää edistyneitä profiiliasetuksia, kuten NetShield ja porttiohjaus, tai määritä Connect and Go käynnistääksesi valitsemasi verkkosivuston, kun yhdistät.</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Title">
     <value>Entistä paremmat profiilit</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Description">
-    <value>It's now even easier to reconnect to your favorite servers. View your most recent connections on the home screen, or pin them for quick access.</value>
+    <value>Suosikkipalvelimiisi uudelleenyhdistäminen on nyt entistäkin helpompaa. Voit nähdä viimeisimmät yhteytesi aloitusnäytössä tai kiinnittää ne pikakäyttöä varten.</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Title">
-    <value>Introducing Recents</value>
+    <value>Esittelyssä Viimeisimmät</value>
   </data>
   <data name="Dialogs_WhatsNew_TakeALook">
     <value>Tutustu</value>
@@ -2120,10 +2120,10 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Mitä uutta</value>
   </data>
   <data name="Dialogs_WhatsNew_TrayApp_Description">
-    <value>You can now connect, disconnect, and change your default connection from the system tray.</value>
+    <value>Voit nyt yhdistää, katkaista ja muuttaa oletusyhteytesi järjestelmäpalkista.</value>
   </data>
   <data name="Dialogs_WhatsNew_TrayApp_Title">
-    <value>New system tray app</value>
+    <value>Uusi järjestelmäpalkkisovellus</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Suljetaanko Proton VPN?</value>
@@ -2135,13 +2135,13 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Suljetaanko Proton VPN</value>
   </data>
   <data name="Flyouts_Country_Description1">
-    <value>Browsing without a VPN leaves you vulnerable to location-based internet restrictions.</value>
+    <value>Selaaminen ilman VPN:ää jättää alttiiksi sijaintiin perustuville internetrajoituksille.</value>
   </data>
   <data name="Flyouts_Country_Description2">
-    <value>Websites can use geoblocks to restrict content to certain locations. Governments can also instruct ISPs (Internet Service Providers) to block certain websites in their country.</value>
+    <value>Verkkosivustot voivat käyttää geolukituksia rajoittaakseen sisältöä tiettyihin sijainteihin. Hallitukset voivat myös ohjeistaa ISPs (Internet-palveluntarjoajia) estämään tiettyjä verkkosivustoja maassaan.</value>
   </data>
   <data name="Flyouts_Country_Description3">
-    <value>A VPN makes it looks like you're browsing from somewhere else, protecting you from surveillance and censorship.</value>
+    <value>VPN saa näyttämään siltä, että selaat verkkoa jostain muualta, suojellen sinua valvonnalta ja sensuurilta.</value>
   </data>
   <data name="Flyouts_Country_Title">
     <value>Maa</value>
@@ -2150,13 +2150,13 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Muuta virtuaalinen sijaintisi yhdistämällä VPN</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Connected">
-    <value>Your VPN IP masks your real IP address. This makes it look like you're browsing from your VPN location, so your online activity can't be linked to your device.</value>
+    <value>VPN:n IP-osoite naamioi todellisen IP-osoitteesi. Tämä saa sen näyttämään siltä, että selaat VPN-sijainnistasi, joten verkkotoimintaasi ei voida yhdistää laitteeseesi.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected1">
-    <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device.</value>
+    <value>Verkkosivustot ja Internet-palveluntarjoajat (ISP) voivat käyttää tätä yksilöllistä koodia yhdistääkseen sijaintisi ja selaushistoriasi laitteeseesi</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected2">
-    <value>A VPN masks your IP address, making it harder for your activity to be traced back to you.</value>
+    <value>VPN peittää IP-osoitteesi, mikä vaikeuttaa toimintasi jäljittämistä sinuun.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
     <value>Mikä on IP-osoite?</value>
@@ -2167,6 +2167,12 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   <data name="Flyouts_IpAddress_VpnIp">
     <value>VPN:n IP</value>
   </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN:n IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN:n IPv6</value>
+  </data>
   <data name="Flyouts_IpAddress_YourIp">
     <value>Oma IP</value>
   </data>
@@ -2174,13 +2180,13 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>IP-osoitteesi on näkyvissä</value>
   </data>
   <data name="Flyouts_Isp_Description1">
-    <value>Your ISP (Internet Service Provider) is the company that connects you to the internet.</value>
+    <value>Internet-palveluntarjoajasi (ISP) on yritys, joka yhdistää sinut internetiin.</value>
   </data>
   <data name="Flyouts_Isp_Description2">
-    <value>They can log your online activity. In some countries, they can sell your data to advertisers. In others, they can be required to hand it over to the government.</value>
+    <value>He voivat pitää lokia toiminnastanne. Joissakin maissa he voivat myydä tietojanne mainostajille. Toisissa heiltä voidaan vaatia niiden luovuttamista hallitukselle.</value>
   </data>
   <data name="Flyouts_Isp_Description3">
-    <value>A VPN hides your IP address, protecting you from ISP interference.</value>
+    <value>VPN piilottaa IP-osoitteesi suojaten sinua Internet-palveluntarjoajan häiriöiltä.</value>
   </data>
   <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
     <value>Mikä on Internet-palveluntarjoaja (ISP)?</value>
@@ -2192,31 +2198,31 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Palveluntarjoajasi näkee, millä verkkosivustoilla vierailet</value>
   </data>
   <data name="Flyouts_KillSwitch_Advanced_Success">
-    <value>Blocks all internet access when you're not connected to Proton VPN</value>
+    <value>Estää kaiken internetyhteyden, kun et ole yhdistettynä Proton VPN:ään</value>
   </data>
   <data name="Flyouts_KillSwitch_Info">
-    <value>Your IP address could be exposed if your VPN connection drops</value>
+    <value>IP-osoitteesi saattaa paljastua, jos VPN-yhteytesi katkeaa.</value>
   </data>
   <data name="Flyouts_KillSwitch_Info_Disconnected">
-    <value>Advanced kill switch disables your internet to protect your IP address while you're not connected to Proton VPN.</value>
+    <value>Edistynyt tappokytkin poistaa internetyhteytesi käytöstä suojatakseen IP-osoitettasi, kun et ole yhdistettynä Proton VPN:ään.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
-    <value>If your VPN connection drops, you'll be disconnected from the internet until VPN is restored</value>
+    <value>Jos VPN-yhteytesi katkeaa, sinut irrotetaan internetistä, kunnes VPN palautetaan.</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Connected">
-    <value>Advanced kill switch applies even if you intentionally disconnect from VPN</value>
+    <value>Edistynyt tappokytkin on käytössä, vaikka katkaisisit tarkoituksellisesti yhteyden VPN-verkosta.</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Disconnected">
-    <value>To get back online, connect to VPN or disable advanced kill switch</value>
+    <value>Päästäksesi takaisin yhdistetyksi, yhdistä VPN:ään tai poista kehittynyt tappokytkin käytöstä.</value>
   </data>
   <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
     <value>Olet suojassa mainoksilta, seurannoilta ja haittaohjelmilta</value>
   </data>
   <data name="Flyouts_NetShield_Info">
-    <value>Protect yourself from ads, trackers, and malware on websites and apps</value>
+    <value>Suojaudu verkkosivustojen ja sovellusten mainoksilta, seurannoilta ja haittaohjelmilta</value>
   </data>
   <data name="Flyouts_NetShield_MalwareOnly_Success">
-    <value>You're protected from malware only</value>
+    <value>Olet suojattu vain haittaohjelmilta.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Description">
     <value>Estä mainoksia, seurantoja ja haittaohjelmia VPN Plussan avulla.</value>
@@ -2228,13 +2234,13 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Aktiivisen portin numero</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Enter the active port number into your BitTorrent app to improve your P2P speeds</value>
+    <value>Syötä aktiivinen porttinumero BitTorrent-sovellukseesi parantaaksesi P2P-nopeuksiasi.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Parantaa P2P-vertaisverkkojen latausnopeuksia</value>
   </data>
   <data name="Flyouts_PortForwarding_Upsell_Description">
-    <value>Supercharge peer-to-peer (P2P) file sharing performance with VPN Plus.</value>
+    <value>Tehosta P2P-tiedostonjaon suorituskykyä VPN Plussan avulla.</value>
   </data>
   <data name="Flyouts_PortForwarding_Upsell_Title">
     <value>Paranna P2P-nopeutta</value>
@@ -2282,20 +2288,20 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>VPN Acceleratorin tehostama</value>
   </data>
   <data name="Flyouts_Speed_Description1">
-    <value>Shows how much data goes through the VPN tunnel in real time.</value>
+    <value>Näyttää kuinka paljon dataa kulkee VPN-tunnelin läpi reaaliaikaisesti.</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>This is based on your device's current activity. In most cases, it doesn't represent the VPN's maximum speed.</value>
+    <value>Tämä perustuu laitteesi tämänhetkiseen toimintaan. Useimmissa tapauksissa se ei edusta VPN:n maksiminopeutta.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>Lataa</value>
     <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
   </data>
   <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
-    <value>VPN speed and traffic explained</value>
+    <value>VPN-nopeuden ja -tietoliikenteen selitys</value>
   </data>
   <data name="Flyouts_Speed_Title">
-    <value>Current traffic</value>
+    <value>Nykyinen tietoliikenne</value>
   </data>
   <data name="Flyouts_Speed_Upload">
     <value>Lähetys</value>
@@ -2314,7 +2320,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Poissuljetut IP-osoitteet ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Info">
-    <value>Allows trusted apps and IP addresses to connect without VPN protection</value>
+    <value>Mahdollistaa luotettujen sovellusten ja IP-osoitteiden yhdistämisen ilman VPN-suojausta</value>
   </data>
   <data name="Flyouts_SplitTunneling_Inverse_Info">
     <value>Only these apps and IP addresses connect through VPN. All other traffic is unprotected.</value>
@@ -2801,7 +2807,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Syötä koodisi</value>
   </data>
   <data name="Main_Loading">
-    <value>Loading, please wait...</value>
+    <value>Ladataan. Odota...</value>
     <comment>Message in the loading screen when starting the app</comment>
   </data>
   <data name="Main_Loading_SigningIn">
@@ -2844,6 +2850,18 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   <data name="NpsSurvey_Title">
     <value>Proton VPN - Kysely</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>To include this address, you need to allow IPv6 connections through the VPN tunnel.</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>Ota IPv6 käyttöön</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>Ei nyt</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>IPv6 on poistettu käytöstä</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Päivitä nyt</value>
@@ -3158,6 +3176,19 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Käytä</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>Address already added</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>Enter a valid IPv4 or IPv6 address</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Common_Ipv6WarningButton">
+    <value>Varoitus - lue lisää</value>
+  </data>
   <data name="Settings_Connection">
     <value>Yhteys</value>
   </data>
@@ -3172,6 +3203,10 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Vaihtoehtoiset DNS-palvelimet</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>Lisää uusi DNS-palvelin</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
     <value>Et voi käyttää NetShieldiä, jos käytät vaihtoehtoista DNS-palvelinta.</value>
@@ -3189,15 +3224,20 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>DNS-palvelimet ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
-    <value>Lisää IPv4-osoite</value>
-    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
+    <value>Syötä palvelimen IPv4- tai IPv6-osoite</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>IPv6-tuki</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>Poista IPv6-tietoliikenne käytöstä</value>
+    <value>IPv6-vuotosuojaus</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>Torjuu IPv6-vuodot estämällä yhteydet IPv6-osoitteisiin.</value>
+    <value>Prevents data leaks by blocking IPv6 traffic that doesn't pass through the VPN tunnel.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>Allows IPv6 traffic to pass through the VPN tunnel. This improves compatibility with IPv6 websites and services.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>Salli LAN-yhteydet</value>
@@ -3341,7 +3381,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Käyttääksesi porttiohjausta, yhdistä P2P-tuelliseen palvelimeen.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_LastChanged">
-    <value>Last changed: {0}</value>
+    <value>Viimeksi muutettu: {0}</value>
     <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
   </data>
   <data name="Settings_Connection_PortForwarding_Loading">
@@ -3371,9 +3411,6 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling">
     <value>Jaettu tunnelointi</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_Add">
-    <value>Lisää sovellus</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>Sovellustiedostot</value>
@@ -3405,8 +3442,8 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Sisällytä</value>
     <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>Lisää IP-osoite</value>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>Lisää uusi IPv4- tai IPv6-osoite</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>Valitut IP-osoitteet ({0})</value>
@@ -3414,9 +3451,6 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
     <value>Poista IP-osoite</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
-    <value>Lisää IPv4-osoite</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
     <value>Poissulje-tila</value>

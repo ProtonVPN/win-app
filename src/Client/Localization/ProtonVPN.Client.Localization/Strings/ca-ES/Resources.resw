@@ -2168,6 +2168,12 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   <data name="Flyouts_IpAddress_VpnIp">
     <value>IP de VPN</value>
   </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv6</value>
+  </data>
   <data name="Flyouts_IpAddress_YourIp">
     <value>La vostra IP</value>
   </data>
@@ -2846,6 +2852,18 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Enquesta de Proton VPN</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>Per incloure aquesta adreça, cal permetre connexions IPv6 a través del túnel VPN.</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>Habiliteu IPv6</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>Ara no</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>IPv6 està desactivat</value>
+  </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Actualitza ara</value>
   </data>
@@ -3159,6 +3177,19 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Aplica</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>Aquesta adreça ja s'havia afegit.</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>Introduïu una adreça IPv4 o IPv6 vàlida</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Common_Ipv6WarningButton">
+    <value>Avís - aneu a saber-ne més</value>
+  </data>
   <data name="Settings_Connection">
     <value>Connexió</value>
   </data>
@@ -3173,6 +3204,10 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Servidors DNS personalitzats</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>Afegiu un nou servidor DNS</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
     <value>No podreu utilitzar NetShield quan estigui connectat amb un servidor DNS personalitzat.</value>
@@ -3190,15 +3225,20 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Servidors DNS ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
-    <value>Afegí adreça IPv4</value>
-    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
+    <value>Introduïu l'adreça IPv4 o IPv6 del servidor</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>Compatible amb IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>Desactiva el trànsit IPv6</value>
+    <value>Protecció contra fuites de IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>Evita filtracions d'IPv6 bloquejant les connexions a adreces IPv6.</value>
+    <value>Evita fuites de dades bloquejant el trànsit IPv6 que no passa pel túnel VPN.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>Permet que el trànsit IPv6 passi a través del túnel VPN. Això millora la compatibilitat amb els llocs web i serveis IPv6.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>Permet connexions LAN</value>
@@ -3373,9 +3413,6 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   <data name="Settings_Connection_SplitTunneling">
     <value>Tunelització dividida</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_Add">
-    <value>Afegeix una aplicació</value>
-  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>Fitxers d'aplicació</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
@@ -3406,8 +3443,8 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Inclou</value>
     <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>Afegeix una IP</value>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>Afegiu una nova adreça IPv4 o IPv6</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>Adreces IP seleccionades ({0})</value>
@@ -3415,9 +3452,6 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
     <value>Esborra la IP</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
-    <value>Afegeix una adreça IPv4</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
     <value>Mode d'exclusió</value>

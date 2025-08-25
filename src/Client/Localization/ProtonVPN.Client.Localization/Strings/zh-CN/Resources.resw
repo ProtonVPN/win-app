@@ -2092,6 +2092,12 @@
   <data name="Flyouts_IpAddress_VpnIp">
     <value>VPN IP</value>
   </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv6</value>
+  </data>
   <data name="Flyouts_IpAddress_YourIp">
     <value>您的 IP</value>
   </data>
@@ -2737,6 +2743,18 @@
     <value>Proton VPN 调查问卷</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>To include this address, you need to allow IPv6 connections through the VPN tunnel.</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>Enable IPv6</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>Not now</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>IPv6 is disabled</value>
+  </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>立即更新</value>
   </data>
@@ -3050,6 +3068,19 @@ VPN 连接</value>
     <value>应用</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>Address already added</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>Enter a valid IPv4 or IPv6 address</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Common_Ipv6WarningButton">
+    <value>Warning - learn more</value>
+  </data>
   <data name="Settings_Connection">
     <value>连接</value>
   </data>
@@ -3064,6 +3095,10 @@ VPN 连接</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>自定义 DNS 服务器</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>Add new DNS server</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
     <value>当连接到自定义 DNS 服务器时，您将无法使用 NetShield。</value>
@@ -3081,15 +3116,20 @@ VPN 连接</value>
     <value>DNS 服务器 ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
-    <value>添加 IPv4 地址</value>
-    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
+    <value>Enter the server's IPv4 or IPv6 address</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>IPv6 support</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>禁用 IPv6 流量</value>
+    <value>IPv6 leak protection</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>通过阻止与 IPv6 地址的连接，防止 IPv6 泄露。</value>
+    <value>Prevents data leaks by blocking IPv6 traffic that doesn't pass through the VPN tunnel.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>Allows IPv6 traffic to pass through the VPN tunnel. This improves compatibility with IPv6 websites and services.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>允许 LAN 连接</value>
@@ -3264,9 +3304,6 @@ VPN 连接</value>
   <data name="Settings_Connection_SplitTunneling">
     <value>线路分离</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_Add">
-    <value>添加应用程序</value>
-  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>应用程序文件</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
@@ -3297,8 +3334,8 @@ VPN 连接</value>
     <value>包含</value>
     <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>添加 IP</value>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>Add new IPv4 or IPv6 address</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>选定的 IP 地址 ({0})</value>
@@ -3306,9 +3343,6 @@ VPN 连接</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
     <value>删除 IP</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
-    <value>添加 IPv4 地址</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
     <value>排除模式</value>

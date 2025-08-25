@@ -2167,6 +2167,12 @@
   <data name="Flyouts_IpAddress_VpnIp">
     <value>VPN IP</value>
   </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv6</value>
+  </data>
   <data name="Flyouts_IpAddress_YourIp">
     <value>Η διεύθυνση IP σας</value>
   </data>
@@ -2845,6 +2851,18 @@
     <value>Proton VPN - Έρευνα</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>Για να χρησιμοποιήσετε αυτήν τη διεύθυνση, πρέπει να επιτρέψετε συνδέσεις IPv6 μέσω της σήραγγας VPN.</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>Ενεργοποίηση IPv6</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>Όχι τώρα</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>Το IPv6 είναι απενεργοποιημένο</value>
+  </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Ενημέρωση Τώρα</value>
   </data>
@@ -3158,6 +3176,19 @@
     <value>Εφαρμογή</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>Η διεύθυνση έχει ήδη προστεθεί</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>Εισαγάγετε μια έγκυρη IPv4 ή IPv6 διεύθυνση</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Common_Ipv6WarningButton">
+    <value>Προειδοποίηση - μάθετε περισσότερα</value>
+  </data>
   <data name="Settings_Connection">
     <value>Σύνδεση</value>
   </data>
@@ -3172,6 +3203,10 @@
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Προσαρμοσμένοι διακομιστές DNS</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>Προσθήκη νέου διακομιστή DNS</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
     <value>Δε θα μπορείτε να χρησιμοποιήσετε το NetShield όταν είστε συνδεδεμένοι με έναν προσαρμοσμένο διακομιστή DNS.</value>
@@ -3189,15 +3224,20 @@
     <value>Διακομιστές DNS ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
-    <value>Προσθήκη διεύθυνσης IPv4</value>
-    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
+    <value>Εισαγάγετε τη διεύθυνση IPv4 ή IPv6 του διακομιστή</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>Υποστήριξη IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>Απενεργοποίηση κυκλοφορίας IPv6</value>
+    <value>Προστασία διαρροής IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>Αποτρέπει τις διαρροές IPv6 αποκλείοντας συνδέσεις σε διευθύνσεις IPv6.</value>
+    <value>Αποτρέπει διαρροές δεδομένων μπλοκάροντας την κίνηση IPv6 που δεν περνάει μέσω της σήραγγας VPN.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>Επιτρέπει την κίνηση IPv6 να διέρχεται μέσω της σήραγγας VPN. Αυτό βελτιώνει τη συμβατότητα με ιστοσελίδες και υπηρεσίες IPv6.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>Επιτρέψτε τις συνδέσεις LAN</value>
@@ -3372,9 +3412,6 @@
   <data name="Settings_Connection_SplitTunneling">
     <value>Διαίρεση σήραγγας</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_Add">
-    <value>Προσθήκη εφαρμογής</value>
-  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>Αρχεία εφαρμογής</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
@@ -3405,8 +3442,8 @@
     <value>Συμπερίληψη</value>
     <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>Προσθήκη IP</value>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>Προσθήκη νέας διεύθυνσης IPv4 ή IPv6</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>Επιλεγμένες διευθύνσεις IP ({0})</value>
@@ -3414,9 +3451,6 @@
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
     <value>Κατάργηση IP</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
-    <value>Προσθήκη διεύθυνσης IPv4</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
     <value>Λειτουργία εξαίρεσης</value>

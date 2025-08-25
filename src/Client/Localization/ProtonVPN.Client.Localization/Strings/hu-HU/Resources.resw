@@ -250,10 +250,10 @@
     <value>Telepítés</value>
   </data>
   <data name="Common_Actions_MoveDown">
-    <value>Move Down</value>
+    <value>Mozgatás le</value>
   </data>
   <data name="Common_Actions_MoveUp">
-    <value>Move Up</value>
+    <value>Mozgatás fel</value>
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Újrakapcsolódás</value>
@@ -2167,6 +2167,12 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   <data name="Flyouts_IpAddress_VpnIp">
     <value>VPN IP</value>
   </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv6</value>
+  </data>
   <data name="Flyouts_IpAddress_YourIp">
     <value>Az ön IP címe</value>
   </data>
@@ -2801,7 +2807,7 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Adja meg a kódot</value>
   </data>
   <data name="Main_Loading">
-    <value>Loading, please wait...</value>
+    <value>Betöltés, kis türelmet...</value>
     <comment>Message in the loading screen when starting the app</comment>
   </data>
   <data name="Main_Loading_SigningIn">
@@ -2809,7 +2815,7 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <comment>Message in the loading screen when signing in</comment>
   </data>
   <data name="Main_Loading_SigningIn_Longer">
-    <value>This is taking longer than usual, but we're working on it.</value>
+    <value>Ez a művelet tovább tart a szokásosnál, de dolgozunk rajta.</value>
     <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
@@ -2844,6 +2850,18 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   <data name="NpsSurvey_Title">
     <value>Proton VPN - felmérés</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>Ennek a címnek a használatához engedélyeznie kell az IPv6-kapcsolatokat a VPN-alagúton keresztül.</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>IPv6 engedélyezése</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>Most nem</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>IPv6 le van tiltva</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Frissítés</value>
@@ -3158,6 +3176,19 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Alkalmaz</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>Cím már hozzá van adva</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>Adjon meg érvényes IPv4 vagy IPv6 címet</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Common_Ipv6WarningButton">
+    <value>Figyelem - további információk</value>
+  </data>
   <data name="Settings_Connection">
     <value>Kapcsolat</value>
   </data>
@@ -3173,6 +3204,10 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Egyéni DNS szerverek</value>
   </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>Új DNS szerver hozzáadása</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
+  </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
     <value>Nem tudja használni a NetShieldet, ha egyéni DNS-kiszolgálóval van összekapcsolva.</value>
   </data>
@@ -3183,21 +3218,26 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Egyéni DNS szerverek használata a Proton VPN-hez való kapcsolódáskor. Csak olyan DNS-kiszolgálókat használjon, amelyekben megbízik.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
-    <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
+    <value>Ezekhez a szerverekhez sorrendben próbálunk csatlakozni. Ha egyik sem működik, az alapértelmezett Proton VPN DNS lesz használva.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS szerverek ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Watermark">
-    <value>IPv4 címek hozzáadása</value>
-    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
+    <value>Adja meg a szerver IPv4 vagy IPv6 címét</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>IPv6 támogatás</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>IPv6-forgalom letiltása</value>
+    <value>IPv6 szivárgás elleni védelem</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>Megakadályozza az IPv6 kiszivárgását az IPv6-címekhez való kapcsolatok blokkolásával.</value>
+    <value>Megakadályozza az adatszivárgást azáltal, hogy blokkolja azt az IPv6-forgalmat, amely nem a VPN-alagúton keresztül halad át.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>Engedélyezi az IPv6 forgalom átengedését a VPN alagúton keresztül. Ez javítja az IPv6 weboldalakkal és szolgáltatásokkal való kompatibilitást.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>LAN kapcsolatok engedélyezése</value>
@@ -3372,9 +3412,6 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   <data name="Settings_Connection_SplitTunneling">
     <value>Osztott alagút</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_Add">
-    <value>Alkalmazás hozzáadása</value>
-  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>Alkalmazás fájlok</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
@@ -3405,8 +3442,8 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Tartalmaz</value>
     <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Add">
-    <value>IP hozzáadása</value>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>Új IPv4 vagy IPv6 cím hozzáadása</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>Kiválasztott IP-címek ({0})</value>
@@ -3414,9 +3451,6 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
     <value>IP eltávolítása</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Watermark">
-    <value>IPv4 címek hozzáadása</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
     <value>Kihagyás mód</value>
