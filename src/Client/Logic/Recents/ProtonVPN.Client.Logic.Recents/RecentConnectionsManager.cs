@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -24,6 +24,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
@@ -117,11 +118,19 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         }
 
         DefaultConnection defaultConnection = _settings.DefaultConnection;
+        IConnectionIntent? mostRecentConnectionIntent = GetMostRecentConnection()?.ConnectionIntent;
+        Gateway? gateway = _serversLoader.GetGateways().FirstOrDefault();
+
+        if ((defaultConnection == DefaultConnection.Fastest || (defaultConnection == DefaultConnection.Last && mostRecentConnectionIntent is null)) &&
+            gateway is not null && !_serversLoader.HasAnyCountries())
+        {
+            return new ConnectionIntent(new GatewayLocationIntent(gateway.Name), new B2BFeatureIntent());
+        }
 
         return defaultConnection.Type switch
         {
             DefaultConnectionType.Recent => GetById(defaultConnection.RecentId)?.ConnectionIntent ?? ConnectionIntent.Default,
-            DefaultConnectionType.Last => GetMostRecentConnection()?.ConnectionIntent ?? ConnectionIntent.Default,
+            DefaultConnectionType.Last => mostRecentConnectionIntent ?? ConnectionIntent.Default,
             DefaultConnectionType.Random => new ConnectionIntent(CountryLocationIntent.Random),
             _ => ConnectionIntent.Default
         };
@@ -362,14 +371,18 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
     private bool TryInvalidateRetiredServers()
     {
         bool hasRecentListBeenModified = false;
+        bool hasGatewaysOnly = _serversLoader.HasAnyGateways() && !_serversLoader.HasAnyCountries();
 
         List<Server> servers = _serversLoader.GetServers().ToList();
         List<IRecentConnection> recentConnections = _recentConnections.ToList();
 
         foreach (IRecentConnection connection in recentConnections)
         {
-            if (connection.ConnectionIntent is not IConnectionProfile profile &&
-                connection.ConnectionIntent.HasNoServers(servers, _settings.DeviceLocation))
+            bool hasNoServers = connection.ConnectionIntent is not IConnectionProfile &&
+                connection.ConnectionIntent.HasNoServers(servers, _settings.DeviceLocation);
+            bool isFastestCountryIntent = connection.ConnectionIntent.Location is CountryLocationIntent cli && cli.IsFastestCountry;
+
+            if (hasNoServers || (hasGatewaysOnly && isFastestCountryIntent))
             {
                 _logger.Info<AppLog>($"Recent connection {connection.ConnectionIntent} has been removed. All servers for this intent have been retired.");
                 _recentConnections.Remove(connection);

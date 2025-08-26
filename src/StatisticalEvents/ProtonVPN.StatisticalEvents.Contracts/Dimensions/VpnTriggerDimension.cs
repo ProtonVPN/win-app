@@ -42,4 +42,5 @@ public enum VpnTriggerDimension
     NewConnection,
     Exit,
     Signout,
+    Undefined,
 }

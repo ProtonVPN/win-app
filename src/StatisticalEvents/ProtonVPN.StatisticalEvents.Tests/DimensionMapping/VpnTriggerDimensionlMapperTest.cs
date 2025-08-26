@@ -27,4 +27,8 @@ namespace ProtonVPN.StatisticalEvents.Tests.DimensionMapping;
 public class VpnTriggerDimensionlMapperTest : DimensionMapperTestBase<VpnTriggerDimension, VpnTriggerDimensionMapper>
 {
     protected override Func<VpnTriggerDimensionMapper, VpnTriggerDimension?, string> MapFunction => (mapper, value) => mapper.Map(value);
+
+    protected override IEnumerable<VpnTriggerDimension> ValuesToIgnore => [
+        VpnTriggerDimension.Undefined,
+    ];
 }

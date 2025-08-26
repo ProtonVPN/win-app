@@ -149,6 +149,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/wrong-country.png" />
     <BitmapImage x:Key="NetShieldIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/netshield.png" />
+    <BitmapImage x:Key="NoVpnConnectionsIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/no-vpn-connections.png" />
 
     <BitmapImage x:Key="WorldwideCoverageUpsellSmallIllustrationSource"
                  DecodePixelHeight="40"

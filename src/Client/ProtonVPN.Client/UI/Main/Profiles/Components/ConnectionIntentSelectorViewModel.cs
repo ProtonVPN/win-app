@@ -85,6 +85,8 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
 
     public SmartObservableCollection<FeatureItem> Features { get; } = [];
 
+    public bool AreOnlyGatewaysAvailable => _serversLoader.HasAnyGateways() && !_serversLoader.HasAnyCountries();
+
     public string FirstLevelHeader => SelectedFeature?.Feature switch
     {
         Feature.B2B => Localizer.Get("Connections_Gateway"),
@@ -115,8 +117,6 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
         _serversLoader = serversLoader;
         _locationItemFactory = locationItemFactory;
         _commonItemFactory = commonItemFactory;
-
-        InvalidateServers();
     }
 
     public IConnectionIntent GetConnectionIntent()
@@ -144,7 +144,11 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
 
     public void Receive(ServerListChangedMessage message)
     {
-        ExecuteOnUIThread(InvalidateServers);
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(AreOnlyGatewaysAvailable));
+            InvalidateServers();
+        });
     }
 
     public bool HasChanged()
@@ -239,6 +243,12 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
 
     private void InvalidateFeatures()
     {
+        if (AreOnlyGatewaysAvailable)
+        {
+            Features.Reset([_commonItemFactory.GetFeature(Feature.B2B)]);
+            return;
+        }
+
         List<Feature> features = [Feature.None];
 
         if (_gateways.Any())
@@ -271,6 +281,7 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
                 B2BFeatureIntent when Features.Any(f => f.Feature == Feature.B2B) => Features.FirstOrDefault(f => f.Feature == Feature.B2B),
                 P2PFeatureIntent when Features.Any(f => f.Feature == Feature.P2P) => Features.FirstOrDefault(f => f.Feature == Feature.P2P),
                 SecureCoreFeatureIntent when Features.Any(f => f.Feature == Feature.SecureCore) => Features.FirstOrDefault(f => f.Feature == Feature.SecureCore),
+                _ when AreOnlyGatewaysAvailable => Features.FirstOrDefault(f => f.Feature == Feature.B2B),
                 _ => Features.FirstOrDefault(f => f.Feature == Feature.None)
             };
         }

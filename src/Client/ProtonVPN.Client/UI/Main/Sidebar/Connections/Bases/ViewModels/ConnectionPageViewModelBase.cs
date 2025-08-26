@@ -111,6 +111,7 @@ public abstract class ConnectionPageViewModelBase : ConnectionListViewModelBase<
     protected virtual void OnServerListChanged()
     {
         FetchItems();
+        OnPropertyChanged(nameof(IsAvailable));
     }
 
     protected override void OnNavigation(NavigationEventArgs e)

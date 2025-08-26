@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -66,6 +66,11 @@ public class ServersLoader : IServersLoader
     public IEnumerable<Country> GetCountriesByFeatures(ServerFeatures serverFeatures)
     {
         return _serversCache.Countries.Where(c => c.Features.IsSupported(serverFeatures));
+    }
+
+    public bool HasAnyCountries()
+    {
+        return _serversCache.Countries.Any();
     }
 
     public IEnumerable<State> GetStates()
@@ -232,13 +237,5 @@ public class ServersLoader : IServersLoader
     public bool HasAnyGateways()
     {
         return _serversCache.Gateways.Any();
-    }
-
-    public string? GetHostCountryCode(string countryCode)
-    {
-        return GetPaidServersByFilter(s => s.ExitCountry == countryCode
-                                    && !string.IsNullOrEmpty(s.HostCountry))
-            .FirstOrDefault()? // WARNING: There can be more than one host country, we are ignoring others
-            .HostCountry;
     }
 }

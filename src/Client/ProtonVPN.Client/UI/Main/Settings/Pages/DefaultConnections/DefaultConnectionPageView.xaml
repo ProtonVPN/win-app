@@ -56,6 +56,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <RadioButton AutomationProperties.AutomationId="FastestDefaultConnectionRadioButton"
                              IsChecked="{x:Bind ViewModel.IsFastestConnection, Mode=TwoWay}"
+                             Visibility="{x:Bind ViewModel.IsFastestAndRandomConnectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                              TabIndex="0"
                              Style="{StaticResource DefaultConnectionRadioButtonStyle}">
                     <custom:BulletHeaderedContentControl Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Fastest_Description')}"
@@ -71,6 +72,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <RadioButton AutomationProperties.AutomationId="RandomDefaultConnectionRadioButton"
                              IsChecked="{x:Bind ViewModel.IsRandomConnection, Mode=TwoWay}"
+                             Visibility="{x:Bind ViewModel.IsFastestAndRandomConnectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                              TabIndex="1"
                              Style="{StaticResource DefaultConnectionRadioButtonStyle}">
                     <custom:BulletHeaderedContentControl Content="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Random_Description')}"

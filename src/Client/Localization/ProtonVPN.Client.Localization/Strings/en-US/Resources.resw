@@ -2220,6 +2220,9 @@
   <data name="Common_Actions_GotIt" xml:space="preserve">
     <value>Got it</value>
   </data>
+  <data name="Common_Actions_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
   <data name="Dialogs_ReportIssue_QuickFixes" xml:space="preserve">
     <value>Quick fixes</value>
   </data>
@@ -3766,6 +3769,9 @@
   <data name="Automation_Properties_Main_Page" xml:space="preserve">
     <value>Main page</value>
   </data>
+  <data name="Automation_Properties_NoServers_Page" xml:space="preserve">
+    <value>No servers page</value>
+  </data>
   <data name="Automation_Properties_Connection_Card_Component" xml:space="preserve">
     <value>Connection card</value>
   </data>
@@ -4103,5 +4109,23 @@
   <data name="NpsSurvey_Title" xml:space="preserve">
     <value>Proton VPN - Survey</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
+  </data>
+  <data name="NoServers_Title" xml:space="preserve">
+    <value>No VPN connections available</value>
+  </data>
+  <data name="NoServers_Tip" xml:space="preserve">
+    <value>Ask your administrator to enable VPN access for your account.</value>
+  </data>
+  <data name="NoServers_FailedToLoad" xml:space="preserve">
+    <value>We couldn't load the server list.</value>
+  </data>
+  <data name="NoServers_SignOut" xml:space="preserve">
+    <value>Sign out</value>
+  </data>
+  <data name="NoServers_ContactUs" xml:space="preserve">
+    <value>Contact us</value>
+  </data>
+  <data name="NoServers_NeedHelp" xml:space="preserve">
+    <value>Need help?</value>
   </data>
 </root>

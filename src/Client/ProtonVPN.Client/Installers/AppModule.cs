@@ -317,7 +317,8 @@ public class AppModule : Module
         RegisterViewModel<ActivePortComponentViewModel>(builder);
         RegisterViewModel<CurrentProfileIconViewModel>(builder);
         RegisterViewModel<MainPageViewModel>(builder);
-        RegisterViewModel<SidebarComponentViewModel>(builder);
+        RegisterViewModel<NoServersPageViewModel>(builder);
+        RegisterViewModel<SidebarComponentViewModel>(builder).AutoActivate();
         RegisterViewModel<ConnectionsPageViewModel>(builder);
         RegisterViewModel<RecentsPageViewModel>(builder);
         RegisterViewModel<ProfilesPageViewModel>(builder);

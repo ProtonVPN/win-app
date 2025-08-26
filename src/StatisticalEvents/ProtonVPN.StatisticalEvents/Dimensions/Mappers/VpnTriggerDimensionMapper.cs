@@ -75,6 +75,7 @@ public class VpnTriggerDimensionMapper : DimensionMapperBase, IVpnTriggerDimensi
             VpnTriggerDimension.NewConnection => NEW_CONNECTION,
             VpnTriggerDimension.Exit => EXIT,
             VpnTriggerDimension.Signout => SIGNOUT,
+            VpnTriggerDimension.Undefined => NOT_AVAILABLE,
             _ => NOT_AVAILABLE
         };
     }

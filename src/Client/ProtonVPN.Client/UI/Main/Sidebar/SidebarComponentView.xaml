@@ -45,6 +45,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <!--  Search icon  -->
                 <Border Padding="10,12,10,10"
                         Background="{ThemeResource InteractionDefaultColorBrush}"
+                        Visibility="{x:Bind ViewModel.IsSearchVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                         CornerRadius="4">
                     <pathicons:Magnifier HorizontalAlignment="Center"
                                          VerticalAlignment="Center"
@@ -89,6 +90,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                       BackCommand="{x:Bind ViewModel.LeaveSearchModeCommand, Mode=OneTime}"
                                       PlaceholderText="{x:Bind ViewModel.Localizer.Get('Search_InputBox_Placeholder')}"
                                       Style="{StaticResource SearchTextBoxStyle}"
+                                      Visibility="{x:Bind ViewModel.IsSearchVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                                       Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <Frame x:Name="SidebarNavigationFrame"

@@ -67,7 +67,7 @@ public class ConnectionsViewNavigator : ViewNavigatorBase, IConnectionsViewNavig
 
     public bool CanNavigateToCountriesView()
     {
-        return true;
+        return _serversLoader.HasAnyCountries();
     }
 
     public async Task<bool> NavigateToCountriesViewAsync()

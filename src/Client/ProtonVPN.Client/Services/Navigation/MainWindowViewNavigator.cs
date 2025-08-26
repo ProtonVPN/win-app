@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,37 +17,35 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Core.Messages;
-using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Core.Services.Navigation.Bases;
-using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Servers.Cache;
 using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Main;
-using ProtonVPN.Client.Common.Dispatching;
-using Microsoft.UI.Xaml.Navigation;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Services.Navigation;
 
 public class MainWindowViewNavigator : ViewNavigatorBase, IMainWindowViewNavigator,
     IEventMessageReceiver<AuthenticationStatusChanged>
 {
-    private readonly IEventMessageSender _eventMessageSender;
+    private readonly IServersCache _serversCache;
     private readonly IUserAuthenticator _userAuthenticator;
 
     public MainWindowViewNavigator(
         ILogger logger,
-        IEventMessageSender eventMessageSender,
         IPageViewMapper pageViewMapper,
         IUIThreadDispatcher uiThreadDispatcher,
+        IServersCache serversCache,
         IUserAuthenticator userAuthenticator)
         : base(logger, pageViewMapper, uiThreadDispatcher)
     {
-        _eventMessageSender = eventMessageSender;
+        _serversCache = serversCache;
         _userAuthenticator = userAuthenticator;
     }
 
@@ -61,10 +59,17 @@ public class MainWindowViewNavigator : ViewNavigatorBase, IMainWindowViewNavigat
         return NavigateToAsync<MainPageViewModel>();
     }
 
+    public Task<bool> NavigateToNoServersViewAsync()
+    {
+        return NavigateToAsync<NoServersPageViewModel>();
+    }
+
     public override Task<bool> NavigateToDefaultAsync()
     {
         return _userAuthenticator.IsLoggedIn
-            ? NavigateToMainViewAsync()
+            ? _serversCache.IsEmpty()
+                ? NavigateToNoServersViewAsync()
+                : NavigateToMainViewAsync()
             : NavigateToLoginViewAsync();
     }
 

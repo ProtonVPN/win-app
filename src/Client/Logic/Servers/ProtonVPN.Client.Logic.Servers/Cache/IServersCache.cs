@@ -35,6 +35,7 @@ public interface IServersCache
     bool IsStale();
     bool IsOutdated();
     bool IsLoadOutdated();
+    bool HasServersRequestFailed();
 
     void Clear();
     void LoadFromFileIfEmpty();

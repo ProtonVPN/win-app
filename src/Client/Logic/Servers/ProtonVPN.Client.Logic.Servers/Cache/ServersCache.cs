@@ -52,8 +52,10 @@ public class ServersCache : IServersCache,
 
     private string? _deviceCountryLocation;
 
-    private sbyte? _userMaxTier; 
-    
+    private sbyte? _userMaxTier;
+
+    private bool _hasServersRequestFailed;
+
     private DateTime _lastFullUpdateUtc = DateTime.MinValue;
     private DateTime _lastLoadsUpdateUtc = DateTime.MinValue;
 
@@ -118,6 +120,16 @@ public class ServersCache : IServersCache,
         return DateTime.UtcNow - _lastLoadsUpdateUtc >= _config.MinimumServerLoadUpdateInterval;
     }
 
+    public bool HasServersRequestFailed()
+    {
+        return _hasServersRequestFailed;
+    }
+
+    public bool HasGatewaysAndNoCountries()
+    {
+        return Gateways.Any() && !Countries.Any();
+    }
+
     private T GetWithReadLock<T>(Func<T> func)
     {
         _lock.EnterReadLock();
@@ -180,6 +192,7 @@ public class ServersCache : IServersCache,
             {
                 _lastFullUpdateUtc = utcNow;
                 _lastLoadsUpdateUtc = utcNow;
+                _hasServersRequestFailed = false;
 
                 if (response.LastModified.HasValue)
                 {
@@ -203,10 +216,16 @@ public class ServersCache : IServersCache,
                     ProcessServers(deviceCountryLocation, userMaxTier, servers);
                 }
             }
+            else
+            {
+                _hasServersRequestFailed = true;
+            }
         }
         catch (Exception e)
         {
             _logger.Error<ApiErrorLog>("API: Get servers failed", e);
+
+            _hasServersRequestFailed = true;
 
             if (cancellationToken.IsCancellationRequested)
             {

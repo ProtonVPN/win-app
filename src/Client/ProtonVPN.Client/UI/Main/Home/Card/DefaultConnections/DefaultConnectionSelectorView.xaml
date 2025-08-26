@@ -42,6 +42,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.SwitchToFastestDefaultConnectionCommand, Mode=OneTime}"
                                                   IsActive="{x:Bind ViewModel.IsFastestDefaultConnection}"
                                                   Style="{StaticResource DefaultConnectionMenuFlyoutItemStyle}"
+                                                  Visibility="{x:Bind ViewModel.IsFastestAndRandomConnectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                   Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Fastest')}">
                     <custom:ActivatableMenuFlyoutItem.Icon>
                         <ImageIcon Source="{ThemeResource FastestCountryFlagSource}" />
@@ -51,6 +52,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <custom:ActivatableMenuFlyoutItem Command="{x:Bind ViewModel.SwitchToRandomDefaultConnectionCommand, Mode=OneTime}"
                                                   IsActive="{x:Bind ViewModel.IsRandomDefaultConnection}"
                                                   Style="{StaticResource DefaultConnectionMenuFlyoutItemStyle}"
+                                                  Visibility="{x:Bind ViewModel.IsFastestAndRandomConnectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                   Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default_Random')}">
                     <custom:ActivatableMenuFlyoutItem.Icon>
                         <ImageIcon Source="{ThemeResource RandomCountryFlagSource}" />

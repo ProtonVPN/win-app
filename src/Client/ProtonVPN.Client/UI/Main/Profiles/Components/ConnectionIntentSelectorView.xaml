@@ -71,7 +71,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                  ItemTemplate="{StaticResource FeatureItemTemplate}"
                  ItemsSource="{x:Bind ViewModel.Features}"
                  SelectedItem="{x:Bind ViewModel.SelectedFeature, Mode=TwoWay}"
-                 Style="{StaticResource SelectorBarListBoxStyle}" 
+                 Style="{StaticResource SelectorBarListBoxStyle}"
+                 Visibility="{x:Bind ViewModel.AreOnlyGatewaysAvailable, Converter={StaticResource NotBooleanToVisibilityConverter}}"
                  x:Name="FeatureListBox">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>

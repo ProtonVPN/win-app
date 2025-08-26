@@ -56,6 +56,7 @@ public class PageViewMapper : ViewMapperBase<PageViewModelBase, Page>, IPageView
         ConfigureMapping<LoadingPageViewModel, LoadingPageView>();
 
         ConfigureMapping<MainPageViewModel, MainPageView>();
+        ConfigureMapping<NoServersPageViewModel, NoServersPageView>();
         ConfigureMapping<SettingsPageViewModel, SettingsPageView>();
         ConfigureMapping<CommonSettingsPageViewModel, CommonSettingsPageView>();
         ConfigureMapping<AdvancedSettingsPageViewModel, AdvancedSettingsPageView>();

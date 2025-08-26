@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,7 +18,6 @@
  */
 
 using System.Threading.Tasks;
-using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Navigation.Bases;
 
 namespace ProtonVPN.Client.Core.Services.Navigation;

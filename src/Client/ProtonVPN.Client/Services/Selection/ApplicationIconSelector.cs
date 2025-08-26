@@ -28,6 +28,8 @@ using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Logic.Servers.Cache;
+using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Extensions;
 using ProtonVPN.Client.Settings.Contracts.Messages;
@@ -39,7 +41,8 @@ namespace ProtonVPN.Client.Services.Selection;
 public class ApplicationIconSelector : IApplicationIconSelector,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<AuthenticationStatusChanged>,
-    IEventMessageReceiver<SettingChangedMessage>
+    IEventMessageReceiver<SettingChangedMessage>,
+    IEventMessageReceiver<ServerListChangedMessage>
 {
     public const string PROTON_VPN_ICON_PATH = "Assets/ProtonVPN.ico";
 
@@ -55,6 +58,7 @@ public class ApplicationIconSelector : IApplicationIconSelector,
     public readonly Icon WarningBadgeIcon;
 
     private readonly IConfiguration _configuration;
+    private readonly IServersCache _serversCache;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IConnectionManager _connectionManager;
     private readonly ISettings _settings;
@@ -67,12 +71,14 @@ public class ApplicationIconSelector : IApplicationIconSelector,
 
     public ApplicationIconSelector(
         IConfiguration configuration,
+        IServersCache serversCache,
         IUserAuthenticator userAuthenticator,
         IConnectionManager connectionManager,
         ISettings settings,
         IEventMessageSender eventMessageSender)
     {
         _configuration = configuration;
+        _serversCache = serversCache;
         _userAuthenticator = userAuthenticator;
         _connectionManager = connectionManager;
         _settings = settings;
@@ -165,6 +171,11 @@ public class ApplicationIconSelector : IApplicationIconSelector,
         }
     }
 
+    public void Receive(ServerListChangedMessage message)
+    {
+        InvalidateAppIconStatus();
+    }
+
     private void InvalidateAppIconStatus()
     {
         bool isAdvancedKillSwitchActive = _connectionManager.IsDisconnected && _settings.IsAdvancedKillSwitchActive();
@@ -174,7 +185,7 @@ public class ApplicationIconSelector : IApplicationIconSelector,
                 ? AppIconStatus.Connected
                 : _hasConnectionError
                     ? AppIconStatus.Error
-                    : isAdvancedKillSwitchActive
+                    : isAdvancedKillSwitchActive || _serversCache.IsEmpty()
                         ? AppIconStatus.Warning
                         : AppIconStatus.Disconnected
             : _hasAuthenticationError

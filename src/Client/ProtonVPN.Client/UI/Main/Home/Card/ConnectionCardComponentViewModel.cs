@@ -52,7 +52,8 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
     IEventMessageReceiver<VpnPlanChangedMessage>,
     IEventMessageReceiver<RecentConnectionsChangedMessage>,
     IEventMessageReceiver<ProfilesChangedMessage>,
-    IEventMessageReceiver<SettingChangedMessage>
+    IEventMessageReceiver<SettingChangedMessage>,
+    IEventMessageReceiver<ServerListChangedMessage>
 {
     private const int FREE_COUNTRIES_DISPLAYED_AS_FLAGS = 3;
 
@@ -229,7 +230,11 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
     {
         if (IsActive)
         {
-            ExecuteOnUIThread(InvalidateFreeCountriesCount);
+            ExecuteOnUIThread(() =>
+            {
+                InvalidateFreeCountriesCount();
+                InvalidateConnectionIntent();
+            });
         }
     }
 

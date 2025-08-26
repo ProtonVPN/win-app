@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -32,6 +32,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Recents.Contracts;
+using ProtonVPN.Client.Logic.Servers.Cache;
 using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
@@ -44,6 +45,7 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
     IEventMessageReceiver<AppIconStatusChangedMessage>
 {
     private readonly IAppExitInvoker _appExitInvoker;
+    private readonly IServersCache _serversCache;
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly ITrayAppWindowActivator _trayAppWindowActivator;
     private readonly IRecentConnectionsManager _recentConnectionsManager;
@@ -62,6 +64,7 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
 
     public TrayIconComponentViewModel(
         IAppExitInvoker appExitInvoker,
+        IServersCache serversCache,
         IMainWindowActivator mainWindowActivator,
         ITrayAppWindowActivator trayAppWindowActivator,
         IRecentConnectionsManager recentConnectionsManager,
@@ -72,6 +75,7 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
         : base(viewModelHelper)
     {
         _appExitInvoker = appExitInvoker;
+        _serversCache = serversCache;
         _mainWindowActivator = mainWindowActivator;
         _trayAppWindowActivator = trayAppWindowActivator;
         _recentConnectionsManager = recentConnectionsManager;
@@ -90,7 +94,7 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
     public void ShowTrayApplication()
     {
         // When not logged in, skip the tray app and open the application instead
-        if (!_userAuthenticator.IsLoggedIn)
+        if (!_userAuthenticator.IsLoggedIn || _serversCache.IsEmpty())
         {
             ShowApplication();
             return;
@@ -149,7 +153,8 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
     private bool CanConnect()
     {
         return _userAuthenticator.IsLoggedIn
-            && _connectionManager.IsDisconnected;
+            && _connectionManager.IsDisconnected
+            && !_serversCache.IsEmpty();
     }
 
     private bool CanDisconnect()

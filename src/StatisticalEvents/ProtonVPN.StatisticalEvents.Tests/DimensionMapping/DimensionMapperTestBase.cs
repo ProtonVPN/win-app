@@ -29,6 +29,8 @@ public abstract class DimensionMapperTestBase<TEnum, TMapper>
 {
     private TMapper? _mapper;
 
+    protected virtual IEnumerable<TEnum> ValuesToIgnore => [];
+
     protected abstract Func<TMapper, TEnum?, string> MapFunction { get; }
 
     [TestInitialize]
@@ -48,6 +50,11 @@ public abstract class DimensionMapperTestBase<TEnum, TMapper>
     {
         foreach (TEnum value in Enum.GetValues(typeof(TEnum)).Cast<TEnum>())
         {
+            if (ValuesToIgnore.Contains(value))
+            {
+                continue;
+            }
+
             string result = MapFunction(_mapper!, value);
 
             Assert.IsFalse(string.IsNullOrWhiteSpace(result), $"Mapping for {value} returned an empty string.");

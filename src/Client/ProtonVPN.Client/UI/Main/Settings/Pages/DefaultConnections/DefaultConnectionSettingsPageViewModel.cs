@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -33,13 +33,17 @@ using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
+using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections;
 
 public partial class DefaultConnectionSettingsPageViewModel : SettingsPageViewModelBase,
     IEventMessageReceiver<RecentConnectionsChangedMessage>,
-    IEventMessageReceiver<LoggedInMessage>
+    IEventMessageReceiver<LoggedInMessage>,
+    IEventMessageReceiver<ServerListChangedMessage>
 {
+    private readonly IServersLoader _serversLoader;
     private readonly IRecentConnectionsManager _recentConnectionsManager;
 
     [ObservableProperty]
@@ -68,11 +72,14 @@ public partial class DefaultConnectionSettingsPageViewModel : SettingsPageViewMo
         set => SetDefaultConnectionType(value, DefaultConnectionType.Last);
     }
 
+    public bool IsFastestAndRandomConnectionVisible => _serversLoader.HasAnyCountries();
+
     public SmartObservableCollection<RecentDefaultConnectionObservable> Recents { get; } = [];
 
     public bool HasRecents => Recents.Any();
 
     public DefaultConnectionSettingsPageViewModel(
+        IServersLoader serversLoader,
         IRecentConnectionsManager recentConnectionsManager,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
@@ -91,6 +98,7 @@ public partial class DefaultConnectionSettingsPageViewModel : SettingsPageViewMo
                connectionManager,
                viewModelHelper)
     {
+        _serversLoader = serversLoader;
         _recentConnectionsManager = recentConnectionsManager;
         InvalidateRecents();
 
@@ -128,6 +136,14 @@ public partial class DefaultConnectionSettingsPageViewModel : SettingsPageViewMo
     public void Receive(RecentConnectionsChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateRecents);
+    }
+
+    public void Receive(ServerListChangedMessage message)
+    {
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(IsFastestAndRandomConnectionVisible));
+        });
     }
 
     private void InvalidateRecents()

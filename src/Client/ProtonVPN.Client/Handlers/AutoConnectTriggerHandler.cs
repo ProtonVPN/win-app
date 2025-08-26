@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -27,7 +27,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
-using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Cache;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
@@ -46,7 +46,7 @@ public class AutoConnectTriggerHandler : IHandler,
     private readonly IConnectionManager _connectionManager;
     private readonly IRecentConnectionsManager _recentConnectionsManager;
     private readonly ISettings _settings;
-    private readonly IServersLoader _serversLoader;
+    private readonly IServersCache _serversCache;
     private readonly IUserAuthenticator _userAuthenticator;
 
     private bool _isHandled;
@@ -60,13 +60,13 @@ public class AutoConnectTriggerHandler : IHandler,
         IConnectionManager connectionManager,
         IRecentConnectionsManager recentConnectionsManager,
         ISettings settings,
-        IServersLoader serversLoader,
+        IServersCache serversCache,
         IUserAuthenticator userAuthenticator)
     {
         _connectionManager = connectionManager;
         _recentConnectionsManager = recentConnectionsManager;
         _settings = settings;
-        _serversLoader = serversLoader;
+        _serversCache = serversCache;
         _userAuthenticator = userAuthenticator;
     }
 
@@ -84,7 +84,7 @@ public class AutoConnectTriggerHandler : IHandler,
 
     public void Receive(ServerListChangedMessage message)
     {
-        _isServersListReady = _serversLoader.GetServers().Any();
+        _isServersListReady = !_serversCache.IsEmpty();
         _isDeviceLocationChanged = false;
 
         TryAutoConnectAsync();

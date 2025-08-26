@@ -27,4 +27,6 @@ public interface IMainWindowViewNavigator : IViewNavigator
     Task<bool> NavigateToLoginViewAsync();
 
     Task<bool> NavigateToMainViewAsync();
+
+    Task<bool> NavigateToNoServersViewAsync();
 }

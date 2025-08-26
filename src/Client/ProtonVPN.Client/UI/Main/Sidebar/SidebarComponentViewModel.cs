@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,41 +23,45 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
-using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Servers.Cache;
+using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
 using ProtonVPN.Client.UI.Main.Sidebar.Search.Contracts;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar;
 
 public partial class SidebarComponentViewModel : HostViewModelBase<ISidebarViewNavigator>,
-    IEventMessageReceiver<LoggedInMessage>
+    IEventMessageReceiver<LoggedInMessage>,
+    IEventMessageReceiver<ServerListChangedMessage>
 {
+    private readonly IServersCache _serversCache;
+    private readonly ISearchInputReceiver _searchInputReceiver;
+
     [ObservableProperty]
     private string _searchText = string.Empty;
 
-    private readonly ISearchInputReceiver _searchInputReceiver;
+    [ObservableProperty]
+    private bool _isSearchVisible = true;
 
     public ObservableCollection<IConnectionPage> ConnectionPages { get; }
 
     public SidebarComponentViewModel(
+        IServersCache serversCache,
         ISidebarViewNavigator childViewNavigator,
         ILocalizationProvider localizer,
-        ILogger logger,
-        IIssueReporter issueReporter,
         ISearchInputReceiver searchInputReceiver,
         IEnumerable<IConnectionPage> connectionPages,
         IViewModelHelper viewModelHelper)
         : base(childViewNavigator, viewModelHelper)
     {
+        _serversCache = serversCache;
         _searchInputReceiver = searchInputReceiver;
 
         ConnectionPages = new(connectionPages.OrderBy(p => p.SortIndex));
@@ -101,7 +105,27 @@ public partial class SidebarComponentViewModel : HostViewModelBase<ISidebarViewN
 
     public void Receive(LoggedInMessage message)
     {
-        ExecuteOnUIThread(ClearSearch);
+        ExecuteOnUIThread(() =>
+        {
+            ClearSearch();
+            InvalidateSearchVisibility();
+        });
+    }
+
+    public void Receive(ServerListChangedMessage message)
+    {
+        ExecuteOnUIThread(InvalidateSearchVisibility);
+    }
+
+    private void InvalidateSearchVisibility()
+    {
+        bool hasAnyCountries = _serversCache.Countries.Any();
+        IsSearchVisible = hasAnyCountries;
+
+        if (!hasAnyCountries)
+        {
+            ChildViewNavigator.NavigateToConnectionsViewAsync();
+        }
     }
 
     [RelayCommand]

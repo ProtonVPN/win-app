@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Commands;
 using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Contracts.Services.Activation;
@@ -34,7 +35,6 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Mappers;
-using ProtonVPN.Client.Services.Bootstrapping;
 using ProtonVPN.Client.Services.SignoutHandling;
 using ProtonVPN.Client.Settings.Contracts;
 
@@ -51,6 +51,7 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
     private readonly ISignOutHandler _signoutHandler;
     private readonly IWebAuthenticator _webAuthenticator;
     private readonly IMainViewNavigator _mainViewNavigator;
+    private readonly IMainWindowViewNavigator _mainWindowViewNavigator;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IReportIssueWindowActivator _reportIssueWindowActivator;
     private readonly IReportIssueViewNavigator _reportIssueViewNavigator;
@@ -62,7 +63,7 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
 
     public bool IsUpdateAvailable => _updatesManager.IsUpdateAvailable;
 
-    public bool IsVisible => _userAuthenticator.IsLoggedIn;
+    public bool IsVisible => _userAuthenticator.IsLoggedIn && _mainWindowViewNavigator.GetCurrentPageContext() is MainPageViewModel;
 
     public bool IsDebugModeEnabled => _settings.IsDebugModeEnabled;
 
@@ -76,6 +77,7 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
         ISignOutHandler signoutHandler,
         IWebAuthenticator webAuthenticator,
         IMainViewNavigator mainViewNavigator,
+        IMainWindowViewNavigator mainWindowViewNavigator,
         IUserAuthenticator userAuthenticator,
         IReportIssueWindowActivator reportIssueWindowActivator,
         IReportIssueViewNavigator reportIssueViewNavigator,
@@ -93,6 +95,7 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
         _signoutHandler = signoutHandler;
         _webAuthenticator = webAuthenticator;
         _mainViewNavigator = mainViewNavigator;
+        _mainWindowViewNavigator = mainWindowViewNavigator;
         _userAuthenticator = userAuthenticator;
         _reportIssueWindowActivator = reportIssueWindowActivator;
         _reportIssueViewNavigator = reportIssueViewNavigator;
@@ -103,6 +106,13 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
         _debugToolsWindowActivator = debugToolsWindowActivator;
 
         UpdateCommand = updateClientCommand.Command;
+
+        _mainWindowViewNavigator.Navigated += OnMainWindowNavigated;
+    }
+
+    private void OnMainWindowNavigated(object sender, NavigationEventArgs e)
+    {
+        ExecuteOnUIThread(() => OnPropertyChanged(nameof(IsVisible)));
     }
 
     public void Receive(AuthenticationStatusChanged message)

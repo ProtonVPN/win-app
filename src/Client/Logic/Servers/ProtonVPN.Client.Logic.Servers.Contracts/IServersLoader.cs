@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -33,6 +33,7 @@ public interface IServersLoader
 
     IEnumerable<Country> GetCountries();
     IEnumerable<Country> GetCountriesByFeatures(ServerFeatures serverFeatures);
+    bool HasAnyCountries();
 
     IEnumerable<State> GetStates();
     IEnumerable<State> GetStatesByCountryCode(string countryCode);
@@ -63,6 +64,4 @@ public interface IServersLoader
     IEnumerable<Gateway> GetGateways();
     IEnumerable<Server> GetServersByGatewayName(string gatewayName);
     bool HasAnyGateways();
-
-    string? GetHostCountryCode(string countryCode);
 }

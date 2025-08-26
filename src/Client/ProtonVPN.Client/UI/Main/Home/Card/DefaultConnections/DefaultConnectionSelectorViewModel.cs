@@ -23,6 +23,8 @@ using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Messages;
@@ -31,18 +33,22 @@ using ProtonVPN.Client.Settings.Contracts.Models;
 namespace ProtonVPN.Client.UI.Main.Home.Card.DefaultConnections;
 
 public partial class DefaultConnectionSelectorViewModel : ActivatableViewModelBase,
-    IEventMessageReceiver<SettingChangedMessage>
+    IEventMessageReceiver<SettingChangedMessage>,
+    IEventMessageReceiver<ServerListChangedMessage>
 {
     private readonly ISettings _settings;
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IMainViewNavigator _mainViewNavigator;
     private readonly ISettingsViewNavigator _settingsViewNavigator;
+    private readonly IServersLoader _serversLoader;
 
     public DefaultConnection DefaultConnection => _settings.DefaultConnection;
 
     public bool IsFastestDefaultConnection => DefaultConnection.Type == DefaultConnectionType.Fastest;
 
     public bool IsRandomDefaultConnection => DefaultConnection.Type == DefaultConnectionType.Random;
+
+    public bool IsFastestAndRandomConnectionVisible => _serversLoader.HasAnyCountries();
 
     public bool IsLastDefaultConnection => DefaultConnection.Type == DefaultConnectionType.Last;
 
@@ -51,13 +57,15 @@ public partial class DefaultConnectionSelectorViewModel : ActivatableViewModelBa
         ISettings settings,
         IMainWindowActivator mainWindowActivator,
         IMainViewNavigator mainViewNavigator,
-        ISettingsViewNavigator settingsViewNavigator)
+        ISettingsViewNavigator settingsViewNavigator,
+        IServersLoader serversLoader)
         : base(viewModelHelper)
     {
         _settings = settings;
         _mainWindowActivator = mainWindowActivator;
         _mainViewNavigator = mainViewNavigator;
         _settingsViewNavigator = settingsViewNavigator;
+        _serversLoader = serversLoader;
     }
 
     public void Receive(SettingChangedMessage message)
@@ -66,6 +74,14 @@ public partial class DefaultConnectionSelectorViewModel : ActivatableViewModelBa
         {
             ExecuteOnUIThread(InvalidateDefaultConnection);
         }
+    }
+
+    public void Receive(ServerListChangedMessage message)
+    {
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(IsFastestAndRandomConnectionVisible));
+        });
     }
 
     protected override void OnActivated()
