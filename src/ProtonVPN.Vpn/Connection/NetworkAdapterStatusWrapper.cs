@@ -45,7 +45,6 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
     private VpnEndpoint _endpoint;
     private VpnCredentials _credentials;
     private VpnConfig _config;
-    private bool _hasSentTunFallbackEventToSentry;
 
     public NetworkAdapterStatusWrapper(
         ILogger logger,
@@ -169,18 +168,9 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
     private void FallbackToTapAndConnect()
     {
         _logger.Info<NetworkLog>("OpenVPN TAP network adapter found. Connecting using TAP instead of TUN.");
-        SendTunFallbackEvent();
+        _issueReporter.CaptureMessage("TUN adapter not found. Adapter changed to TAP.");
         _config.OpenVpnAdapter = OpenVpnAdapter.Tap;
         Connect();
-    }
-
-    private void SendTunFallbackEvent()
-    {
-        if (!_hasSentTunFallbackEventToSentry)
-        {
-            _issueReporter.CaptureMessage("TUN adapter not found. Adapter changed to TAP.");
-            _hasSentTunFallbackEventToSentry = true;
-        }
     }
 
     private void HandleNoTapError()

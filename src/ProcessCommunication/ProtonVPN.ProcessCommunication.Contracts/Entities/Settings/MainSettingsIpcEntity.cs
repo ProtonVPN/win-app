@@ -44,7 +44,7 @@ public class MainSettingsIpcEntity
     public bool Ipv6LeakProtection { get; set; }
 
     [DataMember(Order = 7)]
-    public bool IsIpv6FeatureFlagEnabled { get; set; }
+    public bool IsIpv6Enabled { get; set; }
 
     [DataMember(Order = 8)]
     public List<string> Ipv6Fragments { get; set; }

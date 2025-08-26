@@ -41,7 +41,6 @@ internal class Firewall : IFirewall, IStartable
     private readonly IpLayer _ipLayer;
     private readonly IpFilter _ipFilter;
     private FirewallParams _lastParams = FirewallParams.Empty;
-    private bool _dnsCalloutFiltersAdded;
 
     private readonly List<ServerAddressFilterCollection> _serverAddressFilterCollection = new();
     private readonly List<FirewallItem> _firewallItems = new();
@@ -113,7 +112,6 @@ internal class Firewall : IFirewall, IStartable
             _serverAddressFilterCollection.Clear();
             _firewallItems.Clear();
             LeakProtectionEnabled = false;
-            _dnsCalloutFiltersAdded = false;
             _calloutDriver.Stop();
             _lastParams = FirewallParams.Empty;
 
@@ -175,8 +173,6 @@ internal class Firewall : IFirewall, IStartable
             RemoveItems(previousGuids, _lastParams.SessionType);
 
             previousGuids = GetFirewallGuidsByTypes(FirewallItemType.DnsCalloutFilter);
-            _dnsCalloutFiltersAdded = false;
-            CreateDnsCalloutFilter(4, firewallParams);
             RemoveItems(previousGuids, _lastParams.SessionType);
         }
 
@@ -229,7 +225,6 @@ internal class Firewall : IFirewall, IStartable
     private void HandlePermanentStateAfterReboot(FirewallParams firewallParams)
     {
         _calloutDriver.Start();
-        CreateDnsCalloutFilter(4, firewallParams);
         PermitFromNetworkInterface(4, firewallParams);
         PermitServerAddress(firewallParams);
     }
@@ -256,7 +251,6 @@ internal class Firewall : IFirewall, IStartable
     private void EnableDnsLeakProtection(FirewallParams firewallParams)
     {
         BlockDns(3, firewallParams);
-        CreateDnsCalloutFilter(4, firewallParams);
     }
 
     private void EnableBaseLeakProtection(FirewallParams firewallParams)
@@ -351,35 +345,6 @@ internal class Firewall : IFirewall, IStartable
                 firewallParams.Persistent);
             _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
         });
-    }
-
-    private void CreateDnsCalloutFilter(uint weight, FirewallParams firewallParams)
-    {
-        if (_dnsCalloutFiltersAdded || !firewallParams.AddInterfaceFilters)
-        {
-            return;
-        }
-
-        Guid guid = _ipFilter.DynamicSublayer.BlockOutsideDns(
-            new DisplayData("ProtonVPN block DNS", "Block outside dns"),
-            Layer.OutboundIPPacketV4,
-            weight,
-            IpFilter.DnsCalloutGuid,
-            firewallParams.InterfaceIndex);
-        _firewallItems.Add(new FirewallItem(FirewallItemType.DnsCalloutFilter, guid));
-
-        _ipLayer.ApplyToIpv4(layer =>
-        {
-            guid = _ipFilter.DynamicSublayer.CreateRemoteUdpPortFilter(
-                new DisplayData("ProtonVPN DNS filter", "Permit UDP 53 port so we can block it at network layer"),
-                Action.HardPermit,
-                layer,
-                weight,
-                DNS_UDP_PORT);
-            _firewallItems.Add(new FirewallItem(FirewallItemType.DnsFilter, guid));
-        });
-
-        _dnsCalloutFiltersAdded = true;
     }
 
     private void PermitDhcp(uint weight, FirewallParams firewallParams)

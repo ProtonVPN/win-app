@@ -23,10 +23,12 @@ using ProtonVPN.Common.Legacy.OS.Services;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Configurations.Contracts.Entities;
+using ProtonVPN.Configurations.Contracts.WireGuard;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.OperatingSystems.Network.Contracts;
+using ProtonVPN.OperatingSystems.NRPT.Contracts;
 using ProtonVPN.OperatingSystems.Processes.Contracts;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Connection;
@@ -37,14 +39,15 @@ using ProtonVPN.Vpn.Management;
 using ProtonVPN.Vpn.NetShield;
 using ProtonVPN.Vpn.NetworkAdapters;
 using ProtonVPN.Vpn.OpenVpn;
+using ProtonVPN.Vpn.OpenVpn.DnsServers;
 using ProtonVPN.Vpn.PortMapping;
 using ProtonVPN.Vpn.PortMapping.Serializers.Common;
 using ProtonVPN.Vpn.PortMapping.UdpClients;
 using ProtonVPN.Vpn.PortScanning;
 using ProtonVPN.Vpn.ServerValidation;
-using ProtonVPN.Vpn.SplitTunnel;
 using ProtonVPN.Vpn.SynchronizationEvent;
 using ProtonVPN.Vpn.WireGuard;
+using ProtonVPN.Vpn.WireGuard.SplitTunnel;
 
 namespace ProtonVPN.Vpn.Config;
 
@@ -53,11 +56,13 @@ public class Module
     public void Load(ContainerBuilder builder)
     {
         builder.RegisterType<ConnectionCertificateCache>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ServerValidator>().As<IServerValidator>().SingleInstance();
-        builder.RegisterType<GatewayCache>().As<IGatewayCache>().SingleInstance();
+        builder.RegisterType<ServerValidator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<GatewayCache>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<DnsServerCache>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<OpenVpnDnsServersCreator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<VpnEndpointScanner>().SingleInstance();
         builder.RegisterType<TcpPortScanner>().SingleInstance();
-        builder.RegisterType<SplitTunnelRouting>().SingleInstance();
+        builder.RegisterType<WireGuardSplitTunnelRouting>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<UdpPingClient>().SingleInstance();
         builder.RegisterType<WintunAdapter>().SingleInstance();
         builder.RegisterType<TapAdapter>().SingleInstance();
@@ -145,15 +150,19 @@ public class Module
         INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
         IX25519KeyGenerator x25519KeyGenerator = c.Resolve<IX25519KeyGenerator>();
         IConnectionCertificateCache connectionCertificateCache = c.Resolve<IConnectionCertificateCache>();
+        INrptInvoker nrptInvoker = c.Resolve<INrptInvoker>();
+        IWireGuardDnsServersCreator wireGuardDnsServersCreator = c.Resolve<IWireGuardDnsServersCreator>();
 
-        return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<SplitTunnelRouting>(),
+        return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<IWireGuardSplitTunnelRouting>(),
             gatewayCache,
             connectionCertificateCache,
+            nrptInvoker,
+            wireGuardDnsServersCreator,
             new WireGuardConnection(logger, config, gatewayCache,
                 new WireGuardService(logger, staticConfig, new SafeService(
                     new LoggingService(logger,
                         new SystemService(staticConfig.WireGuard.ServiceName, c.Resolve<IOsProcesses>())))),
-                new WireGuardConfigGenerator(config, x25519KeyGenerator),
+                new WireGuardConfigGenerator(config, x25519KeyGenerator, wireGuardDnsServersCreator),
                 new NtTrafficManager(staticConfig.WireGuard.ConfigFileName, logger),
                 new WintunTrafficManager(staticConfig.WireGuard.PipeName),
                 new StatusManager(logger, staticConfig.WireGuard.LogFilePath)));
@@ -164,12 +173,17 @@ public class Module
         ILogger logger = c.Resolve<ILogger>();
         IOpenVpnConfigurations openVpnConfig = c.Resolve<IStaticConfiguration>().OpenVpn;
         IGatewayCache gatewayCache = c.Resolve<IGatewayCache>();
+        IDnsServerCache dnsServerCache = c.Resolve<IDnsServerCache>();
         INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
         IConnectionCertificateCache connectionCertificateCache = c.Resolve<IConnectionCertificateCache>();
+        INrptInvoker nrptInvoker = c.Resolve<INrptInvoker>();
+        IOpenVpnDnsServersCreator openVpnDnsServersCreator = c.Resolve<IOpenVpnDnsServersCreator>();
 
-        return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<SplitTunnelRouting>(),
+        return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<IWireGuardSplitTunnelRouting>(),
             gatewayCache,
             connectionCertificateCache,
+            nrptInvoker,
+            openVpnDnsServersCreator,
             new OpenVpnConnection(
                 logger,
                 c.Resolve<IStaticConfiguration>(),
@@ -180,6 +194,7 @@ public class Module
                 new ManagementClient(
                     logger,
                     gatewayCache,
+                    dnsServerCache,
                     new ConcurrentManagementChannel(
                         new TcpManagementChannel(
                             logger,

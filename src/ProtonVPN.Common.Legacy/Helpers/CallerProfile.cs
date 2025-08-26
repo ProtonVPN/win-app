@@ -49,4 +49,30 @@ public class CallerProfile
 
         return sourceClass;
     }
+
+    public static bool operator ==(CallerProfile left, CallerProfile right)
+    {
+        if (ReferenceEquals(left, right))
+        {
+            return true;
+        }
+
+        if (left is null || right is null)
+        {
+            return false;
+        }
+
+        return left.SourceClassName == right.SourceClassName
+            && left.SourceMemberName == right.SourceMemberName
+            && left.SourceLineNumber == right.SourceLineNumber;
+    }
+
+    public static bool operator !=(CallerProfile left, CallerProfile right) => !(left == right);
+
+    public override bool Equals(object? obj)
+    {
+        return obj is CallerProfile other && this == other;
+    }
+
+    public override int GetHashCode() => System.HashCode.Combine(SourceClassName, SourceMemberName, SourceLineNumber);
 }

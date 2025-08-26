@@ -67,7 +67,7 @@ public static class DefaultSettings
     public static List<SplitTunnelingIpAddress> SplitTunnelingIpAddressesList = [];
     public static List<string> Ipv6Fragments = [];
     public static bool IsIpv6LeakProtectionEnabled = true;
-    public static bool IsIpv6Enabled = true;
+    public static bool IsIpv6Enabled = false;
     public static OpenVpnAdapter OpenVpnAdapter = OpenVpnAdapter.Tun;
     public static VpnPlan VpnPlan = VpnPlan.Default;
     public static int MaxDevicesAllowed = 0;

@@ -2,7 +2,7 @@
     <PropertyGroup>
         <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
         <PreserveCompilationContext>true</PreserveCompilationContext>
-        <OutputType>WinExe</OutputType>
+        <OutputType>Exe</OutputType>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <OutputPath>..\src\bin\</OutputPath>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -31,5 +31,8 @@
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Properties\" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\OperatingSystems\NameResolutionPolicyTable\ProtonVPN.OperatingSystems.NRPT\ProtonVPN.OperatingSystems.NRPT.csproj" />
     </ItemGroup>
 </Project>

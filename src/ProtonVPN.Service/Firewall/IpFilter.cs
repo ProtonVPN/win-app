@@ -27,7 +27,6 @@ namespace ProtonVPN.Service.Firewall
 {
     public class IpFilter : IStartable
     {
-        public static Guid DnsCalloutGuid = Guid.Parse("{10636af3-50d6-4f53-acb7-d5af33217fcb}");
         private readonly Guid _providerGuid = Guid.Parse("{20865f68-0b04-44da-bb83-2238622540fa}");
         private readonly Guid _sublayerGuid = Guid.Parse("{aa867e71-5765-4be3-9399-581585c226ce}");
 
@@ -106,16 +105,6 @@ namespace ProtonVPN.Service.Firewall
                         PermanentSublayerWeight,
                         true,
                         _sublayerGuid);
-
-                    instance.CreateCallout(
-                        new DisplayData
-                        {
-                            Name = "ProtonVPN block dns callout",
-                            Description = "Sends server failure packet response for non TAP/TUN DNS queries.",
-                        },
-                        DnsCalloutGuid,
-                        Layer.OutboundIPPacketV4,
-                        true);
                 });
             }
             catch (NetworkFilterException e)

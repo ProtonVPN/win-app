@@ -117,7 +117,7 @@ internal class Ipv6HandlingWrapper : IVpnConnection
 
         InvokeConnecting();
 
-        if (_serviceSettings.IsIpv6FeatureFlagEnabled)
+        if (_serviceSettings.IsIpv6Enabled)
         {
             await ConnectWithChaosAlgorithmAsync();
         }
@@ -249,7 +249,7 @@ internal class Ipv6HandlingWrapper : IVpnConnection
             await DisconnectedAsync();
         }
 
-        if (_serviceSettings.IsIpv6FeatureFlagEnabled)
+        if (_serviceSettings.IsIpv6Enabled)
         {
             switch (state.Status)
             {
@@ -271,7 +271,7 @@ internal class Ipv6HandlingWrapper : IVpnConnection
             return;
         }
 
-        if ((!_firewall.LeakProtectionEnabled || _serviceSettings.IsIpv6FeatureFlagEnabled) && !_ipv6.IsEnabled)
+        if ((!_firewall.LeakProtectionEnabled || _serviceSettings.IsIpv6Enabled) && !_ipv6.IsEnabled)
         {
             _networkChanged = false;
             await RunIpv6ActionAsync(_ipv6.EnableAsync);

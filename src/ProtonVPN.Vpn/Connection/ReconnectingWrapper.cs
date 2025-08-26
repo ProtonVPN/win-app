@@ -53,7 +53,6 @@ namespace ProtonVPN.Vpn.Connection
         private bool _isToConnect;
         private bool _isToReconnect;
         private bool _isToDiscardProtocol;
-        private bool _isToSendDiscardedProtocolEvent = true;
 
         public ReconnectingWrapper(
             ILogger logger,
@@ -229,12 +228,7 @@ namespace ProtonVPN.Vpn.Connection
             if (wireGuardProtocols.Count > 0)
             {
                 wireGuardProtocols.ForEach(DiscardProtocol);
-
-                if (_isToSendDiscardedProtocolEvent)
-                {
-                    _isToSendDiscardedProtocolEvent = false;
-                    _issueReporter.CaptureMessage("WireGuard protocols discarded due to interface Forwarding being enabled.");
-                }
+                _issueReporter.CaptureMessage("WireGuard protocols discarded due to interface Forwarding being enabled.");
             }
             else
             {

@@ -39,7 +39,6 @@ public class ResponseHandler : DelegatingHandler
 
     private readonly bool _isToHandle;
     private bool _isAppRestartInvoked;
-    private bool _is401UnauthorizedWithoutBeingBelowServiceVersionHandled;
 
     public ResponseHandler(ILogger logger, IIssueReporter issueReporter, ISettings settings, EventHandler invokingClientRestart, HttpMessageHandler innerHandler)
         : base(innerHandler)
@@ -119,12 +118,7 @@ public class ResponseHandler : DelegatingHandler
             const string logExplanation = "Received 401 Unauthorized from gRPC server but " +
                 "the client process version is not below the service process version.";
             _logger.Warn<ProcessCommunicationErrorLog>($"{logExplanation} {versions}");
-
-            if (!_is401UnauthorizedWithoutBeingBelowServiceVersionHandled)
-            {
-                _issueReporter.CaptureMessage(logExplanation, logMessageDetails);
-                _is401UnauthorizedWithoutBeingBelowServiceVersionHandled = true;
-            }
+            _issueReporter.CaptureMessage(logExplanation, logMessageDetails);
         }
     }
 

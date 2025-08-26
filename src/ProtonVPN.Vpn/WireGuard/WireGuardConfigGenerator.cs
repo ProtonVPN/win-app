@@ -22,6 +22,7 @@ using System.Text;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.Configurations.Contracts.WireGuard;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.Vpn.Common;
 
@@ -34,11 +35,15 @@ public class WireGuardConfigGenerator : IWireGuardConfigGenerator
 
     private readonly IConfiguration _config;
     private readonly IX25519KeyGenerator _x25519KeyGenerator;
+    private readonly IWireGuardDnsServersCreator _wireGuardDnsServersCreator;
 
-    public WireGuardConfigGenerator(IConfiguration config, IX25519KeyGenerator x25519KeyGenerator)
+    public WireGuardConfigGenerator(IConfiguration config,
+        IX25519KeyGenerator x25519KeyGenerator,
+        IWireGuardDnsServersCreator wireGuardDnsServersCreator)
     {
         _config = config;
         _x25519KeyGenerator = x25519KeyGenerator;
+        _wireGuardDnsServersCreator = wireGuardDnsServersCreator;
     }
 
     public string GenerateConfig(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig vpnConfig)
@@ -47,7 +52,7 @@ public class WireGuardConfigGenerator : IWireGuardConfigGenerator
         string address = GetClientAddress(isIpv6Supported);
         string allowedIps = GetAllowedIpAddresses(isIpv6Supported);
         string privateKey = GetX25519SecretKey(credentials.ClientKeyPair.SecretKey).Base64;
-        string dns = GetDnsServers(vpnConfig.CustomDns, isIpv6Supported);
+        string dns = _wireGuardDnsServersCreator.GetDnsServers(vpnConfig.CustomDns, isIpv6Supported);
 
         StringBuilder sb = new StringBuilder()
             .AppendLine("[Interface]")
@@ -65,33 +70,6 @@ public class WireGuardConfigGenerator : IWireGuardConfigGenerator
     private SecretKey GetX25519SecretKey(SecretKey secretKey)
     {
         return _x25519KeyGenerator.FromEd25519SecretKey(secretKey);
-    }
-
-    private string GetDnsServers(IReadOnlyCollection<string> customDns, bool isIpv6Supported)
-    {
-        List<string> dnsAddresses = [];
-
-        if (customDns.Count > 0)
-        {
-            foreach (string dns in customDns)
-            {
-                if (NetworkAddress.TryParse(dns, out NetworkAddress networkAddress) &&
-                    networkAddress.IsIpV4 || (networkAddress.IsIpV6 && isIpv6Supported))
-                {
-                    dnsAddresses.Add(dns);
-                }
-            }
-        }
-
-        //Always add the default DNS in case the ones provided by the user doesn't work
-        dnsAddresses.Add(_config.WireGuard.DefaultServerGatewayIpv4Address);
-
-        if (isIpv6Supported)
-        {
-            dnsAddresses.Add(_config.WireGuard.DefaultServerGatewayIpv6Address);
-        }
-
-        return string.Join(",", dnsAddresses);
     }
 
     private string GetClientAddress(bool isIpv6Supported)

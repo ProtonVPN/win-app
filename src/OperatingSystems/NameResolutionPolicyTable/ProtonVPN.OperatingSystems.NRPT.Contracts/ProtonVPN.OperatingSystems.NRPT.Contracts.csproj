@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <OutputPath>..\..\..\bin</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <OutputType>Library</OutputType>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="..\..\..\GlobalAssemblyInfo.cs">
+            <Link>Properties\GlobalAssemblyInfo.cs</Link>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="System.Formats.Asn1" />
+        <PackageReference Include="System.Text.Json" />
+    </ItemGroup>
+</Project>

@@ -22,6 +22,7 @@ using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Configurations.Files;
 using ProtonVPN.Configurations.Json;
 using ProtonVPN.Configurations.Repositories;
+using ProtonVPN.Configurations.WireGuard;
 using ProtonVPN.Serialization.Contracts.Json;
 
 namespace ProtonVPN.Configurations.Installers;
@@ -30,6 +31,8 @@ public class ConfigurationsModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
+        builder.RegisterType<WireGuardDnsServersCreator>().AsImplementedInterfaces().SingleInstance();
+
         builder.RegisterType<JsonContractDeserializer>().As<IJsonContractDeserializer>().SingleInstance();
         
         builder.RegisterType<Configuration>().As<IConfiguration>().SingleInstance();

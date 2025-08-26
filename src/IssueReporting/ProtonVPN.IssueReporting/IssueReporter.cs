@@ -31,6 +31,9 @@ namespace ProtonVPN.IssueReporting;
 
 public class IssueReporter : IIssueReporter
 {
+    private readonly HashSet<Tuple<CallerProfile, string>> _exceptionsSent = [];
+    private readonly HashSet<Tuple<SentryLevel, string, string>> _messagesSent = [];
+
     public IssueReporter(ILogger logger)
     {
         SentryInitializer.SetLogger(logger);
@@ -43,17 +46,22 @@ public class IssueReporter : IIssueReporter
         [CallerLineNumber] int sourceLineNumber = 0)
     {
         CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
-        IEnumerable<string> fingerprint = GenerateExceptionFingerprint(e);
 
-        SentrySdk.ConfigureScope(scope =>
+        Tuple<CallerProfile, string> tuple = Tuple.Create(callerProfile, e.GetType()?.FullName);
+        if (!_exceptionsSent.Contains(tuple))
         {
-            scope.Level = SentryLevel.Error;
-            scope.SetTag("captured_in",
-                $"{callerProfile.SourceClassName}.{callerProfile.SourceMemberName}:{callerProfile.SourceLineNumber}");
+            IEnumerable<string> fingerprint = GenerateExceptionFingerprint(e);
+            SentrySdk.ConfigureScope(scope =>
+            {
+                scope.Level = SentryLevel.Error;
+                scope.SetTag("captured_in",
+                    $"{callerProfile.SourceClassName}.{callerProfile.SourceMemberName}:{callerProfile.SourceLineNumber}");
 
-            scope.SetFingerprint(fingerprint);
-            SentrySdk.CaptureException(e);
-        });
+                scope.SetFingerprint(fingerprint);
+                SentrySdk.CaptureException(e);
+            });
+            _exceptionsSent.Add(tuple);
+        }
     }
 
     private IEnumerable<string> GenerateExceptionFingerprint(Exception e)
@@ -100,18 +108,23 @@ public class IssueReporter : IIssueReporter
 
     private void CaptureMessage(SentryLevel level, string message, string description)
     {
-        SentrySdk.ConfigureScope(scope =>
+        Tuple<SentryLevel, string, string> tuple = Tuple.Create(level, message, description);
+        if (!_messagesSent.Contains(tuple))
         {
-            scope.Level = level;
-            if (!string.IsNullOrWhiteSpace(description))
+            SentrySdk.ConfigureScope(scope =>
             {
-                scope.TransactionName = description;
-                scope.SetExtra("description", description);
-            }
+                scope.Level = level;
+                if (!string.IsNullOrWhiteSpace(description))
+                {
+                    scope.TransactionName = description;
+                    scope.SetExtra("description", description);
+                }
 
-            scope.SetFingerprint([message]);
-            SentrySdk.CaptureMessage(message);
-        });
+                scope.SetFingerprint([message]);
+                SentrySdk.CaptureMessage(message);
+            });
+            _messagesSent.Add(tuple);
+        }
     }
 
     public void CaptureMessage(string message, string description = null)

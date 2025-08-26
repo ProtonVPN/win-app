@@ -30,7 +30,7 @@ public interface IServiceSettings
     KillSwitchMode KillSwitchMode { get; }
     SplitTunnelSettingsIpcEntity SplitTunnelSettings { get; }
     bool Ipv6LeakProtection { get; }
-    bool IsIpv6FeatureFlagEnabled { get; }
+    bool IsIpv6Enabled { get; }
     List<string> Ipv6Fragments { get; }
     bool IsShareCrashReportsEnabled { get; }
     bool IsLocalAreaNetworkAccessEnabled { get; }

@@ -19,17 +19,16 @@
 
 using System.Net;
 
-namespace ProtonVPN.Vpn.Gateways
+namespace ProtonVPN.Vpn.Gateways;
+
+public class GatewayCache : IGatewayCache
 {
-    public class GatewayCache : IGatewayCache
+    private IPAddress _defaultGateway;
+
+    public IPAddress Get() => _defaultGateway;
+
+    public void Save(IPAddress defaultGateway)
     {
-        private IPAddress _defaultGateway;
-
-        public IPAddress Get() => _defaultGateway;
-
-        public void Save(IPAddress defaultGateway)
-        {
-            _defaultGateway = defaultGateway;
-        }
+        _defaultGateway = defaultGateway;
     }
 }

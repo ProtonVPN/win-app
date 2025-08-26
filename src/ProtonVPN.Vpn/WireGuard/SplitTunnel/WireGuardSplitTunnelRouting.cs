@@ -32,9 +32,9 @@ using Vanara.PInvoke;
 using static Vanara.PInvoke.IpHlpApi;
 using static Vanara.PInvoke.Ws2_32;
 
-namespace ProtonVPN.Vpn.SplitTunnel;
+namespace ProtonVPN.Vpn.WireGuard.SplitTunnel;
 
-internal class SplitTunnelRouting
+public class WireGuardSplitTunnelRouting : IWireGuardSplitTunnelRouting
 {
     private const int PERMIT_ROUTE_METRIC = 32000;
 
@@ -43,7 +43,7 @@ internal class SplitTunnelRouting
     private readonly ISystemNetworkInterfaces _networkInterfaces;
     private readonly INetworkInterfaceLoader _networkInterfaceLoader;
 
-    public SplitTunnelRouting(
+    public WireGuardSplitTunnelRouting(
         ILogger logger,
         IStaticConfiguration config,
         ISystemNetworkInterfaces networkInterfaces,
@@ -60,8 +60,7 @@ internal class SplitTunnelRouting
         switch (vpnConfig.SplitTunnelMode)
         {
             case SplitTunnelMode.Permit:
-                INetworkInterface tunnelInterface = _networkInterfaceLoader.GetByVpnProtocol(vpnConfig.VpnProtocol, vpnConfig.OpenVpnAdapter);
-                SetUpPermitModeRoutes(vpnConfig.SplitTunnelIPs, tunnelInterface, localIp);
+                SetUpPermitModeRoutes(vpnConfig, localIp);
                 break;
             case SplitTunnelMode.Block:
                 SetUpBlockModeRoutes(vpnConfig);
@@ -69,8 +68,10 @@ internal class SplitTunnelRouting
         }
     }
 
-    private void SetUpPermitModeRoutes(IReadOnlyCollection<string> splitTunnelIps, INetworkInterface tunnelInterface, string localIpv4Address)
+    private void SetUpPermitModeRoutes(VpnConfig vpnConfig, string localIpv4Address)
     {
+        INetworkInterface tunnelInterface = _networkInterfaceLoader.GetByVpnProtocol(vpnConfig.VpnProtocol, vpnConfig.OpenVpnAdapter);
+
         NetworkAddress.TryParse("0.0.0.0/0", out NetworkAddress defaultIpv4NetworkAddress);
         NetworkAddress.TryParse("::/0", out NetworkAddress defaultIpv6NetworkAddress);
         NetworkAddress.TryParse(localIpv4Address, out NetworkAddress localNetworkIpv4Address);
@@ -113,7 +114,7 @@ internal class SplitTunnelRouting
             IsIpv6 = false,
         });
 
-        foreach (string ip in splitTunnelIps)
+        foreach (string ip in vpnConfig.SplitTunnelIPs)
         {
             if (NetworkAddress.TryParse(ip, out NetworkAddress address))
             {

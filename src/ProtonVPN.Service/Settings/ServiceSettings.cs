@@ -70,12 +70,12 @@ public class ServiceSettings : IServiceSettings
         }
     }
 
-    public bool IsIpv6FeatureFlagEnabled
+    public bool IsIpv6Enabled
     {
         get
         {
             Load();
-            return _settings.IsIpv6FeatureFlagEnabled;
+            return _settings.IsIpv6Enabled;
         }
     }
 

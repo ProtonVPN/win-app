@@ -53,6 +53,7 @@
         <ProjectReference Include="..\IPv6\ProtonVPN.IPv6.Installers\ProtonVPN.IPv6.Installers.csproj" />
         <ProjectReference Include="..\IssueReporting\ProtonVPN.IssueReporting.Installers\ProtonVPN.IssueReporting.Installers.csproj" />
         <ProjectReference Include="..\Logging\ProtonVPN.Logging.Installers\ProtonVPN.Logging.Installers.csproj" />
+        <ProjectReference Include="..\OperatingSystems\NameResolutionPolicyTable\ProtonVPN.OperatingSystems.NRPT.Installers\ProtonVPN.OperatingSystems.NRPT.Installers.csproj" />
         <ProjectReference Include="..\OperatingSystems\Network\ProtonVPN.OperatingSystems.Network.Installers\ProtonVPN.OperatingSystems.Network.Installers.csproj" />
         <ProjectReference Include="..\OperatingSystems\PowerEvents\ProtonVPN.OperatingSystems.PowerEvents.Contracts\ProtonVPN.OperatingSystems.PowerEvents.Contracts.csproj" />
         <ProjectReference Include="..\OperatingSystems\PowerEvents\ProtonVPN.OperatingSystems.PowerEvents.Installers\ProtonVPN.OperatingSystems.PowerEvents.Installers.csproj" />

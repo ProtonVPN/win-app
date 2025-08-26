@@ -81,7 +81,7 @@ public class MainSettingsRequestCreator : IMainSettingsRequestCreator
             ModerateNat = _settings.NatType == NatType.Moderate,
             NetShieldMode = _settings.IsNetShieldEnabled ? (int)_settings.NetShieldMode : 0,
             Ipv6LeakProtection = _settings.IsIpv6LeakProtectionEnabled,
-            IsIpv6FeatureFlagEnabled = _featureFlagsObserver.IsIpv6SupportEnabled,
+            IsIpv6Enabled = _featureFlagsObserver.IsIpv6SupportEnabled && _settings.IsIpv6Enabled,
             Ipv6Fragments = _settings.Ipv6Fragments,
             IsShareCrashReportsEnabled = _settings.IsShareCrashReportsEnabled,
             IsLocalAreaNetworkAccessEnabled = !_featureFlagsObserver.IsLocalAreaNetworkAllowedForPaidUsersOnly || _settings.IsLocalAreaNetworkAccessEnabled,

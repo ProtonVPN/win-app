@@ -29,17 +29,19 @@ using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Go;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Common.Legacy.Vpn;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.LocalAgentLogs;
+using ProtonVPN.OperatingSystems.NRPT.Contracts;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Config;
 using ProtonVPN.Vpn.ConnectionCertificates;
 using ProtonVPN.Vpn.Gateways;
 using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.LocalAgent.Contracts;
-using ProtonVPN.Vpn.SplitTunnel;
+using ProtonVPN.Vpn.WireGuard.SplitTunnel;
 using PInvoke = ProtonVPN.Vpn.LocalAgent.PInvoke;
 
 namespace ProtonVPN.Vpn.Connection;
@@ -52,9 +54,11 @@ internal class LocalAgentWrapper : ISingleVpnConnection
 
     private readonly ILogger _logger;
     private readonly EventReceiver _eventReceiver;
-    private readonly SplitTunnelRouting _splitTunnelRouting;
+    private readonly IWireGuardSplitTunnelRouting _wireGuardSplitTunnelRouting;
     private readonly IGatewayCache _gatewayCache;
     private readonly IConnectionCertificateCache _connectionCertificateCache;
+    private readonly INrptInvoker _nrptInvoker;
+    private readonly IDnsServersCreator _dnsServersCreator;
     private readonly IAdapterSingleVpnConnection _origin;
     private readonly ISingleAction _timeoutAction;
 
@@ -92,16 +96,20 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     public LocalAgentWrapper(
         ILogger logger,
         EventReceiver eventReceiver,
-        SplitTunnelRouting splitTunnelRouting,
+        IWireGuardSplitTunnelRouting wireGuardSplitTunnelRouting,
         IGatewayCache gatewayCache,
         IConnectionCertificateCache connectionCertificateCache,
+        INrptInvoker nrptInvoker,
+        IDnsServersCreator dnsServersCreator,
         IAdapterSingleVpnConnection origin)
     {
         _logger = logger;
         _eventReceiver = eventReceiver;
-        _splitTunnelRouting = splitTunnelRouting;
+        _wireGuardSplitTunnelRouting = wireGuardSplitTunnelRouting;
         _gatewayCache = gatewayCache;
         _connectionCertificateCache = connectionCertificateCache;
+        _nrptInvoker = nrptInvoker;
+        _dnsServersCreator = dnsServersCreator;
         _origin = origin;
 
         origin.StateChanged += OnVpnStateChanged;
@@ -268,14 +276,27 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         else
         {
             _tlsConnected = true;
+
             if (_vpnConfig.VpnProtocol.IsWireGuard())
             {
-                _splitTunnelRouting.SetUpRoutingTable(_vpnConfig, _vpnState.Data.LocalIp);
+                _wireGuardSplitTunnelRouting.SetUpRoutingTable(_vpnConfig, _vpnState.Data.LocalIp);
             }
 
+            CreateNrptRule();
             StopTimeoutAction();
             _logger.Info<ConnectConnectedLog>("Connected state triggered by Local Agent.");
             InvokeStateChange(VpnStatus.Connected);
+        }
+    }
+
+    private void CreateNrptRule()
+    {
+        bool isIpv6Supported = _vpnConfig.IsIpv6Enabled && _endpoint.Server.IsIpv6Supported;
+        string nameServers = _dnsServersCreator.GetDnsServers(_vpnConfig.CustomDns, isIpv6Supported);
+
+        if (!string.IsNullOrWhiteSpace(nameServers))
+        {
+            _nrptInvoker.CreateRule(nameServers);
         }
     }
 
@@ -405,8 +426,9 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         _eventReceiver.Stop();
         if (_vpnConfig.VpnProtocol.IsWireGuard())
         {
-            _splitTunnelRouting.DeleteRoutes(_vpnConfig);
+            _wireGuardSplitTunnelRouting.DeleteRoutes(_vpnConfig);
         }
+        _nrptInvoker.DeleteRule();
     }
 
     private void CloseTlsChannel()

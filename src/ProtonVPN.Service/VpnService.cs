@@ -30,6 +30,7 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
 using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
+using ProtonVPN.OperatingSystems.NRPT.Contracts;
 using ProtonVPN.OperatingSystems.PowerEvents.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.Service.Firewall;
@@ -47,8 +48,9 @@ internal partial class VpnService : ServiceBase
     private readonly IStaticConfiguration _staticConfig;
     private readonly IOsProcesses _osProcesses;
     private readonly IVpnConnection _vpnConnection;
-    private readonly IGrpcServer _grpcServer;
     private readonly IIpv6 _ipv6;
+    private readonly IGrpcServer _grpcServer;
+    private readonly INrptInvoker _nrptInvoker;
     private bool _isConnected;
 
     public VpnService(
@@ -59,7 +61,8 @@ internal partial class VpnService : ServiceBase
         IVpnConnection vpnConnection,
         IIpv6 ipv6,
         IGrpcServer grpcServer,
-        IPowerEventNotifier powerEventNotifier)
+        IPowerEventNotifier powerEventNotifier,
+        INrptInvoker nrptInvoker)
     {
         _logger = logger;
         _issueReporter = issueReporter;
@@ -68,6 +71,7 @@ internal partial class VpnService : ServiceBase
         _vpnConnection = vpnConnection;
         _ipv6 = ipv6;
         _grpcServer = grpcServer;
+        _nrptInvoker = nrptInvoker;
 
         powerEventNotifier.OnResume += OnPowerEventResume;
         _vpnConnection.StateChanged += OnVpnStateChanged;
@@ -115,6 +119,8 @@ internal partial class VpnService : ServiceBase
             }
 
             _vpnConnection.Disconnect();
+            _nrptInvoker.DeleteRule();
+
         }
         catch (Exception ex)
         {
