@@ -50,6 +50,8 @@ public static class WindowExtensions
 
     private static bool IsControlInWindow(DependencyObject control, Window? window)
     {
-        return window?.Content is FrameworkElement windowContent && control.IsDescendantOf(windowContent);
+        return window?.AppWindow is not null &&
+            window?.Content is FrameworkElement windowContent &&
+            control.IsDescendantOf(windowContent);
     }
 }
