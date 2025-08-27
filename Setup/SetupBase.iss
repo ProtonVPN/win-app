@@ -17,6 +17,8 @@
 #define NetworkDriverName "ProtonVPNCallout"
 #define NetworkDriverFileName "Resources\ProtonVPN.CalloutDriver.sys"
 
+#define RestoreInternetExeName "ProtonVPN.RestoreInternet.exe"
+
 #define ProtonInstallerName "ProtonInstaller.exe"
 #define Webview2InstallerName "MicrosoftEdgeWebview2Setup.exe"
 #define VcRedistX64Name "VC_redist.x64.exe"
@@ -230,9 +232,6 @@ external 'UninstallTapAdapter@{app}\{#VersionFolder}\Resources\ProtonVPN.Install
 
 function RemovePinnedIcons(shortcutPath: String): Integer;
 external 'RemovePinnedIcons@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll cdecl uninstallonly';
-
-function RemoveWfpObjects(): Integer;
-external 'RemoveWfpObjects@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll cdecl uninstallonly';
 
 function LaunchUnelevatedProcessOnUninstall(processPath, args: String; isToWait: Boolean): Integer;
 external 'LaunchUnelevatedProcess@{app}\{#VersionFolder}\Resources\ProtonVPN.InstallActions.x86.dll cdecl uninstallonly';
@@ -833,8 +832,8 @@ begin
     res := UninstallTapAdapter(ExpandConstant('{app}\{#VersionFolder}\Resources\tap'));
     Log('TAP uninstallation returned: ' + IntToStr(res));
 
-    res := RemoveWfpObjects();
-    Log('RemoveWfpObjects returned: ' + IntToStr(res));
+    Exec(ExpandConstant('{app}\{#VersionFolder}\{#RestoreInternetExeName}'), '', '', SW_HIDE, ewWaitUntilTerminated, res);
+    Log(ExpandConstant('{#RestoreInternetExeName} returned: ') + IntToStr(res));
 
     Log('Trying to delete client startup record if exists');
     DeleteStartupApp(ExpandConstant('{#ClientName}'));
