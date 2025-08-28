@@ -21,7 +21,6 @@ using System;
 using System.Collections.Generic;
 using System.Management.Automation;
 using System.Runtime.InteropServices;
-using System.Text;
 using ProtonVPN.OperatingSystems.NRPT;
 
 namespace ProtonVPN.RestoreInternet;
@@ -69,11 +68,9 @@ class Program
 
     private static void OnError(string message, List<ErrorRecord> errors)
     {
-        StringBuilder errorMessageBuilder = new();
         foreach (ErrorRecord error in errors)
         {
             Console.WriteLine($"{message} - {error}");
-            errorMessageBuilder.AppendLine(error.ToString());
         }
     }
 
