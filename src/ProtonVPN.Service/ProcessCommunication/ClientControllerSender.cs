@@ -233,7 +233,7 @@ public class ClientControllerSender : IClientController, IClientControllerSender
     private async void OnPortForwardingStateChanged(object sender, EventArgs<PortForwardingState> e)
     {
         PortForwardingState state = e.Data;
-        _logger.Info<AppServiceLog>($"Port Forwarding state changed - {GetPortForwardingStateLogMessage(state)}");
+        _logger.Debug<AppServiceLog>($"Port Forwarding state changed - {GetPortForwardingStateLogMessage(state)}");
         _portForwardingState = state;
         await SendPortForwardingStateChangeAsync(state);
     }
