@@ -1,0 +1,23 @@
+def calculator():
+    print("ماشین حساب ساده")
+    num1 = float(input("عدد اول را وارد کنید: "))
+    operator = input("عملگر (+, -, *, /) را وارد کنید: ")
+    num2 = float(input("عدد دوم را وارد کنید: "))
+    
+    if operator == '+':
+        result = num1 + num2
+    elif operator == '-':
+        result = num1 - num2
+    elif operator == '*':
+        result = num1 * num2
+    elif operator == '/':
+        if num2 != 0:
+            result = num1 / num2
+        else:
+            return "خطا: تقسیم بر صفر"
+    else:
+        return "عملگر نامعتبر"
+    
+    return f"نتیجه: {result}"
+
+print(calculator())
