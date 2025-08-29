@@ -463,31 +463,38 @@ internal class Firewall : IFirewall, IStartable
             return;
         }
 
-        //Create the following filters dynamically on permanent or dynamic sublayer,
-        //but prevent keeping them after reboot, as interface index might be changed.
-        _ipLayer.ApplyToIpv4(layer =>
+        try
         {
-            Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateNetInterfaceFilter(
-                new DisplayData("ProtonVPN permit VPN tunnel", "Permit tunnel interface traffic"),
-                Action.SoftPermit,
-                layer,
-                firewallParams.InterfaceIndex,
-                weight,
-                persistent: false);
-            _firewallItems.Add(new FirewallItem(FirewallItemType.PermitInterfaceFilter, guid));
-        });
+            //Create the following filters dynamically on permanent or dynamic sublayer,
+            //but prevent keeping them after reboot, as interface index might be changed.
+            _ipLayer.ApplyToIpv4(layer =>
+            {
+                Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateNetInterfaceFilter(
+                    new DisplayData("ProtonVPN permit VPN tunnel", "Permit tunnel interface traffic"),
+                    Action.SoftPermit,
+                    layer,
+                    firewallParams.InterfaceIndex,
+                    weight,
+                    persistent: false);
+                _firewallItems.Add(new FirewallItem(FirewallItemType.PermitInterfaceFilter, guid));
+            });
 
-        _ipLayer.ApplyToIpv6(layer =>
+            _ipLayer.ApplyToIpv6(layer =>
+            {
+                Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateNetInterfaceFilter(
+                    new DisplayData("ProtonVPN permit VPN tunnel", "Permit tunnel interface traffic"),
+                    Action.SoftPermit,
+                    layer,
+                    firewallParams.InterfaceIndex,
+                    weight,
+                    persistent: false);
+                _firewallItems.Add(new FirewallItem(FirewallItemType.PermitInterfaceFilter, guid));
+            });
+        }
+        catch (AdapterNotFoundException)
         {
-            Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateNetInterfaceFilter(
-                new DisplayData("ProtonVPN permit VPN tunnel", "Permit tunnel interface traffic"),
-                Action.SoftPermit,
-                layer,
-                firewallParams.InterfaceIndex,
-                weight,
-                persistent: false);
-            _firewallItems.Add(new FirewallItem(FirewallItemType.PermitInterfaceFilter, guid));
-        });
+            _logger.Error<FirewallLog>($"Interface with index {firewallParams.InterfaceIndex} was not found.");
+        }
     }
 
     private void PermitServerAddress(FirewallParams firewallParams)

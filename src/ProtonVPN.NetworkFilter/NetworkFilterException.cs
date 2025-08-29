@@ -80,4 +80,11 @@ namespace ProtonVPN.NetworkFilter
         {
         }
     }
+
+    public class AdapterNotFoundException : NetworkFilterException
+    {
+        public AdapterNotFoundException(uint code) : base(code)
+        {
+        }
+    }
 }
