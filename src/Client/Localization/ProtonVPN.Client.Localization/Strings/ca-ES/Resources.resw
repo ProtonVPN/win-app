@@ -147,6 +147,9 @@
   <data name="Automation_Properties_NetShield_Page">
     <value>Pàgina de NetShield</value>
   </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>Aquesta pàgina no té servidors</value>
+  </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Pàgina de redirecció de ports</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Torna a connectar</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Actualitza</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Esborra</value>
@@ -2826,6 +2832,24 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   <data name="Map_ConnectTo">
     <value>Connecta - {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>Contacteu amb nosaltres</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>No s'ha pogut carregar la llista de servidors.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Necessiteu ajuda?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Tanca la sessió</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Demaneu a l'administrador que activi l'accés a la VPN per al vostre compte.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>No hi ha connexions VPN disponibles</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Per a protegir la vostra adreça IP, el kill switch bloca la vostra connexió a internet.</value>

@@ -147,6 +147,9 @@
   <data name="Automation_Properties_NetShield_Page">
     <value>Pagina NetShield</value>
   </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>Pagina fără servere</value>
+  </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Pagină redirecționare port</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Reconectare</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Împrospătare</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Eliminare</value>
@@ -2933,6 +2939,24 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
   <data name="Map_ConnectTo">
     <value>Conectare - {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>Contactați-ne</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>Lista de servere nu a putut fi încărcată.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Doriți ajutor?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Deconectare</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Solicitați administratorului să vă activeze accesul la VPN în cont.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>Nu există conexiuni VPN disponibile</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Pentru a vă proteja adresa IP, întrerupătorul de conexiune vă blochează conexiunea la internet.</value>

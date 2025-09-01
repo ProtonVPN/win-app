@@ -147,6 +147,9 @@
   <data name="Automation_Properties_NetShield_Page">
     <value>Старонка NetShield</value>
   </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>Няма старонкі сервераў</value>
+  </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Старонка перанакіравання партоў</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Перападключыцца</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Абнавіць</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Выдаліць</value>
@@ -3041,6 +3047,24 @@
   <data name="Map_ConnectTo">
     <value>Падключыць - {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>Звязацца з намі</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>Немагчыма загрузіць спіс сервераў.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Неабходна дапамога?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Выйсці</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Запытайце ў вашага адміністратара ўключыць доступ да VPN для вашага ўліковага запісу.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>Няма даступных VPN-падключэнняў</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Kill Switch заблакіруе ваша падключэнне да інтэрнэту, каб абараніць ваш IP-адрас.</value>

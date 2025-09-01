@@ -147,6 +147,9 @@
   <data name="Automation_Properties_NetShield_Page">
     <value>NetShield sayfası</value>
   </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>Sunucular Yok Sayfası</value>
+  </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Bağlantı noktası yönlendirme sayfası</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Yeniden bağlan</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Yenile</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Kaldır</value>
@@ -2825,6 +2831,24 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Map_ConnectTo">
     <value>Bağlantı kur - {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>Bizimle görüşün</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>Sunucu listesi yüklenemedi.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Yardım mı gerekiyor?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Oturumu kapat</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Yöneticiniz ile görüşerek hesabınız için VPN özelliğini açmasını isteyin.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>Kullanılabilecek bir VPN bağlantısı yok</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Bağlantı kesici IP adresinizi korumak için internet bağlantınızı engelliyor.</value>

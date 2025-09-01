@@ -147,6 +147,9 @@
   <data name="Automation_Properties_NetShield_Page">
     <value>Stránka NetShield</value>
   </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>Stránka bez serverov</value>
+  </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Stránka presmerovania portu</value>
   </data>
@@ -250,13 +253,16 @@
     <value>Inštalovať</value>
   </data>
   <data name="Common_Actions_MoveDown">
-    <value>Move Down</value>
+    <value>Posunúť dole</value>
   </data>
   <data name="Common_Actions_MoveUp">
-    <value>Move Up</value>
+    <value>Posunúť hore</value>
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Znova pripojiť</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Obnoviť</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Odstrániť</value>
@@ -3042,6 +3048,24 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Pripojiť - {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
   </data>
+  <data name="NoServers_ContactUs">
+    <value>Kontaktujte nás</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>Nepodarilo sa nám načítať zoznam serverov.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Potrebujete pomôcť?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Odhlásiť sa</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Požiadajte svojho správcu, aby pre váš účet povolil prístup cez VPN.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>K dispozícii nie sú žiadne VPN pripojenia</value>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Kill Switch blokuje vaše pripojenie k internetu, aby ochránil vašu skutočnú IP adresu.</value>
   </data>
@@ -3068,16 +3092,16 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_Ipv6Disabled_Description">
-    <value>To include this address, you need to allow IPv6 connections through the VPN tunnel.</value>
+    <value>Na zahrnutie tejto adresy potrebujete povoliť pripojenia IPv6 cez tunel VPN.</value>
   </data>
   <data name="Overlay_Ipv6Disabled_PrimaryButton">
-    <value>Enable IPv6</value>
+    <value>Povoliť IPv6</value>
   </data>
   <data name="Overlay_Ipv6Disabled_SecondaryButton">
-    <value>Not now</value>
+    <value>Teraz nie</value>
   </data>
   <data name="Overlay_Ipv6Disabled_Title">
-    <value>IPv6 is disabled</value>
+    <value>IPv6 je deaktivovaná</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Aktualizovať teraz</value>
@@ -3393,17 +3417,17 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Common_IpAddresses_AlreadyExists">
-    <value>Address already added</value>
+    <value>Adresa už bola pridaná</value>
   </data>
   <data name="Settings_Common_IpAddresses_Invalid">
-    <value>Enter a valid IPv4 or IPv6 address</value>
+    <value>Zadajte platnú IPv4 alebo IPv6 adresu</value>
   </data>
   <data name="Settings_Common_IpAddresses_Watermark">
     <value>192.0.2.0</value>
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Common_Ipv6WarningButton">
-    <value>Warning - learn more</value>
+    <value>Upozornenie – ďalšie informácie</value>
   </data>
   <data name="Settings_Connection">
     <value>Pripojenie</value>
@@ -3421,7 +3445,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Vlastné servery DNS</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
-    <value>Add new DNS server</value>
+    <value>Pridať nový DNS server</value>
     <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
@@ -3434,26 +3458,26 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Pripojte sa k sieti Proton VPN pomocou vlastného servera DNS. Používajte iba servery DNS, ktorým dôverujete.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
-    <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
+    <value>Pokúsime sa pripojiť k týmto serverom v uvedenom poradí. Ak žiadny z nich nebude fungovať, použije sa predvolený DNS Proton VPN.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS servery ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
-    <value>Enter the server's IPv4 or IPv6 address</value>
+    <value>Zadajte adresu IPv4 alebo IPv6 servera.</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6">
-    <value>IPv6 support</value>
+    <value>IPv6 podpora</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>IPv6 leak protection</value>
+    <value>Ochrana proti úniku IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>Prevents data leaks by blocking IPv6 traffic that doesn't pass through the VPN tunnel.</value>
+    <value>Zabraňuje úniku údajov blokovaním prevádzky IPv6, ktorá neprechádza cez VPN tunel.</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6_Description">
-    <value>Allows IPv6 traffic to pass through the VPN tunnel. This improves compatibility with IPv6 websites and services.</value>
+    <value>Umožňuje prechod IPv6 prevádzky cez VPN tunel. Tým sa zlepšuje kompatibilita s webovými stránkami a službami IPv6.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>Povoliť pripojenie k sieti LAN</value>
@@ -3659,7 +3683,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
-    <value>Add new IPv4 or IPv6 address</value>
+    <value>Pridať novú IPv4 alebo IPv6 adresu</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>Vybrané IP adresy ({0})</value>

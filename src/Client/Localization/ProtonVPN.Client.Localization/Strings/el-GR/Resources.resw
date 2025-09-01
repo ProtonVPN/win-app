@@ -147,6 +147,9 @@
   <data name="Automation_Properties_NetShield_Page">
     <value>Σελίδα NetShield</value>
   </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>Σελίδα χωρίς διακομιστές</value>
+  </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Σελίδα προώθησης θυρών</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Επανασύνδεση</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Ανανέωση</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Αφαίρεση</value>
@@ -2123,7 +2129,7 @@
     <value>Μπορείτε τώρα να συνδεθείτε, να αποσυνδεθείτε και να αλλάξετε την προεπιλεγμένη σύνδεσή σας από το εικονίδιο της περιοχής ειδοποιήσεων.</value>
   </data>
   <data name="Dialogs_WhatsNew_TrayApp_Title">
-    <value>New system tray app</value>
+    <value>Νέα εφαρμογή περιοχής ειδοποιήσεων συστήματος</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Έξοδος απο το Proton VPN?</value>
@@ -2825,6 +2831,24 @@
   <data name="Map_ConnectTo">
     <value>Σύνδεση - {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>Επικοινωνήστε μαζί μας</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>Δεν ήταν δυνατή η φόρτωση της λίστας διακομιστών.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Χρειάζεστε βοήθεια;</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Αποσύνδεση</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Ζητήστε από τον διαχειριστή σας να ενεργοποιήσει την πρόσβαση VPN για τον λογαριασμό σας.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>Δεν υπάρχουν διαθέσιμες συνδέσεις VPN</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Για την προστασία της διεύθυνσης IP σας, η λειτουργία kill switch αποκλείει τη σύνδεσή σας στο διαδίκτυο.</value>

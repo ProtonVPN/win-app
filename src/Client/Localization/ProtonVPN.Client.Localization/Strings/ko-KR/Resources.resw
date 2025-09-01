@@ -147,6 +147,9 @@
   <data name="Automation_Properties_NetShield_Page">
     <value>NetShield 페이지</value>
   </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>No servers page</value>
+  </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>포트 포워딩 페이지</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Common_Actions_Reconnect">
     <value>재연결</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Refresh</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>제거</value>
@@ -2718,6 +2724,24 @@
     <value>연결 - {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
   </data>
+  <data name="NoServers_ContactUs">
+    <value>Contact us</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>We couldn't load the server list.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Need help?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Sign out</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Ask your administrator to enable VPN access for your account.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>No VPN connections available</value>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>IP 주소를 보호하기 위해, 킬 스위치가 사용자의 인터넷 연결을 차단 중입니다.</value>
   </data>
@@ -3050,7 +3074,7 @@ VPN 연결</value>
     <value>앱 버전</value>
   </data>
   <data name="Settings_Censorship_Footer">
-    <value>이러한 통계에는 IP 주소가 포함되어 있지 않으며 귀하를 식별하는 데 사용할 수 없습니다. 이 정보를 다른 사람에게 공유하지 않습니다.</value>
+    <value>이러한 통계에는 IP 주소가 포함되어 있지 않으며 사용자 식별에 사용할 수 없습니다. 이 정보는 타인에게 공유되지 않습니다.</value>
   </data>
   <data name="Settings_Censorship_ShareCrashReports">
     <value>익명 충돌 보고서 공유</value>

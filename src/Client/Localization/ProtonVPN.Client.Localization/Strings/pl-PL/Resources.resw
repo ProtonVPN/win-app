@@ -147,6 +147,9 @@
   <data name="Automation_Properties_NetShield_Page">
     <value>Strona NetShield</value>
   </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>Brak strony serwerów</value>
+  </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Strona przekierowania portów</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Połącz ponownie</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Odśwież</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Usuń</value>
@@ -3041,6 +3047,24 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
   <data name="Map_ConnectTo">
     <value>Połącz: {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>Skontaktuj się z nami</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>Nie mogliśmy załadować listy serwerów.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Potrzebujesz pomocy?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Wyloguj</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Poproś administratora o włączenie dostępu do usługi VPN dla Twojego konta.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>Brak dostępnych połączeń VPN</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Kill Switch blokuje połączenie internetowe, aby chronić Twój adres IP.</value>

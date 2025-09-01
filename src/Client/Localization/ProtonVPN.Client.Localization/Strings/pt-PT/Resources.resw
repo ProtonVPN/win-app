@@ -147,6 +147,9 @@
   <data name="Automation_Properties_NetShield_Page">
     <value>Página do NetShield</value>
   </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>No servers page</value>
+  </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Página de encaminhamento de portas</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Voltar a ligar</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Refresh</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Remover</value>
@@ -2825,6 +2831,24 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
   <data name="Map_ConnectTo">
     <value>Ligar - {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>Contact us</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>We couldn't load the server list.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Need help?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Sign out</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Ask your administrator to enable VPN access for your account.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>No VPN connections available</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Para proteger o seu endereço IP, o kill switch bloqueia a conexão com a internet.</value>

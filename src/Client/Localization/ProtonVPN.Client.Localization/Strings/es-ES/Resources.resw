@@ -147,6 +147,9 @@
   <data name="Automation_Properties_NetShield_Page">
     <value>Página de NetShield</value>
   </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>Página sin servidores</value>
+  </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Página de redirección de puertos</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Reconectar</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Actualizar</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Eliminar</value>
@@ -2825,6 +2831,24 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   <data name="Map_ConnectTo">
     <value>Conectar - {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>Contacta con nosotros</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>No hemos podido cargar la lista de servidores.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>¿Necesitas ayuda?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Cerrar sesión</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Pide a tu administrador que active el acceso a la VPN para tu cuenta.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>No hay conexiones VPN disponibles</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Para proteger tu dirección IP, el interruptor de bloqueo está bloqueando tu conexión de internet.</value>

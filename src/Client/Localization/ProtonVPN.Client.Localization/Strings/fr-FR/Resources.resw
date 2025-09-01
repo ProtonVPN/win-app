@@ -147,6 +147,9 @@
   <data name="Automation_Properties_NetShield_Page">
     <value>Page NetShield</value>
   </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>Aucun serveur disponible</value>
+  </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Page de redirection de port</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Se reconnecter</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Actualiser</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Retirer</value>
@@ -2825,6 +2831,24 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   <data name="Map_ConnectTo">
     <value>Connexion - {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>Nous contacter</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>Nous n'avons pas pu charger la liste des serveurs.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Assistance</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Se déconnecter</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Demandez à votre administrateur d'activer l'accès VPN pour votre compte.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>Aucune connexion VPN disponible</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Pour protéger votre adresse IP, la fonction Arrêt d'urgence (kill switch) bloque votre connexion internet.</value>

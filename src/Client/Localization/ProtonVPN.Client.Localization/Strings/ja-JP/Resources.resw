@@ -147,6 +147,9 @@
   <data name="Automation_Properties_NetShield_Page">
     <value>NetShieldページ</value>
   </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>サーバーなしページ</value>
+  </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>ポート転送ページ</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Common_Actions_Reconnect">
     <value>再接続</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>再読み込み</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>削除</value>
@@ -2717,6 +2723,24 @@
   <data name="Map_ConnectTo">
     <value>{0} に接続</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>お問い合わせ</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>サーバー一覧を読み込めませんでした。</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>お困りですか？</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>サインアウト</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>管理者に、ご自身のアカウントでVPNアクセスを有効にしてもらうよう依頼してください。</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>VPN接続が利用できません。</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>IPアドレスを保護するため、キルスイッチがインターネット接続をブロックしています。</value>

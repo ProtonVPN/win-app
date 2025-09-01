@@ -147,6 +147,9 @@
   <data name="Automation_Properties_NetShield_Page">
     <value>NetShield-side</value>
   </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>Ingen tjenerside</value>
+  </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Portvideresendingsside</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Koble til på nytt</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Oppdater</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Fjern</value>
@@ -2825,6 +2831,24 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   <data name="Map_ConnectTo">
     <value>Koble til - {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>Kontakt oss</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>Vi kunne ikke laste inn tjenerlisten.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Trenger du hjelp?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Logg av</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Be administratoren din om å aktivere VPN-tilgang for kontoen din.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>Ingen VPN-tilkoblinger tilgjengelig</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>For å beskytte IP-adressen din blokkerer nødstopp internettforbindelsen.</value>

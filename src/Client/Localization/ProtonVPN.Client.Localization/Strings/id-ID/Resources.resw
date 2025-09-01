@@ -147,6 +147,9 @@
   <data name="Automation_Properties_NetShield_Page">
     <value>Halaman NetShield</value>
   </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>Tidak ada halaman server</value>
+  </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Halaman penerusan port</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Hubungkan Ulang</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Muat ulang</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Hapus</value>
@@ -2717,6 +2723,24 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Map_ConnectTo">
     <value>Hubungkan - {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>Hubungi kami</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>Kami tidak dapat memuat daftar server.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Butuh bantuan?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Keluar</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Mintalah administrator Anda untuk mengaktifkan akses VPN bagi akun Anda.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>Tidak ada koneksi VPN yang tersedia</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Untuk melindungi alamat IP Anda, kill switch memblokir koneksi internet Anda.</value>

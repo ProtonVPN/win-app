@@ -147,6 +147,9 @@
   <data name="Automation_Properties_NetShield_Page">
     <value>NetShield-sida</value>
   </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>No servers page</value>
+  </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Sida för vidarebefordring av port</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Anslut igen</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Uppdatera</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Ta bort</value>
@@ -2825,6 +2831,24 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Map_ConnectTo">
     <value>Anslut - {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>Kontakta oss</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>Vi kunde inte ladda serverlistan.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Behöver du hjälp?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Logga ut</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Be din administratör att aktivera VPN-åtkomst för ditt konto.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>Inga VPN-anslutningar tillgängliga</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>För att skydda din IP-adress blockerar kill switch din internetanslutning.</value>

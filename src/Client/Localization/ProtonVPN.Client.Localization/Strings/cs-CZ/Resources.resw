@@ -147,6 +147,9 @@
   <data name="Automation_Properties_NetShield_Page">
     <value>Stránka NetShield</value>
   </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>Žádná stránka se servery</value>
+  </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Stránka přesměrování portu</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Znovu připojit</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Obnovit</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Odebrat</value>
@@ -3041,6 +3047,24 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
   <data name="Map_ConnectTo">
     <value>Připojit - {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>Kontaktujte nás</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>Nepodařilo se nám načíst seznam serverů.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Potřebujete pomoci?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Odhlásit se</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Požádejte svého administrátora, aby povolil přístup k VPN pro váš účet.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>Nejsou dostupná žádná VPN připojení</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Kill Switch blokuje vaše připojení k internetu, aby ochránil vaši skutečnou IP adresu.</value>
