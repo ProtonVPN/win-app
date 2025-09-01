@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -56,8 +56,8 @@ namespace ProtonVPN.Logging.Log4Net
 
         private RollingFileAppender CreateRollingFileAppender()
         {
-            PatternLayout patternLayout = new("%utcdate{yyyy-MM-ddTHH:mm:ss.fffZ} | %-5level | %message%newline");
-            patternLayout.ActivateOptions();
+            PatternLayout patternLayout = new("%utcdate{yyyy-MM-ddTHH:mm:ss.fffZ} | %-5level | %message%newline%exception");
+            HangingIndentLayout indentingLayout = new(patternLayout);
 
             RollingFileAppender roller = new();
             roller.File = _loggerConfiguration.FullFilePath;
@@ -68,7 +68,7 @@ namespace ProtonVPN.Logging.Log4Net
             roller.StaticLogFileName = true;
             roller.Encoding = Encoding.UTF8;
             roller.PreserveLogFileNameExtension = true;
-            roller.Layout = patternLayout;
+            roller.Layout = indentingLayout;
             roller.ActivateOptions();
             return roller;
         }
