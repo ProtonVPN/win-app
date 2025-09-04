@@ -84,6 +84,7 @@ public static class SentryInitializer
 
             e.SetTag("ProcessName", Process.GetCurrentProcess().ProcessName);
             e.SetTag("Architecture", OSArchitecture.StringValue);
+            e.SetTag("WindowsSKU", WindowsSku.GetHexString());
             e.User.Id = DeviceIdStaticBuilder.GetDeviceId();
             e.SetExtra("logs", GetLogs());
 
