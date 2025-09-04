@@ -221,31 +221,28 @@ public static class WindowExtensions
         // Get display area DPI
         uint dpi = displayArea.GetDpi();
 
-        double maxWidth = workArea.Width.ToDips(dpi);
-        double maxHeight = workArea.Height.ToDips(dpi);
-
-        // Ensure the window size is within the work area limits
-        double windowWidth = parameters.Width.Clamp(window.MinWidth, maxWidth);
-        double windowHeight = parameters.Height.Clamp(window.MinHeight, maxHeight);
+        // Ensure the window size is within the work area limits (size is calculated in DIPs)
+        double windowWidth = parameters.Width.Clamp(window.MinWidth, workArea.Width.ToDips(dpi));
+        double windowHeight = parameters.Height.Clamp(window.MinHeight, workArea.Height.ToDips(dpi));
 
         double windowPositionX;
         double windowPositionY;
         if (isPositionSpecified)
         {
-            // Ensure the window position is within the work area bounds
-            windowPositionX = parameters.XPosition!.Value.Clamp(workArea.X, workArea.X + maxWidth - windowWidth);
-            windowPositionY = parameters.YPosition!.Value.Clamp(workArea.Y, workArea.Y + maxHeight - windowHeight);
+            // Ensure the window position is within the work area bounds (position is calculated in pixels)
+            windowPositionX = parameters.XPosition!.Value.Clamp(workArea.X, workArea.X + workArea.Width - windowWidth.ToPixels(dpi));
+            windowPositionY = parameters.YPosition!.Value.Clamp(workArea.Y, workArea.Y + workArea.Height - windowHeight.ToPixels(dpi));
         }
         else
         {
-            // No position specified, center the window on the current monitor.
-            windowPositionX = workArea.X + ((maxWidth - windowWidth) / 2);
-            windowPositionY = workArea.Y + ((maxHeight - windowHeight) / 2);
+            // No position specified, center the window on the current monitor (position is calculated in pixels)
+            windowPositionX = workArea.X + ((workArea.Width - windowWidth.ToPixels(dpi)) / 2);
+            windowPositionY = workArea.Y + ((workArea.Height - windowHeight.ToPixels(dpi)) / 2);
         }
 
         window.MoveAndResize(
-            x: windowPositionX.ToPixels(dpi),
-            y: windowPositionY.ToPixels(dpi),
+            x: windowPositionX,
+            y: windowPositionY,
             width: windowWidth,
             height: windowHeight);
     }
@@ -270,28 +267,25 @@ public static class WindowExtensions
         uint dpi = displayArea.GetDpi();
         TaskbarEdge taskbarEdge = MonitorCalculator.GetTaskbarEdge();
 
-        double maxWidth = workArea.Width.ToDips(dpi);
-        double maxHeight = workArea.Height.ToDips(dpi);
+        // Ensure the window size is within the work area limits (size is calculated in DIPs)
+        double windowWidth = width.Clamp(window.MinWidth, workArea.Width.ToDips(dpi) - (2 * margin));
+        double windowHeight = height.Clamp(window.MinHeight, workArea.Height.ToDips(dpi) - (2 * margin));
 
-        // Ensure the window size is within the work area limits
-        double windowWidth = width.Clamp(window.MinWidth, maxWidth - (2 * margin));
-        double windowHeight = height.Clamp(window.MinHeight, maxHeight - (2 * margin));
-
-        // Calculate the position based on the taskbar edge
+        // Calculate the position based on the taskbar edge (position is calculated in pixels)
         double windowPositionX = taskbarEdge switch
         {
             TaskbarEdge.Left => workArea.X + margin, // Dock to the left
-            _ => workArea.X + maxWidth - windowWidth - margin // Dock to the right
+            _ => workArea.X + workArea.Width - windowWidth.ToPixels(dpi) - margin // Dock to the right
         };
         double windowPositionY = taskbarEdge switch
         {
             TaskbarEdge.Top => workArea.Y + margin, // Dock to the top
-            _ => workArea.Y + maxHeight - windowHeight - margin // Dock to the bottom
+            _ => workArea.Y + workArea.Height - windowHeight.ToPixels(dpi) - margin // Dock to the bottom
         };
 
         window.MoveAndResize(
-            x: windowPositionX.ToPixels(dpi),
-            y: windowPositionY.ToPixels(dpi),
+            x: windowPositionX,
+            y: windowPositionY,
             width: windowWidth,
             height: windowHeight);
     }
