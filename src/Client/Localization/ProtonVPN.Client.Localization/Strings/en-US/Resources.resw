@@ -186,6 +186,10 @@
   <data name="Common_States_Updating" xml:space="preserve">
     <value>Updating...</value>
   </data>
+  <data name="Common_Tags_Recommended" xml:space="preserve">
+    <value>Recommended</value>
+    <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
+  </data>
   <data name="Common_Tags_New" xml:space="preserve">
     <value>NEW</value>
     <comment>This tag indicates that a newer version of the app is currently available</comment>
@@ -1580,9 +1584,6 @@
   <data name="Home_ConnectionCard_Header_DefaultConnection" xml:space="preserve">
     <value>Default connection</value>
   </data>
-  <data name="Home_ConnectionCard_Header_Recommended" xml:space="preserve">
-    <value>Recommended</value>
-  </data>
   <data name="Home_ConnectionCard_Landmark" xml:space="preserve">
     <value>Connection card</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
@@ -2013,9 +2014,6 @@
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title" xml:space="preserve">
     <value>OpenVPN</value>
-  </data>
-  <data name="Settings_Protocols_Recommended" xml:space="preserve">
-    <value>Recommended</value>
   </data>
   <data name="Settings_Protocols_Smart_Description" xml:space="preserve">
     <value>Auto-selects the best protocol for your connection.</value>
@@ -4127,5 +4125,37 @@
   </data>
   <data name="NoServers_NeedHelp" xml:space="preserve">
     <value>Need help?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode" xml:space="preserve">
+    <value>DNS block handling</value>
+    <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Description" xml:space="preserve">
+    <value>Decide how Windows handles DNS requests attempting to go outside the VPN tunnel.</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt" xml:space="preserve">
+    <value>Use Proton VPN's NRPT policy</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description" xml:space="preserve">
+    <value>Our NRPT (Name Resolution Policy Table) policy doesn't let Windows attempt external DNS requests at all. This optimizes VPN speeds, but local network DNS will not work. Some Windows devices do not support NRPT.</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout" xml:space="preserve">
+    <value>Use default blocking method</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description" xml:space="preserve">
+    <value>By default, a callout filter rejects DNS requests that come from outside the VPN tunnel. This method is just as effective as NRPT, but it may lead to slower speeds. Local network DNS will work.</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled" xml:space="preserve">
+    <value>Block requests without a negative response</value>
+    <comment>DNS requests are blocked but there is no negative reply to them</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description" xml:space="preserve">
+    <value>External DNS requests are discarded without a negative response. This may result in longer loading times when accessing domains that don't exist or contained blocked content (like ads or trackers).</value>
+    <comment></comment>
   </data>
 </root>

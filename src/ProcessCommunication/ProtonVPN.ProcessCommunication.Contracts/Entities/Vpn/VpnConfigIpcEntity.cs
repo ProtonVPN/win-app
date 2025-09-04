@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 using System.Runtime.Serialization;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Dns;
 
 namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -58,6 +59,9 @@ public class VpnConfigIpcEntity
 
     [DataMember(Order = 12, IsRequired = true)]
     public TimeSpan WireGuardConnectionTimeout { get; set; }
+
+    [DataMember(Order = 13, IsRequired = true)]
+    public DnsBlockModeIpcEntity DnsBlockMode { get; set; }
 
     public VpnConfigIpcEntity()
     {

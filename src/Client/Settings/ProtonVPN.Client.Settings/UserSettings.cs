@@ -23,6 +23,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
+using ProtonVPN.Common.Core.Dns;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
 
@@ -428,6 +429,12 @@ public class UserSettings : GlobalSettings, IUserSettings
             return version.Value;
         }
         set => _userCache.SetValueType<int>(value, SettingEncryption.Unencrypted);
+    }
+
+    public DnsBlockMode DnsBlockMode
+    {
+        get => _userCache.GetValueType<DnsBlockMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.DnsBlockMode;
+        set => _userCache.SetValueType<DnsBlockMode>(value, SettingEncryption.Unencrypted);
     }
 
     public UserSettings(IGlobalSettingsCache globalSettingsCache, IUserSettingsCache userSettingsCache)

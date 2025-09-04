@@ -21,6 +21,7 @@ using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Helpers;
 using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Common.Core.Dns;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Settings.Contracts;
@@ -86,6 +87,7 @@ public static class DefaultSettings
     public static int WhatsNewOverlayVersion = 2;
     public static TimeSpan WireGuardConnectionTimeout = TimeSpan.FromSeconds(5);
     public static bool IsEfficiencyModeAllowed = false;
+    public static DnsBlockMode DnsBlockMode = DnsBlockMode.Nrpt;
 
     public static ChangeServerSettings ChangeServerSettings = new()
     {

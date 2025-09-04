@@ -26,6 +26,8 @@ using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
+using ProtonVPN.Common.Core.Dns;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Dns;
 
 namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn;
 
@@ -68,6 +70,11 @@ public class VpnConfigMapperTest
         _expectedVpnProtocols = new List<VpnProtocol>() { VpnProtocol.OpenVpnUdp };
         _entityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(Arg.Any<IEnumerable<VpnProtocolIpcEntity>>())
             .Returns(_expectedVpnProtocols);
+
+        _entityMapper.Map<DnsBlockMode, DnsBlockModeIpcEntity>(Arg.Any<DnsBlockMode>())
+            .Returns((CallInfo callInfo) => (DnsBlockModeIpcEntity)(int)callInfo[0]);
+        _entityMapper.Map<DnsBlockModeIpcEntity, DnsBlockMode>(Arg.Any<DnsBlockModeIpcEntity>())
+            .Returns((CallInfo callInfo) => (DnsBlockMode)(int)callInfo[0]);
     }
 
     [TestCleanup]
@@ -113,6 +120,7 @@ public class VpnConfigMapperTest
             ModerateNat = true,
             PortForwarding = true,
             IsIpv6Enabled = true,
+            DnsBlockMode = DnsBlockMode.Callout,
         });
 
         VpnConfigIpcEntity result = _mapper.Map(entityToTest);
@@ -129,6 +137,7 @@ public class VpnConfigMapperTest
         Assert.AreEqual(entityToTest.SplitTcp, result.SplitTcp);
         Assert.AreEqual(entityToTest.PortForwarding, result.PortForwarding);
         Assert.AreEqual(entityToTest.IsIpv6Enabled, result.IsIpv6Enabled);
+        Assert.AreEqual((int)entityToTest.DnsBlockMode, (int)result.DnsBlockMode);
     }
 
     private void AssertPortsAreEquivalent(VpnConfig entityToTest, VpnConfigIpcEntity result)
@@ -176,6 +185,7 @@ public class VpnConfigMapperTest
             SplitTcp = true,
             ModerateNat = true,
             PortForwarding = true,
+            DnsBlockMode = DnsBlockModeIpcEntity.Disabled,
         };
 
         VpnConfig result = _mapper.Map(entityToTest);
@@ -191,6 +201,7 @@ public class VpnConfigMapperTest
         Assert.AreEqual(entityToTest.SplitTcp, result.SplitTcp);
         Assert.AreEqual(entityToTest.ModerateNat, result.ModerateNat);
         Assert.AreEqual(entityToTest.PortForwarding, result.PortForwarding);
+        Assert.AreEqual((int)entityToTest.DnsBlockMode, (int)result.DnsBlockMode);
     }
 
     private void AssertPortsAreEquivalent(VpnConfigIpcEntity entityToTest, VpnConfig result)

@@ -28,14 +28,17 @@ public static class StaticNrptInvoker
     private const string NRPT_COMMENT = "Force all DNS requests via Proton VPN";
     private const string NRPT_ADD_SCRIPT = "Add-DnsClientNrptRule -Namespace \".\" -NameServers {0} -Comment \"" + NRPT_COMMENT + "\"";
     private const string NRPT_REMOVE_SCRIPT = "Get-DnsClientNrptRule | Where-Object { $_.Comment -eq \"" + NRPT_COMMENT + "\" } | Remove-DnsClientNrptRule -Force";
+    
+    private static readonly object _lock = new();
 
-    public static void CreateRule(string nameServers, Action<string, Exception> onException = null,
+    /// <returns>If the NRPT rule was added successfully</returns>
+    public static bool CreateRule(string nameServers, Action<string, Exception> onException = null,
         Action<string, List<ErrorRecord>> onError = null, Action<string> onSuccess = null)
     {
         try
         {
             string script = string.Format(NRPT_ADD_SCRIPT, nameServers);
-            ExecuteNrptPowershellCommand("Add", ps => ps.AddScript(script), onError, onSuccess);
+            return ExecuteNrptPowershellCommand("Add", ps => ps.AddScript(script), onError, onSuccess);
         }
         catch (Exception ex)
         {
@@ -43,44 +46,58 @@ public static class StaticNrptInvoker
             {
                 onException("Exception thrown when adding the NRPT rule", ex);
             }
+            return false;
         }
     }
 
-    private static void ExecuteNrptPowershellCommand(string actionVerb, Func<PowerShell, PowerShell> value,
+    /// <returns>If the NRPT script was executed successfully</returns>
+    private static bool ExecuteNrptPowershellCommand(string actionVerb, Func<PowerShell, PowerShell> value,
         Action<string, List<ErrorRecord>> onError = null, Action<string> onSuccess = null)
     {
-        InitialSessionState iss = InitialSessionState.CreateDefault();
-        iss.ExecutionPolicy = ExecutionPolicy.Bypass;
-
-        using (Runspace runspace = RunspaceFactory.CreateRunspace(iss))
+        lock(_lock)
         {
-            runspace.Open();
-            using (PowerShell ps = PowerShell.Create(runspace))
+            InitialSessionState iss = InitialSessionState.CreateDefault();
+            iss.ExecutionPolicy = ExecutionPolicy.Bypass;
+
+            using (Runspace runspace = RunspaceFactory.CreateRunspace(iss))
             {
-                ps.AddCommand("Import-Module").AddArgument("DnsClient").Invoke();
-                ps.Commands.Clear();
-
-                value(ps).Invoke();
-
-                if (ps.HadErrors)
+                runspace.Open();
+                using (PowerShell ps = PowerShell.Create(runspace))
                 {
-                    List<ErrorRecord> errors = ps.Streams.Error.ToList();
-                    onError($"Error when performing NRPT rule '{actionVerb}' action.", errors);
-                }
-                else
-                {
-                    onSuccess($"Success when performing NRPT rule '{actionVerb}' action.");
+                    ps.AddCommand("Import-Module").AddArgument("DnsClient").Invoke();
+                    ps.Commands.Clear();
+
+                    value(ps).Invoke();
+
+                    if (ps.HadErrors)
+                    {
+                        List<ErrorRecord> errors = ps.Streams.Error.ToList();
+                        if (onError is not null)
+                        {
+                            onError($"Error when performing NRPT rule '{actionVerb}' action.", errors);
+                        }
+                        return false;
+                    }
+                    else
+                    {
+                        if (onSuccess is not null)
+                        {
+                            onSuccess($"Success when performing NRPT rule '{actionVerb}' action.");
+                        }
+                        return true;
+                    }
                 }
             }
         }
     }
 
-    public static void DeleteRule(Action<string, Exception> onException = null,
+    /// <returns>If the NRPT rule was removed successfully</returns>
+    public static bool DeleteRule(Action<string, Exception> onException = null,
         Action<string, List<ErrorRecord>> onError = null, Action<string> onSuccess = null)
     {
         try
         {
-            ExecuteNrptPowershellCommand("Remove", ps => ps.AddScript(NRPT_REMOVE_SCRIPT), onError, onSuccess);
+            return ExecuteNrptPowershellCommand("Remove", ps => ps.AddScript(NRPT_REMOVE_SCRIPT), onError, onSuccess);
         }
         catch (Exception ex)
         {
@@ -88,6 +105,7 @@ public static class StaticNrptInvoker
             {
                 onException("Exception thrown when removing the NRPT rule", ex);
             }
+            return false;
         }
     }
 }

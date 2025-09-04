@@ -27,6 +27,7 @@ namespace ProtonVPN.NetworkFilter
     internal class IpFilterNative
     {
         private const uint ErrorSuccess = 0;
+        private const uint ErrorAlreadyRegistered = 0x80320009;
         private const uint ErrorFilterNotFound = 0x80320003;
         private const uint ErrorCalloutNotFound = 0x80320001;
         private const uint ErrorTimeout = 0x80320012;
@@ -826,6 +827,7 @@ namespace ProtonVPN.NetworkFilter
             switch (status)
             {
                 case ErrorSuccess:
+                case ErrorAlreadyRegistered:
                     return;
                 case ErrorFilterNotFound:
                     throw new FilterNotFoundException(status);

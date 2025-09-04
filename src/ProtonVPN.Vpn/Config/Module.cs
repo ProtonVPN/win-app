@@ -28,7 +28,6 @@ using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.OperatingSystems.Network.Contracts;
-using ProtonVPN.OperatingSystems.NRPT.Contracts;
 using ProtonVPN.OperatingSystems.Processes.Contracts;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Connection;
@@ -38,6 +37,7 @@ using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.Management;
 using ProtonVPN.Vpn.NetShield;
 using ProtonVPN.Vpn.NetworkAdapters;
+using ProtonVPN.Vpn.NRPT;
 using ProtonVPN.Vpn.OpenVpn;
 using ProtonVPN.Vpn.OpenVpn.DnsServers;
 using ProtonVPN.Vpn.PortMapping;
@@ -67,6 +67,7 @@ public class Module
         builder.RegisterType<WintunAdapter>().SingleInstance();
         builder.RegisterType<TapAdapter>().SingleInstance();
         builder.RegisterType<NetShieldStatisticEventManager>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<NrptWrapper>().AsImplementedInterfaces().SingleInstance();
         builder.Register(c =>
             {
                 ILogger logger = c.Resolve<ILogger>();
@@ -109,6 +110,7 @@ public class Module
         IIssueReporter issueReporter = c.Resolve<IIssueReporter>();
         IPortMappingProtocolClient portMappingProtocolClient = c.Resolve<IPortMappingProtocolClient>();
         IServerValidator serverValidator = c.Resolve<IServerValidator>();
+        INrptWrapper nrptWrapper = c.Resolve<INrptWrapper>();
 
         return new LoggingWrapper(
             logger,
@@ -138,7 +140,7 @@ public class Module
                                         new PortForwardingWrapper(
                                             logger,
                                             portMappingProtocolClient,
-                                            new VpnProtocolWrapper(GetOpenVpnConnection(c), GetWireguardConnection(c))))))))));
+                                            new VpnProtocolWrapper(GetOpenVpnConnection(c), GetWireguardConnection(c), nrptWrapper)))))))));
     }
 
     private ISingleVpnConnection GetWireguardConnection(IComponentContext c)
@@ -150,14 +152,11 @@ public class Module
         INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
         IX25519KeyGenerator x25519KeyGenerator = c.Resolve<IX25519KeyGenerator>();
         IConnectionCertificateCache connectionCertificateCache = c.Resolve<IConnectionCertificateCache>();
-        INrptInvoker nrptInvoker = c.Resolve<INrptInvoker>();
         IWireGuardDnsServersCreator wireGuardDnsServersCreator = c.Resolve<IWireGuardDnsServersCreator>();
 
         return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<IWireGuardSplitTunnelRouting>(),
             gatewayCache,
             connectionCertificateCache,
-            nrptInvoker,
-            wireGuardDnsServersCreator,
             new WireGuardConnection(logger, config, gatewayCache,
                 new WireGuardService(logger, staticConfig, new SafeService(
                     new LoggingService(logger,
@@ -176,14 +175,10 @@ public class Module
         IDnsServerCache dnsServerCache = c.Resolve<IDnsServerCache>();
         INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
         IConnectionCertificateCache connectionCertificateCache = c.Resolve<IConnectionCertificateCache>();
-        INrptInvoker nrptInvoker = c.Resolve<INrptInvoker>();
-        IOpenVpnDnsServersCreator openVpnDnsServersCreator = c.Resolve<IOpenVpnDnsServersCreator>();
 
         return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<IWireGuardSplitTunnelRouting>(),
             gatewayCache,
             connectionCertificateCache,
-            nrptInvoker,
-            openVpnDnsServersCreator,
             new OpenVpnConnection(
                 logger,
                 c.Resolve<IStaticConfiguration>(),

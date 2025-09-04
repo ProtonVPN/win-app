@@ -17,10 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Legacy;
+using ProtonVPN.Common.Core.Dns;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Dns;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
@@ -59,6 +61,7 @@ public class VpnConfigMapper : IMapper<VpnConfig, VpnConfigIpcEntity>
             PortForwarding = leftEntity.PortForwarding,
             IsIpv6Enabled = leftEntity.IsIpv6Enabled,
             WireGuardConnectionTimeout = leftEntity.WireGuardConnectionTimeout,
+            DnsBlockMode = _entityMapper.Map<DnsBlockMode, DnsBlockModeIpcEntity>(leftEntity.DnsBlockMode),
         };
     }
 
@@ -88,6 +91,7 @@ public class VpnConfigMapper : IMapper<VpnConfig, VpnConfigIpcEntity>
                 PortForwarding = rightEntity.PortForwarding,
                 IsIpv6Enabled = rightEntity.IsIpv6Enabled,
                 WireGuardConnectionTimeout = rightEntity.WireGuardConnectionTimeout,
+                DnsBlockMode = _entityMapper.Map<DnsBlockModeIpcEntity, DnsBlockMode>(rightEntity.DnsBlockMode),
             });
     }
 }

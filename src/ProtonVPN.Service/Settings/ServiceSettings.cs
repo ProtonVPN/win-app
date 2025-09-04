@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using ProtonVPN.Common.Core.Dns;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Helpers;
 using ProtonVPN.Common.Legacy.KillSwitch;
@@ -121,6 +122,15 @@ public class ServiceSettings : IServiceSettings
         {
             Load();
             return (OpenVpnAdapter)_settings.OpenVpnAdapter;
+        }
+    }
+
+    public DnsBlockMode DnsBlockMode
+    {
+        get
+        {
+            Load();
+            return (DnsBlockMode)_settings.DnsBlockMode;
         }
     }
 

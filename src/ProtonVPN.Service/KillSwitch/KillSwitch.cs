@@ -165,6 +165,7 @@ public class KillSwitch : IVpnStateAware, IServiceSettingsAware, IStartable
             AddInterfaceFilters = interfaceIndex > 0,
             Persistent = persistent,
             IsLocalAreaNetworkAccessEnabled = _serviceSettings.IsLocalAreaNetworkAccessEnabled,
+            DnsBlockMode = _serviceSettings.DnsBlockMode
         };
         _firewall.EnableLeakProtection(firewallParams);
     }

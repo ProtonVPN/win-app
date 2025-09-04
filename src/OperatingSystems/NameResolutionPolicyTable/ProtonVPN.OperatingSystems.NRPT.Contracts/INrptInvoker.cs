@@ -22,6 +22,6 @@ namespace ProtonVPN.OperatingSystems.NRPT.Contracts;
 /// <summary>Name Resolution Policy Table (NRPT) invoker</summary>
 public interface INrptInvoker
 {
-    public void CreateRule(string nameServers);
-    public void DeleteRule();
+    public bool CreateRule(string nameServers);
+    public bool DeleteRule();
 }

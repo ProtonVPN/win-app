@@ -31,6 +31,7 @@ using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Extensions;
+using ProtonVPN.Common.Core.Dns;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Localization.Extensions;
@@ -369,6 +370,16 @@ public static class LocalizationExtensions
         };
     }
 
+    public static string GetDnsBlockMode(this ILocalizationProvider localizer, DnsBlockMode? dnsBlockMode)
+    {
+        return dnsBlockMode switch
+        {
+            DnsBlockMode.Callout => localizer.Get("Settings_Connection_Advanced_DnsBlockMode_Callout"),
+            DnsBlockMode.Disabled => localizer.Get("Settings_Connection_Advanced_DnsBlockMode_Disabled"),
+            _ => localizer.Get("Settings_Connection_Advanced_DnsBlockMode_Nrpt")
+        };
+    }
+
     public static string? GetExitOrSignOutConfirmationMessage(this ILocalizationProvider localizer, bool isDisconnected, ISettings settings)
     {
         if (settings.IsAdvancedKillSwitchActive())
@@ -428,7 +439,7 @@ public static class LocalizationExtensions
     }
 
     public static string GetKillSwitchMode(this ILocalizationProvider localizer, KillSwitchMode mode)
-    { 
+    {
         return mode switch
         {
             KillSwitchMode.Standard => localizer.Get("Settings_Connection_KillSwitch_Standard"),
@@ -440,7 +451,7 @@ public static class LocalizationExtensions
     public static string GetSplitTunnelingMode(this ILocalizationProvider localizer, SplitTunnelingMode mode, bool useShortVersion = false)
     {
         return mode switch
-        { 
+        {
             SplitTunnelingMode.Standard => useShortVersion
                 ? localizer.Get("Settings_Connection_SplitTunneling_Standard_Short")
                 : localizer.Get("Settings_Connection_SplitTunneling_Standard"),

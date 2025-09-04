@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using ProtonVPN.Common.Core.Dns;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Common.Legacy.Vpn;
@@ -38,6 +39,7 @@ public class VpnConfigParameters
     public bool PortForwarding { get; set; }
     public bool IsIpv6Enabled { get; set; }
     public TimeSpan WireGuardConnectionTimeout { get; set; }
+    public DnsBlockMode DnsBlockMode { get; set; }
 
     public VpnConfigParameters()
     {

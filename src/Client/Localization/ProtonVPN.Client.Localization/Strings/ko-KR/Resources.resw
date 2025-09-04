@@ -3509,7 +3509,7 @@ VPN 연결</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
-  <data name="Settings_Protocols_Recommended">
+  <data name="Common_Tags_Recommended">
     <value>추천</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">

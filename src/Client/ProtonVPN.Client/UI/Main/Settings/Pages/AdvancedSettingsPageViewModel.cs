@@ -39,6 +39,7 @@ using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
+using ProtonVPN.Common.Core.Dns;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages;
@@ -77,6 +78,13 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
     [NotifyPropertyChangedFor(nameof(IsStrictNatType))]
     [NotifyPropertyChangedFor(nameof(IsModerateNatType))]
     private NatType _currentNatType;
+
+    [ObservableProperty]
+    [property: SettingName(nameof(ISettings.DnsBlockMode))]
+    [NotifyPropertyChangedFor(nameof(IsNrptDnsBlockMode))]
+    [NotifyPropertyChangedFor(nameof(IsCalloutDnsBlockMode))]
+    [NotifyPropertyChangedFor(nameof(IsDisabledDnsBlockModeVisible))]
+    private DnsBlockMode _currentDnsBlockMode;
 
     public IConnectionProfile? CurrentProfile => ConnectionManager.CurrentConnectionIntent as IConnectionProfile;
 
@@ -145,6 +153,28 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
         ? CurrentProfile!.Settings.IsCustomDnsServersEnabled!.Value
         : Settings.IsCustomDnsServersEnabled;
 
+    public bool IsNrptDnsBlockMode
+    {
+        get => IsDnsBlockMode(DnsBlockMode.Nrpt);
+        set => SetDnsBlockMode(value, DnsBlockMode.Nrpt);
+    }
+
+    public bool IsCalloutDnsBlockMode
+    {
+        get => IsDnsBlockMode(DnsBlockMode.Callout);
+        set => SetDnsBlockMode(value, DnsBlockMode.Callout);
+    }
+
+    public bool IsDisabledDnsBlockMode
+    {
+        get => IsDnsBlockMode(DnsBlockMode.Disabled);
+        set => SetDnsBlockMode(value, DnsBlockMode.Disabled);
+    }
+
+    public bool IsDisabledDnsBlockModeVisible => IsDisabledDnsBlockMode || Settings.DnsBlockMode == DnsBlockMode.Disabled;
+
+    public string Recommended => Localizer.Get("Common_Tags_Recommended").ToUpperInvariant();
+
     public AdvancedSettingsPageViewModel(
         IUrlsBrowser urlsBrowser,
         IFeatureFlagsObserver featureFlagsObserver,
@@ -180,6 +210,7 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
             ChangedSettingArgs.Create(() => Settings.IsIpv6LeakProtectionEnabled, () => IsIpv6LeakProtectionEnabled),
             ChangedSettingArgs.Create(() => Settings.IsLocalAreaNetworkAccessEnabled, () => IsLocalAreaNetworkAccessEnabled),
             ChangedSettingArgs.Create(() => Settings.IsIpv6Enabled, () => IsIpv6Enabled),
+            ChangedSettingArgs.Create(() => Settings.DnsBlockMode, () => CurrentDnsBlockMode),
         ];
     }
 
@@ -219,6 +250,10 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
             case nameof(ISettings.NatType):
                 OnPropertyChanged(nameof(NatTypeSettingsState));
                 break;
+
+            case nameof(ISettings.DnsBlockMode):
+                OnPropertyChanged(nameof(IsDisabledDnsBlockModeVisible));
+                break;
         }
     }
 
@@ -239,6 +274,7 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
         OnPropertyChanged(nameof(CustomDnsServersSettingsState));
         OnPropertyChanged(nameof(NatTypeSettingsState));
         OnPropertyChanged(nameof(SettingsOverriddenTagline));
+        OnPropertyChanged(nameof(Recommended));
     }
 
     protected override void OnRetrieveSettings()
@@ -249,6 +285,7 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
         IsIpv6Enabled = Settings.IsIpv6Enabled;
         CurrentOpenVpnAdapter = Settings.OpenVpnAdapter;
         IsLocalAreaNetworkAccessEnabled = Settings.IsLocalAreaNetworkAccessEnabled;
+        CurrentDnsBlockMode = Settings.DnsBlockMode;
     }
 
     [RelayCommand]
@@ -279,6 +316,12 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
         return _profileEditor.TryRedirectToProfileAsync(Localizer.Get("Settings_Connection_Advanced_NatType"), CurrentProfile!);
     }
 
+    [RelayCommand]
+    private Task TriggerDnsBlockModeUpsellProcessAsync()
+    {
+        return TriggerAdvancedSettingsUpsellProcessAsync(UpsellFeatureType.AllowLanConnections);
+    }
+
     private Task TriggerAdvancedSettingsUpsellProcessAsync(UpsellFeatureType upsellFeatureType)
     {
         return _upsellCarouselWindowActivator.ActivateAsync(upsellFeatureType);
@@ -307,6 +350,19 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
         if (value)
         {
             CurrentOpenVpnAdapter = adapter;
+        }
+    }
+
+    private bool IsDnsBlockMode(DnsBlockMode dnsBlockMode)
+    {
+        return CurrentDnsBlockMode == dnsBlockMode;
+    }
+
+    private void SetDnsBlockMode(bool value, DnsBlockMode dnsBlockMode)
+    {
+        if (value)
+        {
+            CurrentDnsBlockMode = dnsBlockMode;
         }
     }
 }

@@ -172,6 +172,8 @@ public class UserSettingsLog : LogBase
         yield return new(nameof(IUserSettings.IsGatewayInfoBannerDismissed), _settings.IsGatewayInfoBannerDismissed);
 
         yield return new(nameof(IUserSettings.LastSeenWhatsNewOverlayVersion), _settings.LastSeenWhatsNewOverlayVersion);
+
+        yield return new(nameof(IUserSettings.DnsBlockMode), _settings.DnsBlockMode);
     }
 
     private string Serialize(dynamic? value)

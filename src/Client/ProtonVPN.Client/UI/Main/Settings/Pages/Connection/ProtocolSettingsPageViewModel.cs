@@ -47,7 +47,7 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase
 
     public override string Title => Localizer.Get("Settings_Connection_Protocol");
 
-    public string Recommended => Localizer.Get("Settings_Protocols_Recommended").ToUpperInvariant();
+    public string Recommended => Localizer.Get("Common_Tags_Recommended").ToUpperInvariant();
 
     public bool IsSmartProtocol
     {

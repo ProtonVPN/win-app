@@ -37,9 +37,16 @@ public class NrptInvoker : INrptInvoker
         _issueReporter = issueReporter;
     }
 
-    public void CreateRule(string nameServers)
+    /// <returns>If the NRPT rule was added successfully</returns>
+    public bool CreateRule(string nameServers)
     {
-        StaticNrptInvoker.CreateRule(nameServers, OnNrptException, OnError, OnSuccess);
+        if (string.IsNullOrWhiteSpace(nameServers))
+        {
+            _logger.Error<OperatingSystemNrptLog>("No DNS servers when creating NRPT rule. No NRPT rule will be created.");
+            return false;
+        }
+
+        return StaticNrptInvoker.CreateRule(nameServers, OnNrptException, OnError, OnSuccess);
     }
 
     private void OnNrptException(string errorMessage, Exception ex)
@@ -64,8 +71,9 @@ public class NrptInvoker : INrptInvoker
         _logger.Info<OperatingSystemNrptLog>(message);
     }
 
-    public void DeleteRule()
+    /// <returns>If the NRPT rule was removed successfully</returns>
+    public bool DeleteRule()
     {
-        StaticNrptInvoker.DeleteRule(OnNrptException, OnError, OnSuccess);
+        return StaticNrptInvoker.DeleteRule(OnNrptException, OnError, OnSuccess);
     }
 }

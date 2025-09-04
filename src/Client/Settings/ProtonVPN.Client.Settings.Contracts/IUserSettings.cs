@@ -21,6 +21,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Common.Core.Dns;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Settings.Contracts;
@@ -81,4 +82,5 @@ public interface IUserSettings
     bool IsTorInfoBannerDismissed { get; set; }
     bool IsGatewayInfoBannerDismissed { get; set; }
     int LastSeenWhatsNewOverlayVersion { get; set; }
+    DnsBlockMode DnsBlockMode { get; set; }
 }

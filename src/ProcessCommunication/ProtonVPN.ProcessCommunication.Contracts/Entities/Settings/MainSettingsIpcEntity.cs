@@ -18,6 +18,7 @@
  */
 
 using System.Runtime.Serialization;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Dns;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
@@ -66,6 +67,9 @@ public class MainSettingsIpcEntity
 
     [DataMember(Order = 14)]
     public TimeSpan WireGuardConnectionTimeout { get; set; }
+
+    [DataMember(Order = 15)]
+    public DnsBlockModeIpcEntity DnsBlockMode { get; set; }
 
     public MainSettingsIpcEntity()
     {

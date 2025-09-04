@@ -21,11 +21,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Autofac;
+using ProtonVPN.Common.Core.Dns;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.FirewallLogs;
 using ProtonVPN.NetworkFilter;
 using ProtonVPN.Service.Driver;
+using ProtonVPN.Vpn.NRPT;
 using Action = ProtonVPN.NetworkFilter.Action;
 
 namespace ProtonVPN.Service.Firewall;
@@ -40,10 +42,13 @@ internal class Firewall : IFirewall, IStartable
     private readonly IStaticConfiguration _staticConfig;
     private readonly IpLayer _ipLayer;
     private readonly IpFilter _ipFilter;
-    private FirewallParams _lastParams = FirewallParams.Empty;
+    private readonly INrptWrapper _nrptWrapper;
 
-    private readonly List<ServerAddressFilterCollection> _serverAddressFilterCollection = new();
-    private readonly List<FirewallItem> _firewallItems = new();
+    private FirewallParams _lastParams = FirewallParams.Empty;
+    private bool _dnsCalloutFiltersAdded;
+
+    private readonly List<ServerAddressFilterCollection> _serverAddressFilterCollection = [];
+    private readonly List<FirewallItem> _firewallItems = [];
 
     private const int DNS_UDP_PORT = 53;
     private const int DHCP_UDP_PORT = 67;
@@ -53,13 +58,15 @@ internal class Firewall : IFirewall, IStartable
         IDriver calloutDriver,
         IStaticConfiguration staticConfig,
         IpLayer ipLayer,
-        IpFilter ipFilter)
+        IpFilter ipFilter,
+        INrptWrapper nrptWrapper)
     {
         _logger = logger;
+        _calloutDriver = calloutDriver;
         _staticConfig = staticConfig;
         _ipLayer = ipLayer;
         _ipFilter = ipFilter;
-        _calloutDriver = calloutDriver;
+        _nrptWrapper = nrptWrapper;
     }
 
     public bool LeakProtectionEnabled { get; private set; }
@@ -107,11 +114,13 @@ internal class Firewall : IFirewall, IStartable
         {
             _logger.Info<FirewallLog>("Restoring internet");
 
+            _nrptWrapper.DeleteRule();
             _ipFilter.DynamicSublayer.DestroyAllFilters();
             _ipFilter.PermanentSublayer.DestroyAllFilters();
             _serverAddressFilterCollection.Clear();
             _firewallItems.Clear();
             LeakProtectionEnabled = false;
+            _dnsCalloutFiltersAdded = false;
             _calloutDriver.Stop();
             _lastParams = FirewallParams.Empty;
 
@@ -166,14 +175,19 @@ internal class Firewall : IFirewall, IStartable
             RemoveItems(previousInterfaceFilters, _lastParams.SessionType);
         }
 
-        if (firewallParams.AddInterfaceFilters && firewallParams.InterfaceIndex != _lastParams.InterfaceIndex)
+        bool wasDnsBlockModeRecreated = false;
+        if (firewallParams.AddInterfaceFilters && (firewallParams.InterfaceIndex != _lastParams.InterfaceIndex || firewallParams.DnsBlockMode != _lastParams.DnsBlockMode))
         {
             List<Guid> previousGuids = GetFirewallGuidsByTypes(FirewallItemType.PermitInterfaceFilter);
             PermitFromNetworkInterface(4, firewallParams);
             RemoveItems(previousGuids, _lastParams.SessionType);
 
             previousGuids = GetFirewallGuidsByTypes(FirewallItemType.DnsCalloutFilter);
+            _dnsCalloutFiltersAdded = false;
+            _nrptWrapper.DeleteRule();
+            CreateDnsBlock(firewallParams);
             RemoveItems(previousGuids, _lastParams.SessionType);
+            wasDnsBlockModeRecreated = true;
         }
 
         if (firewallParams.DnsLeakOnly != _lastParams.DnsLeakOnly)
@@ -203,6 +217,13 @@ internal class Firewall : IFirewall, IStartable
 
         PermitServerAddress(firewallParams);
         BlockOutsideOpenVpnTraffic(firewallParams);
+
+        // DNS block mode changed but couldn't be applied because the interface was not known, save it as unchanged
+        if (!wasDnsBlockModeRecreated && firewallParams.DnsBlockMode != _lastParams.DnsBlockMode)
+        {
+            firewallParams.DnsBlockMode = _lastParams.DnsBlockMode;
+        }
+
         SetLastParams(firewallParams);
     }
 
@@ -225,6 +246,7 @@ internal class Firewall : IFirewall, IStartable
     private void HandlePermanentStateAfterReboot(FirewallParams firewallParams)
     {
         _calloutDriver.Start();
+        CreateDnsBlock(firewallParams);
         PermitFromNetworkInterface(4, firewallParams);
         PermitServerAddress(firewallParams);
     }
@@ -251,6 +273,7 @@ internal class Firewall : IFirewall, IStartable
     private void EnableDnsLeakProtection(FirewallParams firewallParams)
     {
         BlockDns(3, firewallParams);
+        CreateDnsBlock(firewallParams);
     }
 
     private void EnableBaseLeakProtection(FirewallParams firewallParams)
@@ -345,6 +368,61 @@ internal class Firewall : IFirewall, IStartable
                 firewallParams.Persistent);
             _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
         });
+    }
+
+    private void CreateDnsBlock(FirewallParams firewallParams)
+    {
+        DnsBlockMode dnsBlockMode = firewallParams?.DnsBlockMode ?? DnsBlockMode.Nrpt;
+
+        switch (dnsBlockMode)
+        {
+            case DnsBlockMode.Nrpt:
+                bool isNrptRuleCreated = _nrptWrapper.CreateRule();
+                if (!isNrptRuleCreated)
+                {
+                    _logger.Warn<FirewallLog>("NRPT rule failed to be created. Creating DNS callout filter.");
+                    CreateDnsCalloutFilter(firewallParams);
+                }
+                break;
+            case DnsBlockMode.Callout:
+                _logger.Info<FirewallLog>("DNS block mode is Callout. Creating DNS callout filter.");
+                CreateDnsCalloutFilter(firewallParams);
+                break;
+            case DnsBlockMode.Disabled:
+                _logger.Info<FirewallLog>("DNS block mode is Disabled. No NRPT rule or DNS callout filter will be created.");
+                break;
+        }
+    }
+
+    private void CreateDnsCalloutFilter(FirewallParams firewallParams)
+    {
+        if (_dnsCalloutFiltersAdded || !firewallParams.AddInterfaceFilters)
+        {
+            return;
+        }
+
+        const uint weight = 4;
+
+        Guid guid = _ipFilter.DynamicSublayer.BlockOutsideDns(
+            new DisplayData("ProtonVPN block DNS", "Block outside dns"),
+            Layer.OutboundIPPacketV4,
+            weight,
+            IpFilter.DnsCalloutGuid,
+            firewallParams.InterfaceIndex);
+        _firewallItems.Add(new FirewallItem(FirewallItemType.DnsCalloutFilter, guid));
+
+        _ipLayer.ApplyToIpv4(layer =>
+        {
+            guid = _ipFilter.DynamicSublayer.CreateRemoteUdpPortFilter(
+                new DisplayData("ProtonVPN DNS filter", "Permit UDP 53 port so we can block it at network layer"),
+                Action.HardPermit,
+                layer,
+                weight,
+                DNS_UDP_PORT);
+            _firewallItems.Add(new FirewallItem(FirewallItemType.DnsFilter, guid));
+        });
+
+        _dnsCalloutFiltersAdded = true;
     }
 
     private void PermitDhcp(uint weight, FirewallParams firewallParams)

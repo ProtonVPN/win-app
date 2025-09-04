@@ -24,8 +24,10 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts.Observers;
+using ProtonVPN.Common.Core.Dns;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Dns;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -88,7 +90,8 @@ public class MainSettingsRequestCreator : IMainSettingsRequestCreator
             PortForwarding = _settings.IsPortForwardingEnabled,
             SplitTcp = _settings.IsVpnAcceleratorEnabled,
             OpenVpnAdapter = _entityMapper.Map<OpenVpnAdapter, OpenVpnAdapterIpcEntity>(_settings.OpenVpnAdapter),
-            WireGuardConnectionTimeout = _settings.WireGuardConnectionTimeout
+            WireGuardConnectionTimeout = _settings.WireGuardConnectionTimeout,
+            DnsBlockMode = _entityMapper.Map<DnsBlockMode, DnsBlockModeIpcEntity>(_settings.DnsBlockMode),
         };
     }
 

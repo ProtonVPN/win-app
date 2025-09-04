@@ -3617,7 +3617,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
-  <data name="Settings_Protocols_Recommended">
+  <data name="Common_Tags_Recommended">
     <value>Recomendado</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">

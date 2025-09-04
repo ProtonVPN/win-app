@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using ProtonVPN.Common.Core.Dns;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.KillSwitch;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
@@ -36,6 +37,7 @@ public interface IServiceSettings
     bool IsLocalAreaNetworkAccessEnabled { get; }
     VpnProtocol VpnProtocol { get; }
     OpenVpnAdapter OpenVpnAdapter { get; }
+    DnsBlockMode DnsBlockMode { get; }
 
     event EventHandler<MainSettingsIpcEntity> SettingsChanged;
 

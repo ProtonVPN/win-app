@@ -17,31 +17,33 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Core.Dns;
 using ProtonVPN.NetworkFilter;
 
-namespace ProtonVPN.Service.Firewall
+namespace ProtonVPN.Service.Firewall;
+
+public class FirewallParams
 {
-    public class FirewallParams
+    public static FirewallParams Empty => new()
     {
-        public static FirewallParams Empty => new()
-        {
-            ServerIp = string.Empty,
-        };
+        ServerIp = string.Empty,
+    };
 
-        public string ServerIp { get; set; }
+    public string ServerIp { get; set; }
 
-        public bool DnsLeakOnly { get; set; }
+    public bool DnsLeakOnly { get; set; }
 
-        public uint InterfaceIndex { get; set; }
+    public uint InterfaceIndex { get; set; }
 
-        public bool Persistent { get; set; }
+    public bool Persistent { get; set; }
 
-        public bool AddInterfaceFilters { get; set; }
+    public bool AddInterfaceFilters { get; set; }
 
-        public bool PermanentStateAfterReboot { get; set; }
+    public bool PermanentStateAfterReboot { get; set; }
 
-        public bool IsLocalAreaNetworkAccessEnabled { get; set; }
+    public bool IsLocalAreaNetworkAccessEnabled { get; set; }
 
-        public SessionType SessionType => Persistent ? SessionType.Permanent : SessionType.Dynamic;
-    }
+    public DnsBlockMode DnsBlockMode { get; set; }
+
+    public SessionType SessionType => Persistent ? SessionType.Permanent : SessionType.Dynamic;
 }

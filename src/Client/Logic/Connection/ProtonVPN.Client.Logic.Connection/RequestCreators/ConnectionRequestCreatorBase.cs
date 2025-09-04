@@ -73,6 +73,7 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
             CustomDns = GetCustomDns(isCustomDnsEnabled),
             IsIpv6Enabled = _featureFlagsObserver.IsIpv6SupportEnabled && Settings.IsIpv6Enabled,
             WireGuardConnectionTimeout = settings.WireGuardConnectionTimeout,
+            DnsBlockMode = settings.DnsBlockMode,
         };
     }
 
