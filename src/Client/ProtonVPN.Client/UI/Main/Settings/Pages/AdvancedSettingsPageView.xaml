@@ -301,66 +301,62 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               Style="{StaticResource ToggleSwitchStyle}" />
             </toolkit:SettingsCard>
 
-            <Grid Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}">
-
-                <toolkit:SettingsExpander AutomationProperties.AutomationId="DnsBlockModeSettingsCard"
-                                          Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode')}"
-                                          IsExpanded="True"
-                                          IsTabStop="False"
-                                          Style="{StaticResource SettingsExpanderStyle}"
-                                          Visibility="{x:Bind ViewModel.AreSettingsOverridden, Converter={StaticResource NotBooleanToVisibilityConverter}}">
-                    <toolkit:SettingsExpander.Description>
-                        <TextBlock TextWrapping="Wrap">
-                            <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Description')}" />
-                            <Run/>
-                        </TextBlock>
-                    </toolkit:SettingsExpander.Description>
-                    <toolkit:SettingsExpander.Items>
-                        <RadioButton AutomationProperties.AutomationId="NrptDnsBlockModeRadioButton"
-                                     IsChecked="{x:Bind ViewModel.IsNrptDnsBlockMode, Mode=TwoWay}"
-                                     Style="{StaticResource DnsBlockModeRadioButtonStyle}">
-                            <StackPanel>
-                                <StackPanel Orientation="Horizontal"
-                                            Spacing="8">
-                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Nrpt')}" />
-                                    <custom:TagControl Text="{x:Bind ViewModel.Recommended}" />
-                                </StackPanel>
-                                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                                           Style="{StaticResource CaptionTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description')}"
-                                           TextWrapping="Wrap" />
-                            </StackPanel>
-                        </RadioButton>
-                        <RadioButton AutomationProperties.AutomationId="CalloutDnsBlockModeRadioButton"
-                                     IsChecked="{x:Bind ViewModel.IsCalloutDnsBlockMode, Mode=TwoWay}"
-                                     Style="{StaticResource DnsBlockModeRadioButtonStyle}">
-                            <StackPanel>
+            <toolkit:SettingsExpander AutomationProperties.AutomationId="DnsBlockModeSettingsCard"
+                                      Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode')}"
+                                      IsExpanded="True"
+                                      IsTabStop="False"
+                                      Style="{StaticResource SettingsExpanderStyle}"
+                                      Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <toolkit:SettingsExpander.Description>
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Description')}" />
+                        <Run/>
+                    </TextBlock>
+                </toolkit:SettingsExpander.Description>
+                <toolkit:SettingsExpander.Items>
+                    <RadioButton AutomationProperties.AutomationId="NrptDnsBlockModeRadioButton"
+                                 IsChecked="{x:Bind ViewModel.IsNrptDnsBlockMode, Mode=TwoWay}"
+                                 Style="{StaticResource DnsBlockModeRadioButtonStyle}">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal"
+                                        Spacing="8">
                                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Callout')}" />
-                                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                                           Style="{StaticResource CaptionTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Callout_Description')}"
-                                           TextWrapping="Wrap" />
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Nrpt')}" />
+                                <custom:TagControl Text="{x:Bind ViewModel.Recommended}" />
                             </StackPanel>
-                        </RadioButton>
-                        <RadioButton AutomationProperties.AutomationId="DisabledDnsBlockModeRadioButton"
-                                     IsChecked="{x:Bind ViewModel.IsDisabledDnsBlockMode, Mode=TwoWay}"
-                                     Style="{StaticResource DnsBlockModeRadioButtonStyle}"
-                                     Visibility="{x:Bind ViewModel.IsDisabledDnsBlockMode, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <StackPanel>
-                                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Disabled')}" />
-                                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                                           Style="{StaticResource CaptionTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Disabled_Description')}"
-                                           TextWrapping="Wrap" />
-                            </StackPanel>
-                        </RadioButton>
-                    </toolkit:SettingsExpander.Items>
-                </toolkit:SettingsExpander>
-
-            </Grid>
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description')}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton AutomationProperties.AutomationId="CalloutDnsBlockModeRadioButton"
+                                 IsChecked="{x:Bind ViewModel.IsCalloutDnsBlockMode, Mode=TwoWay}"
+                                 Style="{StaticResource DnsBlockModeRadioButtonStyle}">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Callout')}" />
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Callout_Description')}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton AutomationProperties.AutomationId="DisabledDnsBlockModeRadioButton"
+                                 IsChecked="{x:Bind ViewModel.IsDisabledDnsBlockMode, Mode=TwoWay}"
+                                 Style="{StaticResource DnsBlockModeRadioButtonStyle}"
+                                 Visibility="{x:Bind ViewModel.IsDisabledDnsBlockMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Disabled')}" />
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Disabled_Description')}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
+                </toolkit:SettingsExpander.Items>
+            </toolkit:SettingsExpander>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="DnsBlockModeSettingsCard"
                                   Command="{x:Bind ViewModel.TriggerDnsBlockModeUpsellProcessCommand, Mode=OneTime}"
