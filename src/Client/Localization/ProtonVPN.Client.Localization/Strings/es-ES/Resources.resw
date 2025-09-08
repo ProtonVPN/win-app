@@ -314,6 +314,10 @@
     <value>NUEVO</value>
     <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
+  <data name="Common_Tags_Recommended">
+    <value>Recomendado</value>
+    <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
+  </data>
   <data name="Components_Update_GetMostFromYourVpn">
     <value>Actualiza a la última versión de la aplicación para aprovechar al máximo tu VPN.</value>
   </data>
@@ -2546,9 +2550,6 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   <data name="Home_ConnectionCard_Header_LastConnectedTo">
     <value>Última conexión a</value>
   </data>
-  <data name="Home_ConnectionCard_Header_Recommended">
-    <value>Recomendado</value>
-  </data>
   <data name="Home_ConnectionCard_Landmark">
     <value>Tarjeta de conexión</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
@@ -3251,6 +3252,38 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
     <value>Ingresa la dirección IPv4 o IPv6 del servidor</value>
   </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode">
+    <value>Gestión del bloqueo de DNS</value>
+    <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
+    <value>Usa el método de bloqueo por defecto</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
+    <value>De forma predeterminada, un filtro de llamada rechaza las solicitudes DNS que provienen de fuera del túnel VPN. Este método es tan eficaz como NRPT, pero puede provocar una reducción de la velocidad. El DNS de la red local funcionará.</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
+    <value>Decide cómo Windows maneja las solicitudes DNS que intentan ir fuera del túnel VPN.</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
+    <value>Bloquear solicitudes sin una respuesta negativa</value>
+    <comment>DNS requests are blocked but there is no negative reply to them</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
+    <value>Las solicitudes DNS externas se descartan sin una respuesta negativa. Esto puede resultar en tiempos de carga más largos al acceder a dominios que no existen o que contienen contenido bloqueado (como anuncios o rastreadores).</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
+    <value>Usa la política NRPT de Proton VPN</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
+    <value>Nuestra política NRPT (Tabla de directivas de resolución de nombres) no permite que Windows intente solicitudes DNS externas en absoluto. Esto optimiza las velocidades de la VPN, pero el DNS de la red local no funcionará. Algunos dispositivos Windows no tienen soporte para NRPT.</value>
+    <comment></comment>
+  </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>Soporte IPv6</value>
   </data>
@@ -3616,9 +3649,6 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
-  </data>
-  <data name="Common_Tags_Recommended">
-    <value>Recomendado</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Selecciona automáticamente el mejor protocolo para tu conexión.</value>

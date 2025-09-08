@@ -314,6 +314,10 @@
     <value>NOVÉ</value>
     <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
+  <data name="Common_Tags_Recommended">
+    <value>Odporúčané</value>
+    <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
+  </data>
   <data name="Components_Update_GetMostFromYourVpn">
     <value>Ak chcete VPN využívať naplno, aktualizujte si najnovšiu verziu aplikácie.</value>
   </data>
@@ -2750,9 +2754,6 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   <data name="Home_ConnectionCard_Header_LastConnectedTo">
     <value>Naposledy pripojené k</value>
   </data>
-  <data name="Home_ConnectionCard_Header_Recommended">
-    <value>Odporúčané</value>
-  </data>
   <data name="Home_ConnectionCard_Landmark">
     <value>Pripojovacia karta</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
@@ -3467,6 +3468,38 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
     <value>Zadajte adresu IPv4 alebo IPv6 servera.</value>
   </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode">
+    <value>Spracovanie blokovania DNS</value>
+    <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
+    <value>Použiť predvolenú metódu blokovania</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
+    <value>V predvolenom nastavení filter callout odmieta DNS požiadavky, ktoré prichádzajú zvonku VPN tunela. Táto metóda je rovnako efektívna ako NRPT, ale môže viesť k spomaleniu rýchlosti. Lokálna sieť DNS bude fungovať.</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
+    <value>Rozhodnite, ako má systém Windows spracovávať DNS požiadavky, ktoré sa pokúšajú prejsť mimo VPN tunela.</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
+    <value>Blokovať požiadavky bez negatívnej odpovede</value>
+    <comment>DNS requests are blocked but there is no negative reply to them</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
+    <value>Externé DNS požiadavky sú odmietnuté bez negatívnej odpovede. To môže mať za následok dlhšie časy načítania pri prístupe k doménam, ktoré neexistujú alebo obsahujú blokovaný obsah (ako reklamy alebo sledovacie súbory).</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
+    <value>Použiť NRPT pravidlá služby Proton VPN</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
+    <value>Naše pravidlá NRPT (Name Resolution Policy Table) neumožňujú systému Windows vôbec pokusy o externé DNS požiadavky. Tým sa optimalizuje rýchlosť VPN, ale DNS v lokálnej sieti nebude fungovať. Niektoré zariadenia so systémom Windows nepodporujú NRPT.</value>
+    <comment></comment>
+  </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>IPv6 podpora</value>
   </data>
@@ -3832,9 +3865,6 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
-  </data>
-  <data name="Common_Tags_Recommended">
-    <value>Odporúčané</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Automaticky vyberie najlepší protokol pre vaše pripojenie.</value>

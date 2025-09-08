@@ -314,6 +314,10 @@
     <value>ΝΕΟ</value>
     <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
+  <data name="Common_Tags_Recommended">
+    <value>Προτεινόμενο</value>
+    <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
+  </data>
   <data name="Components_Update_GetMostFromYourVpn">
     <value>Αξιοποιήστε στο έπακρο το VPN σας κάνοντας ενημέρωση στην πιο πρόσφατη έκδοση της εφαρμογής.</value>
   </data>
@@ -2546,9 +2550,6 @@
   <data name="Home_ConnectionCard_Header_LastConnectedTo">
     <value>Τελευταία σύνδεση στη</value>
   </data>
-  <data name="Home_ConnectionCard_Header_Recommended">
-    <value>Προτεινόμενο</value>
-  </data>
   <data name="Home_ConnectionCard_Landmark">
     <value>Κάρτα σύνδεσης</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
@@ -3251,6 +3252,38 @@
   <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
     <value>Εισαγάγετε τη διεύθυνση IPv4 ή IPv6 του διακομιστή</value>
   </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode">
+    <value>Χειρισμός αποκλεισμού DNS</value>
+    <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
+    <value>Χρησιμοποιήστε τη προεπιλεγμένη μέθοδο αποκλεισμού</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
+    <value>Κατά προεπιλογή, ένα φίλτρο κλήσης απορρίπτει τα αιτήματα DNS που προέρχονται από έξω από τη σήραγγα VPN. Αυτή η μέθοδος είναι εξίσου αποτελεσματική με το NRPT, αλλά μπορεί να οδηγήσει σε πιο αργές ταχύτητες. Ο τοπικός DNS δικτύου θα λειτουργεί.</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
+    <value>Αποφασίστε πώς τα Windows διαχειρίζονται τα αιτήματα DNS που προσπαθούν να βγουν έξω από τη σήραγγα VPN.</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
+    <value>Αποκλείστε τις αιτήσεις χωρίς αρνητική απάντηση</value>
+    <comment>DNS requests are blocked but there is no negative reply to them</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
+    <value>Οι εξωτερικές αιτήσεις DNS απορρίπτονται χωρίς αρνητική απάντηση. Αυτό μπορεί να έχει ως αποτέλεσμα μεγαλύτερους χρόνους φόρτωσης κατά την πρόσβαση σε τομείς που δεν υπάρχουν ή περιλαμβάνουν αποκλεισμένο περιεχόμενο (όπως διαφημίσεις ή παρακολουθήσεις).</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
+    <value>Χρησιμοποιήστε την πολιτική NRPT του Proton VPN</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
+    <value>Η πολιτική NRPT (Πίνακας Πολιτικής Επίλυσης Ονομάτων) μας δεν επιτρέπει καθόλου στα Windows να επιχειρούν εξωτερικά αιτήματα DNS. Αυτό βελτιστοποιεί τις ταχύτητες VPN, αλλά το τοπικό DNS δικτύου δε θα λειτουργεί. Ορισμένες συσκευές Windows δεν υποστηρίζουν το NRPT.</value>
+    <comment></comment>
+  </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>Υποστήριξη IPv6</value>
   </data>
@@ -3616,9 +3649,6 @@
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
-  </data>
-  <data name="Common_Tags_Recommended">
-    <value>Προτεινόμενο</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Επιλέγει αυτόματα το καλύτερο πρωτόκολλο για τη σύνδεσή σας.</value>

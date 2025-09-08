@@ -314,6 +314,10 @@
     <value>BARU</value>
     <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
+  <data name="Common_Tags_Recommended">
+    <value>Direkomendasikan</value>
+    <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
+  </data>
   <data name="Components_Update_GetMostFromYourVpn">
     <value>Dapatkan yang terbaik dari VPN Anda dengan memperbarui aplikasi ke versi terbaru.</value>
   </data>
@@ -2444,9 +2448,6 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Home_ConnectionCard_Header_LastConnectedTo">
     <value>Terakhir terhubung ke</value>
   </data>
-  <data name="Home_ConnectionCard_Header_Recommended">
-    <value>Direkomendasikan</value>
-  </data>
   <data name="Home_ConnectionCard_Landmark">
     <value>Kartu koneksi</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
@@ -3143,6 +3144,38 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
     <value>Masukkan alamat IPv4 atau IPv6 server</value>
   </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode">
+    <value>Penanganan pemblokiran DNS</value>
+    <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
+    <value>Gunakan metode pemblokiran bawaan</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
+    <value>Secara bawaan, filter pemanggilan (callout filter) akan menolak permintaan DNS yang berasal dari luar terowongan VPN. Metode ini sama efektifnya dengan NRPT, namun dapat memperlambat koneksi Anda. Dengan menggunakan metode ini, DNS jaringan lokal Anda akan tetap dapat berfungsi sebagaimana mestinya.</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
+    <value>Tentukan bagaimana Windows akan menangani permintaan DNS yang mencoba untuk keluar dari terowongan VPN.</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
+    <value>Blokir permintaan tanpa respons negatif</value>
+    <comment>DNS requests are blocked but there is no negative reply to them</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
+    <value>Permintaan DNS eksternal akan langsung diacuhkan apabila permintaan ini tidak memiliki respons negatif. Hal ini dapat mengakibatkan waktu muat yang lebih lama pada saat mengakses domain yang tidak ada atau yang berisi konten yang diblokir (seperti iklan atau pelacak).</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
+    <value>Gunakan kebijakan NRPT Proton VPN</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
+    <value>Kebijakan NRPT (Name Resolution Policy Table) kami tidak mengizinkan Windows untuk mengajukan permintaan DNS eksternal sama sekali. Hal ini akan mengoptimalkan kecepatan VPN, namun dengan menggunakan metode ini, DNS jaringan lokal Anda tidak akan dapat berfungsi. Perangkat Windows tertentu tidak mendukung NRPT.</value>
+    <comment></comment>
+  </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>Dukungan IPv6</value>
   </data>
@@ -3508,9 +3541,6 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
-  </data>
-  <data name="Common_Tags_Recommended">
-    <value>Direkomendasikan</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Memilih protokol terbaik secara otomatis untuk koneksi Anda.</value>

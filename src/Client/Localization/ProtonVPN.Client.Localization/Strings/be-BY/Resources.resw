@@ -314,6 +314,10 @@
     <value>НОВАЕ</value>
     <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
+  <data name="Common_Tags_Recommended">
+    <value>Рэкамендавана</value>
+    <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
+  </data>
   <data name="Components_Update_GetMostFromYourVpn">
     <value>Атрымайце яшчэ больш ад свайго VPN, абнавіўшы праграму да апошняй версіі.</value>
   </data>
@@ -2750,9 +2754,6 @@
   <data name="Home_ConnectionCard_Header_LastConnectedTo">
     <value>Апошняе падключэнне да</value>
   </data>
-  <data name="Home_ConnectionCard_Header_Recommended">
-    <value>Рэкамендавана</value>
-  </data>
   <data name="Home_ConnectionCard_Landmark">
     <value>Картка падключэння</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
@@ -3467,6 +3468,38 @@ Secure Core</value>
   <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
     <value>Увядзіце адрас сервера IPv4 або IPv6</value>
   </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode">
+    <value>Апрацоўка блакіровак DNS</value>
+    <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
+    <value>Выкарыстоўваць прадвызначаны метад блакавання</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
+    <value>Па прадвызначэнні, фільтр Callout адхіляе DNS-запыты, якія паступаюць звонку VPN-тунэля. Гэты метад гэтак жа эфектыўны, як NRPT, але ён можа прывесці да зніжэння хуткасці. Лакальны сеткавы DNS будзе працаваць.</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
+    <value>Вырашыце, як Windows апрацоўвае запыты DNS, якія спрабуюць выйсці за межы тунэля VPN.</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
+    <value>Блакаваць запыты без адмоўнага адказу</value>
+    <comment>DNS requests are blocked but there is no negative reply to them</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
+    <value>Знешнія DNS-запыты адхіляюцца без адмоўнага адказу. Гэта можа прывесці да павелічэння часу загрузкі пры доступе да даменаў, якія не існуюць або ўтрымліваюць заблакаваны кантэнт (напрыклад, рэкламу або праграмы сачэння).</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
+    <value>Выкарыстоўвайце палітыку NRPT Proton VPN</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
+    <value>Наша палітыка NRPT (табліца палітыкі вырашэння імёнаў) зусім не дазваляе Windows спрабаваць знешнія DNS-запыты. Гэта аптымізуе хуткасць VPN, але лакальны сеткавы DNS не будзе працаваць. Некаторыя прылады Windows не падтрымліваюць NRPT.</value>
+    <comment></comment>
+  </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>Падтрымка IPv6</value>
   </data>
@@ -3832,9 +3865,6 @@ Secure Core</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
-  </data>
-  <data name="Common_Tags_Recommended">
-    <value>Рэкамендавана</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Аўтаматычна выбірае лепшы пратакол для вашага падключэння.</value>

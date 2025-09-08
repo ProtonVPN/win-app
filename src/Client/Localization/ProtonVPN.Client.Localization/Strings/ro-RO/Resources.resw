@@ -314,6 +314,10 @@
     <value>NOU</value>
     <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
+  <data name="Common_Tags_Recommended">
+    <value>Recomandat</value>
+    <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
+  </data>
   <data name="Components_Update_GetMostFromYourVpn">
     <value>Obțineți tot ce poate oferi aplicația VPN actualizând-o la ultima versiune.</value>
   </data>
@@ -2648,9 +2652,6 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
   <data name="Home_ConnectionCard_Header_LastConnectedTo">
     <value>Ultima conexiune la</value>
   </data>
-  <data name="Home_ConnectionCard_Header_Recommended">
-    <value>Recomandat</value>
-  </data>
   <data name="Home_ConnectionCard_Landmark">
     <value>Card conexiune</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
@@ -3359,6 +3360,38 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
     <value>Introduceți adresa IPv4 sau IPv6 a serverului</value>
   </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode">
+    <value>Gestionare blocare DNS</value>
+    <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
+    <value>Utilizare metodă de blocare implicită</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
+    <value>În mod implicit, un filtru de apelare respinge cererile DNS care vin din afara tunelului VPN. Această metodă este la fel de eficientă ca NRPT, dar poate duce la viteze mai mici. DNS-ul rețelei locale va funcționa.</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
+    <value>Decideți cum gestionează Windows solicitările DNS care încearcă să iasă din tunelul VPN.</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
+    <value>Blocare solicitări fără un răspuns negativ</value>
+    <comment>DNS requests are blocked but there is no negative reply to them</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
+    <value>Cererile DNS externe sunt înlăturate fără un răspuns negativ. Acest lucru poate duce la timpi de încărcare mai lungi la accesarea domeniilor care nu există sau care conțin conținut blocat (precum reclame sau instrumente de urmărire).</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
+    <value>Utilizare politica NRPT a Proton VPN</value>
+    <comment></comment>
+  </data>
+  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
+    <value>Politica noastră NRPT (Name Resolution Policy Table - Tabelul politicii de rezoluție a numelor) nu permite sistemului Windows să încerce deloc solicitări DNS externe. Acest lucru optimizează vitezele VPN, dar DNS-ul rețelei locale nu va funcționa. Unele dispozitive Windows nu susțin NRPT.</value>
+    <comment></comment>
+  </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>Asistență IPv6</value>
   </data>
@@ -3724,9 +3757,6 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
-  </data>
-  <data name="Common_Tags_Recommended">
-    <value>Recomandat</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Autoselectează cel mai bun protocol pentru conexiune.</value>
