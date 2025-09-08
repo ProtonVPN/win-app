@@ -132,7 +132,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                         Visibility="{x:Bind IsDragDropEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                         AutomationProperties.AutomationId="DnsItemDragHandle"/>
 
-                                        <StackPanel Grid.Column="0"
+                                        <StackPanel Grid.Column="1"
                                                     Spacing="2"
                                                     Orientation="Horizontal">
                                             <CheckBox Grid.Column="1"
