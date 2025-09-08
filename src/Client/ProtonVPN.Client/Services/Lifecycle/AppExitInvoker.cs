@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -51,9 +51,6 @@ public class AppExitInvoker : IAppExitInvoker
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IUrlsBrowser _urlsBrowser;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
-    private readonly IServiceManager _serviceManager;
-    private readonly IEnumerable<IServiceCaller> _serviceCallers;
-    private readonly IClientControllerListener _clientControllerListener;
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
 
     public AppExitInvoker(ILogger logger,
@@ -65,9 +62,6 @@ public class AppExitInvoker : IAppExitInvoker
         IMainWindowActivator mainWindowActivator,
         IUrlsBrowser urlsBrowser,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
-        IServiceManager serviceManager,
-        IEnumerable<IServiceCaller> serviceCallers,
-        IClientControllerListener clientControllerListener,
         IUIThreadDispatcher uiThreadDispatcher)
     {
         _logger = logger;
@@ -79,9 +73,6 @@ public class AppExitInvoker : IAppExitInvoker
         _mainWindowActivator = mainWindowActivator;
         _urlsBrowser = urlsBrowser;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
-        _serviceManager = serviceManager;
-        _serviceCallers = serviceCallers;
-        _clientControllerListener = clientControllerListener;
         _uiThreadDispatcher = uiThreadDispatcher;
     }
 
@@ -161,13 +152,5 @@ public class AppExitInvoker : IAppExitInvoker
         }
 
         _mainWindowActivator.Exit();
-
-        foreach (IServiceCaller serviceCaller in _serviceCallers)
-        {
-            serviceCaller.Stop();
-        }
-        _clientControllerListener.Stop();
-
-        _serviceManager.Stop();
     }
 }

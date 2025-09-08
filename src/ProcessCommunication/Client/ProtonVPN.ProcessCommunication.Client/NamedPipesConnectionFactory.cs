@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,16 +19,13 @@
 
 using System.IO.Pipes;
 using System.Security.Principal;
-using ProtonVPN.Client.Common.Messages;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.OperatingSystems.Registries.Contracts;
 using ProtonVPN.ProcessCommunication.Common;
 
 namespace ProtonVPN.ProcessCommunication.Client;
 
-public class NamedPipesConnectionFactory : INamedPipesConnectionFactory,
-    IEventMessageReceiver<ApplicationStoppedMessage>
+public class NamedPipesConnectionFactory : INamedPipesConnectionFactory
 {
     private readonly RegistryUri _registryUri = RegistryUri.CreateLocalMachineUri(
         NamedPipeConfiguration.REGISTRY_PATH, NamedPipeConfiguration.REGISTRY_KEY);
@@ -47,11 +44,6 @@ public class NamedPipesConnectionFactory : INamedPipesConnectionFactory,
     public NamedPipesConnectionFactory(IRegistryEditor registryEditor)
     {
         _registryEditor = registryEditor;
-    }
-
-    public void Receive(ApplicationStoppedMessage message)
-    {
-        _cancellationTokenSource.Cancel();
     }
 
     public async ValueTask<Stream> ConnectAsync(SocketsHttpConnectionContext _,

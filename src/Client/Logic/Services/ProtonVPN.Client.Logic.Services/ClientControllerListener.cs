@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,7 +18,6 @@
  */
 
 using System.Text;
-using ProtonVPN.Client.Common.Messages;
 using ProtonVPN.Client.Contracts.ProcessCommunication;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
@@ -33,7 +32,7 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Client.Logic.Services;
 
-public class ClientControllerListener : IClientControllerListener, IEventMessageReceiver<ApplicationStoppedMessage>
+public class ClientControllerListener : IClientControllerListener
 {
     private readonly ILogger _logger;
     private readonly IGrpcClient _grpcClient;
@@ -51,11 +50,6 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
         _grpcClient = grpcClient;
         _eventMessageSender = eventMessageSender;
         _serviceCommunicationErrorHandler = serviceCommunicationErrorHandler;
-    }
-
-    public void Receive(ApplicationStoppedMessage message)
-    {
-        Stop();
     }
 
     public void Stop()
@@ -83,7 +77,10 @@ public class ClientControllerListener : IClientControllerListener, IEventMessage
             }
             catch (Exception ex)
             {
-                _logger.Warn<ProcessCommunicationLog>($"Listener stopped ({listener.Method.Name})", ex);
+                if (!_cancellationTokenSource.IsCancellationRequested)
+                {
+                    _logger.Warn<ProcessCommunicationLog>($"Listener stopped ({listener.Method.Name})", ex);
+                }
             }
 
             if (!_cancellationTokenSource.IsCancellationRequested)

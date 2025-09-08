@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,9 +18,7 @@
  */
 
 using System.Runtime.CompilerServices;
-using ProtonVPN.Client.Common.Messages;
 using ProtonVPN.Client.Contracts.ProcessCommunication;
-using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.Common.Legacy.Extensions;
@@ -32,7 +30,7 @@ using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 
 namespace ProtonVPN.Client.Logic.Services;
 
-public abstract class ServiceCallerBase<TController> : IServiceCaller, IEventMessageReceiver<ApplicationStoppedMessage>
+public abstract class ServiceCallerBase<TController> : IServiceCaller
     where TController : IServiceController
 {
     private static readonly TimeSpan _callTimeout = TimeSpan.FromSeconds(3);
@@ -50,11 +48,6 @@ public abstract class ServiceCallerBase<TController> : IServiceCaller, IEventMes
         Logger = logger;
         _grpcClient = grpcClient;
         _serviceCommunicationErrorHandler = serviceCommunicationErrorHandler;
-    }
-
-    public void Receive(ApplicationStoppedMessage message)
-    {
-        _cancellationTokenSource.Cancel();
     }
 
     protected async Task<Result<T>> InvokeAsync<T>(Func<TController, CancellationToken, Task<T>> serviceCall,
