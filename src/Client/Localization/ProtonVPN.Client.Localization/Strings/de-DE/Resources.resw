@@ -3891,7 +3891,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Erweiterte VPN-Anpassung freischalten</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Verbinde dich mit VPN mit deinem eigenen Domain Name Server (DNS)</value>
+    <value>Verbinde dich mit VPN mit deinem eigenen Domain Name System (DNS)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>Zugriff auf Geräte in deinem lokalen Netzwerk (LAN), während du verbunden bist</value>

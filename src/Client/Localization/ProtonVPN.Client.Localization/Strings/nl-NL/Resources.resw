@@ -3240,7 +3240,7 @@ VPN-verbinding</value>
     <value>Aangepaste DNS-servers inschakelen?</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
-    <value>Maak verbinding met Proton VPN via uw eigen DNS (domain name system). Gebruik alleen DNS-servers die u vertrouwt.</value>
+    <value>Maak verbinding met Proton VPN via uw eigen DNS (Domain Name System). Gebruik alleen DNS-servers die u vertrouwt.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
     <value>We zullen proberen om verbinding te maken met deze servers in volgorde. Als geen van hen werkt, zal de standaard Proton VPN DNS worden gebruikt.</value>
@@ -3891,7 +3891,7 @@ VPN-verbinding</value>
     <value>Ontgrendel geavanceerde VPN-aanpassingen</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Maak verbinding met VPN met uw aangepaste DNS (domain name server)</value>
+    <value>Maak verbinding met VPN met uw aangepaste DNS (Domain Name System)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>Krijg toegang tot apparaten op uw lokale netwerk (LAN) terwijl u verbonden bent</value>

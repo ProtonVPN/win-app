@@ -67,7 +67,7 @@ public class SidebarRobot
     protected Element SplitTunnelingButton = Element.ByName("Split tunneling");
 
     protected Element WorldWideCoverageLabel = Element.ByName("Get worldwide coverage with VPN Plus");
-    protected Element ProfileSidebarUpsellLabel = Element.ByName("Configure your own VPN settings and connect in one click.");
+    protected Element ProfileSidebarUpsellLabel = Element.ByName("Configure your own VPN settings and connect in one click");
     protected Element SecureCoreSidebarUpsellLabel = Element.ByName("Add another layer of encryption to your VPN connection");
     protected Element P2pSidebarUpsellLabel = Element.ByName("Download files through BitTorrent and other file sharing protocols");
     protected Element TorSidebarUpsellLabel = Element.ByName("Use the Tor network over your VPN connection for extra privacy");

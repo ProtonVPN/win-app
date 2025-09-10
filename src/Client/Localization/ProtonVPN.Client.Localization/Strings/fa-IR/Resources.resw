@@ -3081,7 +3081,7 @@ Secure Core</value>
     <value>Work/School</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Configure your own VPN settings and connect in one click.</value>
+    <value>Configure your own VPN settings and connect in one click</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>نوع اتصال</value>
@@ -3448,7 +3448,7 @@ Secure Core</value>
     <value>اعلان‌ها</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Get notified when the port forwarding number changes</value>
+    <value>Get notified when your active port number changes.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>پروتکل</value>
@@ -3891,7 +3891,7 @@ Secure Core</value>
     <value>سفارشی‌سازی پیشرفته VPN را قفل‌گشایی کنید</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Connect to VPN with your custom domain name server (DNS)</value>
+    <value>Connect to VPN with your custom Domain Name System (DNS)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>Access devices on your local area network (LAN) while connected</value>
