@@ -2109,7 +2109,7 @@
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle" xml:space="preserve">
-    <value>Enter the code from your authenticator app.</value>
+    <value>6-digit authentication code</value>
   </data>
   <data name="Login_TwoFactorForm_Title" xml:space="preserve">
     <value>Two-factor authentication</value>

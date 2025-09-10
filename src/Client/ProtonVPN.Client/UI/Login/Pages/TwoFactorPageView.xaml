@@ -87,10 +87,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <StackPanel x:Name="AuthenticatorTwoFactorContainer"
                         Orientation="Vertical"
-                        Spacing="24"
+                        Spacing="8"
                         Visibility="{x:Bind ViewModel.IsAuthenticatorModeSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                <TextBlock Foreground="{ThemeResource TextWeakColor}"
+                <TextBlock Foreground="{ThemeResource TextNormColorBrush}"
                            Style="{ThemeResource BodyTextBlockStyle}"
                            Text="{x:Bind ViewModel.Localizer.Get('Login_TwoFactorForm_Subtitle')}" />
 
