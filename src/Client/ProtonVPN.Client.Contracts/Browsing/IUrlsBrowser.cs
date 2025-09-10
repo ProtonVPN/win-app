@@ -58,6 +58,7 @@ public interface IUrlsBrowser
     string EnableBaseFilteringEngine { get; }
     string ProfileLearnMore { get; }
     string TrafficLearnMore { get; }
+    string TwoFactorAuthLearnMore { get; }
 
     void BrowseTo(string url);
 }

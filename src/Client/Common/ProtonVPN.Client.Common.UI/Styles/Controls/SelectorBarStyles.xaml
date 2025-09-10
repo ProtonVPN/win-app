@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) 2024 Proton AG
+
+This file is part of ProtonVPN.
+
+ProtonVPN is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ProtonVPN is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+                    xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons">
+
+    <ResourceDictionary.ThemeDictionaries>
+
+        <ResourceDictionary x:Key="Light">
+            <StaticResource x:Key="SelectorBarBackground" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="SelectorBarItemPillFill" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="SelectorBarItemDisabledPillFill" ResourceKey="TextWeakColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBorderBrush" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBorderBrushPointerOver" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBorderBrushSelected" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBorderBrushPressed" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBorderBrushDisabled" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="SelectorBarItemForeground" ResourceKey="TextWeakColorBrush" />
+            <StaticResource x:Key="SelectorBarItemForegroundPointerOver" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="SelectorBarItemForegroundSelected" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="SelectorBarItemForegroundPressed" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="SelectorBarItemForegroundDisabled" ResourceKey="TextHintColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBackgroundPointerOver" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBackgroundSelected" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBackgroundPressed" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Dark">
+            <StaticResource x:Key="SelectorBarBackground" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="SelectorBarItemPillFill" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="SelectorBarItemDisabledPillFill" ResourceKey="TextWeakColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBorderBrush" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBorderBrushPointerOver" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBorderBrushSelected" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBorderBrushPressed" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBorderBrushDisabled" ResourceKey="TransparentColorBrush" />
+            <StaticResource x:Key="SelectorBarItemForeground" ResourceKey="TextWeakColorBrush" />
+            <StaticResource x:Key="SelectorBarItemForegroundPointerOver" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="SelectorBarItemForegroundSelected" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="SelectorBarItemForegroundPressed" ResourceKey="TextNormColorBrush" />
+            <StaticResource x:Key="SelectorBarItemForegroundDisabled" ResourceKey="TextHintColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBackgroundPointerOver" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBackgroundSelected" ResourceKey="InteractionDefaultEmptyColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBackgroundPressed" ResourceKey="InteractionDefaultColorBrush" />
+            <StaticResource x:Key="SelectorBarItemBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
+        </ResourceDictionary>
+
+    </ResourceDictionary.ThemeDictionaries>
+
+    <Style TargetType="SelectorBar" />
+    <Style TargetType="SelectorBarItem" />
+
+</ResourceDictionary>

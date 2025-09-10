@@ -462,6 +462,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.OperatingSystems.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.OperatingSystems.NRPT.Installers", "src\OperatingSystems\NameResolutionPolicyTable\ProtonVPN.OperatingSystems.NRPT.Installers\ProtonVPN.OperatingSystems.NRPT.Installers.csproj", "{95985198-4A37-4666-8CCC-A89DE9680F9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSInternals.Win32.WebAuthn", "src\webauthn-interop\Src\DSInternals.Win32.WebAuthn\DSInternals.Win32.WebAuthn.csproj", "{28DC1175-8394-DBD8-95CB-8658411ABE74}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3282,6 +3284,22 @@ Global
 		{95985198-4A37-4666-8CCC-A89DE9680F9B}.Release|x64.Build.0 = Release|Any CPU
 		{95985198-4A37-4666-8CCC-A89DE9680F9B}.Release|x86.ActiveCfg = Release|Any CPU
 		{95985198-4A37-4666-8CCC-A89DE9680F9B}.Release|x86.Build.0 = Release|Any CPU
+		{28DC1175-8394-DBD8-95CB-8658411ABE74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28DC1175-8394-DBD8-95CB-8658411ABE74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28DC1175-8394-DBD8-95CB-8658411ABE74}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{28DC1175-8394-DBD8-95CB-8658411ABE74}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{28DC1175-8394-DBD8-95CB-8658411ABE74}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{28DC1175-8394-DBD8-95CB-8658411ABE74}.Debug|x64.Build.0 = Debug|Any CPU
+		{28DC1175-8394-DBD8-95CB-8658411ABE74}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{28DC1175-8394-DBD8-95CB-8658411ABE74}.Debug|x86.Build.0 = Debug|Any CPU
+		{28DC1175-8394-DBD8-95CB-8658411ABE74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28DC1175-8394-DBD8-95CB-8658411ABE74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28DC1175-8394-DBD8-95CB-8658411ABE74}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{28DC1175-8394-DBD8-95CB-8658411ABE74}.Release|ARM64.Build.0 = Release|Any CPU
+		{28DC1175-8394-DBD8-95CB-8658411ABE74}.Release|x64.ActiveCfg = Release|Any CPU
+		{28DC1175-8394-DBD8-95CB-8658411ABE74}.Release|x64.Build.0 = Release|Any CPU
+		{28DC1175-8394-DBD8-95CB-8658411ABE74}.Release|x86.ActiveCfg = Release|Any CPU
+		{28DC1175-8394-DBD8-95CB-8658411ABE74}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3479,6 +3497,7 @@ Global
 		{460E30B5-5B1B-42B9-99D1-6E28A6F389C9} = {16886FE9-5622-44A1-9E7B-E4E48E9416E7}
 		{F663E1DE-419C-4826-96F1-D8F7357E081A} = {16886FE9-5622-44A1-9E7B-E4E48E9416E7}
 		{95985198-4A37-4666-8CCC-A89DE9680F9B} = {16886FE9-5622-44A1-9E7B-E4E48E9416E7}
+		{28DC1175-8394-DBD8-95CB-8658411ABE74} = {FF5FB6BE-805A-42BE-BC10-54882121FD3B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CFD3EA5-ADCA-48F0-9E3F-BBC76CCBF1C2}

@@ -30,12 +30,17 @@ public interface IUserAuthenticator
     bool IsLoggedIn { get; }
     bool? IsAutoLogin { get; }
 
+    bool IsTwoFactorAuthenticatorModeEnabled { get; }
+    bool IsTwoFactorSecurityKeyModeEnabled { get; }
+
     bool HasAuthenticatedSessionData();
 
     Task<SsoAuthResult> StartSsoAuthAsync(string username);
     Task<AuthResult> CompleteSsoAuthAsync(string ssoResponseToken);
     Task<AuthResult> LoginUserAsync(string username, SecureString password);
     Task<AuthResult> SendTwoFactorCodeAsync(string code);
+    Task<AuthResult> AuthenticateWithSecurityKeyAsync();
+
     Task AutoLoginUserAsync();
     Task LogoutAsync(LogoutReason reason);
     void CancelAuth();

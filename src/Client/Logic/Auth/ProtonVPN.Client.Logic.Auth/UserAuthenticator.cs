@@ -66,6 +66,10 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
     public bool IsLoggedIn => AuthenticationStatus == AuthenticationStatus.LoggedIn;
     public bool? IsAutoLogin { get; private set; }
 
+    public bool IsTwoFactorAuthenticatorModeEnabled => _srpAuthenticator.IsTwoFactorAuthenticatorModeEnabled;
+
+    public bool IsTwoFactorSecurityKeyModeEnabled => _srpAuthenticator.IsTwoFactorSecurityKeyModeEnabled;
+
     public UserAuthenticator(
         ILogger logger,
         IApiClient apiClient,
@@ -257,6 +261,31 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
             HandleAuthCancellation();
 
             return AuthResult.Fail(AuthError.TwoFactorCancelled);
+        }
+    }
+
+    public async Task<AuthResult> AuthenticateWithSecurityKeyAsync()
+    {
+        SetAuthenticationStatus(AuthenticationStatus.LoggingIn);
+        ResetCancellationTokenIfCancelled();
+
+        try
+        {
+            AuthResult result = await _srpAuthenticator.AuthenticateWithSecurityKeyAsync(_cts.Token);
+
+            return result.Failure
+                ? result
+                : await CompleteLoginAsync(isAutoLogin: false, isToSendLoggedInEvent: true);
+        }
+        catch (Exception) when (_cts.IsCancellationRequested)
+        {
+            HandleAuthCancellation();
+
+            return AuthResult.Fail(AuthError.TwoFactorCancelled);
+        }
+        catch (Exception e)
+        {
+            return AuthResult.Fail(AuthError.TwoFactorAuthFailed, e.Message);
         }
     }
 

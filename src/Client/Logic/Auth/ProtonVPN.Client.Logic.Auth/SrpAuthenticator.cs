@@ -18,8 +18,10 @@
  */
 
 using System.Security;
+using DSInternals.Win32.WebAuthn;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
+using ProtonVPN.Api.Contracts.Auth.Fido2;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
@@ -32,10 +34,22 @@ public class SrpAuthenticator : AuthenticatorBase, ISrpAuthenticator
 {
     private const string SRP_LOGIN_INTENT = "Proton";
 
+    private const int TYPE_2FA_TOTP = 1;
+    private const int TYPE_2FA_FIDO2 = 2;
+
     private readonly IApiClient _apiClient;
     private readonly IUnauthSessionManager _unauthSessionManager;
 
     private AuthResponse? _authResponse;
+
+    public bool IsTwoFactorAuthenticatorModeEnabled => _authResponse != null
+                                                    && (_authResponse.TwoFactor.Enabled & TYPE_2FA_TOTP) != 0;
+    public bool IsTwoFactorSecurityKeyModeEnabled => _authResponse != null
+                                                  && (_authResponse.TwoFactor.Enabled & TYPE_2FA_FIDO2) != 0;
+
+    private static readonly Lazy<WebAuthnApi> _webAuthnApiInstance = new(() => new WebAuthnApi());
+
+    private static WebAuthnApi WebAuthnApiInstance => _webAuthnApiInstance.Value;
 
     public SrpAuthenticator(
         IApiClient apiClient,
@@ -92,7 +106,7 @@ public class SrpAuthenticator : AuthenticatorBase, ISrpAuthenticator
                 return AuthResult.Fail(AuthError.InvalidServerProof);
             }
 
-            if ((response.Value.TwoFactor.Enabled & 1) != 0)
+            if (response.Value.TwoFactor.Enabled != 0)
             {
                 _authResponse = response.Value;
                 return AuthResult.Fail(AuthError.TwoFactorRequired);
@@ -111,15 +125,64 @@ public class SrpAuthenticator : AuthenticatorBase, ISrpAuthenticator
     public async Task<AuthResult> SendTwoFactorCodeAsync(string code, CancellationToken cancellationToken)
     {
         TwoFactorRequest request = new() { TwoFactorCode = code };
-        ApiResponseResult<BaseResponse> response =
-            await _apiClient.GetTwoFactorAuthResponse(request, _authResponse?.AccessToken ?? string.Empty,
-                _authResponse?.UniqueSessionId ?? string.Empty, cancellationToken);
+
+        ApiResponseResult<BaseResponse> response = await _apiClient.GetTwoFactorAuthResponse(
+            request, 
+            _authResponse?.AccessToken ?? string.Empty,
+            _authResponse?.UniqueSessionId ?? string.Empty, 
+            cancellationToken);
 
         if (response.Failure)
         {
             return AuthResult.Fail(response.Value.Code == ResponseCodes.IncorrectLoginCredentials
                 ? AuthError.IncorrectTwoFactorCode
                 : AuthError.TwoFactorAuthFailed);
+        }
+
+        SaveAuthSessionDetails(_authResponse);
+
+        return AuthResult.Ok();
+    }
+
+    public async Task<AuthResult> AuthenticateWithSecurityKeyAsync(CancellationToken cancellationToken)
+    {
+        if (_authResponse == null || _authResponse.TwoFactor.Fido2 == null)
+        {
+            return AuthResult.Fail(AuthError.TwoFactorAuthFailed);
+        }
+
+        List<PublicKeyCredentialDescriptor> allowCredentials = _authResponse.TwoFactor.Fido2.AuthenticationOptions.PublicKey.AllowCredentials
+            .Select(ac => new PublicKeyCredentialDescriptor(ac.Id.ToArray())).ToList();
+        byte[] challenge = _authResponse.TwoFactor.Fido2.AuthenticationOptions.PublicKey.Challenge.ToArray();
+
+        AuthenticatorAssertionResponse authResult = await WebAuthnApiInstance.AuthenticatorGetAssertionAsync(_authResponse.TwoFactor.Fido2.AuthenticationOptions.PublicKey.RpId, challenge,
+            UserVerificationRequirement.Discouraged,
+            AuthenticatorAttachment.Any,
+            allowCredentials: allowCredentials,
+            cancellationToken: cancellationToken);
+
+        TwoFactorRequest request = new()
+        {
+            TwoFactorCode = null,
+            Fido2 = new Fido2Request()
+            {
+                AuthenticationOptions = _authResponse.TwoFactor.Fido2.AuthenticationOptions,
+                ClientData = Convert.ToBase64String(authResult.ClientDataJson),
+                AuthenticatorData = Convert.ToBase64String(authResult.AuthenticatorData),
+                Signature = Convert.ToBase64String(authResult.Signature),
+                CredentialId = authResult.CredentialId.ToList(),
+            },
+        };
+
+        ApiResponseResult<BaseResponse> response = await _apiClient.GetTwoFactorAuthResponse(
+            request,
+            _authResponse?.AccessToken ?? string.Empty,
+            _authResponse?.UniqueSessionId ?? string.Empty,
+            cancellationToken);
+
+        if (response.Failure)
+        {
+            return AuthResult.Fail(AuthError.TwoFactorAuthFailed);
         }
 
         SaveAuthSessionDetails(_authResponse);

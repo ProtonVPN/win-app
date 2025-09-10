@@ -25,6 +25,13 @@ namespace ProtonVPN.Client.Logic.Auth;
 
 public interface ISrpAuthenticator
 {
+    bool IsTwoFactorAuthenticatorModeEnabled { get; }
+
+    bool IsTwoFactorSecurityKeyModeEnabled { get; }
+
     Task<AuthResult> LoginUserAsync(string username, SecureString password, CancellationToken cancellationToken);
+
     Task<AuthResult> SendTwoFactorCodeAsync(string code, CancellationToken cancellationToken);
+
+    Task<AuthResult> AuthenticateWithSecurityKeyAsync(CancellationToken cancellationToken);
 }

@@ -2117,6 +2117,18 @@
   <data name="Login_TwoFactor_EnterCode" xml:space="preserve">
     <value>Enter your code</value>
   </data>
+  <data name="Login_TwoFactor_Authenticator" xml:space="preserve">
+    <value>Authenticator app</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey" xml:space="preserve">
+    <value>Security key</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description" xml:space="preserve">
+    <value>Insert the U2F or FIDO key linked to your Proton Account.</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable" xml:space="preserve">
+    <value>No known two-factor authentication methods found.</value>
+  </data>
   <data name="SignIn_Form_ForgotUsername" xml:space="preserve">
     <value>Forgot username</value>
     <comment>Help button at the bottom of the login window</comment>

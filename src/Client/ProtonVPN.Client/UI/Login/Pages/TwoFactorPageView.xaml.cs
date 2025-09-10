@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,12 +18,12 @@
  */
 
 using System.Text;
-using Windows.System;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
-using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Contracts.Services.Edition;
+using ProtonVPN.Client.Core.Bases;
+using Windows.System;
 
 namespace ProtonVPN.Client.UI.Login.Pages;
 
@@ -64,6 +64,25 @@ public sealed partial class TwoFactorPageView : IContextAware
         FirstDigit.Loaded += OnFirstDigitLoaded;
     }
 
+    public string GetTwoFactorCode()
+    {
+        StringBuilder sb = new();
+        foreach (UIElement? child in DigitsContainer.Children)
+        {
+            if (child is TextBox textBox)
+            {
+                sb.Append(textBox.Text);
+            }
+        }
+
+        return sb.ToString();
+    }
+
+    public object GetContext()
+    {
+        return ViewModel;
+    }
+
     private void OnFirstDigitLoaded(object sender, RoutedEventArgs e)
     {
         ResetForm();
@@ -85,20 +104,6 @@ public sealed partial class TwoFactorPageView : IContextAware
             }
         }
         TwoFactorCode = GetTwoFactorCode();
-    }
-
-    public string GetTwoFactorCode()
-    {
-        StringBuilder sb = new();
-        foreach (UIElement? child in DigitsContainer.Children)
-        {
-            if (child is TextBox textBox)
-            {
-                sb.Append(textBox.Text);
-            }
-        }
-
-        return sb.ToString();
     }
 
     private void OnDigitChanged(object sender, TextChangedEventArgs e)
@@ -153,9 +158,9 @@ public sealed partial class TwoFactorPageView : IContextAware
     private void SubmitTwoFactorCodeIfPossible()
     {
         string twoFactorCode = TwoFactorCode;
-        if (AuthenticateButton.Command.CanExecute(twoFactorCode) && twoFactorCode.Length == 6)
+        if (AuthenticateWithCodeButton.Command.CanExecute(twoFactorCode) && twoFactorCode.Length == 6)
         {
-            AuthenticateButton.Command.Execute(twoFactorCode);
+            AuthenticateWithCodeButton.Command.Execute(twoFactorCode);
         }
     }
 
@@ -197,7 +202,7 @@ public sealed partial class TwoFactorPageView : IContextAware
     private string GetNumberFromVirtualKey(VirtualKey key)
     {
         int keyInt = (int)key;
-        return key >= VirtualKey.Number0 && key <= VirtualKey.Number9
+        return key is >= VirtualKey.Number0 and <= VirtualKey.Number9
             ? (keyInt - (int)VirtualKey.Number0).ToString()
             : (keyInt - (int)VirtualKey.NumberPad0).ToString();
     }
@@ -216,7 +221,7 @@ public sealed partial class TwoFactorPageView : IContextAware
         clipboardText = clipboardText.Substring(0, Math.Min(clipboardText.Length, NUM_OF_DIGITS));
 
         if (string.IsNullOrEmpty(clipboardText))
-        { 
+        {
             return;
         }
 
@@ -250,11 +255,6 @@ public sealed partial class TwoFactorPageView : IContextAware
     private void OnTwoFactorSuccess(object? sender, EventArgs e)
     {
         ClearAllDigits();
-    }
-
-    public object GetContext()
-    {
-        return ViewModel;
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)

@@ -94,7 +94,7 @@ public class ApiClient : BaseApiClient, IApiClient
         string uid,
         CancellationToken cancellationToken)
     {
-        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth/2fa", accessToken, uid);
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth/v4/2fa", accessToken, uid);
         request.Content = GetJsonContent(twoFactorRequest);
         return await SendRequest<BaseResponse>(request, cancellationToken, "Get two factor auth info");
     }

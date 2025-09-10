@@ -768,6 +768,7 @@
         <None Remove="Assets\Illustrations\routing-thumbnail.png" />
         <None Remove="Assets\Illustrations\secure-core-countries.png" />
         <None Remove="Assets\Illustrations\secure-core-thumbnail.png" />
+        <None Remove="Assets\Illustrations\security-key-2fa.png" />
         <None Remove="Assets\Illustrations\server-load-thumbnail.png" />
         <None Remove="Assets\Illustrations\speed-thumbnail.png" />
         <None Remove="Assets\Illustrations\split-tunneling-off.png" />
@@ -920,6 +921,9 @@
         <Page Update="Styles\Controls\HyperlinkStyles.xaml">
             <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
             <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Styles\Controls\SelectorBarStyles.xaml">
+          <SubType>Designer</SubType>
         </Page>
         <Page Update="Styles\Controls\PivotStyles.xaml">
             <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
@@ -2083,6 +2087,9 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\secure-core-thumbnail.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Illustrations\security-key-2fa.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Illustrations\server-load-thumbnail.png">

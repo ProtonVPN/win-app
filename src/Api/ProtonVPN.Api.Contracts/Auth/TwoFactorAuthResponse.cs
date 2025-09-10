@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,10 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Api.Contracts.Auth
+using Newtonsoft.Json;
+using ProtonVPN.Api.Contracts.Auth.Fido2;
+
+namespace ProtonVPN.Api.Contracts.Auth;
+
+public class TwoFactorAuthResponse
 {
-    public class TwoFactorAuthResponse
-    {
-        public int Enabled { get; set; }
-    }
+    public int Enabled { get; set; }
+
+    [JsonProperty(PropertyName = "TOTP")]
+    public int Totp { get; set; }
+
+    [JsonProperty(PropertyName = "FIDO2")]
+    public Fido2AuthResponse Fido2 { get; set; }
 }

@@ -4,3 +4,7 @@
 [submodule "src/ProtonVPN.LocalAgent"]
 	path = src/ProtonVPN.LocalAgent
 	url = https://github.com/ProtonVPN/go-vpn-lib.git
+[submodule "src/webauthn-interop"]
+	path = src/webauthn-interop
+	url = https://github.com/ProtonVPN/webauthn-interop.git
+	branch = main
