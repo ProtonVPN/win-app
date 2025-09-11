@@ -233,6 +233,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Hyperlink NavigateUri="https://github.com/dotMorten/WinUIEx/blob/main/LICENSE">The MIT License</Hyperlink>
                 <Run/>
             </Paragraph>
+            <Paragraph TextIndent="20">
+                •
+                <Hyperlink NavigateUri="https://github.com/MichaelGrafnetter/webauthn-interop">webauthn-interop</Hyperlink> by Michael Grafnetter |
+                <Hyperlink NavigateUri="https://github.com/MichaelGrafnetter/webauthn-interop/blob/main/LICENSE">The MIT License</Hyperlink>
+                <Run/>
+            </Paragraph>
         </RichTextBlock>
     </custom:SettingsPageContentControl>
 </Page>
