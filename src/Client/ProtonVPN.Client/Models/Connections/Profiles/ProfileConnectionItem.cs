@@ -29,7 +29,6 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts;
@@ -63,7 +62,7 @@ public partial class ProfileConnectionItem : ConnectionItemBase
 
     public override VpnTriggerDimension VpnTriggerDimension { get; } = VpnTriggerDimension.Profile;
 
-    public string? ExitCountryCode => (Profile.Location as CountryLocationIntent)?.CountryCode;
+    public string? ExitCountryCode => Profile.Location.GetCountryCode();
 
     public bool IsTor => Profile.Feature is TorFeatureIntent;
 

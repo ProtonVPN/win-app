@@ -20,12 +20,13 @@
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
 
 namespace ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 
 public class ConnectionProfile : ConnectionIntentBase, IConnectionProfile
 {
-    public static IConnectionProfile Default => new ConnectionProfile(CountryLocationIntent.Fastest);
+    public static IConnectionProfile Default => new ConnectionProfile(MultiCountryLocationIntent.Default);
 
     public Guid Id { get; }
 

@@ -30,23 +30,24 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
 
 namespace ProtonVPN.Client.Models.Connections.Countries;
 
 public class GenericCountryLocationItem : LocationItemBase
 {
     public CountriesConnectionType ConnectionType { get; }
-    public ConnectionIntentKind IntentKind { get; }
+    public SelectionStrategy Strategy { get; }
 
     public bool ExcludeMyCountry { get; }
 
-    public FlagType FlagType => IntentKind switch
+    public FlagType FlagType => Strategy switch
     {
-        ConnectionIntentKind.Random => FlagType.Random,
+        SelectionStrategy.Random => FlagType.Random,
         _ => FlagType.Fastest,
     };
 
-    public override string Header => Localizer.GetCountryName(string.Empty, IntentKind, ExcludeMyCountry);
+    public override string Header => Localizer.GetCountryName(string.Empty, Strategy, ExcludeMyCountry);
 
     public override bool IsCounted => false;
 
@@ -77,13 +78,13 @@ public class GenericCountryLocationItem : LocationItemBase
                 ? Localizer.Get("Connections_Country_UnderMaintenance")
                 : null;
 
-    protected override string AutomationName => IntentKind switch
+    protected override string AutomationName => Strategy switch
     {
-        ConnectionIntentKind.Fastest when ExcludeMyCountry => "FastestExcludingMyCountry",
-        ConnectionIntentKind.Random when ExcludeMyCountry => "RandomExcludingMyCountry",
-        ConnectionIntentKind.Fastest => "Fastest",
-        ConnectionIntentKind.Random => "Random",
-        _ => throw new NotImplementedException($"Intent kind '{IntentKind}' is not supported."),
+        SelectionStrategy.Fastest when ExcludeMyCountry => "FastestExcludingMyCountry",
+        SelectionStrategy.Random when ExcludeMyCountry => "RandomExcludingMyCountry",
+        SelectionStrategy.Fastest => "Fastest",
+        SelectionStrategy.Random => "Random",
+        _ => throw new NotImplementedException($"Intent kind '{Strategy}' is not supported."),
     };
 
     public bool IsSecureCore => FeatureIntent is SecureCoreFeatureIntent;
@@ -94,7 +95,7 @@ public class GenericCountryLocationItem : LocationItemBase
         IConnectionManager connectionManager,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         CountriesConnectionType connectionType,
-        ConnectionIntentKind intentKind,
+        SelectionStrategy intentKind,
         bool excludeMyCountry,
         bool isSearchItem)
         : base(localizer,
@@ -104,10 +105,10 @@ public class GenericCountryLocationItem : LocationItemBase
                isSearchItem)
     {
         ConnectionType = connectionType;
-        IntentKind = intentKind;
+        Strategy = intentKind;
         ExcludeMyCountry = excludeMyCountry;
 
-        LocationIntent = new CountryLocationIntent(IntentKind, ExcludeMyCountry);
+        LocationIntent = MultiCountryLocationIntent.From(Strategy, ExcludeMyCountry);
         FeatureIntent = ConnectionType switch
         {
             CountriesConnectionType.SecureCore => new SecureCoreFeatureIntent(),

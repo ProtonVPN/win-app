@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,41 +17,36 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Gateways;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Common.Core.Geographical;
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.GatewayServers;
 
-public class CityLocationIntent : StateLocationIntent
+public abstract class GatewayServerLocationIntentBase : LocationIntentBase
 {
-    public string City { get; }
+    public SingleGatewayLocationIntent Gateway { get; }
 
-    public CityLocationIntent(string countryCode, string state, string city)
-        : base(countryCode, state)
-    {
-        City = city;
-    }
+    public override bool IsForPaidUsersOnly => false;
 
-    public CityLocationIntent(string countryCode, string city)
-        : base(countryCode)
+    protected GatewayServerLocationIntentBase(SingleGatewayLocationIntent gateway)
     {
-        City = city;
+        Gateway = gateway ?? throw new ArgumentNullException(nameof(gateway));
     }
 
     public override bool IsSameAs(ILocationIntent? intent)
     {
         return base.IsSameAs(intent)
-            && intent is CityLocationIntent cityIntent
-            && City == cityIntent.City;
+            && intent is GatewayServerLocationIntentBase gatewayServerIntent
+            && Gateway.IsSameAs(gatewayServerIntent.Gateway);
     }
 
-    public override bool IsSupported(Server server, DeviceLocation? deviceLocation)
+    public override bool IsSupported(Server server)
     {
-        return base.IsSupported(server, deviceLocation) && server.City == City;
+        return Gateway.IsSupported(server);
     }
 
     public override string ToString()
     {
-        return $"{base.ToString()}{(string.IsNullOrEmpty(City) ? string.Empty : $" - {City}")}";
+        return Gateway.ToString();
     }
 }

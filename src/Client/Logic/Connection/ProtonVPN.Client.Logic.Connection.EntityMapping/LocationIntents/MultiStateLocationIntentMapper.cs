@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,40 +18,37 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.States;
 using ProtonVPN.Client.Logic.Connection.Contracts.SerializableEntities.Intents;
+using ProtonVPN.Client.Logic.Connection.EntityMapping.Extensions;
 using ProtonVPN.EntityMapping.Contracts;
 
 namespace ProtonVPN.Client.Logic.Connection.EntityMapping.LocationIntents;
 
-public class CountryLocationIntentMapper : IMapper<CountryLocationIntent, SerializableLocationIntent>
+public class MultiStateLocationIntentMapper : IMapper<MultiStateLocationIntent, SerializableLocationIntent>
 {
-    public SerializableLocationIntent Map(CountryLocationIntent leftEntity)
+    public SerializableLocationIntent Map(MultiStateLocationIntent leftEntity)
     {
         return leftEntity is null
             ? null
             : new SerializableLocationIntent()
             {
-                TypeName = nameof(CountryLocationIntent),
-                CountryCode = leftEntity.CountryCode,
-                Kind = leftEntity.Kind.ToString(),
-                IsToExcludeMyCountry = leftEntity.IsToExcludeMyCountry,
+                TypeName = nameof(MultiStateLocationIntent),
+                Strategy = leftEntity.Strategy,
+                CountryCode = leftEntity.Country.CountryCode,
+                States = leftEntity.StateNames.ToList()
             };
     }
 
-    public CountryLocationIntent Map(SerializableLocationIntent rightEntity)
+    public MultiStateLocationIntent Map(SerializableLocationIntent rightEntity)
     {
-        if (rightEntity is null)
-        {
-            return null;
-        }
+        SelectionStrategy strategy = rightEntity.GetSelectionStrategy();
 
-        if (string.IsNullOrWhiteSpace(rightEntity.Kind) || !Enum.TryParse(rightEntity.Kind, out ConnectionIntentKind kind))
-        {
-            kind = ConnectionIntentKind.Fastest;
-        }
-
-        return new CountryLocationIntent(countryCode: rightEntity.CountryCode, kind,
-            isToExcludeMyCountry: rightEntity.IsToExcludeMyCountry ?? false);
+        return rightEntity is null
+            ? null
+            : MultiStateLocationIntent.From(
+                countryCode: rightEntity.CountryCode,
+                stateNames: rightEntity.States ?? [],
+                strategy: strategy);
     }
 }

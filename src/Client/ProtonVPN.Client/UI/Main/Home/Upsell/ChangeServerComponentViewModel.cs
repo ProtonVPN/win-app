@@ -25,8 +25,11 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.FreeServers;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Services.Upselling;
 using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
@@ -88,11 +91,11 @@ public partial class ChangeServerComponentViewModel : ActivatableViewModelBase,
     [RelayCommand(CanExecute = nameof(CanChangeServer))]
     private Task ChangeServerAsync()
     {
-        string? logicalServerId = _connectionManager.CurrentConnectionDetails?.ServerId;
+        Server? currentServer = _connectionManager.CurrentConnectionDetails?.Server;
 
-        IConnectionIntent connectionIntent = logicalServerId is null
+        IConnectionIntent connectionIntent = currentServer is null
             ? ConnectionIntent.FreeDefault
-            : new ConnectionIntent(new FreeServerLocationIntent(logicalServerId));
+            : new ConnectionIntent(FreeServerLocationIntent.Random(ServerInfo.From(currentServer.Id, currentServer.Name)));
 
         return _connectionManager.ConnectAsync(VpnTriggerDimension.ChangeServer, connectionIntent);
     }

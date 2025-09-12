@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,34 +17,38 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.GatewayServers;
 using ProtonVPN.Client.Logic.Connection.Contracts.SerializableEntities.Intents;
+using ProtonVPN.Client.Logic.Connection.EntityMapping.Extensions;
 using ProtonVPN.EntityMapping.Contracts;
 
 namespace ProtonVPN.Client.Logic.Connection.EntityMapping.LocationIntents;
 
-public class CityLocationIntentMapper : IMapper<CityLocationIntent, SerializableLocationIntent>
+public class MultiGatewayServerLocationIntentMapper : IMapper<MultiGatewayServerLocationIntent, SerializableLocationIntent>
 {
-    public SerializableLocationIntent Map(CityLocationIntent leftEntity)
+    public SerializableLocationIntent Map(MultiGatewayServerLocationIntent leftEntity)
     {
         return leftEntity is null
             ? null
             : new SerializableLocationIntent()
             {
-                TypeName = nameof(CityLocationIntent),
-                CountryCode = leftEntity.CountryCode,
-                State = leftEntity.State,
-                City = leftEntity.City,
+                TypeName = nameof(MultiGatewayServerLocationIntent),
+                Strategy = leftEntity.Strategy,
+                GatewayName = leftEntity.Gateway.GatewayName,
+                GatewayServers = leftEntity.Servers.ToList(),
             };
     }
 
-    public CityLocationIntent Map(SerializableLocationIntent rightEntity)
+    public MultiGatewayServerLocationIntent Map(SerializableLocationIntent rightEntity)
     {
+        SelectionStrategy strategy = rightEntity.GetSelectionStrategy();
+
         return rightEntity is null
             ? null
-            : new CityLocationIntent(
-                countryCode: rightEntity.CountryCode,
-                state: rightEntity.State,
-                city: rightEntity.City);
+            : MultiGatewayServerLocationIntent.From(
+                gatewayName: rightEntity.GatewayName,
+                servers: rightEntity.GatewayServers ?? [],
+                strategy: strategy);
     }
 }

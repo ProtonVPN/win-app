@@ -234,6 +234,26 @@
   <data name="Gateway_Random" xml:space="preserve">
     <value>Random gateway</value>
   </data>
+  <data name="State_Fastest" xml:space="preserve">
+    <value>Fastest state</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random" xml:space="preserve">
+    <value>Random state</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="City_Fastest" xml:space="preserve">
+    <value>Fastest city</value>
+  </data>
+  <data name="City_Random" xml:space="preserve">
+    <value>Random city</value>
+  </data>
+  <data name="Server_Fastest" xml:space="preserve">
+    <value>Fastest server</value>
+  </data>
+  <data name="Server_Random" xml:space="preserve">
+    <value>Random server</value>
+  </data>
   <data name="Profiles_Page_Title" xml:space="preserve">
     <value>Profiles</value>
   </data>

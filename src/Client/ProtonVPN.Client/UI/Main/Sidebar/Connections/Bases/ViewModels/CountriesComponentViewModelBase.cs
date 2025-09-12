@@ -75,11 +75,11 @@ public abstract partial class CountriesComponentViewModelBase : ActivatableViewM
     {
         IEnumerable<ConnectionItemBase> genericCountries =
         [
-            LocationItemFactory.GetGenericCountry(ConnectionType, ConnectionIntentKind.Fastest, false),
+            LocationItemFactory.GetGenericCountry(ConnectionType, SelectionStrategy.Fastest, false),
 
             // Do not include 'Fastest (excluding my country)' and 'Random country' in the options
-            //LocationItemFactory.GetGenericCountry(ConnectionType, ConnectionIntentKind.Fastest, true),
-            //LocationItemFactory.GetGenericCountry(ConnectionType, ConnectionIntentKind.Random, false),
+            //LocationItemFactory.GetGenericCountry(ConnectionType, SelectionStrategy.Fastest, true),
+            //LocationItemFactory.GetGenericCountry(ConnectionType, SelectionStrategy.Random, false),
         ];
 
         return genericCountries;

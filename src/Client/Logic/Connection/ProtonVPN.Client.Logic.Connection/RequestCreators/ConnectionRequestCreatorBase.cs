@@ -20,7 +20,7 @@
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.FreeServers;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
@@ -148,6 +148,6 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
         return !Settings.IsSmartReconnectEnabled ||
                connectionIntent is IConnectionProfile ||
                connectionIntent.Feature is B2BFeatureIntent ||
-               (connectionIntent.Location is FreeServerLocationIntent fsli && fsli.Kind == ConnectionIntentKind.Random);
+               connectionIntent.Location is FreeServerLocationIntent;
     }
 }

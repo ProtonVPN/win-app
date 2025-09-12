@@ -21,6 +21,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Common.Core.Geographical;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 
@@ -31,6 +32,8 @@ public interface IConnectionIntent
     IFeatureIntent? Feature { get; }
 
     bool IsSameAs(IConnectionIntent? intent);
+
+    IOrderedEnumerable<Server> FilterAndSortServers(IEnumerable<Server> servers, DeviceLocation? deviceLocation, IList<VpnProtocol> preferredProtocols, bool isPortForwardingEnabled);
 
     bool IsSupported(Server server, DeviceLocation? deviceLocation);
 

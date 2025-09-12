@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,32 +17,34 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Cities;
 using ProtonVPN.Client.Logic.Connection.Contracts.SerializableEntities.Intents;
 using ProtonVPN.EntityMapping.Contracts;
 
 namespace ProtonVPN.Client.Logic.Connection.EntityMapping.LocationIntents;
 
-public class StateLocationIntentMapper : IMapper<StateLocationIntent, SerializableLocationIntent>
+public class SingleCityLocationIntentMapper : IMapper<SingleCityLocationIntent, SerializableLocationIntent>
 {
-    public SerializableLocationIntent Map(StateLocationIntent leftEntity)
+    public SerializableLocationIntent Map(SingleCityLocationIntent leftEntity)
     {
         return leftEntity is null
             ? null
             : new SerializableLocationIntent()
             {
-                TypeName = nameof(StateLocationIntent),
-                CountryCode = leftEntity.CountryCode,
-                State = leftEntity.State,
+                TypeName = nameof(SingleCityLocationIntent),
+                CountryCode = leftEntity.Country.CountryCode,
+                State = leftEntity.State?.StateName,
+                City = leftEntity.CityName,
             };
     }
 
-    public StateLocationIntent Map(SerializableLocationIntent rightEntity)
+    public SingleCityLocationIntent Map(SerializableLocationIntent rightEntity)
     {
         return rightEntity is null
             ? null
-            : new StateLocationIntent(
+            : SingleCityLocationIntent.From(
                 countryCode: rightEntity.CountryCode,
-                state: rightEntity.State);
+                stateName: rightEntity.State,
+                cityName: rightEntity.City);
     }
 }

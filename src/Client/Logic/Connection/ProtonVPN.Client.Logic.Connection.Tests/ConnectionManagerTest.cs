@@ -22,6 +22,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Connection.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Statistics;
@@ -196,7 +197,7 @@ public class ConnectionManagerTest
 
     private IConnectionIntent GetConnectionIntent(IFeatureIntent featureIntent)
     {
-        return new ConnectionIntent(new CountryLocationIntent("US"), featureIntent);
+        return new ConnectionIntent(SingleCountryLocationIntent.From("US"), featureIntent);
     }
 
     private IFeatureIntent GetFeatureIntent(Type type)

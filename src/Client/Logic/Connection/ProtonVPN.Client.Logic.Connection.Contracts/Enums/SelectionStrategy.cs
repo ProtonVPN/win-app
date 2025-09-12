@@ -19,7 +19,7 @@
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 
-public enum ConnectionIntentKind
+public enum SelectionStrategy
 {
     Fastest,
     Random

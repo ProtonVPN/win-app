@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
 
 namespace ProtonVPN.Client.Logic.Connection.Tests.Models.Intents.Locations;
 
@@ -26,61 +27,122 @@ namespace ProtonVPN.Client.Logic.Connection.Tests.Models.Intents.Locations;
 public class CountryLocationIntentFastestTests
 {
     [TestMethod]
-    public void CountryCodeShouldBeNullAndKindFastestAndIsNotToExcludeMyCountry_GivenNoCountryCode()
+    public void CountryLocationIntent_ShouldBeFastest_GivenNoneOrEmptyCountryCodesList()
     {
-        CountryLocationIntent cliA = new();
-        CountryLocationIntent cliB = new(" ");
-        CountryLocationIntent cliC = new(string.Empty);
+        List<MultiCountryLocationIntent> intents =
+        [
+            new(),
+            new([]),
+            new(new List<string>()),
+            new(SelectionStrategy.Fastest),
+            new([], SelectionStrategy.Fastest),
+            new(new List<string>(), SelectionStrategy.Fastest),
+            MultiCountryLocationIntent.Default,
+            MultiCountryLocationIntent.Fastest,
+        ];
 
-        List<CountryLocationIntent> list = [cliA, cliB, cliC];
-
-        foreach(CountryLocationIntent cli in list)
+        foreach (MultiCountryLocationIntent intent in intents)
         {
-            Assert.IsNull(cli.CountryCode);
-            Assert.AreEqual(ConnectionIntentKind.Fastest, cli.Kind);
-            Assert.IsFalse(cli.IsToExcludeMyCountry);
-
-            Assert.IsFalse(cli.IsSpecificCountry);
-            Assert.IsTrue(cli.IsFastestCountry);
-            Assert.IsFalse(cli.IsFastestCountryExcludingMine);
-            Assert.IsFalse(cli.IsRandomCountry);
-            Assert.IsFalse(cli.IsRandomCountryExcludingMine);
+            Assert.IsTrue(intent.IsSelectionEmpty);
+            Assert.IsFalse(intent.IsToExcludeMyCountry);
+            Assert.AreEqual(SelectionStrategy.Fastest, intent.Strategy);
         }
     }
 
     [TestMethod]
-    public void KindShouldBeFastestAndIsNotToExcludeMyCountry_GivenCountryCode()
+    public void CountryLocationIntent_ShouldBeRandom_GivenRandomStrategyAndNoneOrEmptyCountryCodesList()
     {
-        const string countryCode = "CH";
+        List<MultiCountryLocationIntent> intents =
+        [
+            new(SelectionStrategy.Random),
+            new([], SelectionStrategy.Random),
+            new(new List<string>(), SelectionStrategy.Random),
+            MultiCountryLocationIntent.Random
+        ];
 
-        CountryLocationIntent cli = new(countryCode);
-
-        Assert.AreEqual(countryCode, cli.CountryCode);
-        Assert.AreEqual(ConnectionIntentKind.Fastest, cli.Kind);
-        Assert.IsFalse(cli.IsToExcludeMyCountry);
-
-        Assert.IsTrue(cli.IsSpecificCountry);
-        Assert.IsFalse(cli.IsFastestCountry);
-        Assert.IsFalse(cli.IsFastestCountryExcludingMine);
-        Assert.IsFalse(cli.IsRandomCountry);
-        Assert.IsFalse(cli.IsRandomCountryExcludingMine);
+        foreach (MultiCountryLocationIntent intent in intents)
+        {
+            Assert.IsTrue(intent.IsSelectionEmpty);
+            Assert.IsFalse(intent.IsToExcludeMyCountry);
+            Assert.AreEqual(SelectionStrategy.Random, intent.Strategy);
+        }
     }
 
     [TestMethod]
-    public void KindShouldNotBeFastestAndIsToExcludeMyCountry()
+    public void CountryLocationIntent_ShouldBeFastestExcludingMyCountry_GivenIsToExcludeMyCountryAndNoCountryCodes()
     {
-        const string countryCode = "LT";
+        List<MultiCountryLocationIntent> intents =
+        [
+            new(isToExcludeMyCountry: true),
+            new(SelectionStrategy.Fastest, isToExcludeMyCountry: true),
+            MultiCountryLocationIntent.FastestExcludingMyCountry,
+            MultiCountryLocationIntent.ExcludingMyCountry(SelectionStrategy.Fastest)
+        ];
 
-        CountryLocationIntent cli = new(countryCode, ConnectionIntentKind.Random, isToExcludeMyCountry: true);
+        foreach (MultiCountryLocationIntent intent in intents)
+        {
+            Assert.IsTrue(intent.IsSelectionEmpty);
+            Assert.IsTrue(intent.IsToExcludeMyCountry);
+            Assert.AreEqual(SelectionStrategy.Fastest, intent.Strategy);
+        }
+    }
 
-        Assert.AreEqual(countryCode, cli.CountryCode);
-        Assert.AreEqual(ConnectionIntentKind.Random, cli.Kind);
-        Assert.IsTrue(cli.IsToExcludeMyCountry);
+    [TestMethod]
+    public void CountryLocationIntent_ShouldBeRandomExcludingMyCountry_GivenIsToExcludeMyCountryAndRandomStrategyAndNoCountryCodes()
+    {
+        List<MultiCountryLocationIntent> intents =
+        [
+            new(SelectionStrategy.Random, isToExcludeMyCountry: true),
+            MultiCountryLocationIntent.RandomExcludingMyCountry,
+            MultiCountryLocationIntent.ExcludingMyCountry(SelectionStrategy.Random)
+        ];
 
-        Assert.IsTrue(cli.IsSpecificCountry);
-        Assert.IsFalse(cli.IsFastestCountry);
-        Assert.IsFalse(cli.IsFastestCountryExcludingMine);
-        Assert.IsFalse(cli.IsRandomCountry);
-        Assert.IsFalse(cli.IsRandomCountryExcludingMine);
+        foreach (MultiCountryLocationIntent intent in intents)
+        {
+            Assert.IsTrue(intent.IsSelectionEmpty);
+            Assert.IsTrue(intent.IsToExcludeMyCountry);
+            Assert.AreEqual(SelectionStrategy.Random, intent.Strategy);
+        }
+    }
+
+    [TestMethod]
+    public void CountryLocationIntent_ShouldBeFastestNotEmpty_GivenCountryCodesList()
+    {
+        List<MultiCountryLocationIntent> intents =
+        [
+            new(["CH"]),
+            new(["CH", "FR", "US"]),
+            new(new List<string>() { "CH", "FR", "US" }),
+            new(["CH", "FR", "US"], SelectionStrategy.Fastest),
+            MultiCountryLocationIntent.FastestFrom(["CH", "FR", "US"]),
+            MultiCountryLocationIntent.From(["CH", "FR", "US"], SelectionStrategy.Fastest)
+        ];
+
+        foreach (MultiCountryLocationIntent intent in intents)
+        {
+            Assert.IsFalse(intent.IsSelectionEmpty);
+            Assert.IsFalse(intent.IsToExcludeMyCountry);
+            Assert.AreEqual(SelectionStrategy.Fastest, intent.Strategy);
+        }
+    }
+
+    [TestMethod]
+    public void CountryLocationIntent_ShouldBeRandomNotEmpty_GivenRandomStrategyAndCountryCodesList()
+    {
+        List<MultiCountryLocationIntent> intents =
+        [
+            new(["CH"], SelectionStrategy.Random),
+            new(["CH", "FR", "US"], SelectionStrategy.Random),
+            new(new List<string>() { "CH", "FR", "US" }, SelectionStrategy.Random),
+            MultiCountryLocationIntent.RandomFrom(["CH", "FR", "US"]),
+            MultiCountryLocationIntent.From(["CH", "FR", "US"], SelectionStrategy.Random)
+        ];
+
+        foreach (MultiCountryLocationIntent intent in intents)
+        {
+            Assert.IsFalse(intent.IsSelectionEmpty);
+            Assert.IsFalse(intent.IsToExcludeMyCountry);
+            Assert.AreEqual(SelectionStrategy.Random, intent.Strategy);
+        }
     }
 }

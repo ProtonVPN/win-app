@@ -23,7 +23,7 @@ using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 
-public interface IIntentServerListGenerator
+public interface IServerListGenerator
 {
     IEnumerable<PhysicalServer> Generate(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols);
 }

@@ -24,6 +24,7 @@ using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Cities;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
@@ -78,9 +79,7 @@ public abstract class CityLocationItemBase : HostLocationItemBase<City>
         City = city;
         IsDescriptionVisible = showBaseLocation;
 
-        LocationIntent = string.IsNullOrEmpty(City.StateName)
-            ? new CityLocationIntent(City.CountryCode, City.Name)
-            : new CityLocationIntent(City.CountryCode, City.StateName, City.Name);
+        LocationIntent = SingleCityLocationIntent.From(City.CountryCode, City.StateName, City.Name);
     }
 
     public void OnExpandCity()

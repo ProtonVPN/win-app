@@ -26,6 +26,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.FreeServers;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Connection.Extensions;
 using ProtonVPN.Client.Logic.Connection.GuestHole;
@@ -166,7 +167,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         }
 
         ILocationIntent locationIntent = connectionIntent.Location.IsForPaidUsersOnly
-            ? FreeServerLocationIntent.Fastest
+            ? FreeServerLocationIntent.Default
             : connectionIntent.Location;
 
         IFeatureIntent? featureIntent = connectionIntent.Feature is null || connectionIntent.Feature.IsForPaidUsersOnly

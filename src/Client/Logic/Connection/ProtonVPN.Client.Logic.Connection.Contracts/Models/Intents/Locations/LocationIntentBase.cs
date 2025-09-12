@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,20 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Common.Core.Geographical;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 public abstract class LocationIntentBase : IntentBase, ILocationIntent
 {
-    public ConnectionIntentKind Kind { get; }
-
-    protected LocationIntentBase(ConnectionIntentKind kind = ConnectionIntentKind.Fastest)
-    {
-        Kind = kind;
-    }
 
     public virtual bool IsSameAs(ILocationIntent? intent)
     {
@@ -42,14 +34,12 @@ public abstract class LocationIntentBase : IntentBase, ILocationIntent
         return GetType() == intent.GetType();
     }
 
-    public IEnumerable<Server> FilterServers(IEnumerable<Server> servers, DeviceLocation? deviceLocation)
+    public IEnumerable<Server> FilterServers(IEnumerable<Server> servers)
     {
-        return servers.Where(s => IsSupported(s, deviceLocation));
+        return servers.Where(IsSupported);
     }
 
-    public abstract bool IsSupported(Server server, DeviceLocation? deviceLocation);
-
-    public abstract bool IsGenericRandomIntent();
+    public abstract bool IsSupported(Server server);
 
     public ILocationIntent Copy()
     {

@@ -21,6 +21,7 @@ using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
@@ -56,7 +57,7 @@ public class DefaultProfilesProvider : IDefaultProfilesProvider
 
     private IConnectionProfile GetDefaultStreamingProfile()
     {
-        ILocationIntent locationIntent = new CountryLocationIntent("US");
+        ILocationIntent locationIntent = new SingleCountryLocationIntent("US");
 
         IConnectionProfile profile = new ConnectionProfile(locationIntent)
         {
@@ -69,7 +70,7 @@ public class DefaultProfilesProvider : IDefaultProfilesProvider
 
     private IConnectionProfile GetDefaultGamingProfile()
     {
-        ILocationIntent locationIntent = CountryLocationIntent.Fastest;
+        ILocationIntent locationIntent = MultiCountryLocationIntent.Fastest;
         IFeatureIntent featureIntent = new P2PFeatureIntent();
 
         IConnectionProfile profile = new ConnectionProfile(locationIntent, featureIntent)
@@ -84,7 +85,7 @@ public class DefaultProfilesProvider : IDefaultProfilesProvider
 
     private IConnectionProfile GetDefaultP2PProfile()
     {
-        ILocationIntent locationIntent = CountryLocationIntent.Fastest;
+        ILocationIntent locationIntent = MultiCountryLocationIntent.Fastest;
         IFeatureIntent featureIntent = new P2PFeatureIntent();
 
         IConnectionProfile profile = new ConnectionProfile(locationIntent, featureIntent)
@@ -99,7 +100,7 @@ public class DefaultProfilesProvider : IDefaultProfilesProvider
 
     private IConnectionProfile GetDefaultMaxSecurityProfile()
     {
-        ILocationIntent locationIntent = CountryLocationIntent.Fastest;
+        ILocationIntent locationIntent = MultiCountryLocationIntent.Fastest;
         IFeatureIntent featureIntent = new SecureCoreFeatureIntent();
 
         IConnectionProfile profile = new ConnectionProfile(locationIntent, featureIntent)
@@ -113,7 +114,7 @@ public class DefaultProfilesProvider : IDefaultProfilesProvider
 
     private IConnectionProfile GetDefaultWorkSchoolProfile()
     {
-        ILocationIntent locationIntent = CountryLocationIntent.Fastest;
+        ILocationIntent locationIntent = MultiCountryLocationIntent.Fastest;
 
         IConnectionProfile profile = new ConnectionProfile(locationIntent)
         {
@@ -130,7 +131,7 @@ public class DefaultProfilesProvider : IDefaultProfilesProvider
 
     private IConnectionProfile GetDefaultRandomConnectionProfile()
     {
-        ILocationIntent locationIntent = CountryLocationIntent.Random;
+        ILocationIntent locationIntent = MultiCountryLocationIntent.Random;
 
         IConnectionProfile profile = new ConnectionProfile(locationIntent)
         {

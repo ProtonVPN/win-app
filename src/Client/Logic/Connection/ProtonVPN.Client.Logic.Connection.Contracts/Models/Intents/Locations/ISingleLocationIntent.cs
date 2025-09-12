@@ -17,17 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
-using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Common.Core.Networking;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
-
-public interface ISmartSecureCoreServerListGenerator
-{
-    IEnumerable<PhysicalServer> Generate(
-        SecureCoreFeatureIntent secureCoreFeatureIntent,
-        CountryLocationIntent countryLocationIntent,
-        IList<VpnProtocol> preferredProtocols);
-}
+public interface ISingleLocationIntent : ILocationIntent
+{ }

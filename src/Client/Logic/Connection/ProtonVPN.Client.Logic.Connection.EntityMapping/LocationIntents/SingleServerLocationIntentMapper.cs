@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,36 +17,37 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Servers;
 using ProtonVPN.Client.Logic.Connection.Contracts.SerializableEntities.Intents;
+using ProtonVPN.Client.Logic.Connection.EntityMapping.Extensions;
 using ProtonVPN.EntityMapping.Contracts;
 
 namespace ProtonVPN.Client.Logic.Connection.EntityMapping.LocationIntents;
 
-public class GatewayServerLocationIntentMapper : IMapper<GatewayServerLocationIntent, SerializableLocationIntent>
+public class SingleServerLocationIntentMapper : IMapper<SingleServerLocationIntent, SerializableLocationIntent>
 {
-    public SerializableLocationIntent Map(GatewayServerLocationIntent leftEntity)
+    public SerializableLocationIntent Map(SingleServerLocationIntent leftEntity)
     {
         return leftEntity is null
             ? null
             : new SerializableLocationIntent()
             {
-                TypeName = nameof(GatewayServerLocationIntent),
-                GatewayName = leftEntity.GatewayName,
-                CountryCode = leftEntity.CountryCode,
-                Id = leftEntity.Id,
-                Name = leftEntity.Name,
+                TypeName = nameof(SingleServerLocationIntent),
+                CountryCode = leftEntity.Country.CountryCode,
+                State = leftEntity.State?.StateName,
+                City = leftEntity.City.CityName,
+                Server = leftEntity.Server,
             };
     }
 
-    public GatewayServerLocationIntent Map(SerializableLocationIntent rightEntity)
+    public SingleServerLocationIntent Map(SerializableLocationIntent rightEntity)
     {
         return rightEntity is null
             ? null
-            : new GatewayServerLocationIntent(
-                id: rightEntity.Id,
-                name: rightEntity.Name,
+            : SingleServerLocationIntent.From(
                 countryCode: rightEntity.CountryCode,
-                gatewayName: rightEntity.GatewayName);
+                stateName: rightEntity.State,
+                cityName: rightEntity.City,
+                server: rightEntity.GetServer());
     }
 }

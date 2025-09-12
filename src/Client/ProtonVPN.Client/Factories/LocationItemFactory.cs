@@ -59,7 +59,7 @@ public class LocationItemFactory : ILocationItemFactory
 
     public GenericCountryLocationItem GetGenericCountry(
         CountriesConnectionType connectionType,
-        ConnectionIntentKind intentKind,
+        SelectionStrategy intentKind,
         bool excludeMyCountry,
         bool isSearchItem = false)
     {
@@ -247,7 +247,7 @@ public class LocationItemFactory : ILocationItemFactory
             isSearchItem);
     }
 
-    public GenericGatewayLocationItem GetGenericGateway(ConnectionIntentKind intentKind)
+    public GenericGatewayLocationItem GetGenericGateway(SelectionStrategy intentKind)
     {
         return new GenericGatewayLocationItem(
             _localizer, 

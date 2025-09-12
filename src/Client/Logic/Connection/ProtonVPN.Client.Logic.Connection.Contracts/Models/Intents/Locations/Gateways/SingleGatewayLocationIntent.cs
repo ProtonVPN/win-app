@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,42 +17,38 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Common.Core.Geographical;
+using ProtonVPN.Common.Core.Extensions;
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Gateways;
 
-public class GatewayServerLocationIntent : GatewayLocationIntent
+public class SingleGatewayLocationIntent : GatewayLocationIntentBase, ISingleLocationIntent
 {
-    public string Id { get; }
-    public string Name { get; }
-    public int Number { get; }
-    public string CountryCode { get; }
+    public static SingleGatewayLocationIntent From(string gatewayName)
+        => new(gatewayName);
 
-    public GatewayServerLocationIntent(string id, string name, string countryCode, string gatewayName)
-        : base(gatewayName)
+    public string GatewayName { get; }
+
+    public SingleGatewayLocationIntent(
+        string gatewayName)
     {
-        Id = id;
-        Name = name;
-        CountryCode = countryCode;
-        Number = this.GetServerNumber();
+        GatewayName = gatewayName ?? throw new ArgumentNullException(nameof(gatewayName));
     }
 
     public override bool IsSameAs(ILocationIntent? intent)
     {
         return base.IsSameAs(intent)
-            && intent is GatewayServerLocationIntent serverIntent
-            && Id == serverIntent.Id;
+            && intent is SingleGatewayLocationIntent gatewayIntent
+            && GatewayName.EqualsIgnoringCase(gatewayIntent.GatewayName);
     }
 
-    public override bool IsSupported(Server server, DeviceLocation? deviceLocation)
+    public override bool IsSupported(Server server)
     {
-        return server.Id == Id;
+        return GatewayName.EqualsIgnoringCase(server.GatewayName);
     }
 
     public override string ToString()
     {
-        return $"{base.ToString()} - {Name}";
+        return $"Gateway {GatewayName}";
     }
 }

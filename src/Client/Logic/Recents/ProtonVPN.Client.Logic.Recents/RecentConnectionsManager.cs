@@ -24,8 +24,10 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.FreeServers;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Gateways;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
@@ -124,14 +126,14 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         if ((defaultConnection == DefaultConnection.Fastest || (defaultConnection == DefaultConnection.Last && mostRecentConnectionIntent is null)) &&
             gateway is not null && !_serversLoader.HasAnyCountries())
         {
-            return new ConnectionIntent(new GatewayLocationIntent(gateway.Name), new B2BFeatureIntent());
+            return new ConnectionIntent(SingleGatewayLocationIntent.From(gateway.Name), new B2BFeatureIntent());
         }
 
         return defaultConnection.Type switch
         {
             DefaultConnectionType.Recent => GetById(defaultConnection.RecentId)?.ConnectionIntent ?? ConnectionIntent.Default,
             DefaultConnectionType.Last => mostRecentConnectionIntent ?? ConnectionIntent.Default,
-            DefaultConnectionType.Random => new ConnectionIntent(CountryLocationIntent.Random),
+            DefaultConnectionType.Random => new ConnectionIntent(MultiCountryLocationIntent.Random),
             _ => ConnectionIntent.Default
         };
     }
@@ -259,7 +261,9 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         {
             lock (_lock)
             {
-                if (TryInvalidateRecentProfiles() || TryInvalidateRetiredServers())
+                bool hasProfilesChanged = TryInvalidateRecentProfiles();
+                bool hasRecentsChanged = TryInvalidateRetiredServers();
+                if (hasProfilesChanged || hasRecentsChanged)
                 {
                     SaveAndBroadcastRecentConnectionsChanges();
                 }
@@ -380,9 +384,9 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         {
             bool hasNoServers = connection.ConnectionIntent is not IConnectionProfile &&
                 connection.ConnectionIntent.HasNoServers(servers, _settings.DeviceLocation);
-            bool isFastestCountryIntent = connection.ConnectionIntent.Location is CountryLocationIntent cli && cli.IsFastestCountry;
+            bool isMultiCountryIntent = connection.ConnectionIntent.Location is MultiCountryLocationIntent;
 
-            if (hasNoServers || (hasGatewaysOnly && isFastestCountryIntent))
+            if (hasNoServers || (hasGatewaysOnly && isMultiCountryIntent))
             {
                 _logger.Info<AppLog>($"Recent connection {connection.ConnectionIntent} has been removed. All servers for this intent have been retired.");
                 _recentConnections.Remove(connection);

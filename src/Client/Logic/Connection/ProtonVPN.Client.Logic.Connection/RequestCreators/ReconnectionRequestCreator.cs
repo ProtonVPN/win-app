@@ -19,8 +19,6 @@
 
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
@@ -42,15 +40,20 @@ public class ReconnectionRequestCreator : ConnectionRequestCreator, IReconnectio
         IEntityMapper entityMapper,
         IConnectionKeyManager connectionKeyManager,
         IConnectionCertificateManager connectionCertificateManager,
-        IIntentServerListGenerator intentServerListGenerator,
-        ISmartSecureCoreServerListGenerator smartSecureCoreServerListGenerator,
-        ISmartStandardServerListGenerator smartStandardServerListGenerator,
+        IServerListGenerator serverListGenerator,
+        ISmartServerListGenerator smartServerListGenerator,
         IFeatureFlagsObserver featureFlagsObserver,
         IMainSettingsRequestCreator mainSettingsRequestCreator)
-        : base(logger, settings, entityMapper, connectionKeyManager, connectionCertificateManager, intentServerListGenerator,
-            smartSecureCoreServerListGenerator, smartStandardServerListGenerator, featureFlagsObserver, mainSettingsRequestCreator)
-    {
-    }
+        : base(logger,
+               settings,
+               entityMapper,
+               connectionKeyManager,
+               connectionCertificateManager,
+               serverListGenerator,
+               smartServerListGenerator,
+               featureFlagsObserver,
+               mainSettingsRequestCreator)
+    { }
 
     public override async Task<ConnectionRequestIpcEntity> CreateAsync(IConnectionIntent connectionIntent)
     {
@@ -60,15 +63,15 @@ public class ReconnectionRequestCreator : ConnectionRequestCreator, IReconnectio
         // If the protocol in the settings is a specific one (not Smart), put it at the top of the smart protocol list
         if (settings.VpnProtocol != VpnProtocolIpcEntity.Smart)
         {
-            IList<VpnProtocolIpcEntity> preferredProtocols = GetPreferredSmartProtocols();
-            preferredProtocols.Remove(settings.VpnProtocol);
+            IList<VpnProtocolIpcEntity> smartProtocols = GetPreferredSmartProtocols();
+            smartProtocols.Remove(settings.VpnProtocol);
             // Insert even if the protocol doesn't exist in the smart protocol list (ex.: Countries with only Stealth)
-            preferredProtocols.Insert(0, settings.VpnProtocol);
-            config.PreferredProtocols = preferredProtocols;
+            smartProtocols.Insert(0, settings.VpnProtocol);
+            config.PreferredProtocols = smartProtocols;
         }
 
-        IEnumerable<PhysicalServer> physicalServers = GetReconnectionPhysicalServers(connectionIntent,
-            EntityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(config.PreferredProtocols));
+        List<VpnProtocol> preferredProtocols = EntityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(config.PreferredProtocols);
+        IEnumerable<PhysicalServer> physicalServers = GetReconnectionPhysicalServers(connectionIntent, preferredProtocols);
 
         ConnectionRequestIpcEntity request = new()
         {
@@ -85,24 +88,14 @@ public class ReconnectionRequestCreator : ConnectionRequestCreator, IReconnectio
 
     private IEnumerable<PhysicalServer> GetReconnectionPhysicalServers(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols)
     {
-        IEnumerable<PhysicalServer> intentServers = IntentServerListGenerator.Generate(connectionIntent, preferredProtocols);
+        IEnumerable<PhysicalServer> intentServers = ServerListGenerator.Generate(connectionIntent, preferredProtocols);
 
         if (IsToBypassSmartServerListGenerator(connectionIntent))
         {
             return intentServers;
         }
 
-        List<PhysicalServer> smartList;
-
-        if (connectionIntent.Feature is SecureCoreFeatureIntent secureCoreFeatureIntent)
-        {
-            CountryLocationIntent countryLocationIntent = connectionIntent.Location is CountryLocationIntent cli ? cli : new CountryLocationIntent();
-            smartList = SmartSecureCoreServerListGenerator.Generate(secureCoreFeatureIntent, countryLocationIntent, preferredProtocols).ToList();
-        }
-        else
-        {
-            smartList = SmartStandardServerListGenerator.Generate(connectionIntent, preferredProtocols).ToList();
-        }
+        List<PhysicalServer> smartList = SmartServerListGenerator.Generate(connectionIntent, preferredProtocols).ToList();
 
         smartList.AddRange(intentServers.Where(ips => !smartList.Any(slps => slps.Id == ips.Id)));
 

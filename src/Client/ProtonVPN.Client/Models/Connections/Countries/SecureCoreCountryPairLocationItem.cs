@@ -25,6 +25,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
@@ -72,7 +73,7 @@ public class SecureCoreCountryPairLocationItem : LocationItemBase<SecureCoreCoun
     {
         CountryPair = countryPair;
 
-        LocationIntent = new CountryLocationIntent(CountryPair.ExitCountry);
+        LocationIntent = SingleCountryLocationIntent.From(CountryPair.ExitCountry);
         FeatureIntent = new SecureCoreFeatureIntent(CountryPair.EntryCountry);
     }
 

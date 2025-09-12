@@ -80,8 +80,7 @@ public class ConnectionLogicModule : Module
 
     private void RegisterServerListGenerators(ContainerBuilder builder)
     {
-        builder.RegisterType<IntentServerListGenerator>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<SmartSecureCoreServerListGenerator>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<SmartStandardServerListGenerator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ServerListGenerator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SmartServerListGenerator>().AsImplementedInterfaces().SingleInstance();
     }
 }

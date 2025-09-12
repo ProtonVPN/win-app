@@ -19,13 +19,15 @@
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.FreeServers;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 
 public class ConnectionIntent : ConnectionIntentBase, IConnectionIntent
 {
-    public static IConnectionIntent Default => new ConnectionIntent(CountryLocationIntent.Fastest);
-    public static IConnectionIntent FreeDefault => new ConnectionIntent(FreeServerLocationIntent.Fastest);
+    public static IConnectionIntent Default => new ConnectionIntent(MultiCountryLocationIntent.Default);
+    public static IConnectionIntent FreeDefault => new ConnectionIntent(FreeServerLocationIntent.Default);
 
     public ConnectionIntent(ILocationIntent location, IFeatureIntent? feature = null)
         : base(location, feature)

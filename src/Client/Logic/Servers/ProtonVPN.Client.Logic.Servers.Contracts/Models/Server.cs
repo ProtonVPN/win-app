@@ -57,7 +57,8 @@ public class Server : ILocation
     public bool IsPaidNonB2B() => IsPaid() && IsNonB2B();
     public bool IsFreeNonB2B() => IsFree() && IsNonB2B();
 
-    public bool IsNonB2B() => !Features.IsB2B();
+    public bool IsB2B() => Features.IsB2B();
+    public bool IsNonB2B() => !IsB2B();
 
     public bool IsPaid() => Tier is ServerTiers.Basic or ServerTiers.Plus;
     public bool IsFree() => Tier is ServerTiers.Free;

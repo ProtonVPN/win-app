@@ -17,9 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Cities;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Servers;
 
 namespace ProtonVPN.Client.Logic.Connection.Tests.Models.Intents;
 
@@ -29,9 +33,9 @@ public class ConnectionIntentEqualityTests
     [TestMethod]
     public void ConnectionIntent_ShouldBeEqual_GivenSameReference()
     {
-        IConnectionIntent intentCountrySecureCore = new ConnectionIntent(new CountryLocationIntent("CH"), new SecureCoreFeatureIntent("SE"));
-        IConnectionIntent intentCityP2P = new ConnectionIntent(new CityLocationIntent("CH", "Geneva"), new P2PFeatureIntent());
-        IConnectionIntent intentServerTor = new ConnectionIntent(new ServerLocationIntent("1", "CH#1", "CH", "Geneva"), new TorFeatureIntent());
+        IConnectionIntent intentCountrySecureCore = new ConnectionIntent(SingleCountryLocationIntent.From("CH"), new SecureCoreFeatureIntent("SE"));
+        IConnectionIntent intentCityP2P = new ConnectionIntent(SingleCityLocationIntent.From("CH", "Geneva"), new P2PFeatureIntent());
+        IConnectionIntent intentServerTor = new ConnectionIntent(SingleServerLocationIntent.From("CH", "Geneva", ServerInfo.From("1", "CH#1")), new TorFeatureIntent());
 
         Assert.IsTrue(intentCountrySecureCore.IsSameAs(intentCountrySecureCore));
         Assert.IsTrue(intentCityP2P.IsSameAs(intentCityP2P));
@@ -41,9 +45,9 @@ public class ConnectionIntentEqualityTests
     [TestMethod]
     public void ConnectionIntent_ShouldBeEqual_GivenSameLocationAndFeatureReference()
     {
-        ILocationIntent locationCountry = new CountryLocationIntent("CH");
-        ILocationIntent locationCity = new CityLocationIntent("CH", "Geneva");
-        ILocationIntent locationServer = new ServerLocationIntent("1", "CH#1", "CH", "Geneva");
+        ILocationIntent locationCountry = SingleCountryLocationIntent.From("CH");
+        ILocationIntent locationCity = SingleCityLocationIntent.From("CH", "Geneva");
+        ILocationIntent locationServer = SingleServerLocationIntent.From("CH", "Geneva", ServerInfo.From("1", "CH#1"));
 
         IFeatureIntent featureSecureCore = new SecureCoreFeatureIntent("SE");
         IFeatureIntent featureP2P = new P2PFeatureIntent();
@@ -67,12 +71,12 @@ public class ConnectionIntentEqualityTests
     [TestMethod]
     public void ConnectionIntent_ShouldBeEqual_GivenSameIntent()
     {
-        IConnectionIntent intentCountrySecureCoreA = new ConnectionIntent(new CountryLocationIntent("CH"), new SecureCoreFeatureIntent("SE"));
-        IConnectionIntent intentCountrySecureCoreB = new ConnectionIntent(new CountryLocationIntent("CH"), new SecureCoreFeatureIntent("SE"));
-        IConnectionIntent intentCityP2PA = new ConnectionIntent(new CityLocationIntent("CH", "Geneva"), new P2PFeatureIntent());
-        IConnectionIntent intentCityP2PB = new ConnectionIntent(new CityLocationIntent("CH", "Geneva"), new P2PFeatureIntent());
-        IConnectionIntent intentServerTorA = new ConnectionIntent(new ServerLocationIntent("1", "CH#1", "CH", "Geneva"), new TorFeatureIntent());
-        IConnectionIntent intentServerTorB = new ConnectionIntent(new ServerLocationIntent("1", "CH#1", "CH", "Geneva"), new TorFeatureIntent());
+        IConnectionIntent intentCountrySecureCoreA = new ConnectionIntent(SingleCountryLocationIntent.From("CH"), new SecureCoreFeatureIntent("SE"));
+        IConnectionIntent intentCountrySecureCoreB = new ConnectionIntent(SingleCountryLocationIntent.From("CH"), new SecureCoreFeatureIntent("SE"));
+        IConnectionIntent intentCityP2PA = new ConnectionIntent(SingleCityLocationIntent.From("CH", "Geneva"), new P2PFeatureIntent());
+        IConnectionIntent intentCityP2PB = new ConnectionIntent(SingleCityLocationIntent.From("CH", "Geneva"), new P2PFeatureIntent());
+        IConnectionIntent intentServerTorA = new ConnectionIntent(SingleServerLocationIntent.From("CH", "Geneva", ServerInfo.From("1", "CH#1")), new TorFeatureIntent());
+        IConnectionIntent intentServerTorB = new ConnectionIntent(SingleServerLocationIntent.From("CH", "Geneva", ServerInfo.From("1", "CH#1")), new TorFeatureIntent());
 
         Assert.IsTrue(intentCountrySecureCoreA.IsSameAs(intentCountrySecureCoreB));
         Assert.IsTrue(intentCountrySecureCoreB.IsSameAs(intentCountrySecureCoreA));
@@ -85,26 +89,26 @@ public class ConnectionIntentEqualityTests
     [TestMethod]
     public void ConnectionIntent_ShouldNotBeEqual_GivenDifferentIntentOfSameType()
     {
-        IConnectionIntent intentCountrySecureCoreA = new ConnectionIntent(new CountryLocationIntent("CH"), new SecureCoreFeatureIntent("SE"));
-        IConnectionIntent intentCountrySecureCoreB = new ConnectionIntent(new CountryLocationIntent("CH"), new SecureCoreFeatureIntent("IS"));
-        IConnectionIntent intentCountrySecureCoreC = new ConnectionIntent(new CountryLocationIntent("FR"), new SecureCoreFeatureIntent("SE"));
-        IConnectionIntent intentCountrySecureCoreD = new ConnectionIntent(new CountryLocationIntent("FR"), new SecureCoreFeatureIntent("IS"));
+        IConnectionIntent intentCountrySecureCoreA = new ConnectionIntent(SingleCountryLocationIntent.From("CH"), new SecureCoreFeatureIntent("SE"));
+        IConnectionIntent intentCountrySecureCoreB = new ConnectionIntent(SingleCountryLocationIntent.From("CH"), new SecureCoreFeatureIntent("IS"));
+        IConnectionIntent intentCountrySecureCoreC = new ConnectionIntent(SingleCountryLocationIntent.From("FR"), new SecureCoreFeatureIntent("SE"));
+        IConnectionIntent intentCountrySecureCoreD = new ConnectionIntent(SingleCountryLocationIntent.From("FR"), new SecureCoreFeatureIntent("IS"));
 
         Assert.IsFalse(intentCountrySecureCoreA.IsSameAs(intentCountrySecureCoreB));
         Assert.IsFalse(intentCountrySecureCoreA.IsSameAs(intentCountrySecureCoreC));
         Assert.IsFalse(intentCountrySecureCoreA.IsSameAs(intentCountrySecureCoreD));
 
-        IConnectionIntent intentCityP2PA = new ConnectionIntent(new CityLocationIntent("CH", "Geneva"), new P2PFeatureIntent());
-        IConnectionIntent intentCityP2PB = new ConnectionIntent(new CityLocationIntent("CH", "Zurich"), new P2PFeatureIntent());
-        IConnectionIntent intentCityP2PC = new ConnectionIntent(new CityLocationIntent("FR", "Paris"), new P2PFeatureIntent());
+        IConnectionIntent intentCityP2PA = new ConnectionIntent(SingleCityLocationIntent.From("CH", "Geneva"), new P2PFeatureIntent());
+        IConnectionIntent intentCityP2PB = new ConnectionIntent(SingleCityLocationIntent.From("CH", "Zurich"), new P2PFeatureIntent());
+        IConnectionIntent intentCityP2PC = new ConnectionIntent(SingleCityLocationIntent.From("FR", "Paris"), new P2PFeatureIntent());
 
         Assert.IsFalse(intentCityP2PA.IsSameAs(intentCityP2PB));
         Assert.IsFalse(intentCityP2PA.IsSameAs(intentCityP2PC));
 
-        IConnectionIntent intentServerTorA = new ConnectionIntent(new ServerLocationIntent("1", "CH#1", "CH", "Geneva"), new TorFeatureIntent());
-        IConnectionIntent intentServerTorB = new ConnectionIntent(new ServerLocationIntent("2", "CH#2", "CH", "Geneva"), new TorFeatureIntent());
-        IConnectionIntent intentServerTorC = new ConnectionIntent(new ServerLocationIntent("3", "CH#3", "CH", "Zurich"), new TorFeatureIntent());
-        IConnectionIntent intentServerTorD = new ConnectionIntent(new ServerLocationIntent("4", "FR#1", "FR", "Paris"), new TorFeatureIntent());
+        IConnectionIntent intentServerTorA = new ConnectionIntent(SingleServerLocationIntent.From("CH", "Geneva", ServerInfo.From("1", "CH#1")), new TorFeatureIntent());
+        IConnectionIntent intentServerTorB = new ConnectionIntent(SingleServerLocationIntent.From("CH", "Geneva", ServerInfo.From("2", "CH#2")), new TorFeatureIntent());
+        IConnectionIntent intentServerTorC = new ConnectionIntent(SingleServerLocationIntent.From("CH", "Zurich", ServerInfo.From("1", "CH#1")), new TorFeatureIntent());
+        IConnectionIntent intentServerTorD = new ConnectionIntent(SingleServerLocationIntent.From("FR", "Paris", ServerInfo.From("1", "FR#1")), new TorFeatureIntent());
 
         Assert.IsFalse(intentServerTorA.IsSameAs(intentServerTorB));
         Assert.IsFalse(intentServerTorA.IsSameAs(intentServerTorC));
@@ -114,18 +118,18 @@ public class ConnectionIntentEqualityTests
     [TestMethod]
     public void ConnectionIntent_ShouldNotBeEqual_GivenDifferentIntent()
     {
-        IConnectionIntent intentCountrySecureCore = new ConnectionIntent(new CountryLocationIntent("CH"), new SecureCoreFeatureIntent("SE"));
-        IConnectionIntent intentCountryP2P = new ConnectionIntent(new CountryLocationIntent("CH"), new P2PFeatureIntent());
-        IConnectionIntent intentCountryTor = new ConnectionIntent(new CountryLocationIntent("CH"), new TorFeatureIntent());
-        IConnectionIntent intentCountry = new ConnectionIntent(new CountryLocationIntent("CH"));
-        IConnectionIntent intentCitySecureCore = new ConnectionIntent(new CityLocationIntent("CH", "Geneva"), new SecureCoreFeatureIntent("SE"));
-        IConnectionIntent intentCityP2P = new ConnectionIntent(new CityLocationIntent("CH", "Geneva"), new P2PFeatureIntent());
-        IConnectionIntent intentCityTor = new ConnectionIntent(new CityLocationIntent("CH", "Geneva"), new TorFeatureIntent());
-        IConnectionIntent intentCity = new ConnectionIntent(new CityLocationIntent("CH", "Geneva"));
-        IConnectionIntent intentServerSecureCore = new ConnectionIntent(new ServerLocationIntent("1", "CH#1", "CH", "Geneva"), new SecureCoreFeatureIntent("SE"));
-        IConnectionIntent intentServerP2P = new ConnectionIntent(new ServerLocationIntent("1", "CH#1", "CH", "Geneva"), new P2PFeatureIntent());
-        IConnectionIntent intentServerTor = new ConnectionIntent(new ServerLocationIntent("1", "CH#1", "CH", "Geneva"), new TorFeatureIntent());
-        IConnectionIntent intentServer = new ConnectionIntent(new ServerLocationIntent("1", "CH#1", "CH", "Geneva"));
+        IConnectionIntent intentCountrySecureCore = new ConnectionIntent(SingleCountryLocationIntent.From("CH"), new SecureCoreFeatureIntent("SE"));
+        IConnectionIntent intentCountryP2P = new ConnectionIntent(SingleCountryLocationIntent.From("CH"), new P2PFeatureIntent());
+        IConnectionIntent intentCountryTor = new ConnectionIntent(SingleCountryLocationIntent.From("CH"), new TorFeatureIntent());
+        IConnectionIntent intentCountry = new ConnectionIntent(SingleCountryLocationIntent.From("CH"));
+        IConnectionIntent intentCitySecureCore = new ConnectionIntent(SingleCityLocationIntent.From("CH", "Geneva"), new SecureCoreFeatureIntent("SE"));
+        IConnectionIntent intentCityP2P = new ConnectionIntent(SingleCityLocationIntent.From("CH", "Geneva"), new P2PFeatureIntent());
+        IConnectionIntent intentCityTor = new ConnectionIntent(SingleCityLocationIntent.From("CH", "Geneva"), new TorFeatureIntent());
+        IConnectionIntent intentCity = new ConnectionIntent(SingleCityLocationIntent.From("CH", "Geneva"));
+        IConnectionIntent intentServerSecureCore = new ConnectionIntent(SingleServerLocationIntent.From("CH", "Geneva", ServerInfo.From("1", "CH#1")), new SecureCoreFeatureIntent("SE"));
+        IConnectionIntent intentServerP2P = new ConnectionIntent(SingleServerLocationIntent.From("CH", "Geneva", ServerInfo.From("1", "CH#1")), new P2PFeatureIntent());
+        IConnectionIntent intentServerTor = new ConnectionIntent(SingleServerLocationIntent.From("CH", "Geneva", ServerInfo.From("1", "CH#1")), new TorFeatureIntent());
+        IConnectionIntent intentServer = new ConnectionIntent(SingleServerLocationIntent.From("CH", "Geneva", ServerInfo.From("1", "CH#1")));
 
         Assert.IsFalse(intentCountrySecureCore.IsSameAs(intentCountryP2P));
         Assert.IsFalse(intentCountrySecureCore.IsSameAs(intentCountryTor));

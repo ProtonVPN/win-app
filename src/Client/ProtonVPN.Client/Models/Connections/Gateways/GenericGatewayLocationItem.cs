@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Gateways;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
@@ -34,17 +35,17 @@ namespace ProtonVPN.Client.Models.Connections.Gateways;
 
 public class GenericGatewayLocationItem : LocationItemBase
 {
-    public ConnectionIntentKind IntentKind { get; }
+    public SelectionStrategy Strategy { get; }
 
     public bool ExcludeMyCountry { get; }
 
-    public FlagType FlagType => IntentKind switch
+    public FlagType FlagType => Strategy switch
     {
-        ConnectionIntentKind.Random => FlagType.Random,
+        SelectionStrategy.Random => FlagType.Random,
         _ => FlagType.Fastest,
     };
 
-    public override string Header => Localizer.GetGatewayName(string.Empty, IntentKind);
+    public override string Header => Localizer.GetGatewayName(string.Empty, Strategy);
 
     public override bool IsCounted => false;
 
@@ -65,11 +66,11 @@ public class GenericGatewayLocationItem : LocationItemBase
                 ? Localizer.Get("Connections_Gateway_UnderMaintenance")
                 : null;
 
-    protected override string AutomationName => IntentKind switch
+    protected override string AutomationName => Strategy switch
     {
-        ConnectionIntentKind.Fastest => "Fastest",
-        ConnectionIntentKind.Random => "Random",
-        _ => throw new NotImplementedException($"Intent kind '{IntentKind}' is not supported."),
+        SelectionStrategy.Fastest => "Fastest",
+        SelectionStrategy.Random => "Random",
+        _ => throw new NotImplementedException($"Intent kind '{Strategy}' is not supported."),
     };
 
     public override VpnTriggerDimension VpnTriggerDimension { get; } = VpnTriggerDimension.GatewaysGateway;
@@ -79,16 +80,16 @@ public class GenericGatewayLocationItem : LocationItemBase
         IServersLoader serversLoader,
         IConnectionManager connectionManager,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
-        ConnectionIntentKind intentKind)
+        SelectionStrategy intentKind)
         : base(localizer,
                serversLoader,
                connectionManager,
                upsellCarouselWindowActivator, 
                false)
     {
-        IntentKind = intentKind;
+        Strategy = intentKind;
 
-        LocationIntent = new GatewayLocationIntent(IntentKind);
+        LocationIntent = MultiGatewayLocationIntent.From(Strategy);
     }
 
     protected override bool MatchesActiveConnection(ConnectionDetails? currentConnectionDetails)

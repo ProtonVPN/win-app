@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,40 +17,36 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Common.Core.Geographical;
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.States;
 
-public class StateLocationIntent : CountryLocationIntent
+public abstract class StateLocationIntentBase : LocationIntentBase
 {
-    public string? State { get; }
+    public SingleCountryLocationIntent Country { get; }
 
-    public StateLocationIntent(string countryCode, string state)
-        : base(countryCode)
-    {
-        State = state;
-    }
+    public override bool IsForPaidUsersOnly => true;
 
-    public StateLocationIntent(string countryCode)
-        : base(countryCode)
+    protected StateLocationIntentBase(SingleCountryLocationIntent country)
     {
+        Country = country ?? throw new ArgumentNullException(nameof(country));
     }
 
     public override bool IsSameAs(ILocationIntent? intent)
     {
         return base.IsSameAs(intent)
-            && intent is StateLocationIntent stateIntent
-            && State == stateIntent.State;
+            && intent is StateLocationIntentBase stateIntent
+            && Country.IsSameAs(stateIntent.Country);
     }
 
-    public override bool IsSupported(Server server, DeviceLocation? deviceLocation)
+    public override bool IsSupported(Server server)
     {
-        return base.IsSupported(server, deviceLocation) && (State is null || server.State == State);
+        return Country.IsSupported(server);
     }
 
     public override string ToString()
     {
-        return $"{base.ToString()}{(string.IsNullOrEmpty(State) ? string.Empty : $" - {State}")}";
+        return Country.ToString();
     }
 }

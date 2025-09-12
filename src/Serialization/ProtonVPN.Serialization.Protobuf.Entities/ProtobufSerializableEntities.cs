@@ -19,6 +19,8 @@
 
 using ProtonVPN.Client.Files.Contracts.Images;
 using ProtonVPN.Client.Logic.Announcements.Contracts.Entities;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.SerializableEntities.Intents;
 using ProtonVPN.Client.Logic.Profiles.Contracts.SerializableEntities;
 using ProtonVPN.Client.Logic.Recents.Contracts.SerializableEntities;
@@ -45,6 +47,9 @@ public class ProtobufSerializableEntities : IProtobufSerializableEntities
         yield return typeof(ServerTiers);
         yield return typeof(VpnProtocol);
         yield return typeof(DeviceLocation);
+        yield return typeof(SelectionStrategy);
+        yield return typeof(ServerInfo);
+        yield return typeof(GatewayServerInfo);
 
         yield return typeof(SerializableConnectionIntent);
         yield return typeof(SerializableFeatureIntent);

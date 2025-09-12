@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.Tests.Models.Intents.Locations;
 
@@ -35,8 +35,8 @@ public class ServerLocationIntentTests
     [TestMethod]
     public void ServerLocationIntent_Number_ShouldBeValid(string name, int number)
     {
-        ServerLocationIntent serverLocationIntent = new(string.Empty, name, string.Empty, string.Empty, string.Empty);
+        ServerInfo server = ServerInfo.From("ID", name);
 
-        Assert.AreEqual(number, serverLocationIntent.Number);
+        Assert.AreEqual(number, server.GetNumber());
     }
 }

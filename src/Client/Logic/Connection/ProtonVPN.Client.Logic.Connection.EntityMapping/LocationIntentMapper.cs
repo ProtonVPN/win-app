@@ -18,6 +18,13 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Cities;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.FreeServers;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Gateways;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.GatewayServers;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Servers;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.States;
 using ProtonVPN.Client.Logic.Connection.Contracts.SerializableEntities.Intents;
 using ProtonVPN.EntityMapping.Contracts;
 
@@ -26,6 +33,14 @@ namespace ProtonVPN.Client.Logic.Connection.EntityMapping;
 public class LocationIntentMapper : IMapper<ILocationIntent, SerializableLocationIntent>
 {
     private readonly IEntityMapper _entityMapper;
+
+    private const string LEGACY_SERVER_LOCATION_INTENT = "ServerLocationIntent";
+    private const string LEGACY_CITY_LOCATION_INTENT = "CityLocationIntent";
+    private const string LEGACY_STATE_LOCATION_INTENT = "StateLocationIntent";
+    private const string LEGACY_COUNTRY_LOCATION_INTENT = "CountryLocationIntent";
+    private const string LEGACY_GATEWAY_SERVER_LOCATION_INTENT = "GatewayServerLocationIntent";
+    private const string LEGACY_GATEWAY_LOCATION_INTENT = "GatewayLocationIntent";
+
 
     public LocationIntentMapper(IEntityMapper entityMapper)
     {
@@ -36,24 +51,21 @@ public class LocationIntentMapper : IMapper<ILocationIntent, SerializableLocatio
     {
         return leftEntity is null
             ? null
-            : leftEntity switch // Case order is important because some types are base classes of the other types
+            : leftEntity switch
             {
-                ServerLocationIntent serverLocationIntent =>
-                    _entityMapper.Map<ServerLocationIntent, SerializableLocationIntent>(serverLocationIntent),
-                CityLocationIntent cityLocationIntent =>
-                    _entityMapper.Map<CityLocationIntent, SerializableLocationIntent>(cityLocationIntent),
-                StateLocationIntent stateLocationIntent =>
-                    _entityMapper.Map<StateLocationIntent, SerializableLocationIntent>(stateLocationIntent),
-                CountryLocationIntent countryLocationIntent =>
-                    _entityMapper.Map<CountryLocationIntent, SerializableLocationIntent>(countryLocationIntent),
-
-                GatewayServerLocationIntent gatewayServerLocationIntent =>
-                    _entityMapper.Map<GatewayServerLocationIntent, SerializableLocationIntent>(gatewayServerLocationIntent),
-                GatewayLocationIntent gatewayLocationIntent =>
-                    _entityMapper.Map<GatewayLocationIntent, SerializableLocationIntent>(gatewayLocationIntent),
-
-                FreeServerLocationIntent freeServerLocationIntent =>
-                    _entityMapper.Map<FreeServerLocationIntent, SerializableLocationIntent>(freeServerLocationIntent),
+                SingleServerLocationIntent intent => _entityMapper.Map<SingleServerLocationIntent, SerializableLocationIntent>(intent),
+                MultiServerLocationIntent intent => _entityMapper.Map<MultiServerLocationIntent, SerializableLocationIntent>(intent),
+                SingleCityLocationIntent intent => _entityMapper.Map<SingleCityLocationIntent, SerializableLocationIntent>(intent),
+                MultiCityLocationIntent intent => _entityMapper.Map<MultiCityLocationIntent, SerializableLocationIntent>(intent),
+                SingleStateLocationIntent intent => _entityMapper.Map<SingleStateLocationIntent, SerializableLocationIntent>(intent),
+                MultiStateLocationIntent intent => _entityMapper.Map<MultiStateLocationIntent, SerializableLocationIntent>(intent),
+                SingleCountryLocationIntent intent => _entityMapper.Map<SingleCountryLocationIntent, SerializableLocationIntent>(intent),
+                MultiCountryLocationIntent intent => _entityMapper.Map<MultiCountryLocationIntent, SerializableLocationIntent>(intent),
+                SingleGatewayServerLocationIntent intent => _entityMapper.Map<SingleGatewayServerLocationIntent, SerializableLocationIntent>(intent),
+                MultiGatewayServerLocationIntent intent => _entityMapper.Map<MultiGatewayServerLocationIntent, SerializableLocationIntent>(intent),
+                SingleGatewayLocationIntent intent => _entityMapper.Map<SingleGatewayLocationIntent, SerializableLocationIntent>(intent),
+                MultiGatewayLocationIntent intent => _entityMapper.Map<MultiGatewayLocationIntent, SerializableLocationIntent>(intent),
+                FreeServerLocationIntent intent => _entityMapper.Map<FreeServerLocationIntent, SerializableLocationIntent>(intent),
 
                 _ => throw new NotImplementedException($"No mapping is implemented for {leftEntity.GetType().FullName}"),
             };
@@ -65,13 +77,40 @@ public class LocationIntentMapper : IMapper<ILocationIntent, SerializableLocatio
             ? null
             : rightEntity.TypeName switch
             {
-                nameof(ServerLocationIntent) => _entityMapper.Map<SerializableLocationIntent, ServerLocationIntent>(rightEntity),
-                nameof(CityLocationIntent) => _entityMapper.Map<SerializableLocationIntent, CityLocationIntent>(rightEntity),
-                nameof(StateLocationIntent) => _entityMapper.Map<SerializableLocationIntent, StateLocationIntent>(rightEntity),
-                nameof(CountryLocationIntent) => _entityMapper.Map<SerializableLocationIntent, CountryLocationIntent>(rightEntity),
-                nameof(GatewayServerLocationIntent) => _entityMapper.Map<SerializableLocationIntent, GatewayServerLocationIntent>(rightEntity),
-                nameof(GatewayLocationIntent) => _entityMapper.Map<SerializableLocationIntent, GatewayLocationIntent>(rightEntity),
+                // Legacy types mapping
+                LEGACY_SERVER_LOCATION_INTENT => string.IsNullOrEmpty(rightEntity.Id)
+                    ? _entityMapper.Map<SerializableLocationIntent, MultiServerLocationIntent>(rightEntity)
+                    : _entityMapper.Map<SerializableLocationIntent, SingleServerLocationIntent>(rightEntity),
+                LEGACY_CITY_LOCATION_INTENT => string.IsNullOrEmpty(rightEntity.City)
+                    ? _entityMapper.Map<SerializableLocationIntent, MultiCityLocationIntent>(rightEntity)
+                    : _entityMapper.Map<SerializableLocationIntent, SingleCityLocationIntent>(rightEntity),
+                LEGACY_STATE_LOCATION_INTENT => string.IsNullOrEmpty(rightEntity.State)
+                    ? _entityMapper.Map<SerializableLocationIntent, MultiStateLocationIntent>(rightEntity)
+                    : _entityMapper.Map<SerializableLocationIntent, SingleStateLocationIntent>(rightEntity),
+                LEGACY_COUNTRY_LOCATION_INTENT => string.IsNullOrEmpty(rightEntity.CountryCode)
+                    ? _entityMapper.Map<SerializableLocationIntent, MultiCountryLocationIntent>(rightEntity)
+                    : _entityMapper.Map<SerializableLocationIntent, SingleCountryLocationIntent>(rightEntity),
+                LEGACY_GATEWAY_SERVER_LOCATION_INTENT => string.IsNullOrEmpty(rightEntity.Id)
+                    ? _entityMapper.Map<SerializableLocationIntent, MultiGatewayServerLocationIntent>(rightEntity)
+                    : _entityMapper.Map<SerializableLocationIntent, SingleGatewayServerLocationIntent>(rightEntity),
+                LEGACY_GATEWAY_LOCATION_INTENT => string.IsNullOrEmpty(rightEntity.GatewayName)
+                    ? _entityMapper.Map<SerializableLocationIntent, MultiGatewayLocationIntent>(rightEntity)
+                    : _entityMapper.Map<SerializableLocationIntent, SingleGatewayLocationIntent>(rightEntity),
+
+                nameof(SingleServerLocationIntent) => _entityMapper.Map<SerializableLocationIntent, SingleServerLocationIntent>(rightEntity),
+                nameof(MultiServerLocationIntent) => _entityMapper.Map<SerializableLocationIntent, MultiServerLocationIntent>(rightEntity),
+                nameof(SingleCityLocationIntent) => _entityMapper.Map<SerializableLocationIntent, SingleCityLocationIntent>(rightEntity),
+                nameof(MultiCityLocationIntent) => _entityMapper.Map<SerializableLocationIntent, MultiCityLocationIntent>(rightEntity),
+                nameof(SingleStateLocationIntent) => _entityMapper.Map<SerializableLocationIntent, SingleStateLocationIntent>(rightEntity),
+                nameof(MultiStateLocationIntent) => _entityMapper.Map<SerializableLocationIntent, MultiStateLocationIntent>(rightEntity),
+                nameof(SingleCountryLocationIntent) => _entityMapper.Map<SerializableLocationIntent, SingleCountryLocationIntent>(rightEntity),
+                nameof(MultiCountryLocationIntent) => _entityMapper.Map<SerializableLocationIntent, MultiCountryLocationIntent>(rightEntity),
+                nameof(SingleGatewayServerLocationIntent) => _entityMapper.Map<SerializableLocationIntent, SingleGatewayServerLocationIntent>(rightEntity),
+                nameof(MultiGatewayServerLocationIntent) => _entityMapper.Map<SerializableLocationIntent, MultiGatewayServerLocationIntent>(rightEntity),
+                nameof(SingleGatewayLocationIntent) => _entityMapper.Map<SerializableLocationIntent, SingleGatewayLocationIntent>(rightEntity),
+                nameof(MultiGatewayLocationIntent) => _entityMapper.Map<SerializableLocationIntent, MultiGatewayLocationIntent>(rightEntity),
                 nameof(FreeServerLocationIntent) => _entityMapper.Map<SerializableLocationIntent, FreeServerLocationIntent>(rightEntity),
+
                 _ => throw new NotImplementedException($"No mapping is implemented for {rightEntity.TypeName}"),
             };
     }

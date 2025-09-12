@@ -24,6 +24,8 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.GatewayServers;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Servers;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
@@ -74,7 +76,7 @@ public abstract class ServerLocationItemBase : LocationItemBase<Server>
         ? VpnTriggerDimension.SearchServer
         : VpnTriggerDimension.CountriesServer;
 
-    protected override string AutomationName => "Spectific_Server";
+    protected override string AutomationName => "Specific_Server";
 
     protected ServerLocationItemBase(
         ILocalizationProvider localizer,
@@ -96,8 +98,8 @@ public abstract class ServerLocationItemBase : LocationItemBase<Server>
         ServerNumber = server.Name.GetServerNumber();
 
         LocationIntent = string.IsNullOrEmpty(Server.GatewayName)
-            ? new ServerLocationIntent(Server.Id, Server.Name, Server.ExitCountry, Server.State, Server.City)
-            : new GatewayServerLocationIntent(Server.Id, Server.Name, Server.ExitCountry, Server.GatewayName);
+            ? SingleServerLocationIntent.From(Server.ExitCountry, Server.State, Server.City, ServerInfo.From(Server.Id, Server.Name))
+            : SingleGatewayServerLocationIntent.From(Server.GatewayName, GatewayServerInfo.From(Server.Id, Server.Name, Server.ExitCountry));
     }
 
     protected override bool MatchesActiveConnection(ConnectionDetails? currentConnectionDetails)

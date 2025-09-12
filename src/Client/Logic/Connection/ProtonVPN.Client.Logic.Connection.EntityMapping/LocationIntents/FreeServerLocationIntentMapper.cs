@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,8 +18,9 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.FreeServers;
 using ProtonVPN.Client.Logic.Connection.Contracts.SerializableEntities.Intents;
+using ProtonVPN.Client.Logic.Connection.EntityMapping.Extensions;
 using ProtonVPN.EntityMapping.Contracts;
 
 namespace ProtonVPN.Client.Logic.Connection.EntityMapping.LocationIntents;
@@ -33,8 +34,8 @@ public class FreeServerLocationIntentMapper : IMapper<FreeServerLocationIntent, 
             : new SerializableLocationIntent()
             {
                 TypeName = nameof(FreeServerLocationIntent),
-                FreeServerType = (int)leftEntity.Kind,
-                FreeServerExcludedLogicalId = leftEntity.ExcludedLogicalServerId,
+                Strategy = leftEntity.Strategy,
+                ServerToExclude = leftEntity.ServerToExclude
             };
     }
 
@@ -42,10 +43,11 @@ public class FreeServerLocationIntentMapper : IMapper<FreeServerLocationIntent, 
     {
         return rightEntity is null
             ? null
-            : (ConnectionIntentKind)rightEntity.FreeServerType switch
+            : rightEntity.GetSelectionStrategy() switch
             {
-                ConnectionIntentKind.Random => new FreeServerLocationIntent(excludedLogicalServerId: rightEntity.FreeServerExcludedLogicalId),
-                _ => new FreeServerLocationIntent(),
+                SelectionStrategy.Fastest => FreeServerLocationIntent.Fastest,
+                SelectionStrategy.Random => FreeServerLocationIntent.Random(rightEntity.GetServerToExclude()),
+                _ => FreeServerLocationIntent.Default,
             };
     }
 }

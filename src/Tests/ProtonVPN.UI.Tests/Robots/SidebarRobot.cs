@@ -174,7 +174,7 @@ public class SidebarRobot
     }
     public SidebarRobot ConnectToFirstSpecificServer()
     {
-        ConnectViaServerList("Spectific_Server");
+        ConnectViaServerList("Specific_Server");
         return this;
     }
 
@@ -198,7 +198,7 @@ public class SidebarRobot
 
     public SidebarRobot DisconnectViaSpecificServer()
     {
-        DisconnectViaSidebarButton("Spectific_Server");
+        DisconnectViaSidebarButton("Specific_Server");
         return this;
     }
 

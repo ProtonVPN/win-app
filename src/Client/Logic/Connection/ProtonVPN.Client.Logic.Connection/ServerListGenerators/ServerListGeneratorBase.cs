@@ -17,10 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Logic.Connection.ServerListGenerators;
 
@@ -28,74 +33,51 @@ public abstract class ServerListGeneratorBase
 {
     protected readonly Random Random = new();
 
+    protected readonly ISettings Settings;
+    protected readonly IServersLoader ServersLoader;
+    protected readonly ILogger Logger;
+
     protected abstract int MaxPhysicalServersPerLogical { get; }
+    protected abstract int MaxPhysicalServersInTotal { get; }
+
+    protected ServerListGeneratorBase(
+        ISettings settings,
+        IServersLoader serversLoader,
+        ILogger logger)
+    {
+        Settings = settings;
+        ServersLoader = serversLoader;
+        Logger = logger;
+    }
+
+    protected IOrderedEnumerable<Server> SelectLogicalServers(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols)
+    {
+        return SelectLogicalServers(ServersLoader.GetServers(), connectionIntent, preferredProtocols);
+    }
+
+    protected IOrderedEnumerable<Server> SelectLogicalServers(IEnumerable<Server> servers, IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols)
+    {
+        bool isPortForwardingEnabled = connectionIntent is IConnectionProfile profile
+            ? profile.Settings.IsPortForwardingEnabled
+            : Settings.IsPortForwardingEnabled;
+
+        return connectionIntent
+            .FilterAndSortServers(servers, Settings.DeviceLocation, preferredProtocols, isPortForwardingEnabled);
+    }
 
     protected IEnumerable<PhysicalServer> SelectDistinctPhysicalServers(List<Server> pickedServers, IList<VpnProtocol> preferredProtocols)
     {
         return pickedServers
             .SelectMany(s => SelectPhysicalServers(s, preferredProtocols))
-            .DistinctBy(s => new { s.EntryIp, s.Label });
+            .DistinctBy(s => new { s.EntryIp, s.Label })
+            .Take(MaxPhysicalServersInTotal);
     }
 
     protected IEnumerable<PhysicalServer> SelectPhysicalServers(Server server, IList<VpnProtocol> preferredProtocols)
     {
-        return server.Servers?.Where(s => s.IsAvailable(preferredProtocols)).OrderBy(_ => Random.Next()).Take(MaxPhysicalServersPerLogical) ?? [];
-    }
-
-    protected string? GetCity(List<Server> pickedServers, CityLocationIntent? cityLocationIntent)
-    {
-        string? intentCity = cityLocationIntent?.City;
-        string? firstPickedServerCity = pickedServers.FirstOrDefault()?.City;
-
-        return string.IsNullOrWhiteSpace(intentCity)
-            ? string.IsNullOrWhiteSpace(firstPickedServerCity)
-                ? null
-                : firstPickedServerCity
-            : intentCity;
-    }
-
-    protected string? GetState(List<Server> pickedServers, StateLocationIntent? stateLocationIntent)
-    {
-        string? intentState = stateLocationIntent?.State;
-        string? firstPickedServerState = pickedServers.FirstOrDefault()?.State;
-
-        return string.IsNullOrWhiteSpace(intentState)
-            ? string.IsNullOrWhiteSpace(firstPickedServerState)
-                ? null
-                : firstPickedServerState
-            : intentState;
-    }
-
-    protected string? GetExitCountry(List<Server> pickedServers, CountryLocationIntent? countryLocationIntent)
-    {
-        string? intentExitCountry = countryLocationIntent?.CountryCode;
-        string? firstPickedServerExitCountry = pickedServers.FirstOrDefault()?.ExitCountry;
-
-        return string.IsNullOrWhiteSpace(intentExitCountry)
-            ? string.IsNullOrWhiteSpace(firstPickedServerExitCountry)
-                ? null
-                : firstPickedServerExitCountry
-            : intentExitCountry;
-    }
-
-    protected string? GetEntryCountry(List<Server> pickedServers, SecureCoreFeatureIntent secureCoreFeatureIntent)
-    {
-        string? intentEntryCountry = secureCoreFeatureIntent?.EntryCountryCode;
-        string? firstPickedServerEntryCountry = pickedServers.FirstOrDefault()?.EntryCountry;
-
-        return string.IsNullOrWhiteSpace(intentEntryCountry)
-            ? string.IsNullOrWhiteSpace(firstPickedServerEntryCountry)
-                ? null
-                : firstPickedServerEntryCountry
-            : intentEntryCountry;
-    }
-
-    protected void AddServerIfNotAlreadyListed(List<Server> pickedServers, IEnumerable<Server> unfilteredServers, Func<Server, bool> serverFilter)
-    {
-        Server? server = unfilteredServers.Where(s => !pickedServers.Any(pickedServer => s.Id == pickedServer.Id)).FirstOrDefault(serverFilter);
-        if (server is not null)
-        {
-            pickedServers.Add(server);
-        }
+        return server.Servers
+            .Where(s => s.IsAvailable(preferredProtocols))
+            .OrderBy(_ => Random.Next())
+            .Take(MaxPhysicalServersPerLogical) ?? [];
     }
 }

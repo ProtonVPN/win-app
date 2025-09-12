@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,23 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Common.Core.Geographical;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 
 public interface ILocationIntent : IIntent
 {
-    ConnectionIntentKind Kind { get; }
-
     bool IsSameAs(ILocationIntent? intent);
 
-    IEnumerable<Server> FilterServers(IEnumerable<Server> servers, DeviceLocation? deviceLocation);
+    IEnumerable<Server> FilterServers(IEnumerable<Server> servers);
 
-    bool IsSupported(Server server, DeviceLocation? deviceLocation);
-
-    bool IsGenericRandomIntent();
+    bool IsSupported(Server server);
 
     ILocationIntent Copy();
 }

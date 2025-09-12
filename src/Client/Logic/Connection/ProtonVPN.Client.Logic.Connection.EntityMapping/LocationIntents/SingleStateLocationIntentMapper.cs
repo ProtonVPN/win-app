@@ -1,6 +1,5 @@
-﻿
-/*
- * Copyright (c) 2023 Proton AG
+﻿/*
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,39 +17,32 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.States;
 using ProtonVPN.Client.Logic.Connection.Contracts.SerializableEntities.Intents;
 using ProtonVPN.EntityMapping.Contracts;
 
 namespace ProtonVPN.Client.Logic.Connection.EntityMapping.LocationIntents;
 
-public class GatewayLocationIntentMapper : IMapper<GatewayLocationIntent, SerializableLocationIntent>
+public class SingleStateLocationIntentMapper : IMapper<SingleStateLocationIntent, SerializableLocationIntent>
 {
-    public SerializableLocationIntent Map(GatewayLocationIntent leftEntity)
+    public SerializableLocationIntent Map(SingleStateLocationIntent leftEntity)
     {
         return leftEntity is null
             ? null
             : new SerializableLocationIntent()
             {
-                TypeName = nameof(GatewayLocationIntent),
-                GatewayName = leftEntity.GatewayName,
-                Kind = leftEntity.Kind.ToString(),
+                TypeName = nameof(SingleStateLocationIntent),
+                CountryCode = leftEntity.Country.CountryCode,
+                State = leftEntity.StateName,
             };
     }
 
-    public GatewayLocationIntent Map(SerializableLocationIntent rightEntity)
+    public SingleStateLocationIntent Map(SerializableLocationIntent rightEntity)
     {
-        if (rightEntity is null)
-        {
-            return null;
-        }
-
-        if (string.IsNullOrWhiteSpace(rightEntity.Kind) || !Enum.TryParse(rightEntity.Kind, out ConnectionIntentKind kind))
-        {
-            kind = ConnectionIntentKind.Fastest;
-        }
-
-        return new GatewayLocationIntent(rightEntity.GatewayName, kind);
+        return rightEntity is null
+            ? null
+            : SingleStateLocationIntent.From(
+                countryCode: rightEntity.CountryCode,
+                stateName: rightEntity.State);
     }
 }

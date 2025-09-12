@@ -30,7 +30,7 @@ namespace ProtonVPN.Client.Factories;
 
 public interface ILocationItemFactory
 {
-    GenericCountryLocationItem GetGenericCountry(CountriesConnectionType connectionType, ConnectionIntentKind intentKind, bool excludeMyCountry, bool isSearchItem = false);
+    GenericCountryLocationItem GetGenericCountry(CountriesConnectionType connectionType, SelectionStrategy intentKind, bool excludeMyCountry, bool isSearchItem = false);
 
     GenericFastestLocationItem GetGenericFastestLocation(ConnectionGroupType groupType, ILocationIntent locationIntent);
 
@@ -58,7 +58,7 @@ public interface ILocationItemFactory
 
     TorServerLocationItem GetTorServer(Server server, bool isSearchItem = false);
 
-    GenericGatewayLocationItem GetGenericGateway(ConnectionIntentKind intentKind);
+    GenericGatewayLocationItem GetGenericGateway(SelectionStrategy intentKind);
 
     GatewayLocationItem GetGateway(Gateway gateway);
 

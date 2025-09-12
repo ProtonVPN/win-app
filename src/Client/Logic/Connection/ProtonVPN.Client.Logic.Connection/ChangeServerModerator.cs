@@ -23,7 +23,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.FreeServers;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Models;
@@ -118,7 +118,7 @@ public class ChangeServerModerator :
     {
         if (_connectionManager.IsConnected &&
             _connectionManager.CurrentConnectionIntent?.Location is FreeServerLocationIntent intent &&
-           intent.Kind == ConnectionIntentKind.Random)
+           intent.Strategy == SelectionStrategy.Random)
         {
             RegisterChangeServerAttempt();
         }

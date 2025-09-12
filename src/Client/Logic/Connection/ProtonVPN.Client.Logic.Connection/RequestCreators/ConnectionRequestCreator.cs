@@ -21,7 +21,6 @@ using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
@@ -42,9 +41,8 @@ namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 
 public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectionRequestCreator
 {
-    protected readonly IIntentServerListGenerator IntentServerListGenerator;
-    protected readonly ISmartSecureCoreServerListGenerator SmartSecureCoreServerListGenerator;
-    protected readonly ISmartStandardServerListGenerator SmartStandardServerListGenerator;
+    protected readonly IServerListGenerator ServerListGenerator;
+    protected readonly ISmartServerListGenerator SmartServerListGenerator;
 
     private readonly IConnectionKeyManager _connectionKeyManager;
     private readonly IConnectionCertificateManager _connectionCertificateManager;
@@ -55,16 +53,14 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
         IEntityMapper entityMapper,
         IConnectionKeyManager connectionKeyManager,
         IConnectionCertificateManager connectionCertificateManager,
-        IIntentServerListGenerator intentServerListGenerator,
-        ISmartSecureCoreServerListGenerator smartSecureCoreServerListGenerator,
-        ISmartStandardServerListGenerator smartStandardServerListGenerator,
+        IServerListGenerator serverListGenerator,
+        ISmartServerListGenerator smartServerListGenerator,
         IFeatureFlagsObserver featureFlagsObserver,
         IMainSettingsRequestCreator mainSettingsRequestCreator)
         : base(logger, settings, entityMapper, featureFlagsObserver, mainSettingsRequestCreator)
     {
-        IntentServerListGenerator = intentServerListGenerator;
-        SmartSecureCoreServerListGenerator = smartSecureCoreServerListGenerator;
-        SmartStandardServerListGenerator = smartStandardServerListGenerator;
+        ServerListGenerator = serverListGenerator;
+        SmartServerListGenerator = smartServerListGenerator;
 
         _connectionKeyManager = connectionKeyManager;
         _connectionCertificateManager = connectionCertificateManager;
@@ -75,6 +71,7 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
         MainSettingsIpcEntity settings = GetSettings(connectionIntent);
         VpnConfigIpcEntity config = GetVpnConfig(settings, connectionIntent);
         List<VpnProtocol> preferredProtocols = EntityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(config.PreferredProtocols);
+        IEnumerable<PhysicalServer> physicalServers = GetPhysicalServers(connectionIntent, preferredProtocols);
 
         ConnectionRequestIpcEntity request = new()
         {
@@ -82,7 +79,7 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
             Config = config,
             Credentials = await GetVpnCredentialsAsync(),
             Protocol = settings.VpnProtocol,
-            Servers = PhysicalServersToVpnServerIpcEntities(GetPhysicalServers(connectionIntent, preferredProtocols)),
+            Servers = PhysicalServersToVpnServerIpcEntities(physicalServers),
             Settings = settings,
         };
 
@@ -142,19 +139,9 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
 
     protected IEnumerable<PhysicalServer> GetPhysicalServers(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols)
     {
-        if (IsToBypassSmartServerListGenerator(connectionIntent))
-        {
-            return IntentServerListGenerator.Generate(connectionIntent, preferredProtocols);
-        }
-        else if (connectionIntent.Feature is SecureCoreFeatureIntent secureCoreFeatureIntent)
-        {
-            CountryLocationIntent countryLocationIntent = connectionIntent.Location as CountryLocationIntent ?? CountryLocationIntent.Fastest;
-            return SmartSecureCoreServerListGenerator.Generate(secureCoreFeatureIntent, countryLocationIntent, preferredProtocols);
-        }
-        else
-        {
-            return SmartStandardServerListGenerator.Generate(connectionIntent, preferredProtocols);
-        }
+        return IsToBypassSmartServerListGenerator(connectionIntent)
+            ? ServerListGenerator.Generate(connectionIntent, preferredProtocols)
+            : SmartServerListGenerator.Generate(connectionIntent, preferredProtocols);
     }
 
     protected VpnServerIpcEntity[] PhysicalServersToVpnServerIpcEntities(IEnumerable<PhysicalServer> physicalServers)

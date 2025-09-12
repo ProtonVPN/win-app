@@ -17,13 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
-using ProtonVPN.Client.Logic.Servers.Contracts.Models;
-using ProtonVPN.Common.Core.Networking;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Gateways;
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
-
-public interface ISmartStandardServerListGenerator
+public abstract class GatewayLocationIntentBase : LocationIntentBase
 {
-    IEnumerable<PhysicalServer> Generate(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols);
+    public override bool IsForPaidUsersOnly => false;
 }

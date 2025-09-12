@@ -25,6 +25,8 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 
 public class SecureCoreFeatureIntent : FeatureIntentBase
 {
+    public static SecureCoreFeatureIntent Default => new SecureCoreFeatureIntent();
+
     public override bool IsForPaidUsersOnly => true;
 
     public string? EntryCountryCode { get; }
@@ -32,8 +34,7 @@ public class SecureCoreFeatureIntent : FeatureIntentBase
     public bool IsFastest => string.IsNullOrEmpty(EntryCountryCode);
 
     public SecureCoreFeatureIntent()
-    {
-    }
+    { }
 
     public SecureCoreFeatureIntent(string? entryCountryCode = null)
     {
@@ -52,8 +53,8 @@ public class SecureCoreFeatureIntent : FeatureIntentBase
 
     public override bool IsSupported(Server server)
     {
-        return server.Features.IsSupported(ServerFeatures.SecureCore) && 
-            (string.IsNullOrEmpty(EntryCountryCode) || server.EntryCountry == EntryCountryCode);
+        return server.Features.IsSupported(ServerFeatures.SecureCore) 
+            && (IsFastest || server.EntryCountry == EntryCountryCode);
     }
 
     public override string ToString()

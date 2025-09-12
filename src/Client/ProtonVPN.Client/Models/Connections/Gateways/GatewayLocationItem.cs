@@ -25,6 +25,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Gateways;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
@@ -73,7 +74,7 @@ public class GatewayLocationItem : HostLocationItemBase<Gateway>
     {
         Gateway = gateway;
 
-        LocationIntent = new GatewayLocationIntent(gateway.Name);
+        LocationIntent = SingleGatewayLocationIntent.From(gateway.Name);
     }
 
     public void OnExpandGateway()

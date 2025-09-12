@@ -28,6 +28,12 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Cities;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Gateways;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.GatewayServers;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Servers;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.States;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
@@ -36,6 +42,7 @@ using ProtonVPN.Client.Models.Connections;
 using ProtonVPN.Client.Models.Connections.Countries;
 using ProtonVPN.Client.Models.Connections.Gateways;
 using ProtonVPN.Client.UI.Main.Profiles.Contracts;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Main.Profiles.Components;
 
@@ -191,9 +198,9 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
     {
         IEnumerable<LocationItemBase> genericCountries =
         [
-            _locationItemFactory.GetGenericCountry(CountriesConnectionType.All, ConnectionIntentKind.Fastest, false),
-            _locationItemFactory.GetGenericCountry(CountriesConnectionType.All, ConnectionIntentKind.Fastest, true),
-            _locationItemFactory.GetGenericCountry(CountriesConnectionType.All, ConnectionIntentKind.Random, false),
+            _locationItemFactory.GetGenericCountry(CountriesConnectionType.All, SelectionStrategy.Fastest, false),
+            _locationItemFactory.GetGenericCountry(CountriesConnectionType.All, SelectionStrategy.Fastest, true),
+            _locationItemFactory.GetGenericCountry(CountriesConnectionType.All, SelectionStrategy.Random, false),
         ];
 
         IEnumerable<LocationItemBase> countries =
@@ -209,9 +216,9 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
     {
         IEnumerable<LocationItemBase> genericCountries =
         [
-            _locationItemFactory.GetGenericCountry(CountriesConnectionType.P2P, ConnectionIntentKind.Fastest, false),
-            _locationItemFactory.GetGenericCountry(CountriesConnectionType.P2P, ConnectionIntentKind.Fastest, true),
-            _locationItemFactory.GetGenericCountry(CountriesConnectionType.P2P, ConnectionIntentKind.Random, false),
+            _locationItemFactory.GetGenericCountry(CountriesConnectionType.P2P, SelectionStrategy.Fastest, false),
+            _locationItemFactory.GetGenericCountry(CountriesConnectionType.P2P, SelectionStrategy.Fastest, true),
+            _locationItemFactory.GetGenericCountry(CountriesConnectionType.P2P, SelectionStrategy.Random, false),
         ];
 
         IEnumerable<LocationItemBase> countries =
@@ -227,9 +234,9 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
     {
         IEnumerable<LocationItemBase> genericCountries =
         [
-            _locationItemFactory.GetGenericCountry(CountriesConnectionType.SecureCore, ConnectionIntentKind.Fastest, false),
-            _locationItemFactory.GetGenericCountry(CountriesConnectionType.SecureCore, ConnectionIntentKind.Fastest, true),
-            _locationItemFactory.GetGenericCountry(CountriesConnectionType.SecureCore, ConnectionIntentKind.Random, false),
+            _locationItemFactory.GetGenericCountry(CountriesConnectionType.SecureCore, SelectionStrategy.Fastest, false),
+            _locationItemFactory.GetGenericCountry(CountriesConnectionType.SecureCore, SelectionStrategy.Fastest, true),
+            _locationItemFactory.GetGenericCountry(CountriesConnectionType.SecureCore, SelectionStrategy.Random, false),
         ];
 
         IEnumerable<LocationItemBase> countries =
@@ -301,31 +308,64 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
 
             SelectedFirstLevelLocationItem = _currentLocationIntent switch
             {
-                CountryLocationIntent countryIntent when countryIntent.IsFastestCountry => FirstLevelLocationItems.OfType<GenericCountryLocationItem>().FirstOrDefault(c => c.IntentKind == ConnectionIntentKind.Fastest && !c.ExcludeMyCountry),
-                CountryLocationIntent countryIntent when countryIntent.IsFastestCountryExcludingMine => FirstLevelLocationItems.OfType<GenericCountryLocationItem>().FirstOrDefault(c => c.IntentKind == ConnectionIntentKind.Fastest && c.ExcludeMyCountry),
-                CountryLocationIntent countryIntent when countryIntent.IsRandomCountry => FirstLevelLocationItems.OfType<GenericCountryLocationItem>().FirstOrDefault(c => c.IntentKind == ConnectionIntentKind.Random && !c.ExcludeMyCountry),
-                CountryLocationIntent countryIntent when countryIntent.IsRandomCountryExcludingMine => FirstLevelLocationItems.OfType<GenericCountryLocationItem>().FirstOrDefault(c => c.IntentKind == ConnectionIntentKind.Random && c.ExcludeMyCountry),
-                CountryLocationIntent countryIntent => FirstLevelLocationItems.OfType<CountryLocationItemBase>().FirstOrDefault(c => c.ExitCountryCode == countryIntent.CountryCode),
-                GatewayLocationIntent gatewayIntent when gatewayIntent.IsFastestGateway => FirstLevelLocationItems.OfType<GenericGatewayLocationItem>().FirstOrDefault(c => c.IntentKind == ConnectionIntentKind.Fastest),
-                GatewayLocationIntent gatewayIntent when gatewayIntent.IsRandomGateway => FirstLevelLocationItems.OfType<GenericGatewayLocationItem>().FirstOrDefault(c => c.IntentKind == ConnectionIntentKind.Random),
-                GatewayLocationIntent gatewayIntent => FirstLevelLocationItems.OfType<GatewayLocationItem>().FirstOrDefault(g => g.Gateway.Name == gatewayIntent.GatewayName),
+                MultiCountryLocationIntent intent when intent.IsToExcludeMyCountry => intent.Strategy switch
+                {
+                    SelectionStrategy.Fastest => FirstLevelLocationItems.OfType<GenericCountryLocationItem>().FirstOrDefault(c => c.Strategy == SelectionStrategy.Fastest && c.ExcludeMyCountry),
+                    SelectionStrategy.Random => FirstLevelLocationItems.OfType<GenericCountryLocationItem>().FirstOrDefault(c => c.Strategy == SelectionStrategy.Random && c.ExcludeMyCountry),
+                    _ => null,
+                },
+                MultiCountryLocationIntent intent => intent.Strategy switch
+                {
+                    SelectionStrategy.Fastest => FirstLevelLocationItems.OfType<GenericCountryLocationItem>().FirstOrDefault(c => c.Strategy == SelectionStrategy.Fastest && !c.ExcludeMyCountry),
+                    SelectionStrategy.Random => FirstLevelLocationItems.OfType<GenericCountryLocationItem>().FirstOrDefault(c => c.Strategy == SelectionStrategy.Random && !c.ExcludeMyCountry),
+                    _ => null,
+                },
+                SingleCountryLocationIntent intent => FirstLevelLocationItems.OfType<CountryLocationItemBase>().FirstOrDefault(c => intent.CountryCode.EqualsIgnoringCase(c.ExitCountryCode)),
+                StateLocationIntentBase intent => FirstLevelLocationItems.OfType<CountryLocationItemBase>().FirstOrDefault(c => intent.Country.CountryCode.EqualsIgnoringCase(c.ExitCountryCode)),
+                CityLocationIntentBase intent => FirstLevelLocationItems.OfType<CountryLocationItemBase>().FirstOrDefault(c => intent.Country.CountryCode.EqualsIgnoringCase(c.ExitCountryCode)),
+                ServerLocationIntentBase intent => FirstLevelLocationItems.OfType<CountryLocationItemBase>().FirstOrDefault(c => intent.Country.CountryCode.EqualsIgnoringCase(c.ExitCountryCode)),
+
+                MultiGatewayLocationIntent intent => intent.Strategy switch
+                {
+                    SelectionStrategy.Fastest => FirstLevelLocationItems.OfType<GenericGatewayLocationItem>().FirstOrDefault(g => g.Strategy == SelectionStrategy.Fastest),
+                    SelectionStrategy.Random => FirstLevelLocationItems.OfType<GenericGatewayLocationItem>().FirstOrDefault(g => g.Strategy == SelectionStrategy.Random),
+                    _ => null,
+                },
+                GatewayServerLocationIntentBase intent => FirstLevelLocationItems.OfType<GatewayLocationItem>().FirstOrDefault(g => intent.Gateway.GatewayName.EqualsIgnoringCase(g.Gateway.Name)),
+
                 _ => null
             };
             SelectedFirstLevelLocationItem ??= FirstLevelLocationItems.FirstOrDefault();
 
             SelectedSecondLevelLocationItem = _currentLocationIntent switch
             {
-                _ when _currentFeatureIntent is SecureCoreFeatureIntent secureCoreIntent => SecondLevelLocationItems.OfType<SecureCoreCountryPairLocationItem>().FirstOrDefault(cp => cp.CountryPair.EntryCountry == secureCoreIntent.EntryCountryCode),
-                StateLocationIntent stateIntent when !string.IsNullOrEmpty(stateIntent.State) => SecondLevelLocationItems.OfType<StateLocationItemBase>().FirstOrDefault(s => s.State.Name == stateIntent.State),
-                CityLocationIntent cityIntent => SecondLevelLocationItems.OfType<CityLocationItemBase>().FirstOrDefault(c => c.City.Name == cityIntent.City),
-                GatewayServerLocationIntent gatewayServerIntent => SecondLevelLocationItems.OfType<GatewayServerLocationItem>().FirstOrDefault(gs => gs.Server.Id == gatewayServerIntent.Id),
+                _ when _currentFeatureIntent is SecureCoreFeatureIntent intent => SecondLevelLocationItems.OfType<SecureCoreCountryPairLocationItem>().FirstOrDefault(cp => cp.CountryPair.EntryCountry == intent.EntryCountryCode),
+                MultiStateLocationIntent intent => intent.Strategy switch
+                {
+                    // TODO: Pick the right generic intent based on the strategy (fastest or random)
+                    SelectionStrategy.Fastest => SecondLevelLocationItems.OfType<GenericFastestLocationItem>().FirstOrDefault(),
+                    SelectionStrategy.Random => SecondLevelLocationItems.OfType<GenericFastestLocationItem>().FirstOrDefault(),
+                    _ => null
+                },
+                SingleStateLocationIntent intent => SecondLevelLocationItems.OfType<StateLocationItemBase>().FirstOrDefault(s => intent.StateName.EqualsIgnoringCase(s.State.Name)),
+                MultiCityLocationIntent intent => intent.Strategy switch
+                {
+                    // TODO: Pick the right generic intent based on the strategy (fastest or random)
+                    SelectionStrategy.Fastest => SecondLevelLocationItems.OfType<GenericFastestLocationItem>().FirstOrDefault(),
+                    SelectionStrategy.Random => SecondLevelLocationItems.OfType<GenericFastestLocationItem>().FirstOrDefault(),
+                    _ => null
+                },
+                SingleCityLocationIntent intent => SecondLevelLocationItems.OfType<CityLocationItemBase>().FirstOrDefault(c => intent.CityName.EqualsIgnoringCase(c.City.Name)),
+                ServerLocationIntentBase intent when intent.State != null => SecondLevelLocationItems.OfType<StateLocationItemBase>().FirstOrDefault(s => intent.State.StateName.EqualsIgnoringCase(s.State.Name)),
+                ServerLocationIntentBase intent => SecondLevelLocationItems.OfType<CityLocationItemBase>().FirstOrDefault(c => intent.City.CityName.EqualsIgnoringCase(c.City.Name)),
+                SingleGatewayServerLocationIntent intent => SecondLevelLocationItems.OfType<GatewayServerLocationItem>().FirstOrDefault(s => intent.Server.Id == s.Server.Id),
                 _ => null
             };
             SelectedSecondLevelLocationItem ??= SecondLevelLocationItems.FirstOrDefault();
 
             SelectedThirdLevelLocationItem = _currentLocationIntent switch
             {
-                ServerLocationIntent serverIntent => ThirdLevelLocationItems.OfType<ServerLocationItemBase>().FirstOrDefault(s => s.Server.Id == serverIntent.Id),
+                SingleServerLocationIntent intent => ThirdLevelLocationItems.OfType<ServerLocationItemBase>().FirstOrDefault(s => intent.Server.Id == s.Server.Id),
                 _ => null
             };
             SelectedThirdLevelLocationItem ??= ThirdLevelLocationItems.FirstOrDefault();
@@ -418,7 +458,7 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
                     ? secondLevelLocationItem.LocationIntent
                     : SelectedFirstLevelLocationItem is LocationItemBase firstLevelLocationItem
                         ? firstLevelLocationItem.LocationIntent
-                        : CountryLocationIntent.Fastest;
+                        : MultiCountryLocationIntent.Default;
     }
 
     partial void OnSelectedFeatureChanged(FeatureItem? value)

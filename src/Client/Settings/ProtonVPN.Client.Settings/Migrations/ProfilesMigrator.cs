@@ -19,8 +19,13 @@
 
 using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Gateways;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.GatewayServers;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Servers;
 using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Recents.Contracts;
@@ -115,32 +120,30 @@ public class ProfilesMigrator : IProfilesMigrator
         {
             if (!string.IsNullOrEmpty(legacyProfile.GatewayName))
             {
-                locationIntent = new GatewayLocationIntent(legacyProfile.GatewayName);
+                locationIntent = SingleGatewayLocationIntent.From(legacyProfile.GatewayName);
             }
             else if (!string.IsNullOrEmpty(legacyProfile.CountryCode))
             {
-                locationIntent = new CountryLocationIntent(legacyProfile.CountryCode,
-                    GetLegacyProfileConnectionIntentKind(legacyProfile));
+                locationIntent = SingleCountryLocationIntent.From(legacyProfile.CountryCode);
             }
             else
             {
-                locationIntent = new CountryLocationIntent(
-                    GetLegacyProfileConnectionIntentKind(legacyProfile));
+                locationIntent = MultiCountryLocationIntent.From(GetLegacyProfileSelectionStrategy(legacyProfile));
             }
         }
         else
         {
             if (!string.IsNullOrEmpty(server.GatewayName))
             {
-                locationIntent = new GatewayServerLocationIntent(server.Id, server.Name, server.ExitCountry, server.GatewayName);
+                locationIntent = SingleGatewayServerLocationIntent.From(server.GatewayName, GatewayServerInfo.From(server.Id, server.Name, server.ExitCountry));
             }
             else if (legacyProfile.Features.IsSupported(ServerFeatures.SecureCore))
             {
-                locationIntent = new CountryLocationIntent(server.ExitCountry);
+                locationIntent = SingleCountryLocationIntent.From(server.ExitCountry);
             }
             else
             {
-                locationIntent = new ServerLocationIntent(server.Id, server.Name, server.ExitCountry, server.State, server.City);
+                locationIntent = SingleServerLocationIntent.From(server.ExitCountry, server.State, server.City, ServerInfo.From(server.Id, server.Name));
             }
         }
 
@@ -184,9 +187,10 @@ public class ProfilesMigrator : IProfilesMigrator
         return server;
     }
 
-    private ConnectionIntentKind GetLegacyProfileConnectionIntentKind(LegacyProfile legacyProfile)
+    private SelectionStrategy GetLegacyProfileSelectionStrategy(LegacyProfile legacyProfile)
     {
-        return ConnectionIntentKind.Fastest;
+        // TODO: Can we parse Fastest or Random from legacy profile?
+        return SelectionStrategy.Fastest;
     }
 
     private ProfileColor MigrateProfileColor(LegacyProfile legacyProfile)
