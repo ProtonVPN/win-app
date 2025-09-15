@@ -192,6 +192,12 @@
   <data name="Cities">
     <value>Orter</value>
   </data>
+  <data name="City_Fastest">
+    <value>Snabbaste stad</value>
+  </data>
+  <data name="City_Random">
+    <value>Slumpmässig stad</value>
+  </data>
   <data name="Common_Actions_ActionsFor">
     <value>Åtgärder för {0}</value>
     <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
@@ -2256,7 +2262,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Förbättra P2P-hastigheten</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
-    <value>För att använda vidarebefordran av port, anslut till en P2P-server</value>
+    <value>Connect to a P2P server to improve torrenting speeds</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>Ett VPN-protokoll bestämmer hur trafik krypteras och överförs över VPN.</value>
@@ -2787,10 +2793,13 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>Ange koden från din autentiseringsapp.</value>
+    <value>6-siffrig autentiseringskod</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>Tvåfaktorsautentisering</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>Autentiseringsapp</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>Första siffran</value>
@@ -2812,6 +2821,15 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Login_TwoFactor_EnterCode">
     <value>Ange din kod</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>Inga kända tvåfaktorsautentiseringsmetoder hittades.</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>Säkerhetsnyckel</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>Infoga U2F eller FIDO-nyckeln länkat till ditt Proton-konto.</value>
   </data>
   <data name="Main_Loading">
     <value>Laddar in, vänta …</value>
@@ -3081,7 +3099,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Arbete/skola</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Konfigurera dina egna VPN-inställningar och anslut med ett klick.</value>
+    <value>Konfigurera dina egna VPN-inställningar och anslut med ett klick</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>Profiler</value>
@@ -3113,6 +3131,9 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Server">
     <value>Server</value>
   </data>
+  <data name="Server_Fastest">
+    <value>Snabbaste server</value>
+  </data>
   <data name="Server_Fastest_Free">
     <value>Snabbaste gratisserver</value>
   </data>
@@ -3142,6 +3163,9 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Server_Free">
     <value>Gratisserver</value>
+  </data>
+  <data name="Server_Random">
+    <value>Slumpmässig server</value>
   </data>
   <data name="Servers">
     <value>Servrar</value>
@@ -3265,11 +3289,11 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
-    <value>Decide how Windows handles DNS requests attempting to go outside the VPN tunnel.</value>
+    <value>Bestäm hur Windows hanterar DNS-förfrågningar som försöker gå utanför VPN-tunneln.</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
-    <value>Block requests without a negative response</value>
+    <value>Blockera förfrågningar utan ett negativt svar</value>
     <comment>DNS requests are blocked but there is no negative reply to them</comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
@@ -3281,7 +3305,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
-    <value>Our NRPT (Name Resolution Policy Table) policy doesn't let Windows attempt external DNS requests at all. This optimizes VPN speeds, but local network DNS will not work. Some Windows devices do not support NRPT.</value>
+    <value>Vår NRPT-policy (Name Resolution Policy Table) tillåter inte Windows att försöka skicka externa DNS-förfrågningar alls. Detta optimerar VPN-hastigheter, men det lokala nätverkets DNS kommer inte fungera. Vissa Windows-enheter stöder inte NRPT.</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6">
@@ -3432,7 +3456,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Aktivera vidarebefordran av port?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Kringgå brandväggar för att ansluta till P2P-servrar och enheter i ditt lokala nätverk.</value>
+    <value>Improves torrenting and gaming speeds by allowing direct P2P connections through a designated port.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>För att använda vidarebefordran av port, anslut till en server som stöder P2P.</value>
@@ -3448,7 +3472,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Aviseringar</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Bli aviserad när numret för vidarebefordring av porten ändras</value>
+    <value>Bli aviserad när ditt aktiva portnummer ändras.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokoll</value>
@@ -3493,7 +3517,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Inkluderingsläge</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Endast valda appar och IP-adresser ansluter via VPN, all annan trafik är oskyddad</value>
+    <value>Endast valda appar och IP-adresser ansluter via VPN, all annan trafik är oskyddad.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
     <value>Inkludera</value>
@@ -3513,7 +3537,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Exkluderingsläge</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
-    <value>Valda appar och IP-adresser är exkluderade från VPN-anslutning</value>
+    <value>Valda appar och IP-adresser är exkluderade från din VPN-anslutning.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Short">
     <value>Exkludera</value>
@@ -3553,7 +3577,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Senast ansluten</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
-    <value>Automatisk start</value>
+    <value>Starta automatiskt</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Description">
     <value>Proton VPN kommer öppnas automatiskt när du loggar in på din enhet</value>
@@ -3568,19 +3592,19 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Minimera till aktivitetsfältet</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Ställ in appen att starta eller ansluta automatiskt</value>
+    <value>Ställ in appen att starta eller ansluta automatiskt.</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Automatiska uppdateringar</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Kontrollera och installera Proton VPN-uppdateringar automatiskt</value>
+    <value>Kontrollera och installera Proton VPN-uppdateringar automatiskt.</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>Betaåtkomst</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>Få förhandstillgång och hjälp oss att testa nya versioner av Proton VPN</value>
+    <value>Få förhandstillgång och hjälp oss testa nya versioner av Proton VPN.</value>
   </data>
   <data name="Settings_General_Language">
     <value>Språk</value>
@@ -3589,7 +3613,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Aviseringar</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Bli aviserad om pågående Proton VPN-aktiviteter</value>
+    <value>Bli aviserad om ändringar i din anslutningsstatus.</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>OpenVPN nätverksdrivrutin</value>
@@ -3827,6 +3851,14 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="SignIn_KillSwitch_Disabled">
     <value>Kill switch är inaktiverat</value>
   </data>
+  <data name="State_Fastest">
+    <value>Snabbaste delstat</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>Slumpmässig delstat</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
   <data name="SystemNotification_Connected">
     <value>Du är nu skyddad</value>
   </data>
@@ -3891,7 +3923,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Lås upp avancerad VPN-anpassning</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Anslut till VPN med din anpassade domännamnsserver (DNS)</value>
+    <value>Anslut till VPN med ditt anpassade domännamnssystem (DNS)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>Kom åt enheter på ditt lokala nätverk (LAN) medan du är ansluten</value>

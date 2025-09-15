@@ -192,6 +192,12 @@
   <data name="Cities">
     <value>Orașe</value>
   </data>
+  <data name="City_Fastest">
+    <value>Cel mai rapid oraș</value>
+  </data>
+  <data name="City_Random">
+    <value>Oraș aleatoriu</value>
+  </data>
   <data name="Common_Actions_ActionsFor">
     <value>Acțiuni pentru {0}</value>
     <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
@@ -2331,7 +2337,7 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
     <value>Îmbunătățiți viteza P2P</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
-    <value>Pentru a folosi redirecționarea portului, conectați-vă la un server P2P.</value>
+    <value>Conectați-vă la un server P2P pentru a îmbunătăți vitezele pentru torrente.</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>Un protocol VPN determină cum este criptat traficul pe internet și transmis prin VPN.</value>
@@ -2895,10 +2901,13 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>Introduceți codul din aplicația de autentificare.</value>
+    <value>Cod de autentificare cu 6 cifre</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>Autentificare cu doi factori</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>Aplicația Authenticator</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>Prima cifră</value>
@@ -2920,6 +2929,15 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
   </data>
   <data name="Login_TwoFactor_EnterCode">
     <value>Introduceți codul</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>Nu sunt disponibile metode de autentificare cu doi factori.</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>Cheie de securitate</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>Introduceți cheia U2F sau FIDO conectată la contul Proton.</value>
   </data>
   <data name="Main_Loading">
     <value>Se încarcă, vă rugăm să așteptați...</value>
@@ -3189,7 +3207,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Serviciu/Școală</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Configurați-vă propriile setări pentru VPN și conectați-vă cu un singur clic.</value>
+    <value>Configurați-vă propriile setări pentru VPN și conectați-vă cu un singur clic</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>Profiluri</value>
@@ -3221,6 +3239,9 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   <data name="Server">
     <value>Server</value>
   </data>
+  <data name="Server_Fastest">
+    <value>Cel mai rapid server</value>
+  </data>
   <data name="Server_Fastest_Free">
     <value>Cel mai rapid server gratuit</value>
   </data>
@@ -3250,6 +3271,9 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   </data>
   <data name="Server_Free">
     <value>Server gratuit</value>
+  </data>
+  <data name="Server_Random">
+    <value>Server aleatoriu</value>
   </data>
   <data name="Servers">
     <value>Servere</value>
@@ -3540,7 +3564,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Activați redirecționarea portului?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Depășiți paravanele de protecție pentru a vă conecta la serverele P2P și dispozitivele din rețeaua locală.</value>
+    <value>Îmbunătățește vitezele pentru fișierele torrent și pentru jocuri prin permiterea conexiunilor P2P directe printr-un port desemnat.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Pentru a utiliza redirecționarea portului, conectați-vă la un server care acceptă P2P.</value>
@@ -3556,7 +3580,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Notificări</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Primiți notificări când numărul redirecționărilor de porturi se modifică.</value>
+    <value>Primiți notificări când numărul portului activ se modifică.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocol</value>
@@ -3601,7 +3625,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Mod includere</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Doar aplicațiile selectate și adresele IP se conectează prin VPN, orice alt trafic nu este protejat.</value>
+    <value>Doar aplicațiile selectate și adresele IP se conectează prin VPN, orice alt trafic nefiind protejat.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
     <value>Includere</value>
@@ -3621,7 +3645,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Mod excludere</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
-    <value>Aplicațiile selectate și adresele IP sunt excluse din conexiunea VPN</value>
+    <value>Aplicațiile selectate și adresele IP sunt excluse din conexiunea VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Short">
     <value>Excludere</value>
@@ -3649,7 +3673,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Autopornire</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>Autoconectare</value>
+    <value>Conectare automată</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>Se conectează automat la conexiunea implicită când se deschide Proton VPN.</value>
@@ -3661,7 +3685,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Ultima conexiune</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
-    <value>Autolansare</value>
+    <value>Pornire automată</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Description">
     <value>Proton VPN se va deschide automat atunci când vă conectați la dispozitiv.</value>
@@ -3682,13 +3706,13 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Actualizări automate</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Verificare și instalare automată actualizări Proton VPN</value>
+    <value>Verificare și instalare automată actualizări Proton VPN.</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>Acces la Beta</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>Obțineți acces timpuriu și ajutați-ne să testăm noi versiuni ale Proton VPN</value>
+    <value>Obțineți acces timpuriu și ajutați-ne să testăm noi versiuni ale Proton VPN.</value>
   </data>
   <data name="Settings_General_Language">
     <value>Limba</value>
@@ -3697,7 +3721,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Notificări</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Primiți notificări despre activitățile în curs ale Proton VPN</value>
+    <value>Primiți notificări privind modificările stării conexiunii.</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>Driver rețea OpenVPN</value>
@@ -3935,6 +3959,14 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   <data name="SignIn_KillSwitch_Disabled">
     <value>Întrerupătorul de conexiune este dezactivat</value>
   </data>
+  <data name="State_Fastest">
+    <value>Cel mai rapid stat</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>Stat aleatoriu</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
   <data name="SystemNotification_Connected">
     <value>Protecția este activată</value>
   </data>
@@ -3999,7 +4031,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Deblocați personalizarea avansată pentru VPN</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Conectați-vă la VPN cu sistemul propriu de nume de domenii (DNS)</value>
+    <value>Conectați-vă la VPN cu sistemul personal de nume de domenii (DNS)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>Accesați dispozitivele din rețeaua locală (LAN) după ce v-ați conectat</value>

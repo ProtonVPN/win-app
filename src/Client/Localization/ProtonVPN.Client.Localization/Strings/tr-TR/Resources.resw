@@ -192,6 +192,12 @@
   <data name="Cities">
     <value>İller</value>
   </data>
+  <data name="City_Fastest">
+    <value>En hızlı il</value>
+  </data>
+  <data name="City_Random">
+    <value>Rastgele il</value>
+  </data>
   <data name="Common_Actions_ActionsFor">
     <value>{0} için işlemler</value>
     <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
@@ -2256,7 +2262,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>P2P hızını iyileştirin</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
-    <value>Bağlantı noktası yönlendirmeyi kullanmak için bir P2P sunucusuna bağlanın</value>
+    <value>Torrent hızını iyileştirmek için bir P2P sunucusuyla bağlantı kurun</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>Bir VPN iletişim kuralı, trafiğin VPN üzerinden nasıl şifrelenip iletileceğini belirler.</value>
@@ -2787,10 +2793,13 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>Kimlik doğrulama uygulamanızdan alacağınız kodu yazın.</value>
+    <value>6 rakamlı kimlik doğrulama kodu</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>İki adımlı doğrulama</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>Kimlik doğrulama uygulaması</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>İlk rakam</value>
@@ -2812,6 +2821,15 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   </data>
   <data name="Login_TwoFactor_EnterCode">
     <value>Kodu yazın</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>Bilinen bir iki adımlı doğrulama yöntemi bulunamadı.</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>Güvenlik anahtarı</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>Proton hesabınızla ilişkilendirilmiş U2F ya da FIDO güvenlik anahtarını takın.</value>
   </data>
   <data name="Main_Loading">
     <value>Lütfen yüklenirken bekleyin...</value>
@@ -3081,7 +3099,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>İş/Okul</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Size özel VPN ayarları yapın ve tek tıkla bağlantı kurun.</value>
+    <value>Size özel VPN ayarları yapın ve tek tıkla bağlantı kurun</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>Profiller</value>
@@ -3113,6 +3131,9 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Server">
     <value>Sunucu</value>
   </data>
+  <data name="Server_Fastest">
+    <value>En hızlı sunucu</value>
+  </data>
   <data name="Server_Fastest_Free">
     <value>En hızlı Free sunucusu</value>
   </data>
@@ -3142,6 +3163,9 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   </data>
   <data name="Server_Free">
     <value>Free sunucusu</value>
+  </data>
+  <data name="Server_Random">
+    <value>Rastgele sunucu</value>
   </data>
   <data name="Servers">
     <value>Sunucular</value>
@@ -3432,7 +3456,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Bağlantı noktası yönlendirme açılsın mı?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Yerel ağınızdaki P2P sunuculara ve aygıtlara bağlanmak için güvenlik duvarlarını aşar.</value>
+    <value>Belirlenmiş bir bağlantı noktası üzerinden doğrudan P2P bağlantılarına izin vermek torrent ve oyun hızını iyileştirir.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Bağlantı noktası yönlendirmeyi kullanmak için lütfen P2P destekleyen bir sunucuya bağlanın.</value>
@@ -3448,7 +3472,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Bildirimler</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Yönlendirilen bağlantı noktasının numarası değiştiğinde bildirim alın</value>
+    <value>Etkin bağlantı noktası numaranız değiştiğinde bildirim alın.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>İletişim kuralı</value>
@@ -3493,7 +3517,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Katma kipi</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Yalnızca seçilmiş uygulamalar ve IP adresleri VPN üzerinden bağlanır, diğer tüm trafik korumasızdır</value>
+    <value>Yalnızca seçilmiş uygulamalar ve IP adresleri VPN üzerinden bağlanır, diğer tüm trafik korumasızdır.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
     <value>Kat</value>
@@ -3513,7 +3537,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Katmama kipi</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
-    <value>Seçilmiş uygulamalar ve IP adresleri VPN bağlantısının dışında bırakılır</value>
+    <value>Seçilmiş uygulamalar ve IP adresleri VPN bağlantınıza katılmaz.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Short">
     <value>Katma</value>
@@ -3568,19 +3592,19 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Görev çubuğuna küçült</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Uygulamayı otomatik olarak başlamaya veya bağlanmaya ayarlayın</value>
+    <value>Uygulamayı otomatik olarak başlamaya veya bağlanmaya ayarlayın.</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Otomatik güncellemeler</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Proton VPN güncellemeleri otomatik olarak denetlenip kurulsun</value>
+    <value>Proton VPN güncellemelerini otomatik olarak denetleyip kurun.</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>Beta erişimi</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>Yeni Proton VPN sürümlerine daha erken erişin ve denememize yardımcı olun</value>
+    <value>Yeni Proton VPN sürümlerine daha erken erişin ve denememize yardımcı olun.</value>
   </data>
   <data name="Settings_General_Language">
     <value>Dil</value>
@@ -3589,7 +3613,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Bildirimler</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Proton VPN gelişmeleri ile ilgili bildirim alın</value>
+    <value>Bağlantı durumunuzdaki değişiklikler hakkında bildirim alın.</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>OpenVPN ağ sürücüsü</value>
@@ -3827,6 +3851,14 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="SignIn_KillSwitch_Disabled">
     <value>Bağlantı kesici kapalı</value>
   </data>
+  <data name="State_Fastest">
+    <value>En hızlı eyalet</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>Rastgele eyalet</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
   <data name="SystemNotification_Connected">
     <value>Korunuyorsunuz</value>
   </data>
@@ -3891,7 +3923,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Gelişmiş VPN özelleştirmelerine erişin</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Özel etki alanı adı sunucunuz (DNS) ile VPN bağlantısı kurun</value>
+    <value>VPN bağlantınızı özel etki alanı adı sisteminiz (DNS) ile yapın</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>Bağlıyken yerel alan ağınızdaki (LAN) aygıtlara erişin</value>

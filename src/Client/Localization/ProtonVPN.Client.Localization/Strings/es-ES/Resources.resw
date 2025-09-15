@@ -192,6 +192,12 @@
   <data name="Cities">
     <value>Ciudades</value>
   </data>
+  <data name="City_Fastest">
+    <value>Ciudad más rápida</value>
+  </data>
+  <data name="City_Random">
+    <value>Ciudad aleatoria</value>
+  </data>
   <data name="Common_Actions_ActionsFor">
     <value>Acciones para {0}</value>
     <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
@@ -2256,7 +2262,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Mejora la velocidad P2P</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
-    <value>Para utilizar la redirección de puertos, conéctate a un servidor P2P.</value>
+    <value>Conéctate a un servidor P2P para mejorar la velocidad de descarga de torrents</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>Un protocolo VPN determina cómo se cifra y transmite el tráfico a través de la VPN.</value>
@@ -2787,10 +2793,13 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>Introduce el código de tu aplicación de autenticación.</value>
+    <value>6-digit authentication code</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>Autenticación de dos factores</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>Aplicación de autenticación</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>Primera cifra</value>
@@ -2812,6 +2821,15 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   </data>
   <data name="Login_TwoFactor_EnterCode">
     <value>Introduce tu código</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>No se encontraron métodos de autenticación de dos factores.</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>Clave de seguridad</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>Inserta la clave U2F o FIDO vinculada a tu cuenta de Proton.</value>
   </data>
   <data name="Main_Loading">
     <value>Cargando. Espera...</value>
@@ -3081,7 +3099,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Trabajo/Escuela</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Configura tus propios ajustes de VPN y conéctate con un solo clic.</value>
+    <value>Configura tus propios ajustes de VPN y conéctate con un solo clic</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>Perfiles</value>
@@ -3113,6 +3131,9 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   <data name="Server">
     <value>Servidor</value>
   </data>
+  <data name="Server_Fastest">
+    <value>Servidor más rápido</value>
+  </data>
   <data name="Server_Fastest_Free">
     <value>Servidor gratuito más rápido</value>
   </data>
@@ -3142,6 +3163,9 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   </data>
   <data name="Server_Free">
     <value>Servidor gratuito</value>
+  </data>
+  <data name="Server_Random">
+    <value>Servidor aleatorio</value>
   </data>
   <data name="Servers">
     <value>Servidores</value>
@@ -3432,7 +3456,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>¿Activar la redirección de puertos?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Evita los cortafuegos para conectarte a servidores P2P y dispositivos en tu red local.</value>
+    <value>Mejora la velocidad de descarga de torrents y juegos permitiendo conexiones P2P directas a través de un puerto específico.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Para usar la redirección de puertos, conéctate a un servidor que admita P2P.</value>
@@ -3448,7 +3472,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Notificaciones</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Recibe una notificación cuando cambie el número de redirección de puertos.</value>
+    <value>Recibe una notificación cuando cambie tu número de puerto activo.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocolo</value>
@@ -3493,7 +3517,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Modo de inclusión</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Solo las aplicaciones y direcciones IP seleccionadas se conectan mediante VPN, el resto del tráfico está desprotegido</value>
+    <value>Solo las aplicaciones y direcciones IP seleccionadas se conectan mediante VPN. El resto del tráfico no está protegido.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
     <value>Incluir</value>
@@ -3541,7 +3565,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Inicio automático</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>Conectar automáticamente</value>
+    <value>Conexión automática</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>Se conecta automáticamente a tu conexión por defecto cuando se abre Proton VPN.</value>
@@ -3589,7 +3613,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Notificaciones</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Recibe notificaciones acerca de las actividades de Proton VPN en curso</value>
+    <value>Recibe notificaciones sobre los cambios en el estado de tu conexión.</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>Controlador de red OpenVPN</value>
@@ -3827,6 +3851,14 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   <data name="SignIn_KillSwitch_Disabled">
     <value>El Kill Switch está desactivado</value>
   </data>
+  <data name="State_Fastest">
+    <value>Estado más rápido</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>Estado aleatorio</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
   <data name="SystemNotification_Connected">
     <value>Ahora tienes protección</value>
   </data>
@@ -3891,7 +3923,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Desbloquea personalizaciones de VPN avanzadas</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Conéctate a la VPN con tu servidor de nombres de dominio (DNS) personalizado</value>
+    <value>Conéctate a la VPN con tu sistema de nombres de dominio (DNS) personalizado</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>Accede a los dispositivos de tu red de área local (LAN) cuando te conectes</value>

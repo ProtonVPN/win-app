@@ -148,7 +148,7 @@
     <value>Старонка NetShield</value>
   </data>
   <data name="Automation_Properties_NoServers_Page">
-    <value>Няма старонкі сервераў</value>
+    <value>Адсутнічае старонка з серверамі</value>
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Старонка перанакіравання партоў</value>
@@ -191,6 +191,12 @@
   </data>
   <data name="Cities">
     <value>Гарады</value>
+  </data>
+  <data name="City_Fastest">
+    <value>Найхутчэйшы горад</value>
+  </data>
+  <data name="City_Random">
+    <value>Выпадковы горад</value>
   </data>
   <data name="Common_Actions_ActionsFor">
     <value>Дзеянні для {0}</value>
@@ -2406,7 +2412,7 @@
     <value>Павялічце хуткасць P2P</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
-    <value>Падключыце сервер P2P, каб выкарыстоўваць перанакіраванне партоў</value>
+    <value>Падключыцеся да сервера P2P, каб палепшыць хуткасць торэнтаў</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>Пратакол VPN вызначае, як шыфруецца трафік і перадаецца праз VPN.</value>
@@ -3003,10 +3009,13 @@
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>Увядзіце код з вашай праграмы аўтэнтыфікацыі.</value>
+    <value>6-значны код аўтэнтыфікацыі</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>Двухфактарная аўтэнтыфікацыя</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>Праграма аўтэнтыфікацыі</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>Першая лічба</value>
@@ -3028,6 +3037,15 @@
   </data>
   <data name="Login_TwoFactor_EnterCode">
     <value>Увядзіце свой код.</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>Не знойдзена вядомых спосабаў двухфактарнай аўтэнтыфікацыі.</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>Ключ бяспекі</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>Устаўце ключ U2F або FIDO, які звязаны з вашым уліковым запісам Proton.</value>
   </data>
   <data name="Main_Loading">
     <value>Загружаецца. Пачакайце…</value>
@@ -3062,10 +3080,10 @@
     <value>Выйсці</value>
   </data>
   <data name="NoServers_Tip">
-    <value>Запытайце ў вашага адміністратара ўключыць доступ да VPN для вашага ўліковага запісу.</value>
+    <value>Папрасіце свайго адміністратара ўключыць доступ да VPN для вашага ўліковага запісу.</value>
   </data>
   <data name="NoServers_Title">
-    <value>Няма даступных VPN-падключэнняў</value>
+    <value>Няма даступных падключэнняў па VPN</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Kill Switch заблакіруе ваша падключэнне да інтэрнэту, каб абараніць ваш IP-адрас.</value>
@@ -3297,7 +3315,7 @@ Secure Core</value>
     <value>Праца/школа</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Зрабіце ўласную канфігурацыю наладаў VPN і падключайцеся адным націскам.</value>
+    <value>Зрабіце ўласную канфігурацыю налад VPN і падключайцеся адным націскам</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>Профілі</value>
@@ -3329,6 +3347,9 @@ Secure Core</value>
   <data name="Server">
     <value>Сервер</value>
   </data>
+  <data name="Server_Fastest">
+    <value>Найхутчэйшы сервер</value>
+  </data>
   <data name="Server_Fastest_Free">
     <value>Найхутчэйшы бясплатны сервер</value>
   </data>
@@ -3358,6 +3379,9 @@ Secure Core</value>
   </data>
   <data name="Server_Free">
     <value>Бясплатны сервер</value>
+  </data>
+  <data name="Server_Random">
+    <value>Выпадковы сервер</value>
   </data>
   <data name="Servers">
     <value>Серверы</value>
@@ -3456,7 +3480,7 @@ Secure Core</value>
     <value>Уключыць карыстальніцкія серверы DNS?</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
-    <value>Падключайцеся да Proton VPN выкарыстоўваючы вашу ўласную сістэму даменных імён (DNS). Карыстайцеся толькі тымі серверамі DNS, якім вы давяраеце.</value>
+    <value>Падключайцеся да Proton VPN выкарыстоўваючы сваю ўласную сістэму даменных імён (DNS). Карыстайцеся толькі тымі серверамі DNS, якім вы давяраеце.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
     <value>Будзе зроблена спроба падключыцца да гэтых сервераў па парадку. Калі ніводны з іх працаваць не будзе, то будзе выкарыстоўвацца сервер DNS Proton VPN.</value>
@@ -3473,31 +3497,31 @@ Secure Core</value>
     <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
-    <value>Выкарыстоўваць прадвызначаны метад блакавання</value>
+    <value>Выкарыстоўваць прадвызначаны спосаб блакіравання</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
-    <value>Па прадвызначэнні, фільтр Callout адхіляе DNS-запыты, якія паступаюць звонку VPN-тунэля. Гэты метад гэтак жа эфектыўны, як NRPT, але ён можа прывесці да зніжэння хуткасці. Лакальны сеткавы DNS будзе працаваць.</value>
+    <value>Прадвызначана фільтр Callout адхіляе запыты DNS якія паступаюць звонку тунэлю VPN. Па эфектыўнасці гэты спосаб раўназначны NRPT, але ён можа прывесці да зніжэння хуткасці. Лакальны сеткавы DNS пры гэтым будзе працаваць.</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
-    <value>Вырашыце, як Windows апрацоўвае запыты DNS, якія спрабуюць выйсці за межы тунэля VPN.</value>
+    <value>Вырашыце, як Windows апрацоўваць запыты DNS, якія спрабуюць выйсці за межы тунэлю VPN.</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
-    <value>Блакаваць запыты без адмоўнага адказу</value>
+    <value>Блакіраваць запыты без адмоўнага адказу</value>
     <comment>DNS requests are blocked but there is no negative reply to them</comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
-    <value>Знешнія DNS-запыты адхіляюцца без адмоўнага адказу. Гэта можа прывесці да павелічэння часу загрузкі пры доступе да даменаў, якія не існуюць або ўтрымліваюць заблакаваны кантэнт (напрыклад, рэкламу або праграмы сачэння).</value>
+    <value>Знешнія запыты DNS адхіляюцца без адмоўнага адказу. Гэта можа прывесці да павелічэння часу загрузкі пры доступе да даменаў, якія не існуюць або ўтрымліваюць заблакіраванае змесціва (напрыклад, рэкламу або праграмы сачэння).</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
-    <value>Выкарыстоўвайце палітыку NRPT Proton VPN</value>
+    <value>Выкарыстоўваць палітыку NRPT Proton VPN</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
-    <value>Наша палітыка NRPT (табліца палітыкі вырашэння імёнаў) зусім не дазваляе Windows спрабаваць знешнія DNS-запыты. Гэта аптымізуе хуткасць VPN, але лакальны сеткавы DNS не будзе працаваць. Некаторыя прылады Windows не падтрымліваюць NRPT.</value>
+    <value>Наша палітыка NRPT (Name Resolution Policy Table) не дазваляе Windows ажыццяўляюць спробу знешніх запытаў DNS увогуле. Гэта аптымізуе хуткасць VPN, але лакальны сеткавы DNS працаваць не будзе. Некаторыя прылады Windows не падтрымліваюць NRPT.</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6">
@@ -3648,7 +3672,7 @@ Secure Core</value>
     <value>Уключыць перанакіраванне партоў?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Абыходзьце міжсеткавыя экраны для падключэння да сервераў P2P і прылад у вашай лакальнай сетцы.</value>
+    <value>Паляпшае хуткасць торэнтаў і гульняў, дазваляючы непасрэдныя падключэнні P2P праз вызначаны порт.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Падключайцеся да сервера з падтрымкай P2P, каб скарыстацца функцыяй перанакіравання партоў.</value>
@@ -3664,7 +3688,7 @@ Secure Core</value>
     <value>Апавяшчэнні</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Апавяшчаць пра змену нумара перанакіравання парта</value>
+    <value>Апавяшчаць, калі змяняецца нумар актыўнага парта.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Пратакол</value>
@@ -3709,7 +3733,7 @@ Secure Core</value>
     <value>Рэжым уключэння</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Толькі выбраныя праграмы і IP-адрасы будуць падключаны па VPN. Увесь астатні трафік застанецца неабароненым.</value>
+    <value>Толькі выбраныя праграмы і IP-адрасы будуць падключаны праз VPN. Увесь астатні трафік застанецца неабароненым.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
     <value>Уключае</value>
@@ -3729,7 +3753,7 @@ Secure Core</value>
     <value>Рэжым выключэння</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
-    <value>Выбраныя праграмы і IP-адрасы не будуць падключацца па VPN.</value>
+    <value>Выбраныя праграмы і IP-адрасы выключаны з падключэння па VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Short">
     <value>Выключае</value>
@@ -3784,19 +3808,19 @@ Secure Core</value>
     <value>Згарнуць у панэль задач</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Задаць праграму для запуску або аўтаматычнага падключэння</value>
+    <value>Задаць праграму для запуску або аўтаматычнага падключэння.</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Аўтаматычныя абнаўленні</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Аўтаматычна правяраць і ўсталёўваць абнаўленні Proton VPN</value>
+    <value>Аўтаматычна правяраць і ўсталёўваць абнаўленні Proton VPN.</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>Доступ да бэта-версіі</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>Атрымаць ранні доступ і дапамагчы нам пратэсціраваць новую версію Proton VPN</value>
+    <value>Атрымаць ранні доступ і дапамагчы нам пратэсціраваць новую версію Proton VPN.</value>
   </data>
   <data name="Settings_General_Language">
     <value>Мова</value>
@@ -3805,7 +3829,7 @@ Secure Core</value>
     <value>Апавяшчэнні</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Атрымлівайце апавяшчэнні аб бягучай актыўнасці Proton VPN</value>
+    <value>Атрымлівайце апавяшчэнні аб змяненні статусу вашага падключэння.</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>Сеткавы драйвер OpenVPN</value>
@@ -4043,6 +4067,14 @@ Secure Core</value>
   <data name="SignIn_KillSwitch_Disabled">
     <value>Kill Switch адключаны</value>
   </data>
+  <data name="State_Fastest">
+    <value>Найхутчэйшая краіна</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>Выпадковая краіна</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
   <data name="SystemNotification_Connected">
     <value>Вы абаронены</value>
   </data>
@@ -4107,7 +4139,7 @@ Secure Core</value>
     <value>Разблакіруйце пашыраныя налады VPN</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Падключайцеся да VPN з вашым карыстальніцкім серверам даменных імён (DNS)</value>
+    <value>Падключайцеся да VPN са сваёй уласнай сістэмай даменных імён (DNS)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>Атрымайце доступ да прылад у сваёй лакальнай сетцы (LAN) пасля падключэння</value>

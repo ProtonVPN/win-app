@@ -192,6 +192,12 @@
   <data name="Cities">
     <value>Byer</value>
   </data>
+  <data name="City_Fastest">
+    <value>Fastest city</value>
+  </data>
+  <data name="City_Random">
+    <value>Random city</value>
+  </data>
   <data name="Common_Actions_ActionsFor">
     <value>Handlinger for {0}</value>
     <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
@@ -315,7 +321,7 @@
     <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Common_Tags_Recommended">
-    <value>Recommended</value>
+    <value>Anbefalt</value>
     <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
@@ -2256,7 +2262,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Forbedre P2P-hastigheten</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
-    <value>Hvis du vil bruke videresending av porter, kobler du til en P2P-tjener</value>
+    <value>Koble til en P2P-tjener for å forbedre torrentinghastigheter</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>En VPN-protokoll avgjør hvordan trafikk krypteres og overføres over VPN.</value>
@@ -2787,10 +2793,13 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>Skriv inn koden fra autentiseringsappen.</value>
+    <value>6-sifret autentiseringskode</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>Tofaktorautentisering</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>Autentiseringsapp</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>Første siffer</value>
@@ -2812,6 +2821,15 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   </data>
   <data name="Login_TwoFactor_EnterCode">
     <value>Skriv inn koden din</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>Ingen kjente tofaktorautentiseringsmetoder funnet.</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>Sikkerhetsnøkkel</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>Sett inn U2F- eller FIDO-nøkkelen knyttet til Proton-kontoen din.</value>
   </data>
   <data name="Main_Loading">
     <value>Laster inn, vent litt...</value>
@@ -3081,7 +3099,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Arbeid/Skole</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Konfigurer dine egne VPN-innstillinger og koble til med ett klikk.</value>
+    <value>Konfigurer dine egne VPN-innstillinger og koble til med ett klikk</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>Profiler</value>
@@ -3113,6 +3131,9 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   <data name="Server">
     <value>Tjener</value>
   </data>
+  <data name="Server_Fastest">
+    <value>Fastest server</value>
+  </data>
   <data name="Server_Fastest_Free">
     <value>Raskeste gratis tjener</value>
   </data>
@@ -3142,6 +3163,9 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   </data>
   <data name="Server_Free">
     <value>Free-tjener</value>
+  </data>
+  <data name="Server_Random">
+    <value>Random server</value>
   </data>
   <data name="Servers">
     <value>Tjenere</value>
@@ -3253,35 +3277,35 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Skriv inn tjenerens IPv4 - eller IPv6-adresse</value>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode">
-    <value>DNS block handling</value>
+    <value>Håndtering av DNS-blokkering</value>
     <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
-    <value>Use default blocking method</value>
+    <value>Bruk standard blokkeringsmetode</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
-    <value>By default, a callout filter rejects DNS requests that come from outside the VPN tunnel. This method is just as effective as NRPT, but it may lead to slower speeds. Local network DNS will work.</value>
+    <value>Som standard avviser et anropsfilter DNS-forespørsler som kommer utenfor VPN-tunnelen. Denne metoden er like effektiv som NRPT, men den kan føre til lavere hastigheter. Lokalt nettverks-DNS vil fungere.</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
-    <value>Decide how Windows handles DNS requests attempting to go outside the VPN tunnel.</value>
+    <value>Bestem hvordan Windows håndterer DNS-forespørsler som forsøker å gå utenfor VPN-tunnelen.</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
-    <value>Block requests without a negative response</value>
+    <value>Blokker forespørsler uten et negativt svar</value>
     <comment>DNS requests are blocked but there is no negative reply to them</comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
-    <value>External DNS requests are discarded without a negative response. This may result in longer loading times when accessing domains that don't exist or contained blocked content (like ads or trackers).</value>
+    <value>Eksterne DNS-forespørsler forkastes uten et negativt svar. Dette kan føre til lengre lastetider når du får tilgang til domener som ikke finnes eller inneholdt blokkert innhold (som annonser eller sporere).</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
-    <value>Use Proton VPN's NRPT policy</value>
+    <value>Bruk Proton VPNs NRPT-retningslinje</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
-    <value>Our NRPT (Name Resolution Policy Table) policy doesn't let Windows attempt external DNS requests at all. This optimizes VPN speeds, but local network DNS will not work. Some Windows devices do not support NRPT.</value>
+    <value>Vår NRPT- (Name Resolution Policy Table) retningslinje lar ikke Windows forsøke eksterne DNS-forespørsler i det hele tatt. Dette optimaliserer VPN-hastigheter, men lokal nettverks-DNS vil ikke fungere. Noen Windows enheter støtter ikke NRPT.</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6">
@@ -3432,7 +3456,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Aktivere viderekobling av porter?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Omgå brannmurer for å koble til P2P-tjenere og enheter i ditt lokale nettverk.</value>
+    <value>Forbedrer torrent- og spillhastigheter ved å tillate direkte P2P-tilkoblinger gjennom en angitt port.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>For å bruke portviderekobling må du koble til en tjener som støtter P2P.</value>
@@ -3448,7 +3472,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Varsler</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Bli varslet når portviderekoblingsnummeret endres</value>
+    <value>Bli varslet når ditt aktive portnummer endres.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokoll</value>
@@ -3493,7 +3517,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Inkluderingsmodus</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Bare valgte apper og IP-adresser kobles til via VPN, all annen trafikk er ubeskyttet.</value>
+    <value>Bare valgte apper og IP-adresser kobles til gjennom VPN, all annen trafikk er ubeskyttet.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
     <value>Inkluder</value>
@@ -3541,7 +3565,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Automatisk oppstart</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>Automatisk tilkobling</value>
+    <value>Koble til automatisk</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>Kobles automatisk til standardtilkoblingen din når Proton VPN åpnes.</value>
@@ -3568,13 +3592,13 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Minimer til oppgavelinjen</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Angi at appen skal starte eller koble til automatisk</value>
+    <value>Angi at appen skal starte eller koble til automatisk.</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Automatiske oppdateringer</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Sjekk og installer Proton VPN-oppdateringer automatisk</value>
+    <value>Sjekk og installer Proton VPN-oppdateringer automatisk.</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>Beta-tilgang</value>
@@ -3589,7 +3613,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Varsler</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Bli varslet om pågående Proton VPN-aktiviteter.</value>
+    <value>Bli varslet om endringer i tilkoblingsstatusen din.</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>OpenVPN-nettverksdriver</value>
@@ -3827,6 +3851,14 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   <data name="SignIn_KillSwitch_Disabled">
     <value>Nødstopp er deaktivert</value>
   </data>
+  <data name="State_Fastest">
+    <value>Fastest state</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>Random state</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
   <data name="SystemNotification_Connected">
     <value>Du er beskyttet</value>
   </data>
@@ -3891,7 +3923,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Lås opp avansert VPN-tilpasning</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Koble til VPN med ditt tilpassede domenenavnsystem (DNS)</value>
+    <value>Koble til VPN med ditt egendefinerte domenenavnsystem (DNS)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>Få tilgang til enheter på lokalnettet (LAN) mens du er tilkoblet</value>

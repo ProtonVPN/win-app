@@ -192,6 +192,12 @@
   <data name="Cities">
     <value>ქალაქები</value>
   </data>
+  <data name="City_Fastest">
+    <value>Fastest city</value>
+  </data>
+  <data name="City_Random">
+    <value>Random city</value>
+  </data>
   <data name="Common_Actions_ActionsFor">
     <value>ქმედებები {0}-სთვის</value>
     <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
@@ -2256,7 +2262,7 @@
     <value>P2P სიჩქარის გაზრდა</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
-    <value>პორტის გადამისამართებლის გამოსაყენებლად დაუკავშირდით P2P სერვერს</value>
+    <value>Connect to a P2P server to improve torrenting speeds</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>VPN პროტოკოლი განაზღვრავს, როგორ დაიშიფრება და გადაიცემა ტრაფიკი VPN-ით.</value>
@@ -2787,10 +2793,13 @@
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>შეიყვანეთ კოდი თქვენი ავთენტიკატორი აპიდან.</value>
+    <value>6-digit authentication code</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>2FA</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>Authenticator app</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>პირველი ციფრი</value>
@@ -2812,6 +2821,15 @@
   </data>
   <data name="Login_TwoFactor_EnterCode">
     <value>შეიყვანეთ თქვენი კოდი</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>No known two-factor authentication methods found.</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>Security key</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>Insert the U2F or FIDO key linked to your Proton Account.</value>
   </data>
   <data name="Main_Loading">
     <value>Loading, please wait...</value>
@@ -3081,7 +3099,7 @@ VPN მიერთება</value>
     <value>სამსახური/სკოლა</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>მოირგეთ საკუთარი VPN პარამეტრები და დაუკავშირდით ერთი წკაპით.</value>
+    <value>Configure your own VPN settings and connect in one click</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>პროფილები</value>
@@ -3113,6 +3131,9 @@ VPN მიერთება</value>
   <data name="Server">
     <value>სერვერი</value>
   </data>
+  <data name="Server_Fastest">
+    <value>Fastest server</value>
+  </data>
   <data name="Server_Fastest_Free">
     <value>ყველაზე სწრაფი უფასო სერვერი</value>
   </data>
@@ -3142,6 +3163,9 @@ VPN მიერთება</value>
   </data>
   <data name="Server_Free">
     <value>უფასო სერვერი</value>
+  </data>
+  <data name="Server_Random">
+    <value>Random server</value>
   </data>
   <data name="Servers">
     <value>სერვერები</value>
@@ -3240,7 +3264,7 @@ VPN მიერთება</value>
     <value>ჩავრთო მომხმარებლის DNS სერვერები?</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
-    <value>მიუერთდით Proton VPN-ს თქვენი საკუთარი DNS-ით. გამოიყენეთ, მხოლოდ, DNS სერვერები, რომლებსაც ენდობით.</value>
+    <value>Connect to Proton VPN using your own Domain Name System (DNS). Only use DNS servers that you trust.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
     <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
@@ -3432,7 +3456,7 @@ VPN მიერთება</value>
     <value>ჩავრთო პორტის გადამისამართება?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>აუარეთ გვერდი ბარნდმაუერებს, რომ მიუერთდეთ P2P სერვერებს და მოწყობილობებს თქვენს ლოკალურ ქსელში.</value>
+    <value>Improves torrenting and gaming speeds by allowing direct P2P connections through a designated port.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>იმისათვის, რომ გამოიყენოთ პორტის გადამისამართება, დაუკავშირდით სერვერს, რომელსაც P2P-ის მხარდაჭერა გააჩნია</value>
@@ -3448,7 +3472,7 @@ VPN მიერთება</value>
     <value>გაფრთხილებები</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>გაფრთხილება, როცა პორტის გადამისამართების რიცხვი შეიცვლება</value>
+    <value>Get notified when your active port number changes.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>პროტოკოლი</value>
@@ -3493,7 +3517,7 @@ VPN მიერთება</value>
     <value>Include mode</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>მხოლოდ, არჩეული აპები და IP მისამართები გამოიყენებენ VPN-ს. დანარჩენი ყველაფერი დაუცველი იქნება</value>
+    <value>Only selected apps and IP addresses connect through VPN, all other traffic is unprotected.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
     <value>Include</value>
@@ -3513,7 +3537,7 @@ VPN მიერთება</value>
     <value>Exclude mode</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
-    <value>მონიშნული აპები და IP მისამართები ამოღებულია VPN მიერთებიდან</value>
+    <value>Selected apps and IP addresses are excluded from your VPN connection.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Short">
     <value>Exclude</value>
@@ -3541,7 +3565,7 @@ VPN მიერთება</value>
     <value>ავტოგაშვება</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>ავტომატური დაკავშირება</value>
+    <value>Auto-connect</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>ავტომატურად მიუერთდება თქვენს ნაგულისხმევ მიერთებას Proton VPN-ის გახსნისას.</value>
@@ -3553,7 +3577,7 @@ VPN მიერთება</value>
     <value>ბოლოს მიუერთდით</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
-    <value>ავტოგაშვება</value>
+    <value>Auto-launch</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Description">
     <value>Proton VPN ავტომატურად გაიხსნება, როცა თქვენს მოწყობილობაზე შეხვალთ</value>
@@ -3568,19 +3592,19 @@ VPN მიერთება</value>
     <value>ჩაკეცვა ამოცანების პანელზე</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>დააყენეთ, რომ ეს აპი ავტომატურად გაეშვას ან დაუკავშირდეს</value>
+    <value>Set the app to launch or connect automatically.</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>ავტომატური განახლებები</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Proton VPN-ის განახლებების ავტომატური შემოწმება და დაყენება</value>
+    <value>Automatically check and install Proton VPN updates.</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>წვდომა ბეტა ვერსიებზე</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>მიიღეთ ადრეული წვდომა და დაგვეხმარეთ, Proton VPN-ის ახალი ვერსიები დავტესტოთ</value>
+    <value>Get early access and help us test new versions of Proton VPN.</value>
   </data>
   <data name="Settings_General_Language">
     <value>ენა</value>
@@ -3589,7 +3613,7 @@ VPN მიერთება</value>
     <value>გაფრთხილებები</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>მიიღეთ შეტყობინებები Proton VPN-ის მიმდინარე აქტივობების შესახებ</value>
+    <value>Get notified about changes to your connection status.</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>OpenVPN-ის ქსელის დრაივერი</value>
@@ -3827,6 +3851,14 @@ VPN მიერთება</value>
   <data name="SignIn_KillSwitch_Disabled">
     <value>Kill Switch გათიშულია</value>
   </data>
+  <data name="State_Fastest">
+    <value>Fastest state</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>Random state</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
   <data name="SystemNotification_Connected">
     <value>ახლა დაცული ბრძანდებით</value>
   </data>
@@ -3891,7 +3923,7 @@ VPN მიერთება</value>
     <value>განბლოკეთ VPN-ის დამატებითი პარამეტრები</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>მიუერთდით VPN სერვერს თქვენი საკუთარი დომენის სახელით სერვერით (DNS)</value>
+    <value>Connect to VPN with your custom Domain Name System (DNS)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>იქონით წვდომა თქვენს ლოკალურ ქსელში (LAN) არსებულ მოწყობილობებზე, როცა მიერთებული ბრძანდებით</value>

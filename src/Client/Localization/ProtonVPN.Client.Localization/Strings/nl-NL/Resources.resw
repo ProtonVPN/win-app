@@ -148,7 +148,7 @@
     <value>Pagina NetShield</value>
   </data>
   <data name="Automation_Properties_NoServers_Page">
-    <value>Geen serverspagina</value>
+    <value>Geen serverpagina</value>
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Pagina Port forwarding</value>
@@ -191,6 +191,12 @@
   </data>
   <data name="Cities">
     <value>Steden</value>
+  </data>
+  <data name="City_Fastest">
+    <value>Snelste stad</value>
+  </data>
+  <data name="City_Random">
+    <value>Willekeurige stad</value>
   </data>
   <data name="Common_Actions_ActionsFor">
     <value>Acties voor {0}</value>
@@ -2256,7 +2262,7 @@
     <value>Verbeter P2P-snelheid</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
-    <value>Om port forwarding te gebruiken, verbind u met een P2P-server</value>
+    <value>Maak verbinding met een P2P-server om torrent-snelheden te verbeteren</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>Een VPN-protocol bepaalt hoe verkeer wordt versleuteld en verzonden via de VPN.</value>
@@ -2787,10 +2793,13 @@
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>Voer de code van uw Authenticator-app in.</value>
+    <value>6-cijferige verificatiecode</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>Tweestapsverificatie</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>Authenticatie app</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>Eerste cijfer</value>
@@ -2812,6 +2821,15 @@
   </data>
   <data name="Login_TwoFactor_EnterCode">
     <value>Voer uw code in</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>Geen bekende tweestapsverificatiemethoden gevonden.</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>Beveiligingssleutel</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>Voeg de U2F - of FIDO-sleutel in die is gekoppeld aan uw Proton-account.</value>
   </data>
   <data name="Main_Loading">
     <value>Laden, een ogenblik geduld alstublieft...</value>
@@ -3081,7 +3099,7 @@ VPN-verbinding</value>
     <value>Werk/School</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Configureer uw eigen VPN-instellingen en verbind met één klik.</value>
+    <value>Configureer uw eigen VPN-instellingen en maak verbinding met één klik</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>Profielen</value>
@@ -3113,6 +3131,9 @@ VPN-verbinding</value>
   <data name="Server">
     <value>Server</value>
   </data>
+  <data name="Server_Fastest">
+    <value>Snelste server</value>
+  </data>
   <data name="Server_Fastest_Free">
     <value>Snelste gratis server</value>
   </data>
@@ -3142,6 +3163,9 @@ VPN-verbinding</value>
   </data>
   <data name="Server_Free">
     <value>Gratis server</value>
+  </data>
+  <data name="Server_Random">
+    <value>Willekeurige server</value>
   </data>
   <data name="Servers">
     <value>Servers</value>
@@ -3240,7 +3264,7 @@ VPN-verbinding</value>
     <value>Aangepaste DNS-servers inschakelen?</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
-    <value>Maak verbinding met Proton VPN via uw eigen DNS (Domain Name System). Gebruik alleen DNS-servers die u vertrouwt.</value>
+    <value>Maak verbinding met Proton VPN via uw eigen Domain Name System (DNS). Gebruik alleen DNS-servers die u vertrouwt.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
     <value>We zullen proberen om verbinding te maken met deze servers in volgorde. Als geen van hen werkt, zal de standaard Proton VPN DNS worden gebruikt.</value>
@@ -3253,35 +3277,35 @@ VPN-verbinding</value>
     <value>Voer het IPv4 of IPv6 adres van de server in</value>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode">
-    <value>DNS block handling</value>
+    <value>DNS blok actie</value>
     <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
-    <value>Use default blocking method</value>
+    <value>Gebruik standaard blokkeermethode</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
-    <value>By default, a callout filter rejects DNS requests that come from outside the VPN tunnel. This method is just as effective as NRPT, but it may lead to slower speeds. Local network DNS will work.</value>
+    <value>Standaard wijst een oproepfilter DNS-verzoeken af die van buiten de VPN-tunnel komen. Deze methode is net zo effectief als NRPT, maar kan leiden tot lagere snelheden. Lokaal netwerk DNS zal werken.</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
-    <value>Decide how Windows handles DNS requests attempting to go outside the VPN tunnel.</value>
+    <value>Bepaal hoe Windows DNS-aanvragen verwerkt die proberen buiten de VPN-tunnel te gaan.</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
-    <value>Block requests without a negative response</value>
+    <value>Verzoeken blokkeren zonder een negatieve respons</value>
     <comment>DNS requests are blocked but there is no negative reply to them</comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
-    <value>External DNS requests are discarded without a negative response. This may result in longer loading times when accessing domains that don't exist or contained blocked content (like ads or trackers).</value>
+    <value>Externe DNS-verzoeken worden weggegooid zonder een negatieve respons. Dit kan leiden tot langere laadtijden bij het toegang krijgen tot domeinen die niet bestaan of geblokkeerde inhoud bevatten (zoals advertenties of trackers).</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
-    <value>Use Proton VPN's NRPT policy</value>
+    <value>Gebruik het NRPT-beleid van Proton VPN</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
-    <value>Our NRPT (Name Resolution Policy Table) policy doesn't let Windows attempt external DNS requests at all. This optimizes VPN speeds, but local network DNS will not work. Some Windows devices do not support NRPT.</value>
+    <value>Ons NRPT (Name Resolution Policy Table)-beleid staat niet toe dat Windows externe DNS-verzoeken probeert. Dit optimaliseert de VPN-snelheden, maar lokale netwerk-DNS zal niet werken. Sommige Windows-apparaten bieden geen ondersteuning voor NRPT.</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6">
@@ -3432,7 +3456,7 @@ VPN-verbinding</value>
     <value>Port forwarding inschakelen?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Omzeil firewalls om verbinding te maken met P2P-servers en apparaten in uw lokale netwerk.</value>
+    <value>Verbetert torrent- en gamingsnelheden door directe P2P-verbindingen toe te staan via een toegewezen poort.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Maak verbinding met een server die P2P ondersteunt om port forwarding te gebruiken.</value>
@@ -3448,7 +3472,7 @@ VPN-verbinding</value>
     <value>Meldingen</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Krijg meldingen wanneer het port forwarding nummer wijzigt</value>
+    <value>Krijg een melding wanneer uw actieve poortnummer wijzigt.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocol</value>
@@ -3493,7 +3517,7 @@ VPN-verbinding</value>
     <value>Toevoeg-modus</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Alleen geselecteerde apps en IP-adressen maken verbinding via VPN. Al het andere verkeer is onbeschermd</value>
+    <value>Alleen geselecteerde apps en IP-adressen verbinden via VPN, al het andere verkeer is onbeschermd.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
     <value>Inclusief</value>
@@ -3513,7 +3537,7 @@ VPN-verbinding</value>
     <value>Uitsluit-modus</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
-    <value>Geselecteerde apps en IP-adressen zijn uitgesloten van de VPN-verbinding</value>
+    <value>Bepaalde apps en IP-adressen zijn uitgesloten van uw VPN-verbinding.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Short">
     <value>Exclusief</value>
@@ -3568,19 +3592,19 @@ VPN-verbinding</value>
     <value>Minimaliseren naar taakbalk</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Stel de app in om automatisch op te starten of te verbinden</value>
+    <value>Stel de app in om automatisch op te starten of te verbinden.</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Automatische updates</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Automatisch controleren en installeren van Proton VPN-updates</value>
+    <value>Automatisch controleren en installeren van Proton VPN-updates.</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>Bèta-toegang</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>Krijg vroege toegang en help ons nieuwe versies van Proton VPN te testen</value>
+    <value>Krijg vroege toegang en help ons nieuwe versies van Proton VPN te testen.</value>
   </data>
   <data name="Settings_General_Language">
     <value>Taal</value>
@@ -3589,7 +3613,7 @@ VPN-verbinding</value>
     <value>Meldingen</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Ontvang meldingen over lopende Proton VPN-activiteiten</value>
+    <value>Ontvang meldingen over wijzigingen in uw verbindingsstatus.</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>OpenVPN-netwerkdriver</value>
@@ -3827,6 +3851,14 @@ VPN-verbinding</value>
   <data name="SignIn_KillSwitch_Disabled">
     <value>Kill switch is uitgeschakeld</value>
   </data>
+  <data name="State_Fastest">
+    <value>Snelste staat</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>Willekeurige staat</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
   <data name="SystemNotification_Connected">
     <value>U bent nu beschermd</value>
   </data>
@@ -3891,7 +3923,7 @@ VPN-verbinding</value>
     <value>Ontgrendel geavanceerde VPN-aanpassingen</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Maak verbinding met VPN met uw aangepaste DNS (Domain Name System)</value>
+    <value>Verbind met VPN met uw aangepast domeinnaamsysteem (DNS)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>Krijg toegang tot apparaten op uw lokale netwerk (LAN) terwijl u verbonden bent</value>

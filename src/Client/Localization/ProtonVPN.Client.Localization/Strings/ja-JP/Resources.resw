@@ -192,6 +192,12 @@
   <data name="Cities">
     <value>都市</value>
   </data>
+  <data name="City_Fastest">
+    <value>最速の都市</value>
+  </data>
+  <data name="City_Random">
+    <value>ランダムな都市</value>
+  </data>
   <data name="Common_Actions_ActionsFor">
     <value>{0}のアクション</value>
     <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
@@ -315,7 +321,7 @@
     <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Common_Tags_Recommended">
-    <value>Recommended</value>
+    <value>おすすめ</value>
     <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
@@ -2181,7 +2187,7 @@
     <value>P2Pの速度を上げる</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
-    <value>ポート転送を利用するには、P2Pサーバーに接続してください</value>
+    <value>P2Pサーバーに接続すると、トレント速度が向上します。</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>VPNプロトコルは、VPN経由でトラフィックを暗号化して送信する方法を決定します。</value>
@@ -2679,10 +2685,13 @@
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>認証アプリからのコードを入力してください</value>
+    <value>6桁の認証コード</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>2 要素認証</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>認証アプリ</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>1桁の数字</value>
@@ -2704,6 +2713,15 @@
   </data>
   <data name="Login_TwoFactor_EnterCode">
     <value>コードを入力してください</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>既知の2要素認証方式が見つかりませんでした。</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>セキュリティキー</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>お客様のProtonアカウントにリンクされたU2FまたはFIDOキーを差し込んでください。</value>
   </data>
   <data name="Main_Loading">
     <value>読み込み中です。お待ちください...</value>
@@ -3005,6 +3023,9 @@ VPN接続</value>
   <data name="Server">
     <value>サーバー</value>
   </data>
+  <data name="Server_Fastest">
+    <value>最速のサーバー</value>
+  </data>
   <data name="Server_Fastest_Free">
     <value>最速の無料サーバー</value>
   </data>
@@ -3034,6 +3055,9 @@ VPN接続</value>
   </data>
   <data name="Server_Free">
     <value>無料サーバー</value>
+  </data>
+  <data name="Server_Random">
+    <value>ランダムサーバー</value>
   </data>
   <data name="Servers">
     <value>サーバー</value>
@@ -3145,35 +3169,35 @@ VPN接続</value>
     <value>サーバーのIPv4またはIPv6アドレスを入力してください。</value>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode">
-    <value>DNS block handling</value>
+    <value>DNSブロック処理</value>
     <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
-    <value>Use default blocking method</value>
+    <value>デフォルトのブロック方法を使用する</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
-    <value>By default, a callout filter rejects DNS requests that come from outside the VPN tunnel. This method is just as effective as NRPT, but it may lead to slower speeds. Local network DNS will work.</value>
+    <value>デフォルトでは、コールアウトフィルターはVPNトンネルの外部から来るDNSリクエストを拒否します。この方法はNRPTと同程度に効果的ですが、速度が低下する可能性があります。ローカルネットワークDNSは機能します。</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
-    <value>Decide how Windows handles DNS requests attempting to go outside the VPN tunnel.</value>
+    <value>Windows が VPN トンネル外へのアクセスを試みる DNS リクエストをどのように処理するかを決定します。</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
-    <value>Block requests without a negative response</value>
+    <value>ネガティブ応答なしにリクエストをブロック</value>
     <comment>DNS requests are blocked but there is no negative reply to them</comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
-    <value>External DNS requests are discarded without a negative response. This may result in longer loading times when accessing domains that don't exist or contained blocked content (like ads or trackers).</value>
+    <value>外部DNSリクエストは、ネガティブ応答なしに破棄されます。これにより、存在しないドメインや、ブロックされたコンテンツ（広告やトラッカーなど）を含むドメインにアクセスする際の読み込み時間が長くなる可能性があります。</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
-    <value>Use Proton VPN's NRPT policy</value>
+    <value>Proton VPN の NRPT ポリシーを使用</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
-    <value>Our NRPT (Name Resolution Policy Table) policy doesn't let Windows attempt external DNS requests at all. This optimizes VPN speeds, but local network DNS will not work. Some Windows devices do not support NRPT.</value>
+    <value>当社のNRPT（名前解決ポリシーテーブル）ポリシーは、Windowsが外部DNSリクエストを一切試行することを許可しません。これによりVPN速度が最適化されますが、ローカルネットワークのDNSは機能しません。一部のWindowsデバイスはNRPTをサポートしていません。</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6">
@@ -3324,7 +3348,7 @@ VPN接続</value>
     <value>ポート転送を有効にしますか？</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>ファイアウォールを回避して、P2Pサーバーやローカルネットワーク内のデバイスに接続します。</value>
+    <value>指定されたポートを通じて直接P2P接続を可能にすることで、トレントとゲームの速度が向上します。</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>ポート転送を使用するには、P2Pをサポートしているサーバーに接続してください。</value>
@@ -3340,7 +3364,7 @@ VPN接続</value>
     <value>通知</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>ポート転送番号が変わった時に通知を受け取る</value>
+    <value>お客様の有効なポート転送番号が変更されたときに通知を受け取る。</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>プロトコル</value>
@@ -3385,7 +3409,7 @@ VPN接続</value>
     <value>含めるモード</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>選択したアプリとIPアドレスのみがVPNを通して接続され、他のすべてのトラフィックは保護されません。</value>
+    <value>選択したアプリとIPアドレスだけがVPNを通して接続され、他の全てのトラフィックは保護されません。</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
     <value>含める</value>
@@ -3405,7 +3429,7 @@ VPN接続</value>
     <value>除外モード</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
-    <value>選択したアプリと IP アドレスは VPN 接続から除外されます</value>
+    <value>選択したアプリと IP アドレスは VPN 接続から除外されます。</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Short">
     <value>除外</value>
@@ -3460,19 +3484,19 @@ VPN接続</value>
     <value>タスクバーに最小化する</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>アプリが自動的に起動または接続されるように設定する</value>
+    <value>アプリが自動的に起動または接続されるように設定する.</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>自動更新</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Proton VPNのアップデートを自動的にチェックし、インストールする</value>
+    <value>Proton VPNのアップデートを自動的にチェックし、インストールする。</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>ベータ版アクセス</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>早期アクセスを取得して、Proton VPN の新しいバージョンのテストにご協力ください</value>
+    <value>早期アクセスを取得して、Proton VPN の新しいバージョンのテストにご協力ください。</value>
   </data>
   <data name="Settings_General_Language">
     <value>言語</value>
@@ -3481,7 +3505,7 @@ VPN接続</value>
     <value>通知</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>進行中の Proton VPN アクティビティに関する通知を受け取る</value>
+    <value>接続状態の変更に関する通知を受け取ります。</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>OpenVPN ネットワークドライバ</value>
@@ -3719,6 +3743,14 @@ VPN接続</value>
   <data name="SignIn_KillSwitch_Disabled">
     <value>キルスイッチが無効です</value>
   </data>
+  <data name="State_Fastest">
+    <value>最速の州</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>ランダムな州</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
   <data name="SystemNotification_Connected">
     <value>あなたは今保護されています</value>
   </data>
@@ -3783,7 +3815,7 @@ VPN接続</value>
     <value>高度な VPN カスタマイズを解除する</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>カスタム ドメイン ネーム サーバー (DNS) を使用して VPN に接続します</value>
+    <value>カスタム ドメイン ネーム システム (DNS)を使用して VPN に接続します。</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>接続中にローカル エリア ネットワーク (LAN) 上のデバイスにアクセスする</value>

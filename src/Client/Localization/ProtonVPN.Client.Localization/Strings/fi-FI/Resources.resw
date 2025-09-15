@@ -192,6 +192,12 @@
   <data name="Cities">
     <value>Kaupungit</value>
   </data>
+  <data name="City_Fastest">
+    <value>Fastest city</value>
+  </data>
+  <data name="City_Random">
+    <value>Random city</value>
+  </data>
   <data name="Common_Actions_ActionsFor">
     <value>Toiminnot kohteelle {0}</value>
     <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
@@ -2256,7 +2262,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Paranna P2P-nopeutta</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
-    <value>Käytä porttiohjausta yhdistämällä P2P-palvelimeen</value>
+    <value>Connect to a P2P server to improve torrenting speeds</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>VPN-protokolla määrittää, miten liikenne salataan ja lähetetään VPN:n välityksellä.</value>
@@ -2787,10 +2793,13 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>Syötä koodi todennussovelluksesta.</value>
+    <value>6-digit authentication code</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>Kaksivaiheinen tunnistautuminen</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>Authenticator app</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>Ensimmäinen numero</value>
@@ -2812,6 +2821,15 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   </data>
   <data name="Login_TwoFactor_EnterCode">
     <value>Syötä koodisi</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>No known two-factor authentication methods found.</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>Security key</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>Insert the U2F or FIDO key linked to your Proton Account.</value>
   </data>
   <data name="Main_Loading">
     <value>Ladataan. Odota...</value>
@@ -3081,7 +3099,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Työ/koulu</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Määritä omat VPN-asetuksesi ja yhdistä yhdellä klikkauksella.</value>
+    <value>Configure your own VPN settings and connect in one click</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>Profiilit</value>
@@ -3113,6 +3131,9 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   <data name="Server">
     <value>Palvelin</value>
   </data>
+  <data name="Server_Fastest">
+    <value>Fastest server</value>
+  </data>
   <data name="Server_Fastest_Free">
     <value>Nopein ilmainen palvelin</value>
   </data>
@@ -3142,6 +3163,9 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   </data>
   <data name="Server_Free">
     <value>Ilmaispalvelin</value>
+  </data>
+  <data name="Server_Random">
+    <value>Random server</value>
   </data>
   <data name="Servers">
     <value>Palvelimet</value>
@@ -3240,7 +3264,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Otetaanko vaihtoehtoiset DNS-palvelimet käyttöön?</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
-    <value>Yhdistä Proton VPN omilla DNS-nimipalvelimillasi. Käytä vain DNS-palvelimia, joihin luotat.</value>
+    <value>Connect to Proton VPN using your own Domain Name System (DNS). Only use DNS servers that you trust.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
     <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
@@ -3432,7 +3456,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Otetaanko porttiohjaus käyttöön?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Ohita palomuurit yhdistääksesi P2P-vertaisverkkoihin ja lähiverkkosi laitteisiin.</value>
+    <value>Improves torrenting and gaming speeds by allowing direct P2P connections through a designated port.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Käyttääksesi porttiohjausta, yhdistä P2P-tuelliseen palvelimeen.</value>
@@ -3448,7 +3472,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Ilmoitukset</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Ilmoita kun porttiohjauksen portti muuttuu</value>
+    <value>Get notified when your active port number changes.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokolla</value>
@@ -3493,7 +3517,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Sisällytä-tila</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Vain valitut sovellukset ja IP-osoitteet muodostavat yhteyden VPN:n välityksellä. Kaikki muu tietoliikenne on suojaamatonta.</value>
+    <value>Only selected apps and IP addresses connect through VPN, all other traffic is unprotected.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
     <value>Sisällytä</value>
@@ -3513,7 +3537,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Poissulje-tila</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
-    <value>Valitut sovellukset ja IP-osoitteet suljetaan VPN-yhteyden ulkopuolelle.</value>
+    <value>Selected apps and IP addresses are excluded from your VPN connection.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Short">
     <value>Poissulje</value>
@@ -3541,7 +3565,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Automaattinen käynnistys</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>Yhdistä automaattisesti</value>
+    <value>Auto-connect</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>Yhdistää automaattisesti oletussijaintiisi kun Proton VPN käynnistyy.</value>
@@ -3553,7 +3577,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Edellinen yhteys</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
-    <value>Käynnistä automaattisesti</value>
+    <value>Auto-launch</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Description">
     <value>Proton VPN käynnistyy automaattisesti, kun kirjaudut laitteellesi.</value>
@@ -3568,19 +3592,19 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Pienennä tehtäväpalkkiiin</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Aseta sovellus käynnistymään tai yhdistämään automaattisesti.</value>
+    <value>Set the app to launch or connect automatically.</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Automaattinen päivitys</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Tarkasta ja asenna Proton VPN:n päivitykset automaattisesti.</value>
+    <value>Automatically check and install Proton VPN updates.</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>Käytä beetaversiota</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>Hanki varhainen käyttöoikeus ja auta meitä testaamaan Proton VPN:n uusia versioita.</value>
+    <value>Get early access and help us test new versions of Proton VPN.</value>
   </data>
   <data name="Settings_General_Language">
     <value>Kieli</value>
@@ -3589,7 +3613,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Ilmoitukset</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Saat ilmoituksen ajankohtaisista Proton VPN -tapahtumista.</value>
+    <value>Get notified about changes to your connection status.</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>OpenVPN-verkkoajuri</value>
@@ -3827,6 +3851,14 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   <data name="SignIn_KillSwitch_Disabled">
     <value>Tappokytkin ei ole käytössä</value>
   </data>
+  <data name="State_Fastest">
+    <value>Fastest state</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>Random state</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
   <data name="SystemNotification_Connected">
     <value>Olet nyt suojattu</value>
   </data>
@@ -3891,7 +3923,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Avaa edistynyt VPN-mukautus</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Muodosta VPN-yhteys vaihtoehtoisella nimipalvelimella (DNS)</value>
+    <value>Connect to VPN with your custom Domain Name System (DNS)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>Käytä lähiverkon (LAN) laitteita, kun olet yhdistettynä</value>

@@ -192,6 +192,12 @@
   <data name="Cities">
     <value>Städte</value>
   </data>
+  <data name="City_Fastest">
+    <value>Schnellste Stadt</value>
+  </data>
+  <data name="City_Random">
+    <value>Zufällige Stadt</value>
+  </data>
   <data name="Common_Actions_ActionsFor">
     <value>Aktionen für {0}</value>
     <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
@@ -2256,7 +2262,7 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <value>P2P-Geschwindigkeit verbessern</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
-    <value>Um die Portweiterleitung zu verwenden, stelle eine Verbindung zu einem P2P-Server her.</value>
+    <value>Verbinde dich mit einem P2P-Server, um die Torrent-Geschwindigkeiten zu verbessern.</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>Ein VPN-Protokoll bestimmt, wie der Verkehr verschlüsselt und über das VPN übertragen wird.</value>
@@ -2787,10 +2793,13 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>Gib den Code aus deiner Authentifizierungs-App ein.</value>
+    <value>6-stelliger Authentifizierungscode</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>Zwei‐Faktor‐Authentifizierung</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>Authentifizierungs-App</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>Erste Ziffer</value>
@@ -2812,6 +2821,15 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   </data>
   <data name="Login_TwoFactor_EnterCode">
     <value>Code eingeben</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>Keine bekannten Zwei-Faktor-Authentifizierungsmethoden gefunden.</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>Sicherheitsschlüssel</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>Stecke den mit deinem Proton Account verknüpften U2F- oder FIDO-Schlüssel ein.</value>
   </data>
   <data name="Main_Loading">
     <value>Wird geladen, bitte warten ...</value>
@@ -3081,7 +3099,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Arbeit/Schule</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Konfiguriere deine eigenen VPN-Einstellungen und verbinde dich mit nur einem Klick.</value>
+    <value>Konfiguriere deine eigenen VPN-Einstellungen und verbinde dich mit nur einem Klick</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>Profile</value>
@@ -3113,6 +3131,9 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   <data name="Server">
     <value>Server</value>
   </data>
+  <data name="Server_Fastest">
+    <value>Schnellster Server</value>
+  </data>
   <data name="Server_Fastest_Free">
     <value>Schnellster kostenloser Server</value>
   </data>
@@ -3142,6 +3163,9 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   </data>
   <data name="Server_Free">
     <value>Kostenloser Server</value>
+  </data>
+  <data name="Server_Random">
+    <value>Zufälliger Server</value>
   </data>
   <data name="Servers">
     <value>Server</value>
@@ -3240,7 +3264,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Benutzerdefinierte DNS-Server aktivieren?</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
-    <value>Verbinde dich mit Proton VPN über dein eigenes Domain Name System (DNS). Verwende nur DNS-Server, denen du vertraust.</value>
+    <value>Verbinde dich mit Proton VPN über dein eigenes Domain-Namen-System (DNS). Verwende nur DNS-Server, denen du vertraust.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
     <value>Es wird versucht, sich nacheinander mit diesen Servern zu verbinden. Wenn keiner davon funktioniert, wird das Standard-DNS von Proton VPN verwendet.</value>
@@ -3432,7 +3456,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Port-Weiterleitung aktivieren?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Umgehe Firewalls, um eine Verbindung zu P2P-Servern und Geräten in deinem lokalen Netzwerk herzustellen.</value>
+    <value>Verbessert die Geschwindigkeit beim Torrenting und Gaming, indem direkte P2P-Verbindungen über einen bestimmten Port ermöglicht werden.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Um die Portweiterleitung zu nutzen, verbinde dich bitte mit einem Server, der P2P unterstützt.</value>
@@ -3448,7 +3472,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Benachrichtigungen</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Erhalte eine Benachrichtigung, wenn sich die Portweiterleitungsnummer ändert.</value>
+    <value>Lass dich benachrichtigen, wenn sich deine aktive Portnummer ändert.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokoll</value>
@@ -3493,7 +3517,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Modus einschließen</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Nur ausgewählte Apps und IP-Adressen verbinden sich über VPN. Der übrige Verkehr ist ungeschützt.</value>
+    <value>Nur ausgewählte Apps und IP-Adressen verbinden sich über VPN, der übrige Datenverkehr ist ungeschützt.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
     <value>Einschließen</value>
@@ -3541,7 +3565,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Automatischer Start</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>Automatisch verbinden</value>
+    <value>Automatische Verbindung</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>Verbindet sich automatisch mit deiner Standardverbindung, wenn Proton VPN geöffnet wird.</value>
@@ -3568,19 +3592,19 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>In die Taskleiste minimieren</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Einstellen, dass die Anwendung automatisch gestartet oder verbunden wird</value>
+    <value>Einstellen, dass die App automatisch gestartet oder verbunden wird.</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Automatische Updates</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Proton VPN Updates automatisch prüfen und installieren</value>
+    <value>Proton VPN Updates automatisch prüfen und installieren.</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>Beta-Zugang</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>Erhalte frühen Zugang und helfe uns, neue Versionen von Proton VPN zu testen</value>
+    <value>Erhalte frühen Zugang und helfe uns, neue Versionen von Proton VPN zu testen.</value>
   </data>
   <data name="Settings_General_Language">
     <value>Sprache</value>
@@ -3589,7 +3613,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Benachrichtigungen</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Lass dich über laufende Proton VPN-Aktivitäten informieren</value>
+    <value>Lass dich bei Änderungen deines Verbindungsstatus informieren.</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>OpenVPN-Netzwerktreiber</value>
@@ -3827,6 +3851,14 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   <data name="SignIn_KillSwitch_Disabled">
     <value>Kill Switch ist deaktiviert</value>
   </data>
+  <data name="State_Fastest">
+    <value>Schnellstes Land</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>Zufälliges Land</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
   <data name="SystemNotification_Connected">
     <value>Du bist jetzt geschützt</value>
   </data>
@@ -3891,7 +3923,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Erweiterte VPN-Anpassung freischalten</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Verbinde dich mit VPN mit deinem eigenen Domain Name System (DNS)</value>
+    <value>Verbinde dich mit dem VPN über dein benutzerdefiniertes Domain-Namen-System (DNS)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>Zugriff auf Geräte in deinem lokalen Netzwerk (LAN), während du verbunden bist</value>
