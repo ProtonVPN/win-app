@@ -30,10 +30,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              mc:Ignorable="d">
 
     <tray:TaskbarIcon ContextMenuMode="PopupMenu"
-                      DoubleClickCommand="{x:Bind ViewModel.ShowApplicationCommand, Mode=OneTime}"
                       IconSource="{x:Bind ViewModel.IconSource}"
                       Id="{x:Bind ViewModel.TrayIconGuid, Mode=OneTime}"
                       LeftClickCommand="{x:Bind ViewModel.ShowTrayApplicationCommand, Mode=OneTime}"
+                      NoLeftClickDelay="True"
                       ToolTipText="{x:Bind ViewModel.ApplicationName, Mode=OneTime}">
         <tray:TaskbarIcon.ContextFlyout>
             <MenuFlyout>
