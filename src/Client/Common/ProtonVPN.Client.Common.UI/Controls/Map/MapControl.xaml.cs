@@ -1196,38 +1196,37 @@ public sealed partial class MapControl
         double horizontalOffsetInPixels = (leftOffset - rightOffset) / 2.0;
         double verticalOffsetInPixels = (topOffset - bottomOffset) / 2.0;
 
+        double resolution = 0;
+        double horizontalWorldOffset = 0;
+        double verticalWorldOffset = 0;
+
         if (CurrentCountry.Code == "RU")
         {
-            const double resolution = 7000;
-            double horizontalWorldOffset = horizontalOffsetInPixels * resolution;
-            double verticalWorldOffset = verticalOffsetInPixels * resolution;
-
-            CenterMap(countryPoint, resolution, horizontalWorldOffset, verticalWorldOffset, animationDuration);
-            return;
+            resolution = 7000;
+            horizontalWorldOffset = horizontalOffsetInPixels * resolution;
+            verticalWorldOffset = verticalOffsetInPixels * resolution;
         }
-
-        List<IFeature> features = _countriesLayer
-            .GetFeatures(_mapBounds, _map.Navigator.Viewport.Resolution)
-            .ToList();
-
-        foreach (GeometryFeature feature in features.Cast<GeometryFeature>())
+        else
         {
-            if (feature.Geometry != null && feature.Geometry.Contains(countryPoint.ToPoint()))
-            {
-                MRect boundingBox = feature.Geometry.GetBoundingBox();
-                double newResolution = CalculateResolution(boundingBox, effectiveViewportWidth, effectiveViewportHeight, 1.1);
+            GeometryFeature? countryFeature = _countriesLayer
+                .GetFeatures(_mapBounds, _map.Navigator.Viewport.Resolution)
+                .OfType<GeometryFeature>()
+                .FirstOrDefault(f => f.Geometry != null && f.Geometry.Contains(countryPoint.ToPoint()));
 
-                double horizontalWorldOffset = (boundingBox.Width / newResolution <= effectiveViewportWidth)
-                    ? horizontalOffsetInPixels * newResolution
-                    : 0;
-                double verticalWorldOffset = (boundingBox.Height / newResolution <= effectiveViewportHeight)
-                    ? verticalOffsetInPixels * newResolution
-                    : 0;
+            MRect boundingBox = countryFeature?.Geometry?.GetBoundingBox()
+                             ?? new MRect(countryPoint.X, countryPoint.Y, countryPoint.X, countryPoint.Y);
 
-                CenterMap(countryPoint, newResolution, horizontalWorldOffset, verticalWorldOffset, animationDuration);
-                break;
-            }
+            resolution = CalculateResolution(boundingBox, effectiveViewportWidth, effectiveViewportHeight, 1.1);
+
+            horizontalWorldOffset = (boundingBox.Width / resolution <= effectiveViewportWidth)
+                ? horizontalOffsetInPixels * resolution
+                : 0;
+            verticalWorldOffset = (boundingBox.Height / resolution <= effectiveViewportHeight)
+                ? verticalOffsetInPixels * resolution
+                : 0;
         }
+
+        CenterMap(countryPoint, resolution, horizontalWorldOffset, verticalWorldOffset, animationDuration);
     }
 
     private void CenterMap(MPoint countryPoint, double resolution, double horizontalWorldOffset, double verticalWorldOffset, long animationDuration)
