@@ -2939,7 +2939,7 @@
     <value>You have reached your maximum device limit. Please disconnect another device to connect this one.</value>
   </data>
   <data name="Connection_Error_Unknown" xml:space="preserve">
-    <value>We're not sure what happened here. Please try again or contact our customer support team.</value>
+    <value>Check your internet connection and try again. If that doesn't work, contact our customer support team.\n\nError code: {0}</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection" xml:space="preserve">
     <value>IPv6 leak protection</value>

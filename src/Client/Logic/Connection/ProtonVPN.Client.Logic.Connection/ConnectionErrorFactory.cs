@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -47,39 +47,43 @@ public class ConnectionErrorFactory : IConnectionErrorFactory
         {
             VpnError.None or 
             VpnError.NoneKeepEnabledKillSwitch or 
-            VpnError.BaseFilteringEngineServiceNotRunning => GetConnectionError<NoConnectionError>(),
+            VpnError.BaseFilteringEngineServiceNotRunning => GetConnectionError<NoConnectionError>(vpnError),
 
             VpnError.NoServers when _connectionManager.CurrentConnectionIntent is IConnectionProfile =>
-                GetConnectionError<NoServersForProfileConnectionError>(),
-            VpnError.NoServers => GetConnectionError<NoServersConnectionError>(),
+                GetConnectionError<NoServersForProfileConnectionError>(vpnError),
+            VpnError.NoServers => GetConnectionError<NoServersConnectionError>(vpnError),
 
-            VpnError.WireGuardAdapterInUseError => GetConnectionError<WireGuardAdapterInUseConnectionError>(),
-            VpnError.MissingConnectionCertificate => GetConnectionError<MissingConnectionCertificateError>(),
-            VpnError.TlsCertificateError => GetConnectionError<TlsCertificateConnectionError>(),
+            VpnError.WireGuardAdapterInUseError => GetConnectionError<WireGuardAdapterInUseConnectionError>(vpnError),
+            VpnError.MissingConnectionCertificate => GetConnectionError<MissingConnectionCertificateError>(vpnError),
+            VpnError.TlsCertificateError => GetConnectionError<TlsCertificateConnectionError>(vpnError),
 
-            VpnError.NoTapAdaptersError => GetConnectionError<NoTapAdaptersConnectionError>(),
-            VpnError.TapAdapterInUseError => GetConnectionError<TapAdapterInUseConnectionError>(),
-            VpnError.TapRequiresUpdateError => GetConnectionError<TapRequiresUpdateConnectionError>(),
-            VpnError.RpcServerUnavailable => GetConnectionError<RpcServerUnavailableConnectionError>(),
+            VpnError.NoTapAdaptersError => GetConnectionError<NoTapAdaptersConnectionError>(vpnError),
+            VpnError.TapAdapterInUseError => GetConnectionError<TapAdapterInUseConnectionError>(vpnError),
+            VpnError.TapRequiresUpdateError => GetConnectionError<TapRequiresUpdateConnectionError>(vpnError),
+            VpnError.RpcServerUnavailable => GetConnectionError<RpcServerUnavailableConnectionError>(vpnError),
 
             VpnError.SessionLimitReachedBasic or
             VpnError.SessionLimitReachedFree or
             VpnError.SessionLimitReachedPlus or
             VpnError.SessionLimitReachedPro or
             VpnError.SessionLimitReachedVisionary or
-            VpnError.SessionLimitReachedUnknown => GetConnectionError<SessionLimitReachedConnectionError>(),
+            VpnError.SessionLimitReachedUnknown => GetConnectionError<SessionLimitReachedConnectionError>(vpnError),
 
-            _ => GetUnknownConnectionError(),
+            _ => GetUnknownConnectionError(vpnError),
         };
     }
 
-    private IConnectionError GetConnectionError<T>() where T : IConnectionError
+    private IConnectionError GetConnectionError<T>(VpnError vpnError) where T : IConnectionError
     {
-        return _connectionErrors.Value.FirstOrDefault(e => e is T) ?? GetUnknownConnectionError();
+        return _connectionErrors.Value.FirstOrDefault(e => e is T) ?? GetUnknownConnectionError(vpnError);
     }
 
-    private IConnectionError GetUnknownConnectionError()
+    private UnknownConnectionError GetUnknownConnectionError(VpnError error)
     {
-        return _unknownConnectionError.Value;
+        UnknownConnectionError unknownConnectionError = _unknownConnectionError.Value;
+
+        unknownConnectionError.SetLastError(error);
+
+        return unknownConnectionError;
     }
 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,15 +19,25 @@
 
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 
 namespace ProtonVPN.Client.Logic.Connection.ConnectionErrors;
 
 public class UnknownConnectionError : ReportableConnectionError
 {
-    public override string Message => Localizer.Get("Connection_Error_Unknown");
+    private VpnError _lastError;
 
-    public UnknownConnectionError(ILocalizationProvider localizer, IReportIssueWindowActivator reportIssueWindowActivator)
+    public override string Message => Localizer.GetFormat("Connection_Error_Unknown", (int)_lastError);
+
+    public UnknownConnectionError(
+        ILocalizationProvider localizer,
+        IReportIssueWindowActivator reportIssueWindowActivator)
         : base(localizer, reportIssueWindowActivator)
     {
+    }
+
+    public void SetLastError(VpnError error)
+    {
+        _lastError = error;
     }
 }
