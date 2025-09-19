@@ -44,6 +44,7 @@ using ProtonVPN.Client.Models.Announcements;
 using ProtonVPN.Client.Notifications.Installers;
 using ProtonVPN.Client.Services.Activation;
 using ProtonVPN.Client.Services.Bootstrapping;
+using ProtonVPN.Client.Services.Bootstrapping.Activators;
 using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Services.Dispatching;
 using ProtonVPN.Client.Services.Edition;
@@ -55,14 +56,18 @@ using ProtonVPN.Client.Services.PortForwarding;
 using ProtonVPN.Client.Services.ProcessCommunication;
 using ProtonVPN.Client.Services.Selection;
 using ProtonVPN.Client.Services.SignoutHandling;
+using ProtonVPN.Client.Services.Upselling;
 using ProtonVPN.Client.Services.Validation;
 using ProtonVPN.Client.Services.Verification;
 using ProtonVPN.Client.Settings.Installers;
 using ProtonVPN.Client.UI;
 using ProtonVPN.Client.UI.Dialogs.DebugTools;
+using ProtonVPN.Client.UI.Dialogs.NpsSurvey;
 using ProtonVPN.Client.UI.Dialogs.OneTimeAnnouncement;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
+using ProtonVPN.Client.UI.Dialogs.Tray;
+using ProtonVPN.Client.UI.Dialogs.Tray.Pages;
 using ProtonVPN.Client.UI.Dialogs.Troubleshooting;
 using ProtonVPN.Client.UI.Dialogs.Upsell;
 using ProtonVPN.Client.UI.Dialogs.Upsell.Features;
@@ -85,6 +90,7 @@ using ProtonVPN.Client.UI.Main.Home.Details;
 using ProtonVPN.Client.UI.Main.Home.Details.Connection;
 using ProtonVPN.Client.UI.Main.Home.Details.Flyouts;
 using ProtonVPN.Client.UI.Main.Home.Details.Location;
+using ProtonVPN.Client.UI.Main.Home.Status;
 using ProtonVPN.Client.UI.Main.Home.Upsell;
 using ProtonVPN.Client.UI.Main.Map;
 using ProtonVPN.Client.UI.Main.Profiles;
@@ -111,9 +117,9 @@ using ProtonVPN.Client.UI.Main.Widgets;
 using ProtonVPN.Client.UI.Overlays.HumanVerification;
 using ProtonVPN.Client.UI.Overlays.Information;
 using ProtonVPN.Client.UI.Overlays.Information.Notification;
-using ProtonVPN.Client.UI.Overlays.WhatsNew;
 using ProtonVPN.Client.UI.Overlays.Upsell;
 using ProtonVPN.Client.UI.Overlays.Welcome;
+using ProtonVPN.Client.UI.Overlays.WhatsNew;
 using ProtonVPN.Client.UI.Tray;
 using ProtonVPN.Client.UI.Update;
 using ProtonVPN.Client.UnsecureWifiDetection.Installers;
@@ -125,6 +131,7 @@ using ProtonVPN.Crypto.Installers;
 using ProtonVPN.Dns.Installers;
 using ProtonVPN.EntityMapping.Installers;
 using ProtonVPN.Files.Installers;
+using ProtonVPN.IPv6.Installers;
 using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Installers;
 using ProtonVPN.NetworkTimeProtocols.Installers;
@@ -132,17 +139,11 @@ using ProtonVPN.OperatingSystems.Network.Installers;
 using ProtonVPN.OperatingSystems.Processes.Installers;
 using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.OperatingSystems.Services.Installers;
+using ProtonVPN.OperatingSystems.WebAuthn.Installers;
 using ProtonVPN.ProcessCommunication.Client.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.Serialization.Installers;
 using ProtonVPN.StatisticalEvents.Installers;
-using ProtonVPN.Client.Services.Upselling;
-using ProtonVPN.Client.Services.Bootstrapping.Activators;
-using ProtonVPN.IPv6.Installers;
-using ProtonVPN.Client.UI.Dialogs.Tray;
-using ProtonVPN.Client.UI.Dialogs.Tray.Pages;
-using ProtonVPN.Client.UI.Main.Home.Status;
-using ProtonVPN.Client.UI.Dialogs.NpsSurvey;
 
 namespace ProtonVPN.Client.Installers;
 
@@ -182,6 +183,7 @@ public class AppModule : Module
                .RegisterModule<RegistriesModule>()
                .RegisterModule<ProcessesModule>()
                .RegisterModule<ServicesModule>()
+               .RegisterModule<WebAuthnModule>()
                .RegisterModule<ServicesLogicModule>()
                .RegisterModule<ConnectionLogicModule>()
                .RegisterModule<ClientProcessCommunicationModule>()

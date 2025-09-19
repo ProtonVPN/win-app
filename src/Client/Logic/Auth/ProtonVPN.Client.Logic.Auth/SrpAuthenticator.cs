@@ -18,7 +18,6 @@
  */
 
 using System.Security;
-using DSInternals.Win32.WebAuthn;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Api.Contracts.Auth.Fido2;
@@ -27,6 +26,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.OperatingSystems.WebAuthn.Contracts;
 
 namespace ProtonVPN.Client.Logic.Auth;
 
@@ -39,6 +39,7 @@ public class SrpAuthenticator : AuthenticatorBase, ISrpAuthenticator
 
     private readonly IApiClient _apiClient;
     private readonly IUnauthSessionManager _unauthSessionManager;
+    private readonly IWebAuthnAuthenticator _webAuthnAuthenticator;
 
     private AuthResponse? _authResponse;
 
@@ -47,18 +48,16 @@ public class SrpAuthenticator : AuthenticatorBase, ISrpAuthenticator
     public bool IsTwoFactorSecurityKeyModeEnabled => _authResponse != null
                                                   && (_authResponse.TwoFactor.Enabled & TYPE_2FA_FIDO2) != 0;
 
-    private static readonly Lazy<WebAuthnApi> _webAuthnApiInstance = new(() => new WebAuthnApi());
-
-    private static WebAuthnApi WebAuthnApiInstance => _webAuthnApiInstance.Value;
-
     public SrpAuthenticator(
         IApiClient apiClient,
         ISettings settings,
         IUnauthSessionManager unauthSessionManager,
-        IGuestHoleManager guestHoleManager) : base(settings)
+        IGuestHoleManager guestHoleManager,
+        IWebAuthnAuthenticator webAuthnAuthenticator) : base(settings)
     {
         _apiClient = apiClient;
         _unauthSessionManager = unauthSessionManager;
+        _webAuthnAuthenticator = webAuthnAuthenticator;
     }
 
     public async Task<AuthResult> LoginUserAsync(string username, SecureString password, CancellationToken cancellationToken)
@@ -151,14 +150,15 @@ public class SrpAuthenticator : AuthenticatorBase, ISrpAuthenticator
             return AuthResult.Fail(AuthError.TwoFactorAuthFailed);
         }
 
-        List<PublicKeyCredentialDescriptor> allowCredentials = _authResponse.TwoFactor.Fido2.AuthenticationOptions.PublicKey.AllowCredentials
-            .Select(ac => new PublicKeyCredentialDescriptor(ac.Id.ToArray())).ToList();
-        byte[] challenge = _authResponse.TwoFactor.Fido2.AuthenticationOptions.PublicKey.Challenge.ToArray();
+        List<AllowedCredential> allowedCredentials = _authResponse.TwoFactor.Fido2.AuthenticationOptions.PublicKey.AllowCredentials
+            .Select(ac => new AllowedCredential(ac.Id.ToArray(), ac.Type)).ToList();
 
-        AuthenticatorAssertionResponse authResult = await WebAuthnApiInstance.AuthenticatorGetAssertionAsync(_authResponse.TwoFactor.Fido2.AuthenticationOptions.PublicKey.RpId, challenge,
-            UserVerificationRequirement.Discouraged,
-            AuthenticatorAttachment.Any,
-            allowCredentials: allowCredentials,
+        WebAuthnResponse authResult = await _webAuthnAuthenticator.AuthenticateAsync(
+            rpId: _authResponse.TwoFactor.Fido2.AuthenticationOptions.PublicKey.RpId,
+            challenge: _authResponse.TwoFactor.Fido2.AuthenticationOptions.PublicKey.Challenge.ToArray(),
+            userVerificationRequirement: _authResponse.TwoFactor.Fido2.AuthenticationOptions.PublicKey.UserVerification,
+            timeoutInMilliseconds: _authResponse.TwoFactor.Fido2.AuthenticationOptions.PublicKey.Timeout,
+            allowedCredentials: allowedCredentials,
             cancellationToken: cancellationToken);
 
         TwoFactorRequest request = new()

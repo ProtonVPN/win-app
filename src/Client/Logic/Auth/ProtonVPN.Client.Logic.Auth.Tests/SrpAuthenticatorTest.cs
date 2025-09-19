@@ -30,6 +30,7 @@ using ProtonVPN.Api.Contracts.Auth;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.OperatingSystems.WebAuthn.Contracts;
 
 namespace ProtonVPN.Client.Logic.Auth.Tests;
 
@@ -41,9 +42,10 @@ public class SrpAuthenticatorTest
     private readonly SecureString _password = new NetworkCredential("", "password").SecurePassword;
 
     private IApiClient _apiClient;
-    private IUnauthSessionManager _unauthSessionManager;
     private ISettings _settings;
     private IGuestHoleManager _guestHoleManager;
+    private IUnauthSessionManager _unauthSessionManager;
+    private IWebAuthnAuthenticator _webAuthnApi;
 
     [TestInitialize]
     public void Initialize()
@@ -52,6 +54,7 @@ public class SrpAuthenticatorTest
         _settings = Substitute.For<ISettings>();
         _guestHoleManager = Substitute.For<IGuestHoleManager>();
         _unauthSessionManager = Substitute.For<IUnauthSessionManager>();
+        _webAuthnApi = Substitute.For<IWebAuthnAuthenticator>();
     }
 
     [TestCleanup]
@@ -61,6 +64,7 @@ public class SrpAuthenticatorTest
         _settings = null;
         _guestHoleManager = null;
         _unauthSessionManager = null;
+        _webAuthnApi = null;
     }
 
     [TestMethod]
@@ -120,6 +124,6 @@ public class SrpAuthenticatorTest
 
     private SrpAuthenticator GetSrpAuthenticator()
     {
-        return new(_apiClient, _settings, _unauthSessionManager, _guestHoleManager);
+        return new(_apiClient, _settings, _unauthSessionManager, _guestHoleManager, _webAuthnApi);
     }
 }

@@ -25,7 +25,7 @@ namespace ProtonVPN.Api.Contracts.Auth.Fido2;
 public class Fido2PublicKeyResponse
 {
     [JsonProperty(PropertyName = "timeout")]
-    public long Timeout { get; set; }
+    public int Timeout { get; set; }
 
     [JsonProperty(PropertyName = "challenge")]
     public List<byte> Challenge { get; set; }
