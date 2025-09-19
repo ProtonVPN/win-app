@@ -184,9 +184,14 @@ public static class LocalizationExtensions
             StateLocationIntentBase or
             CityLocationIntentBase or
             ServerLocationIntentBase => localizer.GetCountryName(connectionDetails.ExitCountryCode),
+
             MultiCountryLocationIntent intent => localizer.GetCountryName(string.Empty, intent.Strategy, intent.IsToExcludeMyCountry),
-            SingleGatewayLocationIntent => connectionDetails.GatewayName,
+
+            SingleGatewayLocationIntent or
+            GatewayServerLocationIntentBase => connectionDetails.GatewayName,
+
             MultiGatewayLocationIntent intent => localizer.GetGatewayName(string.Empty, intent.Strategy),
+
             FreeServerLocationIntent intent => intent.Strategy switch
             {
                 SelectionStrategy.Random => localizer.GetCountryName(connectionDetails.ExitCountryCode, intent.Strategy),
@@ -212,9 +217,14 @@ public static class LocalizationExtensions
             StateLocationIntentBase or
             CityLocationIntentBase or
             ServerLocationIntentBase => ConcatenateLocations(connectionDetails.State, connectionDetails.City, connectionDetails.ServerName),
+
             MultiCountryLocationIntent => ConcatenateLocations(localizer.GetCountryName(connectionDetails.ExitCountryCode), connectionDetails.State, connectionDetails.City, connectionDetails.ServerName),
-            SingleGatewayLocationIntent => ConcatenateLocations(localizer.GetCountryName(connectionDetails.ExitCountryCode), connectionDetails.ServerName),
+
+            SingleGatewayLocationIntent or
+            GatewayServerLocationIntentBase => ConcatenateLocations(localizer.GetCountryName(connectionDetails.ExitCountryCode), connectionDetails.ServerName),
+
             MultiGatewayLocationIntent => ConcatenateLocations(connectionDetails.GatewayName, localizer.GetCountryName(connectionDetails.ExitCountryCode), connectionDetails.ServerName),
+
             FreeServerLocationIntent intent => intent.Strategy switch
             {
                 SelectionStrategy.Random => connectionDetails.ServerName,
