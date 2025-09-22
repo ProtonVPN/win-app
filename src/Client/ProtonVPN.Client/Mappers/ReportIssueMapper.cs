@@ -36,6 +36,7 @@ public static class ReportIssueMapper
     public const string PROMOTIONS_CATEGORY = "Promotions and Offers";
     public const string CAPTCHA_ISSUES_CATEGORY = "CAPTCHA issues";
     public const string CAN_NOT_ACCESS_WEBSITE_CATEGORY = "Can't access a website or service";
+    public const string LAN_CONNECTIONS_CATEGORY = "LAN (local network) connections";
 
     public const string TEXT_FIELD_TYPE = "TextSingleLine";
     public const string MULTI_TEXT_FIELD_TYPE = "TextMultiLine";
@@ -91,6 +92,7 @@ public static class ReportIssueMapper
             PROMOTIONS_CATEGORY => new BagPercent(),
             CAPTCHA_ISSUES_CATEGORY => new Key(),
             CAN_NOT_ACCESS_WEBSITE_CATEGORY => new CircleSlash(),
+            LAN_CONNECTIONS_CATEGORY => new Servers(),
             _ => new Placeholder()
         };
     }
