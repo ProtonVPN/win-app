@@ -149,6 +149,7 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
             if (Host.Content is FrameworkElement content && EnableExitOnEsc)
             {
                 content.KeyboardAccelerators.Add(KeyboardAcceleratorBuilder.Build(OnEscapeAccelerator, VirtualKey.Escape));
+                content.KeyboardAcceleratorPlacementMode = KeyboardAcceleratorPlacementMode.Hidden;
             }
         }
     }
