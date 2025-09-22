@@ -145,6 +145,11 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase,
 
     private void InvalidateAll()
     {
+        if (!IsActive)
+        {
+            return;
+        }
+
         NetworkTraffic speed = _networkTrafficManager.GetSpeed();
         NetworkTraffic volume = _networkTrafficManager.GetVolume();
 
@@ -154,10 +159,7 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase,
         DownloadVolume = (long)volume.BytesDownloaded;
         UploadVolume = (long)volume.BytesUploaded;
 
-        if (IsActive)
-        {
-            InvalidateSpeedGraph();
-        }
+        InvalidateSpeedGraph();
     }
 
     private Axis GetXAxis()

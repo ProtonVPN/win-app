@@ -27,15 +27,28 @@ public class BaseWindow : WindowEx
 {
     public bool IsLoaded { get; private set; }
 
+    private bool _isClosed;
+
     public BaseWindow()
     {
         Activated += OnActivated;
+        Closed += OnClosed;
+    }
+
+    private void OnClosed(object sender, WindowEventArgs args)
+    {
+        _isClosed = true;
     }
 
     public event EventHandler? Loaded;
 
     protected virtual void OnActivated(object sender, WindowActivatedEventArgs e)
     {
+        if (_isClosed)
+        {
+            return;
+        }
+
         if (!IsLoaded && Content is FrameworkElement rootElement)
         {
             rootElement.Loaded -= OnRootLoaded;
