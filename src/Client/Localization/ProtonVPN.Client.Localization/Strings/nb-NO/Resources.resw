@@ -193,10 +193,10 @@
     <value>Byer</value>
   </data>
   <data name="City_Fastest">
-    <value>Fastest city</value>
+    <value>Raskeste by</value>
   </data>
   <data name="City_Random">
-    <value>Random city</value>
+    <value>Tilfeldig by</value>
   </data>
   <data name="Common_Actions_ActionsFor">
     <value>Handlinger for {0}</value>
@@ -3132,7 +3132,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Tjener</value>
   </data>
   <data name="Server_Fastest">
-    <value>Fastest server</value>
+    <value>Raskeste tjener</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Raskeste gratis tjener</value>
@@ -3165,7 +3165,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Free-tjener</value>
   </data>
   <data name="Server_Random">
-    <value>Random server</value>
+    <value>Tilfeldig tjener</value>
   </data>
   <data name="Servers">
     <value>Tjenere</value>
@@ -3852,11 +3852,11 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Nødstopp er deaktivert</value>
   </data>
   <data name="State_Fastest">
-    <value>Fastest state</value>
+    <value>Raskeste delstat</value>
     <comment>State describes a country state such as California or Arizona in the US</comment>
   </data>
   <data name="State_Random">
-    <value>Random state</value>
+    <value>Tilfeldig delstat</value>
     <comment>State describes a country state such as California or Arizona in the US</comment>
   </data>
   <data name="SystemNotification_Connected">

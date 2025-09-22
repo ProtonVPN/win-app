@@ -148,7 +148,7 @@
     <value>NetShield 페이지</value>
   </data>
   <data name="Automation_Properties_NoServers_Page">
-    <value>No servers page</value>
+    <value>서버 없음 페이지</value>
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>포트 포워딩 페이지</value>
@@ -193,10 +193,10 @@
     <value>도시</value>
   </data>
   <data name="City_Fastest">
-    <value>Fastest city</value>
+    <value>가장 빠른 도시</value>
   </data>
   <data name="City_Random">
-    <value>Random city</value>
+    <value>무작위 도시</value>
   </data>
   <data name="Common_Actions_ActionsFor">
     <value>{0}개 동작</value>
@@ -268,7 +268,7 @@
     <value>재연결</value>
   </data>
   <data name="Common_Actions_Refresh">
-    <value>Refresh</value>
+    <value>새로고침</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>제거</value>
@@ -321,7 +321,7 @@
     <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Common_Tags_Recommended">
-    <value>Recommended</value>
+    <value>권장</value>
     <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
@@ -2187,7 +2187,7 @@
     <value>P2P 속도 향상</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
-    <value>Connect to a P2P server to improve torrenting speeds</value>
+    <value>토렌트 속도를 개선하려면 P2P 서버에 연결하세요</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>VPN 프로토콜은 트래픽이 VPN을 통해 암호화되고 전송되는 방식을 결정합니다.</value>
@@ -2685,13 +2685,13 @@
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>6-digit authentication code</value>
+    <value>6자리 인증 코드</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>2단계 인증</value>
   </data>
   <data name="Login_TwoFactor_Authenticator">
-    <value>Authenticator app</value>
+    <value>인증 앱</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>첫 자리</value>
@@ -2715,13 +2715,13 @@
     <value>코드를 입력하세요</value>
   </data>
   <data name="Login_TwoFactor_NoMethodAvailable">
-    <value>No known two-factor authentication methods found.</value>
+    <value>알려진 2단계 인증 방법을 찾을 수 없습니다.</value>
   </data>
   <data name="Login_TwoFactor_SecurityKey">
-    <value>Security key</value>
+    <value>보안 키</value>
   </data>
   <data name="Login_TwoFactor_SecurityKey_Description">
-    <value>Insert the U2F or FIDO key linked to your Proton Account.</value>
+    <value>본인의 Proton 계정에 연결된 U2F 또는 FIDO 키를 제시해 주세요.</value>
   </data>
   <data name="Main_Loading">
     <value>로딩 중, 잠시 기다려 주세요...</value>
@@ -2744,22 +2744,22 @@
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
   </data>
   <data name="NoServers_ContactUs">
-    <value>Contact us</value>
+    <value>문의하기</value>
   </data>
   <data name="NoServers_FailedToLoad">
-    <value>We couldn't load the server list.</value>
+    <value>서버 목록을 불러오지 못했습니다.</value>
   </data>
   <data name="NoServers_NeedHelp">
-    <value>Need help?</value>
+    <value>도움이 필요하세요?</value>
   </data>
   <data name="NoServers_SignOut">
-    <value>Sign out</value>
+    <value>로그아웃</value>
   </data>
   <data name="NoServers_Tip">
-    <value>Ask your administrator to enable VPN access for your account.</value>
+    <value>관리자에게 내 계정의 VPN 접근 활성화를 요청하십시오.</value>
   </data>
   <data name="NoServers_Title">
-    <value>No VPN connections available</value>
+    <value>사용 가능한 VPN 연결 없음</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>IP 주소를 보호하기 위해, 킬 스위치가 사용자의 인터넷 연결을 차단 중입니다.</value>
@@ -2787,16 +2787,16 @@
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_Ipv6Disabled_Description">
-    <value>To include this address, you need to allow IPv6 connections through the VPN tunnel.</value>
+    <value>이 주소를 포함하려면 VPN 터널을 통해 IPv6 연결을 허용해야 합니다.</value>
   </data>
   <data name="Overlay_Ipv6Disabled_PrimaryButton">
-    <value>Enable IPv6</value>
+    <value>IPv6 활성화</value>
   </data>
   <data name="Overlay_Ipv6Disabled_SecondaryButton">
-    <value>Not now</value>
+    <value>다음에</value>
   </data>
   <data name="Overlay_Ipv6Disabled_Title">
-    <value>IPv6 is disabled</value>
+    <value>IPv6가 비활성화됨</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>지금 업데이트하기</value>
@@ -2991,7 +2991,7 @@ VPN 연결</value>
     <value>직장/학교</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Configure your own VPN settings and connect in one click</value>
+    <value>한 번의 클릭으로 나만의 VPN 설정을 구성하고 연결하세요</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>프로필</value>
@@ -3024,7 +3024,7 @@ VPN 연결</value>
     <value>서버</value>
   </data>
   <data name="Server_Fastest">
-    <value>Fastest server</value>
+    <value>가장 빠른 서버</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>가장 빠른 무료 서버</value>
@@ -3057,7 +3057,7 @@ VPN 연결</value>
     <value>무료 서버</value>
   </data>
   <data name="Server_Random">
-    <value>Random server</value>
+    <value>무작위 서버</value>
   </data>
   <data name="Servers">
     <value>서버</value>
@@ -3118,17 +3118,17 @@ VPN 연결</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Common_IpAddresses_AlreadyExists">
-    <value>Address already added</value>
+    <value>이미 추가된 주소입니다</value>
   </data>
   <data name="Settings_Common_IpAddresses_Invalid">
-    <value>Enter a valid IPv4 or IPv6 address</value>
+    <value>유효한 IPv4 또는 IPv6 주소를 입력하세요</value>
   </data>
   <data name="Settings_Common_IpAddresses_Watermark">
     <value>192.0.2.0</value>
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Common_Ipv6WarningButton">
-    <value>Warning - learn more</value>
+    <value>경고 - 더 알아보기</value>
   </data>
   <data name="Settings_Connection">
     <value>연결</value>
@@ -3146,7 +3146,7 @@ VPN 연결</value>
     <value>커스텀 DNS 서버</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
-    <value>Add new DNS server</value>
+    <value>신규 DNS 서버 추가</value>
     <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
@@ -3156,7 +3156,7 @@ VPN 연결</value>
     <value>커스텀 DNS 서버를 활성화합니까?</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
-    <value>Connect to Proton VPN using your own Domain Name System (DNS). Only use DNS servers that you trust.</value>
+    <value>Proton VPN에 지정한 도메인 네임 시스템(DNS)을 통해 접속하게 됩니다. 신뢰하는 DNS 서버만 사용하세요.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
     <value>이 서버들에 순서대로 연결하도록 시도합니다. 어느 것도 작동하지 않는다면 기본 Proton VPN DNS가 사용됩니다.</value>
@@ -3166,51 +3166,51 @@ VPN 연결</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
-    <value>Enter the server's IPv4 or IPv6 address</value>
+    <value>서버의 IPv4 또는 IPv6 주소를 입력하세요</value>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode">
-    <value>DNS block handling</value>
+    <value>DNS 차단 처리</value>
     <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
-    <value>Use default blocking method</value>
+    <value>기본 차단 방법 사용</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
-    <value>By default, a callout filter rejects DNS requests that come from outside the VPN tunnel. This method is just as effective as NRPT, but it may lead to slower speeds. Local network DNS will work.</value>
+    <value>기본적으로 콜아웃 필터는 VPN 터널 외부에서 들어오는 DNS 요청을 거부합니다. 이 방법은 NRPT만큼 효과적이지만, 속도 저하를 초래할 수 있습니다. 로컬 네트워크 DNS는 작동합니다.</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
-    <value>Decide how Windows handles DNS requests attempting to go outside the VPN tunnel.</value>
+    <value>Windows에서 VPN 터널 외부로 나가려는 DNS 요청을 어떻게 처리할지 결정합니다.</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
-    <value>Block requests without a negative response</value>
+    <value>부정적인 응답 없이 요청 차단</value>
     <comment>DNS requests are blocked but there is no negative reply to them</comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
-    <value>External DNS requests are discarded without a negative response. This may result in longer loading times when accessing domains that don't exist or contained blocked content (like ads or trackers).</value>
+    <value>외부 DNS 요청은 부정적인 응답 없이 버려집니다. 이로 인해 존재하지 않거나 차단된 콘텐츠(광고 또는 트래커와 같은)를 포함하는 도메인에 접근할 때 로딩 시간이 길어질 수 있습니다.</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
-    <value>Use Proton VPN's NRPT policy</value>
+    <value>Proton VPN의 NRPT 정책 사용</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
-    <value>Our NRPT (Name Resolution Policy Table) policy doesn't let Windows attempt external DNS requests at all. This optimizes VPN speeds, but local network DNS will not work. Some Windows devices do not support NRPT.</value>
+    <value>저희의 NRPT(이름 확인 정책 테이블) 정책은 Windows에서 외부 DNS 요청을 시도하는 것을 허용하지 않습니다. 이는 VPN 속도를 최적화하지만, 로컬 네트워크 DNS는 작동하지 않습니다. 일부 Windows 기기는 NRPT를 지원하지 않습니다.</value>
     <comment></comment>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6">
-    <value>IPv6 support</value>
+    <value>IPv6 지원</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>IPv6 leak protection</value>
+    <value>IPv6 유출 방지</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>Prevents data leaks by blocking IPv6 traffic that doesn't pass through the VPN tunnel.</value>
+    <value>VPN 터널을 통과하지 않는 IPv6 트래픽을 차단하여 데이터 유출을 방지합니다.</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6_Description">
-    <value>Allows IPv6 traffic to pass through the VPN tunnel. This improves compatibility with IPv6 websites and services.</value>
+    <value>IPv6 트래픽이 VPN 터널을 통과하도록 허용합니다. 이를 통해 IPv6 웹사이트 및 서비스와의 호환성이 향상됩니다.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>LAN 연결 허용</value>
@@ -3348,7 +3348,7 @@ VPN 연결</value>
     <value>포트 포워딩을 활성화할까요?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Improves torrenting and gaming speeds by allowing direct P2P connections through a designated port.</value>
+    <value>지정된 포트를 통해 직접 P2P 연결을 허용하여 토렌트 및 게임 속도를 향상시킵니다.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>포트 포워딩을 사용하려면 P2P를 지원하는 서버에 연결하세요.</value>
@@ -3364,7 +3364,7 @@ VPN 연결</value>
     <value>알림</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Get notified when your active port number changes.</value>
+    <value>활성 포트 번호 변경 시 알림을 받습니다.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>프로토콜</value>
@@ -3409,14 +3409,14 @@ VPN 연결</value>
     <value>포함 모드</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Only selected apps and IP addresses connect through VPN, all other traffic is unprotected.</value>
+    <value>선택한 앱과 IP 주소만이 VPN에 연결되고 그 외 트래픽은 보호되지 않습니다.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
     <value>포함</value>
     <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
-    <value>Add new IPv4 or IPv6 address</value>
+    <value>신규 IPv4 또는 IPv6 주소 추가</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>선택한 IP 주소 ({0})</value>
@@ -3429,7 +3429,7 @@ VPN 연결</value>
     <value>제외 모드</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
-    <value>Selected apps and IP addresses are excluded from your VPN connection.</value>
+    <value>선택한 앱과 IP 주소가 내 VPN 연결에서 제외됩니다.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Short">
     <value>제외</value>
@@ -3457,7 +3457,7 @@ VPN 연결</value>
     <value>자동 시작</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>Auto-connect</value>
+    <value>자동 연결</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>Proton VPN을 열 때 기본 연결값으로 자동 연결합니다.</value>
@@ -3469,7 +3469,7 @@ VPN 연결</value>
     <value>마지막 연결</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
-    <value>Auto-launch</value>
+    <value>자동 실행</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Description">
     <value>Proton VPN이 장치에 로그인할 때 자동으로 실행됩니다.</value>
@@ -3484,19 +3484,19 @@ VPN 연결</value>
     <value>작업 표시줄로 최소화하기</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Set the app to launch or connect automatically.</value>
+    <value>앱이 자동으로 실행되거나 접속하도록 설정합니다.</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>자동 업데이트</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Automatically check and install Proton VPN updates.</value>
+    <value>자동으로 Proton VPN 업데이트 확인 및 설치합니다.</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>베타 엑세스</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>Get early access and help us test new versions of Proton VPN.</value>
+    <value>얼리 액세스를 받아서 Proton VPN의 새 버전 테스트를 도와주세요.</value>
   </data>
   <data name="Settings_General_Language">
     <value>언어</value>
@@ -3505,7 +3505,7 @@ VPN 연결</value>
     <value>알림</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Get notified about changes to your connection status.</value>
+    <value>연결 상태 변화 알림을 받습니다.</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>OpenVPN 네트워크 드라이버</value>
@@ -3744,11 +3744,11 @@ VPN 연결</value>
     <value>킬 스위치가 비활성화되었습니다.</value>
   </data>
   <data name="State_Fastest">
-    <value>Fastest state</value>
+    <value>가장 빠른 주</value>
     <comment>State describes a country state such as California or Arizona in the US</comment>
   </data>
   <data name="State_Random">
-    <value>Random state</value>
+    <value>무작위 주</value>
     <comment>State describes a country state such as California or Arizona in the US</comment>
   </data>
   <data name="SystemNotification_Connected">
@@ -3815,7 +3815,7 @@ VPN 연결</value>
     <value>향상된 VPN 사용자화를 잠금 해제하세요</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Connect to VPN with your custom Domain Name System (DNS)</value>
+    <value>지정 도메인 이름 시스템 (DNS)을 사용해서 VPN에 연결하기</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>접속한 그대로 로컬 영역 네트워크 (LAN)의 기기에 접근하세요</value>

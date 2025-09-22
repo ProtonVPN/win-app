@@ -193,10 +193,10 @@
     <value>Mestá</value>
   </data>
   <data name="City_Fastest">
-    <value>Fastest city</value>
+    <value>Najrýchlejšie mesto</value>
   </data>
   <data name="City_Random">
-    <value>Random city</value>
+    <value>Náhodné mesto</value>
   </data>
   <data name="Common_Actions_ActionsFor">
     <value>Akcie pre {0}</value>
@@ -2412,7 +2412,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Zvýšiť rýchlosť P2P</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
-    <value>Connect to a P2P server to improve torrenting speeds</value>
+    <value>Pripojte sa k P2P serveru na zvýšenie rýchlosti sťahovania torrentov</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>VPN protokol určuje spôsob šifrovania a prenosu dát cez VPN.</value>
@@ -3009,13 +3009,13 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>6-digit authentication code</value>
+    <value>6-miestny overovací kód</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>Dvojstupňové overenie</value>
   </data>
   <data name="Login_TwoFactor_Authenticator">
-    <value>Authenticator app</value>
+    <value>Overovacia aplikácia</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>Prvé číslo</value>
@@ -3039,13 +3039,13 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Zadajte váš kód</value>
   </data>
   <data name="Login_TwoFactor_NoMethodAvailable">
-    <value>No known two-factor authentication methods found.</value>
+    <value>Neboli nájdené žiadne známe metódy dvojfaktorovej autentifikácie.</value>
   </data>
   <data name="Login_TwoFactor_SecurityKey">
-    <value>Security key</value>
+    <value>Bezpečnostný kľúč</value>
   </data>
   <data name="Login_TwoFactor_SecurityKey_Description">
-    <value>Insert the U2F or FIDO key linked to your Proton Account.</value>
+    <value>Vložte U2F alebo FIDO kľúč prepojený s vaším Proton Account.</value>
   </data>
   <data name="Main_Loading">
     <value>Načítava sa, prosím počkajte...</value>
@@ -3315,7 +3315,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Práca/Škola</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Configure your own VPN settings and connect in one click</value>
+    <value>Nakonfigurujte si vlastné nastavenia VPN a pripojte sa jedným kliknutím</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>Profily</value>
@@ -3348,7 +3348,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Server</value>
   </data>
   <data name="Server_Fastest">
-    <value>Fastest server</value>
+    <value>Najrýchlejší server</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Najrýchlejší bezplatný server</value>
@@ -3381,7 +3381,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Bezplatný server</value>
   </data>
   <data name="Server_Random">
-    <value>Random server</value>
+    <value>Náhodný server</value>
   </data>
   <data name="Servers">
     <value>Servery</value>
@@ -3480,7 +3480,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Povolenie vlastných serverov DNS?</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
-    <value>Connect to Proton VPN using your own Domain Name System (DNS). Only use DNS servers that you trust.</value>
+    <value>Pripojte sa k Proton VPN pomocou vlastného systému doménových mien (DNS). Používajte iba DNS servery, ktorým dôverujete.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
     <value>Pokúsime sa pripojiť k týmto serverom v uvedenom poradí. Ak žiadny z nich nebude fungovať, použije sa predvolený DNS Proton VPN.</value>
@@ -3672,7 +3672,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Povoliť presmerovanie portov?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Improves torrenting and gaming speeds by allowing direct P2P connections through a designated port.</value>
+    <value>Zlepšuje rýchlosť sťahovania torrentov a hranie hier tým, že umožňuje priame P2P pripojenia cez určený port.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Ak chcete použiť presmerovanie portov, pripojte sa k serveru, ktorý podporuje P2P.</value>
@@ -3688,7 +3688,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Notifikácie</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Get notified when your active port number changes.</value>
+    <value>Nechajte si zaslať upozornenie, keď sa zmení číslo vášho aktívneho portu.</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokol</value>
@@ -3733,7 +3733,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Režim zahrnutia</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Only selected apps and IP addresses connect through VPN, all other traffic is unprotected.</value>
+    <value>Cez VPN sa pripájajú len vybrané aplikácie a IP adresy, všetka ostatná prevádzka je nechránená.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
     <value>Zahrnúť</value>
@@ -3753,7 +3753,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Režim vylúčenia</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Description">
-    <value>Selected apps and IP addresses are excluded from your VPN connection.</value>
+    <value>Vybrané aplikácie a IP adresy sú vylúčené z vášho VPN pripojenia.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard_Short">
     <value>Vylúčiť</value>
@@ -3781,7 +3781,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Automatické spustenie</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>Auto-connect</value>
+    <value>Automatické pripojenie</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>Po otvorení služby Proton VPN sa automaticky pripojí k vášmu predvolenému pripojeniu.</value>
@@ -3793,7 +3793,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Naposledy pripojené</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
-    <value>Auto-launch</value>
+    <value>Automatické spustenie</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Description">
     <value>Proton VPN sa automaticky spustí, akonáhle sa prihlásite do svojho zariadenia</value>
@@ -3808,19 +3808,19 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Minimalizovať do panelu úloh</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Set the app to launch or connect automatically.</value>
+    <value>Nastavte automatické spúšťanie alebo pripájanie aplikácie.</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Automatické aktualizácie</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Automatically check and install Proton VPN updates.</value>
+    <value>Automatická kontrola a inštalácia aktualizácií Proton VPN.</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>Beta prístup</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>Get early access and help us test new versions of Proton VPN.</value>
+    <value>Získajte predbežný prístup a pomôžte nám testovať nové verzie Proton VPN.</value>
   </data>
   <data name="Settings_General_Language">
     <value>Jazyk</value>
@@ -3829,7 +3829,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Notifikácie</value>
   </data>
   <data name="Settings_General_Notifications_Description">
-    <value>Get notified about changes to your connection status.</value>
+    <value>Nechajte sa upozorniť na zmeny stavu pripojenia.</value>
   </data>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>Sieťový ovládač OpenVPN</value>
@@ -4068,11 +4068,11 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Kill Switch je deaktivovaný</value>
   </data>
   <data name="State_Fastest">
-    <value>Fastest state</value>
+    <value>Najrýchlejšia krajina</value>
     <comment>State describes a country state such as California or Arizona in the US</comment>
   </data>
   <data name="State_Random">
-    <value>Random state</value>
+    <value>Náhodná krajina</value>
     <comment>State describes a country state such as California or Arizona in the US</comment>
   </data>
   <data name="SystemNotification_Connected">
@@ -4139,7 +4139,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Odomknite pokročilé prispôsobenie VPN</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Connect to VPN with your custom Domain Name System (DNS)</value>
+    <value>Pripojte sa k VPN s vaším vlastným systémom doménových mien (DNS)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>Pristupujte k zariadeniam v lokálnej sieti (LAN) počas pripojenia</value>

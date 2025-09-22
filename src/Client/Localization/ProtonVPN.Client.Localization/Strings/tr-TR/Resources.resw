@@ -3640,7 +3640,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Sansüre karşı koymamıza yardımcı olun</value>
   </data>
   <data name="Settings_OperatingSystemVersion">
-    <value>İştelim sistemi sürümü</value>
+    <value>İşletim sistemi sürümü</value>
   </data>
   <data name="Settings_OverriddenByProfile_Description1">
     <value>Bu ayar etkin profilinizle ilişkilidir.</value>

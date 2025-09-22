@@ -193,10 +193,10 @@
     <value>Kaupungit</value>
   </data>
   <data name="City_Fastest">
-    <value>Fastest city</value>
+    <value>Nopein kaupunki</value>
   </data>
   <data name="City_Random">
-    <value>Random city</value>
+    <value>Satunnainen kaupunki</value>
   </data>
   <data name="Common_Actions_ActionsFor">
     <value>Toiminnot kohteelle {0}</value>
@@ -268,7 +268,7 @@
     <value>Yhdistä uudelleen</value>
   </data>
   <data name="Common_Actions_Refresh">
-    <value>Refresh</value>
+    <value>Päivitä</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Poista</value>
@@ -2799,7 +2799,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Kaksivaiheinen tunnistautuminen</value>
   </data>
   <data name="Login_TwoFactor_Authenticator">
-    <value>Authenticator app</value>
+    <value>Todennussovellus</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>Ensimmäinen numero</value>
@@ -2826,7 +2826,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>No known two-factor authentication methods found.</value>
   </data>
   <data name="Login_TwoFactor_SecurityKey">
-    <value>Security key</value>
+    <value>Suojausavain</value>
   </data>
   <data name="Login_TwoFactor_SecurityKey_Description">
     <value>Insert the U2F or FIDO key linked to your Proton Account.</value>
@@ -2852,22 +2852,22 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
   </data>
   <data name="NoServers_ContactUs">
-    <value>Contact us</value>
+    <value>Ota yhteyttä</value>
   </data>
   <data name="NoServers_FailedToLoad">
     <value>We couldn't load the server list.</value>
   </data>
   <data name="NoServers_NeedHelp">
-    <value>Need help?</value>
+    <value>Tarvitsetko apua?</value>
   </data>
   <data name="NoServers_SignOut">
-    <value>Sign out</value>
+    <value>Kirjaudu ulos</value>
   </data>
   <data name="NoServers_Tip">
     <value>Ask your administrator to enable VPN access for your account.</value>
   </data>
   <data name="NoServers_Title">
-    <value>No VPN connections available</value>
+    <value>VPN-yhteyksiä ei ole käytettävissä</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>To protect your IP address, kill switch is blocking your internet connection.</value>
@@ -3852,11 +3852,11 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Tappokytkin ei ole käytössä</value>
   </data>
   <data name="State_Fastest">
-    <value>Fastest state</value>
+    <value>Nopein osavaltio</value>
     <comment>State describes a country state such as California or Arizona in the US</comment>
   </data>
   <data name="State_Random">
-    <value>Random state</value>
+    <value>Satunnainen osavaltio</value>
     <comment>State describes a country state such as California or Arizona in the US</comment>
   </data>
   <data name="SystemNotification_Connected">

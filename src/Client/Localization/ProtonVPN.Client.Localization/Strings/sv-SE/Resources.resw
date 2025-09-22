@@ -2112,7 +2112,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Nytt utseende, samma skydd</value>
   </data>
   <data name="Dialogs_WhatsNew_PortNumber_Description">
-    <value>When port forwarding is enabled, you'll now see your active port number on the home screen.</value>
+    <value>När vidarebefordring av port är aktiverad ser du nu ditt aktiva portnummer på startskärmen.</value>
   </data>
   <data name="Dialogs_WhatsNew_PortNumber_Title">
     <value>Aktivt portnummer</value>

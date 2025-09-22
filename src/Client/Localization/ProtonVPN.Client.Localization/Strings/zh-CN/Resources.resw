@@ -193,10 +193,10 @@
     <value>城市</value>
   </data>
   <data name="City_Fastest">
-    <value>Fastest city</value>
+    <value>最快的城市</value>
   </data>
   <data name="City_Random">
-    <value>Random city</value>
+    <value>随机城市</value>
   </data>
   <data name="Common_Actions_ActionsFor">
     <value>{0}相关操作</value>
@@ -3024,7 +3024,7 @@ VPN 连接</value>
     <value>服务器</value>
   </data>
   <data name="Server_Fastest">
-    <value>Fastest server</value>
+    <value>最快的服务器</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>最快的免费服务器</value>
@@ -3057,7 +3057,7 @@ VPN 连接</value>
     <value>免费服务器</value>
   </data>
   <data name="Server_Random">
-    <value>Random server</value>
+    <value>随机服务器</value>
   </data>
   <data name="Servers">
     <value>服务器</value>
@@ -3457,7 +3457,7 @@ VPN 连接</value>
     <value>开机自动启动</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>Auto-connect</value>
+    <value>自动连接</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>当 Proton VPN 打开时，自动连接到您的默认连接。</value>
@@ -3469,7 +3469,7 @@ VPN 连接</value>
     <value>上次连接</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
-    <value>Auto-launch</value>
+    <value>自动开启</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Description">
     <value>当您登录到您的设备时，Proton VPN 将自动打开</value>
@@ -3484,7 +3484,7 @@ VPN 连接</value>
     <value>最小化到任务栏</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Set the app to launch or connect automatically.</value>
+    <value>规定应用程序自动启动或连接。</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>自动更新</value>
@@ -3745,11 +3745,11 @@ Stealth 具有抗 DPI（深度数据包检查）能力，但速度可能不如�
     <value>Kill Switch 已禁用</value>
   </data>
   <data name="State_Fastest">
-    <value>Fastest state</value>
+    <value>最快的州</value>
     <comment>State describes a country state such as California or Arizona in the US</comment>
   </data>
   <data name="State_Random">
-    <value>Random state</value>
+    <value>随机州</value>
     <comment>State describes a country state such as California or Arizona in the US</comment>
   </data>
   <data name="SystemNotification_Connected">
