@@ -109,6 +109,8 @@ public class UrlsBrowser : IUrlsBrowser
 
     public string TwoFactorAuthLearnMore => "https://proton.me/support/two-factor-authentication-2fa";
 
+    public string LocalDnsLearnMore => "https://protonvpn.com/support/local-dns-devices-by-name";
+
     public void BrowseTo(string url)
     {
         try

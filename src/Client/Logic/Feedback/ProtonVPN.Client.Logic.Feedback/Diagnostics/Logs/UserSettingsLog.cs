@@ -132,6 +132,9 @@ public class UserSettingsLog : LogBase
 
         yield return new(nameof(IUserSettings.IsShareStatisticsEnabled), _settings.IsShareStatisticsEnabled);
 
+        yield return new(nameof(IUserSettings.IsLocalAreaNetworkAccessEnabled), _settings.IsLocalAreaNetworkAccessEnabled);
+        yield return new(nameof(IUserSettings.IsLocalDnsEnabled), _settings.IsLocalDnsEnabled);
+
         yield return new(nameof(IUserSettings.IsCustomDnsServersEnabled), _settings.IsCustomDnsServersEnabled);
         yield return new(nameof(IUserSettings.CustomDnsServersList), _settings.CustomDnsServersList);
 
@@ -172,8 +175,6 @@ public class UserSettingsLog : LogBase
         yield return new(nameof(IUserSettings.IsGatewayInfoBannerDismissed), _settings.IsGatewayInfoBannerDismissed);
 
         yield return new(nameof(IUserSettings.LastSeenWhatsNewOverlayVersion), _settings.LastSeenWhatsNewOverlayVersion);
-
-        yield return new(nameof(IUserSettings.DnsBlockMode), _settings.DnsBlockMode);
     }
 
     private string Serialize(dynamic? value)

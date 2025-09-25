@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2024 Proton AG
+Copyright (c) 2025 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -78,30 +78,64 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               Style="{StaticResource ToggleSwitchStyle}" />
             </toolkit:SettingsCard>
 
-            <toolkit:SettingsCard AutomationProperties.AutomationId="LanConnectionsSettingsCard"
-                                  Command="{x:Bind ViewModel.TriggerLanConnectonsUpsellProcessCommand, Mode=OneTime}"
-                                  Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections_Description')}"
-                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections')}"
-                                  IsTabStop="False"
-                                  IsActionIconVisible="False"
-                                  IsClickEnabled="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToBooleanConverter}}"
-                                  Style="{StaticResource DefaultSettingsCardStyle}"
-                                  Visibility="{x:Bind ViewModel.IsLocalAreaNetworkSettingVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Grid>
+            <Grid Visibility="{x:Bind ViewModel.IsLocalAreaNetworkSettingVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                <toolkit:SettingsExpander AutomationProperties.AutomationId="LanConnectionsSettingsCard"
+                                          Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections_Description')}"
+                                          Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections')}"
+                                          IsExpanded="{x:Bind ViewModel.IsLocalAreaNetworkAccessEnabled}"
+                                          IsTabStop="False"
+                                          Style="{StaticResource SettingsExpanderStyle}"
+                                          Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}">
+
                     <ToggleSwitch IsOn="{x:Bind ViewModel.IsLocalAreaNetworkAccessEnabled, Mode=TwoWay}"
-                                  Style="{StaticResource ToggleSwitchStyle}"
-                                  Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                  Style="{StaticResource ToggleSwitchStyle}" />
+
+                    <toolkit:SettingsExpander.Items>
+
+                        <CheckBox VerticalContentAlignment="Top"
+                                  IsChecked="{x:Bind ViewModel.IsLocalDnsEnabled, Mode=TwoWay}"
+                                  Style="{StaticResource CheckBoxStyle}">
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections_LocalDns_Title')}" />
+                                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           TextWrapping="Wrap">
+                                    <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections_LocalDns_Description')}" />
+                                    <Hyperlink NavigateUri="{x:Bind ViewModel.LocalDnsLearnMoreUrl, Mode=OneTime}"
+                                               ToolTipService.ToolTip="{x:Bind ViewModel.LocalDnsLearnMoreUrl, Mode=OneTime}">
+                                        <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
+                                    </Hyperlink>
+                                    <Run />
+                                </TextBlock>
+                            </StackPanel>
+                        </CheckBox>
+
+                    </toolkit:SettingsExpander.Items>
+
+                </toolkit:SettingsExpander>
+
+                <toolkit:SettingsCard AutomationProperties.AutomationId="LanConnectionsSettingsCard"
+                                      Command="{x:Bind ViewModel.TriggerLanConnectonsUpsellProcessCommand, Mode=OneTime}"
+                                      Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections_Description')}"
+                                      Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections')}"
+                                      IsActionIconVisible="False"
+                                      IsClickEnabled="True"
+                                      IsTabStop="False"
+                                      Style="{StaticResource DefaultSettingsCardStyle}"
+                                      Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToVisibilityConverter}}">
                     <Image Height="24"
-                           Source="{ThemeResource VpnPlusIllustrationSource}"
-                           Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
-                </Grid>
-            </toolkit:SettingsCard>
+                           Source="{ThemeResource VpnPlusIllustrationSource}" />
+                </toolkit:SettingsCard>
+
+            </Grid>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="CustomDnsServersSettingsCard"
                                   Command="{x:Bind ViewModel.NavigateToCustomDnsServersPageCommand, Mode=OneTime}"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers')}"
-                                  IsClickEnabled="True"
                                   IsActionIconVisible="{x:Bind ViewModel.IsPaidUser}"
+                                  IsClickEnabled="True"
                                   Style="{StaticResource DefaultSettingsCardStyle}">
                 <toolkit:SettingsCard.ActionIcon>
                     <pathicons:ChevronRight Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -110,7 +144,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <StackPanel Orientation="Vertical"
                                 Spacing="12">
                         <TextBlock Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_CustomDnsServers_Description')}"
-                                   TextWrapping="Wrap"/>
+                                   TextWrapping="Wrap" />
                         <Grid ColumnSpacing="8"
                               Visibility="{x:Bind ViewModel.IsCustomDnsServersOverridden, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <Grid.ColumnDefinitions>
@@ -130,7 +164,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            ToolTipService.ToolTip="{x:Bind ViewModel.CustomDnsLearnMoreUrl, Mode=OneTime}">
                                     <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                                 </Hyperlink>
-                                <Run/>
+                                <Run />
                             </TextBlock>
                         </Grid>
                     </StackPanel>
@@ -164,7 +198,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        ToolTipService.ToolTip="{x:Bind ViewModel.NatTypeLearnMoreUrl, Mode=OneTime}">
                                 <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                             </Hyperlink>
-                            <Run/>
+                            <Run />
                         </TextBlock>
                     </toolkit:SettingsExpander.Description>
                     <toolkit:SettingsExpander.Items>
@@ -208,7 +242,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        ToolTipService.ToolTip="{x:Bind ViewModel.NatTypeLearnMoreUrl, Mode=OneTime}">
                                 <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                             </Hyperlink>
-                            <Run/>
+                            <Run />
                         </TextBlock>
                     </toolkit:SettingsCard.Description>
                     <toolkit:SettingsCard.ActionIcon>
@@ -222,8 +256,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <toolkit:SettingsCard AutomationProperties.AutomationId="NatTypeSettingsCard"
                                   Command="{x:Bind ViewModel.TriggerNatTypeUpsellProcessCommand, Mode=OneTime}"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_NatType')}"
-                                  IsClickEnabled="True"
                                   IsActionIconVisible="False"
+                                  IsClickEnabled="True"
                                   Style="{StaticResource DefaultSettingsCardStyle}"
                                   Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToVisibilityConverter}}">
                 <toolkit:SettingsCard.Description>
@@ -233,7 +267,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    ToolTipService.ToolTip="{x:Bind ViewModel.NatTypeLearnMoreUrl, Mode=OneTime}">
                             <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                         </Hyperlink>
-                        <Run/>
+                        <Run />
                     </TextBlock>
                 </toolkit:SettingsCard.Description>
                 <Image Height="24"
@@ -285,7 +319,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    ToolTipService.ToolTip="{x:Bind ViewModel.Ipv6LeakProtectionLearnMoreUrl, Mode=OneTime}">
                             <Run Text="{x:Bind ViewModel.Localizer.Get('Common_Links_LearnMore')}" />
                         </Hyperlink>
-                        <Run/>
+                        <Run />
                     </TextBlock>
                 </toolkit:SettingsCard.Description>
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsIpv6Enabled, Mode=TwoWay}"
@@ -293,86 +327,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </toolkit:SettingsCard>
 
             <toolkit:SettingsCard AutomationProperties.AutomationId="Ipv6LeakProtectionSettingsCard"
-                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_Ipv6LeakProtection')}"
                                   Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_Ipv6LeakProtection_Description')}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_Ipv6LeakProtection')}"
                                   IsTabStop="False"
                                   Style="{StaticResource DefaultSettingsCardStyle}">
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsIpv6LeakProtectionEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
-            </toolkit:SettingsCard>
-
-            <toolkit:SettingsExpander AutomationProperties.AutomationId="DnsBlockModeSettingsCard"
-                                      Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode')}"
-                                      IsExpanded="True"
-                                      IsTabStop="False"
-                                      Style="{StaticResource SettingsExpanderStyle}"
-                                      Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <toolkit:SettingsExpander.Description>
-                    <TextBlock TextWrapping="Wrap">
-                        <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Description')}" />
-                        <Run/>
-                    </TextBlock>
-                </toolkit:SettingsExpander.Description>
-                <toolkit:SettingsExpander.Items>
-                    <RadioButton AutomationProperties.AutomationId="NrptDnsBlockModeRadioButton"
-                                 IsChecked="{x:Bind ViewModel.IsNrptDnsBlockMode, Mode=TwoWay}"
-                                 Style="{StaticResource DnsBlockModeRadioButtonStyle}">
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal"
-                                        Spacing="8">
-                                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Nrpt')}" />
-                                <custom:TagControl Text="{x:Bind ViewModel.Recommended}" />
-                            </StackPanel>
-                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                                       Style="{StaticResource CaptionTextBlockStyle}"
-                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description')}"
-                                       TextWrapping="Wrap" />
-                        </StackPanel>
-                    </RadioButton>
-                    <RadioButton AutomationProperties.AutomationId="CalloutDnsBlockModeRadioButton"
-                                 IsChecked="{x:Bind ViewModel.IsCalloutDnsBlockMode, Mode=TwoWay}"
-                                 Style="{StaticResource DnsBlockModeRadioButtonStyle}">
-                        <StackPanel>
-                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Callout')}" />
-                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                                       Style="{StaticResource CaptionTextBlockStyle}"
-                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Callout_Description')}"
-                                       TextWrapping="Wrap" />
-                        </StackPanel>
-                    </RadioButton>
-                    <RadioButton AutomationProperties.AutomationId="DisabledDnsBlockModeRadioButton"
-                                 IsChecked="{x:Bind ViewModel.IsDisabledDnsBlockMode, Mode=TwoWay}"
-                                 Style="{StaticResource DnsBlockModeRadioButtonStyle}"
-                                 Visibility="{x:Bind ViewModel.IsDisabledDnsBlockMode, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <StackPanel>
-                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Disabled')}" />
-                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                                       Style="{StaticResource CaptionTextBlockStyle}"
-                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Disabled_Description')}"
-                                       TextWrapping="Wrap" />
-                        </StackPanel>
-                    </RadioButton>
-                </toolkit:SettingsExpander.Items>
-            </toolkit:SettingsExpander>
-
-            <toolkit:SettingsCard AutomationProperties.AutomationId="DnsBlockModeSettingsCard"
-                                  Command="{x:Bind ViewModel.TriggerDnsBlockModeUpsellProcessCommand, Mode=OneTime}"
-                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode')}"
-                                  IsClickEnabled="True"
-                                  IsActionIconVisible="False"
-                                  Style="{StaticResource DefaultSettingsCardStyle}"
-                                  Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToVisibilityConverter}}">
-                <toolkit:SettingsCard.Description>
-                    <TextBlock TextWrapping="Wrap">
-                        <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_DnsBlockMode_Description')}" />
-                        <Run/>
-                    </TextBlock>
-                </toolkit:SettingsCard.Description>
-                <Image Height="24"
-                       Source="{ThemeResource VpnPlusIllustrationSource}" />
             </toolkit:SettingsCard>
 
         </StackPanel>

@@ -59,6 +59,7 @@ public interface IUrlsBrowser
     string ProfileLearnMore { get; }
     string TrafficLearnMore { get; }
     string TwoFactorAuthLearnMore { get; }
+    string LocalDnsLearnMore { get; }
 
     void BrowseTo(string url);
 }

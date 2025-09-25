@@ -36,6 +36,7 @@ public class SettingsRestorer : ISettingsRestorer
 
         _settings.IsNetShieldEnabled = DefaultSettings.IsNetShieldEnabled(_settings.VpnPlan.IsPaid);
         _settings.IsLocalAreaNetworkAccessEnabled = DefaultSettings.IsLocalAreaNetworkAccessAllowed(_settings.VpnPlan.IsPaid);
+        _settings.IsLocalDnsEnabled = DefaultSettings.IsLocalDnsEnabled;
         _settings.NetShieldMode = DefaultSettings.NetShieldMode;
         _settings.IsKillSwitchEnabled = DefaultSettings.IsKillSwitchEnabled;
         _settings.KillSwitchMode = DefaultSettings.KillSwitchMode;
@@ -59,6 +60,5 @@ public class SettingsRestorer : ISettingsRestorer
         _settings.DefaultConnection = DefaultSettings.DefaultConnection;
         _settings.WireGuardConnectionTimeout = DefaultSettings.WireGuardConnectionTimeout;
         _settings.IsIpv6Enabled = DefaultSettings.IsIpv6Enabled;
-        _settings.DnsBlockMode = DefaultSettings.DnsBlockMode;
     }
 }

@@ -190,6 +190,23 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
+    public bool IsLocalDnsEnabled
+    {
+        // Get the value from cache if it exists, otherwise set it based on the DnsBlockMode. To be removed in future versions.
+        get
+        {
+            bool? isLocalDnsEnabled = _userCache.GetValueType<bool>(SettingEncryption.Unencrypted);
+            if (isLocalDnsEnabled is null)
+            {
+                isLocalDnsEnabled = DnsBlockMode == DnsBlockMode.Callout;
+                _userCache.SetValueType<bool>(isLocalDnsEnabled, SettingEncryption.Unencrypted);
+            }
+            return isLocalDnsEnabled.Value;
+        }        
+        // get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsLocalDnsEnabled;
+        set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
     public bool IsNotificationEnabled
     {
         get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsNotificationEnabled;
@@ -431,6 +448,7 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetValueType<int>(value, SettingEncryption.Unencrypted);
     }
 
+    [Obsolete("Use IsLocalDnsEnabled instead. DnsBlockMode is maintained in order to migrate the value for existing users.")]
     public DnsBlockMode DnsBlockMode
     {
         get => _userCache.GetValueType<DnsBlockMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.DnsBlockMode;

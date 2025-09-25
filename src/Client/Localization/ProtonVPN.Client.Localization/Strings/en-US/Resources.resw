@@ -1873,6 +1873,12 @@
   <data name="Settings_Connection_Advanced_LanConnections_Description" xml:space="preserve">
     <value>Allows connections to printers, speakers, and other devices in your local network.</value>
   </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title" xml:space="preserve">
+    <value>Access devices by name</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description" xml:space="preserve">
+    <value>Connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Uses local DNS resolution. Disabled by default to maintain faster VPN speeds.</value>
+  </data>
   <data name="Settings_Connection_Advanced_NatType" xml:space="preserve">
     <value>NAT type</value>
   </data>
@@ -4157,37 +4163,5 @@
   </data>
   <data name="NoServers_NeedHelp" xml:space="preserve">
     <value>Need help?</value>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode" xml:space="preserve">
-    <value>DNS block handling</value>
-    <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Description" xml:space="preserve">
-    <value>Decide how Windows handles DNS requests attempting to go outside the VPN tunnel.</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt" xml:space="preserve">
-    <value>Use Proton VPN's NRPT policy</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description" xml:space="preserve">
-    <value>Our NRPT (Name Resolution Policy Table) policy doesn't let Windows attempt external DNS requests at all. This optimizes VPN speeds, but local network DNS will not work. Some Windows devices do not support NRPT.</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout" xml:space="preserve">
-    <value>Use default blocking method</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description" xml:space="preserve">
-    <value>By default, a callout filter rejects DNS requests that come from outside the VPN tunnel. This method is just as effective as NRPT, but it may lead to slower speeds. Local network DNS will work.</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled" xml:space="preserve">
-    <value>Block requests without a negative response</value>
-    <comment>DNS requests are blocked but there is no negative reply to them</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description" xml:space="preserve">
-    <value>External DNS requests are discarded without a negative response. This may result in longer loading times when accessing domains that don't exist or contained blocked content (like ads or trackers).</value>
-    <comment></comment>
   </data>
 </root>

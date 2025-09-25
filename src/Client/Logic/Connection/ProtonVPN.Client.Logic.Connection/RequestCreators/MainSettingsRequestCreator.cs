@@ -91,7 +91,10 @@ public class MainSettingsRequestCreator : IMainSettingsRequestCreator
             SplitTcp = _settings.IsVpnAcceleratorEnabled,
             OpenVpnAdapter = _entityMapper.Map<OpenVpnAdapter, OpenVpnAdapterIpcEntity>(_settings.OpenVpnAdapter),
             WireGuardConnectionTimeout = _settings.WireGuardConnectionTimeout,
-            DnsBlockMode = _entityMapper.Map<DnsBlockMode, DnsBlockModeIpcEntity>(_settings.DnsBlockMode),
+            DnsBlockMode = _settings.IsLocalAreaNetworkAccessEnabled && _settings.IsLocalDnsEnabled
+                ? DnsBlockModeIpcEntity.Callout
+                : DnsBlockModeIpcEntity.Nrpt,
+
         };
     }
 

@@ -436,16 +436,6 @@ public static class LocalizationExtensions
         };
     }
 
-    public static string GetDnsBlockMode(this ILocalizationProvider localizer, DnsBlockMode? dnsBlockMode)
-    {
-        return dnsBlockMode switch
-        {
-            DnsBlockMode.Callout => localizer.Get("Settings_Connection_Advanced_DnsBlockMode_Callout"),
-            DnsBlockMode.Disabled => localizer.Get("Settings_Connection_Advanced_DnsBlockMode_Disabled"),
-            _ => localizer.Get("Settings_Connection_Advanced_DnsBlockMode_Nrpt")
-        };
-    }
-
     public static string? GetExitOrSignOutConfirmationMessage(this ILocalizationProvider localizer, bool isDisconnected, ISettings settings)
     {
         if (settings.IsAdvancedKillSwitchActive())

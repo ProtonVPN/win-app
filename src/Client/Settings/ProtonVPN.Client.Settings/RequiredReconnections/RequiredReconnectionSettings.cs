@@ -44,7 +44,9 @@ public class RequiredReconnectionSettings : IRequiredReconnectionSettings
             {nameof(ISettings.OpenVpnAdapter), () => true},
             {nameof(ISettings.IsIpv6LeakProtectionEnabled), () => true},
             {nameof(ISettings.IsIpv6Enabled), () => true},
-            {nameof(ISettings.DnsBlockMode), () => true},
+
+            {nameof(ISettings.IsLocalAreaNetworkAccessEnabled), () => settings.IsLocalDnsEnabled}, // May need to reconnect if Local DNS is enabled
+            {nameof(ISettings.IsLocalDnsEnabled), () => true},
 
             {nameof(ISettings.IsCustomDnsServersEnabled), () => true},
             {nameof(ISettings.CustomDnsServersList), () => settings.IsCustomDnsServersEnabled},

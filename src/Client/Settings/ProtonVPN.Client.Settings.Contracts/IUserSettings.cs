@@ -50,6 +50,7 @@ public interface IUserSettings
     NatType NatType { get; set; }
     bool IsVpnAcceleratorEnabled { get; set; }
     bool IsLocalAreaNetworkAccessEnabled { get; set; }
+    bool IsLocalDnsEnabled { get; set; }
     bool IsNotificationEnabled { get; set; }
     bool IsShareStatisticsEnabled { get; set; }
     bool IsIpv6LeakProtectionEnabled { get; set; }
@@ -82,5 +83,7 @@ public interface IUserSettings
     bool IsTorInfoBannerDismissed { get; set; }
     bool IsGatewayInfoBannerDismissed { get; set; }
     int LastSeenWhatsNewOverlayVersion { get; set; }
+
+    [Obsolete("Use IsLocalDnsEnabled instead. DnsBlockMode is maintained in order to migrate the value for existing users.")]
     DnsBlockMode DnsBlockMode { get; set; }
 }
