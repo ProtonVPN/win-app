@@ -107,7 +107,7 @@ public partial class ProfilePageViewModel : PageViewModelBase<IMainViewNavigator
         SaveProfileCommand.NotifyCanExecuteChanged();
     }
 
-    public Task EditProfileAsync(IConnectionProfile profile)
+    public async Task EditProfileAsync(IConnectionProfile profile)
     {
         _profile = profile;
         _isNewProfile = false;
@@ -116,10 +116,10 @@ public partial class ProfilePageViewModel : PageViewModelBase<IMainViewNavigator
 
         _profileIconSelector.SetProfileIcon(_profile.Icon);
         _profileSettingsSelector.SetProfileSettings(_profile.Settings);
-        _profileOptionsSelector.SetProfileOptions(_profile.Options);
+        await _profileOptionsSelector.SetProfileOptionsAsync(_profile.Options);
         _connectionIntentSelector.SetConnectionIntent(_profile);
 
-        return InvokeAsync();
+        await InvokeAsync();
     }
 
     public async Task DuplicateProfileAsync(IConnectionProfile profile)

@@ -31,8 +31,11 @@ public class ProfileOptionsMapper : IMapper<IProfileOptions, SerializableProfile
             ? null
             : new SerializableProfileOptions()
             {
-                IsConnectAndGoEnabled = leftEntity.IsConnectAndGoEnabled,
-                ConnectAndGoUrl = leftEntity.ConnectAndGoUrl,
+                IsConnectAndGoEnabled = leftEntity.ConnectAndGo.IsEnabled,
+                ConnectAndGoMode = leftEntity.ConnectAndGo.Mode,
+                UsePrivateBrowsingMode = leftEntity.ConnectAndGo.UsePrivateBrowsingMode,
+                ConnectAndGoUrl = leftEntity.ConnectAndGo.Url,
+                ConnectAndGoAppPath = leftEntity.ConnectAndGo.AppPath
             };
     }
 
@@ -42,8 +45,14 @@ public class ProfileOptionsMapper : IMapper<IProfileOptions, SerializableProfile
             ? null
             : new ProfileOptions()
             {
-                IsConnectAndGoEnabled = rightEntity.IsConnectAndGoEnabled,
-                ConnectAndGoUrl = rightEntity.ConnectAndGoUrl,
+                ConnectAndGo = new ConnectAndGoOption()
+                {
+                    IsEnabled = rightEntity.IsConnectAndGoEnabled,
+                    Mode = rightEntity.ConnectAndGoMode,
+                    UsePrivateBrowsingMode = rightEntity.UsePrivateBrowsingMode,
+                    Url = rightEntity.ConnectAndGoUrl,
+                    AppPath = rightEntity.ConnectAndGoAppPath
+                }
             };
     }
 }

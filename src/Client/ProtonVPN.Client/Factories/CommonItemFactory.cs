@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,14 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-using ProtonVPN.Client.Models;
-using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Models.Settings;
-using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Core.Services.Selection;
+using ProtonVPN.Client.Localization.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Profiles.Contracts;
+using ProtonVPN.Client.Models;
+using ProtonVPN.Client.Models.Profiles;
+using ProtonVPN.Client.Models.Settings;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Factories;
 
@@ -69,5 +72,15 @@ public class CommonItemFactory : ICommonItemFactory
     public FeatureItem GetFeature(Feature feature)
     {
         return new FeatureItem(_localizer, _themeSelector, feature);
+    }
+
+    public ConnectAndGoModeItem GetConnectAndGoMode(ConnectAndGoMode? connectAndGoMode)
+    {
+        return GetConnectAndGoMode(connectAndGoMode.HasValue, connectAndGoMode.GetValueOrDefault(DefaultProfileSettings.ConnectAndGoMode));
+    }
+
+    public ConnectAndGoModeItem GetConnectAndGoMode(bool isEnabled, ConnectAndGoMode connectAndGoMode)
+    {
+        return new ConnectAndGoModeItem(_localizer, isEnabled, connectAndGoMode);
     }
 }

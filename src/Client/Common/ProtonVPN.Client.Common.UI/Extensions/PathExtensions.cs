@@ -21,6 +21,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Windows.Storage;
@@ -35,11 +36,11 @@ public static class PathExtensions
         try
         {
             FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(filePath);
-            string? name = versionInfo.FileDescription?.Trim();
+            string? name = versionInfo.ProductName?.Trim();
 
             if (string.IsNullOrEmpty(name))
             {
-                name = versionInfo.ProductName?.Trim();
+                name = versionInfo.FileDescription?.Trim();
             }
 
             if (string.IsNullOrEmpty(name))

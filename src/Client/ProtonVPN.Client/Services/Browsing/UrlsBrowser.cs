@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,7 +18,11 @@
  */
 
 using System.Diagnostics;
+using ProtonVPN.Client.Common.UI.Extensions;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Core.Models;
+using ProtonVPN.Client.Core.Services.Selection;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -26,12 +30,8 @@ namespace ProtonVPN.Client.Services.Browsing;
 
 public class UrlsBrowser : IUrlsBrowser
 {
+    private readonly IWebBrowserAppSelector _webBrowserAppSelector;
     private readonly ILogger _logger;
-
-    public UrlsBrowser(ILogger logger)
-    {
-        _logger = logger;
-    }
 
     public string ProtocolsLearnMore => "https://protonvpn.com/blog/whats-the-best-vpn-protocol";
 
@@ -49,10 +49,10 @@ public class UrlsBrowser : IUrlsBrowser
 
     public string InternetSpeedLearnMore => "https://protonvpn.com/support/how-latency-bandwidth-throughput-impact-internet-speed";
 
-    public string NatTypeLearnMore => "https://protonvpn.com/support/moderate-nat"; 
+    public string NatTypeLearnMore => "https://protonvpn.com/support/moderate-nat";
 
-    public string CustomDnsLearnMore => "https://protonvpn.com/support/custom-dns"; 
-    
+    public string CustomDnsLearnMore => "https://protonvpn.com/support/custom-dns";
+
     public string Ipv6LeakProtectionLearnMore => "https://protonvpn.com/support/prevent-ipv6-vpn-leaks";
 
     public string SupportCenter => "https://protonvpn.com/support";
@@ -111,11 +111,49 @@ public class UrlsBrowser : IUrlsBrowser
 
     public string LocalDnsLearnMore => "https://protonvpn.com/support/local-dns-devices-by-name";
 
-    public void BrowseTo(string url)
+    public UrlsBrowser(
+        IWebBrowserAppSelector webBrowserAppSelector,
+        ILogger logger)
     {
+        _webBrowserAppSelector = webBrowserAppSelector;
+        _logger = logger;
+    }
+
+    public void BrowseTo(string url, bool usePrivateBrowsingMode = false)
+    {
+        if (!url.IsValidUrl())
+        {
+            _logger.Warn<AppLog>($"Could not navigate to the requested url due to invalid format. Url: {url}");
+            return;
+        }
+
         try
         {
-            Process.Start(new ProcessStartInfo { FileName = url, UseShellExecute = true });
+            if (usePrivateBrowsingMode)
+            {
+                WebBrowserApp? defaultWebBrowserApp = _webBrowserAppSelector.GetDefaultWebBrowserApp();
+                if (defaultWebBrowserApp != null && defaultWebBrowserApp.SupportsPrivateBrowsing)
+                {
+                    Process.Start(new ProcessStartInfo 
+                    { 
+                        FileName = defaultWebBrowserApp.AppPath, 
+                        Arguments = $"{defaultWebBrowserApp.PrivateBrowsingArgument} {url}", 
+                        UseShellExecute = true 
+                    });
+                    return;
+                }
+                else
+                {
+                    _logger.Info<AppLog>($"Could not navigate to the requested url.  Default browser {(defaultWebBrowserApp == null ? "could not be found" : "does not support private browsing")}.");
+                }
+                return;
+            }
+
+            Process.Start(new ProcessStartInfo 
+            { 
+                FileName = url, 
+                UseShellExecute = true 
+            });
         }
         catch (Exception e)
         {

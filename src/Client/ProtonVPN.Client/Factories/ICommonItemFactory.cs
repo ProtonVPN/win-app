@@ -17,9 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Models;
 using ProtonVPN.Client.Models.Settings;
+using ProtonVPN.Client.Models.Profiles;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Common.Core.Networking;
 
@@ -38,4 +40,8 @@ public interface ICommonItemFactory
     PortForwardingItem GetPortForwardingMode(bool isEnabled);
 
     FeatureItem GetFeature(Feature feature);
+
+    ConnectAndGoModeItem GetConnectAndGoMode(ConnectAndGoMode? connectAndGoMode);
+
+    ConnectAndGoModeItem GetConnectAndGoMode(bool isEnabled, ConnectAndGoMode connectAndGoMode);
 }

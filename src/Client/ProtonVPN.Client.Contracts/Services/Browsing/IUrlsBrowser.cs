@@ -61,5 +61,5 @@ public interface IUrlsBrowser
     string TwoFactorAuthLearnMore { get; }
     string LocalDnsLearnMore { get; }
 
-    void BrowseTo(string url);
+    void BrowseTo(string url, bool usePrivateBrowsingMode = false);
 }

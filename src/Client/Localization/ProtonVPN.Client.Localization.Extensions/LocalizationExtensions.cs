@@ -436,6 +436,18 @@ public static class LocalizationExtensions
         };
     }
 
+    public static string GetConnectAndGoMode(this ILocalizationProvider localizer, bool isEnabled, ConnectAndGoMode connectAndGoMode)
+    {
+        return isEnabled
+            ? connectAndGoMode switch
+            {
+                ConnectAndGoMode.Website => localizer.Get("Profile_Options_ConnectAndGo_Website"),
+                ConnectAndGoMode.Application => localizer.Get("Profile_Options_ConnectAndGo_Application"),
+                _ => localizer.Get("Common_States_On")
+            }
+            : localizer.Get("Common_States_Off");
+    }
+
     public static string? GetExitOrSignOutConfirmationMessage(this ILocalizationProvider localizer, bool isDisconnected, ISettings settings)
     {
         if (settings.IsAdvancedKillSwitchActive())

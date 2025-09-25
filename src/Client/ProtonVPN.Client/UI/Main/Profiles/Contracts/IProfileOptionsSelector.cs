@@ -23,7 +23,7 @@ namespace ProtonVPN.Client.UI.Main.Profiles.Contracts;
 
 public interface IProfileOptionsSelector : IProfilePropertiesSelector
 {
-    void SetProfileOptions(IProfileOptions options);
+    Task SetProfileOptionsAsync(IProfileOptions options);
 
     IProfileOptions GetProfileOptions();
 }

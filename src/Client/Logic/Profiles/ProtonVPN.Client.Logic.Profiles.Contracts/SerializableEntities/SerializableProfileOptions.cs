@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Enums;
+
 namespace ProtonVPN.Client.Logic.Profiles.Contracts.SerializableEntities;
 
 public class SerializableProfileOptions
@@ -24,4 +26,10 @@ public class SerializableProfileOptions
     public required bool IsConnectAndGoEnabled { get; init; }
 
     public required string ConnectAndGoUrl { get; init; }
+
+    public required ConnectAndGoMode ConnectAndGoMode { get; init; }
+
+    public required bool UsePrivateBrowsingMode { get; init; }
+
+    public required string? ConnectAndGoAppPath { get; init; }
 }

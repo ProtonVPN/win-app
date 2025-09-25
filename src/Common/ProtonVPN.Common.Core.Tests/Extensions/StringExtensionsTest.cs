@@ -55,6 +55,7 @@ public class StringExtensionsTest
     [DataRow("http://.me", false)]                                      // Invalid URL (missing domain name)
     [DataRow("http://proton..me", false)]                               // Invalid URL (double dots in domain)
     [DataRow("https://protonvpn.com:abcd", false)]                      // Invalid (non-numeric port)
+    [DataRow("http:/proton.me", false)]                                 // Invalid URL (single /)
     public void TestUrlValidation(string url, bool expectedResult)
     {
         bool result = url.IsValidUrl();

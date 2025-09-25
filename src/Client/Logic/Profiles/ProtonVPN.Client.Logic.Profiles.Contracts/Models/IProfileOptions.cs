@@ -21,9 +21,7 @@ namespace ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 
 public interface IProfileOptions
 {
-    bool IsConnectAndGoEnabled { get; set; }
-
-    string ConnectAndGoUrl { get; set; }
+    IConnectAndGoOption ConnectAndGo { get; set; }
 
     IProfileOptions Copy();
 }

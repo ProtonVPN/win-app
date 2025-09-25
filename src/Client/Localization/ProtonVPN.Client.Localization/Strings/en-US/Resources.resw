@@ -299,11 +299,29 @@
   <data name="Profile_Options_Description" xml:space="preserve">
     <value>Automatically open a website of your choice when you connect to this profile.</value>
   </data>
+  <data name="Profile_Options_ConnectAndGo_Website" xml:space="preserve">
+    <value>Open a website</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Application" xml:space="preserve">
+    <value>Open an app</value>
+  </data>
   <data name="Profile_Options_Url" xml:space="preserve">
     <value>Website URL</value>
   </data>
   <data name="Profile_Options_Url_Error" xml:space="preserve">
     <value>Enter a valid URL</value>
+  </data>
+  <data name="Profile_Options_Application" xml:space="preserve">
+    <value>App</value>
+  </data>
+  <data name="Profile_Options_Application_Select" xml:space="preserve">
+    <value>Select an app</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_DefaultBrowser" xml:space="preserve">
+    <value>Default browser</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode" xml:space="preserve">
+    <value>Use private browsing mode</value>
   </data>
   <data name="Country_val_AD" xml:space="preserve">
     <value>Andorra</value>

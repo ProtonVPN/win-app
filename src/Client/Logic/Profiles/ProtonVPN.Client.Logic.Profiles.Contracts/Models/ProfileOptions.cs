@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,12 +23,13 @@ public class ProfileOptions : IProfileOptions
 {
     public static IProfileOptions Default => new ProfileOptions();
 
-    public bool IsConnectAndGoEnabled { get; set; } = false;
-
-    public string ConnectAndGoUrl { get; set; } = string.Empty;
+    public IConnectAndGoOption ConnectAndGo { get; set; } = ConnectAndGoOption.Default;
 
     public IProfileOptions Copy()
     {
-        return (IProfileOptions)MemberwiseClone();
+        return new ProfileOptions()
+        {
+            ConnectAndGo = ConnectAndGo.Copy(),
+        };
     }
 }

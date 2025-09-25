@@ -259,6 +259,12 @@ public static class StringExtensions
             && Uri.IsWellFormedUriString(url.ToFormattedUrl(), UriKind.Absolute);
     }
 
+    public static bool IsValidPath(this string path)
+    {
+        return !string.IsNullOrWhiteSpace(path)
+            && Path.Exists(path);
+    }
+
     public static string ToFormattedUrl(this string url)
     {
         // Check if protocol is already defined, otherwise use https by default.

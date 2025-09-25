@@ -229,6 +229,7 @@ public class AppModule : Module
         builder.RegisterType<HumanVerifier>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<HumanVerificationConfig>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<UrlsBrowser>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<AppsBrowser>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<AccountUpgradeUrlLauncher>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ClipboardEditor>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<SignOutHandler>().AsImplementedInterfaces().SingleInstance();
@@ -262,6 +263,7 @@ public class AppModule : Module
 
         builder.RegisterType<ApplicationIconSelector>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ApplicationThemeSelector>().AsSelf().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<WebBrowserAppSelector>().AsSelf().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<ConnectionGroupFactory>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ConnectionItemFactory>().AsImplementedInterfaces().SingleInstance();

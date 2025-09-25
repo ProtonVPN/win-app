@@ -24,7 +24,6 @@ using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
-using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace ProtonVPN.Client.Models.Settings;
 

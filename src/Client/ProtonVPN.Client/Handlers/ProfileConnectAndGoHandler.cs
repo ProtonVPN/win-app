@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Handlers.Bases;
@@ -29,11 +30,14 @@ using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Handlers;
 
-public class ProfileConnectAndGoHandler : IHandler, 
+public class ProfileConnectAndGoHandler : IHandler,
     IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
+    private const int DELAY_AFTER_CONNECTION_IN_MS = 1000;
+
     private readonly IConnectionManager _connectionManager;
     private readonly IUrlsBrowser _urlsBrowser;
+    private readonly IAppsBrowser _appsBrowser;
     private readonly ILogger _logger;
 
     private IConnectionProfile? _lastProfile;
@@ -41,14 +45,16 @@ public class ProfileConnectAndGoHandler : IHandler,
     public ProfileConnectAndGoHandler(
         IConnectionManager connectionManager,
         IUrlsBrowser urlsBrowser,
+        IAppsBrowser appsBrowser,
         ILogger logger)
     {
         _connectionManager = connectionManager;
         _urlsBrowser = urlsBrowser;
+        _appsBrowser = appsBrowser;
         _logger = logger;
     }
 
-    public void Receive(ConnectionStatusChangedMessage message)
+    public async void Receive(ConnectionStatusChangedMessage message)
     {
         if (_connectionManager.IsDisconnected)
         {
@@ -58,8 +64,11 @@ public class ProfileConnectAndGoHandler : IHandler,
 
         if (_connectionManager.IsConnected &&
             _connectionManager.CurrentConnectionIntent is IConnectionProfile profile &&
-            profile.Options.IsConnectAndGoEnabled)
+            profile.Options.ConnectAndGo.IsEnabled)
         {
+            // Extra delay to ensure the connection is fully established before triggering Connect and go.
+            await Task.Delay(DELAY_AFTER_CONNECTION_IN_MS);
+
             if (_lastProfile != null && _lastProfile.IsSameAs(profile))
             {
                 return;
@@ -67,15 +76,21 @@ public class ProfileConnectAndGoHandler : IHandler,
 
             _lastProfile = profile;
 
-            string url = profile.Options.ConnectAndGoUrl.ToFormattedUrl();
+            IConnectAndGoOption connectAndGo = profile.Options.ConnectAndGo;
 
-            if (url.IsValidUrl())
+            switch (connectAndGo.Mode)
             {
-                _urlsBrowser.BrowseTo(url);
-            }
-            else
-            {
-                _logger.Info<AppLog>($"Skip browsing to profile's connect and go url due to invalid format: {url}");
+                case ConnectAndGoMode.Website:
+                    string url = connectAndGo.Url.ToFormattedUrl();
+                    _logger.Info<AppLog>($"Connect and go - Open a website: {url}");
+                    _urlsBrowser.BrowseTo(url, connectAndGo.UsePrivateBrowsingMode);
+                    break;
+
+                case ConnectAndGoMode.Application:
+                    string appPath = connectAndGo.AppPath ?? string.Empty;
+                    _logger.Info<AppLog>($"Connect and go - Open an app: {appPath}");
+                    _appsBrowser.OpenApp(appPath);
+                    break;
             }
         }
     }

@@ -35,9 +35,13 @@ public class ProfileSettings : IProfileSettings
     };
 
     public VpnProtocol VpnProtocol { get; set; }
+
     public bool IsNetShieldEnabled { get; set; }
+
     public NetShieldMode NetShieldMode { get; set; }
+
     public bool IsPortForwardingEnabled { get; set; }
+
     public NatType NatType { get; set; }
 
     public bool? IsCustomDnsServersEnabled => IsNetShieldEnabled ? false : null;
