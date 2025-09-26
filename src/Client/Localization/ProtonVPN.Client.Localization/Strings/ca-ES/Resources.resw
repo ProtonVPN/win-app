@@ -3063,6 +3063,24 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   <data name="Profile_NetShield_Conflict_Description">
     <value>Això desactivarà el DNS personalitzat per a aquest perfil.</value>
   </data>
+  <data name="Profile_Options_Application">
+    <value>Aplicació</value>
+  </data>
+  <data name="Profile_Options_Application_Select">
+    <value>Seleccioneu una aplicació</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Application">
+    <value>Obriu una aplicació</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
+    <value>Navegador per defecte</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
+    <value>Utilitzeu el mode de navegació privada</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Website">
+    <value>Obriu un lloc web</value>
+  </data>
   <data name="Profile_Options_Description">
     <value>Obriu automàticament el lloc web que trieu quan us connecteu a aquest perfil.</value>
   </data>
@@ -3277,38 +3295,6 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
     <value>Introduïu l'adreça IPv4 o IPv6 del servidor</value>
   </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode">
-    <value>Gestió del bloqueig de DNS</value>
-    <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
-    <value>Utilitzeu el mètode de bloqueig per defecte</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
-    <value>Per defecte, un filtre de crida rebutja les sol·licituds DNS que provinguin de fora del túnel VPN. Aquest mètode és tan efectiu com l'NRPT, però pot comportar velocitats més lentes. El DNS de la xarxa local funcionarà.</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
-    <value>Decidiu com Windows gestiona les sol·licituds DNS que intenten sortir del túnel VPN.</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
-    <value>Bloquegeu les sol·licituds sense donar-hi una resposta negativa</value>
-    <comment>DNS requests are blocked but there is no negative reply to them</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
-    <value>Les sol·licituds DNS externes es descarten sense donar-hi una resposta negativa. Això pot provocar temps de càrrega més llargs en accedir a dominis que no existeixen o que continguin contingut bloquejat (com anuncis o rastrejadors).</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
-    <value>Utilitzeu les normes NRPT de Proton VPN</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
-    <value>Les nostres normes NRPT (Name Resolution Policy Table) no permeten que Windows rebi sol·licituds DNS externes. Això optimitza les velocitats de la VPN, però el DNS de la xarxa local no funcionarà. Alguns dispositius Windows no admeten NRPT.</value>
-    <comment></comment>
-  </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>Compatible amb IPv6</value>
   </data>
@@ -3326,6 +3312,12 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
     <value>Permet connexions a impressores, altaveus i altres dispositius de la vostra xarxa local.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
+    <value>Permet connectar-se a dispositius utilitzant noms com 'La-Meva-Impressora' o 'router.local' en lloc d'adreces IP. Utilitza la resolució DNS local. Desactivat per defecte per mantenir velocitats de VPN més ràpides.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
+    <value>Accés a dispositius per nom</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>Tipus de NAT</value>

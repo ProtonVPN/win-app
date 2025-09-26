@@ -2954,6 +2954,24 @@ VPN接続</value>
   <data name="Profile_NetShield_Conflict_Description">
     <value>このプロファイルのカスタムDNSを無効にします。</value>
   </data>
+  <data name="Profile_Options_Application">
+    <value>App</value>
+  </data>
+  <data name="Profile_Options_Application_Select">
+    <value>Select an app</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Application">
+    <value>Open an app</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
+    <value>Default browser</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
+    <value>Use private browsing mode</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Website">
+    <value>Open a website</value>
+  </data>
   <data name="Profile_Options_Description">
     <value>このプロファイルに接続した際、あなたが選んだウェブサイトが自動的に開きます。</value>
   </data>
@@ -3168,38 +3186,6 @@ VPN接続</value>
   <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
     <value>サーバーのIPv4またはIPv6アドレスを入力してください。</value>
   </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode">
-    <value>DNSブロック処理</value>
-    <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
-    <value>デフォルトのブロック方法を使用する</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
-    <value>デフォルトでは、コールアウトフィルターはVPNトンネルの外部から来るDNSリクエストを拒否します。この方法はNRPTと同程度に効果的ですが、速度が低下する可能性があります。ローカルネットワークDNSは機能します。</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
-    <value>Windows が VPN トンネル外へのアクセスを試みる DNS リクエストをどのように処理するかを決定します。</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
-    <value>ネガティブ応答なしにリクエストをブロック</value>
-    <comment>DNS requests are blocked but there is no negative reply to them</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
-    <value>外部DNSリクエストは、ネガティブ応答なしに破棄されます。これにより、存在しないドメインや、ブロックされたコンテンツ（広告やトラッカーなど）を含むドメインにアクセスする際の読み込み時間が長くなる可能性があります。</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
-    <value>Proton VPN の NRPT ポリシーを使用</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
-    <value>当社のNRPT（名前解決ポリシーテーブル）ポリシーは、Windowsが外部DNSリクエストを一切試行することを許可しません。これによりVPN速度が最適化されますが、ローカルネットワークのDNSは機能しません。一部のWindowsデバイスはNRPTをサポートしていません。</value>
-    <comment></comment>
-  </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>IPv6対応</value>
   </data>
@@ -3217,6 +3203,12 @@ VPN接続</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
     <value>お客様のローカル ネットワーク内のプリンター、スピーカー、その他のデバイスへの接続を許可します。</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
+    <value>Connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Uses local DNS resolution. Disabled by default to maintain faster VPN speeds.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
+    <value>Access devices by name</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>NATタイプ</value>

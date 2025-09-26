@@ -348,6 +348,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                                     <TextBlock Grid.Column="0"
                                                VerticalAlignment="Top"
+                                               TextWrapping="Wrap"
                                                Style="{StaticResource BodyMediumStrongTextBlockStyle}"
                                                Text="{TemplateBinding Header}" />
 
@@ -360,13 +361,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                                 </Grid>
 
-                                <TextBlock Style="{StaticResource BodyMediumStrongTextBlockStyle}"
-                                           Text="{TemplateBinding Header}" />
                                 <TextBlock Grid.Row="1"
                                            Grid.Column="0"
                                            Foreground="{ThemeResource TextWeakColorBrush}"
                                            Style="{StaticResource CaptionTextBlockStyle}"
                                            Text="{TemplateBinding Description}" />
+                                
                                 <ContentPresenter Grid.Row="0"
                                                   Grid.RowSpan="2"
                                                   Grid.Column="1"

@@ -3062,6 +3062,24 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
   <data name="Profile_NetShield_Conflict_Description">
     <value>Esto desactivará el DNS personalizado para este perfil.</value>
   </data>
+  <data name="Profile_Options_Application">
+    <value>App</value>
+  </data>
+  <data name="Profile_Options_Application_Select">
+    <value>Select an app</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Application">
+    <value>Open an app</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
+    <value>Default browser</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
+    <value>Use private browsing mode</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Website">
+    <value>Open a website</value>
+  </data>
   <data name="Profile_Options_Description">
     <value>Abra automáticamente un sitio web de su elección cuando se conecte a este perfil.</value>
   </data>
@@ -3276,38 +3294,6 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
   <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
     <value>Ingrese la dirección IPv4 o IPv6 del servidor</value>
   </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode">
-    <value>Manejo de bloqueos de DNS</value>
-    <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
-    <value>Usar método de bloqueo por defecto</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
-    <value>Por defecto, un filtro de llamado rechaza solicitudes de DNS que provengan fuera del túnel VPN. Este método es igual de efectivo que NRPT pero puede provocar velocidades bajas. El DNS de la red local funcionará.</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
-    <value>Esto decide cómo Windows maneja las solicitudes de DNS que intentan salir del túnel VPN.</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
-    <value>Bloquear solicitudes sin una respuesta negativa</value>
-    <comment>DNS requests are blocked but there is no negative reply to them</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
-    <value>Las solicitudes de DNS externas son descartadas sin una respuesta negativa. Esto podría resultar en tiempos de carga mayores al acceder a dominios que no existen o con contenido bloqueado (como anuncios o rastreadores).</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
-    <value>Usar la política NRPT de Proton VPN</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
-    <value>Nuestra política NRPT (Tabla de Políticas de Resolución de Nombres, en inglés) impide que Windows intente realizar solicitudes DNS externas. Esto optimiza la velocidad de la VPN, pero el DNS de la red local no funcionará. Algunos dispositivos con Windows no son compatibles con NRPT.</value>
-    <comment></comment>
-  </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>Soporte IPv6</value>
   </data>
@@ -3325,6 +3311,12 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
     <value>Le permite conectarse a impresoras, altavoces y otros dispositivos en la red local.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
+    <value>Connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Uses local DNS resolution. Disabled by default to maintain faster VPN speeds.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
+    <value>Access devices by name</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>Tipo de NAT</value>

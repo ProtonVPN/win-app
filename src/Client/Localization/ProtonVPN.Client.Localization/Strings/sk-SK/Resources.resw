@@ -3278,6 +3278,24 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   <data name="Profile_NetShield_Conflict_Description">
     <value>Týmto zakážete vlastné DNS pre tento profil.</value>
   </data>
+  <data name="Profile_Options_Application">
+    <value>Aplikácia</value>
+  </data>
+  <data name="Profile_Options_Application_Select">
+    <value>Vyberte aplikáciu</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Application">
+    <value>Otvoriť aplikáciu</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
+    <value>Predvolený prehliadač</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
+    <value>Použiť režim súkromného prehliadania</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Website">
+    <value>Otvoriť webovú stránku</value>
+  </data>
   <data name="Profile_Options_Description">
     <value>Po pripojení k tomuto profilu sa automaticky otvorí webová stránka podľa vášho výberu.</value>
   </data>
@@ -3492,38 +3510,6 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
     <value>Zadajte adresu IPv4 alebo IPv6 servera.</value>
   </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode">
-    <value>Spracovanie blokovania DNS</value>
-    <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
-    <value>Použiť predvolenú metódu blokovania</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
-    <value>V predvolenom nastavení filter callout odmieta DNS požiadavky, ktoré prichádzajú zvonku VPN tunela. Táto metóda je rovnako efektívna ako NRPT, ale môže viesť k spomaleniu rýchlosti. Lokálna sieť DNS bude fungovať.</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
-    <value>Rozhodnite, ako má systém Windows spracovávať DNS požiadavky, ktoré sa pokúšajú prejsť mimo VPN tunela.</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
-    <value>Blokovať požiadavky bez negatívnej odpovede</value>
-    <comment>DNS requests are blocked but there is no negative reply to them</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
-    <value>Externé DNS požiadavky sú odmietnuté bez negatívnej odpovede. To môže mať za následok dlhšie časy načítania pri prístupe k doménam, ktoré neexistujú alebo obsahujú blokovaný obsah (ako reklamy alebo sledovacie súbory).</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
-    <value>Použiť NRPT pravidlá služby Proton VPN</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
-    <value>Naše pravidlá NRPT (Name Resolution Policy Table) neumožňujú systému Windows vôbec pokusy o externé DNS požiadavky. Tým sa optimalizuje rýchlosť VPN, ale DNS v lokálnej sieti nebude fungovať. Niektoré zariadenia so systémom Windows nepodporujú NRPT.</value>
-    <comment></comment>
-  </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>IPv6 podpora</value>
   </data>
@@ -3541,6 +3527,12 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
     <value>Umožňuje pripojiť tlačiarne, reproduktory a ďalšie zariadenia vo vašej lokálnej sieti.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
+    <value>Pripojte sa k zariadeniam pomocou názvov ako „Moja tlačiareň“ alebo „router.local“ namiesto IP adries. Používa lokálne DNS riešenie. V predvolenom nastavení je táto funkcia vypnutá, aby sa zachovala vyššia rýchlosť VPN.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
+    <value>Prístup k zariadeniam podľa názvu</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>Typ NAT</value>

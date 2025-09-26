@@ -197,4 +197,12 @@ public partial class ProfileOptionsSelectorViewModel : ViewModelBase, IProfileOp
             ? ConnectAndGoModes.FirstOrDefault(nsm => nsm.IsEnabled && nsm.Mode == mode)
             : ConnectAndGoModes.FirstOrDefault(nsm => !nsm.IsEnabled);
     }
+
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        OnPropertyChanged(nameof(ConnectAndGoUrlErrorMessage));
+        OnPropertyChanged(nameof(ConnectAndGoAppName));
+    }
 }

@@ -3170,6 +3170,24 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   <data name="Profile_NetShield_Conflict_Description">
     <value>Aceasta va dezactiva DNS-ul personal pentru acest profil.</value>
   </data>
+  <data name="Profile_Options_Application">
+    <value>Aplicație</value>
+  </data>
+  <data name="Profile_Options_Application_Select">
+    <value>Selectare aplicație</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Application">
+    <value>Deschidere o aplicație</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
+    <value>Navigator web implicit</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
+    <value>Utilizare mod privat de navigare</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Website">
+    <value>Deschidere un site web</value>
+  </data>
   <data name="Profile_Options_Description">
     <value>Deschidere automată a unei pagini web alese când vă conectați la acest profil.</value>
   </data>
@@ -3384,38 +3402,6 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
     <value>Introduceți adresa IPv4 sau IPv6 a serverului</value>
   </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode">
-    <value>Gestionare blocare DNS</value>
-    <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
-    <value>Utilizare metodă de blocare implicită</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
-    <value>În mod implicit, un filtru de apelare respinge cererile DNS care vin din afara tunelului VPN. Această metodă este la fel de eficientă ca NRPT, dar poate duce la viteze mai mici. DNS-ul rețelei locale va funcționa.</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
-    <value>Decideți cum gestionează Windows solicitările DNS care încearcă să iasă din tunelul VPN.</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
-    <value>Blocare solicitări fără un răspuns negativ</value>
-    <comment>DNS requests are blocked but there is no negative reply to them</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
-    <value>Cererile DNS externe sunt înlăturate fără un răspuns negativ. Acest lucru poate duce la timpi de încărcare mai lungi la accesarea domeniilor care nu există sau care conțin conținut blocat (precum reclame sau instrumente de urmărire).</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
-    <value>Utilizare politica NRPT a Proton VPN</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
-    <value>Politica noastră NRPT (Name Resolution Policy Table - Tabelul politicii de rezoluție a numelor) nu permite sistemului Windows să încerce deloc solicitări DNS externe. Acest lucru optimizează vitezele VPN, dar DNS-ul rețelei locale nu va funcționa. Unele dispozitive Windows nu susțin NRPT.</value>
-    <comment></comment>
-  </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>Asistență IPv6</value>
   </data>
@@ -3433,6 +3419,12 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
     <value>Permite conexiuni către imprimante, boxe și alte dispozitive din rețeaua locală.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
+    <value>Conectați-vă la dispozitive folosind denumiri precum „Imprimanta-mea” sau „ruter.local” în loc de adrese IP. Utilizează rezoluția DNS locală. Dezactivat implicit pentru a menține viteze VPN mai rapide.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
+    <value>Accesare dispozitive după nume</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>Tip NAT</value>

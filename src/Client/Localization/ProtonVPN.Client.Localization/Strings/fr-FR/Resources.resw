@@ -3062,6 +3062,24 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   <data name="Profile_NetShield_Conflict_Description">
     <value>Cela désactivera le DNS personnalisé de ce profil.</value>
   </data>
+  <data name="Profile_Options_Application">
+    <value>Application</value>
+  </data>
+  <data name="Profile_Options_Application_Select">
+    <value>Sélectionner une application</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Application">
+    <value>Ouvrir une application</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
+    <value>Navigateur par défaut</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
+    <value>Utiliser le mode navigation privée</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Website">
+    <value>Ouvrir un site internet</value>
+  </data>
   <data name="Profile_Options_Description">
     <value>Ouvrez automatiquement un site internet de votre choix lorsque vous vous connectez à ce profil.</value>
   </data>
@@ -3276,38 +3294,6 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
     <value>Saisissez l'adresse IPv4 ou IPv6 du serveur.</value>
   </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode">
-    <value>Gestion du blocage DNS</value>
-    <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
-    <value>Utiliser la méthode de blocage par défaut</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
-    <value>Par défaut, un filtre d'appel rejette les requêtes DNS qui proviennent de l'extérieur du tunnel VPN. Cette méthode est tout aussi efficace que NRPT, mais elle peut entraîner des vitesses plus lentes. Le DNS du réseau local fonctionnera.</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
-    <value>Décidez comment Windows gère les requêtes DNS qui tentent de sortir du tunnel VPN.</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
-    <value>Bloquer les requêtes sans réponse négative</value>
-    <comment>DNS requests are blocked but there is no negative reply to them</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
-    <value>Les requêtes DNS externes sont abandonnées sans réponse négative. Cela peut entraîner des temps de chargement plus longs lors de l'accès à des domaines qui n'existent pas ou qui contiennent du contenu bloqué (tels que des publicités ou des traqueurs).</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
-    <value>Utiliser la politique NRPT de Proton VPN</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
-    <value>Notre stratégie NRPT (Name Resolution Policy Table) n’autorise pas Windows à effectuer de requêtes DNS externes. Cela optimise la vitesse du VPN, mais le DNS du réseau local ne fonctionnera pas. Certains appareils Windows ne prennent pas en charge le NRPT.</value>
-    <comment></comment>
-  </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>Support IPv6</value>
   </data>
@@ -3325,6 +3311,12 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
     <value>Vous pouvez vous connecter à des imprimantes, des enceintes et d'autres appareils du réseau local.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
+    <value>Permet de se connecter aux appareils en utilisant des noms comme 'Mon-Imprimante' ou 'routeur.local' au lieu des adresses IP. Utilise la résolution DNS locale. Désactivé par défaut pour maintenir des vitesses VPN plus rapides.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
+    <value>Accéder aux appareils par le nom</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>Type de NAT</value>

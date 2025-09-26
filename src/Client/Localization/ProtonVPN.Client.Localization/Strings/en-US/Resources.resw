@@ -297,7 +297,7 @@
     <value>Connect and Go</value>
   </data>
   <data name="Profile_Options_Description" xml:space="preserve">
-    <value>Automatically open a website of your choice when you connect to this profile.</value>
+    <value>Automatically open a website or an app of your choice when you connect to this profile.</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_Website" xml:space="preserve">
     <value>Open a website</value>

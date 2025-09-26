@@ -2262,7 +2262,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Förbättra P2P-hastigheten</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
-    <value>Connect to a P2P server to improve torrenting speeds</value>
+    <value>Anslut till en P2P-server för att förbättra torrenthastigheter</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>Ett VPN-protokoll bestämmer hur trafik krypteras och överförs över VPN.</value>
@@ -3062,6 +3062,24 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Profile_NetShield_Conflict_Description">
     <value>Detta kommer inaktivera anpassad DNS för denna profil.</value>
   </data>
+  <data name="Profile_Options_Application">
+    <value>App</value>
+  </data>
+  <data name="Profile_Options_Application_Select">
+    <value>Välj en app</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Application">
+    <value>Öppna en app</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
+    <value>Standardwebbläsare</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
+    <value>Använd privat surfläge</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Website">
+    <value>Öppna en webbplats</value>
+  </data>
   <data name="Profile_Options_Description">
     <value>Öppna en valfri webbplats automatiskt när du ansluter till denna profil.</value>
   </data>
@@ -3276,38 +3294,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
     <value>Ange serverns IPv4- eller IPv6-adress</value>
   </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode">
-    <value>Hantering av DNS-blockeringar</value>
-    <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
-    <value>Use default blocking method</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
-    <value>By default, a callout filter rejects DNS requests that come from outside the VPN tunnel. This method is just as effective as NRPT, but it may lead to slower speeds. Local network DNS will work.</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
-    <value>Bestäm hur Windows hanterar DNS-förfrågningar som försöker gå utanför VPN-tunneln.</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
-    <value>Blockera förfrågningar utan ett negativt svar</value>
-    <comment>DNS requests are blocked but there is no negative reply to them</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
-    <value>External DNS requests are discarded without a negative response. This may result in longer loading times when accessing domains that don't exist or contained blocked content (like ads or trackers).</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
-    <value>Använd Proton VPN NRPT-policy</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
-    <value>Vår NRPT-policy (Name Resolution Policy Table) tillåter inte Windows att försöka skicka externa DNS-förfrågningar alls. Detta optimerar VPN-hastigheter, men det lokala nätverkets DNS kommer inte fungera. Vissa Windows-enheter stöder inte NRPT.</value>
-    <comment></comment>
-  </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>Stöd för IPv6</value>
   </data>
@@ -3325,6 +3311,12 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
     <value>Tillåter anslutningar till skrivare, högtalare och andra enheter i ditt lokala nätverk.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
+    <value>Connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Uses local DNS resolution. Disabled by default to maintain faster VPN speeds.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
+    <value>Access devices by name</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>NAT-typ</value>

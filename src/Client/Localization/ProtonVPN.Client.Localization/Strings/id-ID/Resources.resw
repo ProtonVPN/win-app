@@ -2954,6 +2954,24 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Profile_NetShield_Conflict_Description">
     <value>Hal ini akan menonaktifkan DNS khusus bagi profil ini.</value>
   </data>
+  <data name="Profile_Options_Application">
+    <value>App</value>
+  </data>
+  <data name="Profile_Options_Application_Select">
+    <value>Select an app</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Application">
+    <value>Open an app</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
+    <value>Default browser</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
+    <value>Use private browsing mode</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Website">
+    <value>Open a website</value>
+  </data>
   <data name="Profile_Options_Description">
     <value>Membuka situs web yang Anda tentukan secara otomatis pada saat Anda terhubung ke profil ini.</value>
   </data>
@@ -3168,38 +3186,6 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
     <value>Masukkan alamat IPv4 atau IPv6 server</value>
   </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode">
-    <value>Penanganan pemblokiran DNS</value>
-    <comment>A setting about how blocked DNS packets should be handled by Windows</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout">
-    <value>Gunakan metode pemblokiran bawaan</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Callout_Description">
-    <value>Secara bawaan, filter pemanggilan (callout filter) akan menolak permintaan DNS yang berasal dari luar terowongan VPN. Metode ini sama efektifnya dengan NRPT, namun dapat memperlambat koneksi Anda. Dengan menggunakan metode ini, DNS jaringan lokal Anda akan tetap dapat berfungsi sebagaimana mestinya.</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Description">
-    <value>Tentukan bagaimana Windows akan menangani permintaan DNS yang mencoba untuk keluar dari terowongan VPN.</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled">
-    <value>Blokir permintaan tanpa respons negatif</value>
-    <comment>DNS requests are blocked but there is no negative reply to them</comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Disabled_Description">
-    <value>Permintaan DNS eksternal akan langsung diacuhkan apabila permintaan ini tidak memiliki respons negatif. Hal ini dapat mengakibatkan waktu muat yang lebih lama pada saat mengakses domain yang tidak ada atau yang berisi konten yang diblokir (seperti iklan atau pelacak).</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt">
-    <value>Gunakan kebijakan NRPT Proton VPN</value>
-    <comment></comment>
-  </data>
-  <data name="Settings_Connection_Advanced_DnsBlockMode_Nrpt_Description">
-    <value>Kebijakan NRPT (Name Resolution Policy Table) kami tidak mengizinkan Windows untuk mengajukan permintaan DNS eksternal sama sekali. Hal ini akan mengoptimalkan kecepatan VPN, namun dengan menggunakan metode ini, DNS jaringan lokal Anda tidak akan dapat berfungsi. Perangkat Windows tertentu tidak mendukung NRPT.</value>
-    <comment></comment>
-  </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>Dukungan IPv6</value>
   </data>
@@ -3217,6 +3203,12 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
     <value>Memungkinkan koneksi ke printer, speaker, dan perangkat lainnya di jaringan lokal Anda.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
+    <value>Connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Uses local DNS resolution. Disabled by default to maintain faster VPN speeds.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
+    <value>Access devices by name</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>Tipe NAT</value>
