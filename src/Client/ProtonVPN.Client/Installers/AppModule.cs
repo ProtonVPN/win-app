@@ -135,6 +135,7 @@ using ProtonVPN.IPv6.Installers;
 using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Installers;
 using ProtonVPN.NetworkTimeProtocols.Installers;
+using ProtonVPN.OperatingSystems.Antiviruses.Installers;
 using ProtonVPN.OperatingSystems.Network.Installers;
 using ProtonVPN.OperatingSystems.Processes.Installers;
 using ProtonVPN.OperatingSystems.Registries.Installers;
@@ -215,6 +216,7 @@ public class AppModule : Module
                .RegisterModule<UnsecureWifiDetectionModule>()
                .RegisterModule<StatisticalEventsModule>()
                .RegisterModule<IPv6Module>()
+               .RegisterModule<AntivirusesModule>()
                .RegisterModule<NetworkTimeProtocolsModule>();
     }
 

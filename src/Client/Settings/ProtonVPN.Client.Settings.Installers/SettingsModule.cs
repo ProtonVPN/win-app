@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,6 +21,7 @@ using Autofac;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Conflicts.Bases;
 using ProtonVPN.Client.Settings.Files;
+using ProtonVPN.Client.Settings.Initializers;
 using ProtonVPN.Client.Settings.Migrations;
 using ProtonVPN.Client.Settings.Observers;
 using ProtonVPN.Client.Settings.Repositories;
@@ -52,6 +53,7 @@ public class SettingsModule : Module
 
         builder.RegisterType<SettingsConflictResolver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<RequiredReconnectionSettings>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SystemConfigurationInitializer>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterAssemblyTypes(typeof(ISettingsConflict).Assembly)
                .Where(t => typeof(ISettingsConflict).IsAssignableFrom(t))

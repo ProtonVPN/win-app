@@ -185,6 +185,8 @@
     <ProjectReference Include="..\..\IPv6\ProtonVPN.IPv6.Installers\ProtonVPN.IPv6.Installers.csproj" />
     <ProjectReference Include="..\..\NetworkTimeProtocols\ProtonVPN.NetworkTimeProtocols.Contracts\ProtonVPN.NetworkTimeProtocols.Contracts.csproj" />
     <ProjectReference Include="..\..\NetworkTimeProtocols\ProtonVPN.NetworkTimeProtocols.Installers\ProtonVPN.NetworkTimeProtocols.Installers.csproj" />
+    <ProjectReference Include="..\..\OperatingSystems\Antiviruses\ProtonVPN.OperatingSystems.Antiviruses.Contracts\ProtonVPN.OperatingSystems.Antiviruses.Contracts.csproj" />
+    <ProjectReference Include="..\..\OperatingSystems\Antiviruses\ProtonVPN.OperatingSystems.Antiviruses.Installers\ProtonVPN.OperatingSystems.Antiviruses.Installers.csproj" />
     <ProjectReference Include="..\..\OperatingSystems\Network\ProtonVPN.OperatingSystems.Network.Installers\ProtonVPN.OperatingSystems.Network.Installers.csproj" />
     <ProjectReference Include="..\..\OperatingSystems\WebAuthn\ProtonVPN.OperatingSystems.WebAuthn.Installers\ProtonVPN.OperatingSystems.WebAuthn.Installers.csproj" />
     <ProjectReference Include="..\..\ProcessCommunication\Client\ProtonVPN.ProcessCommunication.Client.Installers\ProtonVPN.ProcessCommunication.Client.Installers.csproj" />

@@ -20,14 +20,13 @@
 using Microsoft.Windows.AppLifecycle;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Core.Services.Activation;
-using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Initializers;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.IssueReporting.Installers;
@@ -51,6 +50,7 @@ public class Bootstrapper : IBootstrapper
     private readonly ISettings _settings;
     private readonly ISessionSettings _sessionSettings;
     private readonly ILogger _logger;
+    private readonly ISystemConfigurationInitializer _systemConfigurationInitializer;
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
@@ -66,10 +66,8 @@ public class Bootstrapper : IBootstrapper
         ISettings settings,
         ISessionSettings sessionSettings,
         ILogger logger,
-        ILocalizationProvider localizer,
-        IConnectionManager connectionManager,
+        ISystemConfigurationInitializer systemConfigurationInitializer,
         IMainWindowActivator mainWindowActivator,
-        IMainWindowOverlayActivator mainWindowOverlayActivator,
         IVpnPlanUpdater vpnPlanUpdater,
         IUIThreadDispatcher uiThreadDispatcher)
     {
@@ -83,6 +81,7 @@ public class Bootstrapper : IBootstrapper
         _settings = settings;
         _sessionSettings = sessionSettings;
         _logger = logger;
+        _systemConfigurationInitializer = systemConfigurationInitializer;
         _mainWindowActivator = mainWindowActivator;
         _vpnPlanUpdater = vpnPlanUpdater;
         _uiThreadDispatcher = uiThreadDispatcher;
@@ -95,6 +94,8 @@ public class Bootstrapper : IBootstrapper
             IssueReportingInitializer.SetEnabled(_settings.IsShareCrashReportsEnabled);
 
             AppInstance.GetCurrent().Activated += OnCurrentAppInstanceActivated;
+
+            _systemConfigurationInitializer.Initialize();
 
             HandleCommandLineArguments();
 
@@ -167,19 +168,6 @@ public class Bootstrapper : IBootstrapper
             else if (arg.EqualsIgnoringCase("-ExitAppOnClose"))
             {
                 _mainWindowActivator.DisableHandleClosedEvent();
-            }
-            else if (arg.EqualsIgnoringCase("-WireGuardConnectionTimeoutInSeconds"))
-            {
-                int wireGuardTimeoutArgumentIndex = i + 1;
-                if (wireGuardTimeoutArgumentIndex < args.Length && int.TryParse(args[wireGuardTimeoutArgumentIndex], out int seconds))
-                {
-                    _settings.WireGuardConnectionTimeout = TimeSpan.FromSeconds(seconds);
-                    i++;
-                }
-                else
-                {
-                    _settings.WireGuardConnectionTimeout = DefaultSettings.WireGuardConnectionTimeout;
-                }
             }
             else if (arg.EqualsIgnoringCase("-username") || arg.EqualsIgnoringCase("-u"))
             {

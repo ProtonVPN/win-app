@@ -18,21 +18,28 @@
  */
 
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Initializers;
 
 namespace ProtonVPN.Client.Settings;
 
 public class SettingsRestorer : ISettingsRestorer
 {
     private readonly ISettings _settings;
+    private readonly ISystemConfigurationInitializer _systemConfigurationInitializer;
 
-    public SettingsRestorer(ISettings settings)
+    public SettingsRestorer(
+        ISettings settings,
+        ISystemConfigurationInitializer systemConfigurationInitializer)
     {
         _settings = settings;
+        _systemConfigurationInitializer = systemConfigurationInitializer;
     }
 
     public void Restore()
     {
         // Note: Some settings should not be restored, such as Language, Theme, Share statistics...
+
+        _systemConfigurationInitializer.Initialize();
 
         _settings.IsNetShieldEnabled = DefaultSettings.IsNetShieldEnabled(_settings.VpnPlan.IsPaid);
         _settings.IsLocalAreaNetworkAccessEnabled = DefaultSettings.IsLocalAreaNetworkAccessAllowed(_settings.VpnPlan.IsPaid);
@@ -58,7 +65,6 @@ public class SettingsRestorer : ISettingsRestorer
         _settings.IsIpv6LeakProtectionEnabled = DefaultSettings.IsIpv6LeakProtectionEnabled;
         _settings.IsSmartReconnectEnabled = DefaultSettings.IsSmartReconnectEnabled;
         _settings.DefaultConnection = DefaultSettings.DefaultConnection;
-        _settings.WireGuardConnectionTimeout = DefaultSettings.WireGuardConnectionTimeout;
         _settings.IsIpv6Enabled = DefaultSettings.IsIpv6Enabled;
     }
 }
