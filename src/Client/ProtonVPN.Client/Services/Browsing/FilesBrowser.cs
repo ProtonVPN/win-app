@@ -26,11 +26,11 @@ using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Services.Browsing;
 
-public class AppsBrowser : IAppsBrowser
+public class FilesBrowser : IFilesBrowser
 {
     private readonly ILogger _logger;
 
-    public AppsBrowser(ILogger logger)
+    public FilesBrowser(ILogger logger)
     {
         _logger = logger;
     }
@@ -56,6 +56,30 @@ public class AppsBrowser : IAppsBrowser
         catch (Exception e)
         {
             _logger.Error<AppFileAccessFailedLog>($"Could not open the application: {appName}", e);
+        }
+    }
+
+    public void OpenFolder(string folderPath)
+    {
+        if (!Directory.Exists(folderPath))
+        {
+            _logger.Warn<AppFileAccessFailedLog>($"Could not open the folder. Folder could not be found: {folderPath}");
+            return;
+        }
+
+        string folderName = folderPath.GetFolderName();
+
+        try
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = folderPath,
+                UseShellExecute = true
+            });
+        }
+        catch (Exception e)
+        {
+            _logger.Error<AppFileAccessFailedLog>($"Could not open the folder: {folderName}", e);
         }
     }
 }

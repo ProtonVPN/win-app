@@ -32,14 +32,14 @@ namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
 public partial class DebugLogsPageViewModel : SettingsPageViewModelBase
 {
-    private readonly IUrlsBrowser _urlsBrowser;
+    private readonly IFilesBrowser _filesBrowser;
     private readonly IStaticConfiguration _staticConfig;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
 
     public override string Title => Localizer.Get("Settings_Support_DebugLogs");
 
     public DebugLogsPageViewModel(
-        IUrlsBrowser urlsBrowser,
+        IFilesBrowser filesBrowser,
         IStaticConfiguration staticConfig,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         IRequiredReconnectionSettings requiredReconnectionSettings,
@@ -58,7 +58,7 @@ public partial class DebugLogsPageViewModel : SettingsPageViewModelBase
                connectionManager,
                viewModelHelper)
     {
-        _urlsBrowser = urlsBrowser;
+        _filesBrowser = filesBrowser;
         _staticConfig = staticConfig;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
     }
@@ -88,6 +88,6 @@ public partial class DebugLogsPageViewModel : SettingsPageViewModelBase
             return;
         }
 
-        _urlsBrowser.BrowseTo(logFolder);
+        _filesBrowser.OpenFolder(logFolder);
     }
 }

@@ -19,7 +19,9 @@
 
 namespace ProtonVPN.Client.Contracts.Services.Browsing;
 
-public interface IAppsBrowser
+public interface IFilesBrowser
 {
     void OpenApp(string appPath);
+
+    void OpenFolder(string folderPath);
 }

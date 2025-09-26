@@ -37,7 +37,7 @@ public class ProfileConnectAndGoHandler : IHandler,
 
     private readonly IConnectionManager _connectionManager;
     private readonly IUrlsBrowser _urlsBrowser;
-    private readonly IAppsBrowser _appsBrowser;
+    private readonly IFilesBrowser _appsBrowser;
     private readonly ILogger _logger;
 
     private IConnectionProfile? _lastProfile;
@@ -45,7 +45,7 @@ public class ProfileConnectAndGoHandler : IHandler,
     public ProfileConnectAndGoHandler(
         IConnectionManager connectionManager,
         IUrlsBrowser urlsBrowser,
-        IAppsBrowser appsBrowser,
+        IFilesBrowser appsBrowser,
         ILogger logger)
     {
         _connectionManager = connectionManager;

@@ -231,7 +231,7 @@ public class AppModule : Module
         builder.RegisterType<HumanVerifier>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<HumanVerificationConfig>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<UrlsBrowser>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<AppsBrowser>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<FilesBrowser>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<AccountUpgradeUrlLauncher>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ClipboardEditor>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<SignOutHandler>().AsImplementedInterfaces().SingleInstance();

@@ -21,7 +21,6 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Windows.Storage;
@@ -31,6 +30,19 @@ namespace ProtonVPN.Client.Common.UI.Extensions;
 
 public static class PathExtensions
 {
+    public static string GetFolderName(this string path)
+    {
+        try
+        {
+            return Directory.Exists(path)
+                ? Path.GetFileName(path).Trim()
+                : Path.GetFileName(Path.GetDirectoryName(path) ?? string.Empty).Trim();
+        }
+        catch (Exception) { }
+
+        return string.Empty;
+    }
+
     public static string GetAppName(this string filePath)
     {
         try
