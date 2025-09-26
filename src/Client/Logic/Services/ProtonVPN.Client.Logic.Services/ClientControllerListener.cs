@@ -59,11 +59,11 @@ public class ClientControllerListener : IClientControllerListener
 
     public void Start()
     {
-        Task.Run(() => KeepAliveAsync(StartVpnStateListenerAsync)).FireAndForget();
-        Task.Run(() => KeepAliveAsync(StartPortForwardingStateListenerAsync)).FireAndForget();
-        Task.Run(() => KeepAliveAsync(StartConnectionDetailsListenerAsync)).FireAndForget();
-        Task.Run(() => KeepAliveAsync(StartUpdateStateListenerAsync)).FireAndForget();
-        Task.Run(() => KeepAliveAsync(StartNetShieldStatisticListenerAsync)).FireAndForget();
+        Task.Run(async () => await KeepAliveAsync(StartVpnStateListenerAsync)).FireAndForget();
+        Task.Run(async () => await KeepAliveAsync(StartPortForwardingStateListenerAsync)).FireAndForget();
+        Task.Run(async () => await KeepAliveAsync(StartConnectionDetailsListenerAsync)).FireAndForget();
+        Task.Run(async () => await KeepAliveAsync(StartUpdateStateListenerAsync)).FireAndForget();
+        Task.Run(async () => await KeepAliveAsync(StartNetShieldStatisticListenerAsync)).FireAndForget();
     }
 
     private async Task KeepAliveAsync(Func<Task> listener)
