@@ -33,13 +33,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       NavigationCacheMode="Required"
       mc:Ignorable="d">
 
-    <Page.Resources>
-        <x:Double x:Key="SidebarComponentCompactWidth">62.0</x:Double>
-        <x:Double x:Key="SidebarComponentMinWidth">200.0</x:Double>
-        <x:Double x:Key="SidebarComponentMaxWidth">400.0</x:Double>
-        <x:Double x:Key="SidebarComponentDefaultWidth">280.0</x:Double>
-    </Page.Resources>
-
     <Grid x:Name="LayoutRoot"
           Background="{ThemeResource TransparentColorBrush}"
           PointerPressed="OnPointerPressed">
@@ -67,7 +60,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <SplitView x:Name="MainSplitView"
                        IsTabStop="False"
-                       CompactPaneLength="{StaticResource SidebarComponentCompactWidth}"
+                       CompactPaneLength="{x:Bind ViewModel.SidebarCompactWidth, Mode=OneTime}"
                        DisplayMode="{x:Bind ViewModel.SidebarDisplayMode, Mode=TwoWay}"
                        IsPaneOpen="{x:Bind ViewModel.IsSidebarExpanded, Mode=TwoWay}"
                        OpenPaneLength="{x:Bind ViewModel.SidebarWidth}"
@@ -95,8 +88,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 IsTabStop="False"
                                                 Margin="-8,0,0,0"
                                                 Binding="{x:Bind ViewModel.SidebarWidth, Mode=TwoWay}"
-                                                Maximum="{StaticResource SidebarComponentMaxWidth}"
-                                                Minimum="{StaticResource SidebarComponentMinWidth}"
+                                                Maximum="{x:Bind ViewModel.SidebarMaxWidth, Mode=OneTime}"
+                                                Minimum="{x:Bind ViewModel.SidebarMinWidth, Mode=OneTime}"
                                                 Visibility="{x:Bind ViewModel.IsSidebarExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     </Border>
 

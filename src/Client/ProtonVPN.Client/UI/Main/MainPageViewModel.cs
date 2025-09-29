@@ -38,7 +38,6 @@ namespace ProtonVPN.Client.UI.Main;
 public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNavigator, IMainViewNavigator>,
     IEventMessageReceiver<ApplicationStoppedMessage>
 {
-    private const double SIDEBAR_COMPACT_WIDTH = 62.0;
     private const double WIDGETBAR_MIN_WIDTH = 72.0;
     private const double WIDGETBAR_MAX_WIDTH = 110.0;
 
@@ -49,6 +48,11 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly ISettings _settings;
     private readonly IUserAuthenticator _userAuthenticator;
+
+    public int SidebarCompactWidth = 62;
+    public int SidebarMinWidth = 200;
+    public int SidebarMaxWidth = 400;
+    public int SidebarDefaultWidth = DefaultSettings.SidebarWidth;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(EffectiveSidebarWidth))]
@@ -69,8 +73,8 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
     {
         SplitViewDisplayMode.Inline when !IsSidebarExpanded => 0,
         SplitViewDisplayMode.Overlay => 0,
-        SplitViewDisplayMode.CompactInline when !IsSidebarExpanded => SIDEBAR_COMPACT_WIDTH,
-        SplitViewDisplayMode.CompactOverlay => SIDEBAR_COMPACT_WIDTH,
+        SplitViewDisplayMode.CompactInline when !IsSidebarExpanded => SidebarCompactWidth,
+        SplitViewDisplayMode.CompactOverlay => SidebarCompactWidth,
         _ => SidebarWidth
     };
 
@@ -188,7 +192,18 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
 
     private void InvalidateSidebarWidth()
     {
-        SidebarWidth = _settings.SidebarWidth;
+        int settingsSidebarWidth = _settings.SidebarWidth;
+
+        int sidebarWidth = settingsSidebarWidth <= 0
+            ? SidebarDefaultWidth
+            : Math.Clamp(settingsSidebarWidth, SidebarMinWidth, SidebarMaxWidth);
+
+        SidebarWidth = sidebarWidth;
+
+        if (settingsSidebarWidth != sidebarWidth)
+        {
+            SaveSidebarWidth();
+        }
     }
 
     private void SaveSidebarWidth()
