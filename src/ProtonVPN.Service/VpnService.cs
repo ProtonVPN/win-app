@@ -178,10 +178,17 @@ internal partial class VpnService : ServiceBase
 
     private void StopWireGuardService()
     {
-        SystemService wireGuardService = new(_staticConfig.WireGuard.ServiceName, _osProcesses);
-        if (wireGuardService.Running())
+        try
         {
-            wireGuardService.StopAsync(new CancellationToken()).Wait();
+            SystemService wireGuardService = new(_staticConfig.WireGuard.ServiceName, _osProcesses);
+            if (wireGuardService.Running())
+            {
+                wireGuardService.StopAsync(new CancellationToken()).Wait();
+            }
+        }
+        catch (Exception e)
+        {
+            _logger.Error<AppServiceStopFailedLog>($"Failed to stop {_staticConfig.WireGuard.ServiceName}.", e);
         }
     }
 
