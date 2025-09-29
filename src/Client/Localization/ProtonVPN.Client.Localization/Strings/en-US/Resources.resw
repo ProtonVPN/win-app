@@ -1579,7 +1579,7 @@
   <data name="Format_Time_HoursMinutesSeconds_Short" xml:space="preserve">
     <value>hh\:mm\:ss</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '\' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
-  </data>  
+  </data>
   <data name="Format_Time_Seconds_Ago_One" xml:space="preserve">
     <value>{0} second ago</value>
     <comment>Format a time as a number of seconds elapsed. {0} is a placeholder for the number of seconds (eg. 1 second ago).</comment>
@@ -1603,7 +1603,7 @@
   <data name="Format_Time_Hours_Ago_Other" xml:space="preserve">
     <value>{0} hours ago</value>
     <comment>Format a time as a number of hours elapsed. {0} is a placeholder for the number of hours (eg. 10 hours ago).</comment>
-  </data>  
+  </data>
   <data name="Home_Account_SignOut" xml:space="preserve">
     <value>Sign out</value>
   </data>
@@ -3642,20 +3642,16 @@
     <value>Server</value>
   </data>
   <data name="Connections_Servers_One" xml:space="preserve">
-    <value>Server ({0})</value>
-    <comment>{0} is a placeholder for the number of servers (eg. Server (1)). This string is used when the number is 1.</comment>
+    <value>Server</value>
   </data>
   <data name="Connections_Servers_Other" xml:space="preserve">
-    <value>Servers ({0})</value>
-    <comment>{0} is a placeholder for the number of servers (eg. Servers (5)). This string is used when the number is different than 1.</comment>
+    <value>Servers</value>
   </data>
   <data name="Connections_Free_Servers_One" xml:space="preserve">
-    <value>Free server ({0})</value>
-    <comment>{0} is a placeholder for the number of free servers (eg. Free server (1)). This string is used when the number is 1.</comment>
+    <value>Free server</value>
   </data>
   <data name="Connections_Free_Servers_Other" xml:space="preserve">
-    <value>Free servers ({0})</value>
-    <comment>{0} is a placeholder for the number of free servers (eg. Free servers (5)). This string is used when the number is different than 1.</comment>
+    <value>Free servers</value>
   </data>
   <data name="Connections_P2P_Countries_One" xml:space="preserve">
     <value>P2P country ({0})</value>
@@ -3682,12 +3678,10 @@
     <comment>{0} is a placeholder for the number of cities (eg. P2P cities (5)). This string is used when the number is different than 1.</comment>
   </data>
   <data name="Connections_P2P_Servers_One" xml:space="preserve">
-    <value>P2P server ({0})</value>
-    <comment>{0} is a placeholder for the number of servers (eg. P2P server (1)). This string is used when the number is 1.</comment>
+    <value>P2P server</value>
   </data>
   <data name="Connections_P2P_Servers_Other" xml:space="preserve">
-    <value>P2P servers ({0})</value>
-    <comment>{0} is a placeholder for the number of servers (eg. P2P servers (5)). This string is used when the number is different than 1.</comment>
+    <value>P2P servers</value>
   </data>
   <data name="Connections_SecureCore_Countries_One" xml:space="preserve">
     <value>Secure Core country ({0})</value>
@@ -3698,12 +3692,10 @@
     <comment>{0} is a placeholder for the number of countries (eg. Secure Core countries (5)). This string is used when the number is different than 1.</comment>
   </data>
   <data name="Connections_SecureCore_Servers_One" xml:space="preserve">
-    <value>Secure Core server ({0})</value>
-    <comment>{0} is a placeholder for the number of servers (eg. Secure Core server (1)). This string is used when the number is 1.</comment>
+    <value>Secure Core server</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other" xml:space="preserve">
-    <value>Secure Core servers ({0})</value>
-    <comment>{0} is a placeholder for the number of servers (eg. Secure Core servers (5)). This string is used when the number is different than 1.</comment>
+    <value>Secure Core servers</value>
   </data>
   <data name="Connections_Tor_Countries_One" xml:space="preserve">
     <value>Tor country ({0})</value>
@@ -3714,12 +3706,10 @@
     <comment>{0} is a placeholder for the number of countries (eg. Tor countries (5)). This string is used when the number is different than 1.</comment>
   </data>
   <data name="Connections_Tor_Servers_One" xml:space="preserve">
-    <value>Tor server ({0})</value>
-    <comment>{0} is a placeholder for the number of servers (eg. Tor server (1)). This string is used when the number is 1.</comment>
+    <value>Tor server</value>
   </data>
   <data name="Connections_Tor_Servers_Other" xml:space="preserve">
-    <value>Tor servers ({0})</value>
-    <comment>{0} is a placeholder for the number of servers (eg. Tor servers (5)). This string is used when the number is different than 1.</comment>
+    <value>Tor servers</value>
   </data>
   <data name="Connections_SeeStates_One" xml:space="preserve">
     <value>See state ({0})</value>
@@ -3766,7 +3756,7 @@
   <data name="Connections_Gateways_Servers_Other" xml:space="preserve">
     <value>Dedicated servers ({0})</value>
     <comment>{0} is a placeholder for the number of servers (eg. Dedicated servers (5)). This string is used when the number is different than 1.</comment>
-  </data>  
+  </data>
   <data name="Connections_Country_UnderMaintenance_Title" xml:space="preserve">
     <value>Unable to connect</value>
   </data>

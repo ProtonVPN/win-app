@@ -480,30 +480,40 @@ public static class LocalizationExtensions
 
     public static string GetConnectionGroupName(this ILocalizationProvider localizer, ConnectionGroupType groupType, int itemsCount)
     {
-        return localizer.GetPluralFormat(
-            groupType switch
-            {
-                ConnectionGroupType.Countries => "Connections_Countries",
-                ConnectionGroupType.States => "Connections_States",
-                ConnectionGroupType.Cities => "Connections_Cities",
-                ConnectionGroupType.Servers => "Connections_Servers",
-                ConnectionGroupType.FreeServers => "Connections_Free_Servers",
-                ConnectionGroupType.SecureCoreCountries => "Connections_SecureCore_Countries",
-                ConnectionGroupType.SecureCoreCountryPairs or
-                ConnectionGroupType.SecureCoreServers => "Connections_SecureCore_Servers",
-                ConnectionGroupType.P2PCountries => "Connections_P2P_Countries",
-                ConnectionGroupType.P2PStates => "Connections_P2P_States",
-                ConnectionGroupType.P2PCities => "Connections_P2P_Cities",
-                ConnectionGroupType.P2PServers => "Connections_P2P_Servers",
-                ConnectionGroupType.TorCountries => "Connections_Tor_Countries",
-                ConnectionGroupType.TorServers => "Connections_Tor_Servers",
-                ConnectionGroupType.Gateways => "Connections_Gateways",
-                ConnectionGroupType.GatewayServers => "Connections_Gateways_Servers",
-                ConnectionGroupType.PinnedRecents => "Connections_Recents_Pinned",
-                ConnectionGroupType.Recents => "Connections_Recents",
-                ConnectionGroupType.Profiles => "Connections_Profiles",
-                _ => throw new NotSupportedException($"Group type '{groupType}' is not supported.")
-            }, itemsCount);
+        string localizationKey = groupType switch
+        {
+            ConnectionGroupType.Countries => "Connections_Countries",
+            ConnectionGroupType.States => "Connections_States",
+            ConnectionGroupType.Cities => "Connections_Cities",
+            ConnectionGroupType.Servers => "Connections_Servers",
+            ConnectionGroupType.FreeServers => "Connections_Free_Servers",
+            ConnectionGroupType.SecureCoreCountries => "Connections_SecureCore_Countries",
+            ConnectionGroupType.SecureCoreCountryPairs or
+            ConnectionGroupType.SecureCoreServers => "Connections_SecureCore_Servers",
+            ConnectionGroupType.P2PCountries => "Connections_P2P_Countries",
+            ConnectionGroupType.P2PStates => "Connections_P2P_States",
+            ConnectionGroupType.P2PCities => "Connections_P2P_Cities",
+            ConnectionGroupType.P2PServers => "Connections_P2P_Servers",
+            ConnectionGroupType.TorCountries => "Connections_Tor_Countries",
+            ConnectionGroupType.TorServers => "Connections_Tor_Servers",
+            ConnectionGroupType.Gateways => "Connections_Gateways",
+            ConnectionGroupType.GatewayServers => "Connections_Gateways_Servers",
+            ConnectionGroupType.PinnedRecents => "Connections_Recents_Pinned",
+            ConnectionGroupType.Recents => "Connections_Recents",
+            ConnectionGroupType.Profiles => "Connections_Profiles",
+            _ => throw new NotSupportedException($"Group type '{groupType}' is not supported.")
+        };
+
+        bool shouldHideItemsCount = groupType
+            is ConnectionGroupType.Servers
+            or ConnectionGroupType.SecureCoreServers
+            or ConnectionGroupType.P2PServers
+            or ConnectionGroupType.TorServers
+            or ConnectionGroupType.FreeServers;
+
+        return shouldHideItemsCount
+            ? localizer.GetPlural(localizationKey, itemsCount)
+            : localizer.GetPluralFormat(localizationKey, itemsCount);
     }
 
     public static string GetKillSwitchMode(this ILocalizationProvider localizer, KillSwitchMode mode)
