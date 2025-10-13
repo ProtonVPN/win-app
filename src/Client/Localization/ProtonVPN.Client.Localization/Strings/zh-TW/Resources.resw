@@ -377,7 +377,9 @@
     <value>驗證 VPN 伺服器憑證時發生問題。這可能表示網路連線遭遇竄改，或是您想連線的伺服器配置有問題。請提交問題回報並聯繫我們的客服團隊。</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>我們不清楚發生的原因。請稍後重試，或聯繫我們的客服團隊。</value>
+    <value>檢查您的網際網路連線並再試一次。如果無效，請聯絡我們的客戶支援服務團隊。
+
+錯誤代碼：{0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>檢視修正</value>
@@ -435,7 +437,7 @@
     <value>最快速</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Free 伺服器 ({0} 個)</value>
+    <value>免費伺服器</value>
   </data>
   <data name="Connections_Gateway">
     <value>閘道</value>
@@ -462,7 +464,7 @@
     <value>P2P 國家 ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P 伺服器數量 ({0})</value>
+    <value>P2P 伺服器</value>
   </data>
   <data name="Connections_P2P_States_Other">
     <value>P2P州 ({0})</value>
@@ -537,7 +539,7 @@
     <value>雙重路由國家/地區 ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Secure Core 伺服器 ({0})</value>
+    <value>Secure Core伺服器</value>
   </data>
   <data name="Connections_SeeCities_Other">
     <value>可查閱城市數 ({0})</value>
@@ -558,7 +560,7 @@
     <value>伺服器維護中</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>伺服器 ({0})</value>
+    <value>伺服器</value>
   </data>
   <data name="Connections_State">
     <value>州</value>
@@ -578,7 +580,7 @@
     <value>Tor 國家/地區 ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Tor 伺服器 ({0})</value>
+    <value>Tor 伺服器</value>
   </data>
   <data name="Countries">
     <value>國家</value>
@@ -2974,7 +2976,7 @@ VPN 連線</value>
     <value>Open a website</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>當您連線到此設定檔時，自動開啟您選擇的網站。</value>
+    <value>Automatically open a website or an app of your choice when you connect to this profile.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>連接並前往</value>

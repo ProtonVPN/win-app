@@ -148,7 +148,7 @@
     <value>NetShield-sivu</value>
   </data>
   <data name="Automation_Properties_NoServers_Page">
-    <value>No servers page</value>
+    <value>Ei palvelimia -sivu</value>
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Porttiohjaus-sivu</value>
@@ -321,7 +321,7 @@
     <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Common_Tags_Recommended">
-    <value>Recommended</value>
+    <value>Suositukset</value>
     <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
@@ -377,7 +377,9 @@
     <value>VPN-palvelimen varmenteen vahvistuksessa on ongelma, joka saattaa viitata verkkoyhteyden peukalointiin tai tavoittelemasi palvelimen asetusongelmaan. Saat apua asiakaspalvelustamme lähettämällä ongelmaraportin.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>Emme ole varmoja, mitä tapahtui. Yritä uudelleen tai ota yhteyttä asiakaspalveluumme.</value>
+    <value>Check your internet connection and try again. If that doesn't work, contact our customer support team.
+
+Error code: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>Näytä korjaukset</value>
@@ -441,10 +443,10 @@
     <value>Nopein</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Ilmaispalvelin ({0})</value>
+    <value>Ilmaispalvelin</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Ilmaispalvelimet ({0})</value>
+    <value>Ilmaispalvelimet</value>
   </data>
   <data name="Connections_Gateway">
     <value>Yhdyskäytävä</value>
@@ -483,10 +485,10 @@
     <value>P2P-maat ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>P2P-palvelin ({0})</value>
+    <value>P2P-palvelin</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P-palvelimet ({0})</value>
+    <value>P2P-palvelimet</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>P2P-osavaltio ({0})</value>
@@ -576,10 +578,10 @@
     <value>Secure Core -maat ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Secure Core -palvelin ({0})</value>
+    <value>Secure Core -palvelin</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Secure Core -palvelimet ({0})</value>
+    <value>Secure Core -palvelimet</value>
   </data>
   <data name="Connections_SeeCities_One">
     <value>Näytä kaupunki ({0})</value>
@@ -609,10 +611,10 @@
     <value>Palvelin on huollossa</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Palvelin ({0})</value>
+    <value>Palvelin</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Palvelimet ({0})</value>
+    <value>Palvelimet</value>
   </data>
   <data name="Connections_State">
     <value>Osavaltio</value>
@@ -638,10 +640,10 @@
     <value>Tor-maat ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Tor-palvelin ({0})</value>
+    <value>Tor-palvelin</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Tor-palvelimet ({0})</value>
+    <value>Tor-palvelimet</value>
   </data>
   <data name="Countries">
     <value>Maat</value>
@@ -2370,7 +2372,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
   </data>
   <data name="Flyouts_Volume_Title">
-    <value>Total traffic</value>
+    <value>Kokonaistietoliikenne</value>
   </data>
   <data name="Flyouts_Volume_Upload">
     <value>Lähetys</value>
@@ -2409,7 +2411,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
   </data>
   <data name="Format_SpeedUnit">
-    <value>Current traffic ({0})</value>
+    <value>Nykyinen tietoliikenne ({0})</value>
     <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
   </data>
   <data name="Format_Speed_BytesPerSecond">
@@ -2561,7 +2563,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
-    <value>Advanced kill switch activated</value>
+    <value>Edistynyt tappokytkin aktivoitu</value>
   </data>
   <data name="Home_ConnectionDetails_City">
     <value>Kaupunki</value>
@@ -2640,7 +2642,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Salaa verkkotoimintasi VPN-yhteydellä.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
-    <value>Total traffic</value>
+    <value>Kokonaistietoliikenne</value>
   </data>
   <data name="Home_ConnectionDetails_Volume_Download">
     <value>Latausmäärä</value>
@@ -2793,7 +2795,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>6-digit authentication code</value>
+    <value>Kuusinumeroinen vahvistuskoodi</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>Kaksivaiheinen tunnistautuminen</value>
@@ -2855,7 +2857,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Ota yhteyttä</value>
   </data>
   <data name="NoServers_FailedToLoad">
-    <value>We couldn't load the server list.</value>
+    <value>Palvelinlistaa ei voitu ladata.</value>
   </data>
   <data name="NoServers_NeedHelp">
     <value>Tarvitsetko apua?</value>
@@ -3048,7 +3050,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Profile settings will override your VPN settings when connected.</value>
   </data>
   <data name="Profile_CustomSettings_Header">
-    <value>Add custom settings</value>
+    <value>Lisää mukautetuttuja asetuksia</value>
   </data>
   <data name="Profile_CustomSettings_Hide">
     <value>Piilota asetukset</value>
@@ -3063,25 +3065,25 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Tämä poistaa vaihtoehtoisen DNS:n käytöstä tästä profiilista.</value>
   </data>
   <data name="Profile_Options_Application">
-    <value>App</value>
+    <value>Sovellus</value>
   </data>
   <data name="Profile_Options_Application_Select">
-    <value>Select an app</value>
+    <value>Valitse sovellus</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_Application">
-    <value>Open an app</value>
+    <value>Avaa sovellus</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
-    <value>Default browser</value>
+    <value>Oletusselain</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
-    <value>Use private browsing mode</value>
+    <value>Käytä yksityistä selaustilaa</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_Website">
-    <value>Open a website</value>
+    <value>Avaa verkkosivusto</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>Avaa haluamasi verkkosivusto automaattisesti, kun tämä profiili yhdistetään.</value>
+    <value>Automatically open a website or an app of your choice when you connect to this profile.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>Yhdistä ja avaa</value>
@@ -3150,7 +3152,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Palvelin</value>
   </data>
   <data name="Server_Fastest">
-    <value>Fastest server</value>
+    <value>Nopein palvelin</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Nopein ilmainen palvelin</value>
@@ -3183,7 +3185,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Ilmaispalvelin</value>
   </data>
   <data name="Server_Random">
-    <value>Random server</value>
+    <value>Satunnainen palvelin</value>
   </data>
   <data name="Servers">
     <value>Palvelimet</value>
@@ -3244,10 +3246,10 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Common_IpAddresses_AlreadyExists">
-    <value>Address already added</value>
+    <value>Osoite on jo lisätty</value>
   </data>
   <data name="Settings_Common_IpAddresses_Invalid">
-    <value>Enter a valid IPv4 or IPv6 address</value>
+    <value>Syötä kelvollinen IPv4- tai IPv6-osoite</value>
   </data>
   <data name="Settings_Common_IpAddresses_Watermark">
     <value>192.0.2.0</value>
@@ -3557,7 +3559,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Automaattinen käynnistys</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>Auto-connect</value>
+    <value>Automaattinen yhdistäminen</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>Yhdistää automaattisesti oletussijaintiisi kun Proton VPN käynnistyy.</value>
@@ -3569,7 +3571,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Edellinen yhteys</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
-    <value>Auto-launch</value>
+    <value>Käynnistä automaattisesti</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Description">
     <value>Proton VPN käynnistyy automaattisesti, kun kirjaudut laitteellesi.</value>
@@ -3697,7 +3699,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>WireGuard</value>
   </data>
   <data name="Settings_Reconnection_Title">
-    <value>Reconnect to apply changes</value>
+    <value>Yhdistä uudelleen ottaaksesi muutokset käyttöön</value>
   </data>
   <data name="Settings_RestoreDefault">
     <value>Palauta oletusasetukset</value>
@@ -3869,7 +3871,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
-    <value>Open app to sign in</value>
+    <value>Avaa sovellus kirjautuaksesi</value>
   </data>
   <data name="Unit_BytesPerSecond">
     <value>t/s</value>
@@ -4000,7 +4002,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Ohjaa tietoliikenteesi huipputurvallisten Sveitsissä, Ruotsissa ja Islannissa sijaitsevien palvelimien kautta</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Browse at even higher speeds</value>
+    <value>Selaa vielä korkeammilla nopeuksilla</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
     <value>Browse up to 400% faster with VPN Accelerator</value>
@@ -4009,7 +4011,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Käytä nopeampia, ruuhkattomampia palvelimia</value>
   </data>
   <data name="Upsell_Carousel_Speed_Traffic">
-    <value>Get connection speeds of up to 10 Gbps</value>
+    <value>Saat jopa 10 Gbit/s yhteysnopeudet.</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
     <value>Hanki molempien parhaat puolet</value>

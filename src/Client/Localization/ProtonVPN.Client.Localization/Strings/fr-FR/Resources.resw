@@ -377,7 +377,9 @@
     <value>Il y a un problème de validation du certificat du serveur VPN, ce qui peut indiquer que la connexion réseau est altérée ou que le serveur auquel vous essayez de vous connecter a un problème de configuration. Signalez le problème à notre service client pour obtenir de l'aide.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>Nous ne savons pas exactement ce qui s'est passé. Nous vous invitons à réessayer ou à contacter notre équipe d'assistance à la clientèle.</value>
+    <value>Veuillez vérifier votre connexion Internet et réessayer. Si cela ne fonctionne pas, contactez notre équipe du service client. 
+
+Code d'erreur : {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>Afficher les correctifs</value>
@@ -441,10 +443,10 @@
     <value>La plus rapide</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Serveur gratuit ({0})</value>
+    <value>Serveur gratuit</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Serveurs gratuits ({0})</value>
+    <value>Serveurs gratuits</value>
   </data>
   <data name="Connections_Gateway">
     <value>Passerelle </value>
@@ -483,10 +485,10 @@
     <value>Pays P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>Serveur P2P ({0})</value>
+    <value>Serveur P2P</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>Serveurs P2P ({0})</value>
+    <value>Serveurs P2P</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>État P2P ({0})</value>
@@ -576,10 +578,10 @@
     <value>Pays Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Serveur Secure Core ({0})</value>
+    <value>Serveur Secure Core</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Serveurs Secure Core ({0})</value>
+    <value>Serveurs Secure Core</value>
   </data>
   <data name="Connections_SeeCities_One">
     <value>Voir ville ({0})</value>
@@ -609,10 +611,10 @@
     <value>Ce serveur est en maintenance.</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Serveur ({0})</value>
+    <value>Serveur</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Serveurs ({0})</value>
+    <value>Serveurs</value>
   </data>
   <data name="Connections_State">
     <value>État</value>
@@ -638,10 +640,10 @@
     <value>Pays Tor ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Serveur Tor ({0})</value>
+    <value>Serveur Tor</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Serveurs Tor ({0})</value>
+    <value>Serveurs Tor</value>
   </data>
   <data name="Countries">
     <value>Pays</value>
@@ -3081,7 +3083,7 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>Ouvrir un site internet</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>Ouvrez automatiquement un site internet de votre choix lorsque vous vous connectez à ce profil.</value>
+    <value>Ouvrez automatiquement un site internet ou une application de votre choix lorsque vous vous connectez à ce profil.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>Connexion et ouverture</value>

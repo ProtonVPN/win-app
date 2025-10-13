@@ -377,7 +377,9 @@
     <value>Er is een probleem opgetreden bij het verifiëren van het VPN-servercertificaat. Dit kan erop duiden dat er met de netwerkverbinding wordt geknoeid of dat de server waarmee u verbinding probeert te maken een configuratieprobleem heeft. Vraag om hulp bij onze klantenservice door een probleemrapport te sturen.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>We weten niet precies wat hier is gebeurd. Probeer het nog een keer of neem contact op met onze klantenservice</value>
+    <value>Controleer uw internetverbinding en probeer het opnieuw. Als dat niet werkt, neem dan contact op met ons klantenondersteuningsteam.
+
+Foutcode: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>Bekijk fixes</value>
@@ -441,10 +443,10 @@
     <value>Snelste</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Gratis server ({0})</value>
+    <value>Gratis server</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Gratis servers ({0})</value>
+    <value>Gratis servers</value>
   </data>
   <data name="Connections_Gateway">
     <value>Gateway</value>
@@ -483,10 +485,10 @@
     <value>P2P-landen ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>P2P-server ({0})</value>
+    <value>P2P-server</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P-servers ({0})</value>
+    <value>P2P-servers</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>P2P-staat ({0})</value>
@@ -576,10 +578,10 @@
     <value>Secure Core-landen ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Secure Core-server ({0})</value>
+    <value>Secure Core-server</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Secure Core-servers ({0})</value>
+    <value>Secure Core-servers</value>
   </data>
   <data name="Connections_SeeCities_One">
     <value>Bekijk stad ({0})</value>
@@ -609,10 +611,10 @@
     <value>Deze server ondergaat onderhoud</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Server ({0})</value>
+    <value>Server</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Servers ({0})</value>
+    <value>Servers</value>
   </data>
   <data name="Connections_State">
     <value>Staat</value>
@@ -638,10 +640,10 @@
     <value>Tor-landen ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Tor-server ({0})</value>
+    <value>Tor-server</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Tor-servers ({0})</value>
+    <value>Tor-servers</value>
   </data>
   <data name="Countries">
     <value>Landen</value>
@@ -3081,7 +3083,7 @@ VPN-verbinding</value>
     <value>Open een website</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>Open automatisch een website naar keuze wanneer u verbinding maakt met dit profiel.</value>
+    <value>Automatically open a website or an app of your choice when you connect to this profile.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>Verbinden en doorgaan</value>

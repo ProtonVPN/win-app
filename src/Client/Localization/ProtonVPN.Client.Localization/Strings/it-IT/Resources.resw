@@ -377,7 +377,9 @@
     <value>C'è un problema nella convalida del certificato del server VPN, ciò potrebbe indicare che la connessione di rete è stata manomessa o che il server a cui stai tentando di connetterti ha un problema di configurazione. Chiedi aiuto al nostro servizio di assistenza clienti segnalando un problema.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>Non siamo sicuri di cosa sia successo. Riprova o contatta il nostro team di assistenza clienti.</value>
+    <value>Controlla la tua connessione internet e riprova. Se non funziona, contatta il nostro team di assistenza clienti.
+
+Codice errore: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>Visualizza soluzioni</value>
@@ -441,10 +443,10 @@
     <value>Più veloce</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Server gratuito ({0})</value>
+    <value>Server gratuito</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Server gratuiti ({0})</value>
+    <value>Server gratuiti</value>
   </data>
   <data name="Connections_Gateway">
     <value>Gateway</value>
@@ -483,10 +485,10 @@
     <value>Paesi P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>Server P2P ({0})</value>
+    <value>Server P2P</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>Server P2P ({0})</value>
+    <value>Server P2P</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>Stato P2P ({0})</value>
@@ -576,10 +578,10 @@
     <value>Paesi Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Server Secure Core ({0})</value>
+    <value>Server Secure Core</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Server Secure Core ({0})</value>
+    <value>Server Secure Core</value>
   </data>
   <data name="Connections_SeeCities_One">
     <value>Visualizza la città ({0})</value>
@@ -609,10 +611,10 @@
     <value>Server in manutenzione</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Server ({0})</value>
+    <value>Server</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Server ({0})</value>
+    <value>Server</value>
   </data>
   <data name="Connections_State">
     <value>Stato</value>
@@ -638,10 +640,10 @@
     <value>Paesi Tor ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Server Tor ({0})</value>
+    <value>Server Tor</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Server Tor ({0})</value>
+    <value>Server Tor</value>
   </data>
   <data name="Countries">
     <value>Paesi</value>

@@ -377,7 +377,9 @@
     <value>Es gibt ein Problem bei der Validierung des VPN-Server-Zertifikats, was darauf hinweisen könnte, dass die Netzwerkverbindung manipuliert wurde oder der Server, mit dem du dich verbinden möchtest, ein Konfigurationsproblem hat. Hol dir Hilfe von unserem Kundensupport, indem du einen Fehlerbericht sendest.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>Wir sind nicht sicher, was hier passiert ist. Bitte versuche es erneut oder wende dich an unseren Kundensupport.</value>
+    <value>Überprüfe deine Internetverbindung und versuche es erneut. Sollte das nicht funktionieren, wende dich bitte an unseren Kundensupport. 
+
+Fehlercode: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>Fehlerkorrekturen anzeigen</value>
@@ -441,10 +443,10 @@
     <value>Am schnellsten</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Kostenloser Server ({0})</value>
+    <value>Kostenloser Server</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Kostenlose-Server ({0})</value>
+    <value>Kostenlose Server</value>
   </data>
   <data name="Connections_Gateway">
     <value>Gateway</value>
@@ -483,10 +485,10 @@
     <value>P2P-Länder ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>P2P-Server ({0})</value>
+    <value>P2P‐Server</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P-Server ({0})</value>
+    <value>P2P‐Server</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>P2P-Land ({0})</value>
@@ -576,10 +578,10 @@
     <value>Secure Core-Länder ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Secure Core-Server ({0})</value>
+    <value>Secure Core-Server</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Secure Core-Server ({0})</value>
+    <value>Secure Core‐Server</value>
   </data>
   <data name="Connections_SeeCities_One">
     <value>Siehe Ort ({0})</value>
@@ -609,10 +611,10 @@
     <value>Dieser Server wird gerade gewartet</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Server ({0})</value>
+    <value>Server</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Server ({0})</value>
+    <value>Server</value>
   </data>
   <data name="Connections_State">
     <value>Status</value>
@@ -638,10 +640,10 @@
     <value>Tor-Länder ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Tor-Server ({0})</value>
+    <value>Tor-Server</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Tor-Server ({0})</value>
+    <value>Tor-Server</value>
   </data>
   <data name="Countries">
     <value>Länder</value>
@@ -3081,7 +3083,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Website öffnen</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>Öffne automatisch eine Website deiner Wahl, wenn du dich mit diesem Profil verbindest.</value>
+    <value>Öffne automatisch eine Website oder eine App deiner Wahl, wenn du dich mit diesem Profil verbindest.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>Verbinden und Los</value>

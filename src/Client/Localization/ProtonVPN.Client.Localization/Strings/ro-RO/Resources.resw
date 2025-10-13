@@ -377,7 +377,9 @@
     <value>Există o problemă la validarea certificatului de server VPN, care ar putea indica modificarea conexiunii la rețea sau că serverul la care încercați să vă conectați are o problemă de configurare. Obțineți ajutor de la asistența noastră pentru clienți trimițând un raport de erori.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>Nu suntem siguri ce s-a întâmplat aici. Reîncercați sau contactați echipa noastră de asistență pentru clienți.</value>
+    <value>Verificați-vă conexiunea la internet și reîncercați. Dacă acest lucru nu funcționează, contactați echipa noastră de asistență clienți.
+
+Cod eroare: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>Afișare soluții</value>
@@ -447,13 +449,13 @@
     <value>Cel mai rapid</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Servere gratuite ({0})</value>
+    <value>server gratuit</value>
   </data>
   <data name="Connections_Free_Servers_Few">
-    <value>Servere gratuite ({0})</value>
+    <value>servere gratuite</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Servere gratuite ({0})</value>
+    <value>de servere gratuite</value>
   </data>
   <data name="Connections_Gateway">
     <value>Poartă de acces</value>
@@ -504,13 +506,13 @@
     <value>Țări P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>Servere P2P ({0})</value>
+    <value>server P2P</value>
   </data>
   <data name="Connections_P2P_Servers_Few">
-    <value>Servere P2P ({0})</value>
+    <value>servere P2P</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>Servere P2P ({0})</value>
+    <value>de servere P2P</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>State P2P ({0})</value>
@@ -615,13 +617,13 @@
     <value>Țări cu Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Servere Secure Core ({0})</value>
+    <value>server Secure Core</value>
   </data>
   <data name="Connections_SecureCore_Servers_Few">
-    <value>Servere Secure Core ({0})</value>
+    <value>servere Secure Core</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Servere Secure Core ({0})</value>
+    <value>de servere Secure Core</value>
   </data>
   <data name="Connections_SeeCities_One">
     <value>Afișare oraș ({0})</value>
@@ -660,13 +662,13 @@
     <value>Acest server se află în mentenanță.</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Servere ({0})</value>
+    <value>server</value>
   </data>
   <data name="Connections_Servers_Few">
-    <value>Servere ({0})</value>
+    <value>servere</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Servere ({0})</value>
+    <value>de servere</value>
   </data>
   <data name="Connections_State">
     <value>Stat</value>
@@ -698,13 +700,13 @@
     <value>Țări Tor ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Servere Tor ({0})</value>
+    <value>server Tor</value>
   </data>
   <data name="Connections_Tor_Servers_Few">
-    <value>Servere Tor ({0})</value>
+    <value>servere Tor</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Servere Tor ({0})</value>
+    <value>de servere Tor</value>
   </data>
   <data name="Countries">
     <value>Țări</value>
@@ -3189,7 +3191,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Deschidere un site web</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>Deschidere automată a unei pagini web alese când vă conectați la acest profil.</value>
+    <value>Deschidere automată un site web sau o aplicație pe care o alegeți atunci când vă conectați la acest profil.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>Conectare și accesare</value>
@@ -3421,7 +3423,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Permite conexiuni către imprimante, boxe și alte dispozitive din rețeaua locală.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
-    <value>Conectați-vă la dispozitive folosind denumiri precum „Imprimanta-mea” sau „ruter.local” în loc de adrese IP. Utilizează rezoluția DNS locală. Dezactivat implicit pentru a menține viteze VPN mai rapide.</value>
+    <value>Conectați-vă la dispozitive folosind denumiri precum „Imprimanta-mea” sau „ruter.local” în loc de adrese IP. Utilizează rezoluția DNS locală. Dezactivată implicit pentru a menține viteze VPN mai rapide.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
     <value>Accesare dispozitive după nume</value>

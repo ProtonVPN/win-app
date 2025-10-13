@@ -377,7 +377,9 @@
     <value>Det har oppstått et problem med å validere VPN-tjenersertifikatet, som kan tyde på at nettverkstilkoblingen tukles med eller at tjeneren du prøver å koble til, har et konfigurasjonsproblem. Få hjelp fra vår kundestøtte ved å sende en feilmelding.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>Vi er ikke sikre på hva som skjedde her. Prøv på nytt eller kontakt kundestøtteteamet vårt.</value>
+    <value>Sjekk internettforbindelsen din og prøv på nytt. Hvis det ikke fungerer, kan du kontakte kundestøtteteamet vårt.
+
+Feilkode: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>Vis løsninger</value>
@@ -441,10 +443,10 @@
     <value>Raskeste</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Gratis tjener ({0})</value>
+    <value>Gratis tjener</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Gratis tjenere ({0})</value>
+    <value>Gratis tjenere</value>
   </data>
   <data name="Connections_Gateway">
     <value>Porttjener</value>
@@ -483,10 +485,10 @@
     <value>P2P-land ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>P2P-tjener ({0})</value>
+    <value>P2P-tjener</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P-tjenere ({0})</value>
+    <value>P2P-tjenere</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>P2P-stat ({0})</value>
@@ -576,10 +578,10 @@
     <value>Secure Core-land ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Secure Core-tjener ({0})</value>
+    <value>Secure Core-tjener</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Secure Core-tjenere ({0})</value>
+    <value>Secure Core-tjenere</value>
   </data>
   <data name="Connections_SeeCities_One">
     <value>Se by ({0})</value>
@@ -609,10 +611,10 @@
     <value>Denne tjeneren er under vedlikehold</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Tjener ({0})</value>
+    <value>Tjener</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Tjenere ({0})</value>
+    <value>Tjenere</value>
   </data>
   <data name="Connections_State">
     <value>Stat</value>
@@ -638,10 +640,10 @@
     <value>Tor-land ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Tor-tjener ({0})</value>
+    <value>Tor-tjener</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Tor-tjenere ({0})</value>
+    <value>Tor-tjenere</value>
   </data>
   <data name="Countries">
     <value>Land</value>
@@ -3066,22 +3068,22 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>App</value>
   </data>
   <data name="Profile_Options_Application_Select">
-    <value>Select an app</value>
+    <value>Velg en app</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_Application">
-    <value>Open an app</value>
+    <value>Åpne en app</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
-    <value>Default browser</value>
+    <value>Standard nettleser</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
-    <value>Use private browsing mode</value>
+    <value>Bruk privat nettlesingsmodus</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_Website">
-    <value>Open a website</value>
+    <value>Åpne et nettsted</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>Åpne automatisk et nettsted du ønsker når du kobler til denne profilen.</value>
+    <value>Åpne automatisk et nettsted eller en app du ønsker når du kobler til denne profilen.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>Koble til og åpne</value>
@@ -3313,10 +3315,10 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Tillater tilkoblinger til skrivere, høyttalere og andre enheter på ditt lokale nettverk.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
-    <value>Connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Uses local DNS resolution. Disabled by default to maintain faster VPN speeds.</value>
+    <value>Koble til enheter ved å bruke navn som "Min-Skriver" eller "ruter.lokal" i stedet for IP-adresser. Bruker lokal DNS-oppslag. Deaktivert som standard for å opprettholde raskere VPN-hastigheter.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
-    <value>Access devices by name</value>
+    <value>Tilgang til enheter etter navn</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>NAT-type</value>

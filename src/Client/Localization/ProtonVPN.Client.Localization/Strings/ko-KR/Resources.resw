@@ -377,7 +377,9 @@
     <value>VPN 서버 인증서의 유효성을 검사하는 데 문제가 있으며, 이는 네트워크 연결이 변조되었거나 연결하려는 서버에 구성 문제가 있음을 나타낼 수 있습니다. 문제 보고서를 보내서 지원팀의 도움을 받으실 수 있습니다.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>현재 무슨 증상인지 알 수 없습니다. 재시도 하거나 고객 지원 팀에 연락해 주십시오.</value>
+    <value>Check your internet connection and try again. If that doesn't work, contact our customer support team.
+
+Error code: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>수정 사항 보기</value>
@@ -435,7 +437,7 @@
     <value>가장 빠르게</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>무료 서버 ({0})</value>
+    <value>Free servers</value>
   </data>
   <data name="Connections_Gateway">
     <value>게이트웨이</value>
@@ -462,7 +464,7 @@
     <value>P2P 국가 ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P 서버 ({0})</value>
+    <value>P2P servers</value>
   </data>
   <data name="Connections_P2P_States_Other">
     <value>P2P 도시 ({0})</value>
@@ -537,7 +539,7 @@
     <value>Secure Core 도시 ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Secure Core 서버 ({0})</value>
+    <value>Secure Core servers</value>
   </data>
   <data name="Connections_SeeCities_Other">
     <value>도시 보기({0})</value>
@@ -558,7 +560,7 @@
     <value>이 서버는 점검 중입니다.</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>서버 ({0})</value>
+    <value>Servers</value>
   </data>
   <data name="Connections_State">
     <value>주/도</value>
@@ -578,7 +580,7 @@
     <value>Tor 국가 ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Tor 서버 ({0})</value>
+    <value>Tor servers</value>
   </data>
   <data name="Countries">
     <value>국가</value>
@@ -2973,7 +2975,7 @@ VPN 연결</value>
     <value>Open a website</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>이 프로필로 연결할 때 선택한 웹 사이트을 자동으로 열어줍니다.</value>
+    <value>Automatically open a website or an app of your choice when you connect to this profile.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>연결 및 시작하기</value>

@@ -377,7 +377,9 @@
     <value>Hi ha un problema amb la validació del certificat del servidor VPN, la qual cosa pot indicar que la connexió de la xarxa està sent manipulada o que el servidor al qual esteu intentant connectar-vos té un problema de configuració. Obteniu ajuda del nostre equip de suport tot enviant un informe d'incidència.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>No estem segurs de què ha passat. Torneu-ho a provar o poseu-vos en contacte amb l'equip d'atenció al client.</value>
+    <value>Comproveu la connexió a Internet i torneu-ho a provar. Si això no funciona, contacteu amb el nostre servei d'atenció al client.
+
+Codi d'error: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>Mostra les correccions</value>
@@ -441,10 +443,10 @@
     <value>La més ràpida</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Servidor gratuït ({0})</value>
+    <value>Servidor gratuït</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Servidors gratuïts ({0})</value>
+    <value>Servidors gratuïts</value>
   </data>
   <data name="Connections_Gateway">
     <value>Passarel·la</value>
@@ -483,10 +485,10 @@
     <value>Països P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>Servidor P2P ({0})</value>
+    <value>Servidor P2P</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>Servidors P2P ({0})</value>
+    <value>Servidors P2P</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>Estat P2P ({0})</value>
@@ -576,10 +578,10 @@
     <value>Països Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Servidor Secure Core ({0})</value>
+    <value>Servidor Secure Core</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Servidors Secure Core ({0})</value>
+    <value>Servidors Secure Core</value>
   </data>
   <data name="Connections_SeeCities_One">
     <value>Veure la ciutat ({0})</value>
@@ -609,10 +611,10 @@
     <value>Aquest servidor està en manteniment</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Servidor ({0})</value>
+    <value>Servidor</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Servidors ({0})</value>
+    <value>Servidors</value>
   </data>
   <data name="Connections_State">
     <value>Estat</value>
@@ -638,10 +640,10 @@
     <value>Països Tor ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Servidor Tor ({0})</value>
+    <value>Servidor Tor</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Servidors Tor ({0})</value>
+    <value>Servidors Tor</value>
   </data>
   <data name="Countries">
     <value>Països</value>
@@ -3082,7 +3084,7 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Obriu un lloc web</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>Obriu automàticament el lloc web que trieu quan us connecteu a aquest perfil.</value>
+    <value>Obriu automàticament un lloc web o l'aplicació que hàgiu triat quan us connecteu a aquest perfil.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>Connecta i continua</value>

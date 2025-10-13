@@ -377,7 +377,9 @@
     <value>مشکلی در تأیید اعبار گواهی سرور وجود دارد، که می‌تواند نشان دهنده این باشد که اتصال شبکه دستکاری شده است یا سرور مدنظرتان مشکل پیکربندی دارد. با فرستادن گزارش مشکل از پشتیبانی مشتری کمک بگیرید.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>ما مطمئن نیستیم که این‌جا چه اتفاقی افتاده است. لطفاً دوباره امتحان کنید یا با تیم پشتیبانی مشتری ما تماس بگیرید.</value>
+    <value>Check your internet connection and try again. If that doesn't work, contact our customer support team.
+
+Error code: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>View fixes</value>
@@ -441,10 +443,10 @@
     <value>سریع‌ترین</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>سرور رایگان ({0})</value>
+    <value>Free server</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>سرورهای رایگان ({0})</value>
+    <value>Free servers</value>
   </data>
   <data name="Connections_Gateway">
     <value>دروازه</value>
@@ -483,10 +485,10 @@
     <value>کشورهای P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>سرور P2P ({0})</value>
+    <value>P2P server</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>سرورهای P2P ({0})</value>
+    <value>P2P servers</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>ایالت P2P ({0})</value>
@@ -576,10 +578,10 @@
     <value>کشورهای Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>سرور Secure Core ({0})</value>
+    <value>Secure Core server</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>سرورهای Secure Core ({0})</value>
+    <value>Secure Core servers</value>
   </data>
   <data name="Connections_SeeCities_One">
     <value>دیدن شهر ({0})</value>
@@ -609,10 +611,10 @@
     <value>این سرور تحت تعمیر است</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>سرور ({0})</value>
+    <value>Server</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>سرورها ({0})</value>
+    <value>Servers</value>
   </data>
   <data name="Connections_State">
     <value>ایالت</value>
@@ -638,10 +640,10 @@
     <value>کشورهای Tor ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>سرور Tor ({0})</value>
+    <value>Tor server</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>سرورهای Tor ({0})</value>
+    <value>Tor servers</value>
   </data>
   <data name="Countries">
     <value>کشورها</value>
@@ -3081,7 +3083,7 @@ Secure Core</value>
     <value>Open a website</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>Automatically open a website of your choice when you connect to this profile.</value>
+    <value>Automatically open a website or an app of your choice when you connect to this profile.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>Connect and Go</value>

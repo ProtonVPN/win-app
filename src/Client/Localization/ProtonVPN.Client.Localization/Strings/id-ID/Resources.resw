@@ -377,7 +377,9 @@
     <value>Terdapat masalah dalam memvalidasi sertifikat server VPN, yang dapat menandakan bahwa koneksi jaringan yang ada sedang disusupi atau server yang Anda coba sambungkan memiliki masalah konfigurasi. Dapatkan bantuan dari tim layanan dukungan kami dengan mengirimkan Laporan Masalah.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>Kami tidak yakin akan apa yang terjadi. Silakan coba lagi atau hubungi tim layanan dukungan kami.</value>
+    <value>Periksa koneksi internet Anda dan coba lagi. Apabila hal ini tidak berhasil, hubungi tim layanan dukungan kami.
+
+Kode kesalahan: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>Lihat solusi</value>
@@ -435,7 +437,7 @@
     <value>Tercepat</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Server gratis ({0})</value>
+    <value>Server Free</value>
   </data>
   <data name="Connections_Gateway">
     <value>Gateway</value>
@@ -462,7 +464,7 @@
     <value>Negara P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>Server P2P ({0})</value>
+    <value>Server P2P</value>
   </data>
   <data name="Connections_P2P_States_Other">
     <value>Negara bagian P2P ({0})</value>
@@ -537,7 +539,7 @@
     <value>Negara Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Server Secure Core ({0})</value>
+    <value>Server Secure Core</value>
   </data>
   <data name="Connections_SeeCities_Other">
     <value>Lihat kota ({0})</value>
@@ -558,7 +560,7 @@
     <value>Server ini sedang dalam pemeliharaan</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Server ({0})</value>
+    <value>Server</value>
   </data>
   <data name="Connections_State">
     <value>Negara bagian</value>
@@ -578,7 +580,7 @@
     <value>Negara Tor ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Server Tor ({0})</value>
+    <value>Server Tor</value>
   </data>
   <data name="Countries">
     <value>Negara</value>
@@ -2955,25 +2957,25 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Hal ini akan menonaktifkan DNS khusus bagi profil ini.</value>
   </data>
   <data name="Profile_Options_Application">
-    <value>App</value>
+    <value>Aplikasi</value>
   </data>
   <data name="Profile_Options_Application_Select">
-    <value>Select an app</value>
+    <value>Pilih aplikasi</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_Application">
-    <value>Open an app</value>
+    <value>Buka aplikasi</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
-    <value>Default browser</value>
+    <value>Browser bawaan</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
-    <value>Use private browsing mode</value>
+    <value>Gunakan mode penjelajahan pribadi</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_Website">
-    <value>Open a website</value>
+    <value>Buka situs web</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>Membuka situs web yang Anda tentukan secara otomatis pada saat Anda terhubung ke profil ini.</value>
+    <value>Membuka situs web atau aplikasi yang Anda tentukan secara otomatis pada saat Anda terhubung ke profil ini.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>Sambung dan Luncurkan</value>
@@ -3205,10 +3207,10 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Memungkinkan koneksi ke printer, speaker, dan perangkat lainnya di jaringan lokal Anda.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
-    <value>Connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Uses local DNS resolution. Disabled by default to maintain faster VPN speeds.</value>
+    <value>Menghubungkan Anda ke perangkat eksternal dengan menggunakan nama seperti "My.Printer" atau "router.local" alih-alih alamat IP milik perangkat. Fitur ini menggunakan resolusi DNS lokal, dan dinonaktifkan secara bawaan untuk menjaga kecepatan VPN yang lebih cepat.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
-    <value>Access devices by name</value>
+    <value>Akses perangkat berdasarkan nama</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>Tipe NAT</value>

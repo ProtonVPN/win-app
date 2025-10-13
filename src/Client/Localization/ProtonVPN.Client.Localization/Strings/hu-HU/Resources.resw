@@ -377,7 +377,9 @@
     <value>Probléma van a VPN-kiszolgáló tanúsítványának ellenőrzésével. Ez azt jelezheti, hogy a hálózati kapcsolatot megfigyelik, vagy a kiválasztott szerver konfigurációja hibás. Kérjen segítséget ügyfélszolgálatunktól a probléma jelentés segítségével.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>Nem tudjuk, hogy mi történt. Kérjük, próbálja meg újra, vagy lépjen kapcsolatba az ügyfélszolgálattal.</value>
+    <value>Check your internet connection and try again. If that doesn't work, contact our customer support team.
+
+Error code: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>Javítások megtekintése</value>
@@ -441,10 +443,10 @@
     <value>Leggyorsabb</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Ingyenes szerver ({0})</value>
+    <value>Free server</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Ingyenes szerverek ({0})</value>
+    <value>Free servers</value>
   </data>
   <data name="Connections_Gateway">
     <value>Átjáró</value>
@@ -483,10 +485,10 @@
     <value>P2P országok ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>P2P szerver ({0})</value>
+    <value>P2P server</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P szerverek ({0})</value>
+    <value>P2P servers</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>P2P állapota ({0})</value>
@@ -576,10 +578,10 @@
     <value>Secure Core országok ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Secure Core szerver ({0})</value>
+    <value>Secure Core server</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Secure Core szerverek ({0})</value>
+    <value>Secure Core servers</value>
   </data>
   <data name="Connections_SeeCities_One">
     <value>Város megtekintése ({0})</value>
@@ -609,10 +611,10 @@
     <value>A szerver karbantartás alatt áll</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Szerver ({0})</value>
+    <value>Server</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Szerverek ({0})</value>
+    <value>Servers</value>
   </data>
   <data name="Connections_State">
     <value>Állapot</value>
@@ -638,10 +640,10 @@
     <value>Tor országok ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Tor szerver ({0})</value>
+    <value>Tor server</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Tor szerverek ({0})</value>
+    <value>Tor servers</value>
   </data>
   <data name="Countries">
     <value>Országok</value>
@@ -3081,7 +3083,7 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Open a website</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>Automatikusan megnyithatja a kiválasztott webhelyet, amikor csatlakozik ehhez a profilhoz.</value>
+    <value>Automatically open a website or an app of your choice when you connect to this profile.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>Csatlakozás és indítás</value>

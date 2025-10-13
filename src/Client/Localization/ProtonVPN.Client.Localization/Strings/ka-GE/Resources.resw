@@ -377,7 +377,9 @@
     <value>არსებობს პრობლემა VPN სერვერის სერტიფიკატის გადამოწმებასთან, რაც შეიძლება ნიშნავდეს, რომ თქვენი ქსელური შეერთება გზაში იცვლება, ან სერვერს, რომელთან მიერთებასაც ცდილობთ, პრობლემები აქვს. დაუკავშირდით ჩვენი მხარდაჭერის გუნდს ანგარიშის გაგზავნით.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>დარწმუნებულები არ ვართ, აქ რა მოხდა. თავიდან სცადეთ ან დაუკავშირდით მომხმარებლი მხარდაჭერის გუნდს.</value>
+    <value>Check your internet connection and try again. If that doesn't work, contact our customer support team.
+
+Error code: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>გასწორებების ნახვა</value>
@@ -441,10 +443,10 @@
     <value>უსწრაფესი</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Free server ({0})</value>
+    <value>Free server</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>უფასო სერვერები ({0})</value>
+    <value>Free servers</value>
   </data>
   <data name="Connections_Gateway">
     <value>კარიბჭე</value>
@@ -483,10 +485,10 @@
     <value>P2P ქვეყნები ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>P2P სერვერი ({0})</value>
+    <value>P2P server</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P სერვერი ({0})</value>
+    <value>P2P servers</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>P2P state ({0})</value>
@@ -576,10 +578,10 @@
     <value>Secure Core-ის ქვეყნები ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Secure Core-ის სერვერი ({0})</value>
+    <value>Secure Core server</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Secure Core-ის სერვერი ({0})</value>
+    <value>Secure Core servers</value>
   </data>
   <data name="Connections_SeeCities_One">
     <value>ქალაქის ნახვა ({0})</value>
@@ -609,10 +611,10 @@
     <value>ეს სერვერი ტექმომსახურებაშია</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Server ({0})</value>
+    <value>Server</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>სერვერები ({0})</value>
+    <value>Servers</value>
   </data>
   <data name="Connections_State">
     <value>მდგომარეობა</value>
@@ -638,10 +640,10 @@
     <value>Tor ქვეყნები ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Tor server ({0})</value>
+    <value>Tor server</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Tor-ის სერვერები ({0})</value>
+    <value>Tor servers</value>
   </data>
   <data name="Countries">
     <value>ქვეყნები</value>
@@ -3081,7 +3083,7 @@ VPN მიერთება</value>
     <value>Open a website</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>ავტომატურად გაიხსნება ვებგვერდი, რომელსაც აირჩევთ, როცა ამ პროფილს მიუერთედებით.</value>
+    <value>Automatically open a website or an app of your choice when you connect to this profile.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>მიერთება და გადასვლა</value>

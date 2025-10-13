@@ -377,7 +377,9 @@
     <value>VPN 服务器的证书未能通过验证，这意味着当前网络环境可能已遭到监控，或者服务器配置存在问题。请填写问题反馈以便我们的客服为您提供帮助。</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>我们不清楚这里发生了什么。请重试或联系我们的客户支持团队。</value>
+    <value>Check your internet connection and try again. If that doesn't work, contact our customer support team.
+
+Error code: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>查看修复方法</value>
@@ -435,7 +437,7 @@
     <value>最快</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>免费服务器（{0}）</value>
+    <value>Free servers</value>
   </data>
   <data name="Connections_Gateway">
     <value>网关</value>
@@ -462,7 +464,7 @@
     <value>P2P 国家 ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P 服务器 ({0})</value>
+    <value>P2P servers</value>
   </data>
   <data name="Connections_P2P_States_Other">
     <value>P2P 州 ({0})</value>
@@ -537,7 +539,7 @@
     <value>Secure Core 国家/地区（{0}）</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Secure Core 服务器 ({0})</value>
+    <value>Secure Core servers</value>
   </data>
   <data name="Connections_SeeCities_Other">
     <value>查看城市 ({0})</value>
@@ -558,7 +560,7 @@
     <value>该服务器正在维护中</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>服务器 ({0})</value>
+    <value>Servers</value>
   </data>
   <data name="Connections_State">
     <value>省份/地区</value>
@@ -578,7 +580,7 @@
     <value>Tor 国家/地区（{0}）</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Tor 服务器（{0}）</value>
+    <value>Tor servers</value>
   </data>
   <data name="Countries">
     <value>国家</value>
@@ -2973,7 +2975,7 @@ VPN 连接</value>
     <value>Open a website</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>当您连接到此配置文件时，将自动打开您选择的网站。</value>
+    <value>Automatically open a website or an app of your choice when you connect to this profile.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>连接并开始</value>

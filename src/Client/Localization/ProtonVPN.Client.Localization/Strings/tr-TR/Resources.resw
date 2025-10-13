@@ -377,7 +377,9 @@
     <value>VPN sunucu sertifikası doğrulanırken bir sorun çıktı. Bu durum, ağ bağlantısının kurcalanmasından ya da bağlanmaya çalıştığınız sunucunun yapılandırma sorunu olmasından kaynaklanabilir. Bir Sorun bildirimi göndererek müşteri desteği ekibimizden yardım alın.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>Sorunun ne olduğundan emin değiliz. Lütfen yeniden deneyin ya da müşteri destek ekibimizle görüşün.</value>
+    <value>İnternet bağlantınızı denetleyip yeniden deneyin. Bu işe yaramazsa, müşteri desteği ekibimizle görüşün.
+
+Hata kodu: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>Düzeltmeleri görüntüle</value>
@@ -441,10 +443,10 @@
     <value>En hızlı</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Free sunucusu ({0})</value>
+    <value>Free sunucusu</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Free sunucuları ({0})</value>
+    <value>Free sunucuları</value>
   </data>
   <data name="Connections_Gateway">
     <value>Ağ geçidi</value>
@@ -483,10 +485,10 @@
     <value>P2P ülkeleri ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>P2P sunucusu ({0})</value>
+    <value>P2P sunucusu</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P sunucuları ({0})</value>
+    <value>P2P sunucuları</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>P2P eyaleti ({0})</value>
@@ -576,10 +578,10 @@
     <value>Secure Core ülkeleri ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Secure Core sunucusu ({0})</value>
+    <value>Secure Core sunucusu</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Secure Core sunucuları ({0})</value>
+    <value>Secure Core sunucuları</value>
   </data>
   <data name="Connections_SeeCities_One">
     <value>İli görüntüle ({0})</value>
@@ -609,10 +611,10 @@
     <value>Bu sunucu bakımda</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Sunucu ({0})</value>
+    <value>Sunucu</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Sunucular ({0})</value>
+    <value>Sunucular</value>
   </data>
   <data name="Connections_State">
     <value>Eyalet</value>
@@ -638,10 +640,10 @@
     <value>Tor ülkeleri ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Tor sunucusu ({0})</value>
+    <value>Tor sunucusu</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Tor sunucuları ({0})</value>
+    <value>Tor sunucuları</value>
   </data>
   <data name="Countries">
     <value>Ülkeler</value>
@@ -3069,7 +3071,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Bir uygulama seçin</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_Application">
-    <value>Bir uygulama açılsın</value>
+    <value>Bir uygulama aç</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
     <value>Varsayılan tarayıcı</value>
@@ -3078,10 +3080,10 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Gizli gezinme kipi kullanılsın</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_Website">
-    <value>Bir site açılsın</value>
+    <value>Bir site aç</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>Bu profil ile bağlantı kurduğunuzda seçtiğiniz bir siteyi otomatik olarak açın.</value>
+    <value>Bu profil ile bağlantı kurduğunuzda istediğiniz bir siteyi veya bir uygulamayı otomatik olarak açın.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>Bağlan ve git</value>

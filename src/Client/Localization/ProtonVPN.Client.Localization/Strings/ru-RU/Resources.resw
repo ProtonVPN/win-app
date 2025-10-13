@@ -377,7 +377,9 @@
     <value>Возникла проблема с проверкой сертификата VPN-сервера, что может указывать на стороннее вмешательство в сетевое соединение или проблему в настройках сервера. Отправьте отчёт о проблеме в нашу службу поддержки клиентов.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>Мы не можем определить, что произошло. Повторите попытку или обратитесь в нашу службу поддержки клиентов.</value>
+    <value>Check your internet connection and try again. If that doesn't work, contact our customer support team.
+
+Error code: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>Просмотр исправлений</value>
@@ -453,16 +455,16 @@
     <value>Самый быстрый</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Бесплатный сервер ({0})</value>
+    <value>Free server</value>
   </data>
   <data name="Connections_Free_Servers_Few">
-    <value>Бесплатные серверы ({0})</value>
+    <value>Free servers</value>
   </data>
   <data name="Connections_Free_Servers_Many">
-    <value>Бесплатные серверы ({0})</value>
+    <value>Free servers</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Бесплатные серверы ({0})</value>
+    <value>Free servers</value>
   </data>
   <data name="Connections_Gateway">
     <value>Шлюз</value>
@@ -525,16 +527,16 @@
     <value>Страны P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>Сервер P2P ({0})</value>
+    <value>P2P server</value>
   </data>
   <data name="Connections_P2P_Servers_Few">
-    <value>Серверы P2P ({0})</value>
+    <value>P2P servers</value>
   </data>
   <data name="Connections_P2P_Servers_Many">
-    <value>Серверы P2P ({0})</value>
+    <value>P2P servers</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>Серверы P2P ({0})</value>
+    <value>P2P servers</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>Страна P2P ({0})</value>
@@ -654,16 +656,16 @@
     <value>Страны с серверами Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Сервер Secure Core ({0})</value>
+    <value>Secure Core server</value>
   </data>
   <data name="Connections_SecureCore_Servers_Few">
-    <value>Серверы Secure Core ({0})</value>
+    <value>Secure Core servers</value>
   </data>
   <data name="Connections_SecureCore_Servers_Many">
-    <value>Серверы Secure Core ({0})</value>
+    <value>Secure Core servers</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Серверы Secure Core ({0})</value>
+    <value>Secure Core servers</value>
   </data>
   <data name="Connections_SeeCities_One">
     <value>Посмотреть город ({0})</value>
@@ -711,16 +713,16 @@
     <value>Этот сервер находится на техническом обслуживании</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Сервер ({0})</value>
+    <value>Server</value>
   </data>
   <data name="Connections_Servers_Few">
-    <value>Серверы ({0})</value>
+    <value>Servers</value>
   </data>
   <data name="Connections_Servers_Many">
-    <value>Серверы ({0})</value>
+    <value>Servers</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Серверы ({0})</value>
+    <value>Servers</value>
   </data>
   <data name="Connections_State">
     <value>Штат</value>
@@ -758,16 +760,16 @@
     <value>Страны Tor ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Сервер Tor ({0})</value>
+    <value>Tor server</value>
   </data>
   <data name="Connections_Tor_Servers_Few">
-    <value>Серверы Tor ({0})</value>
+    <value>Tor servers</value>
   </data>
   <data name="Connections_Tor_Servers_Many">
-    <value>Серверы Tor ({0})</value>
+    <value>Tor servers</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Серверы Tor ({0})</value>
+    <value>Tor servers</value>
   </data>
   <data name="Countries">
     <value>Страны</value>
@@ -3297,7 +3299,7 @@
     <value>Open a website</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>Автоматически открывайте выбранный вами сайт при подключении к этому профилю.</value>
+    <value>Automatically open a website or an app of your choice when you connect to this profile.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>Подключайтесь и действуйте</value>

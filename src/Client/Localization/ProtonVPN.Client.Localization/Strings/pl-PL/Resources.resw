@@ -377,7 +377,9 @@
     <value>Wystąpił problem z weryfikacją certyfikatu serwera VPN. Połączenie sieciowe mogło zostać naruszone lub serwer, z którym próbujesz się połączyć, ma problem z konfiguracją. Uzyskaj pomoc od naszego działu wsparcia klienta, wysyłając raport.</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>Nie jesteśmy pewni, co się stało. Spróbuj ponownie lub skontaktuj się z naszym zespołem wsparcia klienta.</value>
+    <value>Check your internet connection and try again. If that doesn't work, contact our customer support team.
+
+Error code: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>Wyświetl poprawki</value>
@@ -453,16 +455,16 @@
     <value>Najszybsze</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Serwer planu Free ({0})</value>
+    <value>Free server</value>
   </data>
   <data name="Connections_Free_Servers_Few">
-    <value>Darmowe serwery ({0})</value>
+    <value>Free servers</value>
   </data>
   <data name="Connections_Free_Servers_Many">
-    <value>Darmowe serwery ({0})</value>
+    <value>Free servers</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Darmowe serwery ({0})</value>
+    <value>Free servers</value>
   </data>
   <data name="Connections_Gateway">
     <value>Brama</value>
@@ -525,16 +527,16 @@
     <value>Kraje P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>Serwer P2P ({0})</value>
+    <value>P2P server</value>
   </data>
   <data name="Connections_P2P_Servers_Few">
-    <value>Serwery P2P ({0})</value>
+    <value>P2P servers</value>
   </data>
   <data name="Connections_P2P_Servers_Many">
-    <value>Serwery P2P ({0})</value>
+    <value>P2P servers</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>Serwery P2P ({0})</value>
+    <value>P2P servers</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>Stan P2P ({0})</value>
@@ -654,16 +656,16 @@
     <value>Kraje Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Serwer Secure Core ({0})</value>
+    <value>Secure Core server</value>
   </data>
   <data name="Connections_SecureCore_Servers_Few">
-    <value>Serwery Secure Core ({0})</value>
+    <value>Secure Core servers</value>
   </data>
   <data name="Connections_SecureCore_Servers_Many">
-    <value>Serwery Secure Core ({0})</value>
+    <value>Secure Core servers</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Serwery Secure Core ({0})</value>
+    <value>Secure Core servers</value>
   </data>
   <data name="Connections_SeeCities_One">
     <value>Zobacz miasto ({0})</value>
@@ -711,16 +713,16 @@
     <value>Serwer jest w trakcie przerwy technicznej</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Serwer ({0})</value>
+    <value>Server</value>
   </data>
   <data name="Connections_Servers_Few">
-    <value>Serwery ({0})</value>
+    <value>Servers</value>
   </data>
   <data name="Connections_Servers_Many">
-    <value>Serwery ({0})</value>
+    <value>Servers</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Serwery ({0})</value>
+    <value>Servers</value>
   </data>
   <data name="Connections_State">
     <value>Stan</value>
@@ -758,16 +760,16 @@
     <value>Kraje Tor ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Serwer Tor ({0})</value>
+    <value>Tor server</value>
   </data>
   <data name="Connections_Tor_Servers_Few">
-    <value>Serwery Tor ({0})</value>
+    <value>Tor servers</value>
   </data>
   <data name="Connections_Tor_Servers_Many">
-    <value>Serwery Tor ({0})</value>
+    <value>Tor servers</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Serwery Tor ({0})</value>
+    <value>Tor servers</value>
   </data>
   <data name="Countries">
     <value>Kraje</value>
@@ -3297,7 +3299,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Open a website</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>Automatycznie otwórz wybraną stronę internetową, kiedy się połączysz z tym profilem.</value>
+    <value>Automatically open a website or an app of your choice when you connect to this profile.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>Połącz się i gotowe</value>

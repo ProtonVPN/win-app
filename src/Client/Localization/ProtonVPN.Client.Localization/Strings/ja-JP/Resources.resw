@@ -377,7 +377,9 @@
     <value>VPN サーバー証明書の検証中に問題が発生しました。これは、ネットワーク接続が改ざんされているか、接続しようとしているサーバーに構成の問題があることを示している可能性があります。 問題レポートを送信して、カスタマー サポートからサポートを受けてください。</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>ここで何が起こったのかはわかりません。 もう一度試すか、カスタマーサポートチームにお問い合わせください。</value>
+    <value>インターネット接続をご確認の上、もう一度お試しください。それでも問題が解決しない場合は、カスタマーサポートチームまでご連絡ください。
+
+エラーコード: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>修正方法を表示</value>
@@ -435,7 +437,7 @@
     <value>最速</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>無料サーバー ({0})</value>
+    <value>無料サーバー</value>
   </data>
   <data name="Connections_Gateway">
     <value>ゲートウェイ</value>
@@ -462,7 +464,7 @@
     <value>P2P対応国 ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P サーバー ({0})</value>
+    <value>P2Pサーバー</value>
   </data>
   <data name="Connections_P2P_States_Other">
     <value>P2P 対応州 ({0})</value>
@@ -537,7 +539,7 @@
     <value>Secure Core の国 ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>セキュアコアサーバー ({0})</value>
+    <value>Secure Coreサーバー</value>
   </data>
   <data name="Connections_SeeCities_Other">
     <value>都市を表示 ({0})</value>
@@ -558,7 +560,7 @@
     <value>このサーバーはメンテナンス中です</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>サーバー ({0})</value>
+    <value>サーバー</value>
   </data>
   <data name="Connections_State">
     <value>州</value>
@@ -578,7 +580,7 @@
     <value>Tor対応国 ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Torサーバー ({0})</value>
+    <value>Torサーバー</value>
   </data>
   <data name="Countries">
     <value>国</value>
@@ -2955,25 +2957,25 @@ VPN接続</value>
     <value>このプロファイルのカスタムDNSを無効にします。</value>
   </data>
   <data name="Profile_Options_Application">
-    <value>App</value>
+    <value>アプリ</value>
   </data>
   <data name="Profile_Options_Application_Select">
-    <value>Select an app</value>
+    <value>アプリを選択</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_Application">
-    <value>Open an app</value>
+    <value>アプリを開く</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
-    <value>Default browser</value>
+    <value>デフォルトのブラウザ</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
-    <value>Use private browsing mode</value>
+    <value>プライベートブラウジングモードを使用する</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_Website">
-    <value>Open a website</value>
+    <value>ウェブサイトを開く</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>このプロファイルに接続した際、あなたが選んだウェブサイトが自動的に開きます。</value>
+    <value>このプロファイルに接続すると、選択した Web サイトまたはアプリが自動的に開きます。</value>
   </data>
   <data name="Profile_Options_Header">
     <value>接続して続ける</value>
@@ -3205,10 +3207,10 @@ VPN接続</value>
     <value>お客様のローカル ネットワーク内のプリンター、スピーカー、その他のデバイスへの接続を許可します。</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
-    <value>Connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Uses local DNS resolution. Disabled by default to maintain faster VPN speeds.</value>
+    <value>IPアドレスの代わりに「My-Printer」や「router.local」などの名前を使用してデバイスに接続します。ローカルDNS解決を使用します。VPN速度を高速化するため、デフォルトでは無効になっています。</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
-    <value>Access devices by name</value>
+    <value>名前でデバイスにアクセスする</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>NATタイプ</value>
