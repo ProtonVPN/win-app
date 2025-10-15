@@ -161,6 +161,11 @@ public class SrpAuthenticator : AuthenticatorBase, ISrpAuthenticator
             allowedCredentials: allowedCredentials,
             cancellationToken: cancellationToken);
 
+        if (authResult is null)
+        {
+            return AuthResult.Fail(AuthError.WebAuthnNotSupported);
+        }
+
         TwoFactorRequest request = new()
         {
             TwoFactorCode = null,

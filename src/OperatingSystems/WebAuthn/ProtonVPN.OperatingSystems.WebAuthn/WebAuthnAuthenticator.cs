@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.OperatingSystems.WebAuthn.Contracts;
 using ProtonVPN.OperatingSystems.WebAuthn.Enums;
 using ProtonVPN.OperatingSystems.WebAuthn.Interop;
@@ -27,7 +29,14 @@ public class WebAuthnAuthenticator : IWebAuthnAuthenticator
 {
     private const int MINIMUM_TIMEOUT_IN_MILLISECONDS = 30000;
 
-    private readonly WebAuthnApi _api = new();
+    private readonly ILogger _logger;
+
+    public bool IsSupported => CreateWebAuthnApi() is not null;
+
+    public WebAuthnAuthenticator(ILogger logger)
+    {
+        _logger = logger;
+    }
 
     public async Task<WebAuthnResponse> AuthenticateAsync(string rpId,
         byte[] challenge,
@@ -36,11 +45,18 @@ public class WebAuthnAuthenticator : IWebAuthnAuthenticator
         IReadOnlyList<AllowedCredential> allowedCredentials = null,
         CancellationToken cancellationToken = default(CancellationToken))
     {
+        WebAuthnApi api = CreateWebAuthnApi();
+
+        if (api is null)
+        {
+            return null;
+        }
+
         List<PublicKeyCredentialDescriptor> allowCredentials = allowedCredentials?
             .Select(ac => new PublicKeyCredentialDescriptor(ac.Id, type: ac.Type)).ToList();
         UserVerificationRequirement userVerificationEnum = UserVerificationParser.Parse(userVerificationRequirement);
 
-        AuthenticatorAssertionResponse authResult = await _api.AuthenticatorGetAssertionAsync(rpId, challenge,
+        AuthenticatorAssertionResponse authResult = await api.AuthenticatorGetAssertionAsync(rpId, challenge,
             userVerificationEnum,
             AuthenticatorAttachment.Any,
             timeoutMilliseconds: GetTimeoutInMilliseconds(timeoutInMilliseconds), // This argument is useless, Windows uses its own values: 30 seconds for touch, and some value (over a minute) for PIN
@@ -54,6 +70,19 @@ public class WebAuthnAuthenticator : IWebAuthnAuthenticator
             CredentialId = authResult.CredentialId,
             ClientDataJson = authResult.ClientDataJson,
         };
+    }
+
+    private WebAuthnApi CreateWebAuthnApi()
+    {
+        try
+        {
+            return new();
+        }
+        catch (Exception ex)
+        {
+            _logger.Warn<AppLog>("WebAuthN is not supported in this OS or by the Remote Desktop Connection.", ex);
+            return null;
+        }
     }
 
     private int GetTimeoutInMilliseconds(int? arg)

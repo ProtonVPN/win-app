@@ -30,6 +30,7 @@ using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Common.Legacy.OS.DeviceIds;
 using ProtonVPN.Common.Legacy.OS.Systems;
+using ProtonVPN.OperatingSystems.WebAuthn.Contracts;
 using File = ProtonVPN.Api.Contracts.File;
 
 namespace ProtonVPN.Client.Logic.Feedback;
@@ -46,6 +47,7 @@ public class ReportIssueSender : IReportIssueSender
     private readonly IDeviceIdCache _deviceIdCache;
     private readonly IDiagnosticLogWriter _diagnosticLogWriter;
     private readonly IAttachmentsLoader _attachmentsLoader;
+    private readonly IWebAuthnAuthenticator _webAuthnAuthenticator;
 
     public ReportIssueSender(
         ISettings settings, 
@@ -54,7 +56,8 @@ public class ReportIssueSender : IReportIssueSender
         ISystemState systemState, 
         IDeviceIdCache deviceIdCache, 
         IDiagnosticLogWriter diagnosticLogWriter, 
-        IAttachmentsLoader attachmentsLoader)
+        IAttachmentsLoader attachmentsLoader,
+        IWebAuthnAuthenticator webAuthnAuthenticator)
     {
         _settings = settings;
         _apiClient = apiClient;
@@ -63,6 +66,7 @@ public class ReportIssueSender : IReportIssueSender
         _deviceIdCache = deviceIdCache;
         _diagnosticLogWriter = diagnosticLogWriter;
         _attachmentsLoader = attachmentsLoader;
+        _webAuthnAuthenticator = webAuthnAuthenticator;
     }
 
     public async Task<Result> SendAsync(string category, string email, IDictionary<string, string> inputFields, bool includeLogs)
@@ -111,8 +115,15 @@ public class ReportIssueSender : IReportIssueSender
             new KeyValuePair<string, string>("Email", email),
             new KeyValuePair<string, string>("Country", currentLocation?.CountryCode ?? NOT_PROVIDED_FIELD_VALUE),
             new KeyValuePair<string, string>("ISP", currentLocation?.Isp ?? NOT_PROVIDED_FIELD_VALUE),
-            new KeyValuePair<string, string>("ClientType", "2")
+            new KeyValuePair<string, string>("ClientType", "2"),
+            new KeyValuePair<string, string>("IsWebAuthnSupported", IsWebAuthnSupported()),
+
         };
+    }
+
+    private string IsWebAuthnSupported()
+    {
+        return _webAuthnAuthenticator.IsSupported.ToBooleanString();
     }
 
     private string GetUsername()

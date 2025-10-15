@@ -21,6 +21,8 @@ namespace ProtonVPN.OperatingSystems.WebAuthn.Contracts;
 
 public interface IWebAuthnAuthenticator
 {
+    public bool IsSupported { get; }
+
     public Task<WebAuthnResponse> AuthenticateAsync(
         string rpId,
         byte[] challenge,

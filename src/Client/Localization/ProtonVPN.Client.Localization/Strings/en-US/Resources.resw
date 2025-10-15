@@ -2238,6 +2238,9 @@
   <data name="Login_Error_TwoFactorFailed" xml:space="preserve">
     <value>Two factor authentication failed. Please sign in again.</value>
   </data>
+  <data name="Login_Error_WebAuthnNotSupported" xml:space="preserve">
+    <value>U2F or FIDO authentication is not supported by your device or by your remote desktop connection.</value>
+  </data>
   <data name="Settings_Support_SupportCenter" xml:space="preserve">
     <value>Support center</value>
   </data>

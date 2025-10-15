@@ -124,6 +124,11 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
                             await ChildViewNavigator.NavigateToSignInViewAsync();
                             break;
 
+                        case AuthError.WebAuthnNotSupported:
+                            SetErrorMessage(Localizer.Get("Login_Error_WebAuthnNotSupported"));
+                            await ChildViewNavigator.NavigateToSignInViewAsync();
+                            break;
+
                         case AuthError.Unknown:
                             SetErrorMessage(message.ErrorMessage);
                             break;

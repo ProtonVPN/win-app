@@ -29,6 +29,7 @@ public enum AuthError
     IncorrectTwoFactorCode,
     TwoFactorAuthFailed,
     TwoFactorCancelled,
+    WebAuthnNotSupported,
     GuestHoleFailed,
     GetSessionDetailsFailed,
     SsoAuthFailed,

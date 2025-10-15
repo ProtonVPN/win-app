@@ -29,22 +29,14 @@ public partial class WebAuthnApi
     {
         get
         {
-            if (_apiVersionCache.HasValue)
+            try
             {
-                return _apiVersionCache;
+                return NativeMethods.GetApiVersionNumber();
             }
-            else
+            catch (TypeLoadException)
             {
-                try
-                {
-                    _apiVersionCache = NativeMethods.GetApiVersionNumber();
-                    return _apiVersionCache.Value;
-                }
-                catch (TypeLoadException)
-                {
-                    // The WebAuthNGetApiVersionNumber() function was added in Windows 10 1903.
-                    return null;
-                }
+                // The WebAuthNGetApiVersionNumber() function was added in Windows 10 1903.
+                return null;
             }
         }
     }

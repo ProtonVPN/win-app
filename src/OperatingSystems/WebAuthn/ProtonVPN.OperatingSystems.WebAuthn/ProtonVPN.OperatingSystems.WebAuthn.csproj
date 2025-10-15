@@ -16,6 +16,7 @@
 		<PackageReference Include="System.Text.Json" />
 	</ItemGroup>
 	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Logging\ProtonVPN.Logging.Contracts\ProtonVPN.Logging.Contracts.csproj" />
 	  <ProjectReference Include="..\ProtonVPN.OperatingSystems.WebAuthn.Contracts\ProtonVPN.OperatingSystems.WebAuthn.Contracts.csproj" />
 	</ItemGroup>
 
