@@ -1,15 +1,42 @@
 <svg width="auto" height="auto" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="NC">
-<g clip-path="url(#clip0_2253_3305)">
-<path id="Vector" d="M24 -0.00250244H0V15.995H24V-0.00250244Z" fill="#ED4135"/>
-<path id="Vector_2" d="M24 -0.00250244H0V5.33H24V-0.00250244Z" fill="#0035AD"/>
-<path id="Vector_3" d="M24 10.6625H0V15.995H24V10.6625Z" fill="#6DA544"/>
-<path id="Vector_4" d="M9 11.75C9.99456 11.75 10.9484 11.3549 11.6517 10.6517C12.3549 9.94839 12.75 8.99456 12.75 8C12.75 7.00544 12.3549 6.05161 11.6517 5.34835C10.9484 4.64509 9.99456 4.25 9 4.25C8.00544 4.25 7.05161 4.64509 6.34835 5.34835C5.64509 6.05161 5.25 7.00544 5.25 8C5.25 8.99456 5.64509 9.94839 6.34835 10.6517C7.05161 11.3549 8.00544 11.75 9 11.75Z" fill="#FAE600"/>
-</g>
-</g>
-<defs>
-<clipPath id="clip0_2253_3305">
-<rect width="24" height="16" rx="4" fill="white"/>
-</clipPath>
-</defs>
+	<g id="NC">
+		<g id="Group 58">
+			<g id="Group 48">
+				<path id="Vector" d="M24 3.99683H12V11.9956H24V3.99683Z" fill="#ED4135"/>
+				<path id="Vector_2" d="M24 3.99683H12V6.66308H24V3.99683Z" fill="#0035AD"/>
+				<path id="Vector_3" d="M24 9.32935H12V11.9956H24V9.32935Z" fill="#6DA544"/>
+				<g id="Group 47">
+					<mask id="mask0_13761_68383" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="14" y="6" width="5" height="4">
+						<path id="Vector_4" d="M16.5 9.87311C17.5355 9.87311 18.375 9.03364 18.375 7.99811C18.375 6.96257 17.5355 6.12311 16.5 6.12311C15.4645 6.12311 14.625 6.96257 14.625 7.99811C14.625 9.03364 15.4645 9.87311 16.5 9.87311Z" fill="#FAE600"/>
+					</mask>
+					<g mask="url(#mask0_13761_68383)">
+						<path id="Vector_5" d="M16.5 9.87311C17.5355 9.87311 18.375 9.03364 18.375 7.99811C18.375 6.96257 17.5355 6.12311 16.5 6.12311C15.4645 6.12311 14.625 6.96257 14.625 7.99811C14.625 9.03364 15.4645 9.87311 16.5 9.87311Z" fill="#FAE600"/>
+						<g id="Group 45">
+							<path id="Vector 5" d="M16.5 6.12311V9.71006" stroke="black" stroke-width="0.09375"/>
+							<g id="Group 44">
+								<g id="Frame 1">
+									<circle id="Ellipse 13" cx="16.4999" cy="7.10136" r="0.326087" fill="black"/>
+									<path id="Vector 10" d="M16.125 7.61493H16.875" stroke="black" stroke-width="0.09375"/>
+									<ellipse id="Ellipse 14" cx="16.4999" cy="7.96547" rx="0.326087" ry="0.163043" fill="black"/>
+									<path id="Vector 10_2" d="M16.125 8.31604H16.875" stroke="black" stroke-width="0.09375"/>
+									<circle id="Ellipse 13_2" cx="0.326087" cy="0.326087" r="0.326087" transform="matrix(1 0 0 -1 16.1738 9.1557)" fill="black"/>
+								</g>
+							</g>
+							<path id="Vector 9" d="M15.6851 9.8731L15.9143 9.52918C15.9748 9.43846 16.0766 9.38397 16.1857 9.38397H16.8149C16.9239 9.38397 17.0257 9.43846 17.0862 9.52918L17.3155 9.8731H15.6851Z" fill="black"/>
+						</g>
+					</g>
+				</g>
+			</g>
+			<g id="Flag" clip-path="url(#clip0_13761_68383)">
+				<path id="Vector_6" d="M12 3.99878H0V11.9975H12V3.99878Z" fill="#F0F0F0"/>
+				<path id="Vector_7" d="M4.00125 3.99878H0V11.9975H4.00125V3.99878Z" fill="#0052B4"/>
+				<path id="Vector_8" d="M12.0003 3.99878H7.99902V11.9975H12.0003V3.99878Z" fill="#D80027"/>
+			</g>
+		</g>
+	</g>
+	<defs>
+		<clipPath id="clip0_13761_68383">
+			<rect width="12" height="12" fill="white" transform="translate(0 2)"/>
+		</clipPath>
+	</defs>
 </svg>
