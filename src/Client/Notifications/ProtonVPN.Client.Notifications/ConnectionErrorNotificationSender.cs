@@ -21,7 +21,7 @@ using Microsoft.Toolkit.Uwp.Notifications;
 using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Notifications.Contracts;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Notifications;
@@ -41,16 +41,31 @@ public class ConnectionErrorNotificationSender : NotificationSenderBase, IConnec
         _localizer = localizer;
     }
 
-    public void Send(VpnError vpnError)
+    public void SendSessionLimitNotification()
+    {
+        SendNotification(
+            title: _localizer.Get("SystemNotification_Disconnected"),
+            message: _localizer.Get("Notifications_SessionLimit_Description"));
+    }
+
+    public void SendTwoFactorRequiredNotification()
+    {
+        SendNotification(
+            title: _localizer.Get("Connection_Error_TwoFactorRequired_Title"),
+            message: _localizer.Get("Connection_Error_TwoFactorRequired_Description"));
+    }
+
+    private void SendNotification(string title, string message)
     {
         if (_isMainWindowVisible)
         {
             return;
         }
 
-        ToastContentBuilder tcb = new();
-        tcb.AddText(_localizer.Get("SystemNotification_Disconnected"));
-        tcb.AddText(_localizer.Get("Notifications_SessionLimit_Description"));
+        ToastContentBuilder tcb = new ToastContentBuilder()
+            .AddText(title, AdaptiveTextStyle.Header)
+            .AddText(message);
+
         Send(tcb);
     }
 

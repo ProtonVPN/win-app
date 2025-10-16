@@ -160,7 +160,7 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
     private bool CanDisconnect()
     {
         return _userAuthenticator.IsLoggedIn
-            && _connectionManager.IsConnected;
+            && !_connectionManager.IsDisconnected;
     }
 
     private void InvalidateTray()

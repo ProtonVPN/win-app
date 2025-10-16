@@ -17,15 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 
 namespace ProtonVPN.Client.Logic.Connection.ConnectionErrors;
 
 public class NoConnectionError : IConnectionError
 {
+    public Severity Severity => Severity.None;
+
+    public string Title => string.Empty;
+
     public string Message => string.Empty;
 
     public string ActionLabel => string.Empty;
+
+    public bool IsToCloseErrorOnDisconnect => false;
 
     public Task ExecuteActionAsync()
     {

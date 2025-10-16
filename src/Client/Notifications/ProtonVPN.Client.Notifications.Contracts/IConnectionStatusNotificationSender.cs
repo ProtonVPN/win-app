@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-
-namespace ProtonVPN.Client.Notifications;
+namespace ProtonVPN.Client.Notifications.Contracts;
 
 public interface IConnectionStatusNotificationSender
 {
-    void Send(ConnectionStatus currentStatus);
+    void SendConnectedNotification();
+
+    void SendDisconnectedNotification();
 }

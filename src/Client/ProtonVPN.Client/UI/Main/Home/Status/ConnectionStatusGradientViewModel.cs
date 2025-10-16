@@ -29,6 +29,7 @@ using ProtonVPN.Client.Settings.Contracts.Messages;
 namespace ProtonVPN.Client.UI.Main.Home.Status;
 
 public class ConnectionStatusGradientViewModel : ActivatableViewModelBase,
+    IEventMessageReceiver<ConnectionErrorMessage>,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>
 {
@@ -41,7 +42,9 @@ public class ConnectionStatusGradientViewModel : ActivatableViewModelBase,
 
     public bool IsDisconnected => _connectionManager.IsDisconnected;
 
-    public bool IsNotConnectedAndAdvancedKillSwitchActive => !IsConnected && _settings.IsAdvancedKillSwitchActive();
+    public bool IsInternetUnavailable => IsDisconnected && _settings.IsAdvancedKillSwitchActive();
+
+    public bool IsTwoFactorRequired => _connectionManager.IsTwoFactorError;
 
     public ConnectionStatusGradientViewModel(
         IViewModelHelper viewModelHelper,
@@ -51,6 +54,14 @@ public class ConnectionStatusGradientViewModel : ActivatableViewModelBase,
     {
         _settings = settings;
         _connectionManager = connectionManager;
+    }
+
+    public void Receive(ConnectionErrorMessage message)
+    {
+        if (IsActive)
+        {
+            ExecuteOnUIThread(InvalidateConnectionError);
+        }
     }
 
     public void Receive(ConnectionStatusChangedMessage message)
@@ -74,6 +85,7 @@ public class ConnectionStatusGradientViewModel : ActivatableViewModelBase,
         base.OnActivated();
 
         InvalidateConnectionStatus();
+        InvalidateConnectionError();
     }
 
     private void InvalidateConnectionStatus()
@@ -81,6 +93,12 @@ public class ConnectionStatusGradientViewModel : ActivatableViewModelBase,
         OnPropertyChanged(nameof(IsConnected));
         OnPropertyChanged(nameof(IsConnecting));
         OnPropertyChanged(nameof(IsDisconnected));
-        OnPropertyChanged(nameof(IsNotConnectedAndAdvancedKillSwitchActive));
+        OnPropertyChanged(nameof(IsInternetUnavailable));
+        OnPropertyChanged(nameof(IsTwoFactorRequired));
+    }
+
+    private void InvalidateConnectionError()
+    {
+        OnPropertyChanged(nameof(IsTwoFactorRequired));
     }
 }

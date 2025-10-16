@@ -28,12 +28,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              mc:Ignorable="d">
 
     <InfoBar Name="ActionInfoBar"
-             Title="{x:Bind ViewModel.Localizer.Get('Connection_Error_Title')}"
+             Title="{x:Bind ViewModel.ConnectionErrorTitle}"
              AutomationProperties.AutomationId="ConnectionErrorPanel"
              CloseButtonCommand="{x:Bind ViewModel.CloseErrorCommand}"
              IsOpen="{x:Bind ViewModel.IsConnectionErrorVisible, Mode=TwoWay}"
              Message="{x:Bind ViewModel.ConnectionErrorMessage}"
-             Severity="Error">
+             Severity="{x:Bind ViewModel.ConnectionErrorSeverity, Converter={StaticResource SeverityToInfoBarSeverityConverter}}">
         <InfoBar.ActionButton>
             <custom:GhostButton Name="ActionButton"
                                 AutomationProperties.AutomationId="ActionButton"

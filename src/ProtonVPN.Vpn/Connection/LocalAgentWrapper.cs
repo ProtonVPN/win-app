@@ -75,6 +75,13 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         VpnError.ServerSessionError,
     ];
 
+    private readonly List<VpnError> _waitForUserActionOnVpnErrors =
+    [
+        VpnError.TwoFactorRequiredReasonUnknown,
+        VpnError.TwoFactorExpired,
+        VpnError.TwoFactorNewConnection,
+    ];
+
     private VpnStatus _currentStatus;
     private VpnEndpoint _endpoint;
     private VpnCredentials _credentials;
@@ -82,6 +89,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     private bool _isTlsChannelActive;
     private bool _isConnectRequested;
     private bool _tlsConnected;
+    private bool _isToWaitForUserAction;
     private bool _wasConnectEverRequested;
     private EventArgs<VpnState> _vpnState;
     private string _localIp = string.Empty;
@@ -127,6 +135,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         _logger.Info<LocalAgentLog>("Connect action started");
         _isConnectRequested = true;
         _wasConnectEverRequested = true;
+        _isToWaitForUserAction = false;
         _endpoint = endpoint;
         _credentials = credentials;
         _vpnConfig = config;
@@ -137,6 +146,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     {
         _logger.Info<LocalAgentLog>("Disconnect action started");
         _isConnectRequested = false;
+        _isToWaitForUserAction = false;
         StopTimeoutAction();
         _eventReceiver.Stop();
         CloseTlsChannel();
@@ -205,6 +215,11 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     {
         await Task.Delay(CONNECT_TIMEOUT, cancellationToken);
 
+        if (_isConnectRequested && _isToWaitForUserAction)
+        {
+            return;
+        }
+
         if (!_tlsConnected)
         {
             _logger.Info<LocalAgentLog>(
@@ -264,7 +279,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     {
         if (_tlsConnected)
         {
-            InvokeStateChange(_currentStatus);
+            InvokeStateChange(VpnStatus.Connected);
         }
         else
         {
@@ -308,7 +323,13 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     {
         _logger.Info<LocalAgentErrorLog>($"Error event received {e.Error} {e.Description}");
 
-        if (_disconnectOnVpnErrors.Contains(e.Error))
+        if (_waitForUserActionOnVpnErrors.Contains(e.Error))
+        {
+            _isToWaitForUserAction = true;
+            _logger.Info<LocalAgentErrorLog>("Two factor required. Waiting for user action.");
+            InvokeStateChange(VpnStatus.ActionRequired, e.Error);
+        }
+        else if (_disconnectOnVpnErrors.Contains(e.Error))
         {
             _origin.Disconnect(e.Error);
         }

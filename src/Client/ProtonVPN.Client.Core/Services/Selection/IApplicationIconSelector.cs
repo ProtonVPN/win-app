@@ -19,6 +19,7 @@
 
 using System.Drawing;
 using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Core.Enums;
 
 namespace ProtonVPN.Client.Core.Services.Selection;
@@ -33,8 +34,8 @@ public interface IApplicationIconSelector
 
     Icon? GetTaskbarBadgeIcon();
 
-    void OnAuthenticationErrorTriggered();
+    void OnAuthenticationErrorTriggered(Severity severity);
     void OnAuthenticationErrorDismissed(); 
-    void OnConnectionErrorTriggered();
+    void OnConnectionErrorTriggered(Severity severity);
     void OnConnectionErrorDismissed();
 }

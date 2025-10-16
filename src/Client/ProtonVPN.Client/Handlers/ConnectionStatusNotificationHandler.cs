@@ -19,8 +19,9 @@
 
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Handlers.Bases;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
-using ProtonVPN.Client.Notifications;
+using ProtonVPN.Client.Notifications.Contracts;
 
 namespace ProtonVPN.Client.Handlers;
 
@@ -36,6 +37,17 @@ public class ConnectionStatusNotificationHandler : IHandler,
 
     public void Receive(ConnectionStatusChangedMessage message)
     {
-        _connectionStatusNotificationSender.Send(message.ConnectionStatus);
+        switch (message.ConnectionStatus)
+        {
+            case ConnectionStatus.Disconnected:
+                _connectionStatusNotificationSender.SendDisconnectedNotification();
+                break;
+            case ConnectionStatus.Connected:
+                _connectionStatusNotificationSender.SendConnectedNotification();
+                break;
+            default:
+                // Only notify on connected and disconnected status changes.
+                break;
+        }
     }
 }

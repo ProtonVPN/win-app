@@ -108,6 +108,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <GradientStop Offset="0" Color="{StaticResource GradientProtectedStartColor}" />
                 <GradientStop Offset="1" Color="{StaticResource GradientProtectedEndColor}" />
             </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GradientWarningColorBrush" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Offset="0" Color="{StaticResource GradientWarningStartColor}" />
+                <GradientStop Offset="1" Color="{StaticResource GradientWarningEndColor}" />
+            </LinearGradientBrush>
             <LinearGradientBrush x:Key="GradientConnectionLineColorBrush" StartPoint="0,0" EndPoint="1,0">
                 <GradientStop Offset="0" Color="{StaticResource GradientConnectionLineStartColor}" />
                 <GradientStop Offset="1" Color="{StaticResource GradientConnectionLineEndColor}" />
@@ -270,6 +274,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <LinearGradientBrush x:Key="GradientProtectedColorBrush" StartPoint="0,0" EndPoint="0,1">
                 <GradientStop Offset="0" Color="{StaticResource GradientProtectedStartColor}" />
                 <GradientStop Offset="1" Color="{StaticResource GradientProtectedEndColor}" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="GradientWarningColorBrush" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Offset="0" Color="{StaticResource GradientWarningStartColor}" />
+                <GradientStop Offset="1" Color="{StaticResource GradientWarningEndColor}" />
             </LinearGradientBrush>
             <LinearGradientBrush x:Key="GradientConnectionLineColorBrush" StartPoint="0,0" EndPoint="1,0">
                 <GradientStop Offset="0" Color="{StaticResource GradientConnectionLineStartColor}" />

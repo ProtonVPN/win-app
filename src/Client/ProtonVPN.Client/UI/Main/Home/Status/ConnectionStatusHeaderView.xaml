@@ -85,22 +85,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="ConnectionStates">
 
+                <VisualState x:Name="IsInternetUnavailable">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsInternetUnavailable}" />
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsTwoFactorRequired}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ProtectionTitle.Foreground" Value="{ThemeResource SignalWarningColorBrush}" />
+                        <Setter Target="NoWiFiIcon.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+                
                 <VisualState x:Name="Connecting">
                     <VisualState.StateTriggers>
                         <StateTrigger IsActive="{x:Bind ViewModel.IsConnecting}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="LoadingSpinner.IsActive" Value="True" />
-                    </VisualState.Setters>
-                </VisualState>
-
-                <VisualState x:Name="DisconnectedWithAdvancedKillSwitchActive">
-                    <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsDisconnectedAndAdvancedKillSwitchActive}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="ProtectionTitle.Foreground" Value="{ThemeResource SignalWarningColorBrush}" />
-                        <Setter Target="NoWiFiIcon.Visibility" Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
 

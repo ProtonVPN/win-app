@@ -59,4 +59,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <converters:BooleanToOrientationConverter x:Key="BooleanToVerticalOrientationConverter" 
                                               OrientationWhenFalse="Horizontal"
                                               OrientationWhenTrue="Vertical"/>
+    <converters:SeverityToInfoBarSeverityConverter x:Key="SeverityToInfoBarSeverityConverter" />
 </ResourceDictionary>

@@ -34,6 +34,7 @@ using ProtonVPN.Client.Settings.Contracts.Messages;
 namespace ProtonVPN.Client.UI.Main.Home.Status;
 
 public partial class ConnectionStatusHeaderViewModel : ActivatableViewModelBase,
+    IEventMessageReceiver<ConnectionErrorMessage>,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>
 {
@@ -54,7 +55,9 @@ public partial class ConnectionStatusHeaderViewModel : ActivatableViewModelBase,
 
     public bool IsDisconnected => _connectionManager.IsDisconnected;
 
-    public bool IsDisconnectedAndAdvancedKillSwitchActive => IsDisconnected && _settings.IsAdvancedKillSwitchActive();
+    public bool IsInternetUnavailable => IsDisconnected && _settings.IsAdvancedKillSwitchActive();
+
+    public bool IsTwoFactorRequired => _connectionManager.IsTwoFactorError;
 
     public string ProtectionTitle =>
         _connectionManager.ConnectionStatus switch
@@ -62,7 +65,9 @@ public partial class ConnectionStatusHeaderViewModel : ActivatableViewModelBase,
             ConnectionStatus.Disconnected => _settings.IsAdvancedKillSwitchActive()
                 ? Localizer.Get("Home_ConnectionDetails_AdvancedKillSwitchActivated")
                 : Localizer.Get("Home_ConnectionDetails_Unprotected"),
-            ConnectionStatus.Connecting => Localizer.Get("Home_ConnectionDetails_Connecting"),
+            ConnectionStatus.Connecting => _connectionManager.IsTwoFactorError
+                ? Localizer.Get("Home_ConnectionDetails_TwoFactorRequired_Title")
+                : Localizer.Get("Home_ConnectionDetails_Connecting"),
             ConnectionStatus.Connected => Localizer.Get("Home_ConnectionDetails_Protected"),
             _ => string.Empty,
         };
@@ -73,7 +78,9 @@ public partial class ConnectionStatusHeaderViewModel : ActivatableViewModelBase,
             ConnectionStatus.Disconnected => _settings.IsAdvancedKillSwitchActive()
                 ? Localizer.Get("Home_ConnectionDetails_ConnectToRestoreConnection")
                 : Localizer.Get("Home_ConnectionDetails_UnprotectedSubLabel"),
-            ConnectionStatus.Connecting => Localizer.Get("Home_ConnectionDetails_ConnectingSubLabel"),
+            ConnectionStatus.Connecting => _connectionManager.IsTwoFactorError
+                ? Localizer.Get("Home_ConnectionDetails_TwoFactorRequired_Description")
+                : Localizer.Get("Home_ConnectionDetails_ConnectingSubLabel"),
             ConnectionStatus.Connected => Localizer.GetFormattedTime(SessionLength) ?? string.Empty,
             _ => string.Empty,
         };
@@ -89,6 +96,11 @@ public partial class ConnectionStatusHeaderViewModel : ActivatableViewModelBase,
 
         _refreshTimer = UIThreadDispatcher.GetTimer(TimeSpan.FromMilliseconds(REFRESH_TIMER_INTERVAL_IN_MS));
         _refreshTimer.Tick += OnRefreshTimerTick;
+    }
+
+    public void Receive(ConnectionErrorMessage message)
+    {
+        ExecuteOnUIThread(InvalidateConnectionError);
     }
 
     public void Receive(ConnectionStatusChangedMessage message)
@@ -126,12 +138,20 @@ public partial class ConnectionStatusHeaderViewModel : ActivatableViewModelBase,
         OnPropertyChanged(nameof(ProtectionDescription));
     }
 
+    private void InvalidateConnectionError()
+    {
+        OnPropertyChanged(nameof(IsTwoFactorRequired));
+        OnPropertyChanged(nameof(ProtectionTitle));
+        OnPropertyChanged(nameof(ProtectionDescription));
+    }
+
     private void InvalidateConnectionStatus()
     {
         OnPropertyChanged(nameof(IsConnected));
         OnPropertyChanged(nameof(IsConnecting));
         OnPropertyChanged(nameof(IsDisconnected));
-        OnPropertyChanged(nameof(IsDisconnectedAndAdvancedKillSwitchActive));
+        OnPropertyChanged(nameof(IsInternetUnavailable));
+        OnPropertyChanged(nameof(IsTwoFactorRequired));
         OnPropertyChanged(nameof(ProtectionTitle));
         OnPropertyChanged(nameof(ProtectionDescription));
 

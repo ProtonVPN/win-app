@@ -17,11 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+namespace ProtonVPN.Client.Common.Enums;
 
-namespace ProtonVPN.Client.Notifications;
-
-public interface IConnectionErrorNotificationSender
-{
-    void Send(VpnError error);
+public enum Severity
+{ 
+    None,
+    Informational,
+    Success,
+    Warning,
+    Error
 }

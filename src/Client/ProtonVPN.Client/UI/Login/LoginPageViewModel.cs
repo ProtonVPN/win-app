@@ -21,6 +21,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases;
@@ -61,7 +62,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     private bool _isMessageVisible;
 
     [ObservableProperty]
-    private InfoBarSeverity _messageType = InfoBarSeverity.Error;
+    private Severity _messageSeverity = Severity.Error;
 
     [ObservableProperty]
     private bool _isHelpVisible;
@@ -172,7 +173,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
                 ParentViewNavigator.GetCurrentPageContext() is LoginPageViewModel && 
                 ChildViewNavigator.GetCurrentPageContext() is SignInPageViewModel)
             {
-                SetMessage(Localizer.Get("SignIn_KillSwitch_Disabled"), InfoBarSeverity.Success);
+                SetMessage(Localizer.Get("SignIn_KillSwitch_Disabled"), Severity.Success);
             }
         });
     }
@@ -255,10 +256,10 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
 
     private void SetErrorMessage(string message)
     {
-        SetMessage(message, InfoBarSeverity.Error);
+        SetMessage(message, Severity.Error);
     }
 
-    private void SetMessage(string message, InfoBarSeverity messageType)
+    private void SetMessage(string message, Severity severity)
     {
         if (string.IsNullOrWhiteSpace(message))
         {
@@ -268,7 +269,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
             return;
         }
 
-        MessageType = messageType;
+        MessageSeverity = severity;
         Message = message;
         IsMessageVisible = true;
     }
@@ -280,9 +281,9 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
 
     partial void OnIsMessageVisibleChanged(bool value)
     {
-        if (IsMessageVisible && MessageType == InfoBarSeverity.Error)
+        if (IsMessageVisible && MessageSeverity is Severity.Error or Severity.Warning)
         {
-            _applicationIconSelector.OnAuthenticationErrorTriggered();
+            _applicationIconSelector.OnAuthenticationErrorTriggered(MessageSeverity);
         }
         else
         {

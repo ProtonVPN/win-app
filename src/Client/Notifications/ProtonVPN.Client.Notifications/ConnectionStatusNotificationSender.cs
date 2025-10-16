@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
+using ProtonVPN.Client.Notifications.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Extensions;
 using ProtonVPN.Configurations.Contracts;
@@ -62,7 +63,17 @@ public class ConnectionStatusNotificationSender : NotificationSenderBase, IConne
         _configuration = configuration;
     }
 
-    public void Send(ConnectionStatus currentStatus)
+    public void SendConnectedNotification()
+    {
+        SendNotification(ConnectionStatus.Connected);
+    }
+
+    public void SendDisconnectedNotification()
+    {
+        SendNotification(ConnectionStatus.Disconnected);
+    }
+
+    private void SendNotification(ConnectionStatus currentStatus)
     {
         if (_isMainWindowVisible || _guestHoleManager.IsActive || !IsToNotify(currentStatus))
         {

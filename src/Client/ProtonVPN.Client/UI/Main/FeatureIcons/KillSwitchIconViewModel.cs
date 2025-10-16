@@ -36,7 +36,7 @@ public class KillSwitchIconViewModel : FeatureIconViewModelBase
 
     protected KillSwitchMode KillSwitchMode => Settings.KillSwitchMode;
 
-    public bool IsDisconnectedAndAdvancedKillSwitchActive => ConnectionManager.IsDisconnected && Settings.IsAdvancedKillSwitchActive();
+    public bool IsInternetUnavailable => ConnectionManager.IsDisconnected && Settings.IsAdvancedKillSwitchActive();
 
     public KillSwitchIconViewModel(
         IConnectionManager connectionManager,

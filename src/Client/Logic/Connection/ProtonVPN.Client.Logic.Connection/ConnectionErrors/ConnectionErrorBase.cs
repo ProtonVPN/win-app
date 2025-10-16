@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 
@@ -26,9 +27,15 @@ public abstract class ConnectionErrorBase : IConnectionError
 {
     protected readonly ILocalizationProvider Localizer;
 
+    public virtual Severity Severity => Severity.Error;
+
+    public virtual string Title => Localizer.Get("Connection_Error_Title");
+
     public abstract string Message { get; }
 
     public abstract string ActionLabel { get; }
+
+    public virtual bool IsToCloseErrorOnDisconnect => false;
 
     protected ConnectionErrorBase(ILocalizationProvider localizer)
     {

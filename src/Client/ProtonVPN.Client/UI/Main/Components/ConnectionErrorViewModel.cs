@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Selection;
@@ -45,10 +46,16 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ActionButtonTitle))]
+    [NotifyPropertyChangedFor(nameof(ConnectionErrorSeverity))]
+    [NotifyPropertyChangedFor(nameof(ConnectionErrorTitle))]
     [NotifyPropertyChangedFor(nameof(ConnectionErrorMessage))]
     [NotifyPropertyChangedFor(nameof(IsConnectionErrorVisible))]
     [NotifyCanExecuteChangedFor(nameof(TriggerActionButtonCommand))]
     private IConnectionError? _connectionError;
+
+    public Severity ConnectionErrorSeverity => ConnectionError?.Severity ?? Severity.None;
+
+    public string ConnectionErrorTitle => ConnectionError?.Title ?? string.Empty;
 
     public string ConnectionErrorMessage => ConnectionError?.Message ?? string.Empty;
 
@@ -69,7 +76,7 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
         ExecuteOnUIThread(() =>
         {
             ConnectionError = _connectionErrorFactory.GetConnectionError(message.VpnError);
-            IsConnectionErrorVisible = !string.IsNullOrEmpty(ConnectionErrorMessage);
+            IsConnectionErrorVisible = !string.IsNullOrEmpty(ConnectionErrorTitle) && !string.IsNullOrEmpty(ConnectionErrorMessage);
 
             OnPropertyChanged(nameof(ConnectionErrorMessage));
         });
@@ -79,11 +86,24 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
     {
         ExecuteOnUIThread(() =>
         {
-            if (message.ConnectionStatus == ConnectionStatus.Connecting)
+            if (message.ConnectionStatus == ConnectionStatus.Connecting && !IsToCloseErrorOnDisconnect())
+            {
+                CloseError();
+            }
+            else if (message.ConnectionStatus == ConnectionStatus.Disconnected && IsToCloseErrorOnDisconnect())
+            {
+                CloseError();
+            }
+            else if (message.ConnectionStatus == ConnectionStatus.Connected)
             {
                 CloseError();
             }
         });
+    }
+
+    private bool IsToCloseErrorOnDisconnect()
+    {
+        return ConnectionError?.IsToCloseErrorOnDisconnect ?? false;
     }
 
     public void Receive(LoggingOutMessage message)
@@ -122,11 +142,20 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
     {
         if (IsConnectionErrorVisible)
         {
-            _applicationIconSelector.OnConnectionErrorTriggered();
+            _applicationIconSelector.OnConnectionErrorTriggered(ConnectionErrorSeverity);
         }
         else
         {
             _applicationIconSelector.OnConnectionErrorDismissed();
         }
+    }
+
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        OnPropertyChanged(nameof(ConnectionErrorTitle));
+        OnPropertyChanged(nameof(ConnectionErrorMessage));
+        OnPropertyChanged(nameof(ActionButtonTitle));
     }
 }

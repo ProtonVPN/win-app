@@ -17,13 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+
+using ProtonVPN.Client.Common.Enums;
+
 namespace ProtonVPN.Client.Logic.Connection.Contracts;
 
 public interface IConnectionError
 {
+    public Severity Severity { get; }
+
+    public string Title { get; }
+
     public string Message { get; }
 
     public string ActionLabel { get; }
+
+    public bool IsToCloseErrorOnDisconnect { get; }
 
     public Task ExecuteActionAsync();
 }

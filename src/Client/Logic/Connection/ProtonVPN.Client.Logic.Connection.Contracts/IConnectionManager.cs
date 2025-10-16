@@ -35,6 +35,7 @@ public interface IConnectionManager
     bool IsConnected { get; }
     bool HasError { get; }
     bool IsNetworkBlocked { get; }
+    bool IsTwoFactorError { get; }
 
     Task ConnectAsync(VpnTriggerDimension vpnConnectionTrigger, IConnectionIntent? connectionIntent = null);
     Task<bool> ReconnectIfNotRecentlyReconnectedAsync();

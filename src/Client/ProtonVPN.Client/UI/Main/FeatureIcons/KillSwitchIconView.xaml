@@ -41,6 +41,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                              VerticalAlignment="Top"
                                              Foreground="{ThemeResource SignalWarningColorBrush}"
                                              Size="Pixels16"
-                                             Visibility="{x:Bind ViewModel.IsDisconnectedAndAdvancedKillSwitchActive}" />
+                                             Visibility="{x:Bind ViewModel.IsInternetUnavailable}" />
     </Grid>
 </UserControl>

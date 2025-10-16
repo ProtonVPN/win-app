@@ -139,6 +139,15 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
         SessionLimitReachedUnknown = 86110,
 
         [EnumMember]
+        TwoFactorRequiredReasonUnknown = 86120,
+
+        [EnumMember]
+        TwoFactorExpired = 86121,
+
+        [EnumMember]
+        TwoFactorNewConnection = 86122,
+
+        [EnumMember]
         PlanNeedsToBeUpgraded = 86151,
 
         [EnumMember]

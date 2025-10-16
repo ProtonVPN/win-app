@@ -41,11 +41,28 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="ConnectionStates">
 
+                <VisualState x:Name="IsTwoFactorRequired">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsTwoFactorRequired}" />
+                    </VisualState.StateTriggers>
+                    <Storyboard>
+                        <ColorAnimation EnableDependentAnimation="True"
+                                        Storyboard.TargetName="StatusGradient"
+                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)"
+                                        To="{ThemeResource GradientWarningStartColor}"
+                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
+                        <ColorAnimation EnableDependentAnimation="True"
+                                        Storyboard.TargetName="StatusGradient"
+                                        Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)"
+                                        To="{ThemeResource GradientWarningEndColor}"
+                                        Duration="{StaticResource ConnectionStatusBackgroundAnimationDuration}" />
+                    </Storyboard>
+                </VisualState>
 
-                <VisualState x:Name="ConnectingOrIsNotConnectedAndAdvancedKillSwitchIsActive">
+                <VisualState x:Name="ConnectingOrIsInternetUnavailable">
                     <VisualState.StateTriggers>
                         <StateTrigger IsActive="{x:Bind ViewModel.IsConnecting}" />
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsNotConnectedAndAdvancedKillSwitchActive}" />
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsInternetUnavailable}" />
                     </VisualState.StateTriggers>
                     <Storyboard>
                         <ColorAnimation EnableDependentAnimation="True"

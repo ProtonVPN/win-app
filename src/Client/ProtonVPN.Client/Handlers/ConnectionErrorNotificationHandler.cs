@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,7 +21,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
-using ProtonVPN.Client.Notifications;
+using ProtonVPN.Client.Notifications.Contracts;
 
 namespace ProtonVPN.Client.Handlers;
 
@@ -30,18 +30,24 @@ public class ConnectionErrorNotificationHandler : IHandler,
 {
     private readonly IConnectionErrorNotificationSender _connectionErrorNotificationSender;
 
-    public ConnectionErrorNotificationHandler(IConnectionErrorNotificationSender connectionErrorNotificationSender)
+    public ConnectionErrorNotificationHandler(
+        IConnectionErrorNotificationSender connectionErrorNotificationSender)
     {
         _connectionErrorNotificationSender = connectionErrorNotificationSender;
     }
 
     public void Receive(ConnectionErrorMessage message)
     {
-        if (!message.VpnError.IsSessionLimitError())
+        if (message.VpnError.IsSessionLimitError())
         {
+            _connectionErrorNotificationSender.SendSessionLimitNotification();
             return;
         }
 
-        _connectionErrorNotificationSender.Send(message.VpnError);
+        if (message.VpnError.IsTwoFactorRequiredError())
+        {
+            _connectionErrorNotificationSender.SendTwoFactorRequiredNotification();
+            return;
+        }
     }
 }

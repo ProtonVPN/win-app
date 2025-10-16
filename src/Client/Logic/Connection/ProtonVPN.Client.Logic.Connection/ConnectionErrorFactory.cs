@@ -45,8 +45,8 @@ public class ConnectionErrorFactory : IConnectionErrorFactory
     {
         return vpnError switch
         {
-            VpnError.None or 
-            VpnError.NoneKeepEnabledKillSwitch or 
+            VpnError.None or
+            VpnError.NoneKeepEnabledKillSwitch or
             VpnError.BaseFilteringEngineServiceNotRunning => GetConnectionError<NoConnectionError>(vpnError),
 
             VpnError.NoServers when _connectionManager.CurrentConnectionIntent is IConnectionProfile =>
@@ -68,6 +68,10 @@ public class ConnectionErrorFactory : IConnectionErrorFactory
             VpnError.SessionLimitReachedPro or
             VpnError.SessionLimitReachedVisionary or
             VpnError.SessionLimitReachedUnknown => GetConnectionError<SessionLimitReachedConnectionError>(vpnError),
+
+            VpnError.TwoFactorRequiredReasonUnknown or
+            VpnError.TwoFactorExpired or
+            VpnError.TwoFactorNewConnection => GetConnectionError<TwoFactorRequiredConnectionError>(vpnError),
 
             _ => GetUnknownConnectionError(vpnError),
         };

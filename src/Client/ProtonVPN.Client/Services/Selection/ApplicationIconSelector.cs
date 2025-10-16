@@ -19,6 +19,7 @@
 
 using System.Drawing;
 using Microsoft.UI.Xaml.Media;
+using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Messages;
@@ -64,8 +65,8 @@ public class ApplicationIconSelector : IApplicationIconSelector,
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
 
-    private bool _hasAuthenticationError;
-    private bool _hasConnectionError;
+    private Severity _authenticationErrorSeverity = Severity.None;
+    private Severity _connectionErrorSeverity = Severity.None;
 
     public AppIconStatus AppIconStatus { get; private set; } = AppIconStatus.None;
 
@@ -100,27 +101,27 @@ public class ApplicationIconSelector : IApplicationIconSelector,
         }
     }
 
-    public void OnAuthenticationErrorTriggered()
+    public void OnAuthenticationErrorTriggered(Severity severity)
     {
-        _hasAuthenticationError = true;
+        _authenticationErrorSeverity = severity;
         InvalidateAppIconStatus();
     }
 
     public void OnAuthenticationErrorDismissed()
     {
-        _hasAuthenticationError = false;
+        _authenticationErrorSeverity = Severity.None;
         InvalidateAppIconStatus();
     }
 
-    public void OnConnectionErrorTriggered()
+    public void OnConnectionErrorTriggered(Severity severity)
     {
-        _hasConnectionError = true;
+        _connectionErrorSeverity = severity;
         InvalidateAppIconStatus();
     }
 
     public void OnConnectionErrorDismissed()
     {
-        _hasConnectionError = false;
+        _connectionErrorSeverity = Severity.None;
         InvalidateAppIconStatus();
     }
 
@@ -178,27 +179,51 @@ public class ApplicationIconSelector : IApplicationIconSelector,
 
     private void InvalidateAppIconStatus()
     {
-        bool isAdvancedKillSwitchActive = _connectionManager.IsDisconnected && _settings.IsAdvancedKillSwitchActive();
-
-        AppIconStatus status = _userAuthenticator.IsLoggedIn
-            ? _connectionManager.IsConnected
+        AppIconStatus status = 
+            ShouldShowConnectedStatus()
                 ? AppIconStatus.Connected
-                : _hasConnectionError
+                : ShouldShowErrorStatus()
                     ? AppIconStatus.Error
-                    : isAdvancedKillSwitchActive || _serversCache.IsEmpty()
+                    : ShouldShowWarningStatus()
                         ? AppIconStatus.Warning
-                        : AppIconStatus.Disconnected
-            : _hasAuthenticationError
-                ? AppIconStatus.Error
-                : isAdvancedKillSwitchActive
-                    ? AppIconStatus.Warning
-                    : AppIconStatus.None;
+                        : ShouldShowDisconnectedStatus()
+                            ? AppIconStatus.Disconnected
+                            : AppIconStatus.None;
 
         if (AppIconStatus != status)
         {
             AppIconStatus = status;
             _eventMessageSender.Send(new AppIconStatusChangedMessage(status));
         }
+    }
+
+    private bool ShouldShowConnectedStatus()
+    {
+        return _userAuthenticator.IsLoggedIn && _connectionManager.IsConnected;
+    }
+
+    private bool ShouldShowErrorStatus()
+    {
+        return _userAuthenticator.IsLoggedIn
+            ? _connectionErrorSeverity is Severity.Error
+            : _authenticationErrorSeverity is Severity.Error;
+    }
+
+    private bool ShouldShowWarningStatus()
+    {
+        if (_connectionManager.IsDisconnected && _settings.IsAdvancedKillSwitchActive())
+        {
+            return true;
+        }
+
+        return _userAuthenticator.IsLoggedIn
+            ? _connectionErrorSeverity is Severity.Warning || _connectionManager.IsTwoFactorError || _serversCache.IsEmpty()
+            : _authenticationErrorSeverity is Severity.Warning;
+    }
+
+    private bool ShouldShowDisconnectedStatus()
+    {
+        return _userAuthenticator.IsLoggedIn && !_connectionManager.IsConnected;
     }
 
     private Icon GetBadgeIcon(string iconFileName)

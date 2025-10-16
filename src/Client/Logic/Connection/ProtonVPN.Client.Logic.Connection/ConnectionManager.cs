@@ -88,8 +88,9 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
     public bool IsDisconnected => ConnectionStatus == ConnectionStatus.Disconnected;
     public bool IsConnecting => ConnectionStatus == ConnectionStatus.Connecting;
     public bool IsConnected => ConnectionStatus == ConnectionStatus.Connected;
-    public bool HasError => _currentError is not VpnErrorTypeIpcEntity.None and not VpnErrorTypeIpcEntity.NoneKeepEnabledKillSwitch;
+    public bool HasError => _currentError.HasError();
     public bool IsNetworkBlocked => _isNetworkBlocked;
+    public bool IsTwoFactorError => !IsDisconnected && _currentError.IsTwoFactorError();
 
     public ConnectionManager(
         ILogger logger,
@@ -305,7 +306,8 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
             }
         }
 
-        if (message.Status != VpnStatusIpcEntity.ActionRequired)
+        if (message.Status != VpnStatusIpcEntity.ActionRequired ||
+            message.Error.IsTwoFactorError())
         {
             SetConnectionStatus(message.Status, message.Error, isToForceStatusUpdate);
         }
@@ -340,13 +342,20 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
         CurrentConnectionDetails?.UpdateStatus(status);
 
-        ConnectionStatus = _entityMapper.Map<VpnStatusIpcEntity, ConnectionStatus>(status);
+        ConnectionStatus = MapConnectionStatus(status, error);
 
         _eventMessageSender.Send(new ConnectionStatusChangedMessage(ConnectionStatus));
 
         _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Status updated to {ConnectionStatus}{(_isGuestHoleActive ? " (Guest hole)" : string.Empty)}.{(IsConnected ? $" Connected to server {CurrentConnectionDetails?.ServerName}" : string.Empty)}");
 
         _statisticalEventManager.OnVpnStateChanged(status, error, CurrentConnectionDetails);
+    }
+
+    private ConnectionStatus MapConnectionStatus(VpnStatusIpcEntity status, VpnErrorTypeIpcEntity error)
+    {
+        return status == VpnStatusIpcEntity.ActionRequired && error.IsTwoFactorError()
+            ? ConnectionStatus.Connecting
+            : _entityMapper.Map<VpnStatusIpcEntity, ConnectionStatus>(status);
     }
 
     public void Receive(ConnectionDetailsIpcEntity message)

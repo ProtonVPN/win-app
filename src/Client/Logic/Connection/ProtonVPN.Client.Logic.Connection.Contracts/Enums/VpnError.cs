@@ -64,6 +64,10 @@ public enum VpnError
     SessionLimitReachedPro = 86115,
     SessionLimitReachedUnknown = 86110,
 
+    TwoFactorRequiredReasonUnknown = 86120,
+    TwoFactorExpired = 86121,
+    TwoFactorNewConnection = 86122,
+
     PlanNeedsToBeUpgraded = 86151,
 
     ServerSessionDoesNotMatch = 86202,

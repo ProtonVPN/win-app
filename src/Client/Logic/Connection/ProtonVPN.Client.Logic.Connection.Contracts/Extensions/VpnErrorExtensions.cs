@@ -84,6 +84,13 @@ public static class VpnErrorExtensions
         VpnError.ServerSessionDoesNotMatch,
     ];
 
+    private static readonly List<VpnError> _errorsForTwoFactorRequired =
+    [
+        VpnError.TwoFactorRequiredReasonUnknown,
+        VpnError.TwoFactorExpired,
+        VpnError.TwoFactorNewConnection,
+    ];
+
     public static bool RequiresInformingUser(this VpnError error)
     {
         return _errorsForUser.Contains(error) || error.IsSessionLimitError();
@@ -112,6 +119,11 @@ public static class VpnErrorExtensions
     public static bool IsSessionLimitError(this VpnError error)
     {
         return _sessionLimitErrors.Contains(error);
+    }
+
+    public static bool IsTwoFactorRequiredError(this VpnError error)
+    {
+        return _errorsForTwoFactorRequired.Contains(error);
     }
 
     public static bool IsBaseFilteringEngineError(this VpnError error)

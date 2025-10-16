@@ -1726,6 +1726,12 @@
   <data name="Home_ConnectionDetails_ConnectToRestoreConnection" xml:space="preserve">
     <value>Connect to VPN to restore your internet connection.</value>
   </data>
+    <data name="Home_ConnectionDetails_TwoFactorRequired_Title" xml:space="preserve">
+    <value>2FA expired</value>
+  </data>
+    <data name="Home_ConnectionDetails_TwoFactorRequired_Description" xml:space="preserve">
+    <value>Re-authenticate in your organization's 2FA portal to continue.</value>
+  </data>
   <data name="Home_Help_Title" xml:space="preserve">
     <value>Help</value>
   </data>
@@ -2239,7 +2245,7 @@
     <value>Two factor authentication failed. Please sign in again.</value>
   </data>
   <data name="Login_Error_WebAuthnNotSupported" xml:space="preserve">
-    <value>U2F or FIDO authentication is not supported by your device or by your remote desktop connection.</value>
+    <value>Security key authentication is not available for your device or remote desktop connection.</value>
   </data>
   <data name="Settings_Support_SupportCenter" xml:space="preserve">
     <value>Support center</value>
@@ -2943,6 +2949,12 @@
   </data>
   <data name="Connection_Error_Unknown" xml:space="preserve">
     <value>Check your internet connection and try again. If that doesn't work, contact our customer support team.\n\nError code: {0}</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title" xml:space="preserve">
+    <value>Two-factor authentication (2FA) required</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Description" xml:space="preserve">
+    <value>To connect to VPN, go to your organization's 2FA portal and tap your security key.</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection" xml:space="preserve">
     <value>IPv6 leak protection</value>

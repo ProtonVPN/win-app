@@ -104,6 +104,11 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
         _error = vpnState.Error;
         _status = vpnState.Status;
 
+        if (error.IsTwoFactorRequiredError())
+        {
+            return HandleTwoFactorRequired(error);
+        }
+
         if (error == VpnError.BaseFilteringEngineServiceNotRunning)
         {
             return HandleBaseFilteringEngineServiceNotRunning();
@@ -157,6 +162,11 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
         }
 
         return ConnectionErrorHandlerResult.NoAction;
+    }
+
+    private ConnectionErrorHandlerResult HandleTwoFactorRequired(VpnError error)
+    {
+        return SendConnectionErrorMessage(error);
     }
 
     private void DeleteCertificateIfRequired(VpnError error, string connectionCertificatePem)

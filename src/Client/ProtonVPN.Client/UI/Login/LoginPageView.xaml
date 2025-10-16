@@ -79,7 +79,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <InfoBar AutomationProperties.AutomationId="LoginPageMessage"
                                  IsOpen="{x:Bind ViewModel.IsMessageVisible, Mode=TwoWay}"
                                  Message="{x:Bind ViewModel.Message}"
-                                 Severity="{x:Bind ViewModel.MessageType}" />
+                                 Severity="{x:Bind ViewModel.MessageSeverity, Converter={StaticResource SeverityToInfoBarSeverityConverter}}" />
 
                     </StackPanel>
 
