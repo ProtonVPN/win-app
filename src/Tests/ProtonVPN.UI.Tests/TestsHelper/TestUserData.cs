@@ -42,7 +42,7 @@ public class TestUserData
     public static TestUserData ZeroAssignedConnectionsUser => GetUser("ZERO_CONNECTIONS_USER");
     public static TestUserData TwoFactorUser => GetUser("TWO_FACTOR_AUTH_USER");
     public static TestUserData SsoUser => GetUser("SSO_USER");
-    public static TestUserData IncorrectUser => new TestUserData("IncorrectUsername", "IncorrectPass");
+    public static TestUserData IncorrectUser => new TestUserData(FreeUser.Username, "IncorrectPass");
     public static TestUserData IncorrectUserWithWhitespace => new TestUserData(" Incorrect Username", " Incorrect Pass");
 
     public static string GetTwoFactorCode()
