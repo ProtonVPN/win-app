@@ -32,118 +32,79 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style x:Key="DefaultBannerControlStyle" TargetType="custom:BannerControl">
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="8" />
-        <Setter Property="Padding" Value="12" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:BannerControl">
 
                     <Grid>
-                        <Grid Padding="{TemplateBinding Padding}"
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0"
+                              Padding="{TemplateBinding Padding}"
                               Background="{ThemeResource BackgroundNormColorBrush}"
                               BorderBrush="{ThemeResource PrimaryColorBrush}"
                               BorderThickness="{TemplateBinding BorderThickness}"
-                              ColumnSpacing="8"
-                              CornerRadius="{TemplateBinding CornerRadius}"
-                              RowSpacing="8">
+                              CornerRadius="{TemplateBinding CornerRadius}">
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
-                            <StackPanel x:Name="BannerImage"
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Spacing="4">
-
-                                <Button Padding="0"
-                                        HorizontalAlignment="Left"
-                                        AutomationProperties.AutomationId="BannerImageActionButton"
-                                        Command="{Binding ActionCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                        Style="{StaticResource RowButtonStyle}"
-                                        Visibility="{Binding LargeIllustrationSource, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}">
-
-                                    <Image MaxWidth="350"
-                                           Source="{TemplateBinding LargeIllustrationSource}"
-                                           Stretch="Uniform" />
-
-                                </Button>
-
-                                <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                                           Style="{StaticResource BodyTextBlockStyle}"
-                                           Text="{TemplateBinding Footer}"
-                                           TextAlignment="Left"
-                                           TextWrapping="Wrap"
-                                           Visibility="{Binding Footer, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
-                            </StackPanel>
-
-                            <Button x:Name="BannerActionButton"
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    HorizontalAlignment="Right"
-                                    AutomationProperties.AutomationId="BannerActionButton"
+                            <Button Margin="0"
+                                    Padding="12"
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    HorizontalContentAlignment="Stretch"
+                                    VerticalContentAlignment="Stretch"
+                                    AutomationProperties.AutomationId="BannerImageActionButton"
                                     Command="{Binding ActionCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                    Content="{TemplateBinding ActionButtonText}"
-                                    Style="{StaticResource PrimaryButtonStyle}"
-                                    Visibility="{Binding IsActionButtonVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                    Style="{StaticResource RowButtonStyle}"
+                                    Visibility="{Binding LargeIllustrationSource, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}">
+
+                                <StackPanel>
+
+                                    <Image x:Name="BannerImage"
+                                           MaxWidth="350"
+                                           Source="{TemplateBinding LargeIllustrationSource}"
+                                           Stretch="Uniform"
+                                           HorizontalAlignment="Left" />
+
+                                    <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                               Style="{StaticResource BodyTextBlockStyle}"
+                                               Text="{TemplateBinding Footer}"
+                                               TextAlignment="Left"
+                                               TextWrapping="Wrap"
+                                               HorizontalAlignment="Left"
+                                               Visibility="{Binding Footer, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+
+                                    <Button x:Name="BannerActionButton"
+                                            Margin="0,8,0,0"
+                                            HorizontalAlignment="Left"
+                                            AutomationProperties.AutomationId="BannerActionButton"
+                                            Command="{Binding ActionCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                            Content="{TemplateBinding ActionButtonText}"
+                                            Style="{StaticResource PrimaryButtonStyle}"
+                                            Visibility="{Binding IsActionButtonVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                                </StackPanel>
+                            </Button>
 
                         </Grid>
 
                         <Button x:Name="DismissButton"
+                                Grid.Column="1"
                                 Style="{ThemeResource SecondaryButtonStyle}"
-                                            Margin="0,-12,0,0"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Top"
-                                            Padding="4"
-                                            AutomationProperties.AutomationId="BannerDismissButton"
-                                            BorderThickness="1"
-                                            Command="{Binding DismissCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                            CornerRadius="16"
-                                            Visibility="{Binding IsDismissButtonVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                Margin="-12,-8,0,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Padding="2"
+                                AutomationProperties.AutomationId="BannerDismissButton"
+                                BorderThickness="1"
+                                Command="{Binding DismissCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                CornerRadius="12"
+                                Visibility="{Binding IsDismissButtonVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <pathicons:Cross Size="Pixels16" />
                         </Button>
 
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup>
-
-                                <VisualState x:Name="WideState">
-                                    <VisualState.Setters>
-                                        <Setter Target="BannerImage.(Grid.Row)" Value="0" />
-                                        <Setter Target="BannerImage.(Grid.Column)" Value="0" />
-
-                                        <Setter Target="BannerActionButton.(Grid.Row)" Value="0" />
-                                        <Setter Target="BannerActionButton.(Grid.Column)" Value="1" />
-                                        <Setter Target="BannerActionButton.(HorizontalAlignment)" Value="Right" />
-
-                                        <Setter Target="DismissButton.(Grid.Row)" Value="0" />
-                                        <Setter Target="DismissButton.(Grid.Column)" Value="2" />
-                                        <Setter Target="DismissButton.(VerticalAlignment)" Value="Center" />
-                                    </VisualState.Setters>
-                                </VisualState>
-
-                                <VisualState x:Name="NarrowState">
-                                    <VisualState.Setters>
-                                        <Setter Target="BannerImage.(Grid.Row)" Value="0" />
-                                        <Setter Target="BannerImage.(Grid.Column)" Value="0" />
-                                        <Setter Target="BannerImage.(Grid.ColumnSpan)" Value="3" />
-
-                                        <Setter Target="BannerActionButton.(Grid.Row)" Value="1" />
-                                        <Setter Target="BannerActionButton.(Grid.Column)" Value="0" />
-                                        <Setter Target="BannerActionButton.(HorizontalAlignment)" Value="Left" />
-
-                                        <Setter Target="DismissButton.(Grid.Row)" Value="0" />
-                                        <Setter Target="DismissButton.(Grid.Column)" Value="2" />
-                                        <Setter Target="DismissButton.(VerticalAlignment)" Value="Top" />
-                                    </VisualState.Setters>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
                     </Grid>
 
                 </ControlTemplate>
@@ -174,8 +135,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           Padding="{TemplateBinding Padding}"
                           Style="{StaticResource ProminentBannerContentContainerStyle}"
                           ColumnSpacing="8"
-                          CornerRadius="{TemplateBinding CornerRadius}"
-                          RowSpacing="8">
+                          CornerRadius="{TemplateBinding CornerRadius}">
+                        
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
@@ -200,7 +161,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        Visibility="{Binding Header, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
                             <TextBlock x:Name="ProminentBannerDescription"
-                                       Margin="0,-4,0,8"
+                                       Margin="0"
                                        Style="{StaticResource BodyTextBlockStyle}"
                                        Text="{TemplateBinding Description}"
                                        TextAlignment="Left"
@@ -256,7 +217,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     <VisualState.Setters>
                                         <Setter Target="ProminentBannerActionButton.(Grid.Row)" Value="0" />
                                         <Setter Target="ProminentBannerActionButton.(Grid.Column)" Value="1" />
-                                        <Setter Target="ProminentBannerActionButton.(HorizontalAlignment)" Value="Right" />
+                                        <Setter Target="ProminentBannerActionButton.HorizontalAlignment" Value="Right" />
 
                                         <Setter Target="DismissButton.(Grid.Row)" Value="0" />
                                         <Setter Target="DismissButton.(Grid.Column)" Value="2" />
@@ -271,13 +232,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="ProminentBannerActionButton.(Grid.Row)" Value="1" />
                                         <Setter Target="ProminentBannerActionButton.(Grid.Column)" Value="0" />
                                         <Setter Target="ProminentBannerActionButton.(Grid.ColumnSpan)" Value="3" />
-                                        <Setter Target="ProminentBannerActionButton.(HorizontalAlignment)" Value="Left" />
+                                        <Setter Target="ProminentBannerActionButton.HorizontalAlignment" Value="Left" />
+                                        <Setter Target="ProminentBannerActionButton.Margin" Value="0,8,0,0" />
 
                                         <Setter Target="DismissButton.(Grid.Row)" Value="0" />
                                         <Setter Target="DismissButton.(Grid.Column)" Value="1" />
                                         <Setter Target="DismissButton.(Grid.ColumnSpan)" Value="2" />
-                                        <Setter Target="DismissButton.(VerticalAlignment)" Value="Top" />
-                                        <Setter Target="DismissButton.(HorizontalAlignment)" Value="Right" />
+                                        <Setter Target="DismissButton.VerticalAlignment" Value="Top" />
+                                        <Setter Target="DismissButton.HorizontalAlignment" Value="Right" />
                                     </VisualState.Setters>
                                 </VisualState>
 
