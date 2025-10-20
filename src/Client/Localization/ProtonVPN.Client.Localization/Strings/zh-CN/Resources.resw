@@ -376,6 +376,12 @@
   <data name="Connection_Error_TlsCertificate">
     <value>VPN 服务器的证书未能通过验证，这意味着当前网络环境可能已遭到监控，或者服务器配置存在问题。请填写问题反馈以便我们的客服为您提供帮助。</value>
   </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>To connect to VPN, go to your organization's 2FA portal and tap your security key.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>Two-factor authentication (2FA) required</value>
+  </data>
   <data name="Connection_Error_Unknown">
     <value>Check your internet connection and try again. If that doesn't work, contact our customer support team.
 
@@ -2533,6 +2539,12 @@ Error code: {0}</value>
   <data name="Home_ConnectionDetails_Title">
     <value>连接详情</value>
   </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Re-authenticate in your organization's 2FA portal to continue.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>2FA expired</value>
+  </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>未受保护</value>
   </data>
@@ -2681,6 +2693,9 @@ Error code: {0}</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>双因素验证失败。请重新登录。</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>Security key authentication is not available for your device or remote desktop connection.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>认证账户</value>

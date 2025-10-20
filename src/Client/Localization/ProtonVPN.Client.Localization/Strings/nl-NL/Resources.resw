@@ -376,6 +376,12 @@
   <data name="Connection_Error_TlsCertificate">
     <value>Er is een probleem opgetreden bij het verifiëren van het VPN-servercertificaat. Dit kan erop duiden dat er met de netwerkverbinding wordt geknoeid of dat de server waarmee u verbinding probeert te maken een configuratieprobleem heeft. Vraag om hulp bij onze klantenservice door een probleemrapport te sturen.</value>
   </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>Om met VPN te verbinden, gaat u naar het 2FA-portaal van uw organisatie en tikt u op uw beveiligingssleutel.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>Tweestapsverificatie (2FA) vereist</value>
+  </data>
   <data name="Connection_Error_Unknown">
     <value>Controleer uw internetverbinding en probeer het opnieuw. Als dat niet werkt, neem dan contact op met ons klantenondersteuningsteam.
 
@@ -2635,6 +2641,12 @@ Foutcode: {0}</value>
   <data name="Home_ConnectionDetails_Title">
     <value>Verbindingsgegevens</value>
   </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Opnieuw authenticeren in de 2FA-portal van uw organisatie om door te gaan.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>2FA verlopen</value>
+  </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>Onbeschermd</value>
   </data>
@@ -2789,6 +2801,9 @@ Foutcode: {0}</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>Tweestapsverificatie mislukt. Log opnieuw in.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>Verificatie met een beveiligingssleutel wordt niet ondersteund door uw apparaat of door uw externe bureaubladverbinding.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>Verifiëren</value>

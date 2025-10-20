@@ -376,6 +376,12 @@
   <data name="Connection_Error_TlsCertificate">
     <value>Il y a un problème de validation du certificat du serveur VPN, ce qui peut indiquer que la connexion réseau est altérée ou que le serveur auquel vous essayez de vous connecter a un problème de configuration. Signalez le problème à notre service client pour obtenir de l'aide.</value>
   </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>Afin de vous connecter au VPN, veuillez vous rendre sur le portail A2F de votre organisation et appuyer sur votre clé de sécurité.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>Authentification à deux facteurs (A2F) requise</value>
+  </data>
   <data name="Connection_Error_Unknown">
     <value>Veuillez vérifier votre connexion Internet et réessayer. Si cela ne fonctionne pas, contactez notre équipe du service client. 
 
@@ -2635,6 +2641,12 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   <data name="Home_ConnectionDetails_Title">
     <value>Informations de connexion</value>
   </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Veuillez-vous réauthentifier dans le portail A2F de votre organisation pour continuer.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>A2F expiré</value>
+  </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>Sans protection</value>
   </data>
@@ -2789,6 +2801,9 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>Échec de l'authentification à deux facteurs. Nous vous invitons à vous reconnecter.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>L'authentification par clé de sécurité n'est pas prise en charge par votre appareil ou votre connexion Bureau à distance.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>S'authentifier</value>

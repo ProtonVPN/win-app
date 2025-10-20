@@ -376,6 +376,12 @@
   <data name="Connection_Error_TlsCertificate">
     <value>Hay un problema al validar el certificado del servidor VPN, lo que podría indicar que la conexión de red está siendo manipulada o que el servidor al que está intentando conectarse tiene un problema de configuración. Envíe un reporte del problema para obtener ayuda de nuestro servicio de soporte al cliente.</value>
   </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>Para conectarse a la VPN, vaya al portal 2FA de su organización y pulse su clave de seguridad.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>Se requiere autenticación de dos factores (2FA)</value>
+  </data>
   <data name="Connection_Error_Unknown">
     <value>Revise su conexión a internet e inténtelo de nuevo. Si eso no funciona, contacte a nuestro equipo de atención al cliente.
 
@@ -2635,6 +2641,12 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
   <data name="Home_ConnectionDetails_Title">
     <value>Detalles de la conexión</value>
   </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Vuelva a autenticarse en el portal 2FA de su organización para continuar.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>2FA expirado</value>
+  </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>No protegido</value>
   </data>
@@ -2789,6 +2801,9 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>Error con la autenticación en dos pasos. Inicie sesión nuevamente.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>La autenticación de la clave de seguridad no está disponible para su dispositivo o conexión de escritorio remoto.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>Autenticar</value>

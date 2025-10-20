@@ -376,6 +376,12 @@
   <data name="Connection_Error_TlsCertificate">
     <value>Probléma van a VPN-kiszolgáló tanúsítványának ellenőrzésével. Ez azt jelezheti, hogy a hálózati kapcsolatot megfigyelik, vagy a kiválasztott szerver konfigurációja hibás. Kérjen segítséget ügyfélszolgálatunktól a probléma jelentés segítségével.</value>
   </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>To connect to VPN, go to your organization's 2FA portal and tap your security key.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>Two-factor authentication (2FA) required</value>
+  </data>
   <data name="Connection_Error_Unknown">
     <value>Check your internet connection and try again. If that doesn't work, contact our customer support team.
 
@@ -2635,6 +2641,12 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   <data name="Home_ConnectionDetails_Title">
     <value>Kapcsolat adatai</value>
   </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Re-authenticate in your organization's 2FA portal to continue.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>2FA expired</value>
+  </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>Nem védett</value>
   </data>
@@ -2789,6 +2801,9 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>A kétlépcsős hitelesítés sikertelen. Jelentkezzen be újra.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>Security key authentication is not available for your device or remote desktop connection.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>Hitelesítés</value>

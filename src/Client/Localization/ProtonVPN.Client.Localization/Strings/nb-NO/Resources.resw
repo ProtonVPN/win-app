@@ -376,6 +376,12 @@
   <data name="Connection_Error_TlsCertificate">
     <value>Det har oppstått et problem med å validere VPN-tjenersertifikatet, som kan tyde på at nettverkstilkoblingen tukles med eller at tjeneren du prøver å koble til, har et konfigurasjonsproblem. Få hjelp fra vår kundestøtte ved å sende en feilmelding.</value>
   </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>For å koble til VPN, gå til organisasjonens 2FA-portal og trykk på sikkerhetsnøkkelen din.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>Tofaktorautentisering (2FA) kreves</value>
+  </data>
   <data name="Connection_Error_Unknown">
     <value>Sjekk internettforbindelsen din og prøv på nytt. Hvis det ikke fungerer, kan du kontakte kundestøtteteamet vårt.
 
@@ -2635,6 +2641,12 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   <data name="Home_ConnectionDetails_Title">
     <value>Forbindelsesdetaljer</value>
   </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Autentiser deg på nytt i organisasjonens 2FA-portal for å fortsette.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>2FA utløpt</value>
+  </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>Ubeskyttet</value>
   </data>
@@ -2789,6 +2801,9 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>Tofaktorautentisering mislyktes. Logg på igjen.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>Autentisering av sikkerhetsnøkler er ikke tilgjengelig for enheten din eller tilkoblingen til eksternt skrivebord.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>Autentiser</value>

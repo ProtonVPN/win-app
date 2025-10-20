@@ -376,6 +376,12 @@
   <data name="Connection_Error_TlsCertificate">
     <value>Există o problemă la validarea certificatului de server VPN, care ar putea indica modificarea conexiunii la rețea sau că serverul la care încercați să vă conectați are o problemă de configurare. Obțineți ajutor de la asistența noastră pentru clienți trimițând un raport de erori.</value>
   </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>Pentru a vă conecta la VPN, accesați portalul de A2F al organizației și atingeți cheia de securitate.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>Autentificare cu doi factori (A2F) necesară</value>
+  </data>
   <data name="Connection_Error_Unknown">
     <value>Verificați-vă conexiunea la internet și reîncercați. Dacă acest lucru nu funcționează, contactați echipa noastră de asistență clienți.
 
@@ -2737,6 +2743,12 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
   <data name="Home_ConnectionDetails_Title">
     <value>Detalii conexiune</value>
   </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Pentru a continua, reautentificați-vă în portalul de A2F al organizației.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>A2F a expirat</value>
+  </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>Neprotejată</value>
   </data>
@@ -2897,6 +2909,9 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>Autentificarea cu doi factori a eșuat. Reîncercați.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>Autentificarea cu cheie de securitate nu este disponibilă pe acest dispozitiv sau pentru conexiunea la desktopul de la distanță.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>Autentificare</value>

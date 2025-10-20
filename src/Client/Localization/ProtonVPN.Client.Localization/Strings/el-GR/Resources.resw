@@ -376,6 +376,12 @@
   <data name="Connection_Error_TlsCertificate">
     <value>Υπάρχει πρόβλημα με την επικύρωση του πιστοποιητικού διακομιστή VPN, το οποίο μπορεί να υποδεικνύει ότι η σύνδεση δικτύου έχει αλλοιωθεί ή ότι ο διακομιστής στον οποίο προσπαθείτε να συνδεθείτε έχει πρόβλημα ρύθμισης παραμέτρων. Λάβετε βοήθεια από την υποστήριξη πελατών μας στέλνοντας μια αναφορά ζητήματος.</value>
   </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>Για να συνδεθείτε στο VPN, μεταβείτε στην πύλη ταυτοποίησης δύο παραγόντων (2FA) του οργανισμού σας και πατήστε το κλειδί ασφαλείας σας.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>Η ταυτοποίηση δύο παραγόντων (2FA) απαιτείται</value>
+  </data>
   <data name="Connection_Error_Unknown">
     <value>Ελέγξτε τη σύνδεσή σας στο διαδίκτυο και δοκιμάστε ξανά. Εάν αυτό δε λειτουργήσει, επικοινωνήστε με την ομάδα υποστήριξης πελατών μας.
 
@@ -2635,6 +2641,12 @@
   <data name="Home_ConnectionDetails_Title">
     <value>Λεπτομέρειες σύνδεσης</value>
   </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Επαναπιστοποιηθείτε στην πύλη ταυτοποίησης δύο παραγώντων (2FA) του οργανισμού σας για να συνεχίσετε.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>Η ταυτοποίηση δύο παραγόντων (2FA) έληξε</value>
+  </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>Χωρίς προστασία</value>
   </data>
@@ -2789,6 +2801,9 @@
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>Ο έλεγχος ταυτότητας δύο παραγόντων απέτυχε. Παρακαλούμε συνδεθείτε ξανά.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>Η επαλήθευση κλειδιού ασφαλείας δεν είναι διαθέσιμη για τη συσκευή σας ή τη σύνδεση απομακρυσμένης επιφάνειας εργασίας.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>Ταυτοποίηση</value>

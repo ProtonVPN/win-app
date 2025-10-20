@@ -376,6 +376,12 @@
   <data name="Connection_Error_TlsCertificate">
     <value>驗證 VPN 伺服器憑證時發生問題。這可能表示網路連線遭遇竄改，或是您想連線的伺服器配置有問題。請提交問題回報並聯繫我們的客服團隊。</value>
   </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>To connect to VPN, go to your organization's 2FA portal and tap your security key.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>Two-factor authentication (2FA) required</value>
+  </data>
   <data name="Connection_Error_Unknown">
     <value>檢查您的網際網路連線並再試一次。如果無效，請聯絡我們的客戶支援服務團隊。
 
@@ -2534,6 +2540,12 @@
   <data name="Home_ConnectionDetails_Title">
     <value>連線詳細資訊</value>
   </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Re-authenticate in your organization's 2FA portal to continue.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>2FA expired</value>
+  </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>未受保護</value>
   </data>
@@ -2682,6 +2694,9 @@
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>兩步驟驗證失敗，請重新登入。</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>Security key authentication is not available for your device or remote desktop connection.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>驗證</value>

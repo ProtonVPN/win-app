@@ -376,6 +376,12 @@
   <data name="Connection_Error_TlsCertificate">
     <value>Det finns ett problem med att validera VPN-servercertifikatet, vilket kan tyda på att nätverksanslutningen manipuleras eller att servern du försöker ansluta till har ett konfigurationsproblem. Få hjälp från vår kundsupport genom att skicka en problemrapport.</value>
   </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>För att ansluta till VPN, gå till din organisations 2FA-portal och tryck på din säkerhetsnyckel.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>Tvåfaktorsautentisering (2FA) krävs</value>
+  </data>
   <data name="Connection_Error_Unknown">
     <value>Kontrollera din internetanslutning och försök igen. Om det inte fungerar, kontakta vårt kundsupportteam.
 
@@ -2635,6 +2641,12 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Home_ConnectionDetails_Title">
     <value>Anslutningsdetaljer</value>
   </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Re-authenticate in your organization's 2FA portal to continue.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>2FA löpt ut</value>
+  </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>Oskyddad</value>
   </data>
@@ -2789,6 +2801,9 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>Tvåfaktorsautentisering misslyckades. Logga in igen.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>Security key authentication is not available for your device or remote desktop connection.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>Autentisera</value>

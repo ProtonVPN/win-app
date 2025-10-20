@@ -376,6 +376,12 @@
   <data name="Connection_Error_TlsCertificate">
     <value>Выяўлена праблема з праверкай сертыфіката сервера VPN, якая можа ўказваць на тое, што сеткавае падключэнне перахоплена або сервер да якога вы спрабуеце падключыцца мае праблемы з канфігурацыяй. Звярніцеся ў нашу службу падтрымкі, адправіўшы нам справаздачу з праблемай.</value>
   </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>Перайдзіце на партал 2ФА вашай арганізацыі і націсніце на ключ бяспекі, каб падключыцца да VPN.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>Патрабуецца двухфактарная аўтэнтыфікацыя (2ФА)</value>
+  </data>
   <data name="Connection_Error_Unknown">
     <value>Праверце падключэнне да інтэрнэту і паспрабуйце яшчэ раз. Калі гэта не дапаможа, звярніцеся ў нашу службу падтрымкі кліентаў.
 
@@ -2839,6 +2845,12 @@
   <data name="Home_ConnectionDetails_Title">
     <value>Падрабязнасці падключэння</value>
   </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Аўтарызуйцеся паўторна на партале 2ФА вашай арганізацыі, каб працягнуць.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>2ФА пратэрмінаваны</value>
+  </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>Не абаронена</value>
   </data>
@@ -3005,6 +3017,9 @@
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>Збой двухфактарнай аўтэнтыфікацыі. Увайдзіце яшчэ раз.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>Аўтэнтыфікацыя ключом бяспекі не падтрымліваецца вашай прыладай або вашым падключэннем да аддаленага працоўнага стала.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>Аўтэнтыфіцыраваць</value>

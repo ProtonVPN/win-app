@@ -376,6 +376,12 @@
   <data name="Connection_Error_TlsCertificate">
     <value>Hi ha un problema amb la validació del certificat del servidor VPN, la qual cosa pot indicar que la connexió de la xarxa està sent manipulada o que el servidor al qual esteu intentant connectar-vos té un problema de configuració. Obteniu ajuda del nostre equip de suport tot enviant un informe d'incidència.</value>
   </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>Per connectar-vos a la VPN, aneu al portal 2FA de la vostra organització i toqueu la vostra clau de seguretat.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>Es requereix autenticació de dos factors (A2F)</value>
+  </data>
   <data name="Connection_Error_Unknown">
     <value>Comproveu la connexió a Internet i torneu-ho a provar. Si això no funciona, contacteu amb el nostre servei d'atenció al client.
 
@@ -2636,6 +2642,12 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   <data name="Home_ConnectionDetails_Title">
     <value>Detalls de la connexió</value>
   </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Torneu-vos a autenticar al portal 2FA de la vostra organització per continuar.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>2FA caducat</value>
+  </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>Desprotegit</value>
   </data>
@@ -2790,6 +2802,9 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>L'autenticació de doble factor no ha funcionat. Torneu a iniciar la sessió.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>L'autenticació amb clau de seguretat no està disponible en el vostre dispositiu o amb la connexió d'escriptori remot.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>Autentica</value>

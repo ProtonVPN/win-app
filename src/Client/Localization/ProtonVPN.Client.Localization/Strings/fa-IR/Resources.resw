@@ -376,6 +376,12 @@
   <data name="Connection_Error_TlsCertificate">
     <value>مشکلی در تأیید اعبار گواهی سرور وجود دارد، که می‌تواند نشان دهنده این باشد که اتصال شبکه دستکاری شده است یا سرور مدنظرتان مشکل پیکربندی دارد. با فرستادن گزارش مشکل از پشتیبانی مشتری کمک بگیرید.</value>
   </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>To connect to VPN, go to your organization's 2FA portal and tap your security key.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>Two-factor authentication (2FA) required</value>
+  </data>
   <data name="Connection_Error_Unknown">
     <value>Check your internet connection and try again. If that doesn't work, contact our customer support team.
 
@@ -2635,6 +2641,12 @@ Error code: {0}</value>
   <data name="Home_ConnectionDetails_Title">
     <value>جزئیات اتصال</value>
   </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Re-authenticate in your organization's 2FA portal to continue.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>2FA expired</value>
+  </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>محافظت نشده</value>
   </data>
@@ -2789,6 +2801,9 @@ Error code: {0}</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>احراز هویت دو عاملی ناموفق بود. لطفاً دوباره وارد حساب شوید.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>Security key authentication is not available for your device or remote desktop connection.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>احراز هویت</value>

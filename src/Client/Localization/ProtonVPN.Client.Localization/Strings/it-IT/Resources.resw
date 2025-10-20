@@ -376,6 +376,12 @@
   <data name="Connection_Error_TlsCertificate">
     <value>C'è un problema nella convalida del certificato del server VPN, ciò potrebbe indicare che la connessione di rete è stata manomessa o che il server a cui stai tentando di connetterti ha un problema di configurazione. Chiedi aiuto al nostro servizio di assistenza clienti segnalando un problema.</value>
   </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>Per connetterti alla VPN, vai al portale 2FA della tua organizzazione e premi sulla tua chiave di sicurezza.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>Autenticazione a due fattori (2FA) richiesta</value>
+  </data>
   <data name="Connection_Error_Unknown">
     <value>Controlla la tua connessione internet e riprova. Se non funziona, contatta il nostro team di assistenza clienti.
 
@@ -2635,6 +2641,12 @@ Un carico elevato può rallentare la connessione.</value>
   <data name="Home_ConnectionDetails_Title">
     <value>Dettagli della connessione</value>
   </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Riautenticati nel portale 2FA della tua organizzazione per continuare.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>2FA scaduta</value>
+  </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>Protezione non attiva</value>
   </data>
@@ -2789,6 +2801,9 @@ Un carico elevato può rallentare la connessione.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>Autenticazione a due fattori non riuscita. Effettua nuovamente l'accesso.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>L'autenticazione con chiave di sicurezza non è disponibile per il tuo dispositivo o per la connessione da desktop remoto.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>Autentica</value>

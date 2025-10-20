@@ -376,6 +376,12 @@
   <data name="Connection_Error_TlsCertificate">
     <value>VPN sunucu sertifikası doğrulanırken bir sorun çıktı. Bu durum, ağ bağlantısının kurcalanmasından ya da bağlanmaya çalıştığınız sunucunun yapılandırma sorunu olmasından kaynaklanabilir. Bir Sorun bildirimi göndererek müşteri desteği ekibimizden yardım alın.</value>
   </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>VPN bağlantısı kurmak için kuruluşunuzun iki adımlı doğrulama arayüzüne gidin ve güvenlik anahtarınıza dokunun.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>İki adımlı doğrulama (2FA) gerekli</value>
+  </data>
   <data name="Connection_Error_Unknown">
     <value>İnternet bağlantınızı denetleyip yeniden deneyin. Bu işe yaramazsa, müşteri desteği ekibimizle görüşün.
 
@@ -2635,6 +2641,12 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Home_ConnectionDetails_Title">
     <value>Bağlantı bilgileri</value>
   </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>İlerlemek için kuruluşunuzun iki adımlı doğrulama arayüzünden kimliğinizi yeniden doğrulayın.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>İki adımlı doğrulama süresi dolmuş</value>
+  </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>Korunmuyor</value>
   </data>
@@ -2789,6 +2801,9 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>İki adımlı doğrulama yapılamadı. Lütfen yeniden oturum açın.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>Güvenlik anahtarı ile kimlik doğrulaması, aygıtınız veya uzak bilgisayar bağlantınız için kullanılamaz.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>Kimliği doğrula</value>

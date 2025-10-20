@@ -376,6 +376,12 @@
   <data name="Connection_Error_TlsCertificate">
     <value>Es gibt ein Problem bei der Validierung des VPN-Server-Zertifikats, was darauf hinweisen könnte, dass die Netzwerkverbindung manipuliert wurde oder der Server, mit dem du dich verbinden möchtest, ein Konfigurationsproblem hat. Hol dir Hilfe von unserem Kundensupport, indem du einen Fehlerbericht sendest.</value>
   </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>Um eine Verbindung zum VPN herzustellen, öffne das 2FA-Portal deiner Organisation und tippe auf deinen Sicherheitsschlüssel.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>Zwei-Faktor-Authentifizierung (2FA) erforderlich</value>
+  </data>
   <data name="Connection_Error_Unknown">
     <value>Überprüfe deine Internetverbindung und versuche es erneut. Sollte das nicht funktionieren, wende dich bitte an unseren Kundensupport. 
 
@@ -2635,6 +2641,12 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   <data name="Home_ConnectionDetails_Title">
     <value>Verbindungsdetails</value>
   </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Um fortzufahren, authentifiziere dich erneut im 2FA-Portal deiner Organisation.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>2FA abgelaufen</value>
+  </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>Ungeschützt</value>
   </data>
@@ -2789,6 +2801,9 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>Fehler bei der Zwei-Faktor-Authentifizierung. Bitte melde dich erneut an.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>Die Authentifizierung per Sicherheitsschlüssel ist für dein Gerät oder deine Remote-Desktop-Verbindung nicht verfügbar.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>Authentifizieren</value>
