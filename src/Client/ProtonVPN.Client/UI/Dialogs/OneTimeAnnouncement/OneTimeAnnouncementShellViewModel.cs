@@ -70,10 +70,14 @@ public partial class OneTimeAnnouncementShellViewModel : ShellViewModelBase<IOne
         {
             ActiveAnnouncement = newAnnouncement;
         }
+        else if (newAnnouncement is not null && newAnnouncement.Id != ActiveAnnouncement?.Id)
+        {
+            ActiveAnnouncement = newAnnouncement;
+        }
 
         if (ActiveAnnouncement?.Panel?.FullScreenImage?.Image is null)
         {
-            Hide();
+            Exit();
         }
     }
 
@@ -88,6 +92,7 @@ public partial class OneTimeAnnouncementShellViewModel : ShellViewModelBase<IOne
 
         if (ActiveAnnouncement is not null)
         {
+            _announcementsProvider.MarkAsSeen(ActiveAnnouncement.Id);
             _upsellDisplayStatisticalEventSender.Send(ModalSource.PromoOffer, ActiveAnnouncement.Reference);
         }
     }
@@ -95,18 +100,14 @@ public partial class OneTimeAnnouncementShellViewModel : ShellViewModelBase<IOne
     protected override void OnDeactivated()
     {
         base.OnDeactivated();
-
-        if (ActiveAnnouncement is not null)
-        {
-            _announcementsProvider.MarkAsSeen(ActiveAnnouncement.Id);
-        }
+        Exit();
     }
 
     [RelayCommand]
-    public Task OpenAnnouncement()
+    public async Task OpenAnnouncementAsync()
     {
-        Hide();
+        await _announcementActivator.ActivateAsync(ActiveAnnouncement);
 
-        return _announcementActivator.ActivateAsync(ActiveAnnouncement);
+        Exit();
     }
 }
