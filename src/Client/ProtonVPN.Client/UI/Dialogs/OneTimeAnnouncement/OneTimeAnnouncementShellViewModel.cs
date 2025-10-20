@@ -50,6 +50,9 @@ public partial class OneTimeAnnouncementShellViewModel : ShellViewModelBase<IOne
     [NotifyPropertyChangedFor(nameof(ImageSource))]
     private Announcement? _activeAnnouncement;
 
+    [ObservableProperty]
+    private bool _fillTitleBarArea = true;
+
     public string? ButtonText => ActiveAnnouncement?.Panel?.Button?.Text ?? string.Empty;
     public ImageSource? ImageSource => ActiveAnnouncement?.Panel?.FullScreenImage
         .GetImageForTheme(_themeSelector.GetTheme())?.LocalPath?.ToImageSource();

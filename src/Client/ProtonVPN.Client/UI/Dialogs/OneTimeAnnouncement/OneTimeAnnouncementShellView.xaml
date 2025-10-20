@@ -25,22 +25,36 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
+    <StackPanel>
 
-    <StackPanel Margin="0,32,0,0">
-
-        <Image HorizontalAlignment="Stretch"
-               Source="{x:Bind ViewModel.ImageSource}"
-               Visibility="{x:Bind ViewModel.ImageSource, Converter={StaticResource NotNullToVisibilityConverter}}"
-               Stretch="Uniform" />
-
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0"
+                    Height="32"
+                    Visibility="{x:Bind ViewModel.FillTitleBarArea, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+            <Image Grid.Row="1"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"
+                   Source="{x:Bind ViewModel.ImageSource}"
+                   Visibility="{x:Bind ViewModel.ImageSource, Converter={StaticResource NotNullToVisibilityConverter}}"
+                   Stretch="Uniform" />
+        </Grid>
+        
+        <Border Height="16"
+                Visibility="{x:Bind ViewModel.FillTitleBarArea, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        
         <Button HorizontalAlignment="Center"
+                Margin="0 16 0 0"
                 AutomationProperties.AutomationId="UpsellUpgradeButton"
-                Margin="0,0,0,40"
                 Visibility="{x:Bind ViewModel.ButtonText, Converter={StaticResource NotNullToVisibilityConverter}}"
                 Command="{x:Bind ViewModel.OpenAnnouncementCommand, Mode=OneTime}"
                 Content="{x:Bind ViewModel.ButtonText}"
                 Style="{StaticResource PrimaryButtonStyle}" />
-
+        
     </StackPanel>
 
 </UserControl>
