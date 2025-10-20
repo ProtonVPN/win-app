@@ -24,5 +24,6 @@ namespace ProtonVPN.Client.Logic.Announcements.Contracts.Entities;
 public class FullScreenImage
 {
     public CachedImage? Image { get; set; }
+    public CachedImage? ImageLight { get; set; }
     public string? AlternativeText { get; set; }
 }

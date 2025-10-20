@@ -25,6 +25,9 @@ namespace ProtonVPN.Api.Contracts.Announcements
     {
         [JsonProperty(PropertyName = "URL")]
         public string Url { get; set; }
+
+        [JsonProperty(PropertyName = "URLLight")]
+        public string UrlLight { get; set; }
         public string Type { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }

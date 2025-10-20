@@ -53,15 +53,6 @@ public class OneTimeAnnouncementWindowActivator : DialogActivatorBase<OneTimeAnn
                mainWindowActivator)
     { }
 
-
-    // TODO: remove this method after 2025 May promo campaign is over
-    protected override void OnAppThemeChanged()
-    {
-        base.OnAppThemeChanged();
-
-        Host?.ApplyTheme(Microsoft.UI.Xaml.ElementTheme.Dark);
-    }
-
     protected override void OnInitialized()
     {
         base.OnInitialized();

@@ -83,6 +83,12 @@ public class AnnouncementImagesDeleter : IAnnouncementImagesDeleter
             yield return panelFullScreenImage.Value;
         }
 
+        CachedImage? panelFullScreenImageLight = announcement?.Panel?.FullScreenImage?.ImageLight;
+        if (panelFullScreenImageLight.HasValue)
+        {
+            yield return panelFullScreenImageLight.Value;
+        }
+
         CachedImage? panelPicture = announcement?.Panel?.Picture;
         if (panelPicture.HasValue)
         {

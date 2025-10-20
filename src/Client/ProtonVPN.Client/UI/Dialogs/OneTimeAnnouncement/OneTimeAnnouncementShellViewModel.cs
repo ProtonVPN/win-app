@@ -23,8 +23,11 @@ using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Common.UI.Extensions;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
+using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Activation;
+using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Extensions;
 using ProtonVPN.Client.Logic.Announcements.Contracts;
 using ProtonVPN.Client.Logic.Announcements.Contracts.Entities;
 using ProtonVPN.Client.Logic.Announcements.Contracts.Messages;
@@ -34,11 +37,13 @@ using ProtonVPN.StatisticalEvents.Contracts;
 namespace ProtonVPN.Client.UI.Dialogs.OneTimeAnnouncement;
 
 public partial class OneTimeAnnouncementShellViewModel : ShellViewModelBase<IOneTimeAnnouncementWindowActivator>,
-    IEventMessageReceiver<AnnouncementListChangedMessage>
+    IEventMessageReceiver<AnnouncementListChangedMessage>,
+    IEventMessageReceiver<ThemeChangedMessage>
 {
     private readonly IAnnouncementsProvider _announcementsProvider;
     private readonly IAnnouncementActivator _announcementActivator;
     private readonly IUpsellDisplayStatisticalEventSender _upsellDisplayStatisticalEventSender;
+    private readonly IApplicationThemeSelector _themeSelector;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ButtonText))]
@@ -46,19 +51,22 @@ public partial class OneTimeAnnouncementShellViewModel : ShellViewModelBase<IOne
     private Announcement? _activeAnnouncement;
 
     public string? ButtonText => ActiveAnnouncement?.Panel?.Button?.Text ?? string.Empty;
-    public ImageSource? ImageSource => ActiveAnnouncement?.Panel?.FullScreenImage?.Image?.LocalPath?.ToImageSource();
+    public ImageSource? ImageSource => ActiveAnnouncement?.Panel?.FullScreenImage
+        .GetImageForTheme(_themeSelector.GetTheme())?.LocalPath?.ToImageSource();
 
     public OneTimeAnnouncementShellViewModel(
         IAnnouncementsProvider announcementsProvider,
         IAnnouncementActivator announcementActivator,
         IOneTimeAnnouncementWindowActivator windowActivator,
         IViewModelHelper viewModelHelper,
-        IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
+        IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender,
+        IApplicationThemeSelector themeSelector)
         : base(windowActivator, viewModelHelper)
     {
         _announcementsProvider = announcementsProvider;
         _announcementActivator = announcementActivator;
         _upsellDisplayStatisticalEventSender = upsellDisplayStatisticalEventSender;
+        _themeSelector = themeSelector;
     }
 
     private void InvalidateCurrentAnnouncement()
@@ -75,7 +83,7 @@ public partial class OneTimeAnnouncementShellViewModel : ShellViewModelBase<IOne
             ActiveAnnouncement = newAnnouncement;
         }
 
-        if (ActiveAnnouncement?.Panel?.FullScreenImage?.Image is null)
+        if (ActiveAnnouncement?.Panel?.FullScreenImage.GetImageForTheme(_themeSelector.GetTheme()) is null)
         {
             Exit();
         }
@@ -84,6 +92,11 @@ public partial class OneTimeAnnouncementShellViewModel : ShellViewModelBase<IOne
     public void Receive(AnnouncementListChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateCurrentAnnouncement);
+    }
+
+    public void Receive(ThemeChangedMessage message)
+    {
+        ExecuteOnUIThread(() => OnPropertyChanged(nameof(ImageSource)));
     }
 
     protected override void OnActivated()

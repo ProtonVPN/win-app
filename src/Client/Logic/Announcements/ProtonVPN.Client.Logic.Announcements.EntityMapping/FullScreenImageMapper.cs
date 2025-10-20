@@ -37,14 +37,21 @@ public class FullScreenImageMapper : IMapper<FullScreenImageResponse, FullScreen
 
     public FullScreenImage Map(FullScreenImageResponse leftEntity)
     {
-        string imageUrl = leftEntity?.Source?.FirstOrDefault(s => s.Type.EqualsIgnoringCase(AnnouncementConstants.FULL_SCREEN_IMAGE_FORMAT))?.Url;
+        SourceResponse? source = leftEntity?.Source?.FirstOrDefault(s => s.Type.EqualsIgnoringCase(AnnouncementConstants.FULL_SCREEN_IMAGE_FORMAT));
+        
+        string imageUrl = source?.Url;
+        string imageLightUrl = source?.UrlLight;
 
         CachedImage? cachedImage = _imageCache.Get(AnnouncementConstants.STORAGE_FOLDER, imageUrl);
+        CachedImage? cachedImageLight = !string.IsNullOrEmpty(imageLightUrl) 
+            ? _imageCache.Get(AnnouncementConstants.STORAGE_FOLDER, imageLightUrl) 
+            : null;
 
         return new()
         {
             AlternativeText = leftEntity?.AlternativeText,
             Image = cachedImage,
+            ImageLight = cachedImageLight,
         };
     }
 

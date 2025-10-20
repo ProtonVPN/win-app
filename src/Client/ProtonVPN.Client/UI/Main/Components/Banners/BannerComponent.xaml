@@ -32,7 +32,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Grid>
         <custom:BannerControl Margin="0,8,0,0"
-                              RequestedTheme="Dark"
                               ActionButtonText="{x:Bind ViewModel.ActionButtonText}"
                               ActionCommand="{x:Bind ViewModel.OpenAnnouncementCommand, Mode=OneTime}"
                               DismissCommand="{x:Bind ViewModel.DismissAnnouncementCommand, Mode=OneTime}"

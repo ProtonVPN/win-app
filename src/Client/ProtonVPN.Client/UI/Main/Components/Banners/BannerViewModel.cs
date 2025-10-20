@@ -17,10 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.UI.Extensions;
 using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Core.Messages;
+using ProtonVPN.Client.Core.Services.Selection;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Extensions;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Announcements.Contracts;
 using ProtonVPN.Client.Logic.Announcements.Contracts.Entities;
@@ -29,15 +34,17 @@ using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Components.Banners;
 
-public partial class BannerViewModel : BannerViewModelBase
+public partial class BannerViewModel : BannerViewModelBase, IEventMessageReceiver<ThemeChangedMessage>
 {
     private readonly IDispatcherTimer _countdownTimer;
+    private readonly IApplicationThemeSelector _themeSelector;
 
     public bool ShowCountdown => ActiveAnnouncement != null && ActiveAnnouncement.ShowCountdown;
 
     public string? Footer => GetFooter();
 
-    public ImageSource? LargeIllustrationSource => ActiveAnnouncement?.Panel?.FullScreenImage?.Image?.LocalPath?.ToImageSource();
+    public ImageSource? LargeIllustrationSource => ActiveAnnouncement?.Panel?.FullScreenImage
+        .GetImageForTheme(_themeSelector.GetTheme())?.LocalPath?.ToImageSource();
 
     protected override AnnouncementType AnnouncementType { get; } = AnnouncementType.Banner;
 
@@ -48,11 +55,13 @@ public partial class BannerViewModel : BannerViewModelBase
         IAnnouncementActivator announcementActivator,
         IAnnouncementsProvider announcementsProvider,
         IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender,
-        IViewModelHelper viewModelHelper)
+        IViewModelHelper viewModelHelper,
+        IApplicationThemeSelector themeSelector)
         : base(announcementActivator, announcementsProvider, upsellDisplayStatisticalEventSender, viewModelHelper)
     {
         _countdownTimer = uiThreadDispatcher.GetTimer(TimeSpan.FromSeconds(1));
         _countdownTimer.Tick += OnCountdownTimerTick;
+        _themeSelector = themeSelector;
     }
 
     private string? GetFooter()
@@ -74,6 +83,11 @@ public partial class BannerViewModel : BannerViewModelBase
     private void OnCountdownTimerTick(object? sender, object e)
     {
         OnPropertyChanged(nameof(Footer));
+    }
+
+    public void Receive(ThemeChangedMessage message)
+    {
+        ExecuteOnUIThread(() => OnPropertyChanged(nameof(LargeIllustrationSource)));
     }
 
     protected override void BeforeAnnouncementChange()
