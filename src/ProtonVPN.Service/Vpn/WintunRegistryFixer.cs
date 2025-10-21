@@ -60,28 +60,30 @@ namespace ProtonVPN.Service.Vpn
                         continue;
                     }
 
-                    RegistryKey adapterKey = Registry.LocalMachine.OpenSubKey($"{_regPath}\\{folder}");
-                    if (adapterKey == null)
+                    using (RegistryKey adapterKey = Registry.LocalMachine.OpenSubKey($"{_regPath}\\{folder}"))
                     {
-                        continue;
-                    }
+                        if (adapterKey == null)
+                        {
+                            continue;
+                        }
 
-                    string matchingDeviceId = (string)adapterKey.GetValue("MatchingDeviceId");
-                    if (matchingDeviceId != "wintun")
-                    {
-                        continue;
-                    }
+                        string matchingDeviceId = (string)adapterKey.GetValue("MatchingDeviceId");
+                        if (matchingDeviceId != "wintun")
+                        {
+                            continue;
+                        }
 
-                    string componentId = (string)adapterKey.GetValue("ComponentId");
-                    if (string.IsNullOrEmpty(componentId))
-                    {
-                        Registry.SetValue($"HKEY_LOCAL_MACHINE\\{_regPath}\\{folder}", "ComponentId", matchingDeviceId);
-                        _issueReporter.CaptureMessage("Fixed missing ComponentId on wintun adapter.");
-                    }
-                    else if (matchingDeviceId != componentId)
-                    {
-                        _logger.Info<OperatingSystemLog>($"WintunRegistryFixer: ComponentId '{componentId}' " +
-                            $"has a value but is different from the MatchingDeviceId '{matchingDeviceId}'.");
+                        string componentId = (string)adapterKey.GetValue("ComponentId");
+                        if (string.IsNullOrEmpty(componentId))
+                        {
+                            Registry.SetValue($"HKEY_LOCAL_MACHINE\\{_regPath}\\{folder}", "ComponentId", matchingDeviceId);
+                            _issueReporter.CaptureMessage("Fixed missing ComponentId on wintun adapter.");
+                        }
+                        else if (matchingDeviceId != componentId)
+                        {
+                            _logger.Info<OperatingSystemLog>($"WintunRegistryFixer: ComponentId '{componentId}' " +
+                                $"has a value but is different from the MatchingDeviceId '{matchingDeviceId}'.");
+                        }
                     }
                 }
             }

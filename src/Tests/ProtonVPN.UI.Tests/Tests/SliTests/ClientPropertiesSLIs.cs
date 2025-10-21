@@ -67,11 +67,11 @@ public class ClientPropertiesSLIs : BaseTest
 
     private double GetClientSizeMegabytes()
     {
-        RegistryKey key = Registry.LocalMachine.OpenSubKey(REGISTRY_PATH);
+        using RegistryKey key = Registry.LocalMachine.OpenSubKey(REGISTRY_PATH);
 
         foreach (string subKeyName in key.GetSubKeyNames())
         {
-            RegistryKey subKey = key.OpenSubKey(subKeyName);
+            using RegistryKey subKey = key.OpenSubKey(subKeyName);
             if (subKey?.GetValue("DisplayName")?.ToString().Contains(CLIENT_NAME) == true)
             {
                 object sizeInKilobytes = subKey.GetValue("EstimatedSize");

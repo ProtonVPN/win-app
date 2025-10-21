@@ -20,14 +20,16 @@
 using System;
 using Microsoft.Win32;
 
-namespace ProtonVPN.Service.Update
+namespace ProtonVPN.Service.Update;
+
+public class CurrentAppVersionProvider : ICurrentAppVersionProvider
 {
-    public class CurrentAppVersionProvider : ICurrentAppVersionProvider
+    private const string PATH = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Proton VPN_is1";
+
+    public Version GetVersion()
     {
-        public Version GetVersion()
+        using (RegistryKey subkey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(PATH))
         {
-            string path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Proton VPN_is1";
-            RegistryKey subkey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(path);
             object value = subkey?.GetValue("DisplayVersion");
             string versionString = value?.ToString() ?? string.Empty;
             return new Version(versionString);

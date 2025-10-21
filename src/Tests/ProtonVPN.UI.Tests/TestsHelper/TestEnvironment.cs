@@ -30,14 +30,15 @@ namespace ProtonVPN.UI.Tests.TestsHelper;
 
 public class TestEnvironment : BaseTest
 {
+    private const string REGISTRY_KEY_PATH = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Proton VPN_is1";
+
     public static string GetAppVersion()
     {
-        string registryKeyPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Proton VPN_is1";
-        RegistryKey localMachineRegistry = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
-        RegistryKey key = localMachineRegistry.OpenSubKey(registryKeyPath);
-
-        object displayVersionObject = key?.GetValue("DisplayVersion");
-        return displayVersionObject?.ToString();
+        using (RegistryKey key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(REGISTRY_KEY_PATH))
+        {
+            object displayVersionObject = key?.GetValue("DisplayVersion");
+            return displayVersionObject?.ToString();
+        }
     }
 
     public static bool AreTestsRunningLocally()

@@ -87,16 +87,19 @@ public static class DefaultAppsHelper
     {
         return FailSafeRegistryAccess(() =>
         {
-            RegistryKey? subKey = parentKey?.OpenSubKey(subKeyName);
-            return GetClientApps(subKey);
+            using (RegistryKey? subKey = parentKey?.OpenSubKey(subKeyName))
+            {
+                return GetClientApps(subKey);
+            }
         }, Enumerable.Empty<SplitTunnelingApp>());
     }
 
-    private static IEnumerable<SplitTunnelingApp> GetClientApps(RegistryKey? parentKey)
+    private static List<SplitTunnelingApp> GetClientApps(RegistryKey? parentKey)
     {
+        List<SplitTunnelingApp> list = [];
         if (parentKey == null)
         {
-            yield break;
+            return list;
         }
 
         string[] subKeys = parentKey.GetSubKeyNames();
@@ -105,9 +108,11 @@ public static class DefaultAppsHelper
             SplitTunnelingApp? app = GetClientApp(parentKey, subKey);
             if (app != null)
             {
-                yield return app.Value;
+                list.Add(app.Value);
             }
         }
+
+        return list;
     }
 
     private static SplitTunnelingApp? GetClientApp(RegistryKey parentKey, string subKeyName)

@@ -18,8 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Management.Automation;
 using System.Runtime.InteropServices;
 using ProtonVPN.OperatingSystems.NRPT;
 
@@ -58,20 +56,12 @@ class Program
     private static void DeleteNrptRule()
     {
         Console.WriteLine("Deleting NRPT rule...");
-        StaticNrptInvoker.DeleteRule(OnException, OnError, OnSuccess);
+        StaticNrptInvoker.DeleteRule(OnException, OnSuccess);
     }
 
     private static void OnException(string message, Exception exception)
     {
         Console.WriteLine($"{message} - Exception: {exception}");
-    }
-
-    private static void OnError(string message, List<ErrorRecord> errors)
-    {
-        foreach (ErrorRecord error in errors)
-        {
-            Console.WriteLine($"{message} - {error}");
-        }
     }
 
     private static void OnSuccess(string message)

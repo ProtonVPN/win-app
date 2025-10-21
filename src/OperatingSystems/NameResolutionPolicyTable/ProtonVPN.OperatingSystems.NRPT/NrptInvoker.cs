@@ -17,8 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Management.Automation;
-using System.Text;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
@@ -46,24 +44,19 @@ public class NrptInvoker : INrptInvoker
             return false;
         }
 
-        return StaticNrptInvoker.CreateRule(nameServers, OnNrptException, OnError, OnSuccess);
+        return StaticNrptInvoker.CreateRule(nameServers, OnException, OnCreateError, OnSuccess);
     }
 
-    private void OnNrptException(string errorMessage, Exception ex)
+    private void OnException(string errorMessage, Exception ex)
     {
         _logger.Error<OperatingSystemNrptLog>(errorMessage, ex);
         _issueReporter.CaptureError(new Exception(errorMessage, ex));
     }
 
-    private void OnError(string message, List<ErrorRecord> errors)
+    private void OnCreateError(string errorMessage)
     {
-        StringBuilder errorMessageBuilder = new();
-        foreach (ErrorRecord error in errors)
-        {
-            _logger.Error<OperatingSystemNrptLog>($"{message}: {error}");
-            errorMessageBuilder.AppendLine(error.ToString());
-        }
-        _issueReporter.CaptureError(message, errorMessageBuilder.ToString());
+        _logger.Error<OperatingSystemNrptLog>(errorMessage);
+        _issueReporter.CaptureError("Error when creating NRPT rule", errorMessage);
     }
 
     private void OnSuccess(string message)
@@ -74,6 +67,6 @@ public class NrptInvoker : INrptInvoker
     /// <returns>If the NRPT rule was removed successfully</returns>
     public bool DeleteRule()
     {
-        return StaticNrptInvoker.DeleteRule(OnNrptException, OnError, OnSuccess);
+        return StaticNrptInvoker.DeleteRule(OnException, OnSuccess);
     }
 }

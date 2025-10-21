@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Win32;
@@ -41,27 +42,44 @@ public class SystemState : ISystemState
 
     public bool PendingReboot()
     {
-        if (_keysExist.Any(key => Microsoft.Win32.Registry.LocalMachine.OpenSubKey(key) != null))
+        return _keysExist.Any(DoesSubKeyExist) || DoesAnyValueMatch()
+            ? true
+            : PendingUpdates();
+    }
+
+    private bool DoesAnyValueMatch()
+    {
+        foreach (KeyValuePair<string, List<string>> item in _valuesEqual)
         {
-            return true;
+            using (RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(item.Key))
+            {
+                string value = (string)key?.GetValue("");
+                if (value != null && item.Value.Contains(value))
+                {
+                    return true;
+                }
+            }
         }
 
-        if ((from item in _valuesEqual
-             let key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(item.Key)
-             let val = (string)key?.GetValue("")
-             where val != null && item.Value.Contains(val)
-             select item).Any())
-        {
-            return true;
-        }
+        return false;
+    }
 
-        return PendingUpdates();
+    private bool DoesSubKeyExist(string keyName)
+    {
+        using (RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(keyName))
+        {
+            return key != null;
+        }
     }
 
     private bool PendingUpdates()
     {
-        RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Updates");
-        object val = key?.GetValue("UpdateExeVolatile");
+        object val;
+        using (RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Updates"))
+        {
+            val = key?.GetValue("UpdateExeVolatile");
+        }
+
         if (val != null)
         {
             int.TryParse((string)val, out int result);
@@ -71,9 +89,10 @@ public class SystemState : ISystemState
             }
         }
 
-        key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(
-            @"SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Services\Pending");
-
-        return key?.SubKeyCount > 0;
+        using (RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(
+            @"SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Services\Pending"))
+        {
+            return key?.SubKeyCount > 0;
+        }
     }
 }

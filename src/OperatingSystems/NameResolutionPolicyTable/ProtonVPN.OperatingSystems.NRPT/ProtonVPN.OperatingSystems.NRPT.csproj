@@ -12,7 +12,6 @@
         <Compile Include="..\..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Microsoft.PowerShell.SDK" />
         <PackageReference Include="System.Formats.Asn1" />
         <PackageReference Include="System.Text.Json" />
     </ItemGroup>

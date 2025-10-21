@@ -57,22 +57,27 @@ public class InstalledAppsLog : LogBase
     private List<string> GetAppNames()
     {
         List<string> appNames = new();
-        RegistryKey? registryFolder;
 
-        registryFolder = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(UNINSTALL_REGISTRY_PATH);
-        appNames.AddRange(GetInstalledNames(registryFolder, ParseProgramNameIfExists));
-
-        registryFolder = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32).OpenSubKey(UNINSTALL_REGISTRY_PATH);
-        appNames.AddRange(GetInstalledNames(registryFolder, ParseProgramNameIfExists));
-
-        registryFolder = Registry.LocalMachine.OpenSubKey(WOW_UNINSTALL_REGISTRY_PATH);
-        appNames.AddRange(GetInstalledNames(registryFolder, ParseProgramNameIfExists));
-
-        registryFolder = Registry.CurrentUser.OpenSubKey(UNINSTALL_REGISTRY_PATH);
-        appNames.AddRange(GetInstalledNames(registryFolder, ParseProgramNameIfExists));
-
-        registryFolder = Registry.CurrentUser.OpenSubKey(WINDOWS_APPS_REGISTRY_PATH);
-        appNames.AddRange(GetInstalledNames(registryFolder, ParseWindowsAppNameIfExists));
+        using (RegistryKey? registryFolder = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(UNINSTALL_REGISTRY_PATH))
+        {
+            appNames.AddRange(GetInstalledNames(registryFolder, ParseProgramNameIfExists));
+        }
+        using (RegistryKey? registryFolder = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32).OpenSubKey(UNINSTALL_REGISTRY_PATH))
+        {
+            appNames.AddRange(GetInstalledNames(registryFolder, ParseProgramNameIfExists));
+        }
+        using (RegistryKey? registryFolder = Registry.LocalMachine.OpenSubKey(WOW_UNINSTALL_REGISTRY_PATH))
+        {
+            appNames.AddRange(GetInstalledNames(registryFolder, ParseProgramNameIfExists));
+        }
+        using (RegistryKey? registryFolder = Registry.CurrentUser.OpenSubKey(UNINSTALL_REGISTRY_PATH))
+        {
+            appNames.AddRange(GetInstalledNames(registryFolder, ParseProgramNameIfExists));
+        }
+        using (RegistryKey? registryFolder = Registry.CurrentUser.OpenSubKey(WINDOWS_APPS_REGISTRY_PATH))
+        {
+            appNames.AddRange(GetInstalledNames(registryFolder, ParseWindowsAppNameIfExists));
+        }
 
         return appNames;
     }
@@ -88,13 +93,15 @@ public class InstalledAppsLog : LogBase
 
         foreach (string registryFolderChild in registryFolder.GetSubKeyNames())
         {
-            RegistryKey? subKey = registryFolder.OpenSubKey(registryFolderChild);
-            if (subKey != null)
+            using (RegistryKey? subKey = registryFolder.OpenSubKey(registryFolderChild))
             {
-                string name = installedNameParser(subKey);
-                if (name != null)
+                if (subKey != null)
                 {
-                    names.Add(name);
+                    string name = installedNameParser(subKey);
+                    if (name != null)
+                    {
+                        names.Add(name);
+                    }
                 }
             }
         }
