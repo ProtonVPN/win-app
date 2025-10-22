@@ -92,7 +92,9 @@ public class StatusManager
                 }
                 else if (line.Contains("Shutting down"))
                 {
-                    InvokeStateChange(VpnStatus.Disconnected, _lastError);
+                    InvokeStateChange(VpnStatus.Disconnected, _socketErrorCount > 0
+                        ? VpnError.Unknown
+                        : _lastError);
                     _lastError = VpnError.None;
                 }
                 else if (line.Contains("The RPC server is unavailable"))

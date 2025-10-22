@@ -82,7 +82,6 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         VpnError.TwoFactorNewConnection,
     ];
 
-    private VpnStatus _currentStatus;
     private VpnEndpoint _endpoint;
     private VpnCredentials _credentials;
     private VpnConfig _vpnConfig;
@@ -489,8 +488,6 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     private void InvokeStateChange(VpnStatus status, VpnError? error = null,
         ConnectionCertificate connectionCertificate = null)
     {
-        _currentStatus = status;
-
         string remoteIp = !string.IsNullOrEmpty(_remoteIp)
             ? _remoteIp
             : _vpnState?.Data.RemoteIp ?? string.Empty;
