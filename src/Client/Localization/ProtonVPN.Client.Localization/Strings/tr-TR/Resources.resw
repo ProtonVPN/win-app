@@ -3280,10 +3280,10 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Gelişmiş ayarlar</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting">
-    <value>Alternatif yöneltme</value>
+    <value>Alternatif yönlendirme</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
-    <value>Proton hizmetlerine erişim ağ üzerinden engelleniyorsa, sitelerimizle bağlantınızı kurmak için alternatif ağ yöneltmesi kullanmayı deneyeceğiz.</value>
+    <value>Proton hizmetlerine erişim ağ üzerinden engelleniyorsa, sitelerimizle bağlantınızı kurmak için alternatif ağ yönlendirmesi kullanmayı deneyeceğiz.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Özel DNS sunucuları</value>
@@ -3360,7 +3360,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Ağınıza giren verileri kısıtlar. Bu seçenek daha güvenlidir ancak eşler arası oyun bağlantılarında sorun çıkarabilir.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
-    <value>Trafiği farklı ağlar arasındaki yöneltir.</value>
+    <value>Trafiği farklı ağlar arasındaki yönlendirir.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
     <value>Ağları bağlamak için köprüleme kullanır. TUN, TAP bağlantısına göre daha hızlıdır, ancak daha az kararlı olabilir.</value>

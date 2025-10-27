@@ -377,15 +377,15 @@
     <value>Виникла проблема з перевіркою сертифіката VPN-сервера, що може свідчити про те, що мережеве з'єднання намагаються підмінити або сервер, до якого ви намагаєтеся під'єднатися, має проблеми з конфігурацією. Зверніться по допомогу до нашої служби підтримки, надіславши звіт про проблему.</value>
   </data>
   <data name="Connection_Error_TwoFactorRequired_Description">
-    <value>To connect to VPN, go to your organization's 2FA portal and tap your security key.</value>
+    <value>Щоб під'єднатися до VPN, перейдіть на портал 2FA вашої організації та виберіть свій ключ безпеки.</value>
   </data>
   <data name="Connection_Error_TwoFactorRequired_Title">
-    <value>Two-factor authentication (2FA) required</value>
+    <value>Двоетапна перевірка (2FA) є обов'язковою</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>Check your internet connection and try again. If that doesn't work, contact our customer support team.
+    <value>Перевірте своє інтернет-з'єднання і спробуйте ще раз. Якщо це не допоможе, зверніться до нашої команди клієнтської підтримки.
 
-Error code: {0}</value>
+Код помилки: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
     <value>Переглянути виправлення</value>
@@ -461,16 +461,16 @@ Error code: {0}</value>
     <value>Найшвидша</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Free server</value>
+    <value>Сервер Free</value>
   </data>
   <data name="Connections_Free_Servers_Few">
-    <value>Free servers</value>
+    <value>Сервери Free</value>
   </data>
   <data name="Connections_Free_Servers_Many">
-    <value>Free servers</value>
+    <value>Сервери Free</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Free servers</value>
+    <value>Сервери Free</value>
   </data>
   <data name="Connections_Gateway">
     <value>Мережевий шлюз</value>
@@ -533,16 +533,16 @@ Error code: {0}</value>
     <value>Країни P2P ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>P2P server</value>
+    <value>Сервер P2P</value>
   </data>
   <data name="Connections_P2P_Servers_Few">
-    <value>P2P servers</value>
+    <value>Сервери P2P</value>
   </data>
   <data name="Connections_P2P_Servers_Many">
-    <value>P2P servers</value>
+    <value>Сервери P2P</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P servers</value>
+    <value>Сервери P2P</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>Штат P2P ({0})</value>
@@ -662,16 +662,16 @@ Error code: {0}</value>
     <value>Країни Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Secure Core server</value>
+    <value>Сервер Secure Core</value>
   </data>
   <data name="Connections_SecureCore_Servers_Few">
-    <value>Secure Core servers</value>
+    <value>Сервери Secure Core</value>
   </data>
   <data name="Connections_SecureCore_Servers_Many">
-    <value>Secure Core servers</value>
+    <value>Сервери Secure Core</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Secure Core servers</value>
+    <value>Сервери Secure Core</value>
   </data>
   <data name="Connections_SeeCities_One">
     <value>Див. місто ({0})</value>
@@ -719,16 +719,16 @@ Error code: {0}</value>
     <value>Цей сервер на обслуговуванні</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Server</value>
+    <value>Сервер</value>
   </data>
   <data name="Connections_Servers_Few">
-    <value>Servers</value>
+    <value>Сервери</value>
   </data>
   <data name="Connections_Servers_Many">
-    <value>Servers</value>
+    <value>Сервери</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Servers</value>
+    <value>Сервери</value>
   </data>
   <data name="Connections_State">
     <value>Стан</value>
@@ -766,16 +766,16 @@ Error code: {0}</value>
     <value>Країни Tor ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Tor server</value>
+    <value>Сервер Tor</value>
   </data>
   <data name="Connections_Tor_Servers_Few">
-    <value>Tor servers</value>
+    <value>Сервери Tor</value>
   </data>
   <data name="Connections_Tor_Servers_Many">
-    <value>Tor servers</value>
+    <value>Сервери Tor</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Tor servers</value>
+    <value>Сервери Tor</value>
   </data>
   <data name="Countries">
     <value>Країни</value>
@@ -2846,10 +2846,10 @@ Error code: {0}</value>
     <value>Подробиці з'єднання</value>
   </data>
   <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
-    <value>Re-authenticate in your organization's 2FA portal to continue.</value>
+    <value>Щоб продовжити, повторно пройдіть автентифікацію на порталі 2FA вашої організації.</value>
   </data>
   <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
-    <value>2FA expired</value>
+    <value>2FA протерміновано</value>
   </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>Незахищено</value>
@@ -3019,7 +3019,7 @@ Error code: {0}</value>
     <value>Збій двоетапної перевірки. Увійдіть знову.</value>
   </data>
   <data name="Login_Error_WebAuthnNotSupported">
-    <value>Security key authentication is not available for your device or remote desktop connection.</value>
+    <value>Автентифікація за допомогою ключа безпеки недоступна для вашого пристрою або віддаленого з'єднання з робочим столом.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>Автентифікація</value>
