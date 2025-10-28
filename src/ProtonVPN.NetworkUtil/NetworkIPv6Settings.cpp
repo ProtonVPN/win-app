@@ -45,13 +45,10 @@ namespace Proton
                     continue;
                 }
 
-                if (disable)
+                if (disable && iface.isIPv6Enabled())
                 {
                     interfacesAffected.insert(iface.bindName());
-                    if (iface.isIPv6Enabled())
-                    {
-                        iface.disableIPv6();
-                    }
+                    iface.disableIPv6();
                 }
                 else if (enable)
                 {
