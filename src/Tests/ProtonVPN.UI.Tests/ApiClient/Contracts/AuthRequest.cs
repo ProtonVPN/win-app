@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,15 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.UI.Tests.ApiClient.Prod;
+namespace ProtonVPN.UI.Tests.ApiClient.Contracts;
 
 public class AuthRequest
 {
-    public string ClientEphemeral { get; set; }
+    public string ClientEphemeral { get; set; } = string.Empty;
 
-    public string ClientProof { get; set; }
+    public string ClientProof { get; set; } = string.Empty;
 
-    public string SRPSession { get; set; }
+    public string SRPSession { get; set; } = string.Empty;
 
-    public string Username { get; set; }
+    public string Username { get; set; } = string.Empty;
 }

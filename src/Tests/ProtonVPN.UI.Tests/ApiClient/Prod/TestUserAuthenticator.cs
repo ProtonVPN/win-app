@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,6 +20,7 @@
 using System;
 using System.Security;
 using System.Threading.Tasks;
+using ProtonVPN.UI.Tests.ApiClient.Contracts;
 
 namespace ProtonVPN.UI.Tests.ApiClient.Prod;
 
@@ -27,28 +28,28 @@ public class TestUserAuthenticator
 {
     private ProdTestApiClient _prodApiClient = new();
 
-    public async Task<AuthResponse> CreateSessionAsync(string username, SecureString password)
+    public async Task<AuthResponse?> CreateSessionAsync(string username, SecureString password)
     {
-        var authInfoRequest = new AuthInfoRequest { Username = username };
+        AuthInfoRequest authInfoRequest = new() { Username = username };
 
-        AuthInfoResponse authInfoResponse = await _prodApiClient.GetAuthInfoAsync(authInfoRequest);
+        AuthInfoResponse? authInfoResponse = await _prodApiClient.GetAuthInfoAsync(authInfoRequest);
 
-        if (string.IsNullOrEmpty(authInfoResponse.Salt))
+        if (string.IsNullOrEmpty(authInfoResponse?.Salt))
         {
             throw new Exception("Incorrect login credentials");
         }
 
-        TestsSrpInvoke.GoProofs proofs = TestsSrpInvoke.GenerateProofs(4, username, password, authInfoResponse.Salt,
-                authInfoResponse.Modulus, authInfoResponse.ServerEphemeral);
+        TestsSrpInvoke.GoProofs? proofs = TestsSrpInvoke.GenerateProofs(4, username, password, authInfoResponse.Salt,
+                authInfoResponse.Modulus, authInfoResponse.ServerEphemeral) ?? throw new Exception("Proofs are null.");
 
         try
         {
             string clientEphermal = Convert.ToBase64String(proofs.ClientEphemeral);
             string clientProof = Convert.ToBase64String(proofs.ClientProof);
             AuthRequest authRequest = GetAuthRequestData(clientEphermal, clientProof, authInfoResponse.SRPSession, username);
-            AuthResponse response = await _prodApiClient.GetAuthResponseAsync(authRequest);
-            ProdTestApiClient.UID = response.UID;
-            ProdTestApiClient.AcessToken = response.AccessToken;
+            AuthResponse? response = await _prodApiClient.GetAuthResponseAsync(authRequest);
+            ProdTestApiClient.UID = response?.UID;
+            ProdTestApiClient.AcessToken = response?.AccessToken;
             return response;
         }
         catch (TypeInitializationException e) when (e.InnerException is DllNotFoundException)

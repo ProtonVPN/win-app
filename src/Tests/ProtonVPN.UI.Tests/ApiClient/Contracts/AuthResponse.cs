@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,16 +19,16 @@
 
 using Newtonsoft.Json;
 
-namespace ProtonVPN.UI.Tests.ApiClient.Prod;
+namespace ProtonVPN.UI.Tests.ApiClient.Contracts;
 
 public class AuthResponse
 {
     [JsonProperty(PropertyName = "UserID")]
-    public string UserId { get; set; }
+    public string UserId { get; set; } = string.Empty;
 
-    public string Scope { get; set; }
+    public string Scope { get; set; } = string.Empty;
 
-    public string ServerProof { get; set; }
-    public string AccessToken { get; set; }
-    public string UID { get; set; }
+    public string ServerProof { get; set; } = string.Empty;
+    public string AccessToken { get; set; } = string.Empty;
+    public string UID { get; set; } = string.Empty;
 }

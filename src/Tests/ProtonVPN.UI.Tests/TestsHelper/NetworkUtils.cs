@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -33,8 +34,6 @@ namespace ProtonVPN.UI.Tests.TestsHelper;
 
 public class NetworkUtils
 {
-    private static readonly HttpClient _httpClient = new();
-
     [DllImport("dnsapi.dll", EntryPoint = "DnsFlushResolverCache")]
     public static extern uint DnsFlushResolverCache();
 
@@ -47,7 +46,7 @@ public class NetworkUtils
             },
             TestConstants.FiveSecondsTimeout, TestConstants.RetryInterval);
 
-        return retry.Result ?? new();
+        return retry.Result ?? [];
     }
 
     public static void FlushDns()
@@ -57,14 +56,15 @@ public class NetworkUtils
 
     public static void VerifyIfLocalNetworkingWorks()
     {
-        PingReply reply = new Ping().Send(GetDefaultGatewayAddress().ToString());
+        IPAddress? ipAddress = GetDefaultGatewayAddress() ?? throw new Exception("Default gateway is null.");
+        PingReply reply = new Ping().Send(ipAddress.ToString());
         Assert.That(reply.Status == IPStatus.Success, Is.True);
     }
 
     public static bool IsInternetAvailable()
     {
         Thread.Sleep(TestConstants.FiveSecondsTimeout);
-        JObject connectionData = GetConnectionDataAsync().GetAwaiter().GetResult();
+        JObject? connectionData = GetConnectionDataAsync().GetAwaiter().GetResult();
         return connectionData?["status"]?.ToString() == "success";
     }
 
@@ -74,10 +74,10 @@ public class NetworkUtils
             () =>
             {
                 FlushDns();
-                return GetIpAddressAsync().Result;
+                return GetIpAddressAsync().Result ?? string.Empty;
             },
             TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
-        return retry.Result ?? throw new HttpRequestException($"Failed to get IP Address. \n {retry.LastException.Message} \n {retry.LastException.StackTrace}");
+        return retry.Result ?? throw new HttpRequestException($"Failed to get IP Address. \n {retry.LastException?.Message} \n {retry.LastException?.StackTrace}");
     }
 
     public static string GetCountryNameWithRetry()
@@ -86,24 +86,23 @@ public class NetworkUtils
             () =>
             {
                 FlushDns();
-                return GetCountryNameAsync().Result;
+                return GetCountryNameAsync().Result ?? string.Empty;
             },
             TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
-        return retry.Result ?? throw new HttpRequestException($"Failed to get country name. \n {retry.LastException.Message} \n {retry.LastException.StackTrace}");
+        return retry.Result ?? throw new HttpRequestException($"Failed to get country name. \n {retry.LastException?.Message} \n {retry.LastException?.StackTrace}");
     }
 
     public static void VerifyUserIsConnectedToExpectedCountry(string countryNameToCompare)
     {
-        string ip = GetIpAddressWithRetry();
         string countryName = GetCountryNameWithRetry();
         Assert.That(countryName.Equals(countryNameToCompare), Is.True, $"User was connected to unexpected country." +
             $"\n API returned: {countryName}" +
             $"\n Expected result: {countryNameToCompare}");
     }
 
-    public static void VerifyIpAddressDoesNotMatchWithRetry(string ipAddressToCompare)
+    public static void VerifyIpAddressDoesNotMatchWithRetry(string? ipAddressToCompare)
     {
-        string ipAddressFomAPI = null;
+        string? ipAddressFomAPI = null;
         RetryResult<bool> retry = Retry.WhileTrue(
            () =>
            {
@@ -121,9 +120,9 @@ public class NetworkUtils
         }
     }
 
-    public static void VerifyIpAddressMatchesWithRetry(string ipAddressToCompare)
+    public static void VerifyIpAddressMatchesWithRetry(string? ipAddressToCompare)
     {
-        string ipAddressFomAPI = null;
+        string? ipAddressFomAPI = null;
         RetryResult<bool> retry = Retry.WhileFalse(
            () =>
            {
@@ -141,29 +140,29 @@ public class NetworkUtils
         }
     }
 
-    private static IPAddress GetDefaultGatewayAddress()
+    private static IPAddress? GetDefaultGatewayAddress()
     {
         return NetworkInterface
             .GetAllNetworkInterfaces()
             .Where(n => n.Name.EndsWith("Wi-Fi") || n.Name.EndsWith("Ethernet"))
-            .SelectMany(n => n.GetIPProperties()?.GatewayAddresses)
+            .SelectMany(n => n.GetIPProperties().GatewayAddresses ?? Enumerable.Empty<GatewayIPAddressInformation>())
             .Select(g => g?.Address)
             .FirstOrDefault(a => a != null);
     }
 
-    private static async Task<string> GetCountryNameAsync()
+    private static async Task<string?> GetCountryNameAsync()
     {
-        JObject response = await GetConnectionDataAsync();
-        return response["country"].ToString();
+        JObject? response = await GetConnectionDataAsync();
+        return response?["country"]?.ToString();
     }
 
-    private static async Task<string> GetIpAddressAsync()
+    private static async Task<string?> GetIpAddressAsync()
     {
-        JObject response = await GetConnectionDataAsync();
-        return response["query"].ToString();
+        JObject? response = await GetConnectionDataAsync();
+        return response?["query"]?.ToString();
     }
 
-    private static async Task<JObject> GetConnectionDataAsync()
+    private static async Task<JObject?> GetConnectionDataAsync()
     {
         string endpoint = "http://ip-api.com/json/";
         // Make sure that fresh socket is created when requesting connection data

@@ -232,14 +232,16 @@ public class SidebarRobot
     public SidebarRobot ExpandFirstSecondaryActions()
     {
         // Secondary actions expanding is problematic, that's why retry is needed.
-        RetryResult<bool> retry = Retry.WhileFalse(() => {
+        RetryResult<bool> retry = Retry.WhileFalse(() =>
+        {
             SecondaryButton.Invoke();
-            return !BaseTest.Window.FindFirstDescendant(DeleteMenuItem.Condition).IsOffscreen;
+            FlaUI.Core.AutomationElements.AutomationElement? descendant = BaseTest.Window?.FindFirstDescendant(DeleteMenuItem.Condition);
+            return descendant != null && !descendant.IsOffscreen;
         }, TestConstants.TenSecondsTimeout, ignoreException: true, interval: TestConstants.RetryInterval);
 
         if (!retry.Success)
         {
-            throw new Exception($"{retry.LastException.Message}\n{retry.LastException.StackTrace}");
+            throw new Exception($"{retry.LastException?.Message}\n{retry.LastException?.StackTrace}");
         }
 
         // Remove when VPNWIN-2599 is implemented.
@@ -317,7 +319,7 @@ public class SidebarRobot
     public int GetProfileCount()
     {
         SecondaryButton.WaitUntilDisplayed();
-        return BaseTest.Window.FindAllDescendants(SecondaryButton.Condition).Length;
+        return BaseTest.Window?.FindAllDescendants(SecondaryButton.Condition).Length ?? 0;
     }
 
     private SidebarRobot NavigateToCountriesTab(int index)
@@ -337,16 +339,18 @@ public class SidebarRobot
     private SidebarRobot ExpandSecondaryActions(string connectionValue, Element elementToWaitFor)
     {
         // Secondary actions expanding is problematic, that's why retry is needed.
-        RetryResult<bool> retry = Retry.WhileFalse(() => {
+        RetryResult<bool> retry = Retry.WhileFalse(() =>
+        {
             Element countryButton = Element.ByAutomationId($"Actions_for_{connectionValue}");
             Element secondaryActionsButton = countryButton.FindChild(Element.ByAutomationId("SecondaryButton"));
             secondaryActionsButton.Invoke(TestConstants.OneSecondTimeout);
-            return !BaseTest.Window.FindFirstDescendant(elementToWaitFor.Condition).IsOffscreen;
+            FlaUI.Core.AutomationElements.AutomationElement? descendant = BaseTest.Window?.FindFirstDescendant(elementToWaitFor.Condition);
+            return descendant != null && !descendant.IsOffscreen;
         }, TestConstants.TenSecondsTimeout, ignoreException: true, interval: TestConstants.OneSecondTimeout);
 
         if (!retry.Success)
         {
-            throw new Exception($"{retry.LastException.Message}\n{retry.LastException.StackTrace}");
+            throw new Exception($"{retry.LastException?.Message} \n {retry.LastException?.StackTrace}");
         }
 
         // Remove when VPNWIN-2599 is implemented.

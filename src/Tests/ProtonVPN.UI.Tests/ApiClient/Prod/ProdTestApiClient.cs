@@ -26,13 +26,14 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using ProtonVPN.UI.Tests.ApiClient.Contracts;
 
 namespace ProtonVPN.UI.Tests.ApiClient.Prod;
 
 public class ProdTestApiClient
 {
-    public static string AcessToken;
-    public static string UID;
+    public static string? AcessToken;
+    public static string? UID;
 
     private readonly HttpClient _client;
     private readonly Random _random = new();
@@ -47,16 +48,19 @@ public class ProdTestApiClient
 
     public async Task<string> GetRandomSpecificPaidServerAsync(string username, SecureString password)
     {
-        JToken randomServer = null;
-        JArray logicals = await new ProdTestApiClient().GetLogicalServersLoggedInAsync(username, password);
-        List<JToken> filteredServers = logicals.Where(
-            s => (int)s["Status"] == 1 &&
-            (int)s["Tier"] == 2 &&
-            !s["Name"].ToString().Contains("SE-") &&
-            !s["Name"].ToString().Contains("IS-") &&
-            !s["Name"].ToString().Contains("TOR") &&
-            !s["Name"].ToString().Contains("CH-")).ToList();
-        if (filteredServers.Count > 0)
+        JToken? randomServer = null;
+        JArray? logicals = await new ProdTestApiClient().GetLogicalServersLoggedInAsync(username, password);
+        List<JToken>? filteredServers = logicals?
+            .Where(s =>
+                s["Status"] is JToken statusToken && statusToken.Type != JTokenType.Null && (int)statusToken == 1 &&
+                s["Tier"] is JToken tierToken && tierToken.Type != JTokenType.Null && (int)tierToken == 2 &&
+                s["Name"] != null &&
+                !s["Name"]!.ToString().Contains("SE-") &&
+                !s["Name"]!.ToString().Contains("IS-") &&
+                !s["Name"]!.ToString().Contains("TOR") &&
+                !s["Name"]!.ToString().Contains("CH-"))
+            .ToList();
+        if (filteredServers?.Count > 0)
         {
             randomServer = filteredServers.OrderBy(_ => _random.Next()).FirstOrDefault();
         }
@@ -65,10 +69,10 @@ public class ProdTestApiClient
             throw new Exception("Empty server list was returned.");
         }
 
-        return randomServer["Name"].ToString();
+        return randomServer?["Name"]?.ToString() ?? string.Empty;
     }
 
-    public async Task<JArray> GetLogicalServersLoggedInAsync(string username, SecureString password)
+    public async Task<JArray?> GetLogicalServersLoggedInAsync(string username, SecureString password)
     {
         TestUserAuthenticator _userAuthenticator = new();
         await _userAuthenticator.CreateSessionAsync(username, password);
@@ -77,34 +81,23 @@ public class ProdTestApiClient
         HttpResponseMessage response = await _client.SendAsync(request);
         response.EnsureSuccessStatusCode();
         JObject logicals = JObject.Parse(await response.Content.ReadAsStringAsync());
-        return (JArray)logicals["LogicalServers"];
+        return (JArray?)logicals["LogicalServers"];
     }
 
-    public async Task<AuthInfoResponse> GetAuthInfoAsync(AuthInfoRequest username)
+    public async Task<AuthInfoResponse?> GetAuthInfoAsync(AuthInfoRequest username)
     {
         string content = JsonSerializer.Serialize(username);
         HttpResponseMessage response = await SendPostUnauthorizedAsync("/auth/v4/info", content);
 
-        AuthInfoResponse authResponse = JsonSerializer.Deserialize<AuthInfoResponse>(await response.Content.ReadAsStringAsync());
-        return authResponse;
+        return JsonSerializer.Deserialize<AuthInfoResponse>(await response.Content.ReadAsStringAsync());
     }
 
-    public async Task<AuthResponse> GetAuthResponseAsync(AuthRequest body)
+    public async Task<AuthResponse?> GetAuthResponseAsync(AuthRequest body)
     {
         string content = JsonSerializer.Serialize(body);
         HttpResponseMessage response = await SendPostUnauthorizedAsync("/auth", content);
 
-        AuthResponse authResponse = JsonSerializer.Deserialize<AuthResponse>(await response.Content.ReadAsStringAsync());
-        return authResponse;
-    }
-
-    private async Task<JArray> GetLogicalServersUnauthorizedAsync()
-    {
-        HttpResponseMessage response = await _client.GetAsync("/vpn/logicals");
-        response.EnsureSuccessStatusCode();
-        string responseBody = response.Content.ReadAsStringAsync().Result;
-        JObject json = JObject.Parse(responseBody);
-        return (JArray)json["LogicalServers"];
+        return JsonSerializer.Deserialize<AuthResponse>(await response.Content.ReadAsStringAsync());
     }
 
     private async Task<HttpResponseMessage> SendPostUnauthorizedAsync(string endpoint, string content)
@@ -139,8 +132,13 @@ public class ProdTestApiClient
         return request;
     }
 
-    private HttpRequestMessage GetAuthorizedRequestMessage(HttpMethod method, string requestUri, string accessToken, string uniqueSessionId)
+    private HttpRequestMessage GetAuthorizedRequestMessage(HttpMethod method, string requestUri, string? accessToken, string? uniqueSessionId)
     {
+        if (accessToken is null || uniqueSessionId is null)
+        {
+            throw new ArgumentNullException("Access token or unique session id is null.");
+        }
+
         HttpRequestMessage request = GetUnauthorizedRequestMessage(method, requestUri);
         request.Headers.Add("x-pm-uid", uniqueSessionId);
         request.Headers.Add("Authorization", $"Bearer {accessToken}");

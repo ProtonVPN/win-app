@@ -48,13 +48,18 @@ public class LokiPusher
             throw new Exception("Pushing empty metric list is not allowed.");
         }
 
+        if (SliHelper.RunId is null || SliHelper.SliName is null || SliHelper.Workflow is null)
+        {
+            throw new Exception("Run id or sli name or workflow is null.");
+        }
+
         try
         {
             JArray fullMetrics = BaseMetricsJsonBody(GetMetadata(SliHelper.RunId), SliHelper.MetricsList);
             JObject requestBody = BaseLokiRequestJsonBody(fullMetrics, GetMetricsLabels(SliHelper.SliName, SliHelper.Workflow));
             PushToLokiWithRetry(requestBody);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             SliHelper.Reset();
             throw;
@@ -63,6 +68,11 @@ public class LokiPusher
 
     public void PushLogs(string logsPath, string logType)
     {
+        if (SliHelper.RunId is null || SliHelper.Workflow is null)
+        {
+            throw new Exception("Run id or sli name or workflow is null.");
+        }
+
         JObject requestBody = AddLogsToRequestJson(logsPath, logType, SliHelper.Workflow, GetMetadata(SliHelper.RunId));
         PushToLokiWithRetry(requestBody);
     }
@@ -75,14 +85,14 @@ public class LokiPusher
 
     private JObject AddLogsToRequestJson(string pathToLogs, string logType, string workflow, JObject metadata)
     {
-        List<JArray> logs = new List<JArray>();
-        FileStream fileStream = new FileStream(pathToLogs, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-        using (StreamReader sr = new StreamReader(fileStream))
+        List<JArray> logs = [];
+        FileStream fileStream = new(pathToLogs, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+        using (StreamReader sr = new(fileStream))
         {
-            string line;
+            string? line;
             while ((line = sr.ReadLine()) != null)
             {
-                List<string> logLines = new List<string>(line.Split(" | "));
+                List<string> logLines = new(line.Split(" | "));
                 string timestamp = ConvertTimeToUnixNanosecond(logLines.First());
                 logLines.RemoveAt(0);
                 string formattedLogs = string.Join(" | ", logLines);
@@ -124,7 +134,7 @@ public class LokiPusher
 
     private string ConvertTimeToUnixNanosecond(string timestampString)
     {
-        string timestamp = null;
+        string? timestamp;
         try
         {
             DateTime logTimeStamp = DateTime.Parse(timestampString, null, System.Globalization.DateTimeStyles.RoundtripKind);
@@ -145,7 +155,6 @@ public class LokiPusher
             new JObject(metric).ToString(),
             metadata);
     }
-
 
     private JObject BaseLokiRequestJsonBody(object data, JObject labels)
     {

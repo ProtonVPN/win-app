@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -35,19 +35,19 @@ public class TestUserData
 
     public static TestUserData FreeUser => GetUser("FREE_USER");
     public static TestUserData PlusUser => GetUser("PLUS_USER");
-    public static TestUserData PlusUserBti => new TestUserData("vpnplus", "12341234");
+    public static TestUserData PlusUserBti => new("vpnplus", "12341234");
     public static TestUserData VisionaryUser => GetUser("VISIONARY_USER");
     public static TestUserData SpecialCharsUser => GetUser("SPECIAL_CHARS_USER");
     public static TestUserData TwoPassUser => GetUser("TWO_PASS_USER");
     public static TestUserData ZeroAssignedConnectionsUser => GetUser("ZERO_CONNECTIONS_USER");
     public static TestUserData TwoFactorUser => GetUser("TWO_FACTOR_AUTH_USER");
     public static TestUserData SsoUser => GetUser("SSO_USER");
-    public static TestUserData IncorrectUser => new TestUserData(FreeUser.Username, "IncorrectPass");
-    public static TestUserData IncorrectUserWithWhitespace => new TestUserData(" Incorrect Username", " Incorrect Pass");
+    public static TestUserData IncorrectUser => new(FreeUser.Username, "IncorrectPass");
+    public static TestUserData IncorrectUserWithWhitespace => new(" Incorrect Username", " Incorrect Pass");
 
     public static string GetTwoFactorCode()
     {
-        string key = Environment.GetEnvironmentVariable("TWO_FA_KEY");
+        string key = Environment.GetEnvironmentVariable("TWO_FA_KEY") ?? throw new Exception("Missing TWO_FA_KEY env var.");
         Totp totp = new Totp(Base32Encoding.ToBytes(key));
         return totp.ComputeTotp();
     }
@@ -60,7 +60,7 @@ public class TestUserData
 
     private static (string, string) GetUsernameAndPassword(string userType)
     {
-        string str = Environment.GetEnvironmentVariable(userType);
+        string? str = Environment.GetEnvironmentVariable(userType);
         if (string.IsNullOrEmpty(str))
         {
             throw new Exception($"Missing environment variable: {userType}");

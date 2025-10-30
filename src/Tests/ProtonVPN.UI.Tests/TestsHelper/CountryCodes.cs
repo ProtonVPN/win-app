@@ -19,9 +19,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 public static class CountryCodes
@@ -154,7 +151,7 @@ public static class CountryCodes
 
     public static string GetCode(string countryName)
     {
-        return NameToCode.TryGetValue(countryName, out string code)
+        return NameToCode.TryGetValue(countryName, out string? code)
             ? code
             : throw new ArgumentException($"Unknown country: {countryName}");
     }

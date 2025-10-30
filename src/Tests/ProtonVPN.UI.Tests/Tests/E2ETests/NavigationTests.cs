@@ -109,7 +109,7 @@ public class NavigationTests : FreshSessionSetUp
 
         Thread.Sleep(TestConstants.OneSecondTimeout);
 
-        Window.Focus();
+        Window?.Focus();
 
         Thread.Sleep(TestConstants.OneSecondTimeout);
 
@@ -119,7 +119,7 @@ public class NavigationTests : FreshSessionSetUp
 
         Thread.Sleep(TestConstants.OneSecondTimeout);
 
-        Window.Focus();
+        Window?.Focus();
 
         Thread.Sleep(TestConstants.OneSecondTimeout);
 

@@ -24,6 +24,9 @@ namespace ProtonVPN.UI.Tests.TestsHelper;
 
 public static class TestConstants
 {
+    public const string PORT_CHECKER_API_BASE_URL = "https://portchecker.io/api";
+    public const int DEFAULT_HOVER_DURATION_MS = 500;
+
     public static TimeSpan? DefaultElementWaitingTime => TimeSpan.FromSeconds(10);
     public static TimeSpan ApiRetryInterval => TimeSpan.FromSeconds(3);
     public static TimeSpan OneSecondTimeout => TimeSpan.FromSeconds(1);
@@ -40,7 +43,8 @@ public static class TestConstants
     public static string LauncherPath = @"C:\Program Files\Proton\VPN\ProtonVPN.Launcher.exe";
     public static string MapCountry = "CA";
     public static string ClientLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN\Logs\client-logs.txt");
-    public static string UserStoragePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN");
+    public static string UserStoragePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN");    
+
     public enum Protocol
     {
         WireGuardUdp,

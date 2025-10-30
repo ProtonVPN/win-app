@@ -26,9 +26,9 @@ public class Element
 {
     public string SelectorName;
     public Func<ConditionFactory, ConditionBase> Condition;
-    public Element ChildElement;
+    public Element? ChildElement;
 
-    public Element(Func<ConditionFactory, ConditionBase> selector, string selectorName, Element child = null)
+    public Element(Func<ConditionFactory, ConditionBase> selector, string selectorName, Element? child = null)
     {
         SelectorName = selectorName;
         Condition = selector;

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -33,14 +33,14 @@ public class AtlasApiClient
 
     public AtlasApiClient()
     {
-        HttpClientHandler handler = new HttpClientHandler
+        HttpClientHandler handler = new()
         {
             ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
         };
 
         _client = new HttpClient(handler)
         {
-            BaseAddress = new Uri(Environment.GetEnvironmentVariable("BTI_ATLAS_CONTROLLER_URL"))
+            BaseAddress = new Uri(Environment.GetEnvironmentVariable("BTI_ATLAS_CONTROLLER_URL") ?? throw new Exception("Missing BTI_ATLAS_CONTROLLER_URL env var."))
         };
     }
 

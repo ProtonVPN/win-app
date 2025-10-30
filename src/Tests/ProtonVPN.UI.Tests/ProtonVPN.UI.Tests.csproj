@@ -10,6 +10,7 @@
         <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <IsPublishable>false</IsPublishable>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
     <ItemGroup>
         <None Include="app.config" />

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -31,9 +31,9 @@ namespace ProtonVPN.UI.Tests.TestsHelper;
 
 public class ArtifactsHelper
 {
-    public static VideoRecorder Recorder;
-    private static string ArtifactsDirectory { get; set; }
-    private static EventLog _eventViewerLogs = EventLog.GetEventLogs().Where(logs => logs.Log == "Application").FirstOrDefault();
+    public static VideoRecorder? Recorder;
+    private static string ArtifactsDirectory { get; set; } = string.Empty;
+    private static EventLog? _eventViewerLogs = EventLog.GetEventLogs().Where(logs => logs.Log == "Application").FirstOrDefault();
 
     public static async Task StartVideoCaptureAsync(string testName)
     {
@@ -48,7 +48,7 @@ public class ArtifactsHelper
         string pathToVideo = Path.Combine(ArtifactsDirectory, testName, $"{testName}-recording.mp4");
         Recorder = new VideoRecorder(new VideoRecorderSettings { VideoQuality = 18, FrameRate = 10u,ffmpegPath = recorderFullPath, TargetVideoPath = pathToVideo }, recorder =>
         {
-            string testName = TestContext.CurrentContext.Test.MethodName;
+            string testName = TestContext.CurrentContext.Test.MethodName ?? throw new Exception("Test method name is null.");
             CaptureImage img = Capture.Screen(1);
             img.ApplyOverlays(new InfoOverlay(img) { 
                 RecordTimeSpan = recorder.RecordTimeSpan, 
@@ -77,9 +77,9 @@ public class ArtifactsHelper
     {
         string filePath = Path.Combine(ArtifactsDirectory, testName, "EventViewerLogs.evtx");
         
-        using (EventLogSession session = new EventLogSession())
+        using (EventLogSession session = new())
         {
-            session.ExportLog(_eventViewerLogs.Log, PathType.LogName, "*", filePath, true);
+            session.ExportLog(_eventViewerLogs?.Log, PathType.LogName, "*", filePath, true);
         }
     }
 
@@ -94,13 +94,13 @@ public class ArtifactsHelper
 
     public static void ClearEventViewerLogs()
     {
-        _eventViewerLogs.Clear();
+        _eventViewerLogs?.Clear();
     }
 
     public static void CreateTestFailureFolderIfNotExists()
     {
         Assembly asm = Assembly.GetExecutingAssembly();
-        ArtifactsDirectory = Path.Combine(Path.GetDirectoryName(asm.Location), "TestFailureData");
+        ArtifactsDirectory = Path.Combine(Path.GetDirectoryName(asm.Location) ?? string.Empty, "TestFailureData");
         if(!Directory.Exists(ArtifactsDirectory))
         {
             Directory.CreateDirectory(ArtifactsDirectory);

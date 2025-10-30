@@ -31,8 +31,8 @@ namespace ProtonVPN.UI.Tests.ApiClient.TestEnv;
 
 public class LokiApiClient
 {
-    private readonly string _lokiCertificate = Environment.GetEnvironmentVariable("LOKI_CERTIFICATE_WINDOWS");
-    private readonly string _lokiPrivateKey = Environment.GetEnvironmentVariable("LOKI_PRIVATE_KEY_WINDOWS");
+    private readonly string _lokiCertificate = Environment.GetEnvironmentVariable("LOKI_CERTIFICATE_WINDOWS") ?? throw new Exception("Missing LOKI_CERTIFICATE_WINDOWS env var.");
+    private readonly string _lokiPrivateKey = Environment.GetEnvironmentVariable("LOKI_PRIVATE_KEY_WINDOWS") ?? throw new Exception("Missing LOKI_PRIVATE_KEY_WINDOWS env var.");
 
     public HttpClient GetHttpClient()
     {

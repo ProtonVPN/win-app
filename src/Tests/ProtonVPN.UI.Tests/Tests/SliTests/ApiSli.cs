@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -40,18 +40,18 @@ public class ApiSli
 
     [Test]
     [Sli("paid_servers_stats")]
-    public async Task PushLogicalMetricsPlusUser()
+    public async Task PushLogicalMetricsPlusUserAsync()
     {
         SecureString password = new NetworkCredential("", TestUserData.PlusUser.Password).SecurePassword;
-        await PushLogicalStats(TestUserData.PlusUser.Username, password, 2);
+        await PushLogicalStatsAsync(TestUserData.PlusUser.Username, password, 2);
     }
 
     [Test]
     [Sli("free_servers_stats")]
-    public async Task PushLogicalsStatsFreeUser()
+    public async Task PushLogicalsStatsFreeUserAsync()
     {
         SecureString password = new NetworkCredential("", TestUserData.FreeUser.Password).SecurePassword;
-        await PushLogicalStats(TestUserData.FreeUser.Username, password, 0);
+        await PushLogicalStatsAsync(TestUserData.FreeUser.Username, password, 0);
     }
 
     [TearDown]
@@ -61,20 +61,28 @@ public class ApiSli
         SliHelper.Reset();
     }
 
-    private async Task PushLogicalStats(string username, SecureString password, int serverTier)
+    private async Task PushLogicalStatsAsync(string username, SecureString password, int serverTier)
     {
         int totalIndividualServers = 0;
         int onlineIndividualServers = 0;
 
-        JArray logicalServers = await _prodTestApiClient.GetLogicalServersLoggedInAsync(username, password);
-        JArray totalServersByTier = new JArray(logicalServers.Where(server => (int)server["Tier"] == serverTier));
+        JArray? logicalServers = await _prodTestApiClient.GetLogicalServersLoggedInAsync(username, password);
+        JArray? totalServersByTier = new(logicalServers?.Where(server =>
+        {
+            JToken? tier = server["Tier"];
+            return tier is not null && (int)tier == serverTier;
+        }) ?? new object());
 
         foreach (JObject server in totalServersByTier)
         {
-            JArray serversArray = (JArray)server["Servers"];
-            totalIndividualServers += serversArray.Count;
-            onlineIndividualServers += serversArray.Count(s => (int)s["Status"] == 1);
+            JArray? serversArray = (JArray?)server["Servers"];
+            totalIndividualServers += serversArray?.Count ?? 0;
+            onlineIndividualServers += serversArray?.Count(s => {
+                JToken? status = s["Status"];
+                return status is not null && (int)status == 1;
+            }) ?? 0;
         }
+
         SliHelper.AddMetric("total_servers", totalIndividualServers.ToString());
         SliHelper.AddMetric("online_servers", onlineIndividualServers.ToString());
     }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,7 +23,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Win32;
-using Newtonsoft.Json.Linq;
 using ProtonVPN.UI.Tests.TestBase;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
@@ -34,17 +33,17 @@ public class TestEnvironment : BaseTest
 
     public static string GetAppVersion()
     {
-        using (RegistryKey key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(REGISTRY_KEY_PATH))
+        using (RegistryKey? key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(REGISTRY_KEY_PATH))
         {
-            object displayVersionObject = key?.GetValue("DisplayVersion");
-            return displayVersionObject?.ToString();
+            object? displayVersionObject = key?.GetValue("DisplayVersion");
+            return displayVersionObject?.ToString() ?? string.Empty;
         }
     }
 
     public static bool AreTestsRunningLocally()
     {
         bool isLocalEnvironment = false;
-        string ciCommitHash = Environment.GetEnvironmentVariable("CI_COMMIT_SHA");
+        string ciCommitHash = Environment.GetEnvironmentVariable("CI_COMMIT_SHA") ?? throw new Exception("Missing CI_COMMIT_SHA env var.");
         if (string.IsNullOrEmpty(ciCommitHash))
         {
             isLocalEnvironment = true;
@@ -55,8 +54,8 @@ public class TestEnvironment : BaseTest
     public static string GetCommitHash()
     {
         FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(TestConstants.LauncherPath);
-        string version = fileVersionInfo.ProductVersion;
-        return version.Split("-").Last();
+        string? version = fileVersionInfo.ProductVersion;
+        return version?.Split("-").Last() ?? throw new Exception("Failed to get commit hash.");
     }
 
     public static string GetOperatingSystem()
@@ -69,24 +68,17 @@ public class TestEnvironment : BaseTest
         string versionFolder = $"v{GetAppVersion()}";
         return Path.Combine(TestConstants.AppFolderPath, versionFolder);
     }
+
     public static string GetDevProtonClientFolder()
     {
-        return Directory.GetParent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)).ToString();
+        string directoryName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+            ?? throw new Exception("Failed to get executing assembly location.");
+        return Directory.GetParent(directoryName)?.ToString()
+            ?? throw new Exception("Failed to get client folder.");
     }
 
     public static string GetServiceLogsPath()
     {
         return Path.Combine(GetProtonClientFolder(), "ServiceData", "Logs", "service-logs.txt");
-    }
-
-    public static string GetConnectionCertificate()
-    {
-        string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN\Storage");
-        string filePath = Directory.GetFiles(directoryPath, "UserSettings.*.json").FirstOrDefault();
-        string jsonContent = File.ReadAllText(filePath);
-        JObject jsonObj = JObject.Parse(jsonContent);
-
-        JToken connectionCertificateToken = jsonObj.SelectToken("ConnectionCertificate");
-        return connectionCertificateToken.ToString();
     }
 }

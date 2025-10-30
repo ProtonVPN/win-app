@@ -142,8 +142,8 @@ public class ConnectionTests : FreshSessionSetUp
             .ToggleAutoLaunchSetting()
             .ApplySettings();
 
-        App.Close();
-        App.Dispose();
+        App?.Close();
+        App?.Dispose();
 
         LaunchApp(isFreshStart: false);
 
@@ -165,8 +165,8 @@ public class ConnectionTests : FreshSessionSetUp
             .ToggleAutoConnectionSetting()
             .ApplySettings();
 
-        App.Close();
-        App.Dispose();
+        App?.Close();
+        App?.Dispose();
 
         LaunchApp(isFreshStart: false);
 
@@ -196,7 +196,7 @@ public class ConnectionTests : FreshSessionSetUp
         // Allow some time for the app to settle down to imitate user's delay
         Thread.Sleep(TestConstants.FiveSecondsTimeout);
 
-        App.Kill();
+        App?.Kill();
         // Delay to make sure that connection is not lost even after brief delay.
         Thread.Sleep(TestConstants.FiveSecondsTimeout);
 

@@ -28,7 +28,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("ARM")]
 public class SplitTunnelingIncludeTests : BaseTest
 {
-    private string _ipAddressNotConnected = null;
+    private string? _ipAddressNotConnected = null;
     private const string IP_ADDRESS_TO_INCLUDE = "208.95.112.1";
 
     [OneTimeSetUp]

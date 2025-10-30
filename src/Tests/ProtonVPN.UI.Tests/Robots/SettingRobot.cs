@@ -50,6 +50,8 @@ public class SettingRobot
     protected Element SplitTunnelingSettingsCard = Element.ByAutomationId("SplitTunnelingSettingsCard");
     protected Element VpnAcceleratorSettingsCard = Element.ByAutomationId("VpnAcceleratorSettingsCard");
     protected Element DefaultConnectionSettingsCard = Element.ByAutomationId("DefaultConnectionSettingsCard");
+    protected Element PortForwardingToggle = Element.ByAutomationId("PortForwardingToggle");
+    protected Element CopyPortNumberButton = Element.ByAutomationId("CopyPortNumberCondensedButton");
 
     protected Element AutoStartupSettingsCard = Element.ByAutomationId("AutoStartupSettingsCard");
     protected Element ReportIssueSettingsCard = Element.ByAutomationId("ReportIssueSettingsCard");
@@ -293,6 +295,18 @@ public class SettingRobot
     public SettingRobot ToggleAutoConnectionSetting()
     {
         AutoConnectToggle.Toggle();
+        return this;
+    }
+
+    public SettingRobot TogglePortForwardingnSetting()
+    {
+        PortForwardingToggle.Toggle();
+        return this;
+    }
+
+    public SettingRobot ClickCopyPortNumber()
+    {
+        CopyPortNumberButton.Invoke();
         return this;
     }
 

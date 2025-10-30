@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -90,9 +90,17 @@ public static class CommonAssertions
 
     public static T AssertChecked<T>(this T desiredElement) where T : Element
     {
-        AutomationElement element = UiActions.WaitUntilExists(desiredElement);
-        RadioButton radioButton = new RadioButton(element.FrameworkAutomationElement);
-        Assert.That(radioButton.IsChecked, Is.True, $"Radio button '{desiredElement.SelectorName}' should be checked.");
+        AutomationElement? element = UiActions.WaitUntilExists(desiredElement);
+        if (element == null)
+        {
+            Assert.Fail("Radio button not found.");
+        }
+        else
+        {
+            RadioButton radioButton = new(element.FrameworkAutomationElement);
+            Assert.That(radioButton.IsChecked, Is.True, $"Radio button '{desiredElement.SelectorName}' should be checked.");
+        }
+
         return desiredElement;
     }
 }

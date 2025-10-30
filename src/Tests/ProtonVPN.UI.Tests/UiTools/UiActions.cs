@@ -35,89 +35,84 @@ public static class UiActions
 {
     public static T Click<T>(this T desiredElement) where T : Element
     {
-        AutomationElement elementToClick = WaitUntilExists(desiredElement);
-        elementToClick.WaitUntilClickable(TestConstants.TenSecondsTimeout);
-        elementToClick.Click();
+        AutomationElement? elementToClick = WaitUntilExists(desiredElement);
+        elementToClick?.WaitUntilClickable(TestConstants.TenSecondsTimeout);
+        elementToClick?.Click();
         return desiredElement;
     }
 
     public static T DoubleClick<T>(this T desiredElement) where T : Element
     {
-        AutomationElement elementToClick = WaitUntilExists(desiredElement);
-        elementToClick.WaitUntilClickable(TestConstants.TenSecondsTimeout);
-        elementToClick.DoubleClick();
+        AutomationElement? elementToClick = WaitUntilExists(desiredElement);
+        elementToClick?.WaitUntilClickable(TestConstants.TenSecondsTimeout);
+        elementToClick?.DoubleClick();
         return desiredElement;
     }
 
     public static T RightClick<T>(this T desiredElement) where T : Element
     {
-        AutomationElement elementToClick = WaitUntilExists(desiredElement);
-        elementToClick.WaitUntilClickable(TestConstants.TenSecondsTimeout);
-        elementToClick.RightClick();
+        AutomationElement? elementToClick = WaitUntilExists(desiredElement);
+        elementToClick?.WaitUntilClickable(TestConstants.TenSecondsTimeout);
+        elementToClick?.RightClick();
         return desiredElement;
     }
 
     public static T Toggle<T>(this T desiredElement) where T : Element
     {
-        AutomationElement elementToClick = WaitUntilExists(desiredElement);
-        elementToClick.WaitUntilClickable(TestConstants.TenSecondsTimeout);
-        elementToClick.AsToggleButton().Toggle();
+        AutomationElement? elementToClick = WaitUntilExists(desiredElement);
+        elementToClick?.WaitUntilClickable(TestConstants.TenSecondsTimeout);
+        elementToClick?.AsToggleButton().Toggle();
         return desiredElement;
     }
 
     public static bool IsToggled<T>(this T toggleElement) where T : Element
     {
-        AutomationElement elementToCheck = WaitUntilExists(toggleElement);
+        AutomationElement? elementToCheck = WaitUntilExists(toggleElement);
         elementToCheck.WaitUntilClickable(TestConstants.TenSecondsTimeout);
 
-        ToggleButton toggleButton = elementToCheck.AsToggleButton();
-        return toggleButton.ToggleState == FlaUI.Core.Definitions.ToggleState.On;
-    }
-
-    public static T MoveMouse<T>(this T desiredElement, int offsetX = 0, int offsetY = 0) where T : Element
-    {
-        AutomationElement element = WaitUntilExists(desiredElement);
-        Mouse.MovePixelsPerMillisecond = 100;
-        Point clickablePoint = element.WaitUntilClickable(TestConstants.TenSecondsTimeout).GetClickablePoint();
-        Mouse.MoveTo(clickablePoint.X + offsetX, clickablePoint.Y + offsetY);
-        return desiredElement;
+        ToggleButton? toggleButton = elementToCheck?.AsToggleButton();
+        return toggleButton?.ToggleState == FlaUI.Core.Definitions.ToggleState.On;
     }
 
     public static T ExpandItem<T>(this T desiredElement) where T : Element
     {
-        AutomationElement element = WaitUntilExists(desiredElement);
-        element.Patterns.ExpandCollapse.Pattern.Expand();
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        element?.Patterns.ExpandCollapse.Pattern.Expand();
         return desiredElement;
     }
 
     public static T Invoke<T>(this T desiredElement, TimeSpan? clickableTimeout = null) where T : Element
     {
         clickableTimeout ??= TestConstants.DefaultElementWaitingTime;
-        AutomationElement elementToClick = WaitUntilExists(desiredElement);
-        elementToClick.WaitUntilClickable(clickableTimeout);
-        elementToClick.AsButton().Invoke();
+        AutomationElement? elementToClick = WaitUntilExists(desiredElement);
+        elementToClick?.WaitUntilClickable(clickableTimeout);
+        elementToClick?.AsButton().Invoke();
         return desiredElement;
     }
 
     public static T TextBoxEquals<T>(this T desiredElement, string text) where T : Element
     {
-        AutomationElement element = WaitUntilExists(desiredElement);
-        string elementText = element.AsTextBox().Text;
-        Assert.That(elementText.Equals(text), Is.True, $"Expected string: {text} But was: {elementText}");
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        string? elementText = element?.AsTextBox().Text;
+        Assert.That(elementText?.Equals(text), Is.True, $"Expected string: {text} But was: {elementText}");
         return desiredElement;
     }
 
     public static T SetText<T>(this T desiredElement, string input) where T : Element
     {
-        AutomationElement elementToClick = WaitUntilExists(desiredElement);
-        elementToClick.AsTextBox().Text = input;
+        AutomationElement? elementToClick = WaitUntilExists(desiredElement);
+        if (elementToClick != null)
+        {
+            elementToClick.AsTextBox().Text = input;
+        }
+
         return desiredElement;
     }
 
     public static T ClickItem<T>(this T desiredElement, int index) where T : Element
     {
-        AutomationElement element = WaitUntilExists(desiredElement);
-        element.FindChildAt(index).Click();
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        element?.FindChildAt(index)?.Click();
         return desiredElement;
     }
 
@@ -129,72 +124,75 @@ public static class UiActions
 
     public static T ClearInput<T>(this T desiredElement) where T : Element
     {
-        AutomationElement element = WaitUntilExists(desiredElement);
-        element.AsTextBox().Text = "";
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        if (element != null)
+        {
+            element.AsTextBox().Text = "";
+        }
+
         return desiredElement;
     }
 
     public static AutomationElement[] FindAllElements<T>(this T desiredElement) where T : Element
     {
         WaitUntilExists(desiredElement);
-        AutomationElement[] elements = BaseTest.Window.FindAllDescendants(desiredElement.Condition);
-        return elements;
+        return BaseTest.Window?.FindAllDescendants(desiredElement.Condition) ?? [];
     }
 
     public static Element ScrollIntoView<T>(this T desiredElement) where T : Element
     { 
-        AutomationElement element = WaitUntilExists(desiredElement);
-        element.Patterns.ScrollItem.Pattern.ScrollIntoView();
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        element?.Patterns.ScrollItem.Pattern.ScrollIntoView();
         return desiredElement;
     }
 
     public static Element TextEquals<T>(this T desiredElement, string text) where T : Element
     {
-        AutomationElement element = WaitUntilExists(desiredElement);
-        string elementText = element.AsLabel().Text;
-        Assert.That(elementText.Equals(text), Is.True, $"Expected string: {text} But was: {elementText}");
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        string? elementText = element?.AsLabel().Text;
+        Assert.That(elementText?.Equals(text), Is.True, $"Expected string: {text} But was: {elementText}");
         return desiredElement;
     }
 
     public static Element ValueEquals<T>(this T desiredElement, string value) where T : Element
     {
-        AutomationElement element = WaitUntilExists(desiredElement);
-        string elementValue = element.Patterns.Value.Pattern.Value;
-        Assert.That(elementValue.Equals(value), Is.True, $"Expected value: {value} But was: {elementValue}");
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        string? elementValue = element?.Patterns.Value.Pattern.Value;
+        Assert.That(elementValue?.Equals(value), Is.True, $"Expected value: {value} But was: {elementValue}");
         return desiredElement;
     }
 
-    public static AutomationElement WaitUntilExists<T>(this T desiredElement, TimeSpan? time = null) where T : Element
+    public static AutomationElement? WaitUntilExists<T>(this T desiredElement, TimeSpan? time = null) where T : Element
     {
         return WaitForElement(desiredElement, time, element => element != null);
     }
 
-    public static AutomationElement WaitUntilDisplayed<T>(this T desiredElement, TimeSpan? time = null) where T : Element
+    public static AutomationElement? WaitUntilDisplayed<T>(this T desiredElement, TimeSpan? time = null) where T : Element
     {
         return WaitForElement(desiredElement, time, element => element != null && !element.IsOffscreen);
     }
 
     public static void DoesNotExist<T>(this T desiredElement) where T : Element
     {
-        AutomationElement element = FindFirstDescendantUsingChildren(desiredElement.Condition);
+        AutomationElement? element = FindFirstDescendantUsingChildren(desiredElement.Condition);
         Assert.That(element, Is.Null, $"Element {desiredElement.SelectorName} was found. But it should not exist.");
     }
 
     public static void AssertIsToggled<T>(this T desiredElement) where T : Element
     {
         WaitUntilExists(desiredElement);
-        AutomationElement element = FindFirstDescendantUsingChildren(desiredElement.Condition);
-        Assert.That(element.AsToggleButton().IsToggled, Is.True, $"Element {desiredElement.SelectorName} was not toggled.");
+        AutomationElement? element = FindFirstDescendantUsingChildren(desiredElement.Condition);
+        Assert.That(element?.AsToggleButton().IsToggled, Is.True, $"Element {desiredElement.SelectorName} was not toggled.");
     }
 
-    private static AutomationElement WaitForElement<T>(
+    private static AutomationElement? WaitForElement<T>(
         T desiredElement,
         TimeSpan? time,
-        Func<AutomationElement, bool> condition,
-        string customMessage = null) where T : Element
+        Func<AutomationElement?, bool> condition,
+        string? customMessage = null) where T : Element
     {
         time ??= TestConstants.DefaultElementWaitingTime;
-        AutomationElement elementToWaitFor = null;
+        AutomationElement? elementToWaitFor = null;
 
         RetryResult<bool> retry = Retry.WhileFalse(
             () =>
@@ -202,7 +200,7 @@ public static class UiActions
                 try
                 {
                     BaseTest.RefreshWindow();
-                    BaseTest.App.WaitWhileBusy();
+                    BaseTest.App?.WaitWhileBusy();
 
                     elementToWaitFor = FindFirstDescendantUsingChildren(desiredElement.Condition);
 
@@ -235,18 +233,18 @@ public static class UiActions
         return elementToWaitFor;
     }
 
-    private static AutomationElement FindFirstDescendantUsingChildren(Func<ConditionFactory, ConditionBase> conditionFunc)
+    private static AutomationElement? FindFirstDescendantUsingChildren(Func<ConditionFactory, ConditionBase> conditionFunc)
     {
-        AutomationElement child = BaseTest.Window.FindFirstChild(conditionFunc);
+        AutomationElement? child = BaseTest.Window?.FindFirstChild(conditionFunc);
         if (child != null)
         {
             return child;
         }
 
-        AutomationElement[] children = BaseTest.Window.FindAllChildren();
+        AutomationElement[]? children = BaseTest.Window?.FindAllChildren() ?? [];
         foreach (AutomationElement windowChild in children)
         {
-            AutomationElement descendant = windowChild.FindFirstDescendant(conditionFunc);
+            AutomationElement? descendant = windowChild.FindFirstDescendant(conditionFunc);
             if (descendant != null)
             {
                 return descendant;
@@ -258,16 +256,21 @@ public static class UiActions
 
     public static bool IsChecked<T>(this T desiredElement) where T : Element
     {
-        AutomationElement element = WaitUntilExists(desiredElement);
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        if (element is null)
+        {
+            return false;
+        }
+
         RadioButton radioButton = new RadioButton(element.FrameworkAutomationElement);
         return radioButton.IsChecked;
     }
 
     public static T ClickTabByName<T>(this T desiredElement, string partialName) where T : Element
     {
-        AutomationElement element = WaitUntilExists(desiredElement);
+        AutomationElement? element = WaitUntilExists(desiredElement);
 
-        AutomationElement tabItem = element
+        AutomationElement? tabItem = element?
             .FindAllDescendants(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.TabItem))
             .FirstOrDefault(t => t.Name.Contains(partialName, StringComparison.OrdinalIgnoreCase)) 
             ?? throw new Exception($"TabItem containing '{partialName}' not found.");

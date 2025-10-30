@@ -72,7 +72,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </controls:SettingsExpander.Description>
 
                 <ToggleSwitch IsOn="{x:Bind ViewModel.IsPortForwardingEnabled, Mode=TwoWay}"
-                              Style="{StaticResource ToggleSwitchStyle}" />
+                              Style="{StaticResource ToggleSwitchStyle}"
+                              AutomationProperties.AutomationId="PortForwardingToggle" />
 
                 <controls:SettingsExpander.Items>
 

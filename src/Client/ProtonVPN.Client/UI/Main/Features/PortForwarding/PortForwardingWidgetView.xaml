@@ -144,7 +144,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                              OnHoverFlyout="{StaticResource WidgetFlyout}"
                              Style="{StaticResource SideWidgetButtonStyle}"
                              Text="{x:Bind ViewModel.Header}"
-                             Visibility="{x:Bind ViewModel.IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                             Visibility="{x:Bind ViewModel.IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                             AutomationProperties.AutomationId="PortForwardingWidgetButton">
             <featureicons:PortForwardingIconView Width="{StaticResource FeatureBarDimmableImageSize}"
                                                  Height="{StaticResource FeatureBarDimmableImageSize}" />
         </custom:WidgetButton>

@@ -38,7 +38,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 VerticalAlignment="Center"
                 Visibility="Collapsed">
             <custom:GhostButton Padding="2,0"
-                                AutomationProperties.AutomationId="CopyPortNumberButton"
+                                AutomationProperties.AutomationId="CopyPortNumberStandardButton"
                                 AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding_ActivePort_Copy')}"
                                 Command="{x:Bind ViewModel.CopyPortNumberCommand, Mode=OneTime}"
                                 Content="{x:Bind ViewModel.Header}"
@@ -68,7 +68,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <custom:GhostButton Grid.Column="1"
                                 Padding="2,0"
-                                AutomationProperties.AutomationId="CopyPortNumberButton"
+                                AutomationProperties.AutomationId="CopyPortNumberCondensedButton"
                                 AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding_ActivePort_Copy')}"
                                 Command="{x:Bind ViewModel.CopyPortNumberCommand, Mode=OneTime}"
                                 Content="{x:Bind ViewModel.Header}"
@@ -121,7 +121,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                Text="{x:Bind ViewModel.Header}" />
                     <custom:GhostButton Grid.Column="1"
                                         VerticalAlignment="Center"
-                                        AutomationProperties.AutomationId="CopyPortNumberButton"
+                                        AutomationProperties.AutomationId="CopyPortNumberCompactButton"
                                         AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding_ActivePort_Copy')}"
                                         Command="{x:Bind ViewModel.CopyPortNumberCommand, Mode=OneTime}"
                                         ToolTipService.ToolTip="{x:Bind ViewModel.Localizer.Get('Settings_Connection_PortForwarding_ActivePort_Copy')}"

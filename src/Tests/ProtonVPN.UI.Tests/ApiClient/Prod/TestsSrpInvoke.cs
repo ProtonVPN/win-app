@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -29,8 +29,6 @@ namespace ProtonVPN.UI.Tests.ApiClient.Prod;
 
 public static class TestsSrpInvoke
 {
-    private const string BINARY_NAME = "GoSrp.dll";
-
     static TestsSrpInvoke()
     {
         Environment.SetEnvironmentVariable("GODEBUG", "cgocheck=0");
@@ -50,12 +48,12 @@ public static class TestsSrpInvoke
 
     public class GoProofs
     {
-        public byte[] ClientProof;
-        public byte[] ClientEphemeral;
-        public byte[] ExpectedServerProof;
+        public required byte[] ClientProof;
+        public required byte[] ClientEphemeral;
+        public required byte[] ExpectedServerProof;
     }
 
-    public static GoProofs GenerateProofs(int version, string username, SecureString password, string salt,
+    public static GoProofs? GenerateProofs(int version, string username, SecureString password, string salt,
         string signedModulus, string serverEphemeral, int bitLength = 2048)
     {
         byte[] bytes;
@@ -70,9 +68,9 @@ public static class TestsSrpInvoke
                 .ConvertToBytes();
         }
 
-        using (var memStream = new MemoryStream(bytes))
+        using (MemoryStream memStream = new(bytes))
         {
-            var reader = new BinaryReader(memStream);
+            BinaryReader reader = new(memStream);
             reader.ReadByte();
             byte type = reader.ReadByte();
 

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -27,7 +27,7 @@ namespace ProtonVPN.UI.Tests.Robots;
 
 public class SupportRobot
 {
-    private readonly Func<Window> _windowFunc;
+    private readonly Func<Window?> _windowFunc;
 
     protected Element ContactUsButton => Element.ByName("Contact us");
     protected Element SendReportButton => Element.ByAutomationId("SendReportButton");
@@ -36,7 +36,7 @@ public class SupportRobot
     protected Element IncludeLogsCheckbox => Element.ByAutomationId("IncludeLogsCheckbox");
     protected Element EmailInputField => Element.ByAutomationId("EmailInputField");
 
-    public SupportRobot(Func<Window> windowFunc)
+    public SupportRobot(Func<Window?> windowFunc)
     {
         _windowFunc = windowFunc;
     }
@@ -49,17 +49,28 @@ public class SupportRobot
 
         Element
             .ByName(bugType)
-            .WaitUntilExists(TestConstants.FiveSecondsTimeout)
+            .WaitUntilExists(TestConstants.FiveSecondsTimeout)?
             .DoubleClick();
 
         ContactUsButton.Invoke();
         EmailInputField.WaitUntilDisplayed();
-        AutomationElement[] bugReportInputFields = _windowFunc().FindAllDescendants(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.Edit));
-        bugReportInputFields[0].AsTextBox().Text = "testing@email.com";
+        AutomationElement[]? bugReportInputFields = _windowFunc()?.FindAllDescendants(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.Edit));
+
+        if (bugReportInputFields is null || bugReportInputFields.Length == 0)
+        {
+            throw new Exception("Could not find input fields for bug report.");
+        }
+
+        TextBox emailTextBox = bugReportInputFields[0]?.AsTextBox() ?? throw new Exception("Could not find email input field for bug report.");
+        emailTextBox.Text = "testing@email.com";
 
         for (int i = 1; i < bugReportInputFields.Length; i++)
         {
-            bugReportInputFields[i].AsTextBox().Text = "Ignore report. Testing";
+            TextBox? textBox = bugReportInputFields[i]?.AsTextBox();
+            if (textBox is not null)
+            {
+                textBox.Text = "Ignore report. Testing";
+            }
         }
         return this;
     }
@@ -78,7 +89,7 @@ public class SupportRobot
 
     public class Verifications : SupportRobot
     {
-        public Verifications(Func<Window> windowFunc) : base(windowFunc)
+        public Verifications(Func<Window?> windowFunc) : base(windowFunc)
         {
         }
 

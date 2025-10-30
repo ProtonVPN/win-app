@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -37,8 +37,8 @@ namespace ProtonVPN.UI.Tests.TestBase;
 // Shared methods related to test session.
 public class BaseTest
 {
-    public static Application App;
-    public static Window Window;
+    public static Application? App;
+    public static Window? Window;
 
     protected static LoginRobot LoginRobot { get; } = new();
     protected static HomeRobot HomeRobot { get; } = new();
@@ -46,6 +46,7 @@ public class BaseTest
     protected static ProfileRobot ProfileRobot { get; } = new();
     protected static SidebarRobot SidebarRobot { get; } = new();
     protected static SettingRobot SettingRobot { get; } = new();
+    protected static DesktopRobot DesktopRobot { get; } = new();
     protected static SupportRobot SupportRobot { get; } = new(() => Window);
     protected static AdvancedSettingsRobot AdvancedSettingsRobot { get; } = new();
     protected static UpsellCarrouselRobot UpsellCarrouselRobot { get; } = new();
@@ -58,9 +59,9 @@ public class BaseTest
 
     // Shared SetUp, TearDown actions that will be performed accross all the tests.
     [SetUp]
-    public async Task GlobalSetUp()
+    public async Task GlobalSetUpAsync()
     {
-        string testName = TestContext.CurrentContext.Test.MethodName;
+        string testName = TestContext.CurrentContext.Test.MethodName ?? throw new Exception("Test method name is null.");
         ArtifactsHelper.ClearEventViewerLogs();
         ArtifactsHelper.DeleteArtifactFolder(testName);
         await ArtifactsHelper.StartVideoCaptureAsync(testName);
@@ -69,10 +70,10 @@ public class BaseTest
     [TearDown]
     public void GlobalTeardown()
     {
-        string testName = TestContext.CurrentContext.Test.MethodName;
+        string testName = TestContext.CurrentContext.Test.MethodName ?? throw new Exception("Test method name is null.");
 
-        ArtifactsHelper.Recorder.Stop();
-        ArtifactsHelper.Recorder.Dispose();
+        ArtifactsHelper.Recorder?.Stop();
+        ArtifactsHelper.Recorder?.Dispose();
         ArtifactsHelper.SaveEventViewerLogs(testName);
         if (TestContext.CurrentContext.Result.Outcome.Status != TestStatus.Failed)
         {
@@ -84,11 +85,11 @@ public class BaseTest
     {
         Window = null;
         TimeSpan refreshTimeout = timeout ?? TestConstants.ThirtySecondsTimeout;
-        RetryResult<Window> retry = Retry.WhileNull(() =>
+        RetryResult<Window?> retry = Retry.WhileNull(() =>
         {
             try
             {
-                Window = App.GetMainWindow(new UIA3Automation(), refreshTimeout);
+                Window = App?.GetMainWindow(new UIA3Automation(), refreshTimeout);
             }
             catch (TimeoutException)
             {
@@ -130,8 +131,8 @@ public class BaseTest
         {
             //Do nothing, since artifact collection shouldn't block cleanup.
         }
-        App.Close();
-        App.Dispose();
+        App?.Close();
+        App?.Dispose();
     }
 
     protected static void LaunchApp(bool isFreshStart = true)
@@ -161,14 +162,14 @@ public class BaseTest
         }
 
         RefreshWindow(TestConstants.OneMinuteTimeout);
-        Window.Focus();
+        Window?.Focus();
     }
 
     protected static void SaveScreenshotAndLogsIfFailed()
     {
         if (!TestEnvironment.AreTestsRunningLocally() && TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
         {
-            string testName = TestContext.CurrentContext.Test.MethodName;
+            string testName = TestContext.CurrentContext.Test.MethodName ?? throw new Exception("Test method name is null.");
             ArtifactsHelper.SaveScreenshotAndLogs(testName, TestEnvironment.GetServiceLogsPath());
         }
     }

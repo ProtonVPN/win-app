@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,9 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.UI.Tests.ApiClient.Prod;
+namespace ProtonVPN.UI.Tests.ApiClient.Contracts;
 
 public class AuthInfoRequest
 {
-    public string Username { get; set; }
+    public required string Username { get; init; }
 }

@@ -28,9 +28,9 @@ using System.Diagnostics;
 namespace ProtonVPN.UI.Tests.TestsHelper;
 public class SliHelper
 {
-    public static string SliName { get; set; }
-    public static string Workflow { get; set; }
-    public static string RunId { get; set; }
+    public static string? SliName { get; set; }
+    public static string? Workflow { get; set; }
+    public static string? RunId { get; set; }
     public static readonly Stopwatch Timer = new();
     public static List<JProperty> MetricsList = [];
     private static bool IsMonitoring { get; set; }
@@ -87,7 +87,7 @@ public class SliHelper
     public static void AddNetworkSpeedToMetrics(string downloadSpeedLabel, string uploadSpeedLabel)
     {
         NetworkUtils.FlushDns();
-        Dictionary<string, double> networkSpeedConnected = null;
+        Dictionary<string, double>? networkSpeedConnected = null;
         RetryResult<bool> retry = Retry.WhileException(
             () =>
             {
@@ -97,11 +97,11 @@ public class SliHelper
 
         if (!retry.Success)
         {
-            throw new Exception(retry.LastException.Message);
+            throw new Exception(retry.LastException?.Message);
         }
         
-        AddMetric(downloadSpeedLabel, networkSpeedConnected["downloadSpeed"].ToString());
-        AddMetric(uploadSpeedLabel, networkSpeedConnected["uploadSpeed"].ToString());
+        AddMetric(downloadSpeedLabel, networkSpeedConnected?["downloadSpeed"].ToString() ?? string.Empty);
+        AddMetric(uploadSpeedLabel, networkSpeedConnected?["uploadSpeed"].ToString() ?? string.Empty);
     }
 
     public static Dictionary<string, double> GetNetworkSpeed()
@@ -122,7 +122,7 @@ public class SliHelper
             CreateNoWindow = true
         };
 
-        using (Process process = Process.Start(startInfo))
+        using (Process? process = Process.Start(startInfo))
         {
             if (process != null)
             {
@@ -130,9 +130,17 @@ public class SliHelper
                 process.WaitForExit();
                 JObject result = JObject.Parse(output);
 
-                double downloadSpeedInBytes = (double)result["download"]["bandwidth"];
+                JToken? downloadToken = result["download"]?["bandwidth"];
+                JToken? uploadToken = result["upload"]?["bandwidth"];
+
+                if (downloadToken is null || uploadToken is null)
+                {
+                    throw new InvalidOperationException("Speedtest output missing required bandwidth fields.");
+                }
+
+                double downloadSpeedInBytes = (double)downloadToken;
                 double downloadSpeedInMbps = ConvertBytesToMbps(downloadSpeedInBytes);
-                double uploadSpeedInBytes = (double)result["upload"]["bandwidth"];
+                double uploadSpeedInBytes = (double)uploadToken;
                 double uploadSpeedInMbps = ConvertBytesToMbps(uploadSpeedInBytes);
 
                 networkStats.Add("downloadSpeed", downloadSpeedInMbps);
