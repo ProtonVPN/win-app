@@ -30,9 +30,10 @@ using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Configurations.Installers;
 using ProtonVPN.Crypto.Installers;
 using ProtonVPN.IPv6.Installers;
-using ProtonVPN.IssueReporting.Installers;
+using ProtonVPN.IssueReporting.Static;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
+using ProtonVPN.Logging.Events;
 using ProtonVPN.Logging.Installers;
 using ProtonVPN.Native.PInvoke;
 using ProtonVPN.OperatingSystems.Network.Installers;
@@ -51,6 +52,7 @@ internal class Bootstrapper
 
     public Bootstrapper()
     {
+        GlobalExceptionHandler.Initialize();
         IssueReportingInitializer.Run();
     }
 

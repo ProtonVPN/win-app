@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,29 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
+using ProtonVPN.Logging.Events;
 
-using System.Diagnostics;
+namespace ProtonVPN.Client.Common.UI.Exceptions;
 
-namespace ProtonVPN.Common.Legacy.OS.Event;
-
-public class SystemEventLog
+public static class UiGlobalExceptionHandler
 {
-    private const string Source = "ProtonVPN";
-
-    public void Log(string message, int eventId)
+    public static void Initialize(Application app)
     {
-        EnsureEventSourceExists();
+        GlobalExceptionHandler.Initialize();
 
-        var log = new EventLog { Source = Source };
-
-        log.WriteEntry(message, EventLogEntryType.Information, eventId);
+        app.UnhandledException += OnUiUnhandledException;
     }
 
-    private void EnsureEventSourceExists()
+    private static void OnUiUnhandledException(object? sender, UnhandledExceptionEventArgs ex)
     {
-        if (!EventLog.SourceExists(Source))
-        {
-            EventLog.CreateEventSource(Source, "Application");
-        }
+        GlobalExceptionHandler.TryWriteEventLog("UI unhandled exception", ex.Exception);
     }
 }

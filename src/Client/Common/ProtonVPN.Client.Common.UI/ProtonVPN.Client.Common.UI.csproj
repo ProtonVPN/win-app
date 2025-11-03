@@ -1048,6 +1048,7 @@
         <Folder Include="Properties\" />
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\..\..\Logging\ProtonVPN.Logging.Events\ProtonVPN.Logging.Events.csproj" />
         <ProjectReference Include="..\ProtonVPN.Client.Common\ProtonVPN.Client.Common.csproj" />
     </ItemGroup>
     <ItemGroup>

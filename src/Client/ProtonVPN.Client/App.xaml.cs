@@ -21,12 +21,13 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
+using ProtonVPN.Client.Common.UI.Exceptions;
 using ProtonVPN.Client.Installers;
 using ProtonVPN.Client.Services.Bootstrapping;
 using ProtonVPN.Client.UI.Dialogs.Tray;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Helpers;
-using ProtonVPN.IssueReporting.Installers;
+using ProtonVPN.IssueReporting.Static;
 
 namespace ProtonVPN.Client;
 
@@ -44,6 +45,7 @@ public partial class App : Application
 
     public App()
     {
+        UiGlobalExceptionHandler.Initialize(this);
         IssueReportingInitializer.Run();
         InitializeComponent();
 

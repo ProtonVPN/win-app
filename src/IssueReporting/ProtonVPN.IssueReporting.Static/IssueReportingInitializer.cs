@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.IssueReporting.Installers;
+namespace ProtonVPN.IssueReporting.Static;
 
 public static class IssueReportingInitializer
 {

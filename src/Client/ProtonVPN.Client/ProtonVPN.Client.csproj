@@ -166,8 +166,6 @@
     <PackageReference Include="CommunityToolkit.WinUI.Triggers" />
     <PackageReference Include="H.NotifyIcon.WinUI" />
     <PackageReference Include="LiveChartsCore.SkiaSharpView.WinUI" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" />
-    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" />
     <PackageReference Include="Microsoft.WindowsAppSDK" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" />
     <PackageReference Include="Newtonsoft.Json" />
@@ -183,6 +181,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\IPv6\ProtonVPN.IPv6.Installers\ProtonVPN.IPv6.Installers.csproj" />
+    <ProjectReference Include="..\..\IssueReporting\ProtonVPN.IssueReporting.Static\ProtonVPN.IssueReporting.Static.csproj" />
     <ProjectReference Include="..\..\NetworkTimeProtocols\ProtonVPN.NetworkTimeProtocols.Contracts\ProtonVPN.NetworkTimeProtocols.Contracts.csproj" />
     <ProjectReference Include="..\..\NetworkTimeProtocols\ProtonVPN.NetworkTimeProtocols.Installers\ProtonVPN.NetworkTimeProtocols.Installers.csproj" />
     <ProjectReference Include="..\..\OperatingSystems\Antiviruses\ProtonVPN.OperatingSystems.Antiviruses.Contracts\ProtonVPN.OperatingSystems.Antiviruses.Contracts.csproj" />

@@ -21,7 +21,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.IssueReporting.Installers;
+using ProtonVPN.IssueReporting.Static;
 
 namespace ProtonVPN.Client.Handlers;
 

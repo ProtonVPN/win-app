@@ -20,13 +20,12 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace ProtonVPN.IssueReporting.Contracts
+namespace ProtonVPN.IssueReporting.Contracts;
+
+public interface IIssueReporter
 {
-    public interface IIssueReporter
-    {
-        void CaptureError(Exception e, [CallerFilePath] string sourceFilePath = "",
-            [CallerMemberName] string sourceMemberName = "", [CallerLineNumber] int sourceLineNumber = 0);
-        void CaptureError(string message, string description = null);
-        void CaptureMessage(string message, string description = null);
-    }
+    void CaptureError(Exception e, [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "", [CallerLineNumber] int sourceLineNumber = 0);
+    void CaptureError(string message, string description = null);
+    void CaptureMessage(string message, string description = null);
 }

@@ -69,7 +69,10 @@ SignTool=signtool sign /a /tr http://timestamp.sectigo.com /td SHA256 /fd SHA256
 SetupWindowTitle={#MyAppName}
 
 [Registry]
-Root: HKLM; Subkey: Software\Proton AG\Proton VPN; Flags: uninsdeletekey dontcreatekey;
+Root: HKLM; Subkey: "Software\Proton AG\Proton VPN"; Flags: uninsdeletekey dontcreatekey;
+Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Services\EventLog\Application\ProtonVPNService"; Flags: uninsdeletekey dontcreatekey;
+Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Services\EventLog\Application\ProtonVPN"; Flags: uninsdeletekey;
+Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Services\EventLog\Application\ProtonVPN"; ValueType: expandsz; ValueName: "EventMessageFile"; ValueData: "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\EventLogMessages.dll"; Flags: deletekey uninsdeletekey;
 
 [Files]
 Source: "..\{#SourcePath}\ProtonVPN.Launcher.exe"; DestDir: "{app}"; Flags: signonce;

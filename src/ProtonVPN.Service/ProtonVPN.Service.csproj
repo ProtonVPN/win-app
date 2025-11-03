@@ -52,6 +52,8 @@
         <ProjectReference Include="..\Files\ProtonVPN.Files.Installers\ProtonVPN.Files.Installers.csproj" />
         <ProjectReference Include="..\IPv6\ProtonVPN.IPv6.Installers\ProtonVPN.IPv6.Installers.csproj" />
         <ProjectReference Include="..\IssueReporting\ProtonVPN.IssueReporting.Installers\ProtonVPN.IssueReporting.Installers.csproj" />
+        <ProjectReference Include="..\IssueReporting\ProtonVPN.IssueReporting.Static\ProtonVPN.IssueReporting.Static.csproj" />
+        <ProjectReference Include="..\Logging\ProtonVPN.Logging.Events\ProtonVPN.Logging.Events.csproj" />
         <ProjectReference Include="..\Logging\ProtonVPN.Logging.Installers\ProtonVPN.Logging.Installers.csproj" />
         <ProjectReference Include="..\OperatingSystems\NameResolutionPolicyTable\ProtonVPN.OperatingSystems.NRPT.Installers\ProtonVPN.OperatingSystems.NRPT.Installers.csproj" />
         <ProjectReference Include="..\OperatingSystems\Network\ProtonVPN.OperatingSystems.Network.Installers\ProtonVPN.OperatingSystems.Network.Installers.csproj" />
@@ -71,8 +73,6 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Autofac" />
-        <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" />
-        <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" />
         <PackageReference Include="Polly" />
         <PackageReference Include="protobuf-net.Grpc" />
         <PackageReference Include="protobuf-net.Grpc.Native" />

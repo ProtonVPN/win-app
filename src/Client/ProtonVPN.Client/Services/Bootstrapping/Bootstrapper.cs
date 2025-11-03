@@ -29,7 +29,7 @@ using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Initializers;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
 using ProtonVPN.Common.Core.Extensions;
-using ProtonVPN.IssueReporting.Installers;
+using ProtonVPN.IssueReporting.Static;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.StatisticalEvents.Contracts;

@@ -21,14 +21,45 @@ using System.Diagnostics;
 
 namespace ProtonVPN.Logging.Events;
 
-public class EventLogger
+public static class EventLogger
 {
-    private const string APPLICATION_LOG_NAME = "Application";
+    private const string SOURCE = "ProtonVPN";
 
-    public static void LogError(string source, string message)
+    public static void Initialize()
     {
-        using EventLog eventLog = new EventLog(APPLICATION_LOG_NAME);
-        eventLog.Source = source; 
-        eventLog.WriteEntry(message, EventLogEntryType.Error);
+        try
+        {
+            if (!EventLog.SourceExists(SOURCE))
+            {
+                EventLog.CreateEventSource(SOURCE, "Application");
+            }
+        }
+        catch
+        {
+            // This process is not running as admin (and that is ok if it's the Client)
+        }
+    }
+
+    public static void Log(EventLogEntryType type, string message)
+    {
+        Log(type, SOURCE, message);
+    }
+
+    public static void Log(EventLogEntryType type, string source, string message)
+    {
+        try
+        {
+            EventLog.WriteEntry(source, message, type);
+        }
+        catch // The source does not exist, which means it was not created by Initialize()
+        {
+            try
+            {
+                EventLog.WriteEntry("Application", message, type);
+            }
+            catch // The source "Application" does not exist. Not sure if this can ever happen, just in case
+            {
+            }
+        }
     }
 }

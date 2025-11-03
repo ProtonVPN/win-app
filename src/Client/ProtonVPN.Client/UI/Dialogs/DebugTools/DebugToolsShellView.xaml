@@ -99,13 +99,30 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             Style="{StaticResource PrimaryButtonStyle}" />
                 </toolkit:SettingsCard>
 
-                <toolkit:SettingsCard Header="Intentional client crash"
-                                      IsTabStop="False"
-                                      Style="{StaticResource DefaultSettingsCardStyle}">
-                    <Button Command="{x:Bind ViewModel.TriggerClientCrashCommand, Mode=OneTime}"
-                            Content="Trigger Crash"
-                            Style="{StaticResource PrimaryButtonStyle}" />
-                </toolkit:SettingsCard>
+                <toolkit:SettingsExpander Header="Intentional error events"
+                                          IsExpanded="False"
+                                          IsTabStop="False"
+                                          Style="{StaticResource SettingsExpanderStyle}">
+                    <StackPanel HorizontalAlignment="Right"
+                                Orientation="Vertical"
+                                Spacing="8">
+
+                        <Button Command="{x:Bind ViewModel.TriggerUiUnhandledExceptionCommand, Mode=OneTime}"
+                                Content="UI unhandled exception CRASH"
+                                HorizontalAlignment="Right"
+                                Style="{StaticResource PrimaryButtonStyle}" />
+
+                        <Button Command="{x:Bind ViewModel.TriggerAppDomainUnhandledExceptionCommand, Mode=OneTime}"
+                                Content="AppDomain unhandled exception CRASH"
+                                HorizontalAlignment="Right"
+                                Style="{StaticResource PrimaryButtonStyle}" />
+
+                        <Button Command="{x:Bind ViewModel.TriggerUnobservedTaskExceptionCommand, Mode=OneTime}"
+                                Content="Unobserved task exception"
+                                HorizontalAlignment="Right"
+                                Style="{StaticResource PrimaryButtonStyle}" />
+                    </StackPanel>
+                </toolkit:SettingsExpander>
 
                 <toolkit:SettingsCard Header="Trigger Connection Error"
                                       IsTabStop="False"

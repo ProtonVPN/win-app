@@ -125,9 +125,28 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     }
 
     [RelayCommand]
-    public void TriggerClientCrash()
+    public void TriggerUiUnhandledException()
     {
-        throw new StackOverflowException("Intentional crash test");
+        throw new StackOverflowException("Intentional UI-thread crash test");
+    }
+
+    [RelayCommand]
+    public void TriggerAppDomainUnhandledException()
+    {
+        ThreadPool.QueueUserWorkItem(_ =>
+        {
+            throw new InvalidOperationException("Intentional AppDomain unhandled exception crash test");
+        });
+    }
+
+    [RelayCommand]
+    public async Task TriggerUnobservedTaskExceptionAsync()
+    {
+        _ = Task.Run(() => throw new Exception("Intentional unobserved task exception test"));
+        await Task.Delay(500);
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+        GC.Collect();
     }
 
     [RelayCommand]

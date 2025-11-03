@@ -45,6 +45,11 @@ public class IssueReporter : IIssueReporter
         [CallerMemberName] string sourceMemberName = "",
         [CallerLineNumber] int sourceLineNumber = 0)
     {
+        CaptureException(SentryLevel.Error, e, sourceFilePath, sourceMemberName, sourceLineNumber);
+    }
+
+    private void CaptureException(SentryLevel level, Exception e, string sourceFilePath, string sourceMemberName, int sourceLineNumber)
+    {
         CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
 
         Tuple<CallerProfile, string> tuple = Tuple.Create(callerProfile, e.GetType()?.FullName);
@@ -53,10 +58,8 @@ public class IssueReporter : IIssueReporter
             IEnumerable<string> fingerprint = GenerateExceptionFingerprint(e);
             SentrySdk.ConfigureScope(scope =>
             {
-                scope.Level = SentryLevel.Error;
-                scope.SetTag("captured_in",
-                    $"{callerProfile.SourceClassName}.{callerProfile.SourceMemberName}:{callerProfile.SourceLineNumber}");
-
+                scope.Level = level;
+                scope.SetTag("captured_in", $"{callerProfile.SourceClassName}.{callerProfile.SourceMemberName}:{callerProfile.SourceLineNumber}");
                 scope.SetFingerprint(fingerprint);
                 SentrySdk.CaptureException(e);
             });
@@ -70,7 +73,7 @@ public class IssueReporter : IIssueReporter
         string classFullName = string.Empty;
         string methodName = string.Empty;
         int? line = null;
-        
+
         try
         {
             exceptionTypeName = e.GetType()?.FullName;

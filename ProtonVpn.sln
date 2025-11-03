@@ -480,6 +480,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.OperatingSystems.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.OperatingSystems.Antiviruses.Installers", "src\OperatingSystems\Antiviruses\ProtonVPN.OperatingSystems.Antiviruses.Installers\ProtonVPN.OperatingSystems.Antiviruses.Installers.csproj", "{34128F53-0DAB-412C-9678-F8CBE5F2136B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonVPN.IssueReporting.Static", "src\IssueReporting\ProtonVPN.IssueReporting.Static\ProtonVPN.IssueReporting.Static.csproj", "{ECA07D20-8BF8-7F93-9205-1573A9968AA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3412,6 +3414,22 @@ Global
 		{34128F53-0DAB-412C-9678-F8CBE5F2136B}.Release|x64.Build.0 = Release|Any CPU
 		{34128F53-0DAB-412C-9678-F8CBE5F2136B}.Release|x86.ActiveCfg = Release|Any CPU
 		{34128F53-0DAB-412C-9678-F8CBE5F2136B}.Release|x86.Build.0 = Release|Any CPU
+		{ECA07D20-8BF8-7F93-9205-1573A9968AA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECA07D20-8BF8-7F93-9205-1573A9968AA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECA07D20-8BF8-7F93-9205-1573A9968AA9}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{ECA07D20-8BF8-7F93-9205-1573A9968AA9}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{ECA07D20-8BF8-7F93-9205-1573A9968AA9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ECA07D20-8BF8-7F93-9205-1573A9968AA9}.Debug|x64.Build.0 = Debug|Any CPU
+		{ECA07D20-8BF8-7F93-9205-1573A9968AA9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ECA07D20-8BF8-7F93-9205-1573A9968AA9}.Debug|x86.Build.0 = Debug|Any CPU
+		{ECA07D20-8BF8-7F93-9205-1573A9968AA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECA07D20-8BF8-7F93-9205-1573A9968AA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECA07D20-8BF8-7F93-9205-1573A9968AA9}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{ECA07D20-8BF8-7F93-9205-1573A9968AA9}.Release|ARM64.Build.0 = Release|Any CPU
+		{ECA07D20-8BF8-7F93-9205-1573A9968AA9}.Release|x64.ActiveCfg = Release|Any CPU
+		{ECA07D20-8BF8-7F93-9205-1573A9968AA9}.Release|x64.Build.0 = Release|Any CPU
+		{ECA07D20-8BF8-7F93-9205-1573A9968AA9}.Release|x86.ActiveCfg = Release|Any CPU
+		{ECA07D20-8BF8-7F93-9205-1573A9968AA9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3615,6 +3633,7 @@ Global
 		{76DC676D-CD94-4226-BCD7-605AFAC497DF} = {770CA3C1-0E5D-4DC0-808C-B31AB3E1FF17}
 		{72F71DA0-AE6B-4E56-A0C5-0300E8A796C9} = {770CA3C1-0E5D-4DC0-808C-B31AB3E1FF17}
 		{34128F53-0DAB-412C-9678-F8CBE5F2136B} = {770CA3C1-0E5D-4DC0-808C-B31AB3E1FF17}
+		{ECA07D20-8BF8-7F93-9205-1573A9968AA9} = {D2A5F6DB-29AA-47C2-9AF9-96E294328139}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CFD3EA5-ADCA-48F0-9E3F-BBC76CCBF1C2}

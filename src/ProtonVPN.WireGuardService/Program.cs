@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 using ProtonVPN.Configurations.Defaults;
@@ -51,7 +52,7 @@ class Program
     private static void LogError(string[] args)
     {
         string message = GetErrorMessage(args);
-        EventLogger.LogError(DefaultConfiguration.WireGuard.ServiceName, message);
+        EventLogger.Log(EventLogEntryType.Error, DefaultConfiguration.WireGuard.ServiceName, message);
     }
 
     private static string GetErrorMessage(string[] args)

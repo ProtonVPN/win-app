@@ -81,6 +81,6 @@ public static class DeviceIdStaticBuilder
 
     private static void LogError(Exception e, string prefix = null)
     {
-        _logger.Error<OperatingSystemLog>($"{prefix}Failed to generate device id.", e);
+        _logger?.Error<OperatingSystemLog>($"{prefix}Failed to generate device id.", e);
     }
 }
