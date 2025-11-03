@@ -392,4 +392,14 @@ public static class WindowExtensions
         public const double TITLE_BAR_FOCUSED = 1.0;
         public const double TITLE_BAR_UNFOCUSED = 0.6;
     }
+
+    /// <summary>Wraps IsShownInSwitchers setter because an Exception is thrown when Explorer.exe is not running</summary>
+    public static void TrySetIsShownInSwitchers(this WindowEx window, bool value)
+    {
+        try
+        {
+            window.IsShownInSwitchers = value;
+        }
+        catch { }
+    }
 }
