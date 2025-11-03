@@ -34,7 +34,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    mc:Ignorable="d">
 
     <custom:WindowContentControl x:Name="WindowContainer"
-                                 RequestedTheme="Dark"
                                  Title="{x:Bind Shell.ViewModel.Title}"
                                  IconSource="{StaticResource ProtonVpnOnApplicationIconSource}"
                                  TitleBarButtonsLength="46">

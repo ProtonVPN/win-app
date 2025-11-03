@@ -41,7 +41,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    VerticalAlignment="Stretch"
                    Source="{x:Bind ViewModel.ImageSource}"
                    Visibility="{x:Bind ViewModel.ImageSource, Converter={StaticResource NotNullToVisibilityConverter}}"
-                   Stretch="Uniform" />
+                   Stretch="UniformToFill" />
         </Grid>
         
         <Border Height="16"
