@@ -380,7 +380,7 @@
     <value>To connect to VPN, go to your organization's 2FA portal and tap your security key.</value>
   </data>
   <data name="Connection_Error_TwoFactorRequired_Title">
-    <value>Two-factor authentication (2FA) required</value>
+    <value>Kaksivaiheinen tunnistautuminen (2FA) vaaditaan</value>
   </data>
   <data name="Connection_Error_Unknown">
     <value>Check your internet connection and try again. If that doesn't work, contact our customer support team.
@@ -3601,7 +3601,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Pienennä tehtäväpalkkiiin</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Set the app to launch or connect automatically.</value>
+    <value>Aseta sovellus käynnistymään tai muodostamaan yhteys automaattisesti.</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Automaattinen päivitys</value>
@@ -3993,7 +3993,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
   </data>
   <data name="Upsell_Carousel_Profiles">
-    <value>Get quick access to frequent connections</value>
+    <value>Löydä yleisimmät yhteydet nopeasti</value>
   </data>
   <data name="Upsell_Carousel_Profiles_Convenience">
     <value>Set a profile as your default connection and connect in 1 click</value>
@@ -4020,7 +4020,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Selaa vielä korkeammilla nopeuksilla</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Browse up to 400% faster with VPN Accelerator</value>
+    <value>Selaa jopa 400 % nopeammin VPN Acceleratorilla</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>Käytä nopeampia, ruuhkattomampia palvelimia</value>
@@ -4096,7 +4096,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Secure streaming, torrenting, and more</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Selection">
-    <value>Select any country from our worldwide network</value>
+    <value>Valitse mikä tahansa maa maailmanlaajuisesta verkostostamme.</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
     <value>{0} turvallista palvelinta</value>

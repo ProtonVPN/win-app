@@ -193,10 +193,10 @@
     <value>Города</value>
   </data>
   <data name="City_Fastest">
-    <value>Fastest city</value>
+    <value>Самый быстрый город</value>
   </data>
   <data name="City_Random">
-    <value>Random city</value>
+    <value>Случайный город</value>
   </data>
   <data name="Common_Actions_ActionsFor">
     <value>Действия для {0}</value>
@@ -259,16 +259,16 @@
     <value>Установить</value>
   </data>
   <data name="Common_Actions_MoveDown">
-    <value>Move Down</value>
+    <value>Переместить вниз</value>
   </data>
   <data name="Common_Actions_MoveUp">
-    <value>Move Up</value>
+    <value>Переместить вверх</value>
   </data>
   <data name="Common_Actions_Reconnect">
     <value>Переподключиться</value>
   </data>
   <data name="Common_Actions_Refresh">
-    <value>Refresh</value>
+    <value>Обновить</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Удалить</value>
@@ -313,7 +313,7 @@
     <value>Обновляется…...</value>
   </data>
   <data name="Common_Tags_Beta">
-    <value>BETA</value>
+    <value>БЕТА</value>
     <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
   </data>
   <data name="Common_Tags_New">
@@ -719,16 +719,16 @@ Error code: {0}</value>
     <value>Этот сервер находится на техническом обслуживании</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Server</value>
+    <value>Сервер</value>
   </data>
   <data name="Connections_Servers_Few">
-    <value>Servers</value>
+    <value>Серверы</value>
   </data>
   <data name="Connections_Servers_Many">
-    <value>Servers</value>
+    <value>Серверы</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Servers</value>
+    <value>Серверы</value>
   </data>
   <data name="Connections_State">
     <value>Штат</value>
@@ -2659,16 +2659,16 @@ Error code: {0}</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
   <data name="Format_Time_Hours_Ago_One">
-    <value>{0} hour ago</value>
+    <value>{0} час назад</value>
   </data>
   <data name="Format_Time_Hours_Ago_Few">
-    <value>{0} hours ago</value>
+    <value>{0} часа назад</value>
   </data>
   <data name="Format_Time_Hours_Ago_Many">
-    <value>{0} hours ago</value>
+    <value>{0} часов назад</value>
   </data>
   <data name="Format_Time_Hours_Ago_Other">
-    <value>{0} hours ago</value>
+    <value>{0} часов назад</value>
   </data>
   <data name="Format_Time_Minutes">
     <value>{0} мин</value>
@@ -2683,32 +2683,32 @@ Error code: {0}</value>
     <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
   </data>
   <data name="Format_Time_Minutes_Ago_One">
-    <value>{0} minute ago</value>
+    <value>{0} минуту назад</value>
   </data>
   <data name="Format_Time_Minutes_Ago_Few">
-    <value>{0} minutes ago</value>
+    <value>{0} минуты назад</value>
   </data>
   <data name="Format_Time_Minutes_Ago_Many">
-    <value>{0} minutes ago</value>
+    <value>{0} минут назад</value>
   </data>
   <data name="Format_Time_Minutes_Ago_Other">
-    <value>{0} minutes ago</value>
+    <value>{0} минут назад</value>
   </data>
   <data name="Format_Time_Seconds">
     <value>{0} с</value>
     <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
   </data>
   <data name="Format_Time_Seconds_Ago_One">
-    <value>{0} second ago</value>
+    <value>{0} секунду назад</value>
   </data>
   <data name="Format_Time_Seconds_Ago_Few">
-    <value>{0} seconds ago</value>
+    <value>{0} секунды назад</value>
   </data>
   <data name="Format_Time_Seconds_Ago_Many">
-    <value>{0} seconds ago</value>
+    <value>{0} секунд назад</value>
   </data>
   <data name="Format_Time_Seconds_Ago_Other">
-    <value>{0} seconds ago</value>
+    <value>{0} секунд назад</value>
   </data>
   <data name="FreeConnections_P2PUpsell">
     <value>Скачивайте файлы через BitTorrent и другие протоколы обмена файлами</value>
@@ -3059,7 +3059,7 @@ Error code: {0}</value>
     <value>No known two-factor authentication methods found.</value>
   </data>
   <data name="Login_TwoFactor_SecurityKey">
-    <value>Security key</value>
+    <value>Ключ безопасности</value>
   </data>
   <data name="Login_TwoFactor_SecurityKey_Description">
     <value>Insert the U2F or FIDO key linked to your Proton Account.</value>
@@ -3091,10 +3091,10 @@ Error code: {0}</value>
     <value>We couldn't load the server list.</value>
   </data>
   <data name="NoServers_NeedHelp">
-    <value>Need help?</value>
+    <value>Нужна помощь?</value>
   </data>
   <data name="NoServers_SignOut">
-    <value>Sign out</value>
+    <value>Bыйти</value>
   </data>
   <data name="NoServers_Tip">
     <value>Ask your administrator to enable VPN access for your account.</value>
@@ -3134,7 +3134,7 @@ Error code: {0}</value>
     <value>Enable IPv6</value>
   </data>
   <data name="Overlay_Ipv6Disabled_SecondaryButton">
-    <value>Not now</value>
+    <value>Не сейчас</value>
   </data>
   <data name="Overlay_Ipv6Disabled_Title">
     <value>IPv6 is disabled</value>
@@ -3296,22 +3296,22 @@ Error code: {0}</value>
     <value>Это отключит пользовательский DNS для этого профиля.</value>
   </data>
   <data name="Profile_Options_Application">
-    <value>App</value>
+    <value>Приложение</value>
   </data>
   <data name="Profile_Options_Application_Select">
-    <value>Select an app</value>
+    <value>Выбрать приложение</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_Application">
-    <value>Open an app</value>
+    <value>Открыть приложение</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
-    <value>Default browser</value>
+    <value>Браузер по умолчанию</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
-    <value>Use private browsing mode</value>
+    <value>Использовать режим инкогнито</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_Website">
-    <value>Open a website</value>
+    <value>Открыть веб-сайт</value>
   </data>
   <data name="Profile_Options_Description">
     <value>Automatically open a website or an app of your choice when you connect to this profile.</value>
@@ -3383,7 +3383,7 @@ Error code: {0}</value>
     <value>Сервер</value>
   </data>
   <data name="Server_Fastest">
-    <value>Fastest server</value>
+    <value>Самый быстрый сервер</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Самый быстрый сервер Free</value>
@@ -3416,7 +3416,7 @@ Error code: {0}</value>
     <value>Сервер Free</value>
   </data>
   <data name="Server_Random">
-    <value>Random server</value>
+    <value>Случайный сервер</value>
   </data>
   <data name="Servers">
     <value>Серверы</value>
@@ -3477,7 +3477,7 @@ Error code: {0}</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Common_IpAddresses_AlreadyExists">
-    <value>Address already added</value>
+    <value>Адрес уже добавлен</value>
   </data>
   <data name="Settings_Common_IpAddresses_Invalid">
     <value>Enter a valid IPv4 or IPv6 address</value>
@@ -3505,7 +3505,7 @@ Error code: {0}</value>
     <value>Пользовательские DNS-серверы</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
-    <value>Add new DNS server</value>
+    <value>Добавить новый сервер DNS</value>
     <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
@@ -3749,7 +3749,7 @@ Error code: {0}</value>
     <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
-    <value>Add new IPv4 or IPv6 address</value>
+    <value>Добавить новый адрес IPv4 или IPv6</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
     <value>Выбранные IP-адреса ({0})</value>
@@ -3802,7 +3802,7 @@ Error code: {0}</value>
     <value>Последнее подключение</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
-    <value>Auto-launch</value>
+    <value>Автозапуск</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch_Description">
     <value>Proton VPN будет автоматически открываться при входе в систему на устройстве</value>
