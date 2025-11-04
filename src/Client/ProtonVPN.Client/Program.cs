@@ -70,8 +70,14 @@ public class Program
 
     public static void ReleaseMutex()
     {
-        _mutex?.ReleaseMutex();
-        _mutex?.Dispose();
+        try
+        {
+            _mutex?.ReleaseMutex();
+            _mutex?.Dispose();
+        }
+        catch
+        {
+        }
     }
 
     [DllImport("shell32.dll", SetLastError = true)]

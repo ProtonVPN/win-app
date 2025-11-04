@@ -121,7 +121,11 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     [RelayCommand]
     public async Task TriggerRestartAsync()
     {
-        await _appExitInvoker.RestartAsync();
+        // Trigger a client restart from a different thread to test the RestartAsync() method.
+        // The reason is that RestartAsync() releases the client mutex and that action requires thread-affinity.
+        Thread thread = new(async () => await _appExitInvoker.RestartAsync());
+        thread.Start();
+        thread.Join();
     }
 
     [RelayCommand]

@@ -78,7 +78,12 @@ public class AppExitInvoker : IAppExitInvoker
 
     public async Task RestartAsync()
     {
-        await ForceExitAsync();
+        await _uiThreadDispatcher.TryEnqueueAsync(InternalRestartAsync);
+    }
+
+    private async Task InternalRestartAsync()
+    {
+        await InternalExitAsync(isToAskForExitConfirmation: false);
         Program.ReleaseMutex();
         StartNewAppProcess();
     }
