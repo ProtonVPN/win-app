@@ -1,7 +1,7 @@
 ﻿[CustomMessages]
-InstallerTitle=Proton VPN готова к установке
+InstallerTitle=Proton VPN готов к установке
 InstallOtherApps=Выберите другие приложения Proton для установки. Эти услуги включены в ваш тариф.
-FreeTrial=Бесплатная пробная версия
+FreeTrial=Бесплатный пробный период
 Free=Бесплатно
 ProtonMailDescription=Электронная почта с шифрованием, в которой конфиденциальность обеспечивается по умолчанию.
 ProtonDriveDescription=Безопасное облачное хранилище, позволяющее контролировать данные.
