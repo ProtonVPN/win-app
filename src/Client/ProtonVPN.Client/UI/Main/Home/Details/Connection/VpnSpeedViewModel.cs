@@ -25,6 +25,7 @@ using LiveChartsCore.Measure;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.SkiaSharpView.Painting.Effects;
+using LiveChartsCore.SkiaSharpView.WinUI;
 using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Common.Helpers;
@@ -189,9 +190,9 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase,
         };
     }
 
-    private LineSeries<double> GetLineSeries(ICollection<double> values, SKColor color, bool useDashEffect = false)
+    private XamlLineSeries<double> GetLineSeries(ICollection<double> values, SKColor color, bool useDashEffect = false)
     {
-        return new(values)
+        return new()
         {
             Stroke = new SolidColorPaint(color)
             {
@@ -209,7 +210,8 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase,
             LineSmoothness = 1,
             GeometrySize = 0,
             IsHoverable = false,
-            ZIndex = 1
+            ZIndex = 1,
+            Values = values,
         };
     }
 
