@@ -377,10 +377,10 @@
     <value>VPN サーバー証明書の検証中に問題が発生しました。これは、ネットワーク接続が改ざんされているか、接続しようとしているサーバーに構成の問題があることを示している可能性があります。 問題レポートを送信して、カスタマー サポートからサポートを受けてください。</value>
   </data>
   <data name="Connection_Error_TwoFactorRequired_Description">
-    <value>To connect to VPN, go to your organization's 2FA portal and tap your security key.</value>
+    <value>VPNに接続するには、お客様の組織の2要素認証ポータルにアクセスし、セキュリティキーをタップしてください。</value>
   </data>
   <data name="Connection_Error_TwoFactorRequired_Title">
-    <value>Two-factor authentication (2FA) required</value>
+    <value>2要素認証(2FA)が必要です</value>
   </data>
   <data name="Connection_Error_Unknown">
     <value>インターネット接続をご確認の上、もう一度お試しください。それでも問題が解決しない場合は、カスタマーサポートチームまでご連絡ください。
@@ -2540,10 +2540,10 @@
     <value>接続の詳細</value>
   </data>
   <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
-    <value>Re-authenticate in your organization's 2FA portal to continue.</value>
+    <value>続行するには、お客様の組織の2要素認証ポータルで再認証を行ってください。</value>
   </data>
   <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
-    <value>2FA expired</value>
+    <value>2要素認証の有効期限切れ</value>
   </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>保護されていません</value>
@@ -2695,7 +2695,7 @@
     <value>二要素認証に失敗しました。 再度サインインしてください。</value>
   </data>
   <data name="Login_Error_WebAuthnNotSupported">
-    <value>Security key authentication is not available for your device or remote desktop connection.</value>
+    <value>セキュリティキー認証は、お客様のデバイスまたはリモートデスクトップ接続では利用できません。</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>認証</value>

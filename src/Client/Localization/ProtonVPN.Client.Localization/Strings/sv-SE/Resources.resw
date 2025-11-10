@@ -2144,7 +2144,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Vad som är nytt</value>
   </data>
   <data name="Dialogs_WhatsNew_TrayApp_Description">
-    <value>You can now connect, disconnect, and change your default connection from the system tray.</value>
+    <value>Du kan nu ansluta, koppla från och ändra din standardanslutning från systemfältet.</value>
   </data>
   <data name="Dialogs_WhatsNew_TrayApp_Title">
     <value>New system tray app</value>
@@ -2642,7 +2642,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Anslutningsdetaljer</value>
   </data>
   <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
-    <value>Re-authenticate in your organization's 2FA portal to continue.</value>
+    <value>Autentisera igen i din organisations 2FA-portal för att fortsätta.</value>
   </data>
   <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
     <value>2FA löpt ut</value>
