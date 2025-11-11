@@ -31,7 +31,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <Grid Margin="64,64,64,32"
+    <Grid Margin="64,48,64,32"
           RowSpacing="24">
 
         <Grid.RowDefinitions>
@@ -45,14 +45,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       Visibility="{x:Bind ViewModel.HasSubmissionResult, Converter={StaticResource NotBooleanToVisibilityConverter}}">
 
             <StackPanel Spacing="24">
-                <Image Height="90"
-                       HorizontalAlignment="Stretch"
-                       Source="{ThemeResource ReportIllustrationSource}" />
+                <StackPanel Orientation="Vertical"
+                            Spacing="16">
+                    <Image Height="90"
+                           HorizontalAlignment="Stretch"
+                           Source="{ThemeResource ReportIllustrationSource}"/>
 
-                <TextBlock Style="{ThemeResource BodyLargeStrongTextBlockStyle}"
-                           Text="{x:Bind ViewModel.Localizer.Get('Dialogs_NpsSurvey_Title')}"
-                           TextAlignment="Center" />
-
+                    <TextBlock Style="{ThemeResource BodyLargeStrongTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Localizer.Get('Dialogs_NpsSurvey_Title')}"
+                               TextAlignment="Center" />
+                </StackPanel>
 
                 <Grid HorizontalAlignment="Center"
                       ColumnSpacing="8"
@@ -103,7 +105,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                              VerticalAlignment="Top"
                              Header="{x:Bind ViewModel.Localizer.Get('Dialogs_NpsSurvey_CommentLabel')}"
                              MaxLength="250"
-                             Style="{ThemeResource ValidationTextBoxStyle}"
+                             Style="{ThemeResource ValidationMultiLineTextBoxStyle}"
                              Text="{x:Bind ViewModel.Comment, Mode=TwoWay}"
                              TextAlignment="Start"
                              TextWrapping="Wrap" />

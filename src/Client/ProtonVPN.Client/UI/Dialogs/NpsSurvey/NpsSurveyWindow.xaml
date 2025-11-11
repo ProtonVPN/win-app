@@ -25,7 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:local="using:ProtonVPN.Client.UI.Dialogs.NpsSurvey"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                   Width="470"
+                   Width="462"
                    Height="566"
                    x:DefaultBindMode="OneWay"
                    IsMaximizable="False"
