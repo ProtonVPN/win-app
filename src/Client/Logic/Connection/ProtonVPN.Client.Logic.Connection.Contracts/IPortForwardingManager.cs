@@ -23,5 +23,6 @@ public interface IPortForwardingManager
 {
     int? ActivePort { get; }
     bool IsFetchingPort { get; }
+    bool HasError { get; }
     DateTime? LastPortChangeTimeUtc { get; }
 }

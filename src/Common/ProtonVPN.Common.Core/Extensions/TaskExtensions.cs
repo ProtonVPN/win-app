@@ -104,4 +104,9 @@ public static class TaskExtensions
             TaskContinuationOptions.OnlyOnFaulted |
             TaskContinuationOptions.ExecuteSynchronously);
     }
+
+    public static Task NullSafe<T>(this Task<T>? task)
+    {
+        return task ?? Task.CompletedTask;
+    }
 }

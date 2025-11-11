@@ -24,17 +24,23 @@ using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Connection;
 
-public partial class PortForwardingPageViewModel : SettingsPageViewModelBase
+public partial class PortForwardingPageViewModel : SettingsPageViewModelBase,
+    IEventMessageReceiver<PortForwardingPortChangedMessage>,
+    IEventMessageReceiver<PortForwardingStatusChangedMessage>
 {
     private readonly IUrlsBrowser _urlsBrowser;
+    private readonly IPortForwardingManager _portForwardingManager;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(PortForwardingFeatureIconSource))]
@@ -52,6 +58,14 @@ public partial class PortForwardingPageViewModel : SettingsPageViewModelBase
 
     public ImageSource PortForwardingFeatureIconSource => GetFeatureIconSource(IsPortForwardingEnabled);
 
+    public string WarningMessage => !ConnectionManager.IsP2PServerConnection()
+        ? Localizer.Get("Flyouts_PortForwarding_Warning")
+        : Localizer.Get("Flyouts_PortForwarding_ActivePort_Error");
+
+    public bool IsWarningMessageVisible => ConnectionManager.IsConnected
+                                        && IsPortForwardingEnabled
+                                        && (!ConnectionManager.IsP2PServerConnection() || _portForwardingManager.HasError);
+
     public string LearnMoreUrl => _urlsBrowser.PortForwardingLearnMore;
 
     public PortForwardingPageViewModel(
@@ -63,7 +77,8 @@ public partial class PortForwardingPageViewModel : SettingsPageViewModelBase
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager,
-        IViewModelHelper viewModelHelper)
+        IViewModelHelper viewModelHelper,
+        IPortForwardingManager portForwardingManager)
         : base(requiredReconnectionSettings,
                mainViewNavigator,
                settingsViewNavigator,
@@ -74,7 +89,7 @@ public partial class PortForwardingPageViewModel : SettingsPageViewModelBase
                viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
-
+        _portForwardingManager = portForwardingManager;
         PageSettings =
         [
             ChangedSettingArgs.Create(() => Settings.IsPortForwardingNotificationEnabled, () => IsPortForwardingNotificationEnabled),
@@ -94,11 +109,14 @@ public partial class PortForwardingPageViewModel : SettingsPageViewModelBase
         base.OnActivated();
 
         OnPropertyChanged(nameof(IsExpanded));
+        OnPropertyChanged(nameof(WarningMessage));
+        OnPropertyChanged(nameof(IsWarningMessageVisible));
     }
 
     protected override void OnSaveSettings()
     {
         OnPropertyChanged(nameof(IsExpanded));
+        OnPropertyChanged(nameof(IsWarningMessageVisible));
     }
 
     protected override void OnRetrieveSettings()
@@ -110,6 +128,8 @@ public partial class PortForwardingPageViewModel : SettingsPageViewModelBase
     protected override void OnConnectionStatusChanged(ConnectionStatus connectionStatus)
     {
         OnPropertyChanged(nameof(IsExpanded));
+        OnPropertyChanged(nameof(WarningMessage));
+        OnPropertyChanged(nameof(IsWarningMessageVisible));
     }
 
     protected override void OnSettingsChanged(string propertyName)
@@ -117,6 +137,29 @@ public partial class PortForwardingPageViewModel : SettingsPageViewModelBase
         if (propertyName == nameof(ISettings.IsPortForwardingEnabled))
         {
             OnPropertyChanged(nameof(IsExpanded));
+            OnPropertyChanged(nameof(IsWarningMessageVisible));
         }
+    }
+
+    public void Receive(PortForwardingPortChangedMessage message)
+    {
+        ExecuteOnUIThread(OnPortForwardingChange);
+    }
+
+    private void OnPortForwardingChange()
+    {
+        OnPropertyChanged(nameof(IsWarningMessageVisible));
+    }
+
+    public void Receive(PortForwardingStatusChangedMessage message)
+    {
+        ExecuteOnUIThread(OnPortForwardingChange);
+    }
+
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        OnPropertyChanged(nameof(WarningMessage));
     }
 }

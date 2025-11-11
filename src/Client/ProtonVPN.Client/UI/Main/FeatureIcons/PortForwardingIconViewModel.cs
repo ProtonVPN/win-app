@@ -21,13 +21,20 @@ using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Services.Selection;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.FeatureIcons;
 
-public class PortForwardingIconViewModel : FeatureIconViewModelBase
+public class PortForwardingIconViewModel : FeatureIconViewModelBase,
+    IEventMessageReceiver<PortForwardingPortChangedMessage>,
+    IEventMessageReceiver<PortForwardingStatusChangedMessage>
 {
+    private readonly IPortForwardingManager _portForwardingManager;
+
     public override bool IsDimmed => IsFeatureEnabled 
                                   && (!ConnectionManager.IsConnected || ConnectionManager.CurrentConnectionDetails?.IsP2P != true);
 
@@ -35,13 +42,20 @@ public class PortForwardingIconViewModel : FeatureIconViewModelBase
         ? CurrentProfile.Settings.IsPortForwardingEnabled
         : Settings.IsPortForwardingEnabled;
 
+    public bool IsConnectedWithPortForwardingError => ConnectionManager.IsConnected
+                                                   && IsFeatureEnabled
+                                                   && (!ConnectionManager.IsP2PServerConnection() || _portForwardingManager.HasError);
+
     public PortForwardingIconViewModel(
         IConnectionManager connectionManager,
         ISettings settings,
         IApplicationThemeSelector themeSelector,
-        IViewModelHelper viewModelHelper)
+        IViewModelHelper viewModelHelper,
+        IPortForwardingManager portForwardingManager)
         : base(connectionManager, settings, themeSelector, viewModelHelper)
-    { }
+    {
+        _portForwardingManager = portForwardingManager;
+    }
 
     protected override ImageSource GetImageSource()
     {
@@ -55,5 +69,20 @@ public class PortForwardingIconViewModel : FeatureIconViewModelBase
     protected override IEnumerable<string> GetSettingsChangedForIconUpdate()
     {
         yield return nameof(ISettings.IsPortForwardingEnabled);
+    }
+
+    public void Receive(PortForwardingPortChangedMessage message)
+    {
+        ExecuteOnUIThread(OnPortForwardingChange);
+    }
+
+    private void OnPortForwardingChange()
+    {
+        OnPropertyChanged(nameof(IsConnectedWithPortForwardingError));
+    }
+
+    public void Receive(PortForwardingStatusChangedMessage message)
+    {
+        ExecuteOnUIThread(OnPortForwardingChange);
     }
 }

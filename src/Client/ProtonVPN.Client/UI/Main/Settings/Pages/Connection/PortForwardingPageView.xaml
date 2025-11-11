@@ -76,9 +76,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               AutomationProperties.AutomationId="PortForwardingToggle" />
 
                 <controls:SettingsExpander.Items>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
 
-                    <components:ActivePortComponentView />
+                        <components:ActivePortComponentView Grid.Row="0"
+                                                            Margin="0,8,0,0" />
 
+                        <custom:BulletContentControl Grid.Row="1"
+                                                     Margin="0,20,0,0"
+                                                     Content="{x:Bind ViewModel.WarningMessage}"
+                                                     Visibility="{x:Bind ViewModel.IsWarningMessageVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <custom:BulletContentControl.BulletContent>
+                                <pathicons:ExclamationTriangleFilled Foreground="{ThemeResource SignalWarningColorBrush}"
+                                                                     Size="Pixels16" />
+                            </custom:BulletContentControl.BulletContent>
+                        </custom:BulletContentControl>
+                    </Grid>
                 </controls:SettingsExpander.Items>
                 
             </controls:SettingsExpander>

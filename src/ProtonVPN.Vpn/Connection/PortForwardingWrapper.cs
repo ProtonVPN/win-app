@@ -95,6 +95,7 @@ namespace ProtonVPN.Vpn.Connection
         private void Origin_StateChanged(object sender, EventArgs<VpnState> e)
         {
             VpnState state = e.Data;
+            _portMappingProtocolClient.SetVpnState(state);
             OnStateChanged(state);
             if (IsToStartPortMappingProtocolClient(state))
             {

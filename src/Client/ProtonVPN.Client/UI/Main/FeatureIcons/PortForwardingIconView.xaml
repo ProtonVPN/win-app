@@ -24,12 +24,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="using:ProtonVPN.Client.UI.Main.FeatureIcons"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pathIcons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
              xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
+    <Grid>
+        <custom:DimmableImage IconSource="{x:Bind ViewModel.Icon}"
+                              IsDimmed="{x:Bind ViewModel.IsDimmed}" 
+                              Width="{x:Bind Width}"
+                              Height="{x:Bind Height}"/>
 
-    <custom:DimmableImage IconSource="{x:Bind ViewModel.Icon}"
-                          IsDimmed="{x:Bind ViewModel.IsDimmed}" 
-                          Width="{x:Bind Width}"
-                          Height="{x:Bind Height}"/>
+        <pathIcons:ExclamationTriangleFilled Margin="0,-8,-8,0"
+                                             HorizontalAlignment="Right"
+                                             VerticalAlignment="Top"
+                                             Foreground="{ThemeResource SignalWarningColorBrush}"
+                                             Size="Pixels16"
+                                             Visibility="{x:Bind ViewModel.IsConnectedWithPortForwardingError, Converter={StaticResource BooleanToVisibilityConverter}}" />
+    </Grid>
 </UserControl>

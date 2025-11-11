@@ -28,9 +28,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:pathIcons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
-
     <Grid>
-
         <custom:DimmableImage IconSource="{x:Bind ViewModel.Icon}"
                               IsDimmed="{x:Bind ViewModel.IsDimmed}"
                               Width="{x:Bind Width}"

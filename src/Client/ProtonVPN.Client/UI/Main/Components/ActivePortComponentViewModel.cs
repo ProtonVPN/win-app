@@ -32,7 +32,8 @@ namespace ProtonVPN.Client.UI.Main.Components;
 
 public partial class ActivePortComponentViewModel : ActivatableViewModelBase,
     IEventMessageReceiver<PortForwardingStatusChangedMessage>,
-    IEventMessageReceiver<PortForwardingPortChangedMessage>
+    IEventMessageReceiver<PortForwardingPortChangedMessage>,
+    IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private const string PORT_NUMBER_PLACEHOLDER = "-";
 
@@ -44,17 +45,23 @@ public partial class ActivePortComponentViewModel : ActivatableViewModelBase,
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(CopyPortNumberCommand))]
     [NotifyPropertyChangedFor(nameof(HasActivePortNumber))]
+    [NotifyPropertyChangedFor(nameof(IsFetchingPort))]
+    [NotifyPropertyChangedFor(nameof(IsPortUnavailable))]
     [NotifyPropertyChangedFor(nameof(Header))]
     private int? _activePortNumber;
 
     [ObservableProperty]
     private string _lastPortChangeTagline = string.Empty;
 
-    public string Header => IsFetchingPort
-        ? Localizer.Get("Settings_Connection_PortForwarding_Loading") 
-        : ActivePortNumber?.ToString() ?? PORT_NUMBER_PLACEHOLDER;
+    public string Header => HasActivePortNumber
+        ? ActivePortNumber?.ToString() ?? PORT_NUMBER_PLACEHOLDER
+        : IsFetchingPort
+            ? Localizer.Get("Settings_Connection_PortForwarding_Loading")
+            : Localizer.Get("Settings_Connection_PortForwarding_Unavailable");
 
     public bool HasActivePortNumber => ActivePortNumber.HasValue;
+
+    public bool IsPortUnavailable => !_portForwardingManager.IsFetchingPort && !HasActivePortNumber;
 
     public bool IsFetchingPort => !HasActivePortNumber && _portForwardingManager.IsFetchingPort;
 
@@ -102,6 +109,11 @@ public partial class ActivePortComponentViewModel : ActivatableViewModelBase,
         ExecuteOnUIThread(InvalidateStatusAndActivePortNumber);
     }
 
+    public void Receive(ConnectionStatusChangedMessage message)
+    {
+        ExecuteOnUIThread(InvalidateStatusAndActivePortNumber);
+    }
+
     protected override void OnActivated()
     {
         base.OnActivated();
@@ -132,8 +144,10 @@ public partial class ActivePortComponentViewModel : ActivatableViewModelBase,
         InvalidateTimer();
         InvalidateLastPortChangeTagline();
 
-        OnPropertyChanged(nameof(IsFetchingPort));
         OnPropertyChanged(nameof(Header));
+        OnPropertyChanged(nameof(HasActivePortNumber));
+        OnPropertyChanged(nameof(IsPortUnavailable));
+        OnPropertyChanged(nameof(IsFetchingPort));
     }
 
     private void InvalidateTimer()

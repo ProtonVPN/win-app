@@ -39,15 +39,21 @@ public class PortForwardingManager : IPortForwardingManager, IEventMessageReceiv
     private int? _port;
     private PortMappingStatus _status;
 
-    protected bool IsConnectedToNonP2PServer => _connectionManager.IsConnected && _connectionManager.CurrentConnectionDetails?.IsP2P != true;
+    protected bool IsConnectedToP2PServer => _connectionManager.IsConnected && _connectionManager.CurrentConnectionDetails?.IsP2P == true;
 
     public bool IsFetchingPort =>
-        !IsConnectedToNonP2PServer &&
-        _status is not PortMappingStatus.Stopped 
-                    or PortMappingStatus.Error 
-                    or PortMappingStatus.DestroyPortMappingCommunication;
-    
-    public int? ActivePort => IsConnectedToNonP2PServer ? null : _port;
+        IsConnectedToP2PServer &&
+        _status is not PortMappingStatus.Stopped
+               and not PortMappingStatus.Error
+               and not PortMappingStatus.DestroyPortMappingCommunication;
+
+    public bool HasError => _status is PortMappingStatus.Error;
+
+    protected bool IsConnectedToNonP2PServer => _connectionManager.IsConnected && _connectionManager.CurrentConnectionDetails?.IsP2P != true;
+
+    public int? ActivePort => IsConnectedToP2PServer && (_status is PortMappingStatus.PortMappingCommunication or PortMappingStatus.SleepingUntilRefresh)
+            ? _port
+            : null;
 
     public DateTime? LastPortChangeTimeUtc => ActivePort.HasValue ? _lastPortChangeTimeUtc : null;
 

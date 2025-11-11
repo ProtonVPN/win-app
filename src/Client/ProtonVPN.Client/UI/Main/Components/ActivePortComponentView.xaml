@@ -59,12 +59,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             <Grid Grid.Column="0"
                   VerticalAlignment="Center">
-                <icons:ActivePortNumber Visibility="{x:Bind ViewModel.IsFetchingPort, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                <pathicons:CircleSlash Size="Pixels16"
+                                       Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Visibility="{x:Bind ViewModel.IsPortUnavailable, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <icons:ActivePortNumber Visibility="{x:Bind ViewModel.HasActivePortNumber, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <ProgressRing Width="16"
                               Height="16"
                               IsActive="{x:Bind ViewModel.IsFetchingPort}"
                               Visibility="{x:Bind ViewModel.IsFetchingPort, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Grid>
+
+            <TextBlock Grid.Column="1" VerticalAlignment="Center"
+                       Foreground="{ThemeResource TextWeakColorBrush}"
+                       Style="{ThemeResource CaptionTextBlockStyle}"
+                       Text="{x:Bind ViewModel.Header}"
+                       Visibility="{x:Bind ViewModel.IsPortUnavailable, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
             <custom:GhostButton Grid.Column="1"
                                 Padding="2,0"
@@ -105,7 +114,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <Grid Grid.Row="0"
                       Grid.Column="0"
                       VerticalAlignment="Center">
-                    <icons:ActivePortNumber Visibility="{x:Bind ViewModel.IsFetchingPort, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                    <pathicons:CircleSlash Size="Pixels16"
+                                           Foreground="{ThemeResource TextWeakColorBrush}"
+                                           Visibility="{x:Bind ViewModel.IsPortUnavailable, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <icons:ActivePortNumber Visibility="{x:Bind ViewModel.HasActivePortNumber, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     <ProgressRing Width="16"
                                   Height="16"
                                   IsActive="{x:Bind ViewModel.IsFetchingPort}"
