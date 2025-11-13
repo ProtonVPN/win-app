@@ -24,6 +24,8 @@ using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Profiles.Files;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Logic.Profiles;
 
@@ -33,6 +35,7 @@ public class ProfilesManager : IProfilesManager,
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IProfilesFileReaderWriter _profilesFileReaderWriter;
     private readonly IDefaultProfilesProvider _defaultProfilesProvider;
+    private readonly ILogger _logger;
 
     private readonly object _lock = new();
 
@@ -41,11 +44,13 @@ public class ProfilesManager : IProfilesManager,
     public ProfilesManager(
         IEventMessageSender eventMessageSender,
         IProfilesFileReaderWriter profilesFileReaderWriter,
-        IDefaultProfilesProvider defaultProfilesProvider)
+        IDefaultProfilesProvider defaultProfilesProvider,
+        ILogger logger)
     {
         _eventMessageSender = eventMessageSender;
         _profilesFileReaderWriter = profilesFileReaderWriter;
         _defaultProfilesProvider = defaultProfilesProvider;
+        _logger = logger;
     }
 
     public IOrderedEnumerable<IConnectionProfile> GetAll()
@@ -62,6 +67,8 @@ public class ProfilesManager : IProfilesManager,
     {
         lock (_lock)
         {
+            _logger.Info<AppLog>($"Overriding {_profiles.Count} connection profiles with default profiles and {profiles.Count()} profiles");
+
             _profiles.Clear();
 
             _profiles.AddRange(_defaultProfilesProvider.GetDefaultProfiles());
@@ -85,6 +92,8 @@ public class ProfilesManager : IProfilesManager,
                 action = NotifyCollectionChangedAction.Replace;
             }
 
+            _logger.Info<AppLog>($"{(action == NotifyCollectionChangedAction.Add ? "Adding" : "Editing")} connection profile {profile.Name} with Id {profile.Id}");
+
             profile.UpdateDateTimeUtc = DateTime.UtcNow;
 
             _profiles.Add(profile);
@@ -102,6 +111,8 @@ public class ProfilesManager : IProfilesManager,
             {
                 foreach (IConnectionProfile profile in profiles)
                 {
+                    _logger.Info<AppLog>($"Deleting connection profile {profile.Name} with Id {profile.Id}");
+
                     _profiles.Remove(profile);
                 }
 
@@ -130,9 +141,13 @@ public class ProfilesManager : IProfilesManager,
     {
         _profiles = _profilesFileReaderWriter.Read(out bool doesFileExists);
 
+        _logger.Info<AppLog>($"Loaded {_profiles.Count} connection profiles from file");
+
         // No profiles found and profile file does not exist, create list of default profiles
         if (!_profiles.Any() && !doesFileExists)
         {
+            _logger.Info<AppLog>($"No connection profiles found, creating default profiles");
+
             _profiles.AddRange(_defaultProfilesProvider.GetDefaultProfiles());
 
             SaveProfiles();
@@ -141,6 +156,8 @@ public class ProfilesManager : IProfilesManager,
 
     private void SaveProfiles()
     {
+        _logger.Info<AppLog>($"Saving {_profiles.Count} connection profiles", stackTraceDepth: 2);
+
         _profilesFileReaderWriter.Save(_profiles.ToList());
     }
 

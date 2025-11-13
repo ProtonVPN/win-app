@@ -72,7 +72,7 @@ public class UIThreadDispatcher : IUIThreadDispatcher
         catch (Exception ex)
         {
             _logger.Error<AppLog>($"Exception handled by {nameof(UIThreadDispatcher)} {nameof(ExecuteSafely)}.",
-                ex, sourceFilePath, sourceMemberName, sourceLineNumber);
+                ex, 0, sourceFilePath, sourceMemberName, sourceLineNumber);
             _issueReporter.CaptureError(ex, sourceFilePath, sourceMemberName, sourceLineNumber);
         }
     }
@@ -87,7 +87,7 @@ public class UIThreadDispatcher : IUIThreadDispatcher
         catch (Exception ex)
         {
             _logger.Error<AppLog>($"Exception handled by {nameof(UIThreadDispatcher)} {nameof(ExecuteSafelyAsync)}.",
-                ex, sourceFilePath, sourceMemberName, sourceLineNumber);
+                ex, 0, sourceFilePath, sourceMemberName, sourceLineNumber);
             _issueReporter.CaptureError(ex, sourceFilePath, sourceMemberName, sourceLineNumber);
             return false;
         }

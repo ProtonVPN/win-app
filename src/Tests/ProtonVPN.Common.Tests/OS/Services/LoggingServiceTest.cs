@@ -121,7 +121,7 @@ namespace ProtonVPN.Common.Tests.OS.Services
             await subject.StartAsync(cancellationToken);
 
             // Assert
-            _logger.Received(2).Info<AppServiceStartLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(2).Info<AppServiceStartLog>(Arg.Any<string>(), null, 0, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
 
         [DataTestMethod]
@@ -149,8 +149,8 @@ namespace ProtonVPN.Common.Tests.OS.Services
             { }
 
             // Assert
-            _logger.Received(1).Info<AppServiceStartLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
-            _logger.Received(1).Warn<AppServiceStartFailedLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(1).Info<AppServiceStartLog>(Arg.Any<string>(), null, 0, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(1).Warn<AppServiceStartFailedLog>(Arg.Any<string>(), null, 0, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
 
         [TestMethod]
@@ -172,8 +172,8 @@ namespace ProtonVPN.Common.Tests.OS.Services
             { }
 
             // Assert
-            _logger.Received(1).Info<AppServiceStartLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
-            _logger.Received(1).Error<AppServiceStartFailedLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(1).Info<AppServiceStartLog>(Arg.Any<string>(), null, 0, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(1).Error<AppServiceStartFailedLog>(Arg.Any<string>(), null, 0, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
 
         [TestMethod]
@@ -221,8 +221,8 @@ namespace ProtonVPN.Common.Tests.OS.Services
             await subject.StopAsync(cancellationToken);
 
             // Assert
-            _logger.Received(1).Info<AppServiceStopLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
-            _logger.Received(1).Warn<AppServiceStopFailedLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(1).Info<AppServiceStopLog>(Arg.Any<string>(), null, 0, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(1).Warn<AppServiceStopFailedLog>(Arg.Any<string>(), null, 0, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
 
         [DataTestMethod]
@@ -250,8 +250,8 @@ namespace ProtonVPN.Common.Tests.OS.Services
             { }
 
             // Assert
-            _logger.Received(1).Info<AppServiceStopLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
-            _logger.Received(1).Warn<AppServiceStopFailedLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(1).Info<AppServiceStopLog>(Arg.Any<string>(), null, 0, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(1).Warn<AppServiceStopFailedLog>(Arg.Any<string>(), null, 0, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
 
         [TestMethod]
@@ -273,8 +273,8 @@ namespace ProtonVPN.Common.Tests.OS.Services
             { }
 
             // Assert
-            _logger.Received(1).Info<AppServiceStopLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
-            _logger.Received(1).Error<AppServiceStopFailedLog>(Arg.Any<string>(), null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(1).Info<AppServiceStopLog>(Arg.Any<string>(), null, 0, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            _logger.Received(1).Error<AppServiceStopFailedLog>(Arg.Any<string>(), null, 0, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
         }
     }
 }

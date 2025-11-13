@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,53 +19,62 @@
 
 using System.Runtime.CompilerServices;
 
-namespace ProtonVPN.Logging.Contracts
+namespace ProtonVPN.Logging.Contracts;
+
+public class NullLogger : ILogger
 {
-    public class NullLogger : ILogger
+    public IList<string> GetRecentLogs()
     {
-        public IList<string> GetRecentLogs()
-        {
-            return new List<string>();
-        }
-
-        public void Debug<TEvent>(string message, Exception exception = null,
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerMemberName] string sourceMemberName = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
-            where TEvent : ILogEvent, new()
-        {
-        }
-
-        public void Info<TEvent>(string message, Exception exception = null,
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerMemberName] string sourceMemberName = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
-            where TEvent : ILogEvent, new()
-        {
-        }
-
-        public void Warn<TEvent>(string message, Exception exception = null,
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerMemberName] string sourceMemberName = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
-            where TEvent : ILogEvent, new()
-        {
-        }
-
-        public void Error<TEvent>(string message, Exception exception = null,
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerMemberName] string sourceMemberName = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
-            where TEvent : ILogEvent, new()
-        {
-        }
-
-        public void Fatal<TEvent>(string message, Exception exception = null,
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerMemberName] string sourceMemberName = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
-            where TEvent : ILogEvent, new()
-        {
-        }
+        return new List<string>();
     }
+
+    public void Debug<TEvent>(
+        string message,
+        Exception exception = null,
+        int stackTraceDepth = 0,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0)
+        where TEvent : ILogEvent, new()
+    { }
+
+    public void Info<TEvent>(
+        string message,
+        Exception exception = null,
+        int stackTraceDepth = 0,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0)
+        where TEvent : ILogEvent, new()
+    { }
+
+    public void Warn<TEvent>(
+        string message,
+        Exception exception = null,
+        int stackTraceDepth = 0,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0)
+        where TEvent : ILogEvent, new()
+    { }
+
+    public void Error<TEvent>(
+        string message,
+        Exception exception = null,
+        int stackTraceDepth = 0,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0)
+        where TEvent : ILogEvent, new()
+    { }
+
+    public void Fatal<TEvent>(
+        string message,
+        Exception exception = null,
+        int stackTraceDepth = 0,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0)
+        where TEvent : ILogEvent, new()
+    { }
 }

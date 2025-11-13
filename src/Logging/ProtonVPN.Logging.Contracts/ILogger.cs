@@ -25,31 +25,46 @@ namespace ProtonVPN.Logging.Contracts
     {
         IList<string> GetRecentLogs();
 
-        void Debug<TEvent>(string message, Exception exception = null,
+        void Debug<TEvent>(
+            string message, 
+            Exception exception = null,
+            int stackTraceDepth = 0,
             [CallerFilePath] string sourceFilePath = "",
             [CallerMemberName] string sourceMemberName = "",
             [CallerLineNumber] int sourceLineNumber = 0)
             where TEvent : ILogEvent, new();
 
-        void Info<TEvent>(string message, Exception exception = null,
+        void Info<TEvent>(
+            string message, 
+            Exception exception = null,
+            int stackTraceDepth = 0,
             [CallerFilePath] string sourceFilePath = "",
             [CallerMemberName] string sourceMemberName = "",
             [CallerLineNumber] int sourceLineNumber = 0)
             where TEvent : ILogEvent, new();
 
-        void Warn<TEvent>(string message, Exception exception = null,
+        void Warn<TEvent>(
+            string message, 
+            Exception exception = null,
+            int stackTraceDepth = 0,
             [CallerFilePath] string sourceFilePath = "",
             [CallerMemberName] string sourceMemberName = "",
             [CallerLineNumber] int sourceLineNumber = 0)
             where TEvent : ILogEvent, new();
 
-        void Error<TEvent>(string message, Exception exception = null,
+        void Error<TEvent>(
+            string message, 
+            Exception exception = null,
+            int stackTraceDepth = 0,
             [CallerFilePath] string sourceFilePath = "",
             [CallerMemberName] string sourceMemberName = "",
             [CallerLineNumber] int sourceLineNumber = 0)
             where TEvent : ILogEvent, new();
 
-        void Fatal<TEvent>(string message, Exception exception = null,
+        void Fatal<TEvent>(
+            string message, 
+            Exception exception = null,
+            int stackTraceDepth = 0,
             [CallerFilePath] string sourceFilePath = "",
             [CallerMemberName] string sourceMemberName = "",
             [CallerLineNumber] int sourceLineNumber = 0)

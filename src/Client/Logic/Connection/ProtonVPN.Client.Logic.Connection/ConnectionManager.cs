@@ -132,7 +132,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
         CurrentConnectionIntent = connectionIntent;
 
-        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Connection attempt to: {connectionIntent}.");
+        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Connection attempt to: {connectionIntent}. Triggered by {connectionTrigger}.", stackTraceDepth: 2);
 
         ConnectionRequestIpcEntity request = await _connectionRequestCreator.CreateAsync(connectionIntent);
 
@@ -208,7 +208,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
     /// <summary>Reconnects if the most recent action was a Connect and not a Disconnect.</summary>
     /// <returns>True if reconnecting. False if not.</returns>
-    public async Task<bool> ReconnectAsync(VpnTriggerDimension connectionTrigger)
+    public async Task<bool> ReconnectAsync(VpnTriggerDimension reconnectionTrigger)
     {
         _minReconnectionDateUtc = DateTime.UtcNow + _reconnectInterval;
 
@@ -219,24 +219,24 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
             return false;
         }
 
-        _statisticalEventManager.SetReconnectionAttempt(connectionTrigger, ConnectionStatus);
+        _statisticalEventManager.SetReconnectionAttempt(reconnectionTrigger, ConnectionStatus);
 
         connectionIntent = ChangeConnectionIntent(connectionIntent, CreateNewIntentIfUserPlanIsFree);
 
         CurrentConnectionIntent = connectionIntent;
 
-        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Reconnection attempt to: {connectionIntent}.");
+        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Reconnection attempt to: {connectionIntent}. Triggered by {reconnectionTrigger}.", stackTraceDepth: 1);
 
         ConnectionRequestIpcEntity request = await _reconnectionRequestCreator.CreateAsync(connectionIntent);
 
         return await SendRequestIfValidAsync(request);
     }
 
-    public async Task DisconnectAsync(VpnTriggerDimension vpnTriggerDimension)
+    public async Task DisconnectAsync(VpnTriggerDimension disconnectionTrigger)
     {
-        _statisticalEventManager.SetDisconnectionAttempt(vpnTriggerDimension, ConnectionStatus);
+        _statisticalEventManager.SetDisconnectionAttempt(disconnectionTrigger, ConnectionStatus);
 
-        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Disconnection attempt.");
+        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Disconnection attempt. Triggered by {disconnectionTrigger}.", stackTraceDepth: 2);
 
         CurrentConnectionIntent = null;
 

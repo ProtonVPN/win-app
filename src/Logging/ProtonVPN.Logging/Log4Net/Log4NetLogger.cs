@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Diagnostics;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 using ProtonVPN.Common.Core.Helpers;
@@ -43,14 +45,17 @@ public class Log4NetLogger : Log4NetLoggerInitializer, ILogger
         return _recentLogs;
     }
 
-    public void Debug<TEvent>(string message, Exception exception = null,
+    public void Debug<TEvent>(
+        string message,
+        Exception exception = null,
+        int stackTraceDepth = 0,
         [CallerFilePath] string sourceFilePath = "",
         [CallerMemberName] string sourceMemberName = "",
         [CallerLineNumber] int sourceLineNumber = 0)
         where TEvent : ILogEvent, new()
     {
         CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
-        string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile);
+        string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile, stackTraceDepth);
         if (exception == null)
         {
             InternalLogger.Debug(fullLogMessage);
@@ -63,26 +68,17 @@ public class Log4NetLogger : Log4NetLoggerInitializer, ILogger
         }
     }
 
-    private string CreateFullLogMessage<TEvent>(string message, CallerProfile callerProfile)
+    public void Info<TEvent>(
+        string message,
+        Exception exception = null,
+        int stackTraceDepth = 0,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0)
         where TEvent : ILogEvent, new()
     {
-        string json = GenerateMetadataJson(callerProfile);
-        return $"{new TEvent()} | {message} | {json}";
-    }
-
-    private string GenerateMetadataJson(CallerProfile callerProfile)
-    {
-        IDictionary<string, object> metadataDictionary = new Dictionary<string, object>();
-        metadataDictionary.Add("Caller",
-            $"{callerProfile.SourceClassName}.{callerProfile.SourceMemberName}:{callerProfile.SourceLineNumber}");
-        return JsonConvert.SerializeObject(metadataDictionary);
-    }
-
-    public void Info<TEvent>(string message, Exception exception = null, string sourceFilePath = "", string sourceMemberName = "",
-        int sourceLineNumber = 0) where TEvent : ILogEvent, new()
-    {
         CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
-        string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile);
+        string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile, stackTraceDepth);
         if (exception == null)
         {
             InternalLogger.Info(fullLogMessage);
@@ -95,11 +91,17 @@ public class Log4NetLogger : Log4NetLoggerInitializer, ILogger
         }
     }
 
-    public void Warn<TEvent>(string message, Exception exception = null, string sourceFilePath = "", string sourceMemberName = "",
-        int sourceLineNumber = 0) where TEvent : ILogEvent, new()
+    public void Warn<TEvent>(
+        string message,
+        Exception exception = null,
+        int stackTraceDepth = 0,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0)
+        where TEvent : ILogEvent, new()
     {
         CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
-        string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile);
+        string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile, stackTraceDepth);
         if (exception == null)
         {
             InternalLogger.Warn(fullLogMessage);
@@ -112,11 +114,17 @@ public class Log4NetLogger : Log4NetLoggerInitializer, ILogger
         }
     }
 
-    public void Error<TEvent>(string message, Exception exception = null, string sourceFilePath = "", string sourceMemberName = "",
-        int sourceLineNumber = 0) where TEvent : ILogEvent, new()
+    public void Error<TEvent>(
+        string message,
+        Exception exception = null,
+        int stackTraceDepth = 0,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0)
+        where TEvent : ILogEvent, new()
     {
         CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
-        string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile);
+        string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile, stackTraceDepth);
         if (exception == null)
         {
             InternalLogger.Error(fullLogMessage);
@@ -129,11 +137,17 @@ public class Log4NetLogger : Log4NetLoggerInitializer, ILogger
         }
     }
 
-    public void Fatal<TEvent>(string message, Exception exception = null, string sourceFilePath = "", string sourceMemberName = "",
-        int sourceLineNumber = 0) where TEvent : ILogEvent, new()
+    public void Fatal<TEvent>(
+        string message,
+        Exception exception = null,
+        int stackTraceDepth = 0,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0)
+        where TEvent : ILogEvent, new()
     {
         CallerProfile callerProfile = new(sourceFilePath, sourceMemberName, sourceLineNumber);
-        string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile);
+        string fullLogMessage = CreateFullLogMessage<TEvent>(message, callerProfile, stackTraceDepth);
         if (exception == null)
         {
             InternalLogger.Fatal(fullLogMessage);
@@ -144,6 +158,96 @@ public class Log4NetLogger : Log4NetLoggerInitializer, ILogger
             InternalLogger.Fatal(fullLogMessage, exception);
             AddMessageToRecentLogs(fullLogMessage, exception);
         }
+    }
+
+    private string CreateFullLogMessage<TEvent>(string message, CallerProfile callerProfile, int stackTraceDepth = 0)
+        where TEvent : ILogEvent, new()
+    {
+        string json = GenerateMetadataJson(callerProfile, stackTraceDepth);
+        return $"{new TEvent()} | {message} | {json}";
+    }
+
+    private string GenerateMetadataJson(CallerProfile callerProfile, int stackTraceDepth = 0)
+    {
+        IDictionary<string, object> metadataDictionary = new Dictionary<string, object>();
+        
+        string callerInfo = $"{callerProfile.SourceClassName}.{callerProfile.SourceMemberName}:{callerProfile.SourceLineNumber}";
+        
+        if (stackTraceDepth > 0)
+        {
+            string[] stackFrames = CaptureStackTrace(stackTraceDepth);
+            if (stackFrames.Length > 0)
+            {
+                callerInfo = $"{callerInfo} < {string.Join(" < ", stackFrames)}";
+            }
+        }
+        
+        metadataDictionary.Add("Caller", callerInfo);
+
+        return JsonConvert.SerializeObject(metadataDictionary);
+    }
+
+    private static string[] CaptureStackTrace(int depth)
+    {
+        // Skip: CaptureStackTrace, GenerateMetadataJson, CreateFullLogMessage, logging method (Info/Warn/etc), and the actual caller (already in CallerProfile)
+        StackTrace stackTrace = new(skipFrames: 5, fNeedFileInfo: true);
+
+        List<string> frames = new();
+
+        for (int i = 0; i < stackTrace.FrameCount && frames.Count < depth; i++)
+        {
+            if (stackTrace.GetFrame(i) is not StackFrame frame ||
+                frame.GetMethod() is not MethodBase method)
+            {
+                continue;
+            }
+
+            // Filter out framework code, compiler-generated code, and other non-application code
+            if (!IsApplicationCode(method))
+            {
+                continue;
+            }
+
+            int lineNumber = frame.GetFileLineNumber();
+            string className = method.DeclaringType?.Name ?? "Unknown";
+            string methodName = method.Name;
+
+            if (lineNumber > 0)
+            {
+                frames.Add($"{className}.{methodName}:{lineNumber}");
+            }
+            else
+            {
+                frames.Add($"{className}.{methodName}");
+            }
+        }
+
+        return [.. frames];
+    }
+
+    private static bool IsApplicationCode(MethodBase method)
+    {
+        if (method.DeclaringType == null)
+        {
+            return false;
+        }
+
+        string typeNamespace = method.DeclaringType.Namespace ?? string.Empty;
+
+        // Only include ProtonVPN application code
+        if (!typeNamespace.StartsWith("ProtonVPN", StringComparison.Ordinal))
+        {
+            return false;
+        }
+
+        // Exclude compiler-generated code
+        if (method.DeclaringType.IsDefined(typeof(CompilerGeneratedAttribute), false) ||
+            method.IsDefined(typeof(CompilerGeneratedAttribute), false))
+        {
+            return false;
+        }
+
+        return true;
     }
 
     private void AddMessageToRecentLogs(string message, Exception exception = null, [CallerMemberName] string level = "")

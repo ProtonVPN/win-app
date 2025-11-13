@@ -90,7 +90,7 @@ public class ProfilesFileReaderWriter : IProfilesFileReaderWriter
 
     public void Save(List<IConnectionProfile> profiles)
     {
-        _logger.Info<AppLog>("Writing profiles file.");
+        _logger.Info<AppLog>($"Writing {profiles.Count} profiles to file.");
 
         List<SerializableProfile> serializableProfiles =
             _entityMapper.Map<IConnectionProfile, SerializableProfile>(profiles);

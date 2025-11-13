@@ -22,67 +22,96 @@ using System.Collections.Generic;
 using System.Linq;
 using ProtonVPN.Logging.Contracts;
 
-namespace ProtonVPN.Dns.Tests.Mocks
+namespace ProtonVPN.Dns.Tests.Mocks;
+
+public class MockOfLogger : ILogger
 {
-    public class MockOfLogger : ILogger
+    private readonly IList<Log> _logs = new List<Log>();
+    public IReadOnlyList<Log> Logs => _logs as IReadOnlyList<Log>;
+    private object _lock = new();
+
+    public IList<string> GetRecentLogs()
     {
-        private readonly IList<Log> _logs = new List<Log>();
-        public IReadOnlyList<Log> Logs => _logs as IReadOnlyList<Log>;
-        private object _lock = new();
-
-        public IList<string> GetRecentLogs()
+        IList<string> result;
+        lock (_lock)
         {
-            IList<string> result;
-            lock (_lock)
-            {
-                result = _logs.Select(l => l.Message).ToList();
-            }
-            return result;
+            result = _logs.Select(l => l.Message).ToList();
         }
+        return result;
+    }
 
-        public void Debug<TEvent>(string message, Exception exception = null, string sourceFilePath = "",
-            string sourceMemberName = "", int sourceLineNumber = 0) where TEvent : ILogEvent, new()
+    public void Debug<TEvent>(
+        string message,
+        Exception exception = null,
+        int stackTraceDepth = 0,
+        string sourceFilePath = "",
+        string sourceMemberName = "",
+        int sourceLineNumber = 0)
+        where TEvent : ILogEvent, new()
+    {
+        lock (_lock)
         {
-            lock (_lock)
-            {
-                _logs.Add(new Log(LogSeverity.Debug, typeof(TEvent), message, exception, sourceFilePath, sourceMemberName, sourceLineNumber));
-            }
+            _logs.Add(new Log(LogSeverity.Debug, typeof(TEvent), message, exception, sourceFilePath, sourceMemberName, sourceLineNumber));
         }
+    }
 
-        public void Info<TEvent>(string message, Exception exception = null, string sourceFilePath = "",
-            string sourceMemberName = "", int sourceLineNumber = 0) where TEvent : ILogEvent, new()
+    public void Info<TEvent>(
+        string message,
+        Exception exception = null,
+        int stackTraceDepth = 0,
+        string sourceFilePath = "",
+        string sourceMemberName = "",
+        int sourceLineNumber = 0)
+        where TEvent : ILogEvent, new()
+    {
+        lock (_lock)
         {
-            lock (_lock)
-            {
-                _logs.Add(new Log(LogSeverity.Info, typeof(TEvent), message, exception, sourceFilePath, sourceMemberName, sourceLineNumber));
-            }
+            _logs.Add(new Log(LogSeverity.Info, typeof(TEvent), message, exception, sourceFilePath, sourceMemberName, sourceLineNumber));
         }
+    }
 
-        public void Warn<TEvent>(string message, Exception exception = null, string sourceFilePath = "",
-            string sourceMemberName = "", int sourceLineNumber = 0) where TEvent : ILogEvent, new()
+    public void Warn<TEvent>(
+        string message,
+        Exception exception = null,
+        int stackTraceDepth = 0,
+        string sourceFilePath = "",
+        string sourceMemberName = "",
+        int sourceLineNumber = 0)
+        where TEvent : ILogEvent, new()
+    {
+        lock (_lock)
         {
-            lock (_lock)
-            {
-                _logs.Add(new Log(LogSeverity.Warn, typeof(TEvent), message, exception, sourceFilePath, sourceMemberName, sourceLineNumber));
-            }
+            _logs.Add(new Log(LogSeverity.Warn, typeof(TEvent), message, exception, sourceFilePath, sourceMemberName, sourceLineNumber));
         }
+    }
 
-        public void Error<TEvent>(string message, Exception exception = null, string sourceFilePath = "",
-            string sourceMemberName = "", int sourceLineNumber = 0) where TEvent : ILogEvent, new()
+    public void Error<TEvent>(
+        string message,
+        Exception exception = null,
+        int stackTraceDepth = 0,
+        string sourceFilePath = "",
+        string sourceMemberName = "",
+        int sourceLineNumber = 0)
+        where TEvent : ILogEvent, new()
+    {
+        lock (_lock)
         {
-            lock (_lock)
-            {
-                _logs.Add(new Log(LogSeverity.Error, typeof(TEvent), message, exception, sourceFilePath, sourceMemberName, sourceLineNumber));
-            }
+            _logs.Add(new Log(LogSeverity.Error, typeof(TEvent), message, exception, sourceFilePath, sourceMemberName, sourceLineNumber));
         }
+    }
 
-        public void Fatal<TEvent>(string message, Exception exception = null, string sourceFilePath = "",
-            string sourceMemberName = "", int sourceLineNumber = 0) where TEvent : ILogEvent, new()
+    public void Fatal<TEvent>(
+        string message,
+        Exception exception = null,
+        int stackTraceDepth = 0,
+        string sourceFilePath = "",
+        string sourceMemberName = "",
+        int sourceLineNumber = 0)
+        where TEvent : ILogEvent, new()
+    {
+        lock (_lock)
         {
-            lock (_lock)
-            {
-                _logs.Add(new Log(LogSeverity.Fatal, typeof(TEvent), message, exception, sourceFilePath, sourceMemberName, sourceLineNumber));
-            }
+            _logs.Add(new Log(LogSeverity.Fatal, typeof(TEvent), message, exception, sourceFilePath, sourceMemberName, sourceLineNumber));
         }
     }
 }

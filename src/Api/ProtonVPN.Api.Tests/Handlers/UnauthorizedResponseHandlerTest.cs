@@ -192,7 +192,7 @@ public class UnauthorizedResponseHandlerTest
         // Assert
         await _tokenClient.Received(1).RefreshTokenAsync(Arg.Any<CancellationToken>());
         _logger.Received(1).Error<UserLog>($"An error occurred when refreshing the auth token: {exceptionMessage}",
-            null, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
+            null, 0, Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>());
     }
 
     [TestMethod]
