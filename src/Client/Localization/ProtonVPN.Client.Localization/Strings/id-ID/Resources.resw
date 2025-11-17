@@ -2182,8 +2182,11 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Nomor port yang aktif</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Nomor port yang aktif tidak dapat diperoleh. Mulai ulang koneksi Anda dan coba lagi.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Masukkan nomor port yang aktif ini ke aplikasi BitTorrent Anda untuk meningkatkan kecepatan P2P Anda</value>
+    <value>Masukkan nomor port yang aktif ke klien torrent atau aplikasi P2P Anda untuk kinerja yang lebih baik.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Meningkatkan kecepatan unduhan peer-to-peer</value>
@@ -2785,7 +2788,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Salin nomor port</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Tentukan nomor port ini pada aplikasi BitTorrent Anda untuk memperoleh kecepatan yang lebih.</value>
+    <value>Buka klien torrent atau aplikasi P2P Anda dan masukkan nomor ini.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Anda telah mencapai batas jumlah perangkat Anda. Untuk menghubungkan ulang ke VPN, silakan putuskan koneksi dari perangkat lain.</value>
@@ -3345,7 +3348,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Penerusan port</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Port yang aktif:</value>
+    <value>Nomor port yang aktif:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Salin nomor port</value>
@@ -3374,6 +3377,9 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Dapatkan notifikasi pada saat nomor port aktif yang Anda gunakan berubah.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Tidak tersedia</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokol</value>

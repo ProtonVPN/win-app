@@ -2257,8 +2257,11 @@ Un carico elevato può rallentare la connessione.</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Numero di porta attiva</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Impossibile recuperare il numero di porta attivo. Riavvia la tua connessione e riprova.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Inserisci il numero di porta attiva nell'app BitTorrent per migliorare la velocità P2P</value>
+    <value>Inserisci il numero di porta attivo nel tuo client torrent o app P2P per prestazioni migliori.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Migliora le velocità di download peer-to-peer</value>
@@ -2893,7 +2896,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Copia il numero della porta</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Imposta questo numero nella tua app BitTorrent per una maggiore velocità.</value>
+    <value>Vai al tuo client torrent o app P2P e inserisci questo numero.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Hai raggiunto il limite massimo di dispositivi. Per riconnetterti alla VPN, disconnettiti da un altro dispositivo.</value>
@@ -3453,7 +3456,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Port forwarding</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Porta attiva:</value>
+    <value>Numero di porta attivo:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Copia il numero della porta</value>
@@ -3482,6 +3485,9 @@ Un carico elevato può rallentare la connessione.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Ricevi una notifica quando il tuo numero di porta attivo cambia.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Non disponibile</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocollo</value>

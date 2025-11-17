@@ -2257,8 +2257,11 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Aktiivisen portin numero</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Cannot retrieve active port number. Restart your connection and try again.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Syötä aktiivinen porttinumero BitTorrent-sovellukseesi parantaaksesi P2P-nopeuksiasi.</value>
+    <value>Enter the active port number into your torrent client or P2P app for enhanced performance.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Parantaa P2P-vertaisverkkojen latausnopeuksia</value>
@@ -2893,7 +2896,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Kopioi portin numero</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Määritä tämä numero BitTorrent-sovellukseesi korkeampaa nopeutta varten.</value>
+    <value>Go to your torrent client or P2P app and enter this number.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>You've reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
@@ -3453,7 +3456,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Porttiohjaus</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Aktiivinen portti:</value>
+    <value>Active port number:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Kopioi portin numero</value>
@@ -3482,6 +3485,9 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Get notified when your active port number changes.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Unavailable</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokolla</value>

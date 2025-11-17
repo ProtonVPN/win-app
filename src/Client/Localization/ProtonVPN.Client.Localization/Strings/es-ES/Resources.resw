@@ -2257,8 +2257,11 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Número de puerto activo</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>No se pudo recuperar el número de puerto activo. Reinicia tu conexión y vuelve a intentarlo.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Ingresa el puerto activo en la aplicación de BitTorrent para mejorar la velocidad P2P</value>
+    <value>Ingresa el número de puerto activo en tu cliente torrent o aplicación P2P para mejorar el rendimiento.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Mejora las velocidades de descarga peer-to-peer (P2P)</value>
@@ -2893,7 +2896,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Copiar el número de puerto</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Establece este número en tu aplicación BitTorrent para obtener mayor velocidad.</value>
+    <value>Ve a tu cliente de torrent o aplicación P2P e ingresa este número.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Has alcanzado tu límite máximo de dispositivos. Para reconectarte a la VPN, desconéctate de otro dispositivo.</value>
@@ -3453,7 +3456,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Redirección de puertos</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Puerto activo:</value>
+    <value>Número de puerto activo:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Copiar el número de puerto</value>
@@ -3482,6 +3485,9 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Recibe una notificación cuando cambie tu número de puerto activo.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>No disponible</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocolo</value>

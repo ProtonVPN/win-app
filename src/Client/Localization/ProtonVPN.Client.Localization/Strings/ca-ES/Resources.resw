@@ -2258,8 +2258,11 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Número de port actiu</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>No es pot recuperar el número de port actiu. Reinicieu la connexió i torneu-ho a provar.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Introduïu el número de port actiu a la vostra aplicació de BitTorrent per millorar la velocitat P2P</value>
+    <value>Introduïu el número de port actiu al vostre client de torrent o aplicació P2P per un rendiment millorat.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Millora les velocitats de descàrrega d'igual a igual (P2P)</value>
@@ -2894,7 +2897,7 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Copia el número de port</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Establiu aquest número a la vostra aplicació BitTorrent per obtenir més velocitat.</value>
+    <value>Aneu al vostre client de torrent o aplicació P2P i introduïu-hi aquest número.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Heu arribat al límit màxim de dispositius. Per tornar a connectar la VPN, desconnecteu-vos d'algun dispositiu.</value>
@@ -3454,7 +3457,7 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Redirecció de ports</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Port actiu:</value>
+    <value>Número de port actiu:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Copia el número de port</value>
@@ -3483,6 +3486,9 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Rebeu una notificació quan canviï el número de port actiu.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>No disponible</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocol</value>

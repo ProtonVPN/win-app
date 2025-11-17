@@ -2407,8 +2407,11 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Numer aktywnego portu</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Cannot retrieve active port number. Restart your connection and try again.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Podaj numer aktywnego portu w aplikacji BitTorrent, aby zwiększyć prędkość P2P.</value>
+    <value>Enter the active port number into your torrent client or P2P app for enhanced performance.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Zwiększ prędkość pobierania P2P</value>
@@ -3109,7 +3112,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Kopiuj numer portu</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Ustaw ten numer portu w aplikacji BitTorrent dla lepszej prędkości.</value>
+    <value>Go to your torrent client or P2P app and enter this number.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Osiągnięto maksymalny limit urządzeń. Aby połączyć się z siecią VPN, odłącz inne urządzenie.</value>
@@ -3669,7 +3672,7 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Przekierowanie portów</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Aktywny port:</value>
+    <value>Active port number:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Kopiuj numer portu</value>
@@ -3698,6 +3701,9 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Get notified when your active port number changes.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Unavailable</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokół</value>

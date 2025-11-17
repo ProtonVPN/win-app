@@ -2182,8 +2182,11 @@ Error code: {0}</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>使用中的端口号</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Cannot retrieve active port number. Restart your connection and try again.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>将活动端口号输入到您的BitTorrent客户端中，以提升点对点（P2P）传输速度。</value>
+    <value>Enter the active port number into your torrent client or P2P app for enhanced performance.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>提高点对点下载速度</value>
@@ -2785,7 +2788,7 @@ Error code: {0}</value>
     <value>复制端口号</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>在 BitTorrent 程序中使用此端口号即可加速。</value>
+    <value>Go to your torrent client or P2P app and enter this number.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>您已达到最大设备限制。要重新连接 VPN，请从其他设备断开连接。</value>
@@ -3345,7 +3348,7 @@ VPN 连接</value>
     <value>端口转发</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>当前端口：</value>
+    <value>Active port number:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>复制端口号</value>
@@ -3374,6 +3377,9 @@ VPN 连接</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Get notified when your active port number changes.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Unavailable</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>协议</value>

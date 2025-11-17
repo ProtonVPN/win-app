@@ -2257,8 +2257,11 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Aktive Portnummer</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Die aktive Portnummer konnte nicht ermittelt werden. Starte deine Verbindung neu und versuche es noch einmal.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Gib die aktive Portnummer in deine BitTorrent-App ein, um deine P2P-Geschwindigkeit zu verbessern.</value>
+    <value>Gib die aktive Portnummer in deinen Torrent-Client oder deine P2P-App ein, um die Leistung zu verbessern.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Verbessert die P2P-Downloadgeschwindigkeit</value>
@@ -2893,7 +2896,7 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <value>Portnummer kopieren</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Trage diese Nummer in deiner BitTorrent-App ein, um bessere Geschwindigkeiten zu erzielen.</value>
+    <value>Öffne deinen Torrent-Client oder deine P2P-App und gib diese Nummer ein.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Es wurde das maximale Gerätelimit erreicht. Um sich erneut mit VPN verbinden zu können, trenne bitte die Verbindung mit einem anderen Gerät.</value>
@@ -3453,7 +3456,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Port-Weiterleitung</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Aktiver Port:</value>
+    <value>Aktive Portnummer:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Portnummer kopieren</value>
@@ -3482,6 +3485,9 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Lass dich benachrichtigen, wenn sich deine aktive Portnummer ändert.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Nicht verfügbar</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokoll</value>

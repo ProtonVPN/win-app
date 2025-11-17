@@ -2407,8 +2407,11 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Číslo aktívneho portu</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Nie je možné získať číslo aktívneho portu. Reštartujte pripojenie a skúste to znova.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Zadajte číslo aktívneho portu do aplikácie BitTorrent, aby ste zvýšili rýchlosť P2P</value>
+    <value>Zadajte číslo aktívneho portu do svojho torrentového klienta alebo P2P aplikácie pre lepší výkon.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Zlepšuje rýchlosť peer-to-peer sťahovania</value>
@@ -3109,7 +3112,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Kopírovať číslo portu</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Nastavte toto číslo vo vašej aplikácii BitTorrent pre najvyššie rýchlosti.</value>
+    <value>Prejdite do svojho torrentového klienta alebo P2P aplikácie a zadajte toto číslo.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Dosiahli ste maximálny limit počtu zariadení. Ak sa chcete znovu pripojiť k VPN, odpojte sa v inom zariadení.</value>
@@ -3669,7 +3672,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Presmerovanie portu</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Aktívny port:</value>
+    <value>Číslo aktívneho portu:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Kopírovať číslo portu</value>
@@ -3698,6 +3701,9 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Nechajte si zaslať upozornenie, keď sa zmení číslo vášho aktívneho portu.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Nedostupné</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokol</value>

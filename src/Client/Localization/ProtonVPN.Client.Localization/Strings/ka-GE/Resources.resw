@@ -2257,8 +2257,11 @@ Error code: {0}</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>აქტიური პორტის ნომერი</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Cannot retrieve active port number. Restart your connection and try again.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>შეიყვანეთ აქტიური პორტის ნომერი თქვენი BitTorrent-ის აპში P2P-ის სიჩქარის გასაზრდელად</value>
+    <value>Enter the active port number into your torrent client or P2P app for enhanced performance.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>აუმჯობესებს თქვენი P2P გადმოწერის სიჩქარეს</value>
@@ -2893,7 +2896,7 @@ Error code: {0}</value>
     <value>პორტის ნომრის კოპირება</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>დააყენეთ ეს რიცხვი BitTorrent-ის თქვენ აპლიკაციაში უფრო მეტი სიჩქარის მისაღებად.</value>
+    <value>Go to your torrent client or P2P app and enter this number.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>You've reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
@@ -3453,7 +3456,7 @@ VPN მიერთება</value>
     <value>პორტის გადამისამართება</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>აქტიური პორტი:</value>
+    <value>Active port number:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>პორტის ნომრის კოპირება</value>
@@ -3482,6 +3485,9 @@ VPN მიერთება</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Get notified when your active port number changes.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Unavailable</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>პროტოკოლი</value>

@@ -2257,8 +2257,11 @@ Error code: {0}</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Active port number</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Cannot retrieve active port number. Restart your connection and try again.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Enter the active port number into your BitTorrent app to improve your P2P speeds</value>
+    <value>Enter the active port number into your torrent client or P2P app for enhanced performance.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Improves peer-to-peer download speeds</value>
@@ -2893,7 +2896,7 @@ Error code: {0}</value>
     <value>کپی کردن عدد port</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>این شماره را در برنامه BitTorrent خود تنظیم کنید تا از سرعت بیشتر بهره ببرید.</value>
+    <value>Go to your torrent client or P2P app and enter this number.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>You've reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
@@ -3453,7 +3456,7 @@ Secure Core</value>
     <value>Port forwarding</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Port فعال:</value>
+    <value>Active port number:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>کپی کردن عدد port</value>
@@ -3482,6 +3485,9 @@ Secure Core</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Get notified when your active port number changes.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Unavailable</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>پروتکل</value>

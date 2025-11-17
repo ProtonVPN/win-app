@@ -2407,8 +2407,11 @@
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Номер активного порту</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Cannot retrieve active port number. Restart your connection and try again.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Введіть номер активного порту в програмі BitTorrent, щоб покращити швидкість P2P</value>
+    <value>Enter the active port number into your torrent client or P2P app for enhanced performance.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Покращення швидкості завантажень peer-to-peer</value>
@@ -3109,7 +3112,7 @@
     <value>Копіювати номер порту</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Встановіть це значення у вашій програмі BitTorrent для вищої швидкості.</value>
+    <value>Go to your torrent client or P2P app and enter this number.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Ви досягли ліміту пристроїв. Щоб під'єднати цей пристрій до VPN, від'єднайте інший.</value>
@@ -3669,7 +3672,7 @@ VPN-з'єднання</value>
     <value>Переспрямування портів</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Активний порт:</value>
+    <value>Active port number:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Копіювати номер порту</value>
@@ -3698,6 +3701,9 @@ VPN-з'єднання</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Отримувати сповіщення, коли змінюється номер активного порту.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Unavailable</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Протокол</value>

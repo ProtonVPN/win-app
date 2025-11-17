@@ -2257,8 +2257,11 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Aktív portszám</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Cannot retrieve active port number. Restart your connection and try again.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Adja meg az aktív portszámot a BitTorrent alkalmazásban a P2P sebesség javításához</value>
+    <value>Enter the active port number into your torrent client or P2P app for enhanced performance.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Javítja a peer-to-peer letöltési sebességet</value>
@@ -2893,7 +2896,7 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Port számának másolása</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>A nagyobb sebesség érdekében állítsa be ezt a számot a BitTorrent alkalmazásban.</value>
+    <value>Go to your torrent client or P2P app and enter this number.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Elérte a maximális eszközlimitet. A VPN-hez való újbóli csatlakozáshoz kérjük, válassza le a kapcsolatot egy másik eszközről.</value>
@@ -3453,7 +3456,7 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Port átirányítás</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Aktív port:</value>
+    <value>Active port number:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Port számának másolása</value>
@@ -3482,6 +3485,9 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Get notified when your active port number changes.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Unavailable</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokoll</value>

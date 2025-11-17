@@ -2407,8 +2407,11 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Číslo aktivního portu</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Nelze získat číslo aktivního portu. Restartujte své připojení a zkuste to znovu.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Zadejte číslo aktivního portu do aplikace BitTorrent, abyste zvýšili rychlost P2P</value>
+    <value>Pro lepší výkon zadejte číslo aktivního portu do svého torrentového klienta nebo aplikace P2P.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Zvyšuje rychlost stahování peer-to-peer</value>
@@ -3109,7 +3112,7 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
     <value>Kopírovat číslo portu</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Nastavte toto číslo ve vaší aplikaci BitTorrent pro nejvyšší rychlosti.</value>
+    <value>Přejděte do svého torrentového klienta nebo aplikace P2P a zadejte toto číslo.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Dosáhli jste limitu maximálního počtu zařízení. Chcete-li se znovu připojit k VPN, odpojte nejprve jiné zařízení.</value>
@@ -3669,7 +3672,7 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
     <value>Přesměrování portů</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Aktivní port:</value>
+    <value>Číslo aktivního portu:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Kopírovat číslo portu</value>
@@ -3698,6 +3701,9 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Dostávejte upozornění na změnu čísla vašeho aktivního portu.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Nedostupné</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokol</value>

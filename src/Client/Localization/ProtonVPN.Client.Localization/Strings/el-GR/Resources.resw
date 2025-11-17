@@ -2257,8 +2257,11 @@
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Ενεργός αριθμός θύρας</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Δεν είναι δυνατή η ανάκτηση του ενεργού αριθμού θύρας. Επανεκκινήστε τη σύνδεσή σας και δοκιμάστε ξανά.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Εισαγάγετε τον αριθμό ενεργού θύρας στην εφαρμογή BitTorrent για να βελτιώσετε τις ταχύτητες P2P</value>
+    <value>Εισαγάγετε τον αριθμό ενεργής θύρας στον torrent client ή την P2P εφαρμογή σας για βελτιωμένη απόδοση.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Βελτιώνει τις ταχύτητες λήψης peer-to-peer</value>
@@ -2893,7 +2896,7 @@
     <value>Αντιγραφή αριθμού θύρας</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Για μεγαλύτερη ταχύτητα, εφαρμόστε αυτόν τον αριθμό στην εφαρμογή σας BitTorrent.</value>
+    <value>Πηγαίνετε στον πελάτη torrent ή την εφαρμογή P2P και εισαγάγετε αυτόν τον αριθμό.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Έχετε συμπληρώσει το μέγιστο όριο συσκευών. Για να συνδεθείτε ξανά στο VPN, παρακαλούμε αποσυνδεθείτε από την άλλη συσκευή.</value>
@@ -3453,7 +3456,7 @@
     <value>Προώθηση θυρών</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Ενεργή θύρα:</value>
+    <value>Ενεργός αριθμός θύρας:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Αντιγραφή αριθμού θύρας</value>
@@ -3482,6 +3485,9 @@
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Λάβετε ειδοποίηση όταν αλλάζει ο ενεργός σας αριθμός θύρας.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Μη διαθέσιμο</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Πρωτόκολλο</value>

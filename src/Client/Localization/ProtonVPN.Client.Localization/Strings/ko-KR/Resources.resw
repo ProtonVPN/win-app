@@ -2182,8 +2182,11 @@ Error code: {0}</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>활성 포트 번호</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Cannot retrieve active port number. Restart your connection and try again.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>P2P 속도를 향상시키기 위해 BitTorrent 앱으로 활성 포트 번호를 입력하세요.</value>
+    <value>Enter the active port number into your torrent client or P2P app for enhanced performance.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>피어 투 피어 (P2P) 다운로드 속도를 개선하세요</value>
@@ -2785,7 +2788,7 @@ Error code: {0}</value>
     <value>포트 번호 복사</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>더 빠른 속도를 위해 BitTorrent 앱에서 이 번호로 설정하세요.</value>
+    <value>Go to your torrent client or P2P app and enter this number.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>최대 기기 수 제한에 도달했습니다. VPN에 다시 연결하기 위해, 다른 기기에서 연결 해제해주세요.</value>
@@ -3345,7 +3348,7 @@ VPN 연결</value>
     <value>포트 포워딩</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>활성 포트:</value>
+    <value>Active port number:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>포트 번호 복사</value>
@@ -3374,6 +3377,9 @@ VPN 연결</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>활성 포트 번호 변경 시 알림을 받습니다.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Unavailable</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>프로토콜</value>

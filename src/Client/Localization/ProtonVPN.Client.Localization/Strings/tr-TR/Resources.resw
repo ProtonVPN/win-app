@@ -2257,8 +2257,11 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Etkin bağlantı noktası</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Cannot retrieve active port number. Restart your connection and try again.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>P2P hızınızı artırmak için BitTorrent uygulamanıza etkin bağlantı noktasını yazın</value>
+    <value>Enter the active port number into your torrent client or P2P app for enhanced performance.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Eşler arası indirme hızlarını iyileştirir</value>
@@ -2893,7 +2896,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Bağlantı noktasını kopyala</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Daha yüksek hız elde etmek için BitTorrent uygulamasında bu numarayı ayarlayın.</value>
+    <value>Go to your torrent client or P2P app and enter this number.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>En fazla aygıt sayısı sınırınıza ulaştınız. Yeniden VPN bağlantısı kurmak için lütfen başka bir aygıtın bağlantısını kesin.</value>
@@ -3453,7 +3456,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Bağlantı noktası yönlendirme</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Etkin bağlantı noktası:</value>
+    <value>Active port number:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Bağlantı noktası numarasını kopyala</value>
@@ -3482,6 +3485,9 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Etkin bağlantı noktası numaranız değiştiğinde bildirim alın.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Unavailable</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>İletişim kuralı</value>

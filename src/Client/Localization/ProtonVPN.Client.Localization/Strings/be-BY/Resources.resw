@@ -2407,8 +2407,11 @@
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Нумар актыўнага парта</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Немагчыма атрымаць нумар актыўнага парта. Перазапусціце ваша падключэнне і паспрабуйце яшчэ раз.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Увядзіце нумар актыўнага парта ў праграму BitTorrent, каб палепшыць хуткасць P2P</value>
+    <value>Увядзіце нумар актыўнага порта ў свой кліент торэнт або праграму P2P для паляпшэння прадукцыйнасці.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Палепшыце хуткасць спампоўвання аднарангавага падключэння</value>
@@ -3109,7 +3112,7 @@
     <value>Скапіяваць нумар парта</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Задаць гэты нумар у вашай праграме BitTorrent для павелічэння хуткасці.</value>
+    <value>Перайдзіце ў свой кліент торэнт або праграму P2P і ўвядзіце гэты нумар.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Дасягнута абмежаванне па максімальнай колькасці прылад. Адключыце якую-небудзь прыладу, каб перападключыцца да VPN.</value>
@@ -3669,7 +3672,7 @@ Secure Core</value>
     <value>Перанакіраванне партоў</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Актыўны порт:</value>
+    <value>Нумар актыўнага парта:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Скапіяваць нумар парта</value>
@@ -3698,6 +3701,9 @@ Secure Core</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Апавяшчаць, калі змяняецца нумар актыўнага парта.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Недаступна</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Пратакол</value>

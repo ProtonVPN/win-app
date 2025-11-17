@@ -2332,8 +2332,11 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Număr port activ</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Nu se poate prelua numărul portului activ. Reporniți conexiunea și reîncercați.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Introduceți numărul portului activ în aplicația BitTorrent pentru a vă îmbunătăți viteza P2P.</value>
+    <value>Introduceți numărul portului activ în clientul de torrent sau aplicația P2P pentru o performanță îmbunătățită.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Îmbunătățește viteza de descărcare persoană-la-persoană (P2P)</value>
@@ -3001,7 +3004,7 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
     <value>Copiere număr port</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Setați acest număr în aplicația BitTorrent pentru o viteză sporită.</value>
+    <value>Accesați clientul de torrente sau aplicația P2P și introduceți acest număr.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Ați atins limita de dispozitive utilizate. Pentru a vă reconecta la VPN, deconectați-vă de pe alt dispozitiv.</value>
@@ -3233,7 +3236,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>P2P</value>
   </data>
   <data name="Profiles_Default_RandomConnection">
-    <value>Conexiune aleatoare</value>
+    <value>Conexiune aleatorie</value>
   </data>
   <data name="Profiles_Default_Streaming">
     <value>Transmisii în flux SUA</value>
@@ -3561,7 +3564,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Redirecționare port</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Port activ:</value>
+    <value>Număr port activ:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Copier număr port</value>
@@ -3590,6 +3593,9 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Primiți notificări când numărul portului activ se modifică.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Indisponibil</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocol</value>

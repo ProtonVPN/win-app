@@ -2257,8 +2257,11 @@ Foutcode: {0}</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Actieve poortnummer</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Cannot retrieve active port number. Restart your connection and try again.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Voer het actieve poortnummer in op uw BitTorrent-app in om uw P2P-snelheid te verbeteren</value>
+    <value>Enter the active port number into your torrent client or P2P app for enhanced performance.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Verbeter uw peer-to-peer downloadsnelheid</value>
@@ -2893,7 +2896,7 @@ Foutcode: {0}</value>
     <value>Poortnummer kopiëren</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Stel dit nummer in uw BitTorrent-app in voor hogere snelheid.</value>
+    <value>Go to your torrent client or P2P app and enter this number.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>U hebt uw maximale apparaatlimiet bereikt. Om opnieuw verbinding te maken met VPN, verbreek de verbinding van een ander apparaat.</value>
@@ -3453,7 +3456,7 @@ VPN-verbinding</value>
     <value>Port forwarding</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Actieve poort:</value>
+    <value>Active port number:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Poortnummer kopiëren</value>
@@ -3482,6 +3485,9 @@ VPN-verbinding</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Krijg een melding wanneer uw actieve poortnummer wijzigt.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Unavailable</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocol</value>

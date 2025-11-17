@@ -2182,8 +2182,11 @@
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>アクティブなポート番号</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>アクティブなポート番号を取得できません。接続を再起動して再度お試しください。</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>P2P速度を向上させるために、BitTorrentアプリにアクティブなポート番号を入力してください</value>
+    <value>パフォーマンス向上のため、アクティブなポート番号をトレントクライアントまたはP2Pアプリに入力してください。</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>ピアツーピアのダウンロード速度の向上</value>
@@ -2785,7 +2788,7 @@
     <value>ポート番号をコピー</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>速度を上げるために BitTorrent へこの番号を指定します。</value>
+    <value>お使いのトレントクライアントまたはP2Pアプリを開き、この番号を入力してください。</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>最大のデバイス数に達しました。VPNに再接続するには、他のデバイスで切断してください。</value>
@@ -3345,7 +3348,7 @@ VPN接続</value>
     <value>ポート転送</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>有効なポート:</value>
+    <value>アクティブなポート番号:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>ポート番号をコピー</value>
@@ -3374,6 +3377,9 @@ VPN接続</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>お客様の有効なポート転送番号が変更されたときに通知を受け取る。</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>利用不可</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>プロトコル</value>

@@ -2257,8 +2257,11 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Aktivt portnummer</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Kan inte hämta aktivt portnummer. Starta om din anslutning och försök igen.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Ange det aktiva portnumret i din BitTorrent-app för att förbättra dina P2P-hastigheter</value>
+    <value>Ange det aktiva portnumret i din torrentklient eller P2P-app för förbättrad prestanda.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Förbättrar peer-to-peer nedladdningshastigheter</value>
@@ -2893,7 +2896,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Kopiera portnummer</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Ställ in detta nummer i din BitTorrent-app för högre hastighet.</value>
+    <value>Gå till din torrentklient eller P2P-app och ange detta nummer.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Du har nått din maximala enhetsgräns. För att återansluta till VPN, koppla från annan enhet.</value>
@@ -3453,7 +3456,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Vidarebefordring av port</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Aktiv port:</value>
+    <value>Aktivt portnummer:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Kopiera portnummer</value>
@@ -3482,6 +3485,9 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Bli aviserad när ditt aktiva portnummer ändras.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Otillgänglig</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokoll</value>

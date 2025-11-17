@@ -2257,8 +2257,11 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Número de puerto activo</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>No se puede recuperar el número de puerto activo. Reinicie su conexión e intente de nuevo.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Ingrese el puerto activo en la app de BitTorrent para mejorar la velocidad P2P</value>
+    <value>Ingrese el número de puerto activo en su cliente torrent o aplicación P2P para mejorar el rendimiento.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Mejora sus velocidades de descarga peer-to-peer</value>
@@ -2893,7 +2896,7 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
     <value>Copiar número de puerto</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Establezca este número en su aplicación BitTorrent para obtener mayor velocidad.</value>
+    <value>Vaya a su cliente de torrent o aplicación P2P e ingrese este número.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Ha alcanzado el límite máximo de dispositivos. Para reconectarse a una VPN, desconecte alguno de sus dispositivos.</value>
@@ -3453,7 +3456,7 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
     <value>Redirección de puertos</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Puerto activo:</value>
+    <value>Número de puerto activo:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Copiar número de puerto</value>
@@ -3482,6 +3485,9 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Reciba una notificación cuando cambie su número de puerto activo.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>No disponible</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocolo</value>

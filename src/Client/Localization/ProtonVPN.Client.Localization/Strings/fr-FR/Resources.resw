@@ -2257,8 +2257,11 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Numéro de port actif</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Impossible de récupérer le numéro de port actif. Redémarrez votre connexion et réessayez.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Saisissez le numéro du port actif dans votre application BitTorrent pour améliorer vos vitesses P2P.</value>
+    <value>Saisissez le numéro de port actif dans votre client torrent ou application P2P pour des performances améliorées.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Améliore les vitesses de téléchargement peer-to-peer (P2P)</value>
@@ -2893,7 +2896,7 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>Copier le numéro de port</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Paramétrez ce numéro dans votre application BitTorrent pour une vitesse plus élevée.</value>
+    <value>Allez dans votre client torrent ou application P2P et saisissez ce numéro.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Vous avez atteint la limite maximale d'appareils. Pour vous reconnecter au VPN, veuillez vous déconnecter d'un autre appareil.</value>
@@ -3453,7 +3456,7 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>Redirection de port</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Port actif :</value>
+    <value>Numéro de port actif :</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Copier le numéro de port</value>
@@ -3482,6 +3485,9 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Soyez averti lorsque votre numéro de port actif change.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Indisponible</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocole</value>

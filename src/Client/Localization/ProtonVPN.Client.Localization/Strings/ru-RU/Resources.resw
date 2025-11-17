@@ -2407,8 +2407,11 @@ Error code: {0}</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Номер активного порта</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Cannot retrieve active port number. Restart your connection and try again.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Введите номер активного порта в приложении BitTorrent, чтобы повысить скорость обмена файлами</value>
+    <value>Enter the active port number into your torrent client or P2P app for enhanced performance.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Увеличивает скорость скачивания в одноранговой сети</value>
@@ -3109,7 +3112,7 @@ Error code: {0}</value>
     <value>Скопировать номер порта</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Установите это число в приложении BitTorrent для увеличения скорости.</value>
+    <value>Go to your torrent client or P2P app and enter this number.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Достигнуто максимальное количество устройств. Чтобы переподключиться к VPN, отключитесь от другого устройства.</value>
@@ -3669,7 +3672,7 @@ Error code: {0}</value>
     <value>Переадресация портов</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Активный порт:</value>
+    <value>Active port number:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Скопировать номер порта</value>
@@ -3698,6 +3701,9 @@ Error code: {0}</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Get notified when your active port number changes.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Unavailable</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Протокол</value>

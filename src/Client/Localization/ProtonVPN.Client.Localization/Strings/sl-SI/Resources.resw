@@ -2407,8 +2407,11 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
   <data name="Flyouts_PortForwarding_ActivePort">
     <value>Aktivna številka vrat</value>
   </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Cannot retrieve active port number. Restart your connection and try again.</value>
+  </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Vnesite številko aktivnih vrat v svojo aplikacijo BitTorrent, da izboljšate hitrosti P2P</value>
+    <value>Enter the active port number into your torrent client or P2P app for enhanced performance.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Izboljša hitrost prenosa med P2P</value>
@@ -3109,7 +3112,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Kopiraj številko vrat</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Nastavite to številko v aplikaciji BitTorrent za večjo hitrost.</value>
+    <value>Go to your torrent client or P2P app and enter this number.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>You've reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
@@ -3669,7 +3672,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Posredovanje vrat</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Aktivna vrata:</value>
+    <value>Active port number:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Kopiraj številko vrat</value>
@@ -3698,6 +3701,9 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
     <value>Get notified when your active port number changes.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Unavailable</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokol</value>
