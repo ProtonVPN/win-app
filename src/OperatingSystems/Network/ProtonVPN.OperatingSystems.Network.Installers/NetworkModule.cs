@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,6 +19,7 @@
 
 using Autofac;
 using ProtonVPN.OperatingSystems.Network.NetworkInterface;
+using ProtonVPN.OperatingSystems.Network.Routing;
 
 namespace ProtonVPN.OperatingSystems.Network.Installers;
 
@@ -30,5 +31,6 @@ public class NetworkModule : Module
         builder.RegisterType<SystemNetworkInterfaces>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NetworkInterfaceLoader>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NetworkUtilities>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<RoutingTableHelper>().AsImplementedInterfaces().SingleInstance();
     }
 }

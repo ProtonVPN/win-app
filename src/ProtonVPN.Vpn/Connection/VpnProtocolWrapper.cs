@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,7 +23,6 @@ using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Vpn.Common;
-using ProtonVPN.Vpn.NRPT;
 
 namespace ProtonVPN.Vpn.Connection;
 
@@ -31,17 +30,14 @@ internal class VpnProtocolWrapper : ISingleVpnConnection
 {
     private readonly ISingleVpnConnection _openVpnConnection;
     private readonly ISingleVpnConnection _wireGuardConnection;
-    private readonly INrptWrapper _nrptWrapper;
 
     private VpnProtocol _vpnProtocol;
 
     public VpnProtocolWrapper(ISingleVpnConnection openVpnConnection,
-        ISingleVpnConnection wireGuardConnection,
-        INrptWrapper nrptWrapper)
+        ISingleVpnConnection wireGuardConnection)
     {
         _openVpnConnection = openVpnConnection;
         _wireGuardConnection = wireGuardConnection;
-        _nrptWrapper = nrptWrapper;
 
         _openVpnConnection.StateChanged += OnStateChanged;
         _wireGuardConnection.StateChanged += OnStateChanged;
@@ -67,14 +63,7 @@ internal class VpnProtocolWrapper : ISingleVpnConnection
     public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
     {
         _vpnProtocol = config.VpnProtocol;
-        SetNrptConnectionConfig(endpoint, config);
         VpnConnection.Connect(endpoint, credentials, config);
-    }
-
-    private void SetNrptConnectionConfig(VpnEndpoint endpoint, VpnConfig config)
-    {
-        bool isIpv6Supported = config.IsIpv6Enabled && endpoint.Server.IsIpv6Supported;
-        _nrptWrapper.SetConnectionConfig(config.CustomDns, _vpnProtocol, isIpv6Supported);
     }
 
     public void Disconnect(VpnError error)

@@ -8,7 +8,7 @@ Class       = WFPCALLOUTS
 ClassGuid   = {57465043-616C-6C6F-7574-5F636C617373}
 Provider    = %ManufacturerName%
 CatalogFile = ProtonVPN.CalloutDriver.cat
-DriverVer = 11/19/2024,11.46.44.670
+DriverVer = 11/06/2025,6.44.21.865
 PnpLockdown = 1
 
 [SourceDisksNames]
@@ -18,8 +18,9 @@ PnpLockdown = 1
 ProtonVPN.CalloutDriver.sys = 1,,
 
 [DestinationDirs]
-DefaultDestDir                    = 12         ; %WinDir%\System32\Drivers
-ProtonVPN.CalloutDriver.Files = 12         ; %WinDir%\System32\Drivers
+DefaultDestDir                   = 12    ; %WinDir%\System32\Drivers
+ProtonVPN.CalloutDriver.Files    = 12    ; %WinDir%\System32\Drivers
+ProtonVPN.CalloutDriver.DelFiles = 12    ; %WinDir%\System32\Drivers
 
 [DefaultInstall.NTamd64]
 OptionDesc = %ServiceDescription%
@@ -27,26 +28,29 @@ CopyFiles  = ProtonVPN.CalloutDriver.Files
 
 [DefaultUninstall.NTamd64]
 LegacyUninstall = 1
-;DelFiles = ProtonVPN.CalloutDriver.Files
+DelFiles = ProtonVPN.CalloutDriver.DelFiles
 
 [DefaultInstall.NTamd64.Services]
 AddService = %ServiceName%,,ProtonVPN.CalloutDriver.Service
 
 [DefaultUninstall.NTamd64.Services]
-DelService = %ServiceName%,0x200               ; SPSVCINST_STOPSERVICE
+DelService = %ServiceName%,0x200    ; SPSVCINST_STOPSERVICE
 
 [ProtonVPN.CalloutDriver.Files]
-ProtonVPN.CalloutDriver.sys,,,0x00000040   ; COPYFLG_OVERWRITE_OLDER_ONLY
+ProtonVPN.CalloutDriver.sys,,,0x00000040    ; COPYFLG_OVERWRITE_OLDER_ONLY
+
+[ProtonVPN.CalloutDriver.DelFiles]
+ProtonVPN.CalloutDriver.sys,,,0x00000040    ; COPYFLG_OVERWRITE_OLDER_ONLY
 
 [ProtonVPN.CalloutDriver.Service]
 DisplayName    = %ServiceDisplayName%
 Description    = %ServiceDescription%
-ServiceType    = 1                             ; SERVICE_KERNEL_DRIVER
-StartType      = 3                             ; SERVICE_DEMAND_START
-ErrorControl   = 1                             ; SERVICE_ERROR_NORMAL
+ServiceType    = 1                                   ; SERVICE_KERNEL_DRIVER
+StartType      = 3                                   ; SERVICE_DEMAND_START
+ErrorControl   = 1                                   ; SERVICE_ERROR_NORMAL
 ServiceBinary  = %12%\ProtonVPN.CalloutDriver.sys
 LoadOrderGroup = NDIS
-Dependencies   = TCPIP                         ; Load after TCPIP.sys
+Dependencies   = TCPIP                               ; Load after TCPIP.sys
 
 [Strings]
 ManufacturerName   = "Proton AG"

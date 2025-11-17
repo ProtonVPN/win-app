@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,25 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Linq;
-using ProtonVPN.Service.Settings;
+using ProtonVPN.NetworkFilter;
 
-namespace ProtonVPN.Service.SplitTunneling
+namespace ProtonVPN.Service.Firewall;
+
+public interface IPermittedRemoteAddress : IFilterCollection
 {
-    public class IncludeModeApps
-    {
-        private readonly IServiceSettings _serviceSettings;
-
-        public IncludeModeApps(IServiceSettings serviceSettings)
-        {
-            _serviceSettings = serviceSettings;
-        }
-
-        public string[] Value()
-        {
-            return _serviceSettings.SplitTunnelSettings.AppPaths == null
-                ? new string[] { }
-                : _serviceSettings.SplitTunnelSettings.AppPaths.ToArray();
-        }
-    }
+    void Add(string[] addresses, Action action);
 }

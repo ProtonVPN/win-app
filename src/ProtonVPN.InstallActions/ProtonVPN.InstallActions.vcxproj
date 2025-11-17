@@ -144,7 +144,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;..\..\src\bin\x86\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;Userenv.lib;..\..\src\bin\x86\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
       <Command>msbuild ..\ProtonVPN.IpFilterLib\ProtonVPN.IpFilterLib.vcxproj /property:Configuration=Debug /property:Platform=x86 -target:Clean;Build</Command>
@@ -167,7 +167,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;psapi.lib;..\..\src\bin\x64\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;Userenv.lib;psapi.lib;..\..\src\bin\x64\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
       <Command>msbuild ..\ProtonVPN.IpFilterLib\ProtonVPN.IpFilterLib.vcxproj /property:Configuration=$(Configuration) /property:Platform=x64 -target:Clean;Build</Command>
@@ -190,7 +190,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;psapi.lib;..\..\src\bin\arm64\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;psapi.lib;Userenv.lib;..\..\src\bin\arm64\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
       <Command>msbuild ..\ProtonVPN.IpFilterLib\ProtonVPN.IpFilterLib.vcxproj /property:Configuration=$(Configuration) /property:Platform=arm64 -target:Clean;Build</Command>
@@ -217,7 +217,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;..\..\src\bin\x86\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;Userenv.lib;..\..\src\bin\x86\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -248,7 +248,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;psapi.lib;..\..\src\bin\x64\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;psapi.lib;Userenv.lib;..\..\src\bin\x64\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -279,7 +279,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;psapi.lib;..\..\src\bin\arm64\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>msi.lib;Ws2_32.lib;rpcrt4.lib;fwpuclnt.lib;iphlpapi.lib;psapi.lib;Userenv.lib;..\..\src\bin\arm64\ProtonVPN.IpFilterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>

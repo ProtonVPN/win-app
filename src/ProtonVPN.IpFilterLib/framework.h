@@ -4,8 +4,8 @@
 
 #include "WinSDKVer.h"
 
-#define WINVER 0x0601
-#define _WIN32_WINNT 0x0601
+#define WINVER 0x0602
+#define _WIN32_WINNT 0x0602
 
 // Windows Header Files
 #include <windows.h>

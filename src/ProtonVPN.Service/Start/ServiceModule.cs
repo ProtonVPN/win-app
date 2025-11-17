@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -91,22 +91,12 @@ internal class ServiceModule : Module
         builder.RegisterType<Firewall.Firewall>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<IpFilter>().AsImplementedInterfaces().AsSelf().SingleInstance();
-        builder.RegisterType<IncludeModeApps>().AsSelf().SingleInstance();
         builder.RegisterType<IpLayer>().AsSelf().SingleInstance();
-        builder.Register(c => new SplitTunnel(
-                c.Resolve<IServiceSettings>(),
-                c.Resolve<ISplitTunnelClient>(),
-                c.Resolve<IncludeModeApps>(),
-                c.Resolve<AppFilter>(),
-                c.Resolve<PermittedRemoteAddress>()))
-            .AsImplementedInterfaces()
-            .AsSelf()
-            .SingleInstance();
+        builder.RegisterType<SplitTunnel>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<SystemProcesses>().As<IOsProcesses>().SingleInstance();
-        builder.RegisterType<PermittedRemoteAddress>().AsSelf().SingleInstance();
-        builder.RegisterType<AppFilter>().AsSelf().SingleInstance();
+        builder.RegisterType<PermittedRemoteAddress>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<AppFilter>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<SplitTunnelNetworkFilters>().SingleInstance();
-        builder.RegisterType<BestNetworkInterface>().SingleInstance();
         builder.RegisterType<SplitTunnelClient>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<WintunRegistryFixer>().SingleInstance();
         builder.Register(c => new NetworkSettings(c.Resolve<ILogger>(), c.Resolve<INetworkInterfaceLoader>(), c.Resolve<INetworkUtilities>(), c.Resolve<WintunRegistryFixer>()))

@@ -39,4 +39,6 @@ public interface INetworkInterface
     uint Index { get; }
 
     List<NetworkAddress> GetUnicastAddresses();
+
+    IPAddress? GetPreferredIpv6UnicastAddress();
 }

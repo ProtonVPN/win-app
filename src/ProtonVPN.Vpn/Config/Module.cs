@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -45,9 +45,9 @@ using ProtonVPN.Vpn.PortMapping.Serializers.Common;
 using ProtonVPN.Vpn.PortMapping.UdpClients;
 using ProtonVPN.Vpn.PortScanning;
 using ProtonVPN.Vpn.ServerValidation;
+using ProtonVPN.Vpn.SplitTunnel;
 using ProtonVPN.Vpn.SynchronizationEvent;
 using ProtonVPN.Vpn.WireGuard;
-using ProtonVPN.Vpn.WireGuard.SplitTunnel;
 
 namespace ProtonVPN.Vpn.Config;
 
@@ -62,7 +62,7 @@ public class Module
         builder.RegisterType<OpenVpnDnsServersCreator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<VpnEndpointScanner>().SingleInstance();
         builder.RegisterType<TcpPortScanner>().SingleInstance();
-        builder.RegisterType<WireGuardSplitTunnelRouting>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SplitTunnelRouting>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<UdpPingClient>().SingleInstance();
         builder.RegisterType<WintunAdapter>().SingleInstance();
         builder.RegisterType<TapAdapter>().SingleInstance();
@@ -135,12 +135,13 @@ public class Module
                                     networkInterfaceLoader,
                                     c.Resolve<WintunAdapter>(),
                                     c.Resolve<TapAdapter>(),
+                                    nrptWrapper,
                                     new QueueingEventsWrapper(
                                         taskQueue,
                                         new PortForwardingWrapper(
                                             logger,
                                             portMappingProtocolClient,
-                                            new VpnProtocolWrapper(GetOpenVpnConnection(c), GetWireguardConnection(c), nrptWrapper)))))))));
+                                            new VpnProtocolWrapper(GetOpenVpnConnection(c), GetWireguardConnection(c))))))))));
     }
 
     private ISingleVpnConnection GetWireguardConnection(IComponentContext c)
@@ -154,7 +155,7 @@ public class Module
         IConnectionCertificateCache connectionCertificateCache = c.Resolve<IConnectionCertificateCache>();
         IWireGuardDnsServersCreator wireGuardDnsServersCreator = c.Resolve<IWireGuardDnsServersCreator>();
 
-        return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<IWireGuardSplitTunnelRouting>(),
+        return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<ISplitTunnelRouting>(),
             gatewayCache,
             connectionCertificateCache,
             new WireGuardConnection(logger, config, gatewayCache,
@@ -176,7 +177,7 @@ public class Module
         INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
         IConnectionCertificateCache connectionCertificateCache = c.Resolve<IConnectionCertificateCache>();
 
-        return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<IWireGuardSplitTunnelRouting>(),
+        return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<ISplitTunnelRouting>(),
             gatewayCache,
             connectionCertificateCache,
             new OpenVpnConnection(

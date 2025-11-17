@@ -19,10 +19,10 @@
 
 using System;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Legacy.OS.Net;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
+using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.Service.Settings;
 
 namespace ProtonVPN.Service.Firewall;
@@ -34,12 +34,18 @@ internal class Ipv6 : IIpv6
     private readonly ILogger _logger;
     private readonly IStaticConfiguration _staticConfig;
     private readonly IServiceSettings _serviceSettings;
+    private readonly INetworkUtilities _networkUtilities;
 
-    public Ipv6(ILogger logger, IStaticConfiguration staticConfig, IServiceSettings serviceSettings)
+    public Ipv6(
+        ILogger logger,
+        IStaticConfiguration staticConfig,
+        IServiceSettings serviceSettings,
+        INetworkUtilities networkUtilities)
     {
         _logger = logger;
         _staticConfig = staticConfig;
         _serviceSettings = serviceSettings;
+        _networkUtilities = networkUtilities;
     }
 
     public bool IsEnabled { get; private set; } = true;
@@ -61,7 +67,7 @@ internal class Ipv6 : IIpv6
 
     public void Enable()
     {
-        if (LoggingAction(NetworkUtil.EnableIPv6OnAllAdapters, "Enabling"))
+        if (LoggingAction(_networkUtilities.EnableIPv6OnAllAdapters, "Enabling"))
         {
             IsEnabled = true;
         }
@@ -69,7 +75,7 @@ internal class Ipv6 : IIpv6
 
     private void Disable()
     {
-        if (LoggingAction(NetworkUtil.DisableIPv6OnAllAdapters, "Disabling"))
+        if (LoggingAction(_networkUtilities.DisableIPv6OnAllAdapters, "Disabling"))
         {
             IsEnabled = false;
         }
@@ -77,7 +83,7 @@ internal class Ipv6 : IIpv6
 
     private void EnableOnVPNInterface()
     {
-        LoggingAction(NetworkUtil.EnableIPv6, "Enabling on VPN interface");
+        LoggingAction(_networkUtilities.EnableIPv6, "Enabling on VPN interface");
     }
 
     private bool LoggingAction(Action<string, string> action, string actionMessage)

@@ -2,6 +2,7 @@
 #include <fwpmu.h>
 #include <stdexcept>
 #include <winsock.h>
+#include <userenv.h>
 
 #include "value.h"
 
@@ -233,6 +234,38 @@ namespace ipfilter
         {
             other.blob.data = nullptr;
             other.blob.size = 0;
+        }
+
+        SecurityIdentifier::operator FWP_CONDITION_VALUE()
+        {
+            FWP_CONDITION_VALUE value{};
+
+            value.type = FWP_SID;
+            value.sid = static_cast<SID*>(this->value.as<void>());
+
+            return value;
+        }
+
+        SecurityIdentifier SecurityIdentifier::fromPackageFamilyName(const std::wstring& packageFamilyName)
+        {
+            PSID appContainerSid = nullptr;
+
+            auto result = DeriveAppContainerSidFromAppContainerName(packageFamilyName.c_str(), &appContainerSid);
+            if (result != S_OK)
+            {
+                throw std::runtime_error("Failed to derive app container SID from package family name");
+            }
+
+            SecurityIdentifier id(appContainerSid);
+
+            FreeSid(appContainerSid);
+
+            return id;
+        }
+
+        SecurityIdentifier::SecurityIdentifier(const PSID& sid):
+            value(Buffer(static_cast<const uint8_t*>(sid), GetLengthSid(sid)))
+        {
         }
 
         NetInterfaceId::NetInterfaceId(uint64_t localId): localId(localId)

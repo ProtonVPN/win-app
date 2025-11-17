@@ -32,7 +32,6 @@ public class OpenVpnProcessParams
         string password,
         IReadOnlyCollection<string> customDns,
         SplitTunnelMode splitTunnelMode,
-        IReadOnlyCollection<string> splitTunnelIPs,
         OpenVpnAdapter openVpnAdapter,
         string interfaceGuid)
     {
@@ -41,7 +40,6 @@ public class OpenVpnProcessParams
         Password = password;
         CustomDns = customDns;
         SplitTunnelMode = splitTunnelMode;
-        SplitTunnelIPs = splitTunnelIPs;
         OpenVpnAdapter = openVpnAdapter;
         InterfaceGuid = interfaceGuid;
     }

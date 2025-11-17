@@ -36,6 +36,9 @@ void IPFilterGetLayerKey(
     case (unsigned int)IPFilterLayer::AppConnectRedirectV4:
         spec = FWPM_LAYER_ALE_CONNECT_REDIRECT_V4;
         break;
+    case (unsigned int)IPFilterLayer::AppConnectRedirectV6:
+        spec = FWPM_LAYER_ALE_CONNECT_REDIRECT_V6;
+        break;
     case (unsigned int)IPFilterLayer::OutboundIPPacketV4:
         spec = FWPM_LAYER_OUTBOUND_IPPACKET_V4;
         break;
@@ -240,16 +243,45 @@ unsigned int IPFilterCreateAppFilter(
     unsigned int weight,
     GUID* calloutKey,
     GUID* providerContextKey,
-    const wchar_t* path,
+    const wchar_t* appIdentifier,
+    BOOL isDnsPortExcluded,
     BOOL persistent,
     GUID* filterKey)
 {
     std::vector<ipfilter::condition::Condition> conditions{};
 
-    auto appIdCondition = ipfilter::condition::applicationId(
-        ipfilter::matcher::equal(),
-        ipfilter::value::ApplicationId::fromFilePath(path));
-    conditions.push_back(appIdCondition);
+    if (appIdentifier != nullptr)
+    {
+        // Check if it's a file path (contains backslash or drive letter) vs package family name
+        // Package family names have format like "PackageName_PublisherId" and don't contain path separators
+        bool isFilePath = (wcschr(appIdentifier, L'\\') != nullptr) ||
+            (wcschr(appIdentifier, L'/') != nullptr) ||
+            (wcslen(appIdentifier) >= 3 && appIdentifier[1] == L':');
+
+        if (isFilePath)
+        {
+            conditions.push_back(
+                ipfilter::condition::applicationId(
+                    ipfilter::matcher::equal(),
+                    ipfilter::value::ApplicationId::fromFilePath(appIdentifier)));
+        }
+        else
+        {
+            // Assume it's a package family name
+            conditions.push_back(
+                ipfilter::condition::packageFamilyName(
+                    ipfilter::matcher::equal(),
+                    ipfilter::value::SecurityIdentifier::fromPackageFamilyName(appIdentifier)));
+        }
+    }
+
+    if (isDnsPortExcluded)
+    {
+        conditions.push_back(
+            ipfilter::condition::remotePort(
+                ipfilter::matcher::notEqual(),
+                ipfilter::value::Port(53)));
+    }
 
     return IPFilterCreateFilter(
         sessionHandle,

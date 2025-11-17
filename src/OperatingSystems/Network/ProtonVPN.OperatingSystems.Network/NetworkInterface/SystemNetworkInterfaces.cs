@@ -92,7 +92,7 @@ public class SystemNetworkInterfaces : ISystemNetworkInterfaces
     {
         return TryGet(() =>
         {
-            return GetByLocalAddress(_networkUtilities.GetBestInterfaceIp(hardwareIdToExclude));
+            return GetByLocalAddress(_networkUtilities.GetBestInterfaceIPv4Address(hardwareIdToExclude));
         });
     }
 

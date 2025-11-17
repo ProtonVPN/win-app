@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,6 +19,7 @@
 
 using Autofac;
 using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.KillSwitch;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.OperatingSystems.Network.Contracts;
@@ -38,6 +39,8 @@ public class KillSwitch : IVpnStateAware, IServiceSettingsAware, IStartable
     private readonly INetworkInterfaceLoader _networkInterfaceLoader;
     private VpnState _lastVpnState = new(VpnStatus.Disconnected, default);
     private KillSwitchMode _killSwitchMode;
+
+    private VpnProtocol _lastConnectedProtocol;
 
     public KillSwitch(
         IFirewall firewall,
@@ -64,10 +67,10 @@ public class KillSwitch : IVpnStateAware, IServiceSettingsAware, IStartable
     {
         _lastVpnState = state;
 
-        if (_lastVpnState.VpnProtocol.IsWireGuard())
-        {
-            UpdateLeakProtectionStatus(state);
-        }
+        bool hasVpnProtocolChanged = state.VpnProtocol != _lastConnectedProtocol;
+        UpdateLeakProtectionStatus(state, hasVpnProtocolChanged);
+
+        _lastConnectedProtocol = state.VpnProtocol;
     }
 
     public void OnVpnDisconnected(VpnState state)
@@ -91,12 +94,12 @@ public class KillSwitch : IVpnStateAware, IServiceSettingsAware, IStartable
         }
     }
 
-    private void UpdateLeakProtectionStatus(VpnState state)
+    private void UpdateLeakProtectionStatus(VpnState state, bool hasVpnProtocolChanged = false)
     {
         switch (UpdatedLeakProtectionStatus(state))
         {
             case true:
-                EnableLeakProtection();
+                EnableLeakProtection(hasVpnProtocolChanged);
                 break;
             case false:
                 _firewall.DisableLeakProtection();
@@ -151,9 +154,9 @@ public class KillSwitch : IVpnStateAware, IServiceSettingsAware, IStartable
         }
     }
 
-    private void EnableLeakProtection()
+    private void EnableLeakProtection(bool hasVpnProtocolChanged = false)
     {
-        bool dnsLeakOnly = _serviceSettings.SplitTunnelSettings.Mode == SplitTunnelModeIpcEntity.Permit;
+        bool dnsLeakOnly = _serviceSettings.SplitTunnelSettings.Mode == SplitTunnelModeIpcEntity.Permit && (_lastVpnState.Status == VpnStatus.Connected || _lastVpnState.VpnProtocol.IsOpenVpn());
         bool persistent = _serviceSettings.KillSwitchMode == KillSwitchMode.Hard;
         INetworkInterface networkInterface = _networkInterfaceLoader.GetByVpnProtocol(_lastVpnState.VpnProtocol, _lastVpnState.OpenVpnAdapter);
         uint interfaceIndex = networkInterface?.Index ?? 0;
@@ -165,7 +168,8 @@ public class KillSwitch : IVpnStateAware, IServiceSettingsAware, IStartable
             AddInterfaceFilters = interfaceIndex > 0,
             Persistent = persistent,
             IsLocalAreaNetworkAccessEnabled = _serviceSettings.IsLocalAreaNetworkAccessEnabled,
-            DnsBlockMode = _serviceSettings.DnsBlockMode
+            DnsBlockMode = _serviceSettings.DnsBlockMode,
+            ForceRecreateDnsBlock = hasVpnProtocolChanged,
         };
         _firewall.EnableLeakProtection(firewallParams);
     }
@@ -177,7 +181,7 @@ public class KillSwitch : IVpnStateAware, IServiceSettingsAware, IStartable
             case VpnStatus.Pinging:
             case VpnStatus.Connecting:
             case VpnStatus.Reconnecting:
-            case VpnStatus.Connected when _lastVpnState.VpnProtocol.IsWireGuard():
+            case VpnStatus.Connected:
                 return true;
             case VpnStatus.Disconnecting:
             case VpnStatus.Disconnected:

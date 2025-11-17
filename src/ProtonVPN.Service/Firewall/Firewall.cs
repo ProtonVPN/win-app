@@ -46,6 +46,7 @@ internal class Firewall : IFirewall, IStartable
 
     private FirewallParams _lastParams = FirewallParams.Empty;
     private bool _dnsCalloutFiltersAdded;
+    private bool _isNrptRuleCreated;
 
     private readonly List<ServerAddressFilterCollection> _serverAddressFilterCollection = [];
     private readonly List<FirewallItem> _firewallItems = [];
@@ -121,6 +122,7 @@ internal class Firewall : IFirewall, IStartable
             _firewallItems.Clear();
             LeakProtectionEnabled = false;
             _dnsCalloutFiltersAdded = false;
+            _isNrptRuleCreated = false;
             _calloutDriver.Stop();
             _lastParams = FirewallParams.Empty;
 
@@ -139,6 +141,7 @@ internal class Firewall : IFirewall, IStartable
             _logger.Info<FirewallLog>("Blocking internet");
 
             EnableDnsLeakProtection(firewallParams);
+            PermitFromNetworkInterface(4, firewallParams);
 
             if (!firewallParams.DnsLeakOnly)
             {
@@ -175,16 +178,20 @@ internal class Firewall : IFirewall, IStartable
             RemoveItems(previousInterfaceFilters, _lastParams.SessionType);
         }
 
-        bool wasDnsBlockModeRecreated = false;
-        if (firewallParams.AddInterfaceFilters && (firewallParams.InterfaceIndex != _lastParams.InterfaceIndex || firewallParams.DnsBlockMode != _lastParams.DnsBlockMode))
+        if (firewallParams.AddInterfaceFilters && firewallParams.InterfaceIndex != _lastParams.InterfaceIndex)
         {
             List<Guid> previousGuids = GetFirewallGuidsByTypes(FirewallItemType.PermitInterfaceFilter);
             PermitFromNetworkInterface(4, firewallParams);
             RemoveItems(previousGuids, _lastParams.SessionType);
+        }
 
-            previousGuids = GetFirewallGuidsByTypes(FirewallItemType.DnsCalloutFilter);
+        bool wasDnsBlockModeRecreated = false;
+        if (firewallParams.DnsBlockMode != _lastParams.DnsBlockMode || firewallParams.ForceRecreateDnsBlock)
+        {
+            List<Guid> previousGuids = GetFirewallGuidsByTypes(FirewallItemType.DnsCalloutFilter, FirewallItemType.DnsFilter);
             _dnsCalloutFiltersAdded = false;
             _nrptWrapper.DeleteRule();
+            _isNrptRuleCreated = false;
             CreateDnsBlock(firewallParams);
             RemoveItems(previousGuids, _lastParams.SessionType);
             wasDnsBlockModeRecreated = true;
@@ -194,8 +201,17 @@ internal class Firewall : IFirewall, IStartable
         {
             if (firewallParams.DnsLeakOnly)
             {
-                RemoveItems(GetFirewallGuidsByTypes(FirewallItemType.VariableFilter, FirewallItemType.LocalNetworkFilter), _lastParams.SessionType);
-                RemoveItems(GetFirewallGuidsByTypes(FirewallItemType.BlockOutsideOpenVpnFilter), _lastParams.SessionType);
+                List<Guid> blockOutsideOpenVpnGuids = GetFirewallGuidsByTypes(FirewallItemType.BlockOutsideOpenVpnFilter);
+                List<Guid> baseLeakProtectionGuids = GetFirewallGuidsByTypes(
+                    FirewallItemType.VariableFilter,
+                    FirewallItemType.LocalNetworkFilter);
+
+                EnableDnsLeakProtection(firewallParams);
+
+                // Always drop the OpenVPN server block before tearing down the process permits
+                // to avoid a window where Proton processes are still blocked but no longer whitelisted.
+                RemoveItems(blockOutsideOpenVpnGuids, _lastParams.SessionType);
+                RemoveItems(baseLeakProtectionGuids, _lastParams.SessionType);
             }
             else
             {
@@ -278,18 +294,19 @@ internal class Firewall : IFirewall, IStartable
 
     private void EnableBaseLeakProtection(FirewallParams firewallParams)
     {
+        // Add blocks first so that during cleanup (which follows insertion order) the block filters
+        // disappear before any exceptions, ensuring Proton processes always retain their bypass rules.
+        BlockAllIpv4Network(1, firewallParams);
+        BlockAllIpv6Network(1, firewallParams);
+        BlockOutsideOpenVpnTraffic(firewallParams);
+
         PermitDhcp(4, firewallParams);
-        PermitFromNetworkInterface(4, firewallParams);
         PermitFromProcesses(4, firewallParams);
         PermitNetworkDiscoveryProtocol(4, firewallParams);
 
         PermitIpv4Loopback(LOCAL_TRAFFIC_WEIGHT, firewallParams);
         PermitIpv6Loopback(LOCAL_TRAFFIC_WEIGHT, firewallParams);
         PermitPrivateNetwork(LOCAL_TRAFFIC_WEIGHT, firewallParams);
-
-        BlockAllIpv4Network(1, firewallParams);
-        BlockAllIpv6Network(1, firewallParams);
-        BlockOutsideOpenVpnTraffic(firewallParams);
     }
 
     private void BlockOutsideOpenVpnTraffic(FirewallParams firewallParams)
@@ -377,12 +394,12 @@ internal class Firewall : IFirewall, IStartable
         switch (dnsBlockMode)
         {
             case DnsBlockMode.Nrpt:
-                bool isNrptRuleCreated = _nrptWrapper.CreateRule();
-                if (!isNrptRuleCreated)
+                if (_isNrptRuleCreated)
                 {
-                    _logger.Warn<FirewallLog>("NRPT rule failed to be created. Creating DNS callout filter.");
-                    CreateDnsCalloutFilter(firewallParams);
+                    _nrptWrapper.DeleteRule();
                 }
+
+                _isNrptRuleCreated = _nrptWrapper.CreateRule();
                 break;
             case DnsBlockMode.Callout:
                 _logger.Info<FirewallLog>("DNS block mode is Callout. Creating DNS callout filter.");
@@ -766,6 +783,7 @@ internal class Firewall : IFirewall, IStartable
                     layer,
                     weight,
                     processPath,
+                    false,
                     firewallParams.Persistent);
                 _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
             });

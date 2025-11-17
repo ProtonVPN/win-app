@@ -57,6 +57,9 @@ namespace ipfilter
         Condition applicationId(matcher::Matcher matcher,
                                 const value::ApplicationId& appId);
 
+        Condition packageFamilyName(matcher::Matcher matcher,
+                                    const value::SecurityIdentifier& securityIdentifier);
+
         Condition netInterface(matcher::Matcher matcher, const NetInterface& iface);
 
         Condition netInterfaceIndex(matcher::Matcher matcher, const NetInterface& iface);

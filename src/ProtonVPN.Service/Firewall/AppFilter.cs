@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -24,81 +24,74 @@ using System.Linq;
 using ProtonVPN.NetworkFilter;
 using Action = ProtonVPN.NetworkFilter.Action;
 
-namespace ProtonVPN.Service.Firewall
+namespace ProtonVPN.Service.Firewall;
+
+public class AppFilter : IAppFilter
 {
-    public class AppFilter : IFilterCollection
+    private readonly IpFilter _ipFilter;
+    private readonly IpLayer _ipLayer;
+    private readonly Dictionary<string, List<Guid>> _list = [];
+
+    public AppFilter(IpFilter ipFilter, IpLayer ipLayer)
     {
-        private readonly IpFilter _ipFilter;
-        private readonly IpLayer _ipLayer;
-        private readonly Dictionary<string, List<Guid>> _list = new Dictionary<string, List<Guid>>();
+        _ipLayer = ipLayer;
+        _ipFilter = ipFilter;
+    }
 
-        public AppFilter(IpFilter ipFilter, IpLayer ipLayer)
+    public void Add(string[] paths, Tuple<Layer, Action>[] filters)
+    {
+        foreach (string path in paths)
         {
-            _ipLayer = ipLayer;
-            _ipFilter = ipFilter;
+            Add(path, filters);
+        }
+    }
+
+    private void Add(string path, Tuple<Layer, Action>[] filters)
+    {
+        if (_list.ContainsKey(path))
+        {
+            return;
         }
 
-        public void Add(string[] paths, Action action)
+        _list[path] = [];
+
+        foreach ((Layer layer, Action action) in filters)
         {
-            foreach (string path in paths)
-            {
-                Add(path, action);
-            }
-        }
-
-        public void Add(string path, Action action)
-        {
-            if (_list.ContainsKey(path))
-            {
-                return;
-            }
-
-            if (!File.Exists(path))
-            {
-                return;
-            }
-
-            _list[path] = new List<Guid>();
-
-            _ipLayer.ApplyToIpv4(layer =>
+            _ipLayer.Apply(appliedLayer =>
             {
                 Guid guid = _ipFilter.DynamicSublayer.CreateAppFilter(
-                    new DisplayData("ProtonVPN permit app", "Allow app to bypass VPN tunnel"),
+                    new DisplayData("ProtonVPN app filter", ""),
                     action,
-                    layer,
+                    appliedLayer,
                     14,
-                    path);
+                    path,
+                    isDnsPortExcluded: action == Action.HardPermit);
 
                 _list[path].Add(guid);
-            });
+            }, [layer]);
+        }
+    }
+
+    public void Remove(string path)
+    {
+        if (!_list.TryGetValue(path, out List<Guid> guids))
+        {
+            return;
         }
 
-        public void Remove(string path)
+        foreach (Guid guid in guids)
         {
-            if (!_list.ContainsKey(path))
-            {
-                return;
-            }
-
-            foreach (Guid guid in _list[path])
-            {
-                _ipFilter.DynamicSublayer.DestroyFilter(guid);
-            }
-
-            _list.Remove(path);
+            _ipFilter.DynamicSublayer.DestroyFilter(guid);
         }
 
-        public void RemoveAll()
-        {
-            if (_list.Count == 0)
-            {
-                return;
-            }
+        _list.Remove(path);
+    }
 
-            foreach (KeyValuePair<string, List<Guid>> element in _list.ToList())
-            {
-                Remove(element.Key);
-            }
+    public void RemoveAll()
+    {
+        foreach (KeyValuePair<string, List<Guid>> element in _list.ToList())
+        {
+            Remove(element.Key);
         }
     }
 }

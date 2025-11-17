@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,18 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.NetworkFilter;
+namespace ProtonVPN.Service.Firewall;
 
-namespace ProtonVPN.Service.Firewall
+public interface IFilterCollection
 {
-    public interface IFilterCollection
-    {
-        void Add(string[] values, Action action);
-
-        void Add(string value, Action action);
-
-        void Remove(string value);
-
-        void RemoveAll();
-    }
+    void RemoveAll();
 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,14 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Service.SplitTunneling
+using System.Net;
+
+namespace ProtonVPN.Service.SplitTunneling;
+
+public interface ISplitTunnelClient
 {
-    public interface ISplitTunnelClient
-    {
-        void EnableExcludeMode(string[] appPaths, string[] ips);
+    void EnableExcludeMode(string[] appPaths, IPAddress localIpv4Address, IPAddress localIpv6Address);
 
-        void EnableIncludeMode(string[] appPaths, string[] ips, string vpnLocalIp);
+    void EnableIncludeMode(string[] appPaths, IPAddress serverIpv4Address, IPAddress serverIpv6Address);
 
-        void Disable();
-    }
+    void Disable();
 }

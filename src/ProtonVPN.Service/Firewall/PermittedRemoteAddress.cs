@@ -25,7 +25,7 @@ using Action = ProtonVPN.NetworkFilter.Action;
 
 namespace ProtonVPN.Service.Firewall;
 
-public class PermittedRemoteAddress : IFilterCollection
+public class PermittedRemoteAddress : IPermittedRemoteAddress
 {
     private readonly IpLayer _ipLayer;
     private readonly IpFilter _ipFilter;
@@ -46,7 +46,7 @@ public class PermittedRemoteAddress : IFilterCollection
         }
     }
 
-    public void Add(string address, Action action)
+    private void Add(string address, Action action)
     {
         if (_list.ContainsKey(address))
         {

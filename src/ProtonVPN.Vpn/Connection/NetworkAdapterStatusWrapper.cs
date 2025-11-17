@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -30,6 +30,7 @@ using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
 using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.NetworkAdapters;
+using ProtonVPN.Vpn.NRPT;
 
 namespace ProtonVPN.Vpn.Connection;
 
@@ -40,6 +41,7 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
     private readonly INetworkInterfaceLoader _networkInterfaceLoader;
     private readonly WintunAdapter _wintunAdapter;
     private readonly TapAdapter _tapAdapter;
+    private readonly INrptWrapper _nrptWrapper;
     private readonly ISingleVpnConnection _origin;
 
     private VpnEndpoint _endpoint;
@@ -52,12 +54,14 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
         INetworkInterfaceLoader networkInterfaceLoader,
         WintunAdapter wintunAdapter,
         TapAdapter tapAdapter,
+        INrptWrapper nrptWrapper,
         ISingleVpnConnection origin)
     {
         _logger = logger;
         _issueReporter = issueReporter;
         _wintunAdapter = wintunAdapter;
         _tapAdapter = tapAdapter;
+        _nrptWrapper = nrptWrapper;
         _networkInterfaceLoader = networkInterfaceLoader;
         _origin = origin;
 
@@ -110,8 +114,15 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
 
     private void Connect()
     {
+        SetNrptConnectionConfig();
         InvokeConnecting();
         _origin.Connect(_endpoint, _credentials, _config);
+    }
+
+    private void SetNrptConnectionConfig()
+    {
+        bool isIpv6Supported = _config.IsIpv6Enabled && _endpoint.Server.IsIpv6Supported;
+        _nrptWrapper.SetConnectionConfig(_config.CustomDns, _config.VpnProtocol, isIpv6Supported);
     }
 
     private void InvokeConnecting()

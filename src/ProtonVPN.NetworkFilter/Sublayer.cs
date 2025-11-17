@@ -117,12 +117,17 @@ namespace ProtonVPN.NetworkFilter
             return filterId;
         }
 
+        /// <summary>
+        /// Creates an application filter for the specified application.
+        /// </summary>
+        /// <param name="appIdentifier">Either the full path to the executable or the package family name for UWP apps.</param>
         public Guid CreateAppFilter(
             DisplayData displayData,
             Action action,
             Layer layer,
             uint weight,
-            string appPath,
+            string appIdentifier,
+            bool isDnsPortExcluded,
             bool persistent = false,
             Guid id = new())
         {
@@ -136,7 +141,8 @@ namespace ProtonVPN.NetworkFilter
                 weight,
                 Guid.Empty, 
                 Guid.Empty,
-                appPath,
+                appIdentifier,
+                isDnsPortExcluded,
                 persistent,
                 id);
 
@@ -151,6 +157,7 @@ namespace ProtonVPN.NetworkFilter
             Callout callout,
             ProviderContext providerContext,
             string appPath,
+            bool isDnsPortExcluded,
             bool persistent = false,
             Guid id = new())
         {
@@ -165,6 +172,7 @@ namespace ProtonVPN.NetworkFilter
                 callout.Id,
                 providerContext.Id,
                 appPath,
+                isDnsPortExcluded,
                 persistent,
                 id);
 

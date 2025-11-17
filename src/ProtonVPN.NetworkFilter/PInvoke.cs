@@ -293,7 +293,8 @@ internal class PInvoke
         uint weight,
         [In] ref Guid calloutKey,
         [In] ref Guid providerContextKey,
-        [MarshalAs(UnmanagedType.LPWStr)] string appPath,
+        [MarshalAs(UnmanagedType.LPWStr)] string appIdentifier,
+        uint isDnsPortExcluded,
         uint persistent,
         [In, Out] ref Guid filterKey);
 

@@ -145,6 +145,19 @@ namespace ipfilter
             FWP_BYTE_BLOB blob;
         };
 
+        class SecurityIdentifier : public Value
+        {
+        public:
+            virtual operator FWP_CONDITION_VALUE();
+
+            static SecurityIdentifier fromPackageFamilyName(const std::wstring& packageFamilyName);
+
+        private:
+            SecurityIdentifier(const PSID& value);
+
+            Buffer value;
+        };
+
         class NetInterfaceId : public Value
         {
         public:

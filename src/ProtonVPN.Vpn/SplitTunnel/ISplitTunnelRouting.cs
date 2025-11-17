@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,24 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
+using ProtonVPN.Common.Legacy.Vpn;
 
-namespace ProtonVPN.Common.Legacy.OS.Net;
+namespace ProtonVPN.Vpn.SplitTunnel;
 
-public class NetworkUtilException : Exception
+public interface ISplitTunnelRouting
 {
-    public uint Code { get; }
-
-    public NetworkUtilException(uint code) : base($"The NetworkUtil call returned error code {code}")
-    {
-        Code = code;
-    }
-
-    public NetworkUtilException(int code, Exception innerException) : base($"The NetworkUtil call failed with error code {code}", innerException)
-    {
-        unchecked
-        {
-            Code = (uint)code;
-        }
-    }
+    public void SetUpRoutingTable(VpnConfig vpnConfig, string localIp, bool isIpv6Supported);
+    public void DeleteRoutes(VpnConfig vpnConfig);
 }

@@ -19,6 +19,7 @@
 
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.OperatingSystems.Network.Contracts;
 
@@ -46,14 +47,42 @@ public class SystemNetworkInterface : INetworkInterface, IEquatable<SystemNetwor
 
     public bool IsActive => _networkInterface.OperationalStatus == OperationalStatus.Up;
 
-    public IPAddress DefaultGateway => _networkInterface.GetIPProperties().GatewayAddresses.FirstOrDefault()?.Address ?? IPAddress.None;
+    public IPAddress DefaultGateway
+    {
+        get
+        {
+            GatewayIPAddressInformation? ipv4Gateway = _networkInterface
+                .GetIPProperties()
+                .GatewayAddresses
+                .FirstOrDefault(g => g.Address.AddressFamily == AddressFamily.InterNetwork && !g.Address.Equals(IPAddress.Any));
+
+            return ipv4Gateway?.Address ?? IPAddress.None;
+        }
+    }
 
     public uint Index
     {
         get
         {
-            IPv4InterfaceProperties props = _networkInterface.GetIPProperties().GetIPv4Properties();
-            return props != null ? Convert.ToUInt32(props.Index) : 0;
+            try
+            {
+                IPv4InterfaceProperties ipv4Props = _networkInterface.GetIPProperties().GetIPv4Properties();
+                if (ipv4Props != null)
+                {
+                    return Convert.ToUInt32(ipv4Props.Index);
+                }
+
+                IPv6InterfaceProperties ipv6Props = _networkInterface.GetIPProperties().GetIPv6Properties();
+                if (ipv6Props != null)
+                {
+                    return Convert.ToUInt32(ipv6Props.Index);
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return 0;
         }
     }
 
@@ -63,6 +92,37 @@ public class SystemNetworkInterface : INetworkInterface, IEquatable<SystemNetwor
             .GetIPProperties().UnicastAddresses
             .Select(a => new NetworkAddress(a.Address))
             .ToList();
+    }
+
+    public IPAddress? GetPreferredIpv6UnicastAddress()
+    {
+        UnicastIPAddressInformationCollection unicastAddresses = _networkInterface.GetIPProperties().UnicastAddresses;
+
+        List<UnicastIPAddressInformation> eligibleAddresses = unicastAddresses
+            .Where(info => info.Address.AddressFamily == AddressFamily.InterNetworkV6)
+            .Where(info => info.DuplicateAddressDetectionState == DuplicateAddressDetectionState.Preferred)
+            .Where(info => info.AddressPreferredLifetime > 0)
+            .Where(info => !info.Address.Equals(IPAddress.IPv6None))
+            .Where(info => !info.Address.IsIPv6LinkLocal)
+            .Where(info => !info.Address.IsIPv6Multicast)
+            .ToList();
+
+        UnicastIPAddressInformation? preferredTemporaryAddress = eligibleAddresses
+            .Where(info => info.SuffixOrigin == SuffixOrigin.Random)
+            .OrderByDescending(info => info.AddressPreferredLifetime)
+            .FirstOrDefault();
+
+        if (preferredTemporaryAddress is not null)
+        {
+            return preferredTemporaryAddress.Address;
+        }
+
+        UnicastIPAddressInformation? preferredStableAddress = eligibleAddresses
+            .Where(info => info.SuffixOrigin != SuffixOrigin.Random)
+            .OrderByDescending(info => info.AddressPreferredLifetime)
+            .FirstOrDefault();
+
+        return preferredStableAddress?.Address;
     }
 
     public bool Equals(SystemNetworkInterface? other)

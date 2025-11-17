@@ -1,0 +1,12 @@
+.OPTION EXPLICIT
+.Set CabinetNameTemplate=ProtonVPN.CalloutDriver.arm64.cab
+.Set DiskDirectory1=.
+.Set CompressionType=MSZIP
+.Set Cabinet=ON
+.Set Compress=ON
+.Set DestinationDir=ProtonVPN.CalloutDriver.arm64
+
+"bin\Release\arm64\ProtonVPN.CalloutDriver\ProtonVPN.CalloutDriver.inf"
+"bin\Release\arm64\ProtonVPN.CalloutDriver\protonvpn.calloutdriver.cat"
+"bin\Release\arm64\ProtonVPN.CalloutDriver\ProtonVPN.CalloutDriver.sys"
+"bin\Release\arm64\ProtonVPN.CalloutDriver\ProtonVPN.CalloutDriver.pdb"

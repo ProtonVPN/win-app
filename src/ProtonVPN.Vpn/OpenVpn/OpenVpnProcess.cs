@@ -97,8 +97,7 @@ public class OpenVpnProcess
             .Add(new BindArguments(new BestLocalOpenVpnEndpoint(processParams.Endpoint).Ip()))
             .Add(new CustomDnsArguments(processParams.CustomDns))
             .Add(new TlsVerifyArguments(_staticConfig.OpenVpn, processParams.Endpoint.Server.Name))
-            .Add(new BaseRouteArgument(processParams.SplitTunnelMode))
-            .Add(new SplitTunnelRoutesArgument(processParams.SplitTunnelIPs, processParams.SplitTunnelMode));
+            .Add(new BaseRouteArgument(processParams.SplitTunnelMode));
 
         switch (processParams.OpenVpnAdapter)
         {

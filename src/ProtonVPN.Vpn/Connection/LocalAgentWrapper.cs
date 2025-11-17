@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,7 +23,6 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Go;
@@ -39,7 +38,7 @@ using ProtonVPN.Vpn.ConnectionCertificates;
 using ProtonVPN.Vpn.Gateways;
 using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.LocalAgent.Contracts;
-using ProtonVPN.Vpn.WireGuard.SplitTunnel;
+using ProtonVPN.Vpn.SplitTunnel;
 using PInvoke = ProtonVPN.Vpn.LocalAgent.PInvoke;
 
 namespace ProtonVPN.Vpn.Connection;
@@ -52,7 +51,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
 
     private readonly ILogger _logger;
     private readonly EventReceiver _eventReceiver;
-    private readonly IWireGuardSplitTunnelRouting _wireGuardSplitTunnelRouting;
+    private readonly ISplitTunnelRouting _splitTunnelRouting;
     private readonly IGatewayCache _gatewayCache;
     private readonly IConnectionCertificateCache _connectionCertificateCache;
     private readonly IAdapterSingleVpnConnection _origin;
@@ -99,14 +98,14 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     public LocalAgentWrapper(
         ILogger logger,
         EventReceiver eventReceiver,
-        IWireGuardSplitTunnelRouting wireGuardSplitTunnelRouting,
+        ISplitTunnelRouting splitTunnelRouting,
         IGatewayCache gatewayCache,
         IConnectionCertificateCache connectionCertificateCache,
         IAdapterSingleVpnConnection origin)
     {
         _logger = logger;
         _eventReceiver = eventReceiver;
-        _wireGuardSplitTunnelRouting = wireGuardSplitTunnelRouting;
+        _splitTunnelRouting = splitTunnelRouting;
         _gatewayCache = gatewayCache;
         _connectionCertificateCache = connectionCertificateCache;
         _origin = origin;
@@ -284,10 +283,8 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         {
             _tlsConnected = true;
 
-            if (_vpnConfig.VpnProtocol.IsWireGuard())
-            {
-                _wireGuardSplitTunnelRouting.SetUpRoutingTable(_vpnConfig, _vpnState.Data.LocalIp);
-            }
+            bool isIpv6Supported = (_vpnConfig?.IsIpv6Enabled ?? false) && (_endpoint?.Server.IsIpv6Supported ?? false);
+            _splitTunnelRouting.SetUpRoutingTable(_vpnConfig, _localIp, isIpv6Supported);
 
             StopTimeoutAction();
             _logger.Info<ConnectConnectedLog>("Connected state triggered by Local Agent.");
@@ -378,17 +375,21 @@ internal class LocalAgentWrapper : ISingleVpnConnection
 
     private void OnVpnStateChanged(object sender, EventArgs<VpnState> e)
     {
+        if (!string.IsNullOrEmpty(e.Data.RemoteIp))
+        {
+            _localIp = e.Data.LocalIp;
+        }
+
+        if (!string.IsNullOrEmpty(e.Data.RemoteIp))
+        {
+            _remoteIp = e.Data.RemoteIp;
+        }
+
         if (_wasConnectEverRequested)
         {
             switch (e.Data.Status)
             {
                 case VpnStatus.Connected:
-                    _localIp = e.Data.LocalIp;
-                    if (!string.IsNullOrEmpty(e.Data.RemoteIp))
-                    {
-                        _remoteIp = e.Data.RemoteIp;
-                    }
-
                     HandleVpnConnectedState();
                     return;
                 case VpnStatus.Disconnected:
@@ -425,10 +426,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
 
         CloseTlsChannel();
         _eventReceiver.Stop();
-        if (_vpnConfig.VpnProtocol.IsWireGuard())
-        {
-            _wireGuardSplitTunnelRouting.DeleteRoutes(_vpnConfig);
-        }
+        _splitTunnelRouting.DeleteRoutes(_vpnConfig);
     }
 
     private void CloseTlsChannel()

@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
+/*
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,21 +17,54 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Buffers.Binary;
 using System.Net;
+using System.Net.Sockets;
 
-namespace ProtonVPN.Service.SplitTunneling
+namespace ProtonVPN.Service.SplitTunneling;
+
+public class ConnectRedirectData
 {
-    public class ConnectRedirectData
-    {
-        private readonly IPAddress _ipAddress;
+    private const int ADDRESS_FAMILY_SIZE = sizeof(ushort);
+    private const int PADDING_SIZE = sizeof(ushort);
+    private const int UNION_SIZE = 16;
+    private const int TOTAL_SIZE = ADDRESS_FAMILY_SIZE + PADDING_SIZE + UNION_SIZE;
 
-        public ConnectRedirectData(IPAddress ipAddress)
+    private readonly IPAddress _ipAddress;
+
+    public ConnectRedirectData(IPAddress ipAddress)
+    {
+        _ipAddress = ipAddress;
+    }
+
+    public byte[] Value()
+    {
+        byte[] buffer = new byte[TOTAL_SIZE];
+        Span<byte> span = buffer.AsSpan();
+
+        ushort family = _ipAddress.AddressFamily switch
         {
-            _ipAddress = ipAddress;
+            AddressFamily.InterNetwork => (ushort)AddressFamily.InterNetwork,
+            AddressFamily.InterNetworkV6 => (ushort)AddressFamily.InterNetworkV6,
+            _ => throw new NotSupportedException($"Unsupported address family {_ipAddress.AddressFamily} for redirect data."),
+        };
+
+        BinaryPrimitives.WriteUInt16LittleEndian(span, family);
+
+        byte[] addressBytes = _ipAddress.GetAddressBytes();
+        switch (addressBytes.Length)
+        {
+            case 4:
+            case 16:
+                Array.Copy(addressBytes, 0, buffer, ADDRESS_FAMILY_SIZE + PADDING_SIZE, addressBytes.Length);
+                break;
+            default:
+                throw new NotSupportedException($"Unexpected IP address length {addressBytes.Length}.");
         }
 
-        public byte[] Value() => _ipAddress.GetAddressBytes();
-
-        public static implicit operator byte[](ConnectRedirectData item) => item.Value();
+        return buffer;
     }
+
+    public static implicit operator byte[](ConnectRedirectData item) => item?.Value() ?? Array.Empty<byte>();
 }

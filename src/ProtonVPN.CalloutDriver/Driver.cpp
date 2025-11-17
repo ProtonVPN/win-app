@@ -70,14 +70,28 @@ DriverEntry(
     // Get the associated WDM device object
     PDEVICE_OBJECT deviceObject = WdfDeviceWdmGetDeviceObject(Device);
 
-    status = RegisterCallout(deviceObject, CONNECT_REDIRECT_CALLOUT_KEY, RedirectConnection);
+    status = RegisterCallout(deviceObject, CONNECT_REDIRECT_V4_CALLOUT_KEY, RedirectConnection);
     if (!NT_SUCCESS(status))
     {
         WPP_CLEANUP(DriverObject);
         return status;
     }
 
-    status = RegisterCallout(deviceObject, REDIRECT_UDP_CALLOUT_KEY, RedirectUDPFlow);
+    status = RegisterCallout(deviceObject, CONNECT_REDIRECT_V6_CALLOUT_KEY, RedirectConnection);
+    if (!NT_SUCCESS(status))
+    {
+        WPP_CLEANUP(DriverObject);
+        return status;
+    }
+
+    status = RegisterCallout(deviceObject, REDIRECT_UDP_V4_CALLOUT_KEY, RedirectUDPFlow);
+    if (!NT_SUCCESS(status))
+    {
+        WPP_CLEANUP(DriverObject);
+        return status;
+    }
+
+    status = RegisterCallout(deviceObject, REDIRECT_UDP_V6_CALLOUT_KEY, RedirectUDPFlow);
     if (!NT_SUCCESS(status))
     {
         WPP_CLEANUP(DriverObject);
@@ -129,8 +143,10 @@ DriverUnload(
 
     TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_DRIVER, "%!FUNC! Entry");
 
-    UnregisterCallout(CONNECT_REDIRECT_CALLOUT_KEY);
-    UnregisterCallout(REDIRECT_UDP_CALLOUT_KEY);
+    UnregisterCallout(CONNECT_REDIRECT_V4_CALLOUT_KEY);
+    UnregisterCallout(CONNECT_REDIRECT_V6_CALLOUT_KEY);
+    UnregisterCallout(REDIRECT_UDP_V4_CALLOUT_KEY);
+    UnregisterCallout(REDIRECT_UDP_V6_CALLOUT_KEY);
     UnregisterCallout(BLOCK_DNS_CALLOUT_KEY);
 
     if (injectHandle != nullptr)

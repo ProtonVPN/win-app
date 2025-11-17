@@ -10,49 +10,145 @@
 
 const UINT8 TCP_PROTOCOL_ID = 6;
 
-void SetSocketIPv4Addr(const SOCKADDR_STORAGE& sockAddrStorage, const IN_ADDR& addr)
+struct REDIRECT_ADDRESS
 {
-	INETADDR_SET_ADDRESS((PSOCKADDR) & (sockAddrStorage), &(addr.S_un.S_un_b.s_b1));
-}
-
-bool isLocalNetwork(UINT32 addr)
-{
-	if (IN4_IS_ADDR_LOOPBACK(reinterpret_cast<IN_ADDR*>(&addr)) || //127/8
-		IN4_IS_ADDR_LINKLOCAL(reinterpret_cast<IN_ADDR*>(&addr)) || //169.254/16
-		IN4_IS_ADDR_RFC1918(reinterpret_cast<IN_ADDR*>(&addr)) || //10/8, 172.16/12, 192.168/16
-		IN4_IS_ADDR_MC_LINKLOCAL(reinterpret_cast<IN_ADDR*>(&addr)) || //224.0.0/24
-		IN4_IS_ADDR_BROADCAST(reinterpret_cast<IN_ADDR*>(&addr)) || //255.255.255.255
-		IN4_IS_ADDR_MC_ADMINLOCAL(reinterpret_cast<IN_ADDR*>(&addr))) //239.255/16
+	ADDRESS_FAMILY family { AF_UNSPEC };
+	union
 	{
+		IN_ADDR ipv4;
+		IN6_ADDR ipv6;
+	} address;
+};
+
+static bool TryGetRedirectAddressFromContext(const FWPM_PROVIDER_CONTEXT* context, REDIRECT_ADDRESS& redirectAddress)
+{
+	redirectAddress.family = AF_UNSPEC;
+
+	if (context == nullptr || context->type != FWPM_GENERAL_CONTEXT)
+	{
+		return false;
+	}
+
+	if (context->dataBuffer == nullptr || context->dataBuffer->data == nullptr)
+	{
+		return false;
+	}
+
+	const auto* data = reinterpret_cast<const CONNECT_REDIRECT_DATA*>(context->dataBuffer->data);
+
+	if (data->addressFamily == AF_INET)
+	{
+		redirectAddress.family = AF_INET;
+		redirectAddress.address.ipv4 = data->address.v4;
+		return true;
+	}
+
+	if (data->addressFamily == AF_INET6)
+	{
+		redirectAddress.family = AF_INET6;
+		redirectAddress.address.ipv6 = data->address.v6;
 		return true;
 	}
 
 	return false;
 }
 
-const CONNECT_REDIRECT_DATA* GetConnectRedirectDataFromProviderContext(const FWPM_PROVIDER_CONTEXT* context)
+static bool ApplyRedirectAddress(SOCKADDR_STORAGE& sockAddrStorage, const REDIRECT_ADDRESS& redirectAddress)
 {
-	if (context == nullptr)
+	if (redirectAddress.family == AF_INET)
 	{
-		return nullptr;
+		auto* address4 = reinterpret_cast<SOCKADDR_IN*>(&sockAddrStorage);
+		address4->sin_family = AF_INET;
+		address4->sin_addr = redirectAddress.address.ipv4;
+		return true;
 	}
 
-	if (context->type != FWPM_GENERAL_CONTEXT)
+	if (redirectAddress.family == AF_INET6)
 	{
-		return nullptr;
+		auto* address6 = reinterpret_cast<SOCKADDR_IN6*>(&sockAddrStorage);
+		address6->sin6_family = AF_INET6;
+		address6->sin6_addr = redirectAddress.address.ipv6;
+		return true;
 	}
 
-	if (context->dataBuffer == nullptr)
+	return false;
+}
+
+static bool IsLocalIPv4Address(const IN_ADDR& address)
+{
+	auto* addressPtr = const_cast<IN_ADDR*>(&address);
+
+	return (
+		IN4_IS_ADDR_LOOPBACK(addressPtr) ||      // 127/8 - Loopback address range
+		IN4_IS_ADDR_LINKLOCAL(addressPtr) ||     // 169.254/16 - Link-local address range
+		IN4_IS_ADDR_RFC1918(addressPtr) ||       // 10/8, 172.16/12, 192.168/16 - Private address ranges
+		IN4_IS_ADDR_MC_LINKLOCAL(addressPtr) ||  // 224.0.0/24 - Multicast link-local addresses
+		IN4_IS_ADDR_BROADCAST(addressPtr) ||     // 255.255.255.255 - Broadcast address
+		IN4_IS_ADDR_MC_ADMINLOCAL(addressPtr)    // 239.255/16 - Administrative-local multicast addresses
+	);
+}
+
+static bool IsAddressTeredo(const IN6_ADDR& address)
+{
+	// Teredo addresses start with 2001:0000::/32
+	// Check if the first 4 bytes match the Teredo prefix
+	return (address.u.Byte[0] == 0x20) && (address.u.Byte[1] == 0x01) &&
+		(address.u.Byte[2] == 0x00) && (address.u.Byte[3] == 0x00);
+}
+
+static bool IsLocalIPv6Address(const IN6_ADDR& address)
+{
+	auto* addressPtr = const_cast<IN6_ADDR*>(&address);
+
+	return (
+		IN6_IS_ADDR_UNSPECIFIED(addressPtr) ||    // ::/128 - all zeros address
+		IN6_IS_ADDR_LOOPBACK(addressPtr) ||       // ::1/128 - loopback address
+		IN6_IS_ADDR_LINKLOCAL(addressPtr) ||      // fe80::/10 - link-local addresses
+		IN6_IS_ADDR_SITELOCAL(addressPtr) ||      // fec0::/10 - site-local addresses (deprecated)
+		IN6_IS_ADDR_MULTICAST(addressPtr) ||      // ff00::/8 - multicast addresses
+		IsAddressTeredo(address) ||               // 2001::/32 - Teredo addresses
+		(address.u.Byte[0] & 0xFE) == 0xFC        // fc00::/7 - unique local addresses
+	);
+}
+
+static UINT32 GetConnectRedirectFlags(const FWPS_INCOMING_VALUES* inFixedValues, bool isIpv4Layer)
+{
+	return isIpv4Layer
+		? inFixedValues->incomingValue[FWPS_FIELD_ALE_CONNECT_REDIRECT_V4_FLAGS].value.uint32
+		: inFixedValues->incomingValue[FWPS_FIELD_ALE_CONNECT_REDIRECT_V6_FLAGS].value.uint32;
+}
+
+static bool IsRemoteEndpointLocal(const FWPS_INCOMING_VALUES* inFixedValues, bool isIpv4Layer)
+{
+	if (isIpv4Layer)
 	{
-		return nullptr;
+		IN_ADDR remoteAddress{};
+		remoteAddress.S_un.S_addr = RtlUlongByteSwap(
+			inFixedValues->incomingValue[FWPS_FIELD_ALE_CONNECT_REDIRECT_V4_IP_REMOTE_ADDRESS].value.uint32);
+
+		if (IsLocalIPv4Address(remoteAddress))
+		{
+			return true;
+		}
+	}
+	else
+	{
+		const auto* remoteByteArray = inFixedValues->incomingValue[FWPS_FIELD_ALE_CONNECT_REDIRECT_V6_IP_REMOTE_ADDRESS].value.byteArray16;
+		if (remoteByteArray == nullptr)
+		{
+			return true;
+		}
+
+		IN6_ADDR remoteAddress{};
+		RtlCopyMemory(&remoteAddress, remoteByteArray->byteArray16, sizeof(remoteAddress));
+
+		if (IsLocalIPv6Address(remoteAddress))
+		{
+			return true;
+		}
 	}
 
-	if (context->dataBuffer->size != sizeof(CONNECT_REDIRECT_DATA))
-	{
-		return nullptr;
-	}
-
-	return reinterpret_cast<CONNECT_REDIRECT_DATA*>(context->dataBuffer->data);
+	return false;
 }
 
 void NTAPI RedirectConnection(
@@ -67,12 +163,7 @@ void NTAPI RedirectConnection(
 {
 	classifyOut->actionType = FWP_ACTION_PERMIT;
 
-	if (inFixedValues == nullptr)
-	{
-		return;
-	}
-
-	if (inFixedValues->layerId != FWPS_LAYER_ALE_CONNECT_REDIRECT_V4)
+	if (inFixedValues == nullptr || filter == nullptr)
 	{
 		return;
 	}
@@ -82,22 +173,34 @@ void NTAPI RedirectConnection(
 		return;
 	}
 
-	auto flags = inFixedValues->incomingValue[FWPS_FIELD_ALE_CONNECT_REDIRECT_V4_FLAGS].value.uint32;
+	const auto layerId = inFixedValues->layerId;
+	const bool isIpv4Layer = layerId == FWPS_LAYER_ALE_CONNECT_REDIRECT_V4;
+	const bool isIpv6Layer = layerId == FWPS_LAYER_ALE_CONNECT_REDIRECT_V6;
+
+	if (!isIpv4Layer && !isIpv6Layer)
+	{
+		return;
+	}
+
+	UINT32 flags = GetConnectRedirectFlags(inFixedValues, isIpv4Layer);
 	if (flags & FWP_CONDITION_FLAG_IS_REAUTHORIZE)
 	{
 		return;
 	}
 
-	auto connectRedirectData = GetConnectRedirectDataFromProviderContext(filter->providerContext);
-	if (connectRedirectData == nullptr)
+	if (IsRemoteEndpointLocal(inFixedValues, isIpv4Layer))
 	{
 		return;
 	}
 
-	auto remoteAddr = RtlUlongByteSwap(inFixedValues->incomingValue[
-		FWPS_FIELD_ALE_CONNECT_REDIRECT_V4_IP_REMOTE_ADDRESS].value.uint32);
+	REDIRECT_ADDRESS redirectAddress{};
+	if (!TryGetRedirectAddressFromContext(filter->providerContext, redirectAddress))
+	{
+		return;
+	}
 
-	if (isLocalNetwork(remoteAddr))
+	if ((isIpv4Layer && redirectAddress.family != AF_INET) ||
+		(isIpv6Layer && redirectAddress.family != AF_INET6))
 	{
 		return;
 	}
@@ -113,14 +216,18 @@ void NTAPI RedirectConnection(
 			return;
 		}
 
-		status = FwpsAcquireWritableLayerDataPointer(classifyHandle,
-			filter->filterId, 0, reinterpret_cast<PVOID*>(&connectReq), classifyOut);
+		status = FwpsAcquireWritableLayerDataPointer(
+			classifyHandle,
+			filter->filterId,
+			0,
+			reinterpret_cast<PVOID*>(&connectReq),
+			classifyOut);
 		if (!NT_SUCCESS(status))
 		{
 			return;
 		}
 
-		SetSocketIPv4Addr(connectReq->localAddressAndPort, connectRedirectData->localAddress);
+		ApplyRedirectAddress(connectReq->localAddressAndPort, redirectAddress);
 	}
 	__finally
 	{
@@ -136,6 +243,20 @@ void NTAPI RedirectConnection(
 	}
 }
 
+static UINT32 GetBindRedirectFlags(const FWPS_INCOMING_VALUES* inFixedValues, bool isIpv4Layer)
+{
+	return isIpv4Layer
+		? inFixedValues->incomingValue[FWPS_FIELD_ALE_BIND_REDIRECT_V4_FLAGS].value.uint32
+		: inFixedValues->incomingValue[FWPS_FIELD_ALE_BIND_REDIRECT_V6_FLAGS].value.uint32;
+}
+
+static UINT8 GetBindRedirectProtocol(const FWPS_INCOMING_VALUES* inFixedValues, bool isIpv4Layer)
+{
+	return isIpv4Layer
+		? inFixedValues->incomingValue[FWPS_FIELD_ALE_BIND_REDIRECT_V4_IP_PROTOCOL].value.uint8
+		: inFixedValues->incomingValue[FWPS_FIELD_ALE_BIND_REDIRECT_V6_IP_PROTOCOL].value.uint8;
+}
+
 void NTAPI RedirectUDPFlow(
 	IN const FWPS_INCOMING_VALUES* inFixedValues,
 	IN const FWPS_INCOMING_METADATA_VALUES*,
@@ -148,12 +269,7 @@ void NTAPI RedirectUDPFlow(
 {
 	classifyOut->actionType = FWP_ACTION_PERMIT;
 
-	if (inFixedValues == nullptr)
-	{
-		return;
-	}
-
-	if (inFixedValues->layerId != FWPS_LAYER_ALE_BIND_REDIRECT_V4)
+	if (inFixedValues == nullptr || filter == nullptr)
 	{
 		return;
 	}
@@ -163,20 +279,35 @@ void NTAPI RedirectUDPFlow(
 		return;
 	}
 
-	auto flags = inFixedValues->incomingValue[FWPS_FIELD_ALE_BIND_REDIRECT_V4_FLAGS].value.uint32;
+	const auto layerId = inFixedValues->layerId;
+	const bool isIpv4Layer = layerId == FWPS_LAYER_ALE_BIND_REDIRECT_V4;
+	const bool isIpv6Layer = layerId == FWPS_LAYER_ALE_BIND_REDIRECT_V6;
+
+	if (!isIpv4Layer && !isIpv6Layer)
+	{
+		return;
+	}
+
+	UINT32 flags = GetBindRedirectFlags(inFixedValues, isIpv4Layer);
 	if (flags & FWP_CONDITION_FLAG_IS_REAUTHORIZE)
 	{
 		return;
 	}
 
-	auto protocol = inFixedValues->incomingValue[FWPS_FIELD_ALE_BIND_REDIRECT_V4_IP_PROTOCOL].value.uint8;
+	UINT8 protocol = GetBindRedirectProtocol(inFixedValues, isIpv4Layer);
 	if (protocol == TCP_PROTOCOL_ID)
 	{
 		return;
 	}
 
-	auto connectRedirectData = GetConnectRedirectDataFromProviderContext(filter->providerContext);
-	if (connectRedirectData == nullptr)
+	REDIRECT_ADDRESS redirectAddress{};
+	if (!TryGetRedirectAddressFromContext(filter->providerContext, redirectAddress))
+	{
+		return;
+	}
+
+	if ((isIpv4Layer && redirectAddress.family != AF_INET) ||
+		(isIpv6Layer && redirectAddress.family != AF_INET6))
 	{
 		return;
 	}
@@ -192,14 +323,18 @@ void NTAPI RedirectUDPFlow(
 			return;
 		}
 
-		status = FwpsAcquireWritableLayerDataPointer(classifyHandle,
-			filter->filterId, 0, reinterpret_cast<PVOID*>(&bindReq), classifyOut);
+		status = FwpsAcquireWritableLayerDataPointer(
+			classifyHandle,
+			filter->filterId,
+			0,
+			reinterpret_cast<PVOID*>(&bindReq),
+			classifyOut);
 		if (!NT_SUCCESS(status))
 		{
 			return;
 		}
 
-		SetSocketIPv4Addr(bindReq->localAddressAndPort, connectRedirectData->localAddress);
+		ApplyRedirectAddress(bindReq->localAddressAndPort, redirectAddress);
 	}
 	__finally
 	{
@@ -225,11 +360,11 @@ void FreeMemory(PVOID ptr)
 
 PVOID AllocateMemory(size_t size)
 {
-    return ExAllocatePoolWithTag(NonPagedPoolNx, size, ProtonTAG);
+    return ExAllocatePool2(POOL_FLAG_NON_PAGED, size, ProtonTAG);
 }
 
-void NTAPI CompleteBasicPacketInjection(VOID *data,
-	_Inout_ NET_BUFFER_LIST *bufferList,
+void NTAPI CompleteBasicPacketInjection(VOID* data,
+	_Inout_ NET_BUFFER_LIST* bufferList,
 	_In_ BOOLEAN)
 {
 	PNET_BUFFER buffer = NET_BUFFER_LIST_FIRST_NB(bufferList);
@@ -290,7 +425,7 @@ bool BlockDnsPacket(PNET_BUFFER buffer, UINT32 interface_index, UINT32 subinterf
 	}
 
 	auto* const buffer_data = static_cast<unsigned char*>(buffer_ptr);
-	auto *result = NdisGetDataBuffer(buffer, total_len, buffer_data, 1, 0);
+	auto* result = NdisGetDataBuffer(buffer, total_len, buffer_data, 1, 0);
 	if (result == nullptr)
 	{
 		FreeMemory(buffer_ptr);
@@ -341,7 +476,7 @@ bool BlockDnsPacket(PNET_BUFFER buffer, UINT32 interface_index, UINT32 subinterf
 
 	//28 = 20 bytes of IP header and 8 bytes of UDP header. So we skip those
 	RtlCopyMemory(reply + sizeof(IPHDR) + sizeof(UDPHDR), dns_header_size, udp_payload_size);
-	
+
 	dns_packet->dns.flags = htons(0x8002);
 	dns_packet->ip.SrcAddr = ip_header->DstAddr;
 	dns_packet->ip.DstAddr = ip_header->SrcAddr;

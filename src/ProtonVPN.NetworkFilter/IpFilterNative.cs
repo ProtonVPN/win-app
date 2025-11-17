@@ -391,7 +391,8 @@ internal class IpFilterNative
         uint weight,
         Guid calloutId,
         Guid providerContextId,
-        string appPath,
+        string appIdentifier,
+        bool isDnsPortExcluded,
         bool persistent = false,
         Guid id = new())
     {
@@ -405,7 +406,8 @@ internal class IpFilterNative
             weight,
             ref calloutId,
             ref providerContextId,
-            appPath,
+            appIdentifier,
+            (uint)(isDnsPortExcluded ? 1 : 0),
             (uint)(persistent ? 1 : 0),
             ref id));
 

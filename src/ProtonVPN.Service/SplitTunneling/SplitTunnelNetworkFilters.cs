@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
+/*
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,155 +21,168 @@ using System;
 using System.Net;
 using ProtonVPN.NetworkFilter;
 
-namespace ProtonVPN.Service.SplitTunneling
+namespace ProtonVPN.Service.SplitTunneling;
+
+public class SplitTunnelNetworkFilters
 {
-    public class SplitTunnelNetworkFilters
+    private const uint WFP_SUB_LAYER_WEIGHT = 10001;
+
+    private static readonly Guid _connectRedirectV4CalloutKey = Guid.Parse("{3c5a284f-af01-51fa-4361-6c6c50424144}");
+    private static readonly Guid _connectRedirectV6CalloutKey = Guid.Parse("{3c5a284f-af01-51fa-4361-6c6c50424145}");
+    private static readonly Guid _bindRedirectV4CalloutKey = Guid.Parse("{10636af3-50d6-4f53-acb7-d5af33217fca}");
+    private static readonly Guid _bindRedirectV6CalloutKey = Guid.Parse("{10636af3-50d6-4f53-acb7-d5af33217faa}");
+
+    private IpFilter _ipFilter;
+    private Sublayer _subLayer;
+
+    public void EnableExcludeMode(string[] apps, IPAddress localIpv4Address, IPAddress localIpv6Address)
     {
-        private const uint WfpSubLayerWeight = 10001;
-        private static readonly Guid WfpCalloutKey = Guid.Parse("{3c5a284f-af01-51fa-4361-6c6c50424144}");
-        private static readonly Guid WfpRedirectUDPCalloutKey = Guid.Parse("{10636af3-50d6-4f53-acb7-d5af33217fca}");
+        Create();
 
-        private IpFilter _ipFilter;
-        private Sublayer _subLayer;
-
-        public void EnableExcludeMode(string[] apps, string[] ips, IPAddress internetLocalIp)
+        _ipFilter.Session.StartTransaction();
+        try
         {
-            Create();
+            Redirect(apps, localIpv4Address, localIpv6Address);
 
-            _ipFilter.Session.StartTransaction();
-            try
+            _ipFilter.Session.CommitTransaction();
+        }
+        catch
+        {
+            _ipFilter.Session.AbortTransaction();
+            throw;
+        }
+    }
+
+    public void EnableIncludeMode(string[] apps, IPAddress serverIpv4Address, IPAddress serverIpv6Address)
+    {
+        Create();
+
+        _ipFilter.Session.StartTransaction();
+        try
+        {
+            Redirect(apps, serverIpv4Address, serverIpv6Address);
+
+            _ipFilter.Session.CommitTransaction();
+        }
+        catch
+        {
+            _ipFilter.Session.AbortTransaction();
+            throw;
+        }
+    }
+
+    private void Redirect(string[] apps, IPAddress ipv4Address, IPAddress ipv6Address)
+    {
+        Callout connectRedirectCalloutV4 = CreateConnectRedirectCallout(Layer.AppConnectRedirectV4, _connectRedirectV4CalloutKey);
+        Callout bindRedirectCalloutV4 = CreateUDPRedirectCallout(Layer.BindRedirectV4, _bindRedirectV4CalloutKey);
+
+        ProviderContext providerContextV4 = GetProviderContext(ipv4Address);
+        CreateAppCalloutFilters(apps, bindRedirectCalloutV4, Layer.BindRedirectV4, providerContextV4);
+        CreateAppCalloutFilters(apps, connectRedirectCalloutV4, Layer.AppConnectRedirectV4, providerContextV4);
+
+        if (ipv6Address is not null)
+        {
+            ProviderContext providerContextV6 = GetProviderContext(ipv6Address);
+            Callout connectRedirectCalloutV6 = CreateConnectRedirectCallout(Layer.AppConnectRedirectV6, _connectRedirectV6CalloutKey);
+            Callout redirectUDPCalloutV6 = CreateUDPRedirectCallout(Layer.BindRedirectV6, _bindRedirectV6CalloutKey);
+
+            CreateAppCalloutFilters(apps, connectRedirectCalloutV6, Layer.AppConnectRedirectV6, providerContextV6);
+            CreateAppCalloutFilters(apps, redirectUDPCalloutV6, Layer.BindRedirectV6, providerContextV6);
+        }
+    }
+
+    private ProviderContext GetProviderContext(IPAddress ipAddress)
+    {
+        return _ipFilter.CreateProviderContext(
+            new DisplayData
             {
-                var connectRedirectCallout = CreateConnectRedirectCallout();
-                var redirectUDPCallout = CreateUDPRedirectCallout();
+                Name = "ProtonVPN Split Tunnel redirect context",
+                Description = "Instructs the callout driver where to redirect network connections",
+            },
+            new ConnectRedirectData(ipAddress));
+    }
 
-                var providerContext = _ipFilter.CreateProviderContext(
-                    new DisplayData
-                    {
-                        Name = "ProtonVPN Split Tunnel redirect context",
-                        Description = "Instructs the callout driver where to redirect network connections",
-                    },
-                    new ConnectRedirectData(internetLocalIp));
+    public void Disable()
+    {
+        Remove();
+    }
 
-                CreateAppFilters(apps, redirectUDPCallout, Layer.BindRedirectV4, providerContext);
-                CreateAppFilters(apps, connectRedirectCallout, Layer.AppConnectRedirectV4, providerContext);
-                _ipFilter.Session.CommitTransaction();
-            }
-            catch
+    private void Create()
+    {
+        _ipFilter = IpFilter.Create(
+            Session.Dynamic(),
+            new DisplayData { Name = "Proton AG", Description = "ProtonVPN Split Tunnel provider" });
+
+        _subLayer = _ipFilter.CreateSublayer(
+            new DisplayData { Name = "ProtonVPN Split Tunnel filters" },
+            WFP_SUB_LAYER_WEIGHT);
+    }
+
+    private void Remove()
+    {
+        _ipFilter?.Session.Close();
+        _ipFilter = null;
+        _subLayer = null;
+    }
+
+    private void CreateAppCalloutFilters(string[] apps, Callout callout, Layer layer, ProviderContext providerContext)
+    {
+        foreach (string app in apps)
+        {
+            SafeCreateAppFilter(app, callout, layer, providerContext);
+        }
+    }
+
+    private void SafeCreateAppFilter(string app, Callout callout, Layer layer, ProviderContext providerContext)
+    {
+        try
+        {
+            CreateAppFilter(app, callout, layer, providerContext);
+        }
+        catch (NetworkFilterException)
+        {
+        }
+    }
+
+    private void CreateAppFilter(string app, Callout callout, Layer layer, ProviderContext providerContext)
+    {
+        _subLayer.CreateAppCalloutFilter(
+            new DisplayData
             {
-                _ipFilter.Session.AbortTransaction();
-                throw;
-            }
-        }
+                Name = "ProtonVPN Split Tunnel redirect app",
+                Description = "Redirects network connections of the app"
+            },
+            layer,
+            15,
+            callout,
+            providerContext,
+            app,
+            false);
+    }
 
-        public void EnableIncludeMode(string[] apps, IPAddress vpnLocalIp)
-        {
-            Create();
-
-            _ipFilter.Session.StartTransaction();
-            try
+    private Callout CreateConnectRedirectCallout(Layer layer, Guid calloutKey)
+    {
+        return _ipFilter.CreateCallout(
+            new DisplayData
             {
-                var connectRedirectCallout = CreateConnectRedirectCallout();
-                var redirectUDPCallout = CreateUDPRedirectCallout();
-                var providerContext = _ipFilter.CreateProviderContext(
-                    new DisplayData
-                    {
-                        Name = "ProtonVPN Split Tunnel redirect context",
-                        Description = "Instructs the callout driver where to redirect network connections",
-                    },
-                    new ConnectRedirectData(vpnLocalIp));
+                Name = "ProtonVPN Split Tunnel callout",
+                Description = "Redirects network connections",
+            },
+            calloutKey,
+            layer
+        );
+    }
 
-                CreateAppFilters(apps, connectRedirectCallout, Layer.AppConnectRedirectV4, providerContext);
-                CreateAppFilters(apps, redirectUDPCallout, Layer.BindRedirectV4, providerContext);
-                _ipFilter.Session.CommitTransaction();
-            }
-            catch
+    private Callout CreateUDPRedirectCallout(Layer layer, Guid calloutKey)
+    {
+        return _ipFilter.CreateCallout(
+            new DisplayData
             {
-                _ipFilter.Session.AbortTransaction();
-                throw;
-            }
-        }
-
-        public void Disable()
-        {
-            Remove();
-        }
-
-        private void Create()
-        {
-            _ipFilter = IpFilter.Create(
-                Session.Dynamic(),
-                new DisplayData { Name = "Proton AG", Description = "ProtonVPN Split Tunnel provider" });
-
-            _subLayer = _ipFilter.CreateSublayer(
-                new DisplayData { Name = "ProtonVPN Split Tunnel filters" },
-                WfpSubLayerWeight);
-        }
-
-        private void Remove()
-        {
-            _ipFilter?.Session.Close();
-            _ipFilter = null;
-            _subLayer = null;
-        }
-
-        private void CreateAppFilters(string[] apps, Callout callout, Layer layer, ProviderContext providerContext)
-        {
-            foreach (var app in apps)
-            {
-                SafeCreateAppFilter(app, callout, layer, providerContext);
-            }
-        }
-
-        private void SafeCreateAppFilter(string app, Callout callout, Layer layer, ProviderContext providerContext)
-        {
-            try
-            {
-                CreateAppFilter(app, callout, layer, providerContext);
-            }
-            catch (NetworkFilterException)
-            {
-            }
-        }
-
-        private void CreateAppFilter(string app, Callout callout, Layer layer, ProviderContext providerContext)
-        {
-            _subLayer.CreateAppCalloutFilter(
-                new DisplayData
-                {
-                    Name = "ProtonVPN Split Tunnel redirect app",
-                    Description = "Redirects network connections of the app"
-                },
-                layer,
-                15,
-                callout,
-                providerContext,
-                app);
-        }
-
-        private Callout CreateConnectRedirectCallout()
-        {
-            return _ipFilter.CreateCallout(
-                new DisplayData
-                {
-                    Name = "ProtonVPN Split Tunnel callout",
-                    Description = "Redirects network connections",
-                },
-                WfpCalloutKey,
-                Layer.AppConnectRedirectV4
-            );
-        }
-
-        private Callout CreateUDPRedirectCallout()
-        {
-            return _ipFilter.CreateCallout(
-                new DisplayData
-                {
-                    Name = "ProtonVPN Split Tunnel callout",
-                    Description = "Redirects UDP network flow",
-                },
-                WfpRedirectUDPCalloutKey,
-                Layer.BindRedirectV4
-            );
-        }
+                Name = "ProtonVPN Split Tunnel callout",
+                Description = "Redirects UDP network flow",
+            },
+            calloutKey,
+            layer
+        );
     }
 }

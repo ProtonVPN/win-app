@@ -43,6 +43,8 @@ public class FirewallParams
 
     public bool IsLocalAreaNetworkAccessEnabled { get; set; }
 
+    public bool ForceRecreateDnsBlock { get; set; }
+
     public DnsBlockMode DnsBlockMode { get; set; }
 
     public SessionType SessionType => Persistent ? SessionType.Permanent : SessionType.Dynamic;

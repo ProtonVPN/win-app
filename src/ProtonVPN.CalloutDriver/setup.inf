@@ -1,0 +1,21 @@
+;*** BEGIN **********************************************************
+;**                                                                **
+;** Automatically generated on: Thu Nov 06 07:06:29 2025           **
+;**                                                                **
+;** MakeCAB Version: 5.00                                 **
+;**                                                                **
+;*** BEGIN **********************************************************
+[disk list]
+1,Disk 1
+[cabinet list]
+1,1,ProtonVPN.CalloutDriver.arm64.cab
+[file list]
+1,1,ProtonVPN.CalloutDriver.arm64\ProtonVPN.CalloutDriver.inf,1992
+1,1,ProtonVPN.CalloutDriver.arm64\protonvpn.calloutdriver.cat,1341
+1,1,ProtonVPN.CalloutDriver.arm64\ProtonVPN.CalloutDriver.sys,38128
+1,1,ProtonVPN.CalloutDriver.arm64\ProtonVPN.CalloutDriver.pdb,905216
+;*** END ************************************************************
+;**                                                                **
+;** Automatically generated on: Thu Nov 06 07:06:29 2025           **
+;**                                                                **
+;*** END ************************************************************

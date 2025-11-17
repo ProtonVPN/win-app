@@ -205,6 +205,11 @@ namespace ProtonVPN.Service.Tests.Vpn
 
             public uint Index => 0;
 
+            public IPAddress GetPreferredIpv6UnicastAddress()
+            {
+                return null;
+            }
+
             public List<NetworkAddress> GetUnicastAddresses()
             {
                 return [];

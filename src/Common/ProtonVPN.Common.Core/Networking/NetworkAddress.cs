@@ -58,7 +58,7 @@ public readonly record struct NetworkAddress
 
     public static bool TryParse(string? rawAddress, out NetworkAddress networkAddress)
     {
-        networkAddress = NetworkAddress.None;
+        networkAddress = None;
 
         try
         {

@@ -18,23 +18,27 @@
  */
 
 using System.Net;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Core.Networking.Extensions;
+using ProtonVPN.OperatingSystems.Network.Contracts.Routing;
 using Vanara.PInvoke;
 using static Vanara.PInvoke.IpHlpApi;
 using static Vanara.PInvoke.Ws2_32;
 
-namespace ProtonVPN.Common.Core.Networking.Routing;
+namespace ProtonVPN.OperatingSystems.Network.Routing;
 
-public class RoutingTableHelper
+public class RoutingTableHelper : IRoutingTableHelper
 {
-    public static void CreateRoute(RouteConfiguration route)
+    private const uint DEFAULT_LOOPBACK_INTERFACE_INDEX = 1;
+
+    public void CreateRoute(RouteConfiguration route)
     {
         InitializeIpForwardEntry(out MIB_IPFORWARD_ROW2 row);
 
         row.DestinationPrefix = GetDestinationPrefix(route);
         row.NextHop = GetNextHop(route);
         row.Metric = route.Metric;
-        row.InterfaceIndex = route.Gateway is null ? 1 : route.InterfaceIndex;
+        row.InterfaceIndex = route.Gateway is null ? DEFAULT_LOOPBACK_INTERFACE_INDEX : route.InterfaceIndex;
         row.ValidLifetime = uint.MaxValue;
         row.PreferredLifetime = uint.MaxValue;
         row.Loopback = route.Gateway is null;
@@ -42,7 +46,7 @@ public class RoutingTableHelper
         CreateIpForwardEntry2(ref row);
     }
 
-    public static uint? GetLoopbackInterfaceIndex()
+    public uint? GetLoopbackInterfaceIndex()
     {
         Win32Error result = GetIfTable2(out MIB_IF_TABLE2 table);
         if (result.Succeeded)
@@ -54,7 +58,7 @@ public class RoutingTableHelper
         return null;
     }
 
-    private static IP_ADDRESS_PREFIX GetDestinationPrefix(RouteConfiguration route)
+    private IP_ADDRESS_PREFIX GetDestinationPrefix(RouteConfiguration route)
     {
         return new()
         {
@@ -63,14 +67,14 @@ public class RoutingTableHelper
         };
     }
 
-    private static SOCKADDR_INET GetNextHop(RouteConfiguration route)
+    private SOCKADDR_INET GetNextHop(RouteConfiguration route)
     {
         return CreateSockAddrInet(route.Gateway ?? new NetworkAddress(route.IsIpv6
                 ? IPAddress.IPv6None
                 : IPAddress.None));
     }
 
-    private static SOCKADDR_INET CreateSockAddrInet(NetworkAddress address)
+    private SOCKADDR_INET CreateSockAddrInet(NetworkAddress address)
     {
         SOCKADDR_INET sockAddr = new()
         {
@@ -97,7 +101,7 @@ public class RoutingTableHelper
         return sockAddr;
     }
 
-    private static byte GetDefaultPrefixLength(NetworkAddress address)
+    private byte GetDefaultPrefixLength(NetworkAddress address)
     {
         if (address.Subnet.HasValue)
         {
@@ -112,7 +116,7 @@ public class RoutingTableHelper
         return address.Ip.Equals(IPAddress.Any) ? (byte)0 : (byte)32;
     }
 
-    public static void DeleteRoute(RouteConfiguration route)
+    public void DeleteRoute(RouteConfiguration route)
     {
         MIB_IPFORWARD_ROW2 routeToDelete = new()
         {
@@ -124,7 +128,7 @@ public class RoutingTableHelper
         DeleteIpForwardEntry2(ref routeToDelete);
     }
 
-    public static void DeleteRoute(string destinationIpAddress, bool isIpv6)
+    public void DeleteRoute(string destinationIpAddress, bool isIpv6)
     {
         IPAddress ipAddress = IPAddress.Parse(destinationIpAddress);
         ADDRESS_FAMILY family = isIpv6
@@ -147,7 +151,7 @@ public class RoutingTableHelper
         }
     }
 
-    public static uint? GetInterfaceMetric(uint interfaceIndex, bool isIpv6)
+    public uint? GetInterfaceMetric(uint interfaceIndex, bool isIpv6)
     {
         MIB_IPINTERFACE_ROW row = new()
         {

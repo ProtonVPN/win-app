@@ -18,6 +18,7 @@
  */
 
 using System.Net;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.OperatingSystems.Network.Contracts;
 
@@ -29,9 +30,11 @@ public interface INetworkUtilities
 
     void EnableIPv6(string appName, string interfaceId);
 
-    IPAddress GetBestInterfaceIp(string excludedIfaceHwid);
+    IPAddress GetBestInterfaceIPv4Address(string excludedIfaceHwid);
 
     void SetLowestTapMetric(uint index);
 
     void RestoreDefaultTapMetric(uint index);
+
+    NetworkAddress? GetDefaultIpv6Gateway(INetworkInterface tunnelInterface, INetworkInterface[] networkInterfaces);
 }

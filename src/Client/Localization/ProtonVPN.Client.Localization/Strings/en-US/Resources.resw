@@ -2505,12 +2505,6 @@
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title" xml:space="preserve">
     <value>Enable custom DNS servers?</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description" xml:space="preserve">
-    <value>This will disable split tunneling.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title" xml:space="preserve">
-    <value>Enable kill switch?</value>
-  </data>
   <data name="Settings_Connection_NetShield_Conflict_Information" xml:space="preserve">
     <value>NetShield is not compatible with Custom DNS.</value>
   </data>
@@ -2534,12 +2528,6 @@
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers" xml:space="preserve">
     <value>Block ads, malware and trackers</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description" xml:space="preserve">
-    <value>This will disable kill switch.</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title" xml:space="preserve">
-    <value>Enable split tunneling?</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Conflict_Description" xml:space="preserve">
     <value>You won't be able to use port forwarding with Moderate NAT.</value>

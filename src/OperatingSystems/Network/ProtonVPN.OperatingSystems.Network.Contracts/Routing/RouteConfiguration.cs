@@ -17,7 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Common.Core.Networking.Routing;
+using ProtonVPN.Common.Core.Networking;
+
+namespace ProtonVPN.OperatingSystems.Network.Contracts.Routing;
 
 public class RouteConfiguration
 {

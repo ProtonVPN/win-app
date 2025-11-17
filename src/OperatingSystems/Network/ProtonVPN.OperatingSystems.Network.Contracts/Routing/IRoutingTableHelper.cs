@@ -17,12 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Legacy.Vpn;
+namespace ProtonVPN.OperatingSystems.Network.Contracts.Routing;
 
-namespace ProtonVPN.Vpn.WireGuard.SplitTunnel;
-
-public interface IWireGuardSplitTunnelRouting
+public interface IRoutingTableHelper
 {
-    public void SetUpRoutingTable(VpnConfig vpnConfig, string localIp);
-    public void DeleteRoutes(VpnConfig vpnConfig);
+    void CreateRoute(RouteConfiguration route);
+    void DeleteRoute(RouteConfiguration route);
+    void DeleteRoute(string destinationIpAddress, bool isIpv6);
+    uint? GetInterfaceMetric(uint interfaceIndex, bool isIpv6);
+    uint? GetLoopbackInterfaceIndex();
 }

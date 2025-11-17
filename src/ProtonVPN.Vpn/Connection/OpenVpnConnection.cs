@@ -53,7 +53,6 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
     private readonly IStaticConfiguration _config;
     private readonly INetworkInterfaceLoader _networkInterfaceLoader;
     private readonly OpenVpnProcess _process;
-    private readonly ICommandLineCaller _commandLineCaller;
     private readonly ManagementClient _managementClient;
 
     private readonly OpenVpnManagementPorts _managementPorts;
@@ -80,7 +79,6 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
         _networkInterfaceLoader = networkInterfaceLoader;
         _process = process;
         _randomStringGenerator = randomStringGenerator;
-        _commandLineCaller = commandLineCaller;
         _managementClient = managementClient;
 
         _managementClient.VpnStateChanged += ManagementClient_StateChanged;
@@ -133,7 +131,6 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
             password,
             GetCustomDnsServers(_vpnConfig),
             _vpnConfig.SplitTunnelMode,
-            _vpnConfig.SplitTunnelIPs,
             _vpnConfig.OpenVpnAdapter,
             GetNetworkInterfaceIdOrEmpty());
 

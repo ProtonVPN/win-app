@@ -105,6 +105,14 @@ namespace ipfilter
                              std::make_shared<value::ApplicationId>(appId));
         }
 
+        Condition packageFamilyName(
+            matcher::Matcher matcher,
+            const value::SecurityIdentifier& securityIdentifier)
+        {
+            return Condition(matcher, FWPM_CONDITION_ALE_PACKAGE_ID,
+                std::make_shared<value::SecurityIdentifier>(securityIdentifier));
+        }
+
         Condition netInterface(matcher::Matcher matcher, const NetInterface& iface)
         {
             return Condition(

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,79 +17,67 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.IO;
-using System.Linq;
 using System.Net;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
 using ProtonVPN.NetworkFilter;
 
-namespace ProtonVPN.Service.SplitTunneling
+namespace ProtonVPN.Service.SplitTunneling;
+
+internal class SplitTunnelClient : ISplitTunnelClient
 {
-    internal class SplitTunnelClient : ISplitTunnelClient
+    private readonly ILogger _logger;
+    private readonly SplitTunnelNetworkFilters _filters;
+
+    public SplitTunnelClient(
+        ILogger logger,
+        SplitTunnelNetworkFilters filters)
     {
-        private readonly ILogger _logger;
-        private readonly BestNetworkInterface _bestInterface;
-        private readonly SplitTunnelNetworkFilters _filters;
+        _logger = logger;
+        _filters = filters;
+    }
 
-        public SplitTunnelClient(
-            ILogger logger,
-            BestNetworkInterface bestInterface,
-            SplitTunnelNetworkFilters filters)
+    public void EnableExcludeMode(string[] appPaths, IPAddress localIpv4Address, IPAddress localIpv6Address)
+    {
+        if ((appPaths == null || appPaths.Length == 0))
         {
-            _logger = logger;
-            _bestInterface = bestInterface;
-            _filters = filters;
+            return;
         }
 
-        public void EnableExcludeMode(string[] appPaths, string[] ips)
-        {
-            string[] apps = GetAppPaths(appPaths);
-            if ((apps == null || apps.Length == 0) && (ips == null || ips.Length == 0))
-            {
-                return;
-            }
+        EnsureSucceeded(
+            () => _filters.EnableExcludeMode(appPaths, localIpv4Address, localIpv6Address),
+            "SplitTunnel: Enabling exclude mode");
+    }
 
-            EnsureSucceeded(
-                () => _filters.EnableExcludeMode(apps, ips, _bestInterface.LocalIpAddress()),
-                "SplitTunnel: Enabling exclude mode");
+    public void EnableIncludeMode(string[] appPaths, IPAddress serverIpv4Address, IPAddress serverIpv6Address)
+    {
+        if ((appPaths == null || appPaths.Length == 0))
+        {
+            return;
         }
 
-        public void EnableIncludeMode(string[] appPaths, string[] ips, string vpnLocalIp)
-        {
-            string[] apps = GetAppPaths(appPaths);
-            if ((apps == null || apps.Length == 0) && (ips == null || ips.Length == 0))
-            {
-                return;
-            }
+        EnsureSucceeded(() => _filters.EnableIncludeMode(
+            appPaths,
+            serverIpv4Address,
+            serverIpv6Address),
+            "SplitTunnel: Enabling include mode");
+    }
 
-            EnsureSucceeded(() => _filters.EnableIncludeMode(apps, IPAddress.Parse(vpnLocalIp)),
-                "SplitTunnel: Enabling include mode");
+    public void Disable()
+    {
+        EnsureSucceeded(_filters.Disable, "SplitTunnel: Disabling");
+    }
+
+    private void EnsureSucceeded(System.Action action, string actionMessage)
+    {
+        try
+        {
+            action();
+            _logger.Info<ConnectionLog>($"{actionMessage} succeeded");
         }
-
-        public void Disable()
+        catch (NetworkFilterException e)
         {
-            EnsureSucceeded(
-                () => _filters.Disable(),
-                "SplitTunnel: Disabling");
-        }
-
-        private string[] GetAppPaths(string[] paths)
-        {
-            return paths.Where(File.Exists).ToArray();
-        }
-
-        private void EnsureSucceeded(System.Action action, string actionMessage)
-        {
-            try
-            {
-                action();
-                _logger.Info<ConnectionLog>($"{actionMessage} succeeded");
-            }
-            catch (NetworkFilterException e)
-            {
-                _logger.Error<ConnectionLog>($"{actionMessage} failed. Error code: {e.Code}");
-            }
+            _logger.Error<ConnectionLog>($"{actionMessage} failed. Error code: {e.Code}");
         }
     }
 }

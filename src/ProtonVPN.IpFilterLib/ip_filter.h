@@ -19,8 +19,9 @@ enum class IPFilterLayer : unsigned int
     BindRedirectV4 = 4,
     BindRedirectV6 = 5,
     AppConnectRedirectV4 = 6,
-    OutboundIPPacketV4 = 7,
-    AppAuthRecvAcceptV6 = 8,
+    AppConnectRedirectV6 = 7,
+    OutboundIPPacketV4 = 8,
+    AppAuthRecvAcceptV6 = 9,
 };
 
 enum class IPFilterAction : unsigned int
@@ -199,6 +200,7 @@ unsigned int IPFilterCreateAppFilter(
     GUID * calloutKey,
     GUID * providerContextKey,
     const wchar_t* path,
+    BOOL isDnsPortExcluded,
     BOOL persistent,
     GUID * filterKey);
 

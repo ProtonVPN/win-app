@@ -28,6 +28,7 @@ public enum Layer: uint
     BindRedirectV4 = 4,
     BindRedirectV6 = 5,
     AppConnectRedirectV4 = 6,
-    OutboundIPPacketV4 = 7,
-    AppAuthRecvAcceptV6 = 8,
+    AppConnectRedirectV6 = 7,
+    OutboundIPPacketV4 = 8,
+    AppAuthRecvAcceptV6 = 9,
 }

@@ -170,8 +170,6 @@ namespace ProtonVPN.Service.Tests.KillSwitch
         [DataRow(VpnStatus.RetrievingConfiguration, true)]
         [DataRow(VpnStatus.AssigningIp, false)]
         [DataRow(VpnStatus.AssigningIp, true)]
-        [DataRow(VpnStatus.Connected, false)]
-        [DataRow(VpnStatus.Connected, true)]
         public void ExpectedLeakProtectionStatus_ShouldBe_Firewall_LeakProtectionEnabled_WhenOtherStatus(
             VpnStatus status, bool leakProtectionEnabled)
         {

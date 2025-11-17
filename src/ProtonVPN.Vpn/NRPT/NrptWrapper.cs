@@ -22,9 +22,6 @@ using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Configurations.Contracts.WireGuard;
-using ProtonVPN.IssueReporting.Contracts;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
 using ProtonVPN.OperatingSystems.NRPT.Contracts;
 using ProtonVPN.Vpn.OpenVpn.DnsServers;
 
@@ -33,8 +30,6 @@ namespace ProtonVPN.Vpn.NRPT;
 public class NrptWrapper : INrptWrapper
 {
     private readonly INrptInvoker _nrptInvoker;
-    private readonly ILogger _logger;
-    private readonly IIssueReporter _issueReporter;
     private readonly IWireGuardDnsServersCreator _wireGuardDnsServersCreator;
     private readonly IOpenVpnDnsServersCreator _openVpnDnsServersCreator;
 
@@ -42,15 +37,12 @@ public class NrptWrapper : INrptWrapper
     private VpnProtocol _vpnProtocol;
     private bool _isIpv6Supported;
 
-    public NrptWrapper(INrptInvoker nrptInvoker,
-        ILogger logger,
-        IIssueReporter issueReporter,
+    public NrptWrapper(
+        INrptInvoker nrptInvoker,
         IWireGuardDnsServersCreator wireGuardDnsServersCreator,
         IOpenVpnDnsServersCreator openVpnDnsServersCreator)
     {
         _nrptInvoker = nrptInvoker;
-        _logger = logger;
-        _issueReporter = issueReporter;
         _wireGuardDnsServersCreator = wireGuardDnsServersCreator;
         _openVpnDnsServersCreator = openVpnDnsServersCreator;
     }
@@ -71,10 +63,6 @@ public class NrptWrapper : INrptWrapper
 
         if (string.IsNullOrWhiteSpace(nameServers))
         {
-            const string title = "No DNS servers when creating NRPT rule. No NRPT rule will be created.";
-            string details = $"[{dnsServersCreator.GetType().Name}] IPv6: {_isIpv6Supported}, Custom DNS servers: {_customDns.Count}";
-            _logger.Error<OperatingSystemNrptLog>($"{title} {details}");
-            _issueReporter.CaptureError(title, details);
             return false;
         }
 

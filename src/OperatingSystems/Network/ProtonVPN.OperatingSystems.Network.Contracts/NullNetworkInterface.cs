@@ -45,4 +45,9 @@ public class NullNetworkInterface : INetworkInterface
     {
         return [];
     }
+
+    public IPAddress? GetPreferredIpv6UnicastAddress()
+    {
+        return null;
+    }
 }
