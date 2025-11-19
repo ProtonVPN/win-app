@@ -175,6 +175,7 @@
     <Project Path="src/IssueReporting/ProtonVPN.IssueReporting.Contracts/ProtonVPN.IssueReporting.Contracts.csproj" />
     <Project Path="src/IssueReporting/ProtonVPN.IssueReporting.Installers/ProtonVPN.IssueReporting.Installers.csproj" />
     <Project Path="src/IssueReporting/ProtonVPN.IssueReporting.Static/ProtonVPN.IssueReporting.Static.csproj" />
+    <Project Path="src/IssueReporting/ProtonVPN.IssueReporting.Tests/ProtonVPN.IssueReporting.Tests.csproj" />
     <Project Path="src/IssueReporting/ProtonVPN.IssueReporting/ProtonVPN.IssueReporting.csproj" />
   </Folder>
   <Folder Name="/Logging/">

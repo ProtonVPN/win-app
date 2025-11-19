@@ -24,6 +24,7 @@ using System.Text;
 using ProtonVPN.Builds.Variables;
 using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.Common.Legacy.OS.DeviceIds;
+using ProtonVPN.IssueReporting.DataScrubbing;
 using ProtonVPN.IssueReporting.DiagnosticLogging;
 using ProtonVPN.IssueReporting.HttpHandlers;
 using ProtonVPN.Logging.Contracts;
@@ -36,7 +37,8 @@ public static class SentryInitializer
 {
     private static bool _isEnabled;
     private static readonly ISentryDiagnosticLogger _sentryDiagnosticLogger = new SentryDiagnosticLogger();
-    private static ILogger _logger;
+    private static ILogger? _logger;
+    private static readonly SentryDataScrubber _dataScrubber = new();
 
     public static void SetLogger(ILogger logger)
     {
@@ -72,6 +74,8 @@ public static class SentryInitializer
             SendClientReports = false,
         };
 
+        options.AddEventProcessor(new SentryEventScrubberProcessor());
+
         options.SetBeforeSend(e =>
         {
             LogSentryEvent(e);
@@ -86,7 +90,9 @@ public static class SentryInitializer
             e.SetTag("Architecture", OSArchitecture.StringValue);
             e.SetTag("WindowsSKU", WindowsSku.GetHexString());
             e.User.Id = DeviceIdStaticBuilder.GetDeviceId();
-            e.SetExtra("logs", GetLogs());
+            
+            string logs = GetLogs();
+            e.SetExtra("logs", _dataScrubber.Scrub(logs));
 
             return e;
         });
@@ -108,7 +114,7 @@ public static class SentryInitializer
                 _logger?.Warn<AppLog>(e.Message?.Message);
                 break;
             case SentryLevel.Error:
-                string message = e.Message?.Message;
+                string message = e.Message?.Message!;
                 if (string.IsNullOrEmpty(message))
                 {
                     message = "Exception handled by Sentry";

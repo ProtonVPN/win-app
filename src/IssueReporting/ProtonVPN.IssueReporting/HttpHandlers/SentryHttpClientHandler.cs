@@ -22,15 +22,18 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ProtonVPN.IssueReporting.HttpHandlers
+namespace ProtonVPN.IssueReporting.HttpHandlers;
+
+public class SentryHttpClientHandler : HttpClientHandler
 {
-    public class SentryHttpClientHandler : HttpClientHandler
+    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
+        CancellationToken cancellationToken)
     {
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
-            CancellationToken cancellationToken)
+        if (request.Content != null)
         {
             request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-sentry-envelope");
-            return await base.SendAsync(request, cancellationToken);
         }
+
+        return await base.SendAsync(request, cancellationToken);
     }
 }

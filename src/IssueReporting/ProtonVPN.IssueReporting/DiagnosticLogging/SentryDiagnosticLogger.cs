@@ -22,43 +22,42 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using Sentry;
 
-namespace ProtonVPN.IssueReporting.DiagnosticLogging
+namespace ProtonVPN.IssueReporting.DiagnosticLogging;
+
+public class SentryDiagnosticLogger : ISentryDiagnosticLogger
 {
-    public class SentryDiagnosticLogger : ISentryDiagnosticLogger
+    private ILogger? _logger;
+
+    public void SetLogger(ILogger logger)
     {
-        private ILogger _logger;
+        _logger = logger;
+    }
 
-        public void SetLogger(ILogger logger)
-        {
-            _logger = logger;
-        }
+    public bool IsEnabled(SentryLevel level)
+    {
+        return level != SentryLevel.Debug;
+    }
 
-        public bool IsEnabled(SentryLevel level)
+    public void Log(SentryLevel logLevel, string message, Exception? exception = null, params object?[] args)
+    {
+        string logMessage = $"SENTRY: {string.Format(message, args)}";
+        switch (logLevel)
         {
-            return level != SentryLevel.Debug;
-        }
-
-        public void Log(SentryLevel logLevel, string message, Exception exception = null, params object[] args)
-        {
-            string logMessage = $"SENTRY: {string.Format(message, args)}";
-            switch (logLevel)
-            {
-                case SentryLevel.Debug:
-                    _logger?.Debug<AppLog>(logMessage, exception);
-                    break;
-                case SentryLevel.Info:
-                    _logger?.Info<AppLog>(logMessage);
-                    break;
-                case SentryLevel.Warning:
-                    _logger?.Warn<AppLog>(logMessage);
-                    break;
-                case SentryLevel.Error:
-                    _logger?.Error<AppLog>(logMessage);
-                    break;
-                case SentryLevel.Fatal:
-                    _logger?.Fatal<AppCrashLog>(logMessage);
-                    break;
-            }
+            case SentryLevel.Debug:
+                _logger?.Debug<AppLog>(logMessage, exception);
+                break;
+            case SentryLevel.Info:
+                _logger?.Info<AppLog>(logMessage);
+                break;
+            case SentryLevel.Warning:
+                _logger?.Warn<AppLog>(logMessage);
+                break;
+            case SentryLevel.Error:
+                _logger?.Error<AppLog>(logMessage);
+                break;
+            case SentryLevel.Fatal:
+                _logger?.Fatal<AppCrashLog>(logMessage);
+                break;
         }
     }
 }
