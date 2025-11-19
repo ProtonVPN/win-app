@@ -112,7 +112,8 @@ public static class IntentExtensions
         return locationIntent switch
         {
             // Server -> City -> (State) -> Single country -> Multi country
-            ServerLocationIntentBase serverIntent => serverIntent.City,
+            ServerLocationIntentBase serverIntent when serverIntent.City != null => serverIntent.City,
+            ServerLocationIntentBase serverIntent => serverIntent.Country,
             CityLocationIntentBase cityIntent when cityIntent.State != null => cityIntent.State,
             CityLocationIntentBase cityIntent => cityIntent.Country,
             StateLocationIntentBase stateIntent => stateIntent.Country,

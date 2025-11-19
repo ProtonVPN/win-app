@@ -17,23 +17,28 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.SerializableEntities.Intents;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Profiles.Contracts.SerializableEntities;
 using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Logic.Profiles.EntityMapping;
 
 public class ConnectionProfileMapper : IMapper<IConnectionProfile, SerializableProfile>
 {
     private readonly IEntityMapper _entityMapper;
+    private readonly ILogger _logger;
 
-    public ConnectionProfileMapper(IEntityMapper entityMapper)
+    public ConnectionProfileMapper(
+        IEntityMapper entityMapper,
+        ILogger logger)
     {
         _entityMapper = entityMapper;
+        _logger = logger;
     }
 
     public SerializableProfile Map(IConnectionProfile leftEntity)
@@ -56,19 +61,28 @@ public class ConnectionProfileMapper : IMapper<IConnectionProfile, SerializableP
 
     public IConnectionProfile Map(SerializableProfile rightEntity)
     {
-        return rightEntity is null
-            ? null
-            : new ConnectionProfile(
-                id: rightEntity.Id,
-                creationDateTimeUtc: rightEntity.CreationDateTimeUtc,
-                icon: _entityMapper.Map<SerializableProfileIcon, IProfileIcon>(rightEntity.Icon),
-                settings: _entityMapper.Map<SerializableProfileSettings, IProfileSettings>(rightEntity.Settings),
-                options: _entityMapper.Map<SerializableProfileOptions, IProfileOptions>(rightEntity.Options),
-                location: _entityMapper.Map<SerializableLocationIntent, ILocationIntent>(rightEntity.Location),
-                feature: _entityMapper.Map<SerializableFeatureIntent, IFeatureIntent>(rightEntity.Feature))
-            {
-                Name = rightEntity.Name,
-                UpdateDateTimeUtc = rightEntity.UpdateDateTimeUtc
-            };
+        try
+        {
+            return rightEntity is null
+                ? null
+                : new ConnectionProfile(
+                    id: rightEntity.Id,
+                    creationDateTimeUtc: rightEntity.CreationDateTimeUtc,
+                    icon: _entityMapper.Map<SerializableProfileIcon, IProfileIcon>(rightEntity.Icon),
+                    settings: _entityMapper.Map<SerializableProfileSettings, IProfileSettings>(rightEntity.Settings),
+                    options: _entityMapper.Map<SerializableProfileOptions, IProfileOptions>(rightEntity.Options),
+                    location: _entityMapper.Map<SerializableLocationIntent, ILocationIntent>(rightEntity.Location),
+                    feature: _entityMapper.Map<SerializableFeatureIntent, IFeatureIntent>(rightEntity.Feature))
+                {
+                    Name = rightEntity.Name,
+                    UpdateDateTimeUtc = rightEntity.UpdateDateTimeUtc
+                };
+        }
+        catch (Exception e)
+        {
+            _logger.Warn<AppLog>("Failed to map SerializableProfile to IConnectionProfile", e);
+
+            return null;
+        }
     }
 }

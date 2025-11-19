@@ -35,7 +35,7 @@ public class SingleServerLocationIntentMapper : IMapper<SingleServerLocationInte
                 TypeName = nameof(SingleServerLocationIntent),
                 CountryCode = leftEntity.Country.CountryCode,
                 State = leftEntity.State?.StateName,
-                City = leftEntity.City.CityName,
+                City = leftEntity.City?.CityName,
                 Server = leftEntity.Server,
             };
     }

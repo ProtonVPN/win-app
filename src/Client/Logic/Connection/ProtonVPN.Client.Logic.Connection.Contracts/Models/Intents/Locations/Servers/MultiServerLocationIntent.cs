@@ -19,19 +19,25 @@
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Cities;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Servers;
 
 public class MultiServerLocationIntent : ServerLocationIntentBase, IMultiLocationIntent
 {
-    public static MultiServerLocationIntent From(string countryCode, string stateName, string cityName, IEnumerable<ServerInfo> servers, SelectionStrategy strategy)
-        => string.IsNullOrEmpty(stateName)
-            ? From(countryCode, cityName, servers, strategy)
+    public static MultiServerLocationIntent From(string countryCode, string? stateName, string? cityName, IEnumerable<ServerInfo> servers, SelectionStrategy strategy)
+        => string.IsNullOrEmpty(cityName)
+            ? From(countryCode, servers, strategy)
             : new(SingleCityLocationIntent.From(countryCode, stateName, cityName), servers, strategy);
 
-    public static MultiServerLocationIntent From(string countryCode, string cityName, IEnumerable<ServerInfo> servers, SelectionStrategy strategy)
-        => new(SingleCityLocationIntent.From(countryCode, cityName), servers, strategy);
+    public static MultiServerLocationIntent From(string countryCode, string? cityName, IEnumerable<ServerInfo> servers, SelectionStrategy strategy)
+        => string.IsNullOrEmpty(cityName)
+            ? From(countryCode, servers, strategy)
+            : new(SingleCityLocationIntent.From(countryCode, cityName), servers, strategy);
+
+    public static MultiServerLocationIntent From(string countryCode, IEnumerable<ServerInfo> servers, SelectionStrategy strategy)
+        => new(SingleCountryLocationIntent.From(countryCode), servers, strategy);
 
     public IReadOnlyList<ServerInfo> Servers { get; }
 
@@ -53,6 +59,22 @@ public class MultiServerLocationIntent : ServerLocationIntentBase, IMultiLocatio
         SingleCityLocationIntent city,
         SelectionStrategy strategy = SelectionStrategy.Fastest)
         : this(city, [], strategy)
+    { }
+
+    public MultiServerLocationIntent(
+        SingleCountryLocationIntent country,
+        IEnumerable<ServerInfo> servers,
+        SelectionStrategy strategy = SelectionStrategy.Fastest)
+        : base(country)
+    {
+        Servers = servers.Distinct().OrderBy(s => s.Id).ToList();
+        Strategy = strategy;
+    }
+
+    public MultiServerLocationIntent(
+        SingleCountryLocationIntent country,
+        SelectionStrategy strategy = SelectionStrategy.Fastest)
+        : this(country, [], strategy)
     { }
 
     public override bool IsSameAs(ILocationIntent? intent)

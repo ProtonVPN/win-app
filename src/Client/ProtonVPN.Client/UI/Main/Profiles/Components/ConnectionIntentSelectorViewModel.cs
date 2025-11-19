@@ -357,7 +357,8 @@ public partial class ConnectionIntentSelectorViewModel : ViewModelBase,
                 },
                 SingleCityLocationIntent intent => SecondLevelLocationItems.OfType<CityLocationItemBase>().FirstOrDefault(c => intent.CityName.EqualsIgnoringCase(c.City.Name)),
                 ServerLocationIntentBase intent when intent.State != null => SecondLevelLocationItems.OfType<StateLocationItemBase>().FirstOrDefault(s => intent.State.StateName.EqualsIgnoringCase(s.State.Name)),
-                ServerLocationIntentBase intent => SecondLevelLocationItems.OfType<CityLocationItemBase>().FirstOrDefault(c => intent.City.CityName.EqualsIgnoringCase(c.City.Name)),
+                ServerLocationIntentBase intent when intent.City != null => SecondLevelLocationItems.OfType<CityLocationItemBase>().FirstOrDefault(c => intent.City.CityName.EqualsIgnoringCase(c.City.Name)),
+                SingleServerLocationIntent intent => SecondLevelLocationItems.OfType<ServerLocationItemBase>().FirstOrDefault(s => intent.Server.Id == s.Server.Id),
                 SingleGatewayServerLocationIntent intent => SecondLevelLocationItems.OfType<GatewayServerLocationItem>().FirstOrDefault(s => intent.Server.Id == s.Server.Id),
                 _ => null
             };

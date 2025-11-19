@@ -18,17 +18,25 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Cities;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Servers;
 
 public class SingleServerLocationIntent : ServerLocationIntentBase, ISingleLocationIntent
 {
-    public static SingleServerLocationIntent From(string countryCode, string stateName, string cityName, ServerInfo server)
-        => new(SingleCityLocationIntent.From(countryCode, stateName, cityName), server);
+    public static SingleServerLocationIntent From(string countryCode, string? stateName, string? cityName, ServerInfo server)
+        => string.IsNullOrEmpty(cityName)
+            ? From(countryCode, server)
+            : new(SingleCityLocationIntent.From(countryCode, stateName, cityName), server);
 
-    public static SingleServerLocationIntent From(string countryCode, string cityName, ServerInfo server)
-        => new(SingleCityLocationIntent.From(countryCode, cityName), server);
+    public static SingleServerLocationIntent From(string countryCode, string? cityName, ServerInfo server)
+        => string.IsNullOrEmpty(cityName)
+            ? From(countryCode, server)
+            : new(SingleCityLocationIntent.From(countryCode, cityName), server);
+
+    public static SingleServerLocationIntent From(string countryCode, ServerInfo server)
+        => new(SingleCountryLocationIntent.From(countryCode), server);
 
     public ServerInfo Server { get; }
 
@@ -36,6 +44,14 @@ public class SingleServerLocationIntent : ServerLocationIntentBase, ISingleLocat
         SingleCityLocationIntent city,
         ServerInfo server)
         : base(city)
+    {
+        Server = server;
+    }
+
+    public SingleServerLocationIntent(
+        SingleCountryLocationIntent country,
+        ServerInfo server)
+        : base(country)
     {
         Server = server;
     }

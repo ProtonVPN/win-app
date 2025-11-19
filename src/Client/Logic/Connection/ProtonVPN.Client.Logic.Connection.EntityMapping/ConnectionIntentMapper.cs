@@ -22,16 +22,22 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.SerializableEntities.Intents;
 using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Logic.Connection.EntityMapping;
 
 public class ConnectionIntentMapper : IMapper<IConnectionIntent, SerializableConnectionIntent>
 {
     private readonly IEntityMapper _entityMapper;
+    private readonly ILogger _logger;
 
-    public ConnectionIntentMapper(IEntityMapper entityMapper)
+    public ConnectionIntentMapper(
+        IEntityMapper entityMapper,
+        ILogger logger)
     {
         _entityMapper = entityMapper;
+        _logger = logger;
     }
 
     public SerializableConnectionIntent Map(IConnectionIntent leftEntity)
@@ -47,10 +53,19 @@ public class ConnectionIntentMapper : IMapper<IConnectionIntent, SerializableCon
 
     public IConnectionIntent Map(SerializableConnectionIntent rightEntity)
     {
-        return rightEntity is null
-            ? null
-            : new ConnectionIntent(
-                _entityMapper.Map<SerializableLocationIntent, ILocationIntent>(rightEntity.Location),
-                _entityMapper.Map<SerializableFeatureIntent, IFeatureIntent>(rightEntity.Feature));
+        try
+        {
+            return rightEntity is null
+                ? null
+                : new ConnectionIntent(
+                    _entityMapper.Map<SerializableLocationIntent, ILocationIntent>(rightEntity.Location),
+                    _entityMapper.Map<SerializableFeatureIntent, IFeatureIntent>(rightEntity.Feature));
+        }
+        catch (Exception e)
+        {
+            _logger.Warn<AppLog>("Failed to map SerializableConnectionIntent to IConnectionIntent", e);
+
+            return null;
+        }
     }
 }

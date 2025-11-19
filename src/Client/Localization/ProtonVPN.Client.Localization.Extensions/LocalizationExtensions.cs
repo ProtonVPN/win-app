@@ -140,7 +140,7 @@ public static class LocalizationExtensions
                 SelectionStrategy.Random => localizer.Get("City_Random"),
                 _ => string.Empty
             },
-            SingleServerLocationIntent intent => ConcatenateLocations(intent.State?.StateName, intent.City.CityName, intent.Server.Name),
+            SingleServerLocationIntent intent => ConcatenateLocations(intent.State?.StateName, intent.City?.CityName, intent.Server.Name),
             MultiServerLocationIntent intent => intent.Strategy switch
             {
                 SelectionStrategy.Fastest => localizer.Get("Server_Fastest"),

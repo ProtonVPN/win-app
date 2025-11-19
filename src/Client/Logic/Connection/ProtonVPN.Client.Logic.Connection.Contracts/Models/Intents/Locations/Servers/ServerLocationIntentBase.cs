@@ -28,7 +28,7 @@ public abstract class ServerLocationIntentBase : LocationIntentBase
 {
     public SingleCountryLocationIntent Country { get; }
     public SingleStateLocationIntent? State { get; }
-    public SingleCityLocationIntent City { get; }
+    public SingleCityLocationIntent? City { get; }
 
     public override bool IsForPaidUsersOnly => true;
 
@@ -39,20 +39,25 @@ public abstract class ServerLocationIntentBase : LocationIntentBase
         Country = city.Country;
     }
 
+    protected ServerLocationIntentBase(SingleCountryLocationIntent country)
+    {
+        Country = country ?? throw new ArgumentNullException(nameof(country));
+    }
+
     public override bool IsSameAs(ILocationIntent? intent)
     {
         return base.IsSameAs(intent)
             && intent is ServerLocationIntentBase serverIntent
-            && City.IsSameAs(serverIntent.City);
+            && (City?.IsSameAs(serverIntent.City) ?? Country.IsSameAs(serverIntent.Country));
     }
 
     public override bool IsSupported(Server server)
     {
-        return City.IsSupported(server);
+        return City?.IsSupported(server) ?? Country.IsSupported(server);
     }
 
     public override string ToString()
     {
-        return City.ToString();
+        return City?.ToString() ?? Country.ToString();
     }
 }

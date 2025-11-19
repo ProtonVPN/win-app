@@ -37,7 +37,7 @@ public class MultiServerLocationIntentMapper : IMapper<MultiServerLocationIntent
                 Strategy = leftEntity.Strategy,
                 CountryCode = leftEntity.Country.CountryCode,
                 State = leftEntity.State?.StateName,
-                City = leftEntity.City.CityName,
+                City = leftEntity.City?.CityName,
                 Servers = leftEntity.Servers.ToList(),
             };
     }

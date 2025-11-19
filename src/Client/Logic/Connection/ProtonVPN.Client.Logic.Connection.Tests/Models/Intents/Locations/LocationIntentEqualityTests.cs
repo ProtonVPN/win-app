@@ -502,23 +502,27 @@ public class LocationIntentEqualityTests
         SingleCityLocationIntent singleCityFromState = SingleCityLocationIntent.From("US", "CA", "Los Angeles");
         SingleCityLocationIntent singleCity = SingleCityLocationIntent.From("US", "Los Angeles");
         SingleServerLocationIntent singleServerFromState = SingleServerLocationIntent.From("US", "CA", "Los Angeles", ServerInfo.From("1", "US-CA#1"));
-        SingleServerLocationIntent singleServer = SingleServerLocationIntent.From("US", "Los Angeles", ServerInfo.From("1", "CH#1"));
+        SingleServerLocationIntent singleServerFromCity = SingleServerLocationIntent.From("US", "Los Angeles", ServerInfo.From("1", "CH#1"));
+        SingleServerLocationIntent singleServer = SingleServerLocationIntent.From("US", ServerInfo.From("1", "CH#1"));
 
         MultiStateLocationIntent multiState = MultiStateLocationIntent.From("US", ["CA", "AZ", "NY"], SelectionStrategy.Fastest);
         MultiCityLocationIntent multiCityFromState = MultiCityLocationIntent.From("US", "CA", ["Los Angeles", "San Francisco"], SelectionStrategy.Fastest);
         MultiCityLocationIntent multiCity = MultiCityLocationIntent.From("US", ["Los Angeles", "San Francisco"], SelectionStrategy.Fastest);
         MultiServerLocationIntent multiServerFromState = MultiServerLocationIntent.From("US", "CA", "Los Angeles", [ServerInfo.From("1", "US-CA#1"), ServerInfo.From("2", "US-CA#2")], SelectionStrategy.Fastest);
-        MultiServerLocationIntent multiServer = MultiServerLocationIntent.From("US", "Los Angeles", [ServerInfo.From("1", "US-CA#1"), ServerInfo.From("2", "US-CA#2")], SelectionStrategy.Fastest);
+        MultiServerLocationIntent multiServerFromCity = MultiServerLocationIntent.From("US", "Los Angeles", [ServerInfo.From("1", "US-CA#1"), ServerInfo.From("2", "US-CA#2")], SelectionStrategy.Fastest);
+        MultiServerLocationIntent multiServer = MultiServerLocationIntent.From("US", [ServerInfo.From("1", "US-CA#1"), ServerInfo.From("2", "US-CA#2")], SelectionStrategy.Fastest);
 
         Assert.IsTrue(singleCountry.IsSameAs(singleState.Country));
         Assert.IsTrue(singleCountry.IsSameAs(singleCityFromState.Country));
         Assert.IsTrue(singleCountry.IsSameAs(singleCity.Country));
         Assert.IsTrue(singleCountry.IsSameAs(singleServerFromState.Country));
+        Assert.IsTrue(singleCountry.IsSameAs(singleServerFromCity.Country));
         Assert.IsTrue(singleCountry.IsSameAs(singleServer.Country));
         Assert.IsTrue(singleCountry.IsSameAs(multiState.Country));
         Assert.IsTrue(singleCountry.IsSameAs(multiCityFromState.Country));
         Assert.IsTrue(singleCountry.IsSameAs(multiCity.Country));
         Assert.IsTrue(singleCountry.IsSameAs(multiServerFromState.Country));
+        Assert.IsTrue(singleCountry.IsSameAs(multiServerFromCity.Country));
         Assert.IsTrue(singleCountry.IsSameAs(multiServer.Country));
 
         Assert.IsTrue(singleState.IsSameAs(singleCityFromState.State));
@@ -527,9 +531,9 @@ public class LocationIntentEqualityTests
         Assert.IsTrue(singleState.IsSameAs(multiServerFromState.State));
 
         Assert.IsTrue(singleCity.IsSameAs(singleServerFromState.City));
-        Assert.IsTrue(singleCity.IsSameAs(singleServer.City));
+        Assert.IsTrue(singleCity.IsSameAs(singleServerFromCity.City));
         Assert.IsTrue(singleCity.IsSameAs(multiServerFromState.City));
-        Assert.IsTrue(singleCity.IsSameAs(multiServer.City));
+        Assert.IsTrue(singleCity.IsSameAs(multiServerFromCity.City));
 
         SingleGatewayLocationIntent singleGateway = SingleGatewayLocationIntent.From("PROTON");
         SingleGatewayServerLocationIntent singleGatewayServer = SingleGatewayServerLocationIntent.From("PROTON", GatewayServerInfo.From("1", "PROTON-CH#1", "CH"));
