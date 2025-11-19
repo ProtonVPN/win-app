@@ -145,6 +145,13 @@ using ProtonVPN.ProcessCommunication.Client.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.Serialization.Installers;
 using ProtonVPN.StatisticalEvents.Installers;
+using ProtonVPN.Client.Services.Upselling;
+using ProtonVPN.Client.Services.Bootstrapping.Activators;
+using ProtonVPN.Client.UI.Dialogs.Tray;
+using ProtonVPN.Client.UI.Dialogs.Tray.Pages;
+using ProtonVPN.Client.UI.Main.Home.Status;
+using ProtonVPN.Client.UI.Dialogs.NpsSurvey;
+using ProtonVPN.Client.Services;
 
 namespace ProtonVPN.Client.Installers;
 
@@ -281,6 +288,8 @@ public class AppModule : Module
         builder.RegisterType<ServiceCommunicationErrorHandler>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<EfficiencyModeEnabler>().AsImplementedInterfaces().SingleInstance();
+
+        builder.RegisterType<SettingsHeartbeatService>().AsImplementedInterfaces().SingleInstance().AutoActivate();
     }
 
     private void RegisterLocalHandlers(ContainerBuilder builder)

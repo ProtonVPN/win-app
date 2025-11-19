@@ -128,4 +128,21 @@ public class TimeSpanExtensionsTest
         TimeSpan result = TimeSpanExtensions.Min(intervalA, intervalB);
         Assert.AreEqual(expectedIntervalInSeconds, result.TotalSeconds);
     }
+
+    [TestMethod]
+    [DataRow(5, 3, 8, 5)]
+    [DataRow(5, 6, 8, 6)]
+    [DataRow(5, 3, 4, 4)]
+    [DataRow(-5, -8, -3, -5)]
+    [DataRow(-5, -8, -6, -6)]
+    [DataRow(-5, -4, -3, -4)]
+    public void TestClampTimeSpan(double intervalInSeconds, double minIntervalInSeconds, double maxIntervalInSeconds, double expectedIntervalInSeconds)
+    {
+        TimeSpan interval = TimeSpan.FromSeconds(intervalInSeconds);
+        TimeSpan minInterval = TimeSpan.FromSeconds(minIntervalInSeconds);
+        TimeSpan maxInterval = TimeSpan.FromSeconds(maxIntervalInSeconds);
+
+        TimeSpan result = interval.Clamp(minInterval, maxInterval);
+        Assert.AreEqual(expectedIntervalInSeconds, result.TotalSeconds);
+    }
 }

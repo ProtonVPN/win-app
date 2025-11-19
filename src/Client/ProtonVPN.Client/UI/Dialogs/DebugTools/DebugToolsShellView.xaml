@@ -107,19 +107,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Orientation="Vertical"
                                 Spacing="8">
 
-                        <Button Command="{x:Bind ViewModel.TriggerUiUnhandledExceptionCommand, Mode=OneTime}"
+                        <Button HorizontalAlignment="Right"
+                                Command="{x:Bind ViewModel.TriggerUiUnhandledExceptionCommand, Mode=OneTime}"
                                 Content="UI unhandled exception CRASH"
-                                HorizontalAlignment="Right"
                                 Style="{StaticResource PrimaryButtonStyle}" />
 
-                        <Button Command="{x:Bind ViewModel.TriggerAppDomainUnhandledExceptionCommand, Mode=OneTime}"
+                        <Button HorizontalAlignment="Right"
+                                Command="{x:Bind ViewModel.TriggerAppDomainUnhandledExceptionCommand, Mode=OneTime}"
                                 Content="AppDomain unhandled exception CRASH"
-                                HorizontalAlignment="Right"
                                 Style="{StaticResource PrimaryButtonStyle}" />
 
-                        <Button Command="{x:Bind ViewModel.TriggerUnobservedTaskExceptionCommand, Mode=OneTime}"
+                        <Button HorizontalAlignment="Right"
+                                Command="{x:Bind ViewModel.TriggerUnobservedTaskExceptionCommand, Mode=OneTime}"
                                 Content="Unobserved task exception"
-                                HorizontalAlignment="Right"
                                 Style="{StaticResource PrimaryButtonStyle}" />
                     </StackPanel>
                 </toolkit:SettingsExpander>
@@ -200,27 +200,26 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <toolkit:SettingsCard Header="Disconnect with session limit reached error"
                                       IsTabStop="False"
                                       Style="{StaticResource DefaultSettingsCardStyle}">
-
-                    <StackPanel Orientation="Horizontal"
-                                Spacing="8">
-                        <Button Command="{x:Bind ViewModel.DisconnectWithSessionLimitReachedErrorCommand, Mode=OneTime}"
-                                Content="Session limit reached for plus user"
-                                Style="{StaticResource PrimaryButtonStyle}" />
-                    </StackPanel>
-
+                    <Button Command="{x:Bind ViewModel.DisconnectWithSessionLimitReachedErrorCommand, Mode=OneTime}"
+                            Content="Session limit reached for plus user"
+                            Style="{StaticResource PrimaryButtonStyle}" />
                 </toolkit:SettingsCard>
 
                 <toolkit:SettingsCard Header="Show NPS survey"
                                       IsTabStop="False"
                                       Style="{StaticResource DefaultSettingsCardStyle}">
 
-                    <StackPanel Orientation="Horizontal"
-                                Spacing="8">
-                        <Button Command="{x:Bind ViewModel.ShowNpsSurveyCommand, Mode=OneTime}"
-                                Content="Show"
-                                Style="{StaticResource PrimaryButtonStyle}" />
-                    </StackPanel>
+                    <Button Command="{x:Bind ViewModel.ShowNpsSurveyCommand, Mode=OneTime}"
+                            Content="Show"
+                            Style="{StaticResource PrimaryButtonStyle}" />
+                </toolkit:SettingsCard>
 
+                <toolkit:SettingsCard Header="Settings telemetry heartbeat"
+                                      IsTabStop="False"
+                                      Style="{StaticResource DefaultSettingsCardStyle}">
+                    <Button Command="{x:Bind ViewModel.TriggerSettingsTelemetryHeartbeatCommand, Mode=OneTime}"
+                            Content="Trigger"
+                            Style="{StaticResource PrimaryButtonStyle}" />
                 </toolkit:SettingsCard>
 
             </StackPanel>

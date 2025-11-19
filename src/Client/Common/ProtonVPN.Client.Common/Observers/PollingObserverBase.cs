@@ -23,45 +23,83 @@ using Timer = System.Timers.Timer;
 
 namespace ProtonVPN.Client.Common.Observers;
 
-public abstract class PollingObserverBase : ObserverBase
+public abstract class PollingObserverBase : ObserverBase, IDisposable
 {
     private readonly Timer _timer;
 
     protected abstract TimeSpan PollingInterval { get; }
+    protected virtual TimeSpan? InitialDelay => null;
 
     protected bool IsTimerEnabled => _timer.Enabled;
 
     protected PollingObserverBase(ILogger logger, IIssueReporter issueReporter)
         : base(logger, issueReporter)
     {
-        _timer = new Timer
-        {
-            AutoReset = true
-        };
-        _timer.Elapsed += OnTimerElapsed;
+        _timer = new Timer();
     }
 
-    protected void StartTimerAndTriggerOnStart()
+    protected void TriggerAndStartTimer()
     {
-        StartTimerWithTriggerOption(isToTriggerOnStart: true);
+        TriggerAction.Run();
+        StartTimerWithDelay(TimeSpan.Zero);
     }
 
-    private void StartTimerWithTriggerOption(bool isToTriggerOnStart)
+    private void StartTimerWithDelay(TimeSpan initialDelay)
     {
-        if (!_timer.Enabled)
+        if (_timer.Enabled)
         {
-            _timer.Interval = PollingInterval.TotalMilliseconds;
-            _timer.Start();
-            if (isToTriggerOnStart)
-            {
-                TriggerAction.Run();
-            }
+            return;
         }
+
+        if (initialDelay > TimeSpan.Zero)
+        {
+            StartDelayTimer(initialDelay);
+        }
+        else
+        {
+            StartPollingTimer();
+        }
+    }
+
+    private void StartDelayTimer(TimeSpan delay)
+    {
+        _timer.Elapsed -= OnInitialDelayElapsed;
+        _timer.Elapsed -= OnTimerElapsed;
+
+        _timer.Interval = delay.TotalMilliseconds;
+        _timer.AutoReset = false;
+        _timer.Elapsed += OnInitialDelayElapsed;
+        _timer.Start();
+    }
+
+    private void OnInitialDelayElapsed(object? sender, EventArgs e)
+    {
+        StopDelayTimer();
+        StartPollingTimer();
+        TriggerAction.Run();
+    }
+
+    private void StartPollingTimer()
+    {
+        _timer.Elapsed -= OnInitialDelayElapsed;
+        _timer.Elapsed -= OnTimerElapsed;
+
+        _timer.Interval = PollingInterval.TotalMilliseconds;
+        _timer.AutoReset = true;
+        _timer.Elapsed += OnTimerElapsed;
+        _timer.Start();
+    }
+
+    private void StopDelayTimer()
+    {
+        _timer.Stop();
+        _timer.Elapsed -= OnInitialDelayElapsed;
     }
 
     protected void StartTimer()
     {
-        StartTimerWithTriggerOption(isToTriggerOnStart: false);
+        TimeSpan initialDelay = InitialDelay ?? PollingInterval;
+        StartTimerWithDelay(initialDelay);
     }
 
     protected void StopTimer()
@@ -70,10 +108,19 @@ public abstract class PollingObserverBase : ObserverBase
         {
             _timer.Stop();
         }
+
+        _timer.Elapsed -= OnInitialDelayElapsed;
+        _timer.Elapsed -= OnTimerElapsed;
     }
 
     private void OnTimerElapsed(object? sender, EventArgs e)
     {
         TriggerAction.Run();
+    }
+
+    public void Dispose()
+    {
+        StopTimer();
+        _timer.Dispose();
     }
 }

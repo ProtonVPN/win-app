@@ -151,7 +151,7 @@ public class NetShieldStatsObserver : PollingObserverBase,
         {
             if (CanRequestNetShieldStats())
             {
-                StartTimerAndTriggerOnStart();
+                TriggerAndStartTimer();
             }
             else
             {

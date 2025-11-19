@@ -51,7 +51,7 @@ public class AnnouncementsObserver : PollingObserverBase, IObserver,
 
     public void Receive(LoggedInMessage message)
     {
-        StartTimerAndTriggerOnStart();
+        TriggerAndStartTimer();
     }
 
     public void Receive(LoggedOutMessage message)

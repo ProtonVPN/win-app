@@ -49,6 +49,11 @@ public static class TimeSpanExtensions
     {
         return TimeSpan.FromTicks(Math.Max(value1.Ticks, value2.Ticks));
     }
+    
+    public static TimeSpan Clamp(this TimeSpan value, TimeSpan min, TimeSpan max)
+    {
+        return Max(min, Min(max, value));
+    }
 
     public static float GetTotalMilliseconds(this TimeSpan value)
     {

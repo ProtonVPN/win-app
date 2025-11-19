@@ -448,6 +448,12 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetValueType<int>(value, SettingEncryption.Unencrypted);
     }
 
+    public DateTimeOffset? LastSettingsHeartbeatTimeUtc
+    {
+        get => _userCache.GetValueType<DateTimeOffset>(SettingEncryption.Unencrypted) ?? DefaultSettings.LastSettingsHeartbeatTimeUtc;
+        set => _userCache.SetValueType<DateTimeOffset>(value, SettingEncryption.Unencrypted);
+    }
+
     [Obsolete("Use IsLocalDnsEnabled instead. DnsBlockMode is maintained in order to migrate the value for existing users.")]
     public DnsBlockMode DnsBlockMode
     {

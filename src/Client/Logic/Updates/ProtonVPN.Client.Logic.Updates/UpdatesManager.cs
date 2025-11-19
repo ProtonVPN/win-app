@@ -135,7 +135,7 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
 
     public void Initialize()
     {
-        StartTimerAndTriggerOnStart();
+        TriggerAndStartTimer();
     }
 
     public void Receive(UpdateStateIpcEntity message)

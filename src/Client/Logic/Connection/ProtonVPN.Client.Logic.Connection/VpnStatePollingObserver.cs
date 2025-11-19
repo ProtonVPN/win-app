@@ -107,7 +107,7 @@ public class VpnStatePollingObserver : PollingObserverBase,
             else
             {
                 Logger.Info<AppLog>($"Starting VPN state refresh timer with initial trigger '{PollingInterval}'");
-                StartTimerAndTriggerOnStart();
+                TriggerAndStartTimer();
             }
         }
     }

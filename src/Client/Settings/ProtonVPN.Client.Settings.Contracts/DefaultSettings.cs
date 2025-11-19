@@ -89,6 +89,7 @@ public static class DefaultSettings
     public static bool IsEfficiencyModeAllowed = false;
     public static DnsBlockMode DnsBlockMode = DnsBlockMode.Nrpt;
     public static bool IsLocalDnsEnabled = false;
+    public static DateTimeOffset? LastSettingsHeartbeatTimeUtc = null;
 
     public static ChangeServerSettings ChangeServerSettings = new()
     {

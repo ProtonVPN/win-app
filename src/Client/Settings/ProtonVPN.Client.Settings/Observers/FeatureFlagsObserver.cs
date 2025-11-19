@@ -73,7 +73,7 @@ public class FeatureFlagsObserver :
 
         if (HasFeatureFlags)
         {
-            StartTimerAndTriggerOnStart();
+            TriggerAndStartTimer();
         }
     }
 

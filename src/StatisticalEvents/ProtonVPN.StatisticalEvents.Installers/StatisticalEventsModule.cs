@@ -62,5 +62,6 @@ public class StatisticalEventsModule : Module
         builder.RegisterType<ClientInstallsStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<VpnConnectionStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<VpnDisconnectionStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SettingsHeartbeatStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
     }
 }

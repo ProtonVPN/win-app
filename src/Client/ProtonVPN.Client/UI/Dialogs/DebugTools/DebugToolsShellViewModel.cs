@@ -36,6 +36,7 @@ using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Dialogs.DebugTools.Models;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Dialogs.DebugTools;
 
@@ -49,6 +50,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IAppExitInvoker _appExitInvoker;
+    private readonly ISettingsHeartbeatStatisticalEventSender _settingsHeartbeatStatisticalEventSender;
 
     [ObservableProperty]
     private Overlay _selectedOverlay;
@@ -60,7 +62,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     private VpnPlan _selectedVpnPlan;
 
     [ObservableProperty]
-    private int _xPosition; 
+    private int _xPosition;
     [ObservableProperty]
     private int _yPosition;
     [ObservableProperty]
@@ -90,7 +92,8 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         IEventMessageSender eventMessageSender,
         IDebugToolsWindowActivator windowActivator,
         IViewModelHelper viewModelHelper,
-        IAppExitInvoker appExitInvoker)
+        IAppExitInvoker appExitInvoker,
+        ISettingsHeartbeatStatisticalEventSender settingsHeartbeatStatisticalEventSender)
         : base(windowActivator, viewModelHelper)
     {
         _serversUpdater = serversUpdater;
@@ -101,6 +104,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         _settings = settings;
         _eventMessageSender = eventMessageSender;
         _appExitInvoker = appExitInvoker;
+        _settingsHeartbeatStatisticalEventSender = settingsHeartbeatStatisticalEventSender;
 
         OverlaysList =
         [
@@ -274,5 +278,11 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
                 Width = DefaultSettings.WindowWidth,
                 Height = DefaultSettings.WindowHeight
             });
+    }
+
+    [RelayCommand]
+    public Task TriggerSettingsTelemetryHeartbeatAsync()
+    {
+        return _settingsHeartbeatStatisticalEventSender.SendAsync();
     }
 }
