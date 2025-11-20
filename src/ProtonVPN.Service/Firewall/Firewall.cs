@@ -178,6 +178,15 @@ internal class Firewall : IFirewall, IStartable
             RemoveItems(previousInterfaceFilters, _lastParams.SessionType);
         }
 
+        if (_lastParams.SessionType == SessionType.Permanent &&
+            firewallParams.SessionType == SessionType.Dynamic)
+        {
+            // When downgrading from persistent (advanced kill switch) to dynamic filters, wipe any
+            // leftover permanent rules that might have been created in a previous session and are
+            // not tracked in-memory (e.g., after an app restart).
+            _ipFilter.PermanentSublayer.DestroyAllFilters();
+        }
+
         if (firewallParams.AddInterfaceFilters && firewallParams.InterfaceIndex != _lastParams.InterfaceIndex)
         {
             List<Guid> previousGuids = GetFirewallGuidsByTypes(FirewallItemType.PermitInterfaceFilter);
