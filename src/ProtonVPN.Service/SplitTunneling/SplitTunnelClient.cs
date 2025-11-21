@@ -19,7 +19,7 @@
 
 using System.Net;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
+using ProtonVPN.Logging.Contracts.Events.SplitTunnelLogs;
 using ProtonVPN.NetworkFilter;
 
 namespace ProtonVPN.Service.SplitTunneling;
@@ -73,11 +73,11 @@ internal class SplitTunnelClient : ISplitTunnelClient
         try
         {
             action();
-            _logger.Info<ConnectionLog>($"{actionMessage} succeeded");
+            _logger.Info<SplitTunnelLog>($"{actionMessage} succeeded");
         }
         catch (NetworkFilterException e)
         {
-            _logger.Error<ConnectionLog>($"{actionMessage} failed. Error code: {e.Code}");
+            _logger.Error<SplitTunnelLog>($"{actionMessage} failed. Error code: {e.Code}");
         }
     }
 }

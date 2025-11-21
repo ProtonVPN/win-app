@@ -218,7 +218,7 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
             _ => []
         };
 
-        foreach (SplitTunnelingApp app in apps.Where(a => a.IsActive))
+        foreach (SplitTunnelingApp app in apps.Where(a => a.IsActive && File.Exists(a.AppFilePath)))
         {
             items.Add(await _splitTunnelingItemFactory.GetAppAsync(app, splitTunnelingMode));
         }

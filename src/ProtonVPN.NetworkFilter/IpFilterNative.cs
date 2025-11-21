@@ -32,6 +32,7 @@ internal class IpFilterNative
     private const uint ERROR_CALLOUT_NOT_FOUND = 0x80320001;
     private const uint ERROR_ADAPTER_NOT_FOUND = 0x80040200;
     private const uint ERROR_TIMEOUT = 0x80320012;
+    private const uint ERROR_INVALID_ARGUMENT = 0x80070057;
     private const int RETRY_COUNT = 3;
 
     private static readonly RetryPolicy _retryPolicy = Policy
@@ -838,6 +839,8 @@ internal class IpFilterNative
                 throw new CalloutNotFoundException(status);
             case ERROR_ADAPTER_NOT_FOUND:
                 throw new AdapterNotFoundException(status);
+            case ERROR_INVALID_ARGUMENT:
+                throw new InvalidArgumentException(status);
             default:
                 throw new NetworkFilterException(status);
         }

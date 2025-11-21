@@ -250,29 +250,36 @@ unsigned int IPFilterCreateAppFilter(
 {
     std::vector<ipfilter::condition::Condition> conditions{};
 
-    if (appIdentifier != nullptr)
+    try
     {
-        // Check if it's a file path (contains backslash or drive letter) vs package family name
-        // Package family names have format like "PackageName_PublisherId" and don't contain path separators
-        bool isFilePath = (wcschr(appIdentifier, L'\\') != nullptr) ||
-            (wcschr(appIdentifier, L'/') != nullptr) ||
-            (wcslen(appIdentifier) >= 3 && appIdentifier[1] == L':');
+        if (appIdentifier != nullptr)
+        {
+            // Check if it's a file path (contains backslash or drive letter) vs package family name
+            // Package family names have format like "PackageName_PublisherId" and don't contain path separators
+            bool isFilePath = (wcschr(appIdentifier, L'\\') != nullptr) ||
+                (wcschr(appIdentifier, L'/') != nullptr) ||
+                (wcslen(appIdentifier) >= 3 && appIdentifier[1] == L':');
 
-        if (isFilePath)
-        {
-            conditions.push_back(
-                ipfilter::condition::applicationId(
-                    ipfilter::matcher::equal(),
-                    ipfilter::value::ApplicationId::fromFilePath(appIdentifier)));
+            if (isFilePath)
+            {
+                conditions.push_back(
+                    ipfilter::condition::applicationId(
+                        ipfilter::matcher::equal(),
+                        ipfilter::value::ApplicationId::fromFilePath(appIdentifier)));
+            }
+            else
+            {
+                // Assume it's a package family name
+                conditions.push_back(
+                    ipfilter::condition::packageFamilyName(
+                        ipfilter::matcher::equal(),
+                        ipfilter::value::SecurityIdentifier::fromPackageFamilyName(appIdentifier)));
+            }
         }
-        else
-        {
-            // Assume it's a package family name
-            conditions.push_back(
-                ipfilter::condition::packageFamilyName(
-                    ipfilter::matcher::equal(),
-                    ipfilter::value::SecurityIdentifier::fromPackageFamilyName(appIdentifier)));
-        }
+    }
+    catch (...)
+    {
+        return E_INVALIDARG;
     }
 
     if (isDnsPortExcluded)
@@ -416,24 +423,31 @@ unsigned int IPFilterCreateRemoteNetworkIPFilter(
 {
     std::vector<ipfilter::condition::Condition> conditions{};
 
-    if (addr->isIpv6)
+    try
     {
-        auto address = ipfilter::ip::makeAddressV6(addr->address, addr->prefix);
-        auto networkAddrCondition = ipfilter::condition::remoteIpV6AddressWithPrefix(
-            ipfilter::matcher::equal(),
-            ipfilter::value::IpAddressV6WithPrefix(address));
+        if (addr->isIpv6)
+        {
+            auto address = ipfilter::ip::makeAddressV6(addr->address, addr->prefix);
+            auto networkAddrCondition = ipfilter::condition::remoteIpV6AddressWithPrefix(
+                ipfilter::matcher::equal(),
+                ipfilter::value::IpAddressV6WithPrefix(address));
 
-        conditions.push_back(networkAddrCondition);
+            conditions.push_back(networkAddrCondition);
+        }
+        else
+        {
+            auto address = ipfilter::ip::makeAddressV4(addr->address);
+            auto mask = ipfilter::ip::makeAddressV4(addr->mask);
+            auto networkAddrCondition = ipfilter::condition::remoteIpNetworkAddressV4(
+                ipfilter::matcher::equal(),
+                ipfilter::value::IpNetworkAddressV4(address, mask));
+
+            conditions.push_back(networkAddrCondition);
+        }
     }
-    else
+    catch (...)
     {
-        auto address = ipfilter::ip::makeAddressV4(addr->address);
-        auto mask = ipfilter::ip::makeAddressV4(addr->mask);
-        auto networkAddrCondition = ipfilter::condition::remoteIpNetworkAddressV4(
-            ipfilter::matcher::equal(),
-            ipfilter::value::IpNetworkAddressV4(address, mask));
-
-        conditions.push_back(networkAddrCondition);
+        return E_INVALIDARG;
     }
 
     return IPFilterCreateFilter(

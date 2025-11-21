@@ -2452,6 +2452,9 @@
   <data name="Settings_Connection_SplitTunneling_Apps_Remove" xml:space="preserve">
     <value>Remove app</value>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound" xml:space="preserve">
+    <value>Application not found</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Description" xml:space="preserve">
     <value>Customize your connection by deciding which apps and IP addresses are protected by VPN.</value>
   </data>

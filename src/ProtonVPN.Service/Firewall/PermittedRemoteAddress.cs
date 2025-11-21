@@ -20,6 +20,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.SplitTunnelLogs;
 using ProtonVPN.NetworkFilter;
 using Action = ProtonVPN.NetworkFilter.Action;
 
@@ -27,13 +29,15 @@ namespace ProtonVPN.Service.Firewall;
 
 public class PermittedRemoteAddress : IPermittedRemoteAddress
 {
+    private readonly ILogger _logger;
     private readonly IpLayer _ipLayer;
     private readonly IpFilter _ipFilter;
 
     private readonly Dictionary<string, List<Guid>> _list = new();
 
-    public PermittedRemoteAddress(IpFilter ipFilter, IpLayer ipLayer)
+    public PermittedRemoteAddress(ILogger logger, IpFilter ipFilter, IpLayer ipLayer)
     {
+        _logger = logger;
         _ipLayer = ipLayer;
         _ipFilter = ipFilter;
     }
@@ -60,33 +64,40 @@ public class PermittedRemoteAddress : IPermittedRemoteAddress
 
         _list[address] = [];
 
-        if (networkAddress.IsIpV6)
+        try
         {
-            _ipLayer.ApplyToIpv6(layer =>
+            if (networkAddress.IsIpV6)
             {
-                Guid guid = _ipFilter.DynamicSublayer.CreateRemoteNetworkIPFilter(
-                    new DisplayData("ProtonVPN permit remote address", ""),
-                    action,
-                    layer,
-                    14,
-                    NetworkAddress.FromIpv6(networkAddress.Ip.ToString(), networkAddress.Subnet));
+                _ipLayer.ApplyToIpv6(layer =>
+                {
+                    Guid guid = _ipFilter.DynamicSublayer.CreateRemoteNetworkIPFilter(
+                        new DisplayData("ProtonVPN permit remote address", ""),
+                        action,
+                        layer,
+                        14,
+                        NetworkAddress.FromIpv6(networkAddress.Ip.ToString(), networkAddress.Subnet));
 
-                _list[address].Add(guid);
-            });
+                    _list[address].Add(guid);
+                });
+            }
+            else
+            {
+                _ipLayer.ApplyToIpv4(layer =>
+                {
+                    Guid guid = _ipFilter.DynamicSublayer.CreateRemoteNetworkIPFilter(
+                        new DisplayData("ProtonVPN permit remote address", ""),
+                        action,
+                        layer,
+                        14,
+                        NetworkAddress.FromIpv4(networkAddress.Ip.ToString(), networkAddress.GetSubnetMaskString()));
+
+                    _list[address].Add(guid);
+                });
+            }
         }
-        else
+        catch (InvalidArgumentException)
         {
-            _ipLayer.ApplyToIpv4(layer =>
-            {
-                Guid guid = _ipFilter.DynamicSublayer.CreateRemoteNetworkIPFilter(
-                    new DisplayData("ProtonVPN permit remote address", ""),
-                    action,
-                    layer,
-                    14,
-                    NetworkAddress.FromIpv4(networkAddress.Ip.ToString(), networkAddress.GetSubnetMaskString()));
-
-                _list[address].Add(guid);
-            });
+            _logger.Error<SplitTunnelLog>($"Failed to create permitted remote address filter for address {address} due to invalid argument.");
         }
     }
 

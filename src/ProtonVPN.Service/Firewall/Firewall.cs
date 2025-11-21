@@ -754,14 +754,21 @@ internal class Firewall : IFirewall, IStartable
 
     private void PermitPrivateNetworkAddress(FirewallParams firewallParams, NetworkAddress networkAddress, Layer layer, uint weight)
     {
-        Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateRemoteNetworkIPFilter(
-            new DisplayData("ProtonVPN permit private network", ""),
-            Action.HardPermit,
-            layer,
-            weight,
-            networkAddress,
-            firewallParams.Persistent);
-        _firewallItems.Add(new FirewallItem(FirewallItemType.LocalNetworkFilter, guid));
+        try
+        {
+            Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateRemoteNetworkIPFilter(
+                new DisplayData("ProtonVPN permit private network", ""),
+                Action.HardPermit,
+                layer,
+                weight,
+                networkAddress,
+                firewallParams.Persistent);
+            _firewallItems.Add(new FirewallItem(FirewallItemType.LocalNetworkFilter, guid));
+        }
+        catch (InvalidArgumentException)
+        {
+            _logger.Error<FirewallLog>($"Failed to create private network filter for address {networkAddress} due to invalid argument.");
+        }
     }
 
     private void PermitFromProcesses(uint weight, FirewallParams firewallParams)
@@ -775,18 +782,25 @@ internal class Firewall : IFirewall, IStartable
 
         foreach (string processPath in processes)
         {
-            _ipLayer.ApplyToIpv4(layer =>
+            try
             {
-                Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateAppFilter(
-                    new DisplayData(PERMIT_APP_FILTER_NAME, "Permit ProtonVPN app to bypass VPN tunnel"),
-                    Action.HardPermit,
-                    layer,
-                    weight,
-                    processPath,
-                    false,
-                    firewallParams.Persistent);
-                _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
-            });
+                _ipLayer.ApplyToIpv4(layer =>
+                {
+                    Guid guid = _ipFilter.GetSublayer(firewallParams.SessionType).CreateAppFilter(
+                        new DisplayData(PERMIT_APP_FILTER_NAME, "Permit ProtonVPN app to bypass VPN tunnel"),
+                        Action.HardPermit,
+                        layer,
+                        weight,
+                        processPath,
+                        false,
+                        firewallParams.Persistent);
+                    _firewallItems.Add(new FirewallItem(FirewallItemType.VariableFilter, guid));
+                });
+            }
+            catch (InvalidArgumentException)
+            {
+                _logger.Error<FirewallLog>($"Failed to create app filter for path {processPath} due to invalid argument.");
+            }
         }
     }
 }

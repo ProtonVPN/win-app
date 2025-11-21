@@ -136,23 +136,39 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
-                                        <CheckBox Grid.Column="0"
-                                                  IsChecked="{x:Bind IsActive, Mode=TwoWay}"
-                                                  ToolTipService.ToolTip="{x:Bind AppFilePath}">
-                                            <Grid ColumnSpacing="8">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-                                                <Image Grid.Column="0"
-                                                       Width="20"
-                                                       Height="20"
-                                                       Source="{x:Bind AppIcon}" />
-                                                <TextBlock Grid.Column="1"
-                                                           Text="{x:Bind AppName}"
-                                                           TextTrimming="CharacterEllipsis" />
-                                            </Grid>
-                                        </CheckBox>
+                                        <Border Grid.Column="0"
+                                                Background="Transparent"
+                                                ToolTipService.ToolTip="{x:Bind AppFilePath}">
+                                            <CheckBox IsChecked="{x:Bind IsActive, Mode=TwoWay}"
+                                                      IsEnabled="{x:Bind IsValidPath}">
+                                                <Grid ColumnSpacing="8">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Image Grid.Column="0"
+                                                           Width="20"
+                                                           Height="20"
+                                                           Source="{x:Bind AppIcon}"
+                                                           Visibility="{x:Bind IsValidPath, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                    <TextBlock Grid.Column="1"
+                                                               Text="{x:Bind AppName}"
+                                                               TextTrimming="CharacterEllipsis"
+                                                               Visibility="{x:Bind IsValidPath, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                    <pathicons:ExclamationCircleFilled Grid.Column="0"
+                                                                                       Foreground="{ThemeResource SignalDangerColorBrush}"
+                                                                                       Opacity="0.6"
+                                                                                       Size="Pixels20"
+                                                                                       Visibility="{x:Bind IsValidPath, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                                                    <TextBlock Grid.Column="1"
+                                                               Foreground="{ThemeResource SignalDangerColorBrush}"
+                                                               Opacity="0.6"
+                                                               Text="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_Apps_NotFound')}"
+                                                               TextTrimming="CharacterEllipsis"
+                                                               Visibility="{x:Bind IsValidPath, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                                                </Grid>
+                                            </CheckBox>
+                                        </Border>
                                         <custom:GhostButton Grid.Column="1"
                                                             AutomationProperties.AutomationId="RemoveAppButton"
                                                             AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_Apps_Remove')}"
@@ -181,23 +197,39 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
-                                        <CheckBox Grid.Column="0"
-                                                  IsChecked="{x:Bind IsActive, Mode=TwoWay}"
-                                                  ToolTipService.ToolTip="{x:Bind AppFilePath}">
-                                            <Grid ColumnSpacing="8">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-                                                <Image Grid.Column="0"
-                                                       Width="20"
-                                                       Height="20"
-                                                       Source="{x:Bind AppIcon}" />
-                                                <TextBlock Grid.Column="1"
-                                                           Text="{x:Bind AppName}"
-                                                           TextTrimming="CharacterEllipsis" />
-                                            </Grid>
-                                        </CheckBox>
+                                        <Border Grid.Column="0"
+                                                Background="Transparent"
+                                                ToolTipService.ToolTip="{x:Bind AppFilePath}">
+                                            <CheckBox IsChecked="{x:Bind IsActive, Mode=TwoWay}"
+                                                      IsEnabled="{x:Bind IsValidPath}">
+                                                <Grid ColumnSpacing="8">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Image Grid.Column="0"
+                                                           Width="20"
+                                                           Height="20"
+                                                           Source="{x:Bind AppIcon}"
+                                                           Visibility="{x:Bind IsValidPath, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                    <TextBlock Grid.Column="1"
+                                                               Text="{x:Bind AppName}"
+                                                               TextTrimming="CharacterEllipsis"
+                                                               Visibility="{x:Bind IsValidPath, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                    <pathicons:ExclamationCircleFilled Grid.Column="0"
+                                                                                       Foreground="{ThemeResource SignalDangerColorBrush}"
+                                                                                       Opacity="0.6"
+                                                                                       Size="Pixels20"
+                                                                                       Visibility="{x:Bind IsValidPath, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                                                    <TextBlock Grid.Column="1"
+                                                               Foreground="{ThemeResource SignalDangerColorBrush}"
+                                                               Opacity="0.6"
+                                                               Text="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_Apps_NotFound')}"
+                                                               TextTrimming="CharacterEllipsis"
+                                                               Visibility="{x:Bind IsValidPath, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                                                </Grid>
+                                            </CheckBox>
+                                        </Border>
                                         <custom:GhostButton Grid.Column="1"
                                                             AutomationProperties.AutomationId="RemoveAppButton"
                                                             AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_Apps_Remove')}"
@@ -300,8 +332,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                             HorizontalAlignment="Left"
                                                             AutomationProperties.AutomationId="ShowIpv6DisabledWarningButton"
                                                             AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Common_Ipv6WarningButton')}"
-                                                            ToolTipService.ToolTip="{x:Bind Localizer.Get('Settings_Common_Ipv6WarningButton')}"
                                                             Command="{x:Bind ShowIpv6DisabledWarningCommand, Mode=OneTime}"
+                                                            ToolTipService.ToolTip="{x:Bind Localizer.Get('Settings_Common_Ipv6WarningButton')}"
                                                             Visibility="{x:Bind IsInactiveDueToIpv6Disabled, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneTime}">
                                             <custom:GhostButton.LeftIcon>
                                                 <pathicons:ExclamationCircle />
@@ -322,8 +354,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </ItemsRepeater>
 
                         <TextBlock Grid.Row="1"
-                                   Style="{StaticResource CaptionStrongTextBlockStyle}"
                                    Margin="0,0,0,8"
+                                   Style="{StaticResource CaptionStrongTextBlockStyle}"
                                    Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_IpAddresses_AddNew')}" />
 
                         <TextBox Grid.Row="2"

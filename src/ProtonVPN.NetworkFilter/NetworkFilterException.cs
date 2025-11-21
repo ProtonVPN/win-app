@@ -87,4 +87,11 @@ namespace ProtonVPN.NetworkFilter
         {
         }
     }
+
+    public class InvalidArgumentException : NetworkFilterException
+    {
+        public InvalidArgumentException(uint code) : base(code)
+        {
+        }
+    }
 }

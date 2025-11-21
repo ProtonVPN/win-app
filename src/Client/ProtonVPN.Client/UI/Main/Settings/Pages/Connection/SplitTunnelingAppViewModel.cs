@@ -31,7 +31,10 @@ public partial class SplitTunnelingAppViewModel : ViewModelBase
     private readonly SplitTunnelingPageViewModel _parentViewModel;
 
     [ObservableProperty]
-    private bool _isActive;
+    private bool _isActive; 
+    
+    [ObservableProperty]
+    private bool _isValidPath;
 
     public string AppFilePath { get; }
 
@@ -63,6 +66,8 @@ public partial class SplitTunnelingAppViewModel : ViewModelBase
 
         AppFilePath = appFilePath;
         AlternateAppFilePaths = alternateAppFilePaths ?? new List<string>();
+
+        IsValidPath = File.Exists(AppFilePath);
     }
 
     [RelayCommand]
@@ -73,6 +78,11 @@ public partial class SplitTunnelingAppViewModel : ViewModelBase
 
     public async Task InitializeAsync()
     {
+        if (!IsValidPath)
+        {
+            return;
+        }
+
         AppName = AppFilePath.GetAppName();
         OnPropertyChanged(nameof(AppName));
 

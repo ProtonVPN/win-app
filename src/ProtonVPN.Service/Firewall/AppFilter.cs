@@ -19,8 +19,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.SplitTunnelLogs;
 using ProtonVPN.NetworkFilter;
 using Action = ProtonVPN.NetworkFilter.Action;
 
@@ -28,12 +29,14 @@ namespace ProtonVPN.Service.Firewall;
 
 public class AppFilter : IAppFilter
 {
+    private readonly ILogger _logger;
     private readonly IpFilter _ipFilter;
     private readonly IpLayer _ipLayer;
     private readonly Dictionary<string, List<Guid>> _list = [];
 
-    public AppFilter(IpFilter ipFilter, IpLayer ipLayer)
+    public AppFilter(ILogger logger, IpFilter ipFilter, IpLayer ipLayer)
     {
+        _logger = logger;
         _ipLayer = ipLayer;
         _ipFilter = ipFilter;
     }
@@ -55,20 +58,28 @@ public class AppFilter : IAppFilter
 
         _list[path] = [];
 
-        foreach ((Layer layer, Action action) in filters)
+        try
         {
-            _ipLayer.Apply(appliedLayer =>
+            foreach ((Layer layer, Action action) in filters)
             {
-                Guid guid = _ipFilter.DynamicSublayer.CreateAppFilter(
-                    new DisplayData("ProtonVPN app filter", ""),
-                    action,
-                    appliedLayer,
-                    14,
-                    path,
-                    isDnsPortExcluded: action == Action.HardPermit);
 
-                _list[path].Add(guid);
-            }, [layer]);
+                _ipLayer.Apply(appliedLayer =>
+                {
+                    Guid guid = _ipFilter.DynamicSublayer.CreateAppFilter(
+                        new DisplayData("ProtonVPN app filter", ""),
+                        action,
+                        appliedLayer,
+                        14,
+                        path,
+                        isDnsPortExcluded: action == Action.HardPermit);
+
+                    _list[path].Add(guid);
+                }, [layer]);
+            }
+        }
+        catch (InvalidArgumentException)
+        {
+            _logger.Error<SplitTunnelLog>($"Failed to create app filter for path {path} due to invalid argument.");
         }
     }
 

@@ -21,6 +21,7 @@ using System;
 using Autofac;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.FirewallLogs;
+using ProtonVPN.Logging.Contracts.Events.SplitTunnelLogs;
 using ProtonVPN.NetworkFilter;
 
 namespace ProtonVPN.Service.Firewall;
