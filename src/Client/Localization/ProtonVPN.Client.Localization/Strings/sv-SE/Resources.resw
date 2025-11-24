@@ -3407,12 +3407,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Tillåt endast internetåtkomst när du är ansluten till Proton VPN. Avancerad kill switch förblir aktiv även när du startar om din enhet.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Detta kommer inaktivera split tunneling.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Aktivera kill switch?</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Skyddar din IP-adress genom att koppla från dig från internet om du tappar din VPN-anslutning.</value>
   </data>
@@ -3516,14 +3510,11 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Valda appar ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Applikation hittades inte</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Ta bort app</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Detta kommer inaktivera kill switch.</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Aktivera split tunneling?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Anpassa din anslutning genom att bestämma vilka appar och IP-adresser som är skyddade av VPN.</value>

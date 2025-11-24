@@ -3407,12 +3407,6 @@
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Επιτρέψτε την πρόσβαση στο διαδίκτυο μόνο όταν είστε συνδεδεμένοι στο Proton VPN. Η προηγμένη λειτουργία kill switch θα παραμείνει ενεργή ακόμα και όταν επανεκκινήσετε τη συσκευή σας.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Αυτό θα απενεργοποιήσει τη διαίρεση σήραγγας.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Ενεργοποίηση kill switch;</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Προστατεύει τη διεύθυνση IP σας αποσυνδέοντάς σας από το διαδίκτυο εάν χάσετε τη σύνδεσή σας VPN.</value>
   </data>
@@ -3516,14 +3510,11 @@
     <value>Επιλεγμένες εφαρμογές ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Η εφαρμογή δε βρέθηκε</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Κατάργηση εφαρμογής</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Αυτό θα απενεργοποιήσει το kill switch.</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Ενεργοποίηση διαίρεσης σήραγγας;</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Προσαρμόστε τη σύνδεσή σας αποφασίζοντας ποιες εφαρμογές και διευθύνσεις IP προστατεύονται από VPN.</value>

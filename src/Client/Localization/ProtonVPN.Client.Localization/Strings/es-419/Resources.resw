@@ -3407,12 +3407,6 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Permite la conexión a internet solo cuando establezca la conexión con Proton VPN. El interruptor de bloqueo avanzado seguirá activo incluso si reinicia su dispositivo.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Esta acción desactivará el túnel dividido.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>¿Activar el interruptor de bloqueo?</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Protege su dirección IP mediante la desconexión de internet si pierde la conexión VPN.</value>
   </data>
@@ -3516,14 +3510,11 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
     <value>Aplicaciones seleccionadas ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>No se ha encontrado la aplicación</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Eliminar la aplicación</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Esto desactivará el interruptor de bloqueo.</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>¿Activar el túnel dividido?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Personalice su conexión decidiendo qué aplicaciones y direcciones IP desea proteger con VPN.</value>

@@ -2411,7 +2411,7 @@
     <value>Немагчыма атрымаць нумар актыўнага парта. Перазапусціце ваша падключэнне і паспрабуйце яшчэ раз.</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Увядзіце нумар актыўнага порта ў свой кліент торэнт або праграму P2P для паляпшэння прадукцыйнасці.</value>
+    <value>Увядзіце нумар актыўнага парта ў свой кліент торэнт або праграму P2P для паляпшэння прадукцыйнасці.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Палепшыце хуткасць спампоўвання аднарангавага падключэння</value>
@@ -3623,12 +3623,6 @@ Secure Core</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Дазваляць доступ да інтэрнэту толькі, калі Proton VPN падключаны. Пашыраны Kill Switch застанецца актыўным нават, калі вы перазапусціце прыладу.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Гэта прывядзе да адключэння Split Tunneling.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Уключыць Kill Switch?</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Абараніце свой IP-адрас пры дапамозе адключэння ад інтэрнэту пры страце падключэння да VPN.</value>
   </data>
@@ -3732,14 +3726,11 @@ Secure Core</value>
     <value>Выбраныя праграмы ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Application not found</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Выдаліць праграму</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Гэта прывядзе да адключэння Kill Switch.</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Уключыць Split Tunelling?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Наладзьце падключэнне вырашыўшы, якія праграмы і IP-адрасы будуць абаронены VPN.</value>

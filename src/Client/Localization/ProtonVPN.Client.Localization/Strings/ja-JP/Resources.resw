@@ -3299,12 +3299,6 @@ VPN接続</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>インターネットへのアクセスは、Proton VPNに接続しているときのみ許可されます。高度なキルスイッチは、デバイスを再起動してもアクティブなままです。</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>これは無効なスプリットトンネルです。</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>キルスイッチを有効にしますか？</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>VPN接続を中断した場合に、インターネットの接続を解除することでIPアドレスを保護します。</value>
   </data>
@@ -3408,14 +3402,11 @@ VPN接続</value>
     <value>選択されたアプリ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Application not found</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>アプリを削除</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>これは無効化されたキルスイッチです。</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>スプリットトンネルを有効にしますか？</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>どのアプリとIP アドレスをVPN によって保護するかを決定して、接続をカスタマイズします。</value>

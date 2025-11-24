@@ -3623,12 +3623,6 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Povoľte prístup k internetu iba pri pripojení k Proton VPN. Pokročilý Kill Switch zostane aktívny, aj keď reštartujete zariadenie.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Týmto zakážete split tunneling.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Zapnúť Kill Switch?</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Chráni vašu IP adresu tým, že vás odpojí od internetu, pokiaľ je prerušené pripojenie k VPN.</value>
   </data>
@@ -3732,14 +3726,11 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Vybrané aplikácie ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Aplikácia nebola nájdená</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Odstrániť aplikáciu</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Toto vypne kill switch.</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Povoliť split tunneling?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Prispôsobte si pripojenie tým, že sa rozhodnete, ktoré aplikácie a IP adresy budú chránené pomocou VPN.</value>

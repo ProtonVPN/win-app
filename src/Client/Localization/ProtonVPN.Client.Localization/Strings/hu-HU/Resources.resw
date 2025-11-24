@@ -3407,12 +3407,6 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Csak akkor engedélyezze az internet-hozzáférést, ha csatlakozik a Proton VPN-hez. A fejlett vészkapcsoló akkor is aktív marad, ha újraindítja a készüléket.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Ez letiltja a megosztott alagútépítést.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Vészkapcsoló bekapcsolása?</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Megvédi az IP-címét azáltal, hogy megszakítja az internetkapcsolatát, ha megszakad a VPN-kapcsolat.</value>
   </data>
@@ -3516,14 +3510,11 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Kiválasztott alkalmazások ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Application not found</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Alkalmazás eltávolítása</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Ez kikapcsolja a vészkapcsolót.</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Osztott alagút bekapcsolása?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Eldöntheti, hogy mely alkalmazásokat és IP-címeket védje a VPN.</value>

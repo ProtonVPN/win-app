@@ -2258,10 +2258,10 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Etkin bağlantı noktası</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Error">
-    <value>Cannot retrieve active port number. Restart your connection and try again.</value>
+    <value>Etkin bağlantı noktası numarası bulunamadı. Bağlantınızı yeniden başlatıp yeniden deneyin.</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Enter the active port number into your torrent client or P2P app for enhanced performance.</value>
+    <value>Başarımı artırmak için etkin bağlantı noktası numarasını torrent istemcinize veya P2P uygulamanıza yazın.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Eşler arası indirme hızlarını iyileştirir</value>
@@ -2896,7 +2896,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Bağlantı noktasını kopyala</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Go to your torrent client or P2P app and enter this number.</value>
+    <value>Torrent istemcinize veya P2P uygulamasına gidip bu numarayı yazın.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>En fazla aygıt sayısı sınırınıza ulaştınız. Yeniden VPN bağlantısı kurmak için lütfen başka bir aygıtın bağlantısını kesin.</value>
@@ -3407,12 +3407,6 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Yalnızca Proton VPN bağlantısı kurulduğunda internet erişimine izin verilir. Gelişmiş bağlantı kesici özelliği, aygıtınızı yeniden başlattığınızda bile etkin kalır.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Bu işlem ayrılmış tünellemeyi kapatacak.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Bağlantı kesilci özelliği açılsın mı?</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>VPN bağlantınız kesilirse internet bağlantınızı keserek IP adresinizin açığa çıkmasını engeller.</value>
   </data>
@@ -3456,7 +3450,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Bağlantı noktası yönlendirme</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Active port number:</value>
+    <value>Etkin bağlantı noktası:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Bağlantı noktası numarasını kopyala</value>
@@ -3487,7 +3481,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Etkin bağlantı noktası numaranız değiştiğinde bildirim alın.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Unavailable">
-    <value>Unavailable</value>
+    <value>Kullanılamıyor</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>İletişim kuralı</value>
@@ -3516,14 +3510,11 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Seçilmiş uygulamalar ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Uygulama bulunamadı</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Uygulamayı kaldır</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Bu işlem bağlantı kesici özelliğini kapatacak.</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Ayrılmış tünelleme açılsın mı?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Hangi uygulamaların ve IP adreslerinin VPN tarafından korunacağını seçerek bağlantınızı özelleştirin.</value>

@@ -148,7 +148,7 @@
     <value>Pàgina de NetShield</value>
   </data>
   <data name="Automation_Properties_NoServers_Page">
-    <value>Aquesta pàgina no té servidors</value>
+    <value>Pàgina sense servidors</value>
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Pàgina de redirecció de ports</value>
@@ -3408,12 +3408,6 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Només permet l'accés a internet quan estigui connectat a Proton VPN. Kill switch avançat romandrà actiu fins i tot quan reinicieu el dispositiu.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Això desactivarà la tunelització dividida.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Voleu activar el kill switch?</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Protegeix la vostra adreça IP desconnectant-vos d'internet si perdeu la vostra connexió VPN.</value>
   </data>
@@ -3517,14 +3511,11 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Aplicacions seleccionades ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>No s'ha trobat l'aplicació</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Esborra l'aplicació</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Això desactivarà kill switch.</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Voleu activar la tunelització dividida?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Personalitzeu la vostra connexió decidint quines aplicacions i adreces IP estan protegides per VPN.</value>

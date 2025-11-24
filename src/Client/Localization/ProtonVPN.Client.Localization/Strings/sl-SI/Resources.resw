@@ -3623,12 +3623,6 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Dovolite dostop do interneta samo, ko ste povezani s Proton VPN. Napredno stikalo za izklop bo ostalo aktivno tudi, ko znova zaženete napravo.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>To bo onemogočilo deljeno tuneliranje.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Omogočiti stikalo za izklop?</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Ščiti vaš naslov IP tako, da prekine povezavo z internetom, če izgubite povezavo VPN.</value>
   </data>
@@ -3732,14 +3726,11 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Izbrane aplikacije ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Application not found</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Odstrani aplikacijo</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>To bo onemogočilo stikalo za izklop.</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Omogočiti razdeljeno tuneliranje?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Prilagodite povezavo tako, da določite, katere aplikacije in IP naslovi so zaščiteni z omrežjem VPN.</value>

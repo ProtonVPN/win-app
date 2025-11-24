@@ -3623,12 +3623,6 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Zezwala na dostęp do Internetu tylko podczas połączenia z usługą Proton VPN. Funkcja kill switch pozostanie aktywna nawet po ponownym uruchomieniu urządzenia.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Spowoduje to wyłączenie funkcji split tunneling.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Włączyć kill switch?</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Chroni adres IP poprzez rozłączenie połączenia sieciowego w przypadku utraty połączenia VPN.</value>
   </data>
@@ -3732,14 +3726,11 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
     <value>Wybrane aplikacje ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Application not found</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Usuń aplikację</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Spowoduje to wyłączenie funkcji kill switch.</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Włączyć split tunneling?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Dostosuj połączenie, decydując, które aplikacje i adresy IP będą chronione przez VPN.</value>

@@ -2047,7 +2047,7 @@ Kód chyby: {0}</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
-    <value>Protokoly chyb nám ukazují, co se pokazilo a jaké akce vedly k vašemu problému. Použijeme je pouze k tomu, abychom našim inženýrům pomohli opravit chyby.</value>
+    <value>Logy chyb nám ukazují, co se pokazilo a jaké akce vedly k vašemu problému. Použijeme je pouze k tomu, abychom našim inženýrům pomohli opravit chyby.</value>
     <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_Header">
@@ -3623,12 +3623,6 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Povolte přístup k internetu pouze při připojení k Proton VPN. Pokročilý Kill Switch zůstane aktivní, i když restartujete zařízení.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Tímto zakážete split tunneling.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Povolit Kill Switch?</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Chrání vaši IP adresu tím, že vás odpojí od internetu, pokud je přerušeno připojení k VPN.</value>
   </data>
@@ -3732,14 +3726,11 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
     <value>Vybrané aplikace ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Application not found</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Odebrat aplikaci</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Tím se deaktivuje Kill Switch</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Povolit split tunneling?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Přizpůsobte si připojení tím, že se rozhodnete, které aplikace a IP adresy budou chráněny pomocí VPN.</value>

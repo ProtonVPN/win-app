@@ -3407,12 +3407,6 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Erlaube den Internetzugang nur, wenn du mit Proton VPN verbunden bist. Der erweiterte Kill Switch bleibt auch dann aktiv, wenn du dein Gerät neu startest.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Dadurch wird Split-Tunneling deaktiviert.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Kill Switch aktivieren?</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Schütze deine IP-Adresse, indem du dich vom Internet trennst, wenn du deine VPN-Verbindung verlierst.</value>
   </data>
@@ -3516,14 +3510,11 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Ausgewählte Apps ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Anwendung nicht gefunden</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>App entfernen</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Dadurch wird Kill Switch deaktiviert.</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Split-Tunneling aktivieren?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Passe deine Verbindung an, indem du entscheidest, welche Anwendungen und IP-Adressen durch VPN geschützt werden.</value>

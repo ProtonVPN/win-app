@@ -3407,12 +3407,6 @@ VPN-verbinding</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Sta internettoegang alleen toe als u verbonden bent met Proton VPN. De geavanceerde kill switch blijft actief, zelfs als u uw apparaat opnieuw opstart.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Hiermee wordt split tunneling uitgeschakeld.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Kill switch inschakelen?</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Beschermt uw IP-adres door de internetverbinding te verbreken als uw VPN-verbinding wegvalt.</value>
   </data>
@@ -3516,14 +3510,11 @@ VPN-verbinding</value>
     <value>Geselecteerde apps ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>App niet gevonden</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>App verwijderen</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Hiermee wordt de kill switch uitgeschakeld.</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Split tunneling inschakelen?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Pas uw verbinding aan door te beslissen welke apps en IP-adressen worden beschermd door VPN.</value>

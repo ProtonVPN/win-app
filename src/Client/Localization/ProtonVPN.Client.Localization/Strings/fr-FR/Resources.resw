@@ -3407,12 +3407,6 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Autorisez l'accès à internet uniquement quand vous êtes connecté à Proton VPN. La fonctionnalité Arrêt d'urgence (kill switch) avancé restera active même si vous redémarrez votre appareil.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Ceci désactivera la fonctionnalité Split tunneling.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Voulez-vous activer Arrêt d'urgence (kill switch) ?</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Protège votre adresse IP en vous déconnectant d'internet si vous perdez votre connexion VPN.</value>
   </data>
@@ -3516,14 +3510,11 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>Applications sélectionnées ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>L'Application est introuvable.</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Retirer l'application</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Ceci désactivera la fonctionnalité Arrêt d'urgence (kill switch).</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Voulez-vous activer le Split tunneling ?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Personnalisez votre connexion en décidant quelles applications et adresses IP sont protégées par le VPN.</value>

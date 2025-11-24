@@ -3407,12 +3407,6 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Tillat bare internettilgang når du er koblet til Proton VPN. Avansert nødstopp forblir aktiv selv når du starter enheten på nytt.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Dette vil deaktivere delt tunnelering.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Aktivere nødstopp?</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Beskytter IP-adressen din ved å koble deg fra internett hvis du mister VPN-tilkoblingen.</value>
   </data>
@@ -3516,14 +3510,11 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Valgte apper ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Applikasjon ble ikke funnet</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Fjern app</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Dette vil deaktivere nødstopp.</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Aktivere delt tunnelering?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Tilpass tilkoblingen din ved å bestemme hvilke apper og IP-adresser som er beskyttet av VPN.</value>

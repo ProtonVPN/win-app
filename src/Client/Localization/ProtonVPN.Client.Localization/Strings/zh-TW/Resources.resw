@@ -3300,12 +3300,6 @@ VPN 連線</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>只有當連線到 Proton VPN 時才允許存取網路。進階緊急中止開關將保持啟用，即使您重新啟動裝置。</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>這將會停用分隔通道。</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>啟用緊急終止開關？</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>如果 VPN 連線意外中斷，會暫停網路連線來保護您的 IP 位址。</value>
   </data>
@@ -3409,14 +3403,11 @@ VPN 連線</value>
     <value>已選取的應用程式 ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Application not found</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>移除應用程式</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>這將會停用緊急終止開關。</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>啟用分隔通道？</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>透過決定哪些應用程式和 IP 位址受到 VPN 保護，來自訂您的連線設定。</value>

@@ -2408,10 +2408,10 @@
     <value>Номер активного порту</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Error">
-    <value>Cannot retrieve active port number. Restart your connection and try again.</value>
+    <value>Не вдається отримати номер активного порту. Перезапустіть з'єднання і спробуйте ще раз.</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Enter the active port number into your torrent client or P2P app for enhanced performance.</value>
+    <value>Введіть номер активного порту у своєму торент-клієнті або програмі P2P для підвищеної продуктивності.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Покращення швидкості завантажень peer-to-peer</value>
@@ -3112,7 +3112,7 @@
     <value>Копіювати номер порту</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Go to your torrent client or P2P app and enter this number.</value>
+    <value>Відкрийте свій торент-клієнт або програму P2P та введіть цей номер.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Ви досягли ліміту пристроїв. Щоб під'єднати цей пристрій до VPN, від'єднайте інший.</value>
@@ -3623,12 +3623,6 @@ VPN-з'єднання</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Дозволяти доступ до інтернету лише за наявності активного з'єднання Proton VPN. Розширений Kill Switch залишатиметься активним навіть після перезавантаження пристрою.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Увімкнення цієї функції деактивує роздільне тунелювання.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Увімкнути Kill Switch?</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Захист вашої IP-адреси шляхом блокування доступу до інтернету, якщо втрачено VPN-з'єднання.</value>
   </data>
@@ -3672,7 +3666,7 @@ VPN-з'єднання</value>
     <value>Переспрямування портів</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Active port number:</value>
+    <value>Номер активного порту:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Копіювати номер порту</value>
@@ -3703,7 +3697,7 @@ VPN-з'єднання</value>
     <value>Отримувати сповіщення, коли змінюється номер активного порту.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Unavailable">
-    <value>Unavailable</value>
+    <value>Недоступно</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Протокол</value>
@@ -3732,14 +3726,11 @@ VPN-з'єднання</value>
     <value>Вибрані програми ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Application not found</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Вилучити програму</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Ця дія призведе до вимкнення Kill Switch.</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Увімкнути роздільне тунелювання?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Налаштуйте своє з'єднання, визначивши програми та IP-адреси, які захищаються VPN.</value>

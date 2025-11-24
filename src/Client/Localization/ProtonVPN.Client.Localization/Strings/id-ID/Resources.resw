@@ -3299,12 +3299,6 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Membatasi agar akses internet hanya tersedia pada saat Anda terhubung ke Proton VPN. Kill switch lanjutan akan tetap aktif bahkan ketika Anda memulai ulang perangkat Anda.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Tindakan ini akan menonaktifkan split tunneling.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Aktifkan kill switch?</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Melindungi alamat IP Anda dengan memutuskan Anda dari internet apabila koneksi VPN hilang.</value>
   </data>
@@ -3408,14 +3402,11 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Aplikasi terpilih ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Application not found</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Hapus aplikasi</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Tindakan ini akan menonaktifkan kill switch.</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Aktifkan split tunneling?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Sesuaikan koneksi Anda dengan menentukan aplikasi dan alamat IP mana saja yang akan terlindung oleh VPN.</value>

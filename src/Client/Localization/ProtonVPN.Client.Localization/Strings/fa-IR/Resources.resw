@@ -3407,12 +3407,6 @@ Secure Core</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>فقط هنگامی که به Proton VPN متصلید اجازه دسترسی به اینترنت دهید. سوئیچ کشتار پیشرفته حتی بعد از راه‌اندازی دوباره دستگاه فعال می‌ماند.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>این، تونل‌بندی بخشی را غیرفعال می‌کند.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>سوئیچ کشتار فعال شود؟</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>از نشانی IP تان با قطع اتصال از اینترنت هنگامی که اتصال VPN قطع می‌شود محافظت می‌کند.</value>
   </data>
@@ -3516,14 +3510,11 @@ Secure Core</value>
     <value>برنامه‌های انتخابی ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Application not found</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>برداشتن برنامه</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>این، سوئیچ کشتار را غیرفعال می‌کند.</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>تونل‌بندی بخشی فعال شود؟</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>اتصالتان را با تصمیم بر این‌که چه برنامه‌ها و نشانی‌های IP با VPN محافظت شوند سفارشی کنید.</value>

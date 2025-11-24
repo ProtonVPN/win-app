@@ -3299,12 +3299,6 @@ VPN 连接</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>只有连接到 Proton VPN 时才允许访问互联网。即使重新启动设备，高级 Kill Switch 也会保持激活状态。</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>这将禁用拆分隧道。</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>启用 Kill Switch ?</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>如果失去 VPN 连接，会断开与互联网的连接，从而保护你的 IP 地址。</value>
   </data>
@@ -3408,14 +3402,11 @@ VPN 连接</value>
     <value>选定的应用 ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Application not found</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>移除应用</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>这将禁用 Kill Switch 。</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>启用拆分隧道？</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>选择哪些应用以及 IP 地址由 VPN 保护，自定义连接方式。</value>

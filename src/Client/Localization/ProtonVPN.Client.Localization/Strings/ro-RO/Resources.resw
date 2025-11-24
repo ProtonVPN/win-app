@@ -3515,12 +3515,6 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
     <value>Permiteți accesul la internet numai atunci când este conectat la Proton VPN. Întrerupătorul de conexiune avansat va rămâne activ chiar și atunci când reporniți dispozitivul.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Description">
-    <value>Aceasta va dezactiva divizarea traficului.</value>
-  </data>
-  <data name="Settings_Connection_KillSwitch_Conflict_Title">
-    <value>Activați întrerupătorul de conexiune?</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Vă protejează adresa IP deconectându-vă de la internet dacă se pierde conexiunea prin VPN.</value>
   </data>
@@ -3624,14 +3618,11 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Aplicații selectate ({0})</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Aplicația nu a fost găsită</value>
+  </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Eliminare aplicație</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Description">
-    <value>Aceasta va dezactiva întrerupătorul de conexiune.</value>
-  </data>
-  <data name="Settings_Connection_SplitTunneling_Conflict_Title">
-    <value>Activați divizarea traficului?</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Personalizați-vă conexiunea decizând ce aplicații și adrese IP sunt protejate de către VPN.</value>
