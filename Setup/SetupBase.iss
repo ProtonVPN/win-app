@@ -719,7 +719,7 @@ begin
     if RegQueryStringValue(HKEY_LOCAL_MACHINE, RegistryPath, 'Version', Version) then begin
       if (Length(Version) > 0) and (Version[1] = 'v') then
         Delete(Version, 1, 1);
-      if CompareVersions(Version, '14.42.34438.0') >= 0 then begin
+      if CompareVersions(Version, '14.50.35719.0') >= 0 then begin
         Log('The latest visual c++ redistributable package is already installed, skipping.');
         Exit;
       end;
