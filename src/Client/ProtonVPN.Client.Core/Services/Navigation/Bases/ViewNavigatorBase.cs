@@ -28,6 +28,7 @@ using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation.Bases;
 using ProtonVPN.Client.Core.Services.Mapping;
 using ProtonVPN.Client.Core.Services.Navigation.Common;
+using ProtonVPN.Client.Core.Services.Navigation.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -68,7 +69,7 @@ public abstract class ViewNavigatorBase : FrameActivatorBase, IViewNavigator
 
     public PageViewModelBase? GetCurrentPageContext()
     {
-        return Host?.Content is IContextAware contextAware
+        return Host.TryGetContent(Logger) is IContextAware contextAware
             ? contextAware.GetContext() as PageViewModelBase
             : null;
     }
@@ -187,7 +188,8 @@ public abstract class ViewNavigatorBase : FrameActivatorBase, IViewNavigator
             return false;
         }
 
-        if (Host.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed)))
+        Type? currentContentType = Host.TryGetContentType(Logger);
+        if (currentContentType != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed)))
         {
             Host.Tag = clearNavigation;
 
@@ -217,10 +219,7 @@ public abstract class ViewNavigatorBase : FrameActivatorBase, IViewNavigator
 
     private void ClearFrameContent()
     {
-        if (Host?.Content != null)
-        {
-            Host.Content = null;
-        }
+        Host.TryClearContent(Logger);
     }
 
     private void TriggerLoadBehavior()
@@ -228,7 +227,7 @@ public abstract class ViewNavigatorBase : FrameActivatorBase, IViewNavigator
         switch (LoadBehavior)
         {
             case FrameLoadedBehavior.NavigateToDefaultView:
-            case FrameLoadedBehavior.NavigateToDefaultViewIfEmpty when Host?.Content == null:
+            case FrameLoadedBehavior.NavigateToDefaultViewIfEmpty when Host.IsContentNull():
                 NavigateToDefaultAsync();
                 break;
         }
@@ -238,7 +237,7 @@ public abstract class ViewNavigatorBase : FrameActivatorBase, IViewNavigator
     {
         switch (UnloadBehavior)
         {
-            case FrameUnloadedBehavior.ClearFrameContent when Host?.Content != null:
+            case FrameUnloadedBehavior.ClearFrameContent when !Host.IsContentNull():
                 ClearFrameAsync();
                 break;
         }
