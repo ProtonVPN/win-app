@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -333,7 +333,11 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
     private void InvalidateWindowFocusState()
     {
-        bool isWindowFocused = Host != null
+        bool isWindowVisible = Host != null
+            && Host.Visible
+            && CurrentWindowState is not WindowState.Minimized;
+
+        bool isWindowFocused = isWindowVisible
             && CurrentActivationState is not WindowActivationState.Deactivated;
 
         if (IsWindowFocused != isWindowFocused)

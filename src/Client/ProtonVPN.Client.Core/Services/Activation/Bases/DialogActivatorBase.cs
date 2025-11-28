@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -66,7 +66,7 @@ public abstract class DialogActivatorBase<TWindow> : WindowActivatorBase<TWindow
             return;
         }
 
-        UIThreadDispatcher.TryEnqueue(() => 
+        UIThreadDispatcher.TryEnqueue(() =>
         {
             if (message.IsMainWindowVisible)
             {
@@ -99,12 +99,18 @@ public abstract class DialogActivatorBase<TWindow> : WindowActivatorBase<TWindow
         base.InvalidateWindowPosition();
     }
 
+    protected override void OnWindowOpened()
+    {
+        base.OnWindowOpened();
+
+        _isHiddenAfterMainWindowClosed = false;
+    }
+
     protected override void OnWindowClosing(WindowEventArgs e)
     {
         base.OnWindowClosing(e);
 
         e.Handled = true;
-        _isHiddenAfterMainWindowClosed = false;
         Hide();
     }
 }
