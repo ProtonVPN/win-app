@@ -69,6 +69,8 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
     protected bool IsWindowInRestoredState => Host?.AppWindow?.Presenter is OverlappedPresenter presenter
                                            && presenter.State == OverlappedPresenterState.Restored;
 
+    protected override bool ShouldCreateInstanceIfMissing => false;
+
     public MainWindowActivator(
         ILogger logger,
         IUIThreadDispatcher uiThreadDispatcher,

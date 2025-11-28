@@ -41,6 +41,8 @@ public class TrayAppWindowActivator : DialogActivatorBase<TrayAppWindow>, ITrayA
 
     public override string WindowTitle { get; } = $"{App.APPLICATION_NAME} (tray)";
 
+    protected override bool ShouldCreateInstanceIfMissing => false;
+
     public TrayAppWindowActivator(
         ILogger logger,
         IUIThreadDispatcher uiThreadDispatcher,

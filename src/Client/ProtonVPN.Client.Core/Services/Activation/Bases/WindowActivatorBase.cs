@@ -64,6 +64,8 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
     public event EventHandler? HostSizeChanged;
 
+    protected virtual bool ShouldCreateInstanceIfMissing => true;
+
     protected WindowActivatorBase(
         ILogger logger,
         IUIThreadDispatcher uiThreadDispatcher,
@@ -81,11 +83,18 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
 
     private void CreateWindowInstanceAndSetAutoActivation()
     {
-        Logger.Info<AppLog>($"Creating instance of {HostTypeName}.");
+        if (ShouldCreateInstanceIfMissing)
+        {
+            Logger.Info<AppLog>($"Creating instance of {HostTypeName}.");
 
-        _isActivationPending = true;
+            _isActivationPending = true;
 
-        Activator.CreateInstance<TWindow>();
+            Activator.CreateInstance<TWindow>();
+        }
+        else
+        {
+            Logger.Warn<AppLog>($"Cannot activate {HostTypeName} because no instance exists and automatic creation is disabled.");
+        }
     }
 
     public void Activate()
