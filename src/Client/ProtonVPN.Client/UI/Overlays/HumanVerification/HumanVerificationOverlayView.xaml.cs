@@ -101,14 +101,21 @@ public sealed partial class HumanVerificationOverlayView : IContextAware
                 return;
             }
 
+            // Stop x:Bind updates, otherwise the closed WebView2 throws if ViewModel
+            // raises Url changes after the dialog goes away.
+            Bindings.StopTracking();
+            WebView2.Source = null;
+
             WebView2.CoreWebView2Initialized -= OnCoreWebView2InitializedAsync;
             WebView2.WebMessageReceived -= WebView2_WebMessageReceived;
 
-            if (WebView2?.CoreWebView2 != null)
+            if (WebView2.CoreWebView2 != null)
             {
                 WebView2.CoreWebView2.ServerCertificateErrorDetected -= OnServerCertificateErrorDetected;
                 WebView2.CoreWebView2.WebResourceRequested -= CoreWebView2_WebResourceRequested;
             }
+
+            WebView2.Close();
         }
         catch (Exception ex)
         {
