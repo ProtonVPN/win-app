@@ -89,7 +89,7 @@
     <PackageVersion Include="System.ValueTuple" Version="4.6.1" />
     <PackageVersion Include="TimeZoneConverter" Version="7.0.0" />
     <PackageVersion Include="Vanara.PInvoke.PowrProf" Version="4.1.6" />
-    <PackageVersion Include="Vanara.PInvoke.Security" Version="4.1.6" />
+    <PackageVersion Include="Vanara.PInvoke.Security" Version="4.2.1" />
     <PackageVersion Include="Vanara.PInvoke.SHCore" Version="4.1.6" />
     <PackageVersion Include="Vanara.PInvoke.Shell32" Version="4.1.6" />
     <PackageVersion Include="Vanara.PInvoke.User32" Version="4.1.6" />

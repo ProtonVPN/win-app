@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,31 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading;
-using System.Threading.Tasks;
-using ProtonVPN.Common.Legacy.Abstract;
+namespace ProtonVPN.Service.Driver;
 
-namespace ProtonVPN.Common.Legacy.OS.Services;
-
-public interface IService
+public interface ICalloutDriver
 {
-    string Name { get; }
+    void Start();
 
-    bool Exists();
-
-    void Create(string pathAndArgs, bool unrestricted);
-
-    void UpdatePathAndArgs(string cmd);
-
-    bool Running();
-
-    bool IsStopped();
-
-    bool Enabled();
-
-    void Enable();
-
-    Task<Result> StartAsync(CancellationToken cancellationToken);
-
-    Task<Result> StopAsync(CancellationToken cancellationToken);
+    void Stop();
 }

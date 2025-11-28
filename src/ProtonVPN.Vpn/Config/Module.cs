@@ -19,7 +19,6 @@
 
 using Autofac;
 using ProtonVPN.Common.Legacy.OS.Processes;
-using ProtonVPN.Common.Legacy.OS.Services;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Configurations.Contracts.Entities;
@@ -29,6 +28,7 @@ using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.OperatingSystems.Processes.Contracts;
+using ProtonVPN.OperatingSystems.Services.Contracts;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Connection;
 using ProtonVPN.Vpn.ConnectionCertificates;
@@ -154,14 +154,13 @@ public class Module
         IX25519KeyGenerator x25519KeyGenerator = c.Resolve<IX25519KeyGenerator>();
         IConnectionCertificateCache connectionCertificateCache = c.Resolve<IConnectionCertificateCache>();
         IWireGuardDnsServersCreator wireGuardDnsServersCreator = c.Resolve<IWireGuardDnsServersCreator>();
+        IServiceFactory serviceFactory = c.Resolve<IServiceFactory>();
 
         return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<ISplitTunnelRouting>(),
             gatewayCache,
             connectionCertificateCache,
             new WireGuardConnection(logger, config, gatewayCache,
-                new WireGuardService(logger, staticConfig, new SafeService(
-                    new LoggingService(logger,
-                        new SystemService(staticConfig.WireGuard.ServiceName, c.Resolve<IOsProcesses>())))),
+                new WireGuardService(logger, staticConfig, serviceFactory.Get(staticConfig.WireGuard.ServiceName)),
                 new WireGuardConfigGenerator(config, x25519KeyGenerator, wireGuardDnsServersCreator),
                 new NtTrafficManager(staticConfig.WireGuard.ConfigFileName, logger),
                 new WintunTrafficManager(staticConfig.WireGuard.PipeName),

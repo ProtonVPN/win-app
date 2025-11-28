@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
+/*
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,16 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Management;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy.Abstract;
-using ProtonVPN.Common.Legacy.OS.Services;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
+using ProtonVPN.OperatingSystems.Services.Contracts;
 
 namespace ProtonVPN.Vpn.WireGuard;
 
@@ -45,59 +42,55 @@ public class WireGuardService : IWireGuardService
 
     public string Name => _origin.Name;
 
-    public bool Exists() => _origin.Exists();
+    public bool Exists() => _origin.IsCreated();
 
-    public void Create(string pathAndArgs, bool unrestricted)
-    {
-        _origin.Create(pathAndArgs, unrestricted);
-    }
-
-    public bool Running() => _origin.Running();
+    public bool Running() => _origin.IsRunning();
 
     public bool IsStopped() => _origin.IsStopped();
 
-    public bool Enabled() => _origin.Enabled();
-
-    public void Enable() => _origin.Enabled();
-
-    public Task<Result> StartAsync(CancellationToken cancellationToken, VpnProtocol protocol)
+    public async Task StartAsync(CancellationToken cancellationToken, VpnProtocol protocol)
     {
-        if (!_origin.Exists())
+        if (!_origin.IsCreated())
         {
-            _logger.Info<AppServiceLog>("WireGuard Service is missing. Installing.");
-            _origin.Create(GetServiceCommandLine(protocol), unrestricted: true);
+            _logger.Info<AppServiceLog>("WireGuard Service is missing. Creating.");
+
+            _origin.Create(new ServiceCreationOptions(
+                pathAndArguments: GetServiceCommandLine(protocol),
+                isUnrestricted: true,
+                dependencies: ["Nsi", "TcpIp"]));
         }
 
-        if (!_origin.Enabled())
+        if (!_origin.IsEnabled())
         {
             _origin.Enable();
         }
 
         UpdateServicePath(protocol);
 
-        return _origin.StartAsync(cancellationToken);
+        await _origin.StartAsync(cancellationToken).ConfigureAwait(false);
+    }
+
+    public async Task StopAsync(CancellationToken cancellationToken)
+    {
+        await _origin.StopAsync(cancellationToken).ConfigureAwait(false);
     }
 
     private void UpdateServicePath(VpnProtocol protocol)
     {
-        string servicePathToExecutable = GetServicePathToExecutable();
+        string servicePathToExecutable = _origin.GetBinaryPath();
         if (string.IsNullOrEmpty(servicePathToExecutable))
         {
             _logger.Error<AppServiceLog>(ServicePathError);
             return;
         }
 
-        if (servicePathToExecutable != GetServiceCommandLine(protocol))
-        {
-            _logger.Info<AppServiceLog>($"{Name} path {servicePathToExecutable} points to an old version. " +
-                                        $"Updating to the current one.");
-            _origin.UpdatePathAndArgs(GetServiceCommandLine(protocol));
-        }
-    }
+        string expectedServicePath = GetServiceCommandLine(protocol);
 
-    public async Task<Result> StopAsync(CancellationToken cancellationToken)
-    {
-        return await _origin.StopAsync(cancellationToken);
+        if (servicePathToExecutable != expectedServicePath)
+        {
+            _logger.Info<AppServiceLog>($"Updating {Name} service path from {servicePathToExecutable} to {expectedServicePath}.");
+            _origin.UpdatePathAndArgs(expectedServicePath);
+        }
     }
 
     private string GetServiceCommandLine(VpnProtocol protocol)
@@ -110,22 +103,6 @@ public class WireGuardService : IWireGuardService
             _ => "udp"
         };
         return $"\"{_staticConfig.WireGuard.ServicePath}\" \"{_staticConfig.WireGuard.ConfigFilePath}\" \"{wireguardProtocol}\"";
-    }
-
-    private string GetServicePathToExecutable()
-    {
-        try
-        {
-            ManagementObject wmiService = new($"Win32_Service.Name='{Name}'");
-            wmiService.Get();
-
-            return (string)wmiService["PathName"];
-        }
-        catch (Exception e)
-        {
-            _logger.Error<AppServiceLog>(ServicePathError, e);
-            return null;
-        }
     }
 
     private string ServicePathError => $"Failed to receive {Name} path.";

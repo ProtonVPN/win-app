@@ -22,7 +22,6 @@ using System.Runtime.InteropServices;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Vanara.PInvoke;
-using Windows.Foundation;
 using Windows.Graphics;
 using static Vanara.PInvoke.SHCore;
 using static Vanara.PInvoke.Shell32;

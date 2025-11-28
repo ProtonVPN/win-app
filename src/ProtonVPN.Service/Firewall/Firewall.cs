@@ -38,7 +38,7 @@ internal class Firewall : IFirewall, IStartable
     private const int LOCAL_TRAFFIC_WEIGHT = 2;
 
     private readonly ILogger _logger;
-    private readonly IDriver _calloutDriver;
+    private readonly ICalloutDriver _calloutDriver;
     private readonly IStaticConfiguration _staticConfig;
     private readonly IpLayer _ipLayer;
     private readonly IpFilter _ipFilter;
@@ -56,7 +56,7 @@ internal class Firewall : IFirewall, IStartable
 
     public Firewall(
         ILogger logger,
-        IDriver calloutDriver,
+        ICalloutDriver calloutDriver,
         IStaticConfiguration staticConfig,
         IpLayer ipLayer,
         IpFilter ipFilter,

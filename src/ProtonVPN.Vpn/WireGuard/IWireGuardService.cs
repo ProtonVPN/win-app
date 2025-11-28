@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,7 +20,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy.Abstract;
 
 namespace ProtonVPN.Vpn.WireGuard;
 
@@ -30,6 +29,6 @@ public interface IWireGuardService
     bool Exists();
     bool IsStopped();
     bool Running();
-    Task<Result> StartAsync(CancellationToken cancellationToken, VpnProtocol protocol);
-    Task<Result> StopAsync(CancellationToken cancellationToken);
+    Task StartAsync(CancellationToken cancellationToken, VpnProtocol protocol);
+    Task StopAsync(CancellationToken cancellationToken);
 }

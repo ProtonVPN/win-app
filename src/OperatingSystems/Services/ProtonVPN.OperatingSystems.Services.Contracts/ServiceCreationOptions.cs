@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
+/*
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,16 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.ServiceProcess;
-using ProtonVPN.Common.Legacy.OS.Processes;
+namespace ProtonVPN.OperatingSystems.Services.Contracts;
 
-namespace ProtonVPN.Common.Legacy.OS.Services;
-
-public class DriverService : Service
+public sealed class ServiceCreationOptions
 {
-    public DriverService(string serviceName, IOsProcesses osProcesses) : base(serviceName, osProcesses)
-    {
-    }
+    public string PathAndArguments { get; }
 
-    protected override ServiceController[] GetServices() => ServiceController.GetDevices();
+    public bool IsUnrestricted { get; }
+
+    public IReadOnlyList<string> Dependencies { get; }
+
+    public ServiceCreationOptions(string pathAndArguments, bool isUnrestricted, IEnumerable<string>? dependencies = null)
+    {
+        PathAndArguments = pathAndArguments ?? throw new ArgumentNullException(nameof(pathAndArguments));
+        IsUnrestricted = isUnrestricted;
+        Dependencies = dependencies is null ? Array.Empty<string>() : new List<string>(dependencies);
+    }
 }

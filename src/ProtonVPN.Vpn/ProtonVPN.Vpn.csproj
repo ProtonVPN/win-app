@@ -23,6 +23,7 @@
         <ProjectReference Include="..\OperatingSystems\NameResolutionPolicyTable\ProtonVPN.OperatingSystems.NRPT.Contracts\ProtonVPN.OperatingSystems.NRPT.Contracts.csproj" />
         <ProjectReference Include="..\OperatingSystems\Network\ProtonVPN.OperatingSystems.Network.Contracts\ProtonVPN.OperatingSystems.Network.Contracts.csproj" />
         <ProjectReference Include="..\OperatingSystems\Processes\ProtonVPN.OperatingSystems.Processes.Contracts\ProtonVPN.OperatingSystems.Processes.Contracts.csproj" />
+        <ProjectReference Include="..\OperatingSystems\Services\ProtonVPN.OperatingSystems.Services.Contracts\ProtonVPN.OperatingSystems.Services.Contracts.csproj" />
         <ProjectReference Include="..\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj" />
         <ProjectReference Include="..\ProtonVPN.WireGuardDriver\ProtonVPN.WireGuardDriver.csproj" />
     </ItemGroup>

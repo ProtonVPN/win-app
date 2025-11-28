@@ -21,8 +21,6 @@ using System;
 using System.ComponentModel;
 using System.ServiceProcess;
 using System.Threading;
-using ProtonVPN.Common.Legacy.OS.Processes;
-using ProtonVPN.Common.Legacy.OS.Services;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
@@ -32,6 +30,7 @@ using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
 using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
 using ProtonVPN.OperatingSystems.NRPT.Contracts;
 using ProtonVPN.OperatingSystems.PowerEvents.Contracts;
+using ProtonVPN.OperatingSystems.Services.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Vpn.Common;
@@ -46,10 +45,10 @@ internal partial class VpnService : ServiceBase
     private readonly ILogger _logger;
     private readonly IIssueReporter _issueReporter;
     private readonly IStaticConfiguration _staticConfig;
-    private readonly IOsProcesses _osProcesses;
     private readonly IVpnConnection _vpnConnection;
     private readonly IIpv6 _ipv6;
     private readonly IGrpcServer _grpcServer;
+    private readonly IServiceFactory _serviceFactory;
     private readonly INrptInvoker _nrptInvoker;
     private bool _isConnected;
 
@@ -57,20 +56,20 @@ internal partial class VpnService : ServiceBase
         ILogger logger,
         IIssueReporter issueReporter,
         IStaticConfiguration staticConfig,
-        IOsProcesses osProcesses,
         IVpnConnection vpnConnection,
         IIpv6 ipv6,
         IGrpcServer grpcServer,
         IPowerEventNotifier powerEventNotifier,
+        IServiceFactory serviceFactory,
         INrptInvoker nrptInvoker)
     {
         _logger = logger;
         _issueReporter = issueReporter;
         _staticConfig = staticConfig;
-        _osProcesses = osProcesses;
         _vpnConnection = vpnConnection;
         _ipv6 = ipv6;
         _grpcServer = grpcServer;
+        _serviceFactory = serviceFactory;
         _nrptInvoker = nrptInvoker;
 
         powerEventNotifier.OnResume += OnPowerEventResume;
@@ -180,10 +179,10 @@ internal partial class VpnService : ServiceBase
     {
         try
         {
-            SystemService wireGuardService = new(_staticConfig.WireGuard.ServiceName, _osProcesses);
-            if (wireGuardService.Running())
+            IService wireGuardService = _serviceFactory.Get(_staticConfig.WireGuard.ServiceName);
+            if (wireGuardService.IsRunning())
             {
-                wireGuardService.StopAsync(new CancellationToken()).Wait();
+                wireGuardService.Stop();
             }
         }
         catch (Exception e)

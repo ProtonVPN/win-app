@@ -13,8 +13,9 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="System.Formats.Asn1" />
-        <PackageReference Include="System.ServiceProcess.ServiceController" />
         <PackageReference Include="System.Text.Json" />
+        <PackageReference Include="Vanara.PInvoke.Security" />
+        <PackageReference Include="Polly" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\..\..\Logging\ProtonVPN.Logging.Contracts\ProtonVPN.Logging.Contracts.csproj" />

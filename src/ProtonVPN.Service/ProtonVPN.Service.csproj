@@ -61,6 +61,7 @@
         <ProjectReference Include="..\OperatingSystems\PowerEvents\ProtonVPN.OperatingSystems.PowerEvents.Installers\ProtonVPN.OperatingSystems.PowerEvents.Installers.csproj" />
         <ProjectReference Include="..\OperatingSystems\Processes\ProtonVPN.OperatingSystems.Processes.Installers\ProtonVPN.OperatingSystems.Processes.Installers.csproj" />
         <ProjectReference Include="..\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Installers\ProtonVPN.OperatingSystems.Registries.Installers.csproj" />
+        <ProjectReference Include="..\OperatingSystems\Services\ProtonVPN.OperatingSystems.Services.Installers\ProtonVPN.OperatingSystems.Services.Installers.csproj" />
         <ProjectReference Include="..\ProcessCommunication\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />
         <ProjectReference Include="..\ProcessCommunication\ProtonVPN.ProcessCommunication.Installers\ProtonVPN.ProcessCommunication.Installers.csproj" />
         <ProjectReference Include="..\ProcessCommunication\Server\ProtonVPN.ProcessCommunication.Server.Installers\ProtonVPN.ProcessCommunication.Server.Installers.csproj" />

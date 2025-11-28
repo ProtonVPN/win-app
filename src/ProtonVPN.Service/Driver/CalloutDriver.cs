@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,34 +17,32 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading;
-using ProtonVPN.Common.Legacy.OS.Services;
+using ProtonVPN.OperatingSystems.Services.Contracts;
 
-namespace ProtonVPN.Service.Driver
+namespace ProtonVPN.Service.Driver;
+
+public class CalloutDriver : ICalloutDriver
 {
-    public class CalloutDriver : IDriver
+    private readonly IService _service;
+
+    public CalloutDriver(IService service)
     {
-        private readonly IService _service;
+        _service = service;
+    }
 
-        public CalloutDriver(IService service)
+    public void Start()
+    {
+        if (!_service.IsRunning())
         {
-            _service = service;
+            _service.StartWithRetry();
         }
+    }
 
-        public void Start()
+    public void Stop()
+    {
+        if (_service.IsRunning())
         {
-            if (!_service.Running())
-            {
-                _service.StartAsync(CancellationToken.None).Wait();
-            }
-        }
-
-        public void Stop()
-        {
-            if (_service.Running())
-            {
-                _service.StopAsync(CancellationToken.None).Wait();
-            }
+            _service.StopWithRetry();
         }
     }
 }

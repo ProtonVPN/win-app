@@ -17,13 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using Autofac;
 using ProtonVPN.Common.Installers.Extensions;
 using ProtonVPN.Common.Legacy.OS.DeviceIds;
 using ProtonVPN.Common.Legacy.OS.Net.Http;
 using ProtonVPN.Common.Legacy.OS.Processes;
-using ProtonVPN.Common.Legacy.OS.Services;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.EntityMapping.Installers;
@@ -36,6 +34,8 @@ using ProtonVPN.OperatingSystems.NRPT.Installers;
 using ProtonVPN.OperatingSystems.Processes.Contracts;
 using ProtonVPN.OperatingSystems.Processes.Installers;
 using ProtonVPN.OperatingSystems.Registries.Installers;
+using ProtonVPN.OperatingSystems.Services.Contracts;
+using ProtonVPN.OperatingSystems.Services.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.ProcessCommunication.Server.Installers;
 using ProtonVPN.Serialization.Installers;
@@ -64,17 +64,10 @@ internal class ServiceModule : Module
         builder.RegisterType<UpdateController>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ClientControllerSender>().AsImplementedInterfaces().SingleInstance();
 
-        builder.Register(_ => new ServiceRetryPolicy(2, TimeSpan.FromSeconds(1))).SingleInstance();
-        builder.Register(c => new CalloutDriver(
-                new ReliableService(
-                    c.Resolve<ServiceRetryPolicy>(),
-                    new SafeService(
-                        new LoggingService(
-                            c.Resolve<ILogger>(),
-                            new DriverService(
-                                c.Resolve<IStaticConfiguration>().CalloutServiceName,
-                                c.Resolve<IOsProcesses>()))))))
-            .AsImplementedInterfaces().AsSelf().SingleInstance();
+        builder.Register(c => new CalloutDriver(c.Resolve<IServiceFactory>().Get(c.Resolve<IStaticConfiguration>().CalloutServiceName)))
+            .AsImplementedInterfaces()
+            .AsSelf()
+            .SingleInstance();
 
         builder.RegisterType<SettingsFileStorage>().AsImplementedInterfaces().SingleInstance();
 
@@ -110,7 +103,7 @@ internal class ServiceModule : Module
 
         builder.RegisterType<DeviceIdCache>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ControllerRetryManager>().AsImplementedInterfaces().SingleInstance();
-        
+
         RegisterModules(builder);
     }
 
@@ -125,6 +118,7 @@ internal class ServiceModule : Module
                .RegisterAssemblyModule<IssueReportingModule>()
                .RegisterAssemblyModule<PowerEventsModule>()
                .RegisterAssemblyModule<ProcessesModule>()
+               .RegisterAssemblyModule<ServicesModule>()
                .RegisterAssemblyModule<NameResolutionPolicyTableModule>();
     }
 

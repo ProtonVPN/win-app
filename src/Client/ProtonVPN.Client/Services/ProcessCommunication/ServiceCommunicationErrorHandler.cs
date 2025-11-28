@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2023 Proton AG
+* Copyright (c) 2025 Proton AG
 *
 * This file is part of ProtonVPN.
 *
@@ -17,13 +17,13 @@
 * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System.ServiceProcess;
 using ProtonVPN.Client.Contracts.ProcessCommunication;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
+using ProtonVPN.OperatingSystems.Services.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
@@ -66,7 +66,7 @@ public class ServiceCommunicationErrorHandler : IServiceCommunicationErrorHandle
         bool isStartCalled = false;
         while (true)
         {
-            ServiceControllerStatus? serviceStatus = _serviceManager.GetStatus();
+            ServiceStatus? serviceStatus = _serviceManager.GetStatus();
             if (serviceStatus is null)
             {
                 _logger.Error<AppServiceStartFailedLog>("Cannot start the service because it was not found.");
@@ -75,18 +75,18 @@ public class ServiceCommunicationErrorHandler : IServiceCommunicationErrorHandle
 
             switch (serviceStatus)
             {
-                case ServiceControllerStatus.Stopped:
+                case ServiceStatus.Stopped:
                     _logger.Info<AppServiceStartLog>("The service status is Stopped. Starting the service.");
                     _serviceManager.StartAsync();
                     isStartCalled = true;
                     break;
 
-                case ServiceControllerStatus.StartPending:
-                case ServiceControllerStatus.StopPending:
+                case ServiceStatus.StartPending:
+                case ServiceStatus.StopPending:
                     _logger.Debug<AppServiceLog>($"The service status is {serviceStatus}. Waiting.");
                     break;
 
-                case ServiceControllerStatus.Running:
+                case ServiceStatus.Running:
                     if (isStartCalled)
                     {
                         _logger.Info<AppServiceLog>("The service status is Running. Requesting reconnect (if a connection existed).");

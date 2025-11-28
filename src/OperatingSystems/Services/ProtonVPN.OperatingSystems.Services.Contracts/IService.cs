@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,8 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.ServiceProcess;
-
 namespace ProtonVPN.OperatingSystems.Services.Contracts;
 
 public interface IService
@@ -26,15 +24,23 @@ public interface IService
     string Name { get; }
 
     bool IsCreated();
+    void Create(ServiceCreationOptions options);
 
     bool IsEnabled();
     void Enable();
+    void UpdatePathAndArgs(string pathAndArgs);
+    string? GetBinaryPath();
 
     bool IsRunning();
-    bool? IsStopped();
+    bool IsStopped();
 
     bool Start();
-    bool Stop();
+    bool StartWithRetry();
+    Task<bool> StartAsync(CancellationToken cancellationToken);
 
-    ServiceControllerStatus? GetStatus();
+    bool Stop();
+    bool StopWithRetry();
+    Task<bool> StopAsync(CancellationToken cancellationToken);
+
+    ServiceStatus? GetStatus();
 }

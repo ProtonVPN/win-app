@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.ServiceProcess;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.OperatingSystems.Services.Contracts;
@@ -40,7 +39,7 @@ public class ServiceManager : IServiceManager
         _serviceEnabler = serviceEnabler;
     }
 
-    public ServiceControllerStatus? GetStatus()
+    public ServiceStatus? GetStatus()
     {
         return _service.GetStatus();
     }
@@ -52,9 +51,9 @@ public class ServiceManager : IServiceManager
             return;
         }
 
-        await _serviceEnabler.EnableAsync(_service);
+        await _serviceEnabler.EnableAsync(_service).ConfigureAwait(false);
 
-        _service.Start();
+        await _service.StartAsync(_cancellationTokenSource.Token).ConfigureAwait(false);
     }
 
     public void Stop()
