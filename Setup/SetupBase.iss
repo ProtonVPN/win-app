@@ -177,6 +177,7 @@ Name: "ru_RU"; MessagesFile: "compiler:Languages\Russian.isl,Strings\Russian.isl
 Name: "tr_TR"; MessagesFile: "compiler:Languages\Turkish.isl,Strings\Turkish.isl"
 Name: "ca_ES"; MessagesFile: "compiler:Languages\Catalan.isl,Strings\Catalan.isl"
 Name: "cs_CZ"; MessagesFile: "compiler:Languages\Czech.isl,Strings\Czech.isl"
+Name: "da_DK"; MessagesFile: "compiler:Languages\Danish.isl,Strings\Danish.isl"
 Name: "fi_FI"; MessagesFile: "compiler:Languages\Finnish.isl,Strings\Finnish.isl"
 Name: "hu_HU"; MessagesFile: "compiler:Languages\Hungarian.isl,Strings\Hungarian.isl"
 Name: "nb_NO"; MessagesFile: "compiler:Languages\Norwegian.isl,Strings\Norwegian.isl"
