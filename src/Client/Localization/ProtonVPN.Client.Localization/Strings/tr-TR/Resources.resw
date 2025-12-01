@@ -3333,7 +3333,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Yerel ağınızdaki yazıcılarla, hoparlörlerle ve diğer aygıtlarla bağlantı kurulmasını sağlar.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
-    <value>Aygıtlara, IP adresleri yerine 'Yazicim' veya 'router.local' gibi adlar kullanarak bağlanmanızı sağlar. Yerel DNS çözümlemesi kullanılır. VPN hızını düşürmemek için varsayılan olarak kapalıdır.</value>
+    <value>mDNS, aygıtlara IP adresleri yerine 'Yazıcım' veya 'router.local' gibi adlar ile bağlanmak için kullanılır. Standart DNS, VPN tüneli üzerinden yönlendirilmeyi sürdürür. Daha yüksek VPN hızı sağlamak için varsayılan olarak kapatılmıştır.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
     <value>Aygıtlara adlarıyla erişilebilsin</value>

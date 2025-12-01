@@ -3225,7 +3225,7 @@ VPN接続</value>
     <value>お客様のローカル ネットワーク内のプリンター、スピーカー、その他のデバイスへの接続を許可します。</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
-    <value>IPアドレスの代わりに「My-Printer」や「router.local」などの名前を使用してデバイスに接続します。ローカルDNS解決を使用します。VPN速度を高速化するため、デフォルトでは無効になっています。</value>
+    <value>Uses mDNS to connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Standard DNS continues to be routed through the VPN tunnel. Disabled by default for faster VPN speeds.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
     <value>名前でデバイスにアクセスする</value>

@@ -1,0 +1,4137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account_VpnPlan_Free">
+    <value>Proton VPN Free</value>
+  </data>
+  <data name="Automation_Properties_ConnectionDetails_Page">
+    <value>Forbindelsesoplysninger side</value>
+  </data>
+  <data name="Automation_Properties_Connection_Card_Component">
+    <value>Forbindelseskort</value>
+  </data>
+  <data name="Automation_Properties_Features_Bar">
+    <value>Funktionslinje</value>
+  </data>
+  <data name="Automation_Properties_Home_Page">
+    <value>Startside</value>
+  </data>
+  <data name="Automation_Properties_KillSwitch_Page">
+    <value>Kill switch side</value>
+  </data>
+  <data name="Automation_Properties_LocationDetails_Page">
+    <value>Placeringsoplysninger side</value>
+  </data>
+  <data name="Automation_Properties_Login_Page">
+    <value>Login side</value>
+  </data>
+  <data name="Automation_Properties_Main_Page">
+    <value>Hovedside</value>
+  </data>
+  <data name="Automation_Properties_NetShield_Page">
+    <value>NetShield side</value>
+  </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>Ingen servere-side</value>
+  </data>
+  <data name="Automation_Properties_PortForwarding_Page">
+    <value>Port-viderestilling side</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page">
+    <value>Profilside</value>
+  </data>
+  <data name="Automation_Properties_Settings_Advanced_Page">
+    <value>Avancerede indstillinger side</value>
+  </data>
+  <data name="Automation_Properties_Settings_Common_Page">
+    <value>Almindelige indstillinger side</value>
+  </data>
+  <data name="Automation_Properties_Settings_Page">
+    <value>Indstillinger side</value>
+  </data>
+  <data name="Automation_Properties_Sidebar">
+    <value>Sidepanel</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Countries_Page">
+    <value>Landeside</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
+    <value>Gateways side</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Page">
+    <value>Forbindelsesside</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Profiles_Page">
+    <value>Profilside</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Recents_Page">
+    <value>Seneste forbindelser side</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Search_Results_Page">
+    <value>Søgeresultater</value>
+  </data>
+  <data name="Automation_Properties_SplitTunneling_Page">
+    <value>Split tunneling side</value>
+  </data>
+  <data name="Cities">
+    <value>Byer</value>
+  </data>
+  <data name="City_Fastest">
+    <value>Hurtigste by</value>
+  </data>
+  <data name="City_Random">
+    <value>Tilfældig by</value>
+  </data>
+  <data name="Common_Actions_ActionsFor">
+    <value>Handlinger for {0}</value>
+    <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_Add">
+    <value>Tilføj</value>
+  </data>
+  <data name="Common_Actions_Back">
+    <value>Tilbage</value>
+  </data>
+  <data name="Common_Actions_Cancel">
+    <value>Annullér</value>
+  </data>
+  <data name="Common_Actions_Change">
+    <value>Skift</value>
+  </data>
+  <data name="Common_Actions_Close">
+    <value>Luk</value>
+  </data>
+  <data name="Common_Actions_Connect">
+    <value>Forbind</value>
+  </data>
+  <data name="Common_Actions_ConnectTo">
+    <value>Opret forbindelse til {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_ContactUs">
+    <value>Kontakt os</value>
+  </data>
+  <data name="Common_Actions_Customize">
+    <value>Tilpas</value>
+  </data>
+  <data name="Common_Actions_Delete">
+    <value>Slet</value>
+  </data>
+  <data name="Common_Actions_Disconnect">
+    <value>Afbryd</value>
+  </data>
+  <data name="Common_Actions_DisconnectFrom">
+    <value>Afbryd forbindelsen til {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_Duplicate">
+    <value>Duplikér</value>
+  </data>
+  <data name="Common_Actions_Edit">
+    <value>Rediger</value>
+  </data>
+  <data name="Common_Actions_Enable">
+    <value>Aktivér</value>
+  </data>
+  <data name="Common_Actions_Exit_ProtonVPN">
+    <value>Luk Proton VPN</value>
+  </data>
+  <data name="Common_Actions_GotIt">
+    <value>Forstået</value>
+  </data>
+  <data name="Common_Actions_Install">
+    <value>Installér</value>
+  </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Flyt ned</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Flyt op</value>
+  </data>
+  <data name="Common_Actions_Reconnect">
+    <value>Genopret forbindelse</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Opdater</value>
+  </data>
+  <data name="Common_Actions_Remove">
+    <value>Fjern</value>
+  </data>
+  <data name="Common_Actions_Restart">
+    <value>Genstart</value>
+  </data>
+  <data name="Common_Actions_Save">
+    <value>Gem</value>
+  </data>
+  <data name="Common_Actions_TryAgain">
+    <value>Forsøg igen</value>
+  </data>
+  <data name="Common_Actions_Update">
+    <value>Opdatér</value>
+  </data>
+  <data name="Common_Actions_Upgrade">
+    <value>Opgradér</value>
+  </data>
+  <data name="Common_Confirmation_KillSwitch_Message">
+    <value>Avanceret kill-switch er aktiveret. Sådan bruges internettet uden VPN: Slå avanceret kill-switch fra.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
+    <value>Avanceret kill switch er aktiveret. Hvis du fortsætter, bliver du koblet fra internettet.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnected_Message">
+    <value>Du vil blive koblet fra VPN.</value>
+  </data>
+  <data name="Common_Links_LearnMore">
+    <value>Få mere at vide</value>
+  </data>
+  <data name="Common_Message_Loading">
+    <value>Indlæser...</value>
+  </data>
+  <data name="Common_States_Off">
+    <value>Slået fra</value>
+  </data>
+  <data name="Common_States_On">
+    <value>Slået til</value>
+  </data>
+  <data name="Common_States_Updating">
+    <value>Opdaterer...</value>
+  </data>
+  <data name="Common_Tags_Beta">
+    <value>BETA</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
+  <data name="Common_Tags_New">
+    <value>NY</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
+  </data>
+  <data name="Common_Tags_Recommended">
+    <value>Anbefalet</value>
+    <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
+  </data>
+  <data name="Components_Update_GetMostFromYourVpn">
+    <value>Få mest muligt ud af din VPN ved at opdatere til den nyeste version af appen.</value>
+  </data>
+  <data name="Components_Update_MoreLikelyIssues">
+    <value>Det er mere sandsynligt, at du får problemer med ældre versioner af Proton VPN.</value>
+  </data>
+  <data name="Components_Update_UpdateAvailable">
+    <value>Opdatering tilgængelig</value>
+  </data>
+  <data name="Components_Update_UpdateProtonVpn">
+    <value>Opdatér Proton VPN</value>
+  </data>
+  <data name="Connection_Error_EditProfile">
+    <value>Rediger profil</value>
+  </data>
+  <data name="Connection_Error_MissingConnectionCertificate">
+    <value>Proton VPN kunne ikke hente godkendelsescertifikatet pga. et netværksproblem.</value>
+  </data>
+  <data name="Connection_Error_NoServers">
+    <value>Alle servere i dit valg er utilgængelige. Udvid venligst dit valg eller prøv igen senere.</value>
+  </data>
+  <data name="Connection_Error_NoServers_Profile">
+    <value>Dit servervalg for '{0}' er utilgængeligt. Vælg en anden server, eller prøv igen senere.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Connection_Error_NoTapAdapters">
+    <value>Netværksadapteren mangler.</value>
+  </data>
+  <data name="Connection_Error_ReportAnIssue">
+    <value>Anmeld en fejl</value>
+  </data>
+  <data name="Connection_Error_RpcServerUnavailable">
+    <value>Proton VPN kan ikke tilslutte fordi RPC serveren er utilgængelig på dit system.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedFreeUser">
+    <value>Du har nået din maksimale enhedsgrænse. Afbryd venligst forbindelsen til en anden enhed for at forbinde denne eller opgrader til et PLUS-abonnement for at forbinde op til 10 enheder på samme tid.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedPaidUser">
+    <value>Du har nået din maksimale enhedsgrænse. Afbryd venligst forbindelsen til en anden enhed for at tilslutte denne enhed.</value>
+  </data>
+  <data name="Connection_Error_TapAdapterInUse">
+    <value>Din netværksadapter er i øjeblikket i brug.</value>
+  </data>
+  <data name="Connection_Error_TapRequiresUpdate">
+    <value>Netværksadapterversionen er forældet.</value>
+  </data>
+  <data name="Connection_Error_Title">
+    <value>Forbindelse mislykkedes</value>
+  </data>
+  <data name="Connection_Error_TlsCertificate">
+    <value>Der er et problem med at validere VPN-servercertifikatet, som kan indikere at netværksforbindelsen bliver manipuleret med eller serveren du forsøger at oprette forbindelse til, har et konfigurationsproblem. Få hjælp fra vores kundesupport ved at sende en problemrapportering.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>For at forbinde til VPN skal du gå til din organisations 2FA-portal og trykke på din sikkerhedsnøgle.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>To-faktor-godkendelse (2FA) påkrævet</value>
+  </data>
+  <data name="Connection_Error_Unknown">
+    <value>Kontroller din internetforbindelse, og prøv igen. Hvis det ikke virker, bedes du kontakte vores kundesupportteam.
+
+Fejlkode: {0}</value>
+  </data>
+  <data name="Connection_Error_ViewPossibleSolutions">
+    <value>Vis løsninger</value>
+  </data>
+  <data name="Connection_Error_WireGuardAdapterInUse">
+    <value>Din enheds WireGuard-adapter er i brug. Afbryd forbindelsen til enhver anden VPN, der kører på din enhed, og prøv derefter igen.</value>
+  </data>
+  <data name="Connection_Intent_AutoSelected">
+    <value>Auto-valgt fra</value>
+    <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
+  </data>
+  <data name="Connection_Intent_City_Server">
+    <value>{0} #{1}</value>
+    <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the number associated to the server (eg. Zurich #20)</comment>
+  </data>
+  <data name="Connection_Intent_Country_Server">
+    <value>{0} #{1}</value>
+    <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
+  </data>
+  <data name="Connection_Via_SecureCore">
+    <value>via {0}</value>
+    <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
+  </data>
+  <data name="Connections_Cities_One">
+    <value>({0}) by</value>
+  </data>
+  <data name="Connections_Cities_Other">
+    <value>({0}) byer</value>
+  </data>
+  <data name="Connections_City">
+    <value>By</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>Servere i byen er tilgængelige med VPN Plus</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>Alle servere i denne by er under vedligeholdelse</value>
+  </data>
+  <data name="Connections_Countries_One">
+    <value>({0}) land</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>({0}) lande</value>
+  </data>
+  <data name="Connections_Country">
+    <value>Land</value>
+  </data>
+  <data name="Connections_Country_Middle">
+    <value>Landet i midten</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>Servere i dette land er tilgængelige med VPN Plus</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>Alle servere i denne land er under vedligeholdelse</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Kan ikke oprette forbindelse</value>
+  </data>
+  <data name="Connections_Fastest">
+    <value>Hurtigst</value>
+  </data>
+  <data name="Connections_Free_Servers_One">
+    <value>Gratis server</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>Free servere</value>
+  </data>
+  <data name="Connections_Gateway">
+    <value>Portal</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>Servere i denne portal er tilgængelige med VPN Plus</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>Alle servere i denne portal er under vedligeholdelse</value>
+  </data>
+  <data name="Connections_Gateways_One">
+    <value>Portal ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>Portaler ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Server">
+    <value>Tilegnet server</value>
+  </data>
+  <data name="Connections_Gateways_Servers_One">
+    <value>Dedikeret server ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>Dedikerede servere ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_One">
+    <value>({0}) by med P2P</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>({0}) byer med P2P</value>
+  </data>
+  <data name="Connections_P2P_Countries_One">
+    <value>({0}) land med P2P</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>({0}) lande med P2P</value>
+  </data>
+  <data name="Connections_P2P_Servers_One">
+    <value>P2P-server</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>P2P-servere</value>
+  </data>
+  <data name="Connections_P2P_States_One">
+    <value>P2P-stat/region ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>P2P-stater/regioner ({0})</value>
+  </data>
+  <data name="Connections_Profiles_One">
+    <value>Profil ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Other">
+    <value>Profiler ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Create">
+    <value>Opret profil</value>
+    <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
+  </data>
+  <data name="Connections_Profiles_Delete">
+    <value>Slet profil</value>
+  </data>
+  <data name="Connections_Profiles_Delete_Message">
+    <value>'{0}' vil blive fjernet permanent.</value>
+    <comment>{0} is a placeholder for the name of the profile.</comment>
+  </data>
+  <data name="Connections_Profiles_Delete_Title">
+    <value>Slet profil?</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Description">
+    <value>Profiler er gemte forbindelser med dit valg af placering, server og protokol.</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Title">
+    <value>Opret din første profil</value>
+  </data>
+  <data name="Connections_Profiles_Location_Header">
+    <value>Vælg forbindelsestype og placering</value>
+  </data>
+  <data name="Connections_Profiles_Name">
+    <value>Giv din profil et navn</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default">
+    <value>Uden titel</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate">
+    <value>Kopi af {0}</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
+  </data>
+  <data name="Connections_Profiles_New">
+    <value>Ny profil</value>
+    <comment>"New profile" is more appropriate when you already have a profile</comment>
+  </data>
+  <data name="Connections_Profiles_NotAvailable_Tooltip">
+    <value>Profilerne er tilgængelige med VPN Plus</value>
+    <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
+  </data>
+  <data name="Connections_Profiles_Settings_Description">
+    <value>Profilindstillinger vil tilsidesætte dine VPN-indstillinger, når der er forbindelse.</value>
+  </data>
+  <data name="Connections_Profiles_Settings_Header">
+    <value>Tilføj brugerdefinerede indstillinger</value>
+  </data>
+  <data name="Connections_Random">
+    <value>Tilfældig</value>
+  </data>
+  <data name="Connections_Recents_One">
+    <value>Seneste ({0})</value>
+  </data>
+  <data name="Connections_Recents_Other">
+    <value>Seneste ({0})</value>
+  </data>
+  <data name="Connections_Recents_Empty_Description">
+    <value>Se din forbindelseshistorik her</value>
+  </data>
+  <data name="Connections_Recents_Empty_Title">
+    <value>Ingen seneste forbindelser endnu</value>
+  </data>
+  <data name="Connections_Recents_Pinned_One">
+    <value>Fastgjort ({0})</value>
+  </data>
+  <data name="Connections_Recents_Pinned_Other">
+    <value>Fastgjort ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_One">
+    <value>land med Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>lande med Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_One">
+    <value>Secure Core-server</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>Sikre Core-servere</value>
+  </data>
+  <data name="Connections_SeeCities_One">
+    <value>Vis by ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Other">
+    <value>Vis byer ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_One">
+    <value>Vis server ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Other">
+    <value>Vis servere ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_One">
+    <value>Se stat/region ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Other">
+    <value>Se stater/regioner ({0})</value>
+  </data>
+  <data name="Connections_Server">
+    <value>Server</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>Tilgængelig server med VPN Plus</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>Denne server er under vedligeholdelse</value>
+  </data>
+  <data name="Connections_Servers_One">
+    <value>Server</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>Servere</value>
+  </data>
+  <data name="Connections_State">
+    <value>Status</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Servere i denne stat/region er tilgængelige med VPN Plus.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>Alle servere i denne stat/region er under vedligeholdelse.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_One">
+    <value>Stat/region ({0})</value>
+  </data>
+  <data name="Connections_States_Other">
+    <value>Stater/regioner ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_One">
+    <value>land med Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>lande med Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_One">
+    <value>Tor-server</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>Tor-servere</value>
+  </data>
+  <data name="Countries">
+    <value>Lande</value>
+  </data>
+  <data name="Countries_All">
+    <value>Alle</value>
+  </data>
+  <data name="Countries_City_One">
+    <value>{0} by</value>
+  </data>
+  <data name="Countries_City_Other">
+    <value>{0} byer</value>
+  </data>
+  <data name="Countries_Connect">
+    <value>Forbind</value>
+    <comment>Connect button label on a country row in the countries tab</comment>
+  </data>
+  <data name="Countries_Fastest">
+    <value>Hurtigste land</value>
+  </data>
+  <data name="Countries_NoSearchResults">
+    <value>Ingen resultater fundet</value>
+  </data>
+  <data name="Countries_NumberOfServers">
+    <value>Servere ({0})</value>
+    <comment>{0} represents a number of servers</comment>
+  </data>
+  <data name="Countries_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Countries_P2P_Cities">
+    <value>P2P-byer ({0})</value>
+    <comment>{0} represents a number of P2P cities in the country</comment>
+  </data>
+  <data name="Countries_P2P_Description">
+    <value>Download filer over P2P (peer-to-peer) netværk, og gør din oplevelse med online spil og videoopkald bedre.</value>
+  </data>
+  <data name="Countries_Page_FreeUser_Description">
+    <value>Lås op for landevalg med VPN Plus</value>
+  </data>
+  <data name="Countries_SearchPlaceholder">
+    <value>Jeg vil browse fra...</value>
+  </data>
+  <data name="Countries_Section_Header">
+    <value>VPN-forbindelser</value>
+  </data>
+  <data name="Countries_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>Tilføj endnu et lag af kryptering til din VPN-forbindelse.</value>
+  </data>
+  <data name="Countries_ServerLoad">
+    <value>Serverbelastning</value>
+  </data>
+  <data name="Countries_SmartRouting">
+    <value>Smart routing</value>
+  </data>
+  <data name="Countries_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Countries_TorServers">
+    <value>Tor-servere ({0})</value>
+    <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>Brug Tor-netværket via din VPN-forbindelse for øget diskretion.</value>
+  </data>
+  <data name="Countries_TryDifferentKeyword">
+    <value>Venligst prøv et andet nøgleord.</value>
+  </data>
+  <data name="Country_Fastest">
+    <value>Hurtigste land</value>
+  </data>
+  <data name="Country_Fastest_ExcludingMyCountry">
+    <value>Hurtigst (undtagen i mit land)</value>
+  </data>
+  <data name="Country_Random">
+    <value>Tilfældigt land</value>
+  </data>
+  <data name="Country_Random_ExcludingMyCountry">
+    <value>Tilfældigt (undtagen mit land)</value>
+  </data>
+  <data name="Country_val_AD">
+    <value>Andorra</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE">
+    <value>Forenede Arabiske Emirater</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF">
+    <value>Afghanistan</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG">
+    <value>Antigua og Barbudas</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI">
+    <value>Anguilla</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL">
+    <value>Albanien</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM">
+    <value>Armenien</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO">
+    <value>Angola</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ">
+    <value>Antarktis</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR">
+    <value>Argentina</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS">
+    <value>Amerikansk Samoa</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT">
+    <value>Østrig</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU">
+    <value>Australien</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW">
+    <value>Aruba</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX">
+    <value>Ålandsøerne</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ">
+    <value>Aserbajdsjan</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA">
+    <value>Bosnien-Hercegovina</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB">
+    <value>Barbados</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD">
+    <value>Bangladesh</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE">
+    <value>Belgien</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF">
+    <value>Burkina Faso</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG">
+    <value>Bulgarien</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH">
+    <value>Bahrain</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI">
+    <value>Burundi</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ">
+    <value>Benin</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL">
+    <value>Skt. Barthélemy</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM">
+    <value>Bermuda</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN">
+    <value>Brunei Darussalam</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO">
+    <value>Bolivia</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ">
+    <value>Bonaire, Sint Eustatius og Saba</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR">
+    <value>Brasilien</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS">
+    <value>Bahamas</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT">
+    <value>Bhutan</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV">
+    <value>Bouvetøen</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW">
+    <value>Botswana</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY">
+    <value>Hviderusland</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ">
+    <value>Belize</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA">
+    <value>Canada</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC">
+    <value>Cocosøerne</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD">
+    <value>Congo, Demokratiske Republik</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF">
+    <value>Den Centralafrikanske Republik</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG">
+    <value>Congo</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH">
+    <value>Schweiz</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI">
+    <value>Elfenbenskysten</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK">
+    <value>Cookøerne</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL">
+    <value>Chile</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM">
+    <value>Cameroon</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN">
+    <value>Kina</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO">
+    <value>Colombia</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR">
+    <value>Costa Rica</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU">
+    <value>Cuba</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV">
+    <value>Kap Verde</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW">
+    <value>Curaçao</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX">
+    <value>Juleøen</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY">
+    <value>Cypern</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ">
+    <value>Tjekkiet</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE">
+    <value>Tyskland</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ">
+    <value>Djibouti</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK">
+    <value>Danmark</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM">
+    <value>Dominica</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO">
+    <value>Dominikanske Republik</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ">
+    <value>Algeriet</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC">
+    <value>Ecuador</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE">
+    <value>Estland</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG">
+    <value>Egypten</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH">
+    <value>Vestsahara</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER">
+    <value>Eritrea</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES">
+    <value>Spanien</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET">
+    <value>Etiopien</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI">
+    <value>Finland</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ">
+    <value>Fiji</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK">
+    <value>Falklandsøerne (Malvinerne)</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM">
+    <value>Mikronesien</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO">
+    <value>Færøerne</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR">
+    <value>Frankrig</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA">
+    <value>Gabon</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB">
+    <value>Storbritannien</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD">
+    <value>Grenada</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE">
+    <value>Georgia</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF">
+    <value>Fransk Guyana</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG">
+    <value>Guernsey</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH">
+    <value>Ghana</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI">
+    <value>Gibraltar</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL">
+    <value>Grønland</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM">
+    <value>Gambia</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN">
+    <value>Guinea</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP">
+    <value>Guadeloupe</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ">
+    <value>Ækvatorialguinea</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR">
+    <value>Grækenland</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS">
+    <value>Sydgeorgien og de sydlige Sandwichøer</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT">
+    <value>Guatemala</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU">
+    <value>Guam</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW">
+    <value>Guinea-Bissau</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY">
+    <value>Guyana</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK">
+    <value>Hong Kong</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM">
+    <value>Heard Island og McDonald Islands</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN">
+    <value>Honduras</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR">
+    <value>Kroatien</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT">
+    <value>Haiti</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU">
+    <value>Ungarn</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID">
+    <value>Indonesien</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE">
+    <value>Irland</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL">
+    <value>Israel</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM">
+    <value>Isle of Man</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN">
+    <value>Indien</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO">
+    <value>Britiske territorium i Det Indiske Ocean</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ">
+    <value>Irak</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR">
+    <value>Iran</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS">
+    <value>Island</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT">
+    <value>Italien</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE">
+    <value>Jersey</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM">
+    <value>Jamaica</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO">
+    <value>Jordan</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP">
+    <value>Japan</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE">
+    <value>Kenya</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG">
+    <value>Kirgisistan</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH">
+    <value>Cambodja</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI">
+    <value>Kiribati</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM">
+    <value>Comorerne</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN">
+    <value>Saint Kitts og Nevis</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP">
+    <value>Nordkorea</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR">
+    <value>Sydkorea</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW">
+    <value>Kuwait</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY">
+    <value>Caymanøerne</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ">
+    <value>Kasakhstan</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA">
+    <value>Laos</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB">
+    <value>Libanon</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC">
+    <value>Saint Lucia</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI">
+    <value>Liechtenstein</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK">
+    <value>Sri Lanka</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR">
+    <value>Liberia</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS">
+    <value>Lesotho</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT">
+    <value>Litauen</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU">
+    <value>Luxembourg</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV">
+    <value>Letland</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY">
+    <value>Libyen</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA">
+    <value>Marokko</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC">
+    <value>Monaco</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD">
+    <value>Moldova</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME">
+    <value>Montenegro</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF">
+    <value>Saint Martin (franske del)</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG">
+    <value>Madagaskar</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH">
+    <value>Marshalløerne</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK">
+    <value>Makedonien</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML">
+    <value>Mali</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM">
+    <value>Myanmar</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN">
+    <value>Mongoliet</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO">
+    <value>Macau</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP">
+    <value>Nordmarianerne</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ">
+    <value>Martinique</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR">
+    <value>Mauretanien</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS">
+    <value>Montserrat</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT">
+    <value>Malta</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU">
+    <value>Mauritius</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV">
+    <value>Maldiverne</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW">
+    <value>Malawi</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX">
+    <value>Mexico</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY">
+    <value>Malaysia</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ">
+    <value>Mozambique</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA">
+    <value>Namibia</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC">
+    <value>Ny Kaledonien</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE">
+    <value>Niger</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF">
+    <value>Norfolkøen</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG">
+    <value>Nigeria</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI">
+    <value>Nicaragua</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL">
+    <value>Nederlandene</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO">
+    <value>Norge</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP">
+    <value>Nepal</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR">
+    <value>Nauru</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU">
+    <value>Niue</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ">
+    <value>New Zealand</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM">
+    <value>Oman</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA">
+    <value>Panama</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE">
+    <value>Peru</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF">
+    <value>Fransk Polynesien</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG">
+    <value>Papua Ny Guinea</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH">
+    <value>Filippinerne</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK">
+    <value>Pakistan</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL">
+    <value>Polen</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM">
+    <value>Saint Pierre og Miquelon</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN">
+    <value>Pitcairn</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR">
+    <value>Puerto Rico</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS">
+    <value>Palæstina</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT">
+    <value>Portugal</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW">
+    <value>Palau</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY">
+    <value>Paraguay</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA">
+    <value>Qatar</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE">
+    <value>Reunion</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO">
+    <value>Rumænien</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS">
+    <value>Serbien</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU">
+    <value>Rusland</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW">
+    <value>Rwanda</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA">
+    <value>Saudi-Arabien</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB">
+    <value>Salomon-øerne</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC">
+    <value>Seychellerne</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD">
+    <value>Sudan</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE">
+    <value>Sverige</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG">
+    <value>Singapore</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH">
+    <value>Saint Helena, Ascension og Tristan da Cunha</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI">
+    <value>Slovenien</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ">
+    <value>Svalbard og Jan Mayen</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK">
+    <value>Slovakiet</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL">
+    <value>Sierra Leone</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM">
+    <value>San Marino</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN">
+    <value>Senegal</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO">
+    <value>Somalia</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR">
+    <value>Surinam</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS">
+    <value>Sydsudan</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST">
+    <value>Sao Tome og Principe</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV">
+    <value>El Salvador</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX">
+    <value>Sint Maarten (Nederlandske del)</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY">
+    <value>Den Syriske Arabiske Republik</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ">
+    <value>Eswatini</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC">
+    <value>Turks- og Caicosøerne</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD">
+    <value>Tchad</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF">
+    <value>Franske sydlige territorier</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG">
+    <value>Togo</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH">
+    <value>Thailand</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ">
+    <value>Tadsjikistan</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK">
+    <value>Tokelau</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL">
+    <value>Timor-Leste</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM">
+    <value>Turkmenistan</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN">
+    <value>Tunesien</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO">
+    <value>Tonga</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR">
+    <value>Tyrkiet</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT">
+    <value>Trinidad og Tobago</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV">
+    <value>Tuvalu</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW">
+    <value>Taiwan</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ">
+    <value>Tanzania</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA">
+    <value>Ukraine</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG">
+    <value>Uganda</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK">
+    <value>Storbritannien</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM">
+    <value>USA's ydre småøer</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US">
+    <value>USA</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY">
+    <value>Uruguay</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ">
+    <value>Uzbekistan</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA">
+    <value>Vatikanstaten</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC">
+    <value>Saint Vincent og Grenadinerne</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE">
+    <value>Venezuela</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG">
+    <value>Jomfruøerne, britiske</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI">
+    <value>Jomfruøerne, USA</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN">
+    <value>Vietnam</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU">
+    <value>Vanuatu</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF">
+    <value>Wallis og Futuna</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS">
+    <value>Samoa</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_YE">
+    <value>Yemen</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT">
+    <value>Mayotte</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA">
+    <value>Sydafrika</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM">
+    <value>Zambia</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW">
+    <value>Zimbabwe</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ">
+    <value>Ukendt</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Description">
+    <value>Tjenesten Base Filtering Engine (BFE) på din Windows-enhed er deaktiveret. Denne tjeneste skal aktivéres, for at Proton VPN kan fungere korrekt.</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable">
+    <value>Sådan aktivérer du Base Filtering Engine</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title">
+    <value>Aktivér Base Filtering Engine for at fortsætte</value>
+  </data>
+  <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
+    <value>Få ubegrænsede serverskift med VPN Plus.</value>
+  </data>
+  <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
+    <value>Du har nået det maksimale antal gratis serverændringer for nu</value>
+  </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>Kom godt i gang</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>Abonnement udløbet</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Opgrader for at få adgang til Plus servere og features igen.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description">
+    <value>Det ser ud til, at Proton VPN-tjenesten er deaktiveret. Du skal genaktivere tjenesten for at forbinde.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title">
+    <value>Aktivér Windows Tjeneste for at fortsætte</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_One">
+    <value>Proton Free forbinder dig automatisk til den hurtigste tilgængelige gratis server fra vores {0} gratis land. Dette vil normalt være den server, der er tættest på din placering.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Other">
+    <value>Proton Free forbinder dig automatisk til den hurtigste tilgængelige gratis server fra vores {0} gratis lande. Dette vil normalt være den server, der er tættest på din placering.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_One">
+    <value>Gratis server-land ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Other">
+    <value>Gratis server-lande ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Title">
+    <value>Gratis forbindelser</value>
+  </data>
+  <data name="Dialogs_Latency_Description">
+    <value>Latency viser, hvor lang tid det tager for en server at svare på anmodninger.
+
+Høj latency kan gøre din forbindelse langsommere.</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Description">
+    <value>VPN kører muligvis langsommere end normalt</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Title">
+    <value>Høj (150ms+)</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Description">
+    <value>Lynhurtige hastigheder</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Title">
+    <value>Lav (1ms - 50ms)</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Description">
+    <value>Påvirker sandsynligvis ikke VPN-hastigheden</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Title">
+    <value>Medium (50ms - 150ms)</value>
+  </data>
+  <data name="Dialogs_Latency_Title">
+    <value>Hvad er latency?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>Fortæl os venligst, hvorfor du gav den vurdering</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>Vi kunne ikke sende din feedback. Tjek venligst din forbindelse, og prøv igen.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>Noget gik galt</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>10 er meget sandsynligt</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>0 er meget usandsynligt</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>Valgfrit</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>Del anonymt</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>Din tilbagemelding hjælper os med at forbedre Proton VPN.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>Tak for din tilbagemelding</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>Hvor sandsynligt er det, at du vil anbefale Proton VPN til en ven?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>Prøv igen</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description">
+    <value>Din forbindelse er blevet deaktiveret, fordi du bruger en server, der ikke understøtter peer-to-peer (P2P) trafik. P2P understøttes ikke på gratis servere. Brug venligst en anden server til P2P.</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Title">
+    <value>P2P-trafik registreret</value>
+  </data>
+  <data name="Dialogs_P2P_HowToTorrentLink">
+    <value>Sådan bruges torrent med P2P</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_Title">
+    <value>P2P</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsP2PServer">
+    <value>Hvad er en P2P-server?</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsP2PServer_Description">
+    <value>P2P (peer-to-peer) VPN-servere fjerner blokeringen af torrent-websteder.</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsTorrenting">
+    <value>Hvad er torrenting?</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsTorrenting_Description">
+    <value>Hurtig deling og download af store filer via et peer-to-peer-netværk (P2P).</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhyUse">
+    <value>Hvorfor bruge en P2P-server til torrenting?</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhyUse_Description">
+    <value>• Højere upload- og downloadhastigheder
+• Ingen aktivitetslogs
+• Skjul din IP-adresse for din tjenesteudbyder og peers</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_Protocol_Description">
+    <value>En protokol er et sæt instruktioner, som din enhed følger for at forbinde og kommunikere med en server.</value>
+  </data>
+  <data name="Dialogs_Protocol_SwitchHeader">
+    <value>Skift VPN-protokol</value>
+  </data>
+  <data name="Dialogs_Protocol_Title">
+    <value>Hvad er en VPN-protokol</value>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email">
+    <value>E-mail</value>
+    <comment>The label for user e-mail address in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
+    <value>eksempel@domæne.dk</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
+    <value>Send fejllogfiler</value>
+    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
+    <value>Fejllogs viser os, hvad der gik galt, og hvilke handlinger der førte til dit problem. Vi bruger dem kun til at hjælpe vores teknikere med at rette fejl.</value>
+    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Header">
+    <value>Hvad er problemet?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_NoLogsWarning">
+    <value>Fejllog-filer hjælper os med at komme til bunds i dit problem. Hvis du ikke inkluderer dem, kan vi måske ikke undersøge det fuldt ud.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes">
+    <value>Hurtige løsninger</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Footer">
+    <value>Virkede det ikke?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Header">
+    <value>Disse tips kan hjælpe dig med at løse dit problem hurtigere.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_DoneAction">
+    <value>Udført</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail">
+    <value>Noget gik galt</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail_Description">
+    <value>Vi kunne ikke sende din rapport. Tjek venligst din forbindelse, og prøv igen.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success">
+    <value>Rapport sendt</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success_Description">
+    <value>Tak for din feedback. Vi vender tilbage til dig så snart vi kan.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_SendReport">
+    <value>Send rapport</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Steps">
+    <value>Trin {0} af {1}</value>
+    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Title">
+    <value>Anmeld en fejl</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Description">
+    <value>Serverbelastning viser, hvor tæt en server er på sin maksimale kapacitet.
+
+En høj serverbelastning kan gøre din forbindelse langsommere.</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Description">
+    <value>VPN kører muligvis langsommere end normalt</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Title">
+    <value>Høj (91-100%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Description">
+    <value>Lynhurtige hastigheder</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Title">
+    <value>Lav (1-75%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Description">
+    <value>Påvirker sandsynligvis ikke VPN-hastigheden</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Title">
+    <value>Medium (76-90%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Title">
+    <value>Hvad er serverbelastning?</value>
+  </data>
+  <data name="Dialogs_SmartRouting_Title">
+    <value>Smart routing</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>Måske senere</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description">
+    <value>Det ser ud til, at din enhed bruger en proxy server. Dette kan forstyrre din VPN-beskyttelse.</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Disable">
+    <value>Deaktivér proxy</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Title">
+    <value>Proxy server opdaget</value>
+  </data>
+  <data name="Dialogs_Tor_Description">
+    <value>Opret forbindelse til en Tor-server for at få adgang til skjulte tjenester og onion-sider ved hjælp af en hvilken som helst browser.</value>
+  </data>
+  <data name="Dialogs_Tor_LearnMore">
+    <value>Sådan får du adgang til Tor-netværket</value>
+  </data>
+  <data name="Dialogs_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>Slå antivirus- eller firewallprogram fra</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>Disse programmer kan forstyrre VPN-forbindelser.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>Tjek din internetforbindelse</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>Sørg for, at du er online, og at din forbindelse er stabil.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>Disse hurtige løsninger afhjælper måske din forbindelse til Proton.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>Anvend et andet netværk</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>Prøv at skifte WiFi-netværk, eller brug mobildata i stedet.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>Tjek vores statusside</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>Ville bare være sikker på, at Proton-tjenesterne kører som normalt.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>Hjælp til forbindelse</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
+    <value>Dette vil afbryde din forbindelse til VPN. Eventuelle aktive internetforbindelser vil være midlertidigt ubeskyttede.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
+    <value>Dette vil afbryde din forbindelse til VPN. Eventuelle aktive internetforbindelser vil være midlertidigt ubeskyttede.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install">
+    <value>Installér opdatering?</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart">
+    <value>Genstart Proton VPN for at færdiggøre opdatering</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Description">
+    <value>Det ser ud til, at systemuret er ude af synkronisering. Dette kan forårsage problemer, når der forbindes til VPN.</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_PrimaryButton">
+    <value>Sådan opdateres systemuret</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Title">
+    <value>Opdatér systemuret</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>Enkelt. Sømløs. Sikkert. Beskyt dig selv online og få sikker adgang til din organisations websteder, software og filer.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Velkommen til Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>Surf privat, få adgang til blokeret indhold, og nyd den digitale frihed uden data- eller hastighedsbegrænsninger.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>Certificeret VPN uden logs</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>Din aktivitet er beskyttet af schweiziske privatlivslove. Vi sporer dig aldrig online eller deler dine data med tredjeparter.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>Surf frit fra hvor som helst</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
+    <value>Skjul din virtuelle placering, og oplev internettet fra et af vores {0} tilgængelige land.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>Skjul din virtuelle placering, og oplev internettet fra ethvert af vores {0} tilgængelige lande.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>Beskyt 10 enheder ad gangen</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>Udvid VPN-beskyttelsen til din computer, mobil, browser, tv og meget mere. </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>Stream i høj opløsning</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>Se film og tv-serier fra hele verden uden at gå på kompromis med hastighed eller kvalitet.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>Velkommen til VPN Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description1">
+    <value>Tillykke! Du har aktiveret premium sikkerheds- og ydeevnefunktioner på alle Proton-tjenester.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description2">
+    <value>Nyd det bedste af Proton privatliv.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>Velkommen til Proton Unlimited</value>
+  </data>
+  <data name="Dialogs_Welcome_Message">
+    <value>Vi er ved at gøre din nye VPN-oplevelse klar. Det tager kun et øjeblik.</value>
+  </data>
+  <data name="Dialogs_Welcome_Title">
+    <value>Velkommen til Proton VPN</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>Du kan nu få adgang til din organisations dedikerede servere fra hovedsidebjælken.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>Gateways er blevet flyttet</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>Du kan nu forbinde til printere, højttalere og andre enheder på dit lokale netværk (LAN) ved at omgå VPN-tunnelen.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>LAN-tilsutninger</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>Vi opfriskede vores design og flyttede nogle ting rundt for at gøre appen nemmere at bruge.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>Nyt udseende, samme beskyttelse</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>Når videresendelse af port er aktiveret, vil du nu se Deres aktive portnummer på startskærmen.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>Aktivt portnummer</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>Tilføj avancerede profilindstillinger som NetShield og videresendelse af port, eller konfigurer Connect and Go for at starte et websted efter eget valg, når du forbinder.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Endnu mere kraftfulde profiler</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>Det er nu endnu nemmere at genoprette forbindelsen til dine yndlingsservere. Se dine seneste forbindelser på hjemskærmen, eller fastgør dem for hurtig adgang.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>Introduktion til Seneste</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Få en præsentation</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>Nyheder</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>Du kan nu forbinde, afbryde og ændre din standardforbindelse fra systembakken.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>Ny systembakke-app</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>Afbryd Proton VPN?</value>
+  </data>
+  <data name="Exit_Message">
+    <value>Forbindelsen til VPN afbrydes...</value>
+  </data>
+  <data name="Exit_Title">
+    <value>Luk Proton VPN</value>
+  </data>
+  <data name="Flyouts_Country_Description1">
+    <value>Browsing uden en VPN gør dig sårbar over for lokationsbaserede internetrestriktioner.</value>
+  </data>
+  <data name="Flyouts_Country_Description2">
+    <value>Websteder kan bruge geoblokering til at begrænse indhold til bestemte placeringer. Regeringer kan også instruere ISPs (Internet Service Providers) i at blokere bestemte websteder i deres land.</value>
+  </data>
+  <data name="Flyouts_Country_Description3">
+    <value>En VPN får det til at se ud, som om du browser fra et andet sted, og beskytter dig mod overvågning og censur.</value>
+  </data>
+  <data name="Flyouts_Country_Title">
+    <value>Land</value>
+  </data>
+  <data name="Flyouts_Country_Warning">
+    <value>Forbind til en VPN for at ændre din virtuelle lokation</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Connected">
+    <value>Din VPN ip-adresse maskerer din rigtige ip-adresse. Dette får det til at ligne, at du tilgår internettet fra din VPN lokation, så dine aktiviteter online ikke kan spores tilbage til din enhed.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected1">
+    <value>Denne unikke kode kan bruges af websteder og ISPs (internetudbydere) til at forbinde din placering og browserhistorik til din enhed.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2">
+    <value>En VPN maskerer din ip-adresse, hvilket gør det sværere at spore sig frem til dig via dine aktiviteter.</value>
+  </data>
+  <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
+    <value>Hvad er en IP-adresse?</value>
+  </data>
+  <data name="Flyouts_IpAddress_Title">
+    <value>IP-adresse</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIp">
+    <value>VPN IP</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv6</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIp">
+    <value>Din IP</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIpIsVisible">
+    <value>Din IP-adresse er synlig</value>
+  </data>
+  <data name="Flyouts_Isp_Description1">
+    <value>Din internetudbyder (Internet Service Provider) er den virksomhed, der forbinder dig med internettet.</value>
+  </data>
+  <data name="Flyouts_Isp_Description2">
+    <value>De kan logge din online aktivitet. I nogle lande kan de sælge dine data til annoncører. I andre kan de være forpligtet til at udlevere dem til regeringen.</value>
+  </data>
+  <data name="Flyouts_Isp_Description3">
+    <value>En VPN skjuler din IP-adresse og beskytter dig mod internetudbyderens indblanding.</value>
+  </data>
+  <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
+    <value>Hvad er en internetudbyder (ISP)?</value>
+  </data>
+  <data name="Flyouts_Isp_Title">
+    <value>Udbyder</value>
+  </data>
+  <data name="Flyouts_Isp_Warning">
+    <value>Din udbyder kan se, hvilke websteder du besøger</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success">
+    <value>Blokerer al internetadgang, når du ikke er forbundet til Proton VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info">
+    <value>Deres IP-adresse kunne blive afsløret, hvis din VPN-forbindelse afbrydes</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>Avanceret kill switch deaktiverer din internetforbindelse for at beskytte din IP-adresse, mens du ikke er forbundet til Proton VPN.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success">
+    <value>Hvis din VPN-forbindelse afbrydes, vil du blive koblet af internettet, indtil VPN er genoprettet.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected">
+    <value>Avanceret kill switch anvendes, selv hvis du bevidst afbryder forbindelsen til VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected">
+    <value>For at komme online igen, forbind til VPN eller deaktivér avanceret kill switch</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
+    <value>De er beskyttet mod annoncer, trackere og malware</value>
+  </data>
+  <data name="Flyouts_NetShield_Info">
+    <value>Beskyt dig selv mod reklamer, trackere og malware på websteder og i apps</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success">
+    <value>De er kun beskyttet mod malware</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description">
+    <value>Bloker annoncer, trackere og malware med VPN Plus.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title">
+    <value>Nyd reklamefri surfing</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort">
+    <value>Aktivt portnummer</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Kan ikke hente aktivt portnummer. Genstart forbindelsen og prøv igen.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info">
+    <value>Indtast det aktive portnummer i din torrentklient eller P2P-app for forbedret ydeevne.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info">
+    <value>Forbedrer peer-to-peer downloadhastigheder</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description">
+    <value>Optimer peer-to-peer (P2P) fildelingsydeevnen med VPN Plus.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title">
+    <value>Forbedr P2P-hastigheden</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning">
+    <value>Forbind til en P2P server for at forbedre torrent-hastighederne</value>
+  </data>
+  <data name="Flyouts_Protocol_Description">
+    <value>En VPN-protokol bestemmer, hvordan trafik krypteres og transmitteres over VPN.</value>
+  </data>
+  <data name="Flyouts_Protocol_KnowledgeBaseLinkTitle">
+    <value>Hvilken VPN-protokol er den bedste?</value>
+  </data>
+  <data name="Flyouts_Protocol_Title">
+    <value>Protokol</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Description">
+    <value>Serverbelastning viser, hvor tæt en server er på sin maksimale kapacitet.En høj serverbelastning kan gøre din forbindelse langsommere.</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High">
+    <value>Høj (91-100%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High_Description">
+    <value>VPN kører muligvis langsommere end normalt</value>
+  </data>
+  <data name="Flyouts_ServerLoad_KnowledgeBaseLinkTitle">
+    <value>Hvad er serverbelastning?</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low">
+    <value>Lav (1-75%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low_Description">
+    <value>Lynhurtige hastigheder</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium">
+    <value>Medium (76-90%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium_Description">
+    <value>Påvirker sandsynligvis ikke forbindelseshastigheden</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Title">
+    <value>Serverbelastning</value>
+  </data>
+  <data name="Flyouts_Speed_BoostedByVpnAccelerator">
+    <value>Boostet af VPN Accelerator</value>
+  </data>
+  <data name="Flyouts_Speed_Description1">
+    <value>Viser, hvor meget data der går gennem VPN-tunnelen i realtid.</value>
+  </data>
+  <data name="Flyouts_Speed_Description2">
+    <value>Dette er baseret på din enheds nuværende aktivitet. I de fleste tilfælde repræsenterer det ikke VPN'ens maksimale hastighed.</value>
+  </data>
+  <data name="Flyouts_Speed_Download">
+    <value>Download</value>
+    <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
+  </data>
+  <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
+    <value>VPN hastighed og trafik forklaret</value>
+  </data>
+  <data name="Flyouts_Speed_Title">
+    <value>Aktuel trafik</value>
+  </data>
+  <data name="Flyouts_Speed_Upload">
+    <value>Upload</value>
+    <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
+    <value>Ekskluderet app ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
+    <value>Ekskluderede apps ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
+    <value>Udeladt IP-adresse ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
+    <value>Udeladte IP-adresser ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Info">
+    <value>Tillader betroede apps og IP-adresser at forbinde uden VPN-beskyttelse</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info">
+    <value>Kun disse apps og IP-adresser forbinder via VPN. Al anden trafik er ubeskyttet.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_One">
+    <value>Beskyttet app ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
+    <value>Beskyttede apps ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_One">
+    <value>Beskyttet IP-adresse ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
+    <value>Beskyttede IP-adresser ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info">
+    <value>Disse apps og IP-adresser forbinder uden VPN-beskyttelse. Al anden trafik er beskyttet.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description">
+    <value>Opdel din trafik i VPN- og ikke-VPN-tunneler med VPN Plus.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title">
+    <value>Få det bedste fra begge verdener</value>
+  </data>
+  <data name="Flyouts_Volume_Description">
+    <value>Viser den samlede mængde data, der er sendt gennem VPN-tunnelen, siden du oprettede forbindelse.</value>
+  </data>
+  <data name="Flyouts_Volume_Download">
+    <value>Download</value>
+    <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
+  </data>
+  <data name="Flyouts_Volume_Title">
+    <value>Trafik i alt</value>
+  </data>
+  <data name="Flyouts_Volume_Upload">
+    <value>Upload</value>
+    <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
+  </data>
+  <data name="Format_Milliseconds">
+    <value>{0}ms</value>
+    <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
+  </data>
+  <data name="Format_Size_Bytes">
+    <value>{0} B</value>
+    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
+  </data>
+  <data name="Format_Size_Exabytes">
+    <value>{0} EB</value>
+    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
+  </data>
+  <data name="Format_Size_Gigabytes">
+    <value>{0} GB</value>
+    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
+  </data>
+  <data name="Format_Size_Kilobytes">
+    <value>{0} kB</value>
+    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
+  </data>
+  <data name="Format_Size_Megabytes">
+    <value>{0} MB</value>
+    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
+  </data>
+  <data name="Format_Size_Petabytes">
+    <value>{0} PB</value>
+    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
+  </data>
+  <data name="Format_Size_Terabytes">
+    <value>{0} TB</value>
+    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_SpeedUnit">
+    <value>Aktuel trafik ({0})</value>
+    <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
+  </data>
+  <data name="Format_Speed_BytesPerSecond">
+    <value>{0} B/s</value>
+    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
+  </data>
+  <data name="Format_Speed_ExabytesPerSecond">
+    <value>{0} EB/s</value>
+    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
+  </data>
+  <data name="Format_Speed_GigabytesPerSecond">
+    <value>{0} GB/s</value>
+    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
+  </data>
+  <data name="Format_Speed_KilobytesPerSecond">
+    <value>{0} KB/s</value>
+    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
+  </data>
+  <data name="Format_Speed_MegabytesPerSecond">
+    <value>{0} MB/s</value>
+    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
+  </data>
+  <data name="Format_Speed_PetabytesPerSecond">
+    <value>{0} PB/s</value>
+    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
+  </data>
+  <data name="Format_Speed_TerabytesPerSecond">
+    <value>{0} TB/s</value>
+    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
+  </data>
+  <data name="Format_Time_Day_One">
+    <value>{0} dag</value>
+  </data>
+  <data name="Format_Time_Day_Other">
+    <value>{0} dage</value>
+  </data>
+  <data name="Format_Time_DayHour_One">
+    <value>{0} dag {1} t</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
+    <value>{0} dage {1} t</value>
+  </data>
+  <data name="Format_Time_Hours">
+    <value>{0} t</value>
+    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutes">
+    <value>{0} t {1} min</value>
+    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutesSeconds_Short">
+    <value>hh\:mm\:ss</value>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
+  </data>
+  <data name="Format_Time_Hours_Ago_One">
+    <value>{0} time siden</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>{0} timer siden</value>
+  </data>
+  <data name="Format_Time_Minutes">
+    <value>{0} min</value>
+    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds">
+    <value>{0} min {1} sek</value>
+    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds_Short">
+    <value>mm\:ss</value>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
+  </data>
+  <data name="Format_Time_Minutes_Ago_One">
+    <value>{0} minut siden</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>{0} minutter siden</value>
+  </data>
+  <data name="Format_Time_Seconds">
+    <value>{0} sek</value>
+    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_One">
+    <value>{0} sekund siden</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>{0} sekunder siden</value>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>Overfør filer via BitTorrent og andre fildelingsprotokoller</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>Tilføj endnu et lag af kryptering til din VPN-forbindelse</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>Brug Tor-netværket via din VPN-forbindelse for ekstra diskretion</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>Få verdensomspændende dækning med VPN Plus</value>
+  </data>
+  <data name="Gateway_Fastest">
+    <value>Hurtigste gateway</value>
+  </data>
+  <data name="Gateway_Random">
+    <value>Tilfældig gateway</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>Forbind til en portal for at få adgang til organisationens VPN.</value>
+  </data>
+  <data name="Gateways_Page_Title">
+    <value>Gateways</value>
+  </data>
+  <data name="Gateways_Server">
+    <value>Dedikeret server</value>
+  </data>
+  <data name="Home_Account_SignOut">
+    <value>Log ud</value>
+  </data>
+  <data name="Home_Account_SignOut_Confirmation_Title">
+    <value>Log ud fra {0}?</value>
+    <comment>{0} is a placeholder for the username</comment>
+  </data>
+  <data name="Home_Account_Title">
+    <value>Min konto</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Skift standardforbindelse</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeServer">
+    <value>Skift server</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_BrowseSafely">
+    <value>Browser sikkert fra</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_ConnectingTo">
+    <value>Forbinder til...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_DefaultConnection">
+    <value>Standardforbindelse</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_FreeConnection">
+    <value>Gratis forbindelse</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_LastConnectedTo">
+    <value>Sidst forbundet til</value>
+  </data>
+  <data name="Home_ConnectionCard_Landmark">
+    <value>Forbindelseskort</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>Avanceret kill switch aktiveret</value>
+  </data>
+  <data name="Home_ConnectionDetails_City">
+    <value>By</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>Forbind til VPN for at genoprette din internetforbindelse.</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectedFor">
+    <value>Forbundet for</value>
+    <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Connecting">
+    <value>Forbinder</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectingSubLabel">
+    <value>Beskytter din digitale identitet...</value>
+  </data>
+  <data name="Home_ConnectionDetails_Country">
+    <value>Land</value>
+  </data>
+  <data name="Home_ConnectionDetails_Gateway">
+    <value>Portal</value>
+  </data>
+  <data name="Home_ConnectionDetails_Hide">
+    <value>Skjul forbindelsesoplysninger</value>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP">
+    <value>Skjul</value>
+    <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP_Description">
+    <value>Skjul brugerens IP-adresse</value>
+  </data>
+  <data name="Home_ConnectionDetails_Isp">
+    <value>Udbyder</value>
+  </data>
+  <data name="Home_ConnectionDetails_Landmark">
+    <value>Forbindelsesoplysninger</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_ConnectionDetails_MyIp">
+    <value>Min IP</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protected">
+    <value>Beskyttet</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protocol">
+    <value>Protokol</value>
+  </data>
+  <data name="Home_ConnectionDetails_Server">
+    <value>Server</value>
+  </data>
+  <data name="Home_ConnectionDetails_ServerLoad">
+    <value>Serverbelastning</value>
+  </data>
+  <data name="Home_ConnectionDetails_Show">
+    <value>Vis forbindelsesoplysninger</value>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP">
+    <value>Vis</value>
+    <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP_Description">
+    <value>Vis brugerens IP-adresse</value>
+  </data>
+  <data name="Home_ConnectionDetails_State">
+    <value>Stat</value>
+  </data>
+  <data name="Home_ConnectionDetails_Title">
+    <value>Forbindelses detaljer</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Godkend dig igen på din organisations 2FA-portal for at fortsætte.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>2FA udløbet</value>
+  </data>
+  <data name="Home_ConnectionDetails_Unprotected">
+    <value>Ubeskyttet</value>
+  </data>
+  <data name="Home_ConnectionDetails_UnprotectedSubLabel">
+    <value>Krypter din aktivitet online ved at forbinde til en VPN.</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume">
+    <value>Trafik i alt</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Download">
+    <value>Overfør mængde</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Total">
+    <value>Mængde i alt</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Upload">
+    <value>Upload mængde</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnIp">
+    <value>VPN-IP</value>
+  </data>
+  <data name="Home_ConnectionDetails_YourIpAddress">
+    <value>Din IP-adresse</value>
+  </data>
+  <data name="Home_FreeConnections_About">
+    <value>Mere information om gratis forbindelser</value>
+  </data>
+  <data name="Home_Help_Title">
+    <value>Hjælp</value>
+  </data>
+  <data name="Home_Map_Landmark">
+    <value>Kort</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_One">
+    <value>Reklame blokeret</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>Reklamer blokeret</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>Reklamer er marketingbannere eller pop-ups, der vises på hjemmesider og i apps.</value>
+  </data>
+  <data name="Home_NetShield_DataSaved">
+    <value>Data gemt</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>Anslået antal gemte data ved at blokere uønskede annoncer, sporing og malware.</value>
+  </data>
+  <data name="Home_NetShield_Landmark">
+    <value>NetShield-statistikker</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_NetShield_Title">
+    <value>NetShield-statistik</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_One">
+    <value>Tracker blev stoppet</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>Trackere blev stoppet</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>Trackere er cookies og tredjepartswebsteder, der indsamler, gemmer og sælger oplysninger om din webaktivitet.</value>
+  </data>
+  <data name="Home_Page_Title">
+    <value>Hjem</value>
+  </data>
+  <data name="Home_Recents_Landmark">
+    <value>Seneste forbindelser</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_Recents_Pin">
+    <value>Fastgør</value>
+  </data>
+  <data name="Home_Recents_Restricted">
+    <value>Tilgængelig server med VPN Plus</value>
+  </data>
+  <data name="Home_Recents_SecondaryActions_ToolTip">
+    <value>Handlinger</value>
+  </data>
+  <data name="Home_Recents_ServerUnderMaintenance">
+    <value>Serveren er under vedligeholdelse</value>
+  </data>
+  <data name="Home_Recents_Title">
+    <value>Seneste</value>
+  </data>
+  <data name="Home_Recents_Unpin">
+    <value>Frigør</value>
+  </data>
+  <data name="Home_TitleBar_Menu_About">
+    <value>Om</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Account">
+    <value>Konto</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp">
+    <value>Afslut appen</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help">
+    <value>Hjælp</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
+    <value>Hvad er problemet?</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings">
+    <value>Indstillinger</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout">
+    <value>Log ud</value>
+  </data>
+  <data name="Home_TitleBar_Menu_UpdateNow">
+    <value>Opdater nu</value>
+  </data>
+  <data name="Home_Update_UpdateAvailable">
+    <value>Opdatering tilgængelig</value>
+  </data>
+  <data name="Home_Update_UpdateReady">
+    <value>Opdatering klar</value>
+  </data>
+  <data name="Home_VpnStatus_Landmark">
+    <value>VPN-status</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Connecting">
+    <value>Beskytter din digitale identitet...</value>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Disconnected">
+    <value>Du er ikke beskyttet</value>
+  </data>
+  <data name="Home_VpnStatus_Title_Connected">
+    <value>Beskyttet</value>
+  </data>
+  <data name="LoadingPage_Tip">
+    <value>En bedre verden begynder med privatliv og digital frihed.</value>
+  </data>
+  <data name="Login_Error_GetSessionDetailsFailed">
+    <value>Der opstod en fejl, da sessionsoplysningerne blev hentet. Prøv venligst igen.</value>
+  </data>
+  <data name="Login_Error_IncorrectTwoFactorCode">
+    <value>Forkert kode. Prøv venligst igen.</value>
+  </data>
+  <data name="Login_Error_SessionExpired">
+    <value>Din session er udløbet. Log venligst ind igen.</value>
+    <comment>The message displayed in Login window when expired session is detected</comment>
+  </data>
+  <data name="Login_Error_SsoAuthFailed">
+    <value>SSO-godkendelse mislykkedes. Prøv venligst igen.</value>
+  </data>
+  <data name="Login_Error_TwoFactorAuthFailed">
+    <value>Forkert brugernavn eller adgangskode. Prøv igen.</value>
+  </data>
+  <data name="Login_Error_TwoFactorFailed">
+    <value>Tofaktorgodkendelse mislykkedes. Log venligst på igen.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>Sikkerhedsnøgle-godkendelse er ikke tilgængelig for din enhed eller fjernskrivebordsforbindelse.</value>
+  </data>
+  <data name="Login_TwoFactorForm_Authenticate">
+    <value>Godkend</value>
+    <comment>Authenticate button inside two factor form during login</comment>
+  </data>
+  <data name="Login_TwoFactorForm_Subtitle">
+    <value>6-cifret godkendelseskode</value>
+  </data>
+  <data name="Login_TwoFactorForm_Title">
+    <value>To-faktor-godkendelse</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>Godkendelsesapp</value>
+  </data>
+  <data name="Login_TwoFactor_Digit1">
+    <value>Første ciffer</value>
+  </data>
+  <data name="Login_TwoFactor_Digit2">
+    <value>Anden ciffer</value>
+  </data>
+  <data name="Login_TwoFactor_Digit3">
+    <value>Trejde ciffer</value>
+  </data>
+  <data name="Login_TwoFactor_Digit4">
+    <value>Fjerde ciffe</value>
+  </data>
+  <data name="Login_TwoFactor_Digit5">
+    <value>Femte ciffer</value>
+  </data>
+  <data name="Login_TwoFactor_Digit6">
+    <value>Sjette ciffer</value>
+  </data>
+  <data name="Login_TwoFactor_EnterCode">
+    <value>Indtast din kode</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>Ingen kendte to-faktor-godkendelsesmetoder fundet.</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>Sikkerhedsnøgle</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>Indsæt U2F- eller FIDO-nøglen, der er knyttet til din Proton-konto.</value>
+  </data>
+  <data name="Main_Loading">
+    <value>Indlæser, vent venligst...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
+  <data name="Main_Loading_SigningIn">
+    <value>Logger ind, vent venligst...</value>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>Dette tager længere tid end normalt, men vi arbejder på det.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
+  </data>
+  <data name="Main_Loading_SigningOut">
+    <value>Logger ud, vent venligst...</value>
+    <comment>Message in the loading screen when signing out</comment>
+  </data>
+  <data name="Map_ConnectTo">
+    <value>Forbind – {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>Kontakt os</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>Vi kunne ikke indlæse serverlisten.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Brug for hjælp?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Log ud</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Bed din administrator om at aktivere VPN-adgang til din konto.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>Ingen VPN-forbindelser tilgængelige</value>
+  </data>
+  <data name="Notifications_KillSwitch_Description">
+    <value>For at beskytte din IP-adresse blokerer kill switch din internetforbindelse.</value>
+  </data>
+  <data name="Notifications_PortForwarding_CopyPortNumber">
+    <value>Kopiér portnummer</value>
+  </data>
+  <data name="Notifications_PortForwarding_Description">
+    <value>Gå til din torrentklient eller P2P-app, og indtast dette nummer.</value>
+  </data>
+  <data name="Notifications_SessionLimit_Description">
+    <value>Du har nået din maksimale enhedsgrænse. For at genoprette forbindelse til VPN, skal du venligst afbryde forbindelsen fra en anden enhed.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>Dit abonnement er blevet nedgraderet til Proton Free, og du forbindes igen til en gratis og hurtig server..</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Description">
+    <value>Offentlige WiFi-netværk er mere sårbare over for sikkerhedstrusler. Forbind til VPN for at browse sikkert.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Title">
+    <value>Usikker WiFi-forbindelse registreret</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Proton VPN – Undersøgelse</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>For at inkludere denne adresse skal du tillade IPv6-forbindelser gennem VPN-tunnelen.</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>Aktivér IPv6</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>Ikke nu</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>IPv6 er deaktiveret</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Action">
+    <value>Opdater nu</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Message">
+    <value>Denne app-version er forældet. Du skal opdatere appen for at fortsætte med at bruge Proton VPN.</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Title">
+    <value>Opdatér Proton VPN for at fortsætte</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Description">
+    <value>Vores P2P (peer-to-peer) servere giver dig adgang til P2P-netværk, samtidig med at de beskytter din IP-adresse og online aktivitet.</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Header">
+    <value>Hvad er P2P VPN?</value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Description">
+    <value>P2P-netværk tillader to enheder at forbinde og overføre data uden at passere gennem en central server. </value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Header">
+    <value>Hvad er en P2P-netværk?</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Description">
+    <value>  •  Download af torrentfiler
+  •  Forbedring af online spil og videokaldsydelse
+  •  Forbindelse til lokale netværksenheder (LAN)</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Header">
+    <value>Hvad bruges P2P-netværk til?</value>
+  </data>
+  <data name="Overlay_P2P_LearnMore">
+    <value>Hvad er P2P?</value>
+  </data>
+  <data name="Overlay_P2P_Title">
+    <value>P2P</value>
+  </data>
+  <data name="Overlay_Profile_Description1">
+    <value>Profiler er brugerdefinerede VPN-forbindelser, som du kan tilpasse til dine behov og gemme for hurtig adgang.</value>
+  </data>
+  <data name="Overlay_Profile_Description2">
+    <value>Indstil din foretrukne placering, og optimer dine indstillinger til sikkerhed, ydeevne, spil eller ethvert andet scenarie.</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore">
+    <value>Hvad er en VPN-profil?</value>
+  </data>
+  <data name="Overlay_Profile_Title">
+    <value>Profiler</value>
+  </data>
+  <data name="Overlay_SecureCore_Description1">
+    <value>Secure Core forbinder dig til din destinationsserver via en anden VPN-server med maksimal sikkerhed.</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2">
+    <value>Dette højere beskyttelsesniveau kan medføre højere latenstid og lavere hastigheder.</value>
+  </data>
+  <data name="Overlay_SecureCore_LearnMore">
+    <value>Hvad er Secure Core?</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection">
+    <value>Secure Core
+VPN-forbindelse</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
+    <value>Højere svartid</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Privacy">
+    <value>Avanceret privatliv</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection">
+    <value>Standard
+VPN-forbindelse</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Latency">
+    <value>Lavere svartid</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Privacy">
+    <value>Høj grad af privatliv</value>
+  </data>
+  <data name="Overlay_SecureCore_Title">
+    <value>Secure Core</value>
+  </data>
+  <data name="Overlay_ServerLoad_Description">
+    <value>Serverbelastning viser, hvor tæt en server er på sin maksimale kapacitet.
+
+En høj serverbelastning kan gøre din forbindelse langsommere.</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Description">
+    <value>VPN kører muligvis langsommere end normalt</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Title">
+    <value>Høj (91-100%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_LearnMore">
+    <value>Hvad er serverbelastning?</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Description">
+    <value>Lynhurtige hastigheder</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Title">
+    <value>Lav (1-75%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Description">
+    <value>Påvirker sandsynligvis ikke VPN-hastigheden</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Title">
+    <value>Medium (76-90%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_Title">
+    <value>Serverbelastning</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description1">
+    <value>Smart Routing bruger virtuelle servere til at levere VPN-dækning i svært tilgængelige lande.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2">
+    <value>Når du forbinder til en Smart Routing-server, vil det se ud, som om du browser i dit destinationsland, selvom den fysiske server befinder sig et andet sted.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3">
+    <value>Smart Routing bruges typisk til at omgå love mod privatlivets fred og andre former for censur.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Header">
+    <value>Serverne er fysisk placeret i {0}, men det ser ud til, at du browser fra {1}</value>
+    <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
+    Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
+    Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
+  </data>
+  <data name="Overlay_SmartRouting_LearnMore">
+    <value>Hvad er Smart Routing?</value>
+  </data>
+  <data name="Overlay_SmartRouting_Title">
+    <value>Smart routing</value>
+  </data>
+  <data name="Overlay_Tor_Description">
+    <value>Opret forbindelse til en Tor-server for at få adgang til skjulte tjenester og onion-sider ved hjælp af en hvilken som helst browser.</value>
+  </data>
+  <data name="Overlay_Tor_LearnMore">
+    <value>Sådan får du adgang til Tor-netværket</value>
+  </data>
+  <data name="Overlay_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Profile_CustomSettings_Description">
+    <value>Profilindstillinger vil tilsidesætte dine VPN-indstillinger, når der er forbindelse.</value>
+  </data>
+  <data name="Profile_CustomSettings_Header">
+    <value>Tilføj brugerdefinerede indstillinger</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide">
+    <value>Skjul indstillinger</value>
+  </data>
+  <data name="Profile_CustomSettings_Show">
+    <value>Vis indstillinger</value>
+  </data>
+  <data name="Profile_NatType_Conflict_Description">
+    <value>Dette vil deaktivere port-viderestilling for denne profil.</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description">
+    <value>Dette vil deaktivere brugerdefineret DNS for denne profil.</value>
+  </data>
+  <data name="Profile_Options_Application">
+    <value>App</value>
+  </data>
+  <data name="Profile_Options_Application_Select">
+    <value>Vælg en app</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Application">
+    <value>Åbn en app</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
+    <value>Standardbrowser</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
+    <value>Brug privat browsing-tilstand</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Website">
+    <value>Åbn et websted</value>
+  </data>
+  <data name="Profile_Options_Description">
+    <value>Åbn automatisk et websted eller en app efter eget valg, når du opretter forbindelse til denne profil.</value>
+  </data>
+  <data name="Profile_Options_Header">
+    <value>Forbind og kør</value>
+  </data>
+  <data name="Profile_Options_Url">
+    <value>Websted-URL</value>
+  </data>
+  <data name="Profile_Options_Url_Error">
+    <value>Indtast en gyldig URL</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description">
+    <value>Dette vil ændre NAT-typen for denne profil til Strikt (type 3).</value>
+  </data>
+  <data name="Profiles_Default_Gaming">
+    <value>Spil</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity">
+    <value>Maksimal sikkerhed</value>
+  </data>
+  <data name="Profiles_Default_Office">
+    <value>Kontor</value>
+  </data>
+  <data name="Profiles_Default_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection">
+    <value>Tilfældig forbindelse</value>
+  </data>
+  <data name="Profiles_Default_Streaming">
+    <value>Streaming USA</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool">
+    <value>Arbejde/skole</value>
+  </data>
+  <data name="Profiles_Page_Description">
+    <value>Konfigurer egne VPN-indstillinger, og forbind med et enkelt klik</value>
+  </data>
+  <data name="Profiles_Page_Title">
+    <value>Profiler</value>
+  </data>
+  <data name="Search_InputBox_Placeholder">
+    <value>Gennemse fra...</value>
+  </data>
+  <data name="Search_NoInput_CityOrState">
+    <value>By eller amerikansk delstat</value>
+    <comment>The word used for one single city and one single United States state</comment>
+  </data>
+  <data name="Search_NoInput_Country">
+    <value>Land</value>
+    <comment>The word used for one single country</comment>
+  </data>
+  <data name="Search_NoInput_Server">
+    <value>Server</value>
+    <comment>The word used for one single server</comment>
+  </data>
+  <data name="Search_NoInput_TrySearchingFor">
+    <value>Prøv at søge efter…</value>
+  </data>
+  <data name="Search_NoResults_Description">
+    <value>Prøv et andet søgeord.</value>
+  </data>
+  <data name="Search_NoResults_Title">
+    <value>Ingen resultater fundet</value>
+  </data>
+  <data name="Server">
+    <value>Server</value>
+  </data>
+  <data name="Server_Fastest">
+    <value>Hurtigste server</value>
+  </data>
+  <data name="Server_Fastest_Free">
+    <value>Hurtigste gratis server</value>
+  </data>
+  <data name="Server_Feature_B2B">
+    <value>Portal</value>
+  </data>
+  <data name="Server_Feature_B2B_Description">
+    <value>Tilgå din organisations servere</value>
+  </data>
+  <data name="Server_Feature_None">
+    <value>Standard</value>
+  </data>
+  <data name="Server_Feature_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Server_Feature_P2P_Description">
+    <value>Torrent-optimeret</value>
+  </data>
+  <data name="Server_Feature_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description">
+    <value>Dobbelt beskyttelse</value>
+  </data>
+  <data name="Server_Feature_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Server_Free">
+    <value>Gratis server</value>
+  </data>
+  <data name="Server_Random">
+    <value>Tilfældig server</value>
+  </data>
+  <data name="Servers">
+    <value>Servere</value>
+  </data>
+  <data name="Settings_About">
+    <value>Om</value>
+  </data>
+  <data name="Settings_About_Changelog">
+    <value>Ændringslog</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Nuværende version</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>Kunne ikke indlæse oplysninger om ændringsloggen.</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>Få mere at vide</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Licens</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Indlæser</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>Om</value>
+  </data>
+  <data name="Settings_Account_Account">
+    <value>Konto</value>
+  </data>
+  <data name="Settings_Account_Exit">
+    <value>Afslut appen</value>
+  </data>
+  <data name="Settings_Account_SignOut">
+    <value>Log ud</value>
+  </data>
+  <data name="Settings_AppVersion">
+    <value>App-version</value>
+  </data>
+  <data name="Settings_Censorship_Footer">
+    <value>Disse statistikker indeholder ikke din IP-adresse, og de kan ikke bruges til at identificere dig. Vi vil aldrig dele dem med tredjeparter.</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports">
+    <value>Del anonyme rapporter om nedbrud</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports_Description">
+    <value>Nedbrudsrapporter hjælper os med at rette fejl, opdage firewalls og undgå VPN-blokeringer.</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics">
+    <value>Del anonym brugerstatistik</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics_Description">
+    <value>Brugsdata hjælper os med at overvinde VPN-blokeringer og forbedre appens ydeevne.</value>
+  </data>
+  <data name="Settings_Common_Apply">
+    <value>Anvend</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>Adressen er allerede tilføjet</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>Indtast en gyldig IPv4- eller IPv6-adresse</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Common_Ipv6WarningButton">
+    <value>Advarsel - få mere at vide</value>
+  </data>
+  <data name="Settings_Connection">
+    <value>Forbindelse</value>
+  </data>
+  <data name="Settings_Connection_AdvancedSettings">
+    <value>Avancerede indstillinger</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting">
+    <value>Alternativ routing</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
+    <value>Hvis Proton-tjenester er blokeret grundet netværksbegrænsninger, vil vi prøve at bruge alternativ netværksrouting til at forbinde dig til vores websider.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers">
+    <value>Brugerdefinerede DNS-servere</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>Tilføj ny DNS-server</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
+    <value>Du kan ikke bruge NetShield, når du er forbundet med en brugerdefineret DNS-server.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
+    <value>Aktivér brugerdefinerede DNS-servere?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
+    <value>Opret forbindelse til Proton VPN med dit eget domænenavnssystem (DNS). Brug kun DNS-servere som du stoler på.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>Vi vil forsøge at forbinde til disse servere i rækkefølge. Hvis ingen af dem virker, vil den standard Proton VPN DNS blive brugt.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+    <value>DNS-servere ({0})</value>
+    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
+    <value>Indtast serverens IPv4 eller IPv6-adresse</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>IPv6-understøttelse</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
+    <value>IPv6 Lækagebeskyttelse</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
+    <value>Forhindrer datalækager ved at blokere IPv6-trafik, der ikke passerer gennem VPN-tunnelen.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>Tillader IPv6-trafik at passere igennem VPN-tunnelen. Dette forbedrer kompatibiliteten med IPv6-websteder og -tjenester.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections">
+    <value>Tillad LAN-forbindelser</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_Description">
+    <value>Giver forbindelse til printere, højttalere og andre enheder i dit lokale netværk.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
+    <value>Bruger mDNS til at forbinde til enheder via navne som “My-Printer” eller “router.local” i stedet for IP-adresser. Standard DNS bliver fortsat sendt gennem VPN-tunnelen. Deaktiveret som standard for hurtigere VPN-hastigheder.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
+    <value>Adgang til enheder via navn</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType">
+    <value>NAT type</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
+    <value>Du vil ikke kunne bruge port forwarding med Moderate NAT.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
+    <value>Aktivér Moderat NAT?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Description">
+    <value>Vælg en oversættelsestype for netværksadresser til din forbindelse.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate">
+    <value>Moderat (type 2)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
+    <value>En vis begrænsning af data, der kommer ind på dit netværk. Denne mulighed er bedst til online videospil.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict">
+    <value>Striks (type 3)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict_Description">
+    <value>Begrænser de data, der kommer ind på dit netværk. Denne mulighed er mere sikker, men kan gøre peer-to-peer-spilforbindelser sværere.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
+    <value>Dirigerer trafik mellem forskellige netværk.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
+    <value>Bruger bridging til at forbinde netværk. TUN giver højere hastigheder end TAP, men kan være mindre stabil.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
+    <value>Brugerdefineret DNS kan ikke aktiveres, fordi du er forbundet til en profil med NetShield aktiveret.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
+    <value>Brugerdefineret DNS er deaktiveret, fordi du i øjeblikket er forbundet til en profil med aktiveret NetShield.</value>
+  </data>
+  <data name="Settings_Connection_Default">
+    <value>Standardforbindelse</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>Hurtigste land</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>Den bedste server baseret på din placering</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>Seneste forbindelse</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>Seneste anvendte forbindelse</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Tilfældigt land</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Forskellig server, hver gang du forbinder</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Seneste</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch">
+    <value>Kill switch</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced">
+    <value>Avanceret</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced_Description">
+    <value>Tillad kun internetadgang, når du er forbundet til Proton VPN. Avanceret kill switch forbliver aktiv, selv når du genstarter din enhed.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Description">
+    <value>Beskytter din IP-adresse ved at afbryde forbindelsen til internettet, hvis du mister din VPN-forbindelse.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Footer">
+    <value>Når kill-switchen er slået til, vil du ikke kunne forbinde til hjemmesider og apps, der er undtaget fra din VPN-forbindelse gennem split tunneling.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard">
+    <value>Standard</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard_Description">
+    <value>Afbryd automatisk forbindelsen til internettet, hvis VPN-forbindelsen afbrydes.</value>
+  </data>
+  <data name="Settings_Connection_NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
+    <value>Bloker annoncer, malware og trackere</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockMalwareOnly">
+    <value>Blokér kun malware</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Description">
+    <value>Du kan ikke oprette forbindelse til en brugerdefineret DNS-server, når NetShield er aktiveret.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information">
+    <value>NetShield er ikke kompatibel med brugerdefineret DNS.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Title">
+    <value>Aktivér NetShield?</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Description">
+    <value>Beskyt dig selv mod reklamer, malware og trackere på hjemmesider og i apps.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Footer">
+    <value>Nogle hjemmesider kan ikke indlæse korrekt, når annoncer og trackers er blokeret.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_PrivacyPanel">
+    <value>NetShield Privatlivspanel</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding">
+    <value>Port-viderestilling</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort">
+    <value>Aktivt portnummer:</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
+    <value>Kopiér portnummer</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Description">
+    <value>Du kan ikke bruge Moderate NAT, når port forwarding er aktiveret.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Title">
+    <value>Aktivér port forwarding?</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Description">
+    <value>Forbedrer torrenting- og spilhastigheder ved at tillade direkte P2P-forbindelser gennem en udpeget port.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Footer">
+    <value>Ved brug af port-videresendelse skal du forbinde til en server, der understøtter P2P.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>Senest ændret: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Loading">
+    <value>Indlæser…</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications">
+    <value>Notifikationer</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications_Description">
+    <value>Få besked, når dit aktive portnummer ændres.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Utilgængelig</value>
+  </data>
+  <data name="Settings_Connection_Protocol">
+    <value>Protokol</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Action">
+    <value>Gå til profilerne</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Message">
+    <value>De er i øjeblikket forbundet til en VPN-profil.
+
+• For at ændre protokollen for denne forbindelse skal du afbryde forbindelsen og derefter redigere din profil.
+
+• For at ændre din protokol for andre VPN-forbindelser skal du først afbryde forbindelsen til din profil.</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Title">
+    <value>Skift protokol i profilerne</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling">
+    <value>Split tunneling</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
+    <value>App-filer</value>
+    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Header">
+    <value>Valgte apps ({0})</value>
+    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Applikationen blev ikke fundet</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Remove">
+    <value>Fjern app</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Description">
+    <value>Tilpas din forbindelse ved at beslutte, hvilke apps og IP-adresser der er beskyttet af VPN.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse">
+    <value>Inkluder tilstand</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Description">
+    <value>Kun udvalgte apps og IP-adresser får forbindelse via VPN, al anden trafik er ubeskyttet.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>Inkluder</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>Tilføj ny IPv4- eller IPv6-adresse</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
+    <value>Valgte IP-adresser ({0})</value>
+    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
+    <value>Fjern IP</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard">
+    <value>Udelad tilstand</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Description">
+    <value>Udvalgte apps og IP-adresser er ekskluderet fra din VPN-forbindelse.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>Ekskluder</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
+  </data>
+  <data name="Settings_Connection_VpnAccelerator">
+    <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Kassér ændringer</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Fortsæt redigering</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Vil du kassere ændringer, som ikke er gemt?</value>
+  </data>
+  <data name="Settings_Features">
+    <value>VPN-funktioner</value>
+  </data>
+  <data name="Settings_General">
+    <value>Generelt</value>
+  </data>
+  <data name="Settings_General_AutoStartup">
+    <value>Automatisk opstart</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect">
+    <value>Forbind automatisk</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Description">
+    <value>Når Proton VPN åbnes, oprettes der automatisk forbindelse til din standardforbindelse.</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
+    <value>Hurtigste forbindelse</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Latest">
+    <value>Sidst forbundet</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch">
+    <value>Automatisk opstart</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Description">
+    <value>Proton VPN åbnes automatisk, når du logger ind på din enhed.</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
+    <value>Åbn på skrivebordet</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
+    <value>Minimér til System ikon</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
+    <value>Minimér til proceslinje</value>
+  </data>
+  <data name="Settings_General_AutoStartup_Description">
+    <value>Sæt appen til at starte eller forbinde automatisk.</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates">
+    <value>Automatiske oppdateringer</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates_Description">
+    <value>Tjek og installer automatisk Proton VPN-opdateringer.</value>
+  </data>
+  <data name="Settings_General_BetaAccess">
+    <value>Beta-adgang</value>
+  </data>
+  <data name="Settings_General_BetaAccess_Description">
+    <value>Få tidlig adgang og hjælp os med at teste nye versioner af Proton VPN.</value>
+  </data>
+  <data name="Settings_General_Language">
+    <value>Sprog</value>
+  </data>
+  <data name="Settings_General_Notifications">
+    <value>Meddelelser</value>
+  </data>
+  <data name="Settings_General_Notifications_Description">
+    <value>Bliv underrettet om ændringer i din forbindelsesstatus.</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver">
+    <value>OpenVPN-netværksdriver</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver_Description">
+    <value>Netværksdrivere kan påvirke din forbindelseshastighed. Den nye TUN-adapter giver højere hastighed og falder tilbage på TAP-adapteren, hvis den støder på problemer med forbindelsen.</value>
+  </data>
+  <data name="Settings_General_Theme">
+    <value>Tema</value>
+  </data>
+  <data name="Settings_General_Theme_Dark">
+    <value>Mørk</value>
+  </data>
+  <data name="Settings_General_Theme_Default">
+    <value>Standard</value>
+  </data>
+  <data name="Settings_General_Theme_Light">
+    <value>Lys</value>
+  </data>
+  <data name="Settings_Improve">
+    <value>Gør Proton bedre</value>
+  </data>
+  <data name="Settings_Improve_Censorship">
+    <value>Hjælp os med at bekæmpe censur</value>
+  </data>
+  <data name="Settings_OperatingSystemVersion">
+    <value>Version af operativsystemet</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description1">
+    <value>Denne indstilling er forbundet med din aktive profil.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2">
+    <value>Redigér din profil for at foretage ændringer, eller afbryd forbindelsen for at redigere dine generelle VPN-indstillinger.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline">
+    <value>Disse indstillinger er knyttet til profilen {0} og kan kun administreres i Profiler.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Title">
+    <value>Administrer {0} i Profiler</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
+  <data name="Settings_Page_Title">
+    <value>Indstillinger</value>
+  </data>
+  <data name="Settings_Protocols_Explanation">
+    <value>En VPN-protokol bestemmer, hvordan data flyttes mellem en VPN-server og din enhed.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Description">
+    <value>Etableret, velafprøvet og sikker. OpenVPN er pålidelig under dårlige netværksforhold, men er måske ikke så hurtig som andre protokoller.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Description">
+    <value>Etableret, velafprøvet og sikker. OpenVPN er mindre batteribesparende end nogle andre protokoller.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Description">
+    <value>Auto-vælger den bedste protokol til din forbindelse.</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Title">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_Protocols_TcpCategory">
+    <value>Pålidelighed (TCP)</value>
+  </data>
+  <data name="Settings_Protocols_UdpCategory">
+    <value>Hastighed (UDP)</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>Banebrydende protokol for sikkerhed og ydeevne.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>Omgår VPN-blokeringer ved at skjule din VPN-forbindelse for censorer. Stealth er bestandig over for DPI (deep packet inspection), men er måske ikke så hurtig som andre protokoller.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Description">
+    <value>Banebrydende protokol for sikkerhed og ydeevne.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Reconnection_Title">
+    <value>Genforbind for at anvende ændringer</value>
+  </data>
+  <data name="Settings_RestoreDefault">
+    <value>Gendan standardindstillinger</value>
+  </data>
+  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
+    <value>Gendan og forbind igen</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Action">
+    <value>Gendan standardindstillinger</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Message">
+    <value>Dette vil nulstille dine Proton VPN-indstillinger til deres oprindelige status.</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Title">
+    <value>Gendan standardindstillinger?</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnTcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnUdp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardUdp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="Settings_Support">
+    <value>Support</value>
+  </data>
+  <data name="Settings_Support_DebugLogs">
+    <value>Fejlsøgningslogs</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Application">
+    <value>Applikationslogs</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_ErrorMessage">
+    <value>Log-mappen kunne ikke findes.</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Service">
+    <value>Servicelogs</value>
+  </data>
+  <data name="Settings_Support_ReportIssue">
+    <value>Anmeld en fejl</value>
+  </data>
+  <data name="Settings_Support_SupportCenter">
+    <value>Supportcenter</value>
+  </data>
+  <data name="Settings_Theme_Dark">
+    <value>Mørk</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Standard</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Lys</value>
+  </data>
+  <data name="Settings_VpnAccelerator_Description">
+    <value>Forbedr din forbindelseshastighed med op til 400 % med præstationsfremmende teknologier.</value>
+  </data>
+  <data name="SignIn_Form">
+    <value>Tilmeldingsformular</value>
+  </data>
+  <data name="SignIn_Form_AdvancedKillSwitchDescription">
+    <value>Avanceret kill switch blokerer din internetforbindelse.</value>
+  </data>
+  <data name="SignIn_Form_BestSecureVpnForSpeed">
+    <value>Den bedste sikre VPN til hastighed</value>
+  </data>
+  <data name="SignIn_Form_CreateAccount">
+    <value>Opret konto</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_Description">
+    <value>Indtast dine Proton-kontooplysninger.</value>
+  </data>
+  <data name="SignIn_Form_DisableKillSwitch">
+    <value>Deaktivér Kill switch</value>
+  </data>
+  <data name="SignIn_Form_Email">
+    <value>E-mail</value>
+  </data>
+  <data name="SignIn_Form_ForgotUsername">
+    <value>Glemte brugernavn</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_Help">
+    <value>Hjælp</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_NoLogsPolicy">
+    <value>Ingen logfiler-politik</value>
+  </data>
+  <data name="SignIn_Form_OpenSource">
+    <value>Open source</value>
+  </data>
+  <data name="SignIn_Form_Password">
+    <value>Adgangskode</value>
+  </data>
+  <data name="SignIn_Form_PasswordError">
+    <value>Indtast din adgangskode</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a password</comment>
+  </data>
+  <data name="SignIn_Form_ReportAnIssue">
+    <value>Anmeld en fejl</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_ResetPassword">
+    <value>Glemt adgangskode</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_SignIn">
+    <value>Log ind</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_SignInWithSso">
+    <value>Log ind med SSO</value>
+  </data>
+  <data name="SignIn_Form_SwissBased">
+    <value>Baseret i Schweiz</value>
+  </data>
+  <data name="SignIn_Form_Title">
+    <value>Log ind</value>
+  </data>
+  <data name="SignIn_Form_TroubleSigningIn">
+    <value>Supportcenter</value>
+    <comment>A button at the bottom of the login window inside Get help popup</comment>
+  </data>
+  <data name="SignIn_Form_Username">
+    <value>E-mail eller brugernavn</value>
+  </data>
+  <data name="SignIn_Form_UsernameError">
+    <value>Brugeroplysninger må ikke være tomme</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
+  </data>
+  <data name="SignIn_KillSwitch_Disabled">
+    <value>Kill switch er deaktiveret</value>
+  </data>
+  <data name="State_Fastest">
+    <value>Hurtigste stat</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>Tilfældig stat</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="SystemNotification_Connected">
+    <value>Du er nu beskyttet</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>Forbundet til {0}.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>Afbrudt</value>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
+    <value>Afslut</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication">
+    <value>Åbn {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>Åbn app for at logge ind</value>
+  </data>
+  <data name="Unit_BytesPerSecond">
+    <value>B/s</value>
+    <comment>Unit for Bytes per second</comment>
+  </data>
+  <data name="Unit_ExabytesPerSecond">
+    <value>EB/s</value>
+    <comment>Unit for Exabytes per second</comment>
+  </data>
+  <data name="Unit_GigabytesPerSecond">
+    <value>GB/s</value>
+    <comment>Unit for Gigabytes per second</comment>
+  </data>
+  <data name="Unit_KilobytesPerSecond">
+    <value>kB/s</value>
+    <comment>Unit for Kilobytes per second</comment>
+  </data>
+  <data name="Unit_MegabytesPerSecond">
+    <value>MB/s</value>
+    <comment>Unit for Megabytes per second</comment>
+  </data>
+  <data name="Unit_PetabytesPerSecond">
+    <value>PB/s</value>
+    <comment>Unit for Petabytes per second</comment>
+  </data>
+  <data name="Unit_TerabytesPerSecond">
+    <value>TB/s</value>
+    <comment>Unit for Terabytes per second</comment>
+  </data>
+  <data name="UpsellBanner_NetShield_Description">
+    <value>Bloker reklamer, trackere og malware på websider og i apps</value>
+  </data>
+  <data name="UpsellBanner_NetShield_Title">
+    <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>Opgrader og vælg en vilkårlig server.</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>Ikke det land, du ønskede?</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>Lås op for avanceret VPN-tilpasning</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>Opret forbindelse til VPN med dit brugerdefinerede domænenavnesystem (DNS)</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>Tilgå enheder på dit lokale netværk (LAN), mens du er tilsluttet</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>Gør din spiloplevelse bedre ved at skifte til NAT type 2 (moderat)</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>Tilslut op til 10 enheder på én gang</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>Benyt Proton VPN på forskellige platforme</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>Android og Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>Browser</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>Sikkerhed og privatsfære på alle dine enheder</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>Nyd reklamefri surfing</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>Bloker reklamer og trackere med NetShield</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>Beskyt din enhed mod malware</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>Lås op for peer-to-peer-downloads og fildeling (P2P)</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>Skjul din IP-adresse for din tjenesteudbyder og ligesindede</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>Få højere P2P-hastigheder med port-videresendelse</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>Højere upload- og download-hastigheder</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ flere</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_Profiles">
+    <value>Få hurtig adgang til hyppige forbindelser</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience">
+    <value>Indstil en profil som din standardforbindelse, og forbind med ét klik.</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Creation">
+    <value>Opret og gem dine egne VPN-konfigurationer med Profiler</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization">
+    <value>Tilpas din lokation, protokol og indstillinger</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>Tilføj endnu et lag beskyttelse til din forbindelse</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>Fordobl din kryptering med Secure Core</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>Beskyt dig selv mod netværksangreb</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>Ruten føres gennem ultrasikre servere i Schweiz, Sverige og Island</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>Browse med endnu højere hastigheder</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>Browse op til 400% hurtigere med VPN Accelerator</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>Tilgå hurtigere, mindre overfyldte servere</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>Få forbindelseshastigheder på op til 10 Gbps</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>Få det bedste fra begge verdener</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>Surf fra to steder på én gang med delt tunnelføring</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>Tillad betroede apps og IP-adresser at forbinde direkte til internettet, mens du beskytter alt andet med din VPN</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>Stream dine yndlingsfilm og tv-serier</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>Tilgå geoblokeret tv og film fra hvor som helst i verden</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Hulu">
+    <value>Hulu</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>Se i 4K uden buffering, forsinkelser eller neddrosling</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>Oplev VPN Plus</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>Tilgå Tor-netværket for ekstra diskretion</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>Tilgå skjulte sider og onion-sider</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>Gennemse Tor-netværket med din normale browser</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>Beskyt dine personlige data, mens du surfer</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>Adgang til {0} i {1}</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>Omgå censur med avancerede sikkerhedsfunktioner</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
+    <value>{0} land</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>{0} lande</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>Sikker streaming, torrenting og mere</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>Vælg et hvilket som helst land fra vores verdensomspændende netværk</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
+    <value>{0} sikker server</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>{0} sikre servere</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp_Description">
+    <value>Etableret, gennemtestet og sikker</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp_Description">
+    <value>Etableret, gennemtestet og sikker</value>
+  </data>
+  <data name="VpnProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp_Description">
+    <value>Banebrydende protokol for sikkerhed og ydeevne</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls_Description">
+    <value>Overkommer VPN-blokader ved at skjule din forbindelse for censorer</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp_Description">
+    <value>Banebrydende protokol for sikkerhed og ydeevne</value>
+  </data>
+</root>

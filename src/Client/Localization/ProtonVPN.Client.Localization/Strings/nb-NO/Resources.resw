@@ -3333,7 +3333,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Tillater tilkoblinger til skrivere, høyttalere og andre enheter på ditt lokale nettverk.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
-    <value>Koble til enheter ved å bruke navn som "Min-Skriver" eller "ruter.lokal" i stedet for IP-adresser. Bruker lokal DNS-oppslag. Deaktivert som standard for å opprettholde raskere VPN-hastigheter.</value>
+    <value>Bruker mDNS til å koble til enheter med navn som "Min-skriver" eller "ruter.lokal" i stedet for IP-adresser. Standard DNS fortsetter å bli rutet gjennom VPN-tunnelen. Deaktivert som standard for raskere VPN-hastigheter.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
     <value>Tilgang til enheter etter navn</value>

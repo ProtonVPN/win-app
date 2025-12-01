@@ -46,6 +46,7 @@ public class LanguageFactory : ILanguageFactory
         { "tr-TR",  "Türkçe - Turkish" },
         { "ca-ES",  "Català - Catalan" },
         { "cs-CZ",  "Čeština - Czech" },
+        { "da-DK",  "Dansk - Danish" },
         { "fi-FI",  "Suomi - Finnish" },
         { "hu-HU",  "Magyar - Hungarian" },
         { "id-ID",  "Bahasa Indonesia - Indonesian" },

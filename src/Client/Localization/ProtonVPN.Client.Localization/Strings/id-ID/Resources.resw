@@ -3225,7 +3225,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Memungkinkan koneksi ke printer, speaker, dan perangkat lainnya di jaringan lokal Anda.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
-    <value>Menghubungkan Anda ke perangkat eksternal dengan menggunakan nama seperti "My.Printer" atau "router.local" alih-alih alamat IP milik perangkat. Fitur ini menggunakan resolusi DNS lokal, dan dinonaktifkan secara bawaan untuk menjaga kecepatan VPN yang lebih cepat.</value>
+    <value>Uses mDNS to connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Standard DNS continues to be routed through the VPN tunnel. Disabled by default for faster VPN speeds.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
     <value>Akses perangkat berdasarkan nama</value>

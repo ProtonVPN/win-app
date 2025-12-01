@@ -3441,7 +3441,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Permite conexiuni către imprimante, boxe și alte dispozitive din rețeaua locală.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
-    <value>Conectați-vă la dispozitive folosind denumiri precum „Imprimanta-mea” sau „ruter.local” în loc de adrese IP. Utilizează rezoluția DNS locală. Dezactivată implicit pentru a menține viteze VPN mai rapide.</value>
+    <value>Utilizați mDNS pentru a vă conecta la dispozitive folosind denumiri precum „Imprimanta-mea” sau „ruter.local” în loc de adrese IP. DNS-ul standard continuă să fie direcționat prin tunelul VPN. Funcție dezactivată implicit pentru viteze VPN mai rapide.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
     <value>Accesare dispozitive după nume</value>

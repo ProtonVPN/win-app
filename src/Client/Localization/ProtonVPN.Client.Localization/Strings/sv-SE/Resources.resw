@@ -3333,7 +3333,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Tillåter anslutningar till skrivare, högtalare och andra enheter i ditt lokala nätverk.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
-    <value>Connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Uses local DNS resolution. Disabled by default to maintain faster VPN speeds.</value>
+    <value>Uses mDNS to connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Standard DNS continues to be routed through the VPN tunnel. Disabled by default for faster VPN speeds.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
     <value>Åtkomst till enheter efter namn</value>

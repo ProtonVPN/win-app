@@ -3333,7 +3333,7 @@ VPN-verbinding</value>
     <value>Maakt verbindingen met printers, luidsprekers en andere apparaten in uw lokale netwerk mogelijk.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
-    <value>Connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Uses local DNS resolution. Disabled by default to maintain faster VPN speeds.</value>
+    <value>Maakt gebruik van mDNS om te verbinden met apparaten via namen zoals 'Mijn-Printer' of 'router.local' in plaats van IP-adressen. Standaard DNS wordt nog steeds gerouteerd via de VPN-tunnel. Standaard uitgeschakeld voor hogere VPN-snelheden.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
     <value>Access devices by name</value>

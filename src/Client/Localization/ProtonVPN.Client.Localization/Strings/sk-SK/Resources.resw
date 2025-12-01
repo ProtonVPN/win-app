@@ -3549,7 +3549,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Umožňuje pripojiť tlačiarne, reproduktory a ďalšie zariadenia vo vašej lokálnej sieti.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
-    <value>Pripojte sa k zariadeniam pomocou názvov ako „Moja tlačiareň“ alebo „router.local“ namiesto IP adries. Používa lokálne DNS riešenie. V predvolenom nastavení je táto funkcia vypnutá, aby sa zachovala vyššia rýchlosť VPN.</value>
+    <value>Používa mDNS na pripojenie k zariadeniam pomocou mien ako „Moja tlačiareň“ alebo „router.local“ namiesto IP adries. Štandardný DNS sa naďalej smeruje cez tunel VPN. V predvolenom nastavení je vypnutý, aby bola rýchlosť VPN vyššia.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
     <value>Prístup k zariadeniam podľa názvu</value>

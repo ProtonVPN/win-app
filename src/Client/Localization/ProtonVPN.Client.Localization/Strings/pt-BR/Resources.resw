@@ -3333,7 +3333,7 @@ Uma carga alta de servidor pode tornar sua conexão mais lenta.</value>
     <value>Permite conectar-se a impressoras, alto-falantes e outros dispositivos na sua rede local.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
-    <value>Conectar a dispositivos usando nomes como 'Minha-Impressora' ou 'roteador.local' em vez de endereços IP. Usa resolução local de DNS. Desativado por padrão para manter velocidades de VPN mais rápidas.</value>
+    <value>Uses mDNS to connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Standard DNS continues to be routed through the VPN tunnel. Disabled by default for faster VPN speeds.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
     <value>Acessar dispositivos por nome</value>

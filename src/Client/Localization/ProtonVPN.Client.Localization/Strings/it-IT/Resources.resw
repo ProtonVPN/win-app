@@ -3333,7 +3333,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Consente connessioni a stampanti, altoparlanti e altri dispositivi nella tua rete locale.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
-    <value>Connettiti ai dispositivi usando nomi come 'My-Printer' o 'router.local' invece di indirizzi IP. Utilizza la risoluzione DNS locale. Disattivato per impostazione predefinita per mantenere velocità VPN più elevate.</value>
+    <value>Uses mDNS to connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Standard DNS continues to be routed through the VPN tunnel. Disabled by default for faster VPN speeds.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
     <value>Accesso ai dispositivi per nome</value>
@@ -3511,7 +3511,7 @@ Un carico elevato può rallentare la connessione.</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
-    <value>Application not found</value>
+    <value>Applicazione non trovata</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>Rimuovi app</value>
