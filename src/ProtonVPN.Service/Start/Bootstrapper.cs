@@ -34,7 +34,6 @@ using ProtonVPN.IssueReporting.Installers;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.Logging.Installers;
-using ProtonVPN.Native.PInvoke;
 using ProtonVPN.OperatingSystems.Network.Installers;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.Vpn;
@@ -56,7 +55,6 @@ internal class Bootstrapper
 
     public void Initialize()
     {
-        SetDllDirectories();
         Configure();
         PrepareDirectories();
         Start();
@@ -147,10 +145,5 @@ internal class Bootstrapper
         Resolve<IVpnConnection>().Disconnect();
         Resolve<OpenVpnProcess>().Stop();
         processes.KillProcesses(config.ClientName);
-    }
-
-    private static void SetDllDirectories()
-    {
-        Kernel32.SetDefaultDllDirectories(Kernel32.SetDefaultDllDirectoriesFlags.LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
     }
 }

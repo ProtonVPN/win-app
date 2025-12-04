@@ -63,7 +63,6 @@
         <ProjectReference Include="..\ProcessCommunication\ProtonVPN.ProcessCommunication.Installers\ProtonVPN.ProcessCommunication.Installers.csproj" />
         <ProjectReference Include="..\ProcessCommunication\Server\ProtonVPN.ProcessCommunication.Server.Installers\ProtonVPN.ProcessCommunication.Server.Installers.csproj" />
         <ProjectReference Include="..\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj" />
-        <ProjectReference Include="..\ProtonVPN.Native\ProtonVPN.Native.csproj" />
         <ProjectReference Include="..\ProtonVPN.NetworkFilter\ProtonVPN.NetworkFilter.csproj" />
         <ProjectReference Include="..\ProtonVPN.Vpn\ProtonVPN.Vpn.csproj" />
         <ProjectReference Include="..\Serialization\ProtonVPN.Serialization.Installers\ProtonVPN.Serialization.Installers.csproj" />
