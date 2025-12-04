@@ -273,13 +273,17 @@ unsigned int IPFilterDestroyFilter(
     return FwpmFilterDeleteByKey(sessionHandle, filterKey);
 }
 
-unsigned int IPFilterGetSublayerFilterCount(
+unsigned int IPFilterGetSublayerFilters(
     IPFilterSessionHandle sessionHandle,
     GUID* providerKey,
     GUID* sublayerKey,
-    unsigned int* result)
+    GUID** filtersResult,
+    unsigned int* filterCountResult)
 {
     HANDLE enumHandle = nullptr;
+
+    *filtersResult = nullptr;
+    *filterCountResult = 0;
 
     auto status = FwpmFilterCreateEnumHandle(sessionHandle,
         nullptr,
@@ -288,6 +292,8 @@ unsigned int IPFilterGetSublayerFilterCount(
     {
         return status;
     }
+
+    std::vector<GUID> filterKeys{};
 
     while (true)
     {
@@ -313,13 +319,33 @@ unsigned int IPFilterGetSublayerFilterCount(
                 continue;
             }
 
-            (*result)++;
+            filterKeys.push_back(filter->filterKey);
         }
 
         FwpmFreeMemory(reinterpret_cast<void**>(&filters));
     }
 
     FwpmFilterDestroyEnumHandle(sessionHandle, enumHandle);
+
+    if (status != ERROR_SUCCESS)
+    {
+        return status;
+    }
+
+    *filterCountResult = static_cast<unsigned int>(filterKeys.size());
+    if (!filterKeys.empty())
+    {
+        size_t bufferSize = filterKeys.size() * sizeof(GUID);
+        auto buffer = static_cast<GUID*>(std::malloc(bufferSize));
+        if (buffer == nullptr)
+        {
+            *filterCountResult = 0;
+            return E_OUTOFMEMORY;
+        }
+
+        std::memcpy(buffer, filterKeys.data(), bufferSize);
+        *filtersResult = buffer;
+    }
 
     return status;
 }
@@ -589,4 +615,9 @@ unsigned int IPFilterDoesCalloutExist(
     }
 
     return status;
+}
+
+void IPFilterFreeMemory(void* ptr)
+{
+    std::free(ptr);
 }

@@ -45,9 +45,14 @@ namespace ProtonVPN.NetworkFilter
             IpFilterNative.DestroySublayerFiltersByName(Session.Handle, _ipFilter.ProviderId, Id, name);
         }
 
+        public List<Guid> GetFilters()
+        {
+            return IpFilterNative.GetSublayerFilters(Session.Handle, ProviderId, Id);
+        }
+
         public uint GetFilterCount()
         {
-            return IpFilterNative.GetSublayerFilterCount(Session.Handle, ProviderId, Id);
+            return (uint)GetFilters().Count;
         }
 
         public void DestroyFilter(Guid filterId)

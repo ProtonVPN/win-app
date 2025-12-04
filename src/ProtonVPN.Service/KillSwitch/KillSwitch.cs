@@ -156,7 +156,7 @@ public class KillSwitch : IVpnStateAware, IServiceSettingsAware, IStartable
 
     private void EnableLeakProtection(bool hasVpnProtocolChanged = false)
     {
-        bool dnsLeakOnly = _serviceSettings.SplitTunnelSettings.Mode == SplitTunnelModeIpcEntity.Permit && (_lastVpnState.Status == VpnStatus.Connected || _lastVpnState.VpnProtocol.IsOpenVpn());
+        bool dnsLeakOnly = _serviceSettings.SplitTunnelSettings.Mode == SplitTunnelModeIpcEntity.Permit && _lastVpnState.Status == VpnStatus.Connected;
         bool persistent = _serviceSettings.KillSwitchMode == KillSwitchMode.Hard;
         INetworkInterface networkInterface = _networkInterfaceLoader.GetByVpnProtocol(_lastVpnState.VpnProtocol, _lastVpnState.OpenVpnAdapter);
         uint interfaceIndex = networkInterface?.Index ?? 0;

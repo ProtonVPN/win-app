@@ -124,11 +124,12 @@ unsigned int IPFilterDestroySublayerFiltersByName(
     GUID* sublayerKey,
     const wchar_t* name);
 
-unsigned int IPFilterGetSublayerFilterCount(
+unsigned int IPFilterGetSublayerFilters(
     IPFilterSessionHandle sessionHandle,
     GUID* providerKey,
     GUID* sublayerKey,
-    unsigned int* result);
+    GUID** filters,
+    unsigned int* filterCount);
 
 unsigned int IPFilterDestroyCallouts(
     IPFilterSessionHandle sessionHandle,
@@ -354,3 +355,5 @@ unsigned int PermitIcmpRedirectMessage(
     GUID* providerContextKey,
     BOOL persistent,
     GUID* filterKey);
+
+void IPFilterFreeMemory(void* ptr);

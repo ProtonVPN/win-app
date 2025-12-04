@@ -210,10 +210,24 @@ internal class Firewall : IFirewall, IStartable
         {
             if (firewallParams.DnsLeakOnly)
             {
-                List<Guid> blockOutsideOpenVpnGuids = GetFirewallGuidsByTypes(FirewallItemType.BlockOutsideOpenVpnFilter);
-                List<Guid> baseLeakProtectionGuids = GetFirewallGuidsByTypes(
-                    FirewallItemType.VariableFilter,
-                    FirewallItemType.LocalNetworkFilter);
+                List<Guid> blockOutsideOpenVpnGuids = [];
+                List<Guid> baseLeakProtectionGuids = [];
+                List<Guid> permanentFilters = [];
+
+                // When the service starts with advanced kill switch enabled,
+                // we don't have in-memory guids for existing permanent filters,
+                // so we need to collect them directly from WFP
+                if (_lastParams.SessionType == SessionType.Permanent)
+                {
+                    permanentFilters = _ipFilter.PermanentSublayer.GetFilters();
+                }
+                else
+                {
+                    blockOutsideOpenVpnGuids = GetFirewallGuidsByTypes(FirewallItemType.BlockOutsideOpenVpnFilter);
+                    baseLeakProtectionGuids = GetFirewallGuidsByTypes(
+                        FirewallItemType.VariableFilter,
+                        FirewallItemType.LocalNetworkFilter);
+                }
 
                 EnableDnsLeakProtection(firewallParams);
 
@@ -221,6 +235,12 @@ internal class Firewall : IFirewall, IStartable
                 // to avoid a window where Proton processes are still blocked but no longer whitelisted.
                 RemoveItems(blockOutsideOpenVpnGuids, _lastParams.SessionType);
                 RemoveItems(baseLeakProtectionGuids, _lastParams.SessionType);
+
+                if (permanentFilters.Count > 0)
+                {
+                    RemoveItems(permanentFilters, _lastParams.SessionType);
+                    PermitFromNetworkInterface(4, firewallParams);
+                }
             }
             else
             {

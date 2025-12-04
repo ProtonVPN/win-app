@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Polly;
 using Polly.Retry;
@@ -297,19 +298,45 @@ internal class IpFilterNative
             name));
     }
 
-    public static uint GetSublayerFilterCount(IntPtr sessionHandle,
+    public static List<Guid> GetSublayerFilters(IntPtr sessionHandle,
         Guid providerId,
         Guid sublayerId)
     {
         uint total = 0;
+        IntPtr filtersPtr = IntPtr.Zero;
 
-        AssertSuccess(() => PInvoke.GetSublayerFilterCount(
+        AssertSuccess(() => PInvoke.GetSublayerFilters(
             sessionHandle,
             ref providerId,
             ref sublayerId,
+            out filtersPtr,
             ref total));
 
-        return total;
+        try
+        {
+            if (total == 0 || filtersPtr == IntPtr.Zero)
+            {
+                return [];
+            }
+
+            int filterCount = checked((int) total);
+            List<Guid> filters = [];
+            int guidSize = Marshal.SizeOf<Guid>();
+
+            for (int i = 0; i < filterCount; i++)
+            {
+                filters.Add(Marshal.PtrToStructure<Guid>(IntPtr.Add(filtersPtr, i * guidSize)));
+            }
+
+            return filters;
+        }
+        finally
+        {
+            if (filtersPtr != IntPtr.Zero)
+            {
+                PInvoke.FreeMemory(filtersPtr);
+            }
+        }
     }
 
     public static void DestroyCallouts(IntPtr sessionHandle, Guid providerId)

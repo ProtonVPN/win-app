@@ -34,10 +34,11 @@ EXPORTS
 	IPFilterDestroySublayer
 	IPFilterDestroySublayerFilters
 	IPFilterDestroySublayerFiltersByName
-	IPFilterGetSublayerFilterCount
+	IPFilterGetSublayerFilters
 	IPFilterDoesCalloutExist
 	IPFilterDoesFilterExist
 	IPFilterDoesProviderContextExist
 	IPFilterDoesSublayerExist
 	IPFilterIsProviderRegistered
 	IPFilterStartTransaction
+	IPFilterFreeMemory
