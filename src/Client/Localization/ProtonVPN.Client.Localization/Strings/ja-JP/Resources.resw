@@ -196,7 +196,7 @@
     <value>最速の都市</value>
   </data>
   <data name="City_Random">
-    <value>ランダムな都市</value>
+    <value>適当な都市</value>
   </data>
   <data name="Common_Actions_ActionsFor">
     <value>{0}のアクション</value>
@@ -486,7 +486,7 @@
     <value>プロファイルを削除</value>
   </data>
   <data name="Connections_Profiles_Delete_Message">
-    <value>「{0}」は完全に削除されました。</value>
+    <value>「{0}」が完全に削除されます。</value>
     <comment>{0} is a placeholder for the name of the profile.</comment>
   </data>
   <data name="Connections_Profiles_Delete_Title">
@@ -1740,16 +1740,16 @@
     <value>評価の理由を教えてください</value>
   </data>
   <data name="Dialogs_NpsSurvey_ErrorSubtitle">
-    <value>お客様のフィードバックを送信できませんでした。接続を確認して、もう一度お試しください。</value>
+    <value>送信に失敗しました。接続を確認して、再度お試しください。</value>
   </data>
   <data name="Dialogs_NpsSurvey_ErrorTitle">
     <value>不具合が発生しました。</value>
   </data>
   <data name="Dialogs_NpsSurvey_HighRateDescription">
-    <value>10はとても可能性が高い</value>
+    <value>10は「とても高い」</value>
   </data>
   <data name="Dialogs_NpsSurvey_LowRateDescription">
-    <value>0はとても可能性が低い</value>
+    <value>0は「とても低い」</value>
   </data>
   <data name="Dialogs_NpsSurvey_Optional">
     <value>任意</value>
@@ -1758,7 +1758,7 @@
     <value>匿名で共有</value>
   </data>
   <data name="Dialogs_NpsSurvey_SuccessSubtitle">
-    <value>お客様のフィードバックは、Proton VPN の改善に役立ちます。</value>
+    <value>お客様の感想は Proton VPN の改善に役立ちます。</value>
   </data>
   <data name="Dialogs_NpsSurvey_SuccessTitle">
     <value>ご意見ありがとうございます</value>
@@ -2027,13 +2027,13 @@
     <value>Proton VPNへようこそ</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>あなたの組織専用のサーバーにメインサイドバーからアクセスできるようになりました。</value>
+    <value>メインサイドバーから直接、あなたの組織専用のサーバーにアクセスできるようになりました。</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
-    <value>ゲートウェイが移動されました</value>
+    <value>ゲートウェイが移動しました</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
-    <value>お客様は現在、VPNトンネルをバイパスして、ローカルネットワーク (LAN) 上のプリンター、スピーカー、その他のデバイスに接続できます。</value>
+    <value>VPNトンネルを抜けて、ローカルネットワーク (LAN) 上のプリンターやスピーカーなどに接続できるようになりました。</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Title">
     <value>LAN 接続</value>
@@ -2060,10 +2060,10 @@
     <value>これでお気に入りのサーバーに再接続するのがさらに簡単になりました。ホーム画面で最近の接続を表示したり、クイックアクセスのためにピン留めしたりできます。</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Title">
-    <value>最近あったことを紹介</value>
+    <value>「最近の接続」</value>
   </data>
   <data name="Dialogs_WhatsNew_TakeALook">
-    <value>見てください</value>
+    <value>見てみる</value>
   </data>
   <data name="Dialogs_WhatsNew_Title">
     <value>最新情報</value>
@@ -2735,7 +2735,7 @@
     <value>コードを入力してください</value>
   </data>
   <data name="Login_TwoFactor_NoMethodAvailable">
-    <value>既知の2要素認証方式が見つかりませんでした。</value>
+    <value>2要素認証の方法が見つかりませんでした。</value>
   </data>
   <data name="Login_TwoFactor_SecurityKey">
     <value>セキュリティキー</value>
@@ -2810,7 +2810,7 @@
     <value>このアドレスを含めるには、VPNトンネル経由のIPv6接続を許可する必要があります。</value>
   </data>
   <data name="Overlay_Ipv6Disabled_PrimaryButton">
-    <value>IPv6接続は有効です</value>
+    <value>IPv6を有効化</value>
   </data>
   <data name="Overlay_Ipv6Disabled_SecondaryButton">
     <value>後で</value>
@@ -2987,13 +2987,13 @@ VPN接続</value>
     <value>デフォルトのブラウザ</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
-    <value>プライベートブラウジングモードを使用する</value>
+    <value>プライバシーモードを使用</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_Website">
     <value>ウェブサイトを開く</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>このプロファイルに接続すると、選択した Web サイトまたはアプリが自動的に開きます。</value>
+    <value>このプロファイルに接続すると、特定のサイトまたはアプリが自動的に開きます。</value>
   </data>
   <data name="Profile_Options_Header">
     <value>接続して続ける</value>
@@ -3222,10 +3222,10 @@ VPN接続</value>
     <value>LAN への接続を許可</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>お客様のローカル ネットワーク内のプリンター、スピーカー、その他のデバイスへの接続を許可します。</value>
+    <value>ローカルネットワーク内のプリンター、スピーカー、その他のデバイスへの接続を可能にします。</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
-    <value>Uses mDNS to connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Standard DNS continues to be routed through the VPN tunnel. Disabled by default for faster VPN speeds.</value>
+    <value>mDNS を利用して、IPアドレスではなく「My-Printer」や「router.local」のような名前でデバイスに接続します。標準DNSは引き続き VPNトンネル経由でルーティングされます。VPN速度を高速化するため、この機能はデフォルトで無効になっています。</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
     <value>名前でデバイスにアクセスする</value>
@@ -3403,7 +3403,7 @@ VPN接続</value>
     <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
-    <value>Application not found</value>
+    <value>アプリが見つかりません</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Remove">
     <value>アプリを削除</value>
@@ -3490,7 +3490,7 @@ VPN接続</value>
     <value>タスクバーに最小化する</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>アプリが自動的に起動または接続されるように設定する.</value>
+    <value>アプリが自動的に起動・接続されるようにする。</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>自動更新</value>
@@ -3821,7 +3821,7 @@ VPN接続</value>
     <value>高度な VPN カスタマイズを解除する</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>カスタム ドメイン ネーム システム (DNS)を使用して VPN に接続します。</value>
+    <value>カスタム DNS で VPN に接続</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>接続中にローカル エリア ネットワーク (LAN) 上のデバイスにアクセスする</value>

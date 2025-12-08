@@ -2258,10 +2258,10 @@ Foutcode: {0}</value>
     <value>Actieve poortnummer</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Error">
-    <value>Cannot retrieve active port number. Restart your connection and try again.</value>
+    <value>Kan geen actief poortnummer ophalen. Herstart uw verbinding en probeer het opnieuw.</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Enter the active port number into your torrent client or P2P app for enhanced performance.</value>
+    <value>Voer het actieve poortnummer in uw torrentclient of P2P-app in voor betere prestaties.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Verbeter uw peer-to-peer downloadsnelheid</value>
@@ -2896,7 +2896,7 @@ Foutcode: {0}</value>
     <value>Poortnummer kopiëren</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Go to your torrent client or P2P app and enter this number.</value>
+    <value>Ga naar uw torrent-client of P2P-app en voer dit nummer in.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>U hebt uw maximale apparaatlimiet bereikt. Om opnieuw verbinding te maken met VPN, verbreek de verbinding van een ander apparaat.</value>
