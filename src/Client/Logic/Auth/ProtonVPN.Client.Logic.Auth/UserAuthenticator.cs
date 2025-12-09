@@ -505,6 +505,7 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
 
             _settings.Username = response.Value.User.GetUsername();
             _settings.UserDisplayName = response.Value.User.GetDisplayName();
+            _settings.UserEmail = response.Value.User.Email;
             _settings.UserCreationDateUtc = DateTimeOffset.FromUnixTimeSeconds(response.Value.User.CreateTime).UtcDateTime;
         }
         return response;

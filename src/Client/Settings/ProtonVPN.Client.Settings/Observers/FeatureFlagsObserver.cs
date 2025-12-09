@@ -51,6 +51,9 @@ public class FeatureFlagsObserver :
     [FeatureFlag("IsLocalAreaNetworkAllowedForPaidUsersOnly")]
     public bool IsLocalAreaNetworkAllowedForPaidUsersOnly => IsEnabled();
 
+    [FeatureFlag("U2FGatewayPortalUrl")]
+    public string U2FGatewayPortalUrl => GetPayload();
+
     protected override TimeSpan PollingInterval => _config.FeatureFlagsUpdateInterval;
 
     private static PropertyInfo[] Properties { get; } = typeof(FeatureFlagsObserver).GetProperties();
@@ -82,7 +85,7 @@ public class FeatureFlagsObserver :
         return UpdateFeatureFlagsAsync(cancellationToken);
     }
 
-    private bool IsEnabled([CallerMemberName] string propertyName = "")
+    private FeatureFlag GetFeatureFlag([CallerMemberName] string propertyName = "")
     {
         PropertyInfo? property = GetType().GetProperty(propertyName)
             ?? throw new InvalidOperationException($"Property '{propertyName}' not found on {GetType().Name}");
@@ -91,8 +94,21 @@ public class FeatureFlagsObserver :
             ?? throw new InvalidOperationException($"Property '{propertyName}' is missing [FeatureFlag]");
 
         return _settings.FeatureFlags
-            .FirstOrDefault(f => f.Name.EqualsIgnoringCase(featureFlagAttribute.Name), FeatureFlag.Default)
-            .IsEnabled;
+            .FirstOrDefault(f => f.Name.EqualsIgnoringCase(featureFlagAttribute.Name), FeatureFlag.Default);
+    }
+
+    private bool IsEnabled([CallerMemberName] string propertyName = "")
+    {
+        return GetFeatureFlag(propertyName).IsEnabled;
+    }
+
+    private string GetPayload([CallerMemberName] string propertyName = "")
+    {
+        FeatureFlag featureFlag = GetFeatureFlag(propertyName);
+
+        return featureFlag.IsEnabled 
+            ? featureFlag.Payload
+            : string.Empty;
     }
 
     protected override Task OnTriggerAsync()
@@ -172,7 +188,8 @@ public class FeatureFlagsObserver :
             new FeatureFlag
             {
                 Name = f.Name,
-                IsEnabled = f.IsEnabled
+                IsEnabled = f.IsEnabled,
+                Payload = f.Variant?.Payload?.Value ?? string.Empty
             }).ToList() ?? [];
     }
 }

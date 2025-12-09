@@ -27,4 +27,6 @@ public class FeatureFlagResponse
 
     [JsonProperty(PropertyName = "enabled")]
     public bool IsEnabled { get; set; }
+
+    public FeatureFlagVariantResponse Variant { get; set; }
 }
