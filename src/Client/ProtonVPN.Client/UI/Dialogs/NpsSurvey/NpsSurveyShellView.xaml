@@ -61,9 +61,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       RowSpacing="8">
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
@@ -73,20 +72,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <custom:RatingSelector Grid.Row="0"
                                            Grid.Column="0"
-                                           Grid.ColumnSpan="3"
+                                           Grid.ColumnSpan="2"
                                            Maximum="10"
                                            Minimum="0"
                                            Score="{x:Bind ViewModel.Score, Mode=TwoWay}" />
 
                     <TextBlock Grid.Row="1"
                                Grid.Column="0"
+                               HorizontalAlignment="Left"
+                               TextAlignment="Left"
                                Foreground="{ThemeResource TextWeakColorBrush}"
                                Style="{ThemeResource CaptionTextBlockStyle}"
                                Text="{x:Bind ViewModel.Localizer.Get('Dialogs_NpsSurvey_LowRateDescription')}" />
 
                     <TextBlock Grid.Row="1"
-                               Grid.Column="2"
+                               Grid.Column="1"
                                HorizontalAlignment="Right"
+                               TextAlignment="Right"
                                Foreground="{ThemeResource TextWeakColorBrush}"
                                Style="{ThemeResource CaptionTextBlockStyle}"
                                Text="{x:Bind ViewModel.Localizer.Get('Dialogs_NpsSurvey_HighRateDescription')}" />
