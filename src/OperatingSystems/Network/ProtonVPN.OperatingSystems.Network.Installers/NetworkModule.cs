@@ -18,7 +18,9 @@
  */
 
 using Autofac;
+using ProtonVPN.OperatingSystems.Network.Monitors;
 using ProtonVPN.OperatingSystems.Network.NetworkInterface;
+using ProtonVPN.OperatingSystems.Network.Policies;
 using ProtonVPN.OperatingSystems.Network.Routing;
 
 namespace ProtonVPN.OperatingSystems.Network.Installers;
@@ -32,5 +34,7 @@ public class NetworkModule : Module
         builder.RegisterType<NetworkInterfaceLoader>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NetworkUtilities>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<RoutingTableHelper>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<NetworkInterfacePolicyManager>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<InterfaceForwardingMonitor>().AsImplementedInterfaces().SingleInstance();
     }
 }

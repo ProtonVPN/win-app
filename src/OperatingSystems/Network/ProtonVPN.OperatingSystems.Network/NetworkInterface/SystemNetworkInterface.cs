@@ -22,6 +22,9 @@ using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.OperatingSystems.Network.Contracts;
+using Vanara.PInvoke;
+using static Vanara.PInvoke.IpHlpApi;
+using static Vanara.PInvoke.Ws2_32;
 
 namespace ProtonVPN.OperatingSystems.Network.NetworkInterface;
 
@@ -46,6 +49,21 @@ public class SystemNetworkInterface : INetworkInterface, IEquatable<SystemNetwor
     public bool IsLoopback => _networkInterface.NetworkInterfaceType == NetworkInterfaceType.Loopback;
 
     public bool IsActive => _networkInterface.OperationalStatus == OperationalStatus.Up;
+
+    public bool IsIPv4ForwardingEnabled
+    {
+        get
+        {
+            MIB_IPINTERFACE_ROW row = new()
+            {
+                Family = ADDRESS_FAMILY.AF_INET,
+                InterfaceIndex = Index,
+            };
+
+            Win32Error result = GetIpInterfaceEntry(ref row);
+            return result.Succeeded && row.ForwardingEnabled;
+        }
+    }
 
     public IPAddress DefaultGateway
     {

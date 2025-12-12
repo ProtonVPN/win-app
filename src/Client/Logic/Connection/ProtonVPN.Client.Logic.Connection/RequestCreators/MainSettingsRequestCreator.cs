@@ -24,7 +24,6 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts.Observers;
-using ProtonVPN.Common.Core.Dns;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Dns;
@@ -94,7 +93,7 @@ public class MainSettingsRequestCreator : IMainSettingsRequestCreator
             DnsBlockMode = _settings.IsLocalAreaNetworkAccessEnabled && _settings.IsLocalDnsEnabled
                 ? DnsBlockModeIpcEntity.Callout
                 : DnsBlockModeIpcEntity.Nrpt,
-
+            ShouldDisableWeakHostSetting = _featureFlagsObserver.ShouldDisableWeakHostSetting,
         };
     }
 

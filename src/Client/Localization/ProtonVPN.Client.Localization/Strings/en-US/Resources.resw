@@ -1838,6 +1838,9 @@
   <data name="Login_Error_TwoFactorAuthFailed" xml:space="preserve">
     <value>Incorrect username or password. Please try again.</value>
   </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot" xml:space="preserve">
+    <value>It is not possible to sign in while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+  </data>
   <data name="Settings_About" xml:space="preserve">
     <value>About</value>
   </data>
@@ -3077,6 +3080,12 @@
   </data>
   <data name="Connection_Error_MissingConnectionCertificate" xml:space="preserve">
     <value>Proton VPN failed to fetch authentication certificate due to network issue.</value>
+  </data>
+  <data name="Connection_Error_MobileHotspotEnabled" xml:space="preserve">
+    <value>It is not possible to connect to VPN while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+  </data>
+  <data name="Connection_Error_OpenMobileHotspotSettings" xml:space="preserve">
+    <value>Open mobile hotspot settings</value>
   </data>
   <data name="Dialogs_Welcome_Message" xml:space="preserve">
     <value>We're getting your new VPN experience ready. This should only take a moment.</value>

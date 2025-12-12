@@ -30,6 +30,6 @@ public interface ISystemNetworkInterfaces
     INetworkInterface GetByName(string name);
     INetworkInterface GetById(Guid id);
     INetworkInterface GetByLocalAddress(IPAddress localAddress);
-    INetworkInterface GetBestInterface(string hardwareIdToExclude);
+    INetworkInterface GetBestInterfaceExcludingHardwareId(string hardwareIdToExclude);
     NetworkConnectionType? GetNetworkConnectionType();
 }

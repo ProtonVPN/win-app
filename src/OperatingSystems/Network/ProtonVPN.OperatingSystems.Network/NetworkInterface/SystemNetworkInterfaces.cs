@@ -88,7 +88,7 @@ public class SystemNetworkInterfaces : ISystemNetworkInterfaces
         });
     }
 
-    public INetworkInterface GetBestInterface(string hardwareIdToExclude)
+    public INetworkInterface GetBestInterfaceExcludingHardwareId(string hardwareIdToExclude)
     {
         return TryGet(() =>
         {

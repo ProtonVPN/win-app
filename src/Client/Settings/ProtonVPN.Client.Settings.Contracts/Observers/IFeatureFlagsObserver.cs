@@ -25,6 +25,7 @@ public interface IFeatureFlagsObserver : IObserver
 {
     bool IsIpv6SupportEnabled { get; }
     bool IsLocalAreaNetworkAllowedForPaidUsersOnly { get; }
+    bool ShouldDisableWeakHostSetting { get; }
     string U2FGatewayPortalUrl { get; }
 
     Task UpdateAsync(CancellationToken cancellationToken);

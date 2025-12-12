@@ -32,6 +32,7 @@ public static class VpnErrorExtensions
         VpnError.RpcServerUnavailable,
         VpnError.MissingConnectionCertificate,
         VpnError.WireGuardAdapterInUseError,
+        VpnError.InterfaceHasForwardingEnabled,
     ];
 
     private static readonly List<VpnError> _sessionLimitErrors =

@@ -27,6 +27,7 @@ using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.OperatingSystems.Network.Contracts;
+using ProtonVPN.OperatingSystems.Network.Contracts.Monitors;
 using ProtonVPN.OperatingSystems.Processes.Contracts;
 using ProtonVPN.OperatingSystems.Services.Contracts;
 using ProtonVPN.Vpn.Common;
@@ -119,7 +120,6 @@ public class Module
                     candidates,
                     serverValidator,
                     endpointScanner,
-                    c.Resolve<IIssueReporter>(),
                     new HandlingRequestsWrapper(
                         logger,
                         taskQueue,
@@ -160,6 +160,9 @@ public class Module
             gatewayCache,
             connectionCertificateCache,
             new WireGuardConnection(logger, config, gatewayCache,
+                c.Resolve<ISystemNetworkInterfaces>(),
+                c.Resolve<IInterfaceForwardingMonitor>(),
+                c.Resolve<INetworkInterfacePolicyManager>(),
                 new WireGuardService(logger, staticConfig, serviceFactory.Get(staticConfig.WireGuard.ServiceName)),
                 new WireGuardConfigGenerator(config, x25519KeyGenerator, wireGuardDnsServersCreator),
                 new NtTrafficManager(staticConfig.WireGuard.ConfigFileName, logger),

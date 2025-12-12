@@ -120,6 +120,7 @@ public class VpnConfigMapperTest
             ModerateNat = true,
             PortForwarding = true,
             IsIpv6Enabled = true,
+            ShouldDisableWeakHostSetting = true,
             DnsBlockMode = DnsBlockMode.Callout,
         });
 
@@ -137,6 +138,7 @@ public class VpnConfigMapperTest
         Assert.AreEqual(entityToTest.SplitTcp, result.SplitTcp);
         Assert.AreEqual(entityToTest.PortForwarding, result.PortForwarding);
         Assert.AreEqual(entityToTest.IsIpv6Enabled, result.IsIpv6Enabled);
+        Assert.AreEqual(entityToTest.ShouldDisableWeakHostSetting, result.ShouldDisableWeakHostSetting);
         Assert.AreEqual((int)entityToTest.DnsBlockMode, (int)result.DnsBlockMode);
     }
 
@@ -185,6 +187,7 @@ public class VpnConfigMapperTest
             SplitTcp = true,
             ModerateNat = true,
             PortForwarding = true,
+            ShouldDisableWeakHostSetting = true,
             DnsBlockMode = DnsBlockModeIpcEntity.Disabled,
         };
 
@@ -201,6 +204,7 @@ public class VpnConfigMapperTest
         Assert.AreEqual(entityToTest.SplitTcp, result.SplitTcp);
         Assert.AreEqual(entityToTest.ModerateNat, result.ModerateNat);
         Assert.AreEqual(entityToTest.PortForwarding, result.PortForwarding);
+        Assert.AreEqual(entityToTest.ShouldDisableWeakHostSetting, result.ShouldDisableWeakHostSetting);
         Assert.AreEqual((int)entityToTest.DnsBlockMode, (int)result.DnsBlockMode);
     }
 

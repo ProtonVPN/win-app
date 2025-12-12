@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,14 +19,12 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Common.Legacy.Vpn;
-using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
@@ -43,7 +41,6 @@ namespace ProtonVPN.Vpn.Connection
         private readonly IVpnEndpointCandidates _candidates;
         private readonly IServerValidator _serverValidator;
         private readonly IEndpointScanner _endpointScanner;
-        private readonly IIssueReporter _issueReporter;
         private readonly ISingleVpnConnection _origin;
 
         private VpnState _state;
@@ -59,14 +56,12 @@ namespace ProtonVPN.Vpn.Connection
             IVpnEndpointCandidates candidates,
             IServerValidator serverValidator,
             IEndpointScanner endpointScanner,
-            IIssueReporter issueReporter,
             ISingleVpnConnection origin)
         {
             _logger = logger;
             _candidates = candidates;
             _serverValidator = serverValidator;
             _endpointScanner = endpointScanner;
-            _issueReporter = issueReporter;
             _origin = origin;
 
             _origin.StateChanged += Origin_StateChanged;
@@ -185,7 +180,8 @@ namespace ProtonVPN.Vpn.Connection
 
             if (vpnError == VpnError.InterfaceHasForwardingEnabled)
             {
-                HandleInterfaceForwardingError();
+                Disconnect(vpnError);
+                return;
             }
             else
             {
@@ -212,27 +208,6 @@ namespace ProtonVPN.Vpn.Connection
                 _candidates.Reset();
                 _isToConnect = true;
                 _isToReconnect = true;
-            }
-        }
-
-        private void HandleInterfaceForwardingError()
-        {
-            List<VpnProtocol> wireGuardProtocols = new[] {
-                    VpnProtocol.WireGuardUdp,
-                    VpnProtocol.WireGuardTcp,
-                    VpnProtocol.WireGuardTls
-                }
-            .Where(_config.PreferredProtocols.Contains)
-            .ToList();
-
-            if (wireGuardProtocols.Count > 0)
-            {
-                wireGuardProtocols.ForEach(DiscardProtocol);
-                _issueReporter.CaptureMessage("WireGuard protocols discarded due to interface Forwarding being enabled.");
-            }
-            else
-            {
-                _logger.Warn<ConnectLog>("Preferred protocols did not contain any WireGuard protocols.");
             }
         }
 

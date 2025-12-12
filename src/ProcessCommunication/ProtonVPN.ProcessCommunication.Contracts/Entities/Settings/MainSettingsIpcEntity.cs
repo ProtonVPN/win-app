@@ -71,6 +71,9 @@ public class MainSettingsIpcEntity
     [DataMember(Order = 15)]
     public DnsBlockModeIpcEntity DnsBlockMode { get; set; }
 
+    [DataMember(Order = 16)]
+    public bool ShouldDisableWeakHostSetting { get; set; }
+
     public MainSettingsIpcEntity()
     {
         SplitTunnel = new();

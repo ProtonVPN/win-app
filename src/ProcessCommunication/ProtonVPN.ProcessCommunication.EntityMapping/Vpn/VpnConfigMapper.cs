@@ -62,6 +62,7 @@ public class VpnConfigMapper : IMapper<VpnConfig, VpnConfigIpcEntity>
             IsIpv6Enabled = leftEntity.IsIpv6Enabled,
             WireGuardConnectionTimeout = leftEntity.WireGuardConnectionTimeout,
             DnsBlockMode = _entityMapper.Map<DnsBlockMode, DnsBlockModeIpcEntity>(leftEntity.DnsBlockMode),
+            ShouldDisableWeakHostSetting = leftEntity.ShouldDisableWeakHostSetting,
         };
     }
 
@@ -92,6 +93,7 @@ public class VpnConfigMapper : IMapper<VpnConfig, VpnConfigIpcEntity>
                 IsIpv6Enabled = rightEntity.IsIpv6Enabled,
                 WireGuardConnectionTimeout = rightEntity.WireGuardConnectionTimeout,
                 DnsBlockMode = _entityMapper.Map<DnsBlockModeIpcEntity, DnsBlockMode>(rightEntity.DnsBlockMode),
+                ShouldDisableWeakHostSetting = rightEntity.ShouldDisableWeakHostSetting,
             });
     }
 }

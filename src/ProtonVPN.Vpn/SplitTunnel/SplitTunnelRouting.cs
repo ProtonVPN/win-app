@@ -177,7 +177,7 @@ public class SplitTunnelRouting : ISplitTunnelRouting
 
     private void SetUpBlockModeRoutes(VpnConfig vpnConfig, INetworkInterface tunnelInterface, INetworkInterface[] networkInterfaces)
     {
-        INetworkInterface bestIpv4Interface = _networkInterfaces.GetBestInterface(hardwareIdToExclude: _config.GetHardwareId(vpnConfig.OpenVpnAdapter));
+        INetworkInterface bestIpv4Interface = _networkInterfaces.GetBestInterfaceExcludingHardwareId(hardwareIdToExclude: _config.GetHardwareId(vpnConfig.OpenVpnAdapter));
         uint? ipv4InterfaceMetric = _routingTableHelper.GetInterfaceMetric(bestIpv4Interface.Index, false);
         if (ipv4InterfaceMetric is null)
         {

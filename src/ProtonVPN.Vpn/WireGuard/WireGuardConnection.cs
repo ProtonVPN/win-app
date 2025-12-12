@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -32,6 +32,8 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
+using ProtonVPN.OperatingSystems.Network.Contracts;
+using ProtonVPN.OperatingSystems.Network.Contracts.Monitors;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Gateways;
 using Timer = System.Timers.Timer;
@@ -46,6 +48,8 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
     private readonly ILogger _logger;
     private readonly IConfiguration _config;
     private readonly IGatewayCache _gatewayCache;
+    private readonly ISystemNetworkInterfaces _networkInterfaces;
+    private readonly INetworkInterfacePolicyManager _interfacePolicyManager;
     private readonly Timer _serviceHealthCheckTimer = new();
     private readonly IWireGuardService _wireGuardService;
     private readonly IWireGuardConfigGenerator _wireGuardConfigGenerator;
@@ -54,6 +58,8 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
     private readonly StatusManager _statusManager;
     private readonly SingleAction _connectAction;
     private readonly SingleAction _disconnectAction;
+    private readonly IInterfaceForwardingMonitor _interfaceForwardingMonitor;
+    private INetworkInterfacePolicyLease _interfacePolicyLease;
 
     private VpnError _lastVpnError;
     private VpnCredentials _credentials;
@@ -68,6 +74,9 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         ILogger logger,
         IConfiguration config,
         IGatewayCache gatewayCache,
+        ISystemNetworkInterfaces networkInterfaces,
+        IInterfaceForwardingMonitor interfaceForwardingMonitor,
+        INetworkInterfacePolicyManager interfacePolicyManager,
         IWireGuardService wireGuardService,
         IWireGuardConfigGenerator wireGuardConfigGenerator,
         NtTrafficManager ntTrafficManager,
@@ -77,6 +86,9 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         _logger = logger;
         _config = config;
         _gatewayCache = gatewayCache;
+        _networkInterfaces = networkInterfaces;
+        _interfaceForwardingMonitor = interfaceForwardingMonitor;
+        _interfacePolicyManager = interfacePolicyManager;
         _wireGuardService = wireGuardService;
         _wireGuardConfigGenerator = wireGuardConfigGenerator;
         _ntTrafficManager = ntTrafficManager;
@@ -92,6 +104,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         _disconnectAction.Completed += OnDisconnectActionCompleted;
         _serviceHealthCheckTimer.Interval = config.ServiceCheckInterval.TotalMilliseconds;
         _serviceHealthCheckTimer.Elapsed += CheckIfServiceIsRunning;
+        _interfaceForwardingMonitor.ForwardingEnabled += OnInterfaceForwardingEnabled;
     }
 
     public event EventHandler<EventArgs<VpnState>> StateChanged;
@@ -109,9 +122,20 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
 
     private async Task ConnectActionAsync(CancellationToken cancellationToken)
     {
+        INetworkInterface bestInterface = GetBestInterface();
+        if (bestInterface.IsIPv4ForwardingEnabled)
+        {
+            _logger.Warn<ConnectLog>($"Triggering disconnect due to active interface forwarding " +
+                $"on interface {bestInterface.Name} with index {bestInterface.Index}.");
+
+            Disconnect(VpnError.InterfaceHasForwardingEnabled);
+            return;
+        }
+
         _logger.Info<ConnectStartLog>("Connect action started.");
         WriteConfig();
         UpdateGatewayCache();
+        ApplyInterfacePolicy(bestInterface);
         InvokeStateChange(VpnStatus.Connecting);
         await EnsureServiceIsStoppedAsync(cancellationToken);
         _statusManager.Start();
@@ -180,8 +204,10 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         }
 
         _serviceHealthCheckTimer.Stop();
+        _interfaceForwardingMonitor.Stop();
         StopServiceDependencies();
         await EnsureServiceIsStoppedAsync(cancellationToken);
+        ReleaseInterfacePolicy();
         _isConnected = false;
         CancelDisconnectCancellationToken();
     }
@@ -251,6 +277,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
             _isConnected = true;
             StartTrafficManager();
             _serviceHealthCheckTimer.Start();
+            _interfaceForwardingMonitor.Start();
             UpdateGatewayCache();
             _logger.Info<ConnectConnectedLog>("Connected state received and decorated by WireGuard.");
             InvokeStateChange(VpnStatus.Connected, state.Data.Error);
@@ -279,7 +306,9 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
 
         _isConnected = false;
         _serviceHealthCheckTimer.Stop();
+        _interfaceForwardingMonitor.Stop();
         StopServiceDependencies();
+        ReleaseInterfacePolicy();
         InvokeStateChange(VpnStatus.Disconnected, state.Data.Error);
         CancelDisconnectCancellationToken();
     }
@@ -309,6 +338,49 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         if (directoryPath != null)
         {
             Directory.CreateDirectory(directoryPath);
+        }
+    }
+
+    private void ApplyInterfacePolicy(INetworkInterface bestInterface)
+    {
+        ReleaseInterfacePolicy();
+
+        if (_vpnConfig is null || !_vpnConfig.ShouldDisableWeakHostSetting)
+        {
+            return;
+        }
+
+        if (bestInterface.Index == 0)
+        {
+            _logger.Warn<ConnectLog>("Skipping interface policy application because no active interface was resolved.");
+            return;
+        }
+
+        try
+        {
+            _interfacePolicyLease = _interfacePolicyManager.Apply(bestInterface);
+        }
+        catch (Exception ex)
+        {
+            _logger.Warn<ConnectLog>("Failed to apply interface policy.", ex);
+        }
+    }
+
+    private INetworkInterface GetBestInterface()
+    {
+        return _networkInterfaces.GetBestInterfaceExcludingHardwareId(_config.GetHardwareId(_vpnConfig.OpenVpnAdapter));
+    }
+
+    private void ReleaseInterfacePolicy()
+    {
+        try
+        {
+            _interfacePolicyLease?.Dispose();
+            _interfacePolicyLease = null;
+        }
+        catch (Exception e)
+        {
+            _logger.Warn<ConnectLog>("Failed to dispose interface policy lease.", e);
         }
     }
 
@@ -353,6 +425,32 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
             _logger.Info<DisconnectTriggerLog>($"The service {_wireGuardService.Name} is not running. " +
                          "Disconnecting with VpnError.Unknown to get reconnected.");
             Disconnect(VpnError.Unknown);
+        }
+    }
+
+    private void OnInterfaceForwardingEnabled(object sender, InterfaceForwardingEventArgs e)
+    {
+        if (!_isConnected)
+        {
+            return;
+        }
+
+        try
+        {
+            INetworkInterface bestInterface = GetBestInterface();
+            if (bestInterface.Index != e.InterfaceIndex)
+            {
+                return;
+            }
+
+            _logger.Warn<DisconnectTriggerLog>(
+                $"Detected active interface forwarding on interface {bestInterface.Name} with index {e.InterfaceIndex}. Disconnecting.");
+
+            Disconnect(VpnError.InterfaceHasForwardingEnabled);
+        }
+        catch (Exception ex)
+        {
+            _logger.Warn<ConnectLog>("Failed to handle interface forwarding notification.", ex);
         }
     }
 }

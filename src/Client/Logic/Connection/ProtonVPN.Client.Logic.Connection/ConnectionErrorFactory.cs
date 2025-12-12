@@ -56,6 +56,7 @@ public class ConnectionErrorFactory : IConnectionErrorFactory
             VpnError.WireGuardAdapterInUseError => GetConnectionError<WireGuardAdapterInUseConnectionError>(vpnError),
             VpnError.MissingConnectionCertificate => GetConnectionError<MissingConnectionCertificateError>(vpnError),
             VpnError.TlsCertificateError => GetConnectionError<TlsCertificateConnectionError>(vpnError),
+            VpnError.InterfaceHasForwardingEnabled => GetConnectionError<MobileHotspotConnectionError>(vpnError),
 
             VpnError.NoTapAdaptersError => GetConnectionError<NoTapAdaptersConnectionError>(vpnError),
             VpnError.TapAdapterInUseError => GetConnectionError<TapAdapterInUseConnectionError>(vpnError),

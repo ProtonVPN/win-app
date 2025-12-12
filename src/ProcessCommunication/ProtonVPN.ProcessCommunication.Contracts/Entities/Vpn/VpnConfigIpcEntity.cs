@@ -63,6 +63,9 @@ public class VpnConfigIpcEntity
     [DataMember(Order = 13, IsRequired = true)]
     public DnsBlockModeIpcEntity DnsBlockMode { get; set; }
 
+    [DataMember(Order = 14, IsRequired = true)]
+    public bool ShouldDisableWeakHostSetting { get; set; }
+
     public VpnConfigIpcEntity()
     {
         Ports = new Dictionary<VpnProtocolIpcEntity, int[]>();

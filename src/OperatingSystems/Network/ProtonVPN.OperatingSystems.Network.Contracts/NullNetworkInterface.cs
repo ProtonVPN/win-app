@@ -37,6 +37,8 @@ public class NullNetworkInterface : INetworkInterface
 
     public bool IsActive => false;
 
+    public bool IsIPv4ForwardingEnabled => false;
+
     public IPAddress DefaultGateway => IPAddress.None;
 
     public uint Index => 0;

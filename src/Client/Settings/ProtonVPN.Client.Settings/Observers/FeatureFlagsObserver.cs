@@ -51,6 +51,9 @@ public class FeatureFlagsObserver :
     [FeatureFlag("IsLocalAreaNetworkAllowedForPaidUsersOnly")]
     public bool IsLocalAreaNetworkAllowedForPaidUsersOnly => IsEnabled();
 
+    [FeatureFlag("ShouldDisableWeakHostSetting")]
+    public bool ShouldDisableWeakHostSetting => IsEnabled();
+
     [FeatureFlag("U2FGatewayPortalUrl")]
     public string U2FGatewayPortalUrl => GetPayload();
 

@@ -148,7 +148,7 @@ public class SplitTunnel : IVpnStateAware
     {
         string excludedHardwareId = _config.GetHardwareId(_serviceSettings.OpenVpnAdapter);
         IPAddress localIpv4Address = _networkUtilities.GetBestInterfaceIPv4Address(excludedHardwareId);
-        INetworkInterface bestInterface = _networkInterfaces.GetBestInterface(excludedHardwareId);
+        INetworkInterface bestInterface = _networkInterfaces.GetBestInterfaceExcludingHardwareId(excludedHardwareId);
 
         IPAddress localIpv6Address = null;
         if (!string.IsNullOrEmpty(bestInterface.Id))

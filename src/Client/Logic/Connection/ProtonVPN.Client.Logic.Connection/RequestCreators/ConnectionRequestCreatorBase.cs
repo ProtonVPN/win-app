@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.FreeServers;
@@ -74,6 +73,7 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
             IsIpv6Enabled = _featureFlagsObserver.IsIpv6SupportEnabled && Settings.IsIpv6Enabled,
             WireGuardConnectionTimeout = settings.WireGuardConnectionTimeout,
             DnsBlockMode = settings.DnsBlockMode,
+            ShouldDisableWeakHostSetting = _featureFlagsObserver.ShouldDisableWeakHostSetting,
         };
     }
 

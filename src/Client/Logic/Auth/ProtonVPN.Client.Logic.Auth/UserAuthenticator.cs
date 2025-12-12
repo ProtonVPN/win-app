@@ -164,6 +164,13 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
                 return authResult;
             }, _cts.Token);
 
+            if (_connectionManager.IsMobileHotspotError)
+            {
+                SetAuthenticationStatus(AuthenticationStatus.LoggedOut);
+
+                return AuthResult.Fail(AuthError.GuestHoleFailedDueToMobileHotspot);
+            }
+
             if (authResult != null)
             {
                 if (authResult.Success)

@@ -18,7 +18,6 @@
  */
 
 using System.Diagnostics;
-using ProtonVPN.Client.Common.UI.Extensions;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Models;
 using ProtonVPN.Client.Core.Services.Selection;

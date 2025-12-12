@@ -79,7 +79,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <InfoBar AutomationProperties.AutomationId="LoginPageMessage"
                                  IsOpen="{x:Bind ViewModel.IsMessageVisible, Mode=TwoWay}"
                                  Message="{x:Bind ViewModel.Message}"
-                                 Severity="{x:Bind ViewModel.MessageSeverity, Converter={StaticResource SeverityToInfoBarSeverityConverter}}" />
+                                 Severity="{x:Bind ViewModel.MessageSeverity, Converter={StaticResource SeverityToInfoBarSeverityConverter}}">
+                            <InfoBar.ActionButton>
+                                <custom:GhostButton Name="ActionButton"
+                                                    AutomationProperties.AutomationId="ActionButton"
+                                                    AutomationProperties.Name="{x:Bind ViewModel.ActionButtonTitle}"
+                                                    Command="{x:Bind ViewModel.TriggerActionButtonCommand, Mode=OneTime}"
+                                                    Content="{x:Bind ViewModel.ActionButtonTitle}"
+                                                    Style="{StaticResource PrimaryGhostButtonStyle}"
+                                                    Visibility="{x:Bind ViewModel.ActionButtonTitle, Converter={StaticResource StringVisibilityConverter}}" />
+                            </InfoBar.ActionButton>
+                        </InfoBar>
 
                     </StackPanel>
 

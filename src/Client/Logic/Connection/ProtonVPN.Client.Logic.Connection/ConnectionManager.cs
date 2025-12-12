@@ -91,6 +91,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
     public bool HasError => _currentError.HasError();
     public bool IsNetworkBlocked => _isNetworkBlocked;
     public bool IsTwoFactorError => !IsDisconnected && _currentError.IsTwoFactorError();
+    public bool IsMobileHotspotError => _currentError == VpnErrorTypeIpcEntity.InterfaceHasForwardingEnabled;
 
     public ConnectionManager(
         ILogger logger,

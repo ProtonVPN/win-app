@@ -19,11 +19,11 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Contracts.Services.Deeplinks;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
@@ -54,6 +54,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     private readonly ISettings _settings;
     private readonly IDebugToolsWindowActivator _debugToolsWindowActivator;
     private readonly IApplicationIconSelector _applicationIconSelector;
+    private readonly IDeepLinksService _deepLinksService;
 
     [ObservableProperty]
     private string _message;
@@ -67,11 +68,14 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     [ObservableProperty]
     private bool _isHelpVisible;
 
+    [ObservableProperty]
+    private string _actionButtonTitle = string.Empty;
+
+    private AuthError _lastAuthError;
+
     public bool IsDebugModeEnabled => _settings.IsDebugModeEnabled;
 
     public LoginPageViewModel(
-        IMainWindowViewNavigator parentViewNavigator,
-        ILoginViewNavigator childViewNavigator,
         IUrlsBrowser urlsBrowser,
         IMainWindowActivator mainWindowActivator,
         IReportIssueWindowActivator reportIssueWindowActivator,
@@ -79,8 +83,11 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
         ISettings settings,
         IDebugToolsWindowActivator debugToolsWindowActivator,
         IApplicationIconSelector applicationIconSelector,
+        IDeepLinksService deepLinksService,
+        IMainWindowViewNavigator parentViewNavigator,
+        ILoginViewNavigator childViewNavigator,
         IViewModelHelper viewModelHelper)
-        : base( parentViewNavigator, childViewNavigator, viewModelHelper)
+        : base(parentViewNavigator, childViewNavigator, viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
         _mainWindowActivator = mainWindowActivator;
@@ -89,12 +96,16 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
         _settings = settings;
         _debugToolsWindowActivator = debugToolsWindowActivator;
         _applicationIconSelector = applicationIconSelector;
+        _deepLinksService = deepLinksService;
 
         _message = string.Empty;
     }
 
     public void Receive(LoginStateChangedMessage message)
     {
+        _lastAuthError = message.AuthError;
+        ActionButtonTitle = string.Empty;
+
         ExecuteOnUIThread(async () =>
         {
             switch (message.Value)
@@ -198,6 +209,12 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
                 _troubleshootingWindowActivator.Activate();
                 break;
 
+            case AuthError.GuestHoleFailedDueToMobileHotspot:
+                Logger.Error<GuestHoleLog>("Failed to authenticate using guest hole due to mobile hotspot.");
+                SetErrorMessage(Localizer.Get("Login_Error_GuestHoleFailedDueToMobileHotspot"));
+                ActionButtonTitle = Localizer.Get("Connection_Error_OpenMobileHotspotSettings");
+                break;
+
             case AuthError.SsoAuthFailed:
                 SetErrorMessage(Localizer.Get("Login_Error_SsoAuthFailed"));
                 break;
@@ -288,6 +305,15 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
         else
         {
             _applicationIconSelector.OnAuthenticationErrorDismissed();
+        }
+    }
+
+    [RelayCommand]
+    private void TriggerActionButton()
+    {
+        if (_lastAuthError == AuthError.GuestHoleFailedDueToMobileHotspot)
+        {
+            _deepLinksService.OpenMobileHotspotSettings();
         }
     }
 }

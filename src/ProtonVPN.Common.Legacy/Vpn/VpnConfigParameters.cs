@@ -40,6 +40,7 @@ public class VpnConfigParameters
     public bool IsIpv6Enabled { get; set; }
     public TimeSpan WireGuardConnectionTimeout { get; set; }
     public DnsBlockMode DnsBlockMode { get; set; }
+    public bool ShouldDisableWeakHostSetting { get; set; }
 
     public VpnConfigParameters()
     {

@@ -22,6 +22,7 @@ using NSubstitute;
 using ProtonVPN.Client.Contracts.Profiles;
 using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Contracts.Services.Browsing;
+using ProtonVPN.Client.Contracts.Services.Deeplinks;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.ConnectionErrors;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -53,6 +54,7 @@ public class ConnectionErrorFactoryTest
         { VpnError.SessionLimitReachedPro, typeof(SessionLimitReachedConnectionError) },
         { VpnError.SessionLimitReachedVisionary, typeof(SessionLimitReachedConnectionError) },
         { VpnError.SessionLimitReachedUnknown, typeof(SessionLimitReachedConnectionError) },
+        { VpnError.InterfaceHasForwardingEnabled, typeof(MobileHotspotConnectionError) },
     };
 
     private ISettings? _settings;
@@ -61,6 +63,7 @@ public class ConnectionErrorFactoryTest
     private IProfileEditor? _profileEditor;
     private IUrlsBrowser? _urlsBrowser;
     private IReportIssueWindowActivator? _reportIssueWindowActivator;
+    private IDeepLinksService? _deepLinksService;
 
     [TestInitialize]
     public void TestInitialize()
@@ -71,6 +74,7 @@ public class ConnectionErrorFactoryTest
         _profileEditor = Substitute.For<IProfileEditor>();
         _urlsBrowser = Substitute.For<IUrlsBrowser>();
         _reportIssueWindowActivator = Substitute.For<IReportIssueWindowActivator>();
+        _deepLinksService = Substitute.For<IDeepLinksService>();
     }
 
     [TestCleanup]
@@ -82,6 +86,7 @@ public class ConnectionErrorFactoryTest
         _profileEditor = null;
         _urlsBrowser = null;
         _reportIssueWindowActivator = null;
+        _deepLinksService = null;
     }
 
     [TestMethod]
@@ -130,6 +135,7 @@ public class ConnectionErrorFactoryTest
             new MissingConnectionCertificateError(_localizer!, _reportIssueWindowActivator!),
             new TlsCertificateConnectionError(_localizer!, _reportIssueWindowActivator!),
             new SessionLimitReachedConnectionError(_localizer!, _settings!, _reportIssueWindowActivator!),
+            new MobileHotspotConnectionError(_localizer!, _deepLinksService!),
         ]);
     }
 
