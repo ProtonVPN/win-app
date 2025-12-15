@@ -342,6 +342,9 @@
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN не вдалося одержати сертифікат автентифікацій через проблему мережі.</value>
   </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>It is not possible to connect to VPN while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+  </data>
   <data name="Connection_Error_NoServers">
     <value>Усі вибрані вами сервери недоступні. Розширте вибір або повторіть спробу пізніше.</value>
   </data>
@@ -351,6 +354,9 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Мережевий адаптер відсутній.</value>
+  </data>
+  <data name="Connection_Error_OpenMobileHotspotSettings">
+    <value>Open mobile hotspot settings</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Повідомити про проблему</value>
@@ -3004,6 +3010,9 @@
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>Під час отримання подробиць сеансу сталася помилка. Спробуйте ще раз.</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>It is not possible to sign in while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Неправильний код. Повторіть спробу.</value>

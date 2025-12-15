@@ -342,6 +342,9 @@
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN не ўдалося атрымаць сертыфікат аўтэнтыфікацыі па прычыне праблем з сеткай.</value>
   </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>Немагчыма падключыцца да VPN, пакуль ваша прылада выкарыстоўваецца ў якасці мабільнага пункту доступу. Адключыце мабільны пункт доступу і паспрабуйце яшчэ раз.</value>
+  </data>
   <data name="Connection_Error_NoServers">
     <value>Усе выбраныя вамі серверы недаступны. Пашырце выбар або паспрабуйце пазней.</value>
   </data>
@@ -351,6 +354,9 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Адсутнічае сеткавы адаптар.</value>
+  </data>
+  <data name="Connection_Error_OpenMobileHotspotSettings">
+    <value>Адкрыць налады мабільнага пункту доступу</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Паведаміць аб праблеме</value>
@@ -3004,6 +3010,9 @@
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>Адбылася праблема пры атрыманні падрабязнасцяў сеанса. Паспрабуйце яшчэ раз.</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>Немагчыма ўвайсці, пакуль ваша прылада выкарыстоўваецца ў якасці мабільнага пункту доступу. Адключыце мабільны пункт доступу і паспрабуйце яшчэ раз.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Няправільны код. Паспрабуйце яшчэ раз.</value>

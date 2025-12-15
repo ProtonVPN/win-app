@@ -342,6 +342,9 @@
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN non è riuscito a recuperare il certificato di autenticazione a causa di un problema di rete.</value>
   </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>Non è possibile connettersi alla VPN mentre usi il tuo dispositivo come hotspot mobile. Disattiva l'hotspot mobile e riprova.</value>
+  </data>
   <data name="Connection_Error_NoServers">
     <value>I server nella tua selezione non sono disponibili. Espandi la selezione o riprova più tardi.</value>
   </data>
@@ -351,6 +354,9 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Adattatore di rete mancante.</value>
+  </data>
+  <data name="Connection_Error_OpenMobileHotspotSettings">
+    <value>Apri le impostazioni dell'hotspot mobile</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Segnala un problema</value>
@@ -2789,6 +2795,9 @@ Un carico elevato può rallentare la connessione.</value>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>Si è verificato un errore durante il caricamento dei dettagli della sessione. Riprova.</value>
   </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>Non è possibile connettersi alla VPN mentre usi il tuo dispositivo come hotspot mobile. Disattiva l'hotspot mobile e riprova.</value>
+  </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Codice errato. Riprova.</value>
   </data>
@@ -3333,7 +3342,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Consente connessioni a stampanti, altoparlanti e altri dispositivi nella tua rete locale.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
-    <value>Uses mDNS to connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Standard DNS continues to be routed through the VPN tunnel. Disabled by default for faster VPN speeds.</value>
+    <value>Utilizza mDNS per connetterti ai dispositivi usando nomi come 'My-Printer' o 'router.local' invece degli indirizzi IP. Il DNS standard continua a essere instradato attraverso il tunnel VPN. Disabilitato per impostazione predefinita per mantenere velocità VPN più elevate.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
     <value>Accesso ai dispositivi per nome</value>

@@ -342,6 +342,9 @@
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN kunde inte hämta autentiseringscertifikat på grund av nätverksproblem.</value>
   </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>It is not possible to connect to VPN while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+  </data>
   <data name="Connection_Error_NoServers">
     <value>Alla servrar i ditt val är inte tillgängliga. Utöka ditt val eller försök igen senare.</value>
   </data>
@@ -351,6 +354,9 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Nätverksadaptern saknas.</value>
+  </data>
+  <data name="Connection_Error_OpenMobileHotspotSettings">
+    <value>Open mobile hotspot settings</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Rapportera ett problem</value>
@@ -2788,6 +2794,9 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>Ett fel uppstod vid hämtning av sessionsdetaljerna. Försök igen.</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>It is not possible to sign in while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Felaktig kod. Försök igen.</value>

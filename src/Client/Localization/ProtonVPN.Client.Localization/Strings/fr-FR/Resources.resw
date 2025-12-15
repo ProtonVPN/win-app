@@ -342,6 +342,9 @@
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN n'a pas pu obtenir l'authentification du certificat suite à une erreur réseau.</value>
   </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>Il n'est pas possible de se connecter au VPN lorsque votre appareil est utilisé comme point d'accès mobile. Désactivez le point d'accès mobile et réessayez.</value>
+  </data>
   <data name="Connection_Error_NoServers">
     <value>Tous les serveurs de votre sélection sont indisponibles. Veuillez élargir votre sélection ou réessayer plus tard.</value>
   </data>
@@ -351,6 +354,9 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Il manque la carte réseau.</value>
+  </data>
+  <data name="Connection_Error_OpenMobileHotspotSettings">
+    <value>Ouvrir les paramètres du point d'accès mobile</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Signaler un bug</value>
@@ -2788,6 +2794,9 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>Une erreur s'est produite lors de la récupération des informations de la session. Veuillez réessayer.</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>Il n'est pas possible de se connecter lorsque votre appareil est utilisé comme point d'accès mobile. Désactivez le point d'accès mobile et réessayez.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Code incorrect. Nous vous invitons à réessayer.</value>

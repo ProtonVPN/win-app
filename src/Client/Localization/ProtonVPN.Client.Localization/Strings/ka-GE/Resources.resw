@@ -342,6 +342,9 @@
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN-მა ქსელის პრობლემის გამო ავთენტიკაციის სერტიფიკატი ვერ გამოითხოვა.</value>
   </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>It is not possible to connect to VPN while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+  </data>
   <data name="Connection_Error_NoServers">
     <value>All servers in your selection are unavailable. Please expand your selection or try again later.</value>
   </data>
@@ -351,6 +354,9 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>ქსელის ადაპტერი ვერ ვიპოვე.</value>
+  </data>
+  <data name="Connection_Error_OpenMobileHotspotSettings">
+    <value>Open mobile hotspot settings</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>პრობლემის ანგარიშის გადაგზავნა</value>
@@ -2788,6 +2794,9 @@ Error code: {0}</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>შეცდომა სესიის დეტალების მიღებისას. კიდევ სცადეთ.</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>It is not possible to sign in while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>კოდი არასწორია. თავიდან სცადეთ.</value>

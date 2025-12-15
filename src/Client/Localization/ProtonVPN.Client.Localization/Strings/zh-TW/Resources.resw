@@ -342,6 +342,9 @@
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>由於網路問題，Proton VPN 提取認證憑證失敗。</value>
   </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>It is not possible to connect to VPN while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+  </data>
   <data name="Connection_Error_NoServers">
     <value>您選取的伺服器目前不適用。請擴大您的選取範圍或者稍後再試一次。</value>
   </data>
@@ -351,6 +354,9 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>網路介面卡遺失。</value>
+  </data>
+  <data name="Connection_Error_OpenMobileHotspotSettings">
+    <value>Open mobile hotspot settings</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>回報問題</value>
@@ -2681,6 +2687,9 @@
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>取得連線細節時發生錯誤，請稍後再試。</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>It is not possible to sign in while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>驗證碼不正確，請重試。</value>

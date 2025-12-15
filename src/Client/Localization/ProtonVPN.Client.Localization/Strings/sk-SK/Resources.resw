@@ -342,6 +342,9 @@
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Protonu VPN sa nepodarilo načítať overovací certifikát kvôli problému so sieťou.</value>
   </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>Pri používaní zariadenia ako mobilného hotspotu nie je možné pripojiť sa k VPN. Vypnite mobilný hotspot a skúste to znova.</value>
+  </data>
   <data name="Connection_Error_NoServers">
     <value>Všetky servery vo vašom výbere sú nedostupné. Rozšírte svoj výber alebo to skúste neskôr, prosím.</value>
   </data>
@@ -351,6 +354,9 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Chýbajúci sieťový adaptér.</value>
+  </data>
+  <data name="Connection_Error_OpenMobileHotspotSettings">
+    <value>Otvoriť nastavenia mobilného hotspotu</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Nahlásiť problém</value>
@@ -3004,6 +3010,9 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>Pri načítavaní údajov relácie došlo k chybe. Skúste to prosím znova.</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>Pri používaní zariadenia ako mobilného hotspotu nie je možné sa prihlásiť. Vypnite mobilný hotspot a skúste to znova.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Nesprávny kód! Skúste to prosím znovu.</value>

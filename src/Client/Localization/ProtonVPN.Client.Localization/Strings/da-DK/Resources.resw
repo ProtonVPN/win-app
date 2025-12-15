@@ -342,6 +342,9 @@
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN kunne ikke hente godkendelsescertifikatet pga. et netværksproblem.</value>
   </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>Det er ikke muligt at forbinde til VPN, mens du bruger din enhed som et mobilt hotspot. Deaktiver mobilt hotspot, og prøv igen.</value>
+  </data>
   <data name="Connection_Error_NoServers">
     <value>Alle servere i dit valg er utilgængelige. Udvid venligst dit valg eller prøv igen senere.</value>
   </data>
@@ -351,6 +354,9 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Netværksadapteren mangler.</value>
+  </data>
+  <data name="Connection_Error_OpenMobileHotspotSettings">
+    <value>Åbn indstillinger for mobilt hotspot</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Anmeld en fejl</value>
@@ -2788,6 +2794,9 @@ En høj serverbelastning kan gøre din forbindelse langsommere.</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>Der opstod en fejl, da sessionsoplysningerne blev hentet. Prøv venligst igen.</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>Det er ikke muligt at forbinde til VPN, mens du bruger din enhed som et mobilt hotspot. Deaktiver mobilt hotspot, og prøv igen.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Forkert kode. Prøv venligst igen.</value>

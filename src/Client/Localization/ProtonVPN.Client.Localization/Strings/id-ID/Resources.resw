@@ -342,6 +342,9 @@
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN gagal mengambil sertifikat autentikasi karena masalah jaringan.</value>
   </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>VPN tidak dapat dihubungkan pada saat perangkat Anda digunakan sebagai hotspot seluler. Nonaktifkan hotspot seluler dan coba lagi.</value>
+  </data>
   <data name="Connection_Error_NoServers">
     <value>Seluruh server dalam rentang pilihan Anda sedang tidak tersedia. Silakan perluas pilihan Anda atau coba lagi nanti.</value>
   </data>
@@ -351,6 +354,9 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Adaptor jaringan tidak ditemukan.</value>
+  </data>
+  <data name="Connection_Error_OpenMobileHotspotSettings">
+    <value>Buka pengaturan hotspot seluler</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Laporkan masalah</value>
@@ -2680,6 +2686,9 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>Terjadi kesalahan saat menerima detail sesi. Silakan coba lagi.</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>Anda tidak dapat masuk pada saat perangkat Anda digunakan sebagai hotspot seluler. Nonaktifkan hotspot seluler dan coba lagi.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Kode salah. Silakan coba lagi.</value>

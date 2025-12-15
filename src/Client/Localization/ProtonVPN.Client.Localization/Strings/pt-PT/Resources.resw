@@ -342,6 +342,9 @@
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>O Proton VPN não conseguiu obter o certificado de autenticação devido a problemas de rede.</value>
   </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>It is not possible to connect to VPN while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+  </data>
   <data name="Connection_Error_NoServers">
     <value>Todos os servidores da sua seleção estão indisponíveis. Expanda a sua seleção ou tente novamente mais tarde.</value>
   </data>
@@ -351,6 +354,9 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Adaptador de rede em falta.</value>
+  </data>
+  <data name="Connection_Error_OpenMobileHotspotSettings">
+    <value>Open mobile hotspot settings</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Reportar um problema</value>
@@ -2788,6 +2794,9 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>Ocorreu um erro ao recuperar os detalhes da sessão. Tente novamente.</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>It is not possible to sign in while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Palavra-passe incorreta. Tente novamente.</value>

@@ -342,6 +342,9 @@
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN is er niet in geslaagd om het verificatiecertificaat op te halen vanwege een netwerkprobleem.</value>
   </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>Het is niet mogelijk om verbinding te maken met VPN terwijl u uw apparaat als mobiele hotspot gebruikt. Schakel de mobiele hotspot uit en probeer het opnieuw.</value>
+  </data>
   <data name="Connection_Error_NoServers">
     <value>Alle servers in uw selectie zijn niet beschikbaar. Vergroot uw selectie of probeer het later opnieuw.</value>
   </data>
@@ -351,6 +354,9 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>De netwerkadapter ontbreekt.</value>
+  </data>
+  <data name="Connection_Error_OpenMobileHotspotSettings">
+    <value>Open mobile hotspot settings</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Een probleem melden</value>
@@ -2788,6 +2794,9 @@ Foutcode: {0}</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>Er is een fout opgetreden bij het ophalen van de sessiegegevens. Probeer het opnieuw.</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>It is not possible to sign in while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Onjuiste code. Probeer het opnieuw.</value>

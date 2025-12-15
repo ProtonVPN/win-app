@@ -342,6 +342,9 @@
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN이 네트워크 문제로 인해 인증서를 불러오지 못했습니다.</value>
   </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>It is not possible to connect to VPN while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+  </data>
   <data name="Connection_Error_NoServers">
     <value>선택한 섹션의 모든 서버가 사용할 수 없습니다. 섹션을 확장하거나 나중에 다시 시도해 주세요.</value>
   </data>
@@ -351,6 +354,9 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>네트워크 어댑터가 없습니다.</value>
+  </data>
+  <data name="Connection_Error_OpenMobileHotspotSettings">
+    <value>Open mobile hotspot settings</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>문제 보고하기</value>
@@ -2680,6 +2686,9 @@
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>세션의 세부사항을 받아오는 중 오류가 발생했습니다. 다시 시도해주십시오.</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>It is not possible to sign in while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>잘못된 코드입니다. 다시 시도해 주세요.</value>

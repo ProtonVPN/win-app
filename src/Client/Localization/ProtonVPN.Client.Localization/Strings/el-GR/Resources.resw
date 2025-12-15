@@ -342,6 +342,9 @@
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Το Proton VPN απέτυχε να ανακτήσει το πιστοποιητικό ελέγχου ταυτότητας λόγω προβλήματος δικτύου.</value>
   </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>Δεν είναι δυνατή η σύνδεση με VPN ενώ χρησιμοποιείτε τη συσκευή σας ως κινητό hotspot. Απενεργοποιήστε το κινητό hotspot και δοκιμάστε ξανά.</value>
+  </data>
   <data name="Connection_Error_NoServers">
     <value>Όλοι οι διακομιστές της επιλογής σας δεν είναι διαθέσιμοι. Παρακαλούμε επεκτείνετε την επιλογή σας ή προσπαθήστε ξανά αργότερα.</value>
   </data>
@@ -351,6 +354,9 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Απουσία προσαρμογέα δικτύου.</value>
+  </data>
+  <data name="Connection_Error_OpenMobileHotspotSettings">
+    <value>Ανοίξτε τις ρυθμίσεις του κινητού hotspot</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Αναφορά προβλήματος</value>
@@ -2788,6 +2794,9 @@
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>Παρουσιάστηκε σφάλμα κατά την ανάκτηση των λεπτομερειών της συνεδρίας. Παρακαλούμε προσπαθήστε ξανά.</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>Δεν είναι δυνατή η σύνδεση ενώ χρησιμοποιείτε τη συσκευή σας ως κινητό hotspot. Απενεργοποιήστε το κινητό hotspot και δοκιμάστε ξανά.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Λανθασμένος κωδικός. Παρακαλούμε δοκιμάστε ξανά.</value>

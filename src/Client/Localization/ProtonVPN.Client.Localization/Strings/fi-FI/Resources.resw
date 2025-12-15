@@ -342,6 +342,9 @@
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN ei voinut noutaa todennusvarmennetta verkko-ongelman vuoksi.</value>
   </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>VPN-yhteyttä ei voida muodostaa, kun laitettasi käytetään mobiilitukiasemana. Poista mobiilitukiasema käytöstä ja yritä uudelleen.</value>
+  </data>
   <data name="Connection_Error_NoServers">
     <value>Kaikki valitsemasi palvelimet eivät ole käytettävissä. Laajenna valintaasi tai yritä uudelleen myöhemmin.</value>
   </data>
@@ -351,6 +354,9 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Verkkosovitin puuttuu.</value>
+  </data>
+  <data name="Connection_Error_OpenMobileHotspotSettings">
+    <value>Avaa mobiilitukiasema-asetukset</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Ilmoita ongelmasta</value>
@@ -2350,7 +2356,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Mahdollistaa luotettujen sovellusten ja IP-osoitteiden yhdistämisen ilman VPN-suojausta</value>
   </data>
   <data name="Flyouts_SplitTunneling_Inverse_Info">
-    <value>Only these apps and IP addresses connect through VPN. All other traffic is unprotected.</value>
+    <value>Vain nämä sovellukset ja IP-osoitteet muodostavat yhteyden VPN:n kautta. Kaikki muu tietoliikenne on suojaamatonta.</value>
   </data>
   <data name="Flyouts_SplitTunneling_Protected_Apps_One">
     <value>Suojattu sovellus ({0})</value>
@@ -2365,7 +2371,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Suojatut IP-osoitteet ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Standard_Info">
-    <value>These apps and IP addresses connect without VPN protection. All other traffic is protected.</value>
+    <value>Nämä sovellukset ja IP-osoitteet muodostavat yhteyden ilman VPN-suojausta. Kaikki muu tietoliikenne suojataan.</value>
   </data>
   <data name="Flyouts_SplitTunneling_Upsell_Description">
     <value>Jaa tietoliikenteesi VPN-tunneliin ja sen ulkopuolelle VPN Plussalla.</value>
@@ -2374,7 +2380,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Hanki molempien parhaat puolet</value>
   </data>
   <data name="Flyouts_Volume_Description">
-    <value>Shows the total amount of data passed through the VPN tunnel since you connected.</value>
+    <value>Näyttää yhteyden muodostamisen jälkeen VPN-tunnelin kautta siirretyn tiedon kokonaismäärän.</value>
   </data>
   <data name="Flyouts_Volume_Download">
     <value>Lataa</value>
@@ -2789,6 +2795,9 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>Virhe noudettaessa istunnon tietoja. Yritä uudelleen.</value>
   </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>Sisäänkirjautuminen ei ole mahdollista, kun laitettasi käytetään mobiilitukiasemana. Poista mobiilitukiasema käytöstä ja yritä uudelleen.</value>
+  </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Virheellinen koodi. Yritä uudelleen.</value>
   </data>
@@ -2915,7 +2924,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_Ipv6Disabled_Description">
-    <value>To include this address, you need to allow IPv6 connections through the VPN tunnel.</value>
+    <value>Tämän osoitteen sisällyttämiseksi sinun tulee sallia IPv6-yhteydet VPN-tunnelin kautta.</value>
   </data>
   <data name="Overlay_Ipv6Disabled_PrimaryButton">
     <value>Ota IPv6 käyttöön</value>
@@ -3305,7 +3314,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Connect to Proton VPN using your own Domain Name System (DNS). Only use DNS servers that you trust.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
-    <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
+    <value>Yritämme yhdistää näihin palvelimiin järjestyksessä. Jos mikään niistä ei toimi, käytetään oletusarvoista Proton VPN -DNS:ää.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS-palvelimet ({0})</value>
@@ -3330,7 +3339,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Salli LAN-yhteydet</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_Description">
-    <value>Allows connections to printers, speakers, and other devices in your local network.</value>
+    <value>Sallii yhteydet tulostimiin, kaiuttimiin ja muihin lähiverkossasi oleviin laitteisiin.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
     <value>Käyttää mDNS:ää yhteyden muodostamiseen laitteisiin, jotka käyttävät nimiä kuten ”My-Printer” tai ”router.local” IP-osoitteiden sijaan. Tavallinen DNS reititetään edelleen VPN-tunnelin kautta. Oletuksena pois käytöstä nopeamman VPN-yhteyden takaamiseksi.</value>
@@ -3523,7 +3532,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Sisällytä-tila</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Only selected apps and IP addresses connect through VPN, all other traffic is unprotected.</value>
+    <value>Vain valitut sovellukset ja IP-osoitteet muodostavat yhteyden VPN:n kautta, kaikki muu tietoliikenne on suojaamatonta.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
     <value>Sisällytä</value>
@@ -3655,7 +3664,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Edit your profile to make changes, or disconnect to edit your general VPN settings.</value>
   </data>
   <data name="Settings_OverriddenByProfile_Tagline">
-    <value>These settings are connected to '{0}' profile and can only be managed in Profiles.</value>
+    <value>Nämä asetukset liittyvät profiiliin "{0}", ja niitä voi hallita vain Profiileissa.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Settings_OverriddenByProfile_Title">

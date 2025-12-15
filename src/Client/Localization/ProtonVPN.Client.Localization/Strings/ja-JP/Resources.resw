@@ -342,6 +342,9 @@
   <data name="Connection_Error_MissingConnectionCertificate">
     <value>Proton VPN はネットワークの問題によりクライアント証明書の取得に失敗しました。</value>
   </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>It is not possible to connect to VPN while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+  </data>
   <data name="Connection_Error_NoServers">
     <value>選択したサーバーがすべて利用できません。選択範囲を拡大するか、後でもう一度お試しください。</value>
   </data>
@@ -351,6 +354,9 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>ネットワークアダプタが利用できません。</value>
+  </data>
+  <data name="Connection_Error_OpenMobileHotspotSettings">
+    <value>Open mobile hotspot settings</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>問題を報告</value>
@@ -2680,6 +2686,9 @@
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>セッションの詳細を取得するときにエラーが発生しました。 もう一度試してください。</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>It is not possible to sign in while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>無効なコードです。再度お試しください。</value>
