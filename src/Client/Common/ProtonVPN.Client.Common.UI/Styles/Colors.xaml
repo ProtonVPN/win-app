@@ -100,6 +100,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Color x:Key="GradientConnectedPinStop3Color">#FF1C9C7C</Color>
             <Color x:Key="GradientUpsellBackgroundStartColor">#FF11D8CC</Color>
             <Color x:Key="GradientUpsellBackgroundEndColor">#006E4BFF</Color>
+            <Color x:Key="GradientDownloadSpeedChartStartColor">#401EA885</Color>
+            <Color x:Key="GradientDownloadSpeedChartEndColor">#001EA885</Color>
+            <Color x:Key="GradientUploadSpeedChartStartColor">#40B71432</Color>
+            <Color x:Key="GradientUploadSpeedChartEndColor">#00B71432</Color>
 
             <!--  Composite Colors  -->
 
@@ -202,6 +206,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Color x:Key="GradientConnectedPinStop3Color">#FF4BB99D</Color>
             <Color x:Key="GradientUpsellBackgroundStartColor">#FF11D8CC</Color>
             <Color x:Key="GradientUpsellBackgroundEndColor">#006E4BFF</Color>
+            <Color x:Key="GradientDownloadSpeedChartStartColor">#404BB99D</Color>
+            <Color x:Key="GradientDownloadSpeedChartEndColor">#004BB99D</Color>
+            <Color x:Key="GradientUploadSpeedChartStartColor">#40F7607B</Color>
+            <Color x:Key="GradientUploadSpeedChartEndColor">#00F7607B</Color>
 
             <!--  Composite Colors  -->
 

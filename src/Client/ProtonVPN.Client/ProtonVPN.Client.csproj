@@ -75,7 +75,8 @@
     <None Remove="UI\Main\Features\SplitTunneling\SplitTunnelingWidgetView.xaml" />
     <None Remove="UI\Main\Home\Card\ConnectionCardComponentView.xaml" />
     <None Remove="UI\Main\Home\Card\DefaultConnections\DefaultConnectionSelectorView.xaml" />
-    <None Remove="UI\Main\Home\Details\Connection\VpnSpeedComponent.xaml" />
+    <None Remove="UI\Main\Home\Details\Connection\SpeedChartComponentView.xaml" />
+    <None Remove="UI\Main\Home\Details\Connection\SpeedChartControl.xaml" />
     <None Remove="UI\Main\Home\Details\DetailsComponentView.xaml" />
     <None Remove="UI\Main\Home\Details\Connection\ConnectionDetailsPageView.xaml" />
     <None Remove="UI\Main\Home\Details\Flyouts\CountryFlyoutView.xaml" />
@@ -165,7 +166,6 @@
     <PackageReference Include="CommunityToolkit.WinUI.Converters" />
     <PackageReference Include="CommunityToolkit.WinUI.Triggers" />
     <PackageReference Include="H.NotifyIcon.WinUI" />
-    <PackageReference Include="LiveChartsCore.SkiaSharpView.WinUI" />
     <PackageReference Include="Microsoft.WindowsAppSDK" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" />
     <PackageReference Include="Newtonsoft.Json" />
@@ -265,10 +265,6 @@
     <Page Update="UI\Main\FeatureIcons\ProtocolIconView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
-    <Page Update="UI\Main\Home\Details\Connection\VpnSpeedComponent.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
-    <Folder Include="UI\Main\Home\Details\Connection\" />
     <Folder Include="UI\Main\Home\Details\Location\" />
   </ItemGroup>
 
@@ -708,6 +704,18 @@
 
   <ItemGroup>
     <PRIResource Remove="UI\Main\Home\Details\Contracts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\Home\Details\Connection\SpeedChartControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\Home\Details\Connection\SpeedChartComponentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

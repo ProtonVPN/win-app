@@ -379,7 +379,7 @@ public class AppModule : Module
         RegisterViewModel<CensorshipSettingsPageViewModel>(builder);
         RegisterViewModel<AutoStartupSettingsPageViewModel>(builder);
         RegisterViewModel<SideWidgetsHostComponentViewModel>(builder);
-        RegisterViewModel<VpnSpeedViewModel>(builder);
+        RegisterViewModel<SpeedChartComponentViewModel>(builder);
         RegisterViewModel<ConnectionIntentSelectorViewModel>(builder);
         RegisterViewModel<ProfileIconSelectorViewModel>(builder);
         RegisterViewModel<ProfileSettingsSelectorViewModel>(builder);

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,42 +18,28 @@
  */
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using LiveChartsCore;
-using LiveChartsCore.Drawing;
-using LiveChartsCore.Kernel.Sketches;
-using LiveChartsCore.Measure;
-using LiveChartsCore.SkiaSharpView;
-using LiveChartsCore.SkiaSharpView.Painting;
-using LiveChartsCore.SkiaSharpView.Painting.Effects;
-using LiveChartsCore.SkiaSharpView.WinUI;
-using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Common.Enums;
 using ProtonVPN.Client.Common.Helpers;
+using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
+using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.History;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Common.Core.Networking;
-using SkiaSharp;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details.Connection;
 
-public partial class VpnSpeedViewModel : ActivatableViewModelBase,
-    IEventMessageReceiver<NetworkTrafficChangedMessage>
+public partial class SpeedChartComponentViewModel : ActivatableViewModelBase,
+    IEventMessageReceiver<NetworkTrafficChangedMessage>,
+    IEventMessageReceiver<MainWindowVisibilityChangedMessage>
 {
     private const double Y_AXIS_BUFFER = 1.1;
 
-    private readonly SKColor _uploadGraphColor = new(247, 96, 123, 255);
-    private readonly SKColor _downloadGraphColor = new(75, 185, 157, 255);
-
     private readonly INetworkTrafficManager _networkTrafficManager;
-
-    private ICartesianAxis _xAxis;
-    private ICartesianAxis _yAxis;
-    private ISeries _downloadSeries;
-    private ISeries _uploadSeries;
+    private readonly IMainWindowActivator _mainWindowActivator;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(FormattedDownloadSpeed))]
@@ -89,38 +75,37 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase,
 
     public string SpeedUnit => Localizer.GetFormat("Format_SpeedUnit", Localizer.GetSpeedUnit(Metric));
 
-    public ISeries[] Series { get; set; } = [];
+    [ObservableProperty]
+    private IReadOnlyList<double> _downloadSpeedHistory = [];
 
-    public IEnumerable<ICartesianAxis> XAxes { get; set; } = [];
+    [ObservableProperty]
+    private IReadOnlyList<double> _uploadSpeedHistory = [];
 
-    public IEnumerable<ICartesianAxis> YAxes { get; set; } = [];
+    [ObservableProperty]
+    private double _lowerBound;
 
-    public Margin DrawMargin { get; } = new(Margin.Auto);
+    [ObservableProperty]
+    private double _midpoint;
 
-    public SmartObservableCollection<double> ScaledDownloadDataPoints { get; } = [];
+    [ObservableProperty]
+    private double _upperBound;
 
-    public SmartObservableCollection<double> ScaledUploadDataPoints { get; } = [];
-
-    public SmartObservableCollection<double> Separators { get; } = [];
-
-    public VpnSpeedViewModel(
-        INetworkTrafficManager networkTrafficManager,
+    public SpeedChartComponentViewModel(
+        INetworkTrafficManager networkTrafficManager, 
+        IMainWindowActivator mainWindowActivator,
         IViewModelHelper viewModelHelper)
         : base(viewModelHelper)
     {
         _networkTrafficManager = networkTrafficManager;
-
-        _xAxis = GetXAxis();
-        _yAxis = GetYAxis();
-        _uploadSeries = GetLineSeries(ScaledUploadDataPoints, _uploadGraphColor, useDashEffect: true);
-        _downloadSeries = GetLineSeries(ScaledDownloadDataPoints, _downloadGraphColor);
-
-        XAxes = [_xAxis];
-        YAxes = [_yAxis];
-        Series = [_uploadSeries, _downloadSeries];
+        _mainWindowActivator = mainWindowActivator;
     }
 
     public void Receive(NetworkTrafficChangedMessage message)
+    {
+        ExecuteOnUIThread(InvalidateAll);
+    }
+
+    public void Receive(MainWindowVisibilityChangedMessage message)
     {
         ExecuteOnUIThread(InvalidateAll);
     }
@@ -146,7 +131,7 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase,
 
     private void InvalidateAll()
     {
-        if (!IsActive)
+        if (!IsActive || !_mainWindowActivator.IsWindowVisible)
         {
             return;
         }
@@ -163,58 +148,6 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase,
         InvalidateSpeedGraph();
     }
 
-    private Axis GetXAxis()
-    {
-        return new Axis()
-        {
-            IsVisible = false,
-            CustomSeparators = []
-        };
-    }
-
-    private Axis GetYAxis()
-    {
-        return new Axis
-        {
-            Position = AxisPosition.Start,
-            LabelsAlignment = Align.Start,
-            LabelsPaint = new SolidColorPaint(new SKColor(167, 164, 181, 255)),
-            TextSize = 10,
-            SeparatorsPaint = new SolidColorPaint(new SKColor(74, 70, 88, 255))
-            {
-                StrokeThickness = 1,
-                PathEffect = new DashEffect([3, 3]),
-                ZIndex = 0,
-            },
-            CustomSeparators = Separators,
-        };
-    }
-
-    private XamlLineSeries<double> GetLineSeries(ICollection<double> values, SKColor color, bool useDashEffect = false)
-    {
-        return new()
-        {
-            Stroke = new SolidColorPaint(color)
-            {
-                StrokeThickness = 1,
-                PathEffect = useDashEffect ? new DashEffect([3, 3]) : null,
-                ZIndex = 2,
-            },
-            Fill = new LinearGradientPaint(
-                [
-                    new SKColor(color.Red, color.Green, color.Blue, (byte)(255 * 0.25)),
-                    new SKColor(color.Red, color.Green, color.Blue, 0)
-                ],
-                new SKPoint(0.5f, 0),
-                new SKPoint(0.5f, 1)),
-            LineSmoothness = 1,
-            GeometrySize = 0,
-            IsHoverable = false,
-            ZIndex = 1,
-            Values = values,
-        };
-    }
-
     private void InvalidateSpeedGraph()
     {
         IReadOnlyList<NetworkTraffic> speedHistory = _networkTrafficManager.GetSpeedHistory();
@@ -227,17 +160,14 @@ public partial class VpnSpeedViewModel : ActivatableViewModelBase,
         Metric = metric;
         double scaleFactor = ByteConversionHelper.GetScaleFactor(Metric);
 
-        OnPropertyChanged(nameof(SpeedUnit));
-
-        ScaledDownloadDataPoints.Reset(downloadHistory.Select(n => GetScaledDataPoint(n, scaleFactor)).ToList());
-        ScaledUploadDataPoints.Reset(uploadHistory.Select(n => GetScaledDataPoint(n, scaleFactor)).ToList());
-
         double roundedScaledMaxSpeed = CalculateYAxisLimit(scaledMaxSpeed);
 
-        _yAxis.MinLimit = 0;
-        _yAxis.MaxLimit = roundedScaledMaxSpeed;
+        LowerBound = 0.0;
+        Midpoint = roundedScaledMaxSpeed / 2.0;
+        UpperBound = roundedScaledMaxSpeed;
 
-        Separators.Reset([0, roundedScaledMaxSpeed / 2.0, roundedScaledMaxSpeed]);
+        DownloadSpeedHistory = downloadHistory.Select(n => GetScaledDataPoint(n, scaleFactor)).ToList();
+        UploadSpeedHistory = uploadHistory.Select(n => GetScaledDataPoint(n, scaleFactor)).ToList();
     }
 
     private double GetScaledDataPoint(long number, double scaleFactor)

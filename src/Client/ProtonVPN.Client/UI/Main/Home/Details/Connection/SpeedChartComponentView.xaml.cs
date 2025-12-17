@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,13 +22,13 @@ using ProtonVPN.Client.Core.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details.Connection;
 
-public sealed partial class VpnSpeedComponent : IContextAware
+public sealed partial class SpeedChartComponentView : IContextAware
 {
-    public VpnSpeedViewModel ViewModel { get; }
+    public SpeedChartComponentViewModel ViewModel { get; }
 
-    public VpnSpeedComponent()
+    public SpeedChartComponentView()
     {
-        ViewModel = App.GetService<VpnSpeedViewModel>();
+        ViewModel = App.GetService<SpeedChartComponentViewModel>();
 
         InitializeComponent();
 

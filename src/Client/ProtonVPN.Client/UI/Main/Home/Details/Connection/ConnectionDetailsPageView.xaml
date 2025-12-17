@@ -115,8 +115,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <flyouts:SpeedFlyoutView />
                 </Flyout>
             </custom:DetailRowButton.Flyout>
-            
-            <connection:VpnSpeedComponent />
+
+            <connection:SpeedChartComponentView />
 
         </custom:DetailRowButton>
 
