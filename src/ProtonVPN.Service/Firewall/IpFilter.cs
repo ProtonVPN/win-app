@@ -21,7 +21,6 @@ using System;
 using Autofac;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.FirewallLogs;
-using ProtonVPN.Logging.Contracts.Events.SplitTunnelLogs;
 using ProtonVPN.NetworkFilter;
 
 namespace ProtonVPN.Service.Firewall;
@@ -161,8 +160,9 @@ public class IpFilter : IStartable
             action();
             session.CommitTransaction();
         }
-        catch (NetworkFilterException)
+        catch (NetworkFilterException e)
         {
+            _logger.Error<FirewallLog>("Transaction failed, aborting.", e);
             session.AbortTransaction();
             throw;
         }
