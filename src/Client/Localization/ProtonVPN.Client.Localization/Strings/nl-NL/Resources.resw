@@ -356,7 +356,7 @@
     <value>De netwerkadapter ontbreekt.</value>
   </data>
   <data name="Connection_Error_OpenMobileHotspotSettings">
-    <value>Open mobile hotspot settings</value>
+    <value>Mobiele hotspot instellingen openen</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Een probleem melden</value>
@@ -2796,7 +2796,7 @@ Foutcode: {0}</value>
     <value>Er is een fout opgetreden bij het ophalen van de sessiegegevens. Probeer het opnieuw.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>It is not possible to sign in while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+    <value>Het is niet mogelijk om in te loggen terwijl u uw apparaat als mobiele hotspot gebruikt. Schakel de mobiele hotspot uit en probeer het opnieuw.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Onjuiste code. Probeer het opnieuw.</value>
@@ -3110,7 +3110,7 @@ VPN-verbinding</value>
     <value>Open een website</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>Automatically open a website or an app of your choice when you connect to this profile.</value>
+    <value>Open automatisch een website of een app naar keuze wanneer u verbinding maakt met dit profiel.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>Verbinden en doorgaan</value>
@@ -3345,7 +3345,7 @@ VPN-verbinding</value>
     <value>Maakt gebruik van mDNS om te verbinden met apparaten via namen zoals 'Mijn-Printer' of 'router.local' in plaats van IP-adressen. Standaard DNS wordt nog steeds gerouteerd via de VPN-tunnel. Standaard uitgeschakeld voor hogere VPN-snelheden.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
-    <value>Access devices by name</value>
+    <value>Bereik apparaten via hun naam</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType">
     <value>NAT-type</value>
@@ -3459,7 +3459,7 @@ VPN-verbinding</value>
     <value>Port forwarding</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Active port number:</value>
+    <value>Actief poortnummer:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Poortnummer kopiëren</value>
@@ -3490,7 +3490,7 @@ VPN-verbinding</value>
     <value>Krijg een melding wanneer uw actieve poortnummer wijzigt.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Unavailable">
-    <value>Unavailable</value>
+    <value>Niet beschikbaar</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocol</value>

@@ -343,7 +343,7 @@
     <value>Proton VPN, ağ sorunu nedeniyle kimlik doğrulama sertifikasını alamadı.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>Aygıtınızı mobil erişim noktası olarak kullanırken VPN’e bağlanmak mümkün değildir. Mobil erişim noktasını devre dışı bırakıp tekrar deneyin.</value>
+    <value>Aygıtınızı mobil erişim noktası olarak kullanırken VPN bağlantısı kurulamaz. Mobil erişim noktasını kapatıp yeniden deneyin.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>Seçtiğiniz hiç bir sunucu kullanılamıyor. Lütfen seçiminizi genişletin ya da bir süre sonra yeniden deneyin.</value>
@@ -356,7 +356,7 @@
     <value>Ağ bağdaştırıcısı eksik.</value>
   </data>
   <data name="Connection_Error_OpenMobileHotspotSettings">
-    <value>Mobil erişim noktası ayarlarını açın.</value>
+    <value>Mobil erişim noktası ayarlarını açın</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Sorun bildireceğim</value>
@@ -2796,7 +2796,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Oturum bilgileri alınırken bir sorun çıktı. Lütfen yeniden deneyin.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>Aygıtınızı mobil erişim noktası olarak kullanırken oturum açmak mümkün değildir. Mobil erişim noktasını devre dışı bırakıp tekrar deneyin.</value>
+    <value>Aygıtınızı mobil erişim noktası olarak kullanırken oturum açılamaz. Mobil erişim noktasını kapatıp yeniden deneyin.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Kod yanlış. Lütfen yeniden deneyin.</value>

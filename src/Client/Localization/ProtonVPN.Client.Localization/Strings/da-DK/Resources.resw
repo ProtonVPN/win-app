@@ -2120,7 +2120,7 @@ En høj serverbelastning kan gøre din forbindelse langsommere.</value>
     <value>LAN-tilsutninger</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
-    <value>Vi opfriskede vores design og flyttede nogle ting rundt for at gøre appen nemmere at bruge.</value>
+    <value>Vi har opfrisket designet og flyttet rundt på nogle ting for at gøre appen nemmere at bruge.</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
     <value>Nyt udseende, samme beskyttelse</value>
@@ -2165,13 +2165,13 @@ En høj serverbelastning kan gøre din forbindelse langsommere.</value>
     <value>Luk Proton VPN</value>
   </data>
   <data name="Flyouts_Country_Description1">
-    <value>Browsing uden en VPN gør dig sårbar over for lokationsbaserede internetrestriktioner.</value>
+    <value>At browse uden VPN gør dig sårbar over for lokationsbaserede internetrestriktioner.</value>
   </data>
   <data name="Flyouts_Country_Description2">
     <value>Websteder kan bruge geoblokering til at begrænse indhold til bestemte placeringer. Regeringer kan også instruere ISPs (Internet Service Providers) i at blokere bestemte websteder i deres land.</value>
   </data>
   <data name="Flyouts_Country_Description3">
-    <value>En VPN får det til at se ud, som om du browser fra et andet sted, og beskytter dig mod overvågning og censur.</value>
+    <value>VPN får det til at se ud, som om du browser fra et andet sted, og beskytter dig mod overvågning og censur.</value>
   </data>
   <data name="Flyouts_Country_Title">
     <value>Land</value>
