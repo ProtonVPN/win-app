@@ -185,6 +185,7 @@ Name: "pt_PT"; MessagesFile: "compiler:Languages\Portuguese.isl,Strings\Portugue
 Name: "sl_SI"; MessagesFile: "compiler:Languages\Slovenian.isl,Strings\Slovenian.isl"
 Name: "uk_UA"; MessagesFile: "compiler:Languages\Ukrainian.isl,Strings\Ukrainian.isl"
 Name: "ja_JP"; MessagesFile: "compiler:Languages\Japanese.isl,Strings\Japanese.isl"
+Name: "ar_SA"; MessagesFile: "compiler:Languages\Arabic.isl,Strings\Arabic.isl"
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}\{#VersionFolder}\ServiceData"
