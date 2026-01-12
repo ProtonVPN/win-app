@@ -3314,7 +3314,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Kendi etki alanı adı sisteminizi (DNS) kullanarak Proton VPN bağlantısı kurun. Yalnızca güvendiğiniz DNS sunucularını kullanın.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
-    <value>Sırayla bu sunuculara bağlantı kurmaya çalışacağız. Hiçbiri işe yaramazsa, varsayılan Proton VPN DNS kullanılacak.</value>
+    <value>Bu sunuculara sırayla bağlanmaya çalışacağız. Hiçbiri çalışmazsa, varsayılan Proton VPN DNS kullanılacaktır.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
     <value>DNS sunucuları ({0})</value>
@@ -3333,7 +3333,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>VPN tünelinden geçmeyen IPv6 trafiğini engelleyerek veri sızıntılarını önler.</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6_Description">
-    <value>IPv6 trafiğinin VPN tüneli üzerinden geçmesini sağlar. Böylece, IPv6 siteleri ve hizmetleriyle uyumluluk artar.</value>
+    <value>IPv6 trafiğinin VPN tünelinden geçmesine izin verir. Bu, IPv6 web siteleri ve hizmetleriyle uyumluluğu artırır.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>Yerel ağ bağlantılarına izin verilsin</value>
@@ -3613,7 +3613,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Otomatik güncellemeler</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Proton VPN güncellemelerini otomatik olarak denetleyip kurun.</value>
+    <value>Proton VPN güncellemelerini otomatik olarak kontrol edin ve yükleyin.</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>Beta erişimi</value>

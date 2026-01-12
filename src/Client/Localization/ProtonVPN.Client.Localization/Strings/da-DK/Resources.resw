@@ -503,10 +503,10 @@ Fejlkode: {0}</value>
     <value>P2P-servere</value>
   </data>
   <data name="Connections_P2P_States_One">
-    <value>P2P-stat/region ({0})</value>
+    <value>P2P-stat ({0})</value>
   </data>
   <data name="Connections_P2P_States_Other">
-    <value>P2P-stater/regioner ({0})</value>
+    <value>P2P-stater ({0})</value>
   </data>
   <data name="Connections_Profiles_One">
     <value>Profil ({0})</value>
@@ -608,10 +608,10 @@ Fejlkode: {0}</value>
     <value>Vis servere ({0})</value>
   </data>
   <data name="Connections_SeeStates_One">
-    <value>Se stat/region ({0})</value>
+    <value>Se stat ({0})</value>
   </data>
   <data name="Connections_SeeStates_Other">
-    <value>Se stater/regioner ({0})</value>
+    <value>Se stater ({0})</value>
   </data>
   <data name="Connections_Server">
     <value>Server</value>
@@ -632,18 +632,18 @@ Fejlkode: {0}</value>
     <value>Status</value>
   </data>
   <data name="Connections_State_Restricted">
-    <value>Servere i denne stat/region er tilgængelige med VPN Plus.</value>
+    <value>Servere i denne stat er tilgængelige med VPN Plus.</value>
     <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_State_UnderMaintenance">
-    <value>Alle servere i denne stat/region er under vedligeholdelse.</value>
+    <value>Alle servere i denne stat er under vedligeholdelse.</value>
     <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_States_One">
-    <value>Stat/region ({0})</value>
+    <value>Stat ({0})</value>
   </data>
   <data name="Connections_States_Other">
-    <value>Stater/regioner ({0})</value>
+    <value>Stater ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_One">
     <value>land med Tor ({0})</value>

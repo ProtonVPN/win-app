@@ -1,0 +1,4602 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account_VpnPlan_Free">
+    <value>Proton VPN Free</value>
+  </data>
+  <data name="Automation_Properties_ConnectionDetails_Page">
+    <value>صفحة تفاصيل الاتصال</value>
+  </data>
+  <data name="Automation_Properties_Connection_Card_Component">
+    <value>بطاقة الإتصال</value>
+  </data>
+  <data name="Automation_Properties_Features_Bar">
+    <value>شريط الميزات</value>
+  </data>
+  <data name="Automation_Properties_Home_Page">
+    <value>الصفحة الرئيسة</value>
+  </data>
+  <data name="Automation_Properties_KillSwitch_Page">
+    <value>صفحة مفتاح الأمان</value>
+  </data>
+  <data name="Automation_Properties_LocationDetails_Page">
+    <value>صفحة معلومات الموقع</value>
+  </data>
+  <data name="Automation_Properties_Login_Page">
+    <value>صفحة تسجيل الدخول</value>
+  </data>
+  <data name="Automation_Properties_Main_Page">
+    <value>الصفحة الرئيسة</value>
+  </data>
+  <data name="Automation_Properties_NetShield_Page">
+    <value>صفحة NetShield</value>
+  </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>لا توجد صفحة خوادم</value>
+  </data>
+  <data name="Automation_Properties_PortForwarding_Page">
+    <value>صفحة إعادة توجيه المنفذ</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page">
+    <value>صفحة المِلف الشخصي</value>
+  </data>
+  <data name="Automation_Properties_Settings_Advanced_Page">
+    <value>صفحة الإعدادات المتقدمة</value>
+  </data>
+  <data name="Automation_Properties_Settings_Common_Page">
+    <value>صفحة الإعدادات العامة</value>
+  </data>
+  <data name="Automation_Properties_Settings_Page">
+    <value>صفحة الإعدادات</value>
+  </data>
+  <data name="Automation_Properties_Sidebar">
+    <value>الشريط الجانبي</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Countries_Page">
+    <value>صفحة الدول</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
+    <value>صفحة البوابات</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Page">
+    <value>صفحة الاتصالات</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Profiles_Page">
+    <value>صفحة المِلفات الشخصية</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Recents_Page">
+    <value>صفحة العناصر الأخيرة</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Search_Results_Page">
+    <value>نتائج البحث</value>
+  </data>
+  <data name="Automation_Properties_SplitTunneling_Page">
+    <value>صفحة التوجيه المقسم</value>
+  </data>
+  <data name="Cities">
+    <value>المدن</value>
+  </data>
+  <data name="City_Fastest">
+    <value>أسرع مدينة</value>
+  </data>
+  <data name="City_Random">
+    <value>مدينة عشوائية</value>
+  </data>
+  <data name="Common_Actions_ActionsFor">
+    <value>إجراءات لـ {0}</value>
+    <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_Add">
+    <value>أضف</value>
+  </data>
+  <data name="Common_Actions_Back">
+    <value>العودة</value>
+  </data>
+  <data name="Common_Actions_Cancel">
+    <value>إلغاء</value>
+  </data>
+  <data name="Common_Actions_Change">
+    <value>تغيير</value>
+  </data>
+  <data name="Common_Actions_Close">
+    <value>إغلاق</value>
+  </data>
+  <data name="Common_Actions_Connect">
+    <value>اتصل</value>
+  </data>
+  <data name="Common_Actions_ConnectTo">
+    <value>اتصل بـ{0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_ContactUs">
+    <value>تواصل معنا</value>
+  </data>
+  <data name="Common_Actions_Customize">
+    <value>تخصيص</value>
+  </data>
+  <data name="Common_Actions_Delete">
+    <value>حذف</value>
+  </data>
+  <data name="Common_Actions_Disconnect">
+    <value>قطع الاتصال</value>
+  </data>
+  <data name="Common_Actions_DisconnectFrom">
+    <value>قطع الاتصال من {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_Duplicate">
+    <value>كرر</value>
+  </data>
+  <data name="Common_Actions_Edit">
+    <value>تعديل</value>
+  </data>
+  <data name="Common_Actions_Enable">
+    <value>تفعيل</value>
+  </data>
+  <data name="Common_Actions_Exit_ProtonVPN">
+    <value>الخروج من Proton VPN</value>
+  </data>
+  <data name="Common_Actions_GotIt">
+    <value>أحصل عليها</value>
+  </data>
+  <data name="Common_Actions_Install">
+    <value>تثبيت</value>
+  </data>
+  <data name="Common_Actions_MoveDown">
+    <value>اذهب للاسفل</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>اذهب للأعلى</value>
+  </data>
+  <data name="Common_Actions_Reconnect">
+    <value>إعادة الاتصال</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>تحديث</value>
+  </data>
+  <data name="Common_Actions_Remove">
+    <value>إزالة</value>
+  </data>
+  <data name="Common_Actions_Restart">
+    <value>إعادة التشغيل</value>
+  </data>
+  <data name="Common_Actions_Save">
+    <value>احفظ</value>
+  </data>
+  <data name="Common_Actions_TryAgain">
+    <value>أعد المحاولة</value>
+  </data>
+  <data name="Common_Actions_Update">
+    <value>تحديث</value>
+  </data>
+  <data name="Common_Actions_Upgrade">
+    <value>الترقية</value>
+  </data>
+  <data name="Common_Confirmation_KillSwitch_Message">
+    <value>تم تمكين مفتاح الإيقاف المتقدم. لاستخدام الإنترنت دون VPN، قم بتعطيل مفتاح الإيقاف المتقدم.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
+    <value>تم تمكين مفتاح الإيقاف المتقدم. إذا قمت بالمتابعة، سيتم قطع اتصالك بالإنترنت.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnected_Message">
+    <value>سوف يتم ايقاف اتصالك بالـ VPN</value>
+  </data>
+  <data name="Common_Links_LearnMore">
+    <value>تعرف على المزيد</value>
+  </data>
+  <data name="Common_Message_Loading">
+    <value>جارٍ التحميل…</value>
+  </data>
+  <data name="Common_States_Off">
+    <value>متوقف</value>
+  </data>
+  <data name="Common_States_On">
+    <value>مفعل</value>
+  </data>
+  <data name="Common_States_Updating">
+    <value>جارِ التحديث...</value>
+  </data>
+  <data name="Common_Tags_Beta">
+    <value>تجريبية</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
+  <data name="Common_Tags_New">
+    <value>جديد</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
+  </data>
+  <data name="Common_Tags_Recommended">
+    <value>موصى به</value>
+    <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
+  </data>
+  <data name="Components_Update_GetMostFromYourVpn">
+    <value>احصل على أقصى استفادة من VPN الخاص بك عن طريق التحديث إلى أحدث إصدار من التطبيق.</value>
+  </data>
+  <data name="Components_Update_MoreLikelyIssues">
+    <value>من المحتمل جدا أن تواجهك أعطال على الإصدارات القديمة من Proton VPN.</value>
+  </data>
+  <data name="Components_Update_UpdateAvailable">
+    <value>يتوفر التحديث</value>
+  </data>
+  <data name="Components_Update_UpdateProtonVpn">
+    <value>تحديث Proton VPN</value>
+  </data>
+  <data name="Connection_Error_EditProfile">
+    <value>تعديل الملف الشخصي</value>
+  </data>
+  <data name="Connection_Error_MissingConnectionCertificate">
+    <value>فشل Proton VPN في جلب شهادة المصادقة بسبب مشكلة في الشبكة.</value>
+  </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>It is not possible to connect to VPN while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+  </data>
+  <data name="Connection_Error_NoServers">
+    <value>جميع الخوادم التي اخترتها غير متاحة. يرجى توسيع اختياراتك أو إعادة المحاولة لاحقًا.</value>
+  </data>
+  <data name="Connection_Error_NoServers_Profile">
+    <value>اختيار الخادم الخاص بك لـ {0} غير متوفر. حدد خادمًا مختلفًا أو حاول مرة أخرى لاحقًا.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Connection_Error_NoTapAdapters">
+    <value>محول الشبكة مفقود.</value>
+  </data>
+  <data name="Connection_Error_OpenMobileHotspotSettings">
+    <value>Open mobile hotspot settings</value>
+  </data>
+  <data name="Connection_Error_ReportAnIssue">
+    <value>الإبلاغ عن مشكلة</value>
+  </data>
+  <data name="Connection_Error_RpcServerUnavailable">
+    <value>لا يستطيع Proton VPN الاتصال لأن خادم RPC غير متوفر على النظام الخاص بك.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedFreeUser">
+    <value>لقد وصلت إلى الحد الأقصى من عدد الأجهزة. رجاءً قم بتسجيل الخروج من احد الاجهزة، أو قم بالترقية إلى PLUS لتستطيع توصيل حتى عشرة أجهزة في الوقت نفسه.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedPaidUser">
+    <value>لقد وصلت إلى الحد الأقصى لعدد الأجهزة المتصلة، قم بتسجيل الخروج من احد الاجهزة لتوصيل ذلك الجهاز.</value>
+  </data>
+  <data name="Connection_Error_TapAdapterInUse">
+    <value>محول الشبكة الخاص بك قيد الاستخدام حالياً.</value>
+  </data>
+  <data name="Connection_Error_TapRequiresUpdate">
+    <value>إصدار محول الشبكة قديم.</value>
+  </data>
+  <data name="Connection_Error_Title">
+    <value>فشل الإتصال</value>
+  </data>
+  <data name="Connection_Error_TlsCertificate">
+    <value>هناك مشكلة في التحقق من صحة شهادة خادم VPN، مما قد يشير إلى أنه يتم التلاعب باتصال الشبكة أو أن الخادم الذي تحاول الاتصال به يعاني من مشكلة في التكوين. احصل على المساعدة من دعم العملاء لدينا عن طريق إرسال تقرير مشكلة.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>للاتصال بـ VPN، انتقل إلى بوابة المصادقة الثنائية (2FA) الخاصة بالمؤسسة وانقر على مفتاح الأمان.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>المصادقة الثنائية (2FA) مطلوبة</value>
+  </data>
+  <data name="Connection_Error_Unknown">
+    <value>تحقق من اتصالك بالإنترنت وحاول مرة أخرى. إذا لم ينجح ذلك، فاتصل بفريق دعم العملاء لدينا.
+
+رمز الخطأ: {0}</value>
+  </data>
+  <data name="Connection_Error_ViewPossibleSolutions">
+    <value>عرض الإصلاحات</value>
+  </data>
+  <data name="Connection_Error_WireGuardAdapterInUse">
+    <value>محول WireGuard على جهازك قيد الاستخدام. اقطع الاتصال بأي VPN آخر يعمل على جهازك، ثم حاول مرة أخرى.</value>
+  </data>
+  <data name="Connection_Intent_AutoSelected">
+    <value>تم الاختيار التقائي من</value>
+    <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
+  </data>
+  <data name="Connection_Intent_City_Server">
+    <value>{0} #{1}</value>
+    <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the number associated to the server (eg. Zurich #20)</comment>
+  </data>
+  <data name="Connection_Intent_Country_Server">
+    <value>{0} #{1}</value>
+    <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
+  </data>
+  <data name="Connection_Via_SecureCore">
+    <value>من خلال {0}</value>
+    <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
+  </data>
+  <data name="Connections_Cities_Zero">
+    <value>مدن ({0})</value>
+  </data>
+  <data name="Connections_Cities_One">
+    <value>({0}) مدينة</value>
+  </data>
+  <data name="Connections_Cities_Two">
+    <value>مدينتان ({0})</value>
+  </data>
+  <data name="Connections_Cities_Few">
+    <value>مدن ({0})</value>
+  </data>
+  <data name="Connections_Cities_Many">
+    <value>مدن ({0})</value>
+  </data>
+  <data name="Connections_Cities_Other">
+    <value>({0}) مدن</value>
+  </data>
+  <data name="Connections_City">
+    <value>المدينة</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>الخوادم في هذه المدينة متاحة مع VPN Plus</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>جميع الخوادم في هذه المدينة تحت الصيانة</value>
+  </data>
+  <data name="Connections_Countries_Zero">
+    <value>البلدان ({0})</value>
+  </data>
+  <data name="Connections_Countries_One">
+    <value>البلد ({0})</value>
+  </data>
+  <data name="Connections_Countries_Two">
+    <value>البلدان ({0})</value>
+  </data>
+  <data name="Connections_Countries_Few">
+    <value>البلدان ({0})</value>
+  </data>
+  <data name="Connections_Countries_Many">
+    <value>البلدان ({0})</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>البلدان ({0})</value>
+  </data>
+  <data name="Connections_Country">
+    <value>البلد</value>
+  </data>
+  <data name="Connections_Country_Middle">
+    <value>البلد الأوسط</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>الخوادم في هذا البلد متوفرة مع VPN Plus</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>جميع الخوادم في هذا البلد تحت الصيانة</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>تعذر الاتصال</value>
+  </data>
+  <data name="Connections_Fastest">
+    <value>الأسرع</value>
+  </data>
+  <data name="Connections_Free_Servers_Zero">
+    <value>خوادم مجانية</value>
+  </data>
+  <data name="Connections_Free_Servers_One">
+    <value>خادم مجاني</value>
+  </data>
+  <data name="Connections_Free_Servers_Two">
+    <value>خادمان مجانيان</value>
+  </data>
+  <data name="Connections_Free_Servers_Few">
+    <value>خوادم مجانية</value>
+  </data>
+  <data name="Connections_Free_Servers_Many">
+    <value>خوادم مجانية</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>خوادم مجانية</value>
+  </data>
+  <data name="Connections_Gateway">
+    <value>البوابة</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>الخوادم في هذه البوابة متوفرة مع VPN Plus</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>جميع الخوادم في هذه البوابة تحت الصيانة</value>
+  </data>
+  <data name="Connections_Gateways_Zero">
+    <value>بوابات ({0})</value>
+  </data>
+  <data name="Connections_Gateways_One">
+    <value>بوابة ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Two">
+    <value>بوابتان ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Few">
+    <value>بوابات ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Many">
+    <value>بوابات ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>بوابات ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Server">
+    <value>خادم مخصص</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Zero">
+    <value>خوادم مخصصة ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_One">
+    <value>خادم مخصص ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Two">
+    <value>خادمان مخصصان ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Few">
+    <value>خوادم مخصصة ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Many">
+    <value>خوادم مخصصة ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>خوادم مخصصة ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Zero">
+    <value>مدن P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_One">
+    <value>مدينة P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Two">
+    <value>مدينتا P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Few">
+    <value>مدن P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Many">
+    <value>مدن P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>مدن P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Zero">
+    <value>بلدان P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_One">
+    <value>بلد P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Two">
+    <value>بلدا P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Few">
+    <value>بلدان P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Many">
+    <value>بلدان P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>بلدان P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Zero">
+    <value>خوادم P2P</value>
+  </data>
+  <data name="Connections_P2P_Servers_One">
+    <value>خادم P2P</value>
+  </data>
+  <data name="Connections_P2P_Servers_Two">
+    <value>خادما P2P</value>
+  </data>
+  <data name="Connections_P2P_Servers_Few">
+    <value>خوادم P2P</value>
+  </data>
+  <data name="Connections_P2P_Servers_Many">
+    <value>خوادم P2P</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>خوادم P2P</value>
+  </data>
+  <data name="Connections_P2P_States_Zero">
+    <value>ولايات P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_One">
+    <value>ولاية P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Two">
+    <value>ولايتا P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Few">
+    <value>ولايات P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Many">
+    <value>ولايات P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>ولايات P2P ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Zero">
+    <value>ملفات شخصية ({0})</value>
+  </data>
+  <data name="Connections_Profiles_One">
+    <value>ملف شخصي ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Two">
+    <value>ملفان شخصيان ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Few">
+    <value>ملفات شخصية ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Many">
+    <value>ملفات شخصية ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Other">
+    <value>ملفات شخصية ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Create">
+    <value>إنشاء ملف شخصي</value>
+    <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
+  </data>
+  <data name="Connections_Profiles_Delete">
+    <value>حذف الملف الشخصي</value>
+  </data>
+  <data name="Connections_Profiles_Delete_Message">
+    <value>'{0}' ستتم إزالتها نهائيًا.</value>
+    <comment>{0} is a placeholder for the name of the profile.</comment>
+  </data>
+  <data name="Connections_Profiles_Delete_Title">
+    <value>حذف الملف الشخصي؟</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Description">
+    <value>الملفات الشخصية هي اتصالات محفوظة مع اختيارك للموقع والخادم والبروتوكول.</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Title">
+    <value>إنشاء ملفك الشخصي الأول</value>
+  </data>
+  <data name="Connections_Profiles_Location_Header">
+    <value>اختر نوع الاتصال والموقع</value>
+  </data>
+  <data name="Connections_Profiles_Name">
+    <value>اعطِ اسم للملف التعريفي</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default">
+    <value>بدون عنوان</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate">
+    <value>نسخة من {0}</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
+  </data>
+  <data name="Connections_Profiles_New">
+    <value>ملف جديد</value>
+    <comment>"New profile" is more appropriate when you already have a profile</comment>
+  </data>
+  <data name="Connections_Profiles_NotAvailable_Tooltip">
+    <value>الملفات الشخصية متاحة مع VPN Plus</value>
+    <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
+  </data>
+  <data name="Connections_Profiles_Settings_Description">
+    <value>إعدادات الملف التعريفي ستتقدم على إعدادات VPN عندما تتصل بها.</value>
+  </data>
+  <data name="Connections_Profiles_Settings_Header">
+    <value>إضافة إعدادات مخصصة</value>
+  </data>
+  <data name="Connections_Random">
+    <value>عشوائي</value>
+  </data>
+  <data name="Connections_Recents_Zero">
+    <value>اتصالات حديثة ({0})</value>
+  </data>
+  <data name="Connections_Recents_One">
+    <value>اتصال حديث ({0})</value>
+  </data>
+  <data name="Connections_Recents_Two">
+    <value>اتصالان حديثان ({0})</value>
+  </data>
+  <data name="Connections_Recents_Few">
+    <value>اتصالات حديثة ({0})</value>
+  </data>
+  <data name="Connections_Recents_Many">
+    <value>اتصالات حديثة ({0})</value>
+  </data>
+  <data name="Connections_Recents_Other">
+    <value>اتصالات حديثة ({0})</value>
+  </data>
+  <data name="Connections_Recents_Empty_Description">
+    <value>اعرض سجل اتصالاتك هنا.</value>
+  </data>
+  <data name="Connections_Recents_Empty_Title">
+    <value>لا توجد اتصالات حديثة بعد</value>
+  </data>
+  <data name="Connections_Recents_Pinned_Zero">
+    <value>مثبتة ({0})</value>
+  </data>
+  <data name="Connections_Recents_Pinned_One">
+    <value>مثبت ({0})</value>
+  </data>
+  <data name="Connections_Recents_Pinned_Two">
+    <value>مثبتان ({0})</value>
+  </data>
+  <data name="Connections_Recents_Pinned_Few">
+    <value>مثبتة ({0})</value>
+  </data>
+  <data name="Connections_Recents_Pinned_Many">
+    <value>مثبتة ({0})</value>
+  </data>
+  <data name="Connections_Recents_Pinned_Other">
+    <value>مثبتة ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Zero">
+    <value>بلدان Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_One">
+    <value>بلد Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Two">
+    <value>بلدا Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Few">
+    <value>بلدان Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Many">
+    <value>بلدان Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>بلدان Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Zero">
+    <value>خوادم Secure Core</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_One">
+    <value>خادم Secure Core</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Two">
+    <value>خادما Secure Core</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Few">
+    <value>خوادم Secure Core</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Many">
+    <value>خوادم Secure Core</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>خوادم Secure Core</value>
+  </data>
+  <data name="Connections_SeeCities_Zero">
+    <value>عرض المدن ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_One">
+    <value>عرض المدينة ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Two">
+    <value>عرض المدينتين ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Few">
+    <value>عرض المدن ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Many">
+    <value>عرض المدن ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Other">
+    <value>عرض المدن ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Zero">
+    <value>عرض الخوادم ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_One">
+    <value>عرض الخادم ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Two">
+    <value>عرض الخادمين ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Few">
+    <value>عرض الخوادم ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Many">
+    <value>عرض الخوادم ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Other">
+    <value>عرض الخوادم ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Zero">
+    <value>عرض الولايات ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_One">
+    <value>عرض الولاية ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Two">
+    <value>عرض الولايتين ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Few">
+    <value>عرض الولايات ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Many">
+    <value>عرض الولايات ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Other">
+    <value>عرض الولايات ({0})</value>
+  </data>
+  <data name="Connections_Server">
+    <value>الخادم</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>الخادم المتاح مع VPN Plus</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>هذا الخادم تحت الصيانة</value>
+  </data>
+  <data name="Connections_Servers_Zero">
+    <value>خوادم</value>
+  </data>
+  <data name="Connections_Servers_One">
+    <value>خادم</value>
+  </data>
+  <data name="Connections_Servers_Two">
+    <value>خادمان</value>
+  </data>
+  <data name="Connections_Servers_Few">
+    <value>خوادم</value>
+  </data>
+  <data name="Connections_Servers_Many">
+    <value>خوادم</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>خوادم</value>
+  </data>
+  <data name="Connections_State">
+    <value>الولاية</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>الخوادم في هذه الولاية متاحة مع VPN Plus.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>كافة الخوادم في هذه الحالة تحت الصيانة.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_Zero">
+    <value>ولايات ({0})</value>
+  </data>
+  <data name="Connections_States_One">
+    <value>ولاية ({0})</value>
+  </data>
+  <data name="Connections_States_Two">
+    <value>ولايتان ({0})</value>
+  </data>
+  <data name="Connections_States_Few">
+    <value>ولايات ({0})</value>
+  </data>
+  <data name="Connections_States_Many">
+    <value>ولايات ({0})</value>
+  </data>
+  <data name="Connections_States_Other">
+    <value>ولايات ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Zero">
+    <value>بلدان Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_One">
+    <value>بلد Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Two">
+    <value>بلدا Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Few">
+    <value>بلدان Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Many">
+    <value>بلدان Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>بلدان Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Zero">
+    <value>خوادم Tor</value>
+  </data>
+  <data name="Connections_Tor_Servers_One">
+    <value>خادم Tor</value>
+  </data>
+  <data name="Connections_Tor_Servers_Two">
+    <value>خادما Tor</value>
+  </data>
+  <data name="Connections_Tor_Servers_Few">
+    <value>خوادم Tor</value>
+  </data>
+  <data name="Connections_Tor_Servers_Many">
+    <value>خوادم Tor</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>خوادم Tor</value>
+  </data>
+  <data name="Countries">
+    <value>الدول</value>
+  </data>
+  <data name="Countries_All">
+    <value>الكل</value>
+  </data>
+  <data name="Countries_City_Zero">
+    <value>{0} مدينة</value>
+  </data>
+  <data name="Countries_City_One">
+    <value>{0} مدينة</value>
+  </data>
+  <data name="Countries_City_Two">
+    <value>{0} مدينتان</value>
+  </data>
+  <data name="Countries_City_Few">
+    <value>{0} مدن</value>
+  </data>
+  <data name="Countries_City_Many">
+    <value>{0} مدينة</value>
+  </data>
+  <data name="Countries_City_Other">
+    <value>{0} مدينة</value>
+  </data>
+  <data name="Countries_Connect">
+    <value>اتصال</value>
+    <comment>Connect button label on a country row in the countries tab</comment>
+  </data>
+  <data name="Countries_Fastest">
+    <value>أسرع دولة</value>
+  </data>
+  <data name="Countries_NoSearchResults">
+    <value>لم يتم العثور على نتائج</value>
+  </data>
+  <data name="Countries_NumberOfServers">
+    <value>الخوادم ({0})</value>
+    <comment>{0} represents a number of servers</comment>
+  </data>
+  <data name="Countries_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Countries_P2P_Cities">
+    <value>مدن P2P ({0})</value>
+    <comment>{0} represents a number of P2P cities in the country</comment>
+  </data>
+  <data name="Countries_P2P_Description">
+    <value>قم تنزيل الملفات عبر شبكات P2P (نظير إلى نظير) وحسّن تجرِبة الألعاب عبر الإنترنت وإجراء مكالمات الفيديو.</value>
+  </data>
+  <data name="Countries_Page_FreeUser_Description">
+    <value>افتح امكانية اختيار البلد باستخدام VPN Plus</value>
+  </data>
+  <data name="Countries_SearchPlaceholder">
+    <value>أريد أن أتصفح من...</value>
+  </data>
+  <data name="Countries_Section_Header">
+    <value>اتصالات VPN</value>
+  </data>
+  <data name="Countries_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>اضف طبقة اضافية من التشفير لاتصال VPN الخاص بك.</value>
+  </data>
+  <data name="Countries_ServerLoad">
+    <value>حمل الخادم</value>
+  </data>
+  <data name="Countries_SmartRouting">
+    <value>توجيه ذكي</value>
+  </data>
+  <data name="Countries_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Countries_TorServers">
+    <value>خوادم Tor ({0})</value>
+    <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>استخدم شبكة Tor عبر اتصال VPN الخاص بك لمزيد من الخصوصية.</value>
+  </data>
+  <data name="Countries_TryDifferentKeyword">
+    <value>من فضلك جرب كلمة رئيسية مختلفة</value>
+  </data>
+  <data name="Country_Fastest">
+    <value>أسرع دولة</value>
+  </data>
+  <data name="Country_Fastest_ExcludingMyCountry">
+    <value>الأسرع (باستثناء بلدي)</value>
+  </data>
+  <data name="Country_Random">
+    <value>بلد عشوائي</value>
+  </data>
+  <data name="Country_Random_ExcludingMyCountry">
+    <value>عشوائي (باستثناء بلدي)</value>
+  </data>
+  <data name="Country_val_AD">
+    <value>أندورا</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE">
+    <value>الإمارات العربية المتحدة</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF">
+    <value>أفغانستان</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG">
+    <value>أنتيغا و بربودا</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI">
+    <value>أنغويلا</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL">
+    <value>ألبانيا</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM">
+    <value>أرمينيا</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO">
+    <value>أنغولا</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ">
+    <value>القارة القطبية الجنوبية</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR">
+    <value>الأرجنتين</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS">
+    <value>ساموا الأمريكية</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT">
+    <value>النمسا</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU">
+    <value>أستراليا</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW">
+    <value>أروبا</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX">
+    <value>جزر آلند</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ">
+    <value>أذربيجان</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA">
+    <value>البوسنة والهرسك</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB">
+    <value>باربادوس</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD">
+    <value>بنغلاديش</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE">
+    <value>بلجيكا</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF">
+    <value>بوركينا فاسو</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG">
+    <value>بلغاريا</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH">
+    <value>البحرين</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI">
+    <value>بورندي</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ">
+    <value>بنين</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL">
+    <value>سانت بارتيليمي</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM">
+    <value>برمودا</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN">
+    <value>بروناي دار السلام</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO">
+    <value>بوليفيا</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ">
+    <value>بونير، سانت أوستاتيوس وسابا</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR">
+    <value>البرازيل</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS">
+    <value>الباهاماس</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT">
+    <value>بوتان</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV">
+    <value>جزيرة بوفيت</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW">
+    <value>بوتسوانا</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY">
+    <value>روسيا البيضاء</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ">
+    <value>بليز</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA">
+    <value>كندا</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC">
+    <value>جزر كوكوس (كيلينغ)</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD">
+    <value>جمهورية الكونغو الديمقراطية</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF">
+    <value>جمهورية إفريقيا الوسطى</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG">
+    <value>الكونغو</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH">
+    <value>سويسرا</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI">
+    <value>كوت ديفوار</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK">
+    <value>جزر كوك</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL">
+    <value>تشيلي</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM">
+    <value>الكاميرون</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN">
+    <value>الصين</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO">
+    <value>كولومبيا</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR">
+    <value>كوستا ريكا</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU">
+    <value>كوبا</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV">
+    <value>الرأس الأخضر</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW">
+    <value>كوراساو</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX">
+    <value>جزيرة كريستماس</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY">
+    <value>قبرص</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ">
+    <value>التشيك</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE">
+    <value>ألمانيا</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ">
+    <value>جيبوتي</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK">
+    <value>الدانمارك</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM">
+    <value>الدومينيك</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO">
+    <value>جمهورية الدومينكان</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ">
+    <value>الجزائر</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC">
+    <value>الإكوادور</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE">
+    <value>إستونيا</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG">
+    <value>مصر</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH">
+    <value>الصحراء الغربية</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER">
+    <value>إريتريا</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES">
+    <value>إسبانيا</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET">
+    <value>إثيوبيا</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI">
+    <value>فنلندا</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ">
+    <value>فيجي</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK">
+    <value>جزر فوكلاند (مالفيناس)</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM">
+    <value>ميكرونيزيا</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO">
+    <value>جزر فاراو</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR">
+    <value>فرنسا</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA">
+    <value>الغابون</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB">
+    <value>المملكة المتحدة</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD">
+    <value>غرينادا</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE">
+    <value>جورجيا</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF">
+    <value>غوايانا الفرنسية</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG">
+    <value>جزيرة جيرنزي</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH">
+    <value>غانا</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI">
+    <value>جبل طارق</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL">
+    <value>غرينلاند</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM">
+    <value>غامبيا</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN">
+    <value>غينيا</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP">
+    <value>غوادلوبي</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ">
+    <value>غينيا الإستوائية</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR">
+    <value>اليونان</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS">
+    <value>جورجيا الجنوبية وجزر ساندويتش الجنوبية</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT">
+    <value>غواتيمالا</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU">
+    <value>غوام</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW">
+    <value>غينيا بيساو</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY">
+    <value>غويانا</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK">
+    <value>هونغ كونغ</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM">
+    <value>جزيرة هيرد وجزر ماكدونالد</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN">
+    <value>هندوراس</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR">
+    <value>كرواتيا</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT">
+    <value>هايتي</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU">
+    <value>المجر</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID">
+    <value>أندونيسيا</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE">
+    <value>أيرلندا</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL">
+    <value>إسرائيل</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM">
+    <value>جزيرة إيل أوف مان</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN">
+    <value>الهند</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO">
+    <value>إقليم المحيط الهندي البريطاني</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ">
+    <value>العراق</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR">
+    <value>إيران</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS">
+    <value>آيسلندا</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT">
+    <value>إيطاليا</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE">
+    <value>جيرسي</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM">
+    <value>جامايكا</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO">
+    <value>الأردن</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP">
+    <value>اليابان</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE">
+    <value>كينيا</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG">
+    <value>قيرغيزستان</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH">
+    <value>كمبوديا</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI">
+    <value>كيريباتي</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM">
+    <value>جزر القمر</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN">
+    <value>سانت كيتس ونيفيس</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP">
+    <value>كوريا الشمالية</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR">
+    <value>كوريا الجنوبية</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW">
+    <value>الكويت</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY">
+    <value>جزر الكايمان</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ">
+    <value>كازاخستان</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA">
+    <value>لاوس</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB">
+    <value>لبنان</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC">
+    <value>سانتا لوسيا</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI">
+    <value>ليشتنشتاين</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK">
+    <value>سريلانكا</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR">
+    <value>ليبيريا</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS">
+    <value>ليسوتو</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT">
+    <value>لتوانيا</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU">
+    <value>لوكسمبورج</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV">
+    <value>لاتفيا</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY">
+    <value>ليبيا</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA">
+    <value>المغرب</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC">
+    <value>موناكو</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD">
+    <value>مولدوفا</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME">
+    <value>مونتنغرو</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF">
+    <value>سانت مارتن (الجزء الفرنسي)</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG">
+    <value>مدغشقر</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH">
+    <value>جزر مارشال</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK">
+    <value>مقدونيا</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML">
+    <value>مالي</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM">
+    <value>ميانمار</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN">
+    <value>منغوليا</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO">
+    <value>ماكاو</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP">
+    <value>جزر ماريانا الشمالية</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ">
+    <value>جزر المارتينيك</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR">
+    <value>موريتانيا</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS">
+    <value>مونتسيرات</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT">
+    <value>مالطا</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU">
+    <value>موريشيوس</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV">
+    <value>جزر المالديف</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW">
+    <value>مالاوي</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX">
+    <value>المكسيك</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY">
+    <value>ماليزيا</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ">
+    <value>الموزمبيق</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA">
+    <value>ناميبيا</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC">
+    <value>كاليدونيا الجديدة</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE">
+    <value>النيجر</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF">
+    <value>جزيرة نورفولك</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG">
+    <value>نيجيريا</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI">
+    <value>نيكاراغوا</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL">
+    <value>هولندا</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO">
+    <value>النرويج</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP">
+    <value>نيبال</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR">
+    <value>ناورو</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU">
+    <value>نيوي</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ">
+    <value>نيوزيلندا</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM">
+    <value>عمان</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA">
+    <value>بنما</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE">
+    <value>البيرو</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF">
+    <value>بولينيزيا الفرنسية</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG">
+    <value>بابوا غينيا الجديدة</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH">
+    <value>الفيليبين</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK">
+    <value>باكستان</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL">
+    <value>بولندا</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM">
+    <value>سانت بيير وميكلون</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN">
+    <value>جزر بيتكيرن</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR">
+    <value>بورتو ريكو</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS">
+    <value>فلسطين</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT">
+    <value>البرتغال</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW">
+    <value>باﻻو</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY">
+    <value>باراغواي</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA">
+    <value>قطر</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE">
+    <value>جزيرة ريونيون</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO">
+    <value>رومانيا</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS">
+    <value>صربيا</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU">
+    <value>روسيا</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW">
+    <value>رواندا</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA">
+    <value>السعودية</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB">
+    <value>جزر سليمان</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC">
+    <value>سيشل</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD">
+    <value>السودان</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE">
+    <value>السويد</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG">
+    <value>سنغافورة</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH">
+    <value>سانت هيلانة، أسينشين، تريستان دا كونا</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI">
+    <value>سلوفينيا</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ">
+    <value>سفالبارد وجان مايان</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK">
+    <value>سلوفاكيا</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL">
+    <value>سيراليون</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM">
+    <value>سان مارينو</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN">
+    <value>السنغال</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO">
+    <value>الصومال</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR">
+    <value>سورينام</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS">
+    <value>جنوب السودان</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST">
+    <value>ساو تومي وبرينسيبي</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV">
+    <value>السلفادور</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX">
+    <value>سانت مارتن (الجزء الهولندي)</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY">
+    <value>سوريا</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ">
+    <value>اسواتيني</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC">
+    <value>جزر تركس وكايكوس</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD">
+    <value>تشاد</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF">
+    <value>الأراضي الجنوبية الفرنسية</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG">
+    <value>الطوغو</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH">
+    <value>تايلاندا</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ">
+    <value>طاجيكستان</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK">
+    <value>التوكيلاو</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL">
+    <value>تيمور الشرقية</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM">
+    <value>تركمانستان</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN">
+    <value>تونس</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO">
+    <value>تونغا</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR">
+    <value>تركيا</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT">
+    <value>ترنداد وتوباجو</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV">
+    <value>توفالو</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW">
+    <value>تايوان</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ">
+    <value>تنزانيا</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA">
+    <value>أوكرانيا</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG">
+    <value>أوغندا</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK">
+    <value>المملكة المتحدة</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM">
+    <value>جزر الولايات المتحدة الصغيرة النائية</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US">
+    <value>الولايات المتحدة</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY">
+    <value>الأورغواي</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ">
+    <value>أوزباكستان</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA">
+    <value>مدينة الفاتيكان</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC">
+    <value>سانت فنسنت وجزر غرينادين</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE">
+    <value>فنزويلا</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG">
+    <value>جزر فيرجن البريطانية</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI">
+    <value>جزر فيرجن، الولايات المتحدة الأمريكية</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN">
+    <value>فييتنام</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU">
+    <value>فاناتو</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF">
+    <value>جزر واليس وفوتونا</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS">
+    <value>ساموا</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_YE">
+    <value>اليمن</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT">
+    <value>جزيرة مايوت</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA">
+    <value>جنوب إفريقيا</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM">
+    <value>زامبيا</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW">
+    <value>زيمبابوي</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ">
+    <value>غير معروف</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Description">
+    <value>خدمة محرك التصفية الأساسي (BFE) على جهاز Windows لديك مُعطلة. يجب تفعيل هذه الخدمة حتى يعمل Proton VPN بشكل صحيح.</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable">
+    <value>كيفية تفعيل محرك التصفية القاعدي</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title">
+    <value>يجب تفعيل محرك التصفية القاعدي للاستمرار</value>
+  </data>
+  <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
+    <value>احصل على تغييرات غير محدودة في الخادم مع VPN Plus.</value>
+  </data>
+  <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
+    <value>لقد وصلت إلى الحد الأقصى لعدد تغييرات الخادم المجانية في الوقت الحالي</value>
+  </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>ابدأ</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>انتهاء صلاحية الاشتراك</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>قم بالترقية للوصول إلى خوادم وميزات Plus مرة أخرى.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description">
+    <value>يبدو أن خدمة Proton VPN معطلة. ستحتاج إلى إعادة تفعيل الخدمة للاتصال.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title">
+    <value>قم بتفعيل خدمة Windows للمتابعة</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Zero">
+    <value>يقوم Proton Free بتوصيلك تلقائيًا بأسرع خادم مجاني متاح من {0} بلد مجاني. و هذا عادةً ما يكون أقرب خادم إلى موقعك.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_One">
+    <value>يصلك Proton Free تلقائيًا بأسرع خادم مجاني متاح من بلدنا المجاني ({0}). وعادةً ما يكون هذا الخادم هو الأقرب إلى موقعك.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Two">
+    <value>يصلك Proton Free تلقائيًا بأسرع خادم مجاني متاح من بلدينا المجانيين ({0}). وعادةً ما يكون هذا الخادم هو الأقرب إلى موقعك.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Few">
+    <value>يصلك Proton Free تلقائيًا بأسرع خادم مجاني متاح من بلداننا المجانية ({0}). وعادةً ما يكون هذا الخادم هو الأقرب إلى موقعك.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Many">
+    <value>يصلك Proton Free تلقائيًا بأسرع خادم مجاني متاح من بلداننا المجانية ({0}). وعادةً ما يكون هذا الخادم هو الأقرب إلى موقعك.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Other">
+    <value>يصلك Proton Free تلقائيًا بأسرع خادم مجاني متاح من بلداننا المجانية ({0}). وعادةً ما يكون هذا الخادم هو الأقرب إلى موقعك.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Zero">
+    <value>بلدان الخوادم المجانية ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_One">
+    <value>بلد الخادم المجاني ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Two">
+    <value>بلدا الخوادم المجانية ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Few">
+    <value>بلدان الخوادم المجانية ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Many">
+    <value>بلدان الخوادم المجانية ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Other">
+    <value>بلدان الخوادم المجانية ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Title">
+    <value>الاتصالات مجانية</value>
+  </data>
+  <data name="Dialogs_Latency_Description">
+    <value>يوضح زمن الاستجابة المدة التي يستغرقها الخادم للرد على الطلبات.
+
+يمكن أن يؤدي زمن الاستجابة العالي إلى إبطاء اتصالك.</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Description">
+    <value>قد يعمل VPN أبطأ من المعتاد</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Title">
+    <value>عالي (150ms+)</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Description">
+    <value>سرعة البرق السريعة</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Title">
+    <value>منخفض (1ms - 50ms)</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Description">
+    <value>من غير المرجح أن تؤثر على سرعة VPN</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Title">
+    <value>متوسط (50m- 150ms)</value>
+  </data>
+  <data name="Dialogs_Latency_Title">
+    <value>ما هو وقت الاستجابة؟</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>يرجى إخبارنا عن سبب إعطائك هذا التقييم</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>لم نتمكن من إرسال ملاحظاتك. يرجى التحقق من اتصالك والمحاولة مرة أخرى.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>حدث خطأ ما</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>10 يعني مرجح جدًا</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>0 غير محتمل على الإطلاق</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>اختياري</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>شارك بشكل مجهول</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>تساعدنا ملاحظاتك على تحسين Proton VPN.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>نشكرك على تواصلك</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>ما مدى احتمالية أن توصي بـ Proton VPN لصديق؟</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>أعد المحاولة</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description">
+    <value>تم إيقاف اتصالك بسبب استخدامك لخادم لا يدعم خاصية الند-لـ-الند (P2P). هذه الخاصية غير مدعومة على الخوادم المجانية. الرجاء استخدام خادم آخر لاستخدام P2P.</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Title">
+    <value>تم اكتشاف حركة مرور P2P</value>
+  </data>
+  <data name="Dialogs_P2P_HowToTorrentLink">
+    <value>كيفية استخدام التورنت عبر P2P</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_Title">
+    <value>P2P</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsP2PServer">
+    <value>ما هو خادم P2P؟</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsP2PServer_Description">
+    <value>خوادم P2P (نظير إلى نظير) لخوادم VPN (P2P) تتخطى حجب مواقع التورنت.</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsTorrenting">
+    <value>ما هو التورنت؟</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsTorrenting_Description">
+    <value>المشاركة السريعة وتنزيل الملفات الكبيرة عبر شبكة نظير إلى نظير (P2P).</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhyUse">
+    <value>لماذا يجب استخدام خادم P2P عند استخدام التورنت؟</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhyUse_Description">
+    <value>- زيادة سرعات الرفع والتنزيل
+- لا توجد سجلات نشاط
+- إخفاء عنوان IP الخاص بك عن مزود الخدمة والأقران</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_Protocol_Description">
+    <value>البروتوكول هو مجموعة من التعليمات التي يتبعها جهازك للاتصال والتواصل مع الخادم.</value>
+  </data>
+  <data name="Dialogs_Protocol_SwitchHeader">
+    <value>تغيير بروتوكول VPN</value>
+  </data>
+  <data name="Dialogs_Protocol_Title">
+    <value>ما هو بروتوكول VPN؟</value>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email">
+    <value>البريد الإلكتروني</value>
+    <comment>The label for user e-mail address in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
+    <value>example@domain.com</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
+    <value>إرسال سجل الأخطاء</value>
+    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
+    <value>تظهر لنا سجلات الأخطاء ما الخطأ الذي حدث، والإجراءات التي أدت إلى مشكلتك. سنستخدمها فقط لمساعدة مهندسينا في إصلاح الأخطاء.</value>
+    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Header">
+    <value>ما هي المشكلة؟</value>
+  </data>
+  <data name="Dialogs_ReportIssue_NoLogsWarning">
+    <value>تساعدنا سجلات الأخطاء في الوصول إلى جوهر مشكلتك. إذا لم تُضمِّنها، فقد لا نتمكن من التحقيق في المشكلة بشكل كامل.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes">
+    <value>إصلاحات سريعة</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Footer">
+    <value>لم يعمل؟</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Header">
+    <value>يمكن أن تساعد هذه النصائح في حل مشكلتك بشكل أسرع.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_DoneAction">
+    <value>تم</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail">
+    <value>حدث خطأ ما</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail_Description">
+    <value>لم نتمكن من إرسال تقريرك. الرجاء التحقق من اتصالك والمحاولة مرة أخرى.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success">
+    <value>تم إرسال التقرير</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success_Description">
+    <value>شكرا على ملاحظاتك. سنعود إليك في أقرب وقت ممكن.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_SendReport">
+    <value>ارسل التقرير</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Steps">
+    <value>الخطوة {0} من {1}</value>
+    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Title">
+    <value>الإبلاغ عن مشكلة</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Description">
+    <value>يظهر تحميل الخادم مدى قرب الخادم من سعته القصوى.
+
+يمكن أن يؤدي الحمل العالي للخادم إلى إبطاء اتصالك.</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Description">
+    <value>قد يعمل VPN أبطأ من المعتاد</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Title">
+    <value>مرتفعة (91-100%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Description">
+    <value>سرعة البرق السريعة</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Title">
+    <value>منخفضة (1-75%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Description">
+    <value>من غير المحتمل أن تؤثر على سرعة VPN</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Title">
+    <value>متوسطة (76-90%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Title">
+    <value>ما هو تحميل الخادم؟</value>
+  </data>
+  <data name="Dialogs_SmartRouting_Title">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>ربما لاحقا</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description">
+    <value>يبدو أن جهازك يستخدم خادمًا وكيلاً (بروكسي). قد يتداخل هذا مع حماية VPN.</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Disable">
+    <value>تعطيل الخادم الوكيل (البروكسي)</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Title">
+    <value>تم اكتشاف خادم وكيل (بروكسي)</value>
+  </data>
+  <data name="Dialogs_Tor_Description">
+    <value>اتصل بخادم Tor للوصول إلى الخدمات المخفية ومواقع البصل باستخدام أي متصفح.</value>
+  </data>
+  <data name="Dialogs_Tor_LearnMore">
+    <value>كيفية الوصول إلى شبكة Tor</value>
+  </data>
+  <data name="Dialogs_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>إيقاف تشغيل مكافحة الفيروسات أو برامج جدار الحماية</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>يمكن أن يتتداخل هذه البرامج مع اتصالات VPN.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>تحقق من اتصالك بالإنترنت</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>تأكد من أنك متصل بالإنترنت، وأن اتصالك مستقر.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>هذه الإصلاحات السريعة قد تساعدك على الاتصال proton.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>استخدام شبكة أخرى</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>حاول تبديل شبكات Wi-Fi، أو استخدم بيانات الجوال بدلاً من ذلك.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>تحقق من صفحة الحالة الخاصة بنا</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>لنتأكد فقط من أن خدمات Proton تعمل بشكل طبيعي.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>المساعدة في الاتصال</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
+    <value>سيؤدي هذا إلى قطع اتصالك بخدمة VPN. أي اتصالات إنترنت نشطة ستكون غير محمية مؤقتًا.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
+    <value>سيؤدي هذا إلى قطع اتصالك بـ VPN وتعطيل مفتاح الإيقاف مؤقتًا. ستصبح أي اتصالات إنترنت نشطة غير محمية مؤقتًا.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install">
+    <value>تثبيت التحديث؟</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart">
+    <value>يجب إعادة تشغيل Proton VPN لإكمال التحديث</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Description">
+    <value>يبدو أن ساعة النظام لديك غير متزامنة. قد يسبب ذلك مشكلات عند الاتصال بشبكة VPN.</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_PrimaryButton">
+    <value>كيفية تحديث ساعة النظام</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Title">
+    <value>حدث ساعة النظام</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>بسيط. سلس. آمن. احمِ نفسك على الإنترنت وادخل بأمان إلى مواقع مؤسستك وبرامجها وملفاتها.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>مرحباً بك في Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>تصفح بشكل خاص، وقم بالوصول إلى المحتوى المحظور، واستمتع بالحرية الرقمية دون قيود على البيانات أو السرعة.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>VPN معتمد بدون سجلات</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>نشاطك محمي بموجب قوانين الخصوصية السويسرية. لن نتعقبك أبداً على الإنترنت أو نشارك معلوماتك مع أطراف ثالثة.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>تصفح بحرية من أي مكان</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Zero">
+    <value>احمي موقعك الافتراضي وتمتع بالإنترنت من أية من {0} دولة المتاحة.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
+    <value>احمي موقعك الافتراضي وتمتع بالإنترنت من أية من {0} دولة المتاحة.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Two">
+    <value>احمي موقعك الافتراضي وتمتع بالإنترنت من أية من {0} دولة المتاحة.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Few">
+    <value>احمي موقعك الافتراضي وتمتع بالإنترنت من أية من {0} دول المتاحة.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Many">
+    <value>احمي موقعك الافتراضي وتمتع بالإنترنت من أية من {0} دول المتاحة.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>احمي موقعك الافتراضي وتمتع بالإنترنت من أية من {0} دول المتاحة.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>قم بحماية 10 أجهزة في وقت واحد</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>اضف حماية VPN إلى كل من سطح المكتب، والجوال، والمتصفح، والتلفزيون، وغير ذلك الكثير. </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>بث بدقة عالية</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>شاهد الأفلام والبرامج التلفزيونية من جميع أنحاء العالم، دون التأثير على السرعة أو الجودة.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>مرحبا بك في VPN Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description1">
+    <value>تهانينا! لقد قمت بإلغاء قفل ميزات الأمان والأداء المتميز على جميع خدمات Proton.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description2">
+    <value>استمتع بأفضل ما في خصوصية Proton.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>مرحبا بك في Proton Unlimited</value>
+  </data>
+  <data name="Dialogs_Welcome_Message">
+    <value>نحن نعمل على تجهيز تجربة VPN الجديدة الخاصة بك. لن يستغرق ذلك سوى لحظة.</value>
+  </data>
+  <data name="Dialogs_Welcome_Title">
+    <value>مرحبا بك في Proton VPN</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>يمكنك الآن الوصول إلى الخوادم المخصصة لمؤسستك من الشريط الجانبي الرئيسي.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>تم نقل موقع البوابات</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>يمكنك الآن الاتصال بالطابعات ومكبرات الصوت والأجهزة الأخرى على شبكتك المحلية (LAN)، متجاوزًا نفق VPN.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>اتصالات LAN</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>قمنا بتحديث تصميماتنا ونقلنا بعض الأشياء لجعل التطبيق أسهل للاستخدام.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>مظهر جديد، نفس الحماية</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>عند تفعيل إعادة توجيه المنفذ، سترى الآن رقم المنفذ النشط على الشاشة الرئيسية.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>رقم المنفذ المفعّل</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>أضف إعدادات ملف تعريف متقدمة مثل NetShield وإعادة توجيه المنفذ، أو قم بإعداد الاتصال والانطلاق لتشغيل موقع ويب من اختيارك عندما تتصل.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>ملفات تعريف أوسع وأقوى</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>أصبح من الأسهل الآن إعادة الاتصال بالخوادم المفضلة لديك. سترى أحدث اتصالاتك على الشاشة الرئيسة، أو قم بتثبيتها للحصول على إمكانية الوصول السريع.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>أضفنا ميزة الخادم المستخدم مؤخراً</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>الق نظرة</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>ما الجديد</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>يمكنك الآن الاتصال وقطع الاتصال وتغيير اتصالك الافتراضي من علبة النظام.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>تطبيق علبة النظام الجديد</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>الخروج من Proton VPN؟</value>
+  </data>
+  <data name="Exit_Message">
+    <value>قطع الاتصال بالـ VPN...</value>
+  </data>
+  <data name="Exit_Title">
+    <value>الخروج من Proton VPN</value>
+  </data>
+  <data name="Flyouts_Country_Description1">
+    <value>تصفح الإنترنت دون VPN يجعلك عرضةً لقيود الإنترنت التي تعتمد على الموقع.</value>
+  </data>
+  <data name="Flyouts_Country_Description2">
+    <value>يمكن للمواقع أن تحظر الوصول إليها من بعض الدول. ويمكن أن تقوم الحكومات بتوجيه مزودي خدمة الإنترنت لحجب مواقع محددة في بلدهم.</value>
+  </data>
+  <data name="Flyouts_Country_Description3">
+    <value>شبكة VPN تجعل تصفحك يبدو وكأنه من مكان آخر، مما يحميك من المراقبة والرقابة.</value>
+  </data>
+  <data name="Flyouts_Country_Title">
+    <value>دولة</value>
+  </data>
+  <data name="Flyouts_Country_Warning">
+    <value>اتصل بشبكة VPN لتغيير موقعك الافتراضي</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Connected">
+    <value>يقوم الـVPN بحجب عنوان IP الحقيقي خاصتك. هذا يجعلك تبدو وكأنك تتصفح من موقع خادم VPN، فلا يمكن ربط نشاطك على الإنترنت بجهازك الشخصي.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected1">
+    <value>يمكن للمواقع الإلكترونية ومزودي خدمة الإنترنت (ISPs) استخدام هذا الرمز الفريد لربط موقعك وسجل تصفحك بجهازك.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2">
+    <value>تُخفي شبكة VPN عنوان IP الخاص بك، مما يجعل تتبع نشاطك وصولًا إليك أكثر صعوبة.</value>
+  </data>
+  <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
+    <value>ما هو عنوان IP؟</value>
+  </data>
+  <data name="Flyouts_IpAddress_Title">
+    <value>عنوان IP</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIp">
+    <value>عنوان IP للـ VPN</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv6</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIp">
+    <value>عنوان IP خاصتك</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIpIsVisible">
+    <value>عنوان IP الخاص بك مرئي</value>
+  </data>
+  <data name="Flyouts_Isp_Description1">
+    <value>مزود خدمة الإنترنت (ISP) هو الشركة التي توصلك بالإنترنت.</value>
+  </data>
+  <data name="Flyouts_Isp_Description2">
+    <value>يمكنهم تسجيل نشاطك على الإنترنت. وفي بعض البلدان، يمكنهم بيع بياناتك للمعلنين. وفي بلدان أخرى، قد يُطلب منهم تسليمها إلى الحكومة.</value>
+  </data>
+  <data name="Flyouts_Isp_Description3">
+    <value>تخفي شبكة VPN عنوان IP الخاص بك، مما يحميك من تدخل مزود خدمة الإنترنت.</value>
+  </data>
+  <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
+    <value>ما هو مزود خدمة الإنترنت (ISP)؟</value>
+  </data>
+  <data name="Flyouts_Isp_Title">
+    <value>المزود</value>
+  </data>
+  <data name="Flyouts_Isp_Warning">
+    <value>يمكن لمزود الخدمة الخاص بك رؤية المواقع الإلكترونية التي تزورها</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success">
+    <value>يمنع جميع اتصالات الإنترنت عندما لا تكون متصلاً بـ Proton VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info">
+    <value>قد يصبح عنوان IP خاصتك مكشوفاً إذا انقطع اتصال VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>يقوم مفتاح الإيقاف المتقدم بتعطيل الإنترنت لحماية عنوان IP الخاص بك أثناء عدم الاتصال بـ Proton VPN.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success">
+    <value>إذا انقطع اتصال VPN الخاص بك، فسيتم فصلك عن الإنترنت حتى تتم استعادة VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected">
+    <value>مفتاح الأمان المتقدم يعمل حتى لو فصلت اتصالك بـ VPN عمداً</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected">
+    <value>للاتصال بالإنترنت، اتصل بشبكة VPN أو قم بتعطيل مفتاح الآمان المتقدم</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
+    <value>أنت محمي من الإعلانات والمتتبعات والبرامج الضارة</value>
+  </data>
+  <data name="Flyouts_NetShield_Info">
+    <value>احمِ نفسك من الإعلانات والبرامج الضارة وأدوات التتبع على مواقع الويب والتطبيقات</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success">
+    <value>أنت محمي من البرامج الضارة فقط</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description">
+    <value>حجب الإعلانات والتتبع والبرامج الخبيثة باستخدام VPN Plus.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title">
+    <value>استمتع بتصفح خالي من الإعلانات</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort">
+    <value>رقم المنفذ المفعّل</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>لا يمكن استرداد رقم المنفذ النشط. أعد تشغيل اتصالك وحاول مرة أخرى.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info">
+    <value>أدخل رقم المنفذ النشط في عميل التورنت أو تطبيق P2P الخاص بك لتحسين الأداء.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info">
+    <value>تحسين سرعة تنزيل الند-إلى-الند</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description">
+    <value>قم بتقوية مشاركة الملفات الند-إلى-الند (P2P) باستخدام VPN Plus.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title">
+    <value>تحسين سرعة P2P</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning">
+    <value>اتصل بخادم P2P لتحسين سرعات التورنت</value>
+  </data>
+  <data name="Flyouts_Protocol_Description">
+    <value>يحدد بروتوكول VPN كيفية تشفير حركة المرور ونقلها عبر VPN.</value>
+  </data>
+  <data name="Flyouts_Protocol_KnowledgeBaseLinkTitle">
+    <value>ما هو أفضل بروتوكول VPN؟</value>
+  </data>
+  <data name="Flyouts_Protocol_Title">
+    <value>البروتوكول</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Description">
+    <value>تظهر حمولة الخادم مدى اقتراب الخادم من الحد الأقصى للحمولة. الاتصال بخادم بحمل مرتفع قد يجعل اتصالك بطيئاً.</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High">
+    <value>مرتفعة (91-100%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High_Description">
+    <value>قد يعمل VPN أبطأ من المعتاد</value>
+  </data>
+  <data name="Flyouts_ServerLoad_KnowledgeBaseLinkTitle">
+    <value>ما هو تحميل الخادم؟</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low">
+    <value>منخفضة (1-75%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low_Description">
+    <value>سرعة البرق السريعة</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium">
+    <value>متوسطة (76-90%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium_Description">
+    <value>من غير المرجح أن يؤثر على سرعة الاتصال</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Title">
+    <value>الضغط على الخوادم</value>
+  </data>
+  <data name="Flyouts_Speed_BoostedByVpnAccelerator">
+    <value>تم تعزيزها بواسطة مسرع VPN</value>
+  </data>
+  <data name="Flyouts_Speed_Description1">
+    <value>يعرض كمية البيانات التي تمر عبر نفق VPN في الوقت الفعلي.</value>
+  </data>
+  <data name="Flyouts_Speed_Description2">
+    <value>يعتمد هذا على النشاط الحالي لجهازك. في معظم الحالات، لا يمثل السرعة القصوى لـ VPN.</value>
+  </data>
+  <data name="Flyouts_Speed_Download">
+    <value>تنزيل</value>
+    <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
+  </data>
+  <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
+    <value>شرح سرعة وحركة مرور VPN</value>
+  </data>
+  <data name="Flyouts_Speed_Title">
+    <value>حركة المرور الحالية</value>
+  </data>
+  <data name="Flyouts_Speed_Upload">
+    <value>رفع</value>
+    <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Zero">
+    <value>({0}) تطبيق مستثنى</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
+    <value>({0}) تطبيق مستثنى</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Two">
+    <value>({0}) تطبيق مستثنى</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Few">
+    <value>({0}) تطبيقات مستثناة</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Many">
+    <value>({0}) تطبيقات مستثناة</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
+    <value>({0}) تطبيقات مستثناة</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Zero">
+    <value>عناوين IP المستبعدة ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
+    <value>عنوان IP المستبعد ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Two">
+    <value>عنوانا IP المستبعدان ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Few">
+    <value>عناوين IP المستبعدة ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Many">
+    <value>عناوين IP المستبعدة ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
+    <value>عناوين IP المستبعدة ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Info">
+    <value>يسمح للتطبيقات وعناوين IP الموثوق بها بالاتصال دون حماية VPN</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info">
+    <value>فقط هذه التطبيقات وعناوين IP تتصل من خلال VPN. كل حركة المرور الأخرى غير محمية.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Zero">
+    <value>التطبيقات المحمية ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_One">
+    <value>التطبيق المحمي ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Two">
+    <value>التطبيقان المحميان ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Few">
+    <value>التطبيقات المحمية ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Many">
+    <value>التطبيقات المحمية ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
+    <value>التطبيقات المحمية ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Zero">
+    <value>عناوين IP المحمية ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_One">
+    <value>عنوان IP المحمي ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Two">
+    <value>عنوانا IP المحميان ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Few">
+    <value>عناوين IP المحمية ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Many">
+    <value>عناوين IP المحمية ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
+    <value>عناوين IP المحمية ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info">
+    <value>تتصل هذه التطبيقات وعناوين IP بدون حماية VPN. جميع حركة المرور الأخرى محمية.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description">
+    <value>قسّم حركة المرور الخاصة بك إلى أنفاق VPN وأنفاق غير VPN باستخدام VPN Plus.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title">
+    <value>احصل على أفضل ما في العالم</value>
+  </data>
+  <data name="Flyouts_Volume_Description">
+    <value>يعرض إجمالي كمية البيانات التي مرت عبر نفق VPN منذ اتصالك.</value>
+  </data>
+  <data name="Flyouts_Volume_Download">
+    <value>تنزيل</value>
+    <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
+  </data>
+  <data name="Flyouts_Volume_Title">
+    <value>إجمالي حركة المرور</value>
+  </data>
+  <data name="Flyouts_Volume_Upload">
+    <value>رفع</value>
+    <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
+  </data>
+  <data name="Format_Milliseconds">
+    <value>{0}ms</value>
+    <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
+  </data>
+  <data name="Format_Size_Bytes">
+    <value>{0} B</value>
+    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
+  </data>
+  <data name="Format_Size_Exabytes">
+    <value>{0} EB</value>
+    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
+  </data>
+  <data name="Format_Size_Gigabytes">
+    <value>{0} GB</value>
+    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
+  </data>
+  <data name="Format_Size_Kilobytes">
+    <value>{0} KB</value>
+    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
+  </data>
+  <data name="Format_Size_Megabytes">
+    <value>{0} MB</value>
+    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
+  </data>
+  <data name="Format_Size_Petabytes">
+    <value>{0} PB</value>
+    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
+  </data>
+  <data name="Format_Size_Terabytes">
+    <value>{0} TB</value>
+    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_SpeedUnit">
+    <value>حركة المرور الحالية ({0})</value>
+    <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
+  </data>
+  <data name="Format_Speed_BytesPerSecond">
+    <value>{0} B/s</value>
+    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
+  </data>
+  <data name="Format_Speed_ExabytesPerSecond">
+    <value>{0} EB/s</value>
+    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
+  </data>
+  <data name="Format_Speed_GigabytesPerSecond">
+    <value>{0} GB/s</value>
+    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
+  </data>
+  <data name="Format_Speed_KilobytesPerSecond">
+    <value>{0} KB/s</value>
+    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
+  </data>
+  <data name="Format_Speed_MegabytesPerSecond">
+    <value>{0} MB/s</value>
+    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
+  </data>
+  <data name="Format_Speed_PetabytesPerSecond">
+    <value>{0} PB/s</value>
+    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
+  </data>
+  <data name="Format_Speed_TerabytesPerSecond">
+    <value>{0} TB/s</value>
+    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
+  </data>
+  <data name="Format_Time_Day_Zero">
+    <value>{0} يومًا</value>
+  </data>
+  <data name="Format_Time_Day_One">
+    <value>{0} يوم</value>
+  </data>
+  <data name="Format_Time_Day_Two">
+    <value>{0} يومان</value>
+  </data>
+  <data name="Format_Time_Day_Few">
+    <value>{0} أيام</value>
+  </data>
+  <data name="Format_Time_Day_Many">
+    <value>{0} يومًا</value>
+  </data>
+  <data name="Format_Time_Day_Other">
+    <value>{0} يومًا</value>
+  </data>
+  <data name="Format_Time_DayHour_Zero">
+    <value>{0} يوم و {1} ساعة</value>
+  </data>
+  <data name="Format_Time_DayHour_One">
+    <value>{0} يوم و {1} ساعة</value>
+  </data>
+  <data name="Format_Time_DayHour_Two">
+    <value>{0} يومان و {1} ساعة</value>
+  </data>
+  <data name="Format_Time_DayHour_Few">
+    <value>{0} أيام و {1} ساعة</value>
+  </data>
+  <data name="Format_Time_DayHour_Many">
+    <value>{0} يومًا و {1} ساعة</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
+    <value>{0} يومًا و {1} ساعة</value>
+  </data>
+  <data name="Format_Time_Hours">
+    <value>{0} hr</value>
+    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutes">
+    <value>{0} ايام {1} ساعة</value>
+    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutesSeconds_Short">
+    <value>hh\:mm\:ss</value>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
+  </data>
+  <data name="Format_Time_Hours_Ago_Zero">
+    <value>منذ {0} ساعة</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_One">
+    <value>منذ {0} ساعة</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Two">
+    <value>منذ {0} ساعتين</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Few">
+    <value>منذ {0} ساعات</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Many">
+    <value>منذ {0} ساعة</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>منذ {0} ساعة</value>
+  </data>
+  <data name="Format_Time_Minutes">
+    <value>{0} min</value>
+    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds">
+    <value>{0} دقيقة {1} ثانية</value>
+    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds_Short">
+    <value>mm\:ss</value>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Zero">
+    <value>منذ {0} دقيقة</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_One">
+    <value>منذ {0} دقيقة</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Two">
+    <value>منذ {0} دقيقتين</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Few">
+    <value>منذ {0} دقائق</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Many">
+    <value>منذ {0} دقيقة</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>منذ {0} دقيقة</value>
+  </data>
+  <data name="Format_Time_Seconds">
+    <value>{0} sec</value>
+    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Zero">
+    <value>منذ {0} ثانية</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_One">
+    <value>منذ {0} ثانية</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Two">
+    <value>منذ {0} ثانيتين</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Few">
+    <value>منذ {0} ثوانٍ</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Many">
+    <value>منذ {0} ثانية</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>منذ {0} ثانية</value>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>تنزيل الملفات من خلال BitTorrent وبروتوكولات مشاركة الملفات الأخرى</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>اضف طبقة اضافية من التشفير لاتصال VPN الخاص بك</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>استخدم شبكة Tor عبر اتصال VPN الخاص بك لمزيد من الخصوصية</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>احصل على تغطية عالمية مع VPN Plus</value>
+  </data>
+  <data name="Gateway_Fastest">
+    <value>أسرع بوابة</value>
+  </data>
+  <data name="Gateway_Random">
+    <value>بوابة عشوائية</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>اتصل ببوابة للوصول إلى VPN الخاص بمؤسستك.</value>
+  </data>
+  <data name="Gateways_Page_Title">
+    <value>البوابات</value>
+  </data>
+  <data name="Gateways_Server">
+    <value>خادم مخصص</value>
+  </data>
+  <data name="Home_Account_SignOut">
+    <value>تسجيل الخروج</value>
+  </data>
+  <data name="Home_Account_SignOut_Confirmation_Title">
+    <value>تسجيل الخروج من {0}؟</value>
+    <comment>{0} is a placeholder for the username</comment>
+  </data>
+  <data name="Home_Account_Title">
+    <value>حسابي</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>تغيير الاتصال الافتراضي</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeServer">
+    <value>تغيير الخادم</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_BrowseSafely">
+    <value>تصفح بأمان من</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_ConnectingTo">
+    <value>جارٍ الإتصال بـ...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_DefaultConnection">
+    <value>الاتصال الافتراضي</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_FreeConnection">
+    <value>الاتصال المجاني</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_LastConnectedTo">
+    <value>آخر اتصال بـ</value>
+  </data>
+  <data name="Home_ConnectionCard_Landmark">
+    <value>بطاقة الإتصال</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>تم تفعيل مفتاح الإيقاف المتقدم</value>
+  </data>
+  <data name="Home_ConnectionDetails_City">
+    <value>مدينة</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>اتصل بـ VPN لاستعادة اتصالك بالإنترنت.</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectedFor">
+    <value>متصل لمدة</value>
+    <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Connecting">
+    <value>جاري الاتصال</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectingSubLabel">
+    <value>جارٍ حماية هويتك الرقمية...</value>
+  </data>
+  <data name="Home_ConnectionDetails_Country">
+    <value>دولة</value>
+  </data>
+  <data name="Home_ConnectionDetails_Gateway">
+    <value>البوابة</value>
+  </data>
+  <data name="Home_ConnectionDetails_Hide">
+    <value>إخفاء تفاصيل الإتصال</value>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP">
+    <value>إخفاء</value>
+    <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP_Description">
+    <value>إخفاء عنوان IP المستخدم</value>
+  </data>
+  <data name="Home_ConnectionDetails_Isp">
+    <value>المزود</value>
+  </data>
+  <data name="Home_ConnectionDetails_Landmark">
+    <value>تفاصيل الاتصال</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_ConnectionDetails_MyIp">
+    <value>عنوان IP الخاص بي</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protected">
+    <value>محمي</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protocol">
+    <value>البروتوكول</value>
+  </data>
+  <data name="Home_ConnectionDetails_Server">
+    <value>خادم</value>
+  </data>
+  <data name="Home_ConnectionDetails_ServerLoad">
+    <value>الضغط على الخوادم</value>
+  </data>
+  <data name="Home_ConnectionDetails_Show">
+    <value>إظهار تفاصيل الاتصال</value>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP">
+    <value>إظهار</value>
+    <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP_Description">
+    <value>إظهار عنوان IP المستخدم</value>
+  </data>
+  <data name="Home_ConnectionDetails_State">
+    <value>الحالة</value>
+  </data>
+  <data name="Home_ConnectionDetails_Title">
+    <value>تفاصيل الاتصال</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>أعد المصادقة في بوابة المصادقة الثنائية (2FA) الخاصة بمؤسستك للمتابعة.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>انتهت صلاحية المصادقة الثنائية (2FA)</value>
+  </data>
+  <data name="Home_ConnectionDetails_Unprotected">
+    <value>غير محمي</value>
+  </data>
+  <data name="Home_ConnectionDetails_UnprotectedSubLabel">
+    <value>شفر نشاطك على الإنترنت بواسطة الاتصال عبر VPN</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume">
+    <value>إجمالي حركة المرور</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Download">
+    <value>حجم التحميل</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Total">
+    <value>الحجم الكلي</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Upload">
+    <value>حجم الرفع</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnIp">
+    <value>عنوان IP للـ VPN</value>
+  </data>
+  <data name="Home_ConnectionDetails_YourIpAddress">
+    <value>عنوان IP الخاص بك</value>
+  </data>
+  <data name="Home_FreeConnections_About">
+    <value>مزيد من المعلومات عن الاتصالات المجانية</value>
+  </data>
+  <data name="Home_Help_Title">
+    <value>المساعدة</value>
+  </data>
+  <data name="Home_Map_Landmark">
+    <value>الخريطة</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Zero">
+    <value>إعلان محجوب</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_One">
+    <value>إعلان محجوب</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Two">
+    <value>إعلان محجوب</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Few">
+    <value>إعلانات محجوبة</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Many">
+    <value>إعلانات محجوبة</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>إعلانات محجوبة</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>الإعلانات هي لافتات ترويجية أو نوافذ منبثقة تظهر في المواقع والتطبيقات.</value>
+  </data>
+  <data name="Home_NetShield_DataSaved">
+    <value>البيانات الموفرة</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>البيانات الموفرة هي التي تم حفظها عن طريق حظر الإعلانات غير المرغوب فيها والمتتبعات والبرامج الضارة.</value>
+  </data>
+  <data name="Home_NetShield_Landmark">
+    <value>إحصائيات Netshield</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_NetShield_Title">
+    <value>إحصائيات NetShield</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Zero">
+    <value>مُتعقِب محجوب</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_One">
+    <value>مُتعقِب محجوب</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Two">
+    <value>مُتعقِب محجوب</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Few">
+    <value>مُتعقِبات محجوبة</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Many">
+    <value>مُتعقِبات محجوبة</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>مُتعقِبات محجوبة</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>أدوات التتبع هي عبارة عن ملفات تعريف الارتباط ومواقع الويب التابعة لجهات خارجية تقوم بجمع وتخزين وبيع المعلومات حول نشاطك على الويب.</value>
+  </data>
+  <data name="Home_Page_Title">
+    <value>الرئيسية</value>
+  </data>
+  <data name="Home_Recents_Landmark">
+    <value>الإتصالات الأخيرة</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_Recents_Pin">
+    <value>تثبيت</value>
+  </data>
+  <data name="Home_Recents_Restricted">
+    <value>الخادم متاح مع VPN Plus</value>
+  </data>
+  <data name="Home_Recents_SecondaryActions_ToolTip">
+    <value>الإجراءات</value>
+  </data>
+  <data name="Home_Recents_ServerUnderMaintenance">
+    <value>الخادم تحت الصيانة</value>
+  </data>
+  <data name="Home_Recents_Title">
+    <value>مؤخرًا</value>
+  </data>
+  <data name="Home_Recents_Unpin">
+    <value>إزالة تثبيت</value>
+  </data>
+  <data name="Home_TitleBar_Menu_About">
+    <value>حول</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Account">
+    <value>الحساب</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp">
+    <value>الخروج من التطبيق</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help">
+    <value>المساعدة</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
+    <value>ما هي المشكلة؟</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings">
+    <value>الإعدادات</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout">
+    <value>تسجيل الخروج</value>
+  </data>
+  <data name="Home_TitleBar_Menu_UpdateNow">
+    <value>التحديث الآن</value>
+  </data>
+  <data name="Home_Update_UpdateAvailable">
+    <value>يتوفر التحديث</value>
+  </data>
+  <data name="Home_Update_UpdateReady">
+    <value>التحديث جاهز</value>
+  </data>
+  <data name="Home_VpnStatus_Landmark">
+    <value>حالة الـ VPN</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Connecting">
+    <value>جارٍ حماية هويتك الرقمية...</value>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Disconnected">
+    <value>أنت غير محمي</value>
+  </data>
+  <data name="Home_VpnStatus_Title_Connected">
+    <value>محمي</value>
+  </data>
+  <data name="LoadingPage_Tip">
+    <value>عالم أفضل يبدأ بالخصوصية والحرية الرقمية.</value>
+  </data>
+  <data name="Login_Error_GetSessionDetailsFailed">
+    <value>حدث خطأ عند استرداد تفاصيل الجلسة. من فضلك حاول مرة أخرى.</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>It is not possible to sign in while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+  </data>
+  <data name="Login_Error_IncorrectTwoFactorCode">
+    <value>الرمز غير صحيح. الرجاء المحاولة مرة أخرى.</value>
+  </data>
+  <data name="Login_Error_SessionExpired">
+    <value>انتهت مدة صلاحية جلستك. الرجاء تسجيل الدخول مجدداً.</value>
+    <comment>The message displayed in Login window when expired session is detected</comment>
+  </data>
+  <data name="Login_Error_SsoAuthFailed">
+    <value>فشلت مصادقة SSO. من فضلك حاول مرة أخرى.</value>
+  </data>
+  <data name="Login_Error_TwoFactorAuthFailed">
+    <value>اسم المستخدم أو كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى.</value>
+  </data>
+  <data name="Login_Error_TwoFactorFailed">
+    <value>فشلت المصادقة الثنائية. يرجى تسجيل الدخول مرة أخرى.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>المصادقة بمفتاح الأمان غير متاحة لجهازك أو لاتصال سطح المكتب البعيد.</value>
+  </data>
+  <data name="Login_TwoFactorForm_Authenticate">
+    <value>المصادقة</value>
+    <comment>Authenticate button inside two factor form during login</comment>
+  </data>
+  <data name="Login_TwoFactorForm_Subtitle">
+    <value>رمز المصادقة المكون من 6 أرقام</value>
+  </data>
+  <data name="Login_TwoFactorForm_Title">
+    <value>المصادقة الثنائية</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>تطبيق المصادقة</value>
+  </data>
+  <data name="Login_TwoFactor_Digit1">
+    <value>الرقم الأول</value>
+  </data>
+  <data name="Login_TwoFactor_Digit2">
+    <value>الرقم الثاني</value>
+  </data>
+  <data name="Login_TwoFactor_Digit3">
+    <value>الرقم الثالث</value>
+  </data>
+  <data name="Login_TwoFactor_Digit4">
+    <value>الرقم الرابع</value>
+  </data>
+  <data name="Login_TwoFactor_Digit5">
+    <value>الرقم الخامس</value>
+  </data>
+  <data name="Login_TwoFactor_Digit6">
+    <value>الرقم السادس</value>
+  </data>
+  <data name="Login_TwoFactor_EnterCode">
+    <value>أدخل الرمز</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>لم يتم العثور على طرق مصادقة ثنائية معروفة.</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>مفتاح الأمان</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>أدرج مفتاح U2F أو FIDO المرتبط بحساب Proton Account.</value>
+  </data>
+  <data name="Main_Loading">
+    <value>جارٍ التحميل، يرجى الانتظار...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
+  <data name="Main_Loading_SigningIn">
+    <value>جاري تسجيل الدخول، يرجى الانتظار...</value>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>يستغرق هذا وقتًا أطول من المعتاد، لكننا نعمل على ذلك.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
+  </data>
+  <data name="Main_Loading_SigningOut">
+    <value>جارٍ تسجيل الخروج، يرجى الانتظار...</value>
+    <comment>Message in the loading screen when signing out</comment>
+  </data>
+  <data name="Map_ConnectTo">
+    <value>اتصال - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>اتصل بنا</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>لم نتمكن من تحميل قائمة الخوادم.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>هل تحتاج إلى مساعدة؟</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>تسجيل الخروج</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>اطلب من المسؤول تفعيل الوصول إلى VPN لحسابك.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>لا توجد اتصالات VPN متاحة</value>
+  </data>
+  <data name="Notifications_KillSwitch_Description">
+    <value>لحماية عنوان IP الخاص بك، يقوم مفتاح الإيقاف بحظر اتصالك بالإنترنت.</value>
+  </data>
+  <data name="Notifications_PortForwarding_CopyPortNumber">
+    <value>نسخ رقم المنفذ</value>
+  </data>
+  <data name="Notifications_PortForwarding_Description">
+    <value>انتقل إلى عميل التورنت أو تطبيق P2P وأدخل هذا الرقم.</value>
+  </data>
+  <data name="Notifications_SessionLimit_Description">
+    <value>لقد وصلت إلى الحد الأقصى لعدد الأجهزة. لإعادة الاتصال بـ VPN، يرجى قطع الاتصال من جهاز آخر.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>تم تخفيض باقتك إلى Proton Free، ونعيد توصيلك بأسرع خادم مجاني.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Description">
+    <value>شبكات Wi-Fi العامة أكثر عرضة للتهديدات الأمنية. اتصل بـ VPN للتصفح بأمان.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Title">
+    <value>تم اكتشاف اتصال Wi-Fi غير آمن</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Proton VPN - استبيان</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>لتضمين هذا العنوان، تحتاج إلى السماح باتصالات IPv6 عبر نفق VPN.</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>تفعيل IPv6</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>ليس الآن</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>IPv6 معطل</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Action">
+    <value>التحديث الآن</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Message">
+    <value>إصدار التطبيق هذا قديم. يجب عليك تحديث التطبيق لمواصلة استخدام Proton VPN.</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Title">
+    <value>حدّث Proton VPN للمتابعة</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Description">
+    <value>تتيح لك خوادمنا من نوع P2P (نظير إلى نظير) الوصول إلى شبكات P2P مع الاستمرار في حماية عنوان IP الخاص بك ونشاطك على الإنترنت.</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Header">
+    <value>ما هو P2P VPN؟</value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Description">
+    <value>تسمح شبكات P2P لجهازين بالاتصال ونقل البيانات دون المرور عبر خادم مركزي.</value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Header">
+    <value>ما هي شبكة P2P؟</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Description">
+    <value>  • تنزيل ملفات التورنت
+  • تحسين أداء الألعاب عبر الإنترنت ومكالمات الفيديو
+  • الاتصال بأجهزة الشبكة المحلية (LAN)</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Header">
+    <value>ما هي استخدامات شبكات P2P؟</value>
+  </data>
+  <data name="Overlay_P2P_LearnMore">
+    <value>ما هو P2P؟</value>
+  </data>
+  <data name="Overlay_P2P_Title">
+    <value>P2P</value>
+  </data>
+  <data name="Overlay_Profile_Description1">
+    <value>الملفات الشخصية هي اتصالات VPN مخصصة يمكنك تصميمها لتناسب احتياجاتك وحفظها للوصول السريع.</value>
+  </data>
+  <data name="Overlay_Profile_Description2">
+    <value>حدد موقعك المفضل وحسّن إعداداتك للأمان أو الأداء أو الألعاب أو أي سيناريو آخر.</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore">
+    <value>ما هو الملف الشخصي لـVPN؟</value>
+  </data>
+  <data name="Overlay_Profile_Title">
+    <value>الملفات التعريفية</value>
+  </data>
+  <data name="Overlay_SecureCore_Description1">
+    <value>يصلك Secure Core بخادم وجهتك عبر خادم VPN ثانٍ ذي أمان أقصى.</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2">
+    <value>قد يتسبب هذا المستوى الأعلى من الحماية في زيادة زمن الاستجابة وبطء السرعات.</value>
+  </data>
+  <data name="Overlay_SecureCore_LearnMore">
+    <value>ما هو Secure Core؟</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection">
+    <value>اتصال Secure Core
+VPN</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
+    <value>وقت استجابة أعلى</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Privacy">
+    <value>الخصوصية المتقدمة</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection">
+    <value>اتصال Vpn القياسي
+</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Latency">
+    <value>وقت استجابة أقل</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Privacy">
+    <value>خصوصية عالية</value>
+  </data>
+  <data name="Overlay_SecureCore_Title">
+    <value>Secure Core</value>
+  </data>
+  <data name="Overlay_ServerLoad_Description">
+    <value>يظهر تحميل الخادم مدى قرب الخادم من سعته القصوى.
+
+يمكن أن يؤدي الحمل العالي للخادم إلى إبطاء اتصالك.</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Description">
+    <value>قد يعمل VPN أبطأ من المعتاد</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Title">
+    <value>مرتفعة (91-100%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_LearnMore">
+    <value>ما هو تحميل الخادم؟</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Description">
+    <value>سرعة البرق السريعة</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Title">
+    <value>منخفضة (1-75%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Description">
+    <value>من غير المحتمل أن تؤثر على سرعة VPN</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Title">
+    <value>متوسطة (76-90%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_Title">
+    <value>الضغط على الخوادم</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description1">
+    <value>يستخدم Smart Routing خوادم افتراضية لتوفير تغطية VPN في البلدان التي يصعب الوصول إليها.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2">
+    <value>عند الاتصال بخادم Smart Routing، ستبدو وكأنك تتصفح في بلد وجهتك، على الرغم من أن الخادم الفعلي يقع في مكان آخر.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3">
+    <value>يستخدم Smart Routing عادةً للتحايل على القوانين المناهضة للخصوصية وأشكال الرقابة الأخرى.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Header">
+    <value>الخوادم موجودة فعليًا في {0}، ولكنك ستظهر وكأنك تتصفح من {1}</value>
+    <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
+    Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
+    Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
+  </data>
+  <data name="Overlay_SmartRouting_LearnMore">
+    <value>ما هو Smart Routing؟</value>
+  </data>
+  <data name="Overlay_SmartRouting_Title">
+    <value>توجيه ذكي</value>
+  </data>
+  <data name="Overlay_Tor_Description">
+    <value>اتصل بخادم Tor للوصول إلى الخدمات المخفية ومواقع البصل باستخدام أي متصفح.</value>
+  </data>
+  <data name="Overlay_Tor_LearnMore">
+    <value>كيفية الوصول إلى شبكة Tor</value>
+  </data>
+  <data name="Overlay_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Profile_CustomSettings_Description">
+    <value>إعدادات الملف التعريفي ستتقدم على إعدادات VPN عندما تتصل بها.</value>
+  </data>
+  <data name="Profile_CustomSettings_Header">
+    <value>إضافة إعدادات مخصصة</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide">
+    <value>إخفاء الإعدادات</value>
+  </data>
+  <data name="Profile_CustomSettings_Show">
+    <value>عرض الإعدادات</value>
+  </data>
+  <data name="Profile_NatType_Conflict_Description">
+    <value>سيؤدي هذا إلى تعطيل إعادة توجيه المنفذ لهذا الملف الشخصي.</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description">
+    <value>سيؤدي هذا إلى تعطيل DNS المخصص لهذا الملف الشخصي.</value>
+  </data>
+  <data name="Profile_Options_Application">
+    <value>التطبيق</value>
+  </data>
+  <data name="Profile_Options_Application_Select">
+    <value>تحديد تطبيق</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Application">
+    <value>فتح تطبيق</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
+    <value>المتصفح الافتراضي</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
+    <value>استخدام وضع التصفح الخاص</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Website">
+    <value>افتح موقعًا إلكترونيًا</value>
+  </data>
+  <data name="Profile_Options_Description">
+    <value>افتح موقعًا إلكترونيًا أو تطبيقًا من اختيارك تلقائيًا عند الاتصال بهذا الملف الشخصي.</value>
+  </data>
+  <data name="Profile_Options_Header">
+    <value>اتصل و اذهب</value>
+  </data>
+  <data name="Profile_Options_Url">
+    <value>رابط الموقع</value>
+  </data>
+  <data name="Profile_Options_Url_Error">
+    <value>الرجاء إدخال رابط صحيح</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description">
+    <value>سيغير هذا نوع NAT لهذا الملف الشخصي إلى صارم (النوع 3).</value>
+  </data>
+  <data name="Profiles_Default_Gaming">
+    <value>لعب</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity">
+    <value>أقصى قدر من الأمان</value>
+  </data>
+  <data name="Profiles_Default_Office">
+    <value>مكتب</value>
+  </data>
+  <data name="Profiles_Default_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection">
+    <value>اتصال عشوائي</value>
+  </data>
+  <data name="Profiles_Default_Streaming">
+    <value>البث في الولايات المتحدة</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool">
+    <value>عمل/مدرسة</value>
+  </data>
+  <data name="Profiles_Page_Description">
+    <value>قم بتهيئة إعدادات VPN الخاصة بك واتصل بنقرة واحدة</value>
+  </data>
+  <data name="Profiles_Page_Title">
+    <value>الملفات التعريفية</value>
+  </data>
+  <data name="Search_InputBox_Placeholder">
+    <value>تصفح من...</value>
+  </data>
+  <data name="Search_NoInput_CityOrState">
+    <value>مدينة أو ولاية أمريكية</value>
+    <comment>The word used for one single city and one single United States state</comment>
+  </data>
+  <data name="Search_NoInput_Country">
+    <value>دولة</value>
+    <comment>The word used for one single country</comment>
+  </data>
+  <data name="Search_NoInput_Server">
+    <value>خادم</value>
+    <comment>The word used for one single server</comment>
+  </data>
+  <data name="Search_NoInput_TrySearchingFor">
+    <value>جرب البحث عن...</value>
+  </data>
+  <data name="Search_NoResults_Description">
+    <value>جرّب كلمة رئيسية مختلفة.</value>
+  </data>
+  <data name="Search_NoResults_Title">
+    <value>لم يتم العثور على نتائج</value>
+  </data>
+  <data name="Server">
+    <value>خادم</value>
+  </data>
+  <data name="Server_Fastest">
+    <value>أسرع خادم</value>
+  </data>
+  <data name="Server_Fastest_Free">
+    <value>أسرع خادم مجاني</value>
+  </data>
+  <data name="Server_Feature_B2B">
+    <value>البوابة</value>
+  </data>
+  <data name="Server_Feature_B2B_Description">
+    <value>الوصول إلى خوادم منظمتك</value>
+  </data>
+  <data name="Server_Feature_None">
+    <value>الأساسي</value>
+  </data>
+  <data name="Server_Feature_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Server_Feature_P2P_Description">
+    <value>مُعدّ لاتصال تورنت</value>
+  </data>
+  <data name="Server_Feature_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description">
+    <value>حماية مزدوجة</value>
+  </data>
+  <data name="Server_Feature_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Server_Free">
+    <value>الخادم المجاني</value>
+  </data>
+  <data name="Server_Random">
+    <value>خادم عشوائي</value>
+  </data>
+  <data name="Servers">
+    <value>خوادم</value>
+  </data>
+  <data name="Settings_About">
+    <value>حول</value>
+  </data>
+  <data name="Settings_About_Changelog">
+    <value>سجل التغييرات</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>الإصدار الحالي</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>فشل تحميل معلومات سجل التغيير.</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>لمعرفة المزيد</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>الترخيص</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>جاري التحميل</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>حول</value>
+  </data>
+  <data name="Settings_Account_Account">
+    <value>الحساب</value>
+  </data>
+  <data name="Settings_Account_Exit">
+    <value>الخروج من التطبيق</value>
+  </data>
+  <data name="Settings_Account_SignOut">
+    <value>تسجيل الخروج</value>
+  </data>
+  <data name="Settings_AppVersion">
+    <value>إصدار التطبيق</value>
+  </data>
+  <data name="Settings_Censorship_Footer">
+    <value>لا تحتوي هذه الإحصائيات على عنوان IP الخاص بك، ولا يمكن استخدامها لتحديد هويتك. لن نشاركها أبداً مع أطراف ثالثة.</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports">
+    <value>مشاركة تقارير الأعطال بشكل مجهول</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports_Description">
+    <value>تقارير الأعطال تساعدنا على إصلاح المشاكل، اكتشاف الجدران الحماية، وتفادي حظر VPN</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics">
+    <value>مشاركة بيانات الاستخدام بشكل مجهول</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics_Description">
+    <value>إن بيانات الاستخدام تساعدنا على تجاوز حظر VPN وتحسين أداء التطبيق.</value>
+  </data>
+  <data name="Settings_Common_Apply">
+    <value>تطبيق</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>العنوان مضاف بالفعل</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>أدخل عنوان IPv4 أو IPv6 صالحًا</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Common_Ipv6WarningButton">
+    <value>تحذير - اعرف المزيد</value>
+  </data>
+  <data name="Settings_Connection">
+    <value>الاتصال</value>
+  </data>
+  <data name="Settings_Connection_AdvancedSettings">
+    <value>الإعدادات المتقدمة</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting">
+    <value>المسار البديل</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
+    <value>إذا تم حظر خدمات Proton بسبب قيود الشبكة، فسنحاول استخدام توجيه الشبكة البديل لتوصيلك بمواقعنا.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers">
+    <value>خوادم DNS مخصصة</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>إضافة خادم DNS جديد</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
+    <value>لن تتمكن من استخدام NetShield عند الاتصال بخادم DNS مخصص.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
+    <value>تمكين خادم DNS المخصص؟</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
+    <value>اتصل بـ Proton VPN باستخدام نظام أسماء النطاقات (DNS) الخاص بك. استخدم فقط خوادم DNS التي تثق بها.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>سنحاول الاتصال بهذه الخوادم بالترتيب. إذا لم يعمل أي منها، فسيتم استخدام DNS الافتراضي لـ Proton VPN.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+    <value>خوادم DNS ({0})</value>
+    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
+    <value>أدخل عنوان IPv4 أو IPv6 الخاص بالخادم</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>دعم IPv6</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
+    <value>حماية من تسرب IPv6</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
+    <value>يمنع تسرب البيانات عن طريق حظر حركة مرور IPv6 التي لا تمر عبر نفق VPN.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>يسمح لحركة مرور IPv6 بالمرور عبر نفق VPN. هذا يحسن التوافق مع مواقع وخدمات IPv6.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections">
+    <value>سماح اتصالات الشبكة المحلية LAN</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_Description">
+    <value>يسمح بالاتصالات بالطابعات ومكبرات الصوت والأجهزة الأخرى في شبكتك المحلية.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
+    <value>Uses mDNS to connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Standard DNS continues to be routed through the VPN tunnel. Disabled by default for faster VPN speeds.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
+    <value>الوصول إلى الأجهزة بالاسم</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType">
+    <value>نوع NAT</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
+    <value>لن تتمكن من استخدام إعادة توجيه المنفذ مع NAT المعتدل.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
+    <value>تمكين NAT المعتدل؟</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Description">
+    <value>حدد نوع ترجمة عنوان الشبكة للاتصال الخاص بك.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate">
+    <value>معتدل (النوع 2)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
+    <value>بعض القيود على دخول البيانات إلى شبكتك. هذا الخيار هو الأفضل لألعاب الفيديو عبر الإنترنت.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict">
+    <value>صارم (النوع 3)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict_Description">
+    <value>يقيد البيانات التي تدخل شبكتك. هذا الخيار أكثر أماناً، ولكنه قد يجعل اتصالات الألعاب من نظير إلى نظير أكثر صعوبة.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
+    <value>يوجه حركة المرور بين الشبكات المختلفة.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
+    <value>يستخدم التجسير لربط الشبكات. يوفر TUN سرعات أعلى من TAP، ولكنه قد يكون أقل استقرارًا.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
+    <value>لا يمكن تشغيل DNS المخصّص لأنك متصل بملف شخصي تم تفعيل NetShield عليه.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
+    <value>تم تعطيل DNS المخصص لأنك متصل حاليًا بملف شخصي تم تفعيل NetShield عليه.</value>
+  </data>
+  <data name="Settings_Connection_Default">
+    <value>الاتصال الافتراضي</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>أسرع دولة</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>أفضل خادم حسب موقعك</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>آخر اتصال</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>آخر اتصال تم استخدامه مؤخراً</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>دولة عشوائية</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>خادم مختلف في كل مرة تتصل فيها</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>مؤخرًا</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch">
+    <value>مفتاح الأمان</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced">
+    <value>خيارات متقدمة</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced_Description">
+    <value>السماح فقط بالوصول إلى الإنترنت عند الاتصال بـ Proton VPN. سوف يظل مفتاح الإيقاف المتقدم نشطاً حتى عند إعادة تشغيل جهازك.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Description">
+    <value>يحمي عنوان IP الخاص بك عن طريق قطع اتصالك بالإنترنت إذا فقدت اتصال VPN الخاص بك.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Footer">
+    <value>عند تشغيل مفتاح الإيقاف التلقائي، لن تتمكن من الاتصال بمواقع الويب والتطبيقات المستبعدة من اتصال VPN الخاص بك من خلال split tunneling.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard">
+    <value>الأساسي</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard_Description">
+    <value>قطع الاتصال تلقائياً بالإنترنت في حالة فقدان اتصال VPN.</value>
+  </data>
+  <data name="Settings_Connection_NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
+    <value>حظر الإعلانات، البرمجيات الضارة والمتعقبين</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockMalwareOnly">
+    <value>حظر البرامج الخبيثة فقط</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Description">
+    <value>لن تتمكن من الاتصال بخادم DNS مخصص عند تمكين NetShield</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information">
+    <value>NetShield غير متوافق مع DNS المخصّص.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Title">
+    <value>تفعيل NetShield؟</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Description">
+    <value>احمِ نفسك من الإعلانات والبرامج الضارة وأدوات التتبع على مواقع الويب والتطبيقات.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Footer">
+    <value>قد لا يتم تحميل بعض مواقع الويب بشكل صحيح عند حظر الإعلانات والمتتبعين</value>
+  </data>
+  <data name="Settings_Connection_NetShield_PrivacyPanel">
+    <value>لوحة خصوصية NetShield</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding">
+    <value>إعادة توجيه المنفذ</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort">
+    <value>رقم المنفذ النشط:</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
+    <value>نسخ رقم المنفذ</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Description">
+    <value>لن تتمكن من استخدام إدارة NAT عند تمكين إعادة توجيه المنفذ.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Title">
+    <value>تمكين إعادة توجيه المنفذ؟</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Description">
+    <value>يحسن سرعات التورنت والألعاب من خلال السماح باتصالات P2P مباشرة عبر منفذ مخصص.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Footer">
+    <value>لاستخدام إعادة توجيه المنفذ، يرجى الاتصال بخادم يدعم P2P.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>آخر تغيير: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Loading">
+    <value>جارٍ التحميل…</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications">
+    <value>الإشعارات</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications_Description">
+    <value>احصل على إشعار عندما يتغير رقم المنفذ النشط.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>غير متاح</value>
+  </data>
+  <data name="Settings_Connection_Protocol">
+    <value>البروتوكول</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Action">
+    <value>الذهاب إلى الملفات الشخصية</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Message">
+    <value>أنت متصل حاليًا بملف تعريف VPN.
+
+• لتغيير البروتوكول لهذا الاتصال، اقطع الاتصال ثم قم بتعديل ملفك الشخصي.
+
+• لتغيير بروتوكولك لاتصالات VPN الأخرى، ستحتاج إلى قطع الاتصال بملفك الشخصي أولاً.</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Title">
+    <value>تغيير البروتوكول في الملفات الشخصية</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling">
+    <value>Split tunneling</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
+    <value>ملفات التطبيق</value>
+    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Header">
+    <value>التطبيقات المحددة ({0})</value>
+    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>التطبيق غير موجود</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Remove">
+    <value>إزالة التطبيق</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Description">
+    <value>قم بتخصيص اتصالك من خلال تحديد التطبيقات وعناوين IP التي سوف يتم حمايتها بواسطة VPN.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse">
+    <value>وضع التضمين</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Description">
+    <value>تتصل التطبيقات وعناوين IP المحددة فقط عبر VPN، بينما تظل جميع حركة المرور الأخرى غير محمية.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>تضمين</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>أضف عنوان IPv4 أو IPv6 جديد</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
+    <value>عناوين IP المحددة ({0})</value>
+    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
+    <value>إزالة IP</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard">
+    <value>وضع الاستبعاد</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Description">
+    <value>يتم استبعاد التطبيقات وعناوين IP المحددة من اتصال VPN الخاص بك.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>استبعاد</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
+  </data>
+  <data name="Settings_Connection_VpnAccelerator">
+    <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>تجاهل التغييرات</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>واصل التحرير</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>محو التغييرات غير المحفوظة ؟</value>
+  </data>
+  <data name="Settings_Features">
+    <value>خصائص VPN</value>
+  </data>
+  <data name="Settings_General">
+    <value>عام</value>
+  </data>
+  <data name="Settings_General_AutoStartup">
+    <value>تشغيل تلقائي</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect">
+    <value>اتصال تلقائي</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Description">
+    <value>يتصل تلقائيًا باتصالك الافتراضي عند فتح Proton VPN.</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
+    <value>الاتصال الأسرع</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Latest">
+    <value>آخر اتصال</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch">
+    <value>تشغيل تلقائي</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Description">
+    <value>سيتم فتح Proton VPN تلقائيًا عند تسجيل الدخول إلى جهازك</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
+    <value>فتح في سطح المكتب</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
+    <value>التصغير إلى جوار الساعة</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
+    <value>تصغير إلى شريط المهام</value>
+  </data>
+  <data name="Settings_General_AutoStartup_Description">
+    <value>اضبط التطبيق على التشغيل أو الاتصال تلقائيًا.</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates">
+    <value>تحديثات تلقائية</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates_Description">
+    <value>التحقق من تحديثات Proton VPN وتثبيتها تلقائيًا.</value>
+  </data>
+  <data name="Settings_General_BetaAccess">
+    <value>الوصول إلى النسخة التجريبية</value>
+  </data>
+  <data name="Settings_General_BetaAccess_Description">
+    <value>احصل على وصول مبكر وساعدنا في اختبار الإصدارات الجديدة من Proton VPN.</value>
+  </data>
+  <data name="Settings_General_Language">
+    <value>اللغة</value>
+  </data>
+  <data name="Settings_General_Notifications">
+    <value>الإشعارات</value>
+  </data>
+  <data name="Settings_General_Notifications_Description">
+    <value>احصل على إشعارات حول التغييرات في حالة اتصالك.</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver">
+    <value>مشغل شبكة OpenVPN</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver_Description">
+    <value>يمكن أن تؤثر برامج تشغيل الشبكة على سرعة الاتصال. يوفر TUN الجديد سرعة أعلى ويعتمد على TAP إذا واجهت أي مشكلات في الاتصال.</value>
+  </data>
+  <data name="Settings_General_Theme">
+    <value>المظهر</value>
+  </data>
+  <data name="Settings_General_Theme_Dark">
+    <value>داكن</value>
+  </data>
+  <data name="Settings_General_Theme_Default">
+    <value>الافتراضي</value>
+  </data>
+  <data name="Settings_General_Theme_Light">
+    <value>فاتح</value>
+  </data>
+  <data name="Settings_Improve">
+    <value>تحسين Proton</value>
+  </data>
+  <data name="Settings_Improve_Censorship">
+    <value>ساعدنا في مكافحة الرقابة</value>
+  </data>
+  <data name="Settings_OperatingSystemVersion">
+    <value>إصدار نظام التشغيل</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description1">
+    <value>هذا الإعداد متصل بملف التعريف المفعّل.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2">
+    <value>عدل الملف التعريفي لتقوم بالتغييرات، أو اقطع الاتصال لتعديل إعدادات VPN العامة.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline">
+    <value>هذه الإعدادات متصلة بملف '{0}' الشخصي ولا يمكن إدارتها إلا في الملفات الشخصية.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Title">
+    <value>عدل {0} في الملفات التعريفية</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
+  <data name="Settings_Page_Title">
+    <value>الإعدادات</value>
+  </data>
+  <data name="Settings_Protocols_Explanation">
+    <value>يحدد بروتوكول VPN كيفية انتقال البيانات بين خادم VPN وجهازك.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Description">
+    <value>إن OpenVPN معروف، ومختبر جيداً. كما أنه موثوق في ظروف الشبكة السيئة، ولكن قد لا يكون بسرعة البروتوكولات الأخرى.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Description">
+    <value>إن OpenVPN معروف، ومختبر جيداً. لكنه يستخدم البطارية أكثر من بعض البروتوكولات الأخرى.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Description">
+    <value>يختار تلقائياً أفضل بروتوكول للاتصال الخاص بك.</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Title">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_Protocols_TcpCategory">
+    <value>الموثوقية (TCP)</value>
+  </data>
+  <data name="Settings_Protocols_UdpCategory">
+    <value>السرعة (UDP)</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>أحدث بروتوكول للأمن والأداء.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>يتغلب على حجب VPN عن طريق إخفاء اتصال VPN الخاص بك عن الرقابة. Stealth مقاوم لـ DPI (الفحص العميق للحزم)، ولكنه قد لا يكون بنفس سرعة البروتوكولات الأخرى.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Description">
+    <value>أحدث بروتوكول للأمن والأداء.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Reconnection_Title">
+    <value>قم بإعادة الاتصال لتطبيق التغييرات</value>
+  </data>
+  <data name="Settings_RestoreDefault">
+    <value>إستعادة الإعدادات الإفتراضية</value>
+  </data>
+  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
+    <value>إستعادة وإعادة الاتصال</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Action">
+    <value>إستعادة الإعدادات الإفتراضية</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Message">
+    <value>سيؤدي هذا إلى إعادة تعيين إعدادات Proton VPN الخاصة بك إلى حالتها الأصلية.</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Title">
+    <value>إستعادة الإعدادات الافتراضي؟</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnTcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnUdp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardUdp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="Settings_Support">
+    <value>الدعم الفني</value>
+  </data>
+  <data name="Settings_Support_DebugLogs">
+    <value>سجلات تصحيح الأخطاء</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Application">
+    <value>سجل التطبيق</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_ErrorMessage">
+    <value>تعذر العثور على مجلد السجلات.</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Service">
+    <value>سجلات الخدمة</value>
+  </data>
+  <data name="Settings_Support_ReportIssue">
+    <value>الإبلاغ عن مشكلة</value>
+  </data>
+  <data name="Settings_Support_SupportCenter">
+    <value>خدمة العملاء</value>
+  </data>
+  <data name="Settings_Theme_Dark">
+    <value>داكن</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>الافتراضي</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>فاتح</value>
+  </data>
+  <data name="Settings_VpnAccelerator_Description">
+    <value>قم بزيادة سرعة اتصالك بنسبة تصل إلى 400% مع تقنيات تحسين الأداء.</value>
+  </data>
+  <data name="SignIn_Form">
+    <value>نموذج تسجيل الدخول</value>
+  </data>
+  <data name="SignIn_Form_AdvancedKillSwitchDescription">
+    <value>يقوم مفتاح الإيقاف المتقدم بحظر اتصالك بالإنترنت.</value>
+  </data>
+  <data name="SignIn_Form_BestSecureVpnForSpeed">
+    <value>أفضل VPN آمن من حيث السرعة</value>
+  </data>
+  <data name="SignIn_Form_CreateAccount">
+    <value>إنشاء حساب</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_Description">
+    <value>أدخل بيانات حسابك في Proton</value>
+  </data>
+  <data name="SignIn_Form_DisableKillSwitch">
+    <value>تعطيل مفتاح الأمان</value>
+  </data>
+  <data name="SignIn_Form_Email">
+    <value>البريد الإلكتروني</value>
+  </data>
+  <data name="SignIn_Form_ForgotUsername">
+    <value>نسيت إسم المستخدم</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_Help">
+    <value>المساعدة</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_NoLogsPolicy">
+    <value>سياسة عدم الاحتفاظ بالسجلات</value>
+  </data>
+  <data name="SignIn_Form_OpenSource">
+    <value>مفتوح المصدر</value>
+  </data>
+  <data name="SignIn_Form_Password">
+    <value>الكلمة السرية</value>
+  </data>
+  <data name="SignIn_Form_PasswordError">
+    <value>أدخل كلمة مرورك</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a password</comment>
+  </data>
+  <data name="SignIn_Form_ReportAnIssue">
+    <value>الإبلاغ عن مشكلة</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_ResetPassword">
+    <value>نسيت كلمة المرور</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_SignIn">
+    <value>تسجيل الدخول</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_SignInWithSso">
+    <value>تسجيل الدخول باستخدام SSO</value>
+  </data>
+  <data name="SignIn_Form_SwissBased">
+    <value>مقره في سويسرا</value>
+  </data>
+  <data name="SignIn_Form_Title">
+    <value>تسجيل الدخول</value>
+  </data>
+  <data name="SignIn_Form_TroubleSigningIn">
+    <value>مركز الدعم</value>
+    <comment>A button at the bottom of the login window inside Get help popup</comment>
+  </data>
+  <data name="SignIn_Form_Username">
+    <value>البريد الإلكتروني أو إسم المستخدم</value>
+  </data>
+  <data name="SignIn_Form_UsernameError">
+    <value>أدخل بريدك الإلكتروني أو اسم المستخدم</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
+  </data>
+  <data name="SignIn_KillSwitch_Disabled">
+    <value>مفتاح الإيقاف معطّل</value>
+  </data>
+  <data name="State_Fastest">
+    <value>أسرع ولاية</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>ولاية عشوائية</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="SystemNotification_Connected">
+    <value>أنت محمي الآن</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>متصل بـ {0}.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>غير متصل</value>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
+    <value>خروج</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication">
+    <value>فتح {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>افتح التطبيق لتسجيل الدخول</value>
+  </data>
+  <data name="Unit_BytesPerSecond">
+    <value>B/s</value>
+    <comment>Unit for Bytes per second</comment>
+  </data>
+  <data name="Unit_ExabytesPerSecond">
+    <value>EB/s</value>
+    <comment>Unit for Exabytes per second</comment>
+  </data>
+  <data name="Unit_GigabytesPerSecond">
+    <value>GB/s</value>
+    <comment>Unit for Gigabytes per second</comment>
+  </data>
+  <data name="Unit_KilobytesPerSecond">
+    <value>KB/s</value>
+    <comment>Unit for Kilobytes per second</comment>
+  </data>
+  <data name="Unit_MegabytesPerSecond">
+    <value>MB/s</value>
+    <comment>Unit for Megabytes per second</comment>
+  </data>
+  <data name="Unit_PetabytesPerSecond">
+    <value>PB/s</value>
+    <comment>Unit for Petabytes per second</comment>
+  </data>
+  <data name="Unit_TerabytesPerSecond">
+    <value>TB/s</value>
+    <comment>Unit for Terabytes per second</comment>
+  </data>
+  <data name="UpsellBanner_NetShield_Description">
+    <value>حظر الإعلانات وأدوات التتبع والبرامج الضارة على مواقع الويب والتطبيقات</value>
+  </data>
+  <data name="UpsellBanner_NetShield_Title">
+    <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>قم بالترقية لكي تتمكن من اختيار الخادم</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>ليست الدولة التي تريدها؟</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>فتح تخصيص VPN المتقدم</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>اتصل بـ VPN باستخدام نظام أسماء النطاقات (DNS) المخصص لك</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>الوصول إلى الأجهزة على شبكة المنطقة المحلية الخاصة بك (LAN) أثناء الاتصال</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>ارفع مستوى تجربة اللعب الخاصة بك عن طريق التبديل إلى نوع NAT 2 (متوسط)</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>قم بتوصيل 10 أجهزة في وقت واحد</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>استخدام Proton VPN على منصات مختلفة</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>أندرويد و تلفاز الأندرويد</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>المتصفح</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>الأمان والخصوصية على جميع أجهزتك</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>استمتع بتصفح خالي من الإعلانات</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>حظر الإعلانات والمتابعين مع NetShield</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>احمي جهازك من البرامج الضارة</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>فتح التنزيلات من النظير إلى النظير ومشاركة الملفات (P2P)</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>إخفاء عنوان IP الخاص بك عن مزود الخدمة والآخرين</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>سرعة P2P مع إعادة توجيه المنفذ</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>زيادة سرعات التنزيل والرفع</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ المزيد</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_Profiles">
+    <value>احصل على وصول سريع إلى اتصالاتك المتكررة</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience">
+    <value>اجعل ملفًا شخصيًا هو اتصالك الافتراضي واتصل بنقرة واحدة</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Creation">
+    <value>إنشاء وحفظ إعدادات VPN الخاصة بك باستخدام الملفات الشخصية</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization">
+    <value>تخصيص الموقع، البروتوكول، والإعدادات</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>أضف طبقة حماية أخرى إلى اتصالك</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>مضاعفة التشفير مع Secure Core</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>احم نفسك من هجمات الشبكة</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>التوجيه من خلال خوادم فائقة الأمان في سويسرا والسويد وأيسلندا</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>تصفح الويب بسرعة أعلى</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>تصفح أسرع بنسبة تصل إلى 400% مع VPN Accelerator</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>الوصول إلى خوادم أسرع وأقل ازدحامًا</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>احصل على سرعات اتصال تصل إلى 10 جيجابت في الثانية</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>احصل على أفضل ما في العالم</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>التصفح من موقعين في وقت واحد باستخدام split tunneling</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>اسمح للتطبيقات الموثوقة وعناوين IP بالاتصال مباشرة بالإنترنت، مع حماية كل شيء باستخدام شبكة VPN الخاصة بك</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>بث الأفلام والبرامج التلفزيونية المفضلة لديك</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>الوصول إلى التلفزيون والأفلام المحظورة من أي مكان في العالم</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Hulu">
+    <value>Hulu</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>شاهد بدقة 4K بدون تخزين مؤقت أو تباطؤ أو اختناق</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>اكتشف VPN Plus</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>الوصول إلى شبكة Tor للحصول على المزيد من الخصوصية</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>الوصول إلى المواقع المخفية ومواقع البصل</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>تصفح شبكة Tor باستخدام المتصفح العادي</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>حماية بياناتك الشخصية أثناء التصفح</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>الوصول على {0} في {1}</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>تجاوز الرقابة مع ميزات أمان متقدمة</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Zero">
+    <value>{0} دولة</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
+    <value>{0} دولة</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Two">
+    <value>{0} دولة</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Few">
+    <value>{0} دول</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Many">
+    <value>{0} دول</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>{0} دول</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>بث آمن وتورنت وغير ذلك الكثير</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>اختر أي بلد من شبكتنا العالمية</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Zero">
+    <value>{0} خادم آمن</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
+    <value>{0} خادم آمن</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Two">
+    <value>{0} خادم آمن</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Few">
+    <value>{0} خوادم آمنة</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Many">
+    <value>{0} خوادم آمنة</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>{0} خوادم آمنة</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp_Description">
+    <value>راسخ ومختبر جيدًا وآمن</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp_Description">
+    <value>راسخ ومختبر جيدًا وآمن</value>
+  </data>
+  <data name="VpnProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp_Description">
+    <value>أحدث بروتوكول للأمن والأداء</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls_Description">
+    <value>يتغلب على حظر VPN عن طريق إخفاء اتصالك عن الرقابة</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp_Description">
+    <value>أحدث بروتوكول للأمن والأداء</value>
+  </data>
+</root>

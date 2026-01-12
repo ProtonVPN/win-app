@@ -49,9 +49,9 @@ public class LanguageFactory : ILanguageFactory
         { "da-DK",  "Dansk - Danish" },
         { "fi-FI",  "Suomi - Finnish" },
         { "hu-HU",  "Magyar - Hungarian" },
-        { "id-ID",  "Bahasa Indonesia - Indonesian" },
+        { "id-ID",  "Bahasa (Indonesia) - Indonesian" },
         { "nb-NO",  "Norsk (bokmål) - Norwegian (Bokmal)" },
-        { "pt-PT",  "Português (Portugal) - Portuguese (Portugal)" },
+        { "pt-PT",  "Português (Portugal) - Portuguese" },
         { "ro-RO",  "Română - Romanian" },
         { "sk-SK",  "Slovenčina - Slovak" },
         { "sl-SI",  "Slovenščina - Slovenian" },
@@ -64,6 +64,7 @@ public class LanguageFactory : ILanguageFactory
         { "ja-JP",  "日本語 - Japanese" },
         { "zh-CN",  "简体中文 - Chinese (Simplified)" },
         { "zh-TW",  "繁體中文 - Chinese (Traditional)" },
+        { "ar-SA",  "عربي - Arabic" },
         { "fa-IR",  "فارسی - Persian" },
     };
 
