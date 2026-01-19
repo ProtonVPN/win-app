@@ -2895,22 +2895,22 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_AdsBlocked_One">
-    <value>Zablokovaná reklama</value>
+    <value>zablokovaná reklama</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Few">
-    <value>Zablokovaných reklám</value>
+    <value>zablokované reklamy</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Many">
-    <value>Zablokované reklamy</value>
+    <value>zablokovaných reklám</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Other">
-    <value>Zablokované reklamy</value>
+    <value>zablokovaných reklám</value>
   </data>
   <data name="Home_NetShield_AdsBlocked_Description">
     <value>Reklamy sú reklamné bannery alebo vyskakovacie okná, ktoré sa zobrazujú na webových stránkach a v aplikáciách.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Ušetrené dáta</value>
+    <value>ušetrených dát</value>
   </data>
   <data name="Home_NetShield_DataSaved_Description">
     <value>Odhadované ušetrené dáta vďaka blokovaniu nežiaducich reklám, sledovacích zariadení a škodlivého softvéru.</value>
@@ -2923,16 +2923,16 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>NetShield štatistiky</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_One">
-    <value>Sledovač zastavený</value>
+    <value>zastavený sledovač</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Few">
-    <value>Sledovačov zastavených</value>
+    <value>zastavené sledovače</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Many">
-    <value>Sledovače zastavené</value>
+    <value>zastavených sledovačov</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Other">
-    <value>Sledovače zastavené</value>
+    <value>zastavených sledovačov</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Description">
     <value>Sledovače sú cookies a webové stránky tretích strán, ktoré zhromažďujú, uchovávajú a predávajú informácie o vašej webovej aktivite.</value>

@@ -343,7 +343,7 @@
     <value>فشل Proton VPN في جلب شهادة المصادقة بسبب مشكلة في الشبكة.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>It is not possible to connect to VPN while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+    <value>لا يمكن الاتصال بشبكة VPN أثناء استخدام جهازك كنقطة اتصال. قم بتعطيل نقطة الاتصال وحاول مرة أخرى.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>جميع الخوادم التي اخترتها غير متاحة. يرجى توسيع اختياراتك أو إعادة المحاولة لاحقًا.</value>
@@ -356,7 +356,7 @@
     <value>محول الشبكة مفقود.</value>
   </data>
   <data name="Connection_Error_OpenMobileHotspotSettings">
-    <value>Open mobile hotspot settings</value>
+    <value>فتح إعدادات نقطة اتصال الجوال</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>الإبلاغ عن مشكلة</value>
@@ -3228,7 +3228,7 @@
     <value>حدث خطأ عند استرداد تفاصيل الجلسة. من فضلك حاول مرة أخرى.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>It is not possible to sign in while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+    <value>لا يمكن تسجيل الدخول أثناء استخدام جهازك كنقطة اتصال. قم بتعطيل نقطة الاتصال وحاول مرة أخرى.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>الرمز غير صحيح. الرجاء المحاولة مرة أخرى.</value>
@@ -3774,7 +3774,7 @@ VPN</value>
     <value>يسمح بالاتصالات بالطابعات ومكبرات الصوت والأجهزة الأخرى في شبكتك المحلية.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
-    <value>Uses mDNS to connect to devices using names like 'My-Printer' or 'router.local' instead of IP addresses. Standard DNS continues to be routed through the VPN tunnel. Disabled by default for faster VPN speeds.</value>
+    <value>يستخدم mDNS للاتصال بالأجهزة باستخدام أسماء مثل "My-Printer" أو "router.local" بدلاً من عناوين IP. يستمر توجيه DNS القياسي عبر نفق VPN. معطل افتراضيًا لسرعات VPN أسرع.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
     <value>الوصول إلى الأجهزة بالاسم</value>
