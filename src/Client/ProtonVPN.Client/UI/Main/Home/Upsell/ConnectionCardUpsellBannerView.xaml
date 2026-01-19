@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2024 Proton AG
+Copyright (c) 2025 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -35,7 +35,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <custom:UpsellBanner Title="{x:Bind ViewModel.Localizer.Get('UpsellBanner_WrongCountry_Title')}"
                              Command="{x:Bind ViewModel.UpgradeCommand, Mode=OneTime}"
                              Description="{x:Bind ViewModel.Localizer.Get('UpsellBanner_WrongCountry_Description')}"
-                             IllustrationSource="{StaticResource WrongCountryIllustrationSource}"/>
+                             IllustrationSource="{StaticResource WrongCountryIllustrationSource}"
+                             Visibility="{x:Bind ViewModel.IsWrongCountryBannerVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+        <custom:UpsellBanner Title="{x:Bind ViewModel.Localizer.Get('UpsellBanner_P2P_Title')}"
+                             Command="{x:Bind ViewModel.UpgradeCommand, Mode=OneTime}"
+                             Description="{x:Bind ViewModel.Localizer.Get('UpsellBanner_P2P_Description')}"
+                             IllustrationSource="{StaticResource P2PUpsellSmallIllustrationSource}"
+                             Visibility="{x:Bind ViewModel.IsP2PUpsellBannerVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </Grid>
 
 </UserControl>

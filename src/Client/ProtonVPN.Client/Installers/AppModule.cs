@@ -292,6 +292,9 @@ public class AppModule : Module
         builder.RegisterType<EfficiencyModeEnabler>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<SettingsHeartbeatService>().AsImplementedInterfaces().SingleInstance().AutoActivate();
+
+        builder.RegisterType<P2PDetectionWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<StreamingDetectionWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
     }
 
     private void RegisterLocalHandlers(ContainerBuilder builder)
@@ -449,6 +452,9 @@ public class AppModule : Module
         RegisterViewModel<OneTimeAnnouncementShellViewModel>(builder).AutoActivate();
         RegisterViewModel<NpsSurveyShellViewModel>(builder).AutoActivate();
         RegisterViewModel<TroubleshootingShellViewModel>(builder);
+
+        RegisterViewModel<P2PDetectionShellViewModel>(builder);
+        RegisterViewModel<StreamingDetectionShellViewModel>(builder);
 
         builder.RegisterType<ReleaseViewModelFactory>().SingleInstance();
     }

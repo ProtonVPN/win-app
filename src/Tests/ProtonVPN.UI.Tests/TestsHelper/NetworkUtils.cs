@@ -26,6 +26,7 @@ using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using Castle.Components.DictionaryAdapter.Xml;
 using FlaUI.Core.Tools;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
@@ -166,7 +167,7 @@ public class NetworkUtils
     {
         string endpoint = "http://ip-api.com/json/";
         // Make sure that fresh socket is created when requesting connection data
-        using (HttpClient client = new HttpClient())
+        using (HttpClient client = new())
         {
             try
             {
@@ -174,9 +175,9 @@ public class NetworkUtils
                 JObject json = JObject.Parse(response);
                 return json;
             }
-            catch (HttpRequestException)
+            catch (HttpRequestException e)
             {
-                // Return null if API call fails due to networking issues
+                TestContext.WriteLine($"GetIpAddressWithRetry failed. Result: {e.Message}");
                 return null;
             }
         }

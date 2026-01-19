@@ -93,7 +93,7 @@ public class FreeUserTests : FreshSessionSetUp
             .NextUpsell()
             .Verify.IsSecureCoreUpsellDisplayed()
             .NextUpsell()
-            .Verify.IsP2pUpsellDisplayed()
+            .Verify.IsP2PUpsellDisplayed()
             .NextUpsell()
             .Verify.IsTenDevicesUpsellDisplayed()
             .NextUpsell()
@@ -122,7 +122,7 @@ public class FreeUserTests : FreshSessionSetUp
             .CloseModal();
 
         SettingRobot.OpenPortForwardingSettings();
-        UpsellCarrouselRobot.Verify.IsP2pUpsellDisplayed()
+        UpsellCarrouselRobot.Verify.IsP2PUpsellDisplayed()
             .CloseModal();
 
         SettingRobot.OpenSplitTunnelingSettingsCard();
@@ -153,7 +153,7 @@ public class FreeUserTests : FreshSessionSetUp
             .Verify.IsSecureCoreUpsellDisplayed();
 
         SidebarRobot.NavigateToP2PCountriesTab()
-            .Verify.IsP2pUpsellDisplayed();
+            .Verify.IsP2PUpsellDisplayed();
 
         SidebarRobot.NavigateToTorCountriesTab()
             .Verify.IsTorUpsellDisplayed();

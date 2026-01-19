@@ -109,9 +109,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                Visibility="{Binding Text, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
                                     <TextBlock x:Name="Description"
-                                               FontSize="{StaticResource CaptionFontSize}"
-                                               FontWeight="{StaticResource CaptionFontWeight}"
-                                               Foreground="{ThemeResource TextWeakColorBrush}"
+                                               FontSize="{StaticResource BodyFontSize}"
+                                               FontWeight="{StaticResource BodyFontWeight}"
+                                               Foreground="{ThemeResource TextNormColorBrush}"
                                                LineHeight="{StaticResource CaptionLineHeight}"
                                                Text="{TemplateBinding Description}"
                                                TextWrapping="WrapWholeWords"

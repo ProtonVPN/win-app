@@ -31,7 +31,7 @@ public class UpsellCarrouselRobot
     protected Element StreamingUpsellTitle = Element.ByName("Stream your favorite movies and TV shows");
     protected Element NetshieldUpsellTitle = Element.ByName("Enjoy ad-free browsing");
     protected Element SecureCoreUpsellTitle = Element.ByName("Add another layer of protection to your connection");
-    protected Element P2pUpsellTitle = Element.ByName("Unlock peer-to-peer downloads and file sharing (P2P)");
+    protected Element P2PUpsellTitle = Element.ByName("Unlock peer-to-peer downloads and file sharing (P2P)");
     protected Element TenDevicesUpsellTitle = Element.ByName("Connect up to 10 devices at once");
     protected Element TorUpsellTitle = Element.ByName("Access the Tor network for extra privacy");
     protected Element SplitTunnelingUpsellTitle = Element.ByName("Get the best of both worlds");
@@ -93,9 +93,9 @@ public class UpsellCarrouselRobot
             return this;
         }
 
-        public Verifications IsP2pUpsellDisplayed()
+        public Verifications IsP2PUpsellDisplayed()
         {
-            P2pUpsellTitle.WaitUntilDisplayed();
+            P2PUpsellTitle.WaitUntilDisplayed();
             UpgradeButton.WaitUntilDisplayed();
             return this;
         }

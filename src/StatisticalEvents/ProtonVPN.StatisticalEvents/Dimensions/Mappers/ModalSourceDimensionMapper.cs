@@ -28,6 +28,8 @@ public class ModalSourceDimensionMapper : DimensionMapperBase, IModalSourceDimen
     private const string NETSHIELD = "netshield";
     private const string COUNTRIES = "countries";
     private const string P2P = "p2p";
+    private const string P2P_ACTIVITY = "p2p_activity";
+    private const string STREAMING_ACTIVITY = "streaming_activity";
     private const string STREAMING = "streaming";
     private const string PORT_FORWARDING = "port_forwarding";
     private const string PROFILES = "profiles";
@@ -63,7 +65,9 @@ public class ModalSourceDimensionMapper : DimensionMapperBase, IModalSourceDimen
             ModalSource.NetShield => NETSHIELD,
             ModalSource.Countries => COUNTRIES,
             ModalSource.P2P => P2P,
+            ModalSource.P2PActivity => P2P_ACTIVITY,
             ModalSource.Streaming => STREAMING,
+            ModalSource.StreamingActivity => STREAMING_ACTIVITY,
             ModalSource.PortForwarding => PORT_FORWARDING,
             ModalSource.Profiles => PROFILES,
             ModalSource.VpnAccelerator => VPN_ACCELERATOR,

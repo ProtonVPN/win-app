@@ -69,7 +69,7 @@ public class SidebarRobot
     protected Element WorldWideCoverageLabel = Element.ByName("Get worldwide coverage with VPN Plus");
     protected Element ProfileSidebarUpsellLabel = Element.ByName("Configure your own VPN settings and connect in one click");
     protected Element SecureCoreSidebarUpsellLabel = Element.ByName("Add another layer of encryption to your VPN connection");
-    protected Element P2pSidebarUpsellLabel = Element.ByName("Download files through BitTorrent and other file sharing protocols");
+    protected Element P2PSidebarUpsellLabel = Element.ByName("Download files through BitTorrent and other file sharing protocols");
     protected Element TorSidebarUpsellLabel = Element.ByName("Use the Tor network over your VPN connection for extra privacy");
     protected Element CreateYourFirstProfileLabel = Element.ByName("Create your first profile");
     protected Element ProfileExplanationLabel = Element.ByName("Profiles are saved connections with your choice of location, server, and protocol.");
@@ -426,9 +426,9 @@ public class SidebarRobot
             return this;
         }
 
-        public Verifications IsP2pUpsellDisplayed()
+        public Verifications IsP2PUpsellDisplayed()
         {
-            P2pSidebarUpsellLabel.WaitUntilDisplayed();
+            P2PSidebarUpsellLabel.WaitUntilDisplayed();
             return this;
         }
 

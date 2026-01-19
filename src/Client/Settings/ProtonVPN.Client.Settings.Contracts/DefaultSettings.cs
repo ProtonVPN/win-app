@@ -77,6 +77,8 @@ public static class DefaultSettings
     public static TimeSpan ConnectedServerCheckInterval = TimeSpan.FromMinutes(30);
     public static DefaultConnection DefaultConnection = DefaultConnection.Fastest;
     public static DateTimeOffset LogicalsLastModifiedDate = DateTimeOffset.UnixEpoch;
+    public static DateTimeOffset LastP2PTrafficNotificationUtcDate = DateTimeOffset.UnixEpoch;
+    public static DateTimeOffset LastStreamingNotificationUtcDate = DateTimeOffset.UnixEpoch;
     public static bool IsP2PInfoBannerDismissed = false;
     public static bool IsSecureCoreInfoBannerDismissed = false;
     public static bool IsTorInfoBannerDismissed = false;

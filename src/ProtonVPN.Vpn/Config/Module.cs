@@ -45,6 +45,7 @@ using ProtonVPN.Vpn.PortMapping;
 using ProtonVPN.Vpn.PortMapping.Serializers.Common;
 using ProtonVPN.Vpn.PortMapping.UdpClients;
 using ProtonVPN.Vpn.PortScanning;
+using ProtonVPN.Vpn.Restrictions;
 using ProtonVPN.Vpn.ServerValidation;
 using ProtonVPN.Vpn.SplitTunnel;
 using ProtonVPN.Vpn.SynchronizationEvent;
@@ -69,6 +70,7 @@ public class Module
         builder.RegisterType<TapAdapter>().SingleInstance();
         builder.RegisterType<NetShieldStatisticEventManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NrptWrapper>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<RestrictionsEventManager>().AsImplementedInterfaces().SingleInstance();
         builder.Register(c =>
             {
                 ILogger logger = c.Resolve<ILogger>();
@@ -151,12 +153,13 @@ public class Module
         IConfiguration config = c.Resolve<IConfiguration>();
         IGatewayCache gatewayCache = c.Resolve<IGatewayCache>();
         INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
+        IRestrictionsEventManager restrictionsEventManager = c.Resolve<IRestrictionsEventManager>();
         IX25519KeyGenerator x25519KeyGenerator = c.Resolve<IX25519KeyGenerator>();
         IConnectionCertificateCache connectionCertificateCache = c.Resolve<IConnectionCertificateCache>();
         IWireGuardDnsServersCreator wireGuardDnsServersCreator = c.Resolve<IWireGuardDnsServersCreator>();
         IServiceFactory serviceFactory = c.Resolve<IServiceFactory>();
 
-        return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<ISplitTunnelRouting>(),
+        return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager, restrictionsEventManager), c.Resolve<ISplitTunnelRouting>(),
             gatewayCache,
             connectionCertificateCache,
             new WireGuardConnection(logger, config, gatewayCache,
@@ -177,9 +180,10 @@ public class Module
         IGatewayCache gatewayCache = c.Resolve<IGatewayCache>();
         IDnsServerCache dnsServerCache = c.Resolve<IDnsServerCache>();
         INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
+        IRestrictionsEventManager restrictionsEventManager = c.Resolve<IRestrictionsEventManager>();
         IConnectionCertificateCache connectionCertificateCache = c.Resolve<IConnectionCertificateCache>();
 
-        return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager), c.Resolve<ISplitTunnelRouting>(),
+        return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager, restrictionsEventManager), c.Resolve<ISplitTunnelRouting>(),
             gatewayCache,
             connectionCertificateCache,
             new OpenVpnConnection(

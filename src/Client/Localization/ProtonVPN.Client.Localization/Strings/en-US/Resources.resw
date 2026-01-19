@@ -3066,11 +3066,23 @@
   <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn" xml:space="preserve">
     <value>This will disconnect you from VPN and temporarily disable kill switch. Any active internet connections will be temporarily unprotected.</value>
   </data>
+  <data name="Dialogs_P2PDetection_WindowTitle" xml:space="preserve">
+    <value>Discover VPN Plus</value>
+  </data>
   <data name="Dialogs_P2PDetection_Title" xml:space="preserve">
-    <value>P2P traffic detected</value>
+    <value>P2P is not allowed on free VPN servers</value>
   </data>
   <data name="Dialogs_P2PDetection_Description" xml:space="preserve">
-    <value>Your connection has been disabled because you are using a server that does not support peer-to-peer (P2P) traffic. P2P is not supported on free servers. Please use a different server for P2P.</value>
+    <value>Upgrade to unlock P2P (peer-to-peer) servers for fast online gaming and torrenting, or end your P2P activity to restore your connection.</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle" xml:space="preserve">
+    <value>Discover VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title" xml:space="preserve">
+    <value>Upgrade to bypass VPN blocks</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description" xml:space="preserve">
+    <value>VPN Plus servers let you enjoy your favorite movies and TV shows from around the world.</value>
   </data>
   <data name="Home_Update_UpdateAvailable" xml:space="preserve">
     <value>Update available</value>
@@ -3210,6 +3222,18 @@
     <value>Connected to {0}.</value>
     <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
   </data>
+  <data name="SystemNotification_P2PWarning_Title" xml:space="preserve">
+    <value>P2P not available with VPN Free</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Description" xml:space="preserve">
+    <value>Unlock torrenting and online gaming over P2P (peer-to-peer) protocols with paid VPN servers.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title" xml:space="preserve">
+    <value>Blocked website?</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description" xml:space="preserve">
+    <value>Some websites and streaming services block free VPN users. Upgrade to Proton VPN Plus to bypass these blocks.</value>
+  </data>
   <data name="UpsellBanner_NetShield_Description" xml:space="preserve">
     <value>Block ads, trackers, and malware on websites and apps</value>
   </data>
@@ -3221,6 +3245,12 @@
   </data>
   <data name="UpsellBanner_WrongCountry_Title" xml:space="preserve">
     <value>Not the country you wanted?</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title" xml:space="preserve">
+    <value>P2P support</value>
+  </data>
+  <data name="UpsellBanner_P2P_Description" xml:space="preserve">
+    <value>Download files through BitTorrent and other file sharing protocols.</value>
   </data>
   <data name="Settings_Common_Apply" xml:space="preserve">
     <value>Apply</value>

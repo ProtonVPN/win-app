@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -31,5 +31,7 @@ public class NotificationsModule : Module
         builder.RegisterType<SubscriptionExpiredNotificationSender>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NotificationActivationHandler>().AsImplementedInterfaces().SingleInstance().AutoActivate();
         builder.RegisterType<UnsecuredWifiNotificationSender>().AsImplementedInterfaces().SingleInstance().AutoActivate();
+        builder.RegisterType<P2PWarningNotificationSender>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<StreamingWarningNotificationSender>().AsImplementedInterfaces().SingleInstance();
     }
 }

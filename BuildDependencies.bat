@@ -66,7 +66,7 @@ if not defined GOSRPONLY (
     
     if "%PLATFORM%"=="x64" (
         pushd %currentDir%src\ProtonVPN.LocalAgent\localAgentWin
-        set GO111MODULE=off
+        set GO111MODULE=on
         set CGO_CFLAGS=-O3 -Wall -Wno-unused-function -Wno-switch -std=gnu11 -DWINVER=0x0601
 
         go build -buildmode c-shared -ldflags="-w -s" -trimpath -v -o %resourcesDir%LocalAgent.dll

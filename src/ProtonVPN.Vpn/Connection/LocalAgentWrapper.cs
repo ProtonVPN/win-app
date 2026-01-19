@@ -461,9 +461,19 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         using GoString host = $"{gatewayIPAddress}:{DEFAULT_PORT}".ToGoString();
         using GoString featuresJson = GetFeatures().ToGoString();
         using GoString certServerName = _endpoint.Server.Name.ToGoString();
-        string result = PInvoke
-            .Connect(clientCertPem, clientKeyPem, serverCaPem, host, certServerName, featuresJson, true)
-            .ConvertToString();
+
+        string result = PInvoke.Connect(
+            clientCertPem,
+            clientKeyPem,
+            serverCaPem,
+            host,
+            certServerName,
+            featuresJson,
+            connectivity: true,
+            keepAliveSeconds: 60,
+            // Zero falls back to the default value of 9
+            keepAliveMaxCount: 0).ConvertToString();
+
         if (result == "")
         {
             _isTlsChannelActive = true;

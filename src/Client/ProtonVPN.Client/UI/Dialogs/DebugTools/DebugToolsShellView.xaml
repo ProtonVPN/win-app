@@ -173,6 +173,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 </toolkit:SettingsCard>
 
+                <toolkit:SettingsCard Header="Show dialog"
+                                      IsTabStop="False"
+                                      Style="{StaticResource DefaultSettingsCardStyle}">
+
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="8">
+                        <ComboBox DisplayMemberPath="Name"
+                                  ItemsSource="{x:Bind ViewModel.DialogsList, Mode=OneTime}"
+                                  SelectedItem="{x:Bind ViewModel.SelectedDialog, Mode=TwoWay}" />
+
+                        <Button Command="{x:Bind ViewModel.ShowDialogCommand, Mode=OneTime}"
+                                Content="Trigger"
+                                Style="{StaticResource PrimaryButtonStyle}" />
+                    </StackPanel>
+
+                </toolkit:SettingsCard>
+
                 <toolkit:SettingsCard Header="Info banners"
                                       IsTabStop="False"
                                       Style="{StaticResource DefaultSettingsCardStyle}">

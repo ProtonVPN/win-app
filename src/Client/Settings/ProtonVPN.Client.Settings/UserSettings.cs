@@ -460,6 +460,18 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetValueType<DateTimeOffset>(value, SettingEncryption.Unencrypted);
     }
 
+    public DateTimeOffset LastP2PWarningNotificationUtcDate
+    {
+        get => _userCache.GetValueType<DateTimeOffset>(SettingEncryption.Unencrypted) ?? DefaultSettings.LastP2PTrafficNotificationUtcDate;
+        set => _userCache.SetValueType<DateTimeOffset>(value, SettingEncryption.Unencrypted);
+    }
+
+    public DateTimeOffset LastStreamingWarningNotificationUtcDate
+    {
+        get => _userCache.GetValueType<DateTimeOffset>(SettingEncryption.Unencrypted) ?? DefaultSettings.LastStreamingNotificationUtcDate;
+        set => _userCache.SetValueType<DateTimeOffset>(value, SettingEncryption.Unencrypted);
+    }
+
     [Obsolete("Use IsLocalDnsEnabled instead. DnsBlockMode is maintained in order to migrate the value for existing users.")]
     public DnsBlockMode DnsBlockMode
     {
@@ -468,7 +480,7 @@ public class UserSettings : GlobalSettings, IUserSettings
     }
 
     public UserSettings(IGlobalSettingsCache globalSettingsCache, IUserSettingsCache userSettingsCache)
-            : base(globalSettingsCache)
+        : base(globalSettingsCache)
     {
         _userCache = userSettingsCache;
     }

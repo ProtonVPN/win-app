@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -27,6 +27,7 @@ using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.NetShield;
 using ProtonVPN.Common.Legacy.PortForwarding;
+using ProtonVPN.Common.Legacy.Restrictions;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -35,6 +36,7 @@ using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.NetShield;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Restrictions;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
@@ -42,6 +44,7 @@ using ProtonVPN.Service.Settings;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.NetShield;
 using ProtonVPN.Vpn.PortMapping;
+using ProtonVPN.Vpn.Restrictions;
 
 namespace ProtonVPN.Service.ProcessCommunication;
 
@@ -53,6 +56,7 @@ public class ClientControllerSender : IClientController, IClientControllerSender
     private readonly IVpnConnection _vpnConnection;
     private readonly IPortMappingProtocolClient _portMappingProtocolClient;
     private readonly INetShieldStatisticEventManager _netShieldStatisticEventManager;
+    private readonly IRestrictionsEventManager _restrictionEventManager;
 
     private VpnState _vpnState = VpnState.Default;
     private PortForwardingState _portForwardingState;
@@ -61,6 +65,7 @@ public class ClientControllerSender : IClientController, IClientControllerSender
     private CancellationTokenSource _portForwardingStateCancellationTokenSource;
     private CancellationTokenSource _connectionDetailsCancellationTokenSource;
     private CancellationTokenSource _netShieldStatisticCancellationTokenSource;
+    private CancellationTokenSource _restrictionsCancellationTokenSource;
     private CancellationTokenSource _updateStateCancellationTokenSource;
     private object _streamCancellationTokenLock = new();
 
@@ -69,6 +74,7 @@ public class ClientControllerSender : IClientController, IClientControllerSender
     private readonly Channel<PortForwardingStateIpcEntity> _portForwardingStateChannel = Channel.CreateUnbounded<PortForwardingStateIpcEntity>();
     private readonly Channel<ConnectionDetailsIpcEntity> _connectionDetailsChannel = Channel.CreateUnbounded<ConnectionDetailsIpcEntity>();
     private readonly Channel<NetShieldStatisticIpcEntity> _netShieldStatisticChannel = Channel.CreateUnbounded<NetShieldStatisticIpcEntity>();
+    private readonly Channel<RestrictionsIpcEntity> _restrictionsChannel = Channel.CreateUnbounded<RestrictionsIpcEntity>();
     private readonly Channel<UpdateStateIpcEntity> _updateStateChannel = Channel.CreateUnbounded<UpdateStateIpcEntity>();
 
     public ClientControllerSender(
@@ -77,7 +83,8 @@ public class ClientControllerSender : IClientController, IClientControllerSender
         IEntityMapper entityMapper,
         IVpnConnection vpnConnection,
         IPortMappingProtocolClient portMappingProtocolClient,
-        INetShieldStatisticEventManager netShieldStatisticEventManager)
+        INetShieldStatisticEventManager netShieldStatisticEventManager,
+        IRestrictionsEventManager restrictionEventManager)
     {
         _killSwitch = killSwitch;
         _logger = logger;
@@ -88,9 +95,11 @@ public class ClientControllerSender : IClientController, IClientControllerSender
         _portMappingProtocolClient = portMappingProtocolClient;
         _portMappingProtocolClient.StateChanged += OnPortForwardingStateChanged;
         _netShieldStatisticEventManager = netShieldStatisticEventManager;
-        _netShieldStatisticEventManager.NetShieldStatisticChanged += OnNetShieldStatisticChanged;
-    }
+        _restrictionEventManager = restrictionEventManager;
 
+        _netShieldStatisticEventManager.NetShieldStatisticChanged += OnNetShieldStatisticChanged;
+        _restrictionEventManager.RestrictionsChanged += OnRestrictionsChanged;
+    }
 
     public IAsyncEnumerable<VpnStateIpcEntity> StreamVpnStateChangeAsync(CancellationToken cancelToken)
     {
@@ -144,6 +153,17 @@ public class ClientControllerSender : IClientController, IClientControllerSender
             _netShieldStatisticCancellationTokenSource = cts;
         }
         return StreamAsync(_netShieldStatisticChannel, cts.Token);
+    }
+
+    public IAsyncEnumerable<RestrictionsIpcEntity> StreamRestrictionsChangeAsync(CancellationToken cancelToken)
+    {
+        CancellationTokenSource cts = new();
+        lock (_streamCancellationTokenLock)
+        {
+            _restrictionsCancellationTokenSource?.Cancel();
+            _restrictionsCancellationTokenSource = cts;
+        }
+        return StreamAsync(_restrictionsChannel, cts.Token);
     }
 
     public IAsyncEnumerable<UpdateStateIpcEntity> StreamUpdateStateChangeAsync(CancellationToken cancelToken)
@@ -268,6 +288,15 @@ public class ClientControllerSender : IClientController, IClientControllerSender
         NetShieldStatisticIpcEntity statsIpcEntity =
             _entityMapper.Map<NetShieldStatistic, NetShieldStatisticIpcEntity>(stats);
         await _netShieldStatisticChannel.Writer.WriteAsync(statsIpcEntity);
+    }
+
+    private async void OnRestrictionsChanged(object sender, RestrictionsList restrictions)
+    {
+        _logger.Info<ProcessCommunicationLog>($"Sending restrictions '{string.Join(',', restrictions.Restrictions)}'");
+
+        RestrictionsIpcEntity restrictionsIpcEntity =
+            _entityMapper.Map<RestrictionsList, RestrictionsIpcEntity>(restrictions);
+        await _restrictionsChannel.Writer.WriteAsync(restrictionsIpcEntity);
     }
 
     public async void OnServiceSettingsChanged(MainSettingsIpcEntity settings)

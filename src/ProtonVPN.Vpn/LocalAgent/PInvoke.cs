@@ -44,8 +44,16 @@ namespace ProtonVPN.Vpn.LocalAgent
         private static extern IntPtr LoadLibrary(string path);
 
         [DllImport(DllName, EntryPoint = "Connect", CallingConvention = CallingConvention.Cdecl)]
-        public static extern GoBytes Connect(GoString clientCertPem, GoString clientKeyPem, GoString serverCaPem,
-            GoString host, GoString certServerName, GoString featuresJson, bool connectivity);
+        public static extern GoBytes Connect(
+            GoString clientCertPem,
+            GoString clientKeyPem,
+            GoString serverCaPem,
+            GoString host,
+            GoString certServerName,
+            GoString featuresJson,
+            bool connectivity,
+            int keepAliveSeconds,
+            int keepAliveMaxCount);
 
         [DllImport(DllName, EntryPoint = "Ping", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool Ping(GoString ip, int port, GoString serverKeyBase64, int timeoutInSeconds);

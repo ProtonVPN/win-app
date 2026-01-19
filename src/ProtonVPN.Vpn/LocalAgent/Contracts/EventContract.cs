@@ -17,6 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
+using ProtonVPN.Common.Legacy.Restrictions;
+
 namespace ProtonVPN.Vpn.LocalAgent.Contracts
 {
     public class EventContract
@@ -34,5 +37,7 @@ namespace ProtonVPN.Vpn.LocalAgent.Contracts
         public ConnectionDetailsContract ConnectionDetails { get; set; }
 
         public string FeaturesStatistics { get; set; }
+
+        public List<string> Restrictions { get; set; }
     }
 }

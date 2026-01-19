@@ -85,6 +85,8 @@ public interface IUserSettings
     bool IsGatewayInfoBannerDismissed { get; set; }
     int LastSeenWhatsNewOverlayVersion { get; set; }
     DateTimeOffset? LastSettingsHeartbeatTimeUtc { get; set; }
+    DateTimeOffset LastP2PWarningNotificationUtcDate { get; set; }
+    DateTimeOffset LastStreamingWarningNotificationUtcDate { get; set; }
 
     [Obsolete("Use IsLocalDnsEnabled instead. DnsBlockMode is maintained in order to migrate the value for existing users.")]
     DnsBlockMode DnsBlockMode { get; set; }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,18 +19,21 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Common.Legacy.Go;
+using ProtonVPN.Common.Legacy.NetShield;
+using ProtonVPN.Common.Legacy.Restrictions;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.LocalAgentLogs;
-using ProtonVPN.Common.Legacy.NetShield;
-using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Vpn.LocalAgent.Contracts;
 using ProtonVPN.Vpn.NetShield;
+using ProtonVPN.Vpn.Restrictions;
 
 namespace ProtonVPN.Vpn.LocalAgent
 {
@@ -38,15 +41,20 @@ namespace ProtonVPN.Vpn.LocalAgent
     {
         private readonly ILogger _logger;
         private readonly INetShieldStatisticEventManager _netShieldStatisticEventManager;
+        private readonly IRestrictionsEventManager _restrictionsEventManager;
 
         private Task _loggerTask;
         private ConnectionDetails _connectionDetails;
         private CancellationTokenSource _cancellationTokenSource;
 
-        public EventReceiver(ILogger logger, INetShieldStatisticEventManager netShieldStatisticEventManager)
+        public EventReceiver(
+            ILogger logger,
+            INetShieldStatisticEventManager netShieldStatisticEventManager,
+            IRestrictionsEventManager restrictionEventManager)
         {
             _logger = logger;
             _netShieldStatisticEventManager = netShieldStatisticEventManager;
+            _restrictionsEventManager = restrictionEventManager;
         }
 
         public event EventHandler<EventArgs<LocalAgentState>> StateChanged;
@@ -117,6 +125,9 @@ namespace ProtonVPN.Vpn.LocalAgent
                 case "stats":
                     HandleStats(e);
                     break;
+                case "restrictions":
+                    HandleRestrictions(e);
+                    break;
             }
         }
 
@@ -139,6 +150,25 @@ namespace ProtonVPN.Vpn.LocalAgent
             {
                 OnNetShieldStatsEvent(netShieldStats);
             }
+        }
+
+        private void HandleRestrictions(EventContract eventContract)
+        {
+            List<Restriction> restrictions = eventContract.Restrictions
+                .Select(r => Enum.TryParse(r, true, out Restriction val) ? (Restriction?)val : null)
+                .Where(v => v.HasValue)
+                .Select(v => v.Value)
+                .ToList();
+
+            if (restrictions.Count == 0)
+            {
+                return;
+            }
+
+            _restrictionsEventManager.Invoke(this, new RestrictionsList()
+            {
+                Restrictions = restrictions,
+            });
         }
 
         private void OnNetShieldStatsEvent(Dictionary<string, long> eventValue)

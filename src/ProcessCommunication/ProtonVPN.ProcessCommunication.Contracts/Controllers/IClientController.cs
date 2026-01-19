@@ -20,6 +20,7 @@
 using System.ServiceModel;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.NetShield;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Restrictions;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Update;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -39,6 +40,9 @@ public interface IClientController
 
     [OperationContract]
     IAsyncEnumerable<NetShieldStatisticIpcEntity> StreamNetShieldStatisticChangeAsync(CancellationToken cancelToken);
+
+    [OperationContract]
+    IAsyncEnumerable<RestrictionsIpcEntity> StreamRestrictionsChangeAsync(CancellationToken cancelToken);
 
     [OperationContract]
     IAsyncEnumerable<UpdateStateIpcEntity> StreamUpdateStateChangeAsync(CancellationToken cancelToken);

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,6 +22,7 @@ using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Contracts.Services.Activation.Bases;
 using ProtonVPN.Client.Contracts.Services.Lifecycle;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
@@ -51,9 +52,13 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IAppExitInvoker _appExitInvoker;
     private readonly ISettingsHeartbeatStatisticalEventSender _settingsHeartbeatStatisticalEventSender;
+    private readonly IEnumerable<IWindowActivator> _windowActivators;
 
     [ObservableProperty]
     private Overlay _selectedOverlay;
+
+    [ObservableProperty]
+    private Overlay _selectedDialog;
 
     [ObservableProperty]
     private VpnErrorTypeIpcEntity _selectedError = VpnErrorTypeIpcEntity.None;
@@ -71,6 +76,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     private int _windowHeight;
 
     public List<Overlay> OverlaysList { get; }
+    public List<Overlay> DialogsList { get; }
 
     public List<VpnPlan> VpnPlans { get; } =
     [
@@ -93,7 +99,8 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         IDebugToolsWindowActivator windowActivator,
         IViewModelHelper viewModelHelper,
         IAppExitInvoker appExitInvoker,
-        ISettingsHeartbeatStatisticalEventSender settingsHeartbeatStatisticalEventSender)
+        ISettingsHeartbeatStatisticalEventSender settingsHeartbeatStatisticalEventSender,
+        IEnumerable<IWindowActivator> windowActivators)
         : base(windowActivator, viewModelHelper)
     {
         _serversUpdater = serversUpdater;
@@ -105,6 +112,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         _eventMessageSender = eventMessageSender;
         _appExitInvoker = appExitInvoker;
         _settingsHeartbeatStatisticalEventSender = settingsHeartbeatStatisticalEventSender;
+        _windowActivators = windowActivators;
 
         OverlaysList =
         [
@@ -118,6 +126,19 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
             .ToList()
         ];
         SelectedOverlay = OverlaysList.First();
+
+        DialogsList =
+        [
+            .._windowActivators
+                .Where(a => a is not IMainWindowActivator or IDebugToolsWindowActivator)
+                .Select(m => new Overlay
+                {
+                    Id =  m.GetType().ToString(),
+                    Name = GenerateDialogDisplayName(m.GetType().ToString()),
+                })
+            .ToList()
+        ];
+        SelectedDialog = DialogsList.First();
 
         SelectedVpnPlan = VpnPlans.First();
     }
@@ -179,6 +200,18 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         }
     }
 
+
+    [RelayCommand]
+    public void ShowDialog()
+    {
+        if (SelectedDialog is null)
+        {
+            return;
+        }
+
+        _windowActivators.FirstOrDefault(a => a.GetType().FullName == SelectedDialog.Id)?.Activate();
+    }
+
     [RelayCommand]
     public void ResetInfoBanners()
     {
@@ -237,6 +270,19 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         displayName = Regex.Replace(displayName, "(?<=[a-z])([A-Z])", " $1");
 
         return displayName.Trim();
+    }
+
+    private string GenerateDialogDisplayName(string fullName)
+    {
+        if (string.IsNullOrWhiteSpace(fullName))
+        {
+            return string.Empty;
+        }
+
+        int lastDotIndex = fullName.LastIndexOf('.');
+        string className = fullName.Substring(lastDotIndex + 1);
+
+        return Regex.Replace(className, "(?<!^)([A-Z])", " $1");
     }
 
     [RelayCommand]
