@@ -18,17 +18,15 @@
  */
 
 using Microsoft.UI.Xaml;
-using System.Collections.Generic;
+using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client.Core.Extensions;
 
 public static class LanguageExtensions
 {
-    private static readonly List<string> _rightToLeftLanguages = ["fa-IR"];
-
-    public static FlowDirection GetFlowDirection(this string language)
+    public static FlowDirection GetFlowDirection(this Language language)
     {
-        return _rightToLeftLanguages.Contains(language)
+        return language.IsRightToLeft
             ? FlowDirection.RightToLeft
             : FlowDirection.LeftToRight;
     }

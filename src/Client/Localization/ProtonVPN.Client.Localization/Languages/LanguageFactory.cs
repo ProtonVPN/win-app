@@ -31,42 +31,6 @@ public class LanguageFactory : ILanguageFactory
 {
     private readonly ILocalizer _localizer;
     private readonly Lazy<IList<Language>> _languages;
-    private readonly Dictionary<string, string> _languageNames = new()
-    {
-        { "en-US",  "English" },
-        { "de-DE",  "Deutsch - German" },
-        { "fr-FR",  "Français - French" },
-        { "nl-NL",  "Nederlands - Dutch" },
-        { "es-ES",  "Español (España) - Spanish (Spain)" },
-        { "es-419",  "Español (Latinoamérica) - Spanish (Latin America)" },
-        { "it-IT",  "Italiano - Italian" },
-        { "pl-PL",  "Polski - Polish" },
-        { "pt-BR",  "Português (Brasil) - Portuguese (Brazil)" },
-        { "ru-RU",  "Русский - Russian" },
-        { "tr-TR",  "Türkçe - Turkish" },
-        { "ca-ES",  "Català - Catalan" },
-        { "cs-CZ",  "Čeština - Czech" },
-        { "da-DK",  "Dansk - Danish" },
-        { "fi-FI",  "Suomi - Finnish" },
-        { "hu-HU",  "Magyar - Hungarian" },
-        { "id-ID",  "Bahasa (Indonesia) - Indonesian" },
-        { "nb-NO",  "Norsk (bokmål) - Norwegian (Bokmal)" },
-        { "pt-PT",  "Português (Portugal) - Portuguese" },
-        { "ro-RO",  "Română - Romanian" },
-        { "sk-SK",  "Slovenčina - Slovak" },
-        { "sl-SI",  "Slovenščina - Slovenian" },
-        { "sv-SE",  "Svenska - Swedish" },
-        { "el-GR",  "Ελληνικά - Greek" },
-        { "be-BY",  "Беларуская - Belarusian" },
-        { "uk-UA",  "Українська - Ukrainian" },
-        { "ka-GE",  "Ქართული - Georgian" },
-        { "ko-KR",  "한국어 - Korean" },
-        { "ja-JP",  "日本語 - Japanese" },
-        { "zh-CN",  "简体中文 - Chinese (Simplified)" },
-        { "zh-TW",  "繁體中文 - Chinese (Traditional)" },
-        { "ar-SA",  "عربي - Arabic" },
-        { "fa-IR",  "فارسی - Persian" },
-    };
 
     public LanguageFactory(ILocalizerFactory localizerFactory)
     {
@@ -89,11 +53,8 @@ public class LanguageFactory : ILanguageFactory
     private IList<Language> CreateLanguages()
     {
         IEnumerable<string> availableLanguages = _localizer.GetAvailableLanguages();
-        return _languageNames.Where(ln => availableLanguages.Contains(ln.Key)).Select(CreateLanguage).ToList();
-    }
-
-    private Language CreateLanguage(KeyValuePair<string, string> languageName)
-    {
-        return new Language() { Id = languageName.Key, Description = languageName.Value };
+        return Languages.All
+            .Where(l => availableLanguages.Contains(l.Id))
+            .ToList();
     }
 }

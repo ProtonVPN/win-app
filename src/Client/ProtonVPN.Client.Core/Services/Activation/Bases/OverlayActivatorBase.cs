@@ -35,6 +35,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Threading;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client.Core.Services.Activation.Bases;
 
@@ -55,8 +56,13 @@ public abstract class OverlayActivatorBase<TWindow> : WindowHostActivatorBase<TW
         IUIThreadDispatcher uiThreadDispatcher,
         IApplicationThemeSelector themeSelector,
         ISettings settings,
+        ILocalizationService localizationService,
         IOverlayViewMapper overlayViewMapper)
-        : base(logger, uiThreadDispatcher, themeSelector, settings)
+        : base(logger,
+               uiThreadDispatcher,
+               themeSelector,
+               settings,
+               localizationService)
     {
         OverlayViewMapper = overlayViewMapper;
     }

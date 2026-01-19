@@ -48,6 +48,7 @@ public class TrayAppWindowActivator : DialogActivatorBase<TrayAppWindow>, ITrayA
         IUIThreadDispatcher uiThreadDispatcher,
         IApplicationThemeSelector themeSelector,
         ISettings settings,
+        ILocalizationService localizationService,
         ILocalizationProvider localizer,
         IApplicationIconSelector iconSelector,
         IMainWindowActivator mainWindowActivator,
@@ -56,6 +57,7 @@ public class TrayAppWindowActivator : DialogActivatorBase<TrayAppWindow>, ITrayA
                uiThreadDispatcher,
                themeSelector,
                settings,
+               localizationService,
                localizer,
                iconSelector,
                mainWindowActivator)

@@ -25,6 +25,7 @@ using ProtonVPN.Client.Core.Extensions;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -39,6 +40,7 @@ public abstract class WindowHostActivatorBase<TWindow> : ActivatorBase<TWindow>,
 {
     protected readonly IUIThreadDispatcher UIThreadDispatcher;
     protected readonly ISettings Settings;
+    protected readonly ILocalizationService LocalizationService;
     protected readonly IApplicationThemeSelector ThemeSelector;
 
     protected FlowDirection CurrentFlowDirection { get; private set; }
@@ -51,12 +53,14 @@ public abstract class WindowHostActivatorBase<TWindow> : ActivatorBase<TWindow>,
         ILogger logger,
         IUIThreadDispatcher uiThreadDispatcher,
         IApplicationThemeSelector themeSelector,
-        ISettings settings)
+        ISettings settings,
+        ILocalizationService localizationService)
         : base(logger)
     {
         UIThreadDispatcher = uiThreadDispatcher;
         ThemeSelector = themeSelector;
         Settings = settings;
+        LocalizationService = localizationService;
     }
 
     public void Receive(LanguageChangedMessage message)
@@ -112,7 +116,7 @@ public abstract class WindowHostActivatorBase<TWindow> : ActivatorBase<TWindow>,
 
     private void InvalidateFlowDirection()
     {
-        CurrentFlowDirection = Settings.Language.GetFlowDirection();
+        CurrentFlowDirection = LocalizationService.GetCurrentLanguage().GetFlowDirection();
 
         OnFlowDirectionChanged();
     }

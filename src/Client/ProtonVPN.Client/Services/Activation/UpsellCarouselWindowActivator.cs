@@ -48,6 +48,7 @@ public class UpsellCarouselWindowActivator : DialogActivatorBase<UpsellCarouselW
         IUIThreadDispatcher uiThreadDispatcher,
         IApplicationThemeSelector themeSelector,
         ISettings settings,
+        ILocalizationService localizationService,
         ILocalizationProvider localizer,
         IApplicationIconSelector iconSelector,
         IMainWindowActivator mainWindowActivator,
@@ -57,6 +58,7 @@ public class UpsellCarouselWindowActivator : DialogActivatorBase<UpsellCarouselW
                uiThreadDispatcher,
                themeSelector,
                settings,
+               localizationService,
                localizer,
                iconSelector,
                mainWindowActivator)

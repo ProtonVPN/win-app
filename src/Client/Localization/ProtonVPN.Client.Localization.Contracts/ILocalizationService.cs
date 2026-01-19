@@ -23,4 +23,5 @@ public interface ILocalizationService
 {
     IEnumerable<Language> GetAvailableLanguages();
     Language GetLanguage(string language);
+    Language GetCurrentLanguage();
 }

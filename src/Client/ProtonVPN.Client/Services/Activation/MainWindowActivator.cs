@@ -76,12 +76,19 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
         IUIThreadDispatcher uiThreadDispatcher,
         IApplicationThemeSelector themeSelector,
         ISettings settings,
+        ILocalizationService localizationService,
         ILocalizationProvider localizer,
         IApplicationIconSelector iconSelector,
         IUserAuthenticator userAuthenticator,
         IEventMessageSender eventMessageSender,
         IEfficiencyModeEnabler efficiencyModeEnabler)
-        : base(logger, uiThreadDispatcher, themeSelector, settings, localizer, iconSelector)
+        : base(logger, 
+               uiThreadDispatcher,
+               themeSelector,
+               settings,
+               localizationService,
+               localizer,
+               iconSelector)
     {
         _userAuthenticator = userAuthenticator;
         _eventMessageSender = eventMessageSender;

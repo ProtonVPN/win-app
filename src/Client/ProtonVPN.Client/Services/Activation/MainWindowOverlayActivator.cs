@@ -46,8 +46,14 @@ public class MainWindowOverlayActivator : OverlayActivatorBase<MainWindow>, IMai
         IUIThreadDispatcher uiThreadDispatcher,
         IApplicationThemeSelector themeSelector,
         ISettings settings,
+        ILocalizationService localizationService,
         IOverlayViewMapper overlayViewMapper)
-        : base(logger, uiThreadDispatcher, themeSelector, settings, overlayViewMapper)
+        : base(logger,
+               uiThreadDispatcher, 
+               themeSelector, 
+               settings, 
+               localizationService, 
+               overlayViewMapper)
     {
         _localizer = localizer;
     }

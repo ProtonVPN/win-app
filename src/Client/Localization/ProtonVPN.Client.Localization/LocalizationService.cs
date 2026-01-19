@@ -68,6 +68,11 @@ public class LocalizationService : ILocalizationService, IEventMessageReceiver<S
         return _languageFactory.GetLanguage(language);
     }
 
+    public Language GetCurrentLanguage()
+    {
+        return GetLanguage(_settings.Language);
+    }
+
     public void Receive(SettingChangedMessage message)
     {
         if (message.PropertyName == nameof(ISettings.Language))

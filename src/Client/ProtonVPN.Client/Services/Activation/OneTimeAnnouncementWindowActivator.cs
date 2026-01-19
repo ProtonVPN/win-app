@@ -41,6 +41,7 @@ public class OneTimeAnnouncementWindowActivator : DialogActivatorBase<OneTimeAnn
         IUIThreadDispatcher uiThreadDispatcher,
         IApplicationThemeSelector themeSelector,
         ISettings settings,
+        ILocalizationService localizationService,
         ILocalizationProvider localizer,
         IApplicationIconSelector iconSelector,
         IMainWindowActivator mainWindowActivator)
@@ -48,6 +49,7 @@ public class OneTimeAnnouncementWindowActivator : DialogActivatorBase<OneTimeAnn
                uiThreadDispatcher,
                themeSelector,
                settings,
+               localizationService,
                localizer,
                iconSelector,
                mainWindowActivator)

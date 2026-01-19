@@ -41,6 +41,7 @@ public class ReportIssueWindowActivator : DialogActivatorBase<ReportIssueWindow>
         IUIThreadDispatcher uiThreadDispatcher,
         IApplicationThemeSelector themeSelector,
         ISettings settings,
+        ILocalizationService localizationService,
         ILocalizationProvider localizer,
         IApplicationIconSelector iconSelector,
         IMainWindowActivator mainWindowActivator,
@@ -49,6 +50,7 @@ public class ReportIssueWindowActivator : DialogActivatorBase<ReportIssueWindow>
                uiThreadDispatcher,
                themeSelector,
                settings,
+               localizationService,
                localizer,
                iconSelector,
                mainWindowActivator)

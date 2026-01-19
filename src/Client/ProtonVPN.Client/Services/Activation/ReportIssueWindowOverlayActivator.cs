@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Common.Dispatching;
+using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Client.Core.Services.Activation;
@@ -35,7 +36,13 @@ public class ReportIssueWindowOverlayActivator : OverlayActivatorBase<ReportIssu
         IUIThreadDispatcher uiThreadDispatcher,
         IApplicationThemeSelector themeSelector,
         ISettings settings,
+        ILocalizationService localizationService,
         IOverlayViewMapper overlayViewMapper)
-        : base(logger, uiThreadDispatcher, themeSelector, settings, overlayViewMapper)
+        : base(logger, 
+               uiThreadDispatcher, 
+               themeSelector, 
+               settings, 
+               localizationService, 
+               overlayViewMapper)
     { }
 }

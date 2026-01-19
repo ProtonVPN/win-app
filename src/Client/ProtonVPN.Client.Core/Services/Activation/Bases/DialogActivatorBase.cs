@@ -45,6 +45,7 @@ public abstract class DialogActivatorBase<TWindow> : WindowActivatorBase<TWindow
         IUIThreadDispatcher uiThreadDispatcher,
         IApplicationThemeSelector themeSelector,
         ISettings settings,
+        ILocalizationService localizationService,
         ILocalizationProvider localizer,
         IApplicationIconSelector iconSelector,
         IMainWindowActivator mainWindowActivator)
@@ -52,6 +53,7 @@ public abstract class DialogActivatorBase<TWindow> : WindowActivatorBase<TWindow
                uiThreadDispatcher,
                themeSelector,
                settings,
+               localizationService,
                localizer,
                iconSelector)
     {

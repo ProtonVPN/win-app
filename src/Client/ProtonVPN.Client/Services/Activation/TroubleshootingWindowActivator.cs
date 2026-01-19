@@ -37,6 +37,7 @@ public class TroubleshootingWindowActivator : DialogActivatorBase<Troubleshootin
         IUIThreadDispatcher uiThreadDispatcher,
         IApplicationThemeSelector themeSelector,
         ISettings settings,
+        ILocalizationService localizationService,
         ILocalizationProvider localizer,
         IApplicationIconSelector iconSelector,
         IMainWindowActivator mainWindowActivator)
@@ -44,6 +45,7 @@ public class TroubleshootingWindowActivator : DialogActivatorBase<Troubleshootin
                uiThreadDispatcher,
                themeSelector,
                settings,
+               localizationService,
                localizer,
                iconSelector,
                mainWindowActivator)

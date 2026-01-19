@@ -71,9 +71,14 @@ public abstract class WindowActivatorBase<TWindow> : WindowHostActivatorBase<TWi
         IUIThreadDispatcher uiThreadDispatcher,
         IApplicationThemeSelector themeSelector,
         ISettings settings,
+        ILocalizationService localizationService,
         ILocalizationProvider localizer,
         IApplicationIconSelector iconSelector)
-        : base(logger, uiThreadDispatcher, themeSelector, settings)
+        : base(logger,
+               uiThreadDispatcher,
+               themeSelector,
+               settings,
+               localizationService)
     {
         Localizer = localizer;
         IconSelector = iconSelector;

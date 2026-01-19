@@ -21,6 +21,14 @@ namespace ProtonVPN.Client.Localization.Contracts;
 
 public class Language
 {
-    public required string Id { get; init; }
-    public required string Description { get; init; }
+    public string Id { get; }
+    public string Description { get; }
+    public bool IsRightToLeft { get; }
+
+    public Language(string id, string description, bool isRightToLeft = false)
+    {
+        Id = id;
+        Description = description;
+        IsRightToLeft = isRightToLeft;
+    }
 }

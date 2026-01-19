@@ -37,6 +37,7 @@ public class NpsSurveyWindowActivator : DialogActivatorBase<NpsSurveyWindow>, IN
         IUIThreadDispatcher uiThreadDispatcher,
         IApplicationThemeSelector themeSelector,
         ISettings settings,
+        ILocalizationService localizationService,
         ILocalizationProvider localizer,
         IApplicationIconSelector iconSelector,
         IMainWindowActivator mainWindowActivator)
@@ -44,6 +45,7 @@ public class NpsSurveyWindowActivator : DialogActivatorBase<NpsSurveyWindow>, IN
                uiThreadDispatcher,
                themeSelector,
                settings,
+               localizationService,
                localizer,
                iconSelector,
                mainWindowActivator)
