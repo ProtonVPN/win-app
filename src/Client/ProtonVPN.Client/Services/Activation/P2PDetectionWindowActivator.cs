@@ -21,7 +21,6 @@ using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Activation.Bases;
-using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
@@ -49,15 +48,16 @@ public class P2PDetectionWindowActivator : DialogActivatorBase<P2PDetectionWindo
         IUIThreadDispatcher uiThreadDispatcher,
         IApplicationThemeSelector themeSelector,
         ISettings settings,
+        ILocalizationService localizationService,
         ILocalizationProvider localizer,
         IApplicationIconSelector iconSelector,
         IMainWindowActivator mainWindowActivator,
-        IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender,
-        IUpsellCarouselViewNavigator upsellCarouselViewNavigator)
+        IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
         : base(logger,
                uiThreadDispatcher,
                themeSelector,
                settings,
+               localizationService,
                localizer,
                iconSelector,
                mainWindowActivator)
