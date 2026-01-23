@@ -2658,7 +2658,7 @@
     <value>Smart Routing</value>
   </data>
   <data name="Overlay_SmartRouting_Description1" xml:space="preserve">
-    <value>Smart Routing uses virtual servers to provide VPN coverage in hard-to-reach countries.</value>
+    <value>Smart Routing allows us to provide VPN coverage in hard-to-reach countries.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2" xml:space="preserve">
     <value>When you connect to a Smart Routing server, you'll appear to be browsing in your destination country, even though the physical server is located elsewhere.</value>
