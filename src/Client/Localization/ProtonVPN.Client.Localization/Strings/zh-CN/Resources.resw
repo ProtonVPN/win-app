@@ -1776,10 +1776,13 @@ Error code: {0}</value>
     <value>请重试</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>您的连接已被禁用，因为您使用的服务器不支持点对点 (P2P) 流量。免费服务器不支持 P2P。请使用其他服务器进行 P2P。</value>
+    <value>升级以解锁用于快速在线游戏和下载的 P2P（点对点）服务器，或结束您的 P2P 活动以恢复连接。</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>检测到 P2P 流量</value>
+    <value>免费VPN服务器不支持P2P</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>探索 VPN Plus</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>如何通过P2P进行种子下载</value>
@@ -1908,6 +1911,15 @@ Error code: {0}</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>探索 VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>VPN Plus 服务器可让您畅享来自世界各地的您喜爱的电影和电视节目。</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>升级以绕过 VPN 阻止</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>以后再说</value>
@@ -2936,7 +2948,7 @@ VPN 连接</value>
     <value>服务器负载</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>智能路由使用虚拟服务器在难以到达的国家提供 VPN 覆盖。</value>
+    <value>Smart Routing allows us to provide VPN coverage in hard-to-reach countries.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>当您连接到智能路由服务器时，虽然物理服务器位于其他地方，但您似乎是在目的地国家浏览。</value>
@@ -3777,6 +3789,18 @@ Stealth 具有抗 DPI（深度数据包检查）能力，但速度可能不如�
   <data name="SystemNotification_Disconnected">
     <value>已断开</value>
   </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>使用付费VPN服务器通过P2P（点对点）协议解锁P2P（点对点）在线游戏。</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>VPN Free 不支持 P2P</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>某些网站和流媒体服务会屏蔽免费 VPN 用户。升级到 Proton VPN Plus 以绕过这些屏蔽。</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>已屏蔽的网站？</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>退出</value>
   </data>
@@ -3820,6 +3844,12 @@ Stealth 具有抗 DPI（深度数据包检查）能力，但速度可能不如�
   </data>
   <data name="UpsellBanner_NetShield_Title">
     <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>通过 BitTorrent 和其他文件共享协议下载文件。</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>支持 P2P</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>升级套餐，任意选择服务器.</value>

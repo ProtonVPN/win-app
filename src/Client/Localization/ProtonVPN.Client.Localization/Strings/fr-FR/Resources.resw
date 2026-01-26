@@ -1848,10 +1848,13 @@ Une latence élevée peut ralentir votre connexion.</value>
     <value>Réessayer</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Votre connexion a été désactivée, car vous utilisez un serveur qui ne prend pas en charge le trafic peer-to-peer (P2P). Le P2P n'est pas pris en charge par les serveurs de l'abonnement FREE. Vous devez utiliser un autre serveur pour le P2P.</value>
+    <value>Passez à la version supérieure pour débloquer les serveurs P2P (peer-to-peer) afin de profiter d'une connexion rapide pour les jeux en ligne et le téléchargement de torrents, ou mettez fin à votre activité P2P pour rétablir votre connexion.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>Un trafic P2P a été détecté.</value>
+    <value>Le P2P n'est pas autorisé sur les serveurs VPN gratuits</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>Découvrez VPN Plus</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Comment faire du torrent en P2P ?</value>
@@ -1980,6 +1983,15 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>Découvrez VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>Les serveurs VPN Plus vous permettent de regarder vos films et séries préférés du monde entier.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>Passez à l'abonnement supérieur pour contourner les blocages VPN</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Peut-être plus tard</value>
@@ -3044,7 +3056,7 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
     <value>Charge du serveur</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>La fonctionnalité Smart Routing utilise des serveurs virtuels pour offrir une couverture VPN dans des pays difficiles d'accès.</value>
+    <value>La fonctionnalité Smart Routing permet de fournir une couverture VPN dans des pays difficiles d'accès.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>Lorsque vous vous connectez à un serveur Smart Routing, il apparaîtra que vous surfez depuis le pays de destination, même si le serveur physique se trouve ailleurs.</value>
@@ -3884,6 +3896,18 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   <data name="SystemNotification_Disconnected">
     <value>Déconnecté</value>
   </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>Débloquez le téléchargement de torrents et les jeux en ligne via les protocoles P2P (peer-to-peer) avec les serveurs VPN payants.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>P2P non disponible avec VPN Free</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Certains sites web et services de streaming bloquent les utilisateurs de VPN gratuits. Passez à Proton VPN Plus pour contourner ces blocages.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Site bloqué ?</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Quitter</value>
   </data>
@@ -3927,6 +3951,12 @@ Une charge de serveur élevée peut ralentir votre connexion.</value>
   </data>
   <data name="UpsellBanner_NetShield_Title">
     <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>Téléchargez des fichiers depuis BitTorrent ou d'autres protocoles de partage de fichiers.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>Support P2P</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>Changez d'abonnement pour choisir n'importe quel serveur.</value>

@@ -1848,10 +1848,13 @@ Foutcode: {0}</value>
     <value>Probeer opnieuw</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Uw verbinding is uitgeschakeld omdat u gebruik maakt van een server die geen peer-to-peer (P2P) verkeer ondersteunt. P2P wordt niet ondersteund op gratis servers. Gebruik een andere server voor P2P.</value>
+    <value>Upgrade to unlock P2P (peer-to-peer) servers for fast online gaming and torrenting, or end your P2P activity to restore your connection.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>P2P-verkeer gedetecteerd</value>
+    <value>P2P is not allowed on free VPN servers</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>Discover VPN Plus</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Torrenten met P2P</value>
@@ -1980,6 +1983,15 @@ Foutcode: {0}</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>Discover VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>VPN Plus servers let you enjoy your favorite movies and TV shows from around the world.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>Upgrade to bypass VPN blocks</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Misschien later</value>
@@ -3044,7 +3056,7 @@ VPN-verbinding</value>
     <value>Serverbelasting</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>Smart Routing gebruikt virtuele servers om VPN-dekking te bieden in moeilijk te bereiken landen.</value>
+    <value>Smart Routing stelt ons in staat om VPN-dekking te bieden in moeilijk bereikbare landen.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>Wanneer u verbinding maakt met een Smart Routing-server, lijkt het alsof u in het land van bestemming surft, zelfs als de fysieke server ergens anders ligt.</value>
@@ -3884,6 +3896,18 @@ VPN-verbinding</value>
   <data name="SystemNotification_Disconnected">
     <value>Verbinding verbroken</value>
   </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>Unlock torrenting and online gaming over P2P (peer-to-peer) protocols with paid VPN servers.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>P2P not available with VPN Free</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Some websites and streaming services block free VPN users. Upgrade to Proton VPN Plus to bypass these blocks.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Blocked website?</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Sluiten</value>
   </data>
@@ -3927,6 +3951,12 @@ VPN-verbinding</value>
   </data>
   <data name="UpsellBanner_NetShield_Title">
     <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>Download files through BitTorrent and other file sharing protocols.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>P2P support</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>Upgrade om elke server te kiezen.</value>

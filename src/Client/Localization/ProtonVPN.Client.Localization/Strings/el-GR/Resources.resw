@@ -1848,10 +1848,13 @@
     <value>Προσπαθήστε ξανά</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Η σύνδεση σας έχει απενεργοποιηθεί επειδή χρησιμοποιείτε διακομιστές που δεν υποστηρίζουν κίνηση από χρήστες P2P. Το P2P δεν υποστηρίζεται σε δωρεάν διακομιστές. Παρακαλώ δοκιμάστε διαφορετικό server για P2P.</value>
+    <value>Αναβαθμίστε για να ξεκλειδώσετε διακομιστές P2P (peer-to-peer) για γρήγορο online gaming και torrenting ή τερματίστε τη δραστηριότητα P2P για να επαναφέρετε τη σύνδεσή σας.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>Εντοπίστηκε κίνηση P2P</value>
+    <value>Το P2P δεν επιτρέπεται σε δωρεάν διακομιστές VPN</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>Ανακαλύψτε το VPN Plus</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Πώς να κάνετε torrent με P2P</value>
@@ -1980,6 +1983,15 @@
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>Ανακαλύψτε το VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>Οι διακομιστές VPN Plus σας επιτρέπουν να απολαμβάνετε τις αγαπημένες σας ταινίες και τηλεοπτικές εκπομπές από όλο τον κόσμο.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>Αναβάθμιση για παράκαμψη αποκλεισμών VPN</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Ίσως αργότερα</value>
@@ -3044,7 +3056,7 @@
     <value>Φορτίο Διακομιστή</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>Το Smart Routing χρησιμοποιεί εικονικούς διακομιστές για να παρέχει κάλυψη VPN σε δυσπρόσιτες χώρες.</value>
+    <value>Η Έξυπνη Δρομολόγηση μας επιτρέπει να παρέχουμε κάλυψη VPN σε χώρες που είναι δύσκολο να προσεγγιστούν.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>Όταν συνδέεστε σε έναν Smart Routing διακομιστή, θα φαίνεται ότι περιηγείστε στη χώρα προορισμού σας, παρόλο που ο φυσικός διακομιστής βρίσκεται αλλού.</value>
@@ -3884,6 +3896,18 @@
   <data name="SystemNotification_Disconnected">
     <value>Αποσυνδεδεμένο</value>
   </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>Αποκτήστε πρόσβαση σε torrenting και online gaming μέσω πρωτοκόλλων P2P (peer-to-peer) με διακομιστές VPN επί πληρωμή.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>Το P2P δεν είναι διαθέσιμο με το VPN Free</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Ορισμένοι ιστότοποι και υπηρεσίες streaming αποκλείουν τους χρήστες δωρεάν VPN. Αναβαθμίστε σε Proton VPN Plus για να παρακάμψετε αυτούς τους αποκλεισμούς.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Αποκλεισμένος ιστότοπος;</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Έξοδος</value>
   </data>
@@ -3927,6 +3951,12 @@
   </data>
   <data name="UpsellBanner_NetShield_Title">
     <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>Λήψη αρχείων μέσω BitTorrent και άλλων πρωτοκόλλων κοινοποίησης αρχείων.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>Υποστήριξη P2P</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>Αναβάθμιση για να επιλέξετε οποιονδήποτε διακομιστή.</value>

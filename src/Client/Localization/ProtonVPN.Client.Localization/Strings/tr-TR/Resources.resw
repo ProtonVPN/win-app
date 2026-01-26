@@ -1848,10 +1848,13 @@ Yüksek gecikme değeri bağlantınızı yavaşlatabilir.</value>
     <value>Yeniden dene</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Eşler arası (P2P) trafiği desteklemeyen bir sunucu kullandığınız için bağlantınız kapatıldı. P2P, ücretsiz sunucularda desteklenmez. Lütfen P2P için başka bir sunucu kullanın.</value>
+    <value>Hızlı çevrim içi oyun ve torrent indirme için P2P (eşler arası) sunucuların kilidini açmak üzere yükseltin veya bağlantınızı geri yüklemek için P2P etkinliğinizi sonlandırın.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>P2P trafiği algılandı</value>
+    <value>Ücretsiz VPN sunucularında P2P kullanımına izin verilmiyor</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>VPN Plus'ı keşfedin</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>P2P ile torrent nasıl kullanılır</value>
@@ -1980,6 +1983,15 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>VPN Plus'ı keşfedin</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>VPN Plus sunucuları dünyanın her yerinden en sevdiğiniz filmleri ve TV programlarını izlemenizi sağlar.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>VPN engellemelerini atlamak için yükseltin</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Belki daha sonra</value>
@@ -3044,7 +3056,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Sunucu yükü</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>Smart Routing ulaşılması zor ülkelerde VPN kapsaması sağlamak için sanal sunucular kullanır.</value>
+    <value>Smart Routing ulaşılması zor ülkelerde VPN kapsamı sağlamamıza olanak tanır.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>Bir Smart Routing sunucusuna bağlandığınızda fiziksel sunucu başka bir yerde olsa bile hedef ülkenizde geziniyor gibi görünürsünüz.</value>
@@ -3884,6 +3896,18 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="SystemNotification_Disconnected">
     <value>Bağlantı kesildi</value>
   </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>Ücretli VPN sunucuları ile P2P (eşler arası) protokolleri üzerinden torrent ve çevrim içi oyunların kilidini açın.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>VPN Free ile P2P kullanılamaz</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Bazı siteler ve akış hizmetleri ücretsiz VPN kullanıcılarını engeller. Bu engelleri aşmak için Proton VPN Plus'a yükseltin.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Engellenen site mi?</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Çık</value>
   </data>
@@ -3927,6 +3951,12 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   </data>
   <data name="UpsellBanner_NetShield_Title">
     <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>BitTorrent ve diğer dosya paylaşım protokolleri aracılığıyla dosya indirin.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>P2P desteği</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>İstediğiniz sunucuyu seçebilmek için tarifenizi yükseltin.</value>

@@ -1776,10 +1776,13 @@
     <value>再試行</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>このサーバーは P2P トラフィックに対応していないため、接続が解除されました。無料プランのサーバーは P2P に対応していません。P2P に対応した別のサーバーを選択してください。</value>
+    <value>P2P（ピアツーピア）サーバーを有効にして、高速なオンラインゲームやトレントをお楽しみいただくか、P2Pアクティビティを終了して接続を復元してください。</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>P2Pトラフィックを検出</value>
+    <value>無料VPNサーバーではP2Pは許可されていません</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>VPN Plusを発見</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>P2Pでトレントする方法</value>
@@ -1908,6 +1911,15 @@
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>スマートルーティング</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>VPN Plusを発見</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>VPN Plusサーバーを利用して、お気に入りの映画やテレビ番組を世界中からお楽しみください。</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>VPNブロックを回避するためにアップグレード</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>またあとで</value>
@@ -2936,7 +2948,7 @@ VPN接続</value>
     <value>サーバー負荷</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>スマートルーティングは、仮想サーバーを使用して、到達困難な国でVPNカバレッジを提供します。</value>
+    <value>Smart Routing allows us to provide VPN coverage in hard-to-reach countries.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>スマートルーティングサーバーに接続すると、物理サーバーが他の場所にあるにもかかわらず、目的地の国をブラウズしているように見えます。</value>
@@ -3776,6 +3788,18 @@ VPN接続</value>
   <data name="SystemNotification_Disconnected">
     <value>切断されました</value>
   </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>P2P (ピアツーピア) プロトコル経由でのトレントやオンラインゲームを、有料VPNサーバーで利用可能にします。</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>VPN FreeではP2Pが利用できません</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>一部のウェブサイトやストリーミングサービスでは、無料VPNユーザーがブロックされます。これらのブロックを回避するには、Proton VPN Plusにアップグレードしてください。</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>ブロックされたウェブサイトですか？</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>終了</value>
   </data>
@@ -3819,6 +3843,12 @@ VPN接続</value>
   </data>
   <data name="UpsellBanner_NetShield_Title">
     <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>BitTorrentやその他のファイル共有プロトコルを使用してファイルをダウンロードします。</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>P2P対応</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>アップグレードして任意のサーバーを選択。</value>

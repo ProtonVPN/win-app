@@ -1992,10 +1992,13 @@ Error code: {0}</value>
     <value>Попробовать снова</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Ваше соединение было отключено, потому что вы используете сервер, не поддерживающий трафик peer-to-peer (P2P). P2P не поддерживается на бесплатных серверах. Пожалуйста, используйте другой сервер для P2P.</value>
+    <value>Upgrade to unlock P2P (peer-to-peer) servers for fast online gaming and torrenting, or end your P2P activity to restore your connection.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>Обнаружен трафик P2P</value>
+    <value>P2P is not allowed on free VPN servers</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>Discover VPN Plus</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Как использовать торренты в P2P</value>
@@ -2124,6 +2127,15 @@ Error code: {0}</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>Discover VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>VPN Plus servers let you enjoy your favorite movies and TV shows from around the world.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>Upgrade to bypass VPN blocks</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Может быть позже</value>
@@ -3260,7 +3272,7 @@ Error code: {0}</value>
     <value>Нагрузка сервера</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>Smart Routing использует виртуальные серверы для предоставления VPN в труднодоступных странах.</value>
+    <value>Smart Routing allows us to provide VPN coverage in hard-to-reach countries.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>Когда вы подключаетесь к серверу Smart Routing, создается впечатление, что вы находитесь в стране назначения, хотя физический сервер расположен в другом месте.</value>
@@ -4100,6 +4112,18 @@ Error code: {0}</value>
   <data name="SystemNotification_Disconnected">
     <value>Отключено</value>
   </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>Unlock torrenting and online gaming over P2P (peer-to-peer) protocols with paid VPN servers.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>P2P not available with VPN Free</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Some websites and streaming services block free VPN users. Upgrade to Proton VPN Plus to bypass these blocks.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Blocked website?</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Выйти</value>
   </data>
@@ -4143,6 +4167,12 @@ Error code: {0}</value>
   </data>
   <data name="UpsellBanner_NetShield_Title">
     <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>Download files through BitTorrent and other file sharing protocols.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>P2P support</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>Смените тарифный план для выбора любого сервера.</value>

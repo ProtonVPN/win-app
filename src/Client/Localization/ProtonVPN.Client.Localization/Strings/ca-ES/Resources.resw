@@ -1849,10 +1849,13 @@ Una latència alta pot alentir la connexió.</value>
     <value>Torneu-ho a provar</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>La vostra connexió s'ha desactivat perquè esteu utilitzant un servidor que no admet trànsit d'extrem a extrem (P2P). P2P no està permès en servidors gratuïts. Utilitzeu un servidor diferent per a P2P.</value>
+    <value>Milloreu el vostre pla per desbloquejar els servidors P2P (peer-to-peer) per jocs en línia i intercanvi de fitxers més ràpids, o atureu la vostra activitat P2P per restaurar la connexió.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>S'ha detectat un trànsit P2P.</value>
+    <value>P2P no està permès als servidors VPN gratuïts</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>Descobriu VPN Plus</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Com fer torrent amb P2P</value>
@@ -1981,6 +1984,15 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>Descobriu VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>Els servidors VPN Plus us permeten gaudir de les vostres pel·lícules i sèries preferides d'arreu del món.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>Milloreu el vostre pla per esquivar els bloquejos de VPN</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Potser després</value>
@@ -3045,7 +3057,7 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Càrrega del servidor</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>La característica Smart Routing utilitza servidors virtuals per proporcionar cobertura VPN en països de difícil accés.</value>
+    <value>Smart Routing ens permet oferir-vos cobertura VPN en països de difícil accés.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>Quan us connecteu a un servidor Smart Routing, semblarà que navegueu pel país de destinació, encara que el servidor físic es trobi en un altre lloc.</value>
@@ -3284,7 +3296,7 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
   <data name="Settings_Common_Ipv6WarningButton">
-    <value>Avís - aneu a saber-ne més</value>
+    <value>Avís - més informació</value>
   </data>
   <data name="Settings_Connection">
     <value>Connexió</value>
@@ -3885,6 +3897,18 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   <data name="SystemNotification_Disconnected">
     <value>Desconnectat</value>
   </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>Desbloquegeu l'intercanvi de fitxers i els jocs en línia mitjançant protocols P2P (peer-to-peer) amb els servidors VPN de pagament.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>P2P no està disponible amb VPN Free</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Alguns llocs web i serveis de transmissió bloquegen els usuaris de VPN gratuïtes. Milloreu a Proton VPN Plus per eludir aquests bloquejos.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Lloc web bloquejat?</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Surt</value>
   </data>
@@ -3928,6 +3952,12 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   </data>
   <data name="UpsellBanner_NetShield_Title">
     <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>Descarregueu fitxers a través de BitTorrent i altres protocols d'intercanvi de fitxers.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>Suport P2P</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>Actualitzi per poder escollir qualsevol servidor.</value>

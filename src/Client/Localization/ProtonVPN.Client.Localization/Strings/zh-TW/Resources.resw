@@ -1776,10 +1776,13 @@
     <value>再試一次</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>因為您使用的伺服器不支援點對點 (P2P) 傳輸，因此您的連線已被停用。免費伺服器不支援 P2P。請使用不同的伺服器來啟用 P2P。</value>
+    <value>Upgrade to unlock P2P (peer-to-peer) servers for fast online gaming and torrenting, or end your P2P activity to restore your connection.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>已偵測到 P2P 流量</value>
+    <value>P2P is not allowed on free VPN servers</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>Discover VPN Plus</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>如何使用 P2P 下載種子</value>
@@ -1908,6 +1911,15 @@
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>Discover VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>VPN Plus servers let you enjoy your favorite movies and TV shows from around the world.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>Upgrade to bypass VPN blocks</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>稍後再說</value>
@@ -2937,7 +2949,7 @@ VPN 連線</value>
     <value>伺服器負載</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>智慧路由使用虛擬伺服器在難以觸及的國家/地區提供 VPN 涵蓋範圍。</value>
+    <value>Smart Routing allows us to provide VPN coverage in hard-to-reach countries.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>當您連線到智慧路由伺服器時，您將會看起來像是在目的地國家/地區瀏覽，即使實體伺服器位於其他地方。</value>
@@ -3777,6 +3789,18 @@ VPN 連線</value>
   <data name="SystemNotification_Disconnected">
     <value>已中斷連線</value>
   </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>Unlock torrenting and online gaming over P2P (peer-to-peer) protocols with paid VPN servers.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>P2P not available with VPN Free</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Some websites and streaming services block free VPN users. Upgrade to Proton VPN Plus to bypass these blocks.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Blocked website?</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>離開</value>
   </data>
@@ -3820,6 +3844,12 @@ VPN 連線</value>
   </data>
   <data name="UpsellBanner_NetShield_Title">
     <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>Download files through BitTorrent and other file sharing protocols.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>P2P support</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>升級以選擇任何伺服器.</value>

@@ -1848,10 +1848,13 @@ Eine hohe Latenzzeit kann deine Verbindung verlangsamen.</value>
     <value>Erneut versuchen</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Deine Verbindung wurde deaktiviert, weil du einen Server verwendest, der keinen Peer-to-Peer-Datenaustausch (P2P) unterstützt. P2P wird auf kostenlosen Servern nicht unterstützt. Bitte verwende einen anderen Server für P2P.</value>
+    <value>Erweitere dein Abonnement, um P2P-Server (Peer-to-Peer) für schnelles Online-Gaming und Torrenting freizuschalten, oder beende deine P2P-Aktivitäten, um deine Verbindung wiederherzustellen.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>P2P-Traffic erkannt</value>
+    <value>P2P ist auf kostenlosen VPN-Servern nicht zulässig.</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>Entdecke VPN Plus</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Wie man P2P mit Hilfe von Torrent durchführt</value>
@@ -1980,6 +1983,15 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>Entdecke VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>VPN Plus-Server ermöglichen es dir, deine Lieblingsfilme und -serien aus aller Welt zu genießen.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>Umsteigen, um VPN-Sperren zu umgehen</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Vielleicht später</value>
@@ -3044,7 +3056,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Serverauslastung</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>Smart Routing nutzt virtuelle Server, um VPN-Abdeckung in schwer zugänglichen Ländern zu bieten.</value>
+    <value>Smart Routing ermöglicht es uns, VPN-Abdeckung in schwer erreichbaren Ländern bereitzustellen.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>Wenn du eine Verbindung zu einem Smart Routing-Server herstellst, scheint es, als würdest du im Zielland surfen, obwohl sich der physische Server anderswo befindet.</value>
@@ -3884,6 +3896,18 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   <data name="SystemNotification_Disconnected">
     <value>Getrennt</value>
   </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>Schalte Torrenting und Online-Spiele über P2P-Protokolle (Peer-to-Peer) mit kostenpflichtigen VPN-Servern frei.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>P2P ist für VPN Free nicht verfügbar</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Einige Websites und Streaming-Dienste sperren Nutzer kostenloser VPNs. Erweitere dein Abonnement auf Proton VPN Plus, um diese Sperren zu umgehen.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Website gesperrt?</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Beenden</value>
   </data>
@@ -3927,6 +3951,12 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   </data>
   <data name="UpsellBanner_NetShield_Title">
     <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>Lade Dateien über BitTorrent und andere Filesharing-Protokolle herunter.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>P2P‐Unterstützung</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>Upgrade, um einen beliebigen Server auszuwählen.</value>

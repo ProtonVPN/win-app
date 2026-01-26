@@ -1848,10 +1848,13 @@ Høy latens kan redusere tilkoblingen.</value>
     <value>Prøv igjen</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Tilkoblingen din er deaktivert fordi du bruker en tjener som ikke støtter node-til-node-trafikk (P2P). P2P støttes ikke på gratis tjenere. Bruk en annen tjener for P2P.</value>
+    <value>Oppgrader for å låse opp P2P (node-til-node)-tjenere for rask nettspilling og torrenting, eller avslutt P2P-aktiviteten for å gjenopprette tilkoblingen.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>P2P-trafikk oppdaget</value>
+    <value>P2P er ikke tillatt på gratis VPN-tjenere</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>Oppdag VPN Plus</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Hvordan laste ned/opp torrent med P2P</value>
@@ -1980,6 +1983,15 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>Oppdag VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>VPN Plus-tjenere lar deg se favorittfilmene og TV-programmene dine fra hele verden.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>Oppgrader for å omgå VPN-blokkeringer</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Kanskje senere</value>
@@ -3044,7 +3056,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Tjenerbelastning</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>Smart Routing bruker virtuelle tjenere for å gi VPN-dekning i land som er vanskelig tilgjengelige.</value>
+    <value>Smart Routing lar oss tilby VPN-dekning i land som er vanskelige å nå.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>Når du kobler til en Smart Routing-tjener, ser det ut som om du surfer i destinasjonslandet, selv om den fysiske tjeneren er plassert et annet sted.</value>
@@ -3884,6 +3896,18 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   <data name="SystemNotification_Disconnected">
     <value>Frakoblet</value>
   </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>Lås opp torrenting og nettspilling over P2P-protokoller (node-til-node) med betalte VPN-tjenere.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>P2P er ikke tilgjengelig med VPN Free</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Noen nettsteder og strømmetjenester blokkerer brukere av gratis VPN. Oppgrader til Proton VPN Plus for å omgå disse blokkeringene.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Blokkert nettsted?</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Avslutt</value>
   </data>
@@ -3927,6 +3951,12 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   </data>
   <data name="UpsellBanner_NetShield_Title">
     <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>Last ned filer via BitTorrent og andre fildelingsprotokoller.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>P2P-støtte</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>Oppgrader for å velge hvilken som helst tjener.</value>

@@ -1776,10 +1776,13 @@
     <value>다시 시도</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>사용 중인 서버가 P2P 트래픽을 지원하지 않아 연결이 해제되었습니다. P2P는 무료 서버에서 지원되지 않습니다. P2P를 지원하는 다른 서버를 사용해 주세요.</value>
+    <value>Upgrade to unlock P2P (peer-to-peer) servers for fast online gaming and torrenting, or end your P2P activity to restore your connection.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>P2P 트래픽 감지됨</value>
+    <value>P2P is not allowed on free VPN servers</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>Discover VPN Plus</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>P2P를 이용해 토렌트하는 방법</value>
@@ -1908,6 +1911,15 @@
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>Discover VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>VPN Plus servers let you enjoy your favorite movies and TV shows from around the world.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>Upgrade to bypass VPN blocks</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>나중에</value>
@@ -2936,7 +2948,7 @@ VPN 연결</value>
     <value>서버 부하율</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>Smart Routing은 가상 서버를 사용하여 접근하기 어려운 국가에서 VPN 커버리지를 제공합니다.</value>
+    <value>Smart Routing allows us to provide VPN coverage in hard-to-reach countries.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>Smart Routing 서버에 연결하면 물리적인 서버가 선택한 국가가 아닌 곳에 있더라도 선택한 국가에서 탐색하는 것처럼 보이게 됩니다.</value>
@@ -3776,6 +3788,18 @@ VPN 연결</value>
   <data name="SystemNotification_Disconnected">
     <value>연결 해제됨</value>
   </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>Unlock torrenting and online gaming over P2P (peer-to-peer) protocols with paid VPN servers.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>P2P not available with VPN Free</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Some websites and streaming services block free VPN users. Upgrade to Proton VPN Plus to bypass these blocks.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Blocked website?</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>닫기</value>
   </data>
@@ -3819,6 +3843,12 @@ VPN 연결</value>
   </data>
   <data name="UpsellBanner_NetShield_Title">
     <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>Download files through BitTorrent and other file sharing protocols.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>P2P support</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>모든 서버에 접근하기 위해 업그레이드.</value>

@@ -1848,10 +1848,13 @@ Uma latência alta pode diminuir a sua conexão.</value>
     <value>Tente de novo</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>A sua ligação foi desativada porque está a utilizar um servidor que não suporta tráfego peer-to-peer (P2P). P2P não é suportado em servidores gratuitos. Utilize um servidor diferente para P2P.</value>
+    <value>Upgrade to unlock P2P (peer-to-peer) servers for fast online gaming and torrenting, or end your P2P activity to restore your connection.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>Tráfego P2P detetado</value>
+    <value>P2P is not allowed on free VPN servers</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>Discover VPN Plus</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Como fazer torrent com P2P?</value>
@@ -1980,6 +1983,15 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>Discover VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>VPN Plus servers let you enjoy your favorite movies and TV shows from around the world.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>Upgrade to bypass VPN blocks</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Talvez mais tarde</value>
@@ -3044,7 +3056,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Carga do servidor</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>O Smart Routing utiliza servidores virtuais para fornecer cobertura VPN em países de difícil acesso.</value>
+    <value>Smart Routing allows us to provide VPN coverage in hard-to-reach countries.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>Ao ligar-se a um servidor Smart Routing, parecerá estar a navegar no seu país de destino, mesmo que o servidor físico esteja localizado noutra localização.</value>
@@ -3884,6 +3896,18 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
   <data name="SystemNotification_Disconnected">
     <value>Desligado</value>
   </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>Unlock torrenting and online gaming over P2P (peer-to-peer) protocols with paid VPN servers.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>P2P not available with VPN Free</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Some websites and streaming services block free VPN users. Upgrade to Proton VPN Plus to bypass these blocks.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Blocked website?</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Sair</value>
   </data>
@@ -3927,6 +3951,12 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
   </data>
   <data name="UpsellBanner_NetShield_Title">
     <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>Download files through BitTorrent and other file sharing protocols.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>P2P support</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>Melhore para escolher qualquer servidor.</value>

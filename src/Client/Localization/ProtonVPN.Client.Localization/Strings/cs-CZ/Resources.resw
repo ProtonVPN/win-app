@@ -1992,10 +1992,13 @@ Kód chyby: {0}</value>
     <value>Zkuste to znovu</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Vaše připojení bylo deaktivováno, protože používáte server, který nepodporuje provoz peer-to-peer (P2P). P2P není podporováno na bezplatných serverech. Pro P2P použijte jiný server.</value>
+    <value>Navyšte svůj tarif pro odemčení P2P (peer-to-peer) serverů umožňujících rychlé hraní online a torrenty, nebo pro obnovení vašeho připojení ukončete svou P2P aktivitu.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>Zjištěn provoz P2P</value>
+    <value>P2P není povoleno na bezplatných VPN serverech</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>Objevte VPN Plus</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Jak používat torrenty pomocí P2P</value>
@@ -2124,6 +2127,15 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>Objevte VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>Servery VPN Plus vám umožní sledovat vaše oblíbené filmy a televizní pořady z celého světa.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>Navyšte svůj tarif pro obejití blokování VPN</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Možná později</value>
@@ -3260,7 +3272,7 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
     <value>Vytížení serveru</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>Smart Routing využívá virtuální servery k zajištění pokrytí VPN v těžko dostupných zemích.</value>
+    <value>Smart Routing umožňuje poskytovat pokrytí VPN v těžko dostupných zemích.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>Když se připojíte k serveru Smart Routing, bude to vypadat tak, že procházíte ve své cílové zemi, i když se fyzický server nachází jinde.</value>
@@ -4100,6 +4112,18 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
   <data name="SystemNotification_Disconnected">
     <value>Odpojeno</value>
   </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>Odemkněte torrenty a hraní online přes P2P (peer-to-peer) protokoly s placenými VPN servery.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>P2P není k dispozici s VPN Free</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Některé webové stránky a streamovací služby blokují uživatele bezplatné VPN. Navyšte na Proton VPN Plus pro obejití tohoto blokování.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Blokovaná webová stránka?</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Ukončit</value>
   </data>
@@ -4143,6 +4167,12 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
   </data>
   <data name="UpsellBanner_NetShield_Title">
     <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>Stahujte soubory přes BitTorrent a jiné protokoly pro sdílení souborů.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>Podpora P2P</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>Navyšte tarif pro výběr libovolného serveru.</value>

@@ -1992,10 +1992,13 @@
     <value>Паспрабаваць яшчэ раз</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Падключэнне было разарвана, бо сервер да якога вы былі падключаны не падтрымлівае трафік аднарангавых сетак (P2P). P2P не падтрымліваецца на бясплатных серверах. Скарыстайцеся іншым серверам для P2P.</value>
+    <value>Палепшыце, каб разблакіраваць серверы P2P (peer-to-peer) для дынамічных гульняў у інтэрнэце і спампоўвання торэнтаў або спыніце сваю актыўнасць P2P для аднаўлення падключэння.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>Выяўлены трафік P2P</value>
+    <value>P2P забаронены на бясплатных серверах VPN</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>Пазнаёмцеся з VPN Plus</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Як карыстацца торэнтамі з дапамогай P2P</value>
@@ -2032,7 +2035,7 @@
     <comment>obsolete</comment>
   </data>
   <data name="Dialogs_Protocol_Description">
-    <value>Пратакол задае інструкцыі вашай прыладзе, згодна з якімі яна падключаецца і ажыццяўляе камунікацыю з серверам.</value>
+    <value>Пратакол задае інструкцыі, паводле якіх ваша прылада падключаецца да сервера і ажыццяўляе з ім камунікацыю.</value>
   </data>
   <data name="Dialogs_Protocol_SwitchHeader">
     <value>Пераключыць пратакол VPN</value>
@@ -2124,6 +2127,15 @@
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>Пазнаёмцеся з VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>Серверы VPN Plus дазволяць вам атрымліваць асалоду ад любімых фільмаў і тэлешоў па ўсім свеце.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>Палепшыць, каб абыходзіць блакіроўкі VPN</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Магчыма пазней</value>
@@ -3174,7 +3186,7 @@
   </data>
   <data name="Overlay_P2P_Bullet3_Description">
     <value>  •  Спампоўванне файлаў торэнт
-  •  Паляпшэнне прадукцыйнасці сеткавых гульняў і відэазванкоў
+  •  Палепшаная прадукцыйнасць сеткавых гульняў і відэазванкоў
   •  Падключэнне прылад да лакальнай сеткі (LAN)</value>
   </data>
   <data name="Overlay_P2P_Bullet3_Header">
@@ -3260,7 +3272,7 @@ Secure Core</value>
     <value>Загрузка сервера</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>Smart Routing выкарыстоўвае віртуальныя серверы, каб забяспечваць пакрыццё VPN у цяжкадаступных краінах.</value>
+    <value>Smart Routing дазваляе нам забяспечваць пакрыццё VPN у цяжкадаступных краінах.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>Калі вы падключаецеся да сервера Smart Routing, то ўсё будзе выглядаць так, быццам вы ажыццяўляеце прагляд з краіны прызначэння, хоць фізічна сервер размяшчаецца ў іншым месцы.</value>
@@ -4100,6 +4112,18 @@ Secure Core</value>
   <data name="SystemNotification_Disconnected">
     <value>Адключана</value>
   </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>Разблакіруйце торэнты і гульні ў інтэрнэце праз P2P (peer-to-peer) пратаколы з дапамогай платных сервераў VPN.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>P2P недаступны з VPN Free</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Некаторыя вэб-сайты і сэрвісы з трансляцыямі блакіруюць карыстальнікаў, якія выкарыстоўваюць бясплатны VPN. Палепшыце да Proton VPN Plus, каб абысці гэтыя блакіроўкі.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Заблакіраваны вэб-сайт?</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Выйсці</value>
   </data>
@@ -4144,6 +4168,12 @@ Secure Core</value>
   <data name="UpsellBanner_NetShield_Title">
     <value>NetShield</value>
   </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>Спампоўвайце файлы праз BitTorrent і іншыя пратаколы абагульвання файлаў.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>Падтрымка P2P</value>
+  </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>Палепшыць свой тарыфны план, каб выбіраць любы сервер.</value>
   </data>
@@ -4157,7 +4187,7 @@ Secure Core</value>
     <value>Падключайцеся да VPN са сваёй уласнай сістэмай даменных імён (DNS)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
-    <value>Атрымайце доступ да прылад у сваёй лакальнай сетцы (LAN) пасля падключэння</value>
+    <value>Атрымайце доступ да прылад у сваёй лакальнай сетцы (LAN) падчас падключэння</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
     <value>Павысьце свой досвед у відэагульнях пераключыўся на NAT type 2 (умераны)</value>
@@ -4309,16 +4339,16 @@ Secure Core</value>
     <value>Абыходзьце цэнзуру з пашыранымі функцыямі бяспекі</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
-    <value>{0} краіна</value>
+    <value>{0} краіне</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Few">
-    <value>{0} краіны</value>
+    <value>{0} краінах</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Many">
-    <value>{0} краін</value>
+    <value>{0} краінах</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
-    <value>{0} краін</value>
+    <value>{0} краінах</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Features">
     <value>Бяспечныя трансляцыі, торэнты і іншыя перавагі</value>

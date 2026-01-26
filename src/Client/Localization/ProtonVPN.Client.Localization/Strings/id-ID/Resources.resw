@@ -1776,10 +1776,13 @@ Latensi yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Coba lagi</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Koneksi Anda telah dinonaktifkan karena Anda menggunakan server yang tidak mendukung lalu lintas peer-to-peer (P2P). Layanan P2P tidak didukung pada server gratis. Silakan gunakan server lain yang mendukung P2P.</value>
+    <value>Tingkatkan untuk membuka server P2P (peer-to-peer) bagi game daring dan torrent yang cepat, atau akhiri aktivitas P2P untuk memulihkan koneksi.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>Lalu lintas P2P terdeteksi</value>
+    <value>P2P tidak diizinkan di server VPN gratis</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>Telusuri VPN Plus</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Cara mengambil torrent dengan P2P</value>
@@ -1908,6 +1911,15 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>Telusuri VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>Server VPN Plus memungkinkan Anda menikmati film dan acara TV favorit dari seluruh dunia.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>Tingkatkan untuk menembus blokir VPN</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Mungkin nanti</value>
@@ -2936,7 +2948,7 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Beban Server</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>Smart Routing menggunakan server virtual untuk menyediakan cakupan VPN pada berbagai negara dengan pembatasan internet yang ketat.</value>
+    <value>Smart Routing allows us to provide VPN coverage in hard-to-reach countries.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>Pada saat Anda terhubung ke server Smart Routing, Anda akan terlihat seolah-olah Anda sedang berselancar dari negara tujuan Anda, walaupun server yang melayani Anda secara fisik terletak di tempat lain.</value>
@@ -3776,6 +3788,18 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="SystemNotification_Disconnected">
     <value>Terputus</value>
   </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>Buka akses torrent dan game daring melalui protokol P2P (peer-to-peer) dengan server VPN berbayar.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>P2P tidak tersedia dengan VPN Free</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Beberapa situs web dan layanan streaming memblokir pengguna VPN gratis. Tingkatkan ke Proton VPN Plus untuk menembus blokir ini.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Situs web diblokir?</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Keluar</value>
   </data>
@@ -3819,6 +3843,12 @@ Muatan server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="UpsellBanner_NetShield_Title">
     <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>Unduh file melalui BitTorrent dan protokol berbagi file lainnya.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>Dukungan P2P</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>Tingkatkan untuk bebas memilih server mana saja.</value>

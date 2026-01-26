@@ -1848,10 +1848,13 @@ A magas késleltetés lelassíthatja a kapcsolatot.</value>
     <value>Próbálja újra</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>A kapcsolatot letiltottuk, mert olyan kiszolgálót használ, amely nem támogatja a P2P (peer-to-peer) forgalmat. A P2P nincs támogatva az ingyenes kiszolgálókon. Kérjük, használjon másik szervert a P2P-hez.</value>
+    <value>Upgrade to unlock P2P (peer-to-peer) servers for fast online gaming and torrenting, or end your P2P activity to restore your connection.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>P2P forgalom észlelve</value>
+    <value>P2P is not allowed on free VPN servers</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>Discover VPN Plus</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Hogyan kell torrentezni P2P-rel</value>
@@ -1980,6 +1983,15 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   </data>
   <data name="Dialogs_SmartRouting_Title">
     <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>Discover VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>VPN Plus servers let you enjoy your favorite movies and TV shows from around the world.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>Upgrade to bypass VPN blocks</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Talán később</value>
@@ -3044,7 +3056,7 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Szerver terheltség</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>A Smart Routing virtuális szervereket használ, hogy VPN-lefedettséget biztosítson a nehezen elérhető országokban.</value>
+    <value>Smart Routing allows us to provide VPN coverage in hard-to-reach countries.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>Amikor csatlakozik egy Smart Routing- szerverhez, úgy tűnik, hogy a célországban böngészik, még akkor is, ha a fizikai szerver máshol található.</value>
@@ -3884,6 +3896,18 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   <data name="SystemNotification_Disconnected">
     <value>Leválasztva</value>
   </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>Unlock torrenting and online gaming over P2P (peer-to-peer) protocols with paid VPN servers.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>P2P not available with VPN Free</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Some websites and streaming services block free VPN users. Upgrade to Proton VPN Plus to bypass these blocks.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Blocked website?</value>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Kilépés</value>
   </data>
@@ -3927,6 +3951,12 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   </data>
   <data name="UpsellBanner_NetShield_Title">
     <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>Download files through BitTorrent and other file sharing protocols.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>P2P support</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>Váltson nagyobb csomagra tetszőleges szerver kiválasztásához.</value>
