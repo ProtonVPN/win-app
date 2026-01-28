@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,9 +19,9 @@
 
 using NSubstitute;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Connection.GuestHole;
@@ -32,11 +32,9 @@ using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.OperatingSystems.Network.Contracts;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.LocalAgent;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
-using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Logic.Connection.Tests;
@@ -58,6 +56,7 @@ public class ConnectionManagerTest
     private IGuestHoleServersFileStorage? _guestHoleServersFileStorage;
     private IGuestHoleConnectionRequestCreator? _guestHoleConnectionRequestCreator;
     private IConnectionStatisticalEventsManager? _statisticalEventManager;
+    private IConnectionKeyManager? _connectionKeyManager;
 
     [TestInitialize]
     public void Initialize()
@@ -74,6 +73,7 @@ public class ConnectionManagerTest
         _guestHoleServersFileStorage = Substitute.For<IGuestHoleServersFileStorage>();
         _guestHoleConnectionRequestCreator = Substitute.For<IGuestHoleConnectionRequestCreator>();
         _statisticalEventManager = Substitute.For<IConnectionStatisticalEventsManager>();
+        _connectionKeyManager = Substitute.For<IConnectionKeyManager>();
 
         _connectionRequestCreator!.CreateAsync(Arg.Any<IConnectionIntent>()).Returns(GetConnectionRequestIpcEntity());
         _reconnectionRequestCreator!.CreateAsync(Arg.Any<IConnectionIntent>()).Returns(GetConnectionRequestIpcEntity());
@@ -94,6 +94,7 @@ public class ConnectionManagerTest
         _guestHoleServersFileStorage = null;
         _guestHoleConnectionRequestCreator = null;
         _statisticalEventManager = null;
+        _connectionKeyManager = null;
     }
 
     [TestMethod]
@@ -192,7 +193,8 @@ public class ConnectionManagerTest
             _serversLoader!,
             _guestHoleServersFileStorage!,
             _guestHoleConnectionRequestCreator!,
-            _statisticalEventManager!);
+            _statisticalEventManager!,
+            _connectionKeyManager!);
     }
 
     private IConnectionIntent GetConnectionIntent(IFeatureIntent featureIntent)

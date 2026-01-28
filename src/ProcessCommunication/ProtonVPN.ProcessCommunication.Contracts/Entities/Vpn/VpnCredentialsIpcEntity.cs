@@ -18,8 +18,8 @@
  */
 
 using System.Runtime.Serialization;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.LocalAgent;
 
 namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 

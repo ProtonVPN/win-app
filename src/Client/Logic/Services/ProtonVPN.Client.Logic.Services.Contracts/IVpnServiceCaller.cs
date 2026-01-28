@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,7 +18,7 @@
  */
 
 using ProtonVPN.Common.Legacy.Abstract;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.LocalAgent;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -33,7 +33,7 @@ public interface IVpnServiceCaller
     Task RequestNetShieldStatsAsync();
     Task RequestConnectionDetailsAsync();
 
-    Task UpdateConnectionCertificateAsync(ConnectionCertificateIpcEntity certificate);
+    Task UpdateLocalAgentTlsCredentialsAsync(LocalAgentTlsCredentialsIpcEntity credentials);
 
     Task ApplySettingsAsync(MainSettingsIpcEntity settings);
 

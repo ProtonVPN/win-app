@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,16 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Runtime.Serialization;
+using ProtonVPN.Logging.Contracts.Categories;
 
-namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
+namespace ProtonVPN.Logging.Contracts.Events.LocalAgentLogs;
 
-[DataContract]
-public class ConnectionCertificateIpcEntity
+public class LocalAgentTlsCredentialsLog : LogEventBase<LocalAgentLogCategory>
 {
-    [DataMember(Order = 1, IsRequired = true)]
-    public string Pem { get; set; }
-
-    [DataMember(Order = 2, IsRequired = true)]
-    public DateTime ExpirationDateUtc { get; set; }
+    protected override string Event => "TLS_CREDENTIALS";
 }

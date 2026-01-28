@@ -17,15 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Legacy;
 using System;
 
-namespace ProtonVPN.Vpn.ConnectionCertificates;
+namespace ProtonVPN.Vpn.LocalAgent;
 
-public interface IConnectionCertificateCache
+public class ConnectionCertificate
 {
-    void Set(ConnectionCertificate certificate);
-    ConnectionCertificate Get();
+    public string Pem { get; }
+    public DateTime? ExpirationDateUtc { get; }
 
-    event EventHandler<EventArgs<ConnectionCertificate>> Changed;
+    public ConnectionCertificate(string pem, DateTime? expirationDateUtc)
+    {
+        Pem = pem;
+        ExpirationDateUtc = expirationDateUtc;
+    }
 }

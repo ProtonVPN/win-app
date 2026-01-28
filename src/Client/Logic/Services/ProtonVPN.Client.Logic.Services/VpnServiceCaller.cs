@@ -24,7 +24,7 @@ using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.LocalAgent;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -62,9 +62,9 @@ public class VpnServiceCaller : ServiceCallerBase<IVpnController>, IVpnServiceCa
         return InvokeAsync((c, ct) => c.RequestConnectionDetails(ct).Wrap());
     }
 
-    public Task UpdateConnectionCertificateAsync(ConnectionCertificateIpcEntity certificate)
+    public Task UpdateLocalAgentTlsCredentialsAsync(LocalAgentTlsCredentialsIpcEntity credentials)
     {
-        return InvokeAsync((c, ct) => c.UpdateConnectionCertificate(certificate, ct).Wrap());
+        return InvokeAsync((c, ct) => c.UpdateLocalAgentTlsCredentialsAsync(credentials, ct).Wrap());
     }
 
     public Task ApplySettingsAsync(MainSettingsIpcEntity settings)

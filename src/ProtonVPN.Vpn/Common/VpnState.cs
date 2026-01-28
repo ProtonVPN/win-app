@@ -19,7 +19,7 @@
 
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Vpn;
-using ProtonVPN.Vpn.ConnectionCertificates;
+using ProtonVPN.Vpn.LocalAgent;
 
 namespace ProtonVPN.Vpn.Common;
 

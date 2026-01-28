@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,18 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
+using System.Runtime.Serialization;
 
-namespace ProtonVPN.Vpn.ConnectionCertificates;
+namespace ProtonVPN.ProcessCommunication.Contracts.Entities.LocalAgent;
 
-public class ConnectionCertificate
+[DataContract]
+public class ConnectionCertificateIpcEntity
 {
-    public string Pem { get; }
-    public DateTime? ExpirationDateUtc { get; }
+    [DataMember(Order = 1, IsRequired = true)]
+    public string Pem { get; set; }
 
-    public ConnectionCertificate(string pem, DateTime? expirationDateUtc)
-    {
-        Pem = pem;
-        ExpirationDateUtc = expirationDateUtc;
-    }
+    [DataMember(Order = 2, IsRequired = true)]
+    public DateTime? ExpirationDateUtc { get; set; }
 }

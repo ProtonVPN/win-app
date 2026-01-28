@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,7 +18,7 @@
  */
 
 using System.ServiceModel;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.LocalAgent;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
@@ -29,7 +29,7 @@ public interface IVpnController : IServiceController
 {
     Task Connect(ConnectionRequestIpcEntity connectionRequest, CancellationToken cancelToken);
     Task Disconnect(DisconnectionRequestIpcEntity disconnectionRequest, CancellationToken cancelToken);
-    Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate, CancellationToken cancelToken);
+    Task UpdateLocalAgentTlsCredentialsAsync(LocalAgentTlsCredentialsIpcEntity credentials, CancellationToken cancelToken);
     Task<NetworkTrafficIpcEntity> GetNetworkTraffic(CancellationToken cancelToken);
     Task ApplySettings(MainSettingsIpcEntity settings, CancellationToken cancelToken);
 

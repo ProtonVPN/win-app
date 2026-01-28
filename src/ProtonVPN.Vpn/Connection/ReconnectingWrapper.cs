@@ -30,6 +30,7 @@ using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 using ProtonVPN.Logging.Contracts.Events.ServerSwitchLogs;
 using ProtonVPN.Vpn.Common;
+using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.ServerValidation;
 
 namespace ProtonVPN.Vpn.Connection
@@ -56,6 +57,7 @@ namespace ProtonVPN.Vpn.Connection
             IVpnEndpointCandidates candidates,
             IServerValidator serverValidator,
             IEndpointScanner endpointScanner,
+            ILocalAgentTlsCredentialsCache localAgentTlsCredentialsCache,
             ISingleVpnConnection origin)
         {
             _logger = logger;
@@ -65,6 +67,17 @@ namespace ProtonVPN.Vpn.Connection
             _origin = origin;
 
             _origin.StateChanged += Origin_StateChanged;
+            localAgentTlsCredentialsCache.Changed += OnLocalAgentTlsCredentialsChanged;
+        }
+
+        private void OnLocalAgentTlsCredentialsChanged(object sender, EventArgs<LocalAgentTlsCredentials> e)
+        {
+            _credentials = new VpnCredentials(
+                 e.Data.ConnectionCertificate.Pem,
+                 e.Data.ConnectionCertificate.ExpirationDateUtc,
+                 e.Data.ClientKeyPair,
+                _credentials.Username,
+                _credentials.Password);
         }
 
         public event EventHandler<EventArgs<VpnState>> StateChanged;

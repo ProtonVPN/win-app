@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -75,8 +75,7 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
         {
             // If there is a certificate error, check if the certificate is old and refresh if old, regardless if the error is repeating.
             // And always send the certificate to the service to ensure it is up-to-date with the most recent certificate, regardless if updated or not.
-            if (error == VpnError.CertificateExpired ||
-                error == VpnError.PlanNeedsToBeUpgraded ||
+            if (error == VpnError.PlanNeedsToBeUpgraded ||
                 error.RequiresCertificateUpdate())
             {
                 await _connectionCertificateManager.RequestNewCertificateAsync(
@@ -137,7 +136,7 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
             return ConnectionErrorHandlerResult.NoAction;
         }
 
-        if (error.RequiresCertificateUpdate())
+        if (error.RequiresCertificateDeletion())
         {
             await _connectionCertificateManager.ForceRequestNewKeyPairAndCertificateAsync();
             return await ReconnectAsync();

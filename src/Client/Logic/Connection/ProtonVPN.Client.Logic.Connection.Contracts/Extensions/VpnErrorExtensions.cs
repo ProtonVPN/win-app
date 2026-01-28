@@ -68,16 +68,11 @@ public static class VpnErrorExtensions
 
     private static readonly List<VpnError> _errorsForCertificateUpdate =
     [
-        VpnError.CertificateRevoked,
-        VpnError.CertCARevokedOrExpired,
-        VpnError.ClientKeyMismatch,
-        VpnError.SessionKilledDueToMultipleKeys,
-        VpnError.ServerSessionDoesNotMatch,
+        VpnError.CertificateExpired,
     ];
 
     private static readonly List<VpnError> _errorsForCertificateDeletion =
     [
-        VpnError.CertificateExpired,
         VpnError.CertificateRevoked,
         VpnError.CertCARevokedOrExpired,
         VpnError.ClientKeyMismatch,

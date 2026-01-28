@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -34,7 +34,6 @@ using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.LocalAgentLogs;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Config;
-using ProtonVPN.Vpn.ConnectionCertificates;
 using ProtonVPN.Vpn.Gateways;
 using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.LocalAgent.Contracts;
@@ -53,7 +52,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     private readonly EventReceiver _eventReceiver;
     private readonly ISplitTunnelRouting _splitTunnelRouting;
     private readonly IGatewayCache _gatewayCache;
-    private readonly IConnectionCertificateCache _connectionCertificateCache;
+    private readonly ILocalAgentTlsCredentialsCache _localAgentTlsCredentialsCache;
     private readonly IAdapterSingleVpnConnection _origin;
     private readonly ISingleAction _timeoutAction;
 
@@ -93,21 +92,21 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     private string _localIp = string.Empty;
     private string _remoteIp = string.Empty;
     private DateTime _lastNetShieldStatsRequestDate = DateTime.MinValue;
-    private ConnectionCertificate _lastConnectionCertificate = null;
+    private LocalAgentTlsCredentials _lastCredentials = null;
 
     public LocalAgentWrapper(
         ILogger logger,
         EventReceiver eventReceiver,
         ISplitTunnelRouting splitTunnelRouting,
         IGatewayCache gatewayCache,
-        IConnectionCertificateCache connectionCertificateCache,
+        ILocalAgentTlsCredentialsCache localAgentTlsCredentialsCache,
         IAdapterSingleVpnConnection origin)
     {
         _logger = logger;
         _eventReceiver = eventReceiver;
         _splitTunnelRouting = splitTunnelRouting;
         _gatewayCache = gatewayCache;
-        _connectionCertificateCache = connectionCertificateCache;
+        _localAgentTlsCredentialsCache = localAgentTlsCredentialsCache;
         _origin = origin;
 
         origin.StateChanged += OnVpnStateChanged;
@@ -116,7 +115,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         _timeoutAction = new SingleAction(TimeoutAction);
         _timeoutAction.Completed += OnTimeoutActionCompleted;
 
-        _connectionCertificateCache.Changed += OnCertificateChange;
+        _localAgentTlsCredentialsCache.Changed += OnCredentialsChanged;
     }
 
     public event EventHandler<EventArgs<VpnState>> StateChanged;
@@ -191,22 +190,50 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         };
     }
 
-    private void OnCertificateChange(object sender, EventArgs<ConnectionCertificate> connectionCertificateArgs)
+    private void OnCredentialsChanged(object sender, EventArgs<LocalAgentTlsCredentials> credentials)
     {
         if (!_tlsConnected)
         {
             return;
         }
 
-        _logger.Info<LocalAgentLog>("Connection certificate updated. Closing existing TLS channel and reconnecting.");
-        _eventReceiver.Stop();
-        ReconnectToTlsChannel(connectionCertificateArgs.Data);
+        _logger.Info<LocalAgentLog>("Connection credentials changed.");
+
+        ReconnectToTlsChannel(credentials.Data);
     }
 
-    private void ReconnectToTlsChannel(ConnectionCertificate connectionCertificate)
+    private void HandlePrivateKeyMismatch(LocalAgentTlsCredentials credentials)
     {
-        CloseTlsChannel();
-        ConnectToTlsChannel(connectionCertificate);
+        bool isPrivateKeyEmpty = string.IsNullOrEmpty(credentials.ClientKeyPair.SecretKey.Pem);
+        bool isCertificateEmpty = string.IsNullOrEmpty(credentials.ConnectionCertificate.Pem);
+
+        if (isPrivateKeyEmpty || isCertificateEmpty)
+        {
+            string reason = isPrivateKeyEmpty
+                ? "The private key has changed since the last connection and is now empty"
+                : "The certificate is empty";
+            _logger.Warn<LocalAgentLog>($"{reason}. Disconnecting.");
+            _origin.Disconnect(VpnError.ClientKeyMismatch);
+        }
+        else
+        {
+            _logger.Warn<LocalAgentLog>("The private key has changed since the last connection. Triggering reconnect.");
+            _origin.Disconnect(VpnError.Unknown);
+        }
+    }
+
+    private void ReconnectToTlsChannel(LocalAgentTlsCredentials credentials)
+    {
+        if (_lastCredentials.ClientKeyPair.SecretKey.Pem == credentials.ClientKeyPair.SecretKey.Pem)
+        {
+            _eventReceiver.Stop();
+            CloseTlsChannel();
+            ConnectToTlsChannel(credentials);
+        }
+        else
+        {
+            HandlePrivateKeyMismatch(credentials);
+        }
     }
 
     private async Task TimeoutAction(CancellationToken cancellationToken)
@@ -256,11 +283,18 @@ internal class LocalAgentWrapper : ISingleVpnConnection
 
     private void OnCertificateExpiredError()
     {
-        ConnectionCertificate lastCertificate = _lastConnectionCertificate;
-        ConnectionCertificate currentCertificate = _connectionCertificateCache.Get();
+        LocalAgentTlsCredentials lastCredentials = _lastCredentials;
+        LocalAgentTlsCredentials currentCredentials = _localAgentTlsCredentialsCache.Get();
 
+        if (_lastCredentials.ClientKeyPair.SecretKey.Pem != currentCredentials.ClientKeyPair.SecretKey.Pem)
+        {
+            HandlePrivateKeyMismatch(currentCredentials);
+            return;
+        }
+
+        ConnectionCertificate currentCertificate = currentCredentials.ConnectionCertificate;
         if (string.IsNullOrWhiteSpace(currentCertificate?.Pem) ||
-            currentCertificate?.Pem == lastCertificate?.Pem)
+            currentCertificate?.Pem == lastCredentials?.ConnectionCertificate.Pem)
         {
             InvokeStateChange(VpnStatus.ActionRequired, VpnError.CertificateExpired, currentCertificate);
         }
@@ -268,8 +302,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         {
             _logger.Info<LocalAgentLog>("The current connection certificate is not null and is different from the " +
                 "last certificate used. Closing existing TLS channel and reconnecting.");
-            _eventReceiver.Stop();
-            ReconnectToTlsChannel(currentCertificate);
+            ReconnectToTlsChannel(currentCredentials);
         }
     }
 
@@ -332,7 +365,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         else if (e.Error == VpnError.CertificateNotYetProvided)
         {
             _logger.Info<LocalAgentErrorLog>("Reconnecting to TLS channel.");
-            ReconnectToTlsChannel(_connectionCertificateCache.Get());
+            ReconnectToTlsChannel(_localAgentTlsCredentialsCache.Get());
         }
         else if (e.Error == VpnError.CertificateExpired)
         {
@@ -408,7 +441,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         if (!string.IsNullOrEmpty(_credentials.ClientCertPem))
         {
             InvokeStateChange(VpnStatus.AssigningIp);
-            ConnectToTlsChannel(_connectionCertificateCache.Get());
+            ConnectToTlsChannel(_localAgentTlsCredentialsCache.Get());
             _timeoutAction.Run();
         }
         else
@@ -439,7 +472,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         }
     }
 
-    private void ConnectToTlsChannel(ConnectionCertificate connectionCertificate)
+    private void ConnectToTlsChannel(LocalAgentTlsCredentials credentials)
     {
         if (!_isConnectRequested)
         {
@@ -454,8 +487,8 @@ internal class LocalAgentWrapper : ISingleVpnConnection
             return;
         }
 
-        _lastConnectionCertificate = connectionCertificate;
-        using GoString clientCertPem = connectionCertificate.Pem.ToGoString();
+        _lastCredentials = credentials;
+        using GoString clientCertPem = credentials.ConnectionCertificate.Pem.ToGoString();
         using GoString clientKeyPem = _credentials.ClientKeyPair.SecretKey.Pem.ToGoString();
         using GoString serverCaPem = VpnCertConfig.RootCa.ToGoString();
         using GoString host = $"{gatewayIPAddress}:{DEFAULT_PORT}".ToGoString();

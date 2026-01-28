@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -29,14 +29,14 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Controllers;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Auth;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.LocalAgent;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.ControllerRetries;
 using ProtonVPN.Service.ProcessCommunication;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Vpn.Common;
-using ProtonVPN.Vpn.ConnectionCertificates;
+using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.PortMapping;
 
 namespace ProtonVPN.Service;
@@ -50,7 +50,7 @@ public class VpnController : IVpnController
     private readonly IPortMappingProtocolClient _portMappingProtocolClient;
     private readonly IClientControllerSender _appControllerCaller;
     private readonly IEntityMapper _entityMapper;
-    private readonly IConnectionCertificateCache _connectionCertificateCache;
+    private readonly ILocalAgentTlsCredentialsCache _localAgentTlsCredentialsCache;
     private readonly IControllerRetryManager _controllerRetryManager;
 
     public VpnController(
@@ -61,7 +61,7 @@ public class VpnController : IVpnController
         IPortMappingProtocolClient portMappingProtocolClient,
         IClientControllerSender appControllerCaller,
         IEntityMapper entityMapper,
-        IConnectionCertificateCache connectionCertificateCache,
+        ILocalAgentTlsCredentialsCache localAgentTlsCredentialsCache,
         IControllerRetryManager controllerRetryManager)
     {
         _vpnConnection = vpnConnection;
@@ -71,7 +71,7 @@ public class VpnController : IVpnController
         _portMappingProtocolClient = portMappingProtocolClient;
         _appControllerCaller = appControllerCaller;
         _entityMapper = entityMapper;
-        _connectionCertificateCache = connectionCertificateCache;
+        _localAgentTlsCredentialsCache = localAgentTlsCredentialsCache;
         _controllerRetryManager = controllerRetryManager;
     }
 
@@ -88,7 +88,9 @@ public class VpnController : IVpnController
         config.OpenVpnAdapter = _serviceSettings.OpenVpnAdapter;
         IReadOnlyList<VpnHost> endpoints = _entityMapper.Map<VpnServerIpcEntity, VpnHost>(connectionRequest.Servers);
         VpnCredentials credentials = _entityMapper.Map<VpnCredentialsIpcEntity, VpnCredentials>(connectionRequest.Credentials);
-        _connectionCertificateCache.Set(new ConnectionCertificate(credentials.ClientCertPem, credentials.ClientCertificateExpirationDateUtc));
+        _localAgentTlsCredentialsCache.Set(new LocalAgentTlsCredentials(
+            new ConnectionCertificate(credentials.ClientCertPem, credentials.ClientCertificateExpirationDateUtc),
+            credentials.ClientKeyPair));
         _vpnConnection.Connect(endpoints, config, credentials);
     }
 
@@ -102,9 +104,10 @@ public class VpnController : IVpnController
         _vpnConnection.Disconnect((VpnError)disconnectionRequest.ErrorType);
     }
 
-    public async Task UpdateConnectionCertificate(ConnectionCertificateIpcEntity certificate, CancellationToken cancelToken)
+    public async Task UpdateLocalAgentTlsCredentialsAsync(LocalAgentTlsCredentialsIpcEntity credentialsIpcEntity, CancellationToken cancelToken)
     {
-        _connectionCertificateCache.Set(new ConnectionCertificate(certificate.Pem, certificate.ExpirationDateUtc));
+        LocalAgentTlsCredentials credentials = _entityMapper.Map<LocalAgentTlsCredentialsIpcEntity, LocalAgentTlsCredentials>(credentialsIpcEntity);
+        _localAgentTlsCredentialsCache.Set(credentials);
     }
 
     public async Task<NetworkTrafficIpcEntity> GetNetworkTraffic(CancellationToken cancelToken)
