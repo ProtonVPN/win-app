@@ -37,11 +37,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <winUi:MapControl x:Name="Map"
                           Background="{ThemeResource BackgroundWeakColorBrush}"
                           VerticalAlignment="Stretch"
-                          HorizontalAlignment="Stretch" />
+                          HorizontalAlignment="Stretch" 
+                          FlowDirection="LeftToRight"/>
 
         <Canvas x:Name="MapCanvas"
                 HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch" />
+                VerticalAlignment="Stretch"
+                FlowDirection="LeftToRight" />
     </Grid>
 
 </UserControl>

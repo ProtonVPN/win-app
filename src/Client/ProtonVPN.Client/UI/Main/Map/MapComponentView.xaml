@@ -38,7 +38,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     RightOffset="{x:Bind RightOffset}"
                     BottomOffset="{x:Bind BottomOffset}"
                     TitleBarHeight="{StaticResource MainTitleBarHeight}"
-                    ConnectPhrase="{x:Bind ViewModel.Localizer.Get('Map_ConnectTo')}"
-                    FlowDirection="LeftToRight" />
+                    ConnectPhrase="{x:Bind ViewModel.Localizer.Get('Map_ConnectTo')}"/>
 
 </UserControl>

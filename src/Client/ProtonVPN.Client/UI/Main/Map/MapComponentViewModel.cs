@@ -125,6 +125,15 @@ public partial class MapComponentViewModel : ViewModelBase,
         });
     }
 
+    protected override void OnLanguageChanged()
+    {
+        ExecuteOnUIThread(() =>
+        {
+            InvalidateCountries();
+            InvalidateActiveCountry();
+        });
+    }
+
     private void InvalidateActiveCountry()
     {
         switch (_connectionManager.ConnectionStatus)

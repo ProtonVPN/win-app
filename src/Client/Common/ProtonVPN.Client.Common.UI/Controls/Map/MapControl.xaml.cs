@@ -564,9 +564,13 @@ public sealed partial class MapControl
 
     private bool IsMouseOnViewport(Windows.Foundation.Point mousePosition)
     {
-        double left = SIDE_MARGIN + LeftOffset;
+        double left = FlowDirection == FlowDirection.LeftToRight
+            ? SIDE_MARGIN + LeftOffset
+            : SIDE_MARGIN;
+        double right = FlowDirection == FlowDirection.LeftToRight
+            ? SIDE_MARGIN
+            : SIDE_MARGIN + LeftOffset;
         double top = TitleBarHeight + TopOffset;
-        double right = SIDE_MARGIN;
         double bottom = BottomOffset + SIDE_MARGIN;
 
         Windows.Foundation.Rect viewportRect = new(
@@ -659,6 +663,7 @@ public sealed partial class MapControl
             {
                 feature.SetIsOnHover(true);
 
+                _countryCallout.FlowDirection = this.FlowDirection;
                 _countryCallout.Show(country);
 
                 OverrideCursor(_handCursor);
@@ -1186,9 +1191,13 @@ public sealed partial class MapControl
 
         MPoint countryPoint = CurrentCountry.GetMapPoint();
 
-        double leftOffset = SIDE_MARGIN + LeftOffset;
+        double leftOffset = FlowDirection == FlowDirection.LeftToRight
+            ? SIDE_MARGIN + LeftOffset
+            : SIDE_MARGIN + RightOffset;
+        double rightOffset = FlowDirection == FlowDirection.LeftToRight
+            ? SIDE_MARGIN + RightOffset
+            : SIDE_MARGIN + LeftOffset;
         double topOffset = TitleBarHeight + TopOffset;
-        double rightOffset = RightOffset + SIDE_MARGIN;
         double bottomOffset = BottomOffset + SIDE_MARGIN;
 
         double effectiveViewportWidth = _map.Navigator.Viewport.Width - leftOffset - rightOffset;
