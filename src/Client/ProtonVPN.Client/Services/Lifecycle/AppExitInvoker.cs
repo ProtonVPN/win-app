@@ -76,21 +76,22 @@ public class AppExitInvoker : IAppExitInvoker
         _uiThreadDispatcher = uiThreadDispatcher;
     }
 
-    public async Task RestartAsync()
+    public async Task RestartAsync(bool isToOpenOnDesktop)
     {
-        await _uiThreadDispatcher.TryEnqueueAsync(InternalRestartAsync);
+        await _uiThreadDispatcher.TryEnqueueAsync(() => InternalRestartAsync(isToOpenOnDesktop));
     }
 
-    private async Task InternalRestartAsync()
+    private async Task InternalRestartAsync(bool isToOpenOnDesktop)
     {
         await InternalExitAsync(isToAskForExitConfirmation: false);
         Program.ReleaseMutex();
-        StartNewAppProcess();
+        StartNewAppProcess(isToOpenOnDesktop);
     }
 
-    private void StartNewAppProcess()
+    private void StartNewAppProcess(bool isToOpenOnDesktop = false)
     {
-        string cmd = $"/c start \"\" \"{_config.ClientLauncherExePath}\"";
+        string args = isToOpenOnDesktop ? " -OpenOnDesktop" : "";
+        string cmd = $"/c start \"\" \"{_config.ClientLauncherExePath}\"{args}";
         _commandLineCaller.Execute(cmd);
     }
 

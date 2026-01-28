@@ -39,6 +39,7 @@ public class UpdateClientCommand : IUpdateClientCommand,
     private readonly ILocalizationProvider _localizer;
     private readonly IUpdatesManager _updatesManager;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
+    private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IConnectionManager _connectionManager;
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
 
@@ -51,6 +52,7 @@ public class UpdateClientCommand : IUpdateClientCommand,
         ILocalizationProvider localizer,
         IUpdatesManager updatesManager,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
+        IMainWindowActivator mainWindowActivator,
         IConnectionManager connectionManager,
         IUIThreadDispatcher uiThreadDispatcher)
     {
@@ -58,6 +60,7 @@ public class UpdateClientCommand : IUpdateClientCommand,
         _localizer = localizer;
         _updatesManager = updatesManager;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
+        _mainWindowActivator = mainWindowActivator;
         _connectionManager = connectionManager;
         _uiThreadDispatcher = uiThreadDispatcher;
 
@@ -85,7 +88,8 @@ public class UpdateClientCommand : IUpdateClientCommand,
         {
             _isUpdating = true;
 
-            await _updatesManager.UpdateAsync();
+            bool isToOpenOnDesktop = _mainWindowActivator.IsWindowVisible;
+            await _updatesManager.UpdateAsync(isToOpenOnDesktop);
         }
         finally
         {

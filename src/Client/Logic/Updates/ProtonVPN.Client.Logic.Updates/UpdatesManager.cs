@@ -198,7 +198,7 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
         }
     }
 
-    public async Task UpdateAsync()
+    public async Task UpdateAsync(bool isToOpenOnDesktop)
     {
         if (_lastUpdateState == null)
         {
@@ -208,15 +208,15 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
         if (_lastUpdateState.Status == AppUpdateStatus.AutoUpdated)
         {
             Logger.Info<AppUpdateLog>("Restarting app after auto update due to manual request.");
-            await _appExitInvoker.RestartAsync();
+            await _appExitInvoker.RestartAsync(isToOpenOnDesktop);
         }
         else if (_lastUpdateState.IsReady)
         {
-            await UpdateManuallyAsync();
+            await UpdateManuallyAsync(isToOpenOnDesktop);
         }
     }
 
-    private async Task UpdateManuallyAsync()
+    private async Task UpdateManuallyAsync(bool isToOpenOnDesktop)
     {
         if (_lastUpdateState == null)
         {
@@ -232,7 +232,10 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
 
         try
         {
-            _osProcesses.ElevatedProcess(_lastUpdateState.FilePath, _lastUpdateState.FileArguments).Start();
+            string openOnDesktopArg = isToOpenOnDesktop ? " /OPENONDESKTOP" : "";
+            string fileArguments = $"{_lastUpdateState.FileArguments}{openOnDesktopArg}";
+
+            _osProcesses.ElevatedProcess(_lastUpdateState.FilePath, fileArguments).Start();
             await _appExitInvoker.ForceExitAsync();
         }
         catch (System.ComponentModel.Win32Exception)

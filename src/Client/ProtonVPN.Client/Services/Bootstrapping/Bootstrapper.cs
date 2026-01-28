@@ -55,6 +55,8 @@ public class Bootstrapper : IBootstrapper
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
     private readonly IUIThreadDispatcher _uiThreadDispatcher;
 
+    private bool _isOpenOnDesktopRequested;
+
     public Bootstrapper(
         IClientInstallsStatisticalEventSender clientInstallsStatisticalEventSender,
         IProcessCommunicationStarter processCommunicationStarter,
@@ -195,6 +197,10 @@ public class Bootstrapper : IBootstrapper
             {
                 _settings.IsEfficiencyModeAllowed = true;
             }
+            else if (arg.EqualsIgnoringCase("-OpenOnDesktop"))
+            {
+                _isOpenOnDesktopRequested = true;
+            }
         }
 
         HandleProtonInstallerArguments(args);
@@ -243,9 +249,11 @@ public class Bootstrapper : IBootstrapper
         bool isAutoLaunchEnabled = _settings.IsAutoLaunchEnabled;
         bool isAutoLaunchModeOpenOnDesktop = _settings.AutoLaunchMode == AutoLaunchMode.OpenOnDesktop;
 
-        _logger.Info<AppLog>($"Handle main window start condtions - HasAuthenticatedSessionData: {hasAuthenticatedSessionData}, IsAutoLaunchEnabled: {isAutoLaunchEnabled}, IsAutoLaunchModeOpenOnDesktop: {isAutoLaunchModeOpenOnDesktop}");
+        _logger.Info<AppLog>($"Handle main window start conditions - HasAuthenticatedSessionData: {hasAuthenticatedSessionData}, " +
+            $"IsAutoLaunchEnabled: {isAutoLaunchEnabled}, IsAutoLaunchModeOpenOnDesktop: {isAutoLaunchModeOpenOnDesktop}, " +
+            $"IsOpenOnDesktopRequested: {_isOpenOnDesktopRequested}");
 
-        if (!hasAuthenticatedSessionData || !isAutoLaunchEnabled || isAutoLaunchModeOpenOnDesktop)
+        if (!hasAuthenticatedSessionData || !isAutoLaunchEnabled || isAutoLaunchModeOpenOnDesktop || _isOpenOnDesktopRequested)
         {
             _mainWindowActivator.Activate();
         }

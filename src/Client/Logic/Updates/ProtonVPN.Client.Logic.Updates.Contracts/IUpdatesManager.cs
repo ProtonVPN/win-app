@@ -25,7 +25,7 @@ public interface IUpdatesManager
 
     void CheckForUpdate(bool isManualCheck);
 
-    Task UpdateAsync();
+    Task UpdateAsync(bool isToOpenOnDesktop);
 
     bool IsAutoUpdated { get; }
 

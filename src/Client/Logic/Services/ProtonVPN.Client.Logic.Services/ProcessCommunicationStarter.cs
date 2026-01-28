@@ -48,7 +48,7 @@ public class ProcessCommunicationStarter : IProcessCommunicationStarter
 
     private async void OnInvokingClientRestartAsync(object? sender, EventArgs e)
     {
-        await _appExitInvoker.RestartAsync();
+        await _appExitInvoker.RestartAsync(isToOpenOnDesktop: false);
     }
 
     public void Start()
