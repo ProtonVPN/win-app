@@ -75,6 +75,7 @@ public interface IConfiguration : IStaticConfiguration
     TimeSpan P2PTrafficDetectionInterval { get; }
     TimeSpan StatisticalEventMinimumWaitInterval { get; }
     TimeSpan StatisticalEventSendTriggerInterval { get; }
+    TimeSpan ServerSearchDelay { get; }
 
     IList<string> DohProviders { get; }
     IUrlsConfiguration Urls { get; }

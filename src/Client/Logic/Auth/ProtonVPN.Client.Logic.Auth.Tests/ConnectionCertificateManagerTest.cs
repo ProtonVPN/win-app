@@ -30,7 +30,7 @@ using ProtonVPN.Api.Contracts.Certificates;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Common.Legacy.Extensions;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Logic.Auth.Tests;
@@ -96,7 +96,7 @@ public class ConnectionCertificateManagerTest
     {
         return new CertificateResponse
         {
-            Code = ResponseCodes.ClientPublicKeyConflict
+            Code = ResponseCodes.CLIENT_PUBLIC_KEY_CONFLICT
         };
     }
 

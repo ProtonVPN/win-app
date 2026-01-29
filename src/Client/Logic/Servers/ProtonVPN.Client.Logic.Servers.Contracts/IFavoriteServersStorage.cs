@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,29 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
+namespace ProtonVPN.Client.Logic.Servers.Contracts;
 
-namespace ProtonVPN.Common.Legacy.Extensions;
-
-public static class ByteExtensions
+public interface IFavoriteServersStorage
 {
-    public static byte[] TrimTrailingZeroBytes(this byte[] bytes)
-    {
-        if (bytes.IsNullOrEmpty())
-        {
-            return bytes;
-        }
+    IEnumerable<string>? Get();
 
-        int i = bytes.Length - 1;
-        while (i >= 0 && bytes[i] == 0)
-        {
-            --i;
-        }
-
-        int newSize = i + 1;
-        byte[] result = new byte[newSize];
-        Array.Copy(bytes, result, newSize);
-
-        return result;
-    }
+    void SetCurrentServerId(string? serverId);
+    void SetLastSearchedServerId(string? serverId);
+    void SetRecentConnectionServerIds(IList<string> serverIds);
+    void SetProfileServerIds(IList<string> serverIds);
 }

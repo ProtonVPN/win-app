@@ -72,6 +72,7 @@ public interface IUserSettings
     List<SplitTunnelingIpAddress> SplitTunnelingStandardIpAddressesList { get; set; }
     List<SplitTunnelingIpAddress> SplitTunnelingInverseIpAddressesList { get; set; }
     List<string> Ipv6Fragments { get; set; }
+    string? LastLogicalsStatusId { get; set; }
     ChangeServerAttempts ChangeServerAttempts { get; set; }
     DefaultConnection DefaultConnection { get; set; }
     bool WasWelcomeOverlayDisplayed { get; set; }

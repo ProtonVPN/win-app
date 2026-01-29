@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,24 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
+namespace ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 
-namespace ProtonVPN.Common.Legacy.Extensions;
-
-public static class ListExtensions
-{
-    public static void AddRange<T>(this IList<T> list, IEnumerable<T> collection)
-    {
-        if (list is List<T> castList)
-        {
-            castList.AddRange(collection);
-        }
-        else
-        {
-            foreach (T item in collection)
-            {
-                list.Add(item);
-            }
-        }
-    }
-}
+public class NewServerFoundMessage;

@@ -23,6 +23,7 @@ namespace ProtonVPN.Client.Logic.Recents.Contracts;
 
 public interface IRecentConnectionsManager
 {
+    void LoadRecentConnections();
     bool HasAnyRecentConnections();
     IOrderedEnumerable<IRecentConnection> GetRecentConnections();
     IRecentConnection? GetMostRecentConnection();

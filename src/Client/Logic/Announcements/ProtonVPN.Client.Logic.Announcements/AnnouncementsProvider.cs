@@ -27,7 +27,7 @@ using ProtonVPN.Client.Logic.Announcements.Files;
 using ProtonVPN.Client.Logic.Announcements.Images;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
-using ProtonVPN.Common.Legacy.Extensions;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;

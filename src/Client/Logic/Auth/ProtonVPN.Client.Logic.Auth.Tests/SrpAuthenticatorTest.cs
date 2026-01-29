@@ -111,7 +111,7 @@ public class SrpAuthenticatorTest
     {
         return new()
         {
-            Code = ResponseCodes.OkResponse,
+            Code = ResponseCodes.OK_RESPONSE,
             Details = new(),
             Error = null,
             Modulus = "modulus",

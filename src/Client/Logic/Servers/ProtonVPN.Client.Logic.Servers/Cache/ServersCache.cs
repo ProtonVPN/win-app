@@ -20,14 +20,16 @@
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Files;
+using ProtonVPN.Client.Logic.Servers.Loads;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Observers;
+using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
@@ -47,6 +49,9 @@ public class ServersCache : IServersCache,
     private readonly IConfiguration _config;
     private readonly ISettings _settings;
     private readonly ILogger _logger;
+    private readonly IFeatureFlagsObserver _featureFlagsObserver;
+    private readonly IFavoriteServersStorage _favoriteServersStorage;
+    private readonly IServerLoadsCalculator _serverLoadsCalculator;
 
     private readonly ReaderWriterLockSlim _lock = new();
 
@@ -88,7 +93,10 @@ public class ServersCache : IServersCache,
         IEventMessageSender eventMessageSender,
         IConfiguration config,
         ISettings settings,
-        ILogger logger)
+        ILogger logger,
+        IFeatureFlagsObserver featureFlagsObserver,
+        IFavoriteServersStorage favoriteServersLoader,
+        IServerLoadsCalculator serverLoadsCalculator)
     {
         _apiClient = apiClient;
         _entityMapper = entityMapper;
@@ -97,6 +105,9 @@ public class ServersCache : IServersCache,
         _config = config;
         _settings = settings;
         _logger = logger;
+        _featureFlagsObserver = featureFlagsObserver;
+        _favoriteServersStorage = favoriteServersLoader;
+        _serverLoadsCalculator = serverLoadsCalculator;
     }
 
     public bool IsEmpty()
@@ -184,10 +195,20 @@ public class ServersCache : IServersCache,
     {
         try
         {
+            bool isBinaryServerStatusEnabled = _featureFlagsObserver.IsBinaryServerStatusEnabled;
+            bool isServerListTruncationEnabled = _featureFlagsObserver.IsServerListTruncationEnabled;
+            IEnumerable<string>? favoriteServerIds = GetFavoriteServerIds(isServerListTruncationEnabled);
+
             DeviceLocation? deviceLocation = _settings.DeviceLocation;
             DateTime utcNow = DateTime.UtcNow;
 
-            ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(deviceLocation, cancellationToken);
+            ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(
+                deviceLocation,
+                isServerListTruncationEnabled,
+                useLegacyEndpoint: !isBinaryServerStatusEnabled,
+                favoriteServerIds,
+                cancellationToken);
+
             if (response.Success)
             {
                 _lastFullUpdateUtc = utcNow;
@@ -208,6 +229,33 @@ public class ServersCache : IServersCache,
                     _logger.Info<ApiLog>("API: Get servers response was modified since last call, updating cached data.");
 
                     List<Server> servers = _entityMapper.Map<LogicalServerResponse, Server>(response.Value.Servers);
+
+                    // Handle race condition when new favorite servers are added between API request and response
+                    if (response.Value.ResponseMetadata is not null && response.Value.ResponseMetadata.ListIsTruncated && favoriteServerIds?.Count() > 0)
+                    {
+                        IEnumerable<string>? favoriteServerIdsUpdated = GetFavoriteServerIds(isServerListTruncationEnabled);
+                        IEnumerable<string>? preserveIds = favoriteServerIdsUpdated?.Except(favoriteServerIds);
+                        if (preserveIds?.Count() > 0)
+                        {
+                            servers.AddRange(_originalServers.Where(s => preserveIds.Contains(s.Id)));
+                        }
+                    }
+
+                    if (isBinaryServerStatusEnabled)
+                    {
+                        _settings.LastLogicalsStatusId = response.Value.StatusId;
+
+                        bool result = await UpdateBinaryLoadsAsync(servers, cancellationToken);
+                        if (!result)
+                        {
+                            _logger.Warn<ApiLog>("Loads were not updated.");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        _settings.LastLogicalsStatusId = null;
+                    }
 
                     string deviceCountryLocation = deviceLocation?.CountryCode ?? string.Empty;
                     sbyte userMaxTier = _settings.VpnPlan.MaxTier;
@@ -234,21 +282,87 @@ public class ServersCache : IServersCache,
         }
     }
 
-    public async Task UpdateLoadsAsync(CancellationToken cancellationToken)
+    private IEnumerable<string>? GetFavoriteServerIds(bool isServerListTruncationEnabled)
+    {
+        return isServerListTruncationEnabled
+            ? _favoriteServersStorage.Get()
+            : [];
+    }
+
+    private async Task<byte[]?> GetServerStatusAndLoadFileAsync(string statusId, CancellationToken cancellationToken)
     {
         try
         {
-            DeviceLocation? deviceLocation = _settings.DeviceLocation;
-            DateTime utcNow = DateTime.UtcNow;
+            ApiResponseResult<byte[]> response = await _apiClient.GetServerLoadsAndStatusBinaryStringAsync(statusId, cancellationToken);
+            return response.Success
+                ? response.Value
+                : null;
+        }
+        catch (Exception e)
+        {
+            _logger.Error<ApiErrorLog>("API: Get binary status file failed", e);
+            return null;
+        }
+    }
 
-            ApiResponseResult<ServersResponse> response = await _apiClient.GetServerLoadsAsync(deviceLocation, cancellationToken);
+    public async Task UpdateLoadsAsync(CancellationToken cancellationToken)
+    {
+        List<Server> servers = Servers.ToList();
+
+        bool result = _featureFlagsObserver.IsBinaryServerStatusEnabled
+            ? await UpdateBinaryLoadsAsync(servers, cancellationToken)
+            : await UpdateLegacyLoadsAsync(servers, cancellationToken);
+
+        if (result)
+        {
+            _lastLoadsUpdateUtc = DateTime.UtcNow;
+
+            string deviceCountryLocation = _settings.DeviceLocation?.CountryCode ?? string.Empty;
+            sbyte userMaxTier = _settings.VpnPlan.MaxTier;
+
+            SaveToFile(deviceCountryLocation, userMaxTier, servers);
+            ProcessServers(deviceCountryLocation, userMaxTier, servers);
+        }
+        else
+        {
+            _logger.Warn<ApiLog>("Loads were not updated.");
+        }
+    }
+
+    private async Task<bool> UpdateBinaryLoadsAsync(List<Server> servers, CancellationToken cancellationToken)
+    {
+        if (_settings.LastLogicalsStatusId is null)
+        {
+            _logger.Warn<AppLog>("Cannot make the API request because LastLogicalsStatusId is null.");
+            return false;
+        }
+
+        byte[]? statusFile = await GetServerStatusAndLoadFileAsync(_settings.LastLogicalsStatusId, cancellationToken);
+        if (statusFile is null)
+        {
+            _logger.Warn<AppLog>("Cached server data was not updated, because status file is missing.");
+            return false;
+        }
+
+        bool result = _serverLoadsCalculator.UpdateServerLoads(servers, statusFile, _settings.DeviceLocation);
+        if (!result)
+        {
+            _logger.Warn<AppLog>("Cached server data was not updated, because server status and loads were not updated.");
+            return false;
+        }
+
+        return true;
+    }
+
+    private async Task<bool> UpdateLegacyLoadsAsync(List<Server> servers, CancellationToken cancellationToken)
+    {
+        try
+        {
+            ApiResponseResult<ServersResponse> response = await _apiClient.GetServerLoadsAsync(_settings.DeviceLocation, cancellationToken);
             if (response.Success)
             {
-                _lastLoadsUpdateUtc = utcNow;
-
                 _logger.Info<ApiLog>("API: Get server loads response received, updating cached data.");
 
-                List<Server> servers = Servers.ToList();
                 List<ServerLoad> serverLoads = _entityMapper.Map<LogicalServerResponse, ServerLoad>(response.Value.Servers);
 
                 foreach (ServerLoad serverLoad in serverLoads)
@@ -275,16 +389,15 @@ public class ServersCache : IServersCache,
                     }
                 }
 
-                string deviceCountryLocation = deviceLocation?.CountryCode ?? string.Empty;
-                sbyte userMaxTier = _settings.VpnPlan.MaxTier;
-
-                SaveToFile(deviceCountryLocation, userMaxTier, servers);
-                ProcessServers(deviceCountryLocation, userMaxTier, servers);
+                return true;
             }
+
+            return false;
         }
         catch (Exception e)
         {
             _logger.Error<ApiErrorLog>("API: Get servers load failed", e);
+            return false;
         }
     }
 
@@ -458,7 +571,7 @@ public class ServersCache : IServersCache,
         ServerTiers maxTier = (ServerTiers)_settings.VpnPlan.MaxTier;
 
         List<Server> filteredServers = [];
-        foreach (Server server in servers)
+        foreach (Server server in servers.Where(s => s.IsVisible))
         {
             if (server.Tier <= maxTier)
             {
@@ -493,5 +606,53 @@ public class ServersCache : IServersCache,
             _logger.Info<AppLog>("Reprocessing servers.");
             ProcessServers(_deviceCountryLocation, _userMaxTier, _originalServers);
         }
+
+        FeatureFlagChange? serverListTruncationFeatureFlag = message.Changes.FirstOrDefault(f => f.Name == nameof(IFeatureFlagsObserver.IsServerListTruncationEnabled));
+        if (serverListTruncationFeatureFlag is not null)
+        {
+            _logger.Info<AppLog>("Resetting servers last modified date due to server list truncation feature flag change.");
+            _settings.LogicalsLastModifiedDate = DefaultSettings.LogicalsLastModifiedDate;
+        }
+    }
+
+    public void ReprocessServers()
+    {
+        _logger.Info<AppLog>("Reprocessing servers.");
+        ProcessServers(_deviceCountryLocation, _userMaxTier, _originalServers);
+    }
+
+    public async Task<ApiResponseResult<LookupServerResponse>?> LookupAsync(string input)
+    {
+        LoadFromFileIfEmpty();
+        try
+        {
+            DeviceLocation? deviceLocation = _settings.DeviceLocation;
+            ApiResponseResult<LookupServerResponse> response = await _apiClient.GetServerByNameAsync(input, deviceLocation);
+            if (response.Success)
+            {
+                Server server = _entityMapper.Map<LogicalServerResponse, Server>(response.Value.LogicalServer);
+                List<Server> servers = _originalServers.ToList();
+                Server? alreadyExistingServer = servers.FirstOrDefault(s => s.Id == server.Id);
+                if (alreadyExistingServer is not null)
+                {
+                    servers.Remove(alreadyExistingServer);
+                }
+                servers.Add(server);
+
+                string deviceCountryLocation = deviceLocation?.CountryCode ?? string.Empty;
+                sbyte userMaxTier = _settings.VpnPlan.MaxTier;
+
+                SaveToFile(deviceCountryLocation, userMaxTier, servers);
+                ProcessServers(deviceCountryLocation, userMaxTier, servers);
+            }
+
+            return response;
+        }
+        catch (Exception e)
+        {
+            _logger.Error<ApiErrorLog>("API: Get server by name failed", e);
+        }
+
+        return null;
     }
 }

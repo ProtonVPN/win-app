@@ -23,7 +23,6 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
-using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Common.Core.Networking;

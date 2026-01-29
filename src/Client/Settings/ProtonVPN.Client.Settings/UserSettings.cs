@@ -365,6 +365,12 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetListReferenceType<string>(value, SettingEncryption.Unencrypted);
     }
 
+    public string? LastLogicalsStatusId
+    {
+        get => _userCache.GetReferenceType<string>(SettingEncryption.Unencrypted);
+        set => _userCache.SetReferenceType(value, SettingEncryption.Unencrypted);
+    }
+
     public ChangeServerAttempts ChangeServerAttempts
     {
         get => _userCache.GetValueType<ChangeServerAttempts>(SettingEncryption.Encrypted) ?? DefaultSettings.ChangeServerAttempts;

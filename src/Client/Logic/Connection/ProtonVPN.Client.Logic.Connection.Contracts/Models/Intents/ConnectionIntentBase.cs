@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -73,7 +73,8 @@ public abstract class ConnectionIntentBase : IntentBase, IConnectionIntent
         };
 
         return supportedServers
-            .OrderByDescending(firstSortFunction)
+            .OrderByDescending(s => s.IsAutoconnectable)
+            .ThenByDescending(firstSortFunction)
             .ThenBy(secondSortFunction);
     }
 

@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
@@ -47,8 +48,6 @@ public class LogicalServerMapper : IMapper<LogicalServerResponse, Server>
                 ExitCountry = leftEntity.ExitCountry,
                 HostCountry = leftEntity.HostCountry,
                 Domain = leftEntity.Domain,
-                Latitude = leftEntity.Location?.Lat ?? 0,
-                Longitude = leftEntity.Location?.Long ?? 0,
                 Status = leftEntity.Status,
                 Tier = (ServerTiers)leftEntity.Tier,
                 Features = (ServerFeatures)leftEntity.Features,
@@ -57,6 +56,9 @@ public class LogicalServerMapper : IMapper<LogicalServerResponse, Server>
                 Servers = _entityMapper.Map<PhysicalServerResponse, PhysicalServer>(leftEntity.Servers),
                 IsVirtual = !string.IsNullOrEmpty(leftEntity.HostCountry),
                 GatewayName = leftEntity.GatewayName,
+                StatusReference = _entityMapper.Map<StatusReferenceResponse, StatusReference>(leftEntity.StatusReference),
+                EntryLocation = _entityMapper.Map<ServerLocationResponse, GeoLocation>(leftEntity.EntryLocation),
+                ExitLocation = _entityMapper.Map<ServerLocationResponse, GeoLocation>(leftEntity.ExitLocation),
             };
     }
 

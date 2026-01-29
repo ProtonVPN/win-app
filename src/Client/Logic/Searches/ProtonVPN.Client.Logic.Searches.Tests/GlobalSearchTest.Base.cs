@@ -138,11 +138,25 @@ public partial class GlobalSearchTest
             ExitCountry = countryCode,
             HostCountry = "",
             Domain = "test",
-            Latitude = 0,
-            Longitude = 0,
             GatewayName = "",
             Servers = [],
-            Features = features
+            Features = features,
+            StatusReference = new()
+            {
+                Index = 0,
+                Cost = 0,
+                Penalty = 0,
+            },
+            EntryLocation = new()
+            {
+                Latitude = 0,
+                Longitude = 0,
+            },
+            ExitLocation = new()
+            {
+                Latitude = 0,
+                Longitude = 0,
+            },
         };
     }
 

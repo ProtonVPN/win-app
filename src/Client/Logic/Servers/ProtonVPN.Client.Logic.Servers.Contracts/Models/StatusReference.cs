@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,22 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
+namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-namespace ProtonVPN.Common.Legacy.Extensions;
-
-public static class CollectionExtensions
+public class StatusReference
 {
-    public static void AddIfNotNull<T>(this ICollection<T> collection, T item)
-    {
-        if (item != null)
-        {
-            collection.Add(item);
-        }
-    }
-
-    public static bool IsNullOrEmpty<T>(this ICollection<T> collection)
-    {
-        return collection == null || collection.Count == 0;
-    }
+    public uint Index { get; set; }
+    public byte Cost { get; set; }
+    public double Penalty { get; set; }
 }

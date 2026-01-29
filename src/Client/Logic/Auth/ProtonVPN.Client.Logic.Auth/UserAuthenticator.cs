@@ -27,6 +27,8 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
+using ProtonVPN.Client.Logic.Profiles.Contracts;
+using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
@@ -52,6 +54,8 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
     private readonly IConnectionManager _connectionManager;
     private readonly IServersUpdater _serversUpdater;
     private readonly IUserSettingsMigrator _userSettingsMigrator;
+    private readonly IRecentConnectionsManager _recentConnectionsManager;
+    private readonly IProfilesManager _profilesManager;
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
     private readonly IUnauthSessionManager _unauthSessionManager;
     private readonly ISrpAuthenticator _srpAuthenticator;
@@ -81,6 +85,8 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
         IConnectionManager connectionManager,
         IServersUpdater serversUpdater,
         IUserSettingsMigrator userSettingsMigrator,
+        IRecentConnectionsManager recentConnectionsManager,
+        IProfilesManager profilesManager,
         IVpnPlanUpdater vpnPlanUpdater,
         IUnauthSessionManager unauthSessionManager,
         ISrpAuthenticator srpAuthenticator,
@@ -98,6 +104,8 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
         _connectionManager = connectionManager;
         _serversUpdater = serversUpdater;
         _userSettingsMigrator = userSettingsMigrator;
+        _recentConnectionsManager = recentConnectionsManager;
+        _profilesManager = profilesManager;
         _vpnPlanUpdater = vpnPlanUpdater;
         _unauthSessionManager = unauthSessionManager;
         _srpAuthenticator = srpAuthenticator;
@@ -406,13 +414,22 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
 
             if (vpnPlanChangeResult.ApiResponse is not null &&
                 vpnPlanChangeResult.ApiResponse.Failure &&
-                vpnPlanChangeResult.ApiResponse.Value.Code == ResponseCodes.NoVpnConnectionsAssigned)
+                vpnPlanChangeResult.ApiResponse.Value.Code == ResponseCodes.NO_VPN_CONNECTIONS_ASSIGNED)
             {
                 await LogoutAsync(LogoutReason.NoVpnConnectionsAssigned);
                 return AuthResult.Fail(vpnPlanChangeResult.ApiResponse);
             }
 
+            _profilesManager.LoadProfiles();
+            _recentConnectionsManager.LoadRecentConnections();
+
+            // We need to get feature flags before fetching logicals
+            await _featureFlagsObserver.UpdateAsync(_cts.Token);
+
             hasPlanChanged = vpnPlanChangeResult.PlanChangeMessage?.HasChanged() ?? false;
+
+            // Fetch feature flags before before asking for servers
+            await _featureFlagsObserver.UpdateAsync(_cts.Token);
 
             Task serversUpdateTask;
             if (hasPlanChanged)
@@ -472,8 +489,7 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
 
         Task postAuthInitializationTask = Task.WhenAll(
             GetCertificateTask(hasPlanChanged),
-            _clientConfigObserver.UpdateAsync(_cts.Token),
-            _featureFlagsObserver.UpdateAsync(_cts.Token));
+            _clientConfigObserver.UpdateAsync(_cts.Token));
 
         if (_guestHoleManager.IsActive)
         {

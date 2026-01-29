@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
+/*
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,21 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
-namespace ProtonVPN.Common.Legacy.Extensions;
+namespace ProtonVPN.Client.Logic.Servers.Loads.Native;
 
-public static class DictionaryExtensions
+[StructLayout(LayoutKind.Sequential)]
+public unsafe struct FfiLocation
 {
-    public static bool TryGetValueIfDictionaryIsNotNull<TKey, TValue>(this IDictionary<TKey, TValue> dictionary,
-        TKey key, out TValue value)
-    {
-        if (dictionary == null)
-        {
-            value = default(TValue);
-            return false;
-        }
-
-        return dictionary.TryGetValue(key, out value);
-    }
+    public float Latitude;
+    public float Longitude;
 }

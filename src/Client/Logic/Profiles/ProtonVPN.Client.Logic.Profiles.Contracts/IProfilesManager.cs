@@ -23,6 +23,8 @@ namespace ProtonVPN.Client.Logic.Profiles.Contracts;
 
 public interface IProfilesManager
 {
+    void LoadProfiles();
+
     IOrderedEnumerable<IConnectionProfile> GetAll();
     IConnectionProfile? GetById(Guid profileId);
 

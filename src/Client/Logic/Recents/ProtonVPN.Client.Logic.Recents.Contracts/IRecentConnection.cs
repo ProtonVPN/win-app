@@ -30,4 +30,6 @@ public interface IRecentConnection
     bool IsPinned { get; set; }
 
     DateTime? PinTime { get; set; }
+
+    DateTime? LastConnectionTimeUtc { get; set; }
 }

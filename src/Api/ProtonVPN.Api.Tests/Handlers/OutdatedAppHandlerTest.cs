@@ -34,8 +34,8 @@ namespace ProtonVPN.Api.Tests.Handlers
     public class OutdatedAppHandlerTest
     {
         [TestMethod]
-        [DataRow(ResponseCodes.OutdatedAppResponse)]
-        [DataRow(ResponseCodes.OutdatedApiResponse)]
+        [DataRow(ResponseCodes.OUTDATED_APP_RESPONSE)]
+        [DataRow(ResponseCodes.OUTDATED_API_RESPONSE)]
         public async Task ItShouldInvokeOutdatedAppEvent(int code)
         {
             IOutdatedClientNotifier outdatedClientNotifier = Substitute.For<IOutdatedClientNotifier>();

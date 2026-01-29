@@ -23,7 +23,6 @@ public interface IServersUpdater
 {
     Task UpdateAsync(CancellationToken cancellationToken = default);
     Task ForceUpdateAsync(CancellationToken cancellationToken = default);
-    Task ForceLoadsUpdateAsync(CancellationToken cancellationToken = default);
 
     Task ClearCacheAsync(CancellationToken cancellationToken = default);
 }

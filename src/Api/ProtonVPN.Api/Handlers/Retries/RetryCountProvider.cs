@@ -35,6 +35,6 @@ public class RetryCountProvider : IRetryCountProvider
     public int GetRetryCount(HttpRequestMessage request)
     {
         int? customRetryCount = request.GetRetryCount();
-        return customRetryCount is > 0 ? customRetryCount.Value : _config.ApiRetries;
+        return customRetryCount is >= 0 ? customRetryCount.Value : _config.ApiRetries;
     }
 }

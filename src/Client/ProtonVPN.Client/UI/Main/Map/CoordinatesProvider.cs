@@ -229,7 +229,6 @@ public class CoordinatesProvider : ICoordinatesProvider
     {
         return location switch
         {
-            Server server => (server.Latitude, server.Longitude),
             Country country => _countryCoordinates.TryGetValue(country.Code, out (double Latitude, double Longitude) value) ? value : null,
             _ => null
         };

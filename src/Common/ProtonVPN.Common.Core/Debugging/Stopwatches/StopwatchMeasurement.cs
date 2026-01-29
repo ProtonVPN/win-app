@@ -17,7 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Common.Core.Helpers.Stopwatches;
+#if DEBUG
+
+namespace ProtonVPN.Common.Core.Debugging.Stopwatches;
 
 public class StopwatchMeasurement
 {
@@ -56,3 +58,5 @@ public class StopwatchMeasurement
             : $"- {StartDate - previousDate} {ToString()}";
     }
 }
+
+#endif

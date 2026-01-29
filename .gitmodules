@@ -4,3 +4,6 @@
 [submodule "src/ProtonVPN.LocalAgent"]
 	path = src/ProtonVPN.LocalAgent
 	url = https://github.com/ProtonVPN/go-vpn-lib.git
+[submodule "src/proton-vpn-binary-status"]
+	path = src/proton-vpn-binary-status
+	url = https://github.com/ProtonVPN/proton-vpn-binary-status.git

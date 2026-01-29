@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,7 +19,9 @@
 
 using Autofac;
 using ProtonVPN.Client.Logic.Servers.Cache;
+using ProtonVPN.Client.Logic.Servers.FavoriteServers;
 using ProtonVPN.Client.Logic.Servers.Files;
+using ProtonVPN.Client.Logic.Servers.Loads;
 using ProtonVPN.Client.Logic.Servers.Mappers;
 using ProtonVPN.Client.Logic.Servers.Observers;
 using ProtonVPN.EntityMapping.Common.Installers.Extensions;
@@ -38,6 +40,9 @@ public class ServersLogicModule : Module
         builder.RegisterType<ServersObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<ServersUpdater>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ServerCountCache>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<FavoriteServersStorage>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ServerFinder>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ServerLoadsCalculator>().AsImplementedInterfaces().SingleInstance();
         
         builder.RegisterAllMappersInAssembly<LogicalServerMapper>();
     }

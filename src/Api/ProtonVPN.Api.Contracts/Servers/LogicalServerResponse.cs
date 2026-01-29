@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,48 +21,55 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using ProtonVPN.Api.Contracts.Geographical;
 
-namespace ProtonVPN.Api.Contracts.Servers
-{
-    public class LogicalServerResponse
-    {
-        [JsonProperty("ID")]
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string EntryCountry { get; set; }
-        public string ExitCountry { get; set; }
-        public string Domain { get; set; }
-        public sbyte Tier { get; set; }
-        public ulong Features { get; set; }
-        public LocationResponse Location { get; set; }
-        public sbyte Status { get; set; }
-        public sbyte Load { get; set; }
-        public float Score { get; set; }
-        public string HostCountry { get; set; }
-        public string GatewayName { get; set; }
-        public List<PhysicalServerResponse> Servers { get; set; }
+namespace ProtonVPN.Api.Contracts.Servers;
 
-        public static LogicalServerResponse Empty => new()
+public class LogicalServerResponse
+{
+    [JsonProperty("ID")]
+    public string Id { get; set; }
+    public string Name { get; set; }
+    public string City { get; set; }
+    public string State { get; set; }
+    public string EntryCountry { get; set; }
+    public string ExitCountry { get; set; }
+    public string Domain { get; set; }
+    public sbyte Tier { get; set; }
+    public ulong Features { get; set; }
+    public sbyte Status { get; set; }
+    public sbyte Load { get; set; }
+    public float Score { get; set; }
+    public string HostCountry { get; set; }
+    public string GatewayName { get; set; }
+    public List<PhysicalServerResponse> Servers { get; set; }
+    public StatusReferenceResponse StatusReference { get; set; }
+    public ServerLocationResponse EntryLocation { get; set; }
+    public ServerLocationResponse ExitLocation { get; set; }
+
+    public static LogicalServerResponse Empty => new()
+    {
+        Id = string.Empty,
+        Name = "Server removed",
+        City = string.Empty,
+        State = string.Empty,
+        EntryCountry = "ZZ",
+        ExitCountry = "ZZ",
+        Domain = string.Empty,
+        Tier = 0,
+        Features = 0,
+        EntryLocation = new()
         {
-            Id = string.Empty,
-            Name = "Server removed",
-            City = string.Empty,
-            State = string.Empty,
-            EntryCountry = "ZZ",
-            ExitCountry = "ZZ",
-            Domain = string.Empty,
-            Tier = 0,
-            Features = 0,
-            Location = new LocationResponse
-            {
-                Lat = 0,
-                Long = 0
-            },
-            Status = 0,
-            Load = 0,
-            Score = 0F,
-            Servers = new List<PhysicalServerResponse>(0)
-        };
-    }
+            Latitude = 0,
+            Longitude = 0,
+        },
+        ExitLocation = new()
+        {
+            Latitude = 0,
+            Longitude = 0,
+        },
+        Status = 0,
+        Load = 0,
+        Score = 0F,
+        Servers = [],
+        StatusReference = new(),
+    };
 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,16 +17,23 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Cache;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Logic.Servers;
 
-public class ServersUpdater : IServersUpdater
+public class ServersUpdater : IServersUpdater,
+    IEventMessageReceiver<FeatureFlagsChangedMessage>,
+    IEventMessageReceiver<LoggedInMessage>,
+    IEventMessageReceiver<LoggedOutMessage>
 {
     private readonly ILogger _logger;
     private readonly IServersCache _serversCache;
@@ -35,11 +42,14 @@ public class ServersUpdater : IServersUpdater
 
     private readonly SemaphoreSlim _semaphore = new(1, 1);
 
+    private bool _isLoggedIn = false;
+
     public ServersUpdater(
         ILogger logger,
         IServersCache serversCache,
         IServerCountCache serverCountCache,
-        ISettings settings)
+        ISettings settings,
+        IFeatureFlagsObserver featureFlagsObserver)
     {
         _logger = logger;
         _serversCache = serversCache;
@@ -104,24 +114,6 @@ public class ServersUpdater : IServersUpdater
         }
     }
 
-    public async Task ForceLoadsUpdateAsync(CancellationToken cancellationToken)
-    {
-        await _semaphore.WaitAsync();
-
-        try
-        {
-            _logger.Info<AppLog>("Force load update requested");
-
-            _serversCache.LoadFromFileIfEmpty();
-
-            await UpdateLoadsAsync(cancellationToken);
-        }
-        finally
-        {
-            _semaphore.Release();
-        }
-    }
-
     public async Task ClearCacheAsync(CancellationToken cancellationToken)
     {
         await _semaphore.WaitAsync(cancellationToken);
@@ -135,6 +127,30 @@ public class ServersUpdater : IServersUpdater
         finally
         {
             _semaphore.Release();
+        }
+    }
+
+    public void Receive(LoggedInMessage message)
+    {
+        _isLoggedIn = true;
+    }
+
+    public void Receive(LoggedOutMessage message)
+    {
+        _isLoggedIn = false;
+    }
+
+    public async void Receive(FeatureFlagsChangedMessage message)
+    {
+        if (!_isLoggedIn)
+        {
+            return;
+        }
+
+        FeatureFlagChange? binaryLoadsFeatureFlag = message.Changes.FirstOrDefault(f => f.Name == nameof(IFeatureFlagsObserver.IsBinaryServerStatusEnabled));
+        if (binaryLoadsFeatureFlag is not null)
+        {
+            await ForceUpdateAsync(CancellationToken.None);
         }
     }
 

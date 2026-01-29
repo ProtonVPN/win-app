@@ -133,7 +133,7 @@ public class SrpAuthenticator : AuthenticatorBase, ISrpAuthenticator
 
         if (response.Failure)
         {
-            return AuthResult.Fail(response.Value.Code == ResponseCodes.IncorrectLoginCredentials
+            return AuthResult.Fail(response.Value.Code == ResponseCodes.INCORRECT_LOGIN_CREDENTIALS
                 ? AuthError.IncorrectTwoFactorCode
                 : AuthError.TwoFactorAuthFailed);
         }

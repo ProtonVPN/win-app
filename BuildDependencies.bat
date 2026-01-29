@@ -120,4 +120,14 @@ if %ERRORLEVEL% equ 0 (
   echo file saved %mainDir%%ipv6chaosFileName%
 )
 
+set binaryStatusFileName=proton_vpn_binary_status.dll
+
+echo Building %binaryStatusFileName% %time%
+
+pushd %currentDir%src\proton-vpn-binary-status
+
+cargo build --release --no-default-features --features cffi || exit /b %ERRORLEVEL%
+
+xcopy .\target\release\%binaryStatusFileName% %mainDir% /y
+
 echo Dependencies done %time%

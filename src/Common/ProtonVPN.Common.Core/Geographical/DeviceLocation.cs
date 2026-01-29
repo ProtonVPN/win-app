@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -26,6 +26,8 @@ public struct DeviceLocation
     public string IpAddress { get; init; }
     public string CountryCode { get; init; }
     public string Isp { get; init; }
+    public double? Latitude { get; init; }
+    public double? Longitude { get; init; }
 
     public static bool operator ==(DeviceLocation? dl1, DeviceLocation? dl2)
     {
@@ -33,7 +35,7 @@ public struct DeviceLocation
                (dl1 is not null && dl2 is not null && dl1.Equals(dl2));
     }
 
-    public override bool Equals(object o)
+    public override bool Equals(object? o)
     {
         if (o == null)
         {
@@ -42,12 +44,14 @@ public struct DeviceLocation
 
         DeviceLocation deviceLocation = (DeviceLocation)o;
         return IpAddress == deviceLocation.IpAddress &&
-               (CountryCode == deviceLocation.CountryCode);
+               CountryCode == deviceLocation.CountryCode &&
+               Latitude == deviceLocation.Latitude &&
+               Longitude == deviceLocation.Longitude;
     }
 
     public override int GetHashCode()
     {
-        return Tuple.Create(IpAddress, CountryCode).GetHashCode();
+        return Tuple.Create(IpAddress, CountryCode, Latitude, Longitude).GetHashCode();
     }
 
     public static bool operator !=(DeviceLocation? dl1, DeviceLocation? dl2)

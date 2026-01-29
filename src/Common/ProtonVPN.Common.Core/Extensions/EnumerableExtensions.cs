@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -64,5 +64,42 @@ public static class EnumerableExtensions
         }
 
         return null;
+    }
+
+    /// <summary>
+    /// Runs <paramref name="action"/> on each element in <paramref name="source"/> sequence.
+    /// </summary>
+    /// <typeparam name="T">The type of the elements of <paramref name="source"/>.</typeparam>
+    /// <param name="source">The <see cref="IEnumerable{T}"/> to run <paramref name="action"/> on.</param>
+    /// <param name="action">An action to run on each element of <paramref name="source"/> sequence.</param>
+    public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
+    {
+        foreach (T? item in source)
+        {
+            action(item);
+        }
+    }
+
+    /// <summary>
+    /// Returns distinct elements from a sequence by using a specified selector to compare values.
+    /// </summary>
+    /// <typeparam name="T">The type of elements in a sequence.</typeparam>
+    /// <typeparam name="TSelected">The type of the value returned by the selector to determine unique elements.</typeparam>
+    /// <param name="source">The sequence of source elements.</param>
+    /// <param name="selector">A function that selects a value to determine unique elements by.</param>
+    /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable"/> that contains distinct elements from the source sequence.</returns>
+    public static IEnumerable<T> Distinct<T, TSelected>(this IEnumerable<T> source, Func<T, TSelected> selector)
+    {
+        HashSet<TSelected> set = [];
+
+        foreach (T? item in source)
+        {
+            TSelected? selectedValue = selector(item);
+
+            if (set.Add(selectedValue))
+            {
+                yield return item;
+            }
+        }
     }
 }

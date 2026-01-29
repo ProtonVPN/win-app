@@ -157,4 +157,24 @@ public class StringExtensionsTest
         bool result = ipAddress.IsValidIpAddressOrRange();
         Assert.AreEqual(expectedResult, result);
     }
+
+    [TestMethod]
+    [DataRow(null, -1)]
+    [DataRow("", -1)]
+    [DataRow(" ", -1)]
+    [DataRow("a", -1)]
+    [DataRow("BC", -1)]
+    [DataRow("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`~!@#$%^&*()-_=+[{]}\\\\|;:'\",<.>/? \r\n", -1)]
+    [DataRow("1d", 0)]
+    [DataRow("12345678901234567890", 0)]
+    [DataRow("e2fgh", 1)]
+    [DataRow("e2345fgh", 1)]
+    [DataRow("e2fgh345", 1)]
+    [DataRow("ij3klmn456", 2)]
+    [DataRow("opq789rstu0", 3)]
+    public void TestIndexOfFirstDigit(string text, int expectedResult)
+    {
+        int result = text.IndexOfFirstDigit();
+        Assert.AreEqual(expectedResult, result);
+    }
 }

@@ -36,9 +36,7 @@ using ProtonVPN.Logging.Contracts.Events.SettingsLogs;
 
 namespace ProtonVPN.Client.Settings.Observers;
 
-public class FeatureFlagsObserver : 
-    PollingObserverBase, 
-    IFeatureFlagsObserver
+public class FeatureFlagsObserver : PollingObserverBase, IFeatureFlagsObserver
 {
     private readonly ISettings _settings;
     private readonly IApiClient _apiClient;
@@ -54,8 +52,14 @@ public class FeatureFlagsObserver :
     [FeatureFlag("ShouldDisableWeakHostSetting")]
     public bool ShouldDisableWeakHostSetting => IsEnabled();
 
+    [FeatureFlag("ServerListTruncation")]
+    public bool IsServerListTruncationEnabled => IsEnabled();
+
     [FeatureFlag("U2FGatewayPortalUrl")]
     public string U2FGatewayPortalUrl => GetPayload();
+
+    [FeatureFlag("BinaryServerStatus")]
+    public bool IsBinaryServerStatusEnabled => IsEnabled();
 
     protected override TimeSpan PollingInterval => _config.FeatureFlagsUpdateInterval;
 

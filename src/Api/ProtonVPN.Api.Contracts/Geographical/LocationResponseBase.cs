@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,20 +18,19 @@
  */
 
 using System;
-using ProtonVPN.Common.Legacy.Helpers;
+using ProtonVPN.Api.Contracts.Common;
 
-namespace ProtonVPN.Common.Legacy.Extensions;
+namespace ProtonVPN.Api.Contracts.Geographical;
 
-public static class TimeSpanExtensions
+public abstract class LocationResponseBase : BaseResponse
 {
-    private static readonly Random Random = new();
-
-    [Obsolete("Use instead TimeSpanExtensions.AddJitter() in ProtonVPN.Common.Core.Extensions")]
-    public static TimeSpan RandomizedWithDeviation(this TimeSpan value, double deviation)
+    protected static float GetFilteredLatitude(float latitude)
     {
-        Ensure.IsTrue(value > TimeSpan.Zero, $"{nameof(value)} must be positive");
-        Ensure.IsTrue(deviation is >= 0 and < 1, $"{nameof(deviation)} must be between zero and one");
+        return Math.Clamp(latitude, -90, 90);
+    }
 
-        return value + TimeSpan.FromMilliseconds(value.TotalMilliseconds * deviation * (2.0 * Random.NextDouble() - 1.0));
+    protected static float GetFilteredLongitude(float longitude)
+    {
+        return Math.Clamp(longitude, -180, 180);
     }
 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -31,7 +30,6 @@ using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Geographical;
-using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
@@ -71,24 +69,46 @@ public class BaseApiClient : IClientBase
         return new(json, Encoding.UTF8, "application/json");
     }
 
-    protected async Task<ApiResponseResult<T>> GetApiResponseResult<T>(HttpResponseMessage response, CancellationToken cancellationToken = default)
-        where T : BaseResponse
+    protected async Task<ApiResponseResult<T>> GetApiResponseResultAsync<T>(HttpResponseMessage response, CancellationToken cancellationToken = default)
     {
-        string body = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-        try
+        if (typeof(T) == typeof(byte[]))
         {
-            T json = response.StatusCode is HttpStatusCode.NotModified
-                ? default(T)
-                : JsonConvert.DeserializeObject<T>(body) ?? throw new HttpRequestException(string.Empty);
+            if (response.StatusCode is HttpStatusCode.NotModified)
+            {
+                return (ApiResponseResult<T>)(object)ApiResponseResult<byte[]>.NotModified(response);
+            }
 
-            ApiResponseResult<T> result = CreateApiResponseResult(json, response);
-            HandleResult(result, response);
-            return result;
+            if (response.IsSuccessStatusCode)
+            {
+                byte[] body = await response.Content.ReadAsByteArrayAsync(cancellationToken).ConfigureAwait(false);
+                return (ApiResponseResult<T>)(object)ApiResponseResult<byte[]>.Ok(response, body);
+            }
+            else
+            {
+                return (ApiResponseResult<T>)(object)ApiResponseResult<byte[]>.Fail(response, GetStatusCodeDescription(response.StatusCode));
+            }
         }
-        catch (JsonException)
+
+        if (typeof(T).IsAssignableTo(typeof(BaseResponse)))
         {
-            throw new HttpRequestException(GetStatusCodeDescription(response.StatusCode));
+            string body = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+            try
+            {
+                T json = response.StatusCode is HttpStatusCode.NotModified
+                    ? default(T)
+                    : JsonConvert.DeserializeObject<T>(body) ?? throw new HttpRequestException(string.Empty);
+
+                ApiResponseResult<T> result = CreateApiResponseResult(json, response);
+                HandleResult(result, response);
+                return result;
+            }
+            catch (JsonException)
+            {
+                throw new HttpRequestException(GetStatusCodeDescription(response.StatusCode));
+            }
         }
+
+        throw new NotSupportedException($"Type {typeof(T).Name} is not supported. Only BaseResponse types and byte[] are supported.");
     }
 
     public string GetStatusCodeDescription(HttpStatusCode code)
@@ -98,21 +118,25 @@ public class BaseApiClient : IClientBase
     }
 
     private ApiResponseResult<T> CreateApiResponseResult<T>(T response, HttpResponseMessage responseMessage)
-        where T : BaseResponse
     {
         if (responseMessage.StatusCode is HttpStatusCode.NotModified)
         {
             return ApiResponseResult<T>.NotModified(responseMessage);
         }
-        return response.Code switch
+
+        if (response is BaseResponse baseResponse)
         {
-            ResponseCodes.OkResponse => ApiResponseResult<T>.Ok(responseMessage, response),
-            _ => ApiResponseResult<T>.Fail(response, responseMessage, response.Error),
-        };
+            return baseResponse.Code switch
+            {
+                ResponseCodes.OK_RESPONSE => ApiResponseResult<T>.Ok(responseMessage, response),
+                _ => ApiResponseResult<T>.Fail(response, responseMessage, baseResponse.Error),
+            };
+        }
+
+        return ApiResponseResult<T>.Ok(responseMessage, response);
     }
 
     private void HandleResult<T>(ApiResponseResult<T> result, HttpResponseMessage responseMessage)
-        where T : BaseResponse
     {
         if (result.Failure && !result.Actions.IsNullOrEmpty())
         {
@@ -121,12 +145,13 @@ public class BaseApiClient : IClientBase
     }
 
     private void HandleActionableFailureResult<T>(ApiResponseResult<T> result, HttpResponseMessage responseMessage)
-        where T : BaseResponse
     {
-        ApiResponseResult<BaseResponse> baseResponseResult =
-            CreateApiResponseResult<BaseResponse>(result.Value, responseMessage);
-        ActionableFailureApiResultEventArgs eventArgs = new(baseResponseResult);
-        OnActionableFailureResult?.Invoke(this, eventArgs);
+        if (result.Value is BaseResponse baseResponse)
+        {
+            ApiResponseResult<BaseResponse> baseResponseResult = CreateApiResponseResult(baseResponse, responseMessage);
+            ActionableFailureApiResultEventArgs eventArgs = new(baseResponseResult);
+            OnActionableFailureResult?.Invoke(this, eventArgs);
+        }
     }
 
     protected HttpRequestMessage GetRequest(HttpMethod method, string requestUri)
@@ -195,24 +220,7 @@ public class BaseApiClient : IClientBase
         return request;
     }
 
-    protected async Task<ApiResponseResult<T>> GetResponseStreamResult<T>(HttpResponseMessage response)
-        where T : BaseResponse
-    {
-        Stream stream = await response.Content.ReadAsStreamAsync();
-        using StreamReader streamReader = new(stream);
-        using JsonTextReader jsonTextReader = new(streamReader);
-
-        T json = _jsonSerializer.Deserialize<T>(jsonTextReader) ?? throw new HttpRequestException(string.Empty);
-
-        if (json.Code != ResponseCodes.OkResponse)
-        {
-            return ApiResponseResult<T>.Fail(response, json.Error);
-        }
-
-        return ApiResponseResult<T>.Ok(response, json);
-    }
-
-    protected ApiResponseResult<T> Logged<T>(ApiResponseResult<T> result, string message = null) where T : BaseResponse
+    protected ApiResponseResult<T> Logged<T>(ApiResponseResult<T> result, string message = null)
     {
         if (result.Failure)
         {

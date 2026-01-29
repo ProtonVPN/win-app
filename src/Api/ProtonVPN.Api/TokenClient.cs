@@ -83,7 +83,7 @@ public class TokenClient : BaseApiClient, ITokenClient
             LogRefreshToken(refreshTokenRequest);
 
             using HttpResponseMessage response = await _client.SendAsync(request, token);
-            return await GetApiResponseResult<RefreshTokenResponse>(response);
+            return await GetApiResponseResultAsync<RefreshTokenResponse>(response);
         }
         catch (Exception e)
         {

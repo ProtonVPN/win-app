@@ -178,7 +178,7 @@ public class ConnectionCertificateManager : IConnectionCertificateManager
         ApiResponseResult<CertificateResponse> certificateResponseData =
             await RequestConnectionCertificateAsync(features, cancellationToken);
 
-        if (certificateResponseData.Failure && certificateResponseData.Value.Code == ResponseCodes.ClientPublicKeyConflict)
+        if (certificateResponseData.Failure && certificateResponseData.Value.Code == ResponseCodes.CLIENT_PUBLIC_KEY_CONFLICT)
         {
             _logger.Warn<UserCertificateRefreshErrorLog>("New connection certificate failed because the " +
                                                          "client public key is already in use. Generating a new key pair and retrying.");

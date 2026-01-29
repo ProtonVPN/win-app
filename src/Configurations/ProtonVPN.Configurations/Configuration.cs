@@ -76,6 +76,7 @@ public partial class Configuration : StaticConfiguration, IConfiguration
     public TimeSpan P2PTrafficDetectionInterval => GetWithRandomizedDeviation();
     public TimeSpan StatisticalEventSendTriggerInterval => GetWithRandomizedDeviation();
     public TimeSpan StatisticalEventMinimumWaitInterval => GetWithRandomizedDeviation();
+    public TimeSpan ServerSearchDelay => Get();
 
     public IList<string> DohProviders => Get();
     public IUrlsConfiguration Urls => Get();

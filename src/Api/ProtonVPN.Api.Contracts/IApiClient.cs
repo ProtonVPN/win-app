@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -49,7 +49,8 @@ public interface IApiClient : IClientBase
     Task<ApiResponseResult<VpnInfoWrapperResponse>> GetVpnInfoResponse(CancellationToken cancellationToken = default);
     Task<ApiResponseResult<BaseResponse>> GetLogoutResponse();
     Task<ApiResponseResult<EventResponse>> GetEventResponse(string lastId = default);
-    Task<ApiResponseResult<ServersResponse>> GetServersAsync(DeviceLocation? deviceLocation, CancellationToken cancellationToken = default);
+    Task<ApiResponseResult<ServersResponse>> GetServersAsync(DeviceLocation? deviceLocation, bool isServerListTruncationEnabled, bool useLegacyEndpoint, IEnumerable<string> favoriteServerIds = null, CancellationToken cancellationToken = default);
+    Task<ApiResponseResult<byte[]>> GetServerLoadsAndStatusBinaryStringAsync(string statusId, CancellationToken cancellationToken = default);
     Task<ApiResponseResult<ServerCountResponse>> GetServersCountAsync();
     Task<ApiResponseResult<ReportAnIssueFormResponse>> GetReportAnIssueFormData();
     Task<ApiResponseResult<ServersResponse>> GetServerLoadsAsync(DeviceLocation? deviceLocation, CancellationToken cancellationToken);
@@ -67,6 +68,7 @@ public interface IApiClient : IClientBase
     Task<ApiResponseResult<UsersResponse>> GetUserAsync(CancellationToken cancellationToken = default);
     Task<ApiResponseResult<Ipv6FragmentsResponse>> GetIpv6FragmentsAsync(CancellationToken cancellationToken = default);
     Task<ApiResponseResult<FeatureFlagsResponse>> GetFeatureFlagsAsync(CancellationToken cancellationToken = default);
+    Task<ApiResponseResult<LookupServerResponse>> GetServerByNameAsync(string serverName, DeviceLocation? deviceLocation);
     Task<ApiResponseResult<BaseResponse>> SubmitNpsSurveyAsync(NpsSurveyRequest request);
     Task<ApiResponseResult<BaseResponse>> DismissNpsSurveyAsync();
 }

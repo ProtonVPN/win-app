@@ -384,4 +384,22 @@ public static class StringExtensions
 
         return countryCode.Trim().ToUpperInvariant();
     }
+
+    public static int IndexOfFirstDigit(this string? text)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            return -1;
+        }
+
+        for (int i = 0; i < text.Length; i++)
+        {
+            if (char.IsDigit(text[i]))
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
 }

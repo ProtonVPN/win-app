@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,17 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
+namespace ProtonVPN.Common.Core.Extensions;
 
-namespace ProtonVPN.Common.Legacy.Extensions;
-
-public static class DateTimeExtensions
+public static class BoolExtensions
 {
-    /// <summary>
-    /// Returns the largest (most recent) date. In case of equality returns the first date.
-    /// </summary>
-    public static DateTime Max(DateTime dateTime1, DateTime dateTime2)
+    public static string ToYesNoString(this bool value)
     {
-        return dateTime1 < dateTime2 ? dateTime2 : dateTime1;
+        return value ? "yes" : "no";
+    }
+
+    public static string ToOnOffString(this bool value)
+    {
+        return value ? "On" : "Off";
+    }
+
+    public static string ToBooleanString(this bool value)
+    {
+        return value.ToString().ToLower();
     }
 }

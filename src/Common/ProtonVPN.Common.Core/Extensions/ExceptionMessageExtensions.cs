@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,13 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Security;
 
-namespace ProtonVPN.Common.Legacy.Extensions;
+namespace ProtonVPN.Common.Core.Extensions;
 
 public static class ExceptionMessageExtensions
 {
@@ -39,7 +35,7 @@ public static class ExceptionMessageExtensions
                ex is IOException;
     }
 
-    private static IEnumerable<Exception> ThisAndInnerExceptions(Exception e)
+    private static IEnumerable<Exception> ThisAndInnerExceptions(Exception? e)
     {
         for (; e != null; e = e.InnerException)
         {

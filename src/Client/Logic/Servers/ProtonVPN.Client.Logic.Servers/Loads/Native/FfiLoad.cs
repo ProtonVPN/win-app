@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
+/*
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,22 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Common.Legacy.Extensions;
+using System.Runtime.InteropServices;
 
-public static class BoolExtensions
+namespace ProtonVPN.Client.Logic.Servers.Loads.Native;
+
+[StructLayout(LayoutKind.Sequential)]
+public struct FfiLoad
 {
-    public static string ToYesNoString(this bool value)
-    {
-        return value ? "yes" : "no";
-    }
-
-    public static string ToOnOffString(this bool value)
-    {
-        return value ? "On" : "Off";
-    }
-
-    public static string ToBooleanString(this bool value)
-    {
-        return value.ToString().ToLower();
-    }
+    [MarshalAs(UnmanagedType.I1)]
+    public bool IsEnabled;
+    [MarshalAs(UnmanagedType.I1)]
+    public bool IsVisible;
+    [MarshalAs(UnmanagedType.I1)]
+    public bool IsAutoconnectable;
+    public byte Load;
+    public double Score;
 }

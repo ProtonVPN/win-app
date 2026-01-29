@@ -199,6 +199,7 @@ public static class DefaultConfiguration
     public static TimeSpan P2PTrafficDetectionInterval => TimeSpan.FromSeconds(60);
     public static TimeSpan StatisticalEventSendTriggerInterval => TimeSpan.FromMinutes(15);
     public static TimeSpan StatisticalEventMinimumWaitInterval => TimeSpan.FromMinutes(10);
+    public static TimeSpan ServerSearchDelay => TimeSpan.FromSeconds(2.5);
 
     public static IOpenVpnConfigurations OpenVpn => DefaultOpenVpnConfigurationsFactory.Create(
         baseFolder: _baseVersionDirectory.Value,

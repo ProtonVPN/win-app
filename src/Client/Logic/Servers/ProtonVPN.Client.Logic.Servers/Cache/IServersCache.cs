@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Api.Contracts;
+using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Servers.Cache;
@@ -39,7 +41,9 @@ public interface IServersCache
 
     void Clear();
     void LoadFromFileIfEmpty();
+    void ReprocessServers();
 
     Task UpdateAsync(CancellationToken cancellationToken);
     Task UpdateLoadsAsync(CancellationToken cancellationToken);
+    Task<ApiResponseResult<LookupServerResponse>?> LookupAsync(string input);
 }

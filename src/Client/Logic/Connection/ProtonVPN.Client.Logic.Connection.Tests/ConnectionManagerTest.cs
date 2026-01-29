@@ -53,6 +53,7 @@ public class ConnectionManagerTest
     private IReconnectionRequestCreator? _reconnectionRequestCreator;
     private IDisconnectionRequestCreator? _disconnectionRequestCreator;
     private IServersLoader? _serversLoader;
+    private IFavoriteServersStorage? _favoriteServersStorage;
     private IGuestHoleServersFileStorage? _guestHoleServersFileStorage;
     private IGuestHoleConnectionRequestCreator? _guestHoleConnectionRequestCreator;
     private IConnectionStatisticalEventsManager? _statisticalEventManager;
@@ -70,6 +71,7 @@ public class ConnectionManagerTest
         _reconnectionRequestCreator = Substitute.For<IReconnectionRequestCreator>();
         _disconnectionRequestCreator = Substitute.For<IDisconnectionRequestCreator>();
         _serversLoader = Substitute.For<IServersLoader>();
+        _favoriteServersStorage = Substitute.For<IFavoriteServersStorage>();
         _guestHoleServersFileStorage = Substitute.For<IGuestHoleServersFileStorage>();
         _guestHoleConnectionRequestCreator = Substitute.For<IGuestHoleConnectionRequestCreator>();
         _statisticalEventManager = Substitute.For<IConnectionStatisticalEventsManager>();
@@ -91,6 +93,7 @@ public class ConnectionManagerTest
         _reconnectionRequestCreator = null;
         _disconnectionRequestCreator = null;
         _serversLoader = null;
+        _favoriteServersStorage = null;
         _guestHoleServersFileStorage = null;
         _guestHoleConnectionRequestCreator = null;
         _statisticalEventManager = null;
@@ -191,6 +194,7 @@ public class ConnectionManagerTest
             _reconnectionRequestCreator!,
             _disconnectionRequestCreator!,
             _serversLoader!,
+            _favoriteServersStorage!,
             _guestHoleServersFileStorage!,
             _guestHoleConnectionRequestCreator!,
             _statisticalEventManager!,

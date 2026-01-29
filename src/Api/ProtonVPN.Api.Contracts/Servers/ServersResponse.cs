@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -27,4 +27,9 @@ public class ServersResponse : BaseResponse
 {
     [JsonProperty("LogicalServers")]
     public List<LogicalServerResponse> Servers { get; set; }
+
+    public LogicalsMetadataResponse ResponseMetadata { get; set; }
+
+    [JsonProperty("StatusID")]
+    public string StatusId { get; set; }
 }

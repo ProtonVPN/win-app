@@ -126,7 +126,7 @@ public abstract partial class ConnectionItemBase : ModelBase, IConnectionItem
     protected abstract bool MatchesActiveConnection(ConnectionDetails? currentConnectionDetails);
 
     [RelayCommand(CanExecute = nameof(CanToggleConnection))]
-    private Task ToggleConnectionAsync()
+    protected virtual Task ToggleConnectionAsync()
     {
         IConnectionIntent connectionIntent = GetConnectionIntent();
 

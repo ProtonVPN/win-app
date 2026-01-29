@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,16 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Text.RegularExpressions;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
+using ProtonVPN.Common.Core.Geographical;
 
-namespace ProtonVPN.Common.Legacy.Extensions;
+namespace ProtonVPN.Client.Logic.Servers.Loads;
 
-public static class ColorExtensions
+public interface IServerLoadsCalculator
 {
-    private static readonly Regex HexColorRegex = new("^#(?:[0-9a-fA-F]{3}){1,2}$");
-
-    public static bool IsColorCodeValid(this string colorCode)
-    {
-        return colorCode != null && HexColorRegex.IsMatch(colorCode);
-    }
+    bool UpdateServerLoads(IReadOnlyList<Server> servers, byte[] statusFile, DeviceLocation? deviceLocation);
 }

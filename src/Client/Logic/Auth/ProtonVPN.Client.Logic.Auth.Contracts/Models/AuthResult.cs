@@ -20,8 +20,8 @@
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Legacy.Abstract;
-using ProtonVPN.Common.Legacy.Extensions;
 
 namespace ProtonVPN.Client.Logic.Auth.Contracts.Models;
 
@@ -53,9 +53,9 @@ public class AuthResult : Result<AuthError>
         {
             return apiResponseResult.Value?.Code switch
             {
-                ResponseCodes.NoVpnConnectionsAssigned => Fail(AuthError.NoVpnAccess, apiResponseResult.Error),
-                ResponseCodes.AuthSwitchToSSO => Fail(AuthError.SwitchToSSO, apiResponseResult.Error),
-                ResponseCodes.AuthSwitchToSRP => Fail(AuthError.SwitchToSRP, apiResponseResult.Error),
+                ResponseCodes.NO_VPN_CONNECTIONS_ASSIGNED => Fail(AuthError.NoVpnAccess, apiResponseResult.Error),
+                ResponseCodes.AUTH_SWITCH_TO_SSO => Fail(AuthError.SwitchToSSO, apiResponseResult.Error),
+                ResponseCodes.AUTH_SWITCH_TO_SRP => Fail(AuthError.SwitchToSRP, apiResponseResult.Error),
                 _ => Fail(apiResponseResult.Error)
             };
         }

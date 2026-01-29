@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,8 +18,6 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;

@@ -17,10 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#if DEBUG
+
 using System.Collections.Concurrent;
 using System.Diagnostics;
 
-namespace ProtonVPN.Common.Core.Helpers.Stopwatches;
+namespace ProtonVPN.Common.Core.Debugging.Stopwatches;
 
 public static class StopwatchWrapper
 {
@@ -51,7 +53,7 @@ public static class StopwatchWrapper
         Measure(key, () => { action(); return true; });
     }
 
-    public static string ToString()
+    public static new string ToString()
     {
         List<StopwatchMeasurement> measurements = Cache.ToList();
         DateTimeOffset? lastDate = null;
@@ -64,3 +66,5 @@ public static class StopwatchWrapper
         return $"Cached measurements:{Environment.NewLine}{string.Join(Environment.NewLine, measurementStrings)}";
     }
 }
+
+#endif

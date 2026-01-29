@@ -68,6 +68,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
     private readonly IReconnectionRequestCreator _reconnectionRequestCreator;
     private readonly IDisconnectionRequestCreator _disconnectionRequestCreator;
     private readonly IServersLoader _serversLoader;
+    private readonly IFavoriteServersStorage _favoriteServersStorage;
     private readonly IGuestHoleServersFileStorage _guestHoleServersFileStorage;
     private readonly IGuestHoleConnectionRequestCreator _guestHoleConnectionRequestCreator;
     private readonly IConnectionStatisticalEventsManager _statisticalEventManager;
@@ -107,6 +108,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         IReconnectionRequestCreator reconnectionRequestCreator,
         IDisconnectionRequestCreator disconnectionRequestCreator,
         IServersLoader serversLoader,
+        IFavoriteServersStorage favoriteServersStorage,
         IGuestHoleServersFileStorage guestHoleServersFileStorage,
         IGuestHoleConnectionRequestCreator guestHoleConnectionRequestCreator,
         IConnectionStatisticalEventsManager statisticalEventManager,
@@ -121,6 +123,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         _reconnectionRequestCreator = reconnectionRequestCreator;
         _disconnectionRequestCreator = disconnectionRequestCreator;
         _serversLoader = serversLoader;
+        _favoriteServersStorage = favoriteServersStorage;
         _guestHoleServersFileStorage = guestHoleServersFileStorage;
         _guestHoleConnectionRequestCreator = guestHoleConnectionRequestCreator;
         _guestHoleConnectionRequestCreator = guestHoleConnectionRequestCreator;
@@ -272,6 +275,8 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
                 if (server is not null && physicalServer is not null)
                 {
+                    _favoriteServersStorage.SetCurrentServerId(server.Id);
+
                     if (CurrentConnectionDetails is null || !CurrentConnectionDetails.OriginalConnectionIntent.IsSameAs(connectionIntent))
                     {
                         CurrentConnectionDetails = new ConnectionDetails(
@@ -310,6 +315,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
             else if (message.Status == VpnStatusIpcEntity.Disconnected)
             {
                 CurrentConnectionDetails = null;
+                _favoriteServersStorage.SetCurrentServerId(null);
             }
         }
 

@@ -2815,7 +2815,7 @@
   <data name="Server" xml:space="preserve">
     <value>Server</value>
   </data>
-    <data name="Servers" xml:space="preserve">
+  <data name="Servers" xml:space="preserve">
     <value>Servers</value>
   </data>
   <data name="Countries_ServerLoad" xml:space="preserve">

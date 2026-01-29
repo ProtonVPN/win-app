@@ -31,6 +31,7 @@ using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Cache;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
+using ProtonVPN.Client.Logic.Servers.Contracts.Searches;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
 using ProtonVPN.Client.UI.Main.Sidebar.Search.Contracts;
@@ -42,6 +43,7 @@ public partial class SidebarComponentViewModel : HostViewModelBase<ISidebarViewN
     IEventMessageReceiver<ServerListChangedMessage>
 {
     private readonly IServersCache _serversCache;
+    private readonly IServerFinder _serverFinder;
     private readonly ISearchInputReceiver _searchInputReceiver;
 
     [ObservableProperty]
@@ -58,12 +60,13 @@ public partial class SidebarComponentViewModel : HostViewModelBase<ISidebarViewN
         ILocalizationProvider localizer,
         ISearchInputReceiver searchInputReceiver,
         IEnumerable<IConnectionPage> connectionPages,
-        IViewModelHelper viewModelHelper)
+        IViewModelHelper viewModelHelper,
+        IServerFinder serverFinder)
         : base(childViewNavigator, viewModelHelper)
     {
         _serversCache = serversCache;
         _searchInputReceiver = searchInputReceiver;
-
+        _serverFinder = serverFinder;
         ConnectionPages = new(connectionPages.OrderBy(p => p.SortIndex));
     }
 
@@ -99,6 +102,7 @@ public partial class SidebarComponentViewModel : HostViewModelBase<ISidebarViewN
     {
         if (sender is TextBox && string.IsNullOrWhiteSpace(SearchText))
         {
+            _serverFinder.ClearSearchBlock();
             ChildViewNavigator.NavigateToConnectionsViewAsync();
         }
     }
@@ -132,6 +136,7 @@ public partial class SidebarComponentViewModel : HostViewModelBase<ISidebarViewN
     private Task LeaveSearchModeAsync()
     {
         ClearSearch();
+        _serverFinder.ClearSearchBlock();
         return ChildViewNavigator.NavigateToConnectionsViewAsync();
     }
 }

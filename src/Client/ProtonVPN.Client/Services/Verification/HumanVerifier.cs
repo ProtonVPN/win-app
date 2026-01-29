@@ -18,10 +18,10 @@
  */
 
 using ProtonVPN.Api.Contracts.HumanVerification;
-using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Core.Services.Activation;
-using ProtonVPN.Client.Services.Verification.Messages;
 using ProtonVPN.Client.Common.Dispatching;
+using ProtonVPN.Client.Core.Services.Activation;
+using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Services.Verification.Messages;
 
 namespace ProtonVPN.Client.Services.Verification;
 

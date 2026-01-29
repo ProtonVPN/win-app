@@ -60,7 +60,7 @@ namespace ProtonVPN.Api.Handlers
 
         private bool ForceLogoutRequired(int code)
         {
-            return code is ResponseCodes.OutdatedApiResponse or ResponseCodes.OutdatedAppResponse;
+            return code is ResponseCodes.OUTDATED_API_RESPONSE or ResponseCodes.OUTDATED_APP_RESPONSE;
         }
     }
 }

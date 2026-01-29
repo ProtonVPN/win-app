@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
+/*
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,14 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Security;
+using System.Runtime.InteropServices;
 
-namespace ProtonVPN.Common.Legacy.Extensions;
+namespace ProtonVPN.Client.Logic.Servers.Loads.Native;
 
-public static class SecureStringExtensions
+[StructLayout(LayoutKind.Sequential)]
+public struct FfiStatusReference
 {
-    public static bool IsNullOrEmpty(this SecureString value)
-    {
-        return value == null || value.Length == 0;
-    }
+    public uint Index;
+    public double Penalty;
+    public byte Cost;
 }

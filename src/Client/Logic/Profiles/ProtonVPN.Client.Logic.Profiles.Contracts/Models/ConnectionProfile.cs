@@ -42,6 +42,8 @@ public class ConnectionProfile : ConnectionIntentBase, IConnectionProfile
 
     public DateTime UpdateDateTimeUtc { get; set; }
 
+    public DateTime? LastConnectionTimeUtc { get; set; }
+
     public ConnectionProfile(
         Guid id,
         DateTime creationDateTimeUtc,

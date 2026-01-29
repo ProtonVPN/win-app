@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,7 +22,6 @@ using ProtonVPN.Client.Common.Helpers;
 using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
-using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
@@ -38,7 +37,6 @@ using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Extensions;
-using ProtonVPN.Common.Core.Dns;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Localization.Extensions;
@@ -469,13 +467,6 @@ public static class LocalizationExtensions
     {
         string separator = (isToAddEmptyLine ? $"{Environment.NewLine}" : null) + $"{Environment.NewLine}• ";
         return "• " + string.Join(separator, lines);
-    }
-
-    private static string GetStateOrCityName(string? state, string city)
-    {
-        return string.IsNullOrWhiteSpace(state)
-            ? city
-            : state;
     }
 
     public static string GetConnectionGroupName(this ILocalizationProvider localizer, ConnectionGroupType groupType, int itemsCount)

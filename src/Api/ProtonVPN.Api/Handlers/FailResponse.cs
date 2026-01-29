@@ -44,7 +44,7 @@ namespace ProtonVPN.Api.Handlers
 
         public static HttpResponseMessage HumanVerificationFailureResponse(string error)
         {
-            return new FailResponse(HttpStatusCode.OK, ResponseCodes.HumanVerificationRequired, error);
+            return new FailResponse(HttpStatusCode.OK, ResponseCodes.HUMAN_VERIFICATION_REQUIRED, error);
         }
     }
 }

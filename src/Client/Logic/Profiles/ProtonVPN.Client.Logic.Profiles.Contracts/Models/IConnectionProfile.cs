@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -35,9 +35,9 @@ public interface IConnectionProfile : IConnectionIntent
 
     IProfileOptions Options { get; set; }
 
-    public DateTime CreationDateTimeUtc { get; }
+    DateTime CreationDateTimeUtc { get; }
 
-    public DateTime UpdateDateTimeUtc { get; set; }
+    DateTime UpdateDateTimeUtc { get; set; }
 
     void UpdateIntent(ILocationIntent locationIntent, IFeatureIntent? featureIntent = null);
 

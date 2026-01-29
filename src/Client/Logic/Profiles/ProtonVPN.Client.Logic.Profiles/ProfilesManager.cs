@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,10 +20,12 @@
 using System.Collections.Specialized;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Servers;
 using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Messages;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Profiles.Files;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -34,6 +36,7 @@ public class ProfilesManager : IProfilesManager,
 {
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IProfilesFileReaderWriter _profilesFileReaderWriter;
+    private readonly IFavoriteServersStorage _favoriteServersStorage;
     private readonly IDefaultProfilesProvider _defaultProfilesProvider;
     private readonly ILogger _logger;
 
@@ -42,15 +45,17 @@ public class ProfilesManager : IProfilesManager,
     private List<IConnectionProfile> _profiles = new();
 
     public ProfilesManager(
+        ILogger logger,
         IEventMessageSender eventMessageSender,
         IProfilesFileReaderWriter profilesFileReaderWriter,
         IDefaultProfilesProvider defaultProfilesProvider,
-        ILogger logger)
+        IFavoriteServersStorage favoriteServersStorage)
     {
+        _logger = logger;
         _eventMessageSender = eventMessageSender;
         _profilesFileReaderWriter = profilesFileReaderWriter;
         _defaultProfilesProvider = defaultProfilesProvider;
-        _logger = logger;
+        _favoriteServersStorage = favoriteServersStorage;
     }
 
     public IOrderedEnumerable<IConnectionProfile> GetAll()
@@ -123,34 +128,46 @@ public class ProfilesManager : IProfilesManager,
 
     public void Receive(LoggedInMessage message)
     {
-        lock (_lock)
-        {
-            LoadProfiles();
-        }
-
         BroadcastProfileChanges(NotifyCollectionChangedAction.Reset);
     }
 
     private void SaveAndBroadcastProfileChanges(NotifyCollectionChangedAction action, Guid? changedProfileId = null)
     {
+        SetFavoriteServers();
         SaveProfiles();
         BroadcastProfileChanges(action, changedProfileId);
     }
 
-    private void LoadProfiles()
+    private void SetFavoriteServers()
     {
-        _profiles = _profilesFileReaderWriter.Read(out bool doesFileExists);
+        List<string> serverIds = _profiles
+            .Where(p => p.Location is SingleServerLocationIntent)
+            .OrderByDescending(p => p.CreationDateTimeUtc)
+            .Select(p => ((SingleServerLocationIntent)p.Location).Server.Id)
+            .ToList();
 
-        _logger.Info<AppLog>($"Loaded {_profiles.Count} connection profiles from file");
+        _favoriteServersStorage.SetProfileServerIds(serverIds);
+    }
 
-        // No profiles found and profile file does not exist, create list of default profiles
-        if (!_profiles.Any() && !doesFileExists)
+    public void LoadProfiles()
+    {
+        lock (_lock)
         {
-            _logger.Info<AppLog>($"No connection profiles found, creating default profiles");
+            _profiles = _profilesFileReaderWriter.Read(out bool doesFileExists);
 
-            _profiles.AddRange(_defaultProfilesProvider.GetDefaultProfiles());
+            _logger.Info<AppLog>($"Loaded {_profiles.Count} connection profiles from file");
 
-            SaveProfiles();
+            SetFavoriteServers();
+
+            // No profiles found and profile file does not exist, create list of default profiles
+            if (!_profiles.Any() && !doesFileExists)
+            {
+                _logger.Info<AppLog>($"No connection profiles found, creating default profiles");
+
+                _profiles.AddRange(_defaultProfilesProvider.GetDefaultProfiles());
+
+                SaveProfiles();
+            }
         }
     }
 

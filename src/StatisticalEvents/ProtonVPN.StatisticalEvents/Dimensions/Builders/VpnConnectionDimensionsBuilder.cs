@@ -18,7 +18,7 @@
  */
 
 using System.Collections.Generic;
-using ProtonVPN.Common.Legacy.Extensions;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.StatisticalEvents.Contracts.Models;
 using ProtonVPN.StatisticalEvents.Dimensions.Mappers;
 

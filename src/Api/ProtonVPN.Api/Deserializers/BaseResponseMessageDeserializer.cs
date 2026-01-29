@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -25,35 +25,39 @@ using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
 
-namespace ProtonVPN.Api.Deserializers
-{
-    public class BaseResponseMessageDeserializer : IBaseResponseMessageDeserializer
-    {
-        private readonly ILogger _logger;
+namespace ProtonVPN.Api.Deserializers;
 
-        public BaseResponseMessageDeserializer(ILogger logger)
+public class BaseResponseMessageDeserializer : IBaseResponseMessageDeserializer
+{
+    private readonly ILogger _logger;
+
+    public BaseResponseMessageDeserializer(ILogger logger)
+    {
+        _logger = logger;
+    }
+
+    public async Task<BaseResponse> DeserializeAsync(HttpResponseMessage response, CancellationToken cancellationToken)
+    {
+        if (response.Content.Headers.ContentType?.MediaType == "application/octet-stream")
         {
-            _logger = logger;
+            return null;
         }
 
-        public async Task<BaseResponse> DeserializeAsync(HttpResponseMessage response, CancellationToken cancellationToken)
+        string content = await response.Content.ReadAsStringAsync(cancellationToken);
+        if (string.IsNullOrEmpty(content))
         {
-            string content = await response.Content.ReadAsStringAsync(cancellationToken);
-            if (string.IsNullOrEmpty(content))
-            {
-                return null;
-            }
-            
-            try
-            {
-                return JsonConvert.DeserializeObject<BaseResponse>(content);
-            }
-            catch (JsonException e)
-            {
-                _logger.Error<ApiLog>("Failed to deserialize base response message from " +
-                    $"{response.RequestMessage?.Method} {response.RequestMessage?.RequestUri}.", e);
-                return null;
-            }
+            return null;
+        }
+        
+        try
+        {
+            return JsonConvert.DeserializeObject<BaseResponse>(content);
+        }
+        catch (JsonException e)
+        {
+            _logger.Error<ApiLog>("Failed to deserialize base response message from " +
+                $"{response.RequestMessage?.Method} {response.RequestMessage?.RequestUri}.", e);
+            return null;
         }
     }
 }

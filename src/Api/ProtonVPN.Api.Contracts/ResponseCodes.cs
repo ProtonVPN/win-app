@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,22 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Api.Contracts
+namespace ProtonVPN.Api.Contracts;
+
+public class ResponseCodes
 {
-    public class ResponseCodes
-    {
-        public const int OkResponse = 1000;
-        public const int ForcePasswordChangeResponse = 2011;
-        public const int ClientPublicKeyConflict = 2500;
-        public const int OutdatedAppResponse = 5003;
-        public const int OutdatedApiResponse = 5005;
-        public const int InvalidProfileIdOnUpdate = 86062;
-        public const int InvalidProfileIdOnDelete = 86063;
-        public const int ProfileNameConflict = 86065;
-        public const int HumanVerificationRequired = 9001;
-        public const int NoVpnConnectionsAssigned = 86300;
-        public const int IncorrectLoginCredentials = 8002;
-        public const int AuthSwitchToSSO = 8100;
-        public const int AuthSwitchToSRP = 8101;
-    }
+    public const int OK_RESPONSE = 1000;
+    public const int FORCE_PASSWORD_CHANGE_RESPONSE = 2011;
+    public const int CLIENT_PUBLIC_KEY_CONFLICT = 2500;
+    public const int SERVER_DOES_NOT_EXIST = 2501;
+    public const int OUTDATED_APP_RESPONSE = 5003;
+    public const int OUTDATED_API_RESPONSE = 5005;
+    public const int INVALID_PROFILE_ID_ON_UPDATE = 86062;
+    public const int INVALID_PROFILE_ID_ON_DELETE = 86063;
+    public const int PROFILE_NAME_CONFLICT = 86065;
+    public const int HUMAN_VERIFICATION_REQUIRED = 9001;
+    public const int NO_VPN_CONNECTIONS_ASSIGNED = 86300;
+    public const int INCORRECT_LOGIN_CREDENTIALS = 8002;
+    public const int AUTH_SWITCH_TO_SSO = 8100;
+    public const int AUTH_SWITCH_TO_SRP = 8101;
 }

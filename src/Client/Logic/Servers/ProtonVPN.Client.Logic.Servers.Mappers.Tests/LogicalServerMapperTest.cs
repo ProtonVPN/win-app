@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,7 +19,6 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Api.Contracts.Servers;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
@@ -58,7 +57,6 @@ public class LogicalServerMapperTest
     [DataRow(32u, ServerFeatures.Restricted)]
     [DataRow(64u, ServerFeatures.Partner)]
     [DataRow(128u, ServerFeatures.DoubleRestricted)]
-    [DataRow(0u | 16u, ServerFeatures.Ipv6)]
     [DataRow(4u | 8u, ServerFeatures.P2P)]
     public void TestGetLogicalServer(ulong features, ServerFeatures expectedFeatures)
     {
@@ -83,8 +81,10 @@ public class LogicalServerMapperTest
             Features = features,
             HostCountry = string.Empty,
             Load = 0,
-            Location = new LocationResponse { Lat = 50, Long = 20, },
-            Servers = new()
+            Servers = [],
+            StatusReference = new(),
+            EntryLocation = new() { Latitude = 50, Longitude = 20 },
+            ExitLocation = new() { Latitude = 50, Longitude = 20 },
         };
     }
 }

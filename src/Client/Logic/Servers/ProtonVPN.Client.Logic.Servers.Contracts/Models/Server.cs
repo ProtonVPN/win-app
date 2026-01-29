@@ -33,10 +33,16 @@ public class Server : ILocation
     public required string ExitCountry { get; init; }
     public required string HostCountry { get; init; }
     public required string Domain { get; init; }
-    public required double Latitude { get; init; }
-    public required double Longitude { get; init; }
+
+    // Kept for backward compatibility - used as fallback when EntryLocation coordinates are unavailable
+    public double Latitude { get; init; }
+
+    // Kept for backward compatibility - used as fallback when EntryLocation coordinates are unavailable
+    public double Longitude { get; init; }
+
     // Is no longer used, but kept to not break the protobuf contract
     public string? ExitIp { get; init; }
+
     public sbyte Status { get; set; }
     public ServerTiers Tier { get; init; }
     public ServerFeatures Features { get; init; }
@@ -44,7 +50,17 @@ public class Server : ILocation
     public float Score { get; set; }
     public required IReadOnlyList<PhysicalServer> Servers { get; init; }
     public bool IsVirtual { get; init; }
+
+    // Before introducing this property, all servers were considered as visible
+    public bool IsVisible { get; set; } = true;
+
+    // Before introducing this property, all servers were considered as auto connectable
+    public bool IsAutoconnectable { get; set; } = true;
+
     public required string GatewayName { get; init; }
+    public required StatusReference StatusReference { get; init; }
+    public required GeoLocation EntryLocation { get; init; }
+    public required GeoLocation ExitLocation { get; init; }
 
     public bool IsUnderMaintenance() => Status == 0;
 
@@ -75,16 +91,19 @@ public class Server : ILocation
             ExitCountry = ExitCountry,
             HostCountry = HostCountry,
             Domain = Domain,
-            Latitude = Latitude,
-            Longitude = Longitude,
             Status = Status,
             Tier = Tier,
             Features = Features,
             Load = Load,
             Score = Score,
-            Servers = new List<PhysicalServer>(),
+            Servers = [],
             IsVirtual = IsVirtual,
             GatewayName = GatewayName,
+            StatusReference = StatusReference,
+            EntryLocation = EntryLocation,
+            ExitLocation = ExitLocation,
+            IsVisible = IsVisible,
+            IsAutoconnectable = IsAutoconnectable,
         };
     }
 }

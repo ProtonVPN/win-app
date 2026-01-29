@@ -84,7 +84,7 @@ public class HumanVerificationHandler : HumanVerificationHandlerBase
 
     private bool IsVerificationRequired(BaseResponse response)
     {
-        return response.Code == ResponseCodes.HumanVerificationRequired &&
+        return response.Code == ResponseCodes.HUMAN_VERIFICATION_REQUIRED &&
                IsHumanVerificationSupported(response.Details.HumanVerificationMethods);
     }
 

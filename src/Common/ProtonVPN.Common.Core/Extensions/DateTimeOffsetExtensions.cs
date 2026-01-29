@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -31,5 +31,10 @@ public static class DateTimeOffsetExtensions
     public static DateTimeOffset Max(this DateTimeOffset dateLeft, DateTimeOffset dateRight)
     {
         return DateTimeOffset.Compare(dateLeft, dateRight) > 0 ? dateLeft : dateRight;
+    }
+
+    public static DateTimeOffset TruncateToSeconds(this DateTimeOffset date)
+    {
+        return new(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Offset);
     }
 }

@@ -103,7 +103,6 @@ public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
                     break;
             }
         });
-
     }
 
     protected override IEnumerable<ConnectionItemBase> GetItems()

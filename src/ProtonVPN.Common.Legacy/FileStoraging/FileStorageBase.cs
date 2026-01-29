@@ -20,7 +20,7 @@
 using System;
 using System.Collections;
 using System.Linq;
-using ProtonVPN.Common.Legacy.Extensions;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Legacy.Helpers;
 using ProtonVPN.Files.Contracts;
 using ProtonVPN.Logging.Contracts;

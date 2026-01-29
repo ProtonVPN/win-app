@@ -24,7 +24,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ProtonVPN.Common.Legacy;
-using ProtonVPN.Common.Legacy.Extensions;
 using ProtonVPN.Common.Legacy.Go;
 using ProtonVPN.Common.Legacy.NetShield;
 using ProtonVPN.Common.Legacy.Restrictions;
@@ -34,6 +33,7 @@ using ProtonVPN.Logging.Contracts.Events.LocalAgentLogs;
 using ProtonVPN.Vpn.LocalAgent.Contracts;
 using ProtonVPN.Vpn.NetShield;
 using ProtonVPN.Vpn.Restrictions;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Vpn.LocalAgent
 {

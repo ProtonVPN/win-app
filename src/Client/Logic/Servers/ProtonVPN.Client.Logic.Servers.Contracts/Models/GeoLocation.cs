@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,20 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.IO;
+namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-namespace ProtonVPN.Common.Legacy.Extensions;
-
-public static class ExceptionTypeExtensions
+public class GeoLocation
 {
-    public static bool IsFileAccessException(this Exception ex) =>
-        ex is IOException ||
-        ex is UnauthorizedAccessException;
+    public double Latitude { get; set; }
 
-    public static bool IsOrAnyInnerIsOfExceptionType<T>(this Exception e)
-        where T : Exception
-    {
-        return e is T || e != null && e.InnerException.IsOrAnyInnerIsOfExceptionType<T>();
-    }
+    public double Longitude { get; set; }
 }

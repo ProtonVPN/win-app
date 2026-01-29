@@ -19,7 +19,6 @@
 
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy.Extensions;
 
 namespace ProtonVPN.Vpn.Management
 {
