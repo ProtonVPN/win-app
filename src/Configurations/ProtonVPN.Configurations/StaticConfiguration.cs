@@ -54,6 +54,7 @@ public class StaticConfiguration : IStaticConfiguration
     public string DiagnosticLogsZipFilePath { get; } = DefaultConfiguration.DiagnosticLogsZipFilePath;
     public string GuestHoleServersJsonFilePath { get; } = DefaultConfiguration.GuestHoleServersJsonFilePath;
     public string ServiceSettingsFilePath { get; } = DefaultConfiguration.ServiceSettingsFilePath;
+    public string WireGuardServerRoutesFilePath { get; } = DefaultConfiguration.WireGuardServerRoutesFilePath;
     public string LegacyAppLocalData { get; } = DefaultConfiguration.LegacyAppLocalData;
     public string IPv6PrefixTreeFilePath { get; } = DefaultConfiguration.IPv6PrefixTreeFilePath;
     public string IPv6PersistedDataFilePath { get; } = DefaultConfiguration.IPv6PersistedDataFilePath;

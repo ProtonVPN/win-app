@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -121,6 +121,7 @@ public class VpnConfigMapperTest
             PortForwarding = true,
             IsIpv6Enabled = true,
             ShouldDisableWeakHostSetting = true,
+            IsWireGuardServerRouteEnabled = true,
             DnsBlockMode = DnsBlockMode.Callout,
         });
 
@@ -139,6 +140,7 @@ public class VpnConfigMapperTest
         Assert.AreEqual(entityToTest.PortForwarding, result.PortForwarding);
         Assert.AreEqual(entityToTest.IsIpv6Enabled, result.IsIpv6Enabled);
         Assert.AreEqual(entityToTest.ShouldDisableWeakHostSetting, result.ShouldDisableWeakHostSetting);
+        Assert.AreEqual(entityToTest.IsWireGuardServerRouteEnabled, result.IsWireGuardServerRouteEnabled);
         Assert.AreEqual((int)entityToTest.DnsBlockMode, (int)result.DnsBlockMode);
     }
 
@@ -188,6 +190,7 @@ public class VpnConfigMapperTest
             ModerateNat = true,
             PortForwarding = true,
             ShouldDisableWeakHostSetting = true,
+            IsWireGuardServerRouteEnabled = true,
             DnsBlockMode = DnsBlockModeIpcEntity.Disabled,
         };
 
@@ -205,6 +208,7 @@ public class VpnConfigMapperTest
         Assert.AreEqual(entityToTest.ModerateNat, result.ModerateNat);
         Assert.AreEqual(entityToTest.PortForwarding, result.PortForwarding);
         Assert.AreEqual(entityToTest.ShouldDisableWeakHostSetting, result.ShouldDisableWeakHostSetting);
+        Assert.AreEqual(entityToTest.IsWireGuardServerRouteEnabled, result.IsWireGuardServerRouteEnabled);
         Assert.AreEqual((int)entityToTest.DnsBlockMode, (int)result.DnsBlockMode);
     }
 

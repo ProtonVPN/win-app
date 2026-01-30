@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -63,6 +63,7 @@ public class VpnConfigMapper : IMapper<VpnConfig, VpnConfigIpcEntity>
             WireGuardConnectionTimeout = leftEntity.WireGuardConnectionTimeout,
             DnsBlockMode = _entityMapper.Map<DnsBlockMode, DnsBlockModeIpcEntity>(leftEntity.DnsBlockMode),
             ShouldDisableWeakHostSetting = leftEntity.ShouldDisableWeakHostSetting,
+            IsWireGuardServerRouteEnabled = leftEntity.IsWireGuardServerRouteEnabled,
         };
     }
 
@@ -94,6 +95,7 @@ public class VpnConfigMapper : IMapper<VpnConfig, VpnConfigIpcEntity>
                 WireGuardConnectionTimeout = rightEntity.WireGuardConnectionTimeout,
                 DnsBlockMode = _entityMapper.Map<DnsBlockModeIpcEntity, DnsBlockMode>(rightEntity.DnsBlockMode),
                 ShouldDisableWeakHostSetting = rightEntity.ShouldDisableWeakHostSetting,
+                IsWireGuardServerRouteEnabled = rightEntity.IsWireGuardServerRouteEnabled,
             });
     }
 }

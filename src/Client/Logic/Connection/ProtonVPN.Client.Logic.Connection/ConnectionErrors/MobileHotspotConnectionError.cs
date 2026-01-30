@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,31 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Contracts.Services.Deeplinks;
+using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
 
 namespace ProtonVPN.Client.Logic.Connection.ConnectionErrors;
 
-public class MobileHotspotConnectionError : ConnectionErrorBase
+public class MobileHotspotConnectionError : ReportableConnectionError
 {
-    private readonly IDeepLinksService _deepLinksService;
-
     public override string Message => Localizer.Get("Connection_Error_MobileHotspotEnabled");
-
-    public override string ActionLabel => Localizer.Get("Connection_Error_OpenMobileHotspotSettings");
 
     public MobileHotspotConnectionError(
         ILocalizationProvider localizer,
-        IDeepLinksService deepLinksService)
-        : base(localizer)
+        IReportIssueWindowActivator reportIssueWindowActivator)
+        : base(localizer, reportIssueWindowActivator)
     {
-        _deepLinksService = deepLinksService;
-    }
-
-    public override Task ExecuteActionAsync()
-    {
-        _deepLinksService.OpenMobileHotspotSettings();
-
-        return Task.CompletedTask;
     }
 }

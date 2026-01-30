@@ -34,7 +34,9 @@ public class NetworkModule : Module
         builder.RegisterType<NetworkInterfaceLoader>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NetworkUtilities>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<RoutingTableHelper>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<Ipv4GatewayResolver>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NetworkInterfacePolicyManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<InterfaceForwardingMonitor>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<RouteChangeMonitor>().AsImplementedInterfaces().SingleInstance();
     }
 }

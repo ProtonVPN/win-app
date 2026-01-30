@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -52,6 +52,7 @@ public interface IStaticConfiguration
     string DiagnosticLogsZipFilePath { get; }
     string GuestHoleServersJsonFilePath { get; }
     string ServiceSettingsFilePath { get; }
+    string WireGuardServerRoutesFilePath { get; }
     string LegacyAppLocalData { get; }
     string IPv6PrefixTreeFilePath { get; }
     string IPv6PersistedDataFilePath { get; }

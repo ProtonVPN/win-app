@@ -34,7 +34,7 @@ namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 
 public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
 {
-    private readonly IFeatureFlagsObserver _featureFlagsObserver;
+    protected readonly IFeatureFlagsObserver FeatureFlagsObserver;
 
     protected ConnectionRequestCreatorBase(
         ILogger logger, 
@@ -44,7 +44,7 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
         IMainSettingsRequestCreator mainSettingsRequestCreator)
         : base(logger, settings, entityMapper, mainSettingsRequestCreator)
     {
-        _featureFlagsObserver = featureFlagsObserver;
+        FeatureFlagsObserver = featureFlagsObserver;
     }
 
     protected abstract Task<VpnCredentialsIpcEntity> GetVpnCredentialsAsync();
@@ -70,10 +70,11 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
                 : [settings.VpnProtocol],
             Ports = GetPorts(),
             CustomDns = GetCustomDns(isCustomDnsEnabled),
-            IsIpv6Enabled = _featureFlagsObserver.IsIpv6SupportEnabled && Settings.IsIpv6Enabled,
+            IsIpv6Enabled = FeatureFlagsObserver.IsIpv6SupportEnabled && Settings.IsIpv6Enabled,
             WireGuardConnectionTimeout = settings.WireGuardConnectionTimeout,
             DnsBlockMode = settings.DnsBlockMode,
-            ShouldDisableWeakHostSetting = _featureFlagsObserver.ShouldDisableWeakHostSetting,
+            ShouldDisableWeakHostSetting = FeatureFlagsObserver.ShouldDisableWeakHostSetting,
+            IsWireGuardServerRouteEnabled = FeatureFlagsObserver.IsWireGuardServerRouteEnabled,
         };
     }
 

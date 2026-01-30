@@ -61,6 +61,9 @@ public class FeatureFlagsObserver : PollingObserverBase, IFeatureFlagsObserver
     [FeatureFlag("BinaryServerStatus")]
     public bool IsBinaryServerStatusEnabled => IsEnabled();
 
+    [FeatureFlag("IsWireGuardServerRouteEnabled")]
+    public bool IsWireGuardServerRouteEnabled => IsEnabled();
+
     protected override TimeSpan PollingInterval => _config.FeatureFlagsUpdateInterval;
 
     private static PropertyInfo[] Properties { get; } = typeof(FeatureFlagsObserver).GetProperties();

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,9 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Contracts.Services.Deeplinks;
+using System.Diagnostics.CodeAnalysis;
 
-public interface IDeepLinksService
+namespace ProtonVPN.OperatingSystems.Network.Contracts.Routing;
+
+public interface IIpv4GatewayResolver
 {
-    void OpenMobileHotspotSettings();
+    bool TryGetBestIpv4Gateway(string excludedHardwareId, [NotNullWhen(true)] out Ipv4GatewayInfo? gatewayInfo);
 }

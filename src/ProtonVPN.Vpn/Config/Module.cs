@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -70,6 +70,7 @@ public class Module
         builder.RegisterType<NetShieldStatisticEventManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NrptWrapper>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<RestrictionsEventManager>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<WireGuardServerRouteManager>().AsImplementedInterfaces().SingleInstance();
         builder.Register(c =>
             {
                 ILogger logger = c.Resolve<ILogger>();
@@ -158,6 +159,7 @@ public class Module
         ILocalAgentTlsCredentialsCache localAgentTlsCredentialsCache = c.Resolve<ILocalAgentTlsCredentialsCache>();
         IWireGuardDnsServersCreator wireGuardDnsServersCreator = c.Resolve<IWireGuardDnsServersCreator>();
         IServiceFactory serviceFactory = c.Resolve<IServiceFactory>();
+        IWireGuardServerRouteManager wireGuardServerRouteManager = c.Resolve<IWireGuardServerRouteManager>();
 
         return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager, restrictionsEventManager), c.Resolve<ISplitTunnelRouting>(),
             gatewayCache,
@@ -165,12 +167,14 @@ public class Module
             new WireGuardConnection(logger, config, gatewayCache,
                 c.Resolve<ISystemNetworkInterfaces>(),
                 c.Resolve<IInterfaceForwardingMonitor>(),
+                c.Resolve<IRouteChangeMonitor>(),
                 c.Resolve<INetworkInterfacePolicyManager>(),
                 new WireGuardService(logger, staticConfig, serviceFactory.Get(staticConfig.WireGuard.ServiceName)),
                 new WireGuardConfigGenerator(config, x25519KeyGenerator, wireGuardDnsServersCreator),
                 new NtTrafficManager(staticConfig.WireGuard.ConfigFileName, logger),
                 new WintunTrafficManager(staticConfig.WireGuard.PipeName),
-                new StatusManager(logger, staticConfig.WireGuard.LogFilePath)));
+                new StatusManager(logger, staticConfig.WireGuard.LogFilePath),
+                wireGuardServerRouteManager));
     }
 
     private ISingleVpnConnection GetOpenVpnConnection(IComponentContext c)

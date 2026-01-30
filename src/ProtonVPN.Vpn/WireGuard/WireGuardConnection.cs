@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -50,15 +50,16 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
     private readonly IGatewayCache _gatewayCache;
     private readonly ISystemNetworkInterfaces _networkInterfaces;
     private readonly INetworkInterfacePolicyManager _interfacePolicyManager;
-    private readonly Timer _serviceHealthCheckTimer = new();
     private readonly IWireGuardService _wireGuardService;
     private readonly IWireGuardConfigGenerator _wireGuardConfigGenerator;
     private readonly NtTrafficManager _ntTrafficManager;
     private readonly WintunTrafficManager _wintunTrafficManager;
     private readonly StatusManager _statusManager;
+    private readonly IWireGuardServerRouteManager _serverRouteManager;
     private readonly SingleAction _connectAction;
     private readonly SingleAction _disconnectAction;
     private readonly IInterfaceForwardingMonitor _interfaceForwardingMonitor;
+    private readonly IRouteChangeMonitor _routeChangeMonitor;
     private INetworkInterfacePolicyLease _interfacePolicyLease;
 
     private VpnError _lastVpnError;
@@ -70,30 +71,38 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
     private VpnStatus _vpnStatus;
     private CancellationTokenSource _disconnectCancellationTokenSource;
 
+    private readonly Timer _serviceHealthCheckTimer = new();
+
+    private bool IsWireGuardServerRouteEnabled => _vpnConfig?.IsWireGuardServerRouteEnabled == true;
+
     public WireGuardConnection(
         ILogger logger,
         IConfiguration config,
         IGatewayCache gatewayCache,
         ISystemNetworkInterfaces networkInterfaces,
         IInterfaceForwardingMonitor interfaceForwardingMonitor,
+        IRouteChangeMonitor routeChangeMonitor,
         INetworkInterfacePolicyManager interfacePolicyManager,
         IWireGuardService wireGuardService,
         IWireGuardConfigGenerator wireGuardConfigGenerator,
         NtTrafficManager ntTrafficManager,
         WintunTrafficManager wintunTrafficManager,
-        StatusManager statusManager)
+        StatusManager statusManager,
+        IWireGuardServerRouteManager serverRouteManager)
     {
         _logger = logger;
         _config = config;
         _gatewayCache = gatewayCache;
         _networkInterfaces = networkInterfaces;
         _interfaceForwardingMonitor = interfaceForwardingMonitor;
+        _routeChangeMonitor = routeChangeMonitor;
         _interfacePolicyManager = interfacePolicyManager;
         _wireGuardService = wireGuardService;
         _wireGuardConfigGenerator = wireGuardConfigGenerator;
         _ntTrafficManager = ntTrafficManager;
         _wintunTrafficManager = wintunTrafficManager;
         _statusManager = statusManager;
+        _serverRouteManager = serverRouteManager;
 
         _ntTrafficManager.TrafficSent += OnTrafficSent;
         _wintunTrafficManager.TrafficSent += OnTrafficSent;
@@ -104,6 +113,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         _disconnectAction.Completed += OnDisconnectActionCompleted;
         _serviceHealthCheckTimer.Interval = config.ServiceCheckInterval.TotalMilliseconds;
         _serviceHealthCheckTimer.Elapsed += CheckIfServiceIsRunning;
+        _routeChangeMonitor.RouteChanged += OnRouteChanged;
         _interfaceForwardingMonitor.ForwardingEnabled += OnInterfaceForwardingEnabled;
     }
 
@@ -122,20 +132,33 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
 
     private async Task ConnectActionAsync(CancellationToken cancellationToken)
     {
-        INetworkInterface bestInterface = GetBestInterface();
-        if (bestInterface.IsIPv4ForwardingEnabled)
+        bool isWireGuardServerRouteEnabled = IsWireGuardServerRouteEnabled;
+        INetworkInterface bestInterface = null;
+        if (!isWireGuardServerRouteEnabled)
         {
-            _logger.Warn<ConnectLog>($"Triggering disconnect due to active interface forwarding " +
-                $"on interface {bestInterface.Name} with index {bestInterface.Index}.");
+            bestInterface = GetBestInterface();
+            if (bestInterface.IsIPv4ForwardingEnabled)
+            {
+                _logger.Warn<ConnectLog>($"Triggering disconnect due to active interface forwarding " +
+                    $"on interface {bestInterface.Name} with index {bestInterface.Index}.");
 
-            Disconnect(VpnError.InterfaceHasForwardingEnabled);
-            return;
+                Disconnect(VpnError.InterfaceHasForwardingEnabled);
+                return;
+            }
         }
 
         _logger.Info<ConnectStartLog>("Connect action started.");
         WriteConfig();
         UpdateGatewayCache();
-        ApplyInterfacePolicy(bestInterface);
+        if (isWireGuardServerRouteEnabled)
+        {
+            _serverRouteManager.CleanupPersistedRoutes();
+            _serverRouteManager.CreateServerRoute(_endpoint, _vpnConfig);
+        }
+        else
+        {
+            ApplyInterfacePolicy(bestInterface);
+        }
         InvokeStateChange(VpnStatus.Connecting);
         await EnsureServiceIsStoppedAsync(cancellationToken);
         _statusManager.Start();
@@ -204,10 +227,21 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         }
 
         _serviceHealthCheckTimer.Stop();
-        _interfaceForwardingMonitor.Stop();
+        if (IsWireGuardServerRouteEnabled)
+        {
+            _routeChangeMonitor.Stop();
+        }
+        else
+        {
+            _interfaceForwardingMonitor.Stop();
+            ReleaseInterfacePolicy();
+        }
         StopServiceDependencies();
         await EnsureServiceIsStoppedAsync(cancellationToken);
-        ReleaseInterfacePolicy();
+        if (IsWireGuardServerRouteEnabled)
+        {
+            _serverRouteManager.DeleteServerRoutes(_endpoint);
+        }
         _isConnected = false;
         CancelDisconnectCancellationToken();
     }
@@ -277,7 +311,14 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
             _isConnected = true;
             StartTrafficManager();
             _serviceHealthCheckTimer.Start();
-            _interfaceForwardingMonitor.Start();
+            if (IsWireGuardServerRouteEnabled)
+            {
+                _routeChangeMonitor.Start();
+            }
+            else
+            {
+                _interfaceForwardingMonitor.Start();
+            }
             UpdateGatewayCache();
             _logger.Info<ConnectConnectedLog>("Connected state received and decorated by WireGuard.");
             InvokeStateChange(VpnStatus.Connected, state.Data.Error);
@@ -306,9 +347,16 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
 
         _isConnected = false;
         _serviceHealthCheckTimer.Stop();
-        _interfaceForwardingMonitor.Stop();
+        if (IsWireGuardServerRouteEnabled)
+        {
+            _routeChangeMonitor.Stop();
+        }
+        else
+        {
+            _interfaceForwardingMonitor.Stop();
+            ReleaseInterfacePolicy();
+        }
         StopServiceDependencies();
-        ReleaseInterfacePolicy();
         InvokeStateChange(VpnStatus.Disconnected, state.Data.Error);
         CancelDisconnectCancellationToken();
     }
@@ -430,7 +478,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
 
     private void OnInterfaceForwardingEnabled(object sender, InterfaceForwardingEventArgs e)
     {
-        if (!_isConnected)
+        if (IsWireGuardServerRouteEnabled || !_isConnected)
         {
             return;
         }
@@ -452,5 +500,15 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         {
             _logger.Warn<ConnectLog>("Failed to handle interface forwarding notification.", ex);
         }
+    }
+
+    private void OnRouteChanged(object sender, RouteChangeEventArgs e)
+    {
+        if (!IsWireGuardServerRouteEnabled || !_isConnected || _endpoint is null || _vpnConfig is null)
+        {
+            return;
+        }
+
+        _serverRouteManager.CreateServerRoute(_endpoint, _vpnConfig);
     }
 }

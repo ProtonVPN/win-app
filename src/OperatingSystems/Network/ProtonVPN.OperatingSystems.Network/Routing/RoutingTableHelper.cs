@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,6 +20,8 @@
 using System.Net;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Core.Networking.Extensions;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.RoutingTableLogs;
 using ProtonVPN.OperatingSystems.Network.Contracts.Routing;
 using Vanara.PInvoke;
 using static Vanara.PInvoke.IpHlpApi;
@@ -30,6 +32,13 @@ namespace ProtonVPN.OperatingSystems.Network.Routing;
 public class RoutingTableHelper : IRoutingTableHelper
 {
     private const uint DEFAULT_LOOPBACK_INTERFACE_INDEX = 1;
+
+    private readonly ILogger _logger;
+
+    public RoutingTableHelper(ILogger logger)
+    {
+        _logger = logger;
+    }
 
     public void CreateRoute(RouteConfiguration route)
     {
@@ -128,7 +137,7 @@ public class RoutingTableHelper : IRoutingTableHelper
         DeleteIpForwardEntry2(ref routeToDelete);
     }
 
-    public void DeleteRoute(string destinationIpAddress, bool isIpv6)
+    public bool DeleteRoute(string destinationIpAddress, bool isIpv6)
     {
         IPAddress ipAddress = IPAddress.Parse(destinationIpAddress);
         ADDRESS_FAMILY family = isIpv6
@@ -138,7 +147,8 @@ public class RoutingTableHelper : IRoutingTableHelper
         Win32Error result = GetIpForwardTable2(family, out MIB_IPFORWARD_TABLE2 table);
         if (result.Failed)
         {
-            return;
+            _logger.Error<RoutingTableLog>($"Failed to get IP forward table when deleting route with destination {destinationIpAddress}", result.GetException());
+            return false;
         }
 
         for (int i = 0; i < table.Table?.Length; i++)
@@ -146,9 +156,16 @@ public class RoutingTableHelper : IRoutingTableHelper
             if (isIpv6 && table.Table[i].DestinationPrefix.Prefix.Ipv6.sin6_addr.Equals(new IN6_ADDR(ipAddress.GetAddressBytes())) ||
                 !isIpv6 && table.Table[i].DestinationPrefix.Prefix.Ipv4.sin_addr.Equals(new IN_ADDR(ipAddress.GetAddressBytes())))
             {
-                DeleteIpForwardEntry2(ref table.Table[i]);
+                Win32Error deleteResult = DeleteIpForwardEntry2(ref table.Table[i]);
+                if (deleteResult.Failed)
+                {
+                    _logger.Error<RoutingTableLog>($"Failed to delete route with destination {destinationIpAddress}", deleteResult.GetException());
+                    return false;
+                }
             }
         }
+
+        return true;
     }
 
     public uint? GetInterfaceMetric(uint interfaceIndex, bool isIpv6)
@@ -164,5 +181,51 @@ public class RoutingTableHelper : IRoutingTableHelper
         return result.Succeeded
             ? row.Metric
             : null;
+    }
+
+    public bool RouteExists(RouteConfiguration route)
+    {
+        ADDRESS_FAMILY family = route.IsIpv6
+            ? ADDRESS_FAMILY.AF_INET6
+            : ADDRESS_FAMILY.AF_INET;
+
+        Win32Error result = GetIpForwardTable2(family, out MIB_IPFORWARD_TABLE2 table);
+        if (result.Failed || table.Table is null)
+        {
+            return false;
+        }
+
+        IP_ADDRESS_PREFIX expectedPrefix = GetDestinationPrefix(route);
+        SOCKADDR_INET expectedNextHop = GetNextHop(route);
+
+        foreach (MIB_IPFORWARD_ROW2 row in table.Table)
+        {
+            if (row.InterfaceIndex != route.InterfaceIndex ||
+                row.DestinationPrefix.PrefixLength != expectedPrefix.PrefixLength)
+            {
+                continue;
+            }
+
+            if (route.IsIpv6)
+            {
+                if (!row.DestinationPrefix.Prefix.Ipv6.sin6_addr.Equals(expectedPrefix.Prefix.Ipv6.sin6_addr) ||
+                    !row.NextHop.Ipv6.sin6_addr.Equals(expectedNextHop.Ipv6.sin6_addr))
+                {
+                    continue;
+                }
+            }
+            else
+            {
+                if (!row.DestinationPrefix.Prefix.Ipv4.sin_addr.Equals(expectedPrefix.Prefix.Ipv4.sin_addr) ||
+                    !row.NextHop.Ipv4.sin_addr.Equals(expectedNextHop.Ipv4.sin_addr))
+                {
+                    continue;
+                }
+            }
+
+            return true;
+        }
+
+        return false;
     }
 }

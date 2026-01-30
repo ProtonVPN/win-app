@@ -1839,7 +1839,7 @@
     <value>Incorrect username or password. Please try again.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot" xml:space="preserve">
-    <value>It is not possible to sign in while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+    <value>Unable to sign in due to network settings on your device. This may be caused by a mobile hotspot, another VPN application, or virtual machine software. Please review your network configuration or contact support for assistance.</value>
   </data>
   <data name="Settings_About" xml:space="preserve">
     <value>About</value>
@@ -3094,10 +3094,7 @@
     <value>Proton VPN failed to fetch authentication certificate due to network issue.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled" xml:space="preserve">
-    <value>It is not possible to connect to VPN while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
-  </data>
-  <data name="Connection_Error_OpenMobileHotspotSettings" xml:space="preserve">
-    <value>Open mobile hotspot settings</value>
+    <value>The connection was blocked by network settings on your device. This may be caused by a mobile hotspot, another VPN application, or virtual machine software. Please review your network configuration or contact support for assistance.</value>
   </data>
   <data name="Dialogs_Welcome_Message" xml:space="preserve">
     <value>We're getting your new VPN experience ready. This should only take a moment.</value>

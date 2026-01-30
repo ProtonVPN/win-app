@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -137,6 +137,9 @@ public static class DefaultConfiguration
 
     /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ServiceData\ServiceSettings.json</returns>
     public static string ServiceSettingsFilePath => Path.Combine(_serviceDataPath.Value, "ServiceSettings.json");
+
+    /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ServiceData\WireGuardServerRoutes.json</returns>
+    public static string WireGuardServerRoutesFilePath => Path.Combine(_serviceDataPath.Value, "WireGuardServerRoutes.json");
 
     /// <returns>C:\Users\{user}\AppData\Local\ProtonVPN</returns>
     public static string LegacyAppLocalData => Path.Combine(_localAppDataPath.Value, "ProtonVPN");

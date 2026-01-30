@@ -23,7 +23,8 @@ public interface IRoutingTableHelper
 {
     void CreateRoute(RouteConfiguration route);
     void DeleteRoute(RouteConfiguration route);
-    void DeleteRoute(string destinationIpAddress, bool isIpv6);
+    bool DeleteRoute(string destinationIpAddress, bool isIpv6);
     uint? GetInterfaceMetric(uint interfaceIndex, bool isIpv6);
     uint? GetLoopbackInterfaceIndex();
+    bool RouteExists(RouteConfiguration route);
 }

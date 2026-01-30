@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -29,6 +29,7 @@ public interface IFeatureFlagsObserver : IObserver
     bool IsServerListTruncationEnabled { get; }
     string U2FGatewayPortalUrl { get; }
     bool IsBinaryServerStatusEnabled { get; }
+    bool IsWireGuardServerRouteEnabled { get; }
 
     Task UpdateAsync(CancellationToken cancellationToken);
 }

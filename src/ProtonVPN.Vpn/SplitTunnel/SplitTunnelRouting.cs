@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Net;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Vpn;
@@ -37,6 +36,7 @@ public class SplitTunnelRouting : ISplitTunnelRouting
     private readonly ILogger _logger;
     private readonly IStaticConfiguration _config;
     private readonly IGatewayCache _gatewayCache;
+    private readonly IIpv4GatewayResolver _ipv4GatewayResolver;
     private readonly IRoutingTableHelper _routingTableHelper;
     private readonly INetworkUtilities _networkUtilities;
     private readonly ISystemNetworkInterfaces _networkInterfaces;
@@ -46,6 +46,7 @@ public class SplitTunnelRouting : ISplitTunnelRouting
         ILogger logger,
         IStaticConfiguration config,
         IGatewayCache gatewayCache,
+        IIpv4GatewayResolver ipv4GatewayResolver,
         IRoutingTableHelper routingTableHelper,
         INetworkUtilities networkUtilities,
         ISystemNetworkInterfaces networkInterfaces,
@@ -54,6 +55,7 @@ public class SplitTunnelRouting : ISplitTunnelRouting
         _logger = logger;
         _config = config;
         _gatewayCache = gatewayCache;
+        _ipv4GatewayResolver = ipv4GatewayResolver;
         _routingTableHelper = routingTableHelper;
         _networkUtilities = networkUtilities;
         _networkInterfaces = networkInterfaces;
@@ -177,25 +179,16 @@ public class SplitTunnelRouting : ISplitTunnelRouting
 
     private void SetUpBlockModeRoutes(VpnConfig vpnConfig, INetworkInterface tunnelInterface, INetworkInterface[] networkInterfaces)
     {
-        INetworkInterface bestIpv4Interface = _networkInterfaces.GetBestInterfaceExcludingHardwareId(hardwareIdToExclude: _config.GetHardwareId(vpnConfig.OpenVpnAdapter));
-        uint? ipv4InterfaceMetric = _routingTableHelper.GetInterfaceMetric(bestIpv4Interface.Index, false);
-        if (ipv4InterfaceMetric is null)
+        if (!_ipv4GatewayResolver.TryGetBestIpv4Gateway(
+                _config.GetHardwareId(vpnConfig.OpenVpnAdapter),
+                out Ipv4GatewayInfo ipv4GatewayInfo))
         {
             return;
         }
 
-        IPAddress ipv4Gateway = bestIpv4Interface.DefaultGateway;
-        if (ipv4Gateway.Equals(IPAddress.Any))
-        {
-            _logger.Error<NetworkLog>("Failed to configure IP split tunnel routes because the IPv4 gateway is missing.");
-            return;
-        }
-
-        if (!NetworkAddress.TryParse(ipv4Gateway.ToString(), out NetworkAddress ipv4GatewayAddress))
-        {
-            _logger.Error<NetworkLog>($"Failed to parse IPv4 gateway address '{ipv4Gateway}'.");
-            return;
-        }
+        INetworkInterface bestIpv4Interface = ipv4GatewayInfo.Interface;
+        NetworkAddress ipv4GatewayAddress = ipv4GatewayInfo.GatewayAddress;
+        uint ipv4InterfaceMetric = ipv4GatewayInfo.InterfaceMetric;
 
         NetworkAddress? ipv6GatewayAddress = _networkUtilities.GetDefaultIpv6Gateway(tunnelInterface, networkInterfaces);
         uint? loopbackInterfaceIndex = _routingTableHelper.GetLoopbackInterfaceIndex();
@@ -223,7 +216,7 @@ public class SplitTunnelRouting : ISplitTunnelRouting
                     Destination = address,
                     Gateway = gateway,
                     InterfaceIndex = interfaceIndex.Value,
-                    Metric = ipv4InterfaceMetric.Value,
+                    Metric = ipv4InterfaceMetric,
                     IsIpv6 = address.IsIpV6,
                 });
             }

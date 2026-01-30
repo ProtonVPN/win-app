@@ -42,13 +42,13 @@ using ProtonVPN.Client.Logic.Updates.Installers;
 using ProtonVPN.Client.Logic.Users.Installers;
 using ProtonVPN.Client.Models.Announcements;
 using ProtonVPN.Client.Notifications.Installers;
+using ProtonVPN.Client.Services;
 using ProtonVPN.Client.Services.Activation;
 using ProtonVPN.Client.Services.Bootstrapping;
 using ProtonVPN.Client.Services.Bootstrapping.Activators;
 using ProtonVPN.Client.Services.Browsing;
 using ProtonVPN.Client.Services.Dispatching;
 using ProtonVPN.Client.Services.Edition;
-using ProtonVPN.Client.Services.Deeplinks;
 using ProtonVPN.Client.Services.Enabling;
 using ProtonVPN.Client.Services.Lifecycle;
 using ProtonVPN.Client.Services.Mapping;
@@ -146,13 +146,6 @@ using ProtonVPN.ProcessCommunication.Client.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.Serialization.Installers;
 using ProtonVPN.StatisticalEvents.Installers;
-using ProtonVPN.Client.Services.Upselling;
-using ProtonVPN.Client.Services.Bootstrapping.Activators;
-using ProtonVPN.Client.UI.Dialogs.Tray;
-using ProtonVPN.Client.UI.Dialogs.Tray.Pages;
-using ProtonVPN.Client.UI.Main.Home.Status;
-using ProtonVPN.Client.UI.Dialogs.NpsSurvey;
-using ProtonVPN.Client.Services;
 
 namespace ProtonVPN.Client.Installers;
 
@@ -239,7 +232,6 @@ public class AppModule : Module
         builder.RegisterType<HumanVerifier>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<HumanVerificationConfig>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<UrlsBrowser>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<DeepLinksService>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<FilesBrowser>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<AccountUpgradeUrlLauncher>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ClipboardEditor>().AsImplementedInterfaces().SingleInstance();
