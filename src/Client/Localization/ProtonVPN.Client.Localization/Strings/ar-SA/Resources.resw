@@ -343,7 +343,7 @@
     <value>فشل Proton VPN في جلب شهادة المصادقة بسبب مشكلة في الشبكة.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>لا يمكن الاتصال بشبكة VPN أثناء استخدام جهازك كنقطة اتصال. قم بتعطيل نقطة الاتصال وحاول مرة أخرى.</value>
+    <value>The connection was blocked by network settings on your device. This may be caused by a mobile hotspot, another VPN application, or virtual machine software. Please review your network configuration or contact support for assistance.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>جميع الخوادم التي اخترتها غير متاحة. يرجى توسيع اختياراتك أو إعادة المحاولة لاحقًا.</value>
@@ -354,9 +354,6 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>محول الشبكة مفقود.</value>
-  </data>
-  <data name="Connection_Error_OpenMobileHotspotSettings">
-    <value>فتح إعدادات نقطة اتصال الجوال</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>الإبلاغ عن مشكلة</value>
@@ -2630,7 +2627,7 @@
     <value>الضغط على الخوادم</value>
   </data>
   <data name="Flyouts_Speed_BoostedByVpnAccelerator">
-    <value>تم تعزيزها بواسطة مسرع VPN</value>
+    <value>مدعوم بواسطة مسرع VPN</value>
   </data>
   <data name="Flyouts_Speed_Description1">
     <value>يعرض كمية البيانات التي تمر عبر نفق VPN في الوقت الفعلي.</value>
@@ -3240,7 +3237,7 @@
     <value>حدث خطأ عند استرداد تفاصيل الجلسة. من فضلك حاول مرة أخرى.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>لا يمكن تسجيل الدخول أثناء استخدام جهازك كنقطة اتصال. قم بتعطيل نقطة الاتصال وحاول مرة أخرى.</value>
+    <value>Unable to sign in due to network settings on your device. This may be caused by a mobile hotspot, another VPN application, or virtual machine software. Please review your network configuration or contact support for assistance.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>الرمز غير صحيح. الرجاء المحاولة مرة أخرى.</value>

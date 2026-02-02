@@ -343,7 +343,7 @@
     <value>Proton VPN no pudo obtener el certificado de autenticación debido a un problema de red.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>No es posible conectarse a la VPN mientras usa su dispositivo como punto de acceso móvil. Desactive el punto de acceso móvil e inténtelo de nuevo.</value>
+    <value>La configuración de red de su dispositivo ha bloqueado la conexión. Esto puede deberse al uso de un punto de acceso móvil, a otra aplicación VPN o a un software de máquina virtual. Revise su configuración de red o póngase en contacto con el servicio de soporte para obtener ayuda.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>Todos los servidores en su selección no están disponibles. Amplíe la selección o intente de nuevo.</value>
@@ -354,9 +354,6 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Falta el adaptador de red.</value>
-  </data>
-  <data name="Connection_Error_OpenMobileHotspotSettings">
-    <value>Abrir ajustes de punto de acceso móvil</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Reportar un problema</value>
@@ -2808,7 +2805,7 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
     <value>Hubo un error al recuperar los detalles de la sesión. Inténtelo nuevamente.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>No es posible iniciar sesión mientras usa su dispositivo como punto de acceso móvil. Desactive el punto de acceso móvil e inténtelo de nuevo.</value>
+    <value>No se ha podido iniciar sesión debido a la configuración de red de su dispositivo. Esto puede deberse al uso de un punto de acceso móvil, a otra aplicación VPN o a un software de máquina virtual. Revise su configuración de red o póngase en contacto con el servicio de soporte.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Código incorrecto. Inténtelo nuevamente.</value>

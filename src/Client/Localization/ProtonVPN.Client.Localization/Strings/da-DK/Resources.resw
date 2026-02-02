@@ -343,7 +343,7 @@
     <value>Proton VPN kunne ikke hente godkendelsescertifikatet pga. et netværksproblem.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>Det er ikke muligt at forbinde til VPN, mens du bruger din enhed som et mobilt hotspot. Deaktiver mobilt hotspot, og prøv igen.</value>
+    <value>Forbindelsen blev blokeret af din enheds netværksindstillinger. Dette kan skyldes et mobilt hotspot, en anden VPN-applikation eller virtuel maskine-software. Gennemgå din netværkskonfiguration eller kontakt support for at få hjælp.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>Alle servere i dit valg er utilgængelige. Udvid venligst dit valg eller prøv igen senere.</value>
@@ -354,9 +354,6 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Netværksadapteren mangler.</value>
-  </data>
-  <data name="Connection_Error_OpenMobileHotspotSettings">
-    <value>Åbn indstillinger for mobilt hotspot</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Anmeld en fejl</value>
@@ -2712,7 +2709,7 @@ En høj serverbelastning kan gøre din forbindelse langsommere.</value>
     <value>Reklamer er marketingbannere eller pop-ups, der vises på hjemmesider og i apps.</value>
   </data>
   <data name="Home_NetShield_DataSaved">
-    <value>Data gemt</value>
+    <value>Data sparet</value>
   </data>
   <data name="Home_NetShield_DataSaved_Description">
     <value>Anslået mængde data sparet ved at blokere uønskede annoncer, sporing og malware.</value>
@@ -2808,7 +2805,7 @@ En høj serverbelastning kan gøre din forbindelse langsommere.</value>
     <value>Der opstod en fejl, da sessionsoplysningerne blev hentet. Prøv venligst igen.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>Det er ikke muligt at forbinde til VPN, mens du bruger din enhed som et mobilt hotspot. Deaktiver mobilt hotspot, og prøv igen.</value>
+    <value>Kan ikke logge ind på grund af din enheds netværksindstillinger. Dette kan skyldes et mobilt hotspot, en anden VPN-applikation eller virtuel maskine-software. Gennemgå din netværkskonfiguration eller kontakt support for at få hjælp.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Forkert kode. Prøv igen.</value>

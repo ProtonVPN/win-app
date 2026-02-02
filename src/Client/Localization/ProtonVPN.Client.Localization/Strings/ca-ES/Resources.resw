@@ -343,7 +343,7 @@
     <value>Proton VPN no ha pogut obtenir el certificat d'autenticació a causa d'un problema de xarxa.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>No és possible connectar-se a la VPN mentre utilitzeu el vostre dispositiu com a punt d'accés mòbil. Desactiveu el punt d'accés mòbil i torneu-ho a provar.</value>
+    <value>La connexió s'ha bloquejat per les preferències de xarxa del vostre dispositiu. Això pot ser causat per un punt d'accés mòbil, una altra aplicació VPN o programari de màquina virtual. Reviseu les vostres preferències de xarxa o contacteu amb el suport tècnic per obtenir assistència.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>Cap dels servidors de la vostra selecció no està disponible. Amplieu la selecció o torneu-ho a provar més tard.</value>
@@ -354,9 +354,6 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>No s'ha trobat l'adaptador de xarxa.</value>
-  </data>
-  <data name="Connection_Error_OpenMobileHotspotSettings">
-    <value>Obriu la configuració del punt d'accés mòbil</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Informeu d'un problema</value>
@@ -2809,7 +2806,7 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>S'ha produït un error en recuperar els detalls de la sessió. Torneu-ho a provar.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>No es pot iniciar la sessió mentre utilitzeu el dispositiu com a punt d'accés mòbil. Desactiveu el punt d'accés mòbil i torneu-ho a provar.</value>
+    <value>No s'ha pogut iniciar la sessió a causa de les preferències de xarxa del vostre dispositiu. Això pot ser causat per un punt d'accés mòbil, una altra aplicació VPN o programari de màquina virtual. Reviseu les vostres preferències de xarxa o contacteu amb el suport tècnic per obtenir assistència.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Codi incorrecte. Torneu-ho a provar.</value>

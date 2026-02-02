@@ -343,7 +343,7 @@
     <value>Proton VPN no ha podido obtener el certificado de autenticación debido a un problema de red.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>No es posible conectarse a la VPN mientras usas tu dispositivo como punto de acceso móvil. Desactiva el punto de acceso móvil e inténtalo de nuevo.</value>
+    <value>La configuración de red de tu dispositivo ha bloqueado la conexión. Esto puede deberse al uso de un punto de acceso móvil, a otra aplicación VPN o a un software de máquina virtual. Revisa tu configuración de red o ponte en contacto con el servicio de soporte para obtener ayuda.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>Ninguno de los servidores seleccionados están disponibles. Amplía tu selección o vuelve a intentarlo más tarde.</value>
@@ -354,9 +354,6 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Falta el adaptador de red.</value>
-  </data>
-  <data name="Connection_Error_OpenMobileHotspotSettings">
-    <value>Abrir ajustes de punto de acceso móvil</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Notificar un problema</value>
@@ -2808,7 +2805,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Se ha producido un error al recuperar los detalles de la sesión. Inténtalo de nuevo.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>No es posible iniciar sesión mientras usas tu dispositivo como punto de acceso móvil. Desactiva el punto de acceso móvil e inténtalo de nuevo.</value>
+    <value>No se ha podido iniciar sesión debido a la configuración de red de tu dispositivo. Esto puede deberse al uso de un punto de acceso móvil, a otra aplicación VPN o a un software de máquina virtual. Revisa tu configuración de red o ponte en contacto con el servicio de soporte.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Código incorrecto. Inténtalo de nuevo.</value>

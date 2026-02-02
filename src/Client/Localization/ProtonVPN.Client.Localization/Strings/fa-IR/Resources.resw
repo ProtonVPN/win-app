@@ -250,13 +250,13 @@
     <value>فعال‌سازی</value>
   </data>
   <data name="Common_Actions_Exit_ProtonVPN">
-    <value>بستن Proton VPN</value>
+    <value>خروج از Proton VPN</value>
   </data>
   <data name="Common_Actions_GotIt">
     <value>فهمیدم</value>
   </data>
   <data name="Common_Actions_Install">
-    <value>Install</value>
+    <value>نصب</value>
   </data>
   <data name="Common_Actions_MoveDown">
     <value>Move Down</value>
@@ -292,7 +292,7 @@
     <value>سوئیچ کشتار پیشرفته فعال است. برای استفاده از اینترنت بدون VPN، سوئیچ کشتار پیشرفته را غیرفعال کنید.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>سوئیچ کشتار پیشرفته فعال است. اگر ادامه دهید، از اینترنت قطع اتصال می‌شوید.</value>
+    <value>قطع خودکار اتصال پیشرفته فعال است. اگر ادامه دهید، از اینترنت قطع اتصال می‌شوید.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>شما از اتصال VPN قطع می‌شوید.</value>
@@ -325,7 +325,7 @@
     <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
-    <value>از VPN تان با به‌روزرسانی به آخرین نسخه‌ی برنامه بیشترین استفاده را ببرید.</value>
+    <value>با به‌روزرسانی به آخرین نسخهٔ برنامه، بیشترین بهره را از VPN ببرید.</value>
   </data>
   <data name="Components_Update_MoreLikelyIssues">
     <value>You're more likely to have issues on older versions of Proton VPN.</value>
@@ -343,7 +343,7 @@
     <value>بدلیل مشکلات شبکه Proton VPN قادر به دریافت گواهینامه تایید تعیین اعتبار نیست.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>It is not possible to connect to VPN while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+    <value>The connection was blocked by network settings on your device. This may be caused by a mobile hotspot, another VPN application, or virtual machine software. Please review your network configuration or contact support for assistance.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>All servers in your selection are unavailable. Please expand your selection or try again later.</value>
@@ -354,9 +354,6 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>آداپتور شبکه موجود نیست.</value>
-  </data>
-  <data name="Connection_Error_OpenMobileHotspotSettings">
-    <value>Open mobile hotspot settings</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>گزارش یک اشکال</value>
@@ -377,7 +374,7 @@
     <value>نسخه آداپتور شبکه قدیمی است.</value>
   </data>
   <data name="Connection_Error_Title">
-    <value>ﺍﺗﺼﺎﻝ ﻧﺎﻣﻮﻓﻖ ﺑﻮﺩ</value>
+    <value>برقراری اتصال ناموفق بود</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
     <value>مشکلی در تأیید اعبار گواهی سرور وجود دارد، که می‌تواند نشان دهنده این باشد که اتصال شبکه دستکاری شده است یا سرور مدنظرتان مشکل پیکربندی دارد. با فرستادن گزارش مشکل از پشتیبانی مشتری کمک بگیرید.</value>
@@ -394,7 +391,7 @@
 Error code: {0}</value>
   </data>
   <data name="Connection_Error_ViewPossibleSolutions">
-    <value>View fixes</value>
+    <value>مشاهدهٔ اصلاحات</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
     <value>Your device's WireGuard adapter is in use. Disconnect from any other VPN running on your device, then try again.</value>
@@ -535,10 +532,10 @@ Error code: {0}</value>
     <value>اولین پروفایلتان را بسازید</value>
   </data>
   <data name="Connections_Profiles_Location_Header">
-    <value>Select connection type and location</value>
+    <value>انتخاب نوع اتصال و موقعیت</value>
   </data>
   <data name="Connections_Profiles_Name">
-    <value>Give your profile a name</value>
+    <value>نامی برای پروفایل خود انتخاب کنید</value>
   </data>
   <data name="Connections_Profiles_Name_Default">
     <value>بدون عنوان</value>
@@ -557,10 +554,10 @@ Error code: {0}</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
   <data name="Connections_Profiles_Settings_Description">
-    <value>Profile settings will override your VPN settings when connected.</value>
+    <value>هنگام اتصال، تنظیمات پروفایل بر تنظیمات VPN شما اولویت خواهند داشت.</value>
   </data>
   <data name="Connections_Profiles_Settings_Header">
-    <value>Add custom settings</value>
+    <value>افزودن تنظیمات سفارشی</value>
   </data>
   <data name="Connections_Random">
     <value>تصادفی</value>
@@ -1747,10 +1744,10 @@ Error code: {0}</value>
     <value>The Base Filtering Engine (BFE) service on your Windows device is disabled. This service needs to be enabled for Proton VPN to work properly.</value>
   </data>
   <data name="Dialogs_BaseFilteringEngine_HowToEnable">
-    <value>How to enable Base Filtering Engine</value>
+    <value>نحوه فعال‌سازی Base Filtering Engine</value>
   </data>
   <data name="Dialogs_BaseFilteringEngine_Title">
-    <value>Enable Base Filtering Engine to continue</value>
+    <value>برای ادامه، Base Filtering Engine را فعال کنید</value>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
     <value>با VPN Plus قابلیت تغییر دادن سرور نامحدود بگیرید.</value>
@@ -2051,19 +2048,19 @@ Error code: {0}</value>
     <value>This will disconnect you from VPN and temporarily disable kill switch. Any active internet connections will be temporarily unprotected.</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Title_Install">
-    <value>Install update?</value>
+    <value>به‌روزرسانی نصب شود؟</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Title_Restart">
-    <value>Restart Proton VPN to complete update</value>
+    <value>برای تکمیل به‌روزرسانی، Proton VPN را راه‌اندازی مجدد کنید</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Description">
-    <value>Looks like your system clock is out of sync. This may cause issues when connecting to VPN.</value>
+    <value>به نظر می‌رسد ساعت سیستم شما همگام نیست. این موضوع ممکن است هنگام اتصال به VPN مشکل ایجاد کند.</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_PrimaryButton">
-    <value>How to update system clock</value>
+    <value>نحوه به‌روزرسانی ساعت سیستم</value>
   </data>
   <data name="Dialogs_UpdateSystemClock_Title">
-    <value>Update system clock</value>
+    <value>به‌روزرسانی ساعت سیستم</value>
   </data>
   <data name="Dialogs_WelcomeB2B_Description">
     <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
@@ -2081,7 +2078,7 @@ Error code: {0}</value>
     <value>Your activity is protected by Swiss privacy laws. We'll never track you online or share your information with third parties.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
-    <value>Browse freely from anywhere</value>
+    <value>از هر جایی آزادانه وب‌گردی کنید</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
     <value>Hide your virtual location and experience the internet from any one of our {0} available country.</value>
@@ -2090,28 +2087,28 @@ Error code: {0}</value>
     <value>Hide your virtual location and experience the internet from any one of our {0} available countries.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
-    <value>Protect 10 devices at once</value>
+    <value>محافظت از ۱۰ دستگاه در یک زمان</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
-    <value>Extend VPN protection to your desktop, mobile, browser, TV, and more. </value>
+    <value>از VPN برای محافظت دسکتاپ، موبایل، مرورگر، تلویزیون و موارد دیگر استفاده کنید. </value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream">
-    <value>Stream in high resolution</value>
+    <value>پخش با کیفیت بالا</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
-    <value>Watch movies and TV shows from around the world, without compromising on speed or quality.</value>
+    <value>فیلم‌ها و برنامه‌های تلویزیونی را از سراسر جهان تماشا کنید، بدون افت سرعت یا کیفیت.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
-    <value>Welcome to VPN Plus</value>
+    <value>به VPN Plus خوش آمدید</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description1">
-    <value>Congratulations! You unlocked premium security and performance features on all Proton services.</value>
+    <value>تبریک! شما به ویژگی‌های پریمیوم امنیت و عملکرد در تمام سرویس‌های Proton دسترسی پیدا کردید.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Enjoy the best of Proton privacy.</value>
+    <value>از بهترین حریم خصوصی Proton لذت ببرید.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
-    <value>Welcome to Proton Unlimited</value>
+    <value>به Proton Unlimited خوش آمدید</value>
   </data>
   <data name="Dialogs_Welcome_Message">
     <value>ما تجربه جدید VPN تان را آماده می‌کنیم. این فقط چند لحظه طول می‌کشد.</value>
@@ -2123,7 +2120,7 @@ Error code: {0}</value>
     <value>You can now access your organization's dedicated servers from the main sidebar.</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
-    <value>Gatewayها جابجا شد</value>
+    <value>درگاه‌ها (Gateways) منتقل شده‌اند</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
     <value>You can now connect to printers, speakers, and other devices on your local network (LAN), bypassing the VPN tunnel.</value>
@@ -2132,10 +2129,10 @@ Error code: {0}</value>
     <value>LAN connections</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
-    <value>ما برنامه رو بازطراحی کردیم و اجزاء رو به صورتی جابجا کردیم تا استفاده از برنامه ساده‌تر بشه.</value>
+    <value>برای آسان‌تر شدن استفاده، طراحی برنامه را به‌روزرسانی کردیم و جای برخی بخش‌ها را تغییر دادیم.</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Title">
-    <value>ظاهر جدید با همون سطح امنیتی</value>
+    <value>ظاهر جدید، با همان امنیت همیشگی</value>
   </data>
   <data name="Dialogs_WhatsNew_PortNumber_Description">
     <value>When port forwarding is enabled, you'll now see your active port number on the home screen.</value>
@@ -2144,22 +2141,22 @@ Error code: {0}</value>
     <value>Active port number</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Description">
-    <value>تنظیمات پیشرفته برای پروفایل‌ها قرار بدین، مثلا NetShield و Port Forwarding یا مثلا Connect and Go رو تنظیم کنید تا پس از اتصال به VPN مستقیم سایت مورد نظرتون باز بشه.</value>
+    <value>می‌توانید تنظیمات پیشرفته‌ای مانند NetShield و Port Fowarding را به پروفایل اضافه کنید، یا Connect and Go را طوری تنظیم کنید که با اتصال، وب‌سایت دلخواه شما اجرا شود.</value>
   </data>
   <data name="Dialogs_WhatsNew_Profiles_Title">
-    <value>پروفایل‌های قدرتمندتر</value>
+    <value>پروفایل‌هایی قدرتمندتر</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Description">
-    <value>اتصال به سرور‌های موردعلاقتون ساده‌تر شده. اتصالات اخیرتون روی Home Screen ببینید یا اون‌ها رو سنجاق کنید تا سریع‌تر بهشون دسترسی داشته باشید.</value>
+    <value>اتصال دوباره به سرورهای موردعلاقه حالا آسان‌تر است. آخرین اتصال‌ها را در صفحهٔ اصلی ببینید یا برای دسترسی سریع پین کنید.</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Title">
-    <value>اتصالات اخیر</value>
+    <value>معرفی اتصالات اخیر</value>
   </data>
   <data name="Dialogs_WhatsNew_TakeALook">
-    <value>نمایش</value>
+    <value>گاهی بیندازید</value>
   </data>
   <data name="Dialogs_WhatsNew_Title">
-    <value>تازه‌ها</value>
+    <value>موارد جدید</value>
   </data>
   <data name="Dialogs_WhatsNew_TrayApp_Description">
     <value>You can now connect, disconnect, and change your default connection from the system tray.</value>
@@ -2177,22 +2174,22 @@ Error code: {0}</value>
     <value>Exit Proton VPN</value>
   </data>
   <data name="Flyouts_Country_Description1">
-    <value>Browsing without a VPN leaves you vulnerable to location-based internet restrictions.</value>
+    <value>استفاده از اینترنت بدون VPN شما را در برابر محدودیت‌های اینترنتی وابسته به موقعیت مکانی آسیب‌پذیر می‌کند.</value>
   </data>
   <data name="Flyouts_Country_Description2">
-    <value>Websites can use geoblocks to restrict content to certain locations. Governments can also instruct ISPs (Internet Service Providers) to block certain websites in their country.</value>
+    <value>وب‌سایت‌ها می‌توانند با استفاده از مسدودسازی جغرافیایی، دسترسی به محتوا را به مکان‌های مشخصی محدود کنند. دولت‌ها نیز می‌توانند به ارائه‌دهندگان خدمات اینترنت (ISP) دستور دهند برخی وب‌سایت‌ها را در کشور خود مسدود کنند.</value>
   </data>
   <data name="Flyouts_Country_Description3">
-    <value>A VPN makes it looks like you're browsing from somewhere else, protecting you from surveillance and censorship.</value>
+    <value>VPN طوری عمل می‌کند که انگار از مکان دیگری در حال مرور اینترنت هستید و شما را در برابر نظارت و سانسور محافظت می‌کند.</value>
   </data>
   <data name="Flyouts_Country_Title">
     <value>کشور</value>
   </data>
   <data name="Flyouts_Country_Warning">
-    <value>Connect to VPN to change your virtual location</value>
+    <value>برای تغییر موقعیت مکانی مجازی خود به VPN متصل شوید.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Connected">
-    <value>Your VPN IP masks your real IP address. This makes it look like you're browsing from your VPN location, so your online activity can't be linked to your device.</value>
+    <value>آدرس IP مربوط به VPN، آدرس IP واقعی شما را پنهان می‌کند. این باعث می‌شود به نظر برسد از موقعیت مکانی VPN در حال مرور اینترنت هستید و فعالیت آنلاین شما قابل ارتباط با دستگاه‌تان نباشد.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected1">
     <value>This unique code can be used by websites and ISPs (Internet Service Providers) to link your location and browsing history to your device.</value>
@@ -2201,7 +2198,7 @@ Error code: {0}</value>
     <value>A VPN masks your IP address, making it harder for your activity to be traced back to you.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
-    <value>What is an IP address?</value>
+    <value>آدرس IP چیست؟</value>
   </data>
   <data name="Flyouts_IpAddress_Title">
     <value>آدرس IP</value>
@@ -2216,7 +2213,7 @@ Error code: {0}</value>
     <value>VPN IPv6</value>
   </data>
   <data name="Flyouts_IpAddress_YourIp">
-    <value>Your IP</value>
+    <value>IP شما</value>
   </data>
   <data name="Flyouts_IpAddress_YourIpIsVisible">
     <value>Your IP address is visible</value>
@@ -2240,40 +2237,40 @@ Error code: {0}</value>
     <value>Your provider can see which websites you visit</value>
   </data>
   <data name="Flyouts_KillSwitch_Advanced_Success">
-    <value>Blocks all internet access when you're not connected to Proton VPN</value>
+    <value>وقتی به Proton VPN متصل نیستید، تمام دسترسی به اینترنت را مسدود می‌کند.</value>
   </data>
   <data name="Flyouts_KillSwitch_Info">
-    <value>Your IP address could be exposed if your VPN connection drops</value>
+    <value>اگر اتصال VPN شما قطع شود، ممکن است آدرس IP شما افشا شود.</value>
   </data>
   <data name="Flyouts_KillSwitch_Info_Disconnected">
     <value>Advanced kill switch disables your internet to protect your IP address while you're not connected to Proton VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
-    <value>If your VPN connection drops, you'll be disconnected from the internet until VPN is restored</value>
+    <value>اگر اتصال VPN شما قطع شود، تا زمان برقراری دوبارهٔ VPN، از اینترنت قطع هستید.</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Connected">
-    <value>Advanced kill switch applies even if you intentionally disconnect from VPN</value>
+    <value>قطع خودکار اتصالِ پیشرفته حتی در صورتی اعمال می‌شود که عمداً اتصال VPN را قطع کنید.</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Disconnected">
-    <value>To get back online, connect to VPN or disable advanced kill switch</value>
+    <value>برای اتصال دوباره به اینترنت، به VPN متصل شوید یا قطع خودکار اتصال پیشرفته را غیرفعال کنید.</value>
   </data>
   <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
     <value>You're protected from ads, trackers, and malware</value>
   </data>
   <data name="Flyouts_NetShield_Info">
-    <value>Protect yourself from ads, trackers, and malware on websites and apps</value>
+    <value>خود را در برابر تبلیغات، ردیاب‌ها و بدافزارها در وب‌سایت‌ها و برنامه‌ها محافظت کنید</value>
   </data>
   <data name="Flyouts_NetShield_MalwareOnly_Success">
-    <value>You're protected from malware only</value>
+    <value>تنها در برابر بدافزارها محافظت می‌شوید</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Description">
-    <value>Block ads, trackers, and malware with VPN Plus.</value>
+    <value>با VPN Plus تبلیغات، ردیاب‌ها و بدافزارها را مسدود کنید</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
     <value>از مرور بدون تبلیغات لذت ببرید</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort">
-    <value>Active port number</value>
+    <value>شماره درگاه Port فعال</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Error">
     <value>Cannot retrieve active port number. Restart your connection and try again.</value>
@@ -2282,13 +2279,13 @@ Error code: {0}</value>
     <value>Enter the active port number into your torrent client or P2P app for enhanced performance.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
-    <value>Improves peer-to-peer download speeds</value>
+    <value>سرعت دانلود همتا‌به‌همتا را افزایش می‌دهد</value>
   </data>
   <data name="Flyouts_PortForwarding_Upsell_Description">
-    <value>Supercharge peer-to-peer (P2P) file sharing performance with VPN Plus.</value>
+    <value>با VPN Plus عملکرد اشتراک‌گذاری فایل همتا‌به‌همتا (P2P) را به‌طور چشمگیری افزایش دهید</value>
   </data>
   <data name="Flyouts_PortForwarding_Upsell_Title">
-    <value>Improve P2P speed</value>
+    <value>بهبود سرعت P2P</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
     <value>Connect to a P2P server to improve torrenting speeds</value>
@@ -2353,10 +2350,10 @@ Error code: {0}</value>
     <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
-    <value>Excluded app ({0})</value>
+    <value>برنامه مستثناشده ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
-    <value>Excluded apps ({0})</value>
+    <value>برنامه‌های مستثناشده ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
     <value>Excluded IP address ({0})</value>
@@ -2365,7 +2362,7 @@ Error code: {0}</value>
     <value>Excluded IP addresses ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Info">
-    <value>Allows trusted apps and IP addresses to connect without VPN protection</value>
+    <value>به برنامه‌ها و آدرس‌های IP مورداعتماد اجازه می‌دهد بدون محافظت VPN متصل شوند</value>
   </data>
   <data name="Flyouts_SplitTunneling_Inverse_Info">
     <value>Only these apps and IP addresses connect through VPN. All other traffic is unprotected.</value>
@@ -2672,7 +2669,7 @@ Error code: {0}</value>
     <value>محافظت نشده</value>
   </data>
   <data name="Home_ConnectionDetails_UnprotectedSubLabel">
-    <value>Encrypt your online activity by connecting to VPN.</value>
+    <value>با اتصال به VPN، فعالیت‌های آنلاین خود را رمزگذاری کنید.</value>
   </data>
   <data name="Home_ConnectionDetails_Volume">
     <value>Total traffic</value>
@@ -2808,7 +2805,7 @@ Error code: {0}</value>
     <value>در هنگام بازیابی جزئیات جلسه خطایی رخ داد. لطفاً دوباره امتحان کنید.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>It is not possible to sign in while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+    <value>Unable to sign in due to network settings on your device. This may be caused by a mobile hotspot, another VPN application, or virtual machine software. Please review your network configuration or contact support for assistance.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>کد نادرست است. لطفا دوباره امتحان کنید.</value>
@@ -3086,16 +3083,16 @@ Secure Core</value>
     <value>Tor</value>
   </data>
   <data name="Profile_CustomSettings_Description">
-    <value>Profile settings will override your VPN settings when connected.</value>
+    <value>هنگام اتصال، تنظیمات پروفایل بر تنظیمات VPN شما اولویت خواهند داشت.</value>
   </data>
   <data name="Profile_CustomSettings_Header">
-    <value>Add custom settings</value>
+    <value>افزودن تنظیمات سفارشی</value>
   </data>
   <data name="Profile_CustomSettings_Hide">
-    <value>Hide settings</value>
+    <value>پنهان کردن تنظیمات</value>
   </data>
   <data name="Profile_CustomSettings_Show">
-    <value>Show settings</value>
+    <value>نمایش تنظیمات</value>
   </data>
   <data name="Profile_NatType_Conflict_Description">
     <value>This will disable port forwarding for this profile.</value>
@@ -3125,7 +3122,7 @@ Secure Core</value>
     <value>Automatically open a website or an app of your choice when you connect to this profile.</value>
   </data>
   <data name="Profile_Options_Header">
-    <value>Connect and Go</value>
+    <value>اتصال و اجرا</value>
   </data>
   <data name="Profile_Options_Url">
     <value>Website URL</value>
@@ -3200,7 +3197,7 @@ Secure Core</value>
     <value>دروازه</value>
   </data>
   <data name="Server_Feature_B2B_Description">
-    <value>Access your organization's servers</value>
+    <value>دسترسی به سرورهای سازمان شما</value>
   </data>
   <data name="Server_Feature_None">
     <value>استاندارد</value>
@@ -3209,13 +3206,13 @@ Secure Core</value>
     <value>P2P</value>
   </data>
   <data name="Server_Feature_P2P_Description">
-    <value>Torrent-optimized</value>
+    <value>بهینه شده برای تورنت</value>
   </data>
   <data name="Server_Feature_SecureCore">
     <value>Secure Core</value>
   </data>
   <data name="Server_Feature_SecureCore_Description">
-    <value>Double protection</value>
+    <value>محافظت دوگانه</value>
   </data>
   <data name="Server_Feature_Tor">
     <value>Tor</value>
@@ -3233,7 +3230,7 @@ Secure Core</value>
     <value>درباره</value>
   </data>
   <data name="Settings_About_Changelog">
-    <value>لیست تغییرات</value>
+    <value>گزارش تغییرات</value>
   </data>
   <data name="Settings_About_CurrentVersion">
     <value>نسخه فعلی</value>
@@ -3420,7 +3417,7 @@ Secure Core</value>
     <value>موارد اخیر</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
-    <value>سوئیچ کشتار</value>
+    <value>قطع خودکار اتصال</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced">
     <value>پیشرفته</value>
@@ -3583,7 +3580,7 @@ Secure Core</value>
     <value>تغییرات ذخیره نشده را نادیده می‌گیرید؟</value>
   </data>
   <data name="Settings_Features">
-    <value>VPN features</value>
+    <value>ویژگی‌های VPN</value>
   </data>
   <data name="Settings_General">
     <value>عمومی</value>
@@ -3670,17 +3667,17 @@ Secure Core</value>
     <value>نسخه سیستم عامل</value>
   </data>
   <data name="Settings_OverriddenByProfile_Description1">
-    <value>This setting is connected to your active profile.</value>
+    <value>این تنظیم به پروفایل فعال شما متصل است.</value>
   </data>
   <data name="Settings_OverriddenByProfile_Description2">
-    <value>Edit your profile to make changes, or disconnect to edit your general VPN settings.</value>
+    <value>برای اعمال تغییرات، پروفایل خود را ویرایش کنید یا برای ویرایش تنظیمات عمومی VPN، اتصال را قطع کنید.</value>
   </data>
   <data name="Settings_OverriddenByProfile_Tagline">
-    <value>These settings are connected to '{0}' profile and can only be managed in Profiles.</value>
+    <value>این تنظیمات به پروفایل '{0}' متصل هستند و فقط از طریق بخش پروفایل‌ها قابل مدیریت‌اند.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Settings_OverriddenByProfile_Title">
-    <value>Manage {0} in Profiles</value>
+    <value>مدیریت {0} در پروفایل‌ها</value>
     <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
   </data>
   <data name="Settings_Page_Title">
@@ -3732,7 +3729,7 @@ Secure Core</value>
     <value>WireGuard</value>
   </data>
   <data name="Settings_Reconnection_Title">
-    <value>Reconnect to apply changes</value>
+    <value>اتصال مجدد برای اعمال تغییرات</value>
   </data>
   <data name="Settings_RestoreDefault">
     <value>بازگردانی به تنظیمات پیش‌فرض‌</value>
@@ -4029,16 +4026,16 @@ Secure Core</value>
     <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
   </data>
   <data name="Upsell_Carousel_Profiles">
-    <value>Get quick access to frequent connections</value>
+    <value>به اتصال‌های پراستفاده دسترسی سریع داشته باشید</value>
   </data>
   <data name="Upsell_Carousel_Profiles_Convenience">
-    <value>Set a profile as your default connection and connect in 1 click</value>
+    <value>یک پروفایل را به عنوان اتصال پیش‌فرض خود تنظیم کرده و با ۱ کلیک وصل شوید</value>
   </data>
   <data name="Upsell_Carousel_Profiles_Creation">
-    <value>Create and save your own VPN configurations with Profiles</value>
+    <value>با استفاده از پروفایل‌ها، پیکربندی‌های VPN دلخواه خود را ایجاد و ذخیره کنید</value>
   </data>
   <data name="Upsell_Carousel_Profiles_Customization">
-    <value>Customize your location, protocol, and settings</value>
+    <value>موقعیت مکانی، پروتکل و تنظیمات خود را شخصی‌سازی کنید</value>
   </data>
   <data name="Upsell_Carousel_SecureCore">
     <value>Add another layer of protection to your connection</value>
@@ -4101,7 +4098,7 @@ Secure Core</value>
     <value>Watch in 4K without buffering, slowdowns, or throttling</value>
   </data>
   <data name="Upsell_Carousel_Title">
-    <value>Discover VPN Plus</value>
+    <value>کشف VPN Plus</value>
   </data>
   <data name="Upsell_Carousel_Tor">
     <value>Access the Tor network for extra privacy</value>

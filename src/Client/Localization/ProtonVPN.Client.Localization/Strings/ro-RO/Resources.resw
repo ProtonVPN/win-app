@@ -343,7 +343,7 @@
     <value>Proton VPN a eșuat să preia certificatul de autentificare datorită problemelor de rețea.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>Nu este posibil să vă conectați la VPN în timp ce utilizați dispozitivul ca hotspot mobil. Dezactivați hotspot-ul mobil și reîncercați.</value>
+    <value>Conexiunea a fost blocată de setările de rețea din acest dispozitiv. Acest lucru poate fi cauzat de un hotspot mobil, o altă aplicație VPN sau program de mașini virtuale. Revizuiți configurarea rețelei sau contactați asistența pentru ajutor.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>Toate serverele din selecție nu sunt disponibile. Extindeți selecția și reîncercați.</value>
@@ -354,9 +354,6 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Adaptorul de rețea lipsește.</value>
-  </data>
-  <data name="Connection_Error_OpenMobileHotspotSettings">
-    <value>Deschidere setări hotspot mobil</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Raportare o problemă</value>
@@ -2916,7 +2913,7 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
     <value>A apărut o eroare la preluarea detaliilor sesiunii. Reîncercați.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>Nu este posibil să vă conectați la cont în timp ce utilizați dispozitivul ca hotspot mobil. Dezactivați hotspot-ul mobil și reîncercați.</value>
+    <value>Nu vă puteți conecta din cauza setărilor de rețea din acest dispozitiv. Acest lucru poate fi cauzat de un hotspot mobil, o altă aplicație VPN sau program de mașini virtuale. Revizuiți configurarea rețelei sau contactați asistența pentru ajutor.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Cod incorect. Reîncercați.</value>

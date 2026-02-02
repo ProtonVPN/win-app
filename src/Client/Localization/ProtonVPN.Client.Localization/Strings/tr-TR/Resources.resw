@@ -343,7 +343,7 @@
     <value>Proton VPN, ağ sorunu nedeniyle kimlik doğrulama sertifikasını alamadı.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>Aygıtınızı mobil erişim noktası olarak kullanırken VPN bağlantısı kurulamaz. Mobil erişim noktasını kapatıp yeniden deneyin.</value>
+    <value>Bağlantınız aygıtınızdaki ağ ayarları tarafından engellendi. Bunun nedeni mobil kişisel erişim noktası, başka bir VPN uygulaması veya sanal bilgisayar yazılımı olabilir. Lütfen ağ yapılandırmanızı gözden geçirin veya yardım almak için destek ekibiyle görüşün.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>Seçtiğiniz hiç bir sunucu kullanılamıyor. Lütfen seçiminizi genişletin ya da bir süre sonra yeniden deneyin.</value>
@@ -354,9 +354,6 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Ağ bağdaştırıcısı eksik.</value>
-  </data>
-  <data name="Connection_Error_OpenMobileHotspotSettings">
-    <value>Mobil erişim noktası ayarlarını açın</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Sorun bildireceğim</value>
@@ -1848,13 +1845,13 @@ Yüksek gecikme değeri bağlantınızı yavaşlatabilir.</value>
     <value>Yeniden dene</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Hızlı çevrim içi oyun ve torrent indirme için P2P (eşler arası) sunucuların kilidini açmak üzere yükseltin veya bağlantınızı geri yüklemek için P2P etkinliğinizi sonlandırın.</value>
+    <value>Hızlı çevrim içi oyun ve torrent indirme için kullanabileceğiniz P2P (eşler arası) sunuculara erişebilmek için tarifenizi yükseltin veya bağlantınızın yeniden kurulması için P2P etkinliğinizi sonlandırın.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
     <value>Ücretsiz VPN sunucularında P2P kullanımına izin verilmiyor</value>
   </data>
   <data name="Dialogs_P2PDetection_WindowTitle">
-    <value>VPN Plus'ı keşfedin</value>
+    <value>VPN Plus tarifesine bakın</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>P2P ile torrent nasıl kullanılır</value>
@@ -1985,13 +1982,13 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_StreamingDetection_WindowTitle">
-    <value>VPN Plus'ı keşfedin</value>
+    <value>VPN Plus tarifesine bakın</value>
   </data>
   <data name="Dialogs_StreamingWarning_Description">
-    <value>VPN Plus sunucuları dünyanın her yerinden en sevdiğiniz filmleri ve TV programlarını izlemenizi sağlar.</value>
+    <value>VPN Plus sunucuları dünyanın her yerindeki sevdiğiniz filmleri ve TV programlarını izlemenizi sağlar.</value>
   </data>
   <data name="Dialogs_StreamingWarning_Title">
-    <value>VPN engellemelerini atlamak için yükseltin</value>
+    <value>VPN engellemelerini aşmak için tarifenizi yükseltin</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Belki daha sonra</value>
@@ -2808,7 +2805,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Oturum bilgileri alınırken bir sorun çıktı. Lütfen yeniden deneyin.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>Aygıtınızı mobil erişim noktası olarak kullanırken oturum açılamaz. Mobil erişim noktasını kapatıp yeniden deneyin.</value>
+    <value>Aygıtınızdaki ağ ayarları nedeniyle oturum açılamadı. Bu durum mobil kişisel erişim noktası, başka bir VPN uygulaması veya sanal bilgisayar yazılımından kaynaklanıyor olabilir. Lütfen ağ yapılandırmanızı gözden geçirin veya yardım almak için destek ekibiyle görüşün.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Kod yanlış. Lütfen yeniden deneyin.</value>
@@ -3056,7 +3053,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Sunucu yükü</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>Smart Routing ulaşılması zor ülkelerde VPN kapsamı sağlamamıza olanak tanır.</value>
+    <value>Smart Routing ulaşılması zor ülkelerde VPN erişimi sunmamızı sağlar.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>Bir Smart Routing sunucusuna bağlandığınızda fiziksel sunucu başka bir yerde olsa bile hedef ülkenizde geziniyor gibi görünürsünüz.</value>
@@ -3897,16 +3894,16 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Bağlantı kesildi</value>
   </data>
   <data name="SystemNotification_P2PWarning_Description">
-    <value>Ücretli VPN sunucuları ile P2P (eşler arası) protokolleri üzerinden torrent ve çevrim içi oyunların kilidini açın.</value>
+    <value>Ücretli VPN sunucuları kullanarak, P2P (eşler arası) iletişim kuralları üzerinden torrent ve çevrim içi oyunlara erişin.</value>
   </data>
   <data name="SystemNotification_P2PWarning_Title">
-    <value>VPN Free ile P2P kullanılamaz</value>
+    <value>VPN Free tarifesi ile P2P kullanılamaz</value>
   </data>
   <data name="SystemNotification_StreamingWarning_Description">
-    <value>Bazı siteler ve akış hizmetleri ücretsiz VPN kullanıcılarını engeller. Bu engelleri aşmak için Proton VPN Plus'a yükseltin.</value>
+    <value>Bazı siteler ve yayın akışı hizmetleri ücretsiz VPN kullanıcılarını engeller. Bu engellemeleri aşmak için Proton VPN Plus tarifesine yükseltin.</value>
   </data>
   <data name="SystemNotification_StreamingWarning_Title">
-    <value>Engellenen site mi?</value>
+    <value>Site engelleniyor mu?</value>
   </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Çık</value>
@@ -3953,7 +3950,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>NetShield</value>
   </data>
   <data name="UpsellBanner_P2P_Description">
-    <value>BitTorrent ve diğer dosya paylaşım protokolleri aracılığıyla dosya indirin.</value>
+    <value>BitTorrent ve diğer dosya paylaşım iletişim kuralları ile dosya indirin.</value>
   </data>
   <data name="UpsellBanner_P2P_Title">
     <value>P2P desteği</value>

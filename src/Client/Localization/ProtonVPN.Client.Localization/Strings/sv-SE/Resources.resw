@@ -343,7 +343,7 @@
     <value>Proton VPN kunde inte hämta autentiseringscertifikat på grund av nätverksproblem.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>Det är inte möjligt att ansluta till VPN när du använder din enhet som mobil hotspot. Inaktivera mobil hotspot och försök igen.</value>
+    <value>The connection was blocked by network settings on your device. This may be caused by a mobile hotspot, another VPN application, or virtual machine software. Please review your network configuration or contact support for assistance.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>Alla servrar i ditt val är inte tillgängliga. Utöka ditt val eller försök igen senare.</value>
@@ -354,9 +354,6 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Nätverksadaptern saknas.</value>
-  </data>
-  <data name="Connection_Error_OpenMobileHotspotSettings">
-    <value>Öppna inställningar för mobil hotspot</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Rapportera ett problem</value>
@@ -2808,7 +2805,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Ett fel uppstod vid hämtning av sessionsdetaljerna. Försök igen.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>Det är inte möjligt att logga in när du använder din enhet som mobil hotspot. Inaktivera mobil hotspot och försök igen.</value>
+    <value>Unable to sign in due to network settings on your device. This may be caused by a mobile hotspot, another VPN application, or virtual machine software. Please review your network configuration or contact support for assistance.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Felaktig kod. Försök igen.</value>
@@ -3903,7 +3900,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>P2P är inte tillgängligt med VPN Free</value>
   </data>
   <data name="SystemNotification_StreamingWarning_Description">
-    <value>Some websites and streaming services block free VPN users. Upgrade to Proton VPN Plus to bypass these blocks.</value>
+    <value>Vissa webbplatser och streamingtjänster blockerar gratis VPN-användare. Uppgradera till Proton VPN Plus för att kringgå dessa blockeringar.</value>
   </data>
   <data name="SystemNotification_StreamingWarning_Title">
     <value>Blockerad webbplats?</value>

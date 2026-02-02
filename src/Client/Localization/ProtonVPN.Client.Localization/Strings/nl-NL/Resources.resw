@@ -343,7 +343,7 @@
     <value>Proton VPN is er niet in geslaagd om het verificatiecertificaat op te halen vanwege een netwerkprobleem.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>Het is niet mogelijk om verbinding te maken met VPN terwijl u uw apparaat als mobiele hotspot gebruikt. Schakel de mobiele hotspot uit en probeer het opnieuw.</value>
+    <value>De verbinding is geblokkeerd door netwerkinstellingen op uw apparaat. Dit kan worden veroorzaakt door een mobiele hotspot, een andere VPN-applicatie of virtualisatiesoftware. Controleer uw netwerkconfiguratie of neem contact op met de helpdesk voor hulp.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>Alle servers in uw selectie zijn niet beschikbaar. Vergroot uw selectie of probeer het later opnieuw.</value>
@@ -354,9 +354,6 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>De netwerkadapter ontbreekt.</value>
-  </data>
-  <data name="Connection_Error_OpenMobileHotspotSettings">
-    <value>Mobiele hotspot instellingen openen</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Een probleem melden</value>
@@ -1848,13 +1845,13 @@ Foutcode: {0}</value>
     <value>Probeer opnieuw</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Upgrade to unlock P2P (peer-to-peer) servers for fast online gaming and torrenting, or end your P2P activity to restore your connection.</value>
+    <value>Upgrade om P2P (peer-to-peer) servers te ontgrendelen voor snelle online gaming en torrenting, of beëindig uw P2P activiteiten om uw verbinding te herstellen.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>P2P is not allowed on free VPN servers</value>
+    <value>P2P is niet toegestaan op gratis VPN servers</value>
   </data>
   <data name="Dialogs_P2PDetection_WindowTitle">
-    <value>Discover VPN Plus</value>
+    <value>Ontdek VPN Plus</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>Torrenten met P2P</value>
@@ -1985,13 +1982,13 @@ Foutcode: {0}</value>
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_StreamingDetection_WindowTitle">
-    <value>Discover VPN Plus</value>
+    <value>Ontdek VPN Plus</value>
   </data>
   <data name="Dialogs_StreamingWarning_Description">
-    <value>VPN Plus servers let you enjoy your favorite movies and TV shows from around the world.</value>
+    <value>VPN Plus servers stellen u in staat om uw favoriete films en tv-programma's van over de hele wereld te bekijken.</value>
   </data>
   <data name="Dialogs_StreamingWarning_Title">
-    <value>Upgrade to bypass VPN blocks</value>
+    <value>Upgrade om VPN blokkades te omzeilen</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>Misschien later</value>
@@ -2808,7 +2805,7 @@ Foutcode: {0}</value>
     <value>Er is een fout opgetreden bij het ophalen van de sessiegegevens. Probeer het opnieuw.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>Het is niet mogelijk om in te loggen terwijl u uw apparaat als mobiele hotspot gebruikt. Schakel de mobiele hotspot uit en probeer het opnieuw.</value>
+    <value>Inloggen mislukt vanwege netwerkinstellingen op uw apparaat. Dit kan worden veroorzaakt door een mobiele hotspot, een andere VPN-applicatie of virtualisatiesoftware. Controleer uw netwerkconfiguratie of neem contact op met de helpdesk voor hulp.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Onjuiste code. Probeer het opnieuw.</value>
@@ -3897,16 +3894,16 @@ VPN-verbinding</value>
     <value>Verbinding verbroken</value>
   </data>
   <data name="SystemNotification_P2PWarning_Description">
-    <value>Unlock torrenting and online gaming over P2P (peer-to-peer) protocols with paid VPN servers.</value>
+    <value>Ontgrendel torrenten en online gamen via P2P (peer-to-peer) protocollen met betaalde VPN servers.</value>
   </data>
   <data name="SystemNotification_P2PWarning_Title">
-    <value>P2P not available with VPN Free</value>
+    <value>P2P niet beschikbaar met VPN Free</value>
   </data>
   <data name="SystemNotification_StreamingWarning_Description">
-    <value>Some websites and streaming services block free VPN users. Upgrade to Proton VPN Plus to bypass these blocks.</value>
+    <value>Sommige websites en streamingdiensten blokkeren gebruikers van gratis VPN's. Upgrade naar Proton VPN Plus om deze blokkades te omzeilen.</value>
   </data>
   <data name="SystemNotification_StreamingWarning_Title">
-    <value>Blocked website?</value>
+    <value>Geblokkeerde website?</value>
   </data>
   <data name="Tray_Actions_ExitApplication">
     <value>Sluiten</value>
@@ -3953,10 +3950,10 @@ VPN-verbinding</value>
     <value>NetShield</value>
   </data>
   <data name="UpsellBanner_P2P_Description">
-    <value>Download files through BitTorrent and other file sharing protocols.</value>
+    <value>Download bestanden via BitTorrent en andere protocollen voor het delen van bestanden.</value>
   </data>
   <data name="UpsellBanner_P2P_Title">
-    <value>P2P support</value>
+    <value>P2P ondersteuning</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>Upgrade om elke server te kiezen.</value>

@@ -343,7 +343,7 @@
     <value>Proton VPN non è riuscito a recuperare il certificato di autenticazione a causa di un problema di rete.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>Non è possibile connettersi alla VPN mentre usi il tuo dispositivo come hotspot mobile. Disattiva l'hotspot mobile e riprova.</value>
+    <value>La connessione è stata bloccata dalle impostazioni di rete sul tuo dispositivo. Questo potrebbe essere causato da un hotspot mobile, un'altra applicazione VPN o un software di macchina virtuale. Rivedi la tua configurazione di rete o contatta il supporto per assistenza.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>I server nella tua selezione non sono disponibili. Espandi la selezione o riprova più tardi.</value>
@@ -354,9 +354,6 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Adattatore di rete mancante.</value>
-  </data>
-  <data name="Connection_Error_OpenMobileHotspotSettings">
-    <value>Apri le impostazioni dell'hotspot mobile</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Segnala un problema</value>
@@ -2808,7 +2805,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Si è verificato un errore durante il caricamento dei dettagli della sessione. Riprova.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>Non è possibile connettersi alla VPN mentre usi il tuo dispositivo come hotspot mobile. Disattiva l'hotspot mobile e riprova.</value>
+    <value>Impossibile accedere a causa delle impostazioni di rete sul tuo dispositivo. Questo potrebbe essere causato da un hotspot mobile, un'altra applicazione VPN o un software di macchina virtuale. Rivedi la configurazione di rete o contatta il supporto per assistenza.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Codice errato. Riprova.</value>

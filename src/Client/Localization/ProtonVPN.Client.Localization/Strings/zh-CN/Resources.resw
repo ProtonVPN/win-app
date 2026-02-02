@@ -343,7 +343,7 @@
     <value>由于网络问题，Proton VPN 无法获取身份验证证书。</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>It is not possible to connect to VPN while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+    <value>你的设备上的网络设置阻止了此连接。这可能是由移动热点、另一个VPN应用程序或虚拟机软件引起的。请检查你的网络配置或联系支持部门寻求帮助。</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>您选择的所有服务器均不可用。请扩大选择范围或稍后再试。</value>
@@ -354,9 +354,6 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>缺少网络适配器。</value>
-  </data>
-  <data name="Connection_Error_OpenMobileHotspotSettings">
-    <value>Open mobile hotspot settings</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>报告问题</value>
@@ -2700,7 +2697,7 @@ Error code: {0}</value>
     <value>获取会话详细信息时发生错误。请重试。</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>It is not possible to sign in while using your device as a mobile hotspot. Disable mobile hotspot and try again.</value>
+    <value>由于您设备上的网络设置，无法登录。这可能是由移动热点、另一个VPN应用程序或虚拟机软件引起的。请检查您的网络配置或联系支持部门寻求帮助。</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>验证码错误，请重试。</value>

@@ -343,7 +343,7 @@
     <value>Protonu VPN sa nepodarilo načítať overovací certifikát kvôli problému so sieťou.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>Pri používaní zariadenia ako mobilného hotspotu nie je možné pripojiť sa k VPN. Vypnite mobilný hotspot a skúste to znova.</value>
+    <value>Pripojenie bolo blokované nastaveniami siete vo vašom zariadení. Príčinou môže byť mobilný hotspot, iná VPN aplikácia alebo softvér virtuálneho stroja. Skontrolujte, prosím, svoju sieťovú konfiguráciu alebo kontaktujte podporu, aby vám pomohla.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>Všetky servery vo vašom výbere sú nedostupné. Rozšírte svoj výber alebo to skúste neskôr, prosím.</value>
@@ -354,9 +354,6 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Chýbajúci sieťový adaptér.</value>
-  </data>
-  <data name="Connection_Error_OpenMobileHotspotSettings">
-    <value>Otvoriť nastavenia mobilného hotspotu</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Nahlásiť problém</value>
@@ -3024,7 +3021,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Pri načítavaní údajov relácie došlo k chybe. Skúste to prosím znova.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>Pri používaní zariadenia ako mobilného hotspotu nie je možné sa prihlásiť. Vypnite mobilný hotspot a skúste to znova.</value>
+    <value>Z dôvodu nastavení siete na vašom zariadení nie je možné prihlásiť sa. Príčinou môže byť mobilný hotspot, iná VPN aplikácia alebo softvér virtuálneho stroja. Skontrolujte, prosím, svoju sieťovú konfiguráciu alebo kontaktujte podporu, aby vám pomohla.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Nesprávny kód! Skúste to prosím znovu.</value>
@@ -4095,7 +4092,7 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
     <value>Kill Switch je deaktivovaný</value>
   </data>
   <data name="State_Fastest">
-    <value>Najrýchlejšia krajina</value>
+    <value>Najrýchlejší v štáte</value>
     <comment>State describes a country state such as California or Arizona in the US</comment>
   </data>
   <data name="State_Random">

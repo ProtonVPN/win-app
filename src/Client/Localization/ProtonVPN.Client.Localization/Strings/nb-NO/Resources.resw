@@ -343,7 +343,7 @@
     <value>Proton VPN klarte ikke å hente autentiseringssertifikat på grunn av nettverksproblem.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>Det er ikke mulig å koble til VPN mens du bruker enheten din som et mobilt hotspot. Deaktiver mobilt hotspot og prøv igjen.</value>
+    <value>Tilkoblingen ble blokkert av nettverksinnstillingene på enheten din. Dette kan være forårsaket av et mobilt hotspot, et annet VPN-program eller programvare for virtuelle maskiner. Se over nettverkskonfigurasjonen din eller kontakt kundestøtte for å få hjelp.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>Alle tjenere i ditt utvalg er utilgjengelige. Utvid utvalget eller prøv igjen senere.</value>
@@ -354,9 +354,6 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Nettverkskortet mangler.</value>
-  </data>
-  <data name="Connection_Error_OpenMobileHotspotSettings">
-    <value>Åpne innstillingene for mobilt hotspot</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Rapporter et problem</value>
@@ -2808,7 +2805,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Det oppstod en feil under henting av øktdetaljene. Prøv på nytt.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>Det er ikke mulig å logge på mens du bruker enheten din som et mobilt hotspot. Deaktiver mobilt hotspot og prøv igjen.</value>
+    <value>Kan ikke logge på på grunn av nettverksinnstillingene på enheten din. Dette kan være forårsaket av et mobilt hotspot, et annet VPN-program eller programvare for virtuelle maskiner. Se over nettverkskonfigurasjonen din eller kontakt kundestøtte for å få hjelp.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Feil kode. Prøv på nytt.</value>

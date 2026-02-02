@@ -343,7 +343,7 @@
     <value>Proton VPN ei voinut noutaa todennusvarmennetta verkko-ongelman vuoksi.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>VPN-yhteyttä ei voida muodostaa, kun laitettasi käytetään mobiilitukiasemana. Poista mobiilitukiasema käytöstä ja yritä uudelleen.</value>
+    <value>Yhteys estettiin laitteesi verkkoasetusten vuoksi. Tämä voi johtua mobiilihotspotista, toisesta VPN-sovelluksesta tai virtuaalikoneohjelmistosta. Tarkista verkkoasetuksesi tai ota yhteyttä tukeen saadaksesi apua.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>Kaikki valitsemasi palvelimet eivät ole käytettävissä. Laajenna valintaasi tai yritä uudelleen myöhemmin.</value>
@@ -354,9 +354,6 @@
   </data>
   <data name="Connection_Error_NoTapAdapters">
     <value>Verkkosovitin puuttuu.</value>
-  </data>
-  <data name="Connection_Error_OpenMobileHotspotSettings">
-    <value>Avaa mobiilitukiasema-asetukset</value>
   </data>
   <data name="Connection_Error_ReportAnIssue">
     <value>Ilmoita ongelmasta</value>
@@ -2808,7 +2805,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Virhe noudettaessa istunnon tietoja. Yritä uudelleen.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>Sisäänkirjautuminen ei ole mahdollista, kun laitettasi käytetään mobiilitukiasemana. Poista mobiilitukiasema käytöstä ja yritä uudelleen.</value>
+    <value>Kirjautuminen ei onnistu laitteen verkkoasetusten vuoksi. Tämä voi johtua mobiilihotspotista, toisesta VPN-sovelluksesta tai virtuaalikoneohjelmistosta. Tarkista verkkoasetuksesi tai ota yhteyttä tukeen saadaksesi apua.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Virheellinen koodi. Yritä uudelleen.</value>
