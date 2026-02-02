@@ -79,7 +79,7 @@ if not defined GOSRPONLY (
         docker run --rm ^
         -e GOARCH="arm64" ^
         -e GOOS="windows" ^
-        -e GO111MODULE="off" ^
+        -e GO111MODULE="on" ^
         -v %currentDir%\src\ProtonVPN.LocalAgent:/go/work ^
         -w /go/work/localAgentWin x1unix/go-mingw:1.23 ^
         go build -buildmode c-shared -ldflags="-w -s" -trimpath -v -o LocalAgent.dll .
