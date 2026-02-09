@@ -461,7 +461,7 @@
     <value>Немагчыма падключыцца</value>
   </data>
   <data name="Connections_Fastest">
-    <value>Найхутчэйшыя</value>
+    <value>Найхутчэйшы</value>
   </data>
   <data name="Connections_Free_Servers_One">
     <value>Бясплатны сервер</value>
@@ -806,7 +806,7 @@
     <value>Найхутчэйшыя краіны</value>
   </data>
   <data name="Countries_NoSearchResults">
-    <value>Вынікі не знойдзены</value>
+    <value>Нічога не знойдзена</value>
   </data>
   <data name="Countries_NumberOfServers">
     <value>Серверы ({0})</value>
@@ -860,7 +860,7 @@
     <value>Найхутчэйшыя краіны</value>
   </data>
   <data name="Country_Fastest_ExcludingMyCountry">
-    <value>Найхутчэйшыя (за выключэннем маёй краіны)</value>
+    <value>Найхутчэйшы (за выключэннем маёй краіны)</value>
   </data>
   <data name="Country_Random">
     <value>Выпадковая краіна</value>
@@ -1882,13 +1882,13 @@
     <value>Уключыце Base Filtering Engine для працягу</value>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Атрымайце неабмежаваную колькасць змяненняў сервера з VPN Plus.</value>
+    <value>Змяняйце серверы без абмежаванняў з VPN Plus</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
     <value>На дадзены момант вы дасягнулі максімальнай колькасці пераключэнняў на бясплатных серверах</value>
   </data>
   <data name="Dialogs_Common_GetStarted">
-    <value>Пачаць працу</value>
+    <value>Пачаць</value>
   </data>
   <data name="Dialogs_Common_SubscriptionExpired">
     <value>Падпіска пратэрмінавана</value>
@@ -1930,7 +1930,7 @@
     <value>Бясплатныя падключэнні</value>
   </data>
   <data name="Dialogs_Latency_Description">
-    <value>Затрымка паказвае, які час патрабуецца серверу для таго, каб адказаць на запыт.
+    <value>Затрымка паказвае, які час патрабуецца серверу для адказу на запыт.
 
 Высокая затрымка можа замарудзіць ваша падключэнне.</value>
   </data>
@@ -2165,7 +2165,7 @@
     <value>Праверце сваё падключэнне да інтэрнэту</value>
   </data>
   <data name="Dialogs_Troubleshooting_CheckInternet_Description">
-    <value>Пераканайцеся, што вы падключаны да інтэрнэту і ваша падключэнне з'яўляецца стабільным</value>
+    <value>Пераканайцеся, што вы падключаны да інтэрнэту і ваша падключэнне з'яўляецца стабільным.</value>
   </data>
   <data name="Dialogs_Troubleshooting_Description">
     <value>Гэтыя хуткія выпраўленні дапамогуць вам падключыцца да Proton.</value>
@@ -2225,16 +2225,16 @@
     <value>Свабодны прагляд з любога месца</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
-    <value>Схавайце сваё віртуальнае месцазнаходжанне і карыстайцеся інтэрнэтам у {0} даступнай краіне.</value>
+    <value>Схавайце сваё віртуальнае месцазнаходжанне і карыстайцеся інтэрнэтам у любой з {0} даступнай краіны.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Few">
-    <value>Схавайце сваё віртуальнае месцазнаходжанне і карыстайцеся інтэрнэтам у {0} даступных краінах.</value>
+    <value>Схавайце сваё віртуальнае месцазнаходжанне і карыстайцеся інтэрнэтам у любой з нашых {0} даступных краін.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Many">
-    <value>Схавайце сваё віртуальнае месцазнаходжанне і карыстайцеся інтэрнэтам у {0} даступных краінах.</value>
+    <value>Схавайце сваё віртуальнае месцазнаходжанне і карыстайцеся інтэрнэтам з любой з нашых {0} даступных краін.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>Схавайце сваё віртуальнае месцазнаходжанне і карыстайцеся інтэрнэтам у {0} даступных краінах.</value>
+    <value>Схавайце сваё віртуальнае месцазнаходжанне і карыстайцеся інтэрнэтам з любой з нашых {0} даступных краін.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
     <value>Абараніце да 10 прылад адначасова</value>
@@ -2255,7 +2255,7 @@
     <value>Віншуем! Вы разблакіравалі прэміяльныя функцыі бяспекі і прадукцыйнасці ва ўсіх сэрвісах Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Атрымлівайце асалоду ад лепшай прыватнасці, якую прапануе Proton.</value>
+    <value>Атрымлівайце асалоду ад палепшай прыватнасці, якую прапануе Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Вітаем вас у Proton Unlimited</value>
@@ -2270,13 +2270,13 @@
     <value>Цяпер вы можаце атрымліваць доступ да вылучаных сервераў арганізацыі з галоўнай бакавой панэлі.</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
-    <value>Шлюзы былі перанесены</value>
+    <value>Шлюзы перамешчаны</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
     <value>Цяпер вы можаце падключацца да прынтараў, дынамікаў і іншых прылад у лакальнай сетцы (LAN), абыходзячы тунэль VPN.</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Title">
-    <value>Падключэнні па лакальнай сетцы</value>
+    <value>Падключэнні па LAN</value>
   </data>
   <data name="Dialogs_WhatsNew_NewLook_Description">
     <value>Мы абнавілі наш дызайн і прыбралі некаторыя рэчы, каб зрабіць праграму прасцей у выкарыстанні.</value>
@@ -2297,7 +2297,7 @@
     <value>Яшчэ больш магутныя профілі</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Description">
-    <value>Цяпер яшчэ прасцей стала перападключацца да вашых абраных сервераў. Праглядайце свае нядаўнія падключэнні на галоўным экране або замацоўвайце іх для хуткага доступу.</value>
+    <value>Цяпер перападключацца да вашых абраных сервераў стала яшчэ прасцей. Праглядайце свае нядаўнія падключэнні на галоўным экране або замацоўвайце іх для хуткага доступу.</value>
   </data>
   <data name="Dialogs_WhatsNew_Recents_Title">
     <value>Уводзіны ў раздзел "Нядаўнія"</value>
@@ -2396,7 +2396,7 @@
     <value>Пашыраны Kill Switch адключае інтэрнэт для абароны вашага IP-адраса, пакуль адсутнічае падключэнне да Proton VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
-    <value>Пры страце падключэння па VPN, вы будзе адключаны ад інтэрнэту пакуль падключэнне па VPN не будзе адноўлена.</value>
+    <value>Вы будзе адключаны ад інтэрнэту пакуль падключэнне па VPN не будзе адноўлена, калі раптам падключэнне да сервера VPN будзе згублена.</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Connected">
     <value>Пашыраны Kill Switch дзейнічае, нават калі вы наўмысна адключаецеся ад VPN</value>
@@ -3398,7 +3398,7 @@ Secure Core</value>
     <value>Паспрабуйце іншыя ключавыя словы.</value>
   </data>
   <data name="Search_NoResults_Title">
-    <value>Вынікі не знойдзены</value>
+    <value>Нічога не знойдзена</value>
   </data>
   <data name="Server">
     <value>Сервер</value>
@@ -3520,7 +3520,7 @@ Secure Core</value>
     <value>Альтэрнатыўная маршрутызацыя</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
-    <value>Калі сэрвісы Proton заблакіраваны па прычыне абмежаванняў сеткі, мы паспрабуем скарыстацца альтэрнатыўным сеткавым маршрутам для падключэння да нашых сайтаў.</value>
+    <value>Будзе зроблена спроба скарыстацца альтэрнатыўным сеткавым маршрутам для падключэння да нашых сайтаў, калі сэрвісы Proton заблакіраваны з прычыны абмежавання сеткі.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
     <value>Карыстальніцкія серверы DNS</value>
@@ -3585,13 +3585,13 @@ Secure Core</value>
     <value>Выберыце тып пераўтварэння сеткавых адрасоў для вашага падключэння.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate">
-    <value>Умераны (type 2)</value>
+    <value>Умераны (тып 2)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
     <value>Некаторыя абмежаванні на даныя, якія трапляюць у вашу сетку. Гэты параметр найлепш пасуе для сеткавых гульняў.</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict">
-    <value>Абмежаваны (type 3)</value>
+    <value>Абмежаваны (тып 3)</value>
   </data>
   <data name="Settings_Connection_Advanced_NatType_Strict_Description">
     <value>Абмяжоўваюць даныя, якія трапляюць у вашу сетку. Гэты параметр найбольш бяспечны, але можа прывесці да ўзнікнення праблем у гульнях, якія патрабуюць аднарангавага падключэння.</value>
@@ -3678,7 +3678,7 @@ Secure Core</value>
     <value>Некаторыя вэб-сайты могуць некарэктна загружацца, калі рэклама і праграмы сачэння заблакіраваны.</value>
   </data>
   <data name="Settings_Connection_NetShield_PrivacyPanel">
-    <value>NetShield Privacy Panel</value>
+    <value>Панэль прыватнасці NetShield</value>
   </data>
   <data name="Settings_Connection_PortForwarding">
     <value>Перанакіраванне партоў</value>
@@ -3696,7 +3696,7 @@ Secure Core</value>
     <value>Уключыць перанакіраванне партоў?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Паляпшае хуткасць торэнтаў і гульняў, дазваляючы непасрэдныя падключэнні P2P праз вызначаны порт.</value>
+    <value>Паляпшае хуткасць торэнтаў і гульняў, дазваляючы рабіць наўпроставыя падключэнні P2P праз прызначаны порт.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Падключайцеся да сервера з падтрымкай P2P, каб скарыстацца функцыяй перанакіравання партоў.</value>
@@ -3712,7 +3712,7 @@ Secure Core</value>
     <value>Апавяшчэнні</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Апавяшчаць, калі змяняецца нумар актыўнага парта.</value>
+    <value>Атрымлівайце апавяшчэнні пры змяненні нумара актыўнага парта.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Unavailable">
     <value>Недаступна</value>
@@ -3844,7 +3844,7 @@ Secure Core</value>
     <value>Доступ да бэта-версіі</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>Атрымаць ранні доступ і дапамагчы нам пратэсціраваць новую версію Proton VPN.</value>
+    <value>Атрымайце ранні доступ і дапамажыце нам пратэсціраваць новую версію Proton VPN.</value>
   </data>
   <data name="Settings_General_Language">
     <value>Мова</value>
@@ -3877,7 +3877,7 @@ Secure Core</value>
     <value>Удасканаліць Proton</value>
   </data>
   <data name="Settings_Improve_Censorship">
-    <value>Дапамагаць нам змагацца з цэнзурай</value>
+    <value>Дапамажыце нам змагацца з цэнзурай</value>
   </data>
   <data name="Settings_OperatingSystemVersion">
     <value>Версія аперацыйнай сістэмы</value>
@@ -3886,7 +3886,7 @@ Secure Core</value>
     <value>Налада падключана да вашага актыўнага профілю.</value>
   </data>
   <data name="Settings_OverriddenByProfile_Description2">
-    <value>Адрэдагуйце свой профіль, каб зрабіць змены або адключыцеся, каб рэдагаваць свае агульныя налады VPN.</value>
+    <value>Адрэдагуйце свой профіль, каб зрабіць змены. Таксама вы можаце адключыцца, каб адрэдагаваць свае агульныя налады VPN.</value>
   </data>
   <data name="Settings_OverriddenByProfile_Tagline">
     <value>Гэтыя налады падключаны да профілю {0} і імі можна кіраваць толькі ў профілях.</value>
@@ -3903,13 +3903,13 @@ Secure Core</value>
     <value>Пратакол VPN вызначае, як даныя перамяшчаюцца паміж серверам VPN і вашай прыладай.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Description">
-    <value>Правераны, добра пратэсціраваны і бяспечны. OpenVPN надзейна працуе нават у сетках з дрэнным злучэннем, але можа быць менш хуткім за іншыя пратаколы.</value>
+    <value>Спраўджаны, добра пратэсціраваны і бяспечны. OpenVPN надзейна працуе нават у сетках з дрэнным злучэннем, але можа быць менш хуткім за іншыя пратаколы.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Title">
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Description">
-    <value>Правераны, добра пратэсціраваны і бяспечны. OpenVPN менш эфектыўна выкарыстоўвае акумулятар у параўнанні з іншымі пратаколамі.</value>
+    <value>Спраўджаны, добра пратэсціраваны і бяспечны. OpenVPN менш эфектыўна выкарыстоўвае акумулятар у параўнанні з іншымі пратаколамі.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
@@ -3933,7 +3933,7 @@ Secure Core</value>
     <value>WireGuard</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Description">
-    <value>Пераадольвае блакіроўкі VPN хаваючы ваша падключэнне па VPN ад рэгулятара. Stealth устойлівы да тэхналогіі DPI (deep packet inspection), але можа саступаць іншым пратаколам па хуткасці перадачы даных.</value>
+    <value>Пераадольвае блакіроўкі VPN хаваючы ваша падключэнне па VPN ад цэнзараў. Stealth устойлівы да тэхналогіі DPI (deep packet inspection), але можа саступаць іншым пратаколам па хуткасці перадачы даных.</value>
   </data>
   <data name="Settings_Protocols_WireGuardTls_Title">
     <value>Stealth</value>
@@ -4092,7 +4092,7 @@ Secure Core</value>
     <value>Kill Switch адключаны</value>
   </data>
   <data name="State_Fastest">
-    <value>Найхутчэйшая краіна</value>
+    <value>Найхутчэйшы штат</value>
     <comment>State describes a country state such as California or Arizona in the US</comment>
   </data>
   <data name="State_Random">
@@ -4187,7 +4187,7 @@ Secure Core</value>
     <value>Атрымайце доступ да прылад у сваёй лакальнай сетцы (LAN) пры падключэнні</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
-    <value>Павысьце свой досвед у відэагульнях пераключыўся на NAT type 2 (умераны)</value>
+    <value>Павысьце свой досвед у відэагульнях пераключыўшыся на NAT тып 2 (умераны)</value>
   </data>
   <data name="Upsell_Carousel_MultipleDevices">
     <value>Падключайце да 10 прылад адначасова</value>
@@ -4369,13 +4369,13 @@ Secure Core</value>
     <value>OpenVPN (TCP)</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp_Description">
-    <value>Прызнаны, правераны і бяспечны</value>
+    <value>Спраўджаны, добра пратэсціраваны і бяспечны</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp">
     <value>OpenVPN (UDP)</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
-    <value>Прызнаны, правераны і бяспечны</value>
+    <value>Спраўджаны, добра пратэсціраваны і бяспечны</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

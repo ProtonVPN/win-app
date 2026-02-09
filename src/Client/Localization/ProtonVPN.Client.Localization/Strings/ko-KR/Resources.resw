@@ -343,7 +343,7 @@
     <value>Proton VPN이 네트워크 문제로 인해 인증서를 불러오지 못했습니다.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>The connection was blocked by network settings on your device. This may be caused by a mobile hotspot, another VPN application, or virtual machine software. Please review your network configuration or contact support for assistance.</value>
+    <value>기기 네트워크 설정으로 인하여 연결이 차단되었습니다. 모바일 핫스팟이나 다른 VPN 애플리케이션 또는 가상 머신 소프트웨어 때문일 수 있습니다. 네트워크 설정을 검토하거나 지원 문의를 해주세요.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>선택한 섹션의 모든 서버가 사용할 수 없습니다. 섹션을 확장하거나 나중에 다시 시도해 주세요.</value>
@@ -1773,13 +1773,13 @@
     <value>다시 시도</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Upgrade to unlock P2P (peer-to-peer) servers for fast online gaming and torrenting, or end your P2P activity to restore your connection.</value>
+    <value>업그레이드를 통해 빠른 온라인 게임과 토렌토를 위한 P2P 서버 잠금을 해제하거나, 연결을 원래대로 복귀하기 위해 P2P 활동을 끝내세요.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>P2P is not allowed on free VPN servers</value>
+    <value>P2P는 무료 VPN 서버에서 지원하지 않습니다.</value>
   </data>
   <data name="Dialogs_P2PDetection_WindowTitle">
-    <value>Discover VPN Plus</value>
+    <value>VPN Plus 알아보기</value>
   </data>
   <data name="Dialogs_P2P_HowToTorrentLink">
     <value>P2P를 이용해 토렌트하는 방법</value>
@@ -1910,7 +1910,7 @@
     <value>Smart Routing</value>
   </data>
   <data name="Dialogs_StreamingDetection_WindowTitle">
-    <value>Discover VPN Plus</value>
+    <value>VPN Plus 알아보기</value>
   </data>
   <data name="Dialogs_StreamingWarning_Description">
     <value>VPN Plus servers let you enjoy your favorite movies and TV shows from around the world.</value>
@@ -3789,7 +3789,7 @@ VPN 연결</value>
     <value>Unlock torrenting and online gaming over P2P (peer-to-peer) protocols with paid VPN servers.</value>
   </data>
   <data name="SystemNotification_P2PWarning_Title">
-    <value>P2P not available with VPN Free</value>
+    <value>VPN Free에서는 P2P를 사용할 수 없습니다</value>
   </data>
   <data name="SystemNotification_StreamingWarning_Description">
     <value>Some websites and streaming services block free VPN users. Upgrade to Proton VPN Plus to bypass these blocks.</value>
@@ -3845,7 +3845,7 @@ VPN 연결</value>
     <value>Download files through BitTorrent and other file sharing protocols.</value>
   </data>
   <data name="UpsellBanner_P2P_Title">
-    <value>P2P support</value>
+    <value>P2P 지원</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>모든 서버에 접근하기 위해 업그레이드.</value>

@@ -3053,7 +3053,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Serverbelastning</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>Smart Routing allows us to provide VPN coverage in hard-to-reach countries.</value>
+    <value>Smart routing gör det möjligt för oss att tillhandahålla VPN-täckning i svåråtkomliga länder.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>När du ansluter till en Smart Routing-server ser det ut som om du surfar i ditt destinationsland, även om den fysiska servern finns någon annanstans.</value>

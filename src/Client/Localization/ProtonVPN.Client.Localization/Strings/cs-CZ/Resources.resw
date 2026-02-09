@@ -343,7 +343,7 @@
     <value>Proton VPN se nepodařilo stáhnout ověřovací certifikát kvůli problému se sítí.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>Připojení bylo zablokováno nastavením sítě ve vašem zařízení. Příčinou může být mobilní hotspot, jiná aplikace VPN nebo software virtuálního nástroje. Zkontrolujte konfiguraci sítě nebo se obraťte na podporu.</value>
+    <value>Připojení bylo zablokováno nastavením sítě ve vašem zařízení. Příčinou může být mobilní hotspot, jiná aplikace VPN nebo software pro virtualizaci. Zkontrolujte konfiguraci sítě nebo se obraťte na podporu.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>Všechny servery ve vašem výběru jsou nedostupné. Rozšiřte prosím svůj výběr nebo to zkuste později.</value>
@@ -3021,7 +3021,7 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
     <value>Při načítání podrobností relace došlo k chybě. Prosíme zkuste to znovu.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>Nelze se přihlásit kvůli nastavení sítě ve vašem zařízení. Příčinou může být mobilní hotspot, jiná aplikace VPN nebo software virtuálního nástroje. Zkontrolujte konfiguraci sítě nebo se obraťte na podporu.</value>
+    <value>Nelze se přihlásit kvůli nastavení sítě ve vašem zařízení. Příčinou může být mobilní hotspot, jiná aplikace VPN nebo software pro virtualizaci. Zkontrolujte konfiguraci sítě nebo se obraťte na podporu.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Nesprávný kód. Zkuste to znovu.</value>

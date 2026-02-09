@@ -2276,7 +2276,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Aktiivisen portin numeroa ei voi noutaa. Käynnistä yhteytesi uudelleen ja yritä uudelleen.</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Enter the active port number into your torrent client or P2P app for enhanced performance.</value>
+    <value>Syötä aktiivisen portin numero torrent-asiakasohjelmaasi tai P2P-sovellukseesi suorituskyvyn parantamiseksi.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Parantaa P2P-vertaisverkkojen latausnopeuksia</value>
@@ -2660,10 +2660,10 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Yhteyden tiedot</value>
   </data>
   <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
-    <value>Re-authenticate in your organization's 2FA portal to continue.</value>
+    <value>Tunnistaudu uudelleen organisaatiosi 2FA-portaalissa jatkaaksesi.</value>
   </data>
   <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
-    <value>2FA expired</value>
+    <value>2FA on erääntynyt</value>
   </data>
   <data name="Home_ConnectionDetails_Unprotected">
     <value>Suojaamaton</value>
@@ -2923,7 +2923,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Tilauksesi on alennettu Proton Free -tasolle, joten yhteytesi siirretään nopeimmalle ilmaispalvelimelle.</value>
   </data>
   <data name="Notifications_UnsecureWifi_Description">
-    <value>Public Wi-Fi networks are more vulnerable to security threats. Connect to VPN to browse safely.</value>
+    <value>Julkiset Wi-Fi-verkot ovat alttiimpia tietoturvauhkille. Yhdistä VPN:ään selataksesi turvallisesti.</value>
   </data>
   <data name="Notifications_UnsecureWifi_Title">
     <value>Havaittiin suojaamaton Wi-Fi-yhteys</value>
@@ -2980,10 +2980,10 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>P2P</value>
   </data>
   <data name="Overlay_Profile_Description1">
-    <value>Profiles are custom VPN connections that you can tailor to your needs and save for quick access.</value>
+    <value>Profiilit ovat mukautettuja VPN-yhteyksiä, joita voit räätälöidä tarpeisiisi ja tallentaa nopeaa käyttöä varten.</value>
   </data>
   <data name="Overlay_Profile_Description2">
-    <value>Set your preferred location and optimize your settings for security, performance, gaming, or any other scenario.</value>
+    <value>Aseta ensisijainen sijaintisi ja optimoi asetuksesi turvallisuutta, suorituskykyä, pelaamista tai mitä tahansa muuta tilannetta varten.</value>
   </data>
   <data name="Overlay_Profile_LearnMore">
     <value>Mikä on VPN-profiili?</value>
@@ -2992,7 +2992,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Profiilit</value>
   </data>
   <data name="Overlay_SecureCore_Description1">
-    <value>Secure Core connects you to your destination server via a second, maximum security VPN server.</value>
+    <value>Secure Core yhdistää sinut kohdepalvelimeen toisen, erittäin turvallisen VPN-palvelimen kautta.</value>
   </data>
   <data name="Overlay_SecureCore_Description2">
     <value>Tämä korkeampi suojaustaso voi aiheuttaa suuremman viiveen ja hitaammat nopeudet.</value>
@@ -3059,7 +3059,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Kun yhdistät Smart Routing -palvelimeen, näytät selaavasi kohdemaastasi, vaikka fyysinen palvelin sijaitseekin muualla.</value>
   </data>
   <data name="Overlay_SmartRouting_Description3">
-    <value>Smart Routing is typically used to get around anti-privacy laws and other forms of censorship.</value>
+    <value>Smart Routingia käytetään tyypillisesti yksityisyyttä rajoittavien lakien ja muun sensuurin kiertämiseen.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
     <value>Palvelimien fyysinen sijainti on {0}, mutta näytät selaavan sijainnista {1}</value>
@@ -3119,7 +3119,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Avaa verkkosivusto</value>
   </data>
   <data name="Profile_Options_Description">
-    <value>Automatically open a website or an app of your choice when you connect to this profile.</value>
+    <value>Avaa haluamasi verkkosivusto tai sovellus automaattisesti, kun tämä profiili yhdistetään.</value>
   </data>
   <data name="Profile_Options_Header">
     <value>Yhdistä ja avaa</value>
@@ -3320,7 +3320,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Otetaanko vaihtoehtoiset DNS-palvelimet käyttöön?</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
-    <value>Connect to Proton VPN using your own Domain Name System (DNS). Only use DNS servers that you trust.</value>
+    <value>Yhdistä Proton VPN:ään omilla nimipalvelimillasi (DNS). Käytä vain DNS-palvelimia, joihin luotat.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
     <value>Yritämme yhdistää näihin palvelimiin järjestyksessä. Jos mikään niistä ei toimi, käytetään oletusarvoista Proton VPN -DNS:ää.</value>
@@ -3339,10 +3339,10 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>IPv6-vuotosuojaus</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
-    <value>Prevents data leaks by blocking IPv6 traffic that doesn't pass through the VPN tunnel.</value>
+    <value>Estää tietovuodot estämällä VPN-tunnelin ulkopuolisen IPv6-liikenteen.</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6_Description">
-    <value>Allows IPv6 traffic to pass through the VPN tunnel. This improves compatibility with IPv6 websites and services.</value>
+    <value>Sallii IPv6-liikenteen kulkea VPN-tunnelin läpi. Tämä parantaa yhteensopivuutta IPv6-sivustojen ja -palveluiden kanssa.</value>
   </data>
   <data name="Settings_Connection_Advanced_LanConnections">
     <value>Salli LAN-yhteydet</value>
@@ -3387,10 +3387,10 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Käyttää siltausta verkkojen yhdistämiseen. TUN tarjoaa suurempia nopeuksia kuin TAP, muttei välttämättä ole yhtä vakaa.</value>
   </data>
   <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
-    <value>Custom DNS can't be turned on because you're connected to a profile with NetShield enabled.</value>
+    <value>Mukautettua DNS:ää ei voi ottaa käyttöön, koska olet yhteydessä profiiliin, jossa NetShield on käytössä.</value>
   </data>
   <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
-    <value>Custom DNS is disabled because you're currently connected to a profile with NetShield enabled.</value>
+    <value>Mukautettu DNS on poistettu käytöstä, koska olet tällä hetkellä yhteydessä profiiliin, jossa NetShield on käytössä.</value>
   </data>
   <data name="Settings_Connection_Default">
     <value>Oletusyhteys</value>
@@ -3480,7 +3480,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Otetaanko porttiohjaus käyttöön?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Improves torrenting and gaming speeds by allowing direct P2P connections through a designated port.</value>
+    <value>Parantaa torrent- ja pelinopeuksia sallimalla suorat P2P-yhteydet määritetyn portin kautta.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>Käyttääksesi porttiohjausta, yhdistä P2P-tuelliseen palvelimeen.</value>
@@ -3670,7 +3670,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Tämä asetus liittyy aktiiviseen profiiliisi.</value>
   </data>
   <data name="Settings_OverriddenByProfile_Description2">
-    <value>Edit your profile to make changes, or disconnect to edit your general VPN settings.</value>
+    <value>Muokkaa profiiliasi tehdäksesi muutoksia tai katkaise yhteys muokataksesi yleisiä VPN-asetuksiasi.</value>
   </data>
   <data name="Settings_OverriddenByProfile_Tagline">
     <value>Nämä asetukset liittyvät profiiliin "{0}", ja niitä voi hallita vain Profiileissa.</value>

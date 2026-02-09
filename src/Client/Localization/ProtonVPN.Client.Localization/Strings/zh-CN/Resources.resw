@@ -148,7 +148,7 @@
     <value>安全防护</value>
   </data>
   <data name="Automation_Properties_NoServers_Page">
-    <value>No servers page</value>
+    <value>无服务器页面</value>
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>端口转发</value>
@@ -268,7 +268,7 @@
     <value>重新连接</value>
   </data>
   <data name="Common_Actions_Refresh">
-    <value>Refresh</value>
+    <value>刷新</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>注销</value>
@@ -446,7 +446,7 @@ Error code: {0}</value>
     <value>最快</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Free servers</value>
+    <value>免费服务器</value>
   </data>
   <data name="Connections_Gateway">
     <value>网关</value>
@@ -473,7 +473,7 @@ Error code: {0}</value>
     <value>P2P 国家 ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P servers</value>
+    <value>P2P 服务器</value>
   </data>
   <data name="Connections_P2P_States_Other">
     <value>P2P 州 ({0})</value>
@@ -548,7 +548,7 @@ Error code: {0}</value>
     <value>Secure Core 国家/地区（{0}）</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Secure Core servers</value>
+    <value>Secure Core 服务器</value>
   </data>
   <data name="Connections_SeeCities_Other">
     <value>查看城市 ({0})</value>
@@ -569,7 +569,7 @@ Error code: {0}</value>
     <value>该服务器正在维护中</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Servers</value>
+    <value>服务器</value>
   </data>
   <data name="Connections_State">
     <value>省份/地区</value>
@@ -589,7 +589,7 @@ Error code: {0}</value>
     <value>Tor 国家/地区（{0}）</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Tor servers</value>
+    <value>Tor 服务器</value>
   </data>
   <data name="Countries">
     <value>国家</value>
