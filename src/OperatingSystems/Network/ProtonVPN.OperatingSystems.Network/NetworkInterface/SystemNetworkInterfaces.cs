@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -163,7 +163,7 @@ public class SystemNetworkInterfaces : ISystemNetworkInterfaces
         {
             return func();
         }
-        catch (NetworkInformationException ex)
+        catch (Exception ex)
         {
             _logger.Error<NetworkLog>($"Failed to retrieve a system network interface.", ex);
             return new NullNetworkInterface();
