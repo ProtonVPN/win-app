@@ -77,6 +77,8 @@ Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Services\EventLog\Application\Prot
 Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Services\EventLog\Application\ProtonVPN"; ValueType: expandsz; ValueName: "EventMessageFile"; ValueData: "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\EventLogMessages.dll"; Flags: deletekey uninsdeletekey;
 
 [Files]
+Source: "Images\Proton*.bmp"; Flags: dontcopy nocompression;
+
 Source: "..\{#SourcePath}\ProtonVPN.Launcher.exe"; DestDir: "{app}"; Flags: signonce;
 
 Source: "..\{#SourcePath}\ProtonVPNService.exe"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
@@ -124,7 +126,7 @@ Source: "..\{#SourcePath}\nb-NO\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#Ve
 Source: "..\{#SourcePath}\sl-SI\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\sl-SI"; Flags: signonce;
 Source: "..\{#SourcePath}\zh-CN\Microsoft.ui.xaml.dll.mui"; DestDir: "{app}\{#VersionFolder}\zh-CN"; Flags: signonce;
 
-Source: "..\{#SourcePath}\Resources\ProtonVPN.InstallActions.x86.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
+Source: "..\{#SourcePath}\Resources\ProtonVPN.InstallActions.x86.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce nocompression;
 Source: "..\{#SourcePath}\Resources\LocalAgent.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
 Source: "..\{#SourcePath}\Resources\ProtonVPN.IPFilter.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
 Source: "..\{#SourcePath}\Resources\ProtonVPN.NetworkUtil.dll"; DestDir: "{app}\{#VersionFolder}\Resources"; Flags: signonce;
@@ -156,8 +158,6 @@ Source: "..\{#SourcePath}\Assets\Map\Data\*"; DestDir: "{app}\{#VersionFolder}\P
 ; Comes from iplist-builder repo artifacts
 Source: "..\data\ipv6_chaos_prefixtree.bin"; DestDir: "{app}\{#VersionFolder}\ServiceData\IPv6"; DestName: "PrefixTree.bin";
 Source: "..\{#SourcePath}\proton_vpn_ipv6chaos.dll"; DestDir: "{app}\{#VersionFolder}";
-
-Source: "Images\Proton*.bmp"; Flags: dontcopy;
 
 [Icons]
 Name: "{group}\Proton VPN"; Filename: "{app}\{#LauncherExeName}"
