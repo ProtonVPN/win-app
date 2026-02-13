@@ -31,6 +31,7 @@ using ProtonVPN.Client.Logic.Profiles.Contracts;
 using ProtonVPN.Client.Logic.Recents.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Migrations;
 using ProtonVPN.Client.Settings.Contracts.Observers;
@@ -42,7 +43,9 @@ using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Logic.Auth;
 
-public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<ClientOutdatedMessage>
+public class UserAuthenticator : IUserAuthenticator,
+    IEventMessageReceiver<ClientOutdatedMessage>,
+    IEventMessageReceiver<NoVpnConnectionsAssignedMessage>
 {
     private readonly ILogger _logger;
     private readonly IApiClient _apiClient;
@@ -150,6 +153,11 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
 
             return await HandleLoginOverGuestHoleAsync(username, password);
         }
+    }
+
+    public void Receive(NoVpnConnectionsAssignedMessage message)
+    {
+        SetAuthenticationStatus(AuthenticationStatus.LoggingIn);
     }
 
     private async Task<AuthResult> HandleLoginOverGuestHoleAsync(string username, SecureString password)
@@ -312,16 +320,17 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
         SetAuthenticationStatus(AuthenticationStatus.LoggedOut);
     }
 
-    public async Task AutoLoginUserAsync()
+    public async Task<AuthResult> AutoLoginUserAsync(bool isAppStartup)
     {
         if (HasAuthenticatedSessionData())
         {
             SetAuthenticationStatus(AuthenticationStatus.LoggingIn);
-            await CompleteLoginAsync(isAutoLogin: true, isToSendLoggedInEvent: true);
+            return await CompleteLoginAsync(isAutoLogin: isAppStartup, isToSendLoggedInEvent: true);
         }
         else
         {
             await _unauthSessionManager.CreateIfDoesNotExistAsync(_cts.Token);
+            return AuthResult.Ok();
         }
     }
 
@@ -416,7 +425,6 @@ public class UserAuthenticator : IUserAuthenticator, IEventMessageReceiver<Clien
                 vpnPlanChangeResult.ApiResponse.Failure &&
                 vpnPlanChangeResult.ApiResponse.Value.Code == ResponseCodes.NO_VPN_CONNECTIONS_ASSIGNED)
             {
-                await LogoutAsync(LogoutReason.NoVpnConnectionsAssigned);
                 return AuthResult.Fail(vpnPlanChangeResult.ApiResponse);
             }
 

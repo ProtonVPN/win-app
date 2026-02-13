@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -49,6 +49,11 @@ public class AuthResult : Result<AuthError>
 
     public static AuthResult Fail<T>(ApiResponseResult<T> apiResponseResult) where T : BaseResponse
     {
+        if (apiResponseResult.Value?.Code == ResponseCodes.NO_VPN_CONNECTIONS_ASSIGNED)
+        {
+            return Fail(AuthError.NoVpnAccess, apiResponseResult.Error);
+        }
+
         if (apiResponseResult.Actions.IsNullOrEmpty())
         {
             return apiResponseResult.Value?.Code switch

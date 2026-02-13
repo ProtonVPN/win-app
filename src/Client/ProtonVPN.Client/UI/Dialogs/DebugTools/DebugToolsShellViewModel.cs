@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -33,6 +33,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
+using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Dialogs.DebugTools.Models;
@@ -53,6 +54,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     private readonly IAppExitInvoker _appExitInvoker;
     private readonly ISettingsHeartbeatStatisticalEventSender _settingsHeartbeatStatisticalEventSender;
     private readonly IEnumerable<IWindowActivator> _windowActivators;
+    private readonly IVpnPlanUpdater _vpnPlanUpdater;
 
     [ObservableProperty]
     private Overlay _selectedOverlay;
@@ -100,7 +102,8 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         IViewModelHelper viewModelHelper,
         IAppExitInvoker appExitInvoker,
         ISettingsHeartbeatStatisticalEventSender settingsHeartbeatStatisticalEventSender,
-        IEnumerable<IWindowActivator> windowActivators)
+        IEnumerable<IWindowActivator> windowActivators,
+        IVpnPlanUpdater vpnPlanUpdater)
         : base(windowActivator, viewModelHelper)
     {
         _serversUpdater = serversUpdater;
@@ -113,6 +116,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         _appExitInvoker = appExitInvoker;
         _settingsHeartbeatStatisticalEventSender = settingsHeartbeatStatisticalEventSender;
         _windowActivators = windowActivators;
+        _vpnPlanUpdater = vpnPlanUpdater;
 
         OverlaysList =
         [
@@ -330,5 +334,11 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     public Task TriggerSettingsTelemetryHeartbeatAsync()
     {
         return _settingsHeartbeatStatisticalEventSender.SendAsync();
+    }
+
+    [RelayCommand]
+    public Task TriggerVpnPlanUpdateAsync()
+    {
+        return _vpnPlanUpdater.ForceUpdateAsync();
     }
 }

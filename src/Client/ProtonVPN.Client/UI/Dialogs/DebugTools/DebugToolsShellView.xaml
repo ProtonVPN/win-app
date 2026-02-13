@@ -239,6 +239,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             Style="{StaticResource PrimaryButtonStyle}" />
                 </toolkit:SettingsCard>
 
+                <toolkit:SettingsCard Header="VPN Plan update"
+                                      IsTabStop="False"
+                                      Style="{StaticResource DefaultSettingsCardStyle}">
+                    <Button Command="{x:Bind ViewModel.TriggerVpnPlanUpdateCommand, Mode=OneTime}"
+                            Content="Trigger"
+                            Style="{StaticResource PrimaryButtonStyle}" />
+                </toolkit:SettingsCard>
+
             </StackPanel>
         </ScrollViewer>
 

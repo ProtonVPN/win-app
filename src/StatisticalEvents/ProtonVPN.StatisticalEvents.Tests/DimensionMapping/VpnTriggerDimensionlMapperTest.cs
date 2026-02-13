@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 using ProtonVPN.StatisticalEvents.Dimensions.Mappers;
 

@@ -27,6 +27,8 @@ public static class WindowHelper
 
     public const int GWLP_WNDPROC = -4;
     public const uint WM_ENDSESSION = 0x0016;
+    public const uint WM_NCLBUTTONDBLCLK = 0x00A3;
+    public const int HTCAPTION = 2;
 
     public delegate IntPtr WindowProc(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
 

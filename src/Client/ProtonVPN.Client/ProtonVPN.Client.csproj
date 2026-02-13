@@ -166,6 +166,7 @@
     <PackageReference Include="CommunityToolkit.WinUI.Converters" />
     <PackageReference Include="CommunityToolkit.WinUI.Triggers" />
     <PackageReference Include="H.NotifyIcon.WinUI" />
+    <PackageReference Include="MarkdownTextBlock" />
     <PackageReference Include="Microsoft.WindowsAppSDK" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" />
     <PackageReference Include="Newtonsoft.Json" />

@@ -25,6 +25,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:home="using:ProtonVPN.Client.UI.Main.Home"
+      xmlns:markdowntextblock="using:CommunityToolkit.Labs.WinUI.MarkdownTextBlock"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:sidebar="using:ProtonVPN.Client.UI.Main.Sidebar"
       xmlns:widgets="using:ProtonVPN.Client.UI.Main.Widgets"
@@ -69,10 +70,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         HorizontalAlignment="Center"
                         Spacing="12">
                 <TextBlock HorizontalAlignment="Center"
+                           TextAlignment="Center"
                            Style="{ThemeResource TitleTextBlockStyle}"
                            Text="{x:Bind ViewModel.Title}"
                            TextWrapping="Wrap" />
                 <TextBlock HorizontalAlignment="Center"
+                           TextAlignment="Center"
                            Foreground="{ThemeResource TextWeakColorBrush}"
                            Style="{ThemeResource BodyMediumTextBlockStyle}"
                            Text="{x:Bind ViewModel.Description}"
@@ -101,9 +104,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             Style="{ThemeResource LargeSecondaryButtonStyle}"
                             Visibility="{x:Bind ViewModel.IsSignOutButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 </Grid>
+
+                <!-- Help section for NoServers scenario -->
                 <Grid HorizontalAlignment="Center"
                       ColumnSpacing="2"
-                      Visibility="{x:Bind ViewModel.HasServersRequestFailed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                      Visibility="{x:Bind ViewModel.IsHelpSectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -122,6 +127,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                      Style="{StaticResource DefaultHyperlinkButtonStyle}" />
                 </Grid>
 
+                <!-- Markdown hint section for NoVpnConnectionsAssigned scenario -->
+                <markdowntextblock:MarkdownTextBlock HorizontalAlignment="Center"
+                                                     Config="{x:Bind ViewModel.MarkdownConfig, Mode=OneTime}"
+                                                     Text="{x:Bind ViewModel.HintMarkdown}"
+                                                     Visibility="{x:Bind ViewModel.IsMarkdownHintVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </StackPanel>
         </Grid>
 

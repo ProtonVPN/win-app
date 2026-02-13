@@ -30,4 +30,6 @@ public interface IMainWindowActivator : IWindowActivator
     Size CurrentWindowSize { get; }
 
     Window? Window { get; }
+
+    void SetWindowMovable(bool isMovable);
 }

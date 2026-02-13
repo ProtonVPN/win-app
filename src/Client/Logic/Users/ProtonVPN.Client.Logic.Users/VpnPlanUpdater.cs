@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,7 +19,10 @@
 
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Auth;
+using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Client.EventMessaging.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
@@ -29,7 +32,8 @@ using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Logic.Users;
 
-public class VpnPlanUpdater : IVpnPlanUpdater
+public class VpnPlanUpdater : IVpnPlanUpdater,
+    IEventMessageReceiver<AuthenticationStatusChanged>
 {
     private readonly IApiClient _apiClient;
     private readonly ISettings _settings;
@@ -39,6 +43,8 @@ public class VpnPlanUpdater : IVpnPlanUpdater
     private readonly SemaphoreSlim _semaphore = new(1, 1);
 
     private DateTime _minimumRequestDateUtc = DateTime.MinValue;
+
+    public BaseResponseDetail? AuthResponseDetails { get; private set; }
 
     public VpnPlanUpdater(IApiClient apiClient,
         ISettings settings,
@@ -82,6 +88,7 @@ public class VpnPlanUpdater : IVpnPlanUpdater
 
                 if (response.Success)
                 {
+                    AuthResponseDetails = null;
                     _settings.MaxDevicesAllowed = response.Value.Vpn.MaxConnect;
 
                     vpnPlanChangedMessage = GetVpnPlanChangeMessage(response.Value.Vpn);
@@ -89,6 +96,12 @@ public class VpnPlanUpdater : IVpnPlanUpdater
                 }
                 else
                 {
+                    AuthResponseDetails = response.Failure && response.Value.Code == ResponseCodes.NO_VPN_CONNECTIONS_ASSIGNED
+                        ? response.Value.Details
+                        : null;
+
+                    _eventMessageSender.Send<NoVpnConnectionsAssignedMessage>();
+
                     _logger.Error<AppLog>("VPN plan request failed with " +
                         $"Status Code {response.ResponseMessage.StatusCode}, " +
                         $"Internal Code {response.Value.Code}, " +
@@ -135,6 +148,14 @@ public class VpnPlanUpdater : IVpnPlanUpdater
         {
             _settings.VpnPlan = message.NewPlan;
             _eventMessageSender.Send(message);
+        }
+    }
+
+    public void Receive(AuthenticationStatusChanged message)
+    {
+        if (message.AuthenticationStatus is AuthenticationStatus.LoggingOut or AuthenticationStatus.LoggedOut)
+        {
+            AuthResponseDetails = null;
         }
     }
 }

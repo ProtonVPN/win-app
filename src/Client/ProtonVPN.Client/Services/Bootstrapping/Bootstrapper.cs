@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,6 +21,9 @@ using Microsoft.Windows.AppLifecycle;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+using ProtonVPN.Client.Logic.Servers.Cache;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts;
@@ -45,6 +48,7 @@ public class Bootstrapper : IBootstrapper
     private readonly ISettingsRestorer _settingsRestorer;
     private readonly IServiceManager _serviceManager;
     private readonly IUserAuthenticator _userAuthenticator;
+    private readonly IServersCache _serversCache;
     private readonly IUpdatesManager _updatesManager;
     private readonly IGlobalSettingsMigrator _globalSettingsMigrator;
     private readonly ISettings _settings;
@@ -63,6 +67,7 @@ public class Bootstrapper : IBootstrapper
         ISettingsRestorer settingsRestorer,
         IServiceManager serviceManager,
         IUserAuthenticator userAuthenticator,
+        IServersCache serversCache,
         IUpdatesManager updatesManager,
         IGlobalSettingsMigrator settingsMigrator,
         ISettings settings,
@@ -78,6 +83,7 @@ public class Bootstrapper : IBootstrapper
         _settingsRestorer = settingsRestorer;
         _serviceManager = serviceManager;
         _userAuthenticator = userAuthenticator;
+        _serversCache = serversCache;
         _updatesManager = updatesManager;
         _globalSettingsMigrator = settingsMigrator;
         _settings = settings;
@@ -105,13 +111,29 @@ public class Bootstrapper : IBootstrapper
 
             HandleMainWindow();
 
-            await Task.WhenAll(
-                StartServiceAsync(),
-                _userAuthenticator.AutoLoginUserAsync());
+            await StartServiceAndLogInAsync();
         }
         catch (Exception e)
         {
             _logger.Error<AppLog>("Error occured during the app start up process.", e);
+        }
+    }
+
+    private async Task StartServiceAndLogInAsync()
+    {
+        Task<AuthResult> autoLoginTask = _userAuthenticator.AutoLoginUserAsync(isAppStartup: true);
+
+        await Task.WhenAll(
+            StartServiceAsync(),
+            autoLoginTask);
+
+        AuthResult autoLoginResult = await autoLoginTask;
+        bool isNoVpnAccess = autoLoginResult.Failure && autoLoginResult.Value == AuthError.NoVpnAccess;
+        bool isLoggedInWithoutServers = _userAuthenticator.IsLoggedIn && _serversCache.IsEmpty();
+
+        if (isNoVpnAccess || isLoggedInWithoutServers)
+        {
+            _mainWindowActivator.Activate();
         }
     }
 

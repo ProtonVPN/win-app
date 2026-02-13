@@ -41,7 +41,7 @@ public interface IUserAuthenticator
     Task<AuthResult> SendTwoFactorCodeAsync(string code);
     Task<AuthResult> AuthenticateWithSecurityKeyAsync();
 
-    Task AutoLoginUserAsync();
+    Task<AuthResult> AutoLoginUserAsync(bool isAppStartup);
     Task LogoutAsync(LogoutReason reason);
     void CancelAuth();
 }

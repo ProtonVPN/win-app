@@ -134,6 +134,10 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
                             await ChildViewNavigator.NavigateToSignInViewAsync();
                             break;
 
+                        case AuthError.NoVpnAccess:
+                            await ParentViewNavigator.NavigateToNoServersViewAsync();
+                            break;
+
                         case AuthError.Unknown:
                             SetErrorMessage(message.ErrorMessage);
                             break;
@@ -159,7 +163,6 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
             switch (message.Reason)
             {
                 case LogoutReason.UserAction:
-                case LogoutReason.NoVpnConnectionsAssigned:
                     break;
                 case LogoutReason.SessionExpired:
                     SetErrorMessage(Localizer.Get("Login_Error_SessionExpired"));
@@ -291,6 +294,18 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
         IsMessageVisible = false;
     }
 
+    protected override void OnActivated()
+    {
+        base.OnActivated();
+
+        SetMainWindowMaximizeAvailability(isMaximizeAvailable: false);
+    }
+
+    protected override void OnDeactivated()
+    {
+        base.OnDeactivated();
+    }
+
     partial void OnIsMessageVisibleChanged(bool value)
     {
         if (IsMessageVisible && MessageSeverity is Severity.Error or Severity.Warning)
@@ -307,5 +322,13 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     private Task TriggerActionButtonAsync()
     {
         return _reportIssueWindowActivator.ActivateAsync();
+    }
+
+    private void SetMainWindowMaximizeAvailability(bool isMaximizeAvailable)
+    {
+        if (_mainWindowActivator.Window is MainWindow mainWindow)
+        {
+            mainWindow.InvalidateMaximizeAvailability(isMaximizeAvailable);
+        }
     }
 }

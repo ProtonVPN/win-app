@@ -52,6 +52,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
     private readonly ISessionSettings _sessionSettings;
     private readonly IUnauthSessionManager _unauthSessionManager;
     private readonly SsoLoginOverlayViewModel _ssoLoginOverlayViewModel;
+    private readonly IMainWindowViewNavigator _mainWindowViewNavigator;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(SignInCommand))]
@@ -124,7 +125,8 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         ISessionSettings sessionSettings,
         IUnauthSessionManager unauthSessionManager,
         SsoLoginOverlayViewModel ssoLoginOverlayViewModel,
-        IViewModelHelper viewModelHelper)
+        IViewModelHelper viewModelHelper,
+        IMainWindowViewNavigator mainWindowViewNavigator)
         : base(parentViewNavigator, viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
@@ -135,6 +137,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         _sessionSettings = sessionSettings;
         _unauthSessionManager = unauthSessionManager;
         _ssoLoginOverlayViewModel = ssoLoginOverlayViewModel;
+        _mainWindowViewNavigator = mainWindowViewNavigator;
     }
 
     [RelayCommand(CanExecute = nameof(CanSignIn))]
@@ -230,6 +233,10 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         {
             case AuthError.TwoFactorRequired:
                 _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.TwoFactorRequired));
+                break;
+
+            case AuthError.NoVpnAccess:
+                _mainWindowViewNavigator.NavigateToNoServersViewAsync();
                 break;
 
             case AuthError.SwitchToSSO:

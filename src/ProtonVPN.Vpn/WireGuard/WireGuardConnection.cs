@@ -132,6 +132,18 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
 
     private async Task ConnectActionAsync(CancellationToken cancellationToken)
     {
+        try
+        {
+            await ConnectActionInnerAsync(cancellationToken);
+        }
+        catch (OperationCanceledException)
+        {
+            _logger.Info<ConnectLog>("Connection attempt was canceled.");
+        }
+    }
+
+    private async Task ConnectActionInnerAsync(CancellationToken cancellationToken)
+    {
         bool isWireGuardServerRouteEnabled = IsWireGuardServerRouteEnabled;
         INetworkInterface bestInterface = null;
         if (!isWireGuardServerRouteEnabled)
@@ -223,6 +235,11 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         Task connectTask = _connectAction.Task;
         if (!connectTask.IsCompleted)
         {
+            if (_isConnected)
+            {
+                _connectAction.Cancel();
+            }
+
             await _connectAction.Task;
         }
 

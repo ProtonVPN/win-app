@@ -25,6 +25,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Cache;
+using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.UI.Login;
 using ProtonVPN.Client.UI.Main;
 using ProtonVPN.Logging.Contracts;
@@ -36,22 +37,27 @@ public class MainWindowViewNavigator : ViewNavigatorBase, IMainWindowViewNavigat
 {
     private readonly IServersCache _serversCache;
     private readonly IUserAuthenticator _userAuthenticator;
+    private readonly IVpnPlanUpdater _vpnPlanUpdater;
 
     public MainWindowViewNavigator(
         ILogger logger,
         IPageViewMapper pageViewMapper,
         IUIThreadDispatcher uiThreadDispatcher,
         IServersCache serversCache,
-        IUserAuthenticator userAuthenticator)
+        IUserAuthenticator userAuthenticator,
+        IVpnPlanUpdater vpnPlanUpdater)
         : base(logger, pageViewMapper, uiThreadDispatcher)
     {
         _serversCache = serversCache;
         _userAuthenticator = userAuthenticator;
+        _vpnPlanUpdater = vpnPlanUpdater;
     }
 
     public Task<bool> NavigateToLoginViewAsync()
     {
-        return NavigateToAsync<LoginPageViewModel>();
+        return _vpnPlanUpdater.AuthResponseDetails is null
+            ? NavigateToAsync<LoginPageViewModel>()
+            : NavigateToNoServersViewAsync();
     }
 
     public Task<bool> NavigateToMainViewAsync()

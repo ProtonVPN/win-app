@@ -124,6 +124,7 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
     {
         base.OnActivated();
 
+        RestoreMainWindowMaximizeAvailability();
         InvalidateSidebarDisplayMode();
         InvalidateSidebarWidth();
         InvalidateWidgetBarWidth();
@@ -134,6 +135,14 @@ public partial class MainPageViewModel : PageViewModelBase<IMainWindowViewNaviga
         }
 
         _eventMessageSender.Send<HomePageDisplayedAfterLoginMessage>();
+    }
+
+    private void RestoreMainWindowMaximizeAvailability()
+    {
+        if (_mainWindowActivator.Window is ProtonVPN.Client.MainWindow mainWindow)
+        {
+            mainWindow.InvalidateMaximizeAvailability(isMaximizeAvailable: true);
+        }
     }
 
     protected override void OnDeactivated()

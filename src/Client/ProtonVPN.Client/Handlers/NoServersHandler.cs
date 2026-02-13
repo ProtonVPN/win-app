@@ -26,6 +26,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Cache;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
@@ -38,7 +39,8 @@ namespace ProtonVPN.Client.Handlers;
 
 public class NoServersHandler : IHandler,
     IEventMessageReceiver<ServerListChangedMessage>,
-    IEventMessageReceiver<LoggedInMessage>
+    IEventMessageReceiver<LoggedInMessage>,
+    IEventMessageReceiver<NoVpnConnectionsAssignedMessage>
 {
     private readonly ILogger _logger;
     private readonly ISettings _settings;
@@ -77,14 +79,7 @@ public class NoServersHandler : IHandler,
         {
             if (_serversCache.IsEmpty())
             {
-                if (!_connectionManager.IsDisconnected)
-                {
-                    _logger.Info<ConnectionLog>("Disconnecting from VPN due to no servers available.");
-
-                    await _connectionManager.DisconnectAsync(VpnTriggerDimension.Undefined);
-                }
-
-                await _mainWindowViewNavigator.NavigateToNoServersViewAsync();
+                await HandleNoServersAsync();
             }
             else if (_mainWindowViewNavigator.GetCurrentPageContext() is NoServersPageViewModel)
             {
@@ -104,8 +99,25 @@ public class NoServersHandler : IHandler,
         }
     }
 
+    private async Task HandleNoServersAsync()
+    {
+        if (!_connectionManager.IsDisconnected)
+        {
+            _logger.Info<ConnectionLog>("Disconnecting from VPN due to no servers available.");
+
+            await _connectionManager.DisconnectAsync(VpnTriggerDimension.Auto);
+        }
+
+        await _mainWindowViewNavigator.NavigateToNoServersViewAsync();
+    }
+
     public void Receive(LoggedInMessage message)
     {
         _uiThreadDispatcher.TryEnqueue(HandleDefaultConnectionSetting);
+    }
+
+    public async void Receive(NoVpnConnectionsAssignedMessage message)
+    {
+        await _uiThreadDispatcher.TryEnqueueAsync(HandleNoServersAsync);
     }
 }

@@ -53,6 +53,7 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
 
     private SizeInt32? _lastKnownWindowSize;
     private PointInt32? _lastKnownWindowPosition;
+    private bool _isWindowMovable;
 
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IEventMessageSender _eventMessageSender;
@@ -97,6 +98,8 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
 
     public void Receive(AuthenticationStatusChanged message)
     {
+        bool shouldInvalidateWindowPosition = _isWindowMovable;
+
         UIThreadDispatcher.TryEnqueue(() =>
         {
             if (_userAuthenticator.AuthenticationStatus is AuthenticationStatus.LoggingOut)
@@ -106,9 +109,17 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
 
             InvalidateWindowTitleBarVisibility();
 
-            InvalidateWindowPosition();
+            if (shouldInvalidateWindowPosition)
+            {
+                InvalidateWindowPosition();
+            }
             InvalidateWindowState();
         });
+    }
+
+    public void SetWindowMovable(bool isMovable)
+    {
+        _isWindowMovable = isMovable;
     }
 
     public void Receive(AppIconStatusChangedMessage message)

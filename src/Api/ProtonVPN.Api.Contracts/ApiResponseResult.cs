@@ -32,7 +32,7 @@ public class ApiResponseResult<T> : Result<T>
     public DateTimeOffset? LastModified { get; }
     public bool IsNotModified { get; }
 
-    protected ApiResponseResult(HttpResponseMessage responseMessage, bool success, string error, bool isNotModified, T value)
+    public ApiResponseResult(HttpResponseMessage responseMessage, bool success, string error, bool isNotModified, T value)
         : base(value, success, error)
     {
         ResponseMessage = responseMessage;
