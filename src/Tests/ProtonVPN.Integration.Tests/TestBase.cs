@@ -28,6 +28,7 @@ using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Installers;
 using ProtonVPN.Client.Localization.Building;
+using ProtonVPN.Client.Logic.Auth.Srp.Contracts;
 using ProtonVPN.Client.Services.Bootstrapping.Activators;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
 using ProtonVPN.Client.UI.Main.Sidebar.Search.Contracts;
@@ -42,6 +43,7 @@ public class TestBase
     private IContainer? _container;
 
     protected MockHttpMessageHandler? MessageHandler = new();
+    protected TestSrpProofGenerator SrpProofGenerator { get; } = new();
 
     public T Resolve<T>() => _container.Resolve<T>();
 
@@ -57,6 +59,7 @@ public class TestBase
 
         builder.RegisterModule<AppModule>();
 
+        builder.Register(_ => SrpProofGenerator).As<ISrpProofGenerator>().SingleInstance();
         builder.Register(_ => Substitute.For<IUIThreadDispatcher>()).As<IUIThreadDispatcher>().SingleInstance();
         builder.Register(_ => Substitute.For<IDetailsViewNavigator>()).As<IDetailsViewNavigator>().SingleInstance();
         builder.Register(_ => Substitute.For<IMainViewNavigator>()).As<IMainViewNavigator>().SingleInstance();

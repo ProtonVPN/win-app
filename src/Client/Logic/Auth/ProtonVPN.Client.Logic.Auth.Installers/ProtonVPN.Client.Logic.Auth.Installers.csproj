@@ -15,5 +15,6 @@
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\ProtonVPN.Client.Logic.Auth\ProtonVPN.Client.Logic.Auth.csproj" />
+        <ProjectReference Include="..\ProtonVPN.Client.Logic.Auth.Srp\ProtonVPN.Client.Logic.Auth.Srp.csproj" />
     </ItemGroup>
 </Project>

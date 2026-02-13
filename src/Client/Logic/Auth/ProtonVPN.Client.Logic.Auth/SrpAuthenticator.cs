@@ -24,6 +24,7 @@ using ProtonVPN.Api.Contracts.Auth.Fido2;
 using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+using ProtonVPN.Client.Logic.Auth.Srp.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.OperatingSystems.WebAuthn.Contracts;
@@ -40,6 +41,7 @@ public class SrpAuthenticator : AuthenticatorBase, ISrpAuthenticator
     private readonly IApiClient _apiClient;
     private readonly IUnauthSessionManager _unauthSessionManager;
     private readonly IWebAuthnAuthenticator _webAuthnAuthenticator;
+    private readonly ISrpProofGenerator _srpProofGenerator;
 
     private AuthResponse? _authResponse;
 
@@ -53,11 +55,13 @@ public class SrpAuthenticator : AuthenticatorBase, ISrpAuthenticator
         ISettings settings,
         IUnauthSessionManager unauthSessionManager,
         IGuestHoleManager guestHoleManager,
-        IWebAuthnAuthenticator webAuthnAuthenticator) : base(settings)
+        IWebAuthnAuthenticator webAuthnAuthenticator,
+        ISrpProofGenerator srpProofGenerator) : base(settings)
     {
         _apiClient = apiClient;
         _unauthSessionManager = unauthSessionManager;
         _webAuthnAuthenticator = webAuthnAuthenticator;
+        _srpProofGenerator = srpProofGenerator;
     }
 
     public async Task<AuthResult> LoginUserAsync(string username, SecureString password, CancellationToken cancellationToken)
@@ -80,27 +84,27 @@ public class SrpAuthenticator : AuthenticatorBase, ISrpAuthenticator
 
         try
         {
-            SrpPInvoke.GoProofs? proofs = SrpPInvoke.GenerateProofs(4, username, password, authInfoResponse.Value.Salt,
-                authInfoResponse.Value.Modulus, authInfoResponse.Value.ServerEphemeral);
-            if (proofs is null)
+            SrpProof? proof = _srpProofGenerator.GenerateProof(password, authInfoResponse.Value);
+            if (proof == null)
             {
                 return AuthResult.Fail(AuthError.Unknown);
             }
 
-            AuthRequest authRequest = new AuthRequest
+            AuthRequest authRequest = new()
             {
-                ClientEphemeral = Convert.ToBase64String(proofs.ClientEphemeral),
-                ClientProof = Convert.ToBase64String(proofs.ClientProof),
+                ClientEphemeral = proof.ClientEphemeral,
+                ClientProof = proof.ClientProof,
                 SrpSession = authInfoResponse.Value.SrpSession,
                 Username = username
             };
+
             ApiResponseResult<AuthResponse> response = await _apiClient.GetAuthResponse(authRequest, cancellationToken);
             if (response.Failure)
             {
                 return AuthResult.Fail(response);
             }
 
-            if (!Convert.ToBase64String(proofs.ExpectedServerProof).Equals(response.Value.ServerProof))
+            if (proof.ExpectedServerProof != response.Value.ServerProof)
             {
                 return AuthResult.Fail(AuthError.InvalidServerProof);
             }
@@ -126,9 +130,9 @@ public class SrpAuthenticator : AuthenticatorBase, ISrpAuthenticator
         TwoFactorRequest request = new() { TwoFactorCode = code };
 
         ApiResponseResult<BaseResponse> response = await _apiClient.GetTwoFactorAuthResponse(
-            request, 
+            request,
             _authResponse?.AccessToken ?? string.Empty,
-            _authResponse?.UniqueSessionId ?? string.Empty, 
+            _authResponse?.UniqueSessionId ?? string.Empty,
             cancellationToken);
 
         if (response.Failure)

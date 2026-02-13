@@ -20,7 +20,7 @@
 
 using System.Net;
 using System.Security;
-using ProtonVPN.Client.Logic.Auth;
+using System.Text.Json;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using RichardSzalay.MockHttp;
@@ -74,19 +74,25 @@ public class AuthenticatedUserTests : TestBase
 
     private void SetAuthResponse()
     {
+        string responseBody = GetJsonMock("AuthResponseMock");
+        SetExpectedServerProof(CORRECT_PASSWORD, responseBody);
+
         MessageHandler!.When(HttpMethod.Post, "/auth").Respond(_ => new HttpResponseMessage
         {
             StatusCode = HttpStatusCode.OK,
-            Content = new StringContent(GetJsonMock("AuthResponseMock"))
+            Content = new StringContent(responseBody)
         });
     }
 
     private void SetAuthResponseWithTwoFactorEnabled()
     {
+        string responseBody = GetJsonMock("AuthResponseWithTwoFactorEnabledMock");
+        SetExpectedServerProof(CORRECT_PASSWORD, responseBody);
+
         MessageHandler!.When(HttpMethod.Post, "/auth").Respond(_ => new HttpResponseMessage
         {
             StatusCode = HttpStatusCode.OK,
-            Content = new StringContent(GetJsonMock("AuthResponseWithTwoFactorEnabledMock"))
+            Content = new StringContent(responseBody)
         });
     }
 
@@ -126,9 +132,22 @@ public class AuthenticatedUserTests : TestBase
         });
     }
 
+    private void SetExpectedServerProof(string password, string responseBody)
+    {
+        using JsonDocument document = JsonDocument.Parse(responseBody);
+
+        if (document.RootElement.TryGetProperty("ServerProof", out JsonElement serverProofProperty))
+        {
+            string? expectedServerProof = serverProofProperty.GetString();
+            if (!string.IsNullOrEmpty(expectedServerProof))
+            {
+                SrpProofGenerator.SetExpectedServerProof(password, expectedServerProof);
+            }
+        }
+    }
+
     protected async Task<AuthResult> MakeUserAuthAsync(string password)
     {
-        SrpPInvoke.SetUnitTest();
         SecureString securePassword = new NetworkCredential("", password).SecurePassword;
         return await Resolve<IUserAuthenticator>().LoginUserAsync("username", securePassword);
     }

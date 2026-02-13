@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -21,6 +21,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Common.Core.Extensions;
 using Windows.System;
 
 namespace ProtonVPN.Client.UI.Login.Pages;
@@ -38,6 +39,8 @@ public sealed partial class SignInPageView : IContextAware
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
         UsernameTextBox.Loaded += OnUsernameTextBoxLoaded;
+        PasswordBox.PasswordChanged += OnPasswordChanged;
+        ViewModel.OnPasswordClearRequested += OnPasswordClearRequested;
     }
 
     public object GetContext()
@@ -53,6 +56,11 @@ public sealed partial class SignInPageView : IContextAware
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Deactivate();
+    }
+
+    private void OnPasswordClearRequested(object? sender, EventArgs e)
+    {
+        PasswordBox.Password = string.Empty;
     }
 
     private void OnUsernameTextBoxLoaded(object sender, RoutedEventArgs e)
@@ -72,5 +80,10 @@ public sealed partial class SignInPageView : IContextAware
         {
             SignInButton.Command.Execute(null);
         }
+    }
+
+    private void OnPasswordChanged(object sender, RoutedEventArgs e)
+    {
+        ViewModel.Password = PasswordBox.Password.ToSecureString();
     }
 }

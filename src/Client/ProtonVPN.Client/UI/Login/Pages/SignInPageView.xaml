@@ -86,7 +86,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                              Header="{x:Bind ViewModel.Localizer.Get('SignIn_Form_Password')}"
                              IsEnabled="{x:Bind ViewModel.IsSignInFormEnabled}"
                              KeyDown="OnFormBoxKeyDown"
-                             Password="{x:Bind ViewModel.Password, Mode=TwoWay}"
                              Style="{StaticResource ValidationPasswordBoxStyle}" 
                              Visibility="{x:Bind ViewModel.IsSrpFormType, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>

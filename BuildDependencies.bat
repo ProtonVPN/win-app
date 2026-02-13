@@ -49,7 +49,7 @@ set buildParams=/p:PlatformToolset=v143 /p:Configuration=Release /p:OutDir=%reso
 set x86buildParams=%buildParams% /p:Platform=Win32
 set x64buildParams=%buildParams% /p:Platform=%PLATFORM%
 
-if not defined GOSRPONLY (
+if "%~2" NEQ "srponly" (
     echo compiling ProtonVPN.IPFilter.dll %time%
     msbuild src\ProtonVPN.IpFilter\ProtonVPN.IpFilter.vcxproj %x64buildParams% || exit /b %ERRORLEVEL%
 
@@ -88,29 +88,6 @@ if not defined GOSRPONLY (
     )
 )
 
-echo compiling GoSrp.dll %time%
-
-if "%PLATFORM%"=="x64" (
-    pushd %currentDir%src\srp\windows\cshared
-    set GO111MODULE=on
-    go build -buildmode=c-shared -v -ldflags="-s -w" -o %resourcesDir%GoSrp.dll main.go
-    if %ERRORLEVEL% equ 0 (
-        echo file saved %resourcesDir%GoSrp.dll
-    )
-)
-
-if "%PLATFORM%"=="arm64" (
-    docker run --rm ^
-    -e GOARCH="arm64" ^
-    -e GOOS="windows" ^
-    -e GO111MODULE="on" ^
-    -v %currentDir%\src\srp:/go/work ^
-    -w /go/work/windows/cshared x1unix/go-mingw:1.23 ^
-    go build -buildmode c-shared -ldflags="-w -s" -trimpath -v -o GoSrp.dll main.go
-        
-    xcopy %currentDir%src\srp\windows\cshared\GoSrp.dll %resourcesDir% /y
-)
-
 set ipv6chaosFileName=proton_vpn_ipv6chaos.dll
 
 echo Fetching %ipv6chaosFileName% %time%
@@ -119,6 +96,16 @@ curl -o "%mainDir%%ipv6chaosFileName%" "%IPV6_CHAOS_DLL_PATH%/v0.0.0/%PLATFORM%/
 if %ERRORLEVEL% equ 0 (
   echo file saved %mainDir%%ipv6chaosFileName%
 )
+
+set srpFileName=proton_srp_cffi.dll
+
+echo Building %srpFileName% %time%
+
+pushd %currentDir%src\proton-rs-srp-cffi
+
+cargo build --release || exit /b %ERRORLEVEL%
+
+xcopy .\target\release\%srpFileName% %mainDir% /y
 
 set binaryStatusFileName=proton_vpn_binary_status.dll
 

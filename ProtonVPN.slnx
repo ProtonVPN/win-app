@@ -56,6 +56,8 @@
   </Folder>
   <Folder Name="/Client/Logic/Auth/">
     <Project Path="src/Client/Logic/Auth/ProtonVPN.Client.Logic.Auth.Contracts/ProtonVPN.Client.Logic.Auth.Contracts.csproj" />
+    <Project Path="src/Client/Logic/Auth/ProtonVPN.Client.Logic.Auth.Srp.Contracts/ProtonVPN.Client.Logic.Auth.Srp.Contracts.csproj" />
+    <Project Path="src/Client/Logic/Auth/ProtonVPN.Client.Logic.Auth.Srp/ProtonVPN.Client.Logic.Auth.Srp.csproj" />
     <Project Path="src/Client/Logic/Auth/ProtonVPN.Client.Logic.Auth.Installers/ProtonVPN.Client.Logic.Auth.Installers.csproj" />
     <Project Path="src/Client/Logic/Auth/ProtonVPN.Client.Logic.Auth.Tests/ProtonVPN.Client.Logic.Auth.Tests.csproj" />
     <Project Path="src/Client/Logic/Auth/ProtonVPN.Client.Logic.Auth/ProtonVPN.Client.Logic.Auth.csproj" />

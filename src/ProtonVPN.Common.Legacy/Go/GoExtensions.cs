@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,7 +19,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Security;
 using System.Text;
 
 namespace ProtonVPN.Common.Legacy.Go;
@@ -49,25 +48,5 @@ public static class GoExtensions
     public static string ConvertToString(this GoBytes bytes)
     {
         return Encoding.UTF8.GetString(bytes.ConvertToBytes());
-    }
-
-    public static unsafe DisposableGoBytes ToDisposableGoBytes(this SecureString str)
-    {
-        IntPtr nativeUnicode = Marshal.SecureStringToGlobalAllocUnicode(str);
-        int maxLength = Encoding.UTF8.GetMaxByteCount(str.Length);
-        IntPtr nativeUtf8 = Marshal.AllocHGlobal(Encoding.UTF8.GetMaxByteCount(str.Length));
-        int nativeUtf8Length = Encoding.UTF8.GetBytes(
-            (char*)nativeUnicode.ToPointer(),
-            str.Length,
-            (byte*)nativeUtf8.ToPointer(),
-            maxLength);
-        Marshal.ZeroFreeGlobalAllocUnicode(nativeUnicode);
-
-        return new DisposableGoBytes
-        {
-            Data = nativeUtf8,
-            Length = (IntPtr)nativeUtf8Length,
-            Capacity = (IntPtr)nativeUtf8Length
-        };
     }
 }

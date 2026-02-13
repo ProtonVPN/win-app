@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
 
 namespace ProtonVPN.Common.Legacy.Go;
 
@@ -32,22 +31,4 @@ public struct GoBytes
 
     // Total size of the buffer in bytes
     public IntPtr Capacity;
-}
-
-public struct DisposableGoBytes : IDisposable
-{
-    // Pointer to the UTF-8 encoded string buffer
-    public IntPtr Data;
-
-    // Length of the string buffer in bytes
-    public IntPtr Length;
-
-    // Total size of the buffer in bytes
-    public IntPtr Capacity;
-
-    public void Dispose()
-    {
-        PInvoke.ZeroMemory(Data, Capacity.ToInt32());
-        Marshal.FreeHGlobal(Data);
-    }
 }

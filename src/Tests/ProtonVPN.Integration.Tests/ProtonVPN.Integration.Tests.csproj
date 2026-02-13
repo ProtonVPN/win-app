@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Client\ProtonVPN.Client\ProtonVPN.Client.csproj" />
+    <ProjectReference Include="..\..\Client\Logic\Auth\ProtonVPN.Client.Logic.Auth.Srp.Contracts\ProtonVPN.Client.Logic.Auth.Srp.Contracts.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac" />

@@ -54,6 +54,8 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
     private readonly SsoLoginOverlayViewModel _ssoLoginOverlayViewModel;
     private readonly IMainWindowViewNavigator _mainWindowViewNavigator;
 
+    public event EventHandler? OnPasswordClearRequested;
+
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(SignInCommand))]
     [NotifyPropertyChangedFor(nameof(IsSignInFormEnabled))]
@@ -74,7 +76,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(SignInCommand))]
-    private string _password = string.Empty;
+    private SecureString _password;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(CreateAccountCommand))]
@@ -186,7 +188,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         {
             case SignInFormType.SRP:
                 IsToShowUsernameError = string.IsNullOrWhiteSpace(Username);
-                IsToShowPasswordError = string.IsNullOrWhiteSpace(Password);
+                IsToShowPasswordError = Password.Length == 0;
                 break;
             case SignInFormType.SSO:
                 Username = Username.Trim();
@@ -204,10 +206,15 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
 
     private async Task<AuthResult> HandleSrpLoginAsync()
     {
-        SecureString securePassword = Password.ToSecureString();
-        Password = string.Empty;
-
-        return await _userAuthenticator.LoginUserAsync(Username, securePassword);
+        try
+        {
+            return await _userAuthenticator.LoginUserAsync(Username, Password);
+        }
+        finally
+        {
+            Password = new();
+            OnPasswordClearRequested?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     private async Task<AuthResult> HandleSsoLoginAsync()
@@ -303,7 +310,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
 
                 if (!string.IsNullOrEmpty(_sessionSettings.Password)) 
                 {
-                    Password = _sessionSettings.Password.Trim();
+                    Password = _sessionSettings.Password.Trim().ToSecureString();
 
                     SignInCommand.Execute(null);
                 }

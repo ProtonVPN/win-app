@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,6 +20,10 @@
 using System;
 using System.Security;
 using System.Threading.Tasks;
+using NSubstitute;
+using ProtonVPN.Client.Logic.Auth.Srp;
+using ProtonVPN.Client.Logic.Auth.Srp.Contracts;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.UI.Tests.ApiClient.Contracts;
 
 namespace ProtonVPN.UI.Tests.ApiClient.Prod;
@@ -27,26 +31,39 @@ namespace ProtonVPN.UI.Tests.ApiClient.Prod;
 public class TestUserAuthenticator
 {
     private ProdTestApiClient _prodApiClient = new();
+    private readonly SrpProofGenerator _srpProofGenerator;
+
+    public TestUserAuthenticator()
+    {
+        _srpProofGenerator = new SrpProofGenerator(Substitute.For<ILogger>());
+    }
 
     public async Task<AuthResponse?> CreateSessionAsync(string username, SecureString password)
     {
-        AuthInfoRequest authInfoRequest = new() { Username = username };
+        AuthInfoRequest authInfoRequest = new()
+        {
+            Username = username
+        };
 
         AuthInfoResponse? authInfoResponse = await _prodApiClient.GetAuthInfoAsync(authInfoRequest);
-
         if (string.IsNullOrEmpty(authInfoResponse?.Salt))
         {
             throw new Exception("Incorrect login credentials");
         }
 
-        TestsSrpInvoke.GoProofs? proofs = TestsSrpInvoke.GenerateProofs(4, username, password, authInfoResponse.Salt,
-                authInfoResponse.Modulus, authInfoResponse.ServerEphemeral) ?? throw new Exception("Proofs are null.");
+        SrpProof proofs = _srpProofGenerator.GenerateProof(password, new()
+        {
+            Salt = authInfoResponse.Salt,
+            Modulus = authInfoResponse.Modulus,
+            ServerEphemeral = authInfoResponse.ServerEphemeral
+        }) ?? throw new Exception("Failed to generate SRP proof");
 
         try
         {
-            string clientEphermal = Convert.ToBase64String(proofs.ClientEphemeral);
-            string clientProof = Convert.ToBase64String(proofs.ClientProof);
-            AuthRequest authRequest = GetAuthRequestData(clientEphermal, clientProof, authInfoResponse.SRPSession, username);
+            AuthRequest authRequest = GetAuthRequestData(
+                proofs.ClientEphemeral,
+                proofs.ClientProof,
+                authInfoResponse.SRPSession, username);
             AuthResponse? response = await _prodApiClient.GetAuthResponseAsync(authRequest);
             ProdTestApiClient.UID = response?.UID;
             ProdTestApiClient.AcessToken = response?.AccessToken;

@@ -18,6 +18,7 @@
  */
 
 using Autofac;
+using ProtonVPN.Client.Logic.Auth.Srp;
 
 namespace ProtonVPN.Client.Logic.Auth.Installers;
 
@@ -27,6 +28,7 @@ public class AuthLogicModule : Module
     {
         builder.RegisterType<UserAuthenticator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<UnauthSessionManager>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SrpProofGenerator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<SrpAuthenticator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<SsoAuthenticator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ConnectionCertificateManager>().AsImplementedInterfaces().SingleInstance();

@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Net;
 using System.Net.Sockets;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Tools;
@@ -78,7 +77,7 @@ public static class CommonAssertions
     {
         try
         {
-            Dns.GetHostEntry(url);
+            System.Net.Dns.GetHostEntry(url);
 
             return true;
         }

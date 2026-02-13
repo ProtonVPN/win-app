@@ -37,6 +37,9 @@
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\..\Client\Logic\Auth\ProtonVPN.Client.Logic.Auth\ProtonVPN.Client.Logic.Auth.csproj" />
+        <ProjectReference Include="..\..\Client\Logic\Auth\ProtonVPN.Client.Logic.Auth.Srp\ProtonVPN.Client.Logic.Auth.Srp.csproj" />
+        <ProjectReference Include="..\..\Client\Logic\Auth\ProtonVPN.Client.Logic.Auth.Srp.Contracts\ProtonVPN.Client.Logic.Auth.Srp.Contracts.csproj" />
         <ProjectReference Include="..\..\Common\ProtonVPN.Common.Core\ProtonVPN.Common.Core.csproj" />
         <ProjectReference Include="..\..\Logging\ProtonVPN.Logging.Contracts\ProtonVPN.Logging.Contracts.csproj" />
         <ProjectReference Include="..\..\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj" />
