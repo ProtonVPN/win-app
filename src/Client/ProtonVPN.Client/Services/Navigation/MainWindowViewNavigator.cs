@@ -73,7 +73,7 @@ public class MainWindowViewNavigator : ViewNavigatorBase, IMainWindowViewNavigat
     public override Task<bool> NavigateToDefaultAsync()
     {
         return _userAuthenticator.IsLoggedIn
-            ? _serversCache.IsEmpty()
+            ? _serversCache.HasNoServers()
                 ? NavigateToNoServersViewAsync()
                 : NavigateToMainViewAsync()
             : NavigateToLoginViewAsync();

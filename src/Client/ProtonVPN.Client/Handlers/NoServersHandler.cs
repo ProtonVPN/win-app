@@ -77,7 +77,7 @@ public class NoServersHandler : IHandler,
 
         await _uiThreadDispatcher.TryEnqueueAsync(async () =>
         {
-            if (_serversCache.IsEmpty())
+            if (_serversCache.HasNoServers())
             {
                 await HandleNoServersAsync();
             }

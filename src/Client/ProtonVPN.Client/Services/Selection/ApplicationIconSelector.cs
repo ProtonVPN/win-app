@@ -217,7 +217,7 @@ public class ApplicationIconSelector : IApplicationIconSelector,
         }
 
         return _userAuthenticator.IsLoggedIn
-            ? _connectionErrorSeverity is Severity.Warning || _connectionManager.IsTwoFactorError || _serversCache.IsEmpty()
+            ? _connectionErrorSeverity is Severity.Warning || _connectionManager.IsTwoFactorError || _serversCache.HasNoServers()
             : _authenticationErrorSeverity is Severity.Warning;
     }
 

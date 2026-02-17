@@ -129,7 +129,7 @@ public class Bootstrapper : IBootstrapper
 
         AuthResult autoLoginResult = await autoLoginTask;
         bool isNoVpnAccess = autoLoginResult.Failure && autoLoginResult.Value == AuthError.NoVpnAccess;
-        bool isLoggedInWithoutServers = _userAuthenticator.IsLoggedIn && _serversCache.IsEmpty();
+        bool isLoggedInWithoutServers = _userAuthenticator.IsLoggedIn && _serversCache.HasNoServers();
 
         if (isNoVpnAccess || isLoggedInWithoutServers)
         {

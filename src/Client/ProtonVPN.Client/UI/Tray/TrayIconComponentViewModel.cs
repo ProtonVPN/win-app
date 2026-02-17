@@ -94,7 +94,7 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
     public void ShowTrayApplication()
     {
         // When not logged in, skip the tray app and open the application instead
-        if (!_userAuthenticator.IsLoggedIn || _serversCache.IsEmpty())
+        if (!_userAuthenticator.IsLoggedIn || _serversCache.HasNoServers())
         {
             ShowApplication();
             return;
@@ -154,7 +154,7 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
     {
         return _userAuthenticator.IsLoggedIn
             && _connectionManager.IsDisconnected
-            && !_serversCache.IsEmpty();
+            && !_serversCache.HasNoServers();
     }
 
     private bool CanDisconnect()

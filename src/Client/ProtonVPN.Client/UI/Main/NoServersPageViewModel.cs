@@ -140,7 +140,7 @@ public partial class NoServersPageViewModel : PageViewModelBase<IMainWindowViewN
         }
         finally
         {
-            bool isNavigatingAwayFromNoServers = _userAuthenticator.IsLoggedIn && !_serversCache.IsEmpty();
+            bool isNavigatingAwayFromNoServers = _userAuthenticator.IsLoggedIn && !_serversCache.HasNoServers();
             if (!isNavigatingAwayFromNoServers)
             {
                 IsRefreshing = false;

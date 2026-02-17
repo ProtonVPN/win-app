@@ -33,11 +33,13 @@ public interface IServersCache
     IReadOnlyList<Gateway> Gateways { get; }
     IReadOnlyList<SecureCoreCountryPair> SecureCoreCountryPairs { get; }
 
-    bool IsEmpty();
+    bool IsEmpty(); 
+    bool AreAllServersUnderMaintenance();
     bool IsStale();
     bool IsOutdated();
     bool IsLoadOutdated();
     bool HasServersRequestFailed();
+    bool HasNoServers();
 
     void Clear();
     void LoadFromFileIfEmpty();
