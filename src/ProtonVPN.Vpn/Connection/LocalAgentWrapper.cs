@@ -408,7 +408,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
 
     private void OnVpnStateChanged(object sender, EventArgs<VpnState> e)
     {
-        if (!string.IsNullOrEmpty(e.Data.RemoteIp))
+        if (!string.IsNullOrEmpty(e.Data.LocalIp))
         {
             _localIp = e.Data.LocalIp;
         }
