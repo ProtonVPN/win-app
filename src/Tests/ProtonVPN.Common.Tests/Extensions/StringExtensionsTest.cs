@@ -28,7 +28,7 @@ namespace ProtonVPN.Common.Tests.Extensions
     [TestClass]
     public class StringExtensionsTest
     {
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(false, "false")]
         [DataRow(false, "FALSE")]
         [DataRow(true, "true")]
@@ -45,7 +45,7 @@ namespace ProtonVPN.Common.Tests.Extensions
             Assert.AreEqual(expectedResult, result);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(null)]
         [DataRow("")]
         [DataRow(" ")]
@@ -55,7 +55,7 @@ namespace ProtonVPN.Common.Tests.Extensions
             Assert.IsNull(result);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(',')]
         [DataRow(';')]
         [DataRow('.')]
@@ -90,7 +90,7 @@ namespace ProtonVPN.Common.Tests.Extensions
             }
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(',')]
         [DataRow(';')]
         [DataRow('.')]
@@ -106,7 +106,7 @@ namespace ProtonVPN.Common.Tests.Extensions
             AssertEnumerable(expectedResult, result);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(null)]
         [DataRow("")]
         [DataRow(" ")]
@@ -116,7 +116,7 @@ namespace ProtonVPN.Common.Tests.Extensions
             Assert.IsNull(result);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(',')]
         [DataRow(';')]
         [DataRow('.')]
@@ -132,7 +132,7 @@ namespace ProtonVPN.Common.Tests.Extensions
             AssertEnumerable(expectedResult, result);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(',')]
         [DataRow(';')]
         [DataRow('.')]
@@ -148,7 +148,7 @@ namespace ProtonVPN.Common.Tests.Extensions
             AssertEnumerable(expectedResult, result);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(null)]
         [DataRow("")]
         [DataRow(" ")]
@@ -158,7 +158,7 @@ namespace ProtonVPN.Common.Tests.Extensions
             Assert.IsNull(result);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(',')]
         [DataRow(';')]
         [DataRow('.')]
@@ -174,7 +174,7 @@ namespace ProtonVPN.Common.Tests.Extensions
             AssertEnumerable(expectedResult, result);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(',')]
         [DataRow(';')]
         [DataRow('.')]
@@ -190,7 +190,7 @@ namespace ProtonVPN.Common.Tests.Extensions
             AssertEnumerable(expectedResult, result);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("https://192.168.1.1/", "192.168.1.1")]
         [DataRow("https://protonvpn.com/", "protonvpn.com")]
         [DataRow("http://protonvpn.com/", "http://protonvpn.com")]
@@ -205,7 +205,7 @@ namespace ProtonVPN.Common.Tests.Extensions
             Assert.AreEqual(expectedUriString, uri.AbsoluteUri);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(null)]
         [DataRow("")]
         [DataRow(" ")]
@@ -217,7 +217,7 @@ namespace ProtonVPN.Common.Tests.Extensions
             Assert.IsFalse(isUri);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("email@domain.com")]
         [DataRow("joe.smith@domain.com")]
         [DataRow("email@subdomain.domain.com")]
@@ -236,7 +236,7 @@ namespace ProtonVPN.Common.Tests.Extensions
             Assert.IsTrue(isValid);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(null)]
         [DataRow("")]
         [DataRow(" ")]
@@ -260,7 +260,7 @@ namespace ProtonVPN.Common.Tests.Extensions
             Assert.IsFalse(isValid);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Ålesund", "Alesund")]
         [DataRow("Bergen", "Bergen")]
         [DataRow("Bío-Bío", "Bio-Bio")]

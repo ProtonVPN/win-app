@@ -182,7 +182,7 @@ namespace ProtonVPN.Update.Tests.Updates
             update.Available.Should().BeFalse();
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(1, 5, 0, false, true)]
         [DataRow(1, 5, 1, false, false)]
         [DataRow(1, 5, 2, false, false)]
@@ -199,7 +199,7 @@ namespace ProtonVPN.Update.Tests.Updates
             update.Available.Should().Be(result);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(1, 5, 0, false, true)]
         [DataRow(1, 5, 1, false, false)]
         [DataRow(1, 5, 2, false, false)]

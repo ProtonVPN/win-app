@@ -103,7 +103,7 @@ public class DnsManagerTest
     {
         IList<IpAddress> result = await _dnsManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
     }
 
     [TestMethod]
@@ -113,7 +113,7 @@ public class DnsManagerTest
 
         IList<IpAddress> result = await _dnsManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
     }
 
     private ConcurrentDictionary<string, DnsResponse> CreateDnsCache(params DnsResponse[] dnsResponses)
@@ -135,8 +135,8 @@ public class DnsManagerTest
 
         IList<IpAddress> result = await _dnsManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(2, result.Count);
-        Assert.AreEqual(0, _logger.Logs.Count);
+        Assert.HasCount(2, result);
+        Assert.IsEmpty(_logger.Logs);
         await AssertNoResolverWasCalledAsync();
     }
 
@@ -169,7 +169,7 @@ public class DnsManagerTest
         DateTime testStartDateTimeUtc = DateTime.UtcNow;
         InitializeDnsOverUdpResolver();
         InitializeDnsOverHttpsResolver();
-        Assert.AreEqual(0, _logger.Logs.Count);
+        Assert.IsEmpty(_logger.Logs);
 
         IList<IpAddress> result = await _dnsManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
@@ -189,7 +189,7 @@ public class DnsManagerTest
     {
         DateTime testStartDateTimeUtc = DateTime.UtcNow;
         InitializeDnsOverHttpsResolver();
-        Assert.AreEqual(0, _logger.Logs.Count);
+        Assert.IsEmpty(_logger.Logs);
 
         IList<IpAddress> result = await _dnsManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
@@ -232,7 +232,7 @@ public class DnsManagerTest
 
     private void AssertCacheAfterSuccessfulResolve(IList<IpAddress> result, DateTime testStartDateTimeUtc)
     {
-        Assert.AreEqual(2, result.Count);
+        Assert.HasCount(2, result);
         Assert.AreEqual("192.168.1.1", _settings.DnsCache[HOST].IpAddresses[0].ToString());
         Assert.AreEqual("192.168.1.2", _settings.DnsCache[HOST].IpAddresses[1].ToString());
         Assert.AreEqual(TimeSpan.FromMinutes(12), _settings.DnsCache[HOST].TimeToLive);
@@ -271,7 +271,7 @@ public class DnsManagerTest
 
         IList<IpAddress> result = await _dnsManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(2, result.Count);
+        Assert.HasCount(2, result);
         AssertCacheAfterFailedResolve(testStartDateTimeUtc);
         await AssertCalledBothResolversOnceAsync();
     }
@@ -297,7 +297,7 @@ public class DnsManagerTest
 
         IList<IpAddress> result = await _dnsManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(2, result.Count);
+        Assert.HasCount(2, result);
         AssertCacheAfterFailedResolve(testStartDateTimeUtc);
         await AssertCalledBothResolversOnceAsync();
     }
@@ -313,7 +313,7 @@ public class DnsManagerTest
 
         IList<IpAddress> result = await _dnsManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(2, result.Count);
+        Assert.HasCount(2, result);
         AssertCacheAfterFailedResolve(testStartDateTimeUtc);
         await AssertCalledBothResolversOnceAsync();
     }
@@ -326,7 +326,7 @@ public class DnsManagerTest
 
         IList<IpAddress> result = await _dnsManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
         await AssertCalledBothResolversOnceAsync();
     }
 
@@ -338,7 +338,7 @@ public class DnsManagerTest
 
         IList<IpAddress> result = await _dnsManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
         await AssertCalledBothResolversOnceAsync();
     }
 
@@ -391,7 +391,7 @@ public class DnsManagerTest
 
         IList<IpAddress> result = await _dnsManager.ResolveWithoutCacheAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
         await AssertCalledBothResolversOnceAsync();
     }
 
@@ -400,7 +400,7 @@ public class DnsManagerTest
     {
         DateTime testStartDateTimeUtc = DateTime.UtcNow;
         InitializeDnsOverHttpsResolver();
-        Assert.AreEqual(0, _logger.Logs.Count);
+        Assert.IsEmpty(_logger.Logs);
 
         IList<IpAddress> result = await _dnsManager.ResolveWithoutCacheAsync(HOST, _cancellationTokenSource.Token);
 
@@ -416,7 +416,7 @@ public class DnsManagerTest
 
         IList<IpAddress> result = await _dnsManager.ResolveWithoutCacheAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
         await AssertCalledBothResolversOnceAsync();
     }
 
@@ -426,7 +426,7 @@ public class DnsManagerTest
         DateTime testStartDateTimeUtc = DateTime.UtcNow;
         InitializeDnsOverUdpResolver();
         InitializeDnsOverHttpsResolver();
-        Assert.AreEqual(0, _logger.Logs.Count);
+        Assert.IsEmpty(_logger.Logs);
 
         IList<IpAddress> result = await _dnsManager.ResolveWithoutCacheAsync(HOST, _cancellationTokenSource.Token);
 
@@ -443,7 +443,7 @@ public class DnsManagerTest
 
         IList<IpAddress> result = await _dnsManager.ResolveWithoutCacheAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
         await AssertCalledBothResolversOnceAsync();
     }
 
@@ -455,7 +455,7 @@ public class DnsManagerTest
 
         IList<IpAddress> result = _dnsManager.GetFromCache(HOST);
 
-        Assert.AreEqual(expectedIpAddresses.Count, result.Count);
+        Assert.HasCount(expectedIpAddresses.Count, result);
         foreach (IpAddress ipAddress in result)
         {
             expectedIpAddresses.Contains(ipAddress);
@@ -471,7 +471,7 @@ public class DnsManagerTest
 
         IList<IpAddress> result = _dnsManager.GetFromCache(HOST);
 
-        Assert.AreEqual(2, result.Count);
+        Assert.HasCount(2, result);
         AssertCacheBeforeExecution();
         await AssertNoResolverWasCalledAsync();
     }
@@ -483,7 +483,7 @@ public class DnsManagerTest
 
         IList<IpAddress> result = _dnsManager.GetFromCache(HOST);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
         AssertCacheIsEmpty();
         await AssertNoResolverWasCalledAsync();
     }
@@ -501,7 +501,7 @@ public class DnsManagerTest
 
         IList<IpAddress> result = _dnsManager.GetFromCache(HOST);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
         AssertCacheIsEmpty();
         await AssertNoResolverWasCalledAsync();
     }
@@ -512,7 +512,7 @@ public class DnsManagerTest
         DateTime testStartDateTimeUtc = DateTime.UtcNow;
         _dnsOverUdpResolver.ResolveAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
             .ReturnsForAnyArgs(DelayedDnsResolverResponseAsync);
-        Assert.AreEqual(0, _logger.Logs.Count);
+        Assert.IsEmpty(_logger.Logs);
 
         Task<IList<IpAddress>> task1 = _dnsManager.GetAsync(HOST, _cancellationTokenSource.Token);
         Task<IList<IpAddress>> task2 = _dnsManager.GetAsync(HOST, _cancellationTokenSource.Token);

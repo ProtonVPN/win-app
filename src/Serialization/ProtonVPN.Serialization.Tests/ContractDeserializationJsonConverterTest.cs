@@ -93,7 +93,7 @@ public class ContractDeserializationJsonConverterTest
         };
 
         // Act
-        Exception exception = Assert.ThrowsException<Exception>(() => new ContractDeserializationJsonConverter(jsonContractDeserializers));
+        Exception exception = Assert.Throws<Exception>(() => new ContractDeserializationJsonConverter(jsonContractDeserializers));
 
         Assert.IsTrue(exception.Message.Equals($"There is more than a single JSON deserialization implementation" +
                 $"for the contract {typeof(ISubscription).FullName}."));
@@ -120,7 +120,7 @@ public class ContractDeserializationJsonConverterTest
         };
 
         // Act
-        Exception exception = Assert.ThrowsException<Exception>(() => new ContractDeserializationJsonConverter(jsonContractDeserializers));
+        Exception exception = Assert.Throws<Exception>(() => new ContractDeserializationJsonConverter(jsonContractDeserializers));
 
         Assert.IsTrue(exception.Message.Equals($"There is more than a single JSON deserialization implementation" +
                 $"for the contract {typeof(IDevice).FullName}."));

@@ -49,12 +49,12 @@ public class Ed25519Asn1KeyGeneratorTest
             
         int secretKeyHeaderLength = Ed25519Asn1KeyGenerator.SecretKeyAsn1Header.Length;
         Assert.AreEqual(KeyAlgorithm.Ed25519, result.SecretKey.Algorithm);
-        Assert.AreEqual(secretKeyHeaderLength + 32, result.SecretKey.Bytes.Length);
+        Assert.HasCount(secretKeyHeaderLength + 32, result.SecretKey.Bytes);
         CollectionAssert.AreEqual(Ed25519Asn1KeyGenerator.SecretKeyAsn1Header, result.SecretKey.Bytes.Take(secretKeyHeaderLength).ToArray());
             
         int publicKeyHeaderLength = Ed25519Asn1KeyGenerator.PublicKeyAsn1Header.Length;
         Assert.AreEqual(KeyAlgorithm.Ed25519, result.PublicKey.Algorithm);
-        Assert.AreEqual(publicKeyHeaderLength + 32, result.PublicKey.Bytes.Length);
+        Assert.HasCount(publicKeyHeaderLength + 32, result.PublicKey.Bytes);
         CollectionAssert.AreEqual(Ed25519Asn1KeyGenerator.PublicKeyAsn1Header, result.PublicKey.Bytes.Take(publicKeyHeaderLength).ToArray());
     }
 
@@ -70,7 +70,7 @@ public class Ed25519Asn1KeyGeneratorTest
             base64SecretKeys.Add(_generator.Generate().SecretKey.Base64);
         }
 
-        Assert.IsTrue(base64SecretKeys.Distinct().Count() >= numOfKeys - maxNumOfCollisions, 
-            $"Expected number of distinct secret keys to be greater or equal than {numOfKeys - maxNumOfCollisions}.");
+        Assert.IsGreaterThanOrEqualTo(numOfKeys - maxNumOfCollisions,
+base64SecretKeys.Distinct().Count(), $"Expected number of distinct secret keys to be greater or equal than {numOfKeys - maxNumOfCollisions}.");
     }
 }

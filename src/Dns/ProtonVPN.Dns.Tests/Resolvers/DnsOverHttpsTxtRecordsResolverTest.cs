@@ -45,6 +45,6 @@ public class DnsOverHttpsTxtRecordsResolverTest
 
     protected override void AssertCorrectResponse(DnsResponse response)
     {
-        Assert.IsTrue(response.AlternativeHosts.Count > 0);
+        Assert.IsNotEmpty(response.AlternativeHosts);
     }
 }

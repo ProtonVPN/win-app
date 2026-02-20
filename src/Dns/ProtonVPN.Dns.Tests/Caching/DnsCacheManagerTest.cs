@@ -158,7 +158,7 @@ public class DnsCacheManagerTest
         Task.WaitAll(tasks.ToArray());
 
         Assert.IsNotNull(_settings.DnsCache);
-        Assert.AreEqual(NUM_OF_PARALLEL_OPERATIONS, _settings.DnsCache.Count);
+        Assert.HasCount(NUM_OF_PARALLEL_OPERATIONS, _settings.DnsCache);
         foreach (DnsResponse dnsResponse in dnsResponses)
         {
             Assert.IsTrue(_settings.DnsCache.ContainsKey(dnsResponse.Host));
@@ -187,10 +187,10 @@ public class DnsCacheManagerTest
         Task.WaitAll(tasks.ToArray());
 
         Assert.IsNotNull(_settings.DnsCache);
-        Assert.AreEqual(1, _settings.DnsCache.Count);
+        Assert.HasCount(1, _settings.DnsCache);
         Assert.IsTrue(_settings.DnsCache.ContainsKey("host"));
         Assert.AreEqual("host", _settings.DnsCache["host"].Host);
-        Assert.IsTrue(_settings.DnsCache.Values.Single().IpAddresses.Single().ToString().StartsWith("192.168."));
+        Assert.StartsWith("192.168.", _settings.DnsCache.Values.Single().IpAddresses.Single().ToString());
     }
 
     [TestMethod]
@@ -287,7 +287,7 @@ public class DnsCacheManagerTest
                 new List<IpAddress> { new IpAddress(IPAddress.Parse($"192.168.{i}.{i}")) });
             dnsResponses.Add(dnsResponse);
         }
-        Assert.AreEqual(NUM_OF_PARALLEL_OPERATIONS, _settings.DnsCache.Count);
+        Assert.HasCount(NUM_OF_PARALLEL_OPERATIONS, _settings.DnsCache);
         foreach (DnsResponse cachedDnsResponse in _settings.DnsCache.Values)
         {
             DnsResponse newDnsResponse = dnsResponses.Single(dr => dr.Host == cachedDnsResponse.Host);
@@ -304,7 +304,7 @@ public class DnsCacheManagerTest
 
         Task.WaitAll(tasks.ToArray());
 
-        Assert.AreEqual(NUM_OF_PARALLEL_OPERATIONS, _settings.DnsCache.Count);
+        Assert.HasCount(NUM_OF_PARALLEL_OPERATIONS, _settings.DnsCache);
         foreach (DnsResponse dnsResponse in dnsResponses)
         {
             Assert.IsTrue(_settings.DnsCache.ContainsKey(dnsResponse.Host));
@@ -328,7 +328,7 @@ public class DnsCacheManagerTest
                 new List<IpAddress> { new IpAddress(IPAddress.Parse($"192.168.{i}.{i}")) }));
         }
         Assert.IsNotNull(_settings.DnsCache);
-        Assert.AreEqual(1, _settings.DnsCache.Count);
+        Assert.HasCount(1, _settings.DnsCache);
         Assert.AreEqual(cachedDnsResponse, _settings.DnsCache.Values.Single());
 
         IList<Task<DnsResponse>> tasks = new List<Task<DnsResponse>>();
@@ -340,9 +340,9 @@ public class DnsCacheManagerTest
         Task.WaitAll(tasks.ToArray());
 
         Assert.IsNotNull(_settings.DnsCache);
-        Assert.AreEqual(1, _settings.DnsCache.Count);
+        Assert.HasCount(1, _settings.DnsCache);
         Assert.IsTrue(_settings.DnsCache.ContainsKey("host"));
         Assert.AreEqual("host", _settings.DnsCache["host"].Host);
-        Assert.IsTrue(_settings.DnsCache.Values.Single().IpAddresses.Single().ToString().StartsWith("192.168."));
+        Assert.StartsWith("192.168.", _settings.DnsCache.Values.Single().IpAddresses.Single().ToString());
     }
 }

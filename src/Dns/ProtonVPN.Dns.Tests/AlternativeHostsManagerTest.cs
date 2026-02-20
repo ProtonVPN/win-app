@@ -83,7 +83,7 @@ public class AlternativeHostsManagerTest
     {
         IList<string> result = await _alternativeHostsManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
     }
 
     [TestMethod]
@@ -93,7 +93,7 @@ public class AlternativeHostsManagerTest
 
         IList<string> result = await _alternativeHostsManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
     }
 
     private DnsResponse CreateDnsResponse(string host)
@@ -130,16 +130,16 @@ public class AlternativeHostsManagerTest
         IList<string> result = await _alternativeHostsManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
         AssertResultEqualsCache(result);
-        Assert.AreEqual(0, _logger.Logs.Count);
+        Assert.IsEmpty(_logger.Logs);
         await AssertNoResolverWasCalledAsync();
     }
 
     private void AssertResultEqualsCache(IList<string> result)
     {
-        Assert.AreEqual(_settings.DnsCache[HOST].AlternativeHosts.Count, result.Count);
+        Assert.HasCount(_settings.DnsCache[HOST].AlternativeHosts.Count, result);
         foreach (string resultAlternativeHost in result)
         {
-            Assert.IsTrue(_settings.DnsCache[HOST].AlternativeHosts.Contains(resultAlternativeHost));
+            Assert.Contains(resultAlternativeHost, _settings.DnsCache[HOST].AlternativeHosts);
         }
     }
 
@@ -165,7 +165,7 @@ public class AlternativeHostsManagerTest
     {
         DateTime testStartDateTimeUtc = DateTime.UtcNow;
         InitializeDnsOverHttpsTxtRecordsResolver();
-        Assert.AreEqual(0, _logger.Logs.Count);
+        Assert.IsEmpty(_logger.Logs);
 
         IList<string> result = await _alternativeHostsManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
@@ -226,10 +226,10 @@ public class AlternativeHostsManagerTest
     private void AssertCacheAlternativeHosts()
     {
         IList<string> wrongAlternativeHosts = GetWrongAlternativeHosts();
-        Assert.AreEqual(wrongAlternativeHosts.Count, _settings.DnsCache[HOST].AlternativeHosts.Count);
+        Assert.HasCount(wrongAlternativeHosts.Count, _settings.DnsCache[HOST].AlternativeHosts);
         foreach (string wrongAlternativeHost in wrongAlternativeHosts)
         {
-            Assert.IsTrue(_settings.DnsCache[HOST].AlternativeHosts.Contains(wrongAlternativeHost));
+            Assert.Contains(wrongAlternativeHost, _settings.DnsCache[HOST].AlternativeHosts);
         }
     }
 
@@ -280,7 +280,7 @@ public class AlternativeHostsManagerTest
 
         IList<string> result = await _alternativeHostsManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
         await AssertCalledResolverOnceAsync();
     }
 

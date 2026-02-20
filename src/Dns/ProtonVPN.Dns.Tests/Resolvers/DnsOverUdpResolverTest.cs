@@ -85,7 +85,7 @@ public class DnsOverUdpResolverTest
 
         DnsResponse response = await ExecuteAsync();
 
-        Assert.IsTrue(response.IpAddresses.Count > 0);
+        Assert.IsNotEmpty(response.IpAddresses);
         Assert.IsTrue(response.TimeToLive > TimeSpan.Zero);
         Assert.IsTrue(response.ExpirationDateTimeUtc > DateTime.UtcNow);
         Assert.IsTrue(response.ResponseDateTimeUtc <= DateTime.UtcNow);
@@ -133,7 +133,7 @@ public class DnsOverUdpResolverTest
     private void AssertValidSystemResponse(List<IPAddress> expectedSystemResult, DnsResponse response)
     {
         Assert.IsNotNull(response);
-        Assert.AreEqual(expectedSystemResult.Count, response.IpAddresses.Count);
+        Assert.HasCount(expectedSystemResult.Count, response.IpAddresses);
         foreach (IPAddress ipAddress in expectedSystemResult)
         {
             Assert.IsNotNull(response.IpAddresses.Single(ip => ip.ToString() == ipAddress.ToString()));
@@ -158,7 +158,7 @@ public class DnsOverUdpResolverTest
 
         DnsResponse response = await ExecuteAsync();
 
-        Assert.AreEqual(null, response);
+        Assert.IsNull(response);
         Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(1));
     }
 
@@ -190,7 +190,7 @@ public class DnsOverUdpResolverTest
 
         DnsResponse response = await ExecuteAsync();
 
-        Assert.AreEqual(null, response);
+        Assert.IsNull(response);
         Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(20));
     }
 
@@ -202,7 +202,7 @@ public class DnsOverUdpResolverTest
 
         DnsResponse response = await ExecuteWithStopwatchAsync(StartResolveAndCancelAsync);
 
-        Assert.AreEqual(null, response);
+        Assert.IsNull(response);
         Assert.IsTrue(_stopwatch.Elapsed > TimeSpan.FromSeconds(2) && _stopwatch.Elapsed < TimeSpan.FromSeconds(5));
     }
 
@@ -222,7 +222,7 @@ public class DnsOverUdpResolverTest
         _cancellationTokenSource.Cancel();
         DnsResponse response = await ExecuteAsync();
 
-        Assert.AreEqual(null, response);
+        Assert.IsNull(response);
         Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(1));
     }
 
@@ -234,7 +234,7 @@ public class DnsOverUdpResolverTest
 
         DnsResponse response = await ExecuteWithStopwatchAndCustomHostAsync(NON_EXISTING_HOST);
 
-        Assert.AreEqual(null, response);
+        Assert.IsNull(response);
         Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(20));
     }
 
@@ -249,7 +249,7 @@ public class DnsOverUdpResolverTest
 
         DnsResponse response = await ExecuteWithStopwatchAndCustomHostAsync(NON_EXISTING_HOST);
 
-        Assert.AreEqual(null, response);
+        Assert.IsNull(response);
         Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(20));
     }
 
@@ -276,7 +276,7 @@ public class DnsOverUdpResolverTest
 
         DnsResponse response = await ExecuteWithStopwatchAndCustomHostAsync(string.Empty);
 
-        Assert.AreEqual(null, response);
+        Assert.IsNull(response);
         Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(1));
     }
 
@@ -287,7 +287,7 @@ public class DnsOverUdpResolverTest
 
         DnsResponse response = await ExecuteWithStopwatchAndCustomHostAsync(null);
 
-        Assert.AreEqual(null, response);
+        Assert.IsNull(response);
         Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(1));
     }
 }

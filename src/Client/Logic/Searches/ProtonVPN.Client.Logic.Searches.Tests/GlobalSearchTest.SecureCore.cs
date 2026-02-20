@@ -34,7 +34,7 @@ public partial class GlobalSearchTest
         List<ILocation> result = await _globalSearch!.SearchAsync(input, ServerFeatures.SecureCore);
 
         Assert.IsNotNull(result);
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
     }
 
     [TestMethod]
@@ -53,7 +53,7 @@ public partial class GlobalSearchTest
         List<ILocation> result = await _globalSearch!.SearchAsync(input);
 
         Assert.IsNotNull(result);
-        Assert.AreEqual(3, result.Count);
+        Assert.HasCount(3, result);
         Assert.IsNotNull(result.Single(l => l is City city && city.Name == "Islamabad"));
         Assert.IsNotNull(result.Single(l => l is State state && state.Name == "Illinois"));
         Assert.IsNotNull(result.Single(l => l is Country country && country.Code == "IS"));
@@ -71,7 +71,7 @@ public partial class GlobalSearchTest
         List<ILocation> result = await _globalSearch!.SearchAsync(input, ServerFeatures.SecureCore);
 
         Assert.IsNotNull(result);
-        Assert.AreEqual(5, result.Count);
+        Assert.HasCount(5, result);
         Assert.IsNotNull(result.Single(l => l is City city && city.Name == "Islamabad"));
         Assert.IsNotNull(result.Single(l => l is State state && state.Name == "Wisconsin"));
         Assert.IsNotNull(result.Single(l => l is State state && state.Name == "Illinois"));
@@ -89,7 +89,7 @@ public partial class GlobalSearchTest
         List<ILocation> result = await _globalSearch!.SearchAsync(input, ServerFeatures.SecureCore);
 
         Assert.IsNotNull(result);
-        Assert.AreEqual(1, result.Count);
+        Assert.HasCount(1, result);
         Assert.IsNotNull(result.Single(l => l is Server server && server.Name == "US-IL#234"));
     }
 
@@ -104,6 +104,6 @@ public partial class GlobalSearchTest
         List<ILocation> result = await _globalSearch!.SearchAsync(input, ServerFeatures.SecureCore);
 
         Assert.IsNotNull(result);
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
     }
 }

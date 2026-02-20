@@ -39,7 +39,7 @@ public class Sha1CalculatorTest
         _sha1Calculator = null;
     }
 
-    [DataTestMethod]
+    [TestMethod]
     [DataRow("da39a3ee5e6b4b0d3255bfef95601890afd80709", "")]
     [DataRow("1ef0c5a368ea1e692f92214a6d4fb2b87e2626e8", "testas1")]
     [DataRow("089249220d3ec96e9457427b03f03f465a9e9955", "testas2")]

@@ -50,7 +50,7 @@ public class X25519KeyGeneratorTest
         SecretKey x25519SecretKey = _generator.FromEd25519SecretKey(ed25519Asn1SecretKey);
             
         Assert.AreEqual(KeyAlgorithm.X25519, x25519SecretKey.Algorithm);
-        Assert.AreEqual(32, x25519SecretKey.Bytes.Length);
+        Assert.HasCount(32, x25519SecretKey.Bytes);
         Assert.AreEqual(X25519Base64SecretKey, x25519SecretKey.Base64);
     }
 }

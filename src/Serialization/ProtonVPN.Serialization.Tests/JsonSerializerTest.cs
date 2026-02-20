@@ -99,9 +99,9 @@ public class JsonSerializerTest
         IJsonSerializer serializer = new Json.JsonSerializer(new List<IJsonContractDeserializer>());
 
         // Act
-        Exception exception = Assert.ThrowsException<JsonSerializationException>(() => serializer.DeserializeFromString<IUser>(json));
-        Assert.IsTrue(exception.Message.Contains($"Could not create an instance of type {typeof(IUser).FullName}. " +
-            $"Type is an interface or abstract class and cannot be instantiated."));
+        Exception exception = Assert.Throws<JsonSerializationException>(() => serializer.DeserializeFromString<IUser>(json));
+        Assert.Contains($"Could not create an instance of type {typeof(IUser).FullName}. " +
+            $"Type is an interface or abstract class and cannot be instantiated.", exception.Message);
     }
 
     [TestMethod]
@@ -119,7 +119,7 @@ public class JsonSerializerTest
         IDictionary<string, string?> configJsonProperties = serializer.DeserializeFirstLevel(json)!;
 
         // Assert
-        Assert.AreEqual(2, configJsonProperties.Count);
+        Assert.HasCount(2, configJsonProperties);
         Assert.IsTrue(configJsonProperties.ContainsKey("User"));
         Assert.AreEqual("{\"Name\":\"Harry Potter\"}", configJsonProperties["User"]);
         Assert.IsTrue(configJsonProperties.ContainsKey("Device"));

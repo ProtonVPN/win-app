@@ -105,17 +105,17 @@ public class AnnouncementMapperTest
         Announcement result = _announcementMapper.Map(input);
 
         Assert.IsNotNull(result);
-        Assert.IsTrue(result.Id == "vpn-black-friday-2023-icon-0");
+        Assert.AreEqual("vpn-black-friday-2023-icon-0", result.Id);
         Assert.IsTrue(result.StartDateTimeUtc == new DateTime(2023, 11, 2, 13, 0, 0, 0, 0, DateTimeKind.Utc));
         Assert.IsTrue(result.EndDateTimeUtc == new DateTime(2023, 11, 24, 8, 59, 0, 0, 0, DateTimeKind.Utc));
-        Assert.IsTrue(result.Type == (AnnouncementType)0);
+        Assert.AreEqual((AnnouncementType)0, result.Type);
         Assert.IsNotNull(result.Panel);
         Assert.IsNotNull(result.Panel.Button);
-        Assert.IsTrue(result.Panel.Button.Text == "Get the deal now");
-        Assert.IsTrue(result.Panel.Button.Url == "https://protonvpn.com/");
-        Assert.IsTrue(result.Panel.Button.Action == "OpenURL");
+        Assert.AreEqual("Get the deal now", result.Panel.Button.Text);
+        Assert.AreEqual("https://protonvpn.com/", result.Panel.Button.Url);
+        Assert.AreEqual("OpenURL", result.Panel.Button.Action);
         Assert.IsNotNull(result.Panel.Button.Behaviors);
-        Assert.IsTrue(result.Panel.Button.Behaviors.Count > 0);
+        Assert.IsNotEmpty(result.Panel.Button.Behaviors);
         Assert.IsNotNull(result.Panel.FullScreenImage);
         Assert.IsNotNull(result.Panel.FullScreenImage.Image);
     }
@@ -169,17 +169,17 @@ public class AnnouncementMapperTest
         Announcement result = _announcementMapper.Map(input);
 
         Assert.IsNotNull(result);
-        Assert.IsTrue(result.Id == "vpn-black-friday-2023-splash-0");
+        Assert.AreEqual("vpn-black-friday-2023-splash-0", result.Id);
         Assert.IsTrue(result.StartDateTimeUtc == new DateTime(2023, 11, 2, 13, 0, 0, 0, 0, DateTimeKind.Utc));
         Assert.IsTrue(result.EndDateTimeUtc == new DateTime(2023, 11, 24, 8, 59, 0, 0, 0, DateTimeKind.Utc));
-        Assert.IsTrue(result.Type == (AnnouncementType)1);
+        Assert.AreEqual((AnnouncementType)1, result.Type);
         Assert.IsNotNull(result.Panel);
         Assert.IsNotNull(result.Panel.Button);
-        Assert.IsTrue(result.Panel.Button.Text == "Get the deal now");
-        Assert.IsTrue(result.Panel.Button.Url == "https://protonvpn.com/");
-        Assert.IsTrue(result.Panel.Button.Action == "OpenURL");
+        Assert.AreEqual("Get the deal now", result.Panel.Button.Text);
+        Assert.AreEqual("https://protonvpn.com/", result.Panel.Button.Url);
+        Assert.AreEqual("OpenURL", result.Panel.Button.Action);
         Assert.IsNotNull(result.Panel.Button.Behaviors);
-        Assert.IsTrue(result.Panel.Button.Behaviors.Count > 0);
+        Assert.IsNotEmpty(result.Panel.Button.Behaviors);
         Assert.IsNotNull(result.Panel.FullScreenImage);
         Assert.IsNotNull(result.Panel.FullScreenImage.Image);
     }

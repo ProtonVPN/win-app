@@ -72,7 +72,6 @@ public class NetworkTrafficMapperTest
 
         NetworkTraffic result = _mapper.Map(entityToTest);
 
-        Assert.IsNotNull(result);
         Assert.AreEqual(0u, result.BytesDownloaded);
         Assert.AreEqual(0u, result.BytesUploaded);
     }
@@ -88,7 +87,6 @@ public class NetworkTrafficMapperTest
 
         NetworkTraffic result = _mapper.Map(entityToTest);
 
-        Assert.IsNotNull(result);
         Assert.AreEqual(entityToTest.BytesDownloaded, result.BytesDownloaded);
         Assert.AreEqual(entityToTest.BytesUploaded, result.BytesUploaded);
     }

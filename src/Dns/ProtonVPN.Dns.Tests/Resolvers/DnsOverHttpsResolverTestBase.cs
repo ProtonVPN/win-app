@@ -187,7 +187,7 @@ public abstract class DnsOverHttpsResolverTestBase<T>
 
         DnsResponse response = await ExecuteAsync(host);
 
-        Assert.AreEqual(null, response);
+        Assert.IsNull(response);
         Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(15));
     }
 
@@ -199,7 +199,7 @@ public abstract class DnsOverHttpsResolverTestBase<T>
 
         DnsResponse response = await ExecuteAsync(host);
 
-        Assert.AreEqual(null, response);
+        Assert.IsNull(response);
         Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(1));
     }
 
@@ -211,7 +211,7 @@ public abstract class DnsOverHttpsResolverTestBase<T>
 
         DnsResponse response = await ExecuteAsync(host);
 
-        Assert.AreEqual(null, response);
+        Assert.IsNull(response);
         Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(1));
     }
 
@@ -224,7 +224,7 @@ public abstract class DnsOverHttpsResolverTestBase<T>
 
         DnsResponse response = await ExecuteAsync(host);
 
-        Assert.AreEqual(null, response);
+        Assert.IsNull(response);
         Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(1));
     }
 
@@ -235,7 +235,7 @@ public abstract class DnsOverHttpsResolverTestBase<T>
 
         DnsResponse response = await ExecuteAsync(_host);
 
-        Assert.AreEqual(null, response);
+        Assert.IsNull(response);
         Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(15));
     }
 
@@ -258,7 +258,7 @@ public abstract class DnsOverHttpsResolverTestBase<T>
 
         DnsResponse response = await ExecuteAsync(_host);
 
-        Assert.AreEqual(null, response);
+        Assert.IsNull(response);
         Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(15));
     }
 
@@ -301,7 +301,7 @@ public abstract class DnsOverHttpsResolverTestBase<T>
         DnsResponse response = await task;
         _stopwatch.Stop();
 
-        Assert.AreEqual(null, response);
+        Assert.IsNull(response);
         Assert.IsTrue(_stopwatch.Elapsed > TimeSpan.FromSeconds(2), TEST_TOO_QUICK_MESSAGE);
         Assert.IsTrue(_stopwatch.Elapsed < TimeSpan.FromSeconds(5), TEST_CANCEL_TOOK_TOO_LONG_MESSAGE);
     }

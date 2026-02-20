@@ -27,7 +27,7 @@ namespace ProtonVPN.Common.Tests.Extensions
     [TestClass]
     public class ExponentialExtensionsTest
     {
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(0, "B", UnitSpacing.WithSpace, "0 B")]
         [DataRow(1, "B", UnitSpacing.WithSpace, "1 B")]
         [DataRow(21, "B", UnitSpacing.WithSpace, "21 B")]

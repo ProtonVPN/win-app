@@ -151,12 +151,11 @@ public class VpnStateChangedEventArgsMapperTest
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void TestMapRightToLeft_ThrowsWhenNull()
     {
         VpnStateIpcEntity entityToTest = null;
 
-        _mapper.Map(entityToTest);
+        Assert.Throws<ArgumentNullException>(() => _mapper.Map(entityToTest));
     }
 
     [TestMethod]

@@ -26,7 +26,7 @@ namespace ProtonVPN.Crypto.Tests;
 [TestClass]
 public class ManagementPasswordsTest
 {
-    [DataTestMethod]
+    [TestMethod]
     [DataRow(0)]
     [DataRow(1)]
     [DataRow(16)]

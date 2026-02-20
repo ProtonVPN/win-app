@@ -48,7 +48,7 @@ namespace ProtonVPN.Api.Tests.Handlers.StackBuilders
             Action action = () => new HttpMessageHandlerStackBuilder()
                 .AddLastHandler(mockOfDelegatingHandler);
 
-            Assert.ThrowsException<ArgumentException>(action);
+            Assert.Throws<ArgumentException>(action);
         }
 
         [TestMethod]
@@ -57,7 +57,7 @@ namespace ProtonVPN.Api.Tests.Handlers.StackBuilders
             Action action = () => new HttpMessageHandlerStackBuilder()
                 .AddLastHandler(null);
 
-            Assert.ThrowsException<ArgumentNullException>(action);
+            Assert.Throws<ArgumentNullException>(action);
         }
 
         [TestMethod]

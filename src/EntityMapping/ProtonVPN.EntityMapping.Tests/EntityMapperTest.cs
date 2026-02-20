@@ -79,13 +79,12 @@ namespace ProtonVPN.EntityMapping.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NotImplementedException))]
         public void TestMap_WhenMapperDoesNotExist()
         {
             string value = DateTimeOffset.UtcNow.ToString();
             MockOfEntityA mockOfEntityA = new() { Value = value.ToString() };
 
-            _entityMapper.Map<MockOfEntityA, MockOfEnumA>(mockOfEntityA);
+            Assert.Throws<NotImplementedException>(() => _entityMapper.Map<MockOfEntityA, MockOfEnumA>(mockOfEntityA));            
         }
 
         [TestMethod]
@@ -131,12 +130,11 @@ namespace ProtonVPN.EntityMapping.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NotImplementedException))]
         public void TestMapNullableStruct_WhenMapperDoesNotExist()
         {
             MockOfEnumA mockOfEnumA = MockOfEnumA.One;
 
-            _entityMapper.Map<MockOfEnumA, DateTimeKind>(mockOfEnumA);
+            Assert.Throws<NotImplementedException>(() => _entityMapper.Map<MockOfEnumA, DateTimeKind>(mockOfEnumA));
         }
 
         [TestMethod]
@@ -164,7 +162,7 @@ namespace ProtonVPN.EntityMapping.Tests
         private void AssertListsAreEqual<TA, TB>(List<TA> expectedResult, List<TB> result, Func<TA, TB, bool> comparer)
         {
             Assert.IsNotNull(result);
-            Assert.AreEqual(expectedResult.Count, result.Count);
+            Assert.HasCount(expectedResult.Count, result);
             for (int i = 0; i < expectedResult.Count; i++)
             {
                 Assert.IsTrue(comparer(expectedResult[i], result[i]));
@@ -184,13 +182,12 @@ namespace ProtonVPN.EntityMapping.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NotImplementedException))]
         public void TestMap_List_WhenMapperDoesNotExist()
         {
             List<MockOfEntityA> mockOfAEntities = GenerateEntities<MockOfEntityA>(
                 (int i) => new() { Value = DateTimeOffset.UtcNow.AddDays(i).ToString() });
 
-            _entityMapper.Map<MockOfEntityA, MockOfEnumA>(mockOfAEntities.ToList());
+            Assert.Throws<NotImplementedException>(() => _entityMapper.Map<MockOfEntityA, MockOfEnumA>(mockOfAEntities.ToList()));
         }
 
         [TestMethod]

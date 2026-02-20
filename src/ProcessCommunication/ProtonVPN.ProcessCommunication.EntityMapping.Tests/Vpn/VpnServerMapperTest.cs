@@ -122,7 +122,7 @@ public class VpnServerMapperTest
         Assert.AreEqual(entityToTest.Signature, result.Signature);
 
         Assert.IsNotNull(result.RelayIpByProtocol);
-        Assert.AreEqual(relayIpByProtocol.Count, result.RelayIpByProtocol.Count);
+        Assert.HasCount(relayIpByProtocol.Count, result.RelayIpByProtocol);
         Assert.AreEqual(relayIpByProtocol[VpnProtocol.WireGuardUdp], result.RelayIpByProtocol[VpnProtocolIpcEntity.WireGuardUdp]);
         Assert.AreEqual(relayIpByProtocol[VpnProtocol.WireGuardTcp], result.RelayIpByProtocol[VpnProtocolIpcEntity.WireGuardTcp]);
         Assert.AreEqual(relayIpByProtocol[VpnProtocol.WireGuardTls], result.RelayIpByProtocol[VpnProtocolIpcEntity.WireGuardTls]);
@@ -131,12 +131,11 @@ public class VpnServerMapperTest
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void TestMapRightToLeft_ThrowsWhenNull()
     {
         VpnServerIpcEntity entityToTest = null;
 
-        _mapper.Map(entityToTest);
+        Assert.Throws<ArgumentNullException>(() => _mapper.Map(entityToTest));
     }
 
     [TestMethod]
@@ -195,7 +194,7 @@ public class VpnServerMapperTest
         Assert.AreEqual(entityToTest.Signature, result.Signature);
 
         Assert.IsNotNull(result.RelayIpByProtocol);
-        Assert.AreEqual(relayIpByProtocol.Count, result.RelayIpByProtocol.Count);
+        Assert.HasCount(relayIpByProtocol.Count, result.RelayIpByProtocol);
         Assert.AreEqual(relayIpByProtocol[VpnProtocolIpcEntity.WireGuardUdp], result.RelayIpByProtocol[VpnProtocol.WireGuardUdp]);
         Assert.AreEqual(relayIpByProtocol[VpnProtocolIpcEntity.WireGuardTcp], result.RelayIpByProtocol[VpnProtocol.WireGuardTcp]);
         Assert.AreEqual(relayIpByProtocol[VpnProtocolIpcEntity.WireGuardTls], result.RelayIpByProtocol[VpnProtocol.WireGuardTls]);

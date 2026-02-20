@@ -100,7 +100,7 @@ public class DnsOverHttpsProvidersManagerTests
     {
         IList<IpAddress> result = await _dnsOverHttpsProvidersManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
     }
 
     [TestMethod]
@@ -110,7 +110,7 @@ public class DnsOverHttpsProvidersManagerTests
 
         IList<IpAddress> result = await _dnsOverHttpsProvidersManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
     }
 
     private ConcurrentDictionary<string, DnsResponse> CreateDnsCache(params DnsResponse[] dnsResponses)
@@ -131,8 +131,8 @@ public class DnsOverHttpsProvidersManagerTests
 
         IList<IpAddress> result = await _dnsOverHttpsProvidersManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(2, result.Count);
-        Assert.AreEqual(0, _logger.Logs.Count);
+        Assert.HasCount(2, result);
+        Assert.IsEmpty(_logger.Logs);
         await AssertResolverWasNotCalledAsync();
     }
 
@@ -152,7 +152,7 @@ public class DnsOverHttpsProvidersManagerTests
     {
         DateTime testStartDateTimeUtc = DateTime.UtcNow;
         InitializeDnsOverUdpResolver();
-        Assert.AreEqual(0, _logger.Logs.Count);
+        Assert.IsEmpty(_logger.Logs);
 
         IList<IpAddress> result = await _dnsOverHttpsProvidersManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
@@ -199,7 +199,7 @@ public class DnsOverHttpsProvidersManagerTests
 
     private void AssertCacheAfterSuccessfulResolve(IList<IpAddress> result, DateTime testStartDateTimeUtc)
     {
-        Assert.AreEqual(2, result.Count);
+        Assert.HasCount(2, result);
         Assert.AreEqual("192.168.1.1", _settings.DnsCache[HOST].IpAddresses[0].ToString());
         Assert.AreEqual("192.168.1.2", _settings.DnsCache[HOST].IpAddresses[1].ToString());
         Assert.AreEqual(TimeSpan.FromMinutes(12), _settings.DnsCache[HOST].TimeToLive);
@@ -217,7 +217,7 @@ public class DnsOverHttpsProvidersManagerTests
 
         IList<IpAddress> result = await _dnsOverHttpsProvidersManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(2, result.Count);
+        Assert.HasCount(2, result);
         AssertCacheAfterFailedResolve(testStartDateTimeUtc);
         await AssertResolverWasCalledAsync();
     }
@@ -243,7 +243,7 @@ public class DnsOverHttpsProvidersManagerTests
 
         IList<IpAddress> result = await _dnsOverHttpsProvidersManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(2, result.Count);
+        Assert.HasCount(2, result);
         AssertCacheAfterFailedResolve(testStartDateTimeUtc);
         await AssertResolverWasCalledAsync();
     }
@@ -256,7 +256,7 @@ public class DnsOverHttpsProvidersManagerTests
 
         IList<IpAddress> result = await _dnsOverHttpsProvidersManager.GetAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
         await AssertResolverWasCalledAsync();
     }
 
@@ -303,7 +303,7 @@ public class DnsOverHttpsProvidersManagerTests
 
         IList<IpAddress> result = await _dnsOverHttpsProvidersManager.ResolveWithoutCacheAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
         await AssertResolverWasCalledAsync();
     }
 
@@ -312,7 +312,7 @@ public class DnsOverHttpsProvidersManagerTests
     {
         DateTime testStartDateTimeUtc = DateTime.UtcNow;
         InitializeDnsOverUdpResolver();
-        Assert.AreEqual(0, _logger.Logs.Count);
+        Assert.IsEmpty(_logger.Logs);
 
         IList<IpAddress> result = await _dnsOverHttpsProvidersManager.ResolveWithoutCacheAsync(HOST, _cancellationTokenSource.Token);
 
@@ -328,7 +328,7 @@ public class DnsOverHttpsProvidersManagerTests
 
         IList<IpAddress> result = await _dnsOverHttpsProvidersManager.ResolveWithoutCacheAsync(HOST, _cancellationTokenSource.Token);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
         await AssertResolverWasCalledAsync();
     }
 
@@ -340,7 +340,7 @@ public class DnsOverHttpsProvidersManagerTests
 
         IList<IpAddress> result = _dnsOverHttpsProvidersManager.GetFromCache(HOST);
 
-        Assert.AreEqual(expectedIpAddresses.Count, result.Count);
+        Assert.HasCount(expectedIpAddresses.Count, result);
         foreach (IpAddress ipAddress in result)
         {
             expectedIpAddresses.Contains(ipAddress);
@@ -356,7 +356,7 @@ public class DnsOverHttpsProvidersManagerTests
 
         IList<IpAddress> result = _dnsOverHttpsProvidersManager.GetFromCache(HOST);
 
-        Assert.AreEqual(2, result.Count);
+        Assert.HasCount(2, result);
         AssertCacheBeforeExecution();
         await AssertResolverWasNotCalledAsync();
     }
@@ -368,7 +368,7 @@ public class DnsOverHttpsProvidersManagerTests
 
         IList<IpAddress> result = _dnsOverHttpsProvidersManager.GetFromCache(HOST);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
         AssertCacheIsEmpty();
         await AssertResolverWasNotCalledAsync();
     }
@@ -386,7 +386,7 @@ public class DnsOverHttpsProvidersManagerTests
 
         IList<IpAddress> result = _dnsOverHttpsProvidersManager.GetFromCache(HOST);
 
-        Assert.AreEqual(0, result.Count);
+        Assert.IsEmpty(result);
         AssertCacheIsEmpty();
         await AssertResolverWasNotCalledAsync();
     }
@@ -397,7 +397,7 @@ public class DnsOverHttpsProvidersManagerTests
         DateTime testStartDateTimeUtc = DateTime.UtcNow;
         _dnsOverUdpResolver.ResolveAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
             .ReturnsForAnyArgs(DelayedDnsResolverResponseAsync);
-        Assert.AreEqual(0, _logger.Logs.Count);
+        Assert.IsEmpty(_logger.Logs);
 
         Task<IList<IpAddress>> task1 = _dnsOverHttpsProvidersManager.GetAsync(HOST, _cancellationTokenSource.Token);
         Task<IList<IpAddress>> task2 = _dnsOverHttpsProvidersManager.GetAsync(HOST, _cancellationTokenSource.Token);

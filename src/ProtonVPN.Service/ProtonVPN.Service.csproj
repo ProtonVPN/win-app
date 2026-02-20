@@ -80,12 +80,14 @@
         <PackageReference Include="System.Collections.Immutable" />
         <PackageReference Include="System.ComponentModel.Annotations" />
         <PackageReference Include="System.Diagnostics.DiagnosticSource" />
+        <PackageReference Include="System.Diagnostics.EventLog" />
         <PackageReference Include="System.Formats.Asn1" />
         <PackageReference Include="System.Private.Uri" />
         <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" />
         <PackageReference Include="System.ServiceModel.Primitives" />
         <PackageReference Include="System.Text.Encoding.CodePages" />
         <PackageReference Include="System.Text.Json" />
+        <PackageReference Include="System.Threading.AccessControl" />
     </ItemGroup>
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />

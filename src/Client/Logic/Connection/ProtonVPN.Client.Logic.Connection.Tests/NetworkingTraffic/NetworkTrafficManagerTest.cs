@@ -71,7 +71,7 @@ public class NetworkTrafficManagerTest
     private void AssertSpeedHistoryIsEmpty()
     {
         IReadOnlyList<NetworkTraffic> speedHistory = _networkTrafficManager!.GetSpeedHistory();
-        Assert.AreEqual(NetworkTrafficManager.HISTORY_LENGTH_IN_SECONDS, speedHistory.Count);
+        Assert.HasCount(NetworkTrafficManager.HISTORY_LENGTH_IN_SECONDS, speedHistory);
         for (int i = 0; i < NetworkTrafficManager.HISTORY_LENGTH_IN_SECONDS; i++)
         {
             AssertEqualNetworkTrafficWithoutDate(NetworkTraffic.Zero, speedHistory[i]);
@@ -170,7 +170,7 @@ public class NetworkTrafficManagerTest
     private void AssertLastSpeedHistoryItems(NetworkTraffic expectedSpeed, int numOfItems)
     {
         IReadOnlyList<NetworkTraffic> speedHistory = _networkTrafficManager!.GetSpeedHistory();
-        Assert.AreEqual(NetworkTrafficManager.HISTORY_LENGTH_IN_SECONDS, speedHistory.Count);
+        Assert.HasCount(NetworkTrafficManager.HISTORY_LENGTH_IN_SECONDS, speedHistory);
 
         int numOfEmptyItems = NetworkTrafficManager.HISTORY_LENGTH_IN_SECONDS - numOfItems;
         for (int i = 0; i < NetworkTrafficManager.HISTORY_LENGTH_IN_SECONDS; i++)

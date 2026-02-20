@@ -25,7 +25,7 @@ namespace ProtonVPN.Client.Common.Tests.Helpers;
 [TestClass]
 public class ByteConversionHelperTests
 {
-    [DataTestMethod]
+    [TestMethod]
     // Test positive values
     [DataRow(0, 0, ByteMetrics.Bytes)]
     [DataRow(1, 1, ByteMetrics.Bytes)]

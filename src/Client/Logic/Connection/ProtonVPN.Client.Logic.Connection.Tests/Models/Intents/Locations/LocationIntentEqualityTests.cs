@@ -241,7 +241,7 @@ public class LocationIntentEqualityTests
         foreach (MultiCountryLocationIntent intent in countryIntents)
         {
             Assert.IsFalse(intent.IsSelectionEmpty);
-            Assert.AreEqual(3, intent.CountryCodes.Count);
+            Assert.HasCount(3, intent.CountryCodes);
             Assert.AreEqual("CH", intent.CountryCodes[0]);
             Assert.AreEqual("FR", intent.CountryCodes[1]);
             Assert.AreEqual("US", intent.CountryCodes[2]);
@@ -264,7 +264,7 @@ public class LocationIntentEqualityTests
         foreach (MultiStateLocationIntent intent in stateIntents)
         {
             Assert.IsFalse(intent.IsSelectionEmpty);
-            Assert.AreEqual(3, intent.StateNames.Count);
+            Assert.HasCount(3, intent.StateNames);
             Assert.AreEqual("AZ", intent.StateNames[0]);
             Assert.AreEqual("CA", intent.StateNames[1]);
             Assert.AreEqual("NY", intent.StateNames[2]);
@@ -287,7 +287,7 @@ public class LocationIntentEqualityTests
         foreach (MultiCityLocationIntent intent in cityIntents)
         {
             Assert.IsFalse(intent.IsSelectionEmpty);
-            Assert.AreEqual(2, intent.CityNames.Count);
+            Assert.HasCount(2, intent.CityNames);
             Assert.AreEqual("Los Angeles", intent.CityNames[0]);
             Assert.AreEqual("San Francisco", intent.CityNames[1]);
         }
@@ -309,7 +309,7 @@ public class LocationIntentEqualityTests
         foreach (MultiServerLocationIntent intent in serverIntents)
         {
             Assert.IsFalse(intent.IsSelectionEmpty);
-            Assert.AreEqual(3, intent.Servers.Count);
+            Assert.HasCount(3, intent.Servers);
             Assert.AreEqual("1", intent.Servers[0].Id);
             Assert.AreEqual("CH#1", intent.Servers[0].Name);
             Assert.AreEqual("2", intent.Servers[1].Id);
@@ -335,7 +335,7 @@ public class LocationIntentEqualityTests
         foreach (MultiGatewayLocationIntent intent in gatewayIntents)
         {
             Assert.IsFalse(intent.IsSelectionEmpty);
-            Assert.AreEqual(2, intent.GatewayNames.Count);
+            Assert.HasCount(2, intent.GatewayNames);
             Assert.AreEqual("GUEST", intent.GatewayNames[0]);
             Assert.AreEqual("PROTON", intent.GatewayNames[1]);
         }
@@ -357,7 +357,7 @@ public class LocationIntentEqualityTests
         foreach (MultiGatewayServerLocationIntent intent in gatewayServerIntents)
         {
             Assert.IsFalse(intent.IsSelectionEmpty);
-            Assert.AreEqual(3, intent.Servers.Count);
+            Assert.HasCount(3, intent.Servers);
             Assert.AreEqual("1", intent.Servers[0].Id);
             Assert.AreEqual("PROTON-CH#1", intent.Servers[0].Name);
             Assert.AreEqual("2", intent.Servers[1].Id);

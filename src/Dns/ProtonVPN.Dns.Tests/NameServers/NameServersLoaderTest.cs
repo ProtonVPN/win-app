@@ -41,7 +41,7 @@ namespace ProtonVPN.Dns.Tests.NameServers
 
             IList<IPEndPoint> result = nameServersLoader.Get();
 
-            Assert.IsTrue(result.Count > 0);
+            Assert.IsNotEmpty(result);
             result.ForEach(AssertIPEndPoint);
         }
 
@@ -71,7 +71,7 @@ namespace ProtonVPN.Dns.Tests.NameServers
 
             IList<IPEndPoint> result = nameServersLoader.Get();
 
-            Assert.IsTrue(result.Count == 0);
+            Assert.IsEmpty(result);
         }
 
         [TestMethod]
@@ -93,7 +93,7 @@ namespace ProtonVPN.Dns.Tests.NameServers
 
             IList<IPEndPoint> result = nameServersLoader.Get();
 
-            Assert.AreEqual(3, result.Count);
+            Assert.HasCount(3, result);
             result.ForEach(AssertIPEndPoint);
         }
 
@@ -112,7 +112,7 @@ namespace ProtonVPN.Dns.Tests.NameServers
 
             IList<IPEndPoint> result = nameServersLoader.Get();
 
-            Assert.AreEqual(3, result.Count);
+            Assert.HasCount(3, result);
             result.ForEach(AssertIPEndPoint);
         }
 
@@ -125,7 +125,7 @@ namespace ProtonVPN.Dns.Tests.NameServers
 
             IList<IPEndPoint> result = nameServersLoader.Get();
 
-            Assert.AreEqual(0, result.Count);
+            Assert.IsEmpty(result);
         }
     }
 }

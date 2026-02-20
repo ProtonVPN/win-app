@@ -106,7 +106,7 @@ namespace ProtonVPN.Service.Tests.KillSwitch
             _firewall.Received(1).DisableLeakProtection();
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(VpnStatus.Pinging)]
         [DataRow(VpnStatus.Connecting)]
         [DataRow(VpnStatus.Reconnecting)]
@@ -127,7 +127,7 @@ namespace ProtonVPN.Service.Tests.KillSwitch
             result.Should().Be(true);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(VpnStatus.Disconnecting, VpnError.None, KillSwitchMode.Off, false, false)]
         [DataRow(VpnStatus.Disconnecting, VpnError.None, KillSwitchMode.Soft, false, false)]
         [DataRow(VpnStatus.Disconnecting, VpnError.None, KillSwitchMode.Off, true, false)]
@@ -161,7 +161,7 @@ namespace ProtonVPN.Service.Tests.KillSwitch
             result.Should().Be(expected);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(VpnStatus.Waiting, false)]
         [DataRow(VpnStatus.Waiting, true)]
         [DataRow(VpnStatus.Authenticating, false)]

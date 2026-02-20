@@ -85,7 +85,7 @@ namespace ProtonVPN.Common.Tests.Vpn
             result.Should().BeFalse();
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(null)]
         [DataRow("")]
         [DataRow("server.\"proton.com")]
@@ -99,7 +99,7 @@ namespace ProtonVPN.Common.Tests.Vpn
             action.Should().Throw<ArgumentException>();
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(null)]
         [DataRow("")]
         public void VpnHost_ShouldNotThrow_WhenIpIsNullOrEmpty(string ip)
@@ -114,7 +114,7 @@ namespace ProtonVPN.Common.Tests.Vpn
             result.Should().Be(ip);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("158.159.247")]
         [DataRow("127.0.0.4 ")]
         [DataRow("-127.0.0.4")]
@@ -129,7 +129,7 @@ namespace ProtonVPN.Common.Tests.Vpn
             action.Should().Throw<ArgumentException>();
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("158.159.247")]
         [DataRow("127.0.0.4 ")]
         [DataRow("-127.0.0.4")]

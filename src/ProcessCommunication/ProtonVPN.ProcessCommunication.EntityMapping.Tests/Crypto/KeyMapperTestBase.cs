@@ -50,7 +50,7 @@ public abstract class KeyMapperTestBase<TKey, TKeyIpcEntity>
 
         TKeyIpcEntity result = _mapper.Map(entityToMap);
 
-        Assert.AreEqual(null, result);
+        Assert.IsNull(result);
     }
 
     [TestMethod]
@@ -74,7 +74,7 @@ public abstract class KeyMapperTestBase<TKey, TKeyIpcEntity>
 
         TKey result = _mapper.Map(entityToMap);
 
-        Assert.AreEqual(null, result);
+        Assert.IsNull(result);
     }
 
     [TestMethod]

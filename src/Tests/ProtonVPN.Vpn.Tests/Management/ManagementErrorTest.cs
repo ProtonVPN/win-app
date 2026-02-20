@@ -41,7 +41,7 @@ namespace ProtonVPN.Vpn.Tests.Management
             result.Should().Be(expected);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(VpnError.TapAdapterInUseError, ">LOG:1579682468,F,All TAP-Windows adapters on this system are currently in use.")]
         [DataRow(VpnError.TapAdapterInUseError, ">LOG:1579682468,F,All TAP-Win32 adapters on this system are currently in use.")]
         [DataRow(VpnError.NoTapAdaptersError, ">LOG:1579682468,F,There are no TAP-Windows adapters on this system.")]
@@ -67,7 +67,7 @@ namespace ProtonVPN.Vpn.Tests.Management
             result.Should().Be(expected);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(true, ">FATAL,BlaBlaBla")]
         [DataRow(true, ">PASSWORD:Verification Failed: 'Auth'")]
         [DataRow(true, ">STATE:1579680219,RECONNECTING,tls-error,,,,,")]

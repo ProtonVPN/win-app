@@ -53,7 +53,7 @@ namespace ProtonVPN.Update.Tests.Files.Validatable
             await _origin.Received(1).Valid(filename, checkSum);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(false)]
         [DataRow(true)]
         public async Task Valid_ShouldBe_Origin_Valid(bool value)

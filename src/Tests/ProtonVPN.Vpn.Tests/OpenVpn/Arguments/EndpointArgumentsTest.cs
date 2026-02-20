@@ -71,7 +71,7 @@ public class EndpointArgumentsTest
         result.First().Should().StartWith($"--remote {endpoint.Server.Ip} {endpoint.Port}");
     }
 
-    [DataTestMethod]
+    [TestMethod]
     [DataRow(VpnProtocol.OpenVpnUdp, "udp")]
     [DataRow(VpnProtocol.OpenVpnTcp, "tcp")]
     public void Enumerable_ShouldMap_VpnProtocol(VpnProtocol protocol, string expected)
@@ -87,7 +87,7 @@ public class EndpointArgumentsTest
         result.Should().Contain($"--remote {endpoint.Server.Ip} {endpoint.Port} {expected}");
     }
 
-    [DataTestMethod]
+    [TestMethod]
     [DataRow(VpnProtocol.Smart)]
     public void Enumerable_ShouldThrow_WhenProtocolIsNotSupported(VpnProtocol protocol)
     {

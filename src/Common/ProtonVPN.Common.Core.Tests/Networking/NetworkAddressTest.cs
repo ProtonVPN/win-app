@@ -39,7 +39,7 @@ public class NetworkAddressTest
         Assert.AreEqual("255.255.255.255", mask);
     }
 
-    [DataTestMethod]
+    [TestMethod]
     [DataRow(0, "0.0.0.0")]
     [DataRow(1, "128.0.0.0")]
     [DataRow(8, "255.0.0.0")]
@@ -66,7 +66,7 @@ public class NetworkAddressTest
         Assert.IsTrue(NetworkAddress.TryParse("2001:db8::/64", out NetworkAddress networkAddress), "TryParse should succeed for valid IPv6.");
 
         // Act & Assert
-        Assert.ThrowsException<InvalidOperationException>(
+        Assert.Throws<InvalidOperationException>(
             () => networkAddress.GetSubnetMaskString(),
             "Calling GetSubnetMaskString on IPv6 should throw InvalidOperationException."
         );

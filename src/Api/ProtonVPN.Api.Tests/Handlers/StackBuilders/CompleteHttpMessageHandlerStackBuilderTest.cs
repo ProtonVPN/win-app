@@ -45,7 +45,7 @@ namespace ProtonVPN.Api.Tests.Handlers.StackBuilders
         {
             Action action = () => new CompleteHttpMessageHandlerStackBuilder(null, null);
 
-            Assert.ThrowsException<ArgumentNullException>(action);
+            Assert.Throws<ArgumentNullException>(action);
         }
 
         [TestMethod]

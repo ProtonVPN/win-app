@@ -26,7 +26,7 @@ namespace ProtonVPN.Common.Tests.Extensions;
 [TestClass]
 public class ByteExtensionsTest
 {
-    [DataTestMethod]
+    [TestMethod]
     [DataRow(null, null)]
     [DataRow(new byte[]{}, new byte[]{})]
     [DataRow(new byte[]{0}, new byte[]{})]

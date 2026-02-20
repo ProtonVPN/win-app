@@ -91,12 +91,11 @@ public class VpnConfigMapperTest
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void TestMapLeftToRight_ThrowsWhenNull()
     {
         VpnConfig entityToTest = null;
 
-        _mapper.Map(entityToTest);
+        Assert.Throws<ArgumentNullException>(() => _mapper.Map(entityToTest));
     }
 
     [TestMethod]
@@ -150,7 +149,7 @@ public class VpnConfigMapperTest
 
         List<KeyValuePair<VpnProtocol, IReadOnlyCollection<int>>> leftEntityDictionary = entityToTest.Ports.ToList();
         List<KeyValuePair<VpnProtocolIpcEntity, int[]>> rightEntityDictionary = result.Ports.ToList();
-        Assert.AreEqual(leftEntityDictionary.Count, rightEntityDictionary.Count);
+        Assert.HasCount(leftEntityDictionary.Count, rightEntityDictionary);
 
         for (int keyValuePairIndex = 0; keyValuePairIndex < leftEntityDictionary.Count; keyValuePairIndex++)
         {
@@ -162,12 +161,11 @@ public class VpnConfigMapperTest
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void TestMapRightToLeft_ThrowsWhenNull()
     {
         VpnConfigIpcEntity entityToTest = null;
 
-        _mapper.Map(entityToTest);
+        Assert.Throws<ArgumentNullException>(() => _mapper.Map(entityToTest));
     }
 
     [TestMethod]
@@ -218,7 +216,7 @@ public class VpnConfigMapperTest
 
         List<KeyValuePair<VpnProtocolIpcEntity, int[]>> leftEntityDictionary = entityToTest.Ports.ToList();
         List<KeyValuePair<VpnProtocol, IReadOnlyCollection<int>>> rightEntityDictionary = result.Ports.ToList();
-        Assert.AreEqual(leftEntityDictionary.Count, rightEntityDictionary.Count);
+        Assert.HasCount(leftEntityDictionary.Count, rightEntityDictionary);
 
         for (int keyValuePairIndex = 0; keyValuePairIndex < leftEntityDictionary.Count; keyValuePairIndex++)
         {

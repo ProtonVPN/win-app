@@ -170,7 +170,7 @@ public class AlternativeHostHandlerTest
             .Respond(_ => throw new ArgumentNullException());
 
         // Act
-        Exception exception = await Assert.ThrowsExceptionAsync<ArgumentNullException>(
+        Exception exception = await Assert.ThrowsAsync<ArgumentNullException>(
             async () => await _httpClient.SendAsync(request));
 
         // Assert
@@ -197,7 +197,7 @@ public class AlternativeHostHandlerTest
                                       .Respond(_ => throw new TimeoutException());
 
         // Act
-        Exception exception = await Assert.ThrowsExceptionAsync<TimeoutException>(
+        Exception exception = await Assert.ThrowsAsync<TimeoutException>(
             async () => await _httpClient.SendAsync(request));
 
         // Assert
@@ -222,7 +222,7 @@ public class AlternativeHostHandlerTest
                                       .Respond(_ => throw CreateException(exceptionType));
 
         // Act
-        Exception exception = await Assert.ThrowsExceptionAsync<AlternativeRoutingException>(
+        Exception exception = await Assert.ThrowsAsync<AlternativeRoutingException>(
             async () => await _httpClient.SendAsync(request));
 
         // Assert
@@ -265,7 +265,7 @@ public class AlternativeHostHandlerTest
                                       .Respond(_ => throw CreateException(exceptionType));
 
         // Act
-        Exception exception = await Assert.ThrowsExceptionAsync<AlternativeRoutingException>(
+        Exception exception = await Assert.ThrowsAsync<AlternativeRoutingException>(
             async () => await _httpClient.SendAsync(request));
 
         // Assert
@@ -379,7 +379,7 @@ public class AlternativeHostHandlerTest
                                             .Respond(_ => throw CreateException(exceptionType));
 
         // Act
-        Exception exception = await Assert.ThrowsExceptionAsync<AlternativeRoutingException>(
+        Exception exception = await Assert.ThrowsAsync<AlternativeRoutingException>(
             async () => await _httpClient.SendAsync(request));
 
         // Assert
@@ -430,7 +430,7 @@ public class AlternativeHostHandlerTest
                                             .Respond(_ => new HttpResponseMessage(HttpStatusCode.NotFound));
 
         // Act
-        Exception exception = await Assert.ThrowsExceptionAsync<AlternativeRoutingException>(
+        Exception exception = await Assert.ThrowsAsync<AlternativeRoutingException>(
             async () => await _httpClient.SendAsync(request));
 
         // Assert
@@ -518,7 +518,7 @@ public class AlternativeHostHandlerTest
                                           .Respond(_ => new(HttpStatusCode.OK));
 
         // Act
-        Exception exception = await Assert.ThrowsExceptionAsync<AlternativeRoutingException>(
+        Exception exception = await Assert.ThrowsAsync<AlternativeRoutingException>(
             async () => await _httpClient.SendAsync(request));
 
         // Assert

@@ -59,7 +59,7 @@ namespace ProtonVPN.Dns.Tests.Resolvers.System
             IList<IPAddress> result = await _appSettings.ResolveWithSystemAsync(HOST, _cancellationTokenSource.Token);
 
             Assert.IsNotNull(result);
-            Assert.IsTrue(result.Count > 0);
+            Assert.IsNotEmpty(result);
         }
 
         [TestMethod]
@@ -70,7 +70,7 @@ namespace ProtonVPN.Dns.Tests.Resolvers.System
             IList<IPAddress> result = await _appSettings.ResolveWithSystemAsync(host, _cancellationTokenSource.Token);
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(0, result.Count);
+            Assert.IsEmpty(result);
         }
 
         [TestMethod]
@@ -82,7 +82,7 @@ namespace ProtonVPN.Dns.Tests.Resolvers.System
             IList<IPAddress> result = await _appSettings.ResolveWithSystemAsync(HOST, cancellationToken);
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(0, result.Count);
+            Assert.IsEmpty(result);
         }
     }
 }

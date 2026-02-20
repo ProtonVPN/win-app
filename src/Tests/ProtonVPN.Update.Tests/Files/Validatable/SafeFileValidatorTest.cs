@@ -41,7 +41,7 @@ namespace ProtonVPN.Update.Tests.Files.Validatable
             _validatable = new SafeFileValidator(_origin);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(false)]
         [DataRow(true)]
         public async Task Valid_ShouldBe_OriginValid(bool value)

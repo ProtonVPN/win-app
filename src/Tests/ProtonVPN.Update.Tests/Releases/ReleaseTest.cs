@@ -85,7 +85,7 @@ namespace ProtonVPN.Update.Tests.Releases
             release.Should().BeAssignableTo<IComparable<IRelease>>();
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(-1, "0.0.0", "1.2.3")]
         [DataRow(-1, "1.2.2", "1.2.3")]
         [DataRow(0, "1.2.3", "1.2.3")]

@@ -166,7 +166,7 @@ public class DnsHandlerTest
         MockedRequest mockedRequest3 = _mockHttpMessageHandler.When("https://192.168.3.3/test")
                                                               .Respond(_ => throw new(expectedExceptionMessage));
 
-        Exception exception = await Assert.ThrowsExceptionAsync<Exception>(
+        Exception exception = await Assert.ThrowsAsync<Exception>(
             async () => await _httpClient.SendAsync(request));
 
         Assert.AreEqual(expectedExceptionMessage, exception.Message);
