@@ -3,7 +3,7 @@ setlocal
 
 :: Define source and destination directories
 set "SOURCE=%~dp0CSharp"
-set "DEST=C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\ItemTemplates"
+set "DEST=C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\ItemTemplates"
 
 :: Check if source exists
 if not exist "%SOURCE%" (
