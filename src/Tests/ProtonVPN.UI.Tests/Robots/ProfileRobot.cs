@@ -68,6 +68,8 @@ public class ProfileRobot
 
     protected Element ModerateNatMenuItem = Element.ByAutomationId("ModerateNatMenuItem");
 
+    protected Element CountryDropdown = Element.ByName("Country").And(Element.ByClassName("ComboBox"));
+
     public ProfileRobot SetProfileName(string profileName)
     {
         ProfileNameTextBox.SetText(profileName);
@@ -83,6 +85,13 @@ public class ProfileRobot
     public ProfileRobot SaveProfile()
     {
         ApplyButton.Invoke();
+        return this;
+    }
+
+    public ProfileRobot SelectCountry(string countryName)
+    {
+        CountryDropdown.Click()
+            .SelectDropdownItem(countryName);
         return this;
     }
 

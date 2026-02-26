@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
@@ -50,6 +51,8 @@ public class ConnectionTests : FreshSessionSetUp
     [Category("ARM")]
     public void QuickConnect()
     {
+        MakeSureUserIsDisconnected();
+
         string ipAddressNotConnected = NetworkUtils.GetIpAddressWithRetry();
 
         NavigationRobot
@@ -59,12 +62,12 @@ public class ConnectionTests : FreshSessionSetUp
         HomeRobot
             .Verify.IsDisconnected()
             .ConnectViaConnectionCard()
-            .Verify.IsConnecting()
-                   .IsConnected();
+            .Verify.IsConnected();
 
         string ipAddressConnected = NetworkUtils.GetIpAddressWithRetry();
 
-        HomeRobot.Verify.AssertVpnConnectionEstablished(ipAddressNotConnected, ipAddressConnected);
+        HomeRobot
+            .Verify.AssertVpnConnectionEstablished(ipAddressNotConnected, ipAddressConnected);
 
         NavigationRobot
             .Verify.IsOnConnectionDetailsPage();
@@ -93,8 +96,7 @@ public class ConnectionTests : FreshSessionSetUp
             .ConnectToFastest();
 
         HomeRobot
-            .Verify.IsConnecting()
-                   .IsConnected();
+            .Verify.IsConnected();
 
         NavigationRobot
             .Verify.IsOnConnectionDetailsPage();
@@ -112,11 +114,14 @@ public class ConnectionTests : FreshSessionSetUp
     [Category("ARM")]
     public void ConnectAndCancel()
     {
-        HomeRobot.ConnectViaConnectionCard()
+        MakeSureUserIsDisconnected();
+
+        HomeRobot
+            .SelectVpnConnectionOption(VpnConnectionOptions.Random)
+            .ConnectViaConnectionCard(TestConstants.MoreFrequentRetryInterval)
             .Verify.IsConnecting();
-        // Imitate user's delay
-        Thread.Sleep(500);
-        HomeRobot.CancelConnection()
+        HomeRobot
+            .CancelConnection(TestConstants.MoreFrequentRetryInterval)
             .Verify.IsDisconnected();
     }
 
@@ -126,8 +131,7 @@ public class ConnectionTests : FreshSessionSetUp
         HomeRobot
             .Verify.IsDisconnected()
             .ConnectViaConnectionCard()
-            .Verify.IsConnecting()
-                   .IsConnected();
+            .Verify.IsConnected();
 
         NetworkUtils.VerifyIfLocalNetworkingWorks();
     }
@@ -188,7 +192,8 @@ public class ConnectionTests : FreshSessionSetUp
            .ApplySettings()
            .CloseSettings();
 
-        HomeRobot.ConnectViaConnectionCard()
+        HomeRobot
+            .ConnectViaConnectionCard()
             .Verify.IsConnected();
 
         string ipAddressBeforeClientKill = NetworkUtils.GetIpAddressWithRetry();
@@ -212,15 +217,18 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
-    public void ClosingTheAppDoesNotStopVpnConnection()
+    public void ClosingTheAppDoesStopVpnConnection()
     {
-        string ipAddressConnected = NetworkUtils.GetIpAddressWithRetry();
+        string ipAddressBeforeConnected = NetworkUtils.GetIpAddressWithRetry();
 
-        HomeRobot.ConnectViaConnectionCard()
+        HomeRobot
+            .ConnectViaConnectionCard()
             .Verify.IsConnected()
             .CloseClientViaCloseButton();
 
-        NetworkUtils.VerifyIpAddressMatchesWithRetry(ipAddressConnected);
+        // Delay to make sure that connection is not lost even after brief delay.
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
+        NetworkUtils.VerifyIpAddressMatchesWithRetry(ipAddressBeforeConnected);
     }
 
     [Test]
@@ -234,6 +242,7 @@ public class ConnectionTests : FreshSessionSetUp
             .SelectVpnConnectionOption(VpnConnectionOptions.Fast)
             .ConnectViaConnectionCard()
             .Verify.DoesConnectionCardTitleEqual(FAST_CONNECTION)
+                   .IsConnected()
             .Disconnect();
 
         HomeRobot
@@ -241,6 +250,7 @@ public class ConnectionTests : FreshSessionSetUp
             .SelectVpnConnectionOption(VpnConnectionOptions.Random)
             .ConnectViaConnectionCard()
             .Verify.DoesConnectionCardTitleEqual(RANDOM_COUNTRY)
+                   .IsConnected()
             .Disconnect();
     }
 
@@ -262,6 +272,21 @@ public class ConnectionTests : FreshSessionSetUp
         ConnectAndDisconnectViaSearchCountry(CountriesTab.Tor);
     }
 
+    private void MakeSureUserIsDisconnected()
+    {
+        try
+        {
+            HomeRobot
+                .Verify.IsDisconnected();
+        }
+        catch
+        {
+            HomeRobot
+                .Disconnect()
+                .Verify.IsDisconnected();
+        }
+    }
+
     private void ConnectAndDisconnectViaSearchCountry(CountriesTab tab)
     {
         string ipBeforeConnection = NetworkUtils.GetIpAddressWithRetry();
@@ -280,7 +305,8 @@ public class ConnectionTests : FreshSessionSetUp
         NavigationRobot
             .Verify.IsOnConnectionDetailsPage();
 
-        SidebarRobot.DisconnectViaCountry(countryCode);
+        SidebarRobot
+            .DisconnectViaCountry(countryCode);
 
         HomeRobot
             .Verify.IsDisconnected();
@@ -303,12 +329,11 @@ public class ConnectionTests : FreshSessionSetUp
 
                 SidebarRobot
                     .SearchFor(country)
-                    .NavigateToCountriesTabAfterSearch(tab)
+                     .NavigateToCountriesTabAfterSearch(tab)
                     .ConnectToCountry(countryCode);
 
                 HomeRobot
-                    .Verify.IsConnecting()
-                           .IsConnected();
+                    .Verify.IsConnected();
 
                 Thread.Sleep(1000);
 

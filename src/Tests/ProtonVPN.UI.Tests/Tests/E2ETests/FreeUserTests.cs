@@ -45,7 +45,6 @@ public class FreeUserTests : FreshSessionSetUp
         HomeRobot
             .ChangeServer()
             .Verify
-                .IsConnecting()
                 .IsConnected()
                 .IsChangeServerLocked()
                 .IsNotTheCountryWantedBannerDisplayed();

@@ -33,6 +33,8 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 public class ProfileTests : BaseTest
 {
     private const string PROFILE_NAME = "Profile A";
+    private const string COUNTRY_NAME = "Australia";
+
 
     [OneTimeSetUp]
     public void SetUp()
@@ -66,6 +68,7 @@ public class ProfileTests : BaseTest
             .Verify.IsOnProfilePage();
         ProfileRobot
             .SetProfileName(PROFILE_NAME)
+            .SelectCountry(COUNTRY_NAME)
             .SaveProfile();
         SidebarRobot
             .ScrollToProfile(PROFILE_NAME)
@@ -80,9 +83,9 @@ public class ProfileTests : BaseTest
 
         HomeRobot
             .Verify.IsConnecting()
-            .DoesConnectionCardTitleEqual(PROFILE_NAME)
-            .Verify.IsConnected()
-            .DoesConnectionCardTitleEqual(PROFILE_NAME);
+                   .DoesConnectionCardTitleEqual(PROFILE_NAME)
+                   .IsConnected()
+                   .DoesConnectionCardTitleEqual(PROFILE_NAME);
 
         SettingRobot
             .Verify.IsNetshieldBlocking(NetShieldMode.BlockAdsMalwareTrackers);

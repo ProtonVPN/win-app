@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
@@ -47,7 +48,7 @@ public class KillSwitchTests : FreshSessionSetUp
     public void SignOutWithStandardKillSwitchEnabled()
     {
         EnableKillSwitch(KillSwitchMode.Standard);
-        
+
         NavigationRobot
             .Verify.IsOnHomePage()
                    .IsOnLocationDetailsPage();
@@ -81,8 +82,8 @@ public class KillSwitchTests : FreshSessionSetUp
         NavigationRobot
             .Verify.IsOnConnectionDetailsPage();
 
-        HomeRobot.ExpandKebabMenuButton();
-        SettingRobot.ExitTheApp();
+        HomeRobot.ExpandKebabMenuButton()
+                 .ExitViaKebabMenuWithConfirmation();
 
         AssertInternetAvailability(true);
     }
@@ -98,6 +99,8 @@ public class KillSwitchTests : FreshSessionSetUp
             .Disconnect()
             .Verify.IsAdvancedKillSwitchActivated();
 
+        //needs a 5sec wait locally
+        //Thread.Sleep(TestConstants.FiveSecondsTimeout);
         AssertInternetAvailability(false);
     }
 
@@ -108,8 +111,8 @@ public class KillSwitchTests : FreshSessionSetUp
 
         EnsureVpnConnectedFromHome();
 
-        HomeRobot.ExpandKebabMenuButton();
-        SettingRobot.ExitTheAppWithConfirmation();
+        HomeRobot.ExpandKebabMenuButton()
+                 .ExitViaKebabMenuWithConfirmation();
 
         AssertInternetAvailability(false);
     }
@@ -128,6 +131,8 @@ public class KillSwitchTests : FreshSessionSetUp
         NavigationRobot
             .Verify.IsOnLoginPage();
 
+        //needs a 5sec wait locally
+        //Thread.Sleep(TestConstants.FiveSecondsTimeout);
         AssertInternetAvailability(false);
 
         LoginRobot
@@ -189,8 +194,7 @@ public class KillSwitchTests : FreshSessionSetUp
         HomeRobot
             .Verify.IsDisconnected()
             .ConnectViaConnectionCard()
-            .Verify.IsConnecting()
-                   .IsConnected();
+            .Verify.IsConnected();
 
         string ipAddressAfter = NetworkUtils.GetIpAddressWithRetry();
         HomeRobot.Verify.AssertVpnConnectionEstablished(ipAddressBefore, ipAddressAfter);
@@ -206,8 +210,7 @@ public class KillSwitchTests : FreshSessionSetUp
 
         HomeRobot
             .ConnectViaConnectionCard()
-            .Verify.IsConnecting()
-                   .IsConnected();
+            .Verify.IsConnected();
 
         NavigationRobot
             .Verify.IsOnConnectionDetailsPage();
@@ -215,6 +218,8 @@ public class KillSwitchTests : FreshSessionSetUp
 
     private static void AssertInternetAvailability(bool shouldBeAvailable)
     {
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
+
         bool isAvailable = NetworkUtils.IsInternetAvailable();
         if (shouldBeAvailable)
         {

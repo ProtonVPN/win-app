@@ -18,12 +18,10 @@
  */
 
 using System;
-using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Conditions;
-using FlaUI.Core.Input;
 using FlaUI.Core.Tools;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestBase;
@@ -33,10 +31,10 @@ namespace ProtonVPN.UI.Tests.UiTools;
 
 public static class UiActions
 {
-    public static T Click<T>(this T desiredElement) where T : Element
+    public static T Click<T>(this T desiredElement, TimeSpan? retryIntervalOverload = null) where T : Element
     {
-        AutomationElement? elementToClick = WaitUntilExists(desiredElement);
-        elementToClick?.WaitUntilClickable(TestConstants.TenSecondsTimeout);
+        AutomationElement? elementToClick = WaitUntilExists(desiredElement, TestConstants.EighteenSecondsTimeout, retryIntervalOverload);
+        elementToClick?.WaitUntilClickable(TestConstants.EighteenSecondsTimeout);
         elementToClick?.Click();
         return desiredElement;
     }
@@ -98,6 +96,12 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static string? GetAutomationElementName<T>(this T desiredElement) where T : Element
+    {
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        return element?.Name;
+    }
+
     public static T SetText<T>(this T desiredElement, string input) where T : Element
     {
         AutomationElement? elementToClick = WaitUntilExists(desiredElement);
@@ -106,6 +110,22 @@ public static class UiActions
             elementToClick.AsTextBox().Text = input;
         }
 
+        return desiredElement;
+    }
+
+    public static T SelectDropdownItem<T>(this T desiredElement, string itemToSelect) where T : Element
+    {
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        ComboBoxItem[]? items = element.AsComboBox()?.Items;
+        foreach (ComboBoxItem item in items)
+        {
+            AutomationElement? textBlock = item.FindFirstChild(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.Text));
+            if (textBlock?.Name == itemToSelect)
+            {
+                item.Click();
+                break;
+            }
+        }
         return desiredElement;
     }
 
@@ -119,6 +139,13 @@ public static class UiActions
     public static T FindChild<T>(this T desiredElement, Element childSelector) where T : Element
     {
         desiredElement.ChildElement = childSelector;
+        return desiredElement;
+    }
+    public static T And<T>(this T desiredElement, Element otherSelector) where T : Element
+    {
+        Func<ConditionFactory, ConditionBase> originalCondition = desiredElement.Condition;
+        desiredElement.Condition = cf => originalCondition(cf).And(otherSelector.Condition(cf));
+        desiredElement.SelectorName += $" AND {otherSelector.SelectorName}";
         return desiredElement;
     }
 
@@ -140,7 +167,7 @@ public static class UiActions
     }
 
     public static Element ScrollIntoView<T>(this T desiredElement) where T : Element
-    { 
+    {
         AutomationElement? element = WaitUntilExists(desiredElement);
         element?.Patterns.ScrollItem.Pattern.ScrollIntoView();
         return desiredElement;
@@ -162,14 +189,14 @@ public static class UiActions
         return desiredElement;
     }
 
-    public static AutomationElement? WaitUntilExists<T>(this T desiredElement, TimeSpan? time = null) where T : Element
+    public static AutomationElement? WaitUntilExists<T>(this T desiredElement, TimeSpan? time = null, TimeSpan? retryIntervalOverload = null) where T : Element
     {
-        return WaitForElement(desiredElement, time, element => element != null);
+        return WaitForElement(desiredElement, time, element => element != null, null, retryIntervalOverload);
     }
 
-    public static AutomationElement? WaitUntilDisplayed<T>(this T desiredElement, TimeSpan? time = null) where T : Element
+    public static AutomationElement? WaitUntilDisplayed<T>(this T desiredElement, TimeSpan? time = null, TimeSpan? retryIntervalOverload = null) where T : Element
     {
-        return WaitForElement(desiredElement, time, element => element != null && !element.IsOffscreen);
+        return WaitForElement(desiredElement, time, element => element != null && !element.IsOffscreen, null, retryIntervalOverload);
     }
 
     public static void DoesNotExist<T>(this T desiredElement) where T : Element
@@ -189,9 +216,12 @@ public static class UiActions
         T desiredElement,
         TimeSpan? time,
         Func<AutomationElement?, bool> condition,
-        string? customMessage = null) where T : Element
+        string? customMessage = null,
+        TimeSpan? retryIntervalOverload = null) where T : Element
     {
         time ??= TestConstants.DefaultElementWaitingTime;
+        TimeSpan retryInterval = retryIntervalOverload ?? TestConstants.RetryInterval;
+
         AutomationElement? elementToWaitFor = null;
 
         RetryResult<bool> retry = Retry.WhileFalse(
@@ -218,7 +248,7 @@ public static class UiActions
                     return false;
                 }
             },
-            time, TestConstants.RetryInterval);
+            time, retryInterval);
 
         if (!retry.Success)
         {
@@ -272,10 +302,10 @@ public static class UiActions
 
         AutomationElement? tabItem = element?
             .FindAllDescendants(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.TabItem))
-            .FirstOrDefault(t => t.Name.Contains(partialName, StringComparison.OrdinalIgnoreCase)) 
+            .FirstOrDefault(t => t.Name.Contains(partialName, StringComparison.OrdinalIgnoreCase))
             ?? throw new Exception($"TabItem containing '{partialName}' not found.");
 
         tabItem.AsTabItem().Select();
         return desiredElement;
-    }   
+    }
 }

@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
@@ -41,6 +42,9 @@ public class LogoutTests : FreshSessionSetUp
         HomeRobot.ConnectViaConnectionCard()
             .Verify.IsConnected();
 
+
+        // Delay to give it time to get the connected ip
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
         string ipAddressConnected = NetworkUtils.GetIpAddressWithRetry();
 
         HomeRobot.ExpandKebabMenuButton();
@@ -50,6 +54,8 @@ public class LogoutTests : FreshSessionSetUp
 
         LoginRobot.Verify.IsLoginWindowDisplayed();
 
+        // Delay to make sure the ip gets back.
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
         string ipAddressAfterLogout = NetworkUtils.GetIpAddressWithRetry();
 
         Assert.That(ipAddressConnected.Equals(ipAddressAfterLogout), Is.False, "User was not disconnected on logout.");

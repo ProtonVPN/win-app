@@ -104,7 +104,7 @@ public class ProdTestApiClient
     {
         HttpRequestMessage request = GetUnauthorizedRequestMessage(HttpMethod.Post, endpoint);
 
-        var jsonContent = new StringContent(
+        StringContent jsonContent = new StringContent(
             content,
             Encoding.UTF8,
             "application/json");

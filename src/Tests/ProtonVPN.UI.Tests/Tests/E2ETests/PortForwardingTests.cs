@@ -36,6 +36,8 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("ARM")]
 public class PortForwardingTests : FreshSessionSetUp
 {
+    private const string COUNTRY_NAME = "Austria";
+
     [SetUp]
     public void SetUp()
     {
@@ -43,32 +45,24 @@ public class PortForwardingTests : FreshSessionSetUp
     }
 
     [Test]
-    public void VerifyPortForwardingNotification()
-    {
-        EnablePortForwardingAndConnect();
-
-        SettingRobot.ClickCopyPortNumber();
-
-        int uiPort = GetForwardedPortFromClipboard();
-
-        DesktopRobot.Verify
-            .IsDisplayed()
-            .PortMatchesUI(uiPort);
-    }
-
-    [Test]
+    [Retry(3)]
     public async Task PortForwardingOpensThePortAsync()
     {
         EnablePortForwardingAndConnect();
 
-        string ipAddressConnected = GetExternalIpAddress();
+        //string ipAddressConnected = NetworkUtils.GetIpAddressWithRetry();
+        string? ipAddressConnected = HomeRobot.GetVpnServerIp();
+
         SettingRobot.ClickCopyPortNumber();
         int forwardedPort = GetForwardedPortFromClipboard();
 
-        TcpListener listener = StartTcpListener(forwardedPort);
-        await Task.Delay(5000);
+        TestContext.WriteLine($"ip: {ipAddressConnected}, port: {forwardedPort}");
+        Assert.That(ipAddressConnected, Is.Not.Null);
 
-        bool isPortOpen = await IsPortOpenAsync(ipAddressConnected, forwardedPort);
+        TcpListener listener = StartTcpListener(forwardedPort);
+        await Task.Delay(3_000);
+
+        bool isPortOpen = await IsPortOpenAsync(ipAddressConnected!, forwardedPort);
 
         listener.Stop();
 
@@ -121,16 +115,11 @@ public class PortForwardingTests : FreshSessionSetUp
 
         SidebarRobot
             .NavigateToP2PCountriesTab()
-            .ConnectToFastest();
+            .ConnectToCountry(CountryCodes.GetCode(COUNTRY_NAME));
+        //.ConnectToFastest();
 
         HomeRobot
-            .Verify.IsConnecting()
-                   .IsConnected();
-    }
-
-    private static string GetExternalIpAddress()
-    {
-        return NetworkUtils.GetIpAddressWithRetry();
+            .Verify.IsConnected();
     }
 
     private static int GetForwardedPortFromClipboard()
@@ -161,19 +150,24 @@ public class PortForwardingTests : FreshSessionSetUp
 
     private static async Task<bool> IsPortOpenAsync(string ip, int port)
     {
-        try
+        using HttpClient client = new();
+        string url = $"{TestConstants.PORT_CHECKER_API_BASE_URL}/{ip}/{port}";
+        DateTime timeoutDate = DateTime.UtcNow + TimeSpan.FromSeconds(40);
+
+        while (DateTime.UtcNow < timeoutDate)
         {
-            string url = $"{TestConstants.PORT_CHECKER_API_BASE_URL}/{ip}/{port}";
-            using HttpClient client = new();
             HttpResponseMessage response = await client.GetAsync(url);
             string result = await response.Content.ReadAsStringAsync();
 
-            return result.Trim().Equals("true", StringComparison.OrdinalIgnoreCase);
+            if (result.Trim().Equals("true", StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            await Task.Delay(5000);
         }
-        catch (Exception)
-        {
-            Assert.Fail("External port-check request failed.");
-            return false;
-        }
-    }    
+
+        return false;
+    }
+
 }

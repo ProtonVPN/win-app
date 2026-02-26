@@ -32,7 +32,6 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 public class DnsLeakTests : FreshSessionSetUp
 {
     private const string COUNTRY_NAME = "Australia";
-    private const string COUNTRY_CODE = "AU";
 
     [SetUp]
     public void TestInitialize()
@@ -47,7 +46,7 @@ public class DnsLeakTests : FreshSessionSetUp
         
         SidebarRobot
             .SearchFor(COUNTRY_NAME)
-            .ConnectToCountry(COUNTRY_CODE);
+            .ConnectToCountry(CountryCodes.GetCode(COUNTRY_NAME));
 
         HomeRobot
             .Verify.IsConnected();

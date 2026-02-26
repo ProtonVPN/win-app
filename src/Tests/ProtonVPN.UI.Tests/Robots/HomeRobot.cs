@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
-
+using System;
 using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -39,6 +39,7 @@ public class HomeRobot
     protected Element KebabMenuSettingsItem = Element.ByAutomationId("KebabMenuSettingsItem");
     protected Element KebabMenuExitItem = Element.ByAutomationId("KebabMenuExitItem");
     protected Element CloseButton = Element.ByAutomationId("Close");
+    protected Element ExitButton = Element.ByName("Exit");
 
     protected Element ConnectionCardTitle = Element.ByAutomationId("ConnectionCardTitle");
     protected Element ConnectionCardDescription = Element.ByAutomationId("ConnectionCardDescription");
@@ -62,6 +63,7 @@ public class HomeRobot
     protected Element CustomizeOption = Element.ByName("Customize");
     protected Element CustomizeCardConnectionTitleLabel = Element.ByName("Default connection");
     protected Element ProtectedLabelAdvancedKillSwitch = Element.ByName("Advanced kill switch activated");
+    protected Element ShowIpFlyoutButton => Element.ByAutomationId("ShowIpFlyoutButton");
 
     public HomeRobot DismissWelcomeModal()
     {
@@ -69,15 +71,20 @@ public class HomeRobot
         return this;
     }
 
-    public HomeRobot ConnectViaConnectionCard()
+    public string? GetVpnServerIp()
     {
-        ConnectionCardConnectButton.Click();
+        return ShowIpFlyoutButton.GetAutomationElementName();
+    }
+
+    public HomeRobot ConnectViaConnectionCard(TimeSpan? retryIntervalOverload = null)
+    {
+        ConnectionCardConnectButton.Click(retryIntervalOverload);
         return this;
     }
 
-    public HomeRobot CancelConnection()
+    public HomeRobot CancelConnection(TimeSpan? retryIntervalOverload = null)
     {
-        ConnectionCardCancelButton.Click();
+        ConnectionCardCancelButton.Click(retryIntervalOverload);
         return this;
     }
 
@@ -127,6 +134,13 @@ public class HomeRobot
         return this;
     }
 
+    public HomeRobot ExitViaKebabMenuWithConfirmation()
+    {
+        KebabMenuExitItem.DoubleClick();
+        ExitButton.Click();
+        return this;
+    }
+
     public HomeRobot ChangeServer()
     {
         ConnectionCardChangeServerButton.Click();
@@ -145,6 +159,33 @@ public class HomeRobot
         return this;
     }
 
+    public HomeRobot SelectVpnConnectionOption(VpnConnectionOptions option)
+    {
+        DefaultConnectionSelectorButton.Click();
+        // This sleep added because of animation
+        Thread.Sleep(TestConstants.AnimationDelay);
+
+        switch (option)
+        {
+            case VpnConnectionOptions.Fast:
+                FastestCountryOption.DoubleClick();
+                break;
+
+            case VpnConnectionOptions.Random:
+                RandomCountryOption.DoubleClick();
+                break;
+
+            case VpnConnectionOptions.Last:
+                LastConnectionOption.DoubleClick();
+                break;
+
+            case VpnConnectionOptions.Customized:
+                CustomizeOption.DoubleClick();
+                break;
+        }
+        return this;
+    }
+
     public class Verifications : HomeRobot
     {
         public Verifications IsWelcomeModalDisplayed()
@@ -155,8 +196,8 @@ public class HomeRobot
 
         public Verifications IsDisconnected()
         {
-            UnprotectedLabel.WaitUntilDisplayed();
-            ConnectionCardConnectButton.WaitUntilDisplayed();
+            UnprotectedLabel.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
+            ConnectionCardConnectButton.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
             return this;
         }
 
@@ -169,13 +210,13 @@ public class HomeRobot
 
         public Verifications IsConnecting()
         {
-            ConnectingLabel.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
+            ConnectingLabel.WaitUntilDisplayed(TestConstants.OneMinuteTimeout, TestConstants.MoreFrequentRetryInterval);
             return this;
         }
 
         public Verifications IsConnected()
         {
-            ProtectedLabel.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
+            ProtectedLabel.WaitUntilDisplayed(TestConstants.OneMinuteTimeout);
             ConnectionCardDisconnectButton.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
             return this;
         }
@@ -253,33 +294,6 @@ public class HomeRobot
                     break;
             }
 
-            return this;
-        }
-
-        public HomeRobot SelectVpnConnectionOption(VpnConnectionOptions option)
-        {
-            DefaultConnectionSelectorButton.Click();
-            // This sleep added becuase of animation
-            Thread.Sleep(TestConstants.AnimationDelay);
-
-            switch (option)
-            {
-                case VpnConnectionOptions.Fast:
-                    FastestCountryOption.DoubleClick();
-                    break;
-
-                case VpnConnectionOptions.Random:
-                    RandomCountryOption.DoubleClick();
-                    break;
-
-                case VpnConnectionOptions.Last:
-                    LastConnectionOption.DoubleClick();
-                    break;
-
-                case VpnConnectionOptions.Customized:
-                    CustomizeOption.DoubleClick();
-                    break;
-            }
             return this;
         }
 

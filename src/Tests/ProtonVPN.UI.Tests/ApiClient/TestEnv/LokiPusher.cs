@@ -121,7 +121,7 @@ public class LokiPusher
     private async Task<string> PushToLokiAsync(JObject requestBody)
     {
         string jsonContent = JsonConvert.SerializeObject(requestBody);
-        var httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+        StringContent httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
         HttpResponseMessage response = await _httpClient.PostAsync(_lokiPushEndpoint, httpContent);
         string responseBody = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)

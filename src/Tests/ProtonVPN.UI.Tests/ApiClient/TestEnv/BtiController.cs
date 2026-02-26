@@ -30,7 +30,7 @@ public class BtiController
 
     static BtiController()
     {
-        var handler = new HttpClientHandler
+        HttpClientHandler handler = new HttpClientHandler
         {
             ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
         };

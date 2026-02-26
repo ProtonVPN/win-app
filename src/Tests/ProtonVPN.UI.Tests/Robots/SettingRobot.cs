@@ -62,6 +62,7 @@ public class SettingRobot
     protected Element PrimaryActionButton = Element.ByAutomationId("PrimaryButton");
     protected Element CancelButton = Element.ByAutomationId("CloseButton");
     protected Element ExitTheAppButton = Element.ByName("Exit the app");
+    protected Element ExitButton = Element.ByName("Exit");
     protected Element ChangeLogLabel = Element.ByName("Changelog");
     protected Element LicensingLabel = Element.ByAutomationId("LicensingTextBlock");
     protected Element LearnMoreButton = Element.ByName("Learn more");
@@ -234,7 +235,7 @@ public class SettingRobot
     {
         ExitTheAppButton.DoubleClick();
         ExitProtonPopUp.WaitUntilDisplayed();
-        PrimaryActionButton.Click();
+        ExitButton.Click();
         return this;
     }
 
@@ -336,7 +337,7 @@ public class SettingRobot
         }
 
         return this;
-    }  
+    }
 
     public SettingRobot ApplySettings()
     {
