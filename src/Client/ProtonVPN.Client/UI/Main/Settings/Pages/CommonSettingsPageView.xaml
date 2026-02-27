@@ -109,8 +109,17 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <ComboBox x:Name="cbLanguage"
                                   DisplayMemberPath="Description"
                                   ItemsSource="{x:Bind ViewModel.Languages}"
-                                  SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}" 
-                                  Style="{StaticResource ComboBoxStyle}"/>
+                                  SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}"
+                                  Style="{StaticResource ComboBoxStyle}">
+                            <ComboBox.ItemContainerStyle>
+                                <Style BasedOn="{StaticResource ComboBoxItemStyle}"
+                                       TargetType="ComboBoxItem">
+                                    <!-- Set a fixed width for ComboBox items to ensure consistent layout while scrolling -->
+                                    <Setter Property="Width"
+                                            Value="340" />
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                        </ComboBox>
                     </toolkit:SettingsCard>
 
                     <toolkit:SettingsCard AutomationProperties.AutomationId="ThemesSettingsCard"

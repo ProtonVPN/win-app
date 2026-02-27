@@ -24,6 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="using:ProtonVPN.Client.UI.Dialogs.Upsell"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
     <Grid RowSpacing="32">
@@ -59,7 +60,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Button Grid.Row="1"
                 HorizontalAlignment="Center"
                 AutomationProperties.AutomationId="UpsellUpgradeButton"
-                Command="{x:Bind ViewModel.UpgradeCommand}"
+                Command="{x:Bind ViewModel.UpgradeCommand, Mode=OneTime}"
                 Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Upgrade')}"
                 Style="{StaticResource LargePrimaryButtonStyle}" />
 

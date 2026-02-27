@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2026 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -30,20 +30,31 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <UserControl.Resources>
 
-        <LinearGradientBrush x:Key="gradient_brush_black" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush x:Key="DarkGradientBrush"
+                             MappingMode="RelativeToBoundingBox"
+                             StartPoint="0,0"
+                             EndPoint="0,1">
             <LinearGradientBrush.GradientStops>
                 <GradientStopCollection>
-                    <GradientStop Offset="0.6" Color="#00000000" />
-                    <GradientStop Offset="1" Color="#40000000" />
+                    <GradientStop Offset="0.4"
+                                  Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToDarkColorConverter}, ConverterParameter=0}" />
+                    <GradientStop Offset="0.8"
+                                  Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToDarkColorConverter}, ConverterParameter=120}" />
+                    <GradientStop Offset="1"
+                                  Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToDarkColorConverter}, ConverterParameter=160}" />
                 </GradientStopCollection>
             </LinearGradientBrush.GradientStops>
         </LinearGradientBrush>
 
-        <LinearGradientBrush x:Key="gradient_brush_white" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="0.1,1">
+        <LinearGradientBrush x:Key="LightGradientBrush"
+                             MappingMode="RelativeToBoundingBox"
+                             StartPoint="0,0"
+                             EndPoint="0.1,1">
             <LinearGradientBrush.GradientStops>
                 <GradientStopCollection>
-                    <GradientStop Color="#AAFFFFFF" />
-                    <GradientStop Offset="0.8" Color="#00FFFFFF" />
+                    <GradientStop Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToLightColorConverter}, ConverterParameter=140}" />
+                    <GradientStop Offset="0.8"
+                                  Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToLightColorConverter}, ConverterParameter=0}" />
                 </GradientStopCollection>
             </LinearGradientBrush.GradientStops>
         </LinearGradientBrush>
@@ -59,10 +70,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                   Fill="{x:Bind AccentColor, Converter={StaticResource ProfileColorToBrushConverter}}"
                   Opacity="1" />
             <Path Data="M11.3475 17.0521L5.6981 21.9298C5.07235 22.4701 4.27319 22.7674 3.44647 22.7674C1.21975 22.7674 -0.422135 20.6868 0.0954625 18.5211L3.23375 5.38989C4.02915 2.06178 7.55066 0.173404 10.763 1.35243L12.2772 1.90821C14.1161 2.58315 16.0464 2.97009 17.9999 3.05693C19.9535 2.97009 21.8838 2.58315 23.7227 1.90821L25.2369 1.35243C28.4492 0.173404 31.9707 2.06178 32.7661 5.38989L35.9044 18.5211C36.422 20.6868 34.7801 22.7674 32.5534 22.7674C31.7267 22.7674 30.9275 22.4701 30.3018 21.9298L24.6524 17.0521C23.4579 16.0208 21.9324 15.4533 20.3543 15.4533H18.8466H17.1533H15.6455C14.0675 15.4533 12.542 16.0208 11.3475 17.0521Z"
-                  Fill="{StaticResource gradient_brush_black}"
+                  Fill="{StaticResource DarkGradientBrush}"
                   Opacity="1" />
             <Path Data="M11.3475 17.0521L5.6981 21.9298C5.07235 22.4701 4.27319 22.7674 3.44647 22.7674C1.21975 22.7674 -0.422135 20.6868 0.0954625 18.5211L3.23375 5.38989C4.02915 2.06178 7.55066 0.173404 10.763 1.35243L12.2772 1.90821C14.1161 2.58315 16.0464 2.97009 17.9999 3.05693C19.9535 2.97009 21.8838 2.58315 23.7227 1.90821L25.2369 1.35243C28.4492 0.173404 31.9707 2.06178 32.7661 5.38989L35.9044 18.5211C36.422 20.6868 34.7801 22.7674 32.5534 22.7674C31.7267 22.7674 30.9275 22.4701 30.3018 21.9298L24.6524 17.0521C23.4579 16.0208 21.9324 15.4533 20.3543 15.4533H18.8466H17.1533H15.6455C14.0675 15.4533 12.542 16.0208 11.3475 17.0521Z"
-                  Fill="{StaticResource gradient_brush_white}"
+                  Fill="{StaticResource LightGradientBrush}"
                   Opacity="1" />
 
             <Ellipse Canvas.Left="25.23839"

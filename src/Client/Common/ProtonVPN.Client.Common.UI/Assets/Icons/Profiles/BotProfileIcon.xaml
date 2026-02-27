@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2026 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -30,40 +30,61 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <UserControl.Resources>
 
-        <LinearGradientBrush x:Key="gradient_brush_black" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush x:Key="DarkGradientBrush"
+                             MappingMode="RelativeToBoundingBox"
+                             StartPoint="0,0"
+                             EndPoint="0,1">
             <LinearGradientBrush.GradientStops>
                 <GradientStopCollection>
-                    <GradientStop Offset="0.6" Color="#00000000" />
-                    <GradientStop Offset="1" Color="#40000000" />
+                    <GradientStop Offset="0.6"
+                                  Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToDarkColorConverter}, ConverterParameter=0}" />
+                    <GradientStop Offset="1"
+                                  Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToDarkColorConverter}, ConverterParameter=90}" />
                 </GradientStopCollection>
             </LinearGradientBrush.GradientStops>
         </LinearGradientBrush>
 
-        <LinearGradientBrush x:Key="gradient_brush_black_2" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush x:Key="SecondDarkGradientBrush"
+                             MappingMode="RelativeToBoundingBox"
+                             StartPoint="0,0"
+                             EndPoint="0,1">
             <LinearGradientBrush.GradientStops>
                 <GradientStopCollection>
-                    <GradientStop Offset="0" Color="#A0000000" />
-                    <GradientStop Offset="1" Color="#30000000" />
+                    <GradientStop Offset="0"
+                                  Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToDarkColorConverter}, ConverterParameter=180}" />
+                    <GradientStop Offset="1"
+                                  Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToDarkColorConverter}, ConverterParameter=90}" />
                 </GradientStopCollection>
             </LinearGradientBrush.GradientStops>
         </LinearGradientBrush>
 
-        <LinearGradientBrush x:Key="gradient_brush_shadow" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="1,0">
+        <LinearGradientBrush x:Key="ShadowGradientBrush"
+                             MappingMode="RelativeToBoundingBox"
+                             StartPoint="0,0"
+                             EndPoint="1,0">
             <LinearGradientBrush.GradientStops>
                 <GradientStopCollection>
-                    <GradientStop Offset="0" Color="#00000000" />
-                    <GradientStop Offset="0.2" Color="#A0000000" />
-                    <GradientStop Offset="0.8" Color="#A0000000" />
-                    <GradientStop Offset="1" Color="#00000000" />
+                    <GradientStop Offset="0"
+                                  Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToDarkColorConverter}, ConverterParameter=0}" />
+                    <GradientStop Offset="0.2"
+                                  Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToDarkColorConverter}, ConverterParameter=160}" />
+                    <GradientStop Offset="0.8"
+                                  Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToDarkColorConverter}, ConverterParameter=160}" />
+                    <GradientStop Offset="1"
+                                  Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToDarkColorConverter}, ConverterParameter=0}" />
                 </GradientStopCollection>
             </LinearGradientBrush.GradientStops>
         </LinearGradientBrush>
 
-        <LinearGradientBrush x:Key="gradient_brush_white" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="0.2,1">
+        <LinearGradientBrush x:Key="LightGradientBrush"
+                             MappingMode="RelativeToBoundingBox"
+                             StartPoint="0,0"
+                             EndPoint="0.2,1">
             <LinearGradientBrush.GradientStops>
                 <GradientStopCollection>
-                    <GradientStop Color="#AAFFFFFF" />
-                    <GradientStop Offset="1" Color="#00FFFFFF" />
+                    <GradientStop Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToLightColorConverter}, ConverterParameter=180}" />
+                    <GradientStop Offset="1"
+                                  Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToLightColorConverter}, ConverterParameter=0}" />
                 </GradientStopCollection>
             </LinearGradientBrush.GradientStops>
         </LinearGradientBrush>
@@ -84,7 +105,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Canvas.Top="11"
                        Width="34"
                        Height="8"
-                       Fill="{StaticResource gradient_brush_shadow}"
+                       Fill="{StaticResource ShadowGradientBrush}"
                        RadiusX="2"
                        RadiusY="2" />
 
@@ -99,21 +120,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Canvas.Top="6"
                        Width="28"
                        Height="18"
-                       Fill="{StaticResource gradient_brush_black}"
+                       Fill="{StaticResource DarkGradientBrush}"
                        RadiusX="4"
                        RadiusY="4" />
             <Rectangle Canvas.Left="4"
                        Canvas.Top="6"
                        Width="28"
                        Height="18"
-                       Fill="{StaticResource gradient_brush_white}"
+                       Fill="{StaticResource LightGradientBrush}"
                        RadiusX="4"
                        RadiusY="4" />
 
             <Path Data="M17.5 3H18.5L19 6H17L17.5 3Z"
                   Fill="{x:Bind AccentColor, Converter={StaticResource ProfileColorToBrushConverter}}" />
             <Path Data="M17.5 3H18.5L19 6H17L17.5 3Z"
-                  Fill="{StaticResource gradient_brush_black_2}" />
+                  Fill="{StaticResource SecondDarkGradientBrush}" />
 
             <Ellipse Canvas.Left="16"
                      Canvas.Top="0"
@@ -124,7 +145,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                      Canvas.Top="0"
                      Width="4"
                      Height="4"
-                     Fill="{StaticResource gradient_brush_white}" />
+                     Fill="{StaticResource LightGradientBrush}" />
             <Ellipse Canvas.Left="10.5"
                      Canvas.Top="11.5"
                      Width="4"

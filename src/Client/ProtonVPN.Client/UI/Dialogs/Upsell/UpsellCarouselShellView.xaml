@@ -23,8 +23,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="using:ProtonVPN.Client.UI.Dialogs.Upsell"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:bases="using:ProtonVPN.Client.UI.Dialogs.Upsell.Bases" 
-             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom" xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:bases="using:ProtonVPN.Client.UI.Dialogs.Upsell.Bases" 
+             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+             xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+             x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -101,7 +104,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 TabIndex="0"
                 HorizontalAlignment="Center"
                 AutomationProperties.AutomationId="UpsellUpgradeButton"
-                Command="{x:Bind ViewModel.UpgradeCommand}"
+                Command="{x:Bind ViewModel.UpgradeCommand, Mode=OneTime}"
                 Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Upgrade')}"
                 Style="{StaticResource LargePrimaryButtonStyle}" />
 

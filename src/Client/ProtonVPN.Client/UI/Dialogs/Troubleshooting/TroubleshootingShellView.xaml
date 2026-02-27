@@ -29,6 +29,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:pathIcons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
              xmlns:tkui="using:CommunityToolkit.WinUI"
              xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
+             x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
     <UserControl.Resources>

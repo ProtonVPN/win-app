@@ -132,11 +132,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            Grid.Column="0"
                                            Style="{StaticResource ConnectionRowDescriptionTextBlockStyle}"
                                            Text="{TemplateBinding Description}"
+                                           TextWrapping="Wrap"
+                                           MaxLines="2"
                                            Visibility="{Binding Text, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
                                 <StackPanel x:Name="ConnectionRowFeatures"
                                             Grid.Column="1"
-                                            Orientation="Horizontal">
+                                            Orientation="Horizontal"
+                                            VerticalAlignment="Bottom">
 
                                     <custom:TagControl Style="{StaticResource FeatureTagControlStyle}"
                                                        Text="{Binding P2PLabel, RelativeSource={RelativeSource Mode=TemplatedParent}, TargetNullValue='P2P'}"
@@ -475,8 +478,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                      AutomationProperties.Name="SecondaryButtonContent"
                                                      Grid.Column="1"
                                                      Margin="8,0"
-                                                     IsHitTestVisible="False" 
-                                                     Opacity="0.5"/>
+                                                     IsHitTestVisible="False"
+                                                     Foreground="{ThemeResource TextHintColorBrush}" />
 
                         <ContentPresenter x:Name="PrimaryButtonContainer"
                                           IsTabStop="False"
@@ -499,14 +502,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <StateTrigger IsActive="{Binding FocusState, ElementName=SecondaryButton, Converter={StaticResource FocusStateToBooleanConverter}, ConverterParameter=Keyboard}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="SecondaryButtonContent.Opacity" Value="1" />
+                                        <Setter Target="SecondaryButtonContent.Foreground" Value="{ThemeResource TextNormColorBrush}" />
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="PointerStates">
                                 <VisualState x:Name="PointerOver">
                                     <VisualState.Setters>
-                                        <Setter Target="SecondaryButtonContent.Opacity" Value="0.7" />
+                                        <Setter Target="SecondaryButtonContent.Foreground" Value="{ThemeResource TextNormColorBrush}" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="Normal" />
@@ -547,14 +550,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                   Style="{StaticResource ConnectionRowExpanderStyle}" />
 
                         <pathicons:ChevronRightFilled x:Name="ExpanderButtonContent"
-                                          AutomationProperties.AutomationId="ExpanderButtonContent"
-                                          AutomationProperties.Name="ExpanderButtonContent"
+                                                      AutomationProperties.AutomationId="ExpanderButtonContent"
+                                                      AutomationProperties.Name="ExpanderButtonContent"
                                                       AutomationProperties.LandmarkType="Custom"
                                                       Grid.Row="0"
                                                       Grid.Column="1"
                                                       Margin="8,0"
                                                       IsHitTestVisible="False"
-                                                      Opacity="0.5"
+                                                      Foreground="{ThemeResource TextHintColorBrush}"
                                                       RenderTransformOrigin="0.5,0.5">
                             <pathicons:ChevronRightFilled.RenderTransform>
                                 <RotateTransform x:Name="ExpanderButtonRotateTransform" Angle="0" />
@@ -606,14 +609,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <StateTrigger IsActive="{Binding FocusState, ElementName=ExpanderButton, Converter={StaticResource FocusStateToBooleanConverter}}" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Target="ExpanderButtonContent.Opacity" Value="1" />
+                                        <Setter Target="ExpanderButtonContent.Foreground" Value="{ThemeResource TextNormColorBrush}" />
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="PointerStates">
                                 <VisualState x:Name="PointerOver">
                                     <VisualState.Setters>
-                                        <Setter Target="ExpanderButtonContent.Opacity" Value="0.7" />
+                                        <Setter Target="ExpanderButtonContent.Foreground" Value="{ThemeResource TextNormColorBrush}" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="Normal" />

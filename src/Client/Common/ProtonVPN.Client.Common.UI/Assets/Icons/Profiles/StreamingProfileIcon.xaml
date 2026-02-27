@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2026 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -30,29 +30,43 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <UserControl.Resources>
 
-        <LinearGradientBrush x:Key="gradient_brush_black" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush x:Key="DarkGradientBrush"
+                             MappingMode="RelativeToBoundingBox"
+                             StartPoint="0,0"
+                             EndPoint="0,1">
             <LinearGradientBrush.GradientStops>
                 <GradientStopCollection>
-                    <GradientStop Offset="0.6" Color="#00000000" />
-                    <GradientStop Offset="1" Color="#40000000" />
+                    <GradientStop Offset="0.4"
+                                  Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToDarkColorConverter}, ConverterParameter=0}" />
+                    <GradientStop Offset="1"
+                                  Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToDarkColorConverter}, ConverterParameter=160}" />
                 </GradientStopCollection>
             </LinearGradientBrush.GradientStops>
         </LinearGradientBrush>
 
-        <LinearGradientBrush x:Key="gradient_brush_black_2" MappingMode="RelativeToBoundingBox" StartPoint="0,0.5" EndPoint="1,0.2">
+        <LinearGradientBrush x:Key="SecondDarkGradientBrush"
+                             MappingMode="RelativeToBoundingBox"
+                             StartPoint="0,0.5"
+                             EndPoint="1,0.2">
             <LinearGradientBrush.GradientStops>
                 <GradientStopCollection>
-                    <GradientStop Offset="0" Color="#80000000" />
-                    <GradientStop Offset="1" Color="#A0000000" />
+                    <GradientStop Offset="0"
+                                  Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToDarkColorConverter}, ConverterParameter=200}" />
+                    <GradientStop Offset="1"
+                                  Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToDarkColorConverter}, ConverterParameter=220}" />
                 </GradientStopCollection>
             </LinearGradientBrush.GradientStops>
         </LinearGradientBrush>
 
-        <LinearGradientBrush x:Key="gradient_brush_white" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="0.2,1">
+        <LinearGradientBrush x:Key="LightGradientBrush"
+                             MappingMode="RelativeToBoundingBox"
+                             StartPoint="0,0"
+                             EndPoint="0.2,1">
             <LinearGradientBrush.GradientStops>
                 <GradientStopCollection>
-                    <GradientStop Color="#AAFFFFFF" />
-                    <GradientStop Offset="1" Color="#00FFFFFF" />
+                    <GradientStop Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToLightColorConverter}, ConverterParameter=160}" />
+                    <GradientStop Offset="1"
+                                  Color="{x:Bind AccentColor, Converter={StaticResource ProfileColorToLightColorConverter}, ConverterParameter=0}" />
                 </GradientStopCollection>
             </LinearGradientBrush.GradientStops>
         </LinearGradientBrush>
@@ -65,7 +79,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Path Data="M11.5974 22.6061C11.3146 23.2659 11.7986 24 12.5165 24H23.4835C24.2014 24 24.6854 23.2659 24.4026 22.6061L22.2597 17.6061C22.1022 17.2384 21.7406 17 21.3406 17H14.6594C14.2594 17 13.8978 17.2384 13.7403 17.6061L11.5974 22.6061Z"
                   Fill="{x:Bind AccentColor, Converter={StaticResource ProfileColorToBrushConverter}}" />
             <Path Data="M11.5974 22.6061C11.3146 23.2659 11.7986 24 12.5165 24H23.4835C24.2014 24 24.6854 23.2659 24.4026 22.6061L22.2597 17.6061C22.1022 17.2384 21.7406 17 21.3406 17H14.6594C14.2594 17 13.8978 17.2384 13.7403 17.6061L11.5974 22.6061Z"
-                  Fill="{StaticResource gradient_brush_black_2}" />
+                  Fill="{StaticResource SecondDarkGradientBrush}" />
             <Rectangle Canvas.Left="1"
                        Canvas.Top="1"
                        Width="34"
@@ -77,14 +91,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Canvas.Top="1"
                        Width="34"
                        Height="20"
-                       Fill="{StaticResource gradient_brush_black}"
+                       Fill="{StaticResource DarkGradientBrush}"
                        RadiusX="2"
                        RadiusY="2" />
             <Rectangle Canvas.Left="1"
                        Canvas.Top="1"
                        Width="34"
                        Height="20"
-                       Fill="{StaticResource gradient_brush_white}"
+                       Fill="{StaticResource LightGradientBrush}"
                        RadiusX="2"
                        RadiusY="2" />
             <Path Data="M15 15.3185V6.68149C15 6.13634 15.6281 5.81259 16.094 6.1176L22.691 10.4361C23.103 10.7058 23.103 11.2942 22.691 11.5639L16.094 15.8824C15.6281 16.1874 15 15.8637 15 15.3185Z"

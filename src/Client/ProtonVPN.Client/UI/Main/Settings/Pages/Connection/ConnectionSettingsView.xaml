@@ -185,7 +185,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <!--Default Wide (3x2) State-->
                 <VisualState x:Name="WideState">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="900" />
+                        <AdaptiveTrigger MinWindowWidth="1000" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--Define 3x2 layout-->
