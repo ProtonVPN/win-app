@@ -36,15 +36,15 @@ public partial class GlobalSearch : IGlobalSearch
 
     private readonly IServersLoader _serversLoader;
     //private readonly IProfilesManager _profilesManager;
-    private readonly ILocalizationProvider _localizationProvider;
+    private readonly ILocalizationProvider _localizer;
 
     public GlobalSearch(IServersLoader serversLoader,
         //IProfilesManager profilesManager,
-        ILocalizationProvider localizationProvider)
+        ILocalizationProvider localizer)
     {
         _serversLoader = serversLoader;
         //_profilesManager = profilesManager;
-        _localizationProvider = localizationProvider;
+        _localizer = localizer;
     }
 
     public async Task<List<ILocation>> SearchAsync(string? input, ServerFeatures? serverFeatures = null)
@@ -94,18 +94,18 @@ public partial class GlobalSearch : IGlobalSearch
             ? _serversLoader.GetServers()
             : _serversLoader.GetServersByFeatures(serverFeatures.Value);
         return servers.Where(s => StartsWith(s.Name, input) || StartsWith(s.Name.Replace("#", ""), input));
-    }
-
-    private static bool StartsWith(string name, string input)
-    {
-        return name?.RemoveDiacritics().StartsWith(input, StringComparison.InvariantCultureIgnoreCase) ?? false;
-    }
+    }    
 
     private Func<string, string, bool> GetSearchFunction(string input)
     {
         return input.Length < SearchConfiguration.MIN_CONTAINS_LENGTH
             ? StartsWith
             : Contains;
+    }
+
+    private static bool StartsWith(string name, string input)
+    {
+        return name?.RemoveDiacritics().StartsWith(input, StringComparison.InvariantCultureIgnoreCase) ?? false;
     }
 
     private static bool Contains(string name, string input)
@@ -118,7 +118,16 @@ public partial class GlobalSearch : IGlobalSearch
         IEnumerable<City> cities = serverFeatures is null
             ? _serversLoader.GetCities()
             : _serversLoader.GetCitiesByFeatures(serverFeatures.Value);
-        return cities.Where(c => searchFunc(c.Name, input));
+
+        List<LocalizedLocation> localizedCities = cities.Select(city => new LocalizedLocation()
+        {
+            Location = city,
+            LocalizedName = _localizer.GetCityName(city.Name, city.CountryCode)
+        }).ToList();
+
+        return localizedCities
+            .Where(c => searchFunc(c.LocalizedName, input))
+            .Select(c => c.Location);
     }
 
     private IEnumerable<ILocation> SearchStates(string input, ServerFeatures? serverFeatures, Func<string, string, bool> searchFunc)
@@ -126,7 +135,16 @@ public partial class GlobalSearch : IGlobalSearch
         IEnumerable<State> states = serverFeatures is null
             ? _serversLoader.GetStates()
             : _serversLoader.GetStatesByFeatures(serverFeatures.Value);
-        return states.Where(s => searchFunc(s.Name, input));
+
+        List<LocalizedLocation> localizedStates = states.Select(state => new LocalizedLocation()
+        {
+            Location = state,
+            LocalizedName = _localizer.GetStateName(state.Name, state.CountryCode)
+        }).ToList();
+
+        return localizedStates
+            .Where(s => searchFunc(s.LocalizedName, input))
+            .Select(s => s.Location);
     }
 
     private IEnumerable<ILocation> SearchCountries(string input, ServerFeatures? serverFeatures, Func<string, string, bool> searchFunc)
@@ -138,7 +156,7 @@ public partial class GlobalSearch : IGlobalSearch
         List<LocalizedCountry> localizedCountries = countries.Select(c => new LocalizedCountry()
         {
             Country = c,
-            LocalizedName = _localizationProvider.GetCountryName(c.Code)
+            LocalizedName = _localizer.GetCountryName(c.Code)
         }).ToList();
 
         return localizedCountries

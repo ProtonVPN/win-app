@@ -36,4 +36,8 @@ public interface ILocalizationProvider
     string GetPluralFormat(string resourceKey, long number);
 
     void ForceCurrentLanguageForPluralProvider();
+
+    string GetCityName(string? englishCityName, string countryCode);
+
+    string GetStateName(string? englishStateName, string countryCode);
 }

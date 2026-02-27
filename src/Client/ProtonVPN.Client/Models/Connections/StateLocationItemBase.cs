@@ -35,7 +35,7 @@ public abstract class StateLocationItemBase : HostLocationItemBase<State>
 {
     public State State { get; }
 
-    public override string Header => State.Name;
+    public override string Header => Localizer.GetStateName(State.Name, State.CountryCode);
 
     public override string Description => Localizer.GetCountryName(State.CountryCode);
 

@@ -23,6 +23,7 @@ using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Factories;
+using ProtonVPN.Client.Localization.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Searches.Contracts;
@@ -41,9 +42,11 @@ using ProtonVPN.Client.UI.Main.Sidebar.Search.Contracts;
 namespace ProtonVPN.Client.UI.Main.Sidebar.Search;
 
 public partial class SearchResultsPageViewModel : ConnectionListViewModelBase<ISidebarViewNavigator>,
-    ISearchInputReceiver, IEventMessageReceiver<ConnectionStatusChangedMessage>,
+    ISearchInputReceiver, 
+    IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<ServerListChangedMessage>,
-    IEventMessageReceiver<NewServerFoundMessage>
+    IEventMessageReceiver<NewServerFoundMessage>,
+    IEventMessageReceiver<LocationNamesChangedMessage>
 {
     private readonly IGlobalSearch _globalSearch;
     private readonly ILocationItemFactory _locationItemFactory;
@@ -59,8 +62,8 @@ public partial class SearchResultsPageViewModel : ConnectionListViewModelBase<IS
 
     public List<ICountriesComponent> CountriesComponents { get; }
 
-    public string ExampleCountries => $"{Localizer.Get("Country_val_JP")}, {Localizer.Get("Country_val_US")}";
-    public string ExampleCities => "Tokyo, Los Angeles";
+    public string ExampleCountries => $"{Localizer.GetCountryName("JP")}, {Localizer.GetCountryName("US")}";
+    public string ExampleCities => $"{Localizer.GetCityName("Tokyo", "JP")}, {Localizer.GetCityName("Los Angeles", "US")}";
     public string ExampleServers => "JP#75, US-NY#166";
 
     public SearchResultsPageViewModel(
@@ -297,5 +300,10 @@ public partial class SearchResultsPageViewModel : ConnectionListViewModelBase<IS
         {
             await SetSearchResultsAsync(input);
         });
+    }
+
+    public void Receive(LocationNamesChangedMessage message)
+    {
+        ExecuteOnUIThread(() => SearchAsync().Wait());
     }
 }

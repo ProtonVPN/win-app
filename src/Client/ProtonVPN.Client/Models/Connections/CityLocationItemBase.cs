@@ -35,7 +35,7 @@ public abstract class CityLocationItemBase : HostLocationItemBase<City>
 {
     public City City { get; }
 
-    public override string Header => City.Name;
+    public override string Header => Localizer.GetCityName(City.Name, City.CountryCode);
 
     public override string Description =>
         string.IsNullOrEmpty(City.StateName)

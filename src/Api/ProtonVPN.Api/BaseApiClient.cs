@@ -98,15 +98,15 @@ public class BaseApiClient : IClientBase
                     ? default(T)
                     : JsonConvert.DeserializeObject<T>(body) ?? throw new HttpRequestException(string.Empty);
 
-                ApiResponseResult<T> result = CreateApiResponseResult(json, response);
-                HandleResult(result, response);
-                return result;
-            }
-            catch (JsonException)
-            {
-                throw new HttpRequestException(GetStatusCodeDescription(response.StatusCode));
-            }
+            ApiResponseResult<T> result = CreateApiResponseResult(json, response);
+            HandleResult(result, response);
+            return result;
         }
+        catch (JsonException ex)
+        {
+            throw new HttpRequestException(GetStatusCodeDescription(response.StatusCode), ex);
+        }
+    }
 
         throw new NotSupportedException($"Type {typeof(T).Name} is not supported. Only BaseResponse types and byte[] are supported.");
     }

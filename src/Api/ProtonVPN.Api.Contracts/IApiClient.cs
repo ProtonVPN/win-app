@@ -41,6 +41,7 @@ namespace ProtonVPN.Api.Contracts;
 
 public interface IApiClient : IClientBase
 {
+    Task<ApiResponseResult<LocalizedLocationsResponse>> GetCityNamesAsync(CancellationToken cancellationToken = default);
     Task<ApiResponseResult<UnauthSessionResponse>> PostUnauthSessionAsync(CancellationToken cancellationToken = default);
     Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequest authRequest, CancellationToken cancellationToken = default);
     Task<ApiResponseResult<AuthInfoResponse>> GetAuthInfoResponse(AuthInfoRequest authInfoRequest, CancellationToken cancellationToken = default);

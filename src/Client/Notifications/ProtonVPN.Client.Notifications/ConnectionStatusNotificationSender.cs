@@ -26,7 +26,9 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Notifications.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Extensions;
@@ -150,18 +152,31 @@ public class ConnectionStatusNotificationSender : NotificationSenderBase, IConne
             return null;
         }
 
-        string locationDetails = _localizer.GetConnectionDetailsTitle(_connectionManager.CurrentConnectionDetails);
-        string connectionIntentSubtitle = _localizer.GetConnectionDetailsSubtitle(_connectionManager.CurrentConnectionDetails);
+        IConnectionIntent connectionIntent = connectionDetails.OriginalConnectionIntent;
+
+        string locationDetails = connectionIntent is IConnectionProfile connectionProfile
+            ? connectionProfile.Name
+            : _localizer.GetConnectionDetailsTitle(connectionDetails);
+
+        string connectionIntentSubtitle = connectionIntent is IConnectionProfile
+            ? _localizer.GetConnectionProfileDetailsSubtitle(connectionDetails)
+            : _localizer.GetConnectionDetailsSubtitle(connectionDetails);
 
         if (!string.IsNullOrEmpty(connectionIntentSubtitle))
         {
-            locationDetails += $" {connectionIntentSubtitle}";
+            locationDetails += $" - {connectionIntentSubtitle}";
         }
 
-        IFeatureIntent? featureIntent = _connectionManager.CurrentConnectionIntent?.Feature;
-        if (featureIntent != null && featureIntent is P2PFeatureIntent or TorFeatureIntent)
+        switch (connectionIntent.Feature)
         {
-            locationDetails += $" {featureIntent}";
+            case P2PFeatureIntent:
+                locationDetails += $" ({_localizer.GetFeatureName(Feature.P2P)})";
+                break;
+            case TorFeatureIntent:
+                locationDetails += $" ({_localizer.GetFeatureName(Feature.Tor)})";
+                break;
+            default:
+                break;
         }
 
         return locationDetails;

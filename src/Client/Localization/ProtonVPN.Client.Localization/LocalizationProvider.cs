@@ -33,13 +33,16 @@ using WinUI3Localizer;
 
 namespace ProtonVPN.Client.Localization;
 
-public class LocalizationProvider : ILocalizationProvider
+public class LocalizationProvider : ILocalizationProvider, ILocationLocalizationSetter
 {
     private readonly ILogger _logger;
     private readonly ISettings _settings;
     private readonly ILocalizer _localizer;
     private readonly IStringLocalizer _stringLocalizer;
     private readonly Lazy<Dictionary<string, string>> _fallbackLanguageDictionary;
+
+    private Dictionary<string, Dictionary<string, string>> _cityNameTranslations = [];
+    private Dictionary<string, Dictionary<string, string>> _stateNameTranslations = [];
 
     public LocalizationProvider(
         ILogger logger,
@@ -142,5 +145,43 @@ public class LocalizationProvider : ILocalizationProvider
         {
             return value;
         }
+    }
+
+    public void SetCityNames(Dictionary<string, Dictionary<string, string>> cities)
+    {
+        _cityNameTranslations = cities;
+    }
+
+    public void SetStateNames(Dictionary<string, Dictionary<string, string>> states)
+    {
+        _stateNameTranslations = states;
+    }
+
+    public string GetCityName(string englishCityName, string countryCode)
+    {
+        return GetLocationName(_cityNameTranslations, englishCityName, countryCode);
+    }      
+
+    public string GetStateName(string englishStateName, string countryCode)
+    {
+        return GetLocationName(_stateNameTranslations, englishStateName, countryCode);
+    }
+
+    private string GetLocationName(Dictionary<string, Dictionary<string, string>> translationsContainer, string englishName, string countryCode)
+    {
+        if (string.IsNullOrEmpty(englishName))
+        {
+            return string.Empty;
+        }
+
+        if (translationsContainer != null &&
+            translationsContainer.TryGetValue(countryCode, out Dictionary<string, string> translations) &&
+            translations.TryGetValue(englishName, out string localizedName) &&
+            !string.IsNullOrEmpty(localizedName))
+        {
+            return localizedName;
+        }
+
+        return englishName;
     }
 }

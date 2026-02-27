@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -31,7 +31,7 @@ namespace ProtonVPN.Client.Logic.Searches.Tests;
 public partial class GlobalSearchTest
 {
     private IServersLoader? _serversLoader;
-    private ILocalizationProvider? _localizationProvider;
+    private ILocalizationProvider? _localizer;
     private GlobalSearch? _globalSearch;
 
     [TestInitialize]
@@ -110,20 +110,22 @@ public partial class GlobalSearchTest
         _serversLoader.GetCountries().Returns(standardCountries.Concat(secureCoreCountries));
         _serversLoader.GetCountriesByFeatures(Arg.Is(ServerFeatures.SecureCore)).Returns(secureCoreCountries);
 
+        _localizer = Substitute.For<ILocalizationProvider>();
+        _localizer.Get("Country_val_AE").Returns("United Arab Emirates");
+        _localizer.Get("Country_val_DZ").Returns("Algeria");
+        _localizer.Get("Country_val_CA").Returns("Canada");
+        _localizer.Get("Country_val_US").Returns("United States");
+        _localizer.Get("Country_val_CH").Returns("Switzerland");
+        _localizer.Get("Country_val_CL").Returns("Chile");
+        _localizer.Get("Country_val_IS").Returns("Iceland");
+        _localizer.Get("Country_val_PK").Returns("Pakistan");
 
-        _localizationProvider = Substitute.For<ILocalizationProvider>();
-        _localizationProvider.Get("Country_val_AE").Returns("United Arab Emirates");
-        _localizationProvider.Get("Country_val_DZ").Returns("Algeria");
-        _localizationProvider.Get("Country_val_CA").Returns("Canada");
-        _localizationProvider.Get("Country_val_US").Returns("United States");
-        _localizationProvider.Get("Country_val_CH").Returns("Switzerland");
-        _localizationProvider.Get("Country_val_CL").Returns("Chile");
+        _localizer.GetCityName(Arg.Any<string?>(), Arg.Any<string>())
+            .Returns(callInfo => callInfo.ArgAt<string?>(0) ?? string.Empty);
+        _localizer.GetStateName(Arg.Any<string?>(), Arg.Any<string>())
+            .Returns(callInfo => callInfo.ArgAt<string?>(0) ?? string.Empty);
 
-        _localizationProvider.Get("Country_val_IS").Returns("Iceland");
-        _localizationProvider.Get("Country_val_PK").Returns("Pakistan");
-
-
-        _globalSearch = new GlobalSearch(_serversLoader, _localizationProvider);
+        _globalSearch = new GlobalSearch(_serversLoader, _localizer);
     }
 
     private Server CreateMockOfServer(string name, string city, string state, string countryCode, ServerFeatures features)
@@ -206,7 +208,7 @@ public partial class GlobalSearchTest
     public void Cleanup()
     {
         _serversLoader = null;
-        _localizationProvider = null;
+        _localizer = null;
         _globalSearch = null;
     }
 }

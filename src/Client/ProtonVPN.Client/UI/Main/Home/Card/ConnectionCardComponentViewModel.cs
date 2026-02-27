@@ -53,7 +53,8 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
     IEventMessageReceiver<RecentConnectionsChangedMessage>,
     IEventMessageReceiver<ProfilesChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>,
-    IEventMessageReceiver<ServerListChangedMessage>
+    IEventMessageReceiver<ServerListChangedMessage>,
+    IEventMessageReceiver<LocationNamesChangedMessage>
 {
     private const int FREE_COUNTRIES_DISPLAYED_AS_FLAGS = 3;
 
@@ -235,6 +236,14 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
                 InvalidateFreeCountriesCount();
                 InvalidateConnectionIntent();
             });
+        }
+    }
+
+    public void Receive(LocationNamesChangedMessage message)
+    {
+        if (IsActive)
+        {
+            ExecuteOnUIThread(() => OnPropertyChanged(nameof(Subtitle)));
         }
     }
 

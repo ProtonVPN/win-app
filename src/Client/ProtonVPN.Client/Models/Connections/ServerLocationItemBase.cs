@@ -60,7 +60,7 @@ public abstract class ServerLocationItemBase : LocationItemBase<Server>
     // Show city as base location when the server belongs to a state
     public string BaseLocation => string.IsNullOrEmpty(Server.State)
         ? string.Empty
-        : Server.City;
+        : Localizer.GetCityName(Server.City, Server.ExitCountry);
 
     public bool IsVirtual => Server.IsVirtual;
 

@@ -27,6 +27,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Cities;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.FreeServers;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Gateways;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.GatewayServers;
@@ -124,21 +125,26 @@ public static class LocalizationExtensions
                 SelectionStrategy.Random => localizer.Get("Settings_Connection_Default_Random_Description"),
                 _ => string.Empty
             },
-            SingleStateLocationIntent intent => intent.StateName,
+            SingleStateLocationIntent intent => localizer.GetStateName(intent.StateName, intent.Country.CountryCode),
             MultiStateLocationIntent intent => intent.Strategy switch
             {
                 SelectionStrategy.Fastest => localizer.Get("State_Fastest"),
                 SelectionStrategy.Random => localizer.Get("State_Random"),
                 _ => string.Empty
             },
-            SingleCityLocationIntent intent => ConcatenateLocations(intent.State?.StateName, intent.CityName),
+            SingleCityLocationIntent intent => ConcatenateLocations(
+                localizer.GetStateName(intent.State?.StateName, intent.Country.CountryCode),
+                localizer.GetCityName(intent.CityName, intent.Country.CountryCode)),
             MultiCityLocationIntent intent => intent.Strategy switch
             {
                 SelectionStrategy.Fastest => localizer.Get("City_Fastest"),
                 SelectionStrategy.Random => localizer.Get("City_Random"),
                 _ => string.Empty
             },
-            SingleServerLocationIntent intent => ConcatenateLocations(intent.State?.StateName, intent.City?.CityName, intent.Server.Name),
+            SingleServerLocationIntent intent => ConcatenateLocations(
+                localizer.GetStateName(intent.State?.StateName, intent.Country.CountryCode),
+                localizer.GetCityName(intent.City?.CityName, intent.Country.CountryCode),
+                intent.Server.Name),
             MultiServerLocationIntent intent => intent.Strategy switch
             {
                 SelectionStrategy.Fastest => localizer.Get("Server_Fastest"),
@@ -152,7 +158,9 @@ public static class LocalizationExtensions
                 SelectionStrategy.Random => localizer.Get("Settings_Connection_Default_Random_Description"),
                 _ => string.Empty
             },
-            SingleGatewayServerLocationIntent intent => ConcatenateLocations(localizer.GetCountryName(intent.Server.CountryCode), intent.Server.Name),
+            SingleGatewayServerLocationIntent intent => ConcatenateLocations(
+                localizer.GetCountryName(intent.Server.CountryCode), 
+                intent.Server.Name),
             MultiGatewayServerLocationIntent intent => intent.Strategy switch
             {
                 SelectionStrategy.Fastest => localizer.Get("Server_Fastest"),
@@ -167,7 +175,7 @@ public static class LocalizationExtensions
     public static string GetConnectionProfileSubtitle(this ILocalizationProvider localizer, IConnectionProfile? profile)
     {
         string title = localizer.GetConnectionIntentTitle(profile);
-        string subtitle = localizer.GetConnectionIntentSubtitle(profile);
+        string subtitle = localizer.GetConnectionIntentSubtitle(profile, useDetailedSubtitle: false);
 
         return profile != null && profile.Feature is SecureCoreFeatureIntent secureCoreIntent && !secureCoreIntent.IsFastest
             ? $"{title} {subtitle}".Trim()
@@ -201,32 +209,53 @@ public static class LocalizationExtensions
 
     public static string GetConnectionDetailsSubtitle(this ILocalizationProvider localizer, ConnectionDetails? connectionDetails)
     {
-        if (connectionDetails?.OriginalConnectionIntent.Feature is SecureCoreFeatureIntent &&
-            connectionDetails?.OriginalConnectionIntent.Location is CountryLocationIntentBase locationIntent)
+        if (connectionDetails == null)
+        {
+            return string.Empty;
+        }
+
+        if (connectionDetails.OriginalConnectionIntent.Feature is SecureCoreFeatureIntent &&
+            connectionDetails.OriginalConnectionIntent.Location is CountryLocationIntentBase locationIntent)
         {
             return locationIntent is SingleCountryLocationIntent
                 ? localizer.GetSecureCoreLabel(connectionDetails.EntryCountryCode)
                 : $"{localizer.GetCountryName(connectionDetails.ExitCountryCode)} {localizer.GetSecureCoreLabel(connectionDetails.EntryCountryCode)}";
         }
 
+        string localizedCountry = localizer.GetCountryName(connectionDetails.ExitCountryCode);
+        string localizedState = localizer.GetStateName(connectionDetails.State, connectionDetails.ExitCountryCode);
+        string localizedCity = localizer.GetCityName(connectionDetails.City, connectionDetails.ExitCountryCode);
+
         return connectionDetails?.OriginalConnectionIntent.Location switch
         {
             SingleCountryLocationIntent or
             StateLocationIntentBase or
             CityLocationIntentBase or
-            ServerLocationIntentBase => ConcatenateLocations(connectionDetails.State, connectionDetails.City, connectionDetails.ServerName),
+            ServerLocationIntentBase => ConcatenateLocations(
+                localizedState, 
+                localizedCity,
+                connectionDetails.ServerName),
 
-            MultiCountryLocationIntent => ConcatenateLocations(localizer.GetCountryName(connectionDetails.ExitCountryCode), connectionDetails.State, connectionDetails.City, connectionDetails.ServerName),
+            MultiCountryLocationIntent => ConcatenateLocations(
+                localizedCountry,
+                localizedState, 
+                localizedCity,
+                connectionDetails.ServerName),
 
             SingleGatewayLocationIntent or
-            GatewayServerLocationIntentBase => ConcatenateLocations(localizer.GetCountryName(connectionDetails.ExitCountryCode), connectionDetails.ServerName),
+            GatewayServerLocationIntentBase => ConcatenateLocations(
+                localizedCountry, 
+                connectionDetails.ServerName),
 
-            MultiGatewayLocationIntent => ConcatenateLocations(connectionDetails.GatewayName, localizer.GetCountryName(connectionDetails.ExitCountryCode), connectionDetails.ServerName),
+            MultiGatewayLocationIntent => ConcatenateLocations(
+                connectionDetails.GatewayName, 
+                localizedCountry,
+                connectionDetails.ServerName),
 
             FreeServerLocationIntent intent => intent.Strategy switch
             {
                 SelectionStrategy.Random => connectionDetails.ServerName,
-                _ => ConcatenateLocations(localizer.GetCountryName(connectionDetails.ExitCountryCode), connectionDetails.ServerName)
+                _ => ConcatenateLocations(localizedCountry, connectionDetails.ServerName)
             },
             _ => string.Empty,
         };

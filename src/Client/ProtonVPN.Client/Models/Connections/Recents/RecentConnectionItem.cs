@@ -57,7 +57,7 @@ public partial class RecentConnectionItem : ConnectionItemBase
 
     public override string Description => IsProfileIntent
         ? Localizer.GetConnectionProfileSubtitle(Profile)
-        : Localizer.GetConnectionIntentSubtitle(RecentConnection.ConnectionIntent);
+        : Localizer.GetConnectionIntentSubtitle(RecentConnection.ConnectionIntent, false);
 
     public bool IsProfileIntent => Profile != null;
 

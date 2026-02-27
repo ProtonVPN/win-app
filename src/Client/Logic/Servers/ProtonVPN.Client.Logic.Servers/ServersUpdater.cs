@@ -48,8 +48,7 @@ public class ServersUpdater : IServersUpdater,
         ILogger logger,
         IServersCache serversCache,
         IServerCountCache serverCountCache,
-        ISettings settings,
-        IFeatureFlagsObserver featureFlagsObserver)
+        ISettings settings)
     {
         _logger = logger;
         _serversCache = serversCache;

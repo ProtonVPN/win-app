@@ -79,6 +79,12 @@ public class ApiClient : BaseApiClient, IApiClient
         return await SendRequestAsync<UnauthSessionResponse>(request, cancellationToken, "Post unauth sessions");
     }
 
+    public async Task<ApiResponseResult<LocalizedLocationsResponse>> GetCityNamesAsync(CancellationToken cancellationToken = default)
+    {
+        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Get, "vpn/v1/cities/names");
+        return await SendRequestAsync<LocalizedLocationsResponse>(request, cancellationToken, "Get city names");
+    }
+
     public async Task<ApiResponseResult<AuthResponse>> GetAuthResponse(AuthRequest authRequest, CancellationToken cancellationToken)
     {
         HttpRequestMessage request = GetRequest(HttpMethod.Post, "auth");

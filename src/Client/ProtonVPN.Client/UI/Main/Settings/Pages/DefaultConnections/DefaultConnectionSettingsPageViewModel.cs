@@ -41,7 +41,8 @@ namespace ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections;
 public partial class DefaultConnectionSettingsPageViewModel : SettingsPageViewModelBase,
     IEventMessageReceiver<RecentConnectionsChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>,
-    IEventMessageReceiver<ServerListChangedMessage>
+    IEventMessageReceiver<ServerListChangedMessage>,
+    IEventMessageReceiver<LocationNamesChangedMessage>
 {
     private readonly IServersLoader _serversLoader;
     private readonly IRecentConnectionsManager _recentConnectionsManager;
@@ -144,6 +145,11 @@ public partial class DefaultConnectionSettingsPageViewModel : SettingsPageViewMo
         {
             OnPropertyChanged(nameof(IsFastestAndRandomConnectionVisible));
         });
+    }
+
+    public void Receive(LocationNamesChangedMessage message)
+    {
+        ExecuteOnUIThread(InvalidateRecents);
     }
 
     private void InvalidateRecents()

@@ -53,6 +53,9 @@ public class ProtobufSerializableEntities : IProtobufSerializableEntities
         yield return typeof(ServerInfo);
         yield return typeof(GatewayServerInfo);
 
+        yield return typeof(LocationNamesFile);
+        yield return typeof(LocationNamesCache);
+
         yield return typeof(SerializableConnectionIntent);
         yield return typeof(SerializableFeatureIntent);
         yield return typeof(SerializableLocationIntent);

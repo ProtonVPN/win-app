@@ -42,7 +42,8 @@ public abstract class ConnectionPageViewModelBase : ConnectionListViewModelBase<
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<VpnPlanChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>,
-    IEventMessageReceiver<ServerListChangedMessage>
+    IEventMessageReceiver<ServerListChangedMessage>,
+    IEventMessageReceiver<LocationNamesChangedMessage>
 {
     protected bool WasInvalidatedWhileInactive { get; set; } = true;
 
@@ -93,6 +94,11 @@ public abstract class ConnectionPageViewModelBase : ConnectionListViewModelBase<
         ExecuteOnUIThread(OnServerListChanged);
     }
 
+    public void Receive(LocationNamesChangedMessage message)
+    {
+        ExecuteOnUIThread(OnCityNamesChanged);
+    }
+
     protected virtual void OnConnectionStatusChanged(ConnectionStatus connectionStatus)
     {
         InvalidateActiveConnection();
@@ -112,6 +118,11 @@ public abstract class ConnectionPageViewModelBase : ConnectionListViewModelBase<
     {
         FetchItems();
         OnPropertyChanged(nameof(IsAvailable));
+    }
+
+    protected virtual void OnCityNamesChanged()
+    {
+        FetchItems();
     }
 
     protected override void OnNavigation(NavigationEventArgs e)

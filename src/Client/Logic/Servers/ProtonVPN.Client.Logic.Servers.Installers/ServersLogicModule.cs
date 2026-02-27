@@ -19,6 +19,7 @@
 
 using Autofac;
 using ProtonVPN.Client.Logic.Servers.Cache;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.FavoriteServers;
 using ProtonVPN.Client.Logic.Servers.Files;
 using ProtonVPN.Client.Logic.Servers.Loads;
@@ -43,6 +44,9 @@ public class ServersLogicModule : Module
         builder.RegisterType<FavoriteServersStorage>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ServerFinder>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ServerLoadsCalculator>().AsImplementedInterfaces().SingleInstance();
+        
+        builder.RegisterType<LocationNamesFileReaderWriter>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<LocationNamesProvider>().SingleInstance().AutoActivate();
         
         builder.RegisterAllMappersInAssembly<LogicalServerMapper>();
     }
