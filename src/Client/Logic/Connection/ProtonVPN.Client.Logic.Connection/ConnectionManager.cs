@@ -220,6 +220,13 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
     /// <returns>True if reconnecting. False if not.</returns>
     public async Task<bool> ReconnectAsync(VpnTriggerDimension reconnectionTrigger)
     {
+        // If there is no internet connection or the attempt to reach the guest hole servers fails,
+        // we should not trigger reconnection logic, since all guest hole servers have already been tried.
+        if (_isGuestHoleActive)
+        {
+            return false;
+        }
+
         _minReconnectionDateUtc = DateTime.UtcNow + _reconnectInterval;
 
         IConnectionIntent? connectionIntent = CurrentConnectionIntent;
