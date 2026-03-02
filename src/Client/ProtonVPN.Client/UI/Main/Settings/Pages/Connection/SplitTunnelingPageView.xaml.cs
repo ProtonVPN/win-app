@@ -57,4 +57,18 @@ public sealed partial class SplitTunnelingPageView : IContextAware
     {
         PageContentHost.ResetContentScroll();
     }
+
+    private DataTemplate? SelectIpAddressItemTemplate(bool hasIpv6AddressesWhileIpv6Disabled)
+    {
+        string resourceKey = hasIpv6AddressesWhileIpv6Disabled
+            ? "Ipv6DisabledNetworkAddressTemplate"
+            : "Ipv6EnabledNetworkAddressTemplate";
+
+        if (Resources.TryGetValue(resourceKey, out object? resource) && resource is DataTemplate template)
+        {
+            return template;
+        }
+
+        return null;
+    }
 }

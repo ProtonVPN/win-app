@@ -30,10 +30,14 @@ public struct SplitTunnelingApp : IEquatable<SplitTunnelingApp>
     public bool IsActive { get; set; }
 
     public SplitTunnelingApp(string appFilePath, bool isActive)
+        : this(appFilePath, [], isActive)
+    { }
+
+    public SplitTunnelingApp(string appFilePath, List<string> alternateAppFilePaths, bool isActive)
     {
         AppFilePath = appFilePath;
         IsActive = isActive;
-        AlternateAppFilePaths = new List<string>();
+        AlternateAppFilePaths = alternateAppFilePaths;
     }
 
     public bool Equals(SplitTunnelingApp other)

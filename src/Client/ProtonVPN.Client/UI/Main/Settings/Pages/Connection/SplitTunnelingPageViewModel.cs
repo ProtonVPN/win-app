@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,18 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Common.Attributes;
+using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases;
-using ProtonVPN.Client.Core.Extensions;
 using ProtonVPN.Client.Core.Helpers;
+using ProtonVPN.Client.Core.Models;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Logic.Connection.Contracts;
@@ -37,44 +35,48 @@ using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
+using ProtonVPN.Client.UI.Overlays.Selection.Contracts;
 using ProtonVPN.Common.Core.Networking;
-using Windows.System;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Connection;
 
 public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
 {
-    public override string Title => Localizer.Get("Settings_Connection_SplitTunneling");
-
-    private const string EXE_FILE_EXTENSION = ".exe";
-
     private readonly IUrlsBrowser _urlsBrowser;
-    private readonly IMainWindowActivator _mainWindowActivator;
+    private readonly IIpSelector _ipSelector;
+    private readonly IAppSelector _appSelector;
+
+    private bool _wasIpv6WarningDisplayed;
 
     [ObservableProperty]
-    private string? _currentIpAddress;
-
-    [ObservableProperty]
-    private string? _ipAddressError;
+    [NotifyPropertyChangedFor(nameof(HasIpv6AddressesWhileIpv6Disabled))]
+    private bool _isIpv6Enabled;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(SplitTunnelingFeatureIconSource))]
+    [NotifyPropertyChangedFor(nameof(HasIpv6AddressesWhileIpv6Disabled))]
     private bool _isSplitTunnelingEnabled;
 
     [ObservableProperty]
     [property: SettingName(nameof(ISettings.SplitTunnelingMode))]
     [NotifyPropertyChangedFor(nameof(IsStandardSplitTunneling))]
     [NotifyPropertyChangedFor(nameof(IsInverseSplitTunneling))]
-    [NotifyPropertyChangedFor(nameof(HasStandardApps))]
-    [NotifyPropertyChangedFor(nameof(HasInverseApps))]
-    [NotifyPropertyChangedFor(nameof(ActiveAppsCount))]
-    [NotifyPropertyChangedFor(nameof(HasStandardIpAddresses))]
-    [NotifyPropertyChangedFor(nameof(HasInverseIpAddresses))]
-    [NotifyPropertyChangedFor(nameof(ActiveIpAddressesCount))]
     [NotifyPropertyChangedFor(nameof(SplitTunnelingFeatureIconSource))]
+    [NotifyPropertyChangedFor(nameof(IpAddresses))]
+    [NotifyPropertyChangedFor(nameof(IpAddressesHeader))]
+    [NotifyPropertyChangedFor(nameof(SelectedIpAddresses))]
+    [NotifyPropertyChangedFor(nameof(HasSelectedIpAddresses))]
+    [NotifyPropertyChangedFor(nameof(Apps))]
+    [NotifyPropertyChangedFor(nameof(AppsHeader))]
+    [NotifyPropertyChangedFor(nameof(SelectedApps))]
+    [NotifyPropertyChangedFor(nameof(HasSelectedApps))]
+    [NotifyPropertyChangedFor(nameof(HasIpv6AddressesWhileIpv6Disabled))]
     private SplitTunnelingMode _currentSplitTunnelingMode;
 
-    private bool _wasIpv6WarningDisplayed;
+    [ObservableProperty]
+    private bool _isLoading;
+
+    public override string Title => Localizer.Get("Settings_Connection_SplitTunneling");
 
     public ImageSource SplitTunnelingFeatureIconSource => GetFeatureIconSource(IsSplitTunnelingEnabled, CurrentSplitTunnelingMode);
 
@@ -92,35 +94,50 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         set => SetSplitTunnelingMode(value, SplitTunnelingMode.Inverse);
     }
 
-    [property: SettingName(nameof(ISettings.SplitTunnelingStandardAppsList))]
-    public ObservableCollection<SplitTunnelingAppViewModel> StandardApps { get; }
-
-    [property: SettingName(nameof(ISettings.SplitTunnelingInverseAppsList))]
-    public ObservableCollection<SplitTunnelingAppViewModel> InverseApps { get; }
-
-    public bool HasStandardApps => CurrentSplitTunnelingMode == SplitTunnelingMode.Standard && StandardApps.Any();
-    public bool HasInverseApps => CurrentSplitTunnelingMode == SplitTunnelingMode.Inverse && InverseApps.Any();
-
-    public int ActiveAppsCount => CurrentSplitTunnelingMode == SplitTunnelingMode.Standard
-                                      ? StandardApps.Count(a => a.IsActive)
-                                      : InverseApps.Count(a => a.IsActive);
+    [property: SettingName(nameof(ISettings.SplitTunnelingInverseIpAddressesList))]
+    public SmartObservableCollection<SelectableNetworkAddress> IncludedIpAddresses { get; } = [];
 
     [property: SettingName(nameof(ISettings.SplitTunnelingStandardIpAddressesList))]
-    public ObservableCollection<SplitTunnelingIpAddressViewModel> StandardIpAddresses { get; }
+    public SmartObservableCollection<SelectableNetworkAddress> ExcludedIpAddresses { get; } = [];
 
-    [property: SettingName(nameof(ISettings.SplitTunnelingInverseIpAddressesList))]
-    public ObservableCollection<SplitTunnelingIpAddressViewModel> InverseIpAddresses { get; }
+    public SmartObservableCollection<SelectableNetworkAddress> IpAddresses
+        => IsStandardSplitTunneling ? ExcludedIpAddresses : IncludedIpAddresses;
 
-    public bool HasStandardIpAddresses => CurrentSplitTunnelingMode == SplitTunnelingMode.Standard && StandardIpAddresses.Any();
-    public bool HasInverseIpAddresses => CurrentSplitTunnelingMode == SplitTunnelingMode.Inverse && InverseIpAddresses.Any();
+    public IEnumerable<NetworkAddress> SelectedIpAddresses
+        => IpAddresses.Where(ip => ip.IsSelected).Select(ip => ip.Value);
 
-    public int ActiveIpAddressesCount => CurrentSplitTunnelingMode == SplitTunnelingMode.Standard
-                                             ? StandardIpAddresses.Count(ip => ip.IsActive)
-                                             : InverseIpAddresses.Count(ip => ip.IsActive);
+    public bool HasSelectedIpAddresses => SelectedIpAddresses.Any();
+
+    public bool HasIpv6AddressesWhileIpv6Disabled
+        => IsSplitTunnelingEnabled
+        && IsInverseSplitTunneling
+        && !IsIpv6Enabled
+        && SelectedIpAddresses.Any(ip => ip.IsIpV6);
+
+    public string IpAddressesHeader => Localizer.GetFormat(IsStandardSplitTunneling
+        ? "Settings_Connection_SplitTunneling_IpAddresses_Excluded_FormattedHeader"
+        : "Settings_Connection_SplitTunneling_IpAddresses_Included_FormattedHeader", SelectedIpAddresses.Count());
+
+    [property: SettingName(nameof(ISettings.SplitTunnelingInverseAppsList))]
+    public SmartObservableCollection<SelectableTunnelingApp> IncludedApps { get; } = [];
+
+    [property: SettingName(nameof(ISettings.SplitTunnelingStandardAppsList))]
+    public SmartObservableCollection<SelectableTunnelingApp> ExcludedApps { get; } = [];
+
+    public SmartObservableCollection<SelectableTunnelingApp> Apps
+        => IsStandardSplitTunneling ? ExcludedApps : IncludedApps;
+
+    public IEnumerable<TunnelingApp> SelectedApps
+        => Apps.Where(app => app.IsSelected && app.Value.IsValid).Select(app => app.Value);
+
+    public bool HasSelectedApps => SelectedApps.Any();
+
+    public string AppsHeader => Localizer.GetFormat(IsStandardSplitTunneling
+        ? "Settings_Connection_SplitTunneling_Apps_Excluded_FormattedHeader"
+        : "Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader", SelectedApps.Count());
 
     public SplitTunnelingPageViewModel(
         IUrlsBrowser urlsBrowser,
-        IMainWindowActivator mainWindowActivator,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
@@ -128,6 +145,8 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager,
+        IIpSelector ipSelector,
+        IAppSelector appSelector,
         IViewModelHelper viewModelHelper)
         : base(requiredReconnectionSettings,
                mainViewNavigator,
@@ -139,37 +158,24 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
                viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
-        _mainWindowActivator = mainWindowActivator;
+        _ipSelector = ipSelector;
+        _appSelector = appSelector;
 
-        StandardApps = new();
-        StandardApps.CollectionChanged += OnAppsCollectionChanged;
-
-        InverseApps = new();
-        InverseApps.CollectionChanged += OnAppsCollectionChanged;
-
-        StandardIpAddresses = new();
-        StandardIpAddresses.CollectionChanged += OnIpAddressesCollectionChanged;
-
-        InverseIpAddresses = new();
-        InverseIpAddresses.CollectionChanged += OnIpAddressesCollectionChanged;
+        ExcludedIpAddresses.CollectionChanged += OnIpAddressesCollectionChanged;
+        IncludedIpAddresses.CollectionChanged += OnIpAddressesCollectionChanged;
+        ExcludedApps.CollectionChanged += OnAppsCollectionChanged;
+        IncludedApps.CollectionChanged += OnAppsCollectionChanged;
 
         PageSettings =
         [
-            ChangedSettingArgs.Create(() => Settings.SplitTunnelingStandardAppsList, () => GetSplitTunnelingAppsList(StandardApps)),
-            ChangedSettingArgs.Create(() => Settings.SplitTunnelingStandardIpAddressesList, () => GetSplitTunnelingIpAddressesList(StandardIpAddresses)),
-            ChangedSettingArgs.Create(() => Settings.SplitTunnelingInverseAppsList, () => GetSplitTunnelingAppsList(InverseApps)),
-            ChangedSettingArgs.Create(() => Settings.SplitTunnelingInverseIpAddressesList, () => GetSplitTunnelingIpAddressesList(InverseIpAddresses)),
+            ChangedSettingArgs.Create(() => Settings.SplitTunnelingStandardAppsList, () => GetSettingsApps(ExcludedApps)),
+            ChangedSettingArgs.Create(() => Settings.SplitTunnelingStandardIpAddressesList, () => GetSettingsIpAddresses(ExcludedIpAddresses)),
+            ChangedSettingArgs.Create(() => Settings.SplitTunnelingInverseAppsList, () => GetSettingsApps(IncludedApps)),
+            ChangedSettingArgs.Create(() => Settings.SplitTunnelingInverseIpAddressesList, () => GetSettingsIpAddresses(IncludedIpAddresses)),
             ChangedSettingArgs.Create(() => Settings.SplitTunnelingMode, () => CurrentSplitTunnelingMode),
-            ChangedSettingArgs.Create(() => Settings.IsSplitTunnelingEnabled, () => IsSplitTunnelingEnabled)
+            ChangedSettingArgs.Create(() => Settings.IsSplitTunnelingEnabled, () => IsSplitTunnelingEnabled),
+            ChangedSettingArgs.Create(() => Settings.IsIpv6Enabled, () => IsIpv6Enabled)
         ];
-    }
-
-    protected override void OnActivated()
-    {
-        base.OnActivated();
-
-        ResetCurrentIpAddress();
-        ResetIpAddressError();
     }
 
     public static ImageSource GetFeatureIconSource(bool isEnabled, SplitTunnelingMode mode)
@@ -188,202 +194,153 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
     }
 
     [RelayCommand]
-    public async Task AddAppAsync()
+    public async Task TriggerIpv6DisabledWarningAsync()
     {
-        if (_mainWindowActivator.Window == null)
+        if (await ShowIpv6DisabledWarningAsync())
         {
-            return;
+            IsIpv6Enabled = true;
         }
 
-        ObservableCollection<SplitTunnelingAppViewModel> apps = GetApps();
-        string filePath = await _mainWindowActivator.Window.PickSingleFileAsync(Localizer.Get("Settings_Connection_SplitTunneling_Apps_FilesFilterName"), [EXE_FILE_EXTENSION]);
-        if (!IsValidAppPath(filePath))
-        {
-            return;
-        }
-
-        SplitTunnelingAppViewModel? app = apps.FirstOrDefault(a => IsSameAppPath(a.AppFilePath, filePath) || a.AlternateAppFilePaths.Any(alt => IsSameAppPath(alt, filePath)));
-        if (app != null)
-        {
-            app.IsActive = true;
-        }
-        else
-        {
-            apps.Add(await CreateAppFromPathAsync(filePath, true, null));
-        }
-    }
-
-    private ObservableCollection<SplitTunnelingAppViewModel> GetApps()
-    {
-        return CurrentSplitTunnelingMode == SplitTunnelingMode.Standard ? StandardApps : InverseApps;
+        // Show this warning only once per app launch
+        _wasIpv6WarningDisplayed = true;
     }
 
     [RelayCommand]
-    public async Task AddIpAddressAsync()
+    public async Task SelectIpsAsync()
     {
-        NetworkAddress? address = GetValidatedCurrentIpAddress();
-        string? error = GetIpAddressError(address);
+        _ipSelector.Title = Localizer.Get(IsStandardSplitTunneling
+            ? "Settings_Connection_SplitTunneling_IpAddresses_Excluded_Header"
+            : "Settings_Connection_SplitTunneling_IpAddresses_Included_Header");
+        _ipSelector.Description = Localizer.Get(IsStandardSplitTunneling
+            ? "Settings_Connection_SplitTunneling_IpAddresses_Excluded_Description"
+            : "Settings_Connection_SplitTunneling_IpAddresses_Included_Description");
+        _ipSelector.Caption = Localizer.Get("Settings_Connection_SplitTunneling_IpAddresses_AddNew");
+        _ipSelector.CanReorder = false;
+        _ipSelector.IsAddressRangeAuthorized = true;
 
-        if (error != null || address == null)
+        List<SelectableNetworkAddress>? result = await _ipSelector.SelectAsync(IpAddresses.Select(ip => ip.Clone()).ToList());
+        if (result != null)
         {
-            IpAddressError = error ?? Localizer.Get("Settings_Common_IpAddresses_Invalid");
-            return;
-        }
+            IpAddresses.Reset(result);
 
-        ObservableCollection<SplitTunnelingIpAddressViewModel> ipAddresses = GetIpAddresses();
-        ipAddresses.Add(new(ViewModelHelper, Settings, this, address.Value.FormattedAddress));
-
-        ResetCurrentIpAddress();
-        ResetIpAddressError();
-
-        if (address?.IsIpV6 == true && !Settings.IsIpv6Enabled && !_wasIpv6WarningDisplayed)
-        {
-            await ShowIpv6DisabledWarningInnerAsync();
-
-            // Show this warning only once per app launch
-            _wasIpv6WarningDisplayed = true;
+            if (HasIpv6AddressesWhileIpv6Disabled && !_wasIpv6WarningDisplayed)
+            {
+                await TriggerIpv6DisabledWarningAsync();
+            }
         }
     }
 
     [RelayCommand]
-    public Task TriggerIpv6DisabledWarningAsync()
+    public async Task SelectAppsAsync()
     {
-        return ShowIpv6DisabledWarningInnerAsync();
-    }
+        _appSelector.Title = Localizer.Get(IsStandardSplitTunneling
+            ? "Settings_Connection_SplitTunneling_Apps_Excluded_Header"
+            : "Settings_Connection_SplitTunneling_Apps_Included_Header");
+        _appSelector.Description = Localizer.Get(IsStandardSplitTunneling
+            ? "Settings_Connection_SplitTunneling_Apps_Excluded_Description"
+            : "Settings_Connection_SplitTunneling_Apps_Included_Description");
 
-    private async Task ShowIpv6DisabledWarningInnerAsync()
-    {
-        if (CurrentSplitTunnelingMode != SplitTunnelingMode.Inverse)
+        List<SelectableTunnelingApp>? result = await _appSelector.SelectAsync(Apps.Select(app => app.Clone()).ToList());
+        if (result != null)
         {
-            return;
+            Apps.Reset(result);
         }
-
-        await ShowIpv6DisabledWarningAsync();
-    }
-
-    protected override void OnIpv6WarningClosedWithPrimaryAction()
-    {
-        List<SplitTunnelingIpAddressViewModel> inverseIpAddresses = InverseIpAddresses.ToList();
-        InverseIpAddresses.Clear();
-
-        foreach (SplitTunnelingIpAddressViewModel ip in inverseIpAddresses)
-        {
-            InverseIpAddresses.Add(new(ViewModelHelper, Settings, this, ip.IpAddress, ip.IsActive));
-        }
-    }
-
-    private string? GetIpAddressError(NetworkAddress? address)
-    {
-        if (address == null)
-        {
-            return Localizer.Get("Settings_Common_IpAddresses_Invalid");
-        }
-
-        if (GetIpAddresses().FirstOrDefault(ip => ip.IpAddress == address.Value.FormattedAddress) != null)
-        {
-            return Localizer.Get("Settings_Common_IpAddresses_AlreadyExists");
-        }
-
-        return null;
-    }
-
-    private ObservableCollection<SplitTunnelingIpAddressViewModel> GetIpAddresses()
-    {
-        return CurrentSplitTunnelingMode == SplitTunnelingMode.Standard ? StandardIpAddresses : InverseIpAddresses;
-    }
-
-    private NetworkAddress? GetValidatedCurrentIpAddress()
-    {
-        return NetworkAddress.TryParse(CurrentIpAddress, out NetworkAddress address) ? address : null;
-    }
-
-    public void RemoveApp(SplitTunnelingAppViewModel app)
-    {
-        ObservableCollection<SplitTunnelingAppViewModel> apps = GetApps();
-        apps.Remove(app);
-    }
-
-    public void InvalidateAppsCount()
-    {
-        OnPropertyChanged(nameof(ActiveAppsCount));
-    }
-
-    public void RemoveIpAddress(SplitTunnelingIpAddressViewModel ipAddress)
-    {
-        ObservableCollection<SplitTunnelingIpAddressViewModel> ipAddresses = GetIpAddresses();
-        ipAddresses.Remove(ipAddress);
-    }
-
-    public void InvalidateIpAddressesCount()
-    {
-        OnPropertyChanged(nameof(ActiveIpAddressesCount));
-    }
-
-    private List<SplitTunnelingApp> GetSplitTunnelingAppsList(ObservableCollection<SplitTunnelingAppViewModel> apps)
-    {
-        return apps.Select(app => new SplitTunnelingApp(app.AppFilePath, app.IsActive)).ToList();
-    }
-
-    private List<SplitTunnelingIpAddress> GetSplitTunnelingIpAddressesList(ObservableCollection<SplitTunnelingIpAddressViewModel> ipAddresses)
-    {
-        return ipAddresses.Select(ip => new SplitTunnelingIpAddress(ip.IpAddress, ip.IsActive)).ToList();
     }
 
     protected override async Task OnRetrieveSettingsAsync()
     {
-        IsSplitTunnelingEnabled = Settings.IsSplitTunnelingEnabled;
-        CurrentSplitTunnelingMode = Settings.SplitTunnelingMode;
-
-        await SetAppsAsync(StandardApps, Settings.SplitTunnelingStandardAppsList);
-        await SetAppsAsync(InverseApps, Settings.SplitTunnelingInverseAppsList);
-
-        SetIpAddresses(StandardIpAddresses, Settings.SplitTunnelingStandardIpAddressesList);
-        SetIpAddresses(InverseIpAddresses, Settings.SplitTunnelingInverseIpAddressesList);
-    }
-
-    private async Task SetAppsAsync(ObservableCollection<SplitTunnelingAppViewModel> apps, List<SplitTunnelingApp> settingsApps)
-    {
-        apps.Clear();
-        foreach (SplitTunnelingApp app in settingsApps)
-        {
-            apps.Add(await CreateAppFromPathAsync(app.AppFilePath, app.IsActive, app.AlternateAppFilePaths));
-        }
-    }
-
-    private void SetIpAddresses(ObservableCollection<SplitTunnelingIpAddressViewModel> ipAddresses, List<SplitTunnelingIpAddress> settingsIpAddresses)
-    {
-        ipAddresses.Clear();
-        foreach (SplitTunnelingIpAddress ip in settingsIpAddresses)
-        {
-            ipAddresses.Add(new(ViewModelHelper, Settings, this, ip.IpAddress, ip.IsActive));
-        }
-    }
-
-    private async Task<SplitTunnelingAppViewModel> CreateAppFromPathAsync(string filePath, bool isActive, List<string>? alternateFilePaths)
-    {
-        SplitTunnelingAppViewModel app = new(ViewModelHelper, this, filePath, isActive, alternateFilePaths);
-        await app.InitializeAsync();
-        return app;
-    }
-
-    private bool IsValidAppPath(string filePath)
-    {
         try
         {
-            return !string.IsNullOrEmpty(filePath)
-                && Path.IsPathRooted(filePath)
-                && string.Equals(Path.GetExtension(filePath), EXE_FILE_EXTENSION, StringComparison.OrdinalIgnoreCase)
-                && File.Exists(filePath);
+            IsLoading = true;
+
+            IsIpv6Enabled = Settings.IsIpv6Enabled;
+            IsSplitTunnelingEnabled = Settings.IsSplitTunnelingEnabled;
+            CurrentSplitTunnelingMode = Settings.SplitTunnelingMode;
+
+            ExcludedIpAddresses.Reset(GetObservableIpAddresses(Settings.SplitTunnelingStandardIpAddressesList));
+            IncludedIpAddresses.Reset(GetObservableIpAddresses(Settings.SplitTunnelingInverseIpAddressesList));
+
+            ExcludedApps.Reset(await GetObservableAppsAsync(Settings.SplitTunnelingStandardAppsList));
+            IncludedApps.Reset(await GetObservableAppsAsync(Settings.SplitTunnelingInverseAppsList));
         }
-        catch (ArgumentException)
+        finally
         {
-            return false;
+            IsLoading = false;
         }
     }
 
-    private bool IsSameAppPath(string filePathA, string filePathB)
+    protected override bool IsReconnectionRequiredDueToChanges(IEnumerable<ChangedSettingArgs> changedSettings)
     {
-        return string.Equals(filePathA, filePathB, StringComparison.OrdinalIgnoreCase);
+        bool isReconnectionRequired = base.IsReconnectionRequiredDueToChanges(changedSettings);
+        if (isReconnectionRequired)
+        {
+            // Check if there was any active apps or IP adresses from the settings
+            // then check if there is any active apps or IP adresses now.
+            // If there is none in both case, no need to reconnect.
+            bool isSameSplitTunnelingMode = CurrentSplitTunnelingMode == Settings.SplitTunnelingMode;
+            bool hadAnyActiveAppsOrIps =
+                Settings.IsSplitTunnelingEnabled &&
+                Settings.SplitTunnelingMode switch
+                {
+                    SplitTunnelingMode.Standard => Settings.SplitTunnelingStandardAppsList.Any(app => app.IsActive) || Settings.SplitTunnelingStandardIpAddressesList.Any(ip => ip.IsActive),
+                    SplitTunnelingMode.Inverse => Settings.SplitTunnelingInverseAppsList.Any(app => app.IsActive) || Settings.SplitTunnelingInverseIpAddressesList.Any(ip => ip.IsActive),
+                    _ => false
+                };
+            bool hasAnyActiveAppsOrIps =
+                IsSplitTunnelingEnabled &&
+                CurrentSplitTunnelingMode switch
+                {
+                    SplitTunnelingMode.Standard => ExcludedApps.Any(app => app.IsSelected) || ExcludedIpAddresses.Any(ip => ip.IsSelected),
+                    SplitTunnelingMode.Inverse => IncludedApps.Any(app => app.IsSelected) || IncludedIpAddresses.Any(ip => ip.IsSelected),
+                    _ => false
+                };
+            if (isSameSplitTunnelingMode && !hadAnyActiveAppsOrIps && !hasAnyActiveAppsOrIps)
+            {
+                return false;
+            }
+        }
+
+        return isReconnectionRequired;
+    }
+
+    private List<SplitTunnelingIpAddress> GetSettingsIpAddresses(IEnumerable<SelectableNetworkAddress> ipAddresses)
+    {
+        return ipAddresses.Select(ip => new SplitTunnelingIpAddress(ip.Value.ToString(), ip.IsSelected)).ToList();
+    }
+
+    private List<SelectableNetworkAddress> GetObservableIpAddresses(List<SplitTunnelingIpAddress> settingsIpAddresses)
+    {
+        List<SelectableNetworkAddress> addresses = [];
+
+        foreach (SplitTunnelingIpAddress ip in settingsIpAddresses)
+        {
+            if (NetworkAddress.TryParse(ip.IpAddress, out NetworkAddress address))
+            {
+                addresses.Add(new SelectableNetworkAddress(address, ip.IsActive));
+            }
+        }
+
+        return addresses;
+    }
+
+    private List<SplitTunnelingApp> GetSettingsApps(IEnumerable<SelectableTunnelingApp> apps)
+    {
+        return apps.Select(ip => new SplitTunnelingApp(ip.Value.AppPath, ip.Value.AlternateAppPaths, ip.IsSelected)).ToList();
+    }
+
+    private async Task<List<SelectableTunnelingApp>> GetObservableAppsAsync(List<SplitTunnelingApp> settingsApps)
+    {
+        List<SelectableTunnelingApp> apps = [];
+
+        foreach (SplitTunnelingApp app in settingsApps)
+        {
+            TunnelingApp tunnelingApp = await TunnelingApp.TryCreateAsync(app.AppFilePath, app.AlternateAppFilePaths)
+                ?? TunnelingApp.NotFound(app.AppFilePath, Localizer.Get("Common_Message_AppNotFound"), app.AlternateAppFilePaths);
+
+            apps.Add(new SelectableTunnelingApp(tunnelingApp, app.IsActive));
+        }
+
+        return apps;
     }
 
     private bool IsSplitTunnelingMode(SplitTunnelingMode splitTunnelingMode)
@@ -401,72 +358,18 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
 
     private void OnAppsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
-        OnPropertyChanged(nameof(HasStandardApps));
-        OnPropertyChanged(nameof(HasInverseApps));
-        InvalidateAppsCount();
+        OnPropertyChanged(nameof(Apps));
+        OnPropertyChanged(nameof(AppsHeader));
+        OnPropertyChanged(nameof(SelectedApps));
+        OnPropertyChanged(nameof(HasSelectedApps));
     }
 
     private void OnIpAddressesCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
-        OnPropertyChanged(nameof(HasStandardIpAddresses));
-        OnPropertyChanged(nameof(HasInverseIpAddresses));
-        InvalidateIpAddressesCount();
-    }
-
-    public void OnIpAddressKeyDownHandler(object sender, KeyRoutedEventArgs e)
-    {
-        if (e.Key == VirtualKey.Enter)
-        {
-            AddIpAddressCommand.Execute(null);
-        }
-    }
-
-    protected override bool IsReconnectionRequiredDueToChanges(IEnumerable<ChangedSettingArgs> changedSettings)
-    {
-        bool isReconnectionRequired = base.IsReconnectionRequiredDueToChanges(changedSettings);
-        if (isReconnectionRequired)
-        {
-            // Check if there was any active apps or IP adresses from the settings
-            // then check if there is any active apps or IP adresses now.
-            // If there is none in both case, no need to reconnect.
-            bool isSameSplitTunnelingMode = CurrentSplitTunnelingMode == Settings.SplitTunnelingMode;
-            bool hadAnyActiveAppsOrIps =
-                Settings.IsSplitTunnelingEnabled &&
-                Settings.SplitTunnelingMode switch
-                {
-                    SplitTunnelingMode.Standard => Settings.SplitTunnelingStandardAppsList.Any(s => s.IsActive) || Settings.SplitTunnelingStandardIpAddressesList.Any(s => s.IsActive),
-                    SplitTunnelingMode.Inverse => Settings.SplitTunnelingInverseAppsList.Any(s => s.IsActive) || Settings.SplitTunnelingInverseIpAddressesList.Any(s => s.IsActive),
-                    _ => false
-                };
-            bool hasAnyActiveAppsOrIps =
-                IsSplitTunnelingEnabled &&
-                CurrentSplitTunnelingMode switch
-                {
-                    SplitTunnelingMode.Standard => StandardApps.Any(s => s.IsActive) || StandardIpAddresses.Any(s => s.IsActive),
-                    SplitTunnelingMode.Inverse => InverseApps.Any(s => s.IsActive) || InverseIpAddresses.Any(s => s.IsActive),
-                    _ => false
-                };
-            if (isSameSplitTunnelingMode && !hadAnyActiveAppsOrIps && !hasAnyActiveAppsOrIps)
-            {
-                return false;
-            }
-        }
-
-        return isReconnectionRequired;
-    }
-
-    partial void OnCurrentIpAddressChanged(string? value)
-    {
-        ResetIpAddressError();
-    }
-
-    private void ResetIpAddressError()
-    {
-        IpAddressError = null;
-    }
-
-    private void ResetCurrentIpAddress()
-    {
-        CurrentIpAddress = null;
+        OnPropertyChanged(nameof(IpAddresses));
+        OnPropertyChanged(nameof(IpAddressesHeader));
+        OnPropertyChanged(nameof(SelectedIpAddresses));
+        OnPropertyChanged(nameof(HasSelectedIpAddresses));
+        OnPropertyChanged(nameof(HasIpv6AddressesWhileIpv6Disabled));
     }
 }

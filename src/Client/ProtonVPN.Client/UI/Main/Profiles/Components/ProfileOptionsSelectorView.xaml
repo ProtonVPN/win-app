@@ -36,18 +36,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter Property="Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
             <Setter Property="Padding" Value="4,2" />
         </Style>
-
-        <DataTemplate x:Key="ExternalAppItemTemplate"
-                      x:DataType="models:ExternalApp">
-            <StackPanel Orientation="Horizontal"
-                        Spacing="8">
-                <Image Width="20"
-                       VerticalAlignment="Center"
-                       Source="{x:Bind AppIcon}" />
-                <TextBlock VerticalAlignment="Center"
-                           Text="{x:Bind AppName}" />
-            </StackPanel>
-        </DataTemplate>
     </UserControl.Resources>
 
     <controls:SettingsExpander HorizontalAlignment="Stretch"
@@ -138,24 +126,53 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    VerticalAlignment="Center"
                                    Text="{x:Bind ViewModel.Localizer.Get('Profile_Options_Application')}" />
 
-                        <custom:GhostButton Grid.Column="1"
+                        <custom:GhostButton x:Name="ConnectAndGoAppSelector"
+                                            Grid.Column="1"
                                             Height="36"
                                             Command="{x:Bind ViewModel.SelectAppCommand, Mode=OneTime}"
-                                            Content="{x:Bind ViewModel.ConnectAndGoAppName}"
                                             Style="{StaticResource DropDownGhostButtonStyle}">
-                            <custom:GhostButton.LeftIcon>
-                                <ImageIcon Width="20"
+                            <Grid>
+                                <TextBlock VerticalAlignment="Center"
+                                           Text="{x:Bind ViewModel.Localizer.Get('Profile_Options_Application_Select')}"
+                                           Visibility="{x:Bind ViewModel.ConnectAndGoApp, Converter={StaticResource NullToVisibilityConverter}}" />
+
+                                <Grid Visibility="{x:Bind ViewModel.ConnectAndGoApp, Converter={StaticResource NotNullToVisibilityConverter}}"
+                                      ToolTipService.ToolTip="{x:Bind ViewModel.ConnectAndGoApp.AppPath}"
+                                      ColumnSpacing="8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Grid.Column="0"
+                                           Width="20"
+                                           Height="20"
                                            Source="{x:Bind ViewModel.ConnectAndGoApp.AppIcon}"
-                                           Visibility="{x:Bind ViewModel.ConnectAndGoApp, Converter={StaticResource NotNullToVisibilityConverter}}" />
-                            </custom:GhostButton.LeftIcon>
+                                           Visibility="{x:Bind ViewModel.ConnectAndGoApp.IsValid, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                    <TextBlock Grid.Column="1"
+                                               Text="{x:Bind ViewModel.ConnectAndGoApp.AppName}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Visibility="{x:Bind ViewModel.ConnectAndGoApp.IsValid, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                                    <pathicons:ExclamationCircleFilled Grid.Column="0"
+                                                                       Foreground="{ThemeResource SignalDangerColorBrush}"
+                                                                       Opacity="0.6"
+                                                                       Size="Pixels20"
+                                                                       Visibility="{x:Bind ViewModel.ConnectAndGoApp.IsValid, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                                    <TextBlock Grid.Column="1"
+                                               Foreground="{ThemeResource SignalDangerColorBrush}"
+                                               Opacity="0.6"
+                                               Text="{x:Bind ViewModel.ConnectAndGoApp.AppName}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Visibility="{x:Bind ViewModel.ConnectAndGoApp.IsValid, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                                </Grid>
+                            </Grid>
                             <custom:GhostButton.RightIcon>
                                 <pathicons:ChevronRight Size="Pixels16" />
                             </custom:GhostButton.RightIcon>
 
                         </custom:GhostButton>
-
                     </Grid>
-
                 </StackPanel>
             </controls:SettingsCard>
 

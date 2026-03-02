@@ -29,9 +29,7 @@ public class AdvancedSettingsRobot
     protected Element CustomDnsSettingCard = Element.ByAutomationId("CustomDnsServersSettingsCard");
     protected Element CustomDnsToggle = Element.ByAutomationId("CustomDnsToggle");
     protected Element EnableButton = Element.ByName("Enable");
-    protected Element CustomDnsTextBox = Element.ByAutomationId("CustomDnsIpAddressBox");
-    protected Element AddButton = Element.ByAutomationId("AddButton");
-    protected Element TrashButton = Element.ByAutomationId("TrashIcon");
+    protected Element DnsServersSelectorSettingsCard = Element.ByAutomationId("DnsServersSelectorSettingsCard");
     protected Element NatTypeCard = Element.ByAutomationId("NatTypeSettingsCard");
 
     private string? WireguardDnsAddress => NetworkUtils.GetDnsAddresses("ProtonVPN").FirstOrDefault();
@@ -61,22 +59,9 @@ public class AdvancedSettingsRobot
         return this;
     }
 
-    public AdvancedSettingsRobot SetCustomDns(string ipAddress)
+    public AdvancedSettingsRobot EditCustomDnsServers()
     {
-        CustomDnsTextBox.SetText(ipAddress);
-        AddButton.Click();
-        return this;
-    }
-
-    public AdvancedSettingsRobot TickCustomDnsServer(string ipAddress)
-    {
-        Element.ByName(ipAddress).Click();
-        return this;
-    }
-
-    public AdvancedSettingsRobot RemoveCustomDnsServer()
-    {
-        TrashButton.Click();
+        DnsServersSelectorSettingsCard.Click();
         return this;
     }
 

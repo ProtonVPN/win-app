@@ -212,7 +212,7 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
             {
                 Title = Localizer.Get("Settings_Reconnection_Title"),
                 PrimaryButtonText = Localizer.Get("Common_Actions_Reconnect"),
-                CloseButtonText = Localizer.Get("Common_Actions_Cancel"),
+                CloseButtonText = Localizer.Get("Settings_DiscardChanges_Confirmation_Action"),
             });
             if (result != ContentDialogResult.Primary)
             {
@@ -246,6 +246,11 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
     partial void OnIsFeatureFlyoutOpenedChanged(bool value)
     {
         InvalidateIsSelected();
+
+        if (value)
+        {
+            OnFeatureFlyoutOpened();
+        }
     }
 
     private bool IsReconnectionRequired(List<ChangedSettingArgs> changedSettings, List<ISettingsConflict> conflicts)
@@ -268,4 +273,7 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
     {
         return conflicts.Any(c => c.IsReconnectionRequired);
     }
+
+    protected virtual void OnFeatureFlyoutOpened()
+    { }
 }

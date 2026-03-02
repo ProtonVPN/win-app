@@ -64,19 +64,28 @@ public class CustomDnsTests : BaseTest
     {
         SettingRobot
             .OpenAdvancedSettings();
-        AdvancedSettingsRobot
-            .NavigateToCustomDns();
 
         AdvancedSettingsRobot
-            .SetCustomDns(CUSTOM_DNS_SERVER);
+            .NavigateToCustomDns()
+            .EditCustomDnsServers();
+
+        IpSelectorRobot
+            .AddIpAddress(CUSTOM_DNS_SERVER)
+            .Verify.WasIpAdded(CUSTOM_DNS_SERVER);
+
+        ConfirmationRobot
+            .PrimaryAction();
+
         SettingRobot
             .ApplySettings()
             .CloseSettings();
         
-        HomeRobot.ConnectViaConnectionCard()
+        HomeRobot
+            .ConnectViaConnectionCard()
             .Verify.IsConnected();
 
-        AdvancedSettingsRobot.Verify.IsCustomDnsAddressSet(CUSTOM_DNS_SERVER);
+        AdvancedSettingsRobot
+            .Verify.IsCustomDnsAddressSet(CUSTOM_DNS_SERVER);
     }
 
     [Test, Order(2)]
@@ -85,11 +94,22 @@ public class CustomDnsTests : BaseTest
         NavigateToCustomDnsSetting();
 
         AdvancedSettingsRobot
-            .TickCustomDnsServer(CUSTOM_DNS_SERVER);
+            .EditCustomDnsServers();
 
-        SettingRobot.Reconnect();
-        HomeRobot.Verify.IsConnected();
-        AdvancedSettingsRobot.Verify.IsCustomDnsAddressNotSet(CUSTOM_DNS_SERVER);
+        IpSelectorRobot
+            .TickIpAddressCheckBox(CUSTOM_DNS_SERVER);
+
+        ConfirmationRobot
+            .PrimaryAction();
+
+        SettingRobot
+            .Reconnect();
+
+        HomeRobot
+            .Verify.IsConnected();
+
+        AdvancedSettingsRobot
+            .Verify.IsCustomDnsAddressNotSet(CUSTOM_DNS_SERVER);
     }
 
     [Test, Order(3)]
@@ -98,13 +118,27 @@ public class CustomDnsTests : BaseTest
         NavigateToCustomDnsSetting();
 
         AdvancedSettingsRobot
-            .RemoveCustomDnsServer()
-            .SetCustomDns(SECONDARY_CUSTOM_DNS_SERVER);
-        SettingRobot.Reconnect();
-        HomeRobot.Verify.IsConnected();
+            .EditCustomDnsServers();
 
-        AdvancedSettingsRobot.Verify.IsCustomDnsAddressNotSet(CUSTOM_DNS_SERVER);
-        AdvancedSettingsRobot.Verify.IsCustomDnsAddressSet(SECONDARY_CUSTOM_DNS_SERVER);
+        IpSelectorRobot
+            .DeleteAllIps()
+            .AddIpAddress(SECONDARY_CUSTOM_DNS_SERVER)
+            .Verify.WasIpAdded(SECONDARY_CUSTOM_DNS_SERVER);
+
+        ConfirmationRobot
+            .PrimaryAction();
+
+        SettingRobot
+            .Reconnect();
+
+        HomeRobot
+            .Verify.IsConnected();
+
+        AdvancedSettingsRobot
+            .Verify.IsCustomDnsAddressNotSet(CUSTOM_DNS_SERVER);
+
+        AdvancedSettingsRobot
+            .Verify.IsCustomDnsAddressSet(SECONDARY_CUSTOM_DNS_SERVER);
     }
 
     [Test, Order(4)]
@@ -112,11 +146,18 @@ public class CustomDnsTests : BaseTest
     {
         NavigateToCustomDnsSetting();
 
-        AdvancedSettingsRobot.ToggleCustomDnsSetting();
-        SettingRobot.Reconnect();
-        HomeRobot.Verify.IsConnected();
+        AdvancedSettingsRobot
+            .ToggleCustomDnsSetting();
 
-        AdvancedSettingsRobot.Verify.IsCustomDnsAddressNotSet(SECONDARY_CUSTOM_DNS_SERVER);
+        SettingRobot
+            .Reconnect();
+
+        HomeRobot
+            .Verify.IsConnected();
+
+        AdvancedSettingsRobot
+            .Verify.IsCustomDnsAddressNotSet(CUSTOM_DNS_SERVER)
+                   .IsCustomDnsAddressNotSet(SECONDARY_CUSTOM_DNS_SERVER);
     }
 
     [OneTimeTearDown] 
@@ -127,8 +168,10 @@ public class CustomDnsTests : BaseTest
 
     private void NavigateToCustomDnsSetting()
     {
-        SettingRobot.OpenSettings()
+        SettingRobot
+            .OpenSettings()
             .OpenAdvancedSettings();
+
         AdvancedSettingsRobot
             .NavigateToCustomDns();
     }

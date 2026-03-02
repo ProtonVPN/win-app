@@ -35,12 +35,19 @@ public sealed partial class SettingsWidgetView : IContextAware
 
         InitializeComponent();
 
-        Loaded += OnSettingsWidgetLoaded;
-        Unloaded += OnSettingsWidgetUnloaded;
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
     }
 
-    private void OnSettingsWidgetLoaded(object sender, RoutedEventArgs e)
+    public object GetContext()
     {
+        return ViewModel;
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        ViewModel.Activate();
+
         SettingsButton.KeyboardAccelerators.Add(
             new KeyboardAccelerator()
             {
@@ -49,13 +56,10 @@ public sealed partial class SettingsWidgetView : IContextAware
             });
     }
 
-    private void OnSettingsWidgetUnloaded(object sender, RoutedEventArgs e)
+    private void OnUnloaded(object sender, RoutedEventArgs e)
     {
-        SettingsButton.KeyboardAccelerators.Clear();
-    }
+        ViewModel.Deactivate();
 
-    public object GetContext()
-    {
-        return ViewModel;
+        SettingsButton.KeyboardAccelerators.Clear();
     }
 }

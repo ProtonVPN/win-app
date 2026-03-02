@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -29,9 +29,10 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Overlays.HumanVerification;
 using ProtonVPN.Client.UI.Overlays.Information;
 using ProtonVPN.Client.UI.Overlays.Information.Notification;
-using ProtonVPN.Client.UI.Overlays.WhatsNew;
+using ProtonVPN.Client.UI.Overlays.Selection;
 using ProtonVPN.Client.UI.Overlays.Upsell;
 using ProtonVPN.Client.UI.Overlays.Welcome;
+using ProtonVPN.Client.UI.Overlays.WhatsNew;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Services.Activation;
@@ -85,7 +86,7 @@ public class MainWindowOverlayActivator : OverlayActivatorBase<MainWindow>, IMai
             new MessageDialogParameters
             {
                 Title = _localizer.GetFormat("Settings_OverriddenByProfile_Title", localizedSettingsName),
-                Message = $"{_localizer.Get("Settings_OverriddenByProfile_Description1")}{Environment.NewLine}{Environment.NewLine}{_localizer.Get("Settings_OverriddenByProfile_Description2")}" ,
+                Message = $"{_localizer.Get("Settings_OverriddenByProfile_Description1")}{Environment.NewLine}{Environment.NewLine}{_localizer.Get("Settings_OverriddenByProfile_Description2")}",
                 PrimaryButtonText = _localizer.Get("Connection_Error_EditProfile"),
                 CloseButtonText = _localizer.Get("Common_Actions_Close"),
             });

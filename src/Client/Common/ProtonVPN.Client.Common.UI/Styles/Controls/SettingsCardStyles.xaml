@@ -88,6 +88,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
     <VerticalAlignment x:Key="SettingsCardHeaderVerticalAlignment">Center</VerticalAlignment>
     <FontWeight x:Key="SettingsCardHeaderFontWeight">Normal</FontWeight>
 
+    <x:Double x:Key="FlyoutSettingsCardMinWidth">80</x:Double>
+    <x:Double x:Key="FlyoutSettingsCardMinHeight">36</x:Double>
+    <Thickness x:Key="FlyoutSettingsCardPadding">12</Thickness>
+
     <x:Double x:Key="SettingsCardWrapThreshold">260</x:Double>
     <x:Double x:Key="SettingsCardWrapNoIconThreshold">160</x:Double>
 
@@ -164,13 +168,13 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                                     VerticalAlignment="{ThemeResource SettingsCardHeaderVerticalAlignment}"
                                     Orientation="Vertical">
 
-                            <Grid HorizontalAlignment="Left"
+                            <Grid HorizontalAlignment="Stretch"
                                   VerticalAlignment="Top">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                
+
                                 <ContentPresenter x:Name="PART_HeaderPresenter"
                                                   Grid.Column="0"
                                                   Content="{TemplateBinding Header}"
@@ -1183,6 +1187,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="FlyoutSettingsCardStyle" BasedOn="{StaticResource DefaultSettingsCardStyle}" TargetType="toolkit:SettingsCard">
+        <Setter Property="MinHeight" Value="{StaticResource FlyoutSettingsCardMinHeight}" />
+        <Setter Property="MinWidth" Value="{StaticResource FlyoutSettingsCardMinWidth}" />
+        <Setter Property="Padding" Value="{StaticResource FlyoutSettingsCardPadding}" />
     </Style>
 
 </ResourceDictionary>

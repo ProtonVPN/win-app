@@ -17,22 +17,26 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Client.Common.UI.Extensions;
-using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.Core.Models;
 
 public class ExternalApp : ObservableObject
 {
+    public const string EXE_FILE_EXTENSION = ".exe";
+
+    public static ExternalApp NotFound(string appPath, string appName) => new(appPath, appName);
+
     public string AppPath { get; }
     public string AppName { get; }
     public ImageSource? AppIcon { get; private set; }
 
-    public bool IsValid => AppPath.IsValidPath();
+    public bool IsValid => IsAppPathValid(AppPath);
 
     protected ExternalApp(string appPath, string appName, ImageSource? appIcon)
         : this(appPath, appName)
@@ -50,7 +54,7 @@ public class ExternalApp : ObservableObject
     {
         appPath = appPath?.Trim() ?? string.Empty;
 
-        if (string.IsNullOrWhiteSpace(appPath) || !Path.Exists(appPath))
+        if (!IsAppPathValid(appPath))
         {
             return null;
         }
@@ -70,6 +74,21 @@ public class ExternalApp : ObservableObject
         }
 
         return app;
+    }
+
+    protected static bool IsAppPathValid(string appPath)
+    {
+        try
+        {
+            return !string.IsNullOrWhiteSpace(appPath)
+                && File.Exists(appPath)
+                && Path.IsPathRooted(appPath)
+                && string.Equals(Path.GetExtension(appPath), EXE_FILE_EXTENSION, StringComparison.OrdinalIgnoreCase);
+        }
+        catch (Exception)
+        {
+            return false;
+        }
     }
 
     public override string ToString()

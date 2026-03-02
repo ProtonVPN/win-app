@@ -40,17 +40,27 @@ public class SplitTunnelingIncludeTests : BaseTest
     }
 
     [Test, Order(0)]
-    public void SplitTunnelingIncludeModeIP()
+    public void SplitTunnelingIncludeIpAddress()
     {
         SettingRobot
             .OpenSettings()
             .OpenSplitTunnelingSettings();
+
         SplitTunnelingRobot
             .ToggleSplitTunnelingSwitch()
             .SelectIncludeMode()
-            .AddIpAddress(IP_ADDRESS_TO_INCLUDE);
+            .EditSplitTunnelingIps();
 
-        SettingRobot.ApplySettings()
+        IpSelectorRobot
+            .Verify.IsIpSelectorOpened()
+            .AddIpAddress(IP_ADDRESS_TO_INCLUDE)
+            .Verify.WasIpAdded(IP_ADDRESS_TO_INCLUDE);
+
+        ConfirmationRobot
+            .PrimaryAction();
+
+        SettingRobot
+            .ApplySettings()
             .CloseSettings();
 
         HomeRobot
@@ -61,17 +71,27 @@ public class SplitTunnelingIncludeTests : BaseTest
     }
 
     [Test, Order(2)]
-    public void SplitTunnelingIsDisabledByTickingCheckbox()
+    public void SplitTunnelingDisableIpAddress()
     {
         SettingRobot
             .OpenSettings()
             .OpenSplitTunnelingSettings();
 
         SplitTunnelingRobot
+            .EditSplitTunnelingIps();
+
+        IpSelectorRobot
+            .Verify.IsIpSelectorOpened()
             .TickIpAddressCheckBox(IP_ADDRESS_TO_INCLUDE);
 
-        SettingRobot.Reconnect();
-        HomeRobot.Verify.IsConnected();
+        ConfirmationRobot
+            .PrimaryAction();
+
+        SettingRobot
+            .Reconnect();
+
+        HomeRobot
+            .Verify.IsConnected();
 
         NetworkUtils.VerifyIpAddressMatchesWithRetry(_ipAddressNotConnected);
     }

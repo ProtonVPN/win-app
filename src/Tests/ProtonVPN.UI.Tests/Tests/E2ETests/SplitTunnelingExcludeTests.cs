@@ -51,25 +51,33 @@ public class SplitTunnelingExcludeModeTests : BaseTest
 
         SplitTunnelingRobot
             .ToggleSplitTunnelingSwitch()
-            .AddIpAddress(INVALID_IP)
-            .Verify.WasIpNotAdded(INVALID_IP);
+            .SelectExcludeMode()
+            .EditSplitTunnelingIps();
 
-        SplitTunnelingRobot.ClearIpInput();
+        IpSelectorRobot
+            .Verify.IsIpSelectorOpened()
+            .AddIpAddress(INVALID_IP)
+            .Verify.WasIpNotAdded(INVALID_IP)
+            .ClearIpInput();
     }
 
     [Test, Order(1)]
     public void SplitTunnelingIpInputAllowsIpV6()
     {
-        SplitTunnelingRobot
+        IpSelectorRobot
             .AddIpAddress(IPV6_ADDRESS)
             .Verify.WasIpAdded(IPV6_ADDRESS);
     }
 
     [Test, Order(2)]
-    public void SplitTunnelingExcludeModeIP()
+    public void SplitTunnelingExcludeIpAddress()
     {
-        SplitTunnelingRobot
-            .AddIpAddress(IP_ADDRESS_TO_EXCLUDE);
+        IpSelectorRobot
+            .AddIpAddress(IP_ADDRESS_TO_EXCLUDE)
+            .Verify.WasIpAdded(IP_ADDRESS_TO_EXCLUDE);
+
+        ConfirmationRobot
+            .PrimaryAction();
 
         SettingRobot
             .ApplySettings()
@@ -83,13 +91,21 @@ public class SplitTunnelingExcludeModeTests : BaseTest
     }
 
     [Test, Order(3)]
-    public void SplitTunnelingDeleteIP()
+    public void SplitTunnelingDeleteIpAddress()
     {
         SettingRobot
             .OpenSettings()
             .OpenSplitTunnelingSettings();
 
-        SplitTunnelingRobot.DeleteAllIps();
+        SplitTunnelingRobot
+            .EditSplitTunnelingIps();
+
+        IpSelectorRobot
+            .Verify.IsIpSelectorOpened()
+            .DeleteAllIps();
+
+        ConfirmationRobot
+            .PrimaryAction();
 
         SettingRobot.Reconnect();
 

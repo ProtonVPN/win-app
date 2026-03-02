@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Core.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Features.SplitTunneling;
@@ -30,6 +31,9 @@ public sealed partial class SplitTunnelingWidgetView : IContextAware
         ViewModel = App.GetService<SplitTunnelingWidgetViewModel>();
 
         InitializeComponent();
+
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
     }
 
     public object GetContext()
@@ -37,14 +41,37 @@ public sealed partial class SplitTunnelingWidgetView : IContextAware
         return ViewModel;
     }
 
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        ViewModel.Activate();
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        ViewModel.Deactivate();
+    }
+
     private void OnWidgetFlyoutOpened(object sender, object e)
     {
         ViewModel.IsFeatureFlyoutOpened = true;
-        SplitTunnelingItemsControl.ResetContentScroll();
     }
 
     private void OnWidgetFlyoutClosed(object sender, object e)
     {
         ViewModel.IsFeatureFlyoutOpened = false;
+    }
+
+    private DataTemplate? SelectIpAddressItemTemplate(bool hasIpv6AddressesWhileIpv6Disabled)
+    {
+        string resourceKey = hasIpv6AddressesWhileIpv6Disabled
+            ? "Ipv6DisabledNetworkAddressTemplate"
+            : "Ipv6EnabledNetworkAddressTemplate";
+
+        if (Resources.TryGetValue(resourceKey, out object? resource) && resource is DataTemplate template)
+        {
+            return template;
+        }
+
+        return null;
     }
 }

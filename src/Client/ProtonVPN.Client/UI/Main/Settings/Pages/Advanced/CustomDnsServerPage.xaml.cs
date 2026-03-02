@@ -56,4 +56,18 @@ public sealed partial class CustomDnsServersPageView : IContextAware
     {
         PageContentHost.ResetContentScroll();
     }
+
+    private DataTemplate? SelectDnsServerItemTemplate(bool hasIpv6DnsServersWhileIpv6Disabled)
+    {
+        string resourceKey = hasIpv6DnsServersWhileIpv6Disabled
+            ? "Ipv6DisabledNetworkAddressTemplate"
+            : "Ipv6EnabledNetworkAddressTemplate";
+
+        if (Resources.TryGetValue(resourceKey, out object? resource) && resource is DataTemplate template)
+        {
+            return template;
+        }
+
+        return null;
+    }
 }

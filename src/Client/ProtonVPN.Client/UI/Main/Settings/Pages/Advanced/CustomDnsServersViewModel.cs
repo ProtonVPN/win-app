@@ -17,51 +17,55 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Common.Attributes;
+using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Core.Models;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Services.Bootstrapping.Helpers;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
+using ProtonVPN.Client.UI.Overlays.Selection.Contracts;
 using ProtonVPN.Common.Core.Networking;
-using Windows.System;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
 
 public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
 {
-    [ObservableProperty]
-    private string _currentIpAddress;
-
-    [ObservableProperty]
-    private string? _ipAddressError;
-
-    [ObservableProperty]
-    private bool _isCustomDnsServersEnabled;
+    private readonly IIpSelector _ipSelector;
 
     private bool _wasIpv6WarningDisplayed;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasIpv6DnsServersWhileIpv6Disabled))]
+    private bool _isIpv6Enabled;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasIpv6DnsServersWhileIpv6Disabled))]
+    private bool _isCustomDnsServersEnabled;
 
     public override string Title => Localizer.Get("Settings_Connection_Advanced_CustomDnsServers");
 
     [property: SettingName(nameof(ISettings.CustomDnsServersList))]
-    public ObservableCollection<DnsServerViewModel> CustomDnsServers { get; }
+    public SmartObservableCollection<SelectableNetworkAddress> DnsServers { get; } = [];
 
-    public int ActiveCustomDnsServersCount => CustomDnsServers.Count(s => s.IsActive);
+    public IEnumerable<NetworkAddress> SelectedDnsServers
+        => DnsServers.Where(ip => ip.IsSelected).Select(ip => ip.Value);
 
-    public bool HasCustomDnsServers => CustomDnsServers.Count > 0;
+    public bool HasSelectedDnsServers => SelectedDnsServers.Any();
 
-    public bool HasActiveCustomDnsServers => ActiveCustomDnsServersCount > 0;
+    public string DnsServersHeader => Localizer.GetFormat("Settings_Connection_Advanced_CustomDnsServers_FormattedHeader", SelectedDnsServers.Count());
 
-    public bool IsDragDropEnabled { get; }
+    public bool HasIpv6DnsServersWhileIpv6Disabled
+        => !IsIpv6Enabled
+        && IsCustomDnsServersEnabled
+        && SelectedDnsServers.Any(ip => ip.IsIpV6);
 
     public CustomDnsServersViewModel(
         IRequiredReconnectionSettings requiredReconnectionSettings,
@@ -71,7 +75,8 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager,
-        IViewModelHelper viewModelHelper)
+        IViewModelHelper viewModelHelper,
+        IIpSelector ipSelector)
         : base(requiredReconnectionSettings,
                mainViewNavigator,
                settingsViewNavigator,
@@ -81,167 +86,36 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
                connectionManager,
                viewModelHelper)
     {
-        _currentIpAddress = string.Empty;
+        _ipSelector = ipSelector;
 
-        CustomDnsServers = new();
-        CustomDnsServers.CollectionChanged += OnCustomDnsServersCollectionChanged;
+        DnsServers.CollectionChanged += OnDnsServersCollectionChanged;
 
         PageSettings =
         [
             ChangedSettingArgs.Create(() => Settings.IsCustomDnsServersEnabled, () => IsCustomDnsServersEnabled),
-            ChangedSettingArgs.Create(() => Settings.CustomDnsServersList, () => GetCustomDnsServersList())
+            ChangedSettingArgs.Create(() => Settings.CustomDnsServersList, () => GetSettingsCustomDnsServers()),
+            ChangedSettingArgs.Create(() => Settings.IsIpv6Enabled, () => IsIpv6Enabled)
         ];
-
-        IsDragDropEnabled = !AppInstanceHelper.IsRunningAsAdmin();
-    }
-
-    protected override void OnActivated()
-    {
-        base.OnActivated();
-
-        ResetCurrentIpAddress();
-        ResetIpAddressError();
     }
 
     [RelayCommand]
-    public async Task AddDnsServerAsync()
+    public async Task TriggerIpv6DisabledWarningAsync()
     {
-        NetworkAddress? address = GetValidatedCurrentIpAddress();
-        string? error = GetIpAddressError(address);
-
-        if (error != null || address == null)
+        if (await ShowIpv6DisabledWarningAsync())
         {
-            IpAddressError = error ?? Localizer.Get("Settings_Common_IpAddresses_Invalid");
-            return;
+            IsIpv6Enabled = true;
         }
 
-        CustomDnsServers.Add(new(Settings, this, ViewModelHelper, address.Value.FormattedAddress));
-        ResetCurrentIpAddress();
-
-        if (address?.IsIpV6 == true && !Settings.IsIpv6Enabled && !_wasIpv6WarningDisplayed)
-        {
-            await ShowIpv6DisabledWarningAsync();
-
-            // Show this warning only once per app launch
-            _wasIpv6WarningDisplayed = true;
-        }
-    }
-
-    [RelayCommand]
-    public Task TriggerIpv6DisabledWarningAsync()
-    {
-        return ShowIpv6DisabledWarningAsync();
-    }
-
-    protected override void OnIpv6WarningClosedWithPrimaryAction()
-    {
-        List<DnsServerViewModel> customDnsServers = CustomDnsServers.ToList();
-        CustomDnsServers.Clear();
-
-        foreach (DnsServerViewModel ip in customDnsServers)
-        {
-            CustomDnsServers.Add(new(Settings, this, ViewModelHelper, ip.IpAddress, ip.IsActive));
-        }
-    }
-
-    private string? GetIpAddressError(NetworkAddress? address)
-    {
-        if (address == null || !address.Value.IsSingleIp)
-        {
-            return Localizer.Get("Settings_Common_IpAddresses_Invalid");
-        }
-
-        if (CustomDnsServers.FirstOrDefault(ip => ip.IpAddress == address.Value.FormattedAddress) != null)
-        {
-            return Localizer.Get("Settings_Common_IpAddresses_AlreadyExists");
-        }
-
-        return null;
-    }
-
-    private NetworkAddress? GetValidatedCurrentIpAddress()
-    {
-        return NetworkAddress.TryParse(CurrentIpAddress, out NetworkAddress address) ? address : null;
-    }
-
-    public void RemoveDnsServer(DnsServerViewModel server)
-    {
-        CustomDnsServers.Remove(server);
-    }
-
-    public void MoveDnsServerUp(DnsServerViewModel server)
-    {
-        int currentIndex = CustomDnsServers.IndexOf(server);
-        if (currentIndex > 0)
-        {
-            CustomDnsServers.Move(currentIndex, currentIndex - 1);
-        }
-    }
-
-    public void MoveDnsServerDown(DnsServerViewModel server)
-    {
-        int currentIndex = CustomDnsServers.IndexOf(server);
-        if (currentIndex >= 0 && currentIndex < CustomDnsServers.Count - 1)
-        {
-            CustomDnsServers.Move(currentIndex, currentIndex + 1);
-        }
-    }
-
-    public bool CanMoveDnsServerUp(DnsServerViewModel dnsServerViewModel)
-    {
-        int currentIndex = CustomDnsServers.IndexOf(dnsServerViewModel);
-        return currentIndex > 0;
-    }
-
-    public bool CanMoveDnsServerDown(DnsServerViewModel dnsServerViewModel)
-    {
-        int currentIndex = CustomDnsServers.IndexOf(dnsServerViewModel);
-        return currentIndex >= 0 && currentIndex < CustomDnsServers.Count - 1;
-    }
-
-    public void InvalidateCustomDnsServersCount()
-    {
-        OnPropertyChanged(nameof(ActiveCustomDnsServersCount));
-    }
-
-    public void OnIpAddressKeyDownHandler(object sender, KeyRoutedEventArgs e)
-    {
-        if (e.Key == VirtualKey.Enter)
-        {
-            AddDnsServerCommand.Execute(null);
-        }
-    }
-
-    private void InvalidateAllMoveCommands()
-    {
-        foreach (DnsServerViewModel server in CustomDnsServers)
-        {
-            server.InvalidateCommands();
-        }
+        // Show this warning only once per app launch
+        _wasIpv6WarningDisplayed = true;
     }
 
     protected override void OnRetrieveSettings()
     {
+        IsIpv6Enabled = Settings.IsIpv6Enabled;
         IsCustomDnsServersEnabled = Settings.IsCustomDnsServersEnabled;
 
-        CustomDnsServers.Clear();
-        foreach (CustomDnsServer server in Settings.CustomDnsServersList)
-        {
-            CustomDnsServers.Add(new(Settings, this, ViewModelHelper, server.IpAddress, server.IsActive));
-        }
-    }
-
-    private void OnCustomDnsServersCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
-    {
-        OnPropertyChanged(nameof(HasCustomDnsServers));
-
-        InvalidateCustomDnsServersCount();
-        InvalidateAllMoveCommands();
-    }
-
-    private List<CustomDnsServer> GetCustomDnsServersList()
-    {
-        return CustomDnsServers.Select(s => new CustomDnsServer(s.IpAddress, s.IsActive)).ToList();
+        DnsServers.Reset(GetObservableCustomDnsServers());
     }
 
     protected override bool IsReconnectionRequiredDueToChanges(IEnumerable<ChangedSettingArgs> changedSettings)
@@ -255,7 +129,7 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
             bool hadAnyActiveDnsServers = Settings.IsCustomDnsServersEnabled
                                        && Settings.CustomDnsServersList.Any(s => s.IsActive);
             bool hasAnyActiveDnsServers = IsCustomDnsServersEnabled
-                                       && HasActiveCustomDnsServers;
+                                       && HasSelectedDnsServers;
             if (!hadAnyActiveDnsServers && !hasAnyActiveDnsServers)
             {
                 return false;
@@ -265,18 +139,52 @@ public partial class CustomDnsServersViewModel : SettingsPageViewModelBase
         return isReconnectionRequired;
     }
 
-    partial void OnCurrentIpAddressChanged(string value)
+    [RelayCommand]
+    private async Task SelectCustomDnsServersAsync()
     {
-        ResetIpAddressError();
+        _ipSelector.Title = Localizer.Get("Settings_Connection_Advanced_CustomDnsServers_Header");
+        _ipSelector.Description = Localizer.Get("Settings_Connection_Advanced_CustomDnsServers_Footer");
+        _ipSelector.Caption = Localizer.Get("Settings_Connection_Advanced_CustomDnsServers_AddNew");
+        _ipSelector.CanReorder = true;
+        _ipSelector.IsAddressRangeAuthorized = false;
+
+        List<SelectableNetworkAddress>? result = await _ipSelector.SelectAsync(DnsServers.Select(ip => ip.Clone()).ToList());
+        if (result != null)
+        {
+            DnsServers.Reset(result);
+
+            if (HasIpv6DnsServersWhileIpv6Disabled && !_wasIpv6WarningDisplayed)
+            {
+                await TriggerIpv6DisabledWarningAsync();
+            }
+        }
     }
 
-    private void ResetIpAddressError()
+    private List<CustomDnsServer> GetSettingsCustomDnsServers()
     {
-        IpAddressError = null;
+        return DnsServers.Select(ip => new CustomDnsServer(ip.Value.ToString(), ip.IsSelected)).ToList();
     }
 
-    private void ResetCurrentIpAddress()
+    private List<SelectableNetworkAddress> GetObservableCustomDnsServers()
     {
-        CurrentIpAddress = string.Empty;
+        List<SelectableNetworkAddress> addresses = [];
+
+        foreach (CustomDnsServer ip in Settings.CustomDnsServersList)
+        {
+            if (NetworkAddress.TryParse(ip.IpAddress, out NetworkAddress address))
+            {
+                addresses.Add(new SelectableNetworkAddress(address, ip.IsActive));
+            }
+        }
+
+        return addresses;
+    }
+
+    private void OnDnsServersCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        OnPropertyChanged(nameof(DnsServersHeader));
+        OnPropertyChanged(nameof(SelectedDnsServers));
+        OnPropertyChanged(nameof(HasSelectedDnsServers));
+        OnPropertyChanged(nameof(HasIpv6DnsServersWhileIpv6Disabled));
     }
 }

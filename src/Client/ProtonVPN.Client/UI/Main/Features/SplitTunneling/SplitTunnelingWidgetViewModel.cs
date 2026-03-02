@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,19 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Specialized;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Contracts.Profiles;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Enums;
+using ProtonVPN.Client.Core.Models;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Core.Services.Selection;
-using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Models.Features.SplitTunneling;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
@@ -37,6 +38,9 @@ using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Features.Bases;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.UI.Main.Settings.Connection;
+using ProtonVPN.Client.UI.Overlays.Selection.Contracts;
+using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.UI.Main.Features.SplitTunneling;
 
@@ -45,40 +49,87 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
     private readonly Lazy<List<ChangedSettingArgs>> _disableSplitTunnelingSettings;
     private readonly Lazy<List<ChangedSettingArgs>> _enableStandardSplitTunnelingSettings;
     private readonly Lazy<List<ChangedSettingArgs>> _enableInverseSplitTunnelingSettings;
+    private readonly Lazy<List<ChangedSettingArgs>> _modifySplitTunnelingStandardAppsList;
+    private readonly Lazy<List<ChangedSettingArgs>> _modifySplitTunnelingStandardIpAddressesList;
+    private readonly Lazy<List<ChangedSettingArgs>> _modifySplitTunnelingInverseAppsList;
+    private readonly Lazy<List<ChangedSettingArgs>> _modifySplitTunnelingInverseIpAddressesList;
+    private readonly Lazy<List<ChangedSettingArgs>> _enableIpv6Settings;
 
-    private readonly ISplitTunnelingItemFactory _splitTunnelingItemFactory;
+    private readonly IAppSelector _appSelector;
+    private readonly IIpSelector _ipSelector;
+
+    private bool _wasIpv6WarningDisplayed;
+
+    [ObservableProperty]
+    private bool _isLoading;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasIpv6AddressesWhileIpv6Disabled))]
+    private bool _isIpv6Enabled;
 
     public override string Header => Localizer.Get("Settings_Connection_SplitTunneling");
 
     public string InfoMessage => !ConnectionManager.IsConnected || !Settings.IsSplitTunnelingEnabled
         ? Localizer.Get("Flyouts_SplitTunneling_Info")
-        : Settings.SplitTunnelingMode switch
+        : Localizer.Get(Settings.SplitTunnelingMode switch
         {
-            SplitTunnelingMode.Standard => Localizer.Get("Flyouts_SplitTunneling_Standard_Info"),
-            SplitTunnelingMode.Inverse => Localizer.Get("Flyouts_SplitTunneling_Inverse_Info"),
-            _ => Localizer.Get("Flyouts_SplitTunneling_Info")
-        };
+            SplitTunnelingMode.Standard => "Flyouts_SplitTunneling_Standard_Info",
+            SplitTunnelingMode.Inverse => "Flyouts_SplitTunneling_Inverse_Info",
+            _ => "Flyouts_SplitTunneling_Info"
+        });
 
     public bool IsInfoMessageVisible => true;
 
-    public bool IsSplitTunnelingComponentVisible => ConnectionManager.IsConnected
-                                                 && IsSplitTunnelingEnabled
-                                                 && HasItems;
+    public bool IsSplitTunnelingComponentVisible => IsSplitTunnelingEnabled;
 
-    public SmartObservableCollection<SplitTunnelingGroup> Groups { get; } = [];
-    public SmartObservableCollection<SplitTunnelingItemBase> Items { get; } = [];
-
-    public CollectionViewSource GroupsCvs { get; }
-
-    public bool HasItems => GroupsCvs.View.Any();
+    public bool IsSplitTunnelingComponentDimmed => !ConnectionManager.IsConnected;
 
     public bool IsSplitTunnelingEnabled => Settings.IsSplitTunnelingEnabled;
 
     public SplitTunnelingMode SplitTunnelingMode => Settings.SplitTunnelingMode;
 
-    public bool IsStandardSplitTunnelingEnabled => IsSplitTunnelingEnabled && SplitTunnelingMode == SplitTunnelingMode.Standard;
+    public bool IsStandardSplitTunneling => SplitTunnelingMode == SplitTunnelingMode.Standard;
 
-    public bool IsInverseSplitTunnelingEnabled => IsSplitTunnelingEnabled && SplitTunnelingMode == SplitTunnelingMode.Inverse;
+    public bool IsInverseSplitTunneling => SplitTunnelingMode == SplitTunnelingMode.Inverse;
+
+    public bool IsStandardSplitTunnelingEnabled => IsSplitTunnelingEnabled && IsStandardSplitTunneling;
+
+    public bool IsInverseSplitTunnelingEnabled => IsSplitTunnelingEnabled && IsInverseSplitTunneling;
+
+    public SmartObservableCollection<SelectableNetworkAddress> IncludedIpAddresses { get; } = [];
+    public SmartObservableCollection<SelectableNetworkAddress> ExcludedIpAddresses { get; } = [];
+
+    public SmartObservableCollection<SelectableNetworkAddress> IpAddresses
+        => IsStandardSplitTunneling ? ExcludedIpAddresses : IncludedIpAddresses;
+
+    public IEnumerable<NetworkAddress> SelectedIpAddresses
+        => IpAddresses.Where(ip => ip.IsSelected).Select(ip => ip.Value);
+
+    public bool HasSelectedIpAddresses => SelectedIpAddresses.Any();
+
+    public bool HasIpv6AddressesWhileIpv6Disabled
+        => IsInverseSplitTunnelingEnabled
+        && !IsIpv6Enabled
+        && SelectedIpAddresses.Any(ip => ip.IsIpV6);
+
+    public string IpAddressesHeader => Localizer.GetFormat(IsStandardSplitTunneling
+        ? "Settings_Connection_SplitTunneling_IpAddresses_Excluded_FormattedHeader"
+        : "Settings_Connection_SplitTunneling_IpAddresses_Included_FormattedHeader", SelectedIpAddresses.Count());
+
+    public SmartObservableCollection<SelectableTunnelingApp> IncludedApps { get; } = [];
+    public SmartObservableCollection<SelectableTunnelingApp> ExcludedApps { get; } = [];
+
+    public SmartObservableCollection<SelectableTunnelingApp> Apps
+        => IsStandardSplitTunneling ? ExcludedApps : IncludedApps;
+
+    public IEnumerable<TunnelingApp> SelectedApps
+        => Apps.Where(app => app.IsSelected && app.Value.IsValid).Select(app => app.Value);
+
+    public bool HasSelectedApps => SelectedApps.Any();
+
+    public string AppsHeader => Localizer.GetFormat(IsStandardSplitTunneling
+        ? "Settings_Connection_SplitTunneling_Apps_Excluded_FormattedHeader"
+        : "Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader", SelectedApps.Count());
 
     protected override UpsellFeatureType? UpsellFeature { get; } = UpsellFeatureType.SplitTunneling;
 
@@ -91,10 +142,11 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
         IConnectionManager connectionManager,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
-        ISplitTunnelingItemFactory splitTunnelingItemFactory,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         ISettingsConflictResolver settingsConflictResolver,
-        IProfileEditor profileEditor)
+        IProfileEditor profileEditor,
+        IAppSelector appSelector,
+        IIpSelector ipSelector)
         : base(viewModelHelper,
                mainViewNavigator,
                settingsViewNavigator,
@@ -107,13 +159,13 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
                profileEditor,
                ConnectionFeature.SplitTunneling)
     {
-        _splitTunnelingItemFactory = splitTunnelingItemFactory;
+        _appSelector = appSelector;
+        _ipSelector = ipSelector;
 
-        GroupsCvs = new()
-        {
-            Source = Groups,
-            IsSourceGrouped = true
-        };
+        ExcludedIpAddresses.CollectionChanged += OnIpAddressesCollectionChanged;
+        IncludedIpAddresses.CollectionChanged += OnIpAddressesCollectionChanged;
+        ExcludedApps.CollectionChanged += OnAppsCollectionChanged;
+        IncludedApps.CollectionChanged += OnAppsCollectionChanged;
 
         _disableSplitTunnelingSettings = new(() =>
         [
@@ -130,6 +182,33 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
         [
             ChangedSettingArgs.Create(() => Settings.SplitTunnelingMode, () => SplitTunnelingMode.Inverse),
             ChangedSettingArgs.Create(() => Settings.IsSplitTunnelingEnabled, () => true)
+        ]);
+
+        _modifySplitTunnelingStandardAppsList = new(() =>
+        [
+            ChangedSettingArgs.Create(() => Settings.SplitTunnelingStandardAppsList, () => GetSettingsApps(ExcludedApps)),
+        ]);
+
+        _modifySplitTunnelingStandardIpAddressesList = new(() =>
+        [
+            ChangedSettingArgs.Create(() => Settings.SplitTunnelingStandardIpAddressesList, () => GetSettingsIpAddresses(ExcludedIpAddresses)),
+            ChangedSettingArgs.Create(() => Settings.IsIpv6Enabled, () => IsIpv6Enabled),
+        ]);
+
+        _modifySplitTunnelingInverseAppsList = new(() =>
+        [
+            ChangedSettingArgs.Create(() => Settings.SplitTunnelingInverseAppsList, () => GetSettingsApps(IncludedApps)),
+        ]);
+
+        _modifySplitTunnelingInverseIpAddressesList = new(() =>
+        [
+            ChangedSettingArgs.Create(() => Settings.SplitTunnelingInverseIpAddressesList, () => GetSettingsIpAddresses(IncludedIpAddresses)),
+            ChangedSettingArgs.Create(() => Settings.IsIpv6Enabled, () => IsIpv6Enabled),
+        ]);
+
+        _enableIpv6Settings = new(() =>
+        [
+            ChangedSettingArgs.Create(() => Settings.IsIpv6Enabled, () => IsIpv6Enabled),
         ]);
     }
 
@@ -156,16 +235,16 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
                 : "Common_States_Off");
     }
 
-    protected override async void OnLanguageChanged()
+    protected override void OnLanguageChanged()
     {
         base.OnLanguageChanged();
 
         OnPropertyChanged(nameof(InfoMessage));
-
-        await InvalidateAppsAndIpsAsync();
+        OnPropertyChanged(nameof(AppsHeader));
+        OnPropertyChanged(nameof(IpAddressesHeader));
     }
 
-    protected override async void OnSettingsChanged()
+    protected override void OnSettingsChanged()
     {
         OnPropertyChanged(nameof(Status));
         OnPropertyChanged(nameof(InfoMessage));
@@ -175,15 +254,20 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
         OnPropertyChanged(nameof(IsStandardSplitTunnelingEnabled));
         OnPropertyChanged(nameof(IsInverseSplitTunnelingEnabled));
 
-        await InvalidateAppsAndIpsAsync();
+        OnRetrieveSettingsAsync().FireAndForget();
     }
 
-    protected override async void OnConnectionStatusChanged()
+    protected override void OnConnectionStatusChanged()
     {
         OnPropertyChanged(nameof(InfoMessage));
-        OnPropertyChanged(nameof(IsSplitTunnelingComponentVisible));
+        OnPropertyChanged(nameof(IsSplitTunnelingComponentDimmed));
+    }
 
-        await InvalidateAppsAndIpsAsync();
+    protected override void OnActivated()
+    {
+        base.OnActivated();
+
+        OnRetrieveSettingsAsync().FireAndForget();
     }
 
     protected override bool IsOnFeaturePage(PageViewModelBase? currentPageContext)
@@ -191,51 +275,93 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
         return currentPageContext is SplitTunnelingPageViewModel;
     }
 
-    private async Task InvalidateAppsAndIpsAsync()
+    protected override void OnFeatureFlyoutOpened()
     {
-        if (!IsSplitTunnelingEnabled || !ConnectionManager.IsConnected)
+        base.OnFeatureFlyoutOpened();
+
+        OnRetrieveSettingsAsync().FireAndForget();
+    }
+
+    private async Task OnRetrieveSettingsAsync()
+    {
+        if (!IsSplitTunnelingComponentVisible)
         {
-            Items.Clear();
-            Groups.Clear();
             return;
         }
 
-        SplitTunnelingMode splitTunnelingMode = SplitTunnelingMode;
-
-        List<SplitTunnelingItemBase> items = [];
-
-        List<SplitTunnelingApp> apps = splitTunnelingMode switch
+        try
         {
-            SplitTunnelingMode.Standard => Settings.SplitTunnelingStandardAppsList,
-            SplitTunnelingMode.Inverse => Settings.SplitTunnelingInverseAppsList,
-            _ => []
-        };
+            IsLoading = true;
 
-        List<SplitTunnelingIpAddress> ips = splitTunnelingMode switch
-        {
-            SplitTunnelingMode.Standard => Settings.SplitTunnelingStandardIpAddressesList,
-            SplitTunnelingMode.Inverse => Settings.SplitTunnelingInverseIpAddressesList,
-            _ => []
-        };
+            IsIpv6Enabled = Settings.IsIpv6Enabled;
 
-        foreach (SplitTunnelingApp app in apps.Where(a => a.IsActive && File.Exists(a.AppFilePath)))
+            ExcludedIpAddresses.Reset(GetObservableIpAddresses(Settings.SplitTunnelingStandardIpAddressesList));
+            IncludedIpAddresses.Reset(GetObservableIpAddresses(Settings.SplitTunnelingInverseIpAddressesList));
+
+            ExcludedApps.Reset(await GetObservableAppsAsync(Settings.SplitTunnelingStandardAppsList));
+            IncludedApps.Reset(await GetObservableAppsAsync(Settings.SplitTunnelingInverseAppsList));
+        }
+        finally
         {
-            items.Add(await _splitTunnelingItemFactory.GetAppAsync(app, splitTunnelingMode));
+            IsLoading = false;
+        }
+    }
+
+    private List<SplitTunnelingIpAddress> GetSettingsIpAddresses(IEnumerable<SelectableNetworkAddress> ipAddresses)
+    {
+        return ipAddresses.Select(ip => new SplitTunnelingIpAddress(ip.Value.ToString(), ip.IsSelected)).ToList();
+    }
+
+    private List<SelectableNetworkAddress> GetObservableIpAddresses(List<SplitTunnelingIpAddress> settingsIpAddresses)
+    {
+        List<SelectableNetworkAddress> addresses = [];
+
+        foreach (SplitTunnelingIpAddress ip in settingsIpAddresses)
+        {
+            if (NetworkAddress.TryParse(ip.IpAddress, out NetworkAddress address))
+            {
+                addresses.Add(new SelectableNetworkAddress(address, ip.IsActive));
+            }
         }
 
-        items.AddRange(
-            ips.Where(i => i.IsActive)
-               .Select(i => _splitTunnelingItemFactory.GetIpAddress(i, splitTunnelingMode))
-               .ToList());
+        return addresses;
+    }
 
-        Items.Reset(items.OrderBy(i => i.GroupType));
+    private List<SplitTunnelingApp> GetSettingsApps(IEnumerable<SelectableTunnelingApp> apps)
+    {
+        return apps.Select(ip => new SplitTunnelingApp(ip.Value.AppPath, ip.Value.AlternateAppPaths, ip.IsSelected)).ToList();
+    }
 
-        Groups.Reset(Items
-              .GroupBy(item => item.GroupType)
-              .OrderBy(group => group.Key)
-              .Select(group => _splitTunnelingItemFactory.GetGroup(group.Key, group)));
+    private async Task<List<SelectableTunnelingApp>> GetObservableAppsAsync(List<SplitTunnelingApp> settingsApps)
+    {
+        List<SelectableTunnelingApp> apps = [];
 
-        OnPropertyChanged(nameof(IsSplitTunnelingComponentVisible));
+        foreach (SplitTunnelingApp app in settingsApps)
+        {
+            TunnelingApp tunnelingApp = await TunnelingApp.TryCreateAsync(app.AppFilePath, app.AlternateAppFilePaths)
+                ?? TunnelingApp.NotFound(app.AppFilePath, Localizer.Get("Common_Message_AppNotFound"), app.AlternateAppFilePaths);
+
+            apps.Add(new SelectableTunnelingApp(tunnelingApp, app.IsActive));
+        }
+
+        return apps;
+    }
+
+    private void OnAppsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        OnPropertyChanged(nameof(Apps));
+        OnPropertyChanged(nameof(AppsHeader));
+        OnPropertyChanged(nameof(SelectedApps));
+        OnPropertyChanged(nameof(HasSelectedApps));
+    }
+
+    private void OnIpAddressesCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        OnPropertyChanged(nameof(IpAddresses));
+        OnPropertyChanged(nameof(IpAddressesHeader));
+        OnPropertyChanged(nameof(SelectedIpAddresses));
+        OnPropertyChanged(nameof(HasSelectedIpAddresses));
+        OnPropertyChanged(nameof(HasIpv6AddressesWhileIpv6Disabled));
     }
 
     [RelayCommand]
@@ -254,5 +380,102 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
     private Task<bool> EnableInverseSplitTunnelingAsync()
     {
         return TryChangeFeatureSettingsAsync(_enableInverseSplitTunnelingSettings.Value);
+    }
+
+    [RelayCommand]
+    private async Task SelectAppsAsync()
+    {
+        _appSelector.Title = Localizer.Get(IsStandardSplitTunneling
+            ? "Settings_Connection_SplitTunneling_Apps_Excluded_Header"
+            : "Settings_Connection_SplitTunneling_Apps_Included_Header");
+        _appSelector.Description = Localizer.Get(IsStandardSplitTunneling
+            ? "Settings_Connection_SplitTunneling_Apps_Excluded_Description"
+            : "Settings_Connection_SplitTunneling_Apps_Included_Description");
+
+        List<SelectableTunnelingApp>? result = await _appSelector.SelectAsync(Apps.Select(app => app.Clone()).ToList());
+        if (result == null)
+        {
+            return;
+        }
+
+        Apps.Reset(result);
+
+        bool haveFeatureSettingsChanged = await TryChangeFeatureSettingsAsync(IsStandardSplitTunneling
+            ? _modifySplitTunnelingStandardAppsList.Value
+            : _modifySplitTunnelingInverseAppsList.Value);
+        if (!haveFeatureSettingsChanged)
+        {
+            await OnRetrieveSettingsAsync();
+        }
+    }
+
+    [RelayCommand]
+    private async Task SelectIpsAsync()
+    {
+        _ipSelector.Title = Localizer.Get(IsStandardSplitTunneling
+            ? "Settings_Connection_SplitTunneling_IpAddresses_Excluded_Header"
+            : "Settings_Connection_SplitTunneling_IpAddresses_Included_Header");
+        _ipSelector.Description = Localizer.Get(IsStandardSplitTunneling
+            ? "Settings_Connection_SplitTunneling_IpAddresses_Excluded_Description"
+            : "Settings_Connection_SplitTunneling_IpAddresses_Included_Description");
+        _ipSelector.Caption = Localizer.Get("Settings_Connection_SplitTunneling_IpAddresses_AddNew");
+        _ipSelector.CanReorder = false;
+        _ipSelector.IsAddressRangeAuthorized = true;
+
+        List<SelectableNetworkAddress>? result = await _ipSelector.SelectAsync(IpAddresses.Select(ip => ip.Clone()).ToList());
+        if (result == null)
+        {
+            return;
+        }
+
+        IpAddresses.Reset(result);
+
+        if (HasIpv6AddressesWhileIpv6Disabled && !_wasIpv6WarningDisplayed)
+        {
+            await ShowIpv6DisabledWarningAsync();
+        }
+
+        bool haveFeatureSettingsChanged = await TryChangeFeatureSettingsAsync(IsStandardSplitTunneling
+            ? _modifySplitTunnelingStandardIpAddressesList.Value
+            : _modifySplitTunnelingInverseIpAddressesList.Value);
+        if (!haveFeatureSettingsChanged)
+        {
+            await OnRetrieveSettingsAsync();
+        }
+    }
+
+    [RelayCommand]
+    private async Task TriggerIpv6DisabledWarningAsync()
+    {
+        if (await ShowIpv6DisabledWarningAsync())
+        {
+            bool hasFeatureSettingsChanged = await TryChangeFeatureSettingsAsync(_enableIpv6Settings.Value);
+            if (!hasFeatureSettingsChanged)
+            {
+                await OnRetrieveSettingsAsync();
+            }
+        }
+    }
+
+    private async Task<bool> ShowIpv6DisabledWarningAsync()
+    {
+        ContentDialogResult result = await MainWindowOverlayActivator.ShowMessageAsync(new()
+        {
+            Title = Localizer.Get("Overlay_Ipv6Disabled_Title"),
+            Message = Localizer.Get("Overlay_Ipv6Disabled_Description"),
+            PrimaryButtonText = Localizer.Get("Overlay_Ipv6Disabled_PrimaryButton"),
+            SecondaryButtonText = Localizer.Get("Overlay_Ipv6Disabled_SecondaryButton"),
+        });
+
+        // Show this warning only once per app launch
+        _wasIpv6WarningDisplayed = true;
+
+        if (result == ContentDialogResult.Primary)
+        {
+            IsIpv6Enabled = true;
+            return true;
+        }
+
+        return false;
     }
 }

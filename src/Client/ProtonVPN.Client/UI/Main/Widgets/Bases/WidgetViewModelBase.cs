@@ -24,7 +24,7 @@ using ProtonVPN.Client.UI.Main.Widgets.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Widgets.Bases;
 
-public abstract partial class WidgetViewModelBase : ViewModelBase, IWidget
+public abstract partial class WidgetViewModelBase : ActivatableViewModelBase, IWidget
 {
     public abstract int SortIndex { get; }
 

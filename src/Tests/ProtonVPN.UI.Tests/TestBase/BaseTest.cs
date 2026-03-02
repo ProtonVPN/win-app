@@ -51,6 +51,7 @@ public class BaseTest
     protected static AdvancedSettingsRobot AdvancedSettingsRobot { get; } = new();
     protected static UpsellCarrouselRobot UpsellCarrouselRobot { get; } = new();
     protected static SplitTunnelingRobot SplitTunnelingRobot { get; } = new();
+    protected static IpSelectorRobot IpSelectorRobot { get; } = new();
     protected static ConfirmationRobot ConfirmationRobot { get; } = new();
 
     private const string CLIENT_NAME = "ProtonVPN.Client.exe";

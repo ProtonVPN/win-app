@@ -118,6 +118,7 @@ using ProtonVPN.Client.UI.Main.Widgets;
 using ProtonVPN.Client.UI.Overlays.HumanVerification;
 using ProtonVPN.Client.UI.Overlays.Information;
 using ProtonVPN.Client.UI.Overlays.Information.Notification;
+using ProtonVPN.Client.UI.Overlays.Selection;
 using ProtonVPN.Client.UI.Overlays.Upsell;
 using ProtonVPN.Client.UI.Overlays.Welcome;
 using ProtonVPN.Client.UI.Overlays.WhatsNew;
@@ -422,6 +423,8 @@ public class AppModule : Module
         RegisterViewModel<WelcomeToVpnUnlimitedOverlayViewModel>(builder);
         RegisterViewModel<WelcomeToVpnB2BOverlayViewModel>(builder);
         RegisterViewModel<WhatsNewOverlayViewModel>(builder);
+        RegisterViewModel<IpSelectorOverlayViewModel>(builder);
+        RegisterViewModel<AppSelectorOverlayViewModel>(builder);
 
         RegisterViewModel<KillSwitchIconViewModel>(builder);
         RegisterViewModel<ProtocolIconViewModel>(builder);

@@ -74,4 +74,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               OrientationWhenFalse="Horizontal"
                                               OrientationWhenTrue="Vertical"/>
     <converters:SeverityToInfoBarSeverityConverter x:Key="SeverityToInfoBarSeverityConverter" />
+    <converters:BooleanToOpacityConverter x:Key="BooleanToReducedOpacityConverter" 
+                                          OpacityWhenTrue="0.4"
+                                          OpacityWhenFalse="1.0"/>
 </ResourceDictionary>

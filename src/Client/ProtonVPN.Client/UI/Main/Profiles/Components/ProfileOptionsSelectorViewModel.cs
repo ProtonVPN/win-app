@@ -38,8 +38,6 @@ namespace ProtonVPN.Client.UI.Main.Profiles.Components;
 
 public partial class ProfileOptionsSelectorViewModel : ViewModelBase, IProfileOptionsSelector
 {
-    private const string EXE_FILE_EXTENSION = ".exe";
-
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly ICommonItemFactory _commonItemFactory;
 
@@ -133,7 +131,7 @@ public partial class ProfileOptionsSelectorViewModel : ViewModelBase, IProfileOp
             : ConnectAndGoModes.FirstOrDefault(m => !m.IsEnabled);
         UsePrivateBrowsingMode = _originalProfileOptions.ConnectAndGo.UsePrivateBrowsingMode;
         ConnectAndGoUrl = _originalProfileOptions.ConnectAndGo.Url;
-        ConnectAndGoApp = await ExternalApp.TryCreateAsync(_originalProfileOptions.ConnectAndGo.AppPath ?? string.Empty);
+        ConnectAndGoApp = await GetExternalAppAsync(_originalProfileOptions.ConnectAndGo.AppPath);
     }
 
     public bool HasChanged()
@@ -164,8 +162,8 @@ public partial class ProfileOptionsSelectorViewModel : ViewModelBase, IProfileOp
             return;
         }
 
-        string filePath = await _mainWindowActivator.Window.PickSingleFileAsync(Localizer.Get("Settings_Connection_SplitTunneling_Apps_FilesFilterName"), [EXE_FILE_EXTENSION]);
-        ConnectAndGoApp = await ExternalApp.TryCreateAsync(filePath);
+        string appFilePath = await _mainWindowActivator.Window.PickSingleFileAsync(Localizer.Get("Settings_Connection_SplitTunneling_Apps_FilesFilterName"), [ExternalApp.EXE_FILE_EXTENSION]);
+        ConnectAndGoApp = await GetExternalAppAsync(appFilePath);
     }
 
     private void InvalidateCollections()
@@ -204,5 +202,16 @@ public partial class ProfileOptionsSelectorViewModel : ViewModelBase, IProfileOp
 
         OnPropertyChanged(nameof(ConnectAndGoUrlErrorMessage));
         OnPropertyChanged(nameof(ConnectAndGoAppName));
+    }
+
+    private async Task<ExternalApp?> GetExternalAppAsync(string? appFilePath)
+    {
+        if (string.IsNullOrEmpty(appFilePath))
+        {
+            return null;
+        }
+
+        return await ExternalApp.TryCreateAsync(appFilePath)
+            ?? ExternalApp.NotFound(appFilePath, Localizer.Get("Common_Message_AppNotFound"));
     }
 }

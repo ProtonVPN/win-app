@@ -24,10 +24,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     <Thickness x:Key="MessageContentDialogProgressBarMargin">0,24,0,0</Thickness>
 
+    <Thickness x:Key="MessageContentDialogPadding">24,8,24,24</Thickness>
+    <Thickness x:Key="NarrowMessageContentDialogPadding">16,0,8,16</Thickness>
+
     <Style BasedOn="{StaticResource MessageContentDialogStyle}" TargetType="custom:MessageContentDialog" />
 
     <Style x:Key="MessageContentDialogStyle" BasedOn="{StaticResource OverlayContentDialogStyle}" TargetType="custom:MessageContentDialog">
-        <Setter Property="Width" Value="{StaticResource ContentDialogWidth}" />
+        <Setter Property="Width" Value="{ThemeResource ContentDialogWidth}" />
+        <Setter Property="Padding" Value="{StaticResource MessageContentDialogPadding}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="custom:MessageContentDialog">
@@ -40,7 +44,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        Opacity="0.4" />
 
                             <Border x:Name="BackgroundElement"
-                                    Width="{StaticResource ContentDialogWidth}"
+                                    Width="{ThemeResource ContentDialogWidth}"
+                                    MaxWidth="{ThemeResource MaximumContentDialogWidth}"
                                     Margin="{StaticResource ContentDialogMargin}"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
@@ -63,8 +68,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     </Grid.RowDefinitions>
 
                                     <Grid Grid.Row="0"
-                                          Margin="24,8,24,24">
-                                        
+                                          Margin="{TemplateBinding Padding}">
+
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="*" />
@@ -450,5 +455,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             </Setter.Value>
         </Setter>
     </Style>
-
+    
 </ResourceDictionary>

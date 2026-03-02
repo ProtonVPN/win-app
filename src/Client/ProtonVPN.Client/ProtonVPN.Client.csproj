@@ -70,7 +70,6 @@
     <None Remove="UI\Main\Features\NetShield\NetShieldWidgetView.xaml" />
     <None Remove="UI\Main\Features\PortForwarding\PortForwardingPageView.xaml" />
     <None Remove="UI\Main\Features\PortForwarding\PortForwardingWidgetView.xaml" />
-    <None Remove="UI\Main\Features\SplitTunneling\Controls\SplitTunnelingItemsControl.xaml" />
     <None Remove="UI\Main\Features\SplitTunneling\SplitTunnelingPageView.xaml" />
     <None Remove="UI\Main\Features\SplitTunneling\SplitTunnelingWidgetView.xaml" />
     <None Remove="UI\Main\Home\Card\ConnectionCardComponentView.xaml" />
@@ -131,6 +130,8 @@
     <None Remove="UI\Main\Widgets\SideWidgetsHostComponentView.xaml" />
     <None Remove="UI\NavigationMasterControllerView.xaml" />
     <None Remove="UI\Overlays\Information\ProfileOverlayView.xaml" />
+    <None Remove="UI\Overlays\Selection\AppSelectorOverlayView.xaml" />
+    <None Remove="UI\Overlays\Selection\IpSelectorOverlayView.xaml" />
     <None Remove="UI\Overlays\Upsell\FreeConnectionsOverlayView.xaml" />
     <None Remove="UI\Overlays\HumanVerification\HumanVerificationOverlayView.xaml" />
     <None Remove="UI\Overlays\Information\OutdatedClientOverlayView.xaml" />
@@ -708,6 +709,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="UI\Overlays\Selection\AppSelectorOverlayView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Overlays\Selection\IpSelectorOverlayView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Main\Components\Selectors\IpAddressesSelectorComponentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Update="UI\Main\Home\Details\Connection\SpeedChartControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -817,12 +836,6 @@
 
   <ItemGroup>
     <Page Update="UI\Dialogs\DebugTools\DebugToolsWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="UI\Main\Features\SplitTunneling\Controls\SplitTunnelingItemsControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

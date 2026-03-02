@@ -17,8 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading;
-using FlaUI.Core.AutomationElements;
 using ProtonVPN.UI.Tests.UiTools;
 
 namespace ProtonVPN.UI.Tests.Robots;
@@ -26,11 +24,11 @@ namespace ProtonVPN.UI.Tests.Robots;
 public class SplitTunnelingRobot
 {
     protected Element SplitTunnelingSwitch = Element.ByAutomationId("SplitTunnelingSwitch");
-    protected Element IpAddressTextBox = Element.ByAutomationId("IpAddressTextBox");
-    protected Element AddIpAddressButton = Element.ByAutomationId("AddIpAddressButton");
+    protected Element AppsSelectorSettingsCard = Element.ByAutomationId("AppsSelectorSettingsCard");
+    protected Element IpAddressesSelectorSettingsCard = Element.ByAutomationId("IpAddressesSelectorSettingsCard");
+
     protected Element ExcludeModeRadioButton = Element.ByName("Exclude mode");
     protected Element IncludeModeRadioButton = Element.ByName("Include mode");
-    protected Element TrashIcon = Element.ByAutomationId("RemoveIpAddressButton");
 
     public SplitTunnelingRobot ToggleSplitTunnelingSwitch()
     {
@@ -38,17 +36,15 @@ public class SplitTunnelingRobot
         return this;
     }
 
-    public SplitTunnelingRobot AddIpAddress(string ipAddress)
+    public SplitTunnelingRobot EditSplitTunnelingApps()
     {
-        IpAddressTextBox.SetText(ipAddress);
-        AddIpAddressButton.ScrollIntoView().Click();
+        AppsSelectorSettingsCard.Click();
         return this;
     }
 
-    public SplitTunnelingRobot TickIpAddressCheckBox(string ipAddress)
+    public SplitTunnelingRobot EditSplitTunnelingIps()
     {
-        Element.ByName(ipAddress).ScrollIntoView();
-        Element.ByName(ipAddress).Click();
+        IpAddressesSelectorSettingsCard.Click();
         return this;
     }
 
@@ -64,39 +60,8 @@ public class SplitTunnelingRobot
         return this;
     }
 
-    public SplitTunnelingRobot ClearIpInput()
-    {
-        IpAddressTextBox.ClearInput();
-        return this;
-    }
-
-    public SplitTunnelingRobot DeleteAllIps()
-    {
-        TrashIcon.WaitUntilExists();
-        AutomationElement[] IpAllTrashIcons = TrashIcon.FindAllElements();
-        foreach (AutomationElement ipTrashIcon in IpAllTrashIcons)
-        {
-            ipTrashIcon.Patterns.ScrollItem.Pattern.ScrollIntoView();
-            ipTrashIcon.AsButton().Invoke();
-        }
-        return this;
-    }
-
     public class Verifications : SplitTunnelingRobot
     {
-        public Verifications WasIpNotAdded(string ipAddress)
-        {
-            Element.ByName(ipAddress).DoesNotExist();
-            IpAddressTextBox.ValueEquals(ipAddress);
-            return this;
-        }
-
-        public Verifications WasIpAdded(string ipAddress)
-        {
-            Element.ByName(ipAddress).WaitUntilDisplayed();
-            IpAddressTextBox.ValueEquals("");
-            return this;
-        }
     }
 
     public Verifications Verify => new Verifications();

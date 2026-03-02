@@ -531,7 +531,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="BorderValidation.Visibility" Value="Visible" />
                                         <Setter Target="DescriptionPresenter.Content">
                                             <Setter.Value>
-                                                <Grid Margin="4,4,4,0"
+                                                <Grid Margin="4,0"
                                                       ColumnSpacing="6"
                                                       Visibility="{Binding (attached:FieldValidation.ErrorMessage), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}">
                                                     <Grid.ColumnDefinitions>
