@@ -655,6 +655,10 @@ public class ServersCache : IServersCache,
                 SaveToFile(deviceCountryLocation, userMaxTier, servers);
                 ProcessServers(deviceCountryLocation, userMaxTier, servers);
             }
+            else
+            {
+                _logger.Warn<ApiLog>($"API: Get server by name returned with Code: {response.ResponseMessage?.StatusCode}, Error: {response.Error}");
+            }
 
             return response;
         }
