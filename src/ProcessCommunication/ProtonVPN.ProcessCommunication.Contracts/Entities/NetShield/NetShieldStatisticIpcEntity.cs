@@ -35,4 +35,7 @@ public class NetShieldStatisticIpcEntity
 
     [DataMember(Order = 4, IsRequired = true)]
     public DateTime TimestampUtc { get; set; }
+
+    [DataMember(Order = 5, IsRequired = true)]
+    public long NumOfAdultContentUrlsBlocked { get; set; }
 }

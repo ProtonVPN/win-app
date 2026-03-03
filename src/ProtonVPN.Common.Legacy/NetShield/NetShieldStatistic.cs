@@ -25,7 +25,8 @@ public class NetShieldStatistic
 {
     public long NumOfMaliciousUrlsBlocked { get; set; }
     public long NumOfAdvertisementUrlsBlocked { get; set; }
-    public long NumOfTrackingUrlsBlocked { get; set; }
+    public long NumOfTrackingUrlsBlocked { get; set; }   
+    public long NumOfAdultContentUrlsBlocked { get; set; }
 
     public DateTime TimestampUtc { get; set; } = DateTime.UtcNow;
 }

@@ -157,7 +157,8 @@ public class ClientControllerListener : IClientControllerListener
                 $"Received NetShield statistic change with timestamp '{netShieldStatistic.TimestampUtc}' " +
                 $"[Ads: '{netShieldStatistic.NumOfAdvertisementUrlsBlocked}']" +
                 $"[Malware: '{netShieldStatistic.NumOfMaliciousUrlsBlocked}']" +
-                $"[Trackers: '{netShieldStatistic.NumOfTrackingUrlsBlocked}']");
+                $"[Trackers: '{netShieldStatistic.NumOfTrackingUrlsBlocked}']" +
+                $"[Adult content: '{netShieldStatistic.NumOfAdultContentUrlsBlocked}']");
 
             _eventMessageSender.Send(netShieldStatistic);
         }

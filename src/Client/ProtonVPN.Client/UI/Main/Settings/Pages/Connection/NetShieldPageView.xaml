@@ -96,6 +96,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                            Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_NetShield_BlockAdsMalwareTrackers')}" />
                             </StackPanel>
                         </RadioButton>
+                        <RadioButton AutomationProperties.AutomationId="NetShieldLevelThree"
+                                     IsChecked="{x:Bind ViewModel.IsNetShieldLevelThree, Mode=TwoWay}"
+                                     Style="{StaticResource NetShieldRadioButtonStyle}"
+                                     Visibility="{x:Bind ViewModel.IsNetShieldLevelThreeAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent')}" />
+                            </StackPanel>
+                        </RadioButton>
                     </StackPanel>
                 </controls:SettingsExpander.Items>
             </controls:SettingsExpander>

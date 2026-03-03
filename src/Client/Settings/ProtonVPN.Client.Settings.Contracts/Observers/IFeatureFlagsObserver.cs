@@ -30,6 +30,7 @@ public interface IFeatureFlagsObserver : IObserver
     string U2FGatewayPortalUrl { get; }
     bool IsBinaryServerStatusEnabled { get; }
     bool IsWireGuardServerRouteEnabled { get; }
+    bool IsNetShieldLevelThreeEnabled { get; }
 
     Task UpdateAsync(CancellationToken cancellationToken);
 }

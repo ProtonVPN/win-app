@@ -178,7 +178,8 @@ namespace ProtonVPN.Vpn.LocalAgent
             {
                 netShieldStatistic.NumOfMaliciousUrlsBlocked = eventValue.TryGetValue("DNSBL/1b", out long v1b) ? v1b : 0;
                 netShieldStatistic.NumOfAdvertisementUrlsBlocked = eventValue.TryGetValue("DNSBL/2a", out long v2a) ? v2a : 0;
-                netShieldStatistic.NumOfTrackingUrlsBlocked = eventValue.TryGetValue("DNSBL/2b", out long v2b) ? v2b : 0;
+                netShieldStatistic.NumOfTrackingUrlsBlocked = eventValue.TryGetValue("DNSBL/2b", out long v2b) ? v2b : 0;  
+                netShieldStatistic.NumOfAdultContentUrlsBlocked = eventValue.TryGetValue("DNSBL/3a", out long v3a) ? v3a : 0;
             }
             _netShieldStatisticEventManager.Invoke(this, netShieldStatistic);
         }

@@ -74,17 +74,26 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             </custom:ActivatableMenuFlyoutItem>
                             <MenuFlyoutSeparator />
                             <custom:ActivatableMenuFlyoutItem AutomationProperties.AutomationId="NetShieldLevelOneMenuItem" 
-                                                              Command="{x:Bind ViewModel.EnableStandardNetShieldCommand, Mode=OneTime}"
-                                                              IsActive="{x:Bind ViewModel.SelectedNetShieldMode.IsStandardNetShieldEnabled}"
+                                                              Command="{x:Bind ViewModel.EnableNetShieldLevelOneCommand, Mode=OneTime}"
+                                                              IsActive="{x:Bind ViewModel.SelectedNetShieldMode.IsNetShieldLevelOneEnabled}"
                                                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_NetShield_BlockMalwareOnly')}">
                                 <custom:ActivatableMenuFlyoutItem.Icon>
                                     <ImageIcon Source="{ThemeResource NetShieldOnLevel1IllustrationSource}" />
                                 </custom:ActivatableMenuFlyoutItem.Icon>
                             </custom:ActivatableMenuFlyoutItem>
-                            <custom:ActivatableMenuFlyoutItem AutomationProperties.AutomationId="NetShieldLevelTwoMenuItem" 
-                                                              Command="{x:Bind ViewModel.EnableAdvancedNetShieldCommand, Mode=OneTime}"
-                                                              IsActive="{x:Bind ViewModel.SelectedNetShieldMode.IsAdvancedNetShieldEnabled}"
+                            <custom:ActivatableMenuFlyoutItem AutomationProperties.AutomationId="NetShieldLevelTwoMenuItem"
+                                                              Command="{x:Bind ViewModel.EnableNetShieldLevelTwoCommand, Mode=OneTime}"
+                                                              IsActive="{x:Bind ViewModel.SelectedNetShieldMode.IsNetShieldLevelTwoEnabled}"
                                                               Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_NetShield_BlockAdsMalwareTrackers')}">
+                                <custom:ActivatableMenuFlyoutItem.Icon>
+                                    <ImageIcon Source="{ThemeResource NetShieldOnLevel2IllustrationSource}" />
+                                </custom:ActivatableMenuFlyoutItem.Icon>
+                            </custom:ActivatableMenuFlyoutItem>
+                            <custom:ActivatableMenuFlyoutItem AutomationProperties.AutomationId="NetShieldLevelThreeMenuItem"
+                                                              Command="{x:Bind ViewModel.EnableNetShieldLevelThreeCommand, Mode=OneTime}"
+                                                              IsActive="{x:Bind ViewModel.SelectedNetShieldMode.IsNetShieldLevelThreeEnabled}"
+                                                              Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent')}"
+                                                              Visibility="{x:Bind ViewModel.IsNetShieldLevelThreeAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <custom:ActivatableMenuFlyoutItem.Icon>
                                     <ImageIcon Source="{ThemeResource NetShieldOnLevel2IllustrationSource}" />
                                 </custom:ActivatableMenuFlyoutItem.Icon>

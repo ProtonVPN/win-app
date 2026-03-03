@@ -60,6 +60,11 @@ public class MainSettingsRequestCreator : IMainSettingsRequestCreator
             settings.ModerateNat = connectionProfile.Settings.NatType == NatType.Moderate;
         }
 
+        if (settings.NetShieldMode == (int)NetShieldMode.BlockAdsMalwareTrackersAdultContent && !_featureFlagsObserver.IsNetShieldLevelThreeEnabled)
+        {
+            settings.NetShieldMode = (int)NetShieldMode.BlockAdsMalwareTrackers;
+        }
+
         return settings;
     }
 

@@ -26,24 +26,29 @@ using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Models.Settings;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Profiles.Contracts;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.UI.Main.Profiles.Components;
 
-public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileSettingsSelector
+public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileSettingsSelector,
+    IEventMessageReceiver<FeatureFlagsChangedMessage>
 {
     private readonly ISettings _settings;
     private readonly ICommonItemFactory _commonItemFactory;
     private readonly IRequiredReconnectionSettings _requiredReconnectionSettings;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
     private readonly IUrlsBrowser _urlsBrowser;
+    private readonly IFeatureFlagsObserver _featureFlagsObserver;
 
     private IProfileSettings _originalProfileSettings = ProfileSettings.Default;
 
@@ -84,13 +89,16 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileS
 
     protected bool PortForwardingHasChanged => _originalProfileSettings.IsPortForwardingEnabled != SelectedPortForwardingState?.IsEnabled;
 
+    public bool IsNetShieldLevelThreeAvailable => _featureFlagsObserver.IsNetShieldLevelThreeEnabled;
+
     public ProfileSettingsSelectorViewModel(
         IViewModelHelper viewModelHelper,
         ISettings settings,
         ICommonItemFactory commonItemFactory,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
-        IUrlsBrowser urlsBrowser)
+        IUrlsBrowser urlsBrowser,
+        IFeatureFlagsObserver featureFlagsObserver)
         : base(viewModelHelper)
     {
         _settings = settings;
@@ -98,6 +106,7 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileS
         _requiredReconnectionSettings = requiredReconnectionSettings;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _urlsBrowser = urlsBrowser;
+        _featureFlagsObserver = featureFlagsObserver;
     }
 
     public IProfileSettings GetProfileSettings()
@@ -142,6 +151,14 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileS
             || (NetShieldStateHasChanged && _settings.IsCustomDnsServersEnabled);
     }
 
+    public void Receive(FeatureFlagsChangedMessage message)
+    {
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(IsNetShieldLevelThreeAvailable));
+        });
+    }
+
     private static IEnumerable<VpnProtocol> GetProtocolsByOrder()
     {
         yield return VpnProtocol.Smart;
@@ -157,6 +174,7 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileS
         yield return null;
         yield return NetShieldMode.BlockMalwareOnly;
         yield return NetShieldMode.BlockAdsMalwareTrackers;
+        yield return NetShieldMode.BlockAdsMalwareTrackersAdultContent;         
     }
 
     private static IEnumerable<NatType> GetNatTypesByOrder()
@@ -192,15 +210,21 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileS
     }
 
     [RelayCommand]
-    private Task<bool> EnableStandardNetShieldAsync()
+    private Task<bool> EnableNetShieldLevelOneAsync()
     {
         return TryChangeNetShieldModeAsync(true, NetShieldMode.BlockMalwareOnly);
     }
 
     [RelayCommand]
-    private Task<bool> EnableAdvancedNetShieldAsync()
+    private Task<bool> EnableNetShieldLevelTwoAsync()
     {
         return TryChangeNetShieldModeAsync(true, NetShieldMode.BlockAdsMalwareTrackers);
+    }
+
+    [RelayCommand]
+    private Task<bool> EnableNetShieldLevelThreeAsync()
+    {
+        return TryChangeNetShieldModeAsync(true, NetShieldMode.BlockAdsMalwareTrackersAdultContent);
     }
 
     private async Task<bool> TryChangeNetShieldModeAsync(bool isEnabled, NetShieldMode? netShieldMode = null)

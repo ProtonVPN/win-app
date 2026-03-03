@@ -449,6 +449,7 @@ public static class LocalizationExtensions
             {
                 NetShieldMode.BlockMalwareOnly => localizer.Get("Settings_Connection_NetShield_BlockMalwareOnly"),
                 NetShieldMode.BlockAdsMalwareTrackers => localizer.Get("Settings_Connection_NetShield_BlockAdsMalwareTrackers"),
+                NetShieldMode.BlockAdsMalwareTrackersAdultContent => localizer.Get("Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent"),
                 _ => localizer.Get("Common_States_On")
             }
             : localizer.Get("Common_States_Off");

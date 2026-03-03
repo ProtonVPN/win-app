@@ -23,5 +23,6 @@ public class NetShieldStatsChangedMessage
 {
     public required long NumOfMaliciousUrlsBlocked { get; init; }
     public required long NumOfAdvertisementUrlsBlocked { get; init; }
-    public required long NumOfTrackingUrlsBlocked { get; init; }
+    public required long NumOfTrackingUrlsBlocked { get; init; }   
+    public required long NumOfAdultContentUrlsBlocked { get; init; }
 }

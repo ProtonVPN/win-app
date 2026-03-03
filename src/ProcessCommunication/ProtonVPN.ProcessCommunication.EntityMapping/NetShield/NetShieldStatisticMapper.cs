@@ -34,6 +34,7 @@ public class NetShieldStatisticMapper : IMapper<NetShieldStatistic, NetShieldSta
                 NumOfMaliciousUrlsBlocked = leftEntity.NumOfMaliciousUrlsBlocked,
                 NumOfAdvertisementUrlsBlocked = leftEntity.NumOfAdvertisementUrlsBlocked,
                 NumOfTrackingUrlsBlocked = leftEntity.NumOfTrackingUrlsBlocked,
+                NumOfAdultContentUrlsBlocked = leftEntity.NumOfAdultContentUrlsBlocked,
                 TimestampUtc = leftEntity.TimestampUtc,
             };
     }
@@ -47,6 +48,7 @@ public class NetShieldStatisticMapper : IMapper<NetShieldStatistic, NetShieldSta
                 NumOfMaliciousUrlsBlocked = rightEntity.NumOfMaliciousUrlsBlocked,
                 NumOfAdvertisementUrlsBlocked = rightEntity.NumOfAdvertisementUrlsBlocked,
                 NumOfTrackingUrlsBlocked = rightEntity.NumOfTrackingUrlsBlocked,
+                NumOfAdultContentUrlsBlocked = rightEntity.NumOfAdultContentUrlsBlocked,
                 TimestampUtc = rightEntity.TimestampUtc,
             };
     }

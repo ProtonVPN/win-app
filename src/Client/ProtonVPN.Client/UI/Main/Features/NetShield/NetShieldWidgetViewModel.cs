@@ -31,6 +31,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Features.Bases;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
@@ -39,13 +41,17 @@ using ProtonVPN.Client.UI.Main.Settings.Connection;
 namespace ProtonVPN.Client.UI.Main.Features.NetShield;
 
 public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
-    IEventMessageReceiver<NetShieldStatsChangedMessage>
+    IEventMessageReceiver<NetShieldStatsChangedMessage>,
+    IEventMessageReceiver<FeatureFlagsChangedMessage>
 {
     private const int BADGE_MAXIMUM_NUMBER = 99;
 
+    private readonly IFeatureFlagsObserver _featureFlagsObserver;
+
     private readonly Lazy<List<ChangedSettingArgs>> _disableNetShieldSettings;
-    private readonly Lazy<List<ChangedSettingArgs>> _enableStandardNetShieldSettings;
-    private readonly Lazy<List<ChangedSettingArgs>> _enableAdvancedNetShieldSettings;
+    private readonly Lazy<List<ChangedSettingArgs>> _enableNetShieldLevelOneSettings;
+    private readonly Lazy<List<ChangedSettingArgs>> _enableNetShieldLevelTwoSettings;  
+    private readonly Lazy<List<ChangedSettingArgs>> _enableNetShieldLevelThreeSettings;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(TotalAdsAndTrackersBlocked))]
@@ -70,7 +76,9 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
 
     public string BlockMalwareOnlyMessage => Localizer.Get("Flyouts_NetShield_MalwareOnly_Success");
 
-    public string BlockAdsMalwareTrackersMessage => Localizer.Get("Flyouts_NetShield_AdsMalwareTrackers_Success");
+    public string BlockAdsMalwareTrackersMessage => Localizer.Get("Flyouts_NetShield_AdsMalwareTrackers_Success");    
+
+    public string BlockAdsMalwareTrackersAdultContentMessage => Localizer.Get("Flyouts_NetShield_AdsMalwareTrackersAdultContent_Success");
 
     public bool IsNetShieldEnabled => IsFeatureOverridden
         ? CurrentProfile!.Settings.IsNetShieldEnabled
@@ -84,20 +92,25 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
                                      || !IsNetShieldEnabled;
 
     public bool IsBlockMalwareOnlyMessageVisible => ConnectionManager.IsConnected
-                                                 && IsNetShieldEnabled
-                                                 && NetShieldMode == NetShieldMode.BlockMalwareOnly;
+                                                 && IsNetShieldLevelOneEnabled;
 
     public bool IsBlockAdsMalwareTrackersMessageVisible => ConnectionManager.IsConnected
-                                                        && IsNetShieldEnabled
-                                                        && NetShieldMode == NetShieldMode.BlockAdsMalwareTrackers;
+                                                        && IsNetShieldLevelTwoEnabled;   
+
+    public bool IsBlockAdsMalwareTrackersAdultContentMessageVisible => ConnectionManager.IsConnected
+                                                                    && IsNetShieldLevelThreeEnabled;
 
     public bool IsNetShieldStatsPanelVisible => ConnectionManager.IsConnected
                                              && IsNetShieldEnabled
-                                             && NetShieldMode == NetShieldMode.BlockAdsMalwareTrackers;
+                                             && NetShieldMode >= NetShieldMode.BlockAdsMalwareTrackers;
 
-    public bool IsStandardNetShieldEnabled => IsNetShieldEnabled && NetShieldMode == NetShieldMode.BlockMalwareOnly;
+    public bool IsNetShieldLevelOneEnabled => IsNetShieldEnabled && NetShieldMode == NetShieldMode.BlockMalwareOnly;
 
-    public bool IsAdvancedNetShieldEnabled => IsNetShieldEnabled && NetShieldMode == NetShieldMode.BlockAdsMalwareTrackers;
+    public bool IsNetShieldLevelTwoEnabled => IsNetShieldEnabled && (NetShieldMode == NetShieldMode.BlockAdsMalwareTrackers || (NetShieldMode == NetShieldMode.BlockAdsMalwareTrackersAdultContent && !IsNetShieldLevelThreeAvailable));
+
+    public bool IsNetShieldLevelThreeEnabled => IsNetShieldLevelThreeAvailable && IsNetShieldEnabled && NetShieldMode == NetShieldMode.BlockAdsMalwareTrackersAdultContent;
+
+    public bool IsNetShieldLevelThreeAvailable => _featureFlagsObserver.IsNetShieldLevelThreeEnabled;
 
     protected override UpsellFeatureType? UpsellFeature { get; } = UpsellFeatureType.NetShield;
 
@@ -114,7 +127,8 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         ISettingsConflictResolver settingsConflictResolver,
-        IProfileEditor profileEditor)
+        IProfileEditor profileEditor,
+        IFeatureFlagsObserver featureFlagsObserver)
         : base(viewModelHelper,
                mainViewNavigator,
                settingsViewNavigator,
@@ -127,20 +141,28 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
                profileEditor,
                ConnectionFeature.NetShield)
     {
+        _featureFlagsObserver = featureFlagsObserver;
+
         _disableNetShieldSettings = new(() =>
         [
             ChangedSettingArgs.Create(() => Settings.IsNetShieldEnabled, () => false)
         ]);
 
-        _enableStandardNetShieldSettings = new(() =>
+        _enableNetShieldLevelOneSettings = new(() =>
         [
             ChangedSettingArgs.Create(() => Settings.NetShieldMode, () => NetShieldMode.BlockMalwareOnly),
             ChangedSettingArgs.Create(() => Settings.IsNetShieldEnabled, () => true)
         ]);
 
-        _enableAdvancedNetShieldSettings = new(() =>
+        _enableNetShieldLevelTwoSettings = new(() =>
         [
             ChangedSettingArgs.Create(() => Settings.NetShieldMode, () => NetShieldMode.BlockAdsMalwareTrackers),
+            ChangedSettingArgs.Create(() => Settings.IsNetShieldEnabled, () => true)
+        ]);
+
+        _enableNetShieldLevelThreeSettings = new(() =>
+        [
+            ChangedSettingArgs.Create(() => Settings.NetShieldMode, () => NetShieldMode.BlockAdsMalwareTrackersAdultContent),
             ChangedSettingArgs.Create(() => Settings.IsNetShieldEnabled, () => true)
         ]);
     }
@@ -157,6 +179,18 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
             {
                 ClearNetShieldStats();
             }
+        });
+    }          
+
+    public void Receive(FeatureFlagsChangedMessage message)
+    {
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(IsNetShieldLevelThreeAvailable));
+            OnPropertyChanged(nameof(IsNetShieldLevelTwoEnabled));
+            OnPropertyChanged(nameof(IsNetShieldLevelThreeEnabled));
+            OnPropertyChanged(nameof(IsBlockAdsMalwareTrackersMessageVisible));
+            OnPropertyChanged(nameof(IsBlockAdsMalwareTrackersAdultContentMessageVisible));
         });
     }
 
@@ -177,7 +211,8 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
 
         OnPropertyChanged(nameof(InfoMessage));
         OnPropertyChanged(nameof(BlockMalwareOnlyMessage));
-        OnPropertyChanged(nameof(BlockAdsMalwareTrackersMessage));
+        OnPropertyChanged(nameof(BlockAdsMalwareTrackersMessage)); 
+        OnPropertyChanged(nameof(BlockAdsMalwareTrackersAdultContentMessage));
     }
 
     protected override void OnSettingsChanged()
@@ -186,11 +221,13 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
         OnPropertyChanged(nameof(IsInfoMessageVisible));
         OnPropertyChanged(nameof(IsBlockMalwareOnlyMessageVisible));
         OnPropertyChanged(nameof(IsBlockAdsMalwareTrackersMessageVisible));
+        OnPropertyChanged(nameof(IsBlockAdsMalwareTrackersAdultContentMessageVisible));
         OnPropertyChanged(nameof(IsNetShieldStatsPanelVisible));
         OnPropertyChanged(nameof(IsNetShieldEnabled));
         OnPropertyChanged(nameof(NetShieldMode));
-        OnPropertyChanged(nameof(IsStandardNetShieldEnabled));
-        OnPropertyChanged(nameof(IsAdvancedNetShieldEnabled));
+        OnPropertyChanged(nameof(IsNetShieldLevelOneEnabled));
+        OnPropertyChanged(nameof(IsNetShieldLevelTwoEnabled));
+        OnPropertyChanged(nameof(IsNetShieldLevelThreeEnabled));
     }
 
     protected override void OnConnectionStatusChanged()
@@ -199,6 +236,7 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
         OnPropertyChanged(nameof(IsInfoMessageVisible));
         OnPropertyChanged(nameof(IsBlockMalwareOnlyMessageVisible));
         OnPropertyChanged(nameof(IsBlockAdsMalwareTrackersMessageVisible));
+        OnPropertyChanged(nameof(IsBlockAdsMalwareTrackersAdultContentMessageVisible));
         OnPropertyChanged(nameof(IsNetShieldStatsPanelVisible));
         OnPropertyChanged(nameof(IsFeatureOverridden));
         OnPropertyChanged(nameof(IsNetShieldEnabled));
@@ -235,14 +273,20 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
     }
 
     [RelayCommand]
-    private Task<bool> EnableStandardNetShieldAsync()
+    private Task<bool> EnableNetShieldLevelOneAsync()
     {
-        return TryChangeFeatureSettingsAsync(_enableStandardNetShieldSettings.Value);
+        return TryChangeFeatureSettingsAsync(_enableNetShieldLevelOneSettings.Value);
     }
 
     [RelayCommand]
-    private Task<bool> EnableAdvancedNetShieldAsync()
+    private Task<bool> EnableNetShieldLevelTwoAsync()
     {
-        return TryChangeFeatureSettingsAsync(_enableAdvancedNetShieldSettings.Value);
+        return TryChangeFeatureSettingsAsync(_enableNetShieldLevelTwoSettings.Value);
+    }
+
+    [RelayCommand]
+    private Task<bool> EnableNetShieldLevelThreeAsync()
+    {
+        return TryChangeFeatureSettingsAsync(_enableNetShieldLevelThreeSettings.Value);
     }
 }

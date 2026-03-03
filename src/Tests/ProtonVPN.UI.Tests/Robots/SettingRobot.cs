@@ -70,7 +70,8 @@ public class SettingRobot
 
     protected Element NetshieldToggle = Element.ByAutomationId("NetshieldToggle");
     protected Element NetShieldLevelOneRadioButton = Element.ByAutomationId("NetShieldLevelOne");
-    protected Element NetShieldLevelTwoRadioButton = Element.ByAutomationId("NetShieldLevelTwo");
+    protected Element NetShieldLevelTwoRadioButton = Element.ByAutomationId("NetShieldLevelTwo"); 
+    protected Element NetShieldLevelThreeRadioButton = Element.ByAutomationId("NetShieldLevelThree");
     protected Element KillSwitchToggle = Element.ByAutomationId("KillSwitchToggle");
     protected Element KillSiwtchStandardRadioButton = Element.ByAutomationId("StandardKillSwitchRadioButton");
     protected Element KillSwitchAdvancedRadioButton = Element.ByAutomationId("AdvancedKillSwitchRadioButton");
@@ -313,13 +314,17 @@ public class SettingRobot
 
     public SettingRobot SelectNetShieldMode(NetShieldMode netShieldMode)
     {
-        if (netShieldMode == NetShieldMode.BlockMalwareOnly)
+        switch (netShieldMode)
         {
-            NetShieldLevelOneRadioButton.Click();
-        }
-        else if (netShieldMode == NetShieldMode.BlockAdsMalwareTrackers)
-        {
-            NetShieldLevelTwoRadioButton.Click();
+            case NetShieldMode.BlockMalwareOnly:
+                NetShieldLevelOneRadioButton.Click();
+                break;
+            case NetShieldMode.BlockAdsMalwareTrackers:
+                NetShieldLevelTwoRadioButton.Click();
+                break;
+            case NetShieldMode.BlockAdsMalwareTrackersAdultContent:
+                NetShieldLevelThreeRadioButton.Click();
+                break;
         }
 
         return this;

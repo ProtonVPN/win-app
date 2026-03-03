@@ -58,7 +58,8 @@ public class NetShieldStatisticMapperTest
         {
             NumOfMaliciousUrlsBlocked = DateTime.UtcNow.Millisecond,
             NumOfAdvertisementUrlsBlocked = DateTime.UtcNow.Ticks,
-            NumOfTrackingUrlsBlocked = DateTime.UtcNow.Year
+            NumOfTrackingUrlsBlocked = DateTime.UtcNow.Year,
+            NumOfAdultContentUrlsBlocked = DateTime.UtcNow.Month,
         };
         Assert.IsNotNull(entityToTest.TimestampUtc);
 
@@ -68,6 +69,7 @@ public class NetShieldStatisticMapperTest
         Assert.AreEqual(entityToTest.NumOfMaliciousUrlsBlocked, result.NumOfMaliciousUrlsBlocked);
         Assert.AreEqual(entityToTest.NumOfAdvertisementUrlsBlocked, result.NumOfAdvertisementUrlsBlocked);
         Assert.AreEqual(entityToTest.NumOfTrackingUrlsBlocked, result.NumOfTrackingUrlsBlocked);
+        Assert.AreEqual(entityToTest.NumOfAdultContentUrlsBlocked, result.NumOfAdultContentUrlsBlocked);
         Assert.IsNotNull(result.TimestampUtc);
         Assert.AreEqual(entityToTest.TimestampUtc, result.TimestampUtc);
     }
@@ -90,6 +92,7 @@ public class NetShieldStatisticMapperTest
             NumOfMaliciousUrlsBlocked = DateTime.UtcNow.Millisecond,
             NumOfAdvertisementUrlsBlocked = DateTime.UtcNow.Ticks,
             NumOfTrackingUrlsBlocked = DateTime.UtcNow.Year,
+            NumOfAdultContentUrlsBlocked = DateTime.UtcNow.Month,
             TimestampUtc = DateTime.UtcNow,
         };
 
@@ -99,6 +102,7 @@ public class NetShieldStatisticMapperTest
         Assert.AreEqual(entityToTest.NumOfMaliciousUrlsBlocked, result.NumOfMaliciousUrlsBlocked);
         Assert.AreEqual(entityToTest.NumOfAdvertisementUrlsBlocked, result.NumOfAdvertisementUrlsBlocked);
         Assert.AreEqual(entityToTest.NumOfTrackingUrlsBlocked, result.NumOfTrackingUrlsBlocked);
+        Assert.AreEqual(entityToTest.NumOfAdultContentUrlsBlocked, result.NumOfAdultContentUrlsBlocked);
         Assert.IsNotNull(result.TimestampUtc);
         Assert.AreEqual(entityToTest.TimestampUtc, result.TimestampUtc);
     }

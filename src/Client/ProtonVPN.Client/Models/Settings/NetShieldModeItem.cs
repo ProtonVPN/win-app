@@ -40,9 +40,11 @@ public class NetShieldModeItem : ModelBase
 
     public ImageSource IllustrationSource { get; }
 
-    public bool IsStandardNetShieldEnabled => IsEnabled && Mode == NetShieldMode.BlockMalwareOnly;
+    public bool IsNetShieldLevelOneEnabled => IsEnabled && Mode == NetShieldMode.BlockMalwareOnly;
 
-    public bool IsAdvancedNetShieldEnabled => IsEnabled && Mode == NetShieldMode.BlockAdsMalwareTrackers;
+    public bool IsNetShieldLevelTwoEnabled => IsEnabled && Mode == NetShieldMode.BlockAdsMalwareTrackers;
+
+    public bool IsNetShieldLevelThreeEnabled => IsEnabled && Mode == NetShieldMode.BlockAdsMalwareTrackersAdultContent;
 
     public NetShieldModeItem(
         ILocalizationProvider localizer,
@@ -61,6 +63,8 @@ public class NetShieldModeItem : ModelBase
             {
                 NetShieldMode.BlockMalwareOnly => ResourceHelper.GetIllustration("NetShieldOnLevel1IllustrationSource", theme),
                 NetShieldMode.BlockAdsMalwareTrackers => ResourceHelper.GetIllustration("NetShieldOnLevel2IllustrationSource", theme),
+                NetShieldMode.BlockAdsMalwareTrackersAdultContent => ResourceHelper.GetIllustration("NetShieldOnLevel2IllustrationSource", theme),
+                _ => ResourceHelper.GetIllustration("NetShieldOnLevel2IllustrationSource", theme), // Use Level 2 illustration as default for enabled state (full shield icon).
             }
             : ResourceHelper.GetIllustration("NetShieldOffIllustrationSource", theme) ;
     }

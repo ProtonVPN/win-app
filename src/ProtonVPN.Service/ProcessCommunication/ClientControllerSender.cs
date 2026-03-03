@@ -284,7 +284,8 @@ public class ClientControllerSender : IClientController, IClientControllerSender
         _logger.Info<ProcessCommunicationLog>($"Sending NetShield statistic triggered at '{stats.TimestampUtc}' " +
             $"[Ads: '{stats.NumOfAdvertisementUrlsBlocked}']" +
             $"[Malware: '{stats.NumOfMaliciousUrlsBlocked}']" +
-            $"[Trackers: '{stats.NumOfTrackingUrlsBlocked}']");
+            $"[Trackers: '{stats.NumOfTrackingUrlsBlocked}']" + 
+            $"[Adult content: '{stats.NumOfAdultContentUrlsBlocked}']");
         NetShieldStatisticIpcEntity statsIpcEntity =
             _entityMapper.Map<NetShieldStatistic, NetShieldStatisticIpcEntity>(stats);
         await _netShieldStatisticChannel.Writer.WriteAsync(statsIpcEntity);
