@@ -2800,7 +2800,7 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Protegit</value>
   </data>
   <data name="LoadingPage_Tip">
-    <value>Un món millor comença amb la privadesa i la llibertat digital.</value>
+    <value>Un món millor comença amb la privadesa i la llibertat digital.</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
     <value>S'ha produït un error en recuperar els detalls de la sessió. Torneu-ho a provar.</value>

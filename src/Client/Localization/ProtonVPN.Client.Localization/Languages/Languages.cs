@@ -61,7 +61,10 @@ public static class Languages
         new("ja-JP", "日本語 - Japanese"),
         new("zh-CN", "简体中文 - Chinese (Simplified)"),
         new("zh-TW", "繁體中文 - Chinese (Traditional)"),
+        new("fil-PH", "Filipino - Filipino"),
+        new("vi-VN", "Tiếng Việt - Vietnamese"),
         new("ar-SA", "عربي - Arabic", isRightToLeft: true),
         new("fa-IR", "فارسی - Persian", isRightToLeft: true),
+        new("th-TH", "ไทย - Thai"),
     ];
 }

@@ -2972,7 +2972,7 @@
     <value>Відкріпити</value>
   </data>
   <data name="Home_TitleBar_Menu_About">
-    <value>Про нас</value>
+    <value>Про програму</value>
   </data>
   <data name="Home_TitleBar_Menu_Account">
     <value>Обліковий запис</value>
@@ -3269,7 +3269,7 @@ VPN-з'єднання</value>
     <value>Завантаження сервера</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>Розумна маршрутизація дозволяє нам забезпечувати VPN-покриття у важкодоступних країнах.</value>
+    <value>Завдяки Smart Routing ми можемо забезпечити VPN-покриття у важкодоступних країнах.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
     <value>Під'єднавшись до сервера Smart Routing, здаватиметься, що ви користуєтесь інтернетом у країні призначення, хоча фізичний сервер розташований в іншому місці.</value>
@@ -3443,7 +3443,7 @@ VPN-з'єднання</value>
     <value>Сервери</value>
   </data>
   <data name="Settings_About">
-    <value>Про нас</value>
+    <value>Про програму</value>
   </data>
   <data name="Settings_About_Changelog">
     <value>Список змін</value>
@@ -3464,7 +3464,7 @@ VPN-з'єднання</value>
     <value>Завантаження</value>
   </data>
   <data name="Settings_About_Title">
-    <value>Про нас</value>
+    <value>Про програму</value>
   </data>
   <data name="Settings_Account_Account">
     <value>Обліковий запис</value>

@@ -4181,7 +4181,7 @@ Error code: {0}</value>
     <value>Разблокируйте расширенную настройку VPN</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_DNS">
-    <value>Connect to VPN with your custom Domain Name System (DNS)</value>
+    <value>Подключитесь к VPN с вашей системой пользовательских доменов (DNS)</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings_LAN">
     <value>Получите доступ к устройствам в локальной сети (LAN) во время подключения</value>
@@ -4266,16 +4266,16 @@ Error code: {0}</value>
     <value>Направляйте трафик через сверхзащищённые серверы в Швейцарии, Швеции и Исландии</value>
   </data>
   <data name="Upsell_Carousel_Speed">
-    <value>Browse at even higher speeds</value>
+    <value>Просматривайте веб-страницы на ещё более высоких скоростях</value>
   </data>
   <data name="Upsell_Carousel_Speed_Acceleration">
-    <value>Browse up to 400% faster with VPN Accelerator</value>
+    <value>Ускорьте работу до 400 % быстрее с помощью VPN Accelerator</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
     <value>Получите доступ к более быстрым и менее загруженным серверам</value>
   </data>
   <data name="Upsell_Carousel_Speed_Traffic">
-    <value>Get connection speeds of up to 10 Gbps</value>
+    <value>Скорость подключения до 10 Гбит/с</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
     <value>Получите лучшее из обоих миров</value>
@@ -4333,7 +4333,7 @@ Error code: {0}</value>
     <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
-    <value>Bypass censorship with advanced security features</value>
+    <value>Обходите цензуру с помощью расширенных функций безопасности</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
     <value>{0} стране</value>
@@ -4348,10 +4348,10 @@ Error code: {0}</value>
     <value>{0} странах</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Features">
-    <value>Secure streaming, torrenting, and more</value>
+    <value>Безопасный стриминг, торренты и многое другое</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Selection">
-    <value>Select any country from our worldwide network</value>
+    <value>Выберите любую страну из нашей глобальной сети</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
     <value>{0} защищённый сервер</value>
