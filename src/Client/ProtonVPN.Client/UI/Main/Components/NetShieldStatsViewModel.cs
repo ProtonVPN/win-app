@@ -36,6 +36,7 @@ public partial class NetShieldStatsViewModel : ActivatableViewModelBase,
     private const int AVG_AD_SIZE_IN_BYTES = 200000;
     private const int AVG_TRACKER_SIZE_IN_BYTES = 50000;
     private const int AVG_MALWARE_SIZE_IN_BYTES = 750000;
+    private const int AVG_ADULT_CONTENT_SIZE_IN_BYTES = 1420000;
 
     private readonly IConnectionManager _connectionManager;
 
@@ -93,7 +94,8 @@ public partial class NetShieldStatsViewModel : ActivatableViewModelBase,
         long adDataSavedInBytes = stats.NumOfAdvertisementUrlsBlocked * AVG_AD_SIZE_IN_BYTES;
         long trackerDataSavedInBytes = stats.NumOfTrackingUrlsBlocked * AVG_TRACKER_SIZE_IN_BYTES;
         long malwareDataSavedInBytes = stats.NumOfMaliciousUrlsBlocked * AVG_MALWARE_SIZE_IN_BYTES;
-        DataSavedInBytes = adDataSavedInBytes + trackerDataSavedInBytes + malwareDataSavedInBytes;
+        long adultContentDataSavedInBytes = stats.NumOfAdultContentUrlsBlocked * AVG_ADULT_CONTENT_SIZE_IN_BYTES;
+        DataSavedInBytes = adDataSavedInBytes + trackerDataSavedInBytes + malwareDataSavedInBytes + adultContentDataSavedInBytes;
     }
 
     private void ClearNetShieldStats()

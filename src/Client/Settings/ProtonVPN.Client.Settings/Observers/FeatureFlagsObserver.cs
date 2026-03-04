@@ -65,7 +65,7 @@ public class FeatureFlagsObserver : PollingObserverBase, IFeatureFlagsObserver
     public bool IsWireGuardServerRouteEnabled => IsEnabled();                                                   
 
     [FeatureFlag("IsNetShieldLevelThreeEnabled")]
-    public bool IsNetShieldLevelThreeEnabled => IsEnabled();
+    public bool IsNetShieldLevelThreeEnabled => IsEnabled() && !_settings.VpnPlan.IsB2B; // NetShield Level 3 is not available for B2B users due to lack of support on Gateways
 
     protected override TimeSpan PollingInterval => _config.FeatureFlagsUpdateInterval;
 
