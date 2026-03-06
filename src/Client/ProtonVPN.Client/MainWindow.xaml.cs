@@ -118,16 +118,24 @@ public sealed partial class MainWindow : IFocusAware
             WindowContainer.IsTitleBarVisible = isTitleBarVisible;
         }
 
-        IsMinimizable = isTitleBarVisible;
-        IsMaximizable = isTitleBarVisible;
-        IsResizable = isTitleBarVisible;
+        InvalidateWindowResizeCapabilities(isTitleBarVisible);
 
         InvalidateTitleDragArea();
     }
 
-    public void InvalidateMaximizeAvailability(bool isMaximizeAvailable)
+    public void InvalidateWindowResizeCapabilities(bool canResize)
     {
-        IsMaximizable = isMaximizeAvailable && (WindowContainer?.IsTitleBarVisible ?? false);
+        bool isTitleBarVisible = WindowContainer?.IsTitleBarVisible ?? false;
+
+        if (!isTitleBarVisible)
+        {
+            // When title bar is not visible, the window should not be resizable
+            canResize = false;
+        }
+
+        IsMaximizable = canResize;
+        IsMinimizable = canResize;
+        IsResizable = canResize;
     }
 
     public void InvalidateTitleDragArea()

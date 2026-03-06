@@ -298,7 +298,10 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     {
         base.OnActivated();
 
-        SetMainWindowMaximizeAvailability(isMaximizeAvailable: false);
+        if (_mainWindowActivator.Window is MainWindow mainWindow)
+        {
+            mainWindow.InvalidateWindowResizeCapabilities(canResize: false);
+        }
     }
 
     protected override void OnDeactivated()
@@ -322,13 +325,5 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     private Task TriggerActionButtonAsync()
     {
         return _reportIssueWindowActivator.ActivateAsync();
-    }
-
-    private void SetMainWindowMaximizeAvailability(bool isMaximizeAvailable)
-    {
-        if (_mainWindowActivator.Window is MainWindow mainWindow)
-        {
-            mainWindow.InvalidateMaximizeAvailability(isMaximizeAvailable);
-        }
     }
 }

@@ -101,13 +101,13 @@ public partial class NoServersPageViewModel : PageViewModelBase<IMainWindowViewN
     {
         base.OnActivated();
 
-        DisableMainWindowMaximize();
+        DisableMainWindowResizeCapabilities();
     }
 
     protected override void OnDeactivated()
     {
         IsRefreshing = false;
-        RestoreMainWindowControls();
+        RestoreMainWindowResizeCapabilities();
 
         base.OnDeactivated();
     }
@@ -178,20 +178,20 @@ public partial class NoServersPageViewModel : PageViewModelBase<IMainWindowViewN
         }
     }
 
-    private void DisableMainWindowMaximize()
+    private void DisableMainWindowResizeCapabilities()
     {
         if (_mainWindowActivator.Window is MainWindow mainWindow)
         {
-            mainWindow.InvalidateMaximizeAvailability(isMaximizeAvailable: false);
+            mainWindow.InvalidateWindowResizeCapabilities(canResize: false);
         }
     }
 
-    private void RestoreMainWindowControls()
+    private void RestoreMainWindowResizeCapabilities()
     {
         if (_mainWindowActivator.Window is MainWindow mainWindow)
         {
             mainWindow.InvalidateTitleBarVisibility(isTitleBarVisible: _userAuthenticator.IsLoggedIn);
-            mainWindow.InvalidateMaximizeAvailability(isMaximizeAvailable: _userAuthenticator.IsLoggedIn);
+            mainWindow.InvalidateWindowResizeCapabilities(canResize: _userAuthenticator.IsLoggedIn);
         }
     }
 }
