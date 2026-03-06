@@ -30,6 +30,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:sidebar="using:ProtonVPN.Client.UI.Main.Sidebar"
       xmlns:widgets="using:ProtonVPN.Client.UI.Main.Widgets"
       xmlns:components="using:ProtonVPN.Client.UI.Login.Components"
+      xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       x:DefaultBindMode="OneWay"
       AutomationProperties.AutomationId="NoServersPage"
       AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_NoServers_Page')}"
@@ -140,5 +141,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                       VerticalAlignment="Center"
                       IsActive="{x:Bind ViewModel.IsRefreshing}"
                       Visibility="{x:Bind ViewModel.IsRefreshing, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+        <!-- Skip option is only available on debug builds -->
+        <custom:GhostButton Grid.RowSpan="3"
+                            Margin="20"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Content="Skip"
+                            Command="{x:Bind ViewModel.SkipNoConnectionsPageCommand, Mode=OneTime}"
+                            Visibility="{x:Bind ViewModel.IsDebugModeEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <custom:GhostButton.RightIcon>
+                <pathicons:ChevronRight Size="Pixels16"/>
+            </custom:GhostButton.RightIcon>
+        </custom:GhostButton>
+                            
     </Grid>
 </Page>

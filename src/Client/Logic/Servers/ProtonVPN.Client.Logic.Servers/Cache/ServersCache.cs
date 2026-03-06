@@ -148,6 +148,13 @@ public class ServersCache : IServersCache,
 
     public bool HasNoServers()
     {
+#if DEBUG
+        if (_settings.SkipNoConnectionsPage)
+        {
+            return false;
+        }
+#endif
+
         return IsEmpty() || AreAllServersUnderMaintenance();
     }
 

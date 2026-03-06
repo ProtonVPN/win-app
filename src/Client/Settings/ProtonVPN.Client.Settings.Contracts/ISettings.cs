@@ -22,4 +22,6 @@ namespace ProtonVPN.Client.Settings.Contracts;
 public interface ISettings : IGlobalSettings, IUserSettings
 {
     bool IsDebugModeEnabled { get; }
+
+    bool SkipNoConnectionsPage { get; set; }
 }

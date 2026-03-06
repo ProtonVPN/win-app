@@ -32,6 +32,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Cache;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts;
+using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.UI.Main;
 
@@ -47,6 +48,7 @@ public partial class NoServersPageViewModel : PageViewModelBase<IMainWindowViewN
     private readonly IReportIssueWindowActivator _reportIssueWindowActivator;
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
     private readonly IMainWindowActivator _mainWindowActivator;
+    private readonly ISettings _settings;
 
     private BaseResponseDetail? AuthResponseDetails => _vpnPlanUpdater.AuthResponseDetails;
 
@@ -54,11 +56,14 @@ public partial class NoServersPageViewModel : PageViewModelBase<IMainWindowViewN
         ? "NoServers_Title"
         : AuthResponseDetails.Title);
 
-    public string Description => Localizer.Get(HasServersRequestFailed
-        ? "NoServers_FailedToLoad"
-        : string.IsNullOrEmpty(AuthResponseDetails?.Body)
-            ? "NoServers_Tip"
-            : AuthResponseDetails.Body);
+    public string Description => Localizer.Get(
+        HasServersRequestFailed
+            ? "NoServers_FailedToLoad"
+            : !string.IsNullOrEmpty(AuthResponseDetails?.Body)
+                ? AuthResponseDetails.Body
+                : _serversCache.IsEmpty()
+                    ? "NoServers_Tip"
+                    : "NoServers_UnderMaintenance_Tip");
 
     public bool HasServersRequestFailed => _serversCache.HasServersRequestFailed();
 
@@ -74,6 +79,8 @@ public partial class NoServersPageViewModel : PageViewModelBase<IMainWindowViewN
 
     public MarkdownConfig MarkdownConfig { get; } = MarkdownConfig.Default;
 
+    public bool IsDebugModeEnabled => _settings.IsDebugModeEnabled;
+
     [ObservableProperty]
     private bool _isRefreshing;
 
@@ -86,6 +93,7 @@ public partial class NoServersPageViewModel : PageViewModelBase<IMainWindowViewN
         IMainWindowActivator mainWindowActivator,
         IMainWindowViewNavigator parentViewNavigator,
         IMainViewNavigator childViewNavigator,
+        ISettings settings,
         IViewModelHelper viewModelHelper)
         : base(parentViewNavigator, childViewNavigator, viewModelHelper)
     {
@@ -95,6 +103,7 @@ public partial class NoServersPageViewModel : PageViewModelBase<IMainWindowViewN
         _reportIssueWindowActivator = reportIssueWindowActivator;
         _vpnPlanUpdater = vpnPlanUpdater;
         _mainWindowActivator = mainWindowActivator;
+        _settings = settings;
     }
 
     protected override void OnActivated()
@@ -148,6 +157,11 @@ public partial class NoServersPageViewModel : PageViewModelBase<IMainWindowViewN
         }
     }
 
+    private bool CanRefresh()
+    {
+        return !IsRefreshing;
+    }
+
     [RelayCommand]
     private Task SignOutAsync()
     {
@@ -160,9 +174,16 @@ public partial class NoServersPageViewModel : PageViewModelBase<IMainWindowViewN
         _reportIssueWindowActivator.Activate();
     }
 
-    private bool CanRefresh()
+    [RelayCommand(CanExecute = nameof(CanSkipNoConnectionsPage))]
+    private Task SkipNoConnectionsPageAsync()
     {
-        return !IsRefreshing;
+        _settings.SkipNoConnectionsPage = true;
+        return ParentViewNavigator.NavigateToDefaultAsync();
+    }
+
+    private bool CanSkipNoConnectionsPage()
+    {
+        return IsDebugModeEnabled;
     }
 
     private async Task AutoLoginWithoutWindowRepositionAsync()

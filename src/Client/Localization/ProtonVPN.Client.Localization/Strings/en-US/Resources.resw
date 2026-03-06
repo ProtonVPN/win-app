@@ -3806,6 +3806,9 @@
   <data name="NoServers_Tip" xml:space="preserve">
     <value>Ask your administrator to enable VPN access for your account.</value>
   </data>
+  <data name="NoServers_UnderMaintenance_Tip" xml:space="preserve">
+    <value>We couldn't load any servers. Click Refresh to update the server list.</value>
+  </data>
   <data name="NoServers_FailedToLoad" xml:space="preserve">
     <value>We couldn't load the server list.</value>
   </data>

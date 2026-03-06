@@ -36,6 +36,8 @@ public class Settings : UserSettings, ISettings
         }
     }
 
+    public bool SkipNoConnectionsPage { get; set; }
+
     public Settings(IGlobalSettingsCache globalSettingsCache, IUserSettingsCache userSettingsCache)
         : base(globalSettingsCache, userSettingsCache)
     { }
