@@ -970,7 +970,7 @@
     <value>اضف طبقة اضافية من التشفير لاتصال VPN الخاص بك.</value>
   </data>
   <data name="Countries_ServerLoad">
-    <value>حمل الخادم</value>
+    <value>ضغط الخادم</value>
   </data>
   <data name="Countries_SmartRouting">
     <value>توجيه ذكي</value>
@@ -2241,9 +2241,9 @@
     <value>الإبلاغ عن مشكلة</value>
   </data>
   <data name="Dialogs_ServerLoad_Description">
-    <value>يظهر تحميل الخادم مدى قرب الخادم من سعته القصوى.
+    <value>تشير نسبة ضغط الخادم إلى كثافة المستخدمين المتصلين به حالياً.
 
-يمكن أن يؤدي الحمل العالي للخادم إلى إبطاء اتصالك.</value>
+وكلما زادت هذه النسبة، أصبح الإنترنت بطيئاً.</value>
   </data>
   <data name="Dialogs_ServerLoad_HighRange_Description">
     <value>قد يعمل VPN أبطأ من المعتاد</value>
@@ -2564,7 +2564,7 @@
     <value>أنت محمي من البرامج الضارة فقط</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Description">
-    <value>حجب الإعلانات والتتبع والبرامج الخبيثة باستخدام VPN Plus.</value>
+    <value>تخلص من الإعلانات وأدوات التتبع والبرامج الضارة مع باقة VPN Plus</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
     <value>استمتع بتصفح خالي من الإعلانات</value>
@@ -2600,7 +2600,7 @@
     <value>البروتوكول</value>
   </data>
   <data name="Flyouts_ServerLoad_Description">
-    <value>تظهر حمولة الخادم مدى اقتراب الخادم من الحد الأقصى للحمولة. الاتصال بخادم بحمل مرتفع قد يجعل اتصالك بطيئاً.</value>
+    <value>تشير نسبة ضغط الخادم إلى كثافة المستخدمين المتصلين به حالياً. وكلما زادت هذه النسبة، أصبح الإنترنت بطيئاً.</value>
   </data>
   <data name="Flyouts_ServerLoad_High">
     <value>مرتفعة (91-100%)</value>
@@ -2731,10 +2731,10 @@
     <value>تتصل هذه التطبيقات وعناوين IP بدون حماية VPN. جميع حركة المرور الأخرى محمية.</value>
   </data>
   <data name="Flyouts_SplitTunneling_Upsell_Description">
-    <value>قسّم حركة المرور الخاصة بك إلى أنفاق VPN وأنفاق غير VPN باستخدام VPN Plus.</value>
+    <value>قسم اتصالك بين الـ VPN وموقعك الحقيقي مع باقة VPN Plus</value>
   </data>
   <data name="Flyouts_SplitTunneling_Upsell_Title">
-    <value>احصل على أفضل ما في العالم</value>
+    <value>اجمع بين أفضل مزايا الاتصال مع باقة Plus</value>
   </data>
   <data name="Flyouts_Volume_Description">
     <value>يعرض إجمالي كمية البيانات التي مرت عبر نفق VPN منذ اتصالك.</value>
@@ -3456,9 +3456,9 @@ VPN</value>
     <value>Secure Core</value>
   </data>
   <data name="Overlay_ServerLoad_Description">
-    <value>يظهر تحميل الخادم مدى قرب الخادم من سعته القصوى.
+    <value>تشير نسبة ضغط الخادم إلى كثافة المستخدمين المتصلين به حالياً.
 
-يمكن أن يؤدي الحمل العالي للخادم إلى إبطاء اتصالك.</value>
+وكلما زادت هذه النسبة، أصبح الإنترنت بطيئاً.</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Description">
     <value>قد يعمل VPN أبطأ من المعتاد</value>
@@ -4236,7 +4236,7 @@ VPN</value>
     <value>يقوم مفتاح الإيقاف المتقدم بحظر اتصالك بالإنترنت.</value>
   </data>
   <data name="SignIn_Form_BestSecureVpnForSpeed">
-    <value>أفضل VPN آمن من حيث السرعة</value>
+    <value>الـ VPN الأكثر أماناً وسرعة</value>
   </data>
   <data name="SignIn_Form_CreateAccount">
     <value>إنشاء حساب</value>
@@ -4260,7 +4260,7 @@ VPN</value>
     <comment>Help button at the bottom of the login window</comment>
   </data>
   <data name="SignIn_Form_NoLogsPolicy">
-    <value>سياسة عدم الاحتفاظ بالسجلات</value>
+    <value>بلا سجلات</value>
   </data>
   <data name="SignIn_Form_OpenSource">
     <value>مفتوح المصدر</value>
@@ -4288,7 +4288,7 @@ VPN</value>
     <value>تسجيل الدخول باستخدام SSO</value>
   </data>
   <data name="SignIn_Form_SwissBased">
-    <value>مقره في سويسرا</value>
+    <value>مقره سويسرا</value>
   </data>
   <data name="SignIn_Form_Title">
     <value>تسجيل الدخول</value>
@@ -4494,7 +4494,7 @@ VPN</value>
     <value>احصل على سرعات اتصال تصل إلى 10 جيجابت في الثانية</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling">
-    <value>احصل على أفضل ما في العالم</value>
+    <value>اجمع بين أفضل مزايا الاتصال مع باقة Plus</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Browsing">
     <value>التصفح من موقعين في وقت واحد باستخدام split tunneling</value>

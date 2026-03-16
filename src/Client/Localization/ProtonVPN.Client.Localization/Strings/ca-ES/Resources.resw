@@ -3283,7 +3283,7 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Common_IpAddresses_AlreadyExists">
-    <value>Aquesta adreça ja s'havia afegit.</value>
+    <value>L'adreça ja s'ha afegit.</value>
   </data>
   <data name="Settings_Common_IpAddresses_Invalid">
     <value>Introduïu una adreça IPv4 o IPv6 vàlida</value>
