@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -32,14 +32,15 @@ public class ProtocolItem : ModelBase
 
     public bool IsSmartProtocol => Protocol == VpnProtocol.Smart;
 
-    public bool IsWireGuardTlsProtocol => Protocol == VpnProtocol.WireGuardTls;
+    public bool IsProTunUdpProtocol => Protocol == VpnProtocol.ProTunUdp;
+    public bool IsProTunTcpProtocol => Protocol == VpnProtocol.ProTunTcp;
+    public bool IsProTunTlsProtocol => Protocol == VpnProtocol.ProTunTls;
 
     public bool IsWireGuardUdpProtocol => Protocol == VpnProtocol.WireGuardUdp;
-
     public bool IsWireGuardTcpProtocol => Protocol == VpnProtocol.WireGuardTcp;
+    public bool IsWireGuardTlsProtocol => Protocol == VpnProtocol.WireGuardTls;
 
     public bool IsOpenVpnUdpProtocol => Protocol == VpnProtocol.OpenVpnUdp;
-
     public bool IsOpenVpnTcpProtocol => Protocol == VpnProtocol.OpenVpnTcp;
 
     public ProtocolItem(

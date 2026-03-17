@@ -21,14 +21,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Threading;
-using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.ProtocolLogs;
-using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Vpn.WireGuard;
 
@@ -80,7 +78,7 @@ public class StatusManager
             List<string> lines = _ringLogger.FollowFromCursor(ref cursor);
             foreach (string line in lines)
             {
-                _logger.Info<ProtocolLog>(GetFormattedMessage(line));
+                _logger.Info<WireGuardProtocolLog>(GetFormattedMessage(line));
 
                 bool isHandshakeSuccess = line.Contains(NT_HANDSHAKE_SUCCESS_MESSAGE) ||
                                           line.Contains(WINTUN_HANDSHAKE_SUCCESS_MESSAGE);

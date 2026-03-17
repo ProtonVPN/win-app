@@ -30,6 +30,9 @@ using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.OperatingSystems.Network.Contracts.Monitors;
 using ProtonVPN.OperatingSystems.Processes.Contracts;
 using ProtonVPN.OperatingSystems.Services.Contracts;
+using ProtonVPN.ProTun.Contracts;
+using ProtonVPN.ProTun.Contracts.Adapters;
+using ProtonVPN.ProTun.Contracts.Traffic;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Connection;
 using ProtonVPN.Vpn.Gateways;
@@ -44,6 +47,7 @@ using ProtonVPN.Vpn.PortMapping;
 using ProtonVPN.Vpn.PortMapping.Serializers.Common;
 using ProtonVPN.Vpn.PortMapping.UdpClients;
 using ProtonVPN.Vpn.PortScanning;
+using ProtonVPN.Vpn.ProTun;
 using ProtonVPN.Vpn.Restrictions;
 using ProtonVPN.Vpn.ServerValidation;
 using ProtonVPN.Vpn.SplitTunnel;
@@ -144,7 +148,33 @@ public class Module
                                         new PortForwardingWrapper(
                                             logger,
                                             portMappingProtocolClient,
-                                            new VpnProtocolWrapper(GetOpenVpnConnection(c), GetWireguardConnection(c))))))))));
+                                            new VpnProtocolWrapper(
+                                                proTunConnection: GetProTunConnection(c),
+                                                openVpnConnection: GetOpenVpnConnection(c),
+                                                wireGuardConnection: GetWireguardConnection(c))))))))));
+    }
+
+    private ISingleVpnConnection GetProTunConnection(IComponentContext c)
+    {
+        ILogger logger = c.Resolve<ILogger>();
+        IStaticConfiguration staticConfig = c.Resolve<IStaticConfiguration>();
+        IGatewayCache gatewayCache = c.Resolve<IGatewayCache>();
+        INetShieldStatisticEventManager netShieldStatisticEventManager = c.Resolve<INetShieldStatisticEventManager>();
+        IRestrictionsEventManager restrictionsEventManager = c.Resolve<IRestrictionsEventManager>();
+        IX25519KeyGenerator x25519KeyGenerator = c.Resolve<IX25519KeyGenerator>();
+        ILocalAgentTlsCredentialsCache localAgentTlsCredentialsCache = c.Resolve<ILocalAgentTlsCredentialsCache>();
+        IProTunManager proTunManager = c.Resolve<IProTunManager>();
+        IProTunTrafficManager proTunTrafficManager = c.Resolve<IProTunTrafficManager>();
+        IAdapterDetailsCache adapterDetailsCache = c.Resolve<IAdapterDetailsCache>();
+
+        return new LocalAgentWrapper(logger, new EventReceiver(logger, netShieldStatisticEventManager, restrictionsEventManager), c.Resolve<ISplitTunnelRouting>(),
+            gatewayCache,
+            localAgentTlsCredentialsCache,
+            new ProTunConnection(logger, staticConfig, gatewayCache,
+                proTunManager,
+                proTunTrafficManager,
+                x25519KeyGenerator,
+                adapterDetailsCache));
     }
 
     private ISingleVpnConnection GetWireguardConnection(IComponentContext c)
@@ -170,7 +200,7 @@ public class Module
                 c.Resolve<IRouteChangeMonitor>(),
                 c.Resolve<INetworkInterfacePolicyManager>(),
                 new WireGuardService(logger, staticConfig, serviceFactory.Get(staticConfig.WireGuard.ServiceName)),
-                new WireGuardConfigGenerator(config, x25519KeyGenerator, wireGuardDnsServersCreator),
+                new WireGuardConfigGenerator(staticConfig, x25519KeyGenerator, wireGuardDnsServersCreator),
                 new NtTrafficManager(staticConfig.WireGuard.ConfigFileName, logger),
                 new WintunTrafficManager(staticConfig.WireGuard.PipeName),
                 new StatusManager(logger, staticConfig.WireGuard.LogFilePath),

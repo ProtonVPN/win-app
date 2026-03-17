@@ -72,13 +72,13 @@ namespace ProtonVPN.Vpn.Management
         {
             if (!message.IsByteCount)
             {
-                _logger.Info<ProtocolLog>($"Management -> {message}");
+                _logger.Info<OpenVpnProtocolLog>($"Management -> {message}");
             }
         }
 
         private void Log(ManagementMessage message)
         {
-            _logger.Info<ProtocolLog>($"Management <- {message.LogText}");
+            _logger.Info<OpenVpnProtocolLog>($"Management <- {message.LogText}");
         }
     }
 }

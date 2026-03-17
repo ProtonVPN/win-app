@@ -31,15 +31,15 @@ public class WireGuardConfigGenerator : IWireGuardConfigGenerator
     private const string IPV4_ALLOWED_IP = "0.0.0.0/0";
     private const string IPV6_ALLOWED_IP = "::/0";
 
-    private readonly IConfiguration _config;
+    private readonly IStaticConfiguration _staticConfig;
     private readonly IX25519KeyGenerator _x25519KeyGenerator;
     private readonly IWireGuardDnsServersCreator _wireGuardDnsServersCreator;
 
-    public WireGuardConfigGenerator(IConfiguration config,
+    public WireGuardConfigGenerator(IStaticConfiguration staticConfig,
         IX25519KeyGenerator x25519KeyGenerator,
         IWireGuardDnsServersCreator wireGuardDnsServersCreator)
     {
-        _config = config;
+        _staticConfig = staticConfig;
         _x25519KeyGenerator = x25519KeyGenerator;
         _wireGuardDnsServersCreator = wireGuardDnsServersCreator;
     }
@@ -72,10 +72,10 @@ public class WireGuardConfigGenerator : IWireGuardConfigGenerator
 
     private string GetClientAddress(bool isIpv6Supported)
     {
-        string ipv4 = $"{_config.WireGuard.DefaultClientIpv4Address}/32";
+        string ipv4 = $"{_staticConfig.WireGuard.DefaultClientIpv4Address}/32";
 
         return isIpv6Supported
-            ? $"{ipv4}, {_config.WireGuard.DefaultClientIpv6Address}/128"
+            ? $"{ipv4}, {_staticConfig.WireGuard.DefaultClientIpv6Address}/128"
             : ipv4;
     }
 

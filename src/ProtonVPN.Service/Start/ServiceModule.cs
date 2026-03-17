@@ -38,6 +38,7 @@ using ProtonVPN.OperatingSystems.Services.Contracts;
 using ProtonVPN.OperatingSystems.Services.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.ProcessCommunication.Server.Installers;
+using ProtonVPN.ProTun.Installers;
 using ProtonVPN.Serialization.Installers;
 using ProtonVPN.Service.ControllerRetries;
 using ProtonVPN.Service.Driver;
@@ -119,7 +120,8 @@ internal class ServiceModule : Module
                .RegisterAssemblyModule<PowerEventsModule>()
                .RegisterAssemblyModule<ProcessesModule>()
                .RegisterAssemblyModule<ServicesModule>()
-               .RegisterAssemblyModule<NameResolutionPolicyTableModule>();
+               .RegisterAssemblyModule<NameResolutionPolicyTableModule>()
+               .RegisterAssemblyModule<ProTunModule>();
     }
 
     private IVpnConnection GetVpnConnection(IComponentContext c, IVpnConnection connection)

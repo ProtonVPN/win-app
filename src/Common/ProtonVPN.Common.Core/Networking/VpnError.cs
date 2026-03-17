@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Common.Legacy.Vpn;
+namespace ProtonVPN.Common.Core.Networking;
 
 public enum VpnError
 {
@@ -45,6 +45,7 @@ public enum VpnError
     MissingConnectionCertificate,
     BaseFilteringEngineServiceNotRunning,
     InterfaceHasForwardingEnabled,
+    NetworkUnavailable,
 
     CertificateExpired = 86101,
     CertificateRevoked = 86102,

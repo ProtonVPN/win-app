@@ -19,23 +19,22 @@
 
 using Newtonsoft.Json;
 
-namespace ProtonVPN.Vpn.LocalAgent.Contracts
+namespace ProtonVPN.Vpn.LocalAgent.Contracts;
+
+public class FeaturesContract
 {
-    public class FeaturesContract
-    {
-        [JsonProperty(PropertyName = "randomized-nat")]
-        public bool RandomizedNat { get; set; }
+    [JsonProperty(PropertyName = "randomized-nat")]
+    public bool RandomizedNat { get; set; }
 
-        [JsonProperty(PropertyName = "bouncing")]
-        public string Bouncing { get; set; }
+    [JsonProperty(PropertyName = "bouncing")]
+    public string Bouncing { get; set; }
 
-        [JsonProperty(PropertyName = "split-tcp")]
-        public bool SplitTcp { get; set; }
+    [JsonProperty(PropertyName = "split-tcp")]
+    public bool SplitTcp { get; set; }
 
-        [JsonProperty(PropertyName = "netshield-level")]
-        public int NetShieldLevel { get; set; }
+    [JsonProperty(PropertyName = "netshield-level")]
+    public int NetShieldLevel { get; set; }
 
-        [JsonProperty(PropertyName = "port-forwarding")]
-        public bool PortForwarding { get; set; }
-    }
+    [JsonProperty(PropertyName = "port-forwarding")]
+    public bool PortForwarding { get; set; }
 }

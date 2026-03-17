@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -27,4 +27,7 @@ public enum VpnProtocol
     WireGuardUdp,
     WireGuardTcp,
     WireGuardTls,
+    ProTunUdp,
+    ProTunTcp,
+    ProTunTls,
 }

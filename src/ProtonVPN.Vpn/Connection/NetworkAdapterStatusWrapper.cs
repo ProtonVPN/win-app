@@ -83,9 +83,9 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
         _credentials = credentials;
         _config = config;
 
-        if (_endpoint.VpnProtocol.IsWireGuard())
+        if (_endpoint.VpnProtocol.IsProTunOrWireGuard())
         {
-            _logger.Info<ConnectLog>("WireGuard protocol selected. No network adapters to check.");
+            _logger.Info<ConnectLog>($"{_endpoint.VpnProtocol} protocol selected. No network adapters to check.");
             Connect();
         }
         else
@@ -249,33 +249,6 @@ internal class NetworkAdapterStatusWrapper : ISingleVpnConnection
 
     private void HandleVpnError(VpnState vpnState)
     {
-        switch (vpnState.VpnProtocol)
-        {
-            case VpnProtocol.WireGuardUdp:
-            case VpnProtocol.WireGuardTcp:
-            case VpnProtocol.WireGuardTls:
-                HandleWireGuardError(vpnState);
-                break;
-            case VpnProtocol.OpenVpnUdp:
-            case VpnProtocol.OpenVpnTcp:
-                HandleOpenVpnError(vpnState);
-                break;
-            case VpnProtocol.Smart:
-                HandleWireGuardError(vpnState);
-                HandleOpenVpnError(vpnState);
-                break;
-        }
-    }
-
-    private void HandleWireGuardError(VpnState vpnState)
-    {
-        _logger.Warn<NetworkLog>($"Connection error '{vpnState.Error}' while using " +
-            $"protocol '{vpnState.VpnProtocol}'.");
-    }
-
-    private void HandleOpenVpnError(VpnState vpnState)
-    {
-        _logger.Warn<NetworkLog>($"Connection error '{vpnState.Error}' while using " +
-            $"protocol '{vpnState.VpnProtocol}'.");
+        _logger.Warn<NetworkLog>($"Connection error '{vpnState.Error}' while using protocol '{vpnState.VpnProtocol}'.");
     }
 }

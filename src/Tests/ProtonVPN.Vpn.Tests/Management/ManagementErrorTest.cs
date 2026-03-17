@@ -19,7 +19,7 @@
 
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProtonVPN.Common.Legacy.Vpn;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Vpn.Management;
 
 namespace ProtonVPN.Vpn.Tests.Management

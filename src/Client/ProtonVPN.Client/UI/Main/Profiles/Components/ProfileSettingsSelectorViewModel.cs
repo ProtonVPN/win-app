@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -167,6 +167,9 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileS
         yield return VpnProtocol.WireGuardTls;
         yield return VpnProtocol.OpenVpnUdp;
         yield return VpnProtocol.OpenVpnTcp;
+        yield return VpnProtocol.ProTunUdp;
+        yield return VpnProtocol.ProTunTcp;
+        yield return VpnProtocol.ProTunTls;
     }
 
     private static IEnumerable<NetShieldMode?> GetNetShieldModesByOrder()
@@ -375,6 +378,24 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileS
     private void SelectOpenVpnTcpProtocol()
     {
         SelectProtocol(VpnProtocol.OpenVpnTcp);
+    }
+
+    [RelayCommand]
+    private void SelectProTunUdpProtocol()
+    {
+        SelectProtocol(VpnProtocol.ProTunUdp);
+    }
+
+    [RelayCommand]
+    private void SelectProTunTcpProtocol()
+    {
+        SelectProtocol(VpnProtocol.ProTunTcp);
+    }
+
+    [RelayCommand]
+    private void SelectProTunTlsProtocol()
+    {
+        SelectProtocol(VpnProtocol.ProTunTls);
     }
 
     private void SelectProtocol(VpnProtocol protocol)

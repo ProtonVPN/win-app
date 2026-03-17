@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -35,14 +35,9 @@ public class NetworkInterfaceLoader : INetworkInterfaceLoader
         _config = config;
     }
 
-    public INetworkInterface GetOpenVpnTapInterface()
+    public INetworkInterface GetProTunInterface()
     {
-        return _networkInterfaces.GetByDescription(_config.OpenVpn.TapAdapterDescription);
-    }
-
-    public INetworkInterface GetOpenVpnTunInterface()
-    {
-        return _networkInterfaces.GetByName(_config.OpenVpn.TunAdapterName);
+        return _networkInterfaces.GetById(_config.ProTun.WintunAdapterGuid);
     }
 
     public INetworkInterface GetWireGuardInterface(VpnProtocol protocol)
@@ -57,11 +52,23 @@ public class NetworkInterfaceLoader : INetworkInterfaceLoader
         return _networkInterfaces.GetById(guid);
     }
 
+    public INetworkInterface GetOpenVpnTunInterface()
+    {
+        return _networkInterfaces.GetByName(_config.OpenVpn.TunAdapterName);
+    }
+
+    public INetworkInterface GetOpenVpnTapInterface()
+    {
+        return _networkInterfaces.GetByDescription(_config.OpenVpn.TapAdapterDescription);
+    }
+
     public INetworkInterface GetByVpnProtocol(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter)
     {
         return vpnProtocol.IsWireGuard()
             ? GetWireGuardInterface(vpnProtocol)
-            : GetByOpenVpnAdapter(openVpnAdapter);
+            : vpnProtocol.IsProTun()
+                ? GetProTunInterface()
+                : GetByOpenVpnAdapter(openVpnAdapter);
     }
 
     public INetworkInterface GetByOpenVpnAdapter(OpenVpnAdapter? openVpnAdapter)

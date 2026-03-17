@@ -1,0 +1,265 @@
+﻿/*
+ * Copyright (c) 2025 Proton AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Common.Legacy;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
+using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
+using ProtonVPN.ProTun.Adapters;
+using ProtonVPN.ProTun.Contracts;
+using ProtonVPN.ProTun.Contracts.Adapters;
+using ProtonVPN.ProTun.Contracts.ConnectionArguments;
+using ProtonVPN.ProTun.Generated;
+using ProtonVPN.ProTun.Logging;
+using ProtonVPN.ProTun.StateChanges;
+using ProtonVPN.ProTun.StatsResponses;
+using ProTunApi = ProtonVPN.ProTun.Generated.ProTun;
+using ProTunConnection = ProtonVPN.ProTun.Generated.Connection;
+using ProTunWindowsConnection = ProtonVPN.ProTun.Generated.WindowsConnection;
+
+namespace ProtonVPN.ProTun;
+
+public class ProTunManager : IProTunManager
+{
+    private const LogLevel LOG_LEVEL = LogLevel.Info;
+    private const ushort MTU = 1420;
+
+    private readonly IProTunLogger _proTunLogger;
+    private readonly IProTunStateChangeHandler _proTunStateChangeHandler;
+    private readonly IProTunStatsResponseHandler _proTunStatsResponseHandler;
+    private readonly IAdapterDetailsCache _adapterDetailsCache;
+    private readonly ILogger _logger;
+
+    private readonly SemaphoreSlim _protunSemaphore = new(1, 1);
+    private readonly SemaphoreSlim _connectionSemaphore = new(1, 1);
+
+    private ProTunApi? _protun;
+    private ProTunWindowsConnection? _windowsConnection;
+    private ProTunConnection? _connection;
+
+    public event EventHandler<EventArgs<VpnState>>? OnStateChanged;
+    public event EventHandler<EventArgs<NetworkTraffic>>? OnTrafficUpdated
+    {
+        add => _proTunStatsResponseHandler.TrafficUpdated += value;
+        remove => _proTunStatsResponseHandler.TrafficUpdated -= value;
+    }
+
+    public ProTunManager(IProTunLogger proTunLogger,
+        IProTunStateChangeHandler proTunStateChangeHandler,
+        IProTunStatsResponseHandler proTunStatsResponseHandler,
+        IAdapterDetailsCache adapterDetailsCache,
+        ILogger logger)
+    {
+        _proTunLogger = proTunLogger;
+        _proTunStateChangeHandler = proTunStateChangeHandler;
+        _proTunStatsResponseHandler = proTunStatsResponseHandler;
+        _adapterDetailsCache = adapterDetailsCache;
+        _logger = logger;
+
+        ProTunDllLoader.Register();
+
+        proTunStateChangeHandler.StateChanged += OnHandlerStateChanged;
+    }
+
+    private void OnHandlerStateChanged(object? sender, EventArgs<VpnState> e)
+    {
+        OnStateChanged?.Invoke(sender, e);
+    }
+
+    public async Task InitializeAsync()
+    {
+        await _protunSemaphore.WaitAsync();
+
+        try
+        {
+            if (_protun is null)
+            {
+                _protun = ProTunApi.Initialize(LOG_LEVEL, _proTunLogger);
+                if (_protun is null)
+                {
+                    _logger.Error<ConnectionErrorLog>("Failed to initializing ProTUN");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<ConnectionErrorLog>("Error when initializing ProTUN", ex);
+        }
+        finally
+        {
+            _protunSemaphore.Release();
+        }
+    }
+
+    public async Task ConnectAsync(ConnectionArgs args)
+    {
+        await _connectionSemaphore.WaitAsync();
+        VpnState? disconnectState = null;
+        try
+        {
+            TryDisconnect(null);
+            await InitializeAsync();
+            if (_protun is null)
+            {
+                _logger.Error<ConnectionErrorLog>("Cannot connect because ProTUN object doesn't exist");
+            }
+            else
+            {
+                InitialConnectionConfig initialConnectionConfig = CreateInitialConnectionConfig(args);
+                AdapterConfig adapterConfig = CreateAdapterConfig(args);
+                _windowsConnection = ProTunWindowsConnection.Connect(initialConnectionConfig, adapterConfig, _proTunStateChangeHandler, _proTunStatsResponseHandler);
+                AdapterDetails adapterDetails = _windowsConnection.GetAdapterDetails().Map();
+                _adapterDetailsCache.Set(adapterDetails);
+                _connection = _windowsConnection.GetConnection();
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<ConnectionErrorLog>("Error when connecting with ProTUN", ex);
+            disconnectState = TryDisconnect(VpnError.AdapterTimeoutError);
+        }
+        finally
+        {
+            _connectionSemaphore.Release();
+        }
+
+        if (disconnectState != null)
+        {
+            OnHandlerStateChanged(null, new EventArgs<VpnState>(disconnectState));
+        }
+    }
+
+    private VpnState? TryDisconnect(VpnError? vpnError)
+    {
+        Disconnect();
+        DestroyConnection();
+
+        return vpnError.HasValue
+            ? new(VpnStatus.Disconnected, vpnError.Value, VpnProtocol.Smart)
+            : null;
+    }
+
+    private void Disconnect()
+    {
+        try
+        {
+            _connection?.Disconnect();
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<DisconnectLog>("Error when disconnecting with ProTUN", ex);
+        }
+
+        _connection = null;
+    }
+
+    private void DestroyConnection()
+    {
+        try
+        {
+            _windowsConnection?.Destroy();
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<DisconnectLog>("Error when destroying ProTUN connection", ex);
+        }
+
+        _windowsConnection = null;
+    }
+
+    private static InitialConnectionConfig CreateInitialConnectionConfig(ConnectionArgs args)
+    {
+        return new InitialConnectionConfig(
+            wgPrivateKey: args.WireGuardPrivateKey,
+            peers: MapPeers(args.Peers).ToArray(),
+            networkAvailable: true,
+            pcapFile: null
+        );
+    }
+
+    private static IEnumerable<PeerInfo> MapPeers(List<ConnectionPeer> peers)
+    {
+        foreach (ConnectionPeer peer in peers)
+        {
+            if (peer is not null)
+            {
+                yield return MapPeer(peer);
+            }
+        }
+    }
+
+    private static PeerInfo MapPeer(ConnectionPeer peer)
+    {
+        return new(
+            peerId: peer.PeerId,
+            serverIp: peer.ServerIp,
+            serverPublicKey: peer.ServerPublicKey,
+            udpPorts: peer.UdpPorts,
+            tcpPorts: peer.TcpPorts,
+            tlsPorts: peer.TlsPorts,
+            priority: peer.Priority
+        );
+    }
+
+    private static AdapterConfig CreateAdapterConfig(ConnectionArgs args)
+    {
+        return new AdapterConfig(
+            customDnsServerIps: args.CustomDnsServers.ToArray(),
+            isIpv6Enabled: args.IsIpv6Enabled,
+            mtu: MTU
+        );
+    }
+
+    public async Task DisconnectAsync(VpnError? vpnError)
+    {
+        await _connectionSemaphore.WaitAsync();
+        VpnState? disconnectState = null;
+        try
+        {
+            disconnectState = TryDisconnect(vpnError);
+        }
+        finally
+        {
+            _connectionSemaphore.Release();
+        }
+
+        if (disconnectState != null)
+        {
+            OnHandlerStateChanged(null, new EventArgs<VpnState>(disconnectState));
+        }
+    }
+
+    public async Task RequestStatsAsync()
+    {
+        await _connectionSemaphore.WaitAsync();
+        try
+        {
+            _connection?.GetStats();
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<ConnectionErrorLog>("Error when requesting stats from ProTUN", ex);
+        }
+        finally
+        {
+            _connectionSemaphore.Release();
+        }
+    }
+}

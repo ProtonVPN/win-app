@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,18 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
+using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Common.Legacy;
+using ProtonVPN.ProTun.Generated;
 
-namespace ProtonVPN.Vpn.LocalAgent;
+namespace ProtonVPN.ProTun.StatsResponses;
 
-public class ConnectionCertificate
+public class ProTunStatsResponseHandler : IProTunStatsResponseHandler
 {
-    public string Pem { get; }
-    public DateTime? ExpirationDateUtc { get; }
+    public event EventHandler<EventArgs<NetworkTraffic>>? TrafficUpdated;
 
-    public ConnectionCertificate(string pem, DateTime? expirationDateUtc)
+    public void OnStatsResponse(ConnectionStats stats)
     {
-        Pem = pem;
-        ExpirationDateUtc = expirationDateUtc;
+        NetworkTraffic traffic = new(stats.receivedBytes, stats.sentBytes);
+        InvokeTrafficUpdate(traffic);
+    }
+
+    private void InvokeTrafficUpdate(NetworkTraffic traffic)
+    {
+        TrafficUpdated?.Invoke(this, new EventArgs<NetworkTraffic>(traffic));
     }
 }

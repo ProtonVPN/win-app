@@ -26,6 +26,8 @@
         <ProjectReference Include="..\OperatingSystems\Services\ProtonVPN.OperatingSystems.Services.Contracts\ProtonVPN.OperatingSystems.Services.Contracts.csproj" />
         <ProjectReference Include="..\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj" />
         <ProjectReference Include="..\ProtonVPN.WireGuardDriver\ProtonVPN.WireGuardDriver.csproj" />
+        <ProjectReference Include="..\ProTun\ProtonVPN.ProTun.Contracts\ProtonVPN.ProTun.Contracts.csproj" />
+        <ProjectReference Include="..\ProTun\ProtonVPN.ProTun.Generated\ProtonVPN.ProTun.Generated.csproj" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Autofac" />

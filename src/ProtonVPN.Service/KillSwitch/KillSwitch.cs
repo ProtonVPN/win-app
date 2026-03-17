@@ -28,7 +28,6 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.Vpn;
-using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Service.KillSwitch;
 
@@ -88,7 +87,7 @@ public class KillSwitch : IVpnStateAware, IServiceSettingsAware, IStartable
     {
         // AssigningIp VPN status for WireGuard is fired when WireGuard finishes its startup "Startup complete"
         // Only then the interface is up and we can get its index to permit it on the firewall.
-        if (state.VpnProtocol.IsWireGuard())
+        if (state.VpnProtocol.IsProTunOrWireGuard())
         {
             EnableLeakProtection();
         }

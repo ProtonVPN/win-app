@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,13 +23,28 @@ namespace ProtonVPN.Common.Core.Extensions;
 
 public static class VpnProtocolExtensions
 {
+    public static bool IsProTun(this VpnProtocol protocol)
+    {
+        return protocol is VpnProtocol.ProTunUdp or VpnProtocol.ProTunTcp or VpnProtocol.ProTunTls;
+    }
+
     public static bool IsWireGuard(this VpnProtocol protocol)
     {
         return protocol is VpnProtocol.WireGuardUdp or VpnProtocol.WireGuardTcp or VpnProtocol.WireGuardTls;
     }
 
+    public static bool IsProTunOrWireGuard(this VpnProtocol protocol)
+    {
+        return protocol.IsProTun() || protocol.IsWireGuard();
+    }
+
     public static bool IsOpenVpn(this VpnProtocol protocol)
     {
         return protocol is VpnProtocol.OpenVpnUdp or VpnProtocol.OpenVpnTcp;
+    }
+
+    public static bool IsUdp(this VpnProtocol protocol)
+    {
+        return protocol is VpnProtocol.ProTunUdp or VpnProtocol.WireGuardUdp or VpnProtocol.OpenVpnUdp;
     }
 }

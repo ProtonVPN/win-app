@@ -254,6 +254,12 @@
   <Folder Name="/ProtonInstaller/">
     <Project Path="src/ProtonInstaller/ProtonInstaller.csproj" />
   </Folder>
+  <Folder Name="/ProTun/">
+    <Project Path="src/ProTun/ProtonVPN.ProTun.Contracts/ProtonVPN.ProTun.Contracts.csproj" />
+    <Project Path="src/ProTun/ProtonVPN.ProTun.Generated/ProtonVPN.ProTun.Generated.csproj" />
+    <Project Path="src/ProTun/ProtonVPN.ProTun.Installers/ProtonVPN.ProTun.Installers.csproj" />
+    <Project Path="src/ProTun/ProtonVPN.ProTun/ProtonVPN.ProTun.csproj" />
+  </Folder>
   <Folder Name="/Serialization/">
     <Project Path="src/Serialization/ProtonVPN.Serialization.Contracts/ProtonVPN.Serialization.Contracts.csproj" />
     <Project Path="src/Serialization/ProtonVPN.Serialization.Installers/ProtonVPN.Serialization.Installers.csproj" />

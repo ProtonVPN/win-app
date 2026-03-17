@@ -34,6 +34,9 @@ public class VpnProtocolMapper : IMapper<VpnProtocol, VpnProtocolIpcEntity>
             VpnProtocol.WireGuardUdp => VpnProtocolIpcEntity.WireGuardUdp,
             VpnProtocol.WireGuardTcp => VpnProtocolIpcEntity.WireGuardTcp,
             VpnProtocol.WireGuardTls => VpnProtocolIpcEntity.WireGuardTls,
+            VpnProtocol.ProTunUdp => VpnProtocolIpcEntity.ProTunUdp,
+            VpnProtocol.ProTunTcp => VpnProtocolIpcEntity.ProTunTcp,
+            VpnProtocol.ProTunTls => VpnProtocolIpcEntity.ProTunTls,
             VpnProtocol.Smart => VpnProtocolIpcEntity.Smart,
             _ => throw new NotImplementedException("VpnProtocol has an unknown value.")
         };
@@ -48,6 +51,9 @@ public class VpnProtocolMapper : IMapper<VpnProtocol, VpnProtocolIpcEntity>
             VpnProtocolIpcEntity.WireGuardUdp => VpnProtocol.WireGuardUdp,
             VpnProtocolIpcEntity.WireGuardTcp => VpnProtocol.WireGuardTcp,
             VpnProtocolIpcEntity.WireGuardTls => VpnProtocol.WireGuardTls,
+            VpnProtocolIpcEntity.ProTunUdp => VpnProtocol.ProTunUdp,
+            VpnProtocolIpcEntity.ProTunTcp => VpnProtocol.ProTunTcp,
+            VpnProtocolIpcEntity.ProTunTls => VpnProtocol.ProTunTls,
             VpnProtocolIpcEntity.Smart => VpnProtocol.Smart,
             _ => throw new NotImplementedException("VpnProtocol has an unknown value."),
         };

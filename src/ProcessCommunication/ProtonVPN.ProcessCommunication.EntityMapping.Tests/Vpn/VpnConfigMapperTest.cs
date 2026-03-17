@@ -17,17 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NSubstitute.Core;
-using ProtonVPN.Common.Legacy;
+using ProtonVPN.Common.Core.Dns;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Dns;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
-using ProtonVPN.Common.Core.Dns;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Dns;
 
 namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn;
 
@@ -106,6 +105,7 @@ public class VpnConfigMapperTest
             Ports = new Dictionary<VpnProtocol, IReadOnlyCollection<int>>()
             {
                 { VpnProtocol.WireGuardUdp, new List<int>() { 80, 443 } },
+                { VpnProtocol.ProTunUdp, new List<int>() { 1, 80, 443 } },
                 { VpnProtocol.OpenVpnUdp, new List<int>() { 8080, 1 } }
             },
             CustomDns = new List<string>() { "172.16.0.0" },
@@ -176,6 +176,7 @@ public class VpnConfigMapperTest
             Ports = new Dictionary<VpnProtocolIpcEntity, int[]>()
             {
                 { VpnProtocolIpcEntity.WireGuardUdp, new int[] { 80, 443 } },
+                { VpnProtocolIpcEntity.ProTunUdp, new int[] { 1, 80, 443 } },
                 { VpnProtocolIpcEntity.OpenVpnUdp, new int[] { 8080, 1 } }
             },
             CustomDns = new List<string>() { "172.16.0.0" },

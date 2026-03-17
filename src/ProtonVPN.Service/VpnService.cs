@@ -21,7 +21,8 @@ using System;
 using System.ComponentModel;
 using System.ServiceProcess;
 using System.Threading;
-using ProtonVPN.Common.Legacy.Vpn;
+using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -32,6 +33,7 @@ using ProtonVPN.OperatingSystems.NRPT.Contracts;
 using ProtonVPN.OperatingSystems.PowerEvents.Contracts;
 using ProtonVPN.OperatingSystems.Services.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts;
+using ProtonVPN.ProTun.Contracts;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Vpn.Common;
 
@@ -50,6 +52,8 @@ internal partial class VpnService : ServiceBase
     private readonly IGrpcServer _grpcServer;
     private readonly IServiceFactory _serviceFactory;
     private readonly INrptInvoker _nrptInvoker;
+    private readonly IProTunManager _proTunManager;
+
     private bool _isConnected;
 
     public VpnService(
@@ -61,7 +65,8 @@ internal partial class VpnService : ServiceBase
         IGrpcServer grpcServer,
         IPowerEventNotifier powerEventNotifier,
         IServiceFactory serviceFactory,
-        INrptInvoker nrptInvoker)
+        INrptInvoker nrptInvoker,
+        IProTunManager proTunManager)
     {
         _logger = logger;
         _issueReporter = issueReporter;
@@ -71,6 +76,7 @@ internal partial class VpnService : ServiceBase
         _grpcServer = grpcServer;
         _serviceFactory = serviceFactory;
         _nrptInvoker = nrptInvoker;
+        _proTunManager = proTunManager;
 
         powerEventNotifier.OnResume += OnPowerEventResume;
         _vpnConnection.StateChanged += OnVpnStateChanged;
@@ -108,14 +114,15 @@ internal partial class VpnService : ServiceBase
         LogEvent("Service is starting");
         try
         {
-            _grpcServer.CreateAndStart();
-
             if (!IsBfeServiceRunningAndEnabled())
             {
                 _vpnConnection.Disconnect(VpnError.BaseFilteringEngineServiceNotRunning);
                 Stop();
                 return;
             }
+
+            _grpcServer.CreateAndStart();
+            _proTunManager.InitializeAsync().FireAndForget();
 
             _vpnConnection.Disconnect();
             _nrptInvoker.DeleteRule();

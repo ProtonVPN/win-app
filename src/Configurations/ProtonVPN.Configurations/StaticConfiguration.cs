@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -59,8 +59,9 @@ public class StaticConfiguration : IStaticConfiguration
     public string IPv6PrefixTreeFilePath { get; } = DefaultConfiguration.IPv6PrefixTreeFilePath;
     public string IPv6PersistedDataFilePath { get; } = DefaultConfiguration.IPv6PersistedDataFilePath;
 
-    public IOpenVpnConfigurations OpenVpn { get; } = DefaultConfiguration.OpenVpn;
+    public IProTunConfigurations ProTun { get; } = DefaultConfiguration.ProTun;
     public IWireGuardConfigurations WireGuard { get; } = DefaultConfiguration.WireGuard;
+    public IOpenVpnConfigurations OpenVpn { get; } = DefaultConfiguration.OpenVpn;
 
     public string WintunDriverPath { get; } = DefaultConfiguration.WintunDriverPath;
     public string WintunAdapterName { get; } = DefaultConfiguration.WintunAdapterName;

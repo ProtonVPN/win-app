@@ -19,18 +19,17 @@
 
 using Newtonsoft.Json;
 
-namespace ProtonVPN.Vpn.LocalAgent.Contracts
+namespace ProtonVPN.Vpn.LocalAgent.Contracts;
+
+public class ConnectionDetailsContract
 {
-    public class ConnectionDetailsContract
-    {
-        public string DeviceIp { get; set;  }
+    public string DeviceIp { get; set;  }
 
-        public string DeviceCountry { get; set; }
+    public string DeviceCountry { get; set; }
 
-        [JsonProperty("ServerIpv4")]
-        public string ServerIpv4Address { get; set; }
+    [JsonProperty("ServerIpv4")]
+    public string ServerIpv4Address { get; set; }
 
-        [JsonProperty("ServerIpv6")]
-        public string ServerIpv6Address { get; set; }
-    }
+    [JsonProperty("ServerIpv6")]
+    public string ServerIpv6Address { get; set; }
 }

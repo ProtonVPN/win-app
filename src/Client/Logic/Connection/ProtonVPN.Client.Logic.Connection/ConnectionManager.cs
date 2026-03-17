@@ -36,7 +36,6 @@ using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -48,6 +47,7 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 using ConnectionDetails = ProtonVPN.Client.Logic.Connection.Contracts.Models.ConnectionDetails;
 using IpAddressInfo = ProtonVPN.Common.Core.Vpn.IpAddressInfo;
+using VpnProtocol = ProtonVPN.Common.Core.Networking.VpnProtocol;
 
 namespace ProtonVPN.Client.Logic.Connection;
 

@@ -18,26 +18,24 @@
  */
 
 using System.Collections.Generic;
-using ProtonVPN.Common.Legacy.Restrictions;
 
-namespace ProtonVPN.Vpn.LocalAgent.Contracts
+namespace ProtonVPN.Vpn.LocalAgent.Contracts;
+
+public class EventContract
 {
-    public class EventContract
-    {
-        public string EventType { get; set; }
+    public string EventType { get; set; }
 
-        public string Log { get; set; }
+    public string Log { get; set; }
 
-        public string State { get; set; }
+    public string State { get; set; }
 
-        public int Code { get;set; }
+    public int Code { get;set; }
 
-        public string Desc { get; set; }
+    public string Desc { get; set; }
 
-        public ConnectionDetailsContract ConnectionDetails { get; set; }
+    public ConnectionDetailsContract ConnectionDetails { get; set; }
 
-        public string FeaturesStatistics { get; set; }
+    public string FeaturesStatistics { get; set; }
 
-        public List<string> Restrictions { get; set; }
-    }
+    public List<string> Restrictions { get; set; }
 }

@@ -154,6 +154,11 @@ namespace ProtonVPN.Vpn.Connection
                 _isToDiscardProtocol = true;
             }
 
+            if (IsNetworkUnavailableError(_state.Error))
+            {
+                OnNetworkUnavailableError();
+            }
+
             if (IsToHandleAdapterError())
             {
                 OnAdapterError(_state.VpnProtocol, _state.Error);
@@ -179,6 +184,14 @@ namespace ProtonVPN.Vpn.Connection
             }
 
             OnStateChanged(FilterVpnState(_state));
+        }
+
+        private void OnNetworkUnavailableError()
+        {
+            _logger.Info<ConnectLog>("Reconnecting after network available error.");
+            _candidates.Reset();
+            _isToConnect = true;
+            _isToReconnect = true;
         }
 
         private bool IsToHandleAdapterError()
@@ -323,7 +336,7 @@ namespace ProtonVPN.Vpn.Connection
         {
             return !_isToConnect &&
                    (_state.Status is VpnStatus.Disconnecting or VpnStatus.Disconnected) &&
-                   !IsServerError(_state.Error) && !IsAdapterError(_state.Error);
+                   !IsServerError(_state.Error) && !IsAdapterError(_state.Error) && !IsNetworkUnavailableError(_state.Error);
         }
 
         private bool IsServerError(VpnError error)
@@ -341,6 +354,11 @@ namespace ProtonVPN.Vpn.Connection
             return error == VpnError.ServerUnreachable ||
                    error == VpnError.AdapterTimeoutError ||
                    error == VpnError.InterfaceHasForwardingEnabled;
+        }
+
+        private bool IsNetworkUnavailableError(VpnError error)
+        {
+            return error == VpnError.NetworkUnavailable;
         }
 
         private bool IsToReconnect(VpnState state)

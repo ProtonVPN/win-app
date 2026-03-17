@@ -57,8 +57,9 @@ public interface IStaticConfiguration
     string IPv6PrefixTreeFilePath { get; }
     string IPv6PersistedDataFilePath { get; }
 
-    IOpenVpnConfigurations OpenVpn { get; }
+    IProTunConfigurations ProTun { get; }
     IWireGuardConfigurations WireGuard { get; }
+    IOpenVpnConfigurations OpenVpn { get; }
 
     string WintunDriverPath { get; }
     string WintunAdapterName { get; }

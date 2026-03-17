@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -39,6 +39,9 @@ public interface IGlobalSettings
     string? UnauthUniqueSessionId { get; set; }
     bool IsAutoLaunchEnabled { get; set; }
     AutoLaunchMode AutoLaunchMode { get; set; }
+    int[] ProTunUdpPorts { get; set; }
+    int[] ProTunTcpPorts { get; set; }
+    int[] ProTunTlsPorts { get; set; }
     int[] WireGuardUdpPorts { get; set; }
     int[] WireGuardTcpPorts { get; set; }
     int[] WireGuardTlsPorts { get; set; }

@@ -51,14 +51,17 @@ public class PhysicalServerMapper : IMapper<PhysicalServerResponse, PhysicalServ
         if (!string.IsNullOrWhiteSpace(entryPerProtocol?.WireGuardUdp?.Ipv4))
         {
             relayIpByProtocol.Add(VpnProtocol.WireGuardUdp, entryPerProtocol.WireGuardUdp.Ipv4);
+            relayIpByProtocol.Add(VpnProtocol.ProTunUdp, entryPerProtocol.WireGuardUdp.Ipv4);
         }
         if (!string.IsNullOrWhiteSpace(entryPerProtocol?.WireGuardTcp?.Ipv4))
         {
             relayIpByProtocol.Add(VpnProtocol.WireGuardTcp, entryPerProtocol.WireGuardTcp.Ipv4);
+            relayIpByProtocol.Add(VpnProtocol.ProTunTcp, entryPerProtocol.WireGuardTcp.Ipv4);
         }
         if (!string.IsNullOrWhiteSpace(entryPerProtocol?.WireGuardTls?.Ipv4))
         {
             relayIpByProtocol.Add(VpnProtocol.WireGuardTls, entryPerProtocol.WireGuardTls.Ipv4);
+            relayIpByProtocol.Add(VpnProtocol.ProTunTls, entryPerProtocol.WireGuardTls.Ipv4);
         }
         if (!string.IsNullOrWhiteSpace(entryPerProtocol?.OpenVpnUdp?.Ipv4))
         {

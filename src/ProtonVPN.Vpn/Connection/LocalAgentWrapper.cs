@@ -23,6 +23,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using ProtonVPN.Common.Core.LocalAgent;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Go;
@@ -423,7 +424,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
             switch (e.Data.Status)
             {
                 case VpnStatus.Connected:
-                    HandleVpnConnectedState();
+                    HandleVpnConnectedState(e.Data);
                     return;
                 case VpnStatus.Disconnected:
                 case VpnStatus.Reconnecting:
@@ -436,17 +437,17 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         InvokeStateChange(e);
     }
 
-    private void HandleVpnConnectedState()
+    private void HandleVpnConnectedState(VpnState state)
     {
         if (!string.IsNullOrEmpty(_credentials.ClientCertPem))
         {
-            InvokeStateChange(VpnStatus.AssigningIp);
+            InvokeStateChange(VpnStatus.AssigningIp, state);
             ConnectToTlsChannel(_localAgentTlsCredentialsCache.Get());
             _timeoutAction.Run();
         }
         else
         {
-            InvokeStateChange(VpnStatus.Connected);
+            InvokeStateChange(VpnStatus.Connected, state);
         }
     }
 
@@ -529,21 +530,52 @@ internal class LocalAgentWrapper : ISingleVpnConnection
     private void InvokeStateChange(VpnStatus status, VpnError? error = null,
         ConnectionCertificate connectionCertificate = null)
     {
-        string remoteIp = !string.IsNullOrEmpty(_remoteIp)
-            ? _remoteIp
-            : _vpnState?.Data.RemoteIp ?? string.Empty;
+        string remoteIp = string.IsNullOrEmpty(_remoteIp)
+            ? _vpnState?.Data.RemoteIp ?? string.Empty
+            : _remoteIp;
+
+        VpnProtocol protocol = _vpnState?.Data.VpnProtocol is null or VpnProtocol.Smart
+            ? _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart
+            : _vpnState.Data.VpnProtocol;
 
         InvokeStateChange(new EventArgs<VpnState>(new VpnState(
-            status,
-            error ?? _vpnState?.Data.Error ?? VpnError.None,
-            _localIp,
-            remoteIp,
-            _vpnState?.Data.EndpointPort ?? 0,
-            _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart,
-            _vpnConfig?.PortForwarding ?? false,
-            _vpnConfig?.OpenVpnAdapter,
-            _vpnState?.Data.Label ?? string.Empty,
-            connectionCertificate)));
+            status: status,
+            error: error ?? _vpnState?.Data.Error ?? VpnError.None,
+            localIp: _localIp,
+            remoteIp: remoteIp,
+            endpointPort: _vpnState?.Data.EndpointPort ?? 0,
+            vpnProtocol: protocol,
+            portForwarding: _vpnConfig?.PortForwarding ?? false,
+            openVpnAdapter: _vpnConfig?.OpenVpnAdapter,
+            label: _vpnState?.Data.Label ?? string.Empty,
+            connectionCertificate: connectionCertificate)));
+    }
+
+    private void InvokeStateChange(VpnStatus status, VpnState state)
+    {
+        string remoteIp = string.IsNullOrEmpty(state.RemoteIp)
+            ? string.IsNullOrEmpty(_remoteIp)
+                ? _vpnState?.Data.RemoteIp ?? string.Empty
+                : _remoteIp
+            : state.RemoteIp;
+
+        string label = string.IsNullOrEmpty(state.Label)
+            ? _vpnState?.Data.Label ?? string.Empty
+            : state.Label;
+
+        EventArgs<VpnState> vpnStateArgs = new(new VpnState(
+            status: status,
+            error: state.Error,
+            localIp: state.LocalIp ?? _localIp,
+            remoteIp: remoteIp,
+            endpointPort: state.EndpointPort > 0 ? state.EndpointPort : _vpnState?.Data.EndpointPort ?? 0,
+            vpnProtocol: state.VpnProtocol != VpnProtocol.Smart ? state.VpnProtocol : _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart,
+            portForwarding: _vpnConfig?.PortForwarding ?? false,
+            openVpnAdapter: state.OpenVpnAdapter ?? _vpnConfig?.OpenVpnAdapter,
+            label: label));
+
+        _vpnState = vpnStateArgs;
+        InvokeStateChange(vpnStateArgs);
     }
 
     private void InvokeStateChange(EventArgs<VpnState> state)

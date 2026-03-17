@@ -425,6 +425,9 @@ public static class LocalizationExtensions
             VpnProtocol.WireGuardUdp => localizer.Get("VpnProtocol_WireGuard_Udp"),
             VpnProtocol.WireGuardTcp => localizer.Get("VpnProtocol_WireGuard_Tcp"),
             VpnProtocol.WireGuardTls => localizer.Get("VpnProtocol_WireGuard_Tls"),
+            VpnProtocol.ProTunUdp => localizer.Get("VpnProtocol_ProTun_Udp"),
+            VpnProtocol.ProTunTcp => localizer.Get("VpnProtocol_ProTun_Tcp"),
+            VpnProtocol.ProTunTls => localizer.Get("VpnProtocol_ProTun_Tls"),
             _ => string.Empty
         };
     }
@@ -438,6 +441,9 @@ public static class LocalizationExtensions
             VpnProtocol.WireGuardUdp => localizer.Get("VpnProtocol_WireGuard_Udp_Description"),
             VpnProtocol.WireGuardTcp => localizer.Get("VpnProtocol_WireGuard_Tcp_Description"),
             VpnProtocol.WireGuardTls => localizer.Get("VpnProtocol_WireGuard_Tls_Description"),
+            VpnProtocol.ProTunUdp => localizer.Get("VpnProtocol_ProTun_Udp_Description"),
+            VpnProtocol.ProTunTcp => localizer.Get("VpnProtocol_ProTun_Tcp_Description"),
+            VpnProtocol.ProTunTls => localizer.Get("VpnProtocol_ProTun_Tls_Description"),
             _ => string.Empty
         };
     }

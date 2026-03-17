@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Core.Helpers;
+using ProtonVPN.Common.Core.LocalAgent;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Common.Legacy.Vpn;

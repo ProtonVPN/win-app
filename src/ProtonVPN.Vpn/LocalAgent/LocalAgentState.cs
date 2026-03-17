@@ -17,18 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Vpn.LocalAgent
+namespace ProtonVPN.Vpn.LocalAgent;
+
+public enum LocalAgentState
 {
-    public enum LocalAgentState
-    {
-        Connecting,
-        Connected,
-        Disconnected,
-        ServerCertificateError,
-        ConnectionError,
-        HardJailed,
-        ClientCertificateExpiredError,
-        ClientCertificateUnknownCA,
-        ServerUnreachable,
-    }
+    Connecting,
+    Connected,
+    Disconnected,
+    ServerCertificateError,
+    ConnectionError,
+    HardJailed,
+    ClientCertificateExpiredError,
+    ClientCertificateUnknownCA,
+    ServerUnreachable,
 }

@@ -113,4 +113,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="CornerRadius" Value="5" />
     </Style>
 
+    <Style x:Key="BetaFeatureTagControlStyle" TargetType="custom:TagControl" BasedOn="{StaticResource DefaultTagControlStyle}">
+        <Setter Property="Foreground" Value="{ThemeResource LinkActiveColor}" />
+        <Setter Property="Background" Value="{ThemeResource InteractionDefaultColorBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource LinkActiveColor}" />
+    </Style>
+
 </ResourceDictionary>

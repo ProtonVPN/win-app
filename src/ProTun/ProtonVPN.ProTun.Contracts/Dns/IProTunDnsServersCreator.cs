@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,12 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Logging.Contracts.Categories;
+using ProtonVPN.Configurations.Contracts;
 
-namespace ProtonVPN.Logging.Contracts.Events.ProtocolLogs
+namespace ProtonVPN.ProTun.Contracts.Dns;
+
+public interface IProTunDnsServersCreator : IDnsServersCreator
 {
-    public class ProtocolLog : LogEventBase<ProtocolLogCategory>
-    {
-        protected override string Event => null;
-    }
 }

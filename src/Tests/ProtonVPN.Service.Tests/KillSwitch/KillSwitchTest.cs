@@ -20,213 +20,211 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.KillSwitch;
-using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.Settings;
-using ProtonVPN.Vpn.Common;
 
-namespace ProtonVPN.Service.Tests.KillSwitch
+namespace ProtonVPN.Service.Tests.KillSwitch;
+
+[TestClass]
+public class KillSwitchTest
 {
-    [TestClass]
-    public class KillSwitchTest
+    private IFirewall _firewall;
+    private IServiceSettings _serviceSettings;
+    private INetworkInterfaceLoader _networkInterfaceLoader;
+    private const string RemoteIp = "2.2.2.2";
+
+    [TestInitialize]
+    public void Setup()
     {
-        private IFirewall _firewall;
-        private IServiceSettings _serviceSettings;
-        private INetworkInterfaceLoader _networkInterfaceLoader;
-        private const string RemoteIp = "2.2.2.2";
+        _firewall = Substitute.For<IFirewall>();
+        _serviceSettings = Substitute.For<IServiceSettings>();
+        _networkInterfaceLoader = Substitute.For<INetworkInterfaceLoader>();
+    }
 
-        [TestInitialize]
-        public void Setup()
+    [TestMethod]
+    [DataRow(SplitTunnelModeIpcEntity.Block, false)]
+    [DataRow(SplitTunnelModeIpcEntity.Permit, true)]
+    [DataRow(SplitTunnelModeIpcEntity.Disabled, false)]
+    public void OnVpnConnecting_SplitTunnelBlockMode_BlockInternet(SplitTunnelModeIpcEntity mode, bool dnsLeakOnly)
+    {
+        // Arrange
+        Service.KillSwitch.KillSwitch killSwitch = GetKillSwitch(mode);
+
+        // Act
+        killSwitch.OnVpnConnecting(GetConnectingVpnState());
+
+        // Assert
+        _firewall.ReceivedWithAnyArgs(1)
+            .EnableLeakProtection(Arg.Is<FirewallParams>(p => p.DnsLeakOnly == dnsLeakOnly));
+    }
+
+    [TestMethod]
+    public void OnVpnConnected_WhenSplitTunnelPermitMode_DoNotBlockInternet()
+    {
+        // Arrange
+        Service.KillSwitch.KillSwitch killSwitch = GetKillSwitch(SplitTunnelModeIpcEntity.Permit);
+
+        // Act
+        killSwitch.OnVpnConnected(GetConnectedVpnState());
+
+        // Assert
+        _firewall.Received(0)
+            .EnableLeakProtection(new FirewallParams {ServerIp = "127.0.0.1"});
+    }
+
+    [TestMethod]
+    public void OnVpnDisconnected_ManualDisconnect_RestoreInternet()
+    {
+        // Arrange
+        Service.KillSwitch.KillSwitch sut =
+            new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
+
+        // Act
+        sut.OnVpnDisconnected(GetDisconnectedVpnState(manualDisconnect: true));
+
+        // Assert
+        _firewall.Received(1).DisableLeakProtection();
+    }
+
+    [TestMethod]
+    public void OnVpnDisconnected_UnexpectedDisconnectWithKillSwitchOff_RestoreInternet()
+    {
+        // Arrange
+        _serviceSettings.KillSwitchMode.Returns(KillSwitchMode.Off);
+        var sut = new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
+
+        // Act
+        sut.OnVpnDisconnected(GetDisconnectedVpnState());
+
+        // Assert
+        _firewall.Received(1).DisableLeakProtection();
+    }
+
+    [TestMethod]
+    [DataRow(VpnStatus.Pinging)]
+    [DataRow(VpnStatus.Connecting)]
+    [DataRow(VpnStatus.Reconnecting)]
+    public void ExpectedLeakProtectionStatus_ShouldBe_Enabled_WhenConnecting(VpnStatus status)
+    {
+        // Arrange
+        var state = new VpnState(status, default);
+        _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
         {
-            _firewall = Substitute.For<IFirewall>();
-            _serviceSettings = Substitute.For<IServiceSettings>();
-            _networkInterfaceLoader = Substitute.For<INetworkInterfaceLoader>();
-        }
+            Mode = SplitTunnelModeIpcEntity.Block
+        });
+        Service.KillSwitch.KillSwitch killSwitch = new(_firewall, _serviceSettings, _networkInterfaceLoader);
 
-        [TestMethod]
-        [DataRow(SplitTunnelModeIpcEntity.Block, false)]
-        [DataRow(SplitTunnelModeIpcEntity.Permit, true)]
-        [DataRow(SplitTunnelModeIpcEntity.Disabled, false)]
-        public void OnVpnConnecting_SplitTunnelBlockMode_BlockInternet(SplitTunnelModeIpcEntity mode, bool dnsLeakOnly)
+        // Act
+        bool result = killSwitch.ExpectedLeakProtectionStatus(state);
+
+        //Assert
+        result.Should().Be(true);
+    }
+
+    [TestMethod]
+    [DataRow(VpnStatus.Disconnecting, VpnError.None, KillSwitchMode.Off, false, false)]
+    [DataRow(VpnStatus.Disconnecting, VpnError.None, KillSwitchMode.Soft, false, false)]
+    [DataRow(VpnStatus.Disconnecting, VpnError.None, KillSwitchMode.Off, true, false)]
+    [DataRow(VpnStatus.Disconnecting, VpnError.None, KillSwitchMode.Soft, true, false)]
+    [DataRow(VpnStatus.Disconnecting, VpnError.NetshError, KillSwitchMode.Off, false, false)]
+    [DataRow(VpnStatus.Disconnecting, VpnError.NetshError, KillSwitchMode.Off, true, false)]
+    [DataRow(VpnStatus.Disconnecting, VpnError.NetshError, KillSwitchMode.Soft, false, true)]
+    [DataRow(VpnStatus.Disconnecting, VpnError.NetshError, KillSwitchMode.Soft, true, true)]
+    [DataRow(VpnStatus.Disconnected, VpnError.None, KillSwitchMode.Off, false, false)]
+    [DataRow(VpnStatus.Disconnected, VpnError.None, KillSwitchMode.Soft, false, false)]
+    [DataRow(VpnStatus.Disconnected, VpnError.None, KillSwitchMode.Off, true, false)]
+    [DataRow(VpnStatus.Disconnected, VpnError.None, KillSwitchMode.Soft, true, false)]
+    [DataRow(VpnStatus.Disconnected, VpnError.NetshError, KillSwitchMode.Off, false, false)]
+    [DataRow(VpnStatus.Disconnected, VpnError.NetshError, KillSwitchMode.Off, true, false)]
+    [DataRow(VpnStatus.Disconnected, VpnError.NetshError, KillSwitchMode.Soft, false, true)]
+    [DataRow(VpnStatus.Disconnected, VpnError.NetshError, KillSwitchMode.Soft, true, true)]
+    public void ExpectedLeakProtectionStatus_ShouldBe_Expected_WhenDisconnecting(VpnStatus status, VpnError error,
+        KillSwitchMode killSwitchMode, bool leakProtectionEnabled, bool expected)
+    {
+        // Arrange
+        var state = new VpnState(status, error, default);
+        _serviceSettings.KillSwitchMode.Returns(killSwitchMode);
+        _firewall.LeakProtectionEnabled.Returns(leakProtectionEnabled);
+        Service.KillSwitch.KillSwitch killSwitch =
+            new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
+
+        // Act
+        bool result = killSwitch.ExpectedLeakProtectionStatus(state);
+
+        //Assert
+        result.Should().Be(expected);
+    }
+
+    [TestMethod]
+    [DataRow(VpnStatus.Waiting, false)]
+    [DataRow(VpnStatus.Waiting, true)]
+    [DataRow(VpnStatus.Authenticating, false)]
+    [DataRow(VpnStatus.Authenticating, true)]
+    [DataRow(VpnStatus.RetrievingConfiguration, false)]
+    [DataRow(VpnStatus.RetrievingConfiguration, true)]
+    [DataRow(VpnStatus.AssigningIp, false)]
+    [DataRow(VpnStatus.AssigningIp, true)]
+    public void ExpectedLeakProtectionStatus_ShouldBe_Firewall_LeakProtectionEnabled_WhenOtherStatus(
+        VpnStatus status, bool leakProtectionEnabled)
+    {
+        // Arrange
+        var state = new VpnState(status, default);
+        _firewall.LeakProtectionEnabled.Returns(leakProtectionEnabled);
+        Service.KillSwitch.KillSwitch killSwitch =
+            new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
+
+        // Act
+        bool result = killSwitch.ExpectedLeakProtectionStatus(state);
+
+        //Assert
+        result.Should().Be(leakProtectionEnabled);
+    }
+
+    private Service.KillSwitch.KillSwitch GetKillSwitch(SplitTunnelModeIpcEntity mode)
+    {
+        _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
         {
-            // Arrange
-            Service.KillSwitch.KillSwitch killSwitch = GetKillSwitch(mode);
+            Mode = mode, AppPaths = new string[0], Ips = new string[0]
+        });
 
-            // Act
-            killSwitch.OnVpnConnecting(GetConnectingVpnState());
+        return new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
+    }
 
-            // Assert
-            _firewall.ReceivedWithAnyArgs(1)
-                .EnableLeakProtection(Arg.Is<FirewallParams>(p => p.DnsLeakOnly == dnsLeakOnly));
-        }
+    private VpnState GetDisconnectedVpnState(bool manualDisconnect = false)
+    {
+        return new VpnState(
+            VpnStatus.Disconnected,
+            manualDisconnect ? VpnError.None : VpnError.Unknown,
+            "1.1.1.1",
+            RemoteIp,
+            443,
+            default);
+    }
 
-        [TestMethod]
-        public void OnVpnConnected_WhenSplitTunnelPermitMode_DoNotBlockInternet()
-        {
-            // Arrange
-            Service.KillSwitch.KillSwitch killSwitch = GetKillSwitch(SplitTunnelModeIpcEntity.Permit);
+    private VpnState GetConnectedVpnState()
+    {
+        return new VpnState(
+            VpnStatus.Connected,
+            VpnError.None,
+            "1.1.1.1",
+            RemoteIp,
+            443,
+            default);
+    }
 
-            // Act
-            killSwitch.OnVpnConnected(GetConnectedVpnState());
-
-            // Assert
-            _firewall.Received(0)
-                .EnableLeakProtection(new FirewallParams {ServerIp = "127.0.0.1"});
-        }
-
-        [TestMethod]
-        public void OnVpnDisconnected_ManualDisconnect_RestoreInternet()
-        {
-            // Arrange
-            Service.KillSwitch.KillSwitch sut =
-                new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
-
-            // Act
-            sut.OnVpnDisconnected(GetDisconnectedVpnState(manualDisconnect: true));
-
-            // Assert
-            _firewall.Received(1).DisableLeakProtection();
-        }
-
-        [TestMethod]
-        public void OnVpnDisconnected_UnexpectedDisconnectWithKillSwitchOff_RestoreInternet()
-        {
-            // Arrange
-            _serviceSettings.KillSwitchMode.Returns(KillSwitchMode.Off);
-            var sut = new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
-
-            // Act
-            sut.OnVpnDisconnected(GetDisconnectedVpnState());
-
-            // Assert
-            _firewall.Received(1).DisableLeakProtection();
-        }
-
-        [TestMethod]
-        [DataRow(VpnStatus.Pinging)]
-        [DataRow(VpnStatus.Connecting)]
-        [DataRow(VpnStatus.Reconnecting)]
-        public void ExpectedLeakProtectionStatus_ShouldBe_Enabled_WhenConnecting(VpnStatus status)
-        {
-            // Arrange
-            var state = new VpnState(status, default);
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
-            {
-                Mode = SplitTunnelModeIpcEntity.Block
-            });
-            Service.KillSwitch.KillSwitch killSwitch = new(_firewall, _serviceSettings, _networkInterfaceLoader);
-
-            // Act
-            bool result = killSwitch.ExpectedLeakProtectionStatus(state);
-
-            //Assert
-            result.Should().Be(true);
-        }
-
-        [TestMethod]
-        [DataRow(VpnStatus.Disconnecting, VpnError.None, KillSwitchMode.Off, false, false)]
-        [DataRow(VpnStatus.Disconnecting, VpnError.None, KillSwitchMode.Soft, false, false)]
-        [DataRow(VpnStatus.Disconnecting, VpnError.None, KillSwitchMode.Off, true, false)]
-        [DataRow(VpnStatus.Disconnecting, VpnError.None, KillSwitchMode.Soft, true, false)]
-        [DataRow(VpnStatus.Disconnecting, VpnError.NetshError, KillSwitchMode.Off, false, false)]
-        [DataRow(VpnStatus.Disconnecting, VpnError.NetshError, KillSwitchMode.Off, true, false)]
-        [DataRow(VpnStatus.Disconnecting, VpnError.NetshError, KillSwitchMode.Soft, false, true)]
-        [DataRow(VpnStatus.Disconnecting, VpnError.NetshError, KillSwitchMode.Soft, true, true)]
-        [DataRow(VpnStatus.Disconnected, VpnError.None, KillSwitchMode.Off, false, false)]
-        [DataRow(VpnStatus.Disconnected, VpnError.None, KillSwitchMode.Soft, false, false)]
-        [DataRow(VpnStatus.Disconnected, VpnError.None, KillSwitchMode.Off, true, false)]
-        [DataRow(VpnStatus.Disconnected, VpnError.None, KillSwitchMode.Soft, true, false)]
-        [DataRow(VpnStatus.Disconnected, VpnError.NetshError, KillSwitchMode.Off, false, false)]
-        [DataRow(VpnStatus.Disconnected, VpnError.NetshError, KillSwitchMode.Off, true, false)]
-        [DataRow(VpnStatus.Disconnected, VpnError.NetshError, KillSwitchMode.Soft, false, true)]
-        [DataRow(VpnStatus.Disconnected, VpnError.NetshError, KillSwitchMode.Soft, true, true)]
-        public void ExpectedLeakProtectionStatus_ShouldBe_Expected_WhenDisconnecting(VpnStatus status, VpnError error,
-            KillSwitchMode killSwitchMode, bool leakProtectionEnabled, bool expected)
-        {
-            // Arrange
-            var state = new VpnState(status, error, default);
-            _serviceSettings.KillSwitchMode.Returns(killSwitchMode);
-            _firewall.LeakProtectionEnabled.Returns(leakProtectionEnabled);
-            Service.KillSwitch.KillSwitch killSwitch =
-                new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
-
-            // Act
-            bool result = killSwitch.ExpectedLeakProtectionStatus(state);
-
-            //Assert
-            result.Should().Be(expected);
-        }
-
-        [TestMethod]
-        [DataRow(VpnStatus.Waiting, false)]
-        [DataRow(VpnStatus.Waiting, true)]
-        [DataRow(VpnStatus.Authenticating, false)]
-        [DataRow(VpnStatus.Authenticating, true)]
-        [DataRow(VpnStatus.RetrievingConfiguration, false)]
-        [DataRow(VpnStatus.RetrievingConfiguration, true)]
-        [DataRow(VpnStatus.AssigningIp, false)]
-        [DataRow(VpnStatus.AssigningIp, true)]
-        public void ExpectedLeakProtectionStatus_ShouldBe_Firewall_LeakProtectionEnabled_WhenOtherStatus(
-            VpnStatus status, bool leakProtectionEnabled)
-        {
-            // Arrange
-            var state = new VpnState(status, default);
-            _firewall.LeakProtectionEnabled.Returns(leakProtectionEnabled);
-            Service.KillSwitch.KillSwitch killSwitch =
-                new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
-
-            // Act
-            bool result = killSwitch.ExpectedLeakProtectionStatus(state);
-
-            //Assert
-            result.Should().Be(leakProtectionEnabled);
-        }
-
-        private Service.KillSwitch.KillSwitch GetKillSwitch(SplitTunnelModeIpcEntity mode)
-        {
-            _serviceSettings.SplitTunnelSettings.Returns(new SplitTunnelSettingsIpcEntity
-            {
-                Mode = mode, AppPaths = new string[0], Ips = new string[0]
-            });
-
-            return new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
-        }
-
-        private VpnState GetDisconnectedVpnState(bool manualDisconnect = false)
-        {
-            return new VpnState(
-                VpnStatus.Disconnected,
-                manualDisconnect ? VpnError.None : VpnError.Unknown,
-                "1.1.1.1",
-                RemoteIp,
-                443,
-                default);
-        }
-
-        private VpnState GetConnectedVpnState()
-        {
-            return new VpnState(
-                VpnStatus.Connected,
-                VpnError.None,
-                "1.1.1.1",
-                RemoteIp,
-                443,
-                default);
-        }
-
-        private VpnState GetConnectingVpnState()
-        {
-            return new VpnState(
-                VpnStatus.Connecting,
-                VpnError.None,
-                "1.1.1.1",
-                RemoteIp,
-                443,
-                default);
-        }
+    private VpnState GetConnectingVpnState()
+    {
+        return new VpnState(
+            VpnStatus.Connecting,
+            VpnError.None,
+            "1.1.1.1",
+            RemoteIp,
+            443,
+            default);
     }
 }

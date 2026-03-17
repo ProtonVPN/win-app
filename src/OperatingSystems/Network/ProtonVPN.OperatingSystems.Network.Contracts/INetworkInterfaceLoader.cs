@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,9 +23,10 @@ namespace ProtonVPN.OperatingSystems.Network.Contracts;
 
 public interface INetworkInterfaceLoader
 {
-    INetworkInterface GetOpenVpnTapInterface();
-    INetworkInterface GetOpenVpnTunInterface();
+    INetworkInterface GetProTunInterface();
     INetworkInterface GetWireGuardInterface(VpnProtocol protocol);
+    INetworkInterface GetOpenVpnTunInterface();
+    INetworkInterface GetOpenVpnTapInterface();
 
     INetworkInterface GetByVpnProtocol(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter);
     INetworkInterface GetByOpenVpnAdapter(OpenVpnAdapter? openVpnAdapter);

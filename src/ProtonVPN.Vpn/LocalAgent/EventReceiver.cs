@@ -23,6 +23,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Go;
 using ProtonVPN.Common.Legacy.NetShield;
@@ -33,212 +35,210 @@ using ProtonVPN.Logging.Contracts.Events.LocalAgentLogs;
 using ProtonVPN.Vpn.LocalAgent.Contracts;
 using ProtonVPN.Vpn.NetShield;
 using ProtonVPN.Vpn.Restrictions;
-using ProtonVPN.Common.Core.Extensions;
 
-namespace ProtonVPN.Vpn.LocalAgent
+namespace ProtonVPN.Vpn.LocalAgent;
+
+internal class EventReceiver
 {
-    internal class EventReceiver
+    private readonly ILogger _logger;
+    private readonly INetShieldStatisticEventManager _netShieldStatisticEventManager;
+    private readonly IRestrictionsEventManager _restrictionsEventManager;
+
+    private Task _loggerTask;
+    private ConnectionDetails _connectionDetails;
+    private CancellationTokenSource _cancellationTokenSource;
+
+    public EventReceiver(
+        ILogger logger,
+        INetShieldStatisticEventManager netShieldStatisticEventManager,
+        IRestrictionsEventManager restrictionEventManager)
     {
-        private readonly ILogger _logger;
-        private readonly INetShieldStatisticEventManager _netShieldStatisticEventManager;
-        private readonly IRestrictionsEventManager _restrictionsEventManager;
+        _logger = logger;
+        _netShieldStatisticEventManager = netShieldStatisticEventManager;
+        _restrictionsEventManager = restrictionEventManager;
+    }
 
-        private Task _loggerTask;
-        private ConnectionDetails _connectionDetails;
-        private CancellationTokenSource _cancellationTokenSource;
+    public event EventHandler<EventArgs<LocalAgentState>> StateChanged;
+    public event EventHandler<LocalAgentErrorArgs> ErrorOccurred;
+    public event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
 
-        public EventReceiver(
-            ILogger logger,
-            INetShieldStatisticEventManager netShieldStatisticEventManager,
-            IRestrictionsEventManager restrictionEventManager)
+    public void Start()
+    {
+        _cancellationTokenSource = new();
+        _loggerTask = Task.Factory.StartNew(() =>
         {
-            _logger = logger;
-            _netShieldStatisticEventManager = netShieldStatisticEventManager;
-            _restrictionsEventManager = restrictionEventManager;
-        }
+            string message;
 
-        public event EventHandler<EventArgs<LocalAgentState>> StateChanged;
-        public event EventHandler<LocalAgentErrorArgs> ErrorOccurred;
-        public event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
-
-        public void Start()
-        {
-            _cancellationTokenSource = new();
-            _loggerTask = Task.Factory.StartNew(() =>
+            do
             {
-                string message;
-
-                do
+                GoBytes e = PInvoke.GetEvent();
+                message = e.ConvertToString();
+                EventContract eventContract = GetEventContract(message);
+                if (eventContract != null)
                 {
-                    GoBytes e = PInvoke.GetEvent();
-                    message = e.ConvertToString();
-                    EventContract eventContract = GetEventContract(message);
-                    if (eventContract != null)
-                    {
-                        HandleEvent(eventContract);
-                    }
-                } while (!string.IsNullOrEmpty(message));
-            }, _cancellationTokenSource.Token);
+                    HandleEvent(eventContract);
+                }
+            } while (!string.IsNullOrEmpty(message));
+        }, _cancellationTokenSource.Token);
+    }
+
+    public void Stop()
+    {
+        if (_loggerTask is { IsCompleted: false })
+        {
+            _cancellationTokenSource.Cancel();
+        }
+    }
+
+    public void RequestConnectionDetails()
+    {
+        SendConnectionDetails(_connectionDetails);
+    }
+
+    private EventContract GetEventContract(string message)
+    {
+        try
+        {
+            return JsonConvert.DeserializeObject<EventContract>(message);
+        }
+        catch (JsonException)
+        {
+            return null;
+        }
+    }
+
+    private void HandleEvent(EventContract e)
+    {
+        switch (e.EventType)
+        {
+            case "log":
+                _logger.Info<LocalAgentLog>(e.Log);
+                break;
+            case "state":
+                HandleStateMessage(e.State);
+                break;
+            case "status":
+                HandleStatusMessage(e);
+                break;
+            case "error":
+                HandleError(e);
+                break;
+            case "stats":
+                HandleStats(e);
+                break;
+            case "restrictions":
+                HandleRestrictions(e);
+                break;
+        }
+    }
+
+    private void HandleStats(EventContract eventContract)
+    {
+        Dictionary<string, Dictionary<string, long>> featuresStatistics;
+        try
+        {
+            featuresStatistics = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, long>>>(
+                eventContract.FeaturesStatistics);
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<LocalAgentErrorLog>($"Failed to deserialize JSON object " +
+                $"'{eventContract.FeaturesStatistics}'.", ex);
+            return;
+        }
+        if (featuresStatistics is not null &&
+            featuresStatistics.TryGetValue("netshield-level", out Dictionary<string, long> netShieldStats))
+        {
+            OnNetShieldStatsEvent(netShieldStats);
+        }
+    }
+
+    private void HandleRestrictions(EventContract eventContract)
+    {
+        List<Restriction> restrictions = eventContract.Restrictions
+            .Select(r => Enum.TryParse(r, true, out Restriction val) ? (Restriction?)val : null)
+            .Where(v => v.HasValue)
+            .Select(v => v.Value)
+            .ToList();
+
+        if (restrictions.Count == 0)
+        {
+            return;
         }
 
-        public void Stop()
+        _restrictionsEventManager.Invoke(this, new RestrictionsList()
         {
-            if (_loggerTask is { IsCompleted: false })
+            Restrictions = restrictions,
+        });
+    }
+
+    private void OnNetShieldStatsEvent(Dictionary<string, long> eventValue)
+    {
+        NetShieldStatistic netShieldStatistic = new();
+        if (eventValue != null)
+        {
+            netShieldStatistic.NumOfMaliciousUrlsBlocked = eventValue.TryGetValue("DNSBL/1b", out long v1b) ? v1b : 0;
+            netShieldStatistic.NumOfAdvertisementUrlsBlocked = eventValue.TryGetValue("DNSBL/2a", out long v2a) ? v2a : 0;
+            netShieldStatistic.NumOfTrackingUrlsBlocked = eventValue.TryGetValue("DNSBL/2b", out long v2b) ? v2b : 0;  
+            netShieldStatistic.NumOfAdultContentUrlsBlocked = eventValue.TryGetValue("DNSBL/3a", out long v3a) ? v3a : 0;
+        }
+        _netShieldStatisticEventManager.Invoke(this, netShieldStatistic);
+    }
+
+    private void HandleStatusMessage(EventContract e)
+    {
+        if (e.ConnectionDetails is not null)
+        {
+            _connectionDetails = new ConnectionDetails
             {
-                _cancellationTokenSource.Cancel();
-            }
-        }
-
-        public void RequestConnectionDetails()
-        {
+                ClientIpAddress = e.ConnectionDetails?.DeviceIp,
+                ClientCountryIsoCode = e.ConnectionDetails?.DeviceCountry,
+                ServerIpAddress = new()
+                {
+                    Ipv4Address = e.ConnectionDetails?.ServerIpv4Address,
+                    Ipv6Address = e.ConnectionDetails?.ServerIpv6Address,
+                }
+            };
             SendConnectionDetails(_connectionDetails);
         }
+    }
 
-        private EventContract GetEventContract(string message)
+    private void SendConnectionDetails(ConnectionDetails connectionDetails)
+    {
+        if (connectionDetails is not null)
         {
-            try
-            {
-                return JsonConvert.DeserializeObject<EventContract>(message);
-            }
-            catch (JsonException)
-            {
-                return null;
-            }
+            ConnectionDetailsChanged?.Invoke(this, connectionDetails);
         }
+    }
 
-        private void HandleEvent(EventContract e)
+    private void HandleError(EventContract e)
+    {
+        VpnError error = Enum.IsDefined(typeof(VpnError), e.Code) ? (VpnError)e.Code : VpnError.Unknown;
+        InvokeErrorEvent(new LocalAgentErrorArgs(error, e.Desc));
+    }
+
+    private void HandleStateMessage(string message)
+    {
+        _logger.Info<LocalAgentStateChangeLog>("Local agent: state changed to " + message);
+
+        LocalAgentState? state = message.ToEnumOrNull<LocalAgentState>();
+        if (state.HasValue)
         {
-            switch (e.EventType)
-            {
-                case "log":
-                    _logger.Info<LocalAgentLog>(e.Log);
-                    break;
-                case "state":
-                    HandleStateMessage(e.State);
-                    break;
-                case "status":
-                    HandleStatusMessage(e);
-                    break;
-                case "error":
-                    HandleError(e);
-                    break;
-                case "stats":
-                    HandleStats(e);
-                    break;
-                case "restrictions":
-                    HandleRestrictions(e);
-                    break;
-            }
+            InvokeStateChanged(state.Value);
         }
-
-        private void HandleStats(EventContract eventContract)
+        else
         {
-            Dictionary<string, Dictionary<string, long>> featuresStatistics;
-            try
-            {
-                featuresStatistics = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, long>>>(
-                    eventContract.FeaturesStatistics);
-            }
-            catch (Exception ex)
-            {
-                _logger.Error<LocalAgentErrorLog>($"Failed to deserialize JSON object " +
-                    $"'{eventContract.FeaturesStatistics}'.", ex);
-                return;
-            }
-            if (featuresStatistics is not null &&
-                featuresStatistics.TryGetValue("netshield-level", out Dictionary<string, long> netShieldStats))
-            {
-                OnNetShieldStatsEvent(netShieldStats);
-            }
+            _logger.Error<LocalAgentStateChangeLog>("Local agent: unknown state " + message);
         }
+    }
 
-        private void HandleRestrictions(EventContract eventContract)
-        {
-            List<Restriction> restrictions = eventContract.Restrictions
-                .Select(r => Enum.TryParse(r, true, out Restriction val) ? (Restriction?)val : null)
-                .Where(v => v.HasValue)
-                .Select(v => v.Value)
-                .ToList();
+    private void InvokeStateChanged(LocalAgentState state)
+    {
+        StateChanged?.Invoke(this, new EventArgs<LocalAgentState>(state));
+    }
 
-            if (restrictions.Count == 0)
-            {
-                return;
-            }
-
-            _restrictionsEventManager.Invoke(this, new RestrictionsList()
-            {
-                Restrictions = restrictions,
-            });
-        }
-
-        private void OnNetShieldStatsEvent(Dictionary<string, long> eventValue)
-        {
-            NetShieldStatistic netShieldStatistic = new();
-            if (eventValue != null)
-            {
-                netShieldStatistic.NumOfMaliciousUrlsBlocked = eventValue.TryGetValue("DNSBL/1b", out long v1b) ? v1b : 0;
-                netShieldStatistic.NumOfAdvertisementUrlsBlocked = eventValue.TryGetValue("DNSBL/2a", out long v2a) ? v2a : 0;
-                netShieldStatistic.NumOfTrackingUrlsBlocked = eventValue.TryGetValue("DNSBL/2b", out long v2b) ? v2b : 0;  
-                netShieldStatistic.NumOfAdultContentUrlsBlocked = eventValue.TryGetValue("DNSBL/3a", out long v3a) ? v3a : 0;
-            }
-            _netShieldStatisticEventManager.Invoke(this, netShieldStatistic);
-        }
-
-        private void HandleStatusMessage(EventContract e)
-        {
-            if (e.ConnectionDetails is not null)
-            {
-                _connectionDetails = new ConnectionDetails
-                {
-                    ClientIpAddress = e.ConnectionDetails?.DeviceIp,
-                    ClientCountryIsoCode = e.ConnectionDetails?.DeviceCountry,
-                    ServerIpAddress = new()
-                    {
-                        Ipv4Address = e.ConnectionDetails?.ServerIpv4Address,
-                        Ipv6Address = e.ConnectionDetails?.ServerIpv6Address,
-                    }
-                };
-                SendConnectionDetails(_connectionDetails);
-            }
-        }
-
-        private void SendConnectionDetails(ConnectionDetails connectionDetails)
-        {
-            if (connectionDetails is not null)
-            {
-                ConnectionDetailsChanged?.Invoke(this, connectionDetails);
-            }
-        }
-
-        private void HandleError(EventContract e)
-        {
-            VpnError error = Enum.IsDefined(typeof(VpnError), e.Code) ? (VpnError)e.Code : VpnError.Unknown;
-            InvokeErrorEvent(new LocalAgentErrorArgs(error, e.Desc));
-        }
-
-        private void HandleStateMessage(string message)
-        {
-            _logger.Info<LocalAgentStateChangeLog>("Local agent: state changed to " + message);
-
-            LocalAgentState? state = message.ToEnumOrNull<LocalAgentState>();
-            if (state.HasValue)
-            {
-                InvokeStateChanged(state.Value);
-            }
-            else
-            {
-                _logger.Error<LocalAgentStateChangeLog>("Local agent: unknown state " + message);
-            }
-        }
-
-        private void InvokeStateChanged(LocalAgentState state)
-        {
-            StateChanged?.Invoke(this, new EventArgs<LocalAgentState>(state));
-        }
-
-        private void InvokeErrorEvent(LocalAgentErrorArgs args)
-        {
-            ErrorOccurred?.Invoke(this, args);
-        }
+    private void InvokeErrorEvent(LocalAgentErrorArgs args)
+    {
+        ErrorOccurred?.Invoke(this, args);
     }
 }

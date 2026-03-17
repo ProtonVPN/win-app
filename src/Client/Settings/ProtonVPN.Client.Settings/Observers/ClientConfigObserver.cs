@@ -40,7 +40,7 @@ public class ClientConfigObserver :
     IEventMessageReceiver<LoggedOutMessage>,
     IEventMessageReceiver<DeviceLocationChangedMessage>
 {
-    private readonly List<int> _unsupportedWireGuardUdpPorts = [53];
+    private readonly List<int> _unsupportedWireGuardPorts = [53];
 
     private readonly ISettings _settings;
     private readonly IApiClient _apiClient;
@@ -108,11 +108,14 @@ public class ClientConfigObserver :
 
     private void HandleVpnConfigResponse(VpnConfigResponse value)
     {
+        _settings.ProTunUdpPorts = value.DefaultPorts.WireGuard.Udp.Where(IsWireGuardPortSupported).ToArray();
+        _settings.ProTunTcpPorts = value.DefaultPorts.WireGuard.Tcp.Where(IsWireGuardPortSupported).ToArray();
+        _settings.ProTunTlsPorts = value.DefaultPorts.WireGuard.Tls.Where(IsWireGuardPortSupported).ToArray();
+        _settings.WireGuardUdpPorts = value.DefaultPorts.WireGuard.Udp.Where(IsWireGuardPortSupported).ToArray();
+        _settings.WireGuardTcpPorts = value.DefaultPorts.WireGuard.Tcp.Where(IsWireGuardPortSupported).ToArray();
+        _settings.WireGuardTlsPorts = value.DefaultPorts.WireGuard.Tls.Where(IsWireGuardPortSupported).ToArray();
         _settings.OpenVpnTcpPorts = value.DefaultPorts.OpenVpn.Tcp;
         _settings.OpenVpnUdpPorts = value.DefaultPorts.OpenVpn.Udp;
-        _settings.WireGuardUdpPorts = value.DefaultPorts.WireGuard.Udp.Where(IsWireGuardUdpPortSupported).ToArray();
-        _settings.WireGuardTcpPorts = value.DefaultPorts.WireGuard.Tcp;
-        _settings.WireGuardTlsPorts = value.DefaultPorts.WireGuard.Tls;
 
         if (value.FeatureFlags.ServerRefresh.HasValue)
         {
@@ -158,8 +161,8 @@ public class ClientConfigObserver :
         }
     }
 
-    private bool IsWireGuardUdpPortSupported(int port)
+    private bool IsWireGuardPortSupported(int port)
     {
-        return !_unsupportedWireGuardUdpPorts.Contains(port);
+        return !_unsupportedWireGuardPorts.Contains(port);
     }
 }

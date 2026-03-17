@@ -23,6 +23,7 @@ using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Configurations.Contracts.WireGuard;
 using ProtonVPN.OperatingSystems.NRPT.Contracts;
+using ProtonVPN.ProTun.Contracts.Dns;
 using ProtonVPN.Vpn.OpenVpn.DnsServers;
 
 namespace ProtonVPN.Vpn.NRPT;
@@ -30,6 +31,7 @@ namespace ProtonVPN.Vpn.NRPT;
 public class NrptWrapper : INrptWrapper
 {
     private readonly INrptInvoker _nrptInvoker;
+    private readonly IProTunDnsServersCreator _proTunDnsServersCreator;
     private readonly IWireGuardDnsServersCreator _wireGuardDnsServersCreator;
     private readonly IOpenVpnDnsServersCreator _openVpnDnsServersCreator;
 
@@ -37,12 +39,13 @@ public class NrptWrapper : INrptWrapper
     private VpnProtocol _vpnProtocol;
     private bool _isIpv6Supported;
 
-    public NrptWrapper(
-        INrptInvoker nrptInvoker,
+    public NrptWrapper(INrptInvoker nrptInvoker,
+        IProTunDnsServersCreator proTunDnsServersCreator,
         IWireGuardDnsServersCreator wireGuardDnsServersCreator,
         IOpenVpnDnsServersCreator openVpnDnsServersCreator)
     {
         _nrptInvoker = nrptInvoker;
+        _proTunDnsServersCreator = proTunDnsServersCreator;
         _wireGuardDnsServersCreator = wireGuardDnsServersCreator;
         _openVpnDnsServersCreator = openVpnDnsServersCreator;
     }
@@ -71,7 +74,11 @@ public class NrptWrapper : INrptWrapper
 
     private IDnsServersCreator GetDnsServersCreator()
     {
-        return _vpnProtocol.IsOpenVpn() ? _openVpnDnsServersCreator : _wireGuardDnsServersCreator;
+        return _vpnProtocol.IsWireGuard()
+            ? _wireGuardDnsServersCreator
+            : _vpnProtocol.IsOpenVpn()
+                ? _openVpnDnsServersCreator
+                : _proTunDnsServersCreator;
     }
 
     /// <returns>If the NRPT rule was removed successfully</returns>

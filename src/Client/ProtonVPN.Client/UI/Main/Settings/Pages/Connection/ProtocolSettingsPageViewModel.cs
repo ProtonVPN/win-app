@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,21 +23,32 @@ using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
+using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.Connection;
 
-public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase
+public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase,
+    IEventMessageReceiver<FeatureFlagsChangedMessage>
 {
     private readonly IUrlsBrowser _urlsBrowser;
+    private readonly IFeatureFlagsObserver _featureFlagsObserver;
+
+    [ObservableProperty]
+    private bool _areProtonProtocolsEnabled;
 
     [ObservableProperty]
     [property: SettingName(nameof(ISettings.VpnProtocol))]
     [NotifyPropertyChangedFor(nameof(IsSmartProtocol))]
+    [NotifyPropertyChangedFor(nameof(IsProTunUdpProtocol))]
+    [NotifyPropertyChangedFor(nameof(IsProTunTcpProtocol))]
+    [NotifyPropertyChangedFor(nameof(IsProTunTlsProtocol))]
     [NotifyPropertyChangedFor(nameof(IsWireGuardUdpProtocol))]
     [NotifyPropertyChangedFor(nameof(IsWireGuardTcpProtocol))]
     [NotifyPropertyChangedFor(nameof(IsWireGuardTlsProtocol))]
@@ -45,14 +56,35 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase
     [NotifyPropertyChangedFor(nameof(IsOpenVpnTcpProtocol))]
     private VpnProtocol _currentVpnProtocol;
 
+    public bool IsProtonProtocolsFeatureEnabled => _featureFlagsObserver.IsProTunEnabled;
+
     public override string Title => Localizer.Get("Settings_Connection_Protocol");
 
     public string Recommended => Localizer.Get("Common_Tags_Recommended").ToUpperInvariant();
+    public string Beta => Localizer.Get("Common_Tags_Beta").ToUpperInvariant();
 
     public bool IsSmartProtocol
     {
         get => IsProtocol(VpnProtocol.Smart);
         set => SetProtocol(value, VpnProtocol.Smart);
+    }
+
+    public bool IsProTunUdpProtocol
+    {
+        get => IsProtocol(VpnProtocol.ProTunUdp);
+        set => SetProtocol(value, VpnProtocol.ProTunUdp);
+    }
+
+    public bool IsProTunTcpProtocol
+    {
+        get => IsProtocol(VpnProtocol.ProTunTcp);
+        set => SetProtocol(value, VpnProtocol.ProTunTcp);
+    }
+
+    public bool IsProTunTlsProtocol
+    {
+        get => IsProtocol(VpnProtocol.ProTunTls);
+        set => SetProtocol(value, VpnProtocol.ProTunTls);
     }
 
     public bool IsWireGuardUdpProtocol
@@ -96,7 +128,8 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager,
-        IViewModelHelper viewModelHelper)
+        IViewModelHelper viewModelHelper,
+        IFeatureFlagsObserver featureFlagsObserver)
         : base(requiredReconnectionSettings,
                mainViewNavigator,
                settingsViewNavigator,
@@ -107,9 +140,11 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase
                viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
+        _featureFlagsObserver = featureFlagsObserver;
 
         PageSettings =
         [
+            ChangedSettingArgs.Create(() => Settings.AreProtonProtocolsEnabled, () => AreProtonProtocolsEnabled),
             ChangedSettingArgs.Create(() => Settings.VpnProtocol, () => CurrentVpnProtocol)
         ];
     }
@@ -119,10 +154,12 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase
         base.OnLanguageChanged();
 
         OnPropertyChanged(nameof(Recommended));
+        OnPropertyChanged(nameof(Beta));
     }
 
     protected override void OnRetrieveSettings()
     {
+        AreProtonProtocolsEnabled = Settings.AreProtonProtocolsEnabled;
         CurrentVpnProtocol = Settings.VpnProtocol;
     }
 
@@ -137,5 +174,13 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase
         {
             CurrentVpnProtocol = protocol;
         }
+    }
+
+    public void Receive(FeatureFlagsChangedMessage message)
+    {
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(IsProtonProtocolsFeatureEnabled));
+        });
     }
 }

@@ -32,6 +32,7 @@ public static class DefaultSettings
     public static int WindowWidth = 1016;
     public static int WindowHeight = 659;
     public static string Language = "en-US";
+    public static bool AreProtonProtocolsEnabled = false;
     public static VpnProtocol VpnProtocol = VpnProtocol.Smart;
     public static NatType NatType = NatType.Strict;
     public static bool IsVpnAcceleratorEnabled = true;
@@ -48,6 +49,9 @@ public static class DefaultSettings
     public static bool IsAlternativeRoutingEnabled = true;
     public static bool IsCustomDnsServersEnabled = false;
     public static List<CustomDnsServer> CustomDnsServersList = [];
+    public static int[] ProTunUdpPorts = [443, 88, 1224, 51820, 500, 4500];
+    public static int[] ProTunTcpPorts = [443];
+    public static int[] ProTunTlsPorts = [443];
     public static int[] WireGuardUdpPorts = [443, 88, 1224, 51820, 500, 4500];
     public static int[] WireGuardTcpPorts = [443];
     public static int[] WireGuardTlsPorts = [443];

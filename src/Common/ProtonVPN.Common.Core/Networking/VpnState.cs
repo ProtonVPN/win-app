@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy.Vpn;
-using ProtonVPN.Vpn.LocalAgent;
+using ProtonVPN.Common.Core.LocalAgent;
 
-namespace ProtonVPN.Vpn.Common;
+namespace ProtonVPN.Common.Core.Networking;
 
 public class VpnState
 {
@@ -29,14 +27,14 @@ public class VpnState
 
     public VpnStatus Status { get; }
     public VpnError Error { get; }
-    public string LocalIp { get; }
+    public string? LocalIp { get; }
     public string RemoteIp { get; }
     public int EndpointPort { get; }
     public OpenVpnAdapter? OpenVpnAdapter { get; }
     public VpnProtocol VpnProtocol { get; }
     public string Label { get; }
     public bool PortForwarding { get; }
-    public ConnectionCertificate ConnectionCertificate { get; }
+    public ConnectionCertificate? ConnectionCertificate { get; }
 
     public VpnState(VpnStatus status, VpnProtocol vpnProtocol)
         : this(status, VpnError.None, string.Empty, string.Empty, 0, vpnProtocol)
@@ -60,7 +58,7 @@ public class VpnState
 
     public VpnState(VpnStatus status, VpnError error, string localIp, string remoteIp, int endpointPort, VpnProtocol vpnProtocol,
         bool portForwarding = false, OpenVpnAdapter? openVpnAdapter = null, string label = "",
-        ConnectionCertificate connectionCertificate = null)
+        ConnectionCertificate? connectionCertificate = null)
     {
         Status = status;
         Error = error;

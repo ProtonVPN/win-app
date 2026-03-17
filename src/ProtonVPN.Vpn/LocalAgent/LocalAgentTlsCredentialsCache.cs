@@ -18,6 +18,7 @@
  */
 
 using System;
+using ProtonVPN.Common.Core.LocalAgent;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.LocalAgentLogs;

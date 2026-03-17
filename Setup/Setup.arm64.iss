@@ -13,6 +13,8 @@ ArchitecturesAllowed=arm64
 #include "SetupBase.iss"
 
 [Files]
+Source: "..\{#SourcePath}\arm64\protun.dll"; DestDir: "{app}\{#VersionFolder}\arm64"; Flags: signonce;
+
 Source: "Native\arm64\tunnel.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "Native\arm64\wintun.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;
 Source: "Native\arm64\wireguard.dll"; DestDir: "{app}\{#VersionFolder}"; Flags: signonce;

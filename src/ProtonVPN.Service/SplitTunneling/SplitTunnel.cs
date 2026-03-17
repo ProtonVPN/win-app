@@ -21,7 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using ProtonVPN.Common.Core.Extensions;
-using ProtonVPN.Common.Legacy.Vpn;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.NetworkFilter;
 using ProtonVPN.OperatingSystems.Network.Contracts;
@@ -29,7 +29,6 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.Vpn;
-using ProtonVPN.Vpn.Common;
 using Action = ProtonVPN.NetworkFilter.Action;
 
 namespace ProtonVPN.Service.SplitTunneling;

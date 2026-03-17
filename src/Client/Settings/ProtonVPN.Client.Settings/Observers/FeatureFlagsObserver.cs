@@ -67,6 +67,9 @@ public class FeatureFlagsObserver : PollingObserverBase, IFeatureFlagsObserver
     [FeatureFlag("IsNetShieldLevelThreeEnabled")]
     public bool IsNetShieldLevelThreeEnabled => IsEnabled() && !_settings.VpnPlan.IsB2B; // NetShield Level 3 is not available for B2B users due to lack of support on Gateways
 
+    [FeatureFlag("ProTunV1")]
+    public bool IsProTunEnabled => IsEnabled();
+
     protected override TimeSpan PollingInterval => _config.FeatureFlagsUpdateInterval;
 
     private static PropertyInfo[] Properties { get; } = typeof(FeatureFlagsObserver).GetProperties();

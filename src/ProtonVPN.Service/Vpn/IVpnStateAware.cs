@@ -17,15 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Vpn.Common;
+using ProtonVPN.Common.Core.Networking;
 
-namespace ProtonVPN.Service.Vpn
+namespace ProtonVPN.Service.Vpn;
+
+public interface IVpnStateAware
 {
-    public interface IVpnStateAware
-    {
-        void OnVpnConnected(VpnState state);
-        void OnVpnConnecting(VpnState state);
-        void OnVpnDisconnected(VpnState state);
-        void AssigningIp(VpnState state);
-    }
+    void OnVpnConnected(VpnState state);
+    void OnVpnConnecting(VpnState state);
+    void OnVpnDisconnected(VpnState state);
+    void AssigningIp(VpnState state);
 }

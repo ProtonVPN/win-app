@@ -22,7 +22,6 @@ using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
 using ProtonVPN.OperatingSystems.Network.Contracts;
-using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Service.Vpn;
 

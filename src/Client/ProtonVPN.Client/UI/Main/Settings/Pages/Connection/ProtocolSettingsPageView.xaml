@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2024 Proton AG
+Copyright (c) 2025 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -24,7 +24,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
+      xmlns:controls="using:CommunityToolkit.WinUI.Controls"
       xmlns:featureicons="using:ProtonVPN.Client.UI.Main.FeatureIcons"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
@@ -58,8 +58,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <StackPanel x:Name="ContentArea"
                     Spacing="8">
 
-            <toolkit:SettingsCard IsTabStop="False"
-                                  Style="{StaticResource VerticalSettingsCardStyle}">
+            <controls:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_ProtonProtocols_Description')}"
+                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_ProtonProtocols_Title')}"
+                                   IsTabStop="False"
+                                   Style="{StaticResource DefaultSettingsCardStyle}"
+                                   Visibility="{x:Bind ViewModel.IsProtonProtocolsFeatureEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal" Spacing="16">
+                    <custom:TagControl Text="{x:Bind ViewModel.Beta}" Style="{StaticResource BetaFeatureTagControlStyle}" />
+                    <ToggleSwitch IsOn="{x:Bind ViewModel.AreProtonProtocolsEnabled, Mode=TwoWay}"
+                                  Style="{StaticResource ToggleSwitchStyle}" />
+                </StackPanel>
+            </controls:SettingsCard>
+
+            <controls:SettingsCard IsTabStop="False"
+                                   Style="{StaticResource VerticalSettingsCardStyle}">
 
                 <StackPanel Margin="0,-8,0,0"
                             Spacing="16">
@@ -129,20 +141,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </StackPanel>
                     </RadioButton>
 
-                    <RadioButton AutomationProperties.AutomationId="OpenVpnTcpProtocolRadioButton"
-                                 IsChecked="{x:Bind ViewModel.IsOpenVpnTcpProtocol, Mode=TwoWay}"
-                                 Style="{StaticResource ProtocolRadioButtonStyle}">
-                        <StackPanel>
-                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnTcp_Title')}" />
-
-                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                                       Style="{StaticResource CaptionTextBlockStyle}"
-                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnTcp_Description')}"
-                                       TextWrapping="Wrap" />
-                        </StackPanel>
-                    </RadioButton>
-
                     <RadioButton AutomationProperties.AutomationId="WireGuardTlsProtocolRadioButton"
                                  IsChecked="{x:Bind ViewModel.IsWireGuardTlsProtocol, Mode=TwoWay}"
                                  Style="{StaticResource ProtocolRadioButtonStyle}">
@@ -156,8 +154,22 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                        TextWrapping="Wrap" />
                         </StackPanel>
                     </RadioButton>
+
+                    <RadioButton AutomationProperties.AutomationId="OpenVpnTcpProtocolRadioButton"
+                                 IsChecked="{x:Bind ViewModel.IsOpenVpnTcpProtocol, Mode=TwoWay}"
+                                 Style="{StaticResource ProtocolRadioButtonStyle}">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnTcp_Title')}" />
+
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_OpenVpnTcp_Description')}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
                 </StackPanel>
-            </toolkit:SettingsCard>
+            </controls:SettingsCard>
 
             <TextBlock Style="{StaticResource CaptionTextBlockStyle}">
                 <Run Foreground="{ThemeResource TextWeakColorBrush}"

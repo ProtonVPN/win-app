@@ -96,11 +96,14 @@ public class VpnServerMapperTest
     {
         Dictionary<VpnProtocol, string> relayIpByProtocol = new()
         {
-            { VpnProtocol.WireGuardUdp, "1.1.1.1" },
-            { VpnProtocol.WireGuardTcp, "2.2.2.2" },
-            { VpnProtocol.WireGuardTls, "3.3.3.3" },
-            { VpnProtocol.OpenVpnUdp, "4.4.4.4" },
-            { VpnProtocol.OpenVpnTcp, "5.5.5.5" }
+            { VpnProtocol.ProTunUdp, "1.1.1.1" },
+            { VpnProtocol.ProTunTcp, "2.2.2.2" },
+            { VpnProtocol.ProTunTls, "3.3.3.3" },
+            { VpnProtocol.WireGuardUdp, "4.4.4.4" },
+            { VpnProtocol.WireGuardTcp, "5.5.5.5" },
+            { VpnProtocol.WireGuardTls, "6.6.6.6" },
+            { VpnProtocol.OpenVpnUdp, "7.7.7.7" },
+            { VpnProtocol.OpenVpnTcp, "8.8.8.8" }
         };
 
         VpnHost entityToTest = new(
@@ -123,6 +126,9 @@ public class VpnServerMapperTest
 
         Assert.IsNotNull(result.RelayIpByProtocol);
         Assert.HasCount(relayIpByProtocol.Count, result.RelayIpByProtocol);
+        Assert.AreEqual(relayIpByProtocol[VpnProtocol.ProTunUdp], result.RelayIpByProtocol[VpnProtocolIpcEntity.ProTunUdp]);
+        Assert.AreEqual(relayIpByProtocol[VpnProtocol.ProTunTcp], result.RelayIpByProtocol[VpnProtocolIpcEntity.ProTunTcp]);
+        Assert.AreEqual(relayIpByProtocol[VpnProtocol.ProTunTls], result.RelayIpByProtocol[VpnProtocolIpcEntity.ProTunTls]);
         Assert.AreEqual(relayIpByProtocol[VpnProtocol.WireGuardUdp], result.RelayIpByProtocol[VpnProtocolIpcEntity.WireGuardUdp]);
         Assert.AreEqual(relayIpByProtocol[VpnProtocol.WireGuardTcp], result.RelayIpByProtocol[VpnProtocolIpcEntity.WireGuardTcp]);
         Assert.AreEqual(relayIpByProtocol[VpnProtocol.WireGuardTls], result.RelayIpByProtocol[VpnProtocolIpcEntity.WireGuardTls]);
@@ -167,11 +173,14 @@ public class VpnServerMapperTest
     {
         Dictionary<VpnProtocolIpcEntity, string> relayIpByProtocol = new()
         {
-            { VpnProtocolIpcEntity.WireGuardUdp, "1.1.1.1" },
-            { VpnProtocolIpcEntity.WireGuardTcp, "2.2.2.2" },
-            { VpnProtocolIpcEntity.WireGuardTls, "3.3.3.3" },
-            { VpnProtocolIpcEntity.OpenVpnUdp, "4.4.4.4" },
-            { VpnProtocolIpcEntity.OpenVpnTcp, "5.5.5.5" }
+            { VpnProtocolIpcEntity.ProTunUdp, "1.1.1.1" },
+            { VpnProtocolIpcEntity.ProTunTcp, "2.2.2.2" },
+            { VpnProtocolIpcEntity.ProTunTls, "3.3.3.3" },
+            { VpnProtocolIpcEntity.WireGuardUdp, "4.4.4.4" },
+            { VpnProtocolIpcEntity.WireGuardTcp, "5.5.5.5" },
+            { VpnProtocolIpcEntity.WireGuardTls, "6.6.6.6" },
+            { VpnProtocolIpcEntity.OpenVpnUdp, "7.7.7.7" },
+            { VpnProtocolIpcEntity.OpenVpnTcp, "8.8.8.8" }
         };
 
         VpnServerIpcEntity entityToTest = new()
@@ -195,6 +204,9 @@ public class VpnServerMapperTest
 
         Assert.IsNotNull(result.RelayIpByProtocol);
         Assert.HasCount(relayIpByProtocol.Count, result.RelayIpByProtocol);
+        Assert.AreEqual(relayIpByProtocol[VpnProtocolIpcEntity.ProTunUdp], result.RelayIpByProtocol[VpnProtocol.ProTunUdp]);
+        Assert.AreEqual(relayIpByProtocol[VpnProtocolIpcEntity.ProTunTcp], result.RelayIpByProtocol[VpnProtocol.ProTunTcp]);
+        Assert.AreEqual(relayIpByProtocol[VpnProtocolIpcEntity.ProTunTls], result.RelayIpByProtocol[VpnProtocol.ProTunTls]);
         Assert.AreEqual(relayIpByProtocol[VpnProtocolIpcEntity.WireGuardUdp], result.RelayIpByProtocol[VpnProtocol.WireGuardUdp]);
         Assert.AreEqual(relayIpByProtocol[VpnProtocolIpcEntity.WireGuardTcp], result.RelayIpByProtocol[VpnProtocol.WireGuardTcp]);
         Assert.AreEqual(relayIpByProtocol[VpnProtocolIpcEntity.WireGuardTls], result.RelayIpByProtocol[VpnProtocol.WireGuardTls]);

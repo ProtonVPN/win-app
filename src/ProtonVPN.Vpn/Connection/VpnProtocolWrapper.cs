@@ -28,17 +28,22 @@ namespace ProtonVPN.Vpn.Connection;
 
 internal class VpnProtocolWrapper : ISingleVpnConnection
 {
+    private readonly ISingleVpnConnection _proTunConnection;
     private readonly ISingleVpnConnection _openVpnConnection;
     private readonly ISingleVpnConnection _wireGuardConnection;
 
     private VpnProtocol _vpnProtocol;
 
-    public VpnProtocolWrapper(ISingleVpnConnection openVpnConnection,
+    public VpnProtocolWrapper(
+        ISingleVpnConnection proTunConnection,
+        ISingleVpnConnection openVpnConnection,
         ISingleVpnConnection wireGuardConnection)
     {
+        _proTunConnection = proTunConnection;
         _openVpnConnection = openVpnConnection;
         _wireGuardConnection = wireGuardConnection;
 
+        _proTunConnection.StateChanged += OnStateChanged;
         _openVpnConnection.StateChanged += OnStateChanged;
         _wireGuardConnection.StateChanged += OnStateChanged;
     }
@@ -48,11 +53,13 @@ internal class VpnProtocolWrapper : ISingleVpnConnection
     {
         add
         {
+            _proTunConnection.ConnectionDetailsChanged += value;
             _openVpnConnection.ConnectionDetailsChanged += value;
             _wireGuardConnection.ConnectionDetailsChanged += value;
         }
         remove
         {
+            _proTunConnection.ConnectionDetailsChanged -= value;
             _openVpnConnection.ConnectionDetailsChanged -= value;
             _wireGuardConnection.ConnectionDetailsChanged -= value;
         }
@@ -70,6 +77,7 @@ internal class VpnProtocolWrapper : ISingleVpnConnection
     {
         if (VpnConnection == null)
         {
+            _proTunConnection.Disconnect(error);
             _openVpnConnection.Disconnect(error);
             _wireGuardConnection.Disconnect(error);
             OnStateChanged(this, new EventArgs<VpnState>(new VpnState(VpnStatus.Disconnected, _vpnProtocol)));
@@ -100,9 +108,12 @@ internal class VpnProtocolWrapper : ISingleVpnConnection
         StateChanged?.Invoke(this, e);
     }
 
-    private ISingleVpnConnection VpnConnection => _vpnProtocol.IsWireGuard()
+    private ISingleVpnConnection VpnConnection =>
+        _vpnProtocol.IsWireGuard()
         ? _wireGuardConnection
-        : _vpnProtocol.IsOpenVpn()
-            ? _openVpnConnection
-            : null;
+        : _vpnProtocol.IsProTun()
+            ? _proTunConnection
+            : _vpnProtocol.IsOpenVpn()
+                ? _openVpnConnection
+                : null;
 }

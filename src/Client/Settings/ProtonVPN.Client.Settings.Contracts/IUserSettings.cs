@@ -42,6 +42,7 @@ public interface IUserSettings
     int SidebarWidth { get; set; }
     bool IsRecentsPaneOpened { get; set; }
     bool IsConnectionDetailsPaneOpened { get; set; }
+    bool AreProtonProtocolsEnabled { get; set; }
     VpnProtocol VpnProtocol { get; set; }
     OpenVpnAdapter OpenVpnAdapter { get; set; }
     VpnPlan VpnPlan { get; set; }

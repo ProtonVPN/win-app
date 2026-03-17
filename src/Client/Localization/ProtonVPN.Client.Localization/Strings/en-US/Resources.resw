@@ -1869,6 +1869,15 @@
   <data name="Settings_SelectedProtocol_WireGuardTls" xml:space="preserve">
     <value>Stealth</value>
   </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp" xml:space="preserve">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp" xml:space="preserve">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls" xml:space="preserve">
+    <value>Proton Stealth</value>
+  </data>
   <data name="Settings_Support" xml:space="preserve">
     <value>Support</value>
   </data>
@@ -2569,6 +2578,24 @@
     <value>Stealth</value>
   </data>
   <data name="VpnProtocol_WireGuard_Tls_Description" xml:space="preserve">
+    <value>Overcomes VPN blocks by hiding your connection from censors</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp" xml:space="preserve">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description" xml:space="preserve">
+    <value>State-of-the-art protocol for security and performance</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp" xml:space="preserve">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description" xml:space="preserve">
+    <value>State-of-the-art protocol for security and performance</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls" xml:space="preserve">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description" xml:space="preserve">
     <value>Overcomes VPN blocks by hiding your connection from censors</value>
   </data>
   <data name="SignIn_Form_Email" xml:space="preserve">
@@ -3820,5 +3847,11 @@
   </data>
   <data name="NoServers_NeedHelp" xml:space="preserve">
     <value>Need help?</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title" xml:space="preserve">
+    <value>Proton protocols</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description" xml:space="preserve">
+    <value>Use Proton VPN's own implementation of WireGuard. This is an experimental feature, so you may experience some instability.</value>
   </data>
 </root>
