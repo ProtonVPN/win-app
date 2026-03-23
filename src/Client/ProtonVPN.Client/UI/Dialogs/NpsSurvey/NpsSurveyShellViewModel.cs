@@ -22,12 +22,14 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Media;
 using ProtonVPN.Api.Contracts;
 using ProtonVPN.Api.Contracts.Common;
+using ProtonVPN.Api.Contracts.NpsSurvey;
 using ProtonVPN.Client.Common.Constants;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Helpers;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Selection;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -37,6 +39,7 @@ public partial class NpsSurveyShellViewModel : ShellViewModelBase<INpsSurveyWind
 {
     private readonly ILogger _logger;
     private readonly IApiClient _apiClient;
+    private readonly ISettings _settings;
     private readonly IApplicationThemeSelector _themeSelector;
 
     [ObservableProperty]
@@ -97,6 +100,7 @@ public partial class NpsSurveyShellViewModel : ShellViewModelBase<INpsSurveyWind
     public NpsSurveyShellViewModel(
         ILogger logger,
         IApiClient apiClient,
+        ISettings settings,
         IApplicationThemeSelector themeSelector,
         INpsSurveyWindowActivator windowActivator,
         IViewModelHelper viewModelHelper)
@@ -104,6 +108,7 @@ public partial class NpsSurveyShellViewModel : ShellViewModelBase<INpsSurveyWind
     {
         _logger = logger;
         _apiClient = apiClient;
+        _settings = settings;
         _themeSelector = themeSelector;
     }
 
@@ -127,11 +132,15 @@ public partial class NpsSurveyShellViewModel : ShellViewModelBase<INpsSurveyWind
             IsSubmitted = true;
             IsSending = true;
 
-            ApiResponseResult<BaseResponse> result = await _apiClient.SubmitNpsSurveyAsync(new()
+            NpsSurveyRequest request = new()
             {
                 Score = Score,
                 Comment = Comment,
-            });
+            };
+
+            ApiResponseResult<BaseResponse> result = await _apiClient.SubmitNpsSurveyAsync(
+                request, 
+                _settings.DeviceLocation);
 
             IsRequestSuccessful = result.Success;
             HasRequestFailed = result.Failure;
@@ -160,7 +169,7 @@ public partial class NpsSurveyShellViewModel : ShellViewModelBase<INpsSurveyWind
         {
             try
             {
-                await _apiClient.DismissNpsSurveyAsync();
+                await _apiClient.DismissNpsSurveyAsync(_settings.DeviceLocation);
             }
             catch (Exception e)
             {

@@ -70,6 +70,6 @@ public interface IApiClient : IClientBase
     Task<ApiResponseResult<Ipv6FragmentsResponse>> GetIpv6FragmentsAsync(CancellationToken cancellationToken = default);
     Task<ApiResponseResult<FeatureFlagsResponse>> GetFeatureFlagsAsync(CancellationToken cancellationToken = default);
     Task<ApiResponseResult<LookupServerResponse>> GetServerByNameAsync(string serverName, DeviceLocation? deviceLocation);
-    Task<ApiResponseResult<BaseResponse>> SubmitNpsSurveyAsync(NpsSurveyRequest request);
-    Task<ApiResponseResult<BaseResponse>> DismissNpsSurveyAsync();
+    Task<ApiResponseResult<BaseResponse>> SubmitNpsSurveyAsync(NpsSurveyRequest request, DeviceLocation? deviceLocation);
+    Task<ApiResponseResult<BaseResponse>> DismissNpsSurveyAsync(DeviceLocation? deviceLocation);
 }

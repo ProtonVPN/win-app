@@ -203,7 +203,9 @@ public class BaseApiClient : IClientBase
         return request;
     }
 
-    protected HttpRequestMessage GetAuthorizedRequestWithLocation(HttpMethod method, string requestUri,
+    protected HttpRequestMessage GetAuthorizedRequestWithLocation(
+        HttpMethod method, 
+        string requestUri,
         DeviceLocation? deviceLocation)
     {
         HttpRequestMessage request = GetAuthorizedRequest(method, requestUri);
