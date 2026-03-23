@@ -72,7 +72,6 @@ public class CustomDnsTests : BaseTest
         IpSelectorRobot
             .AddIpAddress(CUSTOM_DNS_SERVER)
             .Verify.WasIpAdded(CUSTOM_DNS_SERVER);
-
         ConfirmationRobot
             .PrimaryAction();
 
@@ -98,7 +97,6 @@ public class CustomDnsTests : BaseTest
 
         IpSelectorRobot
             .TickIpAddressCheckBox(CUSTOM_DNS_SERVER);
-
         ConfirmationRobot
             .PrimaryAction();
 
@@ -124,7 +122,6 @@ public class CustomDnsTests : BaseTest
             .DeleteAllIps()
             .AddIpAddress(SECONDARY_CUSTOM_DNS_SERVER)
             .Verify.WasIpAdded(SECONDARY_CUSTOM_DNS_SERVER);
-
         ConfirmationRobot
             .PrimaryAction();
 

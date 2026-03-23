@@ -119,8 +119,7 @@ public class ConnectionTests : FreshSessionSetUp
         HomeRobot
             .SelectVpnConnectionOption(VpnConnectionOptions.Random)
             .ConnectViaConnectionCard(TestConstants.MoreFrequentRetryInterval)
-            .Verify.IsConnecting();
-        HomeRobot
+            .Verify.IsConnecting()
             .CancelConnection(TestConstants.MoreFrequentRetryInterval)
             .Verify.IsDisconnected();
     }
@@ -177,6 +176,8 @@ public class ConnectionTests : FreshSessionSetUp
         NavigationRobot
             .Verify.IsOnMainPage();
 
+        //wait to see that it doesnt reconnect
+        Thread.Sleep(TestConstants.TenSecondsTimeout);
         HomeRobot
             .Verify.IsDisconnected();
     }
@@ -271,7 +272,7 @@ public class ConnectionTests : FreshSessionSetUp
     {
         ConnectAndDisconnectViaSearchCountry(CountriesTab.Tor);
     }
-
+   
     private void MakeSureUserIsDisconnected()
     {
         try

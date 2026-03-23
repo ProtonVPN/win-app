@@ -19,6 +19,7 @@
 
 using System.Net.Sockets;
 using System;
+using System.IO;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -38,6 +39,21 @@ public class PortForwardingTests : FreshSessionSetUp
 {
     private const string COUNTRY_NAME = "Austria";
 
+    private static readonly string _projectFolder = AppDomain.CurrentDomain.BaseDirectory;
+    private static readonly string _testhostPath = Path.Combine(_projectFolder, "testhost.exe");
+    private static readonly string _allowTesthostFirewallScript = $@"
+    $ruleName = 'ProtonVPN UI Tests - Allow testhost.exe'
+    $exePath = '{_testhostPath}'
+
+    $existingRule = Get-NetFirewallRule -DisplayName $ruleName -ErrorAction SilentlyContinue
+
+    if (-not $existingRule)
+    {{
+        New-NetFirewallRule -DisplayName $ruleName -Direction Inbound -Program $exePath -Action Allow -Profile Private,Public -Protocol TCP
+    }}
+    ";
+
+
     [SetUp]
     public void SetUp()
     {
@@ -48,6 +64,8 @@ public class PortForwardingTests : FreshSessionSetUp
     [Retry(3)]
     public async Task PortForwardingOpensThePortAsync()
     {
+        WindowsUtils.RunPowerShellScript(_allowTesthostFirewallScript);
+
         EnablePortForwardingAndConnect();
 
         //string ipAddressConnected = NetworkUtils.GetIpAddressWithRetry();

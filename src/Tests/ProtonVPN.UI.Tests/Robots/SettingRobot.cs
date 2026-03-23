@@ -84,6 +84,7 @@ public class SettingRobot
     protected Element WireGuardUdpProtocolRadioButton = Element.ByAutomationId("WireGuardUdpProtocolRadioButton");
     protected Element WireGuardTlsProtocolRadioButton = Element.ByAutomationId("WireGuardTlsProtocolRadioButton");
     protected Element WireGuardTcpProtocolRadioButton = Element.ByAutomationId("WireGuardTcpProtocolRadioButton");
+    protected Element SmartProtocolRadioButton = Element.ByAutomationId("SmartProtocolRadioButton");
     protected Element ExitProtonPopUp = Element.ByName("Exit Proton VPN?");
 
     public SettingRobot OpenSettings()
@@ -244,6 +245,10 @@ public class SettingRobot
     {
         switch (protocol)
         {
+            case TestConstants.Protocol.Smart:
+                SmartProtocolRadioButton.Click();
+                break;
+
             case TestConstants.Protocol.OpenVpnUdp:
                 OpenVpnUdpProtocolRadioButton.Click();
                 break;

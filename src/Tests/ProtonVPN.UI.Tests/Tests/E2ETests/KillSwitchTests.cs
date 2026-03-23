@@ -65,7 +65,7 @@ public class KillSwitchTests : FreshSessionSetUp
 
         LoginRobot.Verify.IsLoginWindowDisplayed();
 
-        AssertInternetAvailability(true);
+        NetworkUtils.AssertInternetAvailability(true);
     }
 
     [Test, Order(2)]
@@ -85,7 +85,7 @@ public class KillSwitchTests : FreshSessionSetUp
         HomeRobot.ExpandKebabMenuButton()
                  .ExitViaKebabMenuWithConfirmation();
 
-        AssertInternetAvailability(true);
+        NetworkUtils.AssertInternetAvailability(true);
     }
 
     [Test, Order(3)]
@@ -101,7 +101,7 @@ public class KillSwitchTests : FreshSessionSetUp
 
         //needs a 5sec wait locally
         //Thread.Sleep(TestConstants.FiveSecondsTimeout);
-        AssertInternetAvailability(false);
+        NetworkUtils.AssertInternetAvailability(false);
     }
 
     [Test, Order(4)]
@@ -114,7 +114,7 @@ public class KillSwitchTests : FreshSessionSetUp
         HomeRobot.ExpandKebabMenuButton()
                  .ExitViaKebabMenuWithConfirmation();
 
-        AssertInternetAvailability(false);
+        NetworkUtils.AssertInternetAvailability(false);
     }
 
     [Test, Order(5)]
@@ -133,13 +133,13 @@ public class KillSwitchTests : FreshSessionSetUp
 
         //needs a 5sec wait locally
         //Thread.Sleep(TestConstants.FiveSecondsTimeout);
-        AssertInternetAvailability(false);
+        NetworkUtils.AssertInternetAvailability(false);
 
         LoginRobot
             .Verify.IsAdvancedKillSwitchDisplayed()
             .DisableKillSwitch();
 
-        AssertInternetAvailability(true);
+        NetworkUtils.AssertInternetAvailability(true);
     }
 
     [Test, Order(6)]
@@ -214,20 +214,5 @@ public class KillSwitchTests : FreshSessionSetUp
 
         NavigationRobot
             .Verify.IsOnConnectionDetailsPage();
-    }
-
-    private static void AssertInternetAvailability(bool shouldBeAvailable)
-    {
-        Thread.Sleep(TestConstants.FiveSecondsTimeout);
-
-        bool isAvailable = NetworkUtils.IsInternetAvailable();
-        if (shouldBeAvailable)
-        {
-            Assert.That(isAvailable, Is.True, "Expected internet to be available.");
-        }
-        else
-        {
-            Assert.That(isAvailable, Is.False, "Expected internet to not be available.");
-        }
     }
 }

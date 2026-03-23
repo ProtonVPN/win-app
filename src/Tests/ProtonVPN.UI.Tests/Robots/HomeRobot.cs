@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -64,10 +65,23 @@ public class HomeRobot
     protected Element CustomizeCardConnectionTitleLabel = Element.ByName("Default connection");
     protected Element ProtectedLabelAdvancedKillSwitch = Element.ByName("Advanced kill switch activated");
     protected Element ShowIpFlyoutButton => Element.ByAutomationId("ShowIpFlyoutButton");
+    protected Element SplitTunnelingWidgetButton = Element.ByAutomationId("SplitTunnelingWidgetButton");
 
     public HomeRobot DismissWelcomeModal()
     {
         GetStartedButton.Click();
+        return this;
+    }
+
+    public HomeRobot ClickOnConnectionCardTitle()
+    {
+        ConnectionCardTitle.Click();
+        return this;
+    }
+
+    public HomeRobot HoverOverSplitTunnelingFlyoutWidget()
+    {
+        SplitTunnelingWidgetButton.Hover();
         return this;
     }
 
@@ -300,6 +314,12 @@ public class HomeRobot
         public Verifications DoesCustomizedCardTitleEqual(string title)
         {
             CustomizeCardConnectionTitleLabel.TextEquals(title);
+            return this;
+        }
+
+        public Verifications AssertVPNIpAndExternalIpMatch(string vpnIpAddress, string externalIpAddress)
+        {
+            Assert.That(vpnIpAddress.Equals(externalIpAddress), Is.True);
             return this;
         }
 
