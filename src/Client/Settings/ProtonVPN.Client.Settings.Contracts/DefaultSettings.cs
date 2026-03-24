@@ -32,7 +32,7 @@ public static class DefaultSettings
     public static int WindowWidth = 1016;
     public static int WindowHeight = 659;
     public static string Language = "en-US";
-    public static bool AreProtonProtocolsEnabled = false;
+    public static bool AreProtonProtocolsEnabled = true;
     public static VpnProtocol VpnProtocol = VpnProtocol.Smart;
     public static NatType NatType = NatType.Strict;
     public static bool IsVpnAcceleratorEnabled = true;
