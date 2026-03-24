@@ -17,16 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
+using System.Threading;
+using NUnit.Framework;
+using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
 public class ConfirmationRobot
 {
+    protected Element OverlayMessage = Element.ByAutomationId("OverlayMessage");
     protected Element PrimaryActionButton = Element.ByAutomationId("PrimaryButton");
     protected Element SecondaryActionButton = Element.ByAutomationId("SecondaryButton");
     protected Element CancelActionButton = Element.ByAutomationId("CloseButton");
-
 
     public ConfirmationRobot PrimaryAction()
     {
@@ -45,4 +49,20 @@ public class ConfirmationRobot
         CancelActionButton.Click();
         return this;
     }
+
+    public class Verifications : ConfirmationRobot
+    {
+        public Verifications IsDialogDisplayed(string titleText, string descriptionText, string buttonText)
+        {
+            Thread.Sleep(TestConstants.OneSecondTimeout);
+            List<string> allChildren = OverlayMessage.GetAllChildrenNames();
+            Assert.That(allChildren, Does.Contain(titleText));
+            Assert.That(allChildren, Does.Contain(descriptionText));
+            PrimaryActionButton.TextEquals(buttonText);
+
+            return this;
+        }
+    }
+
+    public Verifications Verify => new();
 }

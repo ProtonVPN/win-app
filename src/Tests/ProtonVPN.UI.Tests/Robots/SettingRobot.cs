@@ -32,6 +32,7 @@ public class SettingRobot
     private const string NETSHIELD_NO_BLOCK = "netshield-0.protonvpn.net";
     private const string NETSHIELD_MALWARE_ENDPOINT = "netshield-1.protonvpn.net";
     private const string NETSHIELD_ADS_ENDPOINT = "netshield-2.protonvpn.net";
+    private static readonly string[] _netShieldAdultContentDomains = { "0-100c.cn", "0-1du.com", "0-24sexcams.com", "0-6babylee.cn", "0-900.com" };
 
     protected Element SettingsPage = Element.ByAutomationId("SettingsPage");
     protected Element ApplyButton = Element.ByAutomationId("ApplyButton");
@@ -70,7 +71,7 @@ public class SettingRobot
 
     protected Element NetshieldToggle = Element.ByAutomationId("NetshieldToggle");
     protected Element NetShieldLevelOneRadioButton = Element.ByAutomationId("NetShieldLevelOne");
-    protected Element NetShieldLevelTwoRadioButton = Element.ByAutomationId("NetShieldLevelTwo"); 
+    protected Element NetShieldLevelTwoRadioButton = Element.ByAutomationId("NetShieldLevelTwo");
     protected Element NetShieldLevelThreeRadioButton = Element.ByAutomationId("NetShieldLevelThree");
     protected Element KillSwitchToggle = Element.ByAutomationId("KillSwitchToggle");
     protected Element KillSiwtchStandardRadioButton = Element.ByAutomationId("StandardKillSwitchRadioButton");
@@ -403,17 +404,27 @@ public class SettingRobot
                 case NetShieldMode.BlockMalwareOnly:
                     CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_MALWARE_ENDPOINT);
                     CommonAssertions.AssertDnsIsResolved(NETSHIELD_ADS_ENDPOINT);
+                    CommonAssertions.AssertDnsIsResolved(_netShieldAdultContentDomains[0]);
                     break;
                 case NetShieldMode.BlockAdsMalwareTrackers:
                     CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_MALWARE_ENDPOINT);
                     CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_ADS_ENDPOINT);
+                    CommonAssertions.AssertDnsIsResolved(_netShieldAdultContentDomains[0]);
+                    break;
+                case NetShieldMode.BlockAdsMalwareTrackersAdultContent:
+                    CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_MALWARE_ENDPOINT);
+                    CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_ADS_ENDPOINT);
+                    foreach (string adultContentDomain in _netShieldAdultContentDomains)
+                    {
+                        CommonAssertions.AssertDnsIsNotResolved(adultContentDomain);
+                    }
                     break;
             }
 
             return this;
         }
 
-        public Verifications IsNetshieldDisableStateDisplayed()
+        public Verifications IsNetshieldDisabledStateDisplayed()
         {
             NetShieldSettingsCard.FindChild(Element.ByName("Off")).WaitUntilDisplayed();
             return this;

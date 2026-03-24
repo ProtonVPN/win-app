@@ -17,7 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
+using System.Threading;
 using FlaUI.Core.AutomationElements;
+using NUnit.Framework;
+using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
 
 namespace ProtonVPN.UI.Tests.Robots;
@@ -86,7 +90,7 @@ public class IpSelectorRobot
 
         public Verifications IsErrorMessageDisplayed(string errorMessage)
         {
-            IpAddressTextBox.FindChild(Element.ByClassName("TextBlock")).TextEquals(errorMessage);
+            IpAddressTextBox.FindChild(Element.ByName(errorMessage)).WaitUntilDisplayed();
             return this;
         }
     }
