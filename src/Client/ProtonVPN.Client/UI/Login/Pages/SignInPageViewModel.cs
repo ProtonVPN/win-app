@@ -76,7 +76,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(SignInCommand))]
-    private SecureString _password;
+    private SecureString _password = new();
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(CreateAccountCommand))]
