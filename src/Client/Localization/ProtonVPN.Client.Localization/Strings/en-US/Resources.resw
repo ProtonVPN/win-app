@@ -2651,10 +2651,10 @@
     <value>OpenVPN network driver</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description" xml:space="preserve">
-    <value>Uses bridging to connect networks. TUN provides higher speeds than TAP, but may be less stable.</value>
+    <value>Routes traffic between different networks. TUN can be faster and more stable than TAP.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap" xml:space="preserve">
-    <value>Routes traffic between different networks.</value>
+    <value>Bridges network traffic. Slower than TUN, but needed for some legacy or special network setups.</value>
   </data>
   <data name="Gateways_Page_Title" xml:space="preserve">
     <value>Gateways</value>
