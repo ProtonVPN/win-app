@@ -108,7 +108,7 @@ public class BaseTest
 
         if (!retry.Success)
         {
-            Assert.Fail($"Failed to refresh window in {refreshTimeout.Seconds} seconds.");
+            Assert.Fail($"Failed to refresh window in {refreshTimeout.TotalSeconds:0} seconds.");
         }
     }
 
