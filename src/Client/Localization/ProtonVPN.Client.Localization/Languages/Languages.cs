@@ -55,7 +55,6 @@ public static class Languages
         new("zh-CN", "简体中文 - Chinese (Simplified)"),
         new("zh-TW", "繁體中文 - Chinese (Traditional)"),
         new("th-TH", "ไทย - Thai"),
-        new("fil-PH", "Filipino - Filipino"),
         new("hu-HU", "Magyar - Hungarian"),
         new("nb-NO", "Norsk (bokmål) - Norwegian (Bokmal)"),
         new("sk-SK", "Slovenčina - Slovak"),
