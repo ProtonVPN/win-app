@@ -23,18 +23,7 @@ using ProtonVPN.ProTun.Generated;
 
 namespace ProtonVPN.ProTun.StatsResponses;
 
-public class ProTunStatsResponseHandler : IProTunStatsResponseHandler
+public interface IProTunEventsResponseHandler : EventCallback
 {
-    public event EventHandler<EventArgs<NetworkTraffic>>? TrafficUpdated;
-
-    public void OnStatsResponse(ConnectionStats stats)
-    {
-        NetworkTraffic traffic = new(stats.receivedBytes, stats.sentBytes);
-        InvokeTrafficUpdate(traffic);
-    }
-
-    private void InvokeTrafficUpdate(NetworkTraffic traffic)
-    {
-        TrafficUpdated?.Invoke(this, new EventArgs<NetworkTraffic>(traffic));
-    }
+    event EventHandler<EventArgs<NetworkTraffic>>? TrafficUpdated;
 }

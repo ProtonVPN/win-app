@@ -43,7 +43,7 @@ public class ProTunManager : IProTunManager
 
     private readonly IProTunLogger _proTunLogger;
     private readonly IProTunStateChangeHandler _proTunStateChangeHandler;
-    private readonly IProTunStatsResponseHandler _proTunStatsResponseHandler;
+    private readonly IProTunEventsResponseHandler _proTunEventsResponseHandler;
     private readonly IAdapterDetailsCache _adapterDetailsCache;
     private readonly ILogger _logger;
 
@@ -57,19 +57,19 @@ public class ProTunManager : IProTunManager
     public event EventHandler<EventArgs<VpnState>>? OnStateChanged;
     public event EventHandler<EventArgs<NetworkTraffic>>? OnTrafficUpdated
     {
-        add => _proTunStatsResponseHandler.TrafficUpdated += value;
-        remove => _proTunStatsResponseHandler.TrafficUpdated -= value;
+        add => _proTunEventsResponseHandler.TrafficUpdated += value;
+        remove => _proTunEventsResponseHandler.TrafficUpdated -= value;
     }
 
     public ProTunManager(IProTunLogger proTunLogger,
         IProTunStateChangeHandler proTunStateChangeHandler,
-        IProTunStatsResponseHandler proTunStatsResponseHandler,
+        IProTunEventsResponseHandler proTunEventsResponseHandler,
         IAdapterDetailsCache adapterDetailsCache,
         ILogger logger)
     {
         _proTunLogger = proTunLogger;
         _proTunStateChangeHandler = proTunStateChangeHandler;
-        _proTunStatsResponseHandler = proTunStatsResponseHandler;
+        _proTunEventsResponseHandler = proTunEventsResponseHandler;
         _adapterDetailsCache = adapterDetailsCache;
         _logger = logger;
 
@@ -124,7 +124,7 @@ public class ProTunManager : IProTunManager
             {
                 InitialConnectionConfig initialConnectionConfig = CreateInitialConnectionConfig(args);
                 AdapterConfig adapterConfig = CreateAdapterConfig(args);
-                _windowsConnection = ProTunWindowsConnection.Connect(initialConnectionConfig, adapterConfig, _proTunStateChangeHandler, _proTunStatsResponseHandler);
+                _windowsConnection = ProTunWindowsConnection.Connect(initialConnectionConfig, adapterConfig, _proTunStateChangeHandler, _proTunEventsResponseHandler);
                 AdapterDetails adapterDetails = _windowsConnection.GetAdapterDetails().Map();
                 _adapterDetailsCache.Set(adapterDetails);
                 _connection = _windowsConnection.GetConnection();
@@ -160,7 +160,7 @@ public class ProTunManager : IProTunManager
     {
         try
         {
-            _connection?.Disconnect();
+            _connection?.DisconnectAndWait();
         }
         catch (Exception ex)
         {

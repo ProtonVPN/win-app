@@ -35,7 +35,7 @@ public class ProTunModule : Module
         builder.RegisterType<AdapterDetailsCache>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ProTunDnsServersCreator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ProTunStateChangeHandler>().As<IProTunStateChangeHandler>().SingleInstance();
-        builder.RegisterType<ProTunStatsResponseHandler>().As<IProTunStatsResponseHandler>().SingleInstance();
+        builder.RegisterType<ProTunEventsResponseHandler>().As<IProTunEventsResponseHandler>().SingleInstance();
         builder.RegisterType<ProTunManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ProTunTrafficManager>().AsImplementedInterfaces().SingleInstance();
     }

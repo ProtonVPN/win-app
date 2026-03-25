@@ -20,10 +20,30 @@
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy;
 using ProtonVPN.ProTun.Generated;
+using static ProtonVPN.ProTun.Generated.Event;
 
 namespace ProtonVPN.ProTun.StatsResponses;
 
-public interface IProTunStatsResponseHandler : ConnectionStatsCallback
+public class ProTunEventsResponseHandler : IProTunEventsResponseHandler
 {
-    event EventHandler<EventArgs<NetworkTraffic>>? TrafficUpdated;
+    public event EventHandler<EventArgs<NetworkTraffic>>? TrafficUpdated;
+
+    public async void OnEvent(Event proTunEvent)
+    {
+        if (proTunEvent is ConnectionStats connectionStatsEvent)
+        {
+            await OnConnectionStatsEventAsync(connectionStatsEvent);
+        }
+    }
+
+    private async Task OnConnectionStatsEventAsync(ConnectionStats stats)
+    {
+        NetworkTraffic traffic = new(stats.receivedBytes, stats.sentBytes);
+        InvokeTrafficUpdate(traffic);
+    }
+
+    private void InvokeTrafficUpdate(NetworkTraffic traffic)
+    {
+        TrafficUpdated?.Invoke(this, new EventArgs<NetworkTraffic>(traffic));
+    }
 }

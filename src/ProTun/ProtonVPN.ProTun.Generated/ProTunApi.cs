@@ -697,8 +697,8 @@ static class _UniFFILib {
         ulong @uniffiHandle,RustBuffer @level,RustBuffer @message,IntPtr @uniffiOutReturn,ref UniffiRustCallStatus _uniffi_out_err
     );
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public delegate void UniffiCallbackInterfaceConnectionStatsCallbackMethod0(
-        ulong @uniffiHandle,RustBuffer @stats,IntPtr @uniffiOutReturn,ref UniffiRustCallStatus _uniffi_out_err
+    public delegate void UniffiCallbackInterfaceEventCallbackMethod0(
+        ulong @uniffiHandle,RustBuffer @event,IntPtr @uniffiOutReturn,ref UniffiRustCallStatus _uniffi_out_err
     );
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate void UniffiCallbackInterfaceStateChangedCallbackMethod0(
@@ -711,9 +711,9 @@ static class _UniFFILib {
         public IntPtr @uniffiFree;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct UniffiVTableCallbackInterfaceConnectionStatsCallback
+    public struct UniffiVTableCallbackInterfaceEventCallback
     {
-        public IntPtr @onStatsResponse;
+        public IntPtr @onEvent;
         public IntPtr @uniffiFree;
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -821,13 +821,15 @@ static class _UniFFILib {
     
     
     
+    
+    
 
     static _UniFFILib() {
         _UniFFILib.uniffiCheckContractApiVersion();
         _UniFFILib.uniffiCheckApiChecksums();
         
         UniffiCallbackInterfaceClientLogger.Register();
-        UniffiCallbackInterfaceConnectionStatsCallback.Register();
+        UniffiCallbackInterfaceEventCallback.Register();
         UniffiCallbackInterfaceStateChangedCallback.Register();
         }
 
@@ -841,6 +843,10 @@ static class _UniFFILib {
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
     public static extern void uniffi_protun_fn_method_connection_disconnect(IntPtr @ptr,ref UniffiRustCallStatus _uniffi_out_err
+    );
+
+    [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void uniffi_protun_fn_method_connection_disconnect_and_wait(IntPtr @ptr,ref UniffiRustCallStatus _uniffi_out_err
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
@@ -892,7 +898,7 @@ static class _UniFFILib {
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
-    public static extern IntPtr uniffi_protun_fn_constructor_windowsconnection_connect(RustBuffer @connectionConfig,RustBuffer @adapterConfig,ulong @clientStateChangeCallback,ulong @statsCallback,ref UniffiRustCallStatus _uniffi_out_err
+    public static extern IntPtr uniffi_protun_fn_constructor_windowsconnection_connect(RustBuffer @connectionConfig,RustBuffer @adapterConfig,ulong @clientStateChangeCallback,ulong @eventCallback,ref UniffiRustCallStatus _uniffi_out_err
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
@@ -916,7 +922,7 @@ static class _UniFFILib {
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
-    public static extern void uniffi_protun_fn_init_callback_vtable_connectionstatscallback(ref _UniFFILib.UniffiVTableCallbackInterfaceConnectionStatsCallback @vtable
+    public static extern void uniffi_protun_fn_init_callback_vtable_eventcallback(ref _UniFFILib.UniffiVTableCallbackInterfaceEventCallback @vtable
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
@@ -1160,6 +1166,10 @@ static class _UniFFILib {
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
+    public static extern ushort uniffi_protun_checksum_method_connection_disconnect_and_wait(
+    );
+
+    [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
     public static extern ushort uniffi_protun_checksum_method_connection_get_stats(
     );
 
@@ -1216,7 +1226,7 @@ static class _UniFFILib {
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
-    public static extern ushort uniffi_protun_checksum_method_connectionstatscallback_on_stats_response(
+    public static extern ushort uniffi_protun_checksum_method_eventcallback_on_event(
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
@@ -1247,6 +1257,12 @@ static class _UniFFILib {
             var checksum = _UniFFILib.uniffi_protun_checksum_method_connection_disconnect();
             if (checksum != 59943) {
                 throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_connection_disconnect` checksum `59943`, library returned `{checksum}`");
+            }
+        }
+        {
+            var checksum = _UniFFILib.uniffi_protun_checksum_method_connection_disconnect_and_wait();
+            if (checksum != 15460) {
+                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_connection_disconnect_and_wait` checksum `15460`, library returned `{checksum}`");
             }
         }
         {
@@ -1323,8 +1339,8 @@ static class _UniFFILib {
         }
         {
             var checksum = _UniFFILib.uniffi_protun_checksum_constructor_windowsconnection_connect();
-            if (checksum != 29240) {
-                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_constructor_windowsconnection_connect` checksum `29240`, library returned `{checksum}`");
+            if (checksum != 18644) {
+                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_constructor_windowsconnection_connect` checksum `18644`, library returned `{checksum}`");
             }
         }
         {
@@ -1334,9 +1350,9 @@ static class _UniFFILib {
             }
         }
         {
-            var checksum = _UniFFILib.uniffi_protun_checksum_method_connectionstatscallback_on_stats_response();
-            if (checksum != 5351) {
-                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_connectionstatscallback_on_stats_response` checksum `5351`, library returned `{checksum}`");
+            var checksum = _UniFFILib.uniffi_protun_checksum_method_eventcallback_on_event();
+            if (checksum != 970) {
+                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_eventcallback_on_event` checksum `970`, library returned `{checksum}`");
             }
         }
         {
@@ -1623,6 +1639,10 @@ public interface IConnection {
     /// Disconnects. Connection should not be used after this.
     /// </summary>
     void Disconnect();
+    /// <summary>
+    /// Disconnects and waits for the connection to be fully closed.
+    /// </summary>
+    void DisconnectAndWait();
     void GetStats();
     /// <summary>
     /// Call it when connectivity or underlying network adapter(s) change
@@ -1749,6 +1769,18 @@ public class Connection : IConnection, IDisposable {
         CallWithPointer(thisPtr =>
     _UniffiHelpers.RustCall( (ref UniffiRustCallStatus _status) =>
     _UniFFILib.uniffi_protun_fn_method_connection_disconnect(thisPtr,  ref _status)
+));
+    }
+    
+    
+    
+    /// <summary>
+    /// Disconnects and waits for the connection to be fully closed.
+    /// </summary>
+    public void DisconnectAndWait() {
+        CallWithPointer(thisPtr =>
+    _UniffiHelpers.RustCall( (ref UniffiRustCallStatus _status) =>
+    _UniFFILib.uniffi_protun_fn_method_connection_disconnect_and_wait(thisPtr,  ref _status)
 ));
     }
     
@@ -2124,10 +2156,10 @@ public class WindowsConnection : IWindowsConnection, IDisposable {
 
     
     /// <exception cref="ProTunFatalException"></exception>
-    public static WindowsConnection Connect(InitialConnectionConfig @connectionConfig, AdapterConfig @adapterConfig, StateChangedCallback @clientStateChangeCallback, ConnectionStatsCallback @statsCallback) {
+    public static WindowsConnection Connect(InitialConnectionConfig @connectionConfig, AdapterConfig @adapterConfig, StateChangedCallback @clientStateChangeCallback, EventCallback @eventCallback) {
         return new WindowsConnection(
     _UniffiHelpers.RustCallWithError(FfiConverterTypeProTunFatalError.INSTANCE, (ref UniffiRustCallStatus _status) =>
-    _UniFFILib.uniffi_protun_fn_constructor_windowsconnection_connect(FfiConverterTypeInitialConnectionConfig.INSTANCE.Lower(@connectionConfig), FfiConverterTypeAdapterConfig.INSTANCE.Lower(@adapterConfig), FfiConverterTypeStateChangedCallback.INSTANCE.Lower(@clientStateChangeCallback), FfiConverterTypeConnectionStatsCallback.INSTANCE.Lower(@statsCallback), ref _status)
+    _UniFFILib.uniffi_protun_fn_constructor_windowsconnection_connect(FfiConverterTypeInitialConnectionConfig.INSTANCE.Lower(@connectionConfig), FfiConverterTypeAdapterConfig.INSTANCE.Lower(@adapterConfig), FfiConverterTypeStateChangedCallback.INSTANCE.Lower(@clientStateChangeCallback), FfiConverterTypeEventCallback.INSTANCE.Lower(@eventCallback), ref _status)
 ));
     }
     
@@ -2194,48 +2226,6 @@ class FfiConverterTypeAdapterConfig: FfiConverterRustBuffer<AdapterConfig> {
 
 
 
-public record ConnectionStats (
-    ulong @receivedBytes, 
-    ulong @sentBytes, 
-    TimeSpan @timeSinceLastHandshake, 
-    float @estimatedLoss, 
-    TimeSpan @estimatedRoundTripTime
-) {
-}
-
-class FfiConverterTypeConnectionStats: FfiConverterRustBuffer<ConnectionStats> {
-    public static FfiConverterTypeConnectionStats INSTANCE = new FfiConverterTypeConnectionStats();
-
-    public override ConnectionStats Read(BigEndianStream stream) {
-        return new ConnectionStats(
-            @receivedBytes: FfiConverterUInt64.INSTANCE.Read(stream),
-            @sentBytes: FfiConverterUInt64.INSTANCE.Read(stream),
-            @timeSinceLastHandshake: FfiConverterDuration.INSTANCE.Read(stream),
-            @estimatedLoss: FfiConverterFloat.INSTANCE.Read(stream),
-            @estimatedRoundTripTime: FfiConverterDuration.INSTANCE.Read(stream)
-        );
-    }
-
-    public override int AllocationSize(ConnectionStats value) {
-        return 0
-            + FfiConverterUInt64.INSTANCE.AllocationSize(value.@receivedBytes)
-            + FfiConverterUInt64.INSTANCE.AllocationSize(value.@sentBytes)
-            + FfiConverterDuration.INSTANCE.AllocationSize(value.@timeSinceLastHandshake)
-            + FfiConverterFloat.INSTANCE.AllocationSize(value.@estimatedLoss)
-            + FfiConverterDuration.INSTANCE.AllocationSize(value.@estimatedRoundTripTime);
-    }
-
-    public override void Write(ConnectionStats value, BigEndianStream stream) {
-            FfiConverterUInt64.INSTANCE.Write(value.@receivedBytes, stream);
-            FfiConverterUInt64.INSTANCE.Write(value.@sentBytes, stream);
-            FfiConverterDuration.INSTANCE.Write(value.@timeSinceLastHandshake, stream);
-            FfiConverterFloat.INSTANCE.Write(value.@estimatedLoss, stream);
-            FfiConverterDuration.INSTANCE.Write(value.@estimatedRoundTripTime, stream);
-    }
-}
-
-
-
 public record InitialConnectionConfig (
     WgClientPrivateKey @wgPrivateKey, 
     PeerInfo[] @peers, 
@@ -2278,7 +2268,7 @@ class FfiConverterTypeInitialConnectionConfig: FfiConverterRustBuffer<InitialCon
 /// File size limit in bytes. When the limit is reached, the library will stop writing.
 /// </param>
 public record PcapFileInfo (
-    PcapFile @fileType, 
+    PcapFile @file, 
     /// <summary>
     /// File size limit in bytes. When the limit is reached, the library will stop writing.
     /// </summary>
@@ -2291,19 +2281,19 @@ class FfiConverterTypePcapFileInfo: FfiConverterRustBuffer<PcapFileInfo> {
 
     public override PcapFileInfo Read(BigEndianStream stream) {
         return new PcapFileInfo(
-            @fileType: FfiConverterTypePcapFile.INSTANCE.Read(stream),
+            @file: FfiConverterTypePcapFile.INSTANCE.Read(stream),
             @maxBytes: FfiConverterOptionalUInt64.INSTANCE.Read(stream)
         );
     }
 
     public override int AllocationSize(PcapFileInfo value) {
         return 0
-            + FfiConverterTypePcapFile.INSTANCE.AllocationSize(value.@fileType)
+            + FfiConverterTypePcapFile.INSTANCE.AllocationSize(value.@file)
             + FfiConverterOptionalUInt64.INSTANCE.AllocationSize(value.@maxBytes);
     }
 
     public override void Write(PcapFileInfo value, BigEndianStream stream) {
-            FfiConverterTypePcapFile.INSTANCE.Write(value.@fileType, stream);
+            FfiConverterTypePcapFile.INSTANCE.Write(value.@file, stream);
             FfiConverterOptionalUInt64.INSTANCE.Write(value.@maxBytes, stream);
     }
 }
@@ -2479,6 +2469,100 @@ class FfiConverterTypeProTunAdapterDetails: FfiConverterRustBuffer<ProTunAdapter
 
 
 
+public record CaptureStopReason {
+    
+    public record Request (
+        PcapFileInfo @file
+    ) : CaptureStopReason {}
+    
+    public record MaxSizeReached (
+        PcapFileInfo @file
+    ) : CaptureStopReason {}
+    
+    public record Disconnected (
+        PcapFileInfo @file
+    ) : CaptureStopReason {}
+    
+    public record AlreadyStopped: CaptureStopReason {}
+    
+    
+
+    
+}
+
+class FfiConverterTypeCaptureStopReason : FfiConverterRustBuffer<CaptureStopReason>{
+    public static FfiConverterRustBuffer<CaptureStopReason> INSTANCE = new FfiConverterTypeCaptureStopReason();
+
+    public override CaptureStopReason Read(BigEndianStream stream) {
+        var value = stream.ReadInt();
+        switch (value) {
+            case 1:
+                return new CaptureStopReason.Request(
+                    FfiConverterTypePcapFileInfo.INSTANCE.Read(stream)
+                );
+            case 2:
+                return new CaptureStopReason.MaxSizeReached(
+                    FfiConverterTypePcapFileInfo.INSTANCE.Read(stream)
+                );
+            case 3:
+                return new CaptureStopReason.Disconnected(
+                    FfiConverterTypePcapFileInfo.INSTANCE.Read(stream)
+                );
+            case 4:
+                return new CaptureStopReason.AlreadyStopped(
+                );
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeCaptureStopReason.Read()", value));
+        }
+    }
+
+    public override int AllocationSize(CaptureStopReason value) {
+        switch (value) {
+            case CaptureStopReason.Request variant_value:
+                return 4
+                    + FfiConverterTypePcapFileInfo.INSTANCE.AllocationSize(variant_value.@file);
+            case CaptureStopReason.MaxSizeReached variant_value:
+                return 4
+                    + FfiConverterTypePcapFileInfo.INSTANCE.AllocationSize(variant_value.@file);
+            case CaptureStopReason.Disconnected variant_value:
+                return 4
+                    + FfiConverterTypePcapFileInfo.INSTANCE.AllocationSize(variant_value.@file);
+            case CaptureStopReason.AlreadyStopped variant_value:
+                return 4;
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeCaptureStopReason.AllocationSize()", value));
+        }
+    }
+
+    public override void Write(CaptureStopReason value, BigEndianStream stream) {
+        switch (value) {
+            case CaptureStopReason.Request variant_value:
+                stream.WriteInt(1);
+                FfiConverterTypePcapFileInfo.INSTANCE.Write(variant_value.@file, stream);
+                break;
+            case CaptureStopReason.MaxSizeReached variant_value:
+                stream.WriteInt(2);
+                FfiConverterTypePcapFileInfo.INSTANCE.Write(variant_value.@file, stream);
+                break;
+            case CaptureStopReason.Disconnected variant_value:
+                stream.WriteInt(3);
+                FfiConverterTypePcapFileInfo.INSTANCE.Write(variant_value.@file, stream);
+                break;
+            case CaptureStopReason.AlreadyStopped variant_value:
+                stream.WriteInt(4);
+                break;
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeCaptureStopReason.Write()", value));
+        }
+    }
+}
+
+
+
+
+
+
+
 public enum ConnectivityEvent: int {
     
     Up,
@@ -2563,6 +2647,108 @@ class FfiConverterTypeDisconnectReason : FfiConverterRustBuffer<DisconnectReason
                 break;
             default:
                 throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeDisconnectReason.Write()", value));
+        }
+    }
+}
+
+
+
+
+
+
+
+/// <summary>
+/// Connection events emitted by the library and delivered via [crate::api::connection::EventCallback]
+/// </summary>
+public record Event {
+    
+    public record ConnectionStats (
+        ulong @receivedBytes,
+        ulong @sentBytes,
+        TimeSpan @timeSinceLastHandshake,
+        float @estimatedLoss,
+        TimeSpan @estimatedRoundTripTime
+    ) : Event {}
+    
+    public record PacketCaptureStarted (
+        PcapFileInfo @info
+    ) : Event {}
+    
+    public record PacketCaptureStopped (
+        CaptureStopReason @reason
+    ) : Event {}
+    
+
+    
+}
+
+class FfiConverterTypeEvent : FfiConverterRustBuffer<Event>{
+    public static FfiConverterRustBuffer<Event> INSTANCE = new FfiConverterTypeEvent();
+
+    public override Event Read(BigEndianStream stream) {
+        var value = stream.ReadInt();
+        switch (value) {
+            case 1:
+                return new Event.ConnectionStats(
+                    FfiConverterUInt64.INSTANCE.Read(stream),
+                    FfiConverterUInt64.INSTANCE.Read(stream),
+                    FfiConverterDuration.INSTANCE.Read(stream),
+                    FfiConverterFloat.INSTANCE.Read(stream),
+                    FfiConverterDuration.INSTANCE.Read(stream)
+                );
+            case 2:
+                return new Event.PacketCaptureStarted(
+                    FfiConverterTypePcapFileInfo.INSTANCE.Read(stream)
+                );
+            case 3:
+                return new Event.PacketCaptureStopped(
+                    FfiConverterTypeCaptureStopReason.INSTANCE.Read(stream)
+                );
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeEvent.Read()", value));
+        }
+    }
+
+    public override int AllocationSize(Event value) {
+        switch (value) {
+            case Event.ConnectionStats variant_value:
+                return 4
+                    + FfiConverterUInt64.INSTANCE.AllocationSize(variant_value.@receivedBytes)
+                    + FfiConverterUInt64.INSTANCE.AllocationSize(variant_value.@sentBytes)
+                    + FfiConverterDuration.INSTANCE.AllocationSize(variant_value.@timeSinceLastHandshake)
+                    + FfiConverterFloat.INSTANCE.AllocationSize(variant_value.@estimatedLoss)
+                    + FfiConverterDuration.INSTANCE.AllocationSize(variant_value.@estimatedRoundTripTime);
+            case Event.PacketCaptureStarted variant_value:
+                return 4
+                    + FfiConverterTypePcapFileInfo.INSTANCE.AllocationSize(variant_value.@info);
+            case Event.PacketCaptureStopped variant_value:
+                return 4
+                    + FfiConverterTypeCaptureStopReason.INSTANCE.AllocationSize(variant_value.@reason);
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeEvent.AllocationSize()", value));
+        }
+    }
+
+    public override void Write(Event value, BigEndianStream stream) {
+        switch (value) {
+            case Event.ConnectionStats variant_value:
+                stream.WriteInt(1);
+                FfiConverterUInt64.INSTANCE.Write(variant_value.@receivedBytes, stream);
+                FfiConverterUInt64.INSTANCE.Write(variant_value.@sentBytes, stream);
+                FfiConverterDuration.INSTANCE.Write(variant_value.@timeSinceLastHandshake, stream);
+                FfiConverterFloat.INSTANCE.Write(variant_value.@estimatedLoss, stream);
+                FfiConverterDuration.INSTANCE.Write(variant_value.@estimatedRoundTripTime, stream);
+                break;
+            case Event.PacketCaptureStarted variant_value:
+                stream.WriteInt(2);
+                FfiConverterTypePcapFileInfo.INSTANCE.Write(variant_value.@info, stream);
+                break;
+            case Event.PacketCaptureStopped variant_value:
+                stream.WriteInt(3);
+                FfiConverterTypeCaptureStopReason.INSTANCE.Write(variant_value.@reason, stream);
+                break;
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeEvent.Write()", value));
         }
     }
 }
@@ -3300,37 +3486,37 @@ class FfiConverterTypeClientLogger: FfiConverter<ClientLogger, ulong> {
 
 
 /// <summary>
-/// Callback interface for receiving connection statistics. Avoid doing heavy work in the
-/// callback to avoid blocking the connection thread.
+/// Callback interface for receiving events. Avoid doing heavy work in the callback to avoid
+/// blocking the connection thread (delegate to another thread if needed).
 /// </summary>
-public interface ConnectionStatsCallback {
-    void OnStatsResponse(ConnectionStats @stats);
+public interface EventCallback {
+    void OnEvent(Event @event);
 }
 
-class UniffiCallbackInterfaceConnectionStatsCallback {
-    static void OnStatsResponse(ulong @uniffiHandle,RustBuffer @stats,IntPtr @uniffiOutReturn,ref UniffiRustCallStatus _uniffi_out_err) {
+class UniffiCallbackInterfaceEventCallback {
+    static void OnEvent(ulong @uniffiHandle,RustBuffer @event,IntPtr @uniffiOutReturn,ref UniffiRustCallStatus _uniffi_out_err) {
         var handle = @uniffiHandle;
-        if (FfiConverterTypeConnectionStatsCallback.INSTANCE.handleMap.TryGet(handle, out var uniffiObject)) {
-            uniffiObject.OnStatsResponse(
-                FfiConverterTypeConnectionStats.INSTANCE.Lift(@stats));
+        if (FfiConverterTypeEventCallback.INSTANCE.handleMap.TryGet(handle, out var uniffiObject)) {
+            uniffiObject.OnEvent(
+                FfiConverterTypeEvent.INSTANCE.Lift(@event));
         } else {
             throw new InternalException($"No callback in handlemap '{handle}'");
         }
     }
 
     static void UniffiFree(ulong @handle) {
-        FfiConverterTypeConnectionStatsCallback.INSTANCE.handleMap.Remove(@handle);
+        FfiConverterTypeEventCallback.INSTANCE.handleMap.Remove(@handle);
     }
-    static _UniFFILib.UniffiCallbackInterfaceConnectionStatsCallbackMethod0 _m0 = new _UniFFILib.UniffiCallbackInterfaceConnectionStatsCallbackMethod0(OnStatsResponse);
+    static _UniFFILib.UniffiCallbackInterfaceEventCallbackMethod0 _m0 = new _UniFFILib.UniffiCallbackInterfaceEventCallbackMethod0(OnEvent);
     static _UniFFILib.UniffiCallbackInterfaceFree _callback_interface_free = new _UniFFILib.UniffiCallbackInterfaceFree(UniffiFree);
 
-    public static _UniFFILib.UniffiVTableCallbackInterfaceConnectionStatsCallback _vtable = new _UniFFILib.UniffiVTableCallbackInterfaceConnectionStatsCallback {
-        @onStatsResponse = Marshal.GetFunctionPointerForDelegate(_m0),
+    public static _UniFFILib.UniffiVTableCallbackInterfaceEventCallback _vtable = new _UniFFILib.UniffiVTableCallbackInterfaceEventCallback {
+        @onEvent = Marshal.GetFunctionPointerForDelegate(_m0),
         @uniffiFree = Marshal.GetFunctionPointerForDelegate(_callback_interface_free)
     };
 
     public static void Register() {
-        _UniFFILib.uniffi_protun_fn_init_callback_vtable_connectionstatscallback(ref UniffiCallbackInterfaceConnectionStatsCallback._vtable);
+        _UniFFILib.uniffi_protun_fn_init_callback_vtable_eventcallback(ref UniffiCallbackInterfaceEventCallback._vtable);
     }
 }
 
@@ -3338,16 +3524,16 @@ class UniffiCallbackInterfaceConnectionStatsCallback {
 
 
 // The ffiConverter which transforms the Callbacks in to Handles to pass to Rust.
-class FfiConverterTypeConnectionStatsCallback: FfiConverter<ConnectionStatsCallback, ulong> {
-    public static FfiConverterTypeConnectionStatsCallback INSTANCE = new FfiConverterTypeConnectionStatsCallback();
+class FfiConverterTypeEventCallback: FfiConverter<EventCallback, ulong> {
+    public static FfiConverterTypeEventCallback INSTANCE = new FfiConverterTypeEventCallback();
 
-    public ConcurrentHandleMap<ConnectionStatsCallback> handleMap = new ConcurrentHandleMap<ConnectionStatsCallback>();
+    public ConcurrentHandleMap<EventCallback> handleMap = new ConcurrentHandleMap<EventCallback>();
 
-    public override ulong Lower(ConnectionStatsCallback value) {
+    public override ulong Lower(EventCallback value) {
         return handleMap.Insert(value);
     }
 
-    public override ConnectionStatsCallback Lift(ulong value) {
+    public override EventCallback Lift(ulong value) {
         if (handleMap.TryGet(value, out var uniffiCallback)) {
             return uniffiCallback;
         } else {
@@ -3355,15 +3541,15 @@ class FfiConverterTypeConnectionStatsCallback: FfiConverter<ConnectionStatsCallb
         }
     }
 
-    public override ConnectionStatsCallback Read(BigEndianStream stream) {
+    public override EventCallback Read(BigEndianStream stream) {
         return Lift(stream.ReadULong());
     }
 
-    public override int AllocationSize(ConnectionStatsCallback value) {
+    public override int AllocationSize(EventCallback value) {
         return 8;
     }
 
-    public override void Write(ConnectionStatsCallback value, BigEndianStream stream) {
+    public override void Write(EventCallback value, BigEndianStream stream) {
         stream.WriteULong(Lower(value));
     }
 }
