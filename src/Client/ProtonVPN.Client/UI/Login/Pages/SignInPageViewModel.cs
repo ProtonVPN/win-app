@@ -188,7 +188,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         {
             case SignInFormType.SRP:
                 IsToShowUsernameError = string.IsNullOrWhiteSpace(Username);
-                IsToShowPasswordError = Password.Length == 0;
+                IsToShowPasswordError = Password is null || Password.Length == 0;
                 break;
             case SignInFormType.SSO:
                 Username = Username.Trim();
