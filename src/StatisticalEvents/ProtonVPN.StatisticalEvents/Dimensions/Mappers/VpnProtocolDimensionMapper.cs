@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -24,8 +24,6 @@ namespace ProtonVPN.StatisticalEvents.Dimensions.Mappers;
 
 public class VpnProtocolDimensionMapper : DimensionMapperBase, IVpnProtocolDimensionMapper
 {
-    private const string SMART = "smart"; // Should never be used
-    private const string IKEV2 = "ikev2"; // Not used on Windows
     private const string OPENVPN_UDP = "openvpn_udp";
     private const string OPENVPN_TCP = "openvpn_tcp";
     private const string WIREGUARD_UDP = "wireguard_udp";
@@ -39,7 +37,6 @@ public class VpnProtocolDimensionMapper : DimensionMapperBase, IVpnProtocolDimen
     {
         return protocol switch
         {
-            VpnProtocol.Smart => SMART, 
             VpnProtocol.OpenVpnUdp => OPENVPN_UDP,
             VpnProtocol.OpenVpnTcp => OPENVPN_TCP,
             VpnProtocol.WireGuardUdp => WIREGUARD_UDP,

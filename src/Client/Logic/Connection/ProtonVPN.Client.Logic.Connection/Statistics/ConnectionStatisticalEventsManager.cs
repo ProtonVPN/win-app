@@ -32,6 +32,7 @@ using ProtonVPN.Logging.Contracts.Events.StatisticsLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Observers;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.Statistics;
 
@@ -133,13 +134,17 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
 
         if (outcome.HasValue)
         {
-            HandleCurrentAttempt(outcome.Value);
+            int? failureCode = outcome is OutcomeDimension.Failure
+                ? (int)vpnError
+                : null;
+
+            HandleCurrentAttempt(outcome.Value, failureCode);
 
             ResetAttempt();
         }
     }
 
-    private void HandleCurrentAttempt(OutcomeDimension outcome)
+    private void HandleCurrentAttempt(OutcomeDimension outcome, int? failureCode = null)
     {
         if (_currentAttemptType is null)
         {
@@ -149,10 +154,10 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
         switch (_currentAttemptType)
         {
             case AttemptType.Connection:
-                SendConnectionEvent(outcome);
+                SendConnectionEvent(outcome, failureCode);
                 break;
             case AttemptType.Disconnection:
-                SendDisconnectionEvent(outcome);
+                SendDisconnectionEvent(outcome, failureCode);
                 break;
             default:
                 break;
@@ -177,31 +182,31 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
         _currentAttemptConnectionStatus = null;
     }
 
-    private void SendConnectionEvent(OutcomeDimension outcome)
+    private void SendConnectionEvent(OutcomeDimension outcome, int? failureCode)
     {
         float connectionTimeInMs = _currentAttemptDateUtc.HasValue
             ? (float)DateTime.UtcNow.Subtract(_currentAttemptDateUtc.Value).TotalMilliseconds
             : 0;
 
-        VpnConnectionEventData eventData = CreateConnectionEventData(outcome);
+        VpnConnectionEventData eventData = CreateConnectionEventData(outcome, failureCode);
 
         _vpnConnectionStatisticalEventSender.Send(eventData, connectionTimeInMs);
         _logger.Info<ConnectionStatisticsLog>($"vpn_connection event from {eventData.VpnTrigger} trigger. {eventData.Outcome}. Connection time: {connectionTimeInMs}ms");
     }
 
-    private void SendDisconnectionEvent(OutcomeDimension outcome)
+    private void SendDisconnectionEvent(OutcomeDimension outcome, int? failureCode)
     {
         float sessionTimeInMs = _lastKnownConnectionDetails?.EstablishedConnectionTimeUtc != null
             ? (float)DateTime.UtcNow.Subtract(_lastKnownConnectionDetails.EstablishedConnectionTimeUtc.Value).TotalMilliseconds
             : 0;
 
-        VpnConnectionEventData eventData = CreateConnectionEventData(outcome);
+        VpnConnectionEventData eventData = CreateConnectionEventData(outcome, failureCode);
 
         _vpnDisconnectionStatisticalEventSender.Send(eventData, sessionTimeInMs);
         _logger.Info<ConnectionStatisticsLog>($"vpn_disconnection event from {eventData.VpnTrigger} trigger. {eventData.Outcome}. Session time: {sessionTimeInMs}ms");
     }
 
-    private VpnConnectionEventData CreateConnectionEventData(OutcomeDimension outcome)
+    private VpnConnectionEventData CreateConnectionEventData(OutcomeDimension outcome, int? failureCode)
     {
         VpnFeatureIntent vpnFeatureIntent = _lastKnownConnectionDetails?.OriginalConnectionIntent?.Feature switch
         {
@@ -222,7 +227,10 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
                 : VpnStatusDimension.Off,
             VpnTrigger = _currentAttemptTrigger,
             NetworkConnectionType = _networkInterfaces.GetNetworkConnectionType(),
-            Protocol = _lastKnownConnectionDetails?.Protocol,
+            DesiredProtocol = _lastKnownConnectionDetails?.OriginalConnectionIntent is IConnectionProfile profile
+                ? profile.Settings.VpnProtocol
+                : _settings.VpnProtocol,
+            ActualProtocol = _lastKnownConnectionDetails?.Protocol,
             VpnFeatureIntent = vpnFeatureIntent,
             Isp = deviceLocation.Isp,
             UserCountry = deviceLocation.CountryCode,
@@ -242,6 +250,7 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
                 SupportsStreaming = _lastKnownConnectionDetails?.Server.Features.IsSupported(ServerFeatures.Streaming) ?? false,
                 SupportsIpv6 = _lastKnownConnectionDetails?.Server.Features.IsSupported(ServerFeatures.Ipv6) ?? false,
             },
+            FailureCode = failureCode,
         };
     }
 }

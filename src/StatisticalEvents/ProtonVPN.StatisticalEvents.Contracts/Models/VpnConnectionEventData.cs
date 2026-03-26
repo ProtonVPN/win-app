@@ -30,7 +30,8 @@ public class VpnConnectionEventData
     public VpnStatusDimension? VpnStatus { get; init; }
     public VpnTriggerDimension? VpnTrigger { get; init; }
     public NetworkConnectionType? NetworkConnectionType { get; init; }
-    public VpnProtocol? Protocol { get; init; }
+    public VpnProtocol? DesiredProtocol { get; init; }
+    public VpnProtocol? ActualProtocol { get; init; }
     public VpnFeatureIntent? VpnFeatureIntent { get; init; }
     public VpnPlan VpnPlan { get; init; }
     public string? VpnCountry { get; init; }
@@ -39,4 +40,5 @@ public class VpnConnectionEventData
     public int Port { get; init; }
     public string? Isp { get; init; }
     public bool IsIpv6Enabled { get; init; }
+    public int? FailureCode { get; init; }
 }

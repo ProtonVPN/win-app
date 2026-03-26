@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,7 +18,7 @@
  */
 
 using System.Collections.Generic;
-using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.StatisticalEvents.Contracts.Models;
 using ProtonVPN.StatisticalEvents.Dimensions.Mappers;
 
@@ -26,6 +26,7 @@ namespace ProtonVPN.StatisticalEvents.Dimensions.Builders;
 
 public class VpnConnectionDimensionsBuilder : IVpnConnectionDimensionsBuilder
 {
+    private readonly IBooleanDimensionMapper _booleanDimensionMapper;
     private readonly IVpnProtocolDimensionMapper _vpnProtocolDimensionMapper;
     private readonly IOutcomeDimensionMapper _outcomeDimensionMapper;
     private readonly IVpnStatusDimensionMapper _vpnStatusDimensionMapper;
@@ -36,8 +37,10 @@ public class VpnConnectionDimensionsBuilder : IVpnConnectionDimensionsBuilder
     private readonly IServerFeaturesDimensionMapper _serverDetailsDimensionMapper;
     private readonly IPortDimensionMapper _portDimensionMapper;
     private readonly IStringDimensionMapper _stringDimensionMapper;
+    private readonly IFailureReasonDimensionMapper _failureReasonDimensionMapper;
 
     public VpnConnectionDimensionsBuilder(
+        IBooleanDimensionMapper booleanDimensionMapper,
         IVpnProtocolDimensionMapper vpnProtocolDimensionMapper,
         IOutcomeDimensionMapper outcomeDimensionMapper,
         IVpnStatusDimensionMapper vpnStatusDimensionMapper,
@@ -47,8 +50,10 @@ public class VpnConnectionDimensionsBuilder : IVpnConnectionDimensionsBuilder
         IVpnPlanTierDimensionMapper vpnPlanDimensionMapper,
         IServerFeaturesDimensionMapper serverDetailsDimensionMapper,
         IPortDimensionMapper portDimensionMapper,
-        IStringDimensionMapper stringDimensionMapper)
+        IStringDimensionMapper stringDimensionMapper,
+        IFailureReasonDimensionMapper failureReasonDimensionMapper)
     {
+        _booleanDimensionMapper = booleanDimensionMapper;
         _vpnProtocolDimensionMapper = vpnProtocolDimensionMapper;
         _outcomeDimensionMapper = outcomeDimensionMapper;
         _vpnStatusDimensionMapper = vpnStatusDimensionMapper;
@@ -59,6 +64,7 @@ public class VpnConnectionDimensionsBuilder : IVpnConnectionDimensionsBuilder
         _serverDetailsDimensionMapper = serverDetailsDimensionMapper;
         _portDimensionMapper = portDimensionMapper;
         _stringDimensionMapper = stringDimensionMapper;
+        _failureReasonDimensionMapper = failureReasonDimensionMapper;
     }
 
     public Dictionary<string, string> Build(VpnConnectionEventData eventData)
@@ -73,13 +79,15 @@ public class VpnConnectionDimensionsBuilder : IVpnConnectionDimensionsBuilder
             { "server_features", _serverDetailsDimensionMapper.Map(eventData.Server) },
             { "vpn_country", _stringDimensionMapper.Map(eventData.VpnCountry) },
             { "user_country",  _stringDimensionMapper.Map(eventData.UserCountry) },
-            { "protocol", _vpnProtocolDimensionMapper.Map(eventData.Protocol) },
+            { "protocol", _vpnProtocolDimensionMapper.Map(eventData.ActualProtocol) },
             { "server",  _stringDimensionMapper.Map(eventData.Server?.Name) },
             { "entry_ip", _stringDimensionMapper.Map(eventData.Server?.EntryIp) },
             { "port", _portDimensionMapper.Map(eventData.Port) },
             { "isp",  _stringDimensionMapper.Map(eventData.Isp) },
             { "vpn_feature_intent", _vpnFeatureIntentDimensionMapper.Map(eventData.VpnFeatureIntent) },
-            { "is_ipv6_enabled", (eventData.IsIpv6Enabled && (eventData.Server?.SupportsIpv6 ?? false)).ToBooleanString() },
+            { "is_ipv6_enabled", _booleanDimensionMapper.Map(eventData.IsIpv6Enabled && (eventData.Server?.SupportsIpv6 ?? false)) },
+            { "failure_reason", _failureReasonDimensionMapper.Map(eventData.FailureCode) },
+            { "is_smart_protocol", _booleanDimensionMapper.Map(eventData.DesiredProtocol is VpnProtocol.Smart) },
         };
     }
 }
