@@ -34,14 +34,13 @@ public class SettingRobot
     private const string NETSHIELD_ADS_ENDPOINT = "netshield-2.protonvpn.net";
     private static readonly string[] _netShieldAdultContentDomains = { "0-100c.cn", "0-1du.com", "0-24sexcams.com", "0-6babylee.cn", "0-900.com" };
 
+    private const string DEFAULT_CONNECTION_COMBO_BOX_ID = "InternalComboBox";
+
     protected Element SettingsPage = Element.ByAutomationId("SettingsPage");
     protected Element ApplyButton = Element.ByAutomationId("ApplyButton");
     protected Element CloseSettingsButton = Element.ByAutomationId("CloseSettingsButton");
     protected Element ReconnectButton = Element.ByName("Reconnect");
     protected Element SettingsButton = Element.ByAutomationId("SettingsButton");
-    protected Element LastDefaultConnectionRadioButton = Element.ByAutomationId("LastDefaultConnectionRadioButton");
-    protected Element FastestDefaultConnectionRadioButton = Element.ByAutomationId("FastestDefaultConnectionRadioButton");
-    protected Element RandomDefaultConnectionRadioButton = Element.ByAutomationId("RandomDefaultConnectionRadioButton");
 
     protected Element NetShieldSettingsCard = Element.ByAutomationId("NetShieldSettingsCard");
     protected Element KillSwitchSettingsCard = Element.ByAutomationId("KillSwitchSettingsCard");
@@ -50,7 +49,7 @@ public class SettingRobot
     protected Element PortForwardingSettingsCard = Element.ByAutomationId("PortForwardingSettingsCard");
     protected Element SplitTunnelingSettingsCard = Element.ByAutomationId("SplitTunnelingSettingsCard");
     protected Element VpnAcceleratorSettingsCard = Element.ByAutomationId("VpnAcceleratorSettingsCard");
-    protected Element DefaultConnectionSettingsCard = Element.ByAutomationId("DefaultConnectionSettingsCard");
+    protected Element ConnectionPreferencesSettingsCard = Element.ByAutomationId("ConnectionPreferencesSettingsCard");
     protected Element PortForwardingToggle = Element.ByAutomationId("PortForwardingToggle");
     protected Element CopyPortNumberButton = Element.ByAutomationId("CopyPortNumberCondensedButton");
 
@@ -156,10 +155,10 @@ public class SettingRobot
         return this;
     }
 
-    public SettingRobot OpenDefaultConnectionSettingsCard()
+    public SettingRobot OpenConnectionPreferencesSettingsCard()
     {
-        DefaultConnectionSettingsCard.ScrollIntoView();
-        DefaultConnectionSettingsCard.Click();
+        ConnectionPreferencesSettingsCard.ScrollIntoView();
+        ConnectionPreferencesSettingsCard.Click();
         Thread.Sleep(TestConstants.NavigationDelay);
         return this;
     }
@@ -376,14 +375,12 @@ public class SettingRobot
 
     public SettingRobot SelectLastConnectionOption()
     {
-        LastDefaultConnectionRadioButton.Click();
-        return this;
+        return SelectDefaultConnectionType(VpnConnectionOptions.Last);
     }
 
     public SettingRobot SelectFastestConnectionOption()
     {
-        FastestDefaultConnectionRadioButton.Click();
-        return this;
+        return SelectDefaultConnectionType(VpnConnectionOptions.Fast);
     }
 
     public SettingRobot SelectProfileDefaultConnectionOption(string profileName)
@@ -496,23 +493,25 @@ public class SettingRobot
 
     public SettingRobot SelectDefaultConnectionType(VpnConnectionOptions option)
     {
-        switch (option)
+        Element settingsDefaultConnectionComboBox = SettingsPage
+            .FindDescendant(Element.ByAutomationId(DEFAULT_CONNECTION_COMBO_BOX_ID));
+
+        settingsDefaultConnectionComboBox.Click();
+        Thread.Sleep(TestConstants.AnimationDelay);
+
+        string optionName = option switch
         {
-            case VpnConnectionOptions.Fast:
-                FastestDefaultConnectionRadioButton.Click();
-                FastestDefaultConnectionRadioButton.AssertChecked();
-                break;
+            VpnConnectionOptions.Fast => "Fastest country",
+            VpnConnectionOptions.Random => "Random country",
+            VpnConnectionOptions.Last => "Last connection",
+            _ => throw new System.NotImplementedException($"VpnConnectionOption '{option}' is not supported in Settings."),
+        };
 
-            case VpnConnectionOptions.Random:
-                RandomDefaultConnectionRadioButton.Click();
-                RandomDefaultConnectionRadioButton.AssertChecked();
-                break;
+        Element.ByName(optionName).Click();
+        Thread.Sleep(TestConstants.AnimationDelay);
 
-            case VpnConnectionOptions.Last:
-                LastDefaultConnectionRadioButton.Click();
-                LastDefaultConnectionRadioButton.AssertChecked();
-                break;
-        }
+        settingsDefaultConnectionComboBox.ComboBoxSelectedEquals(optionName);
+
         return this;
     }
 

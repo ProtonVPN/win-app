@@ -211,12 +211,6 @@ public partial class CommonSettingsPageViewModel : SettingsPageViewModelBase
     }
 
     [RelayCommand]
-    private async Task NavigateToDefaultConnectionPageAsync()
-    {
-        await ParentViewNavigator.NavigateToDefaultConnectionSettingsViewAsync();
-    }
-
-    [RelayCommand]
     private async Task NavigateToAutoStartupPageAsync()
     {
         await ParentViewNavigator.NavigateToAutoStartupSettingsViewAsync();

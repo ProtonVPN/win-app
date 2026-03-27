@@ -20,15 +20,15 @@
 using Microsoft.UI.Xaml;
 using ProtonVPN.Client.Core.Bases;
 
-namespace ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections;
+namespace ProtonVPN.Client.UI.Main.Settings.Pages.ConnectionPreferences;
 
-public sealed partial class DefaultConnectionPageView : IContextAware
+public sealed partial class ConnectionPreferencesSettingsPageView : IContextAware
 {
-    public DefaultConnectionSettingsPageViewModel ViewModel { get; }
+    public ConnectionPreferencesSettingsPageViewModel ViewModel { get; }
 
-    public DefaultConnectionPageView()
+    public ConnectionPreferencesSettingsPageView()
     {
-        ViewModel = App.GetService<DefaultConnectionSettingsPageViewModel>();
+        ViewModel = App.GetService<ConnectionPreferencesSettingsPageViewModel>();
         InitializeComponent();
 
         Loaded += OnLoaded;

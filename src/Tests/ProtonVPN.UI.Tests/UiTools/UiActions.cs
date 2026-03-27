@@ -22,8 +22,11 @@ using System.Linq;
 using System.Threading;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Conditions;
+using FlaUI.Core.Input;
+using FlaUI.Core.Patterns;
 using FlaUI.Core.Tools;
 using FlaUI.Core.Definitions;
 using NUnit.Framework;
@@ -198,6 +201,13 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static T FindDescendant<T>(this T desiredElement, Element descendantSelector) where T : Element
+    {
+        desiredElement.ChildElement = descendantSelector;
+        desiredElement.ChildElement.UseDescendantSearch = true;
+        return desiredElement;
+    }
+
     public static T ClearInput<T>(this T desiredElement) where T : Element
     {
         AutomationElement? element = WaitUntilExists(desiredElement);
@@ -235,6 +245,34 @@ public static class UiActions
         AutomationElement? element = WaitUntilExists(desiredElement);
         string? elementValue = element?.Patterns.Value.Pattern.Value;
         Assert.That(elementValue?.Equals(value), Is.True, $"Expected value: {value} But was: {elementValue}");
+        return desiredElement;
+    }
+
+    public static Element ComboBoxSelectedEquals<T>(this T desiredElement, string expectedValue) where T : Element
+    {
+        AutomationElement? element = WaitUntilExists(desiredElement);
+
+        ISelectionPattern? selectionPattern = element?.Patterns.Selection.PatternOrDefault;
+        if (selectionPattern != null)
+        {
+            AutomationElement[]? selectedItems = selectionPattern.Selection.Value;
+            if (selectedItems != null && selectedItems.Length > 0)
+            {
+                AutomationElement selectedItem = selectedItems[0];
+
+                AutomationElement? textBlock = selectedItem.FindFirstDescendant(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.Text));
+
+                if (textBlock != null)
+                {
+                    string? displayText = textBlock.Name;
+                    Assert.That(displayText?.Equals(expectedValue), Is.True, 
+                        $"Expected ComboBox selected value: '{expectedValue}' But was: '{displayText}'");
+                    return desiredElement;
+                }
+            }
+        }
+
+        Assert.Fail($"Could not verify ComboBox selection. Expected value: '{expectedValue}'");
         return desiredElement;
     }
 
@@ -297,7 +335,9 @@ public static class UiActions
 
                     if (desiredElement.ChildElement != null && elementToWaitFor != null)
                     {
-                        elementToWaitFor = elementToWaitFor.FindFirstChild(desiredElement.ChildElement.Condition);
+                        elementToWaitFor = desiredElement.ChildElement.UseDescendantSearch
+                            ? elementToWaitFor.FindFirstDescendant(desiredElement.ChildElement.Condition)
+                            : elementToWaitFor.FindFirstChild(desiredElement.ChildElement.Condition);
                     }
 
                     return condition(elementToWaitFor);

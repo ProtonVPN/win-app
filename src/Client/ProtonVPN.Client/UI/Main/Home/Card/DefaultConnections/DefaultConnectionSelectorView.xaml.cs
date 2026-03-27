@@ -50,4 +50,9 @@ public sealed partial class DefaultConnectionSelectorView : IContextAware
     {
         ViewModel.Deactivate();
     }
+
+    private void FlyoutButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        ConnectionComboBox.Open(FlyoutButton);
+    }
 }

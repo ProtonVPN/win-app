@@ -46,7 +46,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 Grid.RowSpan="2"
                                 IsHomeDisplayed="{x:Bind ViewModel.IsHomePageDisplayed}"
                                 SidebarWidth="{x:Bind ViewModel.EffectiveSidebarWidth}"
-                                WidgetsBarWidth="{x:Bind ViewModel.WidgetBarWidth}" />
+                                WidgetsBarWidth="{x:Bind ViewModel.WidgetBarWidth}" 
+                                IsEnabled="{x:Bind ViewModel.IsHomePageDisplayed}"/>
 
         <Grid x:Name="MainContainer"
               Grid.Row="1"

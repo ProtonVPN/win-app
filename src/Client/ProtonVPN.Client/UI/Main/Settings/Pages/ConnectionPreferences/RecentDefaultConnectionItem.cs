@@ -25,14 +25,11 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Recents.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Models;
 
-namespace ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections;
+namespace ProtonVPN.Client.UI.Main.Settings.Pages.ConnectionPreferences;
 
-public partial class RecentDefaultConnectionObservable : ObservableObject
+public partial class RecentDefaultConnectionItem
 {
-    private readonly DefaultConnectionSettingsPageViewModel _parentViewModel;
-
     public ILocalizationProvider Localizer { get; }
     public IRecentConnection Recent { get; }
 
@@ -56,39 +53,18 @@ public partial class RecentDefaultConnectionObservable : ObservableObject
 
     public FlagType FlagType => Recent.ConnectionIntent.GetFlagType();
 
-    public IConnectionProfile? Profile {  get; }
+    public IConnectionProfile? Profile { get; }
 
-    [ObservableProperty]
-    private bool _isDefaultConnection;
-
-    public RecentDefaultConnectionObservable(ILocalizationProvider localizer,
-        DefaultConnection defaultConnection,
-        DefaultConnectionSettingsPageViewModel parentViewModel,
+    public RecentDefaultConnectionItem(
+        ILocalizationProvider localizer,
         IRecentConnection recent)
     {
         Localizer = localizer;
-        _parentViewModel = parentViewModel;
-
         Recent = recent;
 
         if (recent.ConnectionIntent is IConnectionProfile profile)
         {
             Profile = profile;
-        }
-
-        OnDefaultConnectionChange(defaultConnection);
-    }
-
-    public void OnDefaultConnectionChange(DefaultConnection defaultConnection)
-    {
-        IsDefaultConnection = defaultConnection.RecentId == Recent.Id;
-    }
-
-    partial void OnIsDefaultConnectionChanged(bool value)
-    {
-        if (value)
-        {
-            _parentViewModel.SetRecentAsDefaultConnection(Recent);
         }
     }
 }

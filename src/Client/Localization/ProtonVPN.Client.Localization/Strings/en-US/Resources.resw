@@ -162,9 +162,6 @@
   <data name="Common_Actions_Enable" xml:space="preserve">
     <value>Enable</value>
   </data>
-  <data name="Common_Actions_Customize" xml:space="preserve">
-    <value>Customize</value>
-  </data>
   <data name="Common_Actions_MoveUp" xml:space="preserve">
     <value>Move Up</value>
   </data>
@@ -1639,6 +1636,12 @@
   </data>
   <data name="Settings_Connection_AdvancedSettings" xml:space="preserve">
     <value>Advanced settings</value>
+  </data>
+  <data name="Settings_Connection_ConnectionPreferences" xml:space="preserve">
+    <value>Connection preferences</value>
+  </data>
+   <data name="Settings_Connection_ConnectionPreferences_Description" xml:space="preserve">
+    <value>Manage default and automatic connections</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting" xml:space="preserve">
     <value>Alternative routing</value>

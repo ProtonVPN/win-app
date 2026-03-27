@@ -174,6 +174,13 @@ public partial class ConnectionSettingsViewModel : ActivatableViewModelBase,
         OnPropertyChanged(nameof(SettingsOverriddenTagline));
     }
 
+
+    [RelayCommand]
+    private async Task NavigateToConnectionPreferencesSettingsPageAsync()
+    {
+        await _settingsViewNavigator.NavigateToConnectionPreferencesSettingsViewAsync();
+    }
+
     [RelayCommand]
     private Task NavigateToProtocolPageAsync()
     {

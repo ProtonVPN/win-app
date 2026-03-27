@@ -53,6 +53,7 @@ using ProtonVPN.Client.Services.Enabling;
 using ProtonVPN.Client.Services.Lifecycle;
 using ProtonVPN.Client.Services.Mapping;
 using ProtonVPN.Client.Services.Navigation;
+using ProtonVPN.Client.Services.DefaultConnections;
 using ProtonVPN.Client.Services.PortForwarding;
 using ProtonVPN.Client.Services.ProcessCommunication;
 using ProtonVPN.Client.Services.Selection;
@@ -102,7 +103,7 @@ using ProtonVPN.Client.UI.Main.Settings.Pages;
 using ProtonVPN.Client.UI.Main.Settings.Pages.About;
 using ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
 using ProtonVPN.Client.UI.Main.Settings.Pages.Connection;
-using ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections;
+using ProtonVPN.Client.UI.Main.Settings.Pages.ConnectionPreferences;
 using ProtonVPN.Client.UI.Main.Sidebar;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Countries;
@@ -288,6 +289,8 @@ public class AppModule : Module
 
         builder.RegisterType<P2PDetectionWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<StreamingDetectionWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
+
+        builder.RegisterType<DefaultConnectionSelectionManager>().AsImplementedInterfaces().SingleInstance();
     }
 
     private void RegisterLocalHandlers(ContainerBuilder builder)
@@ -366,7 +369,7 @@ public class AppModule : Module
         RegisterViewModel<CommonSettingsPageViewModel>(builder);
         RegisterViewModel<AdvancedSettingsPageViewModel>(builder);
         RegisterViewModel<ProtocolSettingsPageViewModel>(builder);
-        RegisterViewModel<DefaultConnectionSettingsPageViewModel>(builder);
+        RegisterViewModel<ConnectionPreferencesSettingsPageViewModel>(builder);
         RegisterViewModel<VpnAcceleratorSettingsPageViewModel>(builder);
         RegisterViewModel<CustomDnsServersViewModel>(builder);
         RegisterViewModel<DebugLogsPageViewModel>(builder);

@@ -17,40 +17,42 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
-using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Models;
+using ProtonVPN.Client.Services.DefaultConnections;
 
 namespace ProtonVPN.Client.UI.Main.Home.Card.DefaultConnections;
 
 public partial class DefaultConnectionSelectorViewModel : ActivatableViewModelBase,
     IEventMessageReceiver<SettingChangedMessage>,
-    IEventMessageReceiver<ServerListChangedMessage>
+    IEventMessageReceiver<ServerListChangedMessage>,
+    IEventMessageReceiver<RecentConnectionsChangedMessage>,
+    IEventMessageReceiver<LoggedInMessage>
 {
     private readonly ISettings _settings;
     private readonly IMainWindowActivator _mainWindowActivator;
     private readonly IMainViewNavigator _mainViewNavigator;
     private readonly ISettingsViewNavigator _settingsViewNavigator;
-    private readonly IServersLoader _serversLoader;
+    private readonly IDefaultConnectionSelectionManager _defaultConnectionSelectionManager;
+    private bool _isSelectionUpdateInProgress;
 
-    public DefaultConnection DefaultConnection => _settings.DefaultConnection;
+    public SmartObservableCollection<object> ConnectionsList => _defaultConnectionSelectionManager.Connections;
 
-    public bool IsFastestDefaultConnection => DefaultConnection.Type == DefaultConnectionType.Fastest;
-
-    public bool IsRandomDefaultConnection => DefaultConnection.Type == DefaultConnectionType.Random;
-
-    public bool IsFastestAndRandomConnectionVisible => _serversLoader.HasAnyCountries();
-
-    public bool IsLastDefaultConnection => DefaultConnection.Type == DefaultConnectionType.Last;
+    [ObservableProperty]
+    private object? _selectedDefaultConnection;
 
     public DefaultConnectionSelectorViewModel(
         IViewModelHelper viewModelHelper,
@@ -58,74 +60,80 @@ public partial class DefaultConnectionSelectorViewModel : ActivatableViewModelBa
         IMainWindowActivator mainWindowActivator,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
-        IServersLoader serversLoader)
+        IDefaultConnectionSelectionManager defaultConnectionSelectionManager)
         : base(viewModelHelper)
     {
         _settings = settings;
         _mainWindowActivator = mainWindowActivator;
         _mainViewNavigator = mainViewNavigator;
         _settingsViewNavigator = settingsViewNavigator;
-        _serversLoader = serversLoader;
+        _defaultConnectionSelectionManager = defaultConnectionSelectionManager;
     }
 
     public void Receive(SettingChangedMessage message)
     {
         if (message.PropertyName == nameof(ISettings.DefaultConnection))
         {
-            ExecuteOnUIThread(InvalidateDefaultConnection);
+            ExecuteOnUIThread(UpdateSelectedDefaultConnection);
         }
     }
 
     public void Receive(ServerListChangedMessage message)
     {
-        ExecuteOnUIThread(() =>
-        {
-            OnPropertyChanged(nameof(IsFastestAndRandomConnectionVisible));
-        });
+        ExecuteOnUIThread(RefreshConnections);
+    }
+
+    public void Receive(RecentConnectionsChangedMessage message)
+    {
+        ExecuteOnUIThread(RefreshConnections);
+    }
+
+    public void Receive(LoggedInMessage message)
+    {
+        ExecuteOnUIThread(RefreshConnections);
     }
 
     protected override void OnActivated()
     {
         base.OnActivated();
 
-        InvalidateDefaultConnection();
+        RefreshConnections();
     }
 
-    private void InvalidateDefaultConnection()
+    private void RefreshConnections()
     {
-        if (IsActive)
+        _defaultConnectionSelectionManager.Refresh();
+        UpdateSelectedDefaultConnection();
+    }
+
+    private void UpdateSelectedDefaultConnection()
+    {
+        if (!IsActive)
         {
-            OnPropertyChanged(nameof(DefaultConnection));
-            OnPropertyChanged(nameof(IsFastestDefaultConnection));
-            OnPropertyChanged(nameof(IsRandomDefaultConnection));
-            OnPropertyChanged(nameof(IsLastDefaultConnection));
+            return;
         }
+
+        _isSelectionUpdateInProgress = true;
+        SelectedDefaultConnection = _defaultConnectionSelectionManager.FindSelectedItem(_settings.DefaultConnection);
+        _isSelectionUpdateInProgress = false;
     }
 
-    [RelayCommand]
-    private void SwitchToFastestDefaultConnection()
+    partial void OnSelectedDefaultConnectionChanged(object? value)
     {
-        _settings.DefaultConnection = DefaultConnection.Fastest;
-    }
+        if (_isSelectionUpdateInProgress || !IsActive)
+        {
+            return;
+        }
 
-    [RelayCommand]
-    private void SwitchToRandomDefaultConnection()
-    {
-        _settings.DefaultConnection = DefaultConnection.Random;
-    }
+        DefaultConnection? selected = _defaultConnectionSelectionManager.TryCreateDefaultConnection(value);
+        if (selected is null)
+        {
+            return;
+        }
 
-    [RelayCommand]
-    private void SwitchToLastDefaultConnection()
-    {
-        _settings.DefaultConnection = DefaultConnection.Last;
-    }
-
-    [RelayCommand]
-    private async Task<bool> NavigateToDefaultConnectionSettingsAsync()
-    {
-        _mainWindowActivator.Activate();
-
-        return await _mainViewNavigator.NavigateToSettingsViewAsync()
-            && await _settingsViewNavigator.NavigateToDefaultConnectionSettingsViewAsync(isDirectNavigation: true);
+        if (_settings.DefaultConnection != selected)
+        {
+            _settings.DefaultConnection = selected.Value;
+        }
     }
 }

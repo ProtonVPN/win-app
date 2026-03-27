@@ -57,10 +57,6 @@ public class HomeRobot
     protected Element ServerChangesUpsellLabel = Element.ByName("Get unlimited server changes with VPN Plus.");
     protected Element UpgradeButton = Element.ByName("Upgrade");
     protected Element DefaultConnectionSelectorButton = Element.ByAutomationId("DefaultConnectionSelectorButton");
-    protected Element FastestCountryOption = Element.ByName("Fastest country");
-    protected Element RandomCountryOption = Element.ByName("Random country");
-    protected Element LastConnectionOption = Element.ByName("Last connection");
-    protected Element CustomizeOption = Element.ByName("Customize");
     protected Element CustomizeCardConnectionTitleLabel = Element.ByName("Default connection");
     protected Element ProtectedLabelAdvancedKillSwitch = Element.ByName("Advanced kill switch activated");
     protected Element ShowIpFlyoutButton => Element.ByAutomationId("ShowIpFlyoutButton");
@@ -175,27 +171,19 @@ public class HomeRobot
     public HomeRobot SelectVpnConnectionOption(VpnConnectionOptions option)
     {
         DefaultConnectionSelectorButton.Click();
-        // This sleep added because of animation
         Thread.Sleep(TestConstants.AnimationDelay);
 
-        switch (option)
+        string optionName = option switch
         {
-            case VpnConnectionOptions.Fast:
-                FastestCountryOption.DoubleClick();
-                break;
+            VpnConnectionOptions.Fast => "Fastest country",
+            VpnConnectionOptions.Random => "Random country",
+            VpnConnectionOptions.Last => "Last connection",
+            _ => throw new System.NotImplementedException($"VpnConnectionOption '{option}' is not supported on the home page ComboBox."),
+        };
 
-            case VpnConnectionOptions.Random:
-                RandomCountryOption.DoubleClick();
-                break;
+        Element.ByName(optionName).Click();
+        Thread.Sleep(TestConstants.AnimationDelay);
 
-            case VpnConnectionOptions.Last:
-                LastConnectionOption.DoubleClick();
-                break;
-
-            case VpnConnectionOptions.Customized:
-                CustomizeOption.DoubleClick();
-                break;
-        }
         return this;
     }
 
