@@ -343,7 +343,7 @@
     <value>Proton VPN はネットワークの問題によりクライアント証明書の取得に失敗しました。</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>The connection was blocked by network settings on your device. This may be caused by a mobile hotspot, another VPN application, or virtual machine software. Please review your network configuration or contact support for assistance.</value>
+    <value>お客様のデバイスのネットワーク設定により接続がブロックされました。これは、モバイルホットスポット、別のVPNアプリ、または仮想マシンソフトウェアが原因である可能性があります。ネットワーク構成を確認するか、サポートにお問い合わせください。</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>選択したサーバーがすべて利用できません。選択範囲を拡大するか、後でもう一度お試しください。</value>
@@ -2697,7 +2697,7 @@
     <value>セッションの詳細を取得するときにエラーが発生しました。 もう一度試してください。</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>Unable to sign in due to network settings on your device. This may be caused by a mobile hotspot, another VPN application, or virtual machine software. Please review your network configuration or contact support for assistance.</value>
+    <value>お客様のデバイスのネットワーク設定によりサインインすることができません。これは、モバイルホットスポット、別のVPNアプリ、または仮想マシンソフトウェアが原因である可能性があります。ネットワーク構成を確認するか、サポートにお問い合わせください。</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>無効なコードです。再度お試しください。</value>

@@ -172,7 +172,7 @@
     <value>Side for land</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
-    <value>Porttjenereside</value>
+    <value>Side for gateway-tjenere</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Page">
     <value>Tilkoblingsside</value>
@@ -458,19 +458,19 @@ Feilkode: {0}</value>
     <value>Gratis tjenere</value>
   </data>
   <data name="Connections_Gateway">
-    <value>Porttjener</value>
+    <value>Gateway</value>
   </data>
   <data name="Connections_Gateway_Restricted">
-    <value>Tjenere i denne porttjeneren er tilgjengelig med VPN Plus</value>
+    <value>Tjenere i denne gatewayen krever VPN Plus</value>
   </data>
   <data name="Connections_Gateway_UnderMaintenance">
-    <value>All tjenere i denne porttjeneren er under vedlikehold</value>
+    <value>All tjenere i denne gatewayen er under vedlikehold</value>
   </data>
   <data name="Connections_Gateways_One">
-    <value>Porttjener ({0})</value>
+    <value>Gateway ({0})</value>
   </data>
   <data name="Connections_Gateways_Other">
-    <value>Porttjenere ({0})</value>
+    <value>Gateway-tjenere ({0})</value>
   </data>
   <data name="Connections_Gateways_Server">
     <value>Dedikert tjener</value>
@@ -2120,7 +2120,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Du kan nå få tilgang til organisasjonens dedikerte tjenere fra hovedsidefeltet.</value>
   </data>
   <data name="Dialogs_WhatsNew_Gateways_Title">
-    <value>Porttjenere har flyttet</value>
+    <value>Gateway-tjenere er flyttet</value>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
     <value>Du kan nå koble til skrivere, høyttalere og andre enheter på ditt lokale nettverk (LAN), og omgå VPN-tunnelen.</value>
@@ -2537,16 +2537,16 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Skaff deg verdensomspennende dekning med VPN Plus</value>
   </data>
   <data name="Gateway_Fastest">
-    <value>Raskeste porttjener</value>
+    <value>Raskeste gateway</value>
   </data>
   <data name="Gateway_Random">
-    <value>Tilfeldig porttjener</value>
+    <value>Tilfeldig gateway</value>
   </data>
   <data name="Gateways_Page_Description">
-    <value>Koble til en porttjener for å få tilgang til organisasjonens VPN.</value>
+    <value>Koble til en gateway for å få tilgang til organisasjonens VPN.</value>
   </data>
   <data name="Gateways_Page_Title">
-    <value>Porttjenere</value>
+    <value>Gateway-tjenere</value>
   </data>
   <data name="Gateways_Server">
     <value>Dedikert tjener</value>
@@ -2609,7 +2609,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Land</value>
   </data>
   <data name="Home_ConnectionDetails_Gateway">
-    <value>Porttjener</value>
+    <value>Gateway</value>
   </data>
   <data name="Home_ConnectionDetails_Hide">
     <value>Skjul forbindelsesdetaljer</value>
@@ -3194,7 +3194,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Raskeste gratis tjener</value>
   </data>
   <data name="Server_Feature_B2B">
-    <value>Porttjener</value>
+    <value>Gateway</value>
   </data>
   <data name="Server_Feature_B2B_Description">
     <value>Få tilgang til organisasjonens tjenere</value>

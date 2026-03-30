@@ -1,0 +1,4173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account_VpnPlan_Free">
+    <value>Proton VPN Free</value>
+  </data>
+  <data name="Automation_Properties_ConnectionDetails_Page">
+    <value>Pahina ng mga detalye ng koneksyon</value>
+  </data>
+  <data name="Automation_Properties_Connection_Card_Component">
+    <value>Card ng koneksyon</value>
+  </data>
+  <data name="Automation_Properties_Features_Bar">
+    <value>Bar ng mga feature</value>
+  </data>
+  <data name="Automation_Properties_Home_Page">
+    <value>Home page</value>
+  </data>
+  <data name="Automation_Properties_KillSwitch_Page">
+    <value>Pahina ng kill switch</value>
+  </data>
+  <data name="Automation_Properties_LocationDetails_Page">
+    <value>Pahina ng mga detalye ng lokasyon</value>
+  </data>
+  <data name="Automation_Properties_Login_Page">
+    <value>Pahina sa pag-log in</value>
+  </data>
+  <data name="Automation_Properties_Main_Page">
+    <value>Pangunahing pahina</value>
+  </data>
+  <data name="Automation_Properties_NetShield_Page">
+    <value>Pahina ng NetShield</value>
+  </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>Pahina ng walang mga server</value>
+  </data>
+  <data name="Automation_Properties_PortForwarding_Page">
+    <value>Pahina ng port forwarding</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page">
+    <value>Pahina ng profile</value>
+  </data>
+  <data name="Automation_Properties_Settings_Advanced_Page">
+    <value>Pahina ng mga advanced na setting</value>
+  </data>
+  <data name="Automation_Properties_Settings_Common_Page">
+    <value>Pahina ng mga karaniwang setting</value>
+  </data>
+  <data name="Automation_Properties_Settings_Page">
+    <value>Pahina ng mga setting</value>
+  </data>
+  <data name="Automation_Properties_Sidebar">
+    <value>Sidebar</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Countries_Page">
+    <value>Pahina ng mga bansa</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
+    <value>Pahina ng mga gateway</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Page">
+    <value>Pahina ng mga koneksyon</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Profiles_Page">
+    <value>Pahina ng mga profile</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Recents_Page">
+    <value>Pahina ng mga recent</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Search_Results_Page">
+    <value>Mga resulta ng paghahanap</value>
+  </data>
+  <data name="Automation_Properties_SplitTunneling_Page">
+    <value>Pahina ng split tunneling</value>
+  </data>
+  <data name="Cities">
+    <value>Mga Lungsod</value>
+  </data>
+  <data name="City_Fastest">
+    <value>Pinakamabilis na lungsod</value>
+  </data>
+  <data name="City_Random">
+    <value>Random na lungsod</value>
+  </data>
+  <data name="Common_Actions_ActionsFor">
+    <value>Mga aksyon para sa {0}</value>
+    <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_Add">
+    <value>Idagdag</value>
+  </data>
+  <data name="Common_Actions_Back">
+    <value>Bumalik</value>
+  </data>
+  <data name="Common_Actions_Cancel">
+    <value>Kanselahin</value>
+  </data>
+  <data name="Common_Actions_Change">
+    <value>Baguhin</value>
+  </data>
+  <data name="Common_Actions_Close">
+    <value>Isara</value>
+  </data>
+  <data name="Common_Actions_Connect">
+    <value>Kumonekta</value>
+  </data>
+  <data name="Common_Actions_ConnectTo">
+    <value>Kumonekta sa {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_ContactUs">
+    <value>Makipag-ugnayan sa amin</value>
+  </data>
+  <data name="Common_Actions_Customize">
+    <value>I-customize</value>
+  </data>
+  <data name="Common_Actions_Delete">
+    <value>Burahin</value>
+  </data>
+  <data name="Common_Actions_Disconnect">
+    <value>I-disconnect</value>
+  </data>
+  <data name="Common_Actions_DisconnectFrom">
+    <value>I-disconnect mula sa {0}</value>
+    <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
+  </data>
+  <data name="Common_Actions_Duplicate">
+    <value>I-duplicate</value>
+  </data>
+  <data name="Common_Actions_Edit">
+    <value>I-edit</value>
+  </data>
+  <data name="Common_Actions_Enable">
+    <value>I-enable</value>
+  </data>
+  <data name="Common_Actions_Exit_ProtonVPN">
+    <value>Lumabas sa Proton VPN</value>
+  </data>
+  <data name="Common_Actions_GotIt">
+    <value>Naintindihan</value>
+  </data>
+  <data name="Common_Actions_Install">
+    <value>I-install</value>
+  </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Ilipat Pababa</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Ilipat Pataas</value>
+  </data>
+  <data name="Common_Actions_Reconnect">
+    <value>Kumonektang muli</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>I-refresh</value>
+  </data>
+  <data name="Common_Actions_Remove">
+    <value>Alisin</value>
+  </data>
+  <data name="Common_Actions_Restart">
+    <value>I-restart</value>
+  </data>
+  <data name="Common_Actions_Save">
+    <value>I-save</value>
+  </data>
+  <data name="Common_Actions_TryAgain">
+    <value>Subukang muli</value>
+  </data>
+  <data name="Common_Actions_Update">
+    <value>I-update</value>
+  </data>
+  <data name="Common_Actions_Upgrade">
+    <value>I-upgrade</value>
+  </data>
+  <data name="Common_Confirmation_KillSwitch_Message">
+    <value>Naka-enable ang advanced kill switch. Upang gamitin ang internet nang walang VPN, i-disable ang advanced kill switch.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
+    <value>Naka-enable ang advanced kill switch. Kung magpapatuloy ka, madi-disconnect ka mula sa internet.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnected_Message">
+    <value>Madi-disconnect sa VPN.</value>
+  </data>
+  <data name="Common_Links_LearnMore">
+    <value>Matuto pa</value>
+  </data>
+  <data name="Common_Message_Loading">
+    <value>Naglo-load...</value>
+  </data>
+  <data name="Common_States_Off">
+    <value>Naka-off</value>
+  </data>
+  <data name="Common_States_On">
+    <value>Naka-on</value>
+  </data>
+  <data name="Common_States_Updating">
+    <value>Nag-a-update...</value>
+  </data>
+  <data name="Common_Tags_Beta">
+    <value>BETA</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
+  <data name="Common_Tags_New">
+    <value>BAGO</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
+  </data>
+  <data name="Common_Tags_Recommended">
+    <value>Inirerekomenda</value>
+    <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
+  </data>
+  <data name="Components_Update_GetMostFromYourVpn">
+    <value>Sulitin ang iyong VPN sa pamamagitan ng pag-update sa pinakabagong bersyon ng app.</value>
+  </data>
+  <data name="Components_Update_MoreLikelyIssues">
+    <value>Mas malaki ang posibilidad na magkaroon ka ng isyu sa mga lumang bersyon ng Proton VPN.</value>
+  </data>
+  <data name="Components_Update_UpdateAvailable">
+    <value>May available na update</value>
+  </data>
+  <data name="Components_Update_UpdateProtonVpn">
+    <value>I-update ang Proton VPN</value>
+  </data>
+  <data name="Connection_Error_EditProfile">
+    <value>I-edit ang profile</value>
+  </data>
+  <data name="Connection_Error_MissingConnectionCertificate">
+    <value>Nabigo ang Proton VPN na kunin ang certificate ng pag-authenticate dahil sa isyu sa network.</value>
+  </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>The connection was blocked by network settings on your device. This may be caused by a mobile hotspot, another VPN application, or virtual machine software. Please review your network configuration or contact support for assistance.</value>
+  </data>
+  <data name="Connection_Error_NoServers">
+    <value>Hindi available ang lahat ng napili mong server. Pakilawakan ang iyong pagpili o subukang muli mamaya.</value>
+  </data>
+  <data name="Connection_Error_NoServers_Profile">
+    <value>Hindi available ang pinili mong server para sa {0}. Pumili ng ibang server o subukang muli mamaya.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Connection_Error_NoTapAdapters">
+    <value>Nawawala ang network adapter.</value>
+  </data>
+  <data name="Connection_Error_ReportAnIssue">
+    <value>Mag-ulat ng isyu</value>
+  </data>
+  <data name="Connection_Error_RpcServerUnavailable">
+    <value>Hindi makakonekta ang Proton VPN dahil hindi available ang RPC server sa system mo.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedFreeUser">
+    <value>Naabot mo na ang maximum na limitasyon ng device mo. Mangyaring mag-disconnect ng ibang device upang maikonekta ito o mag-upgrade sa Plus upang makakonekta ng hanggang 10 device nang sabay-sabay.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedPaidUser">
+    <value>Naabot mo na ang maximum na limitasyon ng device mo. Paki-disconnect ang ibang device upang maikonekta ito.</value>
+  </data>
+  <data name="Connection_Error_TapAdapterInUse">
+    <value>Kasalukuyang ginagamit ang iyong network adapter.</value>
+  </data>
+  <data name="Connection_Error_TapRequiresUpdate">
+    <value>Luma na ang bersyon ng network adapter.</value>
+  </data>
+  <data name="Connection_Error_Title">
+    <value>Nabigo ang koneksyon</value>
+  </data>
+  <data name="Connection_Error_TlsCertificate">
+    <value>May problema sa pag-validate ng certificate ng VPN server, na maaaring nagpapahiwatig na pinakialaman ang koneksyon sa network o may problema sa configuration ang server na sinusubukan mong konektahan. Humingi ng tulong sa aming suporta sa customer sa pamamagitan ng pagpapadala ng Ulat ng Isyu.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>Upang kumonekta sa VPN, pumunta sa 2FA portal ng iyong organisasyon at i-tap ang iyong security key.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>Kinakailangan ang two-factor authentication (2FA)</value>
+  </data>
+  <data name="Connection_Error_Unknown">
+    <value>Suriin ang iyong koneksyon sa internet at subukang muli. Kung hindi iyon gumana, makipag-ugnayan sa aming team ng suporta sa customer.
+
+Error code: {0}</value>
+  </data>
+  <data name="Connection_Error_ViewPossibleSolutions">
+    <value>Tingnan ang mga pag-aayos</value>
+  </data>
+  <data name="Connection_Error_WireGuardAdapterInUse">
+    <value>Ginagamit ang WireGuard adapter ng device mo. Mag-disconnect mula sa anumang iba pang VPN na tumatakbo sa device mo, pagkatapos ay subukang muli.</value>
+  </data>
+  <data name="Connection_Intent_AutoSelected">
+    <value>Awtomatikong pinili mula sa</value>
+    <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
+  </data>
+  <data name="Connection_Intent_City_Server">
+    <value>{0} #{1}</value>
+    <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the number associated to the server (eg. Zurich #20)</comment>
+  </data>
+  <data name="Connection_Intent_Country_Server">
+    <value>{0} #{1}</value>
+    <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
+  </data>
+  <data name="Connection_Via_SecureCore">
+    <value>via {0}</value>
+    <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
+  </data>
+  <data name="Connections_Cities_One">
+    <value>Lungsod ({0})</value>
+  </data>
+  <data name="Connections_Cities_Other">
+    <value>Mga Lungsod ({0})</value>
+  </data>
+  <data name="Connections_City">
+    <value>Lungsod</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>Available ang mga server sa lungsod na ito gamit ang VPN Plus</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>Ang lahat ng server sa lungsod na ito ay sumasailalim sa maintenance</value>
+  </data>
+  <data name="Connections_Countries_One">
+    <value>Bansa ({0})</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>Mga bansa ({0})</value>
+  </data>
+  <data name="Connections_Country">
+    <value>Bansa</value>
+  </data>
+  <data name="Connections_Country_Middle">
+    <value>Gitnang bansa</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>Available ang mga server sa bansang ito gamit ang VPN Plus</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>Ang lahat ng server sa bansang ito ay sumasailalim sa maintenance</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Hindi makakonekta</value>
+  </data>
+  <data name="Connections_Fastest">
+    <value>Pinakamabilis</value>
+  </data>
+  <data name="Connections_Free_Servers_One">
+    <value>{0} libreng server</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>{0} libreng server</value>
+  </data>
+  <data name="Connections_Gateway">
+    <value>Gateway</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>Available ang mga server sa gateway na ito gamit ang VPN Plus</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>Sumasailalim sa maintenance ang lahat ng server sa gateway na ito</value>
+  </data>
+  <data name="Connections_Gateways_One">
+    <value>Gateway ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>Mga gateway ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Server">
+    <value>Dedicated server</value>
+  </data>
+  <data name="Connections_Gateways_Servers_One">
+    <value>Dedicated server ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>Mga dedicated server ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_One">
+    <value>P2P na lungsod ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>Mga P2P na lungsod ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_One">
+    <value>P2P na bansa ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>Mga P2P na bansa ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_One">
+    <value>{0} P2P server</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>{0} P2P server</value>
+  </data>
+  <data name="Connections_P2P_States_One">
+    <value>P2P na estado ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>Mga P2P na estado ({0})</value>
+  </data>
+  <data name="Connections_Profiles_One">
+    <value>Profile ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Other">
+    <value>Mga profile ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Create">
+    <value>Gumawa ng profile</value>
+    <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
+  </data>
+  <data name="Connections_Profiles_Delete">
+    <value>Burahin ang profile</value>
+  </data>
+  <data name="Connections_Profiles_Delete_Message">
+    <value>Permanenteng aalisin ang '{0}'.</value>
+    <comment>{0} is a placeholder for the name of the profile.</comment>
+  </data>
+  <data name="Connections_Profiles_Delete_Title">
+    <value>Burahin ang profile?</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Description">
+    <value>Ang mga profile ay mga naka-save mong koneksyon na may napiling lokasyon, server at protocol.</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Title">
+    <value>Gumawa ng iyong unang profile</value>
+  </data>
+  <data name="Connections_Profiles_Location_Header">
+    <value>Piliin ang uri ng koneksyon at lokasyon</value>
+  </data>
+  <data name="Connections_Profiles_Name">
+    <value>Pangalanan ang iyong profile</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default">
+    <value>Walang pamagat</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate">
+    <value>Kopya ng {0}</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
+  </data>
+  <data name="Connections_Profiles_New">
+    <value>Bagong profile</value>
+    <comment>"New profile" is more appropriate when you already have a profile</comment>
+  </data>
+  <data name="Connections_Profiles_NotAvailable_Tooltip">
+    <value>Available ang mga profile gamit ang VPN Plus</value>
+    <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
+  </data>
+  <data name="Connections_Profiles_Settings_Description">
+    <value>Mao-override ng mga setting ng profile ang iyong mga setting ng VPN kapag nakakonekta.</value>
+  </data>
+  <data name="Connections_Profiles_Settings_Header">
+    <value>Magdagdag ng mga custom na setting</value>
+  </data>
+  <data name="Connections_Random">
+    <value>Random</value>
+  </data>
+  <data name="Connections_Recents_One">
+    <value>Kamakailan ({0})</value>
+  </data>
+  <data name="Connections_Recents_Other">
+    <value>Mga kamakailan ({0})</value>
+  </data>
+  <data name="Connections_Recents_Empty_Description">
+    <value>Tingnan ang iyong history ng koneksyon dito.</value>
+  </data>
+  <data name="Connections_Recents_Empty_Title">
+    <value>Wala pang mga recent</value>
+  </data>
+  <data name="Connections_Recents_Pinned_One">
+    <value>Naka-pin ({0})</value>
+  </data>
+  <data name="Connections_Recents_Pinned_Other">
+    <value>Mga naka-pin ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_One">
+    <value>Bansang Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>Mga bansang Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_One">
+    <value>Server na Secure Core</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>{0} Secure Core server</value>
+  </data>
+  <data name="Connections_SeeCities_One">
+    <value>Tingnan ang lungsod ({0})</value>
+  </data>
+  <data name="Connections_SeeCities_Other">
+    <value>Tingnan ang mga lungsod ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_One">
+    <value>Tingnan ang server ({0})</value>
+  </data>
+  <data name="Connections_SeeServers_Other">
+    <value>Tingnan ang mga server ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_One">
+    <value>Tingnan ang estado ({0})</value>
+  </data>
+  <data name="Connections_SeeStates_Other">
+    <value>Tingnan ang mga estado ({0})</value>
+  </data>
+  <data name="Connections_Server">
+    <value>Server</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>Available ang server gamit ang VPN Plus</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>Sumasailalim sa maintenance ang server na ito</value>
+  </data>
+  <data name="Connections_Servers_One">
+    <value>{0} server</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>{0} server</value>
+  </data>
+  <data name="Connections_State">
+    <value>Estado</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Available ang mga server sa estadong ito gamit ang VPN Plus.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>Ang lahat ng server sa estadong ito ay sumasailalim sa maintenance.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_One">
+    <value>Estado ({0})</value>
+  </data>
+  <data name="Connections_States_Other">
+    <value>Mga estado ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_One">
+    <value>Bansang Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>Mga bansang Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_One">
+    <value>{0} Tor server</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>{0} Tor server</value>
+  </data>
+  <data name="Countries">
+    <value>Mga Bansa</value>
+  </data>
+  <data name="Countries_All">
+    <value>Lahat</value>
+  </data>
+  <data name="Countries_City_One">
+    <value>{0} lungsod</value>
+  </data>
+  <data name="Countries_City_Other">
+    <value>{0} lungsod</value>
+  </data>
+  <data name="Countries_Connect">
+    <value>Kumonekta</value>
+    <comment>Connect button label on a country row in the countries tab</comment>
+  </data>
+  <data name="Countries_Fastest">
+    <value>Pinakamabilis na bansa</value>
+  </data>
+  <data name="Countries_NoSearchResults">
+    <value>Walang nakitang resulta</value>
+  </data>
+  <data name="Countries_NumberOfServers">
+    <value>Mga server ({0})</value>
+    <comment>{0} represents a number of servers</comment>
+  </data>
+  <data name="Countries_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Countries_P2P_Cities">
+    <value>Mga lungsod na P2P ({0})</value>
+    <comment>{0} represents a number of P2P cities in the country</comment>
+  </data>
+  <data name="Countries_P2P_Description">
+    <value>Mag-download ng mga file gamit ang mga network na P2P (peer-to-peer) at pahusayin ang iyong karanasan sa online gaming at video call.</value>
+  </data>
+  <data name="Countries_Page_FreeUser_Description">
+    <value>I-unlock ang pagpili ng bansa gamit ang VPN Plus</value>
+  </data>
+  <data name="Countries_SearchPlaceholder">
+    <value>Gusto kong mag-browse mula sa...</value>
+  </data>
+  <data name="Countries_Section_Header">
+    <value>Mga koneksyon sa VPN</value>
+  </data>
+  <data name="Countries_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>Magdagdag ng isa pang layer ng encryption sa iyong koneksyon ng VPN.</value>
+  </data>
+  <data name="Countries_ServerLoad">
+    <value>Load ng server</value>
+  </data>
+  <data name="Countries_SmartRouting">
+    <value>Smart routing</value>
+  </data>
+  <data name="Countries_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Countries_TorServers">
+    <value>Mga server ng Tor ({0})</value>
+    <comment>{0} represents a number of tor servers in the country</comment>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>Gamitin ang Tor network sa iyong koneksyon ng VPN para sa karagdagang privacy.</value>
+  </data>
+  <data name="Countries_TryDifferentKeyword">
+    <value>Pakisubukan ang ibang keyword</value>
+  </data>
+  <data name="Country_Fastest">
+    <value>Pinakamabilis na bansa</value>
+  </data>
+  <data name="Country_Fastest_ExcludingMyCountry">
+    <value>Pinakamabilis (hindi kasama ang aking bansa)</value>
+  </data>
+  <data name="Country_Random">
+    <value>Random na bansa</value>
+  </data>
+  <data name="Country_Random_ExcludingMyCountry">
+    <value>Random (hindi kasama ang aking bansa)</value>
+  </data>
+  <data name="Country_val_AD">
+    <value>Andorra</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE">
+    <value>United Arab Emirates</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF">
+    <value>Afghanistan</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG">
+    <value>Antigua and Barbuda</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI">
+    <value>Anguilla</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL">
+    <value>Albania</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM">
+    <value>Armenia</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO">
+    <value>Angola</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ">
+    <value>Antarctica</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR">
+    <value>Argentina</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS">
+    <value>American Samoa</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT">
+    <value>Austria</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU">
+    <value>Australia</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW">
+    <value>Aruba</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX">
+    <value>Aland Islands</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ">
+    <value>Azerbaijan</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA">
+    <value>Bosnia and Herzegovina</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB">
+    <value>Barbados</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD">
+    <value>Bangladesh</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE">
+    <value>Belgium</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF">
+    <value>Burkina Faso</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG">
+    <value>Bulgaria</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH">
+    <value>Bahrain</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI">
+    <value>Burundi</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ">
+    <value>Benin</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL">
+    <value>Saint Barthélemy</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM">
+    <value>Bermuda</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN">
+    <value>Brunei Darussalam</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO">
+    <value>Bolivia</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ">
+    <value>Bonaire, Sint Eustatius and Saba</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR">
+    <value>Brazil</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS">
+    <value>Bahamas</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT">
+    <value>Bhutan</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV">
+    <value>Bouvet Island</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW">
+    <value>Botswana</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY">
+    <value>Belarus</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ">
+    <value>Belize</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA">
+    <value>Canada</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC">
+    <value>Cocos (Keeling) Islands</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD">
+    <value>Congo (Democratic Republic of the)</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF">
+    <value>Central African Republic</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG">
+    <value>Congo</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH">
+    <value>Switzerland</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI">
+    <value>Côte d'Ivoire</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK">
+    <value>Cook Islands</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL">
+    <value>Chile</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM">
+    <value>Cameroon</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN">
+    <value>China</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO">
+    <value>Colombia</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR">
+    <value>Costa Rica</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU">
+    <value>Cuba</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV">
+    <value>Cape Verde</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW">
+    <value>Curaçao</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX">
+    <value>Christmas Island</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY">
+    <value>Cyprus</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ">
+    <value>Czechia</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE">
+    <value>Germany</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ">
+    <value>Djibouti</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK">
+    <value>Denmark</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM">
+    <value>Dominica</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO">
+    <value>Dominican Republic</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ">
+    <value>Algeria</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC">
+    <value>Ecuador</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE">
+    <value>Estonia</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG">
+    <value>Egypt</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH">
+    <value>Western Sahara</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER">
+    <value>Eritrea</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES">
+    <value>Spain</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET">
+    <value>Ethiopia</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI">
+    <value>Finland</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ">
+    <value>Fiji</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK">
+    <value>Falkland Islands (Malvinas)</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM">
+    <value>Micronesia</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO">
+    <value>Faroe Islands</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR">
+    <value>France</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA">
+    <value>Gabon</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB">
+    <value>United Kingdom</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD">
+    <value>Grenada</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE">
+    <value>Georgia</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF">
+    <value>French Guiana</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG">
+    <value>Guernsey</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH">
+    <value>Ghana</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI">
+    <value>Gibraltar</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL">
+    <value>Greenland</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM">
+    <value>Gambia</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN">
+    <value>Guinea</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP">
+    <value>Guadeloupe</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ">
+    <value>Equatorial Guinea</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR">
+    <value>Greece</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS">
+    <value>South Georgia and the South Sandwich Islands</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT">
+    <value>Guatemala</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU">
+    <value>Guam</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW">
+    <value>Guinea-Bissau</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY">
+    <value>Guyana</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK">
+    <value>Hong Kong</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM">
+    <value>Heard Island and McDonald Islands</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN">
+    <value>Honduras</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR">
+    <value>Croatia</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT">
+    <value>Haiti</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU">
+    <value>Hungary</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID">
+    <value>Indonesia</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE">
+    <value>Ireland</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL">
+    <value>Israel</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM">
+    <value>Isle of Man</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN">
+    <value>India</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO">
+    <value>British Indian Ocean Territory</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ">
+    <value>Iraq</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR">
+    <value>Iran</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS">
+    <value>Iceland</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT">
+    <value>Italy</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE">
+    <value>Jersey</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM">
+    <value>Jamaica</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO">
+    <value>Jordan</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP">
+    <value>Japan</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE">
+    <value>Kenya</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG">
+    <value>Kyrgyzstan</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH">
+    <value>Cambodia</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI">
+    <value>Kiribati</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM">
+    <value>Comoros</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN">
+    <value>Saint Kitts and Nevis</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP">
+    <value>North Korea</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR">
+    <value>South Korea</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW">
+    <value>Kuwait</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY">
+    <value>Cayman Islands</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ">
+    <value>Kazakhstan</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA">
+    <value>Laos</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB">
+    <value>Lebanon</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC">
+    <value>Saint Lucia</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI">
+    <value>Liechtenstein</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK">
+    <value>Sri Lanka</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR">
+    <value>Liberia</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS">
+    <value>Lesotho</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT">
+    <value>Lithuania</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU">
+    <value>Luxembourg</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV">
+    <value>Latvia</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY">
+    <value>Libya</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA">
+    <value>Morocco</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC">
+    <value>Monaco</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD">
+    <value>Moldova</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME">
+    <value>Montenegro</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF">
+    <value>Saint Martin (French part)</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG">
+    <value>Madagascar</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH">
+    <value>Marshall Islands</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK">
+    <value>Macedonia</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML">
+    <value>Mali</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM">
+    <value>Myanmar</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN">
+    <value>Mongolia</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO">
+    <value>Macao</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP">
+    <value>Northern Mariana Islands</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ">
+    <value>Martinique</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR">
+    <value>Mauritania</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS">
+    <value>Montserrat</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT">
+    <value>Malta</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU">
+    <value>Mauritius</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV">
+    <value>Maldives</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW">
+    <value>Malawi</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX">
+    <value>Mexico</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY">
+    <value>Malaysia</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ">
+    <value>Mozambique</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA">
+    <value>Namibia</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC">
+    <value>New Caledonia</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE">
+    <value>Niger</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF">
+    <value>Norfolk Island</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG">
+    <value>Nigeria</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI">
+    <value>Nicaragua</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL">
+    <value>Netherlands</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO">
+    <value>Norway</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP">
+    <value>Nepal</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR">
+    <value>Nauru</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU">
+    <value>Niue</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ">
+    <value>New Zealand</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM">
+    <value>Oman</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA">
+    <value>Panama</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE">
+    <value>Peru</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF">
+    <value>French Polynesia</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG">
+    <value>Papua New Guinea</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH">
+    <value>Philippines</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK">
+    <value>Pakistan</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL">
+    <value>Poland</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM">
+    <value>Saint Pierre and Miquelon</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN">
+    <value>Pitcairn</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR">
+    <value>Puerto Rico</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS">
+    <value>Palestine</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT">
+    <value>Portugal</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW">
+    <value>Palau</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY">
+    <value>Paraguay</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA">
+    <value>Qatar</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE">
+    <value>Réunion</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO">
+    <value>Romania</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS">
+    <value>Serbia</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU">
+    <value>Russia</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW">
+    <value>Rwanda</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA">
+    <value>Saudi Arabia</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB">
+    <value>Solomon Islands</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC">
+    <value>Seychelles</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD">
+    <value>Sudan</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE">
+    <value>Sweden</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG">
+    <value>Singapore</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH">
+    <value>Saint Helena, Ascension and Tristan da Cunha</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI">
+    <value>Slovenia</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ">
+    <value>Svalbard and Jan Mayen</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK">
+    <value>Slovakia</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL">
+    <value>Sierra Leone</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM">
+    <value>San Marino</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN">
+    <value>Senegal</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO">
+    <value>Somalia</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR">
+    <value>Suriname</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS">
+    <value>South Sudan</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST">
+    <value>Sao Tome and Principe</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV">
+    <value>El Salvador</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX">
+    <value>Sint Maarten (Dutch part)</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY">
+    <value>Syrian Arab Republic</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ">
+    <value>Eswatini</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC">
+    <value>Turks and Caicos Islands</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD">
+    <value>Chad</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF">
+    <value>French Southern Territories</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG">
+    <value>Togo</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH">
+    <value>Thailand</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ">
+    <value>Tajikistan</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK">
+    <value>Tokelau</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL">
+    <value>Timor-Leste</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM">
+    <value>Turkmenistan</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN">
+    <value>Tunisia</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO">
+    <value>Tonga</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR">
+    <value>Türkiye</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT">
+    <value>Trinidad and Tobago</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV">
+    <value>Tuvalu</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW">
+    <value>Taiwan</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ">
+    <value>Tanzania</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA">
+    <value>Ukraine</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG">
+    <value>Uganda</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK">
+    <value>United Kingdom</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM">
+    <value>United States Minor Outlying Islands</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US">
+    <value>United States</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY">
+    <value>Uruguay</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ">
+    <value>Uzbekistan</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA">
+    <value>Vatican City</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC">
+    <value>Saint Vincent and the Grenadines</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE">
+    <value>Venezuela</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG">
+    <value>Virgin Islands, British</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI">
+    <value>Virgin Islands, USA</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN">
+    <value>Vietnam</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU">
+    <value>Vanuatu</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF">
+    <value>Wallis and Futuna</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS">
+    <value>Samoa</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_YE">
+    <value>Yemen</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT">
+    <value>Mayotte</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA">
+    <value>South Africa</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM">
+    <value>Zambia</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW">
+    <value>Zimbabwe</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ">
+    <value>Hindi alam</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Description">
+    <value>Naka-disable ang serbisyong Base Filtering Engine (BFE) sa iyong Windows device. Kailangang i-enable ang serbisyong ito upang gumana nang maayos ang Proton VPN.</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable">
+    <value>Paano i-enable ang Base Filtering Engine</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title">
+    <value>I-enable ang Base Filtering Engine upang magpatuloy</value>
+  </data>
+  <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
+    <value>Magkaroon ng unlimited na pagpapalit ng server gamit ang VPN Plus.</value>
+  </data>
+  <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
+    <value>Naabot mo na ang maximum na bilang ng libreng pagpapalit ng server sa ngayon</value>
+  </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>Magsimula</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>Nag-expire na ang subscription</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Mag-upgrade upang magkaroong muli ng access sa mga server at feature ng Plus.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description">
+    <value>Mukhang naka-disable ang Proton VPN Service. Kakailanganin mong i-enable muli ang serbisyo upang kumonekta.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title">
+    <value>I-enable ang Windows Service upang magpatuloy</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_One">
+    <value>Awtomatiko kang ikinokonekta ng Proton Free sa pinakamabilis na available na libreng server mula sa aming {0} libreng bansa. Karaniwang ito ang pinakamalapit na server sa lokasyon mo.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Other">
+    <value>Awtomatiko kang ikinokonekta ng Proton Free sa pinakamabilis na available na libreng server mula sa aming {0} libreng bansa. Karaniwang ito ang pinakamalapit na server sa lokasyon mo.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_One">
+    <value>Bansang may libreng server ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Other">
+    <value>Mga bansang may libreng server ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Title">
+    <value>Mga libreng koneksyon</value>
+  </data>
+  <data name="Dialogs_Latency_Description">
+    <value>Ipinapakita ng latency kung gaano katagal bago tumugon ang isang server sa mga request.
+
+Maaaring pabagalin ng mataas na latency ang koneksyon mo.</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Description">
+    <value>Maaaring tumakbo ang VPN nang mas mabagal kaysa normal</value>
+  </data>
+  <data name="Dialogs_Latency_HighRange_Title">
+    <value>Mataas (150ms+)</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Description">
+    <value>Napakabilis na speed</value>
+  </data>
+  <data name="Dialogs_Latency_LowRange_Title">
+    <value>Mababa (1ms - 50ms)</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Description">
+    <value>Malamang na hindi makaapekto sa bilis ng VPN</value>
+  </data>
+  <data name="Dialogs_Latency_MediumRange_Title">
+    <value>Katamtaman (50ms - 150ms)</value>
+  </data>
+  <data name="Dialogs_Latency_Title">
+    <value>Ano ang latency?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>Ipaalam sa amin kung bakit ibinigay mo ang rating na iyon</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>Hindi namin maipadala ang feedback mo. Pakisuri ang koneksyon mo at subukang muli.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>Nagkaroon ng problema</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>Ang 10 ay talagang malamang</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>Ang 0 ay talagang hindi malamang</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>Opsyonal</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>Ibahagi nang anonymous</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>Nakakatulong ang iyong feedback na mapabuti namin ang Proton VPN.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>Salamat sa iyong feedback</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>Gaano ka-malamang na irerekomenda mo ang Proton VPN sa isang kaibigan?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>Subukang muli</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description">
+    <value>Mag-upgrade upang ma-unlock ang mga P2P (peer-to-peer) server para sa mabilis na online gaming at torrenting, o tapusin ang iyong P2P activity upang maibalik ang iyong koneksyon.</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Title">
+    <value>Hindi pinapayagan ang P2P sa mga libreng VPN server</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>Tuklasin ang VPN Plus</value>
+  </data>
+  <data name="Dialogs_P2P_HowToTorrentLink">
+    <value>Paano mag-torrent gamit ang P2P</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_Title">
+    <value>P2P</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsP2PServer">
+    <value>Ano ang P2P server?</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsP2PServer_Description">
+    <value>Ina-unblock ng mga P2P (peer-to-peer) VPN server ang mga torrent site.</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsTorrenting">
+    <value>Ano ang torrenting?</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhatIsTorrenting_Description">
+    <value>Ang mabilis na pagbabahagi at pag-download ng malalaking file sa peer-to-peer (P2P) network</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhyUse">
+    <value>Bakit gagamit ng P2P server kapag nagto-torrent?</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_P2P_WhyUse_Description">
+    <value>• Mas mabilis na pag-upload at pag-download
+• Walang log ng aktibidad
+• Itago ang iyong IP address mula sa iyong service provider at mga peer</value>
+    <comment>obsolete</comment>
+  </data>
+  <data name="Dialogs_Protocol_Description">
+    <value>Ang protocol ay isang set ng mga tagubilin na sinusunod ng device mo upang kumonekta at makipag-ugnayan sa isang server.</value>
+  </data>
+  <data name="Dialogs_Protocol_SwitchHeader">
+    <value>Magpalit ng VPN Protocol</value>
+  </data>
+  <data name="Dialogs_Protocol_Title">
+    <value>Ano ang VPN protocol?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email">
+    <value>Email</value>
+    <comment>The label for user e-mail address in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
+    <value>example@domain.com</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
+    <value>Ipadala ang mga log ng error</value>
+    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
+    <value>Ipinapakita ng mga error log kung ano ang naging mali at kung aling mga aksyon ang nagdulot ng isyu mo. Gagamitin lang namin ang mga ito para tulungan ang aming mga engineer na ayusin ang mga bug.</value>
+    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Header">
+    <value>Ano ang isyu?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_NoLogsWarning">
+    <value>Nakakatulong ang mga log ng error upang malaman namin ang pinagmulan ng isyu mo. Kung hindi mo isasama ang mga ito, maaaring hindi kami lubos na makapag-imbestiga.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes">
+    <value>Mabibilis na solusyon</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Footer">
+    <value>Hindi gumana?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Header">
+    <value>Maaaring makatulong ang mga tip na ito upang mas mabilis na masolusyunan ang isyu mo.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_DoneAction">
+    <value>Tapos na</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail">
+    <value>Nagkaroon ng problema</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail_Description">
+    <value>Hindi namin maipadala ang ulat mo. Pakisuri ang koneksyon mo at subukang muli.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success">
+    <value>Ipinadala ang ulat</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success_Description">
+    <value>Salamat sa iyong feedback. Babalikan ka namin sa lalong madaling panahon.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_SendReport">
+    <value>Ipadala ang ulat</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Steps">
+    <value>Hakbang {0} ng {1}</value>
+    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Title">
+    <value>Mag-ulat ng isyu</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Description">
+    <value>Ipinapakita ng load ng server kung gaano kalapit ang isang server sa maximum na kapasidad nito.
+
+Maaaring pabagalin ng mataas na load ng server ang koneksyon mo.</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Description">
+    <value>Maaaring tumakbo ang VPN nang mas mabagal kaysa normal</value>
+  </data>
+  <data name="Dialogs_ServerLoad_HighRange_Title">
+    <value>Mataas (91-100%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Description">
+    <value>Napakabilis na speed</value>
+  </data>
+  <data name="Dialogs_ServerLoad_LowRange_Title">
+    <value>Mababa (1-75%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Description">
+    <value>Malamang na hindi makaapekto sa bilis ng VPN</value>
+  </data>
+  <data name="Dialogs_ServerLoad_MediumRange_Title">
+    <value>Katamtaman (76-90%)</value>
+  </data>
+  <data name="Dialogs_ServerLoad_Title">
+    <value>Ano ang load ng server?</value>
+  </data>
+  <data name="Dialogs_SmartRouting_Title">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>Tuklasin ang VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>Binibigyang-daan ng mga server ng VPN Plus na ma-enjoy mo ang mga paborito mong pelikula at palabas sa TV mula sa buong mundo.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>Mag-upgrade upang i-bypass ang mga pag-block sa VPN</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>Siguro sa ibang pagkakataon</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description">
+    <value>Mukhang gumagamit ng proxy server ang device mo. Maaaring makasagabal ito sa iyong proteksyon ng VPN.</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Disable">
+    <value>I-disable ang proxy</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Title">
+    <value>May na-detect na proxy server</value>
+  </data>
+  <data name="Dialogs_Tor_Description">
+    <value>Kumonekta sa isang Tor server upang ma-access ang mga nakatagong serbisyo at onion site gamit ang anumang browser.</value>
+  </data>
+  <data name="Dialogs_Tor_LearnMore">
+    <value>Paano i-access ang Tor network</value>
+  </data>
+  <data name="Dialogs_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>I-off ang antivirus o firewall software</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>Maaaring makasagabal ang mga programang ito sa mga koneksyon ng VPN.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>Suriin ang iyong koneksyon sa internet</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>Tiyaking online ka at na stable ang koneksyon mo.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>Maaaring makatulong ang mabibilis na solusyong ito upang makakonekta ka sa Proton.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>Gumamit ng ibang network</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>Subukang magpalit ng mga Wi-Fi network o gumamit na lang ng mobile data.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>Tingnan ang aming pahina ng status</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>Para lang matiyak na tumatakbo nang normal ang mga serbisyo ng Proton</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>Tulong sa koneksyon</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
+    <value>Idi-disconnect ka nito mula sa VPN. Ang anumang aktibong koneksyon sa internet ay pansamantalang mawawalan ng proteksyon.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
+    <value>Idi-disconnect ka nito mula sa VPN at pansamantalang idi-disable ang kill switch. Ang anumang aktibong koneksyon sa internet ay pansamantalang mawawalan ng proteksyon.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install">
+    <value>I-install ang update?</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart">
+    <value>I-restart ang Proton VPN upang kumpletuhin ang update</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Description">
+    <value>Mukhang hindi naka-sync ang system clock mo. Maaari itong magdulot ng mga isyu kapag kumokonekta sa VPN.</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_PrimaryButton">
+    <value>Paano i-update ang system clock</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Title">
+    <value>I-update ang system clock</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>Simple. Tuluy-tuloy. Ligtas. Protektahan ang sarili online at ligtas na i-access ang mga site, software at file ng iyong organisasyon.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Welcome sa Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>Mag-browse nang pribado, i-access ang naka-block na content at i-enjoy ang digital na kalayaan nang walang limitasyon sa data o bilis.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>Certified no-logs VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>Pinoprotektahan ng mga batas sa privacy ng Switzerland ang iyong aktibidad. Hinding-hindi ka namin ita-track online o ibabahagi ang iyong impormasyon sa mga third party.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>Mag-browse nang malaya mula kahit saan</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
+    <value>Itago ang iyong virtual na lokasyon at maranasan ang internet mula sa alinman sa aming {0} available na bansa.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>Itago ang iyong virtual na lokasyon at maranasan ang internet mula sa alinman sa aming {0} available na bansa.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>Protektahan ang 10 device nang sabay-sabay</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>Palawakin ang proteksyon ng VPN sa iyong desktop, mobile, browser, TV, at marami pa.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>Mag-stream sa high resolution</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>Manood ng mga pelikula at palabas sa TV mula sa buong mundo nang hindi nakokompromiso ang bilis o kalidad.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>Welcome sa VPN Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description1">
+    <value>Congratulations! Na-unlock mo ang mga premium na feature sa seguridad at performance sa lahat ng serbisyo ng Proton.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description2">
+    <value>I-enjoy ang pinakamahusay na privacy ng Proton.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>Welcome sa Proton Unlimited</value>
+  </data>
+  <data name="Dialogs_Welcome_Message">
+    <value>Inihahanda na namin ang iyong bagong karanasan sa VPN. Sandali lang ito.</value>
+  </data>
+  <data name="Dialogs_Welcome_Title">
+    <value>Welcome sa Proton VPN</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Description">
+    <value>Maaari mo na ngayong i-access ang mga dedicated server ng iyong organisasyon mula sa pangunahing sidebar.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Gateways_Title">
+    <value>Inilipat ang mga gateway</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>Maaari ka na ngayong kumonekta sa mga printer, speaker at iba pang device sa iyong local network (LAN) nang bina-bypass ang VPN tunnel.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>Mga koneksyon ng LAN</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Description">
+    <value>Ni-refresh namin ang aming mga disenyo at inilipat ang ilang bagay upang gawing mas madaling gamitin ang app.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_NewLook_Title">
+    <value>Bagong anyo, parehong proteksyon</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>Kapag naka-enable ang port forwarding, makikita mo na ang iyong active port number sa home screen.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>Active port number</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Description">
+    <value>Magdagdag ng mga advanced na setting ng profile tulad ng NetShield at port forwarding, o i-set up ang Connect and Go upang maglunsad ng website na gusto mo kapag kumonekta ka.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Profiles_Title">
+    <value>Mas makapangyarihang mga profile</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Description">
+    <value>Mas madali na ngayong kumonektang muli sa mga paborito mong server. Tingnan ang iyong mga pinaka-recent na koneksyon sa home screen o i-pin ang mga ito para sa mabilis na access.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Recents_Title">
+    <value>Ipinapakilala ang Mga Recent</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Tingnan</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>Ano ang bago</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>Maaari ka na ngayong kumonekta, mag-disconnect, at magpalit ng iyong default na koneksyon mula sa system tray.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>Bagong system tray app</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>Lumabas sa Proton VPN?</value>
+  </data>
+  <data name="Exit_Message">
+    <value>Dini-disconnect mula sa VPN...</value>
+  </data>
+  <data name="Exit_Title">
+    <value>Lumabas sa Proton VPN</value>
+  </data>
+  <data name="Flyouts_Country_Description1">
+    <value>Kapag nag-browse nang walang VPN, magiging vulnerable ka sa mga restriksyon sa internet na nakabatay sa lokasyon.</value>
+  </data>
+  <data name="Flyouts_Country_Description2">
+    <value>Maaaring gumamit ang mga website ng mga geoblock upang limitahan ang content sa ilang partikular na lokasyon. Maaari ding utusan ng mga gobyerno ang mga ISP (Internet Service Provider) na i-block ang ilang partikular na website sa kanilang bansa.</value>
+  </data>
+  <data name="Flyouts_Country_Description3">
+    <value>Ginagawa ng VPN na parang nagba-browse ka mula sa ibang lokasyon, na nagpoprotekta sa iyo mula sa surveillance at censorship.</value>
+  </data>
+  <data name="Flyouts_Country_Title">
+    <value>Bansa</value>
+  </data>
+  <data name="Flyouts_Country_Warning">
+    <value>Kumonekta sa VPN upang baguhin ang iyong virtual na lokasyon</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Connected">
+    <value>Itinatago ng VPN IP ang totoo mong IP address. Dahil dito, nagmumukhang nagba-browse ka mula sa lokasyon ng VPN, kaya hindi maiuugnay ang iyong online na aktibidad sa device mo.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected1">
+    <value>Maaaring gamitin ng mga website at ISP (Internet Service Provider) ang unique code na ito upang iugnay ang iyong lokasyon at history ng pag-browse sa iyong device.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2">
+    <value>Itinatago ng VPN ang totoo mong IP address, kaya mas mahirap na i-trace pabalik sa iyo ang iyong aktibidad.</value>
+  </data>
+  <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
+    <value>Ano ang IP address?</value>
+  </data>
+  <data name="Flyouts_IpAddress_Title">
+    <value>IP address</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIp">
+    <value>VPN IP</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv6</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIp">
+    <value>Iyong IP</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIpIsVisible">
+    <value>Nakikita ang iyong IP address</value>
+  </data>
+  <data name="Flyouts_Isp_Description1">
+    <value>Ang iyong ISP (Internet Service Provider) ay ang kumpanyang nagkokonekta sa iyo sa internet.</value>
+  </data>
+  <data name="Flyouts_Isp_Description2">
+    <value>Maaari nilang i-log ang iyong online na aktibidad. Sa ilang bansa, maaari nilang ibenta ang iyong data sa mga advertiser. Sa iba naman, maaari silang atasan na ibigay ito sa gobyerno.</value>
+  </data>
+  <data name="Flyouts_Isp_Description3">
+    <value>Itinatago ng VPN ang iyong IP address, na nagpoprotekta sa iyo mula sa pag-interfere ng ISP.</value>
+  </data>
+  <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
+    <value>Ano ang Internet Service Provider (ISP)?</value>
+  </data>
+  <data name="Flyouts_Isp_Title">
+    <value>Provider</value>
+  </data>
+  <data name="Flyouts_Isp_Warning">
+    <value>Nakikita ng iyong provider kung aling mga website ang binibisita mo</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success">
+    <value>Bina-block ang lahat ng access sa internet kapag hindi ka nakakonekta sa Proton VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info">
+    <value>Maaaring ma-expose ang iyong IP address kung maputol ang iyong koneksyon ng VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>Idi-disable ng advanced kill switch ang iyong internet upang protektahan ang iyong IP address habang hindi ka nakakonekta sa Proton VPN.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success">
+    <value>Kung maputol ang iyong koneksyon sa VPN, madi-disconnect ka mula sa internet hanggang sa maibalik ang VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected">
+    <value>Mag-a-apply ang advanced kill switch kahit sadyain mong mag-disconnect sa VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected">
+    <value>Upang makabalik online, kumonekta sa VPN o i-disable ang advanced kill switch</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
+    <value>Protektado ka mula sa mga ad, tracker at malware</value>
+  </data>
+  <data name="Flyouts_NetShield_Info">
+    <value>Protektahan ang sarili mula sa mga ad, tracker at malware sa mga website at app</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success">
+    <value>Protektado ka mula sa malware lamang</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description">
+    <value>I-block ang mga ad, tracker at malware gamit ang VPN Plus.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title">
+    <value>I-enjoy ang pag-browse nang walang ad</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort">
+    <value>Active port number</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Hindi makuha ang active port number. I-restart ang koneksyon mo at subukang muli.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info">
+    <value>Ilagay ang active port number sa iyong torrent client o P2P app para sa pinahusay na performance.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info">
+    <value>Pinapahusay ang bilis ng peer-to-peer na pag-download</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description">
+    <value>Palakasin ang performance ng peer-to-peer (P2P) na pagbabahagi ng file gamit ang VPN Plus.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title">
+    <value>Pahusayin ang bilis ng P2P</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning">
+    <value>Kumonekta sa isang P2P server upang mapahusay ang bilis ng torrenting</value>
+  </data>
+  <data name="Flyouts_Protocol_Description">
+    <value>Tinutukoy ng VPN protocol kung paano ine-encrypt at ipinapadala ang traffic sa VPN.</value>
+  </data>
+  <data name="Flyouts_Protocol_KnowledgeBaseLinkTitle">
+    <value>Aling VPN protocol ang pinakamahusay?</value>
+  </data>
+  <data name="Flyouts_Protocol_Title">
+    <value>Protocol</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Description">
+    <value>Ipinapakita ng load ng server kung gaano kalapit ang isang server sa maximum na kapasidad nito. Maaaring pabagalin ng mataas na load ng server ang koneksyon mo.</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High">
+    <value>Mataas (91-100%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High_Description">
+    <value>Maaaring tumakbo ang VPN nang mas mabagal kaysa normal</value>
+  </data>
+  <data name="Flyouts_ServerLoad_KnowledgeBaseLinkTitle">
+    <value>Ano ang load ng server?</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low">
+    <value>Mababa (1-75%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low_Description">
+    <value>Napakabilis na speed</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium">
+    <value>Katamtaman (76-90%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium_Description">
+    <value>Malamang na hindi makaapekto sa bilis ng koneksyon</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Title">
+    <value>Load ng server</value>
+  </data>
+  <data name="Flyouts_Speed_BoostedByVpnAccelerator">
+    <value>Pinalakas ng VPN Accelerator</value>
+  </data>
+  <data name="Flyouts_Speed_Description1">
+    <value>Ipinapakita kung gaano karaming data ang dumadaan sa VPN tunnel nang real time</value>
+  </data>
+  <data name="Flyouts_Speed_Description2">
+    <value>Nakabatay ito sa kasalukuyang aktibidad ng device mo. Sa karamihan ng mga kaso, hindi nito kinakatawan ang maximum na bilis ng VPN.</value>
+  </data>
+  <data name="Flyouts_Speed_Download">
+    <value>I-download</value>
+    <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
+  </data>
+  <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
+    <value>Ipinaliwanag ang bilis at traffic ng VPN</value>
+  </data>
+  <data name="Flyouts_Speed_Title">
+    <value>Kasalukuyang traffic</value>
+  </data>
+  <data name="Flyouts_Speed_Upload">
+    <value>I-upload</value>
+    <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
+    <value>Ibinukod na app ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
+    <value>Mga ibinukod na app ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
+    <value>Ibinukod na IP address ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
+    <value>Mga ibinukod na IP address ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Info">
+    <value>Pinapayagan ang mga pinagkakatiwalaang app at IP address na kumonekta nang walang proteksyon ng VPN</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info">
+    <value>Ang mga piniling app at IP address lang ang kumokonekta sa pamamagitan ng VPN. Ang lahat ng iba pang traffic ay hindi protektado.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_One">
+    <value>Protektadong app ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
+    <value>Mga protektadong app ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_One">
+    <value>Protektadong IP address ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
+    <value>Mga protektadong IP address ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info">
+    <value>Kumokonekta ang mga app at IP address na ito nang walang proteksyon ng VPN. Protektado ang lahat ng iba pang traffic.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description">
+    <value>Hatiin ang iyong traffic sa mga VPN at non-VPN tunnel gamit ang VPN Plus.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title">
+    <value>Kunin ang pinakamahusay mula sa dalawang mundo</value>
+  </data>
+  <data name="Flyouts_Volume_Description">
+    <value>Ipinapakita ang kabuuang dami ng data na dumaan sa VPN tunnel mula noong kumonekta ka</value>
+  </data>
+  <data name="Flyouts_Volume_Download">
+    <value>I-download</value>
+    <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
+  </data>
+  <data name="Flyouts_Volume_Title">
+    <value>Kabuuang traffic</value>
+  </data>
+  <data name="Flyouts_Volume_Upload">
+    <value>I-upload</value>
+    <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
+  </data>
+  <data name="Format_Milliseconds">
+    <value>{0}ms</value>
+    <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
+  </data>
+  <data name="Format_Size_Bytes">
+    <value>{0} B</value>
+    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
+  </data>
+  <data name="Format_Size_Exabytes">
+    <value>{0} EB</value>
+    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
+  </data>
+  <data name="Format_Size_Gigabytes">
+    <value>{0} GB</value>
+    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
+  </data>
+  <data name="Format_Size_Kilobytes">
+    <value>{0} KB</value>
+    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
+  </data>
+  <data name="Format_Size_Megabytes">
+    <value>{0} MB</value>
+    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
+  </data>
+  <data name="Format_Size_Petabytes">
+    <value>{0} PB</value>
+    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
+  </data>
+  <data name="Format_Size_Terabytes">
+    <value>{0} TB</value>
+    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_SpeedUnit">
+    <value>Kasalukuyang traffic ({0})</value>
+    <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
+  </data>
+  <data name="Format_Speed_BytesPerSecond">
+    <value>{0} B/s</value>
+    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
+  </data>
+  <data name="Format_Speed_ExabytesPerSecond">
+    <value>{0} EB/s</value>
+    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
+  </data>
+  <data name="Format_Speed_GigabytesPerSecond">
+    <value>{0} GB/s</value>
+    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
+  </data>
+  <data name="Format_Speed_KilobytesPerSecond">
+    <value>{0} KB/s</value>
+    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
+  </data>
+  <data name="Format_Speed_MegabytesPerSecond">
+    <value>{0} MB/s</value>
+    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
+  </data>
+  <data name="Format_Speed_PetabytesPerSecond">
+    <value>{0} PB/s</value>
+    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
+  </data>
+  <data name="Format_Speed_TerabytesPerSecond">
+    <value>{0} TB/s</value>
+    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
+  </data>
+  <data name="Format_Time_Day_One">
+    <value>{0} araw</value>
+  </data>
+  <data name="Format_Time_Day_Other">
+    <value>{0} araw</value>
+  </data>
+  <data name="Format_Time_DayHour_One">
+    <value>{0} araw {1} hr</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
+    <value>{0} araw {1} hr</value>
+  </data>
+  <data name="Format_Time_Hours">
+    <value>{0} hr</value>
+    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutes">
+    <value>{0} hr {1} min</value>
+    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutesSeconds_Short">
+    <value>hh\:mm\:ss</value>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
+  </data>
+  <data name="Format_Time_Hours_Ago_One">
+    <value>{0} oras ang nakalipas</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>{0} oras ang nakalipas</value>
+  </data>
+  <data name="Format_Time_Minutes">
+    <value>{0} min</value>
+    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds">
+    <value>{0} min {1} seg</value>
+    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds_Short">
+    <value>mm\:ss</value>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
+  </data>
+  <data name="Format_Time_Minutes_Ago_One">
+    <value>{0} minuto ang nakalipas</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>{0} minuto ang nakalipas</value>
+  </data>
+  <data name="Format_Time_Seconds">
+    <value>{0} seg</value>
+    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_One">
+    <value>{0} segundo ang nakalipas</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>{0} segundo ang nakalipas</value>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>Mag-download ng mga file sa pamamagitan ng BitTorrent at iba pang protocol sa pagbabahagi ng file</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>Magdagdag ng isa pang layer ng encryption sa iyong koneksyon ng VPN</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>Gamitin ang Tor network sa iyong koneksyon ng VPN para sa karagdagang privacy</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>Magkaroon ng pandaigdigang coverage gamit ang VPN Plus</value>
+  </data>
+  <data name="Gateway_Fastest">
+    <value>Pinakamabilis na gateway</value>
+  </data>
+  <data name="Gateway_Random">
+    <value>Random na gateway</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>Kumonekta sa isang gateway upang ma-access ang VPN ng iyong organisasyon.</value>
+  </data>
+  <data name="Gateways_Page_Title">
+    <value>Mga Gateway</value>
+  </data>
+  <data name="Gateways_Server">
+    <value>Dedicated server</value>
+  </data>
+  <data name="Home_Account_SignOut">
+    <value>Mag-sign out</value>
+  </data>
+  <data name="Home_Account_SignOut_Confirmation_Title">
+    <value>Mag-sign out mula sa {0}?</value>
+    <comment>{0} is a placeholder for the username</comment>
+  </data>
+  <data name="Home_Account_Title">
+    <value>Aking account</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Baguhin ang default na koneksyon</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeServer">
+    <value>Palitan ang server</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_BrowseSafely">
+    <value>Ligtas na nagba-browse mula sa</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_ConnectingTo">
+    <value>Kumokonekta sa...</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_DefaultConnection">
+    <value>Default na koneksyon</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_FreeConnection">
+    <value>Libreng koneksyon</value>
+  </data>
+  <data name="Home_ConnectionCard_Header_LastConnectedTo">
+    <value>Huling kumonekta sa</value>
+  </data>
+  <data name="Home_ConnectionCard_Landmark">
+    <value>Card ng koneksyon</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>Na-activate ang advanced kill switch</value>
+  </data>
+  <data name="Home_ConnectionDetails_City">
+    <value>Lungsod</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>Kumonekta sa VPN upang maibalik ang iyong koneksyon sa internet.</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectedFor">
+    <value>Nakakonekta nang</value>
+    <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
+  </data>
+  <data name="Home_ConnectionDetails_Connecting">
+    <value>Kumokonekta</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectingSubLabel">
+    <value>Pinoprotektahan ang iyong digital na pagkakakilanlan...</value>
+  </data>
+  <data name="Home_ConnectionDetails_Country">
+    <value>Bansa</value>
+  </data>
+  <data name="Home_ConnectionDetails_Gateway">
+    <value>Gateway</value>
+  </data>
+  <data name="Home_ConnectionDetails_Hide">
+    <value>Itago ang mga detalye ng koneksyon</value>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP">
+    <value>Itago</value>
+    <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_HideIP_Description">
+    <value>Itago ang IP address ng user</value>
+  </data>
+  <data name="Home_ConnectionDetails_Isp">
+    <value>Provider</value>
+  </data>
+  <data name="Home_ConnectionDetails_Landmark">
+    <value>Mga detalye ng koneksyon</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_ConnectionDetails_MyIp">
+    <value>Aking IP</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protected">
+    <value>Protektado</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protocol">
+    <value>Protocol</value>
+  </data>
+  <data name="Home_ConnectionDetails_Server">
+    <value>Server</value>
+  </data>
+  <data name="Home_ConnectionDetails_ServerLoad">
+    <value>Load ng server</value>
+  </data>
+  <data name="Home_ConnectionDetails_Show">
+    <value>Ipakita ang mga detalye ng koneksyon</value>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP">
+    <value>Ipakita</value>
+    <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
+  </data>
+  <data name="Home_ConnectionDetails_ShowIP_Description">
+    <value>Ipakita ang IP address ng user</value>
+  </data>
+  <data name="Home_ConnectionDetails_State">
+    <value>Estado</value>
+  </data>
+  <data name="Home_ConnectionDetails_Title">
+    <value>Mga detalye ng koneksyon</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Mag-authenticate muli sa 2FA portal ng iyong organisasyon upang magpatuloy.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>Nag-expire ang 2FA</value>
+  </data>
+  <data name="Home_ConnectionDetails_Unprotected">
+    <value>Hindi protektado</value>
+  </data>
+  <data name="Home_ConnectionDetails_UnprotectedSubLabel">
+    <value>I-encrypt ang iyong online na aktibidad sa pamamagitan ng pagkonekta sa VPN.</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume">
+    <value>Kabuuang traffic</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Download">
+    <value>Volume ng download</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Total">
+    <value>Kabuuang volume</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume_Upload">
+    <value>Volume ng upload</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnIp">
+    <value>VPN IP</value>
+  </data>
+  <data name="Home_ConnectionDetails_YourIpAddress">
+    <value>Iyong IP address</value>
+  </data>
+  <data name="Home_FreeConnections_About">
+    <value>Karagdagang impormasyon tungkol sa mga libreng koneksyon</value>
+  </data>
+  <data name="Home_Help_Title">
+    <value>Tulong</value>
+  </data>
+  <data name="Home_Map_Landmark">
+    <value>Mapa</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_One">
+    <value>Ad na na-block</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>Mga ad na na-block</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>Ang mga ad ay mga promosyonal na banner o pop-up na lumalabas sa mga website at app.</value>
+  </data>
+  <data name="Home_NetShield_DataSaved">
+    <value>Data na na-save</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>Tinatayang data na na-save sa pamamagitan ng pag-block ng mga hindi gustong ad, tracker, at malware</value>
+  </data>
+  <data name="Home_NetShield_Landmark">
+    <value>Statistics ng NetShield</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_NetShield_Title">
+    <value>Stats ng NetShield</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_One">
+    <value>Tracker na nahinto</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>Mga tracker na nahinto</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>Ang mga tracker ay mga cookie at third-party na website na nangongolekta, nag-iimbak at nagbebenta ng impormasyon tungkol sa iyong aktibidad sa web.</value>
+  </data>
+  <data name="Home_Page_Title">
+    <value>Home</value>
+  </data>
+  <data name="Home_Recents_Landmark">
+    <value>Mga kamakailang koneksyon</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_Recents_Pin">
+    <value>I-pin</value>
+  </data>
+  <data name="Home_Recents_Restricted">
+    <value>Available ang server gamit ang VPN Plus</value>
+  </data>
+  <data name="Home_Recents_SecondaryActions_ToolTip">
+    <value>Mga aksyon</value>
+  </data>
+  <data name="Home_Recents_ServerUnderMaintenance">
+    <value>Sumasailalim sa maintenance ang server</value>
+  </data>
+  <data name="Home_Recents_Title">
+    <value>Mga recent</value>
+  </data>
+  <data name="Home_Recents_Unpin">
+    <value>I-unpin</value>
+  </data>
+  <data name="Home_TitleBar_Menu_About">
+    <value>Tungkol dito</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Account">
+    <value>Account</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp">
+    <value>Lumabas sa app</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help">
+    <value>Tulong</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
+    <value>Ano ang isyu?</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings">
+    <value>Mga setting</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout">
+    <value>Mag-sign out</value>
+  </data>
+  <data name="Home_TitleBar_Menu_UpdateNow">
+    <value>I-update ngayon</value>
+  </data>
+  <data name="Home_Update_UpdateAvailable">
+    <value>May update na available</value>
+  </data>
+  <data name="Home_Update_UpdateReady">
+    <value>Handa na ang update</value>
+  </data>
+  <data name="Home_VpnStatus_Landmark">
+    <value>Status ng VPN</value>
+    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Connecting">
+    <value>Pinoprotektahan ang iyong digital na pagkakakilanlan...</value>
+  </data>
+  <data name="Home_VpnStatus_Subtitle_Disconnected">
+    <value>Hindi ka protektado</value>
+  </data>
+  <data name="Home_VpnStatus_Title_Connected">
+    <value>Protektado</value>
+  </data>
+  <data name="LoadingPage_Tip">
+    <value>Nagsisimula ang mas magandang mundo sa privacy at digital na kalayaan.</value>
+  </data>
+  <data name="Login_Error_GetSessionDetailsFailed">
+    <value>Nagkaroon ng error sa pagkuha ng mga detalye ng session. Pakisubukang muli.</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>Unable to sign in due to network settings on your device. This may be caused by a mobile hotspot, another VPN application, or virtual machine software. Please review your network configuration or contact support for assistance.</value>
+  </data>
+  <data name="Login_Error_IncorrectTwoFactorCode">
+    <value>Maling code. Pakisubukang muli.</value>
+  </data>
+  <data name="Login_Error_SessionExpired">
+    <value>Nag-expire na ang session mo. Mangyaring mag-sign in muli.</value>
+    <comment>The message displayed in Login window when expired session is detected</comment>
+  </data>
+  <data name="Login_Error_SsoAuthFailed">
+    <value>Nabigo ang pag-authenticate ng SSO. Pakisubukang muli.</value>
+  </data>
+  <data name="Login_Error_TwoFactorAuthFailed">
+    <value>Maling username o password. Pakisubukang muli.</value>
+  </data>
+  <data name="Login_Error_TwoFactorFailed">
+    <value>Nabigo ang two-factor authentication. Pakisubukang mag-sign in muli.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>Hindi available ang pag-authenticate ng security key para sa iyong device o remote desktop connection.</value>
+  </data>
+  <data name="Login_TwoFactorForm_Authenticate">
+    <value>Mag-authenticate</value>
+    <comment>Authenticate button inside two factor form during login</comment>
+  </data>
+  <data name="Login_TwoFactorForm_Subtitle">
+    <value>6-digit authentication code</value>
+  </data>
+  <data name="Login_TwoFactorForm_Title">
+    <value>Two-factor authentication</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>Authenticator app</value>
+  </data>
+  <data name="Login_TwoFactor_Digit1">
+    <value>Unang digit</value>
+  </data>
+  <data name="Login_TwoFactor_Digit2">
+    <value>Pangalawang digit</value>
+  </data>
+  <data name="Login_TwoFactor_Digit3">
+    <value>Pangatlong digit</value>
+  </data>
+  <data name="Login_TwoFactor_Digit4">
+    <value>Pang-apat na digit</value>
+  </data>
+  <data name="Login_TwoFactor_Digit5">
+    <value>Pang-limang digit</value>
+  </data>
+  <data name="Login_TwoFactor_Digit6">
+    <value>Pang-anim na digit</value>
+  </data>
+  <data name="Login_TwoFactor_EnterCode">
+    <value>Ilagay ang iyong code</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>Walang nakitang kilalang paraan ng two-factor authentication</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>Security key</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>Ilagay ang U2F o FIDO key na naka-link sa Proton Account mo.</value>
+  </data>
+  <data name="Main_Loading">
+    <value>Naglo-load. Mangyaring maghintay...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
+  <data name="Main_Loading_SigningIn">
+    <value>Nagsa-sign in. Mangyaring maghintay...</value>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>Mas matagal ito kaysa karaniwan, ngunit inaasikaso na namin ito.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
+  </data>
+  <data name="Main_Loading_SigningOut">
+    <value>Nagsa-sign out. Mangyaring maghintay...</value>
+    <comment>Message in the loading screen when signing out</comment>
+  </data>
+  <data name="Map_ConnectTo">
+    <value>Kumonekta - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>Makipag-ugnayan sa amin</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>Hindi namin ma-load ang listahan ng mga server.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Kailangan ng tulong?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Mag-sign out</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Hilingin sa iyong administrator na i-enable ang access sa VPN para sa account mo.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>Walang available na koneksyon ng VPN</value>
+  </data>
+  <data name="Notifications_KillSwitch_Description">
+    <value>Upang protektahan ang iyong IP address, bina-block ng kill switch ang iyong koneksyon sa internet.</value>
+  </data>
+  <data name="Notifications_PortForwarding_CopyPortNumber">
+    <value>Kopyahin ang port number</value>
+  </data>
+  <data name="Notifications_PortForwarding_Description">
+    <value>Pumunta sa iyong torrent client o P2P app at ilagay ang numerong ito.</value>
+  </data>
+  <data name="Notifications_SessionLimit_Description">
+    <value>Naabot mo na ang maximum na limitasyon ng device mo. Upang kumonektang muli sa VPN, mangyaring mag-disconnect mula sa ibang device.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>Na-downgrade ang plan mo sa Proton Free, at muli ka naming ikinokonekta sa pinakamabilis na libreng server.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Description">
+    <value>Mas vulnerable sa mga banta sa seguridad ang mga pampublikong Wi-Fi network. Kumonekta sa VPN upang ligtas na makapag-browse.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Title">
+    <value>May na-detect na hindi ligtas na koneksyon sa Wi-Fi</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Proton VPN - Survey</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>Upang isama ang address na ito, kailangan mong payagan ang mga koneksyon ng IPv6 sa pamamagitan ng VPN tunnel.</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>I-enable ang IPv6</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>Huwag muna</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>Naka-disable ang IPv6</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Action">
+    <value>I-update ngayon</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Message">
+    <value>Luma na ang bersyon ng app na ito. Dapat mong i-update ang app upang patuloy na magamit ang Proton VPN.</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Title">
+    <value>I-update ang Proton VPN upang magpatuloy</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Description">
+    <value>Binibigyang-daan ng aming mga P2P (peer-to-peer) server na ma-access mo ang mga P2P network habang pinoprotektahan pa rin ang iyong IP address at online na aktibidad.</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Header">
+    <value>Ano ang P2P VPN?</value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Description">
+    <value>Pinapayagan ng mga P2P network ang dalawang device na kumonekta at maglipat ng data nang hindi dumadaan sa isang sentral na server. </value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Header">
+    <value>Ano ang P2P network?</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Description">
+    <value>  •  Pag-download ng mga torrent file
+  •  Pagpapahusay ng performance sa online gaming at video call
+  •  Pagkonekta sa mga local area network (LAN) device</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Header">
+    <value>Para saan ginagamit ang mga P2P network?</value>
+  </data>
+  <data name="Overlay_P2P_LearnMore">
+    <value>Ano ang P2P?</value>
+  </data>
+  <data name="Overlay_P2P_Title">
+    <value>P2P</value>
+  </data>
+  <data name="Overlay_Profile_Description1">
+    <value>Ang mga profile ay mga custom na koneksyon ng VPN na maaari mong iakma sa iyong mga pangangailangan at i-save para sa mabilis na access.</value>
+  </data>
+  <data name="Overlay_Profile_Description2">
+    <value>Itakda ang gusto mong lokasyon at i-optimize ang iyong mga setting para sa seguridad, performance, gaming o anumang iba pang sitwasyon.</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore">
+    <value>Ano ang VPN profile?</value>
+  </data>
+  <data name="Overlay_Profile_Title">
+    <value>Mga profile</value>
+  </data>
+  <data name="Overlay_SecureCore_Description1">
+    <value>Ikinokonekta ka ng Secure Core sa iyong destinasyong server sa pamamagitan ng pangalawang server ng VPN na may maximum na seguridad.</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2">
+    <value>Maaaring magdulot ng mas mataas na latency at mas mabagal na speed ang mas mataas na antas ng proteksyon na ito.</value>
+  </data>
+  <data name="Overlay_SecureCore_LearnMore">
+    <value>Ano ang Secure Core?</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection">
+    <value>Secure Core na
+koneksyon ng VPN</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
+    <value>Mas mataas na latency</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Privacy">
+    <value>Advanced na privacy</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection">
+    <value>Standard na
+koneksyon ng VPN</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Latency">
+    <value>Mas mababang latency</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Privacy">
+    <value>Mataas na privacy</value>
+  </data>
+  <data name="Overlay_SecureCore_Title">
+    <value>Secure Core</value>
+  </data>
+  <data name="Overlay_ServerLoad_Description">
+    <value>Ipinapakita ng load ng server kung gaano kalapit ang isang server sa maximum na kapasidad nito.
+
+Maaaring pabagalin ng mataas na load ng server ang koneksyon mo.</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Description">
+    <value>Maaaring tumakbo ang VPN nang mas mabagal kaysa normal</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Title">
+    <value>Mataas (91-100%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_LearnMore">
+    <value>Ano ang server load?</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Description">
+    <value>Napakabilis na speed</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Title">
+    <value>Mababa (1-75%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Description">
+    <value>Malamang na hindi makaaapekto sa bilis ng VPN</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Title">
+    <value>Katamtaman (76-90%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_Title">
+    <value>Load ng Server</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description1">
+    <value>Smart Routing allows us to provide VPN coverage in hard-to-reach countries.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2">
+    <value>Kapag kumonekta ka sa isang Smart Routing server, lalabas na nagba-browse ka sa iyong destinasyong bansa, kahit na ang pisikal na server ay matatagpuan sa ibang lugar.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3">
+    <value>Karaniwang ginagamit ang Smart Routing upang malampasan ang mga batas sa anti-privacy at iba pang anyo ng censorship.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Header">
+    <value>Pisikal na matatagpuan ang mga server sa {0}, ngunit lalabas na nagba-browse ka mula sa {1}</value>
+    <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
+    Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
+    Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
+  </data>
+  <data name="Overlay_SmartRouting_LearnMore">
+    <value>Ano ang Smart Routing?</value>
+  </data>
+  <data name="Overlay_SmartRouting_Title">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Overlay_Tor_Description">
+    <value>Kumonekta sa isang Tor server upang ma-access ang mga nakatagong serbisyo at onion site gamit ang anumang browser.</value>
+  </data>
+  <data name="Overlay_Tor_LearnMore">
+    <value>Paano i-access ang Tor network</value>
+  </data>
+  <data name="Overlay_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Profile_CustomSettings_Description">
+    <value>Mao-override ng mga setting ng profile ang iyong mga setting ng VPN kapag nakakonekta.</value>
+  </data>
+  <data name="Profile_CustomSettings_Header">
+    <value>Magdagdag ng mga custom na setting</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide">
+    <value>Itago ang mga setting</value>
+  </data>
+  <data name="Profile_CustomSettings_Show">
+    <value>Ipakita ang mga setting</value>
+  </data>
+  <data name="Profile_NatType_Conflict_Description">
+    <value>Idi-disable nito ang port forwarding para sa profile na ito.</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description">
+    <value>Idi-disable nito ang custom DNS para sa profile na ito.</value>
+  </data>
+  <data name="Profile_Options_Application">
+    <value>App</value>
+  </data>
+  <data name="Profile_Options_Application_Select">
+    <value>Pumili ng app</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Application">
+    <value>Magbukas ng app</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
+    <value>Default na browser</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
+    <value>Gumamit ng mode na pribadong pag-browse</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Website">
+    <value>Magbukas ng website</value>
+  </data>
+  <data name="Profile_Options_Description">
+    <value>Awtomatikong buksan ang napili mong website o app kapag kumonekta ka sa profile na ito.</value>
+  </data>
+  <data name="Profile_Options_Header">
+    <value>Connect and Go</value>
+  </data>
+  <data name="Profile_Options_Url">
+    <value>URL ng website</value>
+  </data>
+  <data name="Profile_Options_Url_Error">
+    <value>Maglagay ng valid na URL</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description">
+    <value>Babaguhin nito ang uri ng NAT para sa profile na ito sa Strict (uri 3).</value>
+  </data>
+  <data name="Profiles_Default_Gaming">
+    <value>Gaming</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity">
+    <value>Max na seguridad</value>
+  </data>
+  <data name="Profiles_Default_Office">
+    <value>Office</value>
+  </data>
+  <data name="Profiles_Default_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection">
+    <value>Random na koneksyon</value>
+  </data>
+  <data name="Profiles_Default_Streaming">
+    <value>Streaming US</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool">
+    <value>Trabaho/Paaralan</value>
+  </data>
+  <data name="Profiles_Page_Description">
+    <value>I-configure ang sarili mong mga setting ng VPN at kumonekta sa isang click</value>
+  </data>
+  <data name="Profiles_Page_Title">
+    <value>Mga profile</value>
+  </data>
+  <data name="Search_InputBox_Placeholder">
+    <value>Mag-browse mula sa...</value>
+  </data>
+  <data name="Search_NoInput_CityOrState">
+    <value>Lungsod o estado ng US</value>
+    <comment>The word used for one single city and one single United States state</comment>
+  </data>
+  <data name="Search_NoInput_Country">
+    <value>Bansa</value>
+    <comment>The word used for one single country</comment>
+  </data>
+  <data name="Search_NoInput_Server">
+    <value>Server</value>
+    <comment>The word used for one single server</comment>
+  </data>
+  <data name="Search_NoInput_TrySearchingFor">
+    <value>Subukang maghanap ng...</value>
+  </data>
+  <data name="Search_NoResults_Description">
+    <value>Subukan ang ibang keyword.</value>
+  </data>
+  <data name="Search_NoResults_Title">
+    <value>Walang nakitang resulta</value>
+  </data>
+  <data name="Server">
+    <value>Server</value>
+  </data>
+  <data name="Server_Fastest">
+    <value>Pinakamabilis na server</value>
+  </data>
+  <data name="Server_Fastest_Free">
+    <value>Pinakamabilis na libreng server</value>
+  </data>
+  <data name="Server_Feature_B2B">
+    <value>Gateway</value>
+  </data>
+  <data name="Server_Feature_B2B_Description">
+    <value>I-access ang mga server ng iyong organisasyon</value>
+  </data>
+  <data name="Server_Feature_None">
+    <value>Standard</value>
+  </data>
+  <data name="Server_Feature_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Server_Feature_P2P_Description">
+    <value>Na-optimize para sa Torrent</value>
+  </data>
+  <data name="Server_Feature_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description">
+    <value>Dobleng proteksyon</value>
+  </data>
+  <data name="Server_Feature_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Server_Free">
+    <value>Libreng server</value>
+  </data>
+  <data name="Server_Random">
+    <value>Random na server</value>
+  </data>
+  <data name="Servers">
+    <value>Mga server</value>
+  </data>
+  <data name="Settings_About">
+    <value>Tungkol dito</value>
+  </data>
+  <data name="Settings_About_Changelog">
+    <value>Changelog</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Kasalukuyang bersyon</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>Nabigong i-load ang impormasyon ng changelog.</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>Matuto pa</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Paglilisensya</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Naglo-load</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>Tungkol dito</value>
+  </data>
+  <data name="Settings_Account_Account">
+    <value>Account</value>
+  </data>
+  <data name="Settings_Account_Exit">
+    <value>Lumabas sa app</value>
+  </data>
+  <data name="Settings_Account_SignOut">
+    <value>Mag-sign out</value>
+  </data>
+  <data name="Settings_AppVersion">
+    <value>Bersyon ng app</value>
+  </data>
+  <data name="Settings_Censorship_Footer">
+    <value>Hindi naglalaman ang statistics na ito ng iyong IP address, at hindi magagamit ang mga ito upang matukoy ka. Hinding-hindi namin isi-share ang mga ito sa mga third party.</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports">
+    <value>I-share ang mga anonymous na ulat ng pag-crash</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports_Description">
+    <value>Nakakatulong ang mga ulat ng pag-crash upang maayos namin ang mga bug, ma-detect ang mga firewall at maiwasan ang mga block sa VPN.</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics">
+    <value>I-share ang anonymous na statistics ng paggamit</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics_Description">
+    <value>Nakakatulong ang data ng paggamit upang malampasan namin ang mga block sa VPN at mapahusay ang performance ng app.</value>
+  </data>
+  <data name="Settings_Common_Apply">
+    <value>I-apply</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>Naidagdag na ang address</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>Maglagay ng valid na IPv4 o IPv6 address</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Common_Ipv6WarningButton">
+    <value>Babala - matuto pa</value>
+  </data>
+  <data name="Settings_Connection">
+    <value>Koneksyon</value>
+  </data>
+  <data name="Settings_Connection_AdvancedSettings">
+    <value>Mga advanced na setting</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting">
+    <value>Alternatibong pag-route</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
+    <value>Kung naka-block ang mga serbisyo ng Proton dahil sa mga paghihigpit sa network, susubukan naming gumamit ng alternatibong pag-route ng network upang ikonekta ka sa aming mga site.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers">
+    <value>Mga custom na DNS server</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>Magdagdag ng bagong DNS server</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
+    <value>Hindi mo magagamit ang NetShield kapag nakakonekta sa isang custom na DNS server.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
+    <value>I-enable ang mga custom na DNS server?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
+    <value>Kumonekta sa Proton VPN gamit ang sarili mong Domain Name System (DNS). Gumamit lang ng mga DNS server na pinagkakatiwalaan mo.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>Susubukan naming kumonekta sa mga server na ito nang sunud-sunod. Kung walang gumana sa mga ito, gagamitin ang default na Proton VPN DNS.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+    <value>Mga DNS server ({0})</value>
+    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
+    <value>Ilagay ang IPv4 o IPv6 address ng server</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>Suporta sa IPv6</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
+    <value>Proteksyon sa IPv6 leak</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
+    <value>Pinipigilan ang pag-leak ng data sa pamamagitan ng pag-block sa IPv6 traffic na hindi dumadaan sa VPN tunnel</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>Pinapayagan ang IPv6 traffic na dumaan sa VPN tunnel. Pinapahusay nito ang compatibility sa mga website at serbisyo ng IPv6.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections">
+    <value>Payagan ang mga koneksyon ng LAN</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_Description">
+    <value>Pinapayagan ang mga koneksyon sa mga printer, speaker at iba pang device sa iyong lokal na network</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
+    <value>Gumagamit ng mDNS upang kumonekta sa mga device gamit ang mga pangalan tulad ng 'My-Printer' o 'router.local' sa halip na mga IP address. Patuloy na ira-route ang standard DNS sa pamamagitan ng VPN tunnel. Naka-disable bilang default para sa mas mabibilis na speed ng VPN.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
+    <value>I-access ang mga device ayon sa pangalan</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType">
+    <value>Uri ng NAT</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
+    <value>Hindi mo magagamit ang port forwarding gamit ang Moderate NAT.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
+    <value>I-enable ang Moderate NAT?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Description">
+    <value>Pumili ng uri ng network address translation para sa iyong koneksyon.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate">
+    <value>Moderate (uri 2)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
+    <value>May ilang limitasyon sa data na pumapasok sa iyong network. Ang opsyong ito ay pinakamahusay para sa online video gaming.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict">
+    <value>Strict (uri 3)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict_Description">
+    <value>Nililimitahan ang data na pumapasok sa iyong network. Mas ligtas ang opsyong ito ngunit maaaring magpahirap sa mga koneksyon sa peer-to-peer gaming.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
+    <value>Nagra-route ng traffic sa pagitan ng magkakaibang network</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
+    <value>Gumagamit ng bridging upang magkonekta ng mga network. Nagbibigay ang TUN ng mas matataas na bilis kaysa sa TAP, ngunit maaaring hindi gaanong stable.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
+    <value>Hindi ma-on ang custom DNS dahil nakakonekta ka sa isang profile na naka-enable ang NetShield.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
+    <value>Naka-disable ang custom DNS dahil kasalukuyan kang nakakonekta sa isang profile na naka-enable ang NetShield.</value>
+  </data>
+  <data name="Settings_Connection_Default">
+    <value>Default na koneksyon</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>Pinakamabilis na bansa</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>Ang pinakamahusay na server batay sa lokasyon mo</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>Huling koneksyon</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>Ang pinakahuli mong ginamit na koneksyon</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Random na bansa</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Ibang server sa tuwing kumokonekta ka</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Mga recent</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch">
+    <value>Kill switch</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced">
+    <value>Advanced</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced_Description">
+    <value>Payagan lamang ang internet access kapag nakakonekta sa Proton VPN. Mananatiling aktibo ang advanced kill switch kahit na i-restart mo ang device mo.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Description">
+    <value>Pinoprotektahan ang iyong IP address sa pamamagitan ng pag-disconnect mula sa internet kung mawala ang iyong koneksyon ng VPN.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Footer">
+    <value>Kapag naka-on ang kill switch, hindi ka makakakonekta sa mga website at app na ibinukod sa iyong koneksyon ng VPN sa pamamagitan ng split tunneling.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard">
+    <value>Standard</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard_Description">
+    <value>Awtomatikong mag-disconnect mula sa internet kung mawala ang koneksyon sa VPN.</value>
+  </data>
+  <data name="Settings_Connection_NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
+    <value>I-block ang mga ad, malware at tracker</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockMalwareOnly">
+    <value>I-block ang malware lang</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Description">
+    <value>Hindi ka makakakonekta gamit ang custom DNS server kapag naka-enable ang NetShield.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information">
+    <value>Hindi tugma ang NetShield sa Custom DNS.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Title">
+    <value>I-enable ang NetShield?</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Description">
+    <value>Protektahan ang sarili mula sa mga ad, malware at tracker sa mga website at app.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Footer">
+    <value>Maaaring hindi mag-load nang maayos ang ilang website kapag naka-block ang mga ad at tracker.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_PrivacyPanel">
+    <value>NetShield Privacy Panel</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding">
+    <value>Port forwarding</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort">
+    <value>Active port number:</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
+    <value>Kopyahin ang port number</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Description">
+    <value>Hindi mo magagamit ang Moderate NAT kapag naka-enable ang port forwarding.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Title">
+    <value>I-enable ang port forwarding?</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Description">
+    <value>Pinapahusay ang bilis ng torrenting at gaming sa pamamagitan ng pagpayag sa mga direktang P2P na koneksyon sa pamamagitan ng isang itinalagang port</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Footer">
+    <value>Upang magamit ang port forwarding, mangyaring kumonekta sa isang server na sumusuporta sa P2P.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>Huling binago: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Loading">
+    <value>Naglo-load...</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications">
+    <value>Mga abiso</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications_Description">
+    <value>Maabisuhan kapag nagbago ang iyong active port number</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Hindi available</value>
+  </data>
+  <data name="Settings_Connection_Protocol">
+    <value>Protocol</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Action">
+    <value>Pumunta sa mga profile</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Message">
+    <value>Kasalukuyan kang nakakonekta sa isang VPN profile.
+
+• Upang baguhin ang protocol para sa koneksyong ito, mag-disconnect at i-edit ang iyong profile.
+
+• Upang baguhin ang protocol para sa iba pang koneksyon ng VPN, kailangan mo munang mag-disconnect mula sa iyong profile.</value>
+  </data>
+  <data name="Settings_Connection_Protocol_NavigationFailed_Title">
+    <value>Baguhin ang protocol sa mga profile</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling">
+    <value>Split tunneling</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
+    <value>Mga app file</value>
+    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Header">
+    <value>Mga napiling app ({0})</value>
+    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
+    <value>Hindi nahanap ang application</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Remove">
+    <value>Alisin ang app</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Description">
+    <value>I-customize ang iyong koneksyon sa pamamagitan ng pagpapasya kung aling mga app at IP address ang protektado ng VPN.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse">
+    <value>Include mode</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Description">
+    <value>Ang mga piniling app at IP address lang ang kumokonekta sa pamamagitan ng VPN. Ang lahat ng iba pang traffic ay hindi protektado.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>Isama</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>Magdagdag ng bagong IPv4 o IPv6 address</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
+    <value>Mga napiling IP address ({0})</value>
+    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
+    <value>Alisin ang IP</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard">
+    <value>Exclude mode</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Description">
+    <value>Ang mga piniling app at IP address ay ibinukod sa iyong koneksyon ng VPN.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>Ibukod</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
+  </data>
+  <data name="Settings_Connection_VpnAccelerator">
+    <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>I-discard ang mga pagbabago</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Ipagpatuloy ang pag-edit</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>I-discard ang mga pagbabagong hindi na-save?</value>
+  </data>
+  <data name="Settings_Features">
+    <value>Mga feature ng VPN</value>
+  </data>
+  <data name="Settings_General">
+    <value>Pangkalahatan</value>
+  </data>
+  <data name="Settings_General_AutoStartup">
+    <value>Auto startup</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect">
+    <value>Auto-connect</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Description">
+    <value>Awtomatikong kumokonekta sa iyong default na koneksyon kapag nagbukas ang Proton VPN</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
+    <value>Pinakamabilis na koneksyon</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Latest">
+    <value>Huling kumonekta</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch">
+    <value>Auto-launch</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Description">
+    <value>Awtomatikong magbubukas ang Proton VPN kapag nag-sign in ka sa device mo</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
+    <value>Buksan sa desktop</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
+    <value>I-minimize sa System Tray</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
+    <value>I-minimize sa Taskbar</value>
+  </data>
+  <data name="Settings_General_AutoStartup_Description">
+    <value>Itakda ang app na awtomatikong mag-launch o kumonekta.</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates">
+    <value>Mga awtomatikong pag-update</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates_Description">
+    <value>Awtomatikong suriin at i-install ang mga update ng Proton VPN.</value>
+  </data>
+  <data name="Settings_General_BetaAccess">
+    <value>Beta access</value>
+  </data>
+  <data name="Settings_General_BetaAccess_Description">
+    <value>Magkaroon ng maagang pag-access at tulungan kaming subukan ang mga bagong bersyon ng Proton VPN.</value>
+  </data>
+  <data name="Settings_General_Language">
+    <value>Wika</value>
+  </data>
+  <data name="Settings_General_Notifications">
+    <value>Mga abiso</value>
+  </data>
+  <data name="Settings_General_Notifications_Description">
+    <value>Maabisuhan tungkol sa mga pagbabago sa iyong status ng koneksyon</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver">
+    <value>OpenVPN network driver</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver_Description">
+    <value>Maaaring makaapekto ang mga network driver sa bilis ng iyong koneksyon. Nagbibigay ang bagong TUN adapter ng mas mataas na bilis at bumabalik sa TAP adapter kung makaranas ito ng anumang problema sa koneksyon.</value>
+  </data>
+  <data name="Settings_General_Theme">
+    <value>Tema</value>
+  </data>
+  <data name="Settings_General_Theme_Dark">
+    <value>Dark</value>
+  </data>
+  <data name="Settings_General_Theme_Default">
+    <value>Default</value>
+  </data>
+  <data name="Settings_General_Theme_Light">
+    <value>Light</value>
+  </data>
+  <data name="Settings_Improve">
+    <value>Pahusayin ang Proton</value>
+  </data>
+  <data name="Settings_Improve_Censorship">
+    <value>Tulungan kaming labanan ang censorship</value>
+  </data>
+  <data name="Settings_OperatingSystemVersion">
+    <value>Bersyon ng Operating System</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description1">
+    <value>Konektado ang setting na ito sa iyong aktibong profile.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2">
+    <value>I-edit ang iyong profile upang gumawa ng mga pagbabago, o mag-disconnect upang i-edit ang iyong mga pangkalahatang setting ng VPN.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline">
+    <value>Konektado ang mga setting na ito sa profile na '{0}' at mapapamahalaan mo lang sa Mga Profile.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Title">
+    <value>Pamahalaan ang {0} sa Mga Profile</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
+  <data name="Settings_Page_Title">
+    <value>Mga setting</value>
+  </data>
+  <data name="Settings_Protocols_Explanation">
+    <value>Tinutukoy ng VPN protocol kung paano gumagalaw ang data sa pagitan ng isang server ng VPN at ng iyong device.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Description">
+    <value>Matatag, subok na, at ligtas. Maaasahan ang OpenVPN sa mahihinang kondisyon ng network, ngunit maaaring hindi kasingbilis ng ibang mga protocol.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Description">
+    <value>Matatag, subok na, at ligtas. Hindi gaanong matipid sa baterya ang OpenVPN kaysa sa ilang ibang protocol.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Description">
+    <value>Awtomatikong pinipili ang pinakamahusay na protocol para sa iyong koneksyon</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Title">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_Protocols_TcpCategory">
+    <value>Reliability (TCP)</value>
+  </data>
+  <data name="Settings_Protocols_UdpCategory">
+    <value>Bilis (UDP)</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>State-of-the-art na protocol para sa seguridad at performance</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>Nilalampasan ang mga pag-block sa VPN sa pamamagitan ng pagtatago ng iyong koneksyon ng VPN mula sa mga censor. Ang Stealth ay DPI (deep packet inspection) resistant, ngunit maaaring hindi kasing bilis ng ibang mga protocol.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Description">
+    <value>State-of-the-art na protocol para sa seguridad at performance</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Reconnection_Title">
+    <value>Kumonektang muli upang i-apply ang mga pagbabago</value>
+  </data>
+  <data name="Settings_RestoreDefault">
+    <value>Ibalik ang mga default na setting</value>
+  </data>
+  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
+    <value>Ibalik at kumonektang muli</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Action">
+    <value>Ibalik ang mga default na setting</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Message">
+    <value>Ire-reset nito ang iyong mga setting ng Proton VPN sa orihinal na estado.</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Title">
+    <value>Ibalik ang mga default na setting?</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnTcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnUdp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardUdp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="Settings_Support">
+    <value>Suporta</value>
+  </data>
+  <data name="Settings_Support_DebugLogs">
+    <value>Mga log ng debug</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Application">
+    <value>Mga log ng application</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_ErrorMessage">
+    <value>Hindi mahanap ang folder ng mga log.</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Service">
+    <value>Mga log ng serbisyo</value>
+  </data>
+  <data name="Settings_Support_ReportIssue">
+    <value>Mag-ulat ng isyu</value>
+  </data>
+  <data name="Settings_Support_SupportCenter">
+    <value>Support center</value>
+  </data>
+  <data name="Settings_Theme_Dark">
+    <value>Dark</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Default</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Light</value>
+  </data>
+  <data name="Settings_VpnAccelerator_Description">
+    <value>Pataasin ang bilis ng iyong koneksyon nang hanggang 400% gamit ang mga teknolohiyang nagpapahusay ng performance.</value>
+  </data>
+  <data name="SignIn_Form">
+    <value>Form ng pag-sign in</value>
+  </data>
+  <data name="SignIn_Form_AdvancedKillSwitchDescription">
+    <value>Bina-block ng advanced kill switch ang iyong koneksyon sa internet.</value>
+  </data>
+  <data name="SignIn_Form_BestSecureVpnForSpeed">
+    <value>Ang pinakamahusay na ligtas na VPN para sa bilis</value>
+  </data>
+  <data name="SignIn_Form_CreateAccount">
+    <value>Gumawa ng account</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_Description">
+    <value>Ilagay ang mga detalye ng Proton Account mo.</value>
+  </data>
+  <data name="SignIn_Form_DisableKillSwitch">
+    <value>I-disable ang kill switch</value>
+  </data>
+  <data name="SignIn_Form_Email">
+    <value>Email</value>
+  </data>
+  <data name="SignIn_Form_ForgotUsername">
+    <value>Nakalimutan ang username</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_Help">
+    <value>Tulong</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_NoLogsPolicy">
+    <value>Patakaran ng walang pagtatala</value>
+  </data>
+  <data name="SignIn_Form_OpenSource">
+    <value>Open-source</value>
+  </data>
+  <data name="SignIn_Form_Password">
+    <value>Password</value>
+  </data>
+  <data name="SignIn_Form_PasswordError">
+    <value>Ilagay ang password mo</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a password</comment>
+  </data>
+  <data name="SignIn_Form_ReportAnIssue">
+    <value>Mag-ulat ng isyu</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_ResetPassword">
+    <value>Nakalimutan ang password</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_SignIn">
+    <value>Mag-sign in</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_SignInWithSso">
+    <value>Mag-sign in gamit ang SSO</value>
+  </data>
+  <data name="SignIn_Form_SwissBased">
+    <value>Swiss-based</value>
+  </data>
+  <data name="SignIn_Form_Title">
+    <value>Mag-sign in</value>
+  </data>
+  <data name="SignIn_Form_TroubleSigningIn">
+    <value>Support Center</value>
+    <comment>A button at the bottom of the login window inside Get help popup</comment>
+  </data>
+  <data name="SignIn_Form_Username">
+    <value>Email o username</value>
+  </data>
+  <data name="SignIn_Form_UsernameError">
+    <value>Ilagay ang email o username mo</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
+  </data>
+  <data name="SignIn_KillSwitch_Disabled">
+    <value>Naka-disable ang kill switch</value>
+  </data>
+  <data name="State_Fastest">
+    <value>Pinakamabilis na estado</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>Random na estado</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="SystemNotification_Connected">
+    <value>Protektado ka na ngayon</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>Konektado sa {0}.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>Na-disconnect</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>I-unlock ang torrenting at online gaming sa pamamagitan ng mga P2P (peer-to-peer) protocol gamit ang mga bayad na VPN server.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>Hindi available ang P2P sa VPN Free</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Bina-block ng ilang website at streaming service ang mga user ng libreng VPN. Mag-upgrade sa Proton VPN Plus upang i-bypass ang mga pag-block na ito.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Naka-block na website?</value>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
+    <value>Lumabas</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication">
+    <value>Buksan ang {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>Buksan ang app upang mag-sign in</value>
+  </data>
+  <data name="Unit_BytesPerSecond">
+    <value>B/s</value>
+    <comment>Unit for Bytes per second</comment>
+  </data>
+  <data name="Unit_ExabytesPerSecond">
+    <value>EB/s</value>
+    <comment>Unit for Exabytes per second</comment>
+  </data>
+  <data name="Unit_GigabytesPerSecond">
+    <value>GB/s</value>
+    <comment>Unit for Gigabytes per second</comment>
+  </data>
+  <data name="Unit_KilobytesPerSecond">
+    <value>KB/s</value>
+    <comment>Unit for Kilobytes per second</comment>
+  </data>
+  <data name="Unit_MegabytesPerSecond">
+    <value>MB/s</value>
+    <comment>Unit for Megabytes per second</comment>
+  </data>
+  <data name="Unit_PetabytesPerSecond">
+    <value>PB/s</value>
+    <comment>Unit for Petabytes per second</comment>
+  </data>
+  <data name="Unit_TerabytesPerSecond">
+    <value>TB/s</value>
+    <comment>Unit for Terabytes per second</comment>
+  </data>
+  <data name="UpsellBanner_NetShield_Description">
+    <value>I-block ang mga ad, tracker at malware sa mga website at app</value>
+  </data>
+  <data name="UpsellBanner_NetShield_Title">
+    <value>NetShield</value>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>Mag-download ng mga file sa pamamagitan ng BitTorrent at iba pang protocol sa pagbabahagi ng file.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>Suporta sa P2P</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>Mag-upgrade upang pumili ng anumang server.</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>Hindi ang bansang gusto mo?</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>I-unlock ang advanced na customization ng VPN</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>Kumonekta sa VPN gamit ang iyong custom na Domain Name System (DNS)</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>I-access ang mga device sa iyong local area network (LAN) habang nakakonekta</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>I-level up ang iyong gaming experience sa pamamagitan ng paglipat sa NAT na uri 2 (moderate)</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>Kumonekta ng hanggang 10 device nang sabay-sabay</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>Gamitin ang Proton VPN sa magkakaibang platform</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>Android at Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>Browser</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>Seguridad at privacy sa lahat ng device mo</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>I-enjoy ang pag-browse nang walang ad</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>I-block ang mga ad at tracker gamit ang NetShield</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>Protektahan ang iyong device mula sa malware</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>I-unlock ang mga peer-to-peer download at pagbabahagi ng file (P2P)</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>Itago ang iyong IP address mula sa iyong service provider at mga peer</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>Palakasin ang mga bilis ng P2P gamit ang port forwarding</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>Mas mabilis na pag-upload at pag-download</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ marami pa</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_Profiles">
+    <value>Magkaroon ng mabilis na access sa mga madalas na koneksyon</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience">
+    <value>Magtakda ng profile bilang iyong default na koneksyon at kumonekta sa isang click</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Creation">
+    <value>Gumawa at i-save ang sarili mong mga configuration ng VPN gamit ang Mga Profile</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization">
+    <value>I-customize ang iyong lokasyon, protocol, at mga setting</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>Magdagdag ng isa pang layer ng proteksyon sa iyong koneksyon</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>Doblehin ang iyong encryption gamit ang Secure Core</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>Protektahan ang sarili mula sa mga atake sa network</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>Mag-route sa mga sobrang ligtas na server sa Switzerland, Sweden at Iceland</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>Mag-browse sa mas matataas na speed</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>Mag-browse nang hanggang 400% mas mabilis gamit ang VPN Accelerator</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>I-access ang mas mabilis, hindi siksikang mga server</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>Magkaroon ng bilis ng koneksyon na hanggang 10 Gbps</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>Kunin ang pinakamahusay mula sa dalawang mundo</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>Mag-browse mula sa dalawang lokasyon nang sabay gamit ang split tunneling</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>Payagan ang mga pinagkakatiwalaang app at IP address na kumonekta nang direkta sa internet, habang pinoprotektahan ang lahat ng iba pa gamit ang VPN</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>I-stream ang mga paborito mong pelikula at palabas sa TV</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>I-access ang mga naka-geoblock na TV at pelikula mula saanman sa mundo</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Hulu">
+    <value>Hulu</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>Manood sa 4K nang walang buffering, mga pagbabagal, o throttling</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>Tuklasin ang VPN Plus</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>I-access ang Tor network para sa karagdagang privacy</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>I-access ang mga nakatagong site at onion site</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>Mag-browse sa Tor network gamit ang iyong regular na browser</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>Protektahan ang iyong personal na data habang nagba-browse</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>I-access ang mahigit {0} sa {1}</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>I-bypass ang censorship gamit ang mga advanced na feature sa seguridad</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
+    <value>{0} bansa</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>{0} bansa</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>Ligtas na streaming, torrenting, at marami pa</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>Pumili ng anumang bansa mula sa aming pandaigdigang network</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
+    <value>{0} ligtas na server</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>{0} ligtas na server</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp_Description">
+    <value>Matatag, subok na, at ligtas</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp_Description">
+    <value>Matatag, subok na, at ligtas</value>
+  </data>
+  <data name="VpnProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp_Description">
+    <value>State-of-the-art na protocol para sa seguridad at performance</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls_Description">
+    <value>Nilalampasan ang mga pag-block sa VPN sa pamamagitan ng pagtatago ng iyong koneksyon mula sa mga censor</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp_Description">
+    <value>State-of-the-art na protocol para sa seguridad at performance</value>
+  </data>
+</root>
