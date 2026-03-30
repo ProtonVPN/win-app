@@ -89,6 +89,7 @@ public class SettingRobot
 
     public SettingRobot OpenSettings()
     {
+        Thread.Sleep(TestConstants.NavigationDelay);
         SettingsButton.Click();
         Thread.Sleep(TestConstants.NavigationDelay);
         return this;

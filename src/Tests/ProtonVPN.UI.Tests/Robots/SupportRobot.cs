@@ -35,6 +35,7 @@ public class SupportRobot
     protected Element NoLogsAttachedWarning => Element.ByAutomationId("Message");
     protected Element IncludeLogsCheckbox => Element.ByAutomationId("IncludeLogsCheckbox");
     protected Element EmailInputField => Element.ByAutomationId("EmailInputField");
+    protected Element DoneBtn => Element.ByName("Done");
 
     public SupportRobot(Func<Window?> windowFunc)
     {
@@ -96,6 +97,8 @@ public class SupportRobot
         public Verifications IsSendingSuccessful()
         {
             ReportSentLabel.WaitUntilExists(TestConstants.ThirtySecondsTimeout);
+            DoneBtn.Click();
+            Thread.Sleep(TestConstants.NavigationDelay);
             return this;
         }
 
