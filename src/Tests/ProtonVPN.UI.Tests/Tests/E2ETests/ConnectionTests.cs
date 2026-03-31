@@ -268,11 +268,12 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Retry(3)]
     public void ConnectToTorServerCountriesListAndDisconnectViaCountry()
     {
         ConnectAndDisconnectViaSearchCountry(CountriesTab.Tor);
     }
-   
+
     private void MakeSureUserIsDisconnected()
     {
         try

@@ -54,7 +54,7 @@ public class ConnectionSLIs : SliSetUp
 
         SidebarRobot
             .SearchFor(serverName)
-            .ConnectToFirstSpecificServer();
+            .ConnectToServer();
 
         HomeRobot.Verify.IsConnected();
         HomeRobot.Disconnect();
@@ -64,7 +64,7 @@ public class ConnectionSLIs : SliSetUp
 
         SidebarRobot
             .SearchFor(serverName)
-            .ConnectToFirstSpecificServer();
+            .ConnectToServer();
 
         SliHelper.MeasureTime(() =>
         {

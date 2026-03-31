@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,17 +18,17 @@
  */
 
 using System;
-using System.Linq;
-using System.Threading;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using System.Runtime.InteropServices;
-using FlaUI.Core;
+using System.Threading;
+using FlaUI.Core.Definitions;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Conditions;
 using FlaUI.Core.Input;
 using FlaUI.Core.Patterns;
 using FlaUI.Core.Tools;
-using FlaUI.Core.Definitions;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -219,6 +219,19 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static T ClearSearch<T>(this T desiredElement) where T : Element
+    {
+        AutomationElement? element = WaitUntilExists(desiredElement);
+
+        Rectangle rect = element!.Parent.BoundingRectangle;
+        int x = rect.Right - (rect.Height / 2);
+        int y = rect.Top + rect.Height / 2;
+
+        Mouse.Click(new Point(x, y));
+
+        return desiredElement;
+    }
+
     public static AutomationElement[] FindAllElements<T>(this T desiredElement) where T : Element
     {
         WaitUntilExists(desiredElement);
@@ -290,6 +303,13 @@ public static class UiActions
     {
         AutomationElement? element = FindFirstDescendantUsingChildren(desiredElement.Condition);
         Assert.That(element, Is.Null, $"Element {desiredElement.SelectorName} was found. But it should not exist.");
+    }
+
+    public static void AssertIsFocused<T>(this T desiredElement) where T : Element
+    {
+        AutomationElement? element = WaitUntilExists(desiredElement);
+
+        Assert.That(element?.Properties.HasKeyboardFocus.Value, Is.True);
     }
 
     public static void AssertIsToggled<T>(this T desiredElement, bool checkParent = false) where T : Element

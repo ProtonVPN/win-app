@@ -219,6 +219,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                  Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
 
                             <custom:GhostButton Margin="6,0,0,0"
+                                                AutomationProperties.AutomationId="SearchBackButton"
                                                 Command="{TemplateBinding BackCommand}"
                                                 Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}">
                                 <custom:GhostButton.LeftIcon>

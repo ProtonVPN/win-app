@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,10 +18,12 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using FlaUI.Core.Input;
 using FlaUI.Core.Tools;
 using FlaUI.Core.WindowsAPI;
+using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -58,9 +60,9 @@ public class SidebarRobot
     protected Element CreateProfileButton = Element.ByAutomationId("CreateProfileButton");
 
     protected Element SearchTextBox = Element.ByAutomationId("SearchTextBox");
+    protected Element SearchBackButton = Element.ByAutomationId("SearchBackButton");
     protected Element CountryExpanderButton = Element.ByAutomationId("ExpanderButton");
     protected Element SecondaryButton = Element.ByAutomationId("SecondaryButton");
-    protected Element SpecificServerConnectionButton = Element.ByAutomationId("ConnectionRowHeader");
 
     protected Element NetshieldButton = Element.ByName("NetShield");
     protected Element PortForwardingButton = Element.ByName("Port forwarding");
@@ -78,6 +80,9 @@ public class SidebarRobot
     protected Element PinLabel = Element.ByName("Pin").FindChild(Element.ByAutomationId("TextBlock"));
     protected Element DuplicateProfileLabel = Element.ByName("Duplicate").FindChild(Element.ByAutomationId("TextBlock"));
     protected Element DeleteMenuItem = Element.ByAutomationId("DeleteMenuItem");
+    
+    protected Element ConnectToSpecificServer = Element.ByAutomationId("Connect_to_Specific_Server");
+    protected Element DisconnectFromSpecificServer = Element.ByAutomationId("Disconnect_from_Specific_Server");
 
     public SidebarRobot NavigateToCountries()
     {
@@ -140,7 +145,7 @@ public class SidebarRobot
         ProfilesListItem.Click();
         return this;
     }
-   
+
     public SidebarRobot ConnectViaServerList(string connectionValue)
     {
         Element countryButton = Element.ByAutomationId($"Connect_to_{connectionValue}");
@@ -172,7 +177,14 @@ public class SidebarRobot
         ConnectViaServerList(FASTEST_PROFILE);
         return this;
     }
-    public SidebarRobot ConnectToFirstSpecificServer()
+
+    public SidebarRobot ConnectToServer(string server)
+    {
+        ConnectToSpecificServer.And(Element.ByName(server)).Click();
+        return this;
+    }
+
+    public SidebarRobot ConnectToServer()
     {
         ConnectViaServerList("Specific_Server");
         return this;
@@ -196,7 +208,13 @@ public class SidebarRobot
         return this;
     }
 
-    public SidebarRobot DisconnectViaSpecificServer()
+    public SidebarRobot DisconnectViaServer(string server)
+    {
+        DisconnectFromSpecificServer.And(Element.ByName(server)).Click();
+        return this;
+    }
+
+    public SidebarRobot DisconnectViaServer()
     {
         DisconnectViaSidebarButton("Specific_Server");
         return this;
@@ -208,9 +226,27 @@ public class SidebarRobot
         return this;
     }
 
-    public SidebarRobot SearchFor(string query)
+    public SidebarRobot ClickSearchBox()
     {
         SearchTextBox.Click();
+        return this;
+    }
+
+    public SidebarRobot ClickXBtnInSearchBox()
+    {
+        SearchTextBox.ClearSearch();
+        return this;
+    }
+
+    public SidebarRobot ClickBackBtnInSearchBox()
+    {
+        SearchTextBox.FindChild(SearchBackButton).Click();
+        return this;
+    }
+
+    public SidebarRobot SearchFor(string query)
+    {
+        ClickSearchBox();
         SearchTextBox.SetText(query);
         return this;
     }
@@ -367,6 +403,25 @@ public class SidebarRobot
 
     public class Verifications : SidebarRobot
     {
+        public SidebarRobot IsBackBtnInSearchBoxDisplayed()
+        {
+            SearchTextBox.FindChild(SearchBackButton).WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsSearchBoxFocused()
+        {
+            SearchTextBox.AssertIsFocused();
+            return this;
+        }
+
+        public Verifications AssertSidebarSearchResults(string textToLookFor)
+        {
+            List<string> allChildren = SearchResultsPage.GetAllChildrenNames();
+            Assert.That(allChildren, Does.Contain(textToLookFor));
+            return this;
+        }
+
         public Verifications IsNoRecentsLabelDisplayed()
         {
             NoRecentsLabel.WaitUntilDisplayed();
@@ -444,13 +499,13 @@ public class SidebarRobot
             return this;
         }
 
-        public Verifications IsSidebarConnectionsDisplayed() 
+        public Verifications IsSidebarConnectionsDisplayed()
         {
             ConnectionsPage.WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications IsSidebarProfilesDisplayed() 
+        public Verifications IsSidebarProfilesDisplayed()
         {
             ProfilesPage.WaitUntilDisplayed();
             return this;

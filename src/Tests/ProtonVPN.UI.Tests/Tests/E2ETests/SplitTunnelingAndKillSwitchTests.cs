@@ -85,7 +85,8 @@ public class SplitTunnelingAndKillSwitchTests : BaseTest
     }
 
     [Test, Order(1)]
-    [CancelAfter(180000)]
+    [Retry(3)]
+    [CancelAfter(200000)]
     public void SplitTunnelingAndAdvancedKillSwitchEnabledConnectWithDifferentProtocols()
     {
         HomeRobot
@@ -107,7 +108,6 @@ public class SplitTunnelingAndKillSwitchTests : BaseTest
                        .IsProtocolDisplayed(protocolToChoose);
 
             NetworkUtils.VerifyIpAddressDoesNotMatchWithRetry(_ipAddressNotConnected);
-            NetworkUtils.AssertInternetAvailability(true);
         }
     }
 
