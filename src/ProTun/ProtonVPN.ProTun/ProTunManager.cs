@@ -160,7 +160,7 @@ public class ProTunManager : IProTunManager
     {
         try
         {
-            _connection?.DisconnectAndWait();
+            _connection?.Disconnect(); // Can't use DisconnectAndWait as a deadlock occurs on wake from sleep due to the state changes
         }
         catch (Exception ex)
         {
