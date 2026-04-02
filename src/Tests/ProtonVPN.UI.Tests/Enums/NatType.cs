@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,10 +18,9 @@
  */
 
 namespace ProtonVPN.UI.Tests.Enums;
-public enum CountriesTab
+
+public enum NatType
 {
-    All,
-    SecureCore,
-    P2P,
-    Tor
+    Strict,
+    Moderate,
 }

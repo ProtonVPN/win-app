@@ -85,7 +85,7 @@ public class CustomDnsTests : BaseTest
         SettingRobot
             .ApplySettings()
             .CloseSettings();
-        
+
         HomeRobot
             .ConnectViaConnectionCard()
             .Verify.IsConnected();
@@ -164,8 +164,8 @@ public class CustomDnsTests : BaseTest
                    .IsCustomDnsAddressNotSet(SECONDARY_CUSTOM_DNS_SERVER);
     }
 
-    [OneTimeTearDown] 
-    public void OneTimeTearDown() 
+    [OneTimeTearDown]
+    public void OneTimeTearDown()
     {
         Cleanup();
     }

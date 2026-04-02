@@ -278,7 +278,7 @@ public static class UiActions
                 if (textBlock != null)
                 {
                     string? displayText = textBlock.Name;
-                    Assert.That(displayText?.Equals(expectedValue), Is.True, 
+                    Assert.That(displayText?.Equals(expectedValue), Is.True,
                         $"Expected ComboBox selected value: '{expectedValue}' But was: '{displayText}'");
                     return desiredElement;
                 }

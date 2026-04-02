@@ -258,20 +258,20 @@ public class ConnectionTests : FreshSessionSetUp
     [Test]
     public void ConnectToSecureCoreServerCountriesListAndDisconnectViaCountry()
     {
-        ConnectAndDisconnectViaSearchCountry(CountriesTab.SecureCore);
+        ConnectAndDisconnectViaSearchCountry(CountryTab.SecureCore);
     }
 
     [Test]
     public void ConnectToP2PServerCountriesListAndDisconnectViaCountry()
     {
-        ConnectAndDisconnectViaSearchCountry(CountriesTab.P2P);
+        ConnectAndDisconnectViaSearchCountry(CountryTab.P2P);
     }
 
     [Test]
     [Retry(3)]
     public void ConnectToTorServerCountriesListAndDisconnectViaCountry()
     {
-        ConnectAndDisconnectViaSearchCountry(CountriesTab.Tor);
+        ConnectAndDisconnectViaSearchCountry(CountryTab.Tor);
     }
 
     private void MakeSureUserIsDisconnected()
@@ -289,7 +289,7 @@ public class ConnectionTests : FreshSessionSetUp
         }
     }
 
-    private void ConnectAndDisconnectViaSearchCountry(CountriesTab tab)
+    private void ConnectAndDisconnectViaSearchCountry(CountryTab tab)
     {
         string ipBeforeConnection = NetworkUtils.GetIpAddressWithRetry();
 
@@ -318,7 +318,7 @@ public class ConnectionTests : FreshSessionSetUp
         NetworkUtils.VerifyIpAddressMatchesWithRetry(ipBeforeConnection);
     }
 
-    private void SearchAndConnectToCountry(CountriesTab tab, out string countryCode)
+    private void SearchAndConnectToCountry(CountryTab tab, out string countryCode)
     {
         countryCode = string.Empty;
         string failureMessages = string.Empty;

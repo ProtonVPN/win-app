@@ -80,7 +80,7 @@ public class SidebarRobot
     protected Element PinLabel = Element.ByName("Pin").FindChild(Element.ByAutomationId("TextBlock"));
     protected Element DuplicateProfileLabel = Element.ByName("Duplicate").FindChild(Element.ByAutomationId("TextBlock"));
     protected Element DeleteMenuItem = Element.ByAutomationId("DeleteMenuItem");
-    
+
     protected Element ConnectToSpecificServer = Element.ByAutomationId("Connect_to_Specific_Server");
     protected Element DisconnectFromSpecificServer = Element.ByAutomationId("Disconnect_from_Specific_Server");
 
@@ -395,7 +395,7 @@ public class SidebarRobot
         return this;
     }
 
-    public SidebarRobot NavigateToCountriesTabAfterSearch(CountriesTab tab)
+    public SidebarRobot NavigateToCountriesTabAfterSearch(CountryTab tab)
     {
         SearchResultsPage.ClickTabByName(tab.ToString());
         return this;

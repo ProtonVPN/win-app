@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.IO;
+using System.Linq;
 using System.Diagnostics;
 using NUnit.Framework;
 
@@ -24,6 +26,29 @@ namespace ProtonVPN.UI.Tests.TestsHelper;
 
 public class WindowsUtils
 {
+    public static void AssertLogFile(string filePath, string lineToLookFor, string? wordToLookFor = null)
+    {
+        if (!File.Exists(filePath))
+        {
+            throw new FileNotFoundException($"File not found at path: {filePath}");
+        }
+
+        string tempFile = Path.GetTempFileName();
+        File.Copy(filePath, tempFile, true);
+
+        try
+        {
+            string[] allLines = File.ReadAllLines(tempFile);
+            string? lastLine = allLines.Reverse().FirstOrDefault(l => l.Contains(lineToLookFor));
+            Assert.That(lastLine, Is.Not.Null, $"No line containing '{lineToLookFor}' found in {filePath}");
+            Assert.That(lastLine, Does.Contain(wordToLookFor ?? lineToLookFor));
+        }
+        finally
+        {
+            File.Delete(tempFile);
+        }
+    }
+
     public static void RunPowerShellScript(string psScript, bool enableLogging = false, string? stringToAssert = null)
     {
         ProcessStartInfo psi = new ProcessStartInfo()

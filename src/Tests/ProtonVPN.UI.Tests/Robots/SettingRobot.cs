@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -75,6 +75,9 @@ public class SettingRobot
     protected Element KillSwitchToggle = Element.ByAutomationId("KillSwitchToggle");
     protected Element KillSiwtchStandardRadioButton = Element.ByAutomationId("StandardKillSwitchRadioButton");
     protected Element KillSwitchAdvancedRadioButton = Element.ByAutomationId("AdvancedKillSwitchRadioButton");
+
+    protected Element NatTypeStrictRadioButton = Element.ByAutomationId("StrictNatTypeRadioButton");
+    protected Element NatTypeModerateRadioButton = Element.ByAutomationId("ModerateNatTypeRadioButton");
 
     protected Element AutoLaunchToggle = Element.ByAutomationId("AutoLaunchToggle");
     protected Element AutoConnectToggle = Element.ByAutomationId("AutoConnectToggle");
@@ -315,6 +318,20 @@ public class SettingRobot
     public SettingRobot ClickCopyPortNumber()
     {
         CopyPortNumberButton.Invoke();
+        return this;
+    }
+
+    public SettingRobot SelectNatType(NatType natType)
+    {
+        if (natType == NatType.Strict)
+        {
+            NatTypeStrictRadioButton.Click();
+        }
+        else if (natType == NatType.Moderate)
+        {
+            NatTypeModerateRadioButton.Click();
+        }
+
         return this;
     }
 
