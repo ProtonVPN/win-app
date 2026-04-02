@@ -164,6 +164,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 </toolkit:UniformGrid>
 
+                <toolkit:SettingsCard AutomationProperties.AutomationId="ConnectionPreferencesSettingsCard"
+                                      Command="{x:Bind ViewModel.NavigateToConnectionPreferencesSettingsPageCommand, Mode=OneTime}"
+                                      Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_ConnectionPreferences')}"
+                                      Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_ConnectionPreferences_Description')}"
+                                      IsClickEnabled="True"
+                                      Style="{StaticResource DefaultSettingsCardStyle}">
+                    <toolkit:SettingsCard.HeaderIcon>
+                        <pathicons:Bookmark />
+                    </toolkit:SettingsCard.HeaderIcon>
+                    <toolkit:SettingsCard.ActionIcon>
+                        <pathicons:ChevronRight />
+                    </toolkit:SettingsCard.ActionIcon>
+                </toolkit:SettingsCard>
+
                 <toolkit:SettingsCard AutomationProperties.AutomationId="AdvancedSettingsCard"
                                       Command="{x:Bind ViewModel.NavigateToAdvancedSettingsPageCommand, Mode=OneTime}"
                                       Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_AdvancedSettings')}"

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -32,6 +32,11 @@ public class SearchTests : FreshSessionSetUp
     private const string STATE = "Arizona";
     private const string COUNTRY_CODE = "US";
 
+    private const string CITY = "Berlin";
+    private const string SERVER = "FR#223";
+
+    private const string TRY_SEARCHING_TEXT = "Try searching for...";
+
     [SetUp]
     public void SetUp()
     {
@@ -45,11 +50,14 @@ public class SearchTests : FreshSessionSetUp
             .SearchFor(COUNTRY_TO_SEARCH)
             .ConnectToCountry(COUNTRY_CODE);
 
-        HomeRobot.Verify.IsConnected();
+        HomeRobot
+            .Verify.IsConnected();
 
-        SidebarRobot.DisconnectViaCountry(COUNTRY_CODE);
+        SidebarRobot
+            .DisconnectViaCountry(COUNTRY_CODE);
 
-        HomeRobot.Verify.IsDisconnected();
+        HomeRobot
+            .Verify.IsDisconnected();
     }
 
     [Test]
@@ -60,11 +68,14 @@ public class SearchTests : FreshSessionSetUp
             .ExpandCities()
             .ConnectToCity(STATE);
 
-        HomeRobot.Verify.IsConnected();
+        HomeRobot
+            .Verify.IsConnected();
 
-        SidebarRobot.DisconnectViaCity(STATE);
+        SidebarRobot
+            .DisconnectViaCity(STATE);
 
-        HomeRobot.Verify.IsDisconnected();
+        HomeRobot
+            .Verify.IsDisconnected();
     }
 
     [Test]
@@ -74,14 +85,87 @@ public class SearchTests : FreshSessionSetUp
             .SearchFor(COUNTRY_TO_SEARCH)
             .ExpandCities()
             .ExpandSpecificServerList()
-            .ConnectToFirstSpecificServer();
+            .ConnectToServer();
 
-        HomeRobot.Verify.IsConnected();
+        HomeRobot
+            .Verify.IsConnected();
 
         SidebarRobot
             .ExpandSpecificServerList()
-            .DisconnectViaSpecificServer();
+            .DisconnectViaServer();
 
-        HomeRobot.Verify.IsDisconnected();
+        HomeRobot
+            .Verify.IsDisconnected();
+    }
+
+    [Test]
+    public void SearchForCityAndConnectDisconnect()
+    {
+        SidebarRobot
+            .SearchFor(CITY)
+            .ConnectToCity(CITY);
+
+        HomeRobot
+            .Verify.IsConnected();
+
+        SidebarRobot
+            .DisconnectViaCity(CITY);
+
+        HomeRobot
+            .Verify.IsDisconnected();
+    }
+
+    [Test]
+    public void SearchForServerAndConnectDisconnect()
+    {
+        SidebarRobot
+            .SearchFor(SERVER)
+            .ConnectToServer(SERVER);
+
+        HomeRobot
+            .Verify.IsConnected();
+
+        SidebarRobot
+            .DisconnectViaServer(SERVER);
+
+        HomeRobot
+            .Verify.IsDisconnected();
+    }
+
+    [Test]
+    public void SearchBehaviorAfterRemovingFocus()
+    {
+        SidebarRobot
+            .ClickSearchBox()
+            .Verify.IsSearchBoxFocused()
+                   .AssertSidebarSearchResults(TRY_SEARCHING_TEXT);
+
+        HomeRobot
+            .ClickOnConnectionCardTitle();
+
+        SidebarRobot
+            .Verify.IsSidebarConnectionsDisplayed()
+            .SearchFor(COUNTRY_TO_SEARCH)
+            .Verify.AssertSidebarSearchResults(COUNTRY_TO_SEARCH);
+
+        HomeRobot
+            .ClickOnConnectionCardTitle();
+
+        SidebarRobot
+            .Verify.AssertSidebarSearchResults(COUNTRY_TO_SEARCH);
+    }
+
+    [Test]
+    public void SearchBehaviorAfterRemovingText()
+    {
+        SidebarRobot
+            .SearchFor(COUNTRY_TO_SEARCH)
+            .Verify.IsBackBtnInSearchBoxDisplayed()
+            .ClickXBtnInSearchBox()
+            .Verify.AssertSidebarSearchResults(TRY_SEARCHING_TEXT)
+            .SearchFor(CITY)
+            .Verify.IsBackBtnInSearchBoxDisplayed()
+            .ClickBackBtnInSearchBox()
+            .Verify.IsSidebarConnectionsDisplayed();
     }
 }

@@ -72,7 +72,7 @@ public class DefaultConnectionTests : BaseTest
 
         SettingRobot
             .OpenSettings()
-            .OpenDefaultConnectionSettingsCard()
+            .OpenConnectionPreferencesSettingsCard()
             .SelectLastConnectionOption()
             .ApplySettings()
             .CloseSettings();
@@ -89,11 +89,11 @@ public class DefaultConnectionTests : BaseTest
     public void DefaultConnection()
     {
         HomeRobot
-            .Verify.IsDisconnected()
-            .SelectVpnConnectionOption(VpnConnectionOptions.Customized)
-            .Verify.DoesCustomizedCardTitleEqual(DEFAULT_CONNECTION);
+            .Verify.IsDisconnected();
 
         SettingRobot
+            .OpenSettings()
+            .OpenConnectionPreferencesSettingsCard()
             .SelectDefaultConnectionType(VpnConnectionOptions.Fast)
             .SelectDefaultConnectionType(VpnConnectionOptions.Random)
             .SelectDefaultConnectionType(VpnConnectionOptions.Last);

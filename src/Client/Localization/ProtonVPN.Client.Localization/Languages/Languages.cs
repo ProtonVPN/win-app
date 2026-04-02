@@ -46,7 +46,7 @@ public static class Languages
         new("cs-CZ", "Čeština - Czech"),
         new("da-DK", "Dansk - Danish"),
         new("fi-FI", "Suomi - Finnish"),
-        new("id-ID", "Bahasa (Indonesia) - Indonesian"),
+        new("id-ID", "Bahasa Indonesia - Indonesian"),
         new("pt-PT", "Português (Portugal) - Portuguese"),
         new("ro-RO", "Română - Romanian"),
         new("sv-SE", "Svenska - Swedish"),

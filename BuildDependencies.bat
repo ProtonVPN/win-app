@@ -113,7 +113,7 @@ echo Building %binaryStatusFileName% %time%
 
 pushd %currentDir%src\proton-vpn-binary-status
 
-cargo build --release --no-default-features --features cffi || exit /b %ERRORLEVEL%
+cargo build --release --features cffi || exit /b %ERRORLEVEL%
 
 xcopy .\target\release\%binaryStatusFileName% %mainDir% /y
 

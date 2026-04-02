@@ -55,6 +55,7 @@ public static class TestConstants
         WireGuardTcp,
         OpenVpnTcp,
         WireGuardTls,
+        Smart,
     }
 
     public enum VpnConnectionOptions

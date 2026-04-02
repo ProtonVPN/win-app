@@ -32,6 +32,10 @@ public class CustomDnsTests : BaseTest
     private const string CUSTOM_DNS_SERVER = "8.8.8.8";
     private const string SECONDARY_CUSTOM_DNS_SERVER = "1.1.1.1";
 
+    private const string ENABLE_CUSTOM_DNS_TITLE = "Enable custom DNS servers?";
+    private const string ENABLE_CUSTOM_DNS_DESCRIPTION = "You won't be able to use NetShield when connected with a custom DNS server.";
+    private const string ENABLE_CUSTOM_DNS_BUTTON = "Enable";
+
     [OneTimeSetUp]
     public void OneTimeSetup()
     {
@@ -49,12 +53,15 @@ public class CustomDnsTests : BaseTest
 
         AdvancedSettingsRobot
             .NavigateToCustomDns()
-            .ToggleCustomDnsSetting()
-            .PressEnable();
+            .ToggleCustomDnsSetting();
+
+        ConfirmationRobot
+            .Verify.IsDialogDisplayed(ENABLE_CUSTOM_DNS_TITLE, ENABLE_CUSTOM_DNS_DESCRIPTION, ENABLE_CUSTOM_DNS_BUTTON)
+            .PrimaryAction();
 
         SettingRobot
             .ApplySettings()
-            .Verify.IsNetshieldDisableStateDisplayed();
+            .Verify.IsNetshieldDisabledStateDisplayed();
     }
 
     //On Some screens notifications have to be disabled in order for it to pass. 
@@ -72,14 +79,13 @@ public class CustomDnsTests : BaseTest
         IpSelectorRobot
             .AddIpAddress(CUSTOM_DNS_SERVER)
             .Verify.WasIpAdded(CUSTOM_DNS_SERVER);
-
         ConfirmationRobot
             .PrimaryAction();
 
         SettingRobot
             .ApplySettings()
             .CloseSettings();
-        
+
         HomeRobot
             .ConnectViaConnectionCard()
             .Verify.IsConnected();
@@ -98,7 +104,6 @@ public class CustomDnsTests : BaseTest
 
         IpSelectorRobot
             .TickIpAddressCheckBox(CUSTOM_DNS_SERVER);
-
         ConfirmationRobot
             .PrimaryAction();
 
@@ -124,7 +129,6 @@ public class CustomDnsTests : BaseTest
             .DeleteAllIps()
             .AddIpAddress(SECONDARY_CUSTOM_DNS_SERVER)
             .Verify.WasIpAdded(SECONDARY_CUSTOM_DNS_SERVER);
-
         ConfirmationRobot
             .PrimaryAction();
 
@@ -160,8 +164,8 @@ public class CustomDnsTests : BaseTest
                    .IsCustomDnsAddressNotSet(SECONDARY_CUSTOM_DNS_SERVER);
     }
 
-    [OneTimeTearDown] 
-    public void OneTimeTearDown() 
+    [OneTimeTearDown]
+    public void OneTimeTearDown()
     {
         Cleanup();
     }

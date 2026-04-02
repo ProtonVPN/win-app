@@ -160,9 +160,10 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
     }
 
     [RelayCommand]
-    private Task NavigateToSettingsAsync()
+    private async Task NavigateToSettingsAsync()
     {
-        return _mainViewNavigator.NavigateToSettingsViewAsync();
+        await _mainViewNavigator.NavigateToSettingsViewAsync();
+        await _settingsViewNavigator.NavigateToCommonSettingsViewAsync();
     }
 
     [RelayCommand]

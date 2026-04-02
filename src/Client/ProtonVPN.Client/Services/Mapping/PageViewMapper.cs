@@ -36,7 +36,7 @@ using ProtonVPN.Client.UI.Main.Settings.Pages;
 using ProtonVPN.Client.UI.Main.Settings.Pages.About;
 using ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
 using ProtonVPN.Client.UI.Main.Settings.Pages.Connection;
-using ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections;
+using ProtonVPN.Client.UI.Main.Settings.Pages.ConnectionPreferences;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Countries;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Gateways;
@@ -61,7 +61,7 @@ public class PageViewMapper : ViewMapperBase<PageViewModelBase, Page>, IPageView
         ConfigureMapping<CommonSettingsPageViewModel, CommonSettingsPageView>();
         ConfigureMapping<AdvancedSettingsPageViewModel, AdvancedSettingsPageView>();
         ConfigureMapping<ProtocolSettingsPageViewModel, ProtocolSettingsPageView>();
-        ConfigureMapping<DefaultConnectionSettingsPageViewModel, DefaultConnectionPageView>();
+        ConfigureMapping<ConnectionPreferencesSettingsPageViewModel, ConnectionPreferencesSettingsPageView>();
         ConfigureMapping<VpnAcceleratorSettingsPageViewModel, VpnAcceleratorSettingsPageView>();
         ConfigureMapping<CustomDnsServersViewModel, CustomDnsServersPageView>();
         ConfigureMapping<AutoStartupSettingsPageViewModel, AutoStartupSettingsPageView>();

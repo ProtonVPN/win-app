@@ -73,7 +73,15 @@ public class ChangedSettingArgs
         Expression<Func<T>> propertyExpression,
         Func<T> newValueProvider)
     {
-        if (propertyExpression.Body is not MemberExpression memberExpression)
+        MemberExpression? memberExpression = propertyExpression.Body as MemberExpression;
+
+        if (memberExpression is null 
+            && propertyExpression.Body is UnaryExpression { NodeType: ExpressionType.Convert } unaryExpression)
+        {
+            memberExpression = unaryExpression.Operand as MemberExpression;
+        }
+
+        if (memberExpression is null)
         {
             throw new ArgumentException("Expression must represent a property access.", nameof(propertyExpression));
         }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.TestBase;
@@ -29,6 +30,10 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("ARM")]
 public class NetShieldTests : FreshSessionSetUp
 {
+    private const string ENABLE_NET_SHIELD_TITLE = "Enable NetShield?";
+    private const string ENABLE_NET_SHIELD_DESCRIPTION = "You won't be able to connect with a custom DNS server when NetShield is enabled.";
+    private const string ENABLE_NET_SHIELD_BUTTON = "Enable";
+
     [SetUp]
     public void TestInitialize()
     {
@@ -42,6 +47,22 @@ public class NetShieldTests : FreshSessionSetUp
 
         SettingRobot
             .Verify.IsNetshieldBlocking(NetShieldMode.BlockAdsMalwareTrackers);
+    }
+
+    [Test]
+    public void NetshieldOnLevelThree()
+    {
+        SettingRobot
+            .OpenSettings()
+            .OpenNetShieldSettings()
+            .SelectNetShieldMode(NetShieldMode.BlockAdsMalwareTrackersAdultContent)
+            .ApplySettings()
+            .CloseSettings();
+
+        ConnectAndVerifyIsConnected();
+
+        SettingRobot
+            .Verify.IsNetshieldBlocking(NetShieldMode.BlockAdsMalwareTrackersAdultContent);
     }
 
     [Test]
@@ -104,7 +125,30 @@ public class NetShieldTests : FreshSessionSetUp
 
         SettingRobot.Verify.IsNetshieldNotBlocking()
             .OpenSettings()
-            .Verify.IsNetshieldDisableStateDisplayed();
+            .Verify.IsNetshieldDisabledStateDisplayed();
+    }
+
+    [Test]
+    public void CustomDnsIsDisabledWhenNetshieldIsEnabled()
+    {
+        TurnOnDns();
+
+        TurnOnNetShieldAndVerifyConfirmationDialog();
+        ConfirmationRobot
+            .CancelAction();
+
+        //delay to not trigger the "unsaved changes" modal)
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+
+        VerifyCustomDnsIsEnabledAndNetShieldIsDisabled();
+
+        TurnOnNetShieldAndVerifyConfirmationDialog();
+        ConfirmationRobot
+            .PrimaryAction();
+        SettingRobot
+            .ApplySettings();
+
+        VerifyNetShieldIsEnabledAndCustomDnsIsDisabled();
     }
 
     private void ConnectAndVerifyIsConnected()
@@ -112,5 +156,53 @@ public class NetShieldTests : FreshSessionSetUp
         HomeRobot
             .ConnectViaConnectionCard()
             .Verify.IsConnected();
+    }
+
+    private void TurnOnDns()
+    {
+        SettingRobot
+            .OpenSettings()
+            .OpenAdvancedSettings();
+        AdvancedSettingsRobot
+            .NavigateToCustomDns()
+            .ToggleCustomDnsSetting();
+        ConfirmationRobot
+            .PrimaryAction();
+        SettingRobot
+            .ApplySettings();
+    }
+
+    private void TurnOnNetShieldAndVerifyConfirmationDialog()
+    {
+        SettingRobot
+            .OpenNetShieldSettings()
+            .ToggleNetShieldSetting();
+        ConfirmationRobot
+            .Verify.IsDialogDisplayed(ENABLE_NET_SHIELD_TITLE, ENABLE_NET_SHIELD_DESCRIPTION, ENABLE_NET_SHIELD_BUTTON);
+    }
+
+    private void VerifyNetShieldIsEnabledAndCustomDnsIsDisabled()
+    {
+        SettingRobot
+            .Verify.IsNetshieldEnabledStateDisplayed()
+            .OpenAdvancedSettings();
+        AdvancedSettingsRobot
+            .NavigateToCustomDns()
+            .Verify.IsCustomDnsDisabled();
+    }
+
+    private void VerifyCustomDnsIsEnabledAndNetShieldIsDisabled()
+    {
+        SettingRobot
+            .CloseSettings()
+            .OpenSettings()
+            .Verify.IsNetshieldDisabledStateDisplayed()
+            .OpenAdvancedSettings();
+        AdvancedSettingsRobot
+            .NavigateToCustomDns()
+            .Verify.IsCustomDnsEnabled();
+        SettingRobot
+            .CloseSettings()
+            .OpenSettings();
     }
 }

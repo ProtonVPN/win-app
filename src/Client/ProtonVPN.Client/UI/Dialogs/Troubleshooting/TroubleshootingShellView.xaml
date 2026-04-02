@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2024 Proton AG
+Copyright (c) 2026 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -36,17 +36,25 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light">
-                    <StaticResource x:Key="SettingsCardBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
-                    <StaticResource x:Key="SettingsCardBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
-                    <StaticResource x:Key="SettingsCardBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-                    <StaticResource x:Key="SettingsCardBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
+                    <StaticResource x:Key="SettingsCardBackground"
+                                    ResourceKey="InteractionDefaultEmptyColorBrush" />
+                    <StaticResource x:Key="SettingsCardBackgroundPointerOver"
+                                    ResourceKey="InteractionDefaultHoverColorBrush" />
+                    <StaticResource x:Key="SettingsCardBackgroundPressed"
+                                    ResourceKey="InteractionDefaultActiveColorBrush" />
+                    <StaticResource x:Key="SettingsCardBackgroundDisabled"
+                                    ResourceKey="InteractionDefaultEmptyColorBrush" />
                 </ResourceDictionary>
 
                 <ResourceDictionary x:Key="Dark">
-                    <StaticResource x:Key="SettingsCardBackground" ResourceKey="InteractionDefaultEmptyColorBrush" />
-                    <StaticResource x:Key="SettingsCardBackgroundPointerOver" ResourceKey="InteractionDefaultHoverColorBrush" />
-                    <StaticResource x:Key="SettingsCardBackgroundPressed" ResourceKey="InteractionDefaultActiveColorBrush" />
-                    <StaticResource x:Key="SettingsCardBackgroundDisabled" ResourceKey="InteractionDefaultEmptyColorBrush" />
+                    <StaticResource x:Key="SettingsCardBackground"
+                                    ResourceKey="InteractionDefaultEmptyColorBrush" />
+                    <StaticResource x:Key="SettingsCardBackgroundPointerOver"
+                                    ResourceKey="InteractionDefaultHoverColorBrush" />
+                    <StaticResource x:Key="SettingsCardBackgroundPressed"
+                                    ResourceKey="InteractionDefaultActiveColorBrush" />
+                    <StaticResource x:Key="SettingsCardBackgroundDisabled"
+                                    ResourceKey="InteractionDefaultEmptyColorBrush" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
 
@@ -55,20 +63,31 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <FontWeight x:Key="SettingsCardHeaderFontWeight">SemiBold</FontWeight>
             <Thickness x:Key="SettingsCardBorderThickness">0</Thickness>
 
-            <Style x:Key="TroubleshootingCardStyle" BasedOn="{StaticResource DefaultSettingsCardStyle}" TargetType="controls:SettingsCard">
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="BorderBrush" Value="Transparent" />
-                <Setter Property="BorderThickness" Value="0" />
-                <Setter Property="Padding" Value="8" />
+            <Style x:Key="TroubleshootingCardStyle"
+                   BasedOn="{StaticResource DefaultSettingsCardStyle}"
+                   TargetType="controls:SettingsCard">
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="BorderBrush"
+                        Value="Transparent" />
+                <Setter Property="BorderThickness"
+                        Value="0" />
+                <Setter Property="Padding"
+                        Value="8" />
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
 
+    <Grid Margin="64,64,64,48"
+          RowSpacing="24">
 
-    <StackPanel Margin="64,64,64,48"
-                Spacing="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <StackPanel Spacing="4">
+        <StackPanel Spacing="4"
+                    Grid.Row="0">
 
             <TextBlock HorizontalAlignment="Center"
                        Style="{StaticResource SubtitleTextBlockStyle}"
@@ -83,63 +102,60 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         </StackPanel>
 
-        <StackPanel>
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      Style="{StaticResource LargeOffsetScrollViewer}">
+            <StackPanel>
 
-            <controls:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Dialogs_Troubleshooting_CheckInternet_Description')}"
-                                   Header="{x:Bind ViewModel.Localizer.Get('Dialogs_Troubleshooting_CheckInternet')}"
-                                   Style="{StaticResource TroubleshootingCardStyle}">
-                <controls:SettingsCard.HeaderIcon>
-                    <pathIcons:Lightbulb Foreground="{ThemeResource SignalWarningColorBrush}" />
-                </controls:SettingsCard.HeaderIcon>
-                <controls:SettingsCard.ActionIcon>
-                    <pathIcons:ArrowOutSquare />
-                </controls:SettingsCard.ActionIcon>
-            </controls:SettingsCard>
+                <controls:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Dialogs_Troubleshooting_CheckInternet_Description')}"
+                                       Header="{x:Bind ViewModel.Localizer.Get('Dialogs_Troubleshooting_CheckInternet')}"
+                                       Style="{StaticResource TroubleshootingCardStyle}">
+                    <controls:SettingsCard.HeaderIcon>
+                        <pathIcons:Lightbulb Foreground="{ThemeResource SignalWarningColorBrush}" />
+                    </controls:SettingsCard.HeaderIcon>
+                    <controls:SettingsCard.ActionIcon>
+                        <pathIcons:ArrowOutSquare />
+                    </controls:SettingsCard.ActionIcon>
+                </controls:SettingsCard>
 
-            <controls:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Dialogs_Troubleshooting_DifferentNetwork_Description')}"
-                                   Header="{x:Bind ViewModel.Localizer.Get('Dialogs_Troubleshooting_DifferentNetwork')}"
-                                   Style="{StaticResource TroubleshootingCardStyle}">
-                <controls:SettingsCard.HeaderIcon>
-                    <pathIcons:Lightbulb Foreground="{ThemeResource SignalWarningColorBrush}" />
-                </controls:SettingsCard.HeaderIcon>
-                <controls:SettingsCard.ActionIcon>
-                    <pathIcons:ArrowOutSquare />
-                </controls:SettingsCard.ActionIcon>
-            </controls:SettingsCard>
+                <controls:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Dialogs_Troubleshooting_DifferentNetwork_Description')}"
+                                       Header="{x:Bind ViewModel.Localizer.Get('Dialogs_Troubleshooting_DifferentNetwork')}"
+                                       Style="{StaticResource TroubleshootingCardStyle}">
+                    <controls:SettingsCard.HeaderIcon>
+                        <pathIcons:Lightbulb Foreground="{ThemeResource SignalWarningColorBrush}" />
+                    </controls:SettingsCard.HeaderIcon>
+                    <controls:SettingsCard.ActionIcon>
+                        <pathIcons:ArrowOutSquare />
+                    </controls:SettingsCard.ActionIcon>
+                </controls:SettingsCard>
 
-            <controls:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Dialogs_Troubleshooting_Antivirus_Description')}"
-                                   Header="{x:Bind ViewModel.Localizer.Get('Dialogs_Troubleshooting_Antivirus')}"
-                                   Style="{StaticResource TroubleshootingCardStyle}">
-                <controls:SettingsCard.HeaderIcon>
-                    <pathIcons:Lightbulb Foreground="{ThemeResource SignalWarningColorBrush}" />
-                </controls:SettingsCard.HeaderIcon>
-                <controls:SettingsCard.ActionIcon>
-                    <pathIcons:ArrowOutSquare />
-                </controls:SettingsCard.ActionIcon>
-            </controls:SettingsCard>
+                <controls:SettingsCard Description="{x:Bind ViewModel.Localizer.Get('Dialogs_Troubleshooting_Antivirus_Description')}"
+                                       Header="{x:Bind ViewModel.Localizer.Get('Dialogs_Troubleshooting_Antivirus')}"
+                                       Style="{StaticResource TroubleshootingCardStyle}">
+                    <controls:SettingsCard.HeaderIcon>
+                        <pathIcons:Lightbulb Foreground="{ThemeResource SignalWarningColorBrush}" />
+                    </controls:SettingsCard.HeaderIcon>
+                    <controls:SettingsCard.ActionIcon>
+                        <pathIcons:ArrowOutSquare />
+                    </controls:SettingsCard.ActionIcon>
+                </controls:SettingsCard>
 
-            <controls:SettingsCard Command="{x:Bind ViewModel.OpenStatusPageCommand, Mode=OneTime}"
-                                   Description="{x:Bind ViewModel.Localizer.Get('Dialogs_Troubleshooting_StatusPage_Description')}"
-                                   Header="{x:Bind ViewModel.Localizer.Get('Dialogs_Troubleshooting_StatusPage')}"
-                                   IsActionIconVisible="True"
-                                   IsClickEnabled="True"
-                                   Style="{StaticResource TroubleshootingCardStyle}">
-                <controls:SettingsCard.HeaderIcon>
-                    <pathIcons:Lightbulb Foreground="{ThemeResource SignalWarningColorBrush}" />
-                </controls:SettingsCard.HeaderIcon>
-                <controls:SettingsCard.ActionIcon>
-                    <pathIcons:ArrowOutSquare />
-                </controls:SettingsCard.ActionIcon>
-            </controls:SettingsCard>
+                <controls:SettingsCard Command="{x:Bind ViewModel.OpenStatusPageCommand, Mode=OneTime}"
+                                       Description="{x:Bind ViewModel.Localizer.Get('Dialogs_Troubleshooting_StatusPage_Description')}"
+                                       Header="{x:Bind ViewModel.Localizer.Get('Dialogs_Troubleshooting_StatusPage')}"
+                                       IsActionIconVisible="True"
+                                       IsClickEnabled="True"
+                                       Style="{StaticResource TroubleshootingCardStyle}">
+                    <controls:SettingsCard.HeaderIcon>
+                        <pathIcons:Lightbulb Foreground="{ThemeResource SignalWarningColorBrush}" />
+                    </controls:SettingsCard.HeaderIcon>
+                    <controls:SettingsCard.ActionIcon>
+                        <pathIcons:ArrowOutSquare />
+                    </controls:SettingsCard.ActionIcon>
+                </controls:SettingsCard>
 
-        </StackPanel>
-
-        <TextBlock HorizontalAlignment="Center"
-                   Foreground="{ThemeResource TextWeakColorBrush}"
-                   Style="{StaticResource CaptionTextBlockStyle}"
-                   Text="{x:Bind ViewModel.Localizer.Get('Dialogs_Troubleshooting_DidNotWork')}"
-                   TextWrapping="Wrap" />
-    </StackPanel>
-
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 
 </UserControl>

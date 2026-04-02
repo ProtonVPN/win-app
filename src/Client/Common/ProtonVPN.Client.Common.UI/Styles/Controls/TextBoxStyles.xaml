@@ -219,6 +219,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                  Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToVisibilityConverter}}" />
 
                             <custom:GhostButton Margin="6,0,0,0"
+                                                AutomationProperties.AutomationId="SearchBackButton"
                                                 Command="{TemplateBinding BackCommand}"
                                                 Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}">
                                 <custom:GhostButton.LeftIcon>
@@ -477,8 +478,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           Margin="0,4,0,0"
                                           AutomationProperties.AccessibilityView="Raw"
                                           Content="{TemplateBinding Description}"
-                                          FontSize="{StaticResource CaptionTextBlockFontSize}"
-                                          FontWeight="Normal"
+                                          FontSize="{StaticResource CaptionFontSize}"
+                                          FontWeight="{StaticResource CaptionFontWeight}"
                                           Foreground="{ThemeResource TextWeakColorBrush}" />
 
                         <VisualStateManager.VisualStateGroups>
@@ -531,7 +532,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="BorderValidation.Visibility" Value="Visible" />
                                         <Setter Target="DescriptionPresenter.Content">
                                             <Setter.Value>
-                                                <Grid Margin="4,0"
+                                                <Grid Margin="4,2,4,0"
                                                       ColumnSpacing="6"
                                                       Visibility="{Binding (attached:FieldValidation.ErrorMessage), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}">
                                                     <Grid.ColumnDefinitions>
@@ -693,8 +694,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           Margin="0,4,0,0"
                                           AutomationProperties.AccessibilityView="Raw"
                                           Content="{TemplateBinding Description}"
-                                          FontSize="{StaticResource CaptionTextBlockFontSize}"
-                                          FontWeight="Normal"
+                                          FontSize="{StaticResource CaptionFontSize}"
+                                          FontWeight="{StaticResource CaptionFontWeight}"
                                           Foreground="{ThemeResource TextWeakColorBrush}" />
 
                         <VisualStateManager.VisualStateGroups>
@@ -747,7 +748,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="BorderValidation.Visibility" Value="Visible" />
                                         <Setter Target="DescriptionPresenter.Content">
                                             <Setter.Value>
-                                                <Grid Margin="4,4,4,0"
+                                                <Grid Margin="4,2,4,0"
                                                       ColumnSpacing="6"
                                                       Visibility="{Binding (attached:FieldValidation.ErrorMessage), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}">
                                                     <Grid.ColumnDefinitions>
@@ -902,13 +903,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </custom:GhostButton>
 
                         <ContentPresenter x:Name="DescriptionPresenter"
+                                          x:Load="False"
                                           Grid.Row="2"
                                           Grid.Column="0"
                                           Grid.ColumnSpan="2"
-                                          x:Load="False"
+                                          Margin="0,4,0,0"
                                           AutomationProperties.AccessibilityView="Raw"
                                           Content="{TemplateBinding Description}"
-                                          Foreground="{ThemeResource TextHintColorBrush}" />
+                                          FontSize="{StaticResource CaptionFontSize}"
+                                          FontWeight="{StaticResource CaptionFontWeight}"
+                                          Foreground="{ThemeResource TextWeakColorBrush}" />
 
                         <VisualStateManager.VisualStateGroups>
 
@@ -956,7 +960,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="BorderValidation.Visibility" Value="Visible" />
                                         <Setter Target="DescriptionPresenter.Content">
                                             <Setter.Value>
-                                                <Grid Margin="4,4,4,0"
+                                                <Grid Margin="4,2,4,0"
                                                       ColumnSpacing="6"
                                                       Visibility="{Binding (attached:FieldValidation.ErrorMessage), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}">
                                                     <Grid.ColumnDefinitions>
@@ -1107,13 +1111,16 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </custom:GhostButton>
 
                         <ContentPresenter x:Name="DescriptionPresenter"
+                                          x:Load="False"
                                           Grid.Row="2"
                                           Grid.Column="0"
                                           Grid.ColumnSpan="2"
-                                          x:Load="False"
+                                          Margin="0,4,0,0"
                                           AutomationProperties.AccessibilityView="Raw"
                                           Content="{TemplateBinding Description}"
-                                          Foreground="{ThemeResource TextHintColorBrush}" />
+                                          FontSize="{StaticResource CaptionFontSize}"
+                                          FontWeight="{StaticResource CaptionFontWeight}"
+                                          Foreground="{ThemeResource TextWeakColorBrush}" />
 
                         <VisualStateManager.VisualStateGroups>
 
@@ -1165,7 +1172,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="BorderValidation.Visibility" Value="Visible" />
                                         <Setter Target="DescriptionPresenter.Content">
                                             <Setter.Value>
-                                                <Grid Margin="4,4,4,0"
+                                                <Grid Margin="4,2,4,0"
                                                       ColumnSpacing="6"
                                                       Visibility="{Binding (attached:FieldValidation.ErrorMessage), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}">
                                                     <Grid.ColumnDefinitions>

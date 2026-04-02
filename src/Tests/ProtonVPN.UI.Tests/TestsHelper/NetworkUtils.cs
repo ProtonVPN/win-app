@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -26,7 +26,6 @@ using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Castle.Components.DictionaryAdapter.Xml;
 using FlaUI.Core.Tools;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
@@ -36,6 +35,7 @@ namespace ProtonVPN.UI.Tests.TestsHelper;
 public class NetworkUtils
 {
     [DllImport("dnsapi.dll", EntryPoint = "DnsFlushResolverCache")]
+
     public static extern uint DnsFlushResolverCache();
 
     public static List<string> GetDnsAddresses(string adapterName)
@@ -62,10 +62,23 @@ public class NetworkUtils
         Assert.That(reply.Status == IPStatus.Success, Is.True);
     }
 
-    public static bool IsInternetAvailable()
+    public static void AssertInternetAvailability(bool shouldBeAvailable)
     {
-        Thread.Sleep(TestConstants.FiveSecondsTimeout);
-        JObject? connectionData = GetConnectionDataAsync().GetAwaiter().GetResult();
+        bool isAvailable = IsInternetAvailable(shouldBeAvailable);
+        if (shouldBeAvailable)
+        {
+            Assert.That(isAvailable, Is.True, "Expected internet to be available.");
+        }
+        else
+        {
+            Assert.That(isAvailable, Is.False, "Expected internet to not be available.");
+        }
+    }
+
+    public static bool IsInternetAvailable(bool shouldBeAvailable)
+    {
+        Thread.Sleep(TestConstants.TenSecondsTimeout);
+        JObject? connectionData = GetConnectionDataAsync(shouldBeAvailable).GetAwaiter().GetResult();
         return connectionData?["status"]?.ToString() == "success";
     }
 
@@ -75,7 +88,7 @@ public class NetworkUtils
             () =>
             {
                 FlushDns();
-                return GetIpAddressAsync().Result ?? string.Empty;
+                return GetIpAddressAsync().GetAwaiter().GetResult() ?? string.Empty;
             },
             TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
         return retry.Result ?? throw new HttpRequestException($"Failed to get IP Address. \n {retry.LastException?.Message} \n {retry.LastException?.StackTrace}");
@@ -163,7 +176,7 @@ public class NetworkUtils
         return response?["query"]?.ToString();
     }
 
-    private static async Task<JObject?> GetConnectionDataAsync()
+    private static async Task<JObject?> GetConnectionDataAsync(bool errorIsNotExpected = true)
     {
         string endpoint = "http://ip-api.com/json/";
         // Make sure that fresh socket is created when requesting connection data
@@ -177,7 +190,10 @@ public class NetworkUtils
             }
             catch (HttpRequestException e)
             {
-                TestContext.WriteLine($"GetIpAddressWithRetry failed. Result: {e.Message}");
+                if (errorIsNotExpected)
+                {
+                    TestContext.WriteLine($"GetIpAddressWithRetry failed. Result: {e.Message}");
+                }
                 return null;
             }
         }

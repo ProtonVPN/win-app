@@ -223,12 +223,7 @@ internal class Ipv6HandlingWrapper : IVpnConnection
     private async void OnStateChangedAsync(object sender, EventArgs<VpnState> e)
     {
         VpnState state = e.Data;
-
-        if (state.Status == _vpnStatus)
-        {
-            return;
-        }
-
+        bool hasStatusChanged = state.Status != _vpnStatus;
         _vpnStatus = state.Status;
         _lastConnectedProtocol = state.Status == VpnStatus.Connected
             ? state.VpnProtocol
@@ -249,7 +244,7 @@ internal class Ipv6HandlingWrapper : IVpnConnection
             await DisconnectedAsync();
         }
 
-        if (_serviceSettings.IsIpv6Enabled)
+        if (_serviceSettings.IsIpv6Enabled && hasStatusChanged)
         {
             switch (state.Status)
             {

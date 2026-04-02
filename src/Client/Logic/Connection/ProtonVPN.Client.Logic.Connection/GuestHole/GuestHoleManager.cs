@@ -56,7 +56,10 @@ public class GuestHoleManager : IGuestHoleManager, IEventMessageReceiver<Connect
     public async Task<T?> ExecuteAsync<T>(Func<Task<Result>> onConnectedFunc, CancellationToken cancellationToken) where T : Result
     {
         _onConnectedFunc = onConnectedFunc;
-        _tcs = new TaskCompletionSource<Result?>();
+
+        // Run continuations asynchronously so TrySetResult completes the Task first, and the code awaiting it in
+        // ExecuteAsync resumes later instead of immediately inside Receive/HandleDisconnection.
+        _tcs = new(TaskCreationOptions.RunContinuationsAsynchronously);
 
         SetStatus(true);
 
@@ -104,11 +107,6 @@ public class GuestHoleManager : IGuestHoleManager, IEventMessageReceiver<Connect
 
         if (_lastVpnStatus == message.ConnectionStatus)
         {
-            if (message.ConnectionStatus == ConnectionStatus.Disconnected)
-            {
-                HandleDisconnection();
-            }
-
             return;
         }
 

@@ -17,7 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
+using System.Threading;
 using FlaUI.Core.AutomationElements;
+using NUnit.Framework;
+using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
 
 namespace ProtonVPN.UI.Tests.Robots;
@@ -25,13 +29,10 @@ namespace ProtonVPN.UI.Tests.Robots;
 public class IpSelectorRobot
 {
     protected Element IpSelectorOverlay = Element.ByAutomationId("IpSelectorOverlay");
-
     protected Element IpAddressTextBox = Element.ByAutomationId("IpAddressTextBox");
     protected Element IpAddressCheckBox = Element.ByAutomationId("AddressItemToggle");
     protected Element AddIpAddressButton = Element.ByAutomationId("AddButton");
     protected Element RemoveIpAddressButton = Element.ByAutomationId("TrashIcon");
-
-    public Verifications Verify => new Verifications();
 
     public IpSelectorRobot AddIpAddress(string ipAddress)
     {
@@ -72,6 +73,7 @@ public class IpSelectorRobot
             IpSelectorOverlay.WaitUntilDisplayed();
             return this;
         }
+
         public Verifications WasIpNotAdded(string ipAddress)
         {
             Element.ByName(ipAddress).DoesNotExist();
@@ -85,5 +87,13 @@ public class IpSelectorRobot
             IpAddressTextBox.ValueEquals("");
             return this;
         }
+
+        public Verifications IsErrorMessageDisplayed(string errorMessage)
+        {
+            IpAddressTextBox.FindChild(Element.ByName(errorMessage)).WaitUntilDisplayed();
+            return this;
+        }
     }
+
+    public Verifications Verify => new Verifications();
 }

@@ -76,7 +76,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(SignInCommand))]
-    private SecureString _password;
+    private SecureString _password = new();
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(CreateAccountCommand))]
@@ -188,7 +188,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         {
             case SignInFormType.SRP:
                 IsToShowUsernameError = string.IsNullOrWhiteSpace(Username);
-                IsToShowPasswordError = Password.Length == 0;
+                IsToShowPasswordError = Password is null || Password.Length == 0;
                 break;
             case SignInFormType.SSO:
                 Username = Username.Trim();

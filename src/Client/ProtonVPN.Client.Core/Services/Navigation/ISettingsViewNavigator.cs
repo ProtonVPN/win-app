@@ -31,7 +31,7 @@ public interface ISettingsViewNavigator : IViewNavigator
 
     Task<bool> NavigateToAdvancedSettingsViewAsync();
 
-    Task<bool> NavigateToDefaultConnectionSettingsViewAsync(bool isDirectNavigation = false);
+    Task<bool> NavigateToConnectionPreferencesSettingsViewAsync(bool isDirectNavigation = false);
 
     Task<bool> NavigateToProtocolSettingsViewAsync(bool isDirectNavigation = false);
 

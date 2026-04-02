@@ -31,7 +31,7 @@ using ProtonVPN.Client.UI.Main.Settings.Pages;
 using ProtonVPN.Client.UI.Main.Settings.Pages.About;
 using ProtonVPN.Client.UI.Main.Settings.Pages.Advanced;
 using ProtonVPN.Client.UI.Main.Settings.Pages.Connection;
-using ProtonVPN.Client.UI.Main.Settings.Pages.DefaultConnections;
+using ProtonVPN.Client.UI.Main.Settings.Pages.ConnectionPreferences;
 using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Services.Navigation;
@@ -82,9 +82,9 @@ public class SettingsViewNavigator : ViewNavigatorBase, ISettingsViewNavigator,
         return NavigateToAsync<CommonSettingsPageViewModel>(forceNavigation: forceNavigation);
     }
 
-    public Task<bool> NavigateToDefaultConnectionSettingsViewAsync(bool isDirectNavigation = false)
+    public Task<bool> NavigateToConnectionPreferencesSettingsViewAsync(bool isDirectNavigation = false)
     {
-        return NavigateToAsync<DefaultConnectionSettingsPageViewModel>(parameter: isDirectNavigation);
+        return NavigateToAsync<ConnectionPreferencesSettingsPageViewModel>(parameter: isDirectNavigation);
     }
 
     public Task<bool> NavigateToProtocolSettingsViewAsync(bool isDirectNavigation = false)

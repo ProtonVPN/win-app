@@ -21,6 +21,8 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.ServiceProcess;
+using System.Threading;
 using System.Threading.Tasks;
 using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
@@ -52,6 +54,8 @@ public class BaseTest
     protected static UpsellCarrouselRobot UpsellCarrouselRobot { get; } = new();
     protected static SplitTunnelingRobot SplitTunnelingRobot { get; } = new();
     protected static IpSelectorRobot IpSelectorRobot { get; } = new();
+    protected static AppSelectorRobot AppSelectorRobot { get; } = new();
+
     protected static ConfirmationRobot ConfirmationRobot { get; } = new();
 
     private const string CLIENT_NAME = "ProtonVPN.Client.exe";
@@ -106,7 +110,7 @@ public class BaseTest
 
         if (!retry.Success)
         {
-            Assert.Fail($"Failed to refresh window in {refreshTimeout.Seconds} seconds.");
+            Assert.Fail($"Failed to refresh window in {refreshTimeout.TotalSeconds:0} seconds.");
         }
     }
 
@@ -132,8 +136,46 @@ public class BaseTest
         {
             //Do nothing, since artifact collection shouldn't block cleanup.
         }
-        App?.Close();
-        App?.Dispose();
+
+        try
+        {
+            HomeRobot.CloseClientViaCloseButton();
+            Thread.Sleep(TestConstants.OneSecondTimeout);
+        }
+        catch { }
+
+        try
+        {
+            App?.Close();
+        }
+        catch { }
+
+        finally
+        {
+            App?.Dispose();
+            Thread.Sleep(TestConstants.OneSecondTimeout);
+            StopVpnCalloutService();
+        }
+    }
+
+    protected static void StopVpnCalloutService()
+    {
+        try
+        {
+            using ServiceController protonService = new ServiceController("ProtonVPNCallout");
+
+            if (protonService.Status != ServiceControllerStatus.Stopped)
+            {
+                TestContext.WriteLine($"[WARNING] The ProtonVPNCallout service is still running after app close - possible bug or unclean shutdown.");
+
+                protonService.Stop();
+                protonService.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(10));
+            }
+        }
+        catch (Exception)
+        {
+            Assert.Fail("ProtonVPNCallout service failed to stop");
+        }
     }
 
     protected static void LaunchApp(bool isFreshStart = true)

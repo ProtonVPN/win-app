@@ -108,7 +108,8 @@ public class FreeUserTests : FreshSessionSetUp
             .GoBackUpsell()
             .Verify.IsAdvancedSettingsUpsellDisplayed()
             .GoBackUpsell()
-            .Verify.IsProfilesUpsellDisplayed();
+            .Verify.IsProfilesUpsellDisplayed()
+            .CloseModal();
     }
 
     [Test]
@@ -117,28 +118,35 @@ public class FreeUserTests : FreshSessionSetUp
         SettingRobot
             .OpenSettings()
             .OpenNetShieldSettings();
-        UpsellCarrouselRobot.Verify.IsNetshieldUpsellDisplayed()
+        UpsellCarrouselRobot
+            .Verify.IsNetshieldUpsellDisplayed()
             .CloseModal();
 
         SettingRobot.OpenPortForwardingSettings();
-        UpsellCarrouselRobot.Verify.IsP2PUpsellDisplayed()
+        UpsellCarrouselRobot
+            .Verify.IsP2PUpsellDisplayed()
             .CloseModal();
 
         SettingRobot.OpenSplitTunnelingSettingsCard();
-        UpsellCarrouselRobot.Verify.IsSplitTunnelingUpsellDisplayed()
+        UpsellCarrouselRobot
+            .Verify.IsSplitTunnelingUpsellDisplayed()
             .CloseModal();
 
         SettingRobot.OpenVpnAcceleratorSettingsCard();
-        UpsellCarrouselRobot.Verify.IsServersSpeedUpsellDisplayed()
+        UpsellCarrouselRobot
+            .Verify.IsServersSpeedUpsellDisplayed()
             .CloseModal();
 
         SettingRobot.OpenAdvancedSettings();
         AdvancedSettingsRobot.NavigateToCustomDns();
-        UpsellCarrouselRobot.Verify.IsAdvancedSettingsUpsellDisplayed()
+        UpsellCarrouselRobot
+            .Verify.IsAdvancedSettingsUpsellDisplayed()
             .CloseModal();
 
         AdvancedSettingsRobot.NavigateToNatSettings();
-        UpsellCarrouselRobot.Verify.IsAdvancedSettingsUpsellDisplayed();
+        UpsellCarrouselRobot
+            .Verify.IsAdvancedSettingsUpsellDisplayed()
+            .CloseModal();
     }
 
     [Test]

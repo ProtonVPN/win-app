@@ -314,16 +314,16 @@ public class ApiClient : BaseApiClient, IApiClient
         return await SendRequestAsync<FeatureFlagsResponse>(request, cancellationToken, "Get feature flags");
     }
 
-    public async Task<ApiResponseResult<BaseResponse>> SubmitNpsSurveyAsync(NpsSurveyRequest npsSurveyRequest)
+    public async Task<ApiResponseResult<BaseResponse>> SubmitNpsSurveyAsync(NpsSurveyRequest npsSurveyRequest, DeviceLocation? deviceLocation)
     {
-        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "vpn/v1/nps/submit");
+        HttpRequestMessage request = GetAuthorizedRequestWithLocation(HttpMethod.Post, "vpn/v1/nps/submit", deviceLocation);
         request.Content = GetJsonContent(npsSurveyRequest);
         return await SendRequestAsync<BaseResponse>(request, CancellationToken.None, "Submit NPS survey");
     }
 
-    public async Task<ApiResponseResult<BaseResponse>> DismissNpsSurveyAsync()
+    public async Task<ApiResponseResult<BaseResponse>> DismissNpsSurveyAsync(DeviceLocation? deviceLocation)
     {
-        HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "vpn/v1/nps/dismiss");
+        HttpRequestMessage request = GetAuthorizedRequestWithLocation(HttpMethod.Post, "vpn/v1/nps/dismiss", deviceLocation);
         return await SendRequestAsync<BaseResponse>(request, CancellationToken.None, "Dismiss NPS survey");
     }
 
