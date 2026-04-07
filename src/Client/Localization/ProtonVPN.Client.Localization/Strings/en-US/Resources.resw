@@ -3161,11 +3161,8 @@
   <data name="Dialogs_WelcomeUnlimited_Title" xml:space="preserve">
     <value>Welcome to Proton Unlimited</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1" xml:space="preserve">
-    <value>Congratulations! You unlocked premium security and performance features on all Proton services.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2" xml:space="preserve">
-    <value>Enjoy the best of Proton privacy.</value>
+  <data name="Dialogs_WelcomeUnlimited_Description" xml:space="preserve">
+    <value>You unlocked all premium Proton VPN, Mail, Calendar, Drive, and Pass features.</value>
   </data>
   <data name="Dialogs_BaseFilteringEngine_Title" xml:space="preserve">
     <value>Enable Base Filtering Engine to continue</value>

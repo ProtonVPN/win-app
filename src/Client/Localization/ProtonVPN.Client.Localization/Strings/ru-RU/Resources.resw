@@ -2251,11 +2251,8 @@ Error code: {0}</value>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Добро пожаловать в VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Поздравляем! Вы разблокировали платные функции безопасности и производительности во всех службах Proton.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Наслаждайтесь лучшим от конфиденциальности Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Добро пожаловать в Proton Unlimited</value>

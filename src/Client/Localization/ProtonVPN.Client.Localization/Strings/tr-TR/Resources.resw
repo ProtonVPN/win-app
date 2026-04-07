@@ -2101,11 +2101,8 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>VPN Plus tarifesine hoş geldiniz</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Tebrikler! Tüm Proton hizmetlerinin ücretli güvenlik ve başarım özelliklerini kullanabilirsiniz.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Proton gizliliğinin tadını en iyi şekilde çıkarın.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Proton Unlimited tarifesine hoş geldiniz</value>

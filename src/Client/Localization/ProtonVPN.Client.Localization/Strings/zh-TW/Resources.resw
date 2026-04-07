@@ -2026,11 +2026,8 @@
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>歡迎至 VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>恭喜！您已在所有 Proton 服務中解鎖進階安全和效能功能。</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>享受 Proton 最優質的隱私保護。</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>歡迎至Proton Unlimited</value>

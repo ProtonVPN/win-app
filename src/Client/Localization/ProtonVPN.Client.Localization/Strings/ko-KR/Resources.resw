@@ -2026,11 +2026,8 @@
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>VPN Plus에 오신 것을 환영합니다</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>축하드려요! 모든 Proton 서비스의 프리미엄 보안 및 퍼포먼스 기능을 잠금해제 했어요.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>강력한 Proton 개인정보 보호 기능을 누려보세요.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Proton Unlimited에 오신 것을 환영합니다</value>

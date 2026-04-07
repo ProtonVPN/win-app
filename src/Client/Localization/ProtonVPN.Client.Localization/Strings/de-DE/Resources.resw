@@ -2101,11 +2101,8 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Willkommen bei VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Herzlichen Glückwunsch! Du hast die Premium-Sicherheits- und Performance-Funktionen für alle Proton-Dienste freigeschaltet.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Genieße die beste Proton-Privatsphäre</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Willkommen bei Proton Unlimited</value>

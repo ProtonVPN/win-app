@@ -2101,11 +2101,8 @@
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Καλώς ήλθατε στο VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Συγχαρητήρια! Ξεκλειδώσατε κορυφαίες δυνατότητες ασφάλειας και απόδοσης σε όλες τις υπηρεσίες Proton.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Απολαύστε τα καλύτερα της ιδιωτικής ζωής Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Καλώς ήλθατε στο Proton Unlimited</value>

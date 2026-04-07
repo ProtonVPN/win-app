@@ -2101,11 +2101,8 @@ Una carga del servidor alta puede ralentizar la conexión.</value>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Le damos la bienvenida a VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>¡Felicitaciones! Desbloqueó seguridad premium y funciones de mejora del desempeño en todos los servicios de Proton.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Disfrute lo mejor de la privacidad de Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Le damos la bienvenida a Proton Unlimited</value>

@@ -2251,11 +2251,8 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Witaj w planie VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Gratulacje! Odblokowałeś(-aś) funkcje bezpieczeństwa i wydajności premium we wszystkich usługach Proton.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Ciesz się najlepszą prywatnością z Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Witaj w planie Proton Unlimited</value>

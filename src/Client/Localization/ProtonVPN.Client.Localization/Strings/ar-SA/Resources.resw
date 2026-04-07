@@ -2401,11 +2401,8 @@
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>مرحبا بك في VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>تهانينا! لقد قمت بإلغاء قفل ميزات الأمان والأداء المتميز على جميع خدمات Proton.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>استمتع بأفضل ما في خصوصية Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>مرحبا بك في Proton Unlimited</value>

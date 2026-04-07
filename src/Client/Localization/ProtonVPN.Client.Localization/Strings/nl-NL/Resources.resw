@@ -2101,11 +2101,8 @@ Foutcode: {0}</value>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Welkom bij VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Gefeliciteerd! U heeft premium beveiligings- en prestatiefuncties op alle Proton-diensten ontgrendeld.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Profiteer van de beste Proton privacy.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Welkom bij Proton Unlimited</value>

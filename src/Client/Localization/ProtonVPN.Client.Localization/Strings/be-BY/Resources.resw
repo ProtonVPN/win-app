@@ -2251,11 +2251,8 @@
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Вітаем у VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Віншуем! Вы разблакіравалі прэміяльныя функцыі бяспекі і прадукцыйнасці ва ўсіх сэрвісах Proton.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Атрымлівайце асалоду ад палепшай прыватнасці, якую прапануе Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Вітаем у Proton Unlimited</value>

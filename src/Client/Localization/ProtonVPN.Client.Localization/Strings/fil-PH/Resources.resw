@@ -2101,11 +2101,8 @@ Maaaring pabagalin ng mataas na load ng server ang koneksyon mo.</value>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Welcome sa VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Congratulations! Na-unlock mo ang mga premium na feature sa seguridad at performance sa lahat ng serbisyo ng Proton.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>I-enjoy ang pinakamahusay na privacy ng Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Welcome sa Proton Unlimited</value>

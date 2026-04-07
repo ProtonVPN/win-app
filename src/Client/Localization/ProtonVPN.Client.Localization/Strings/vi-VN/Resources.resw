@@ -2026,11 +2026,8 @@ Mức tải máy chủ cao có thể làm chậm kết nối.</value>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Chào mừng đến với VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Chúc mừng! Bạn đã mở khóa các tính năng bảo mật và hiệu năng cao cấp trên tất cả các dịch vụ Proton.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Tận hưởng quyền riêng tư tốt nhất của Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Chào mừng đến với Proton Unlimited</value>

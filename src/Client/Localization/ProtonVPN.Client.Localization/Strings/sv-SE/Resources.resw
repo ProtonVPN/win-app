@@ -2101,11 +2101,8 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Välkommen till VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Grattis! Du låste upp premium säkerhets- och prestandafunktioner på alla Proton-tjänster.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Njut av det bästa av Proton-integritet.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Välkommen till Proton Unlimited</value>

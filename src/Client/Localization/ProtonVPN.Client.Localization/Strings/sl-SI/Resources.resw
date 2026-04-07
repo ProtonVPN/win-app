@@ -2251,11 +2251,8 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Dobrodošli pri Proton Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Čestitke! Odklenili ste premijske varnostne funkcije in zmogljivosti za vse storitve Proton.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Uživajte v najboljši zasebnosti Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Dobrodošli v Proton Unlimited</value>
