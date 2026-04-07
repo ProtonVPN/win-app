@@ -37,6 +37,7 @@ public class SidebarRobot
     private const int SECURE_CORE_COUNTRIES_TAB_INDEX = 1;
     private const int P2P_COUNTRIES_TAB_INDEX = 2;
     private const int TOR_COUNTRIES_TAB_INDEX = 3;
+    private const int MINIMUM_EXPECTED_COUNTRY_COUNT = 80;
     private const string FASTEST_PROFILE = "Fastest";
 
     protected Element SidebarComponent = Element.ByAutomationId("SidebarComponent");
@@ -83,6 +84,10 @@ public class SidebarRobot
 
     protected Element ConnectToSpecificServer = Element.ByAutomationId("Connect_to_Specific_Server");
     protected Element DisconnectFromSpecificServer = Element.ByAutomationId("Disconnect_from_Specific_Server");
+
+    protected Element CountriesListGroup = Element.ByClassName("ListViewHeaderItem");
+    protected Element ConnectionItemsHeader = Element.ByAutomationId("ConnectionItemsHeader");
+    protected Element CountryItem = Element.ByClassName("ListViewItem");
 
     public SidebarRobot NavigateToCountries()
     {
@@ -403,6 +408,18 @@ public class SidebarRobot
 
     public class Verifications : SidebarRobot
     {
+        public Verifications AreAllServersDisplayed()
+        {
+            string totalCountries = ConnectionItemsHeader.GetAutomationElementName()!;
+            int totalCountriesCount = int.Parse(totalCountries.Split('(', ')')[1]);
+            Assert.That(totalCountriesCount, Is.GreaterThan(MINIMUM_EXPECTED_COUNTRY_COUNT));
+            CountryItem.WaitUntilItemDisplayed(0);
+            ConnectionItemsList.Scroll(verticalPercent: 50);
+            ConnectionItemsList.Scroll(verticalPercent: 100);
+            CountryItem.WaitUntilItemDisplayed(-1);
+            return this;
+        }
+
         public SidebarRobot IsBackBtnInSearchBoxDisplayed()
         {
             SearchTextBox.FindChild(SearchBackButton).WaitUntilDisplayed();

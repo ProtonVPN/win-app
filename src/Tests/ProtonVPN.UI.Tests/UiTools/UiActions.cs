@@ -181,6 +181,19 @@ public static class UiActions
         throw new Exception($"Item '{itemToSelect}' was not found in dropdown '{desiredElement}'.");
     }
 
+    public static T WaitUntilItemDisplayed<T>(this T desiredElement, int index) where T : Element
+    {
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        AutomationElement[]? children = element?.FindAllChildren();
+        Assert.That(children, Is.Not.Null, "List is empty");
+
+        int resolvedIndex = index < 0 ? children!.Length + index : index;
+        AutomationElement item = children![resolvedIndex];
+
+        Assert.That(item.IsEnabled, $"Item at index {index} in '{desiredElement.SelectorName}' is not displayed.");
+        return desiredElement;
+    }
+
     public static T ClickItem<T>(this T desiredElement, int index) where T : Element
     {
         AutomationElement? element = WaitUntilExists(desiredElement);
@@ -242,6 +255,21 @@ public static class UiActions
     {
         AutomationElement? element = WaitUntilExists(desiredElement);
         element?.Patterns.ScrollItem.Pattern.ScrollIntoView();
+        return desiredElement;
+    }
+
+    public static Element Scroll<T>(this T desiredElement, int verticalPercent = 0, int horizontalPercent = 0) where T : Element
+    {
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        IScrollPattern? scrollPattern = element?.Patterns.Scroll.PatternOrDefault;
+
+        if (scrollPattern != null)
+        {
+            double h = scrollPattern.HorizontallyScrollable ? horizontalPercent : scrollPattern.HorizontalScrollPercent;
+            double v = scrollPattern.VerticallyScrollable ? verticalPercent : scrollPattern.VerticalScrollPercent;
+            scrollPattern.SetScrollPercent(h, v);
+        }
+
         return desiredElement;
     }
 

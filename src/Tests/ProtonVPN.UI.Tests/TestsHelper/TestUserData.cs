@@ -37,13 +37,17 @@ public class TestUserData
     public static TestUserData PlusUser => GetUser("PLUS_USER");
     public static TestUserData PlusUserBti => new("vpnplus", "12341234");
     public static TestUserData VisionaryUser => GetUser("VISIONARY_USER");
+    public static TestUserData UnlimitedUser => new("testasunlimited", VisionaryUser.Password);
     public static TestUserData SpecialCharsUser => GetUser("SPECIAL_CHARS_USER");
     public static TestUserData TwoPassUser => GetUser("TWO_PASS_USER");
     public static TestUserData ZeroAssignedConnectionsUser => GetUser("ZERO_CONNECTIONS_USER");
     public static TestUserData TwoFactorUser => GetUser("TWO_FACTOR_AUTH_USER");
     public static TestUserData SsoUser => GetUser("SSO_USER");
-    public static TestUserData IncorrectUser => new(FreeUser.Username, "IncorrectPass");
+    public static TestUserData FakePlusUserWithDomain => new($"{PlusUser.Username}@proton.me", "");
+    public static TestUserData IncorrectPass => new("testasplus", "IncorrectPass");
+    public static TestUserData IncorrectUserAndPass => new("aost2583Akmjdioan", "IncorrectPass");
     public static TestUserData IncorrectUserWithWhitespace => new(" Incorrect Username", " Incorrect Pass");
+    public static TestUserData CorrectUserWithWhitespace => new($" {PlusUser.Username} ", $"{PlusUser.Password}");
 
     public static string GetTwoFactorCode()
     {

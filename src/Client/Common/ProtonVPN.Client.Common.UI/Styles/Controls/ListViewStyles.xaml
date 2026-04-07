@@ -80,6 +80,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </Style>
 
     <Style x:Key="GhostListViewHeaderItemStyle" TargetType="ListViewHeaderItem">
+        <Setter Property="AutomationProperties.AutomationId" Value="ListViewHeaderItem" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />

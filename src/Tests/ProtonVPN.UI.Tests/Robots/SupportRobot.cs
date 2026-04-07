@@ -36,6 +36,8 @@ public class SupportRobot
     protected Element IncludeLogsCheckbox => Element.ByAutomationId("IncludeLogsCheckbox");
     protected Element EmailInputField => Element.ByAutomationId("EmailInputField");
     protected Element DoneBtn => Element.ByName("Done");
+    protected Element CloseBtn => Element.ByAutomationId("Close");
+    protected Element ConnectionHelpHeader => Element.ByName("Connection help");
 
     public SupportRobot(Func<Window?> windowFunc)
     {
@@ -88,6 +90,12 @@ public class SupportRobot
         return this;
     }
 
+    public SupportRobot CloseSupportWindow()
+    {
+        CloseBtn.Click();
+        return this;
+    }
+
     public class Verifications : SupportRobot
     {
         public Verifications(Func<Window?> windowFunc) : base(windowFunc)
@@ -99,6 +107,12 @@ public class SupportRobot
             ReportSentLabel.WaitUntilExists(TestConstants.ThirtySecondsTimeout);
             DoneBtn.Click();
             Thread.Sleep(TestConstants.NavigationDelay);
+            return this;
+        }
+
+        public Verifications IsConnectionHelpDisplayed()
+        {
+            ConnectionHelpHeader.WaitUntilExists(TestConstants.ThirtySecondsTimeout);
             return this;
         }
 

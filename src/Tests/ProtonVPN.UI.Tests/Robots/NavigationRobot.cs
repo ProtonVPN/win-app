@@ -30,6 +30,7 @@ public class NavigationRobot
     protected Element LoginPage => Element.ByAutomationId("LoginPage");
     protected Element SignInPage => Element.ByAutomationId("SignInPage");
     protected Element LoadingPage => Element.ByAutomationId("LoadingPage");
+    protected Element NoServersPage => Element.ByAutomationId("NoServersPage");
     protected Element TwoFactorPage => Element.ByAutomationId("TwoFactorPage");
     protected Element MainPage => Element.ByAutomationId("MainPage");
     protected Element SettingsPage => Element.ByAutomationId("SettingsPage");
@@ -49,6 +50,21 @@ public class NavigationRobot
     protected Element LocationDetailsPage => Element.ByAutomationId("LocationDetailsPage");
     protected Element ConnectionDetailsPage => Element.ByAutomationId("ConnectionDetailsPage");
 
+    protected Element NoServerRefreshBtn => Element.ByName("Refresh");
+    protected Element NoServerSignOutBtn => Element.ByName("Sign out");
+
+    public NavigationRobot ClickRefreshButtonOnNoServersPage()
+    {
+        NoServerRefreshBtn.Invoke();
+        return this;
+    }
+
+    public NavigationRobot ClickSignOutButtonOnNoServersPage()
+    {
+        NoServerSignOutBtn.Invoke();
+        return this;
+    }
+
     public class Verifications : NavigationRobot
     {
         private Verifications IsOnPage(Element page, TimeSpan? timeout = null)
@@ -57,7 +73,15 @@ public class NavigationRobot
             return this;
         }
 
+        public Verifications IsMessageDisplayed(string message)
+        {
+            Element.ByName(message).WaitUntilDisplayed();
+            return this;
+        }
+
         public Verifications IsOnLoginPage() => IsOnPage(LoginPage);
+
+        public Verifications IsOnNoServersPage() => IsOnPage(NoServersPage, TestConstants.TwoMinutesTimeout);
 
         public Verifications IsOnSignInPage() => IsOnPage(SignInPage);
 

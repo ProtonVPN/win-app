@@ -102,8 +102,6 @@ public class SplitTunnelingExcludeTests : BaseTest
     [Ignore("JIRA - VPNWIN-1563")]
     public void SplitTunnelingExcludeModeSpecialIP()
     {
-        Assert.Fail("JIRA - VPNWIN-1563");
-
         SettingRobot
             .OpenSettings()
             .OpenSplitTunnelingSettings();

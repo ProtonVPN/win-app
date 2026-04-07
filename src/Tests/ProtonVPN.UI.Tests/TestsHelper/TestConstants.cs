@@ -19,6 +19,7 @@
 
 using System;
 using System.IO;
+using System.Linq;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 
@@ -47,6 +48,7 @@ public static class TestConstants
     public static string MapCountry = "CA";
     public static string ClientLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN\Logs\client-logs.txt");
     public static string UserStoragePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN");    
+    public static string? ServerStoragePath => Directory.GetFiles(Path.Combine(UserStoragePath, "Storage"), "Servers.*.bin").OrderByDescending(File.GetLastWriteTime).FirstOrDefault();
 
     public enum Protocol
     {

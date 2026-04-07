@@ -17,9 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
 using System.Threading;
 using FlaUI.Core.Input;
 using FlaUI.Core.WindowsAPI;
+using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
@@ -409,6 +411,15 @@ public class SettingRobot
 
     public class Verifications : SettingRobot
     {
+        public Verifications IsCorrectAccountInfoDisplayed(string accountName, string accountPlan)
+        {
+            Thread.Sleep(TestConstants.OneSecondTimeout);
+            List<string> allChildren = AccountButton.GetAllChildrenNames();
+            Assert.That(allChildren, Does.Contain(accountName));
+            Assert.That(allChildren, Does.Contain(accountPlan));
+            return this;
+        }
+
         public Verifications IsNetshieldBlocking(NetShieldMode netShieldMode)
         {
             NetworkUtils.FlushDns();
