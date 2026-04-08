@@ -142,6 +142,11 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static AutomationElement[] GetControlType<T>(this T desiredElement, ControlType controlType) where T : Element
+    {
+        return desiredElement.GetDescendantsByControlType(controlType) ?? Array.Empty<AutomationElement>();
+    }
+
     public static List<string> GetAllCheckboxNames<T>(this T desiredElement) where T : Element
     {
         return desiredElement.GetDescendantsByControlType(ControlType.CheckBox)
@@ -158,7 +163,7 @@ public static class UiActions
             .ToList() ?? [];
     }
 
-    public static T SelectDropdownItem<T>(this T desiredElement, string itemToSelect) where T : Element
+    public static T SelectDropdownItem<T>(this T desiredElement, string itemToSelect, string? specificInfo = null) where T : Element
     {
         AutomationElement? element = WaitUntilExists(desiredElement);
         ComboBoxItem[]? items = element.AsComboBox()?.Items;
@@ -170,8 +175,12 @@ public static class UiActions
 
         foreach (ComboBoxItem item in items)
         {
-            AutomationElement? textBlock = item.FindFirstChild(cf => cf.ByControlType(ControlType.Text));
-            if (textBlock?.Name == itemToSelect)
+            IEnumerable<string> textNames = item.FindAllDescendants(cf => cf.ByControlType(ControlType.Text)).Select(t => t.Name);
+
+            bool primaryMatch = textNames.Any(t => t == itemToSelect);
+            bool secondaryMatch = specificInfo == null || textNames.Any(t => t == specificInfo);
+
+            if (primaryMatch && secondaryMatch)
             {
                 item.Click();
                 return desiredElement;

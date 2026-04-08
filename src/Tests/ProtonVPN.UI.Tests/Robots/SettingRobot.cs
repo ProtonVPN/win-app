@@ -23,9 +23,8 @@ using FlaUI.Core.Input;
 using FlaUI.Core.WindowsAPI;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
-using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
-using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
@@ -35,8 +34,6 @@ public class SettingRobot
     private const string NETSHIELD_MALWARE_ENDPOINT = "netshield-1.protonvpn.net";
     private const string NETSHIELD_ADS_ENDPOINT = "netshield-2.protonvpn.net";
     private static readonly string[] _netShieldAdultContentDomains = { "0-100c.cn", "0-1du.com", "0-24sexcams.com", "0-6babylee.cn", "0-900.com" };
-
-    private const string DEFAULT_CONNECTION_COMBO_BOX_ID = "InternalComboBox";
 
     protected Element SettingsPage = Element.ByAutomationId("SettingsPage");
     protected Element ApplyButton = Element.ByAutomationId("ApplyButton");
@@ -69,6 +66,7 @@ public class SettingRobot
     protected Element LicensingLabel = Element.ByAutomationId("LicensingTextBlock");
     protected Element LearnMoreButton = Element.ByName("Learn more");
     protected Element CurrentVersionLabel = Element.ByAutomationId("CurrentVersionLabel");
+    protected Element DefaultConnectionDropdown = Element.ByAutomationId("DefaultConnectionDropdown");
 
     protected Element NetshieldToggle = Element.ByAutomationId("NetshieldToggle");
     protected Element NetShieldLevelOneRadioButton = Element.ByAutomationId("NetShieldLevelOne");
@@ -523,8 +521,8 @@ public class SettingRobot
     public SettingRobot SelectDefaultConnectionType(VpnConnectionOptions option)
     {
         Element settingsDefaultConnectionComboBox = SettingsPage
-            .FindDescendant(Element.ByAutomationId(DEFAULT_CONNECTION_COMBO_BOX_ID));
-
+            .FindDescendant(DefaultConnectionDropdown);
+        
         settingsDefaultConnectionComboBox.Click();
         Thread.Sleep(TestConstants.AnimationDelay);
 

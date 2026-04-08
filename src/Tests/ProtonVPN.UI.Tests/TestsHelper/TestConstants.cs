@@ -59,12 +59,4 @@ public static class TestConstants
         WireGuardTls,
         Smart,
     }
-
-    public enum VpnConnectionOptions
-    {
-        Fast,
-        Random,
-        Last,
-        Customized
-    }
 }

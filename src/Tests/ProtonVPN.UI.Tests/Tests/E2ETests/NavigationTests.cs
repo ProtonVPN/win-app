@@ -166,7 +166,7 @@ public class NavigationTests : FreshSessionSetUp
             NavigationRobot
                 .Verify.IsOnProfilePage();
             ProfileRobot
-                .Verify.DoesProfileNameEqual(profileName)
+                .Verify.ProfileNameEquals(profileName)
                 .CloseProfile();
             NavigationRobot
                 .Verify.IsOnHomePage();

@@ -17,15 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Collections.Generic;
 using System.Threading;
+using System.Collections.Generic;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
-using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -117,7 +115,7 @@ public class ConnectionTests : FreshSessionSetUp
         MakeSureUserIsDisconnected();
 
         HomeRobot
-            .SelectVpnConnectionOption(VpnConnectionOptions.Random)
+            .SelectDefaultConnectionOption(VpnConnectionOptions.Random)
             .ConnectViaConnectionCard(TestConstants.MoreFrequentRetryInterval)
             .Verify.IsConnecting()
             .CancelConnection(TestConstants.MoreFrequentRetryInterval)
@@ -240,17 +238,17 @@ public class ConnectionTests : FreshSessionSetUp
                   .IsOnConnectionsPage();
         HomeRobot
             .Verify.IsDisconnected()
-            .SelectVpnConnectionOption(VpnConnectionOptions.Fast)
+            .SelectDefaultConnectionOption(VpnConnectionOptions.Fast)
             .ConnectViaConnectionCard()
-            .Verify.DoesConnectionCardTitleEqual(FAST_CONNECTION)
+            .Verify.ConnectionCardTitleEquals(FAST_CONNECTION)
                    .IsConnected()
             .Disconnect();
 
         HomeRobot
             .Verify.IsDisconnected()
-            .SelectVpnConnectionOption(VpnConnectionOptions.Random)
+            .SelectDefaultConnectionOption(VpnConnectionOptions.Random)
             .ConnectViaConnectionCard()
-            .Verify.DoesConnectionCardTitleEqual(RANDOM_COUNTRY)
+            .Verify.ConnectionCardTitleEquals(RANDOM_COUNTRY)
                    .IsConnected()
             .Disconnect();
     }
