@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,7 +22,7 @@ using ProtonVPN.Client.Files.Contracts;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Files.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.Logging.Contracts.Events.TelemetryLogs;
 using ProtonVPN.Serialization.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Models;
 
@@ -60,31 +60,31 @@ public class StatisticalEventsFileReaderWriter : IStatisticalEventsFileReaderWri
 
     public StatisticalEventsFile ReadAuthenticatedEvents()
     {
-        _logger.Info<AppLog>("Reading authenticated statistical events file.");
+        _logger.Info<TelemetryLog>("Reading authenticated statistical events file.");
         StatisticalEventsFile file = _userFileReaderWriter.ReadOrNew<StatisticalEventsFile>(_authEventsFileReaderWriterParameters);
-        _logger.Info<AppLog>($"Read {file.StatisticalEvents.Count} authenticated statistical events from file.");
+        _logger.Info<TelemetryLog>($"Read {file.StatisticalEvents.Count} authenticated statistical events from file.");
         return file;
     }
 
     public void SaveAuthenticatedEvents(StatisticalEventsFile file)
     {
-        _logger.Info<AppLog>("Writing authenticated statistical events file.");
+        _logger.Info<TelemetryLog>("Writing authenticated statistical events file.");
         FileOperationResult result = _userFileReaderWriter.Write(file, _authEventsFileReaderWriterParameters);
-        _logger.Info<AppLog>($"Writing authenticated statistical events file finished with state '{result}'.");
+        _logger.Info<TelemetryLog>($"Writing authenticated statistical events file finished with state '{result}'.");
     }
 
     public StatisticalEventsFile ReadUnauthenticatedEvents()
     {
-        _logger.Info<AppLog>("Reading unauthenticated statistical events file.");
+        _logger.Info<TelemetryLog>("Reading unauthenticated statistical events file.");
         StatisticalEventsFile file = _fileReaderWriter.ReadOrNew<StatisticalEventsFile>(_unauthEventsFullFilePath, SERIALIZER);
-        _logger.Info<AppLog>($"Read {file.StatisticalEvents.Count} unauthenticated statistical events from file.");
+        _logger.Info<TelemetryLog>($"Read {file.StatisticalEvents.Count} unauthenticated statistical events from file.");
         return file;
     }
 
     public void SaveUnauthenticatedEvents(StatisticalEventsFile file)
     {
-        _logger.Info<AppLog>("Writing unauthenticated statistical events file.");
+        _logger.Info<TelemetryLog>("Writing unauthenticated statistical events file.");
         FileOperationResult result = _fileReaderWriter.Write(file, _unauthEventsFullFilePath, SERIALIZER);
-        _logger.Info<AppLog>($"Writing unauthenticated statistical events file finished with state '{result}'.");
+        _logger.Info<TelemetryLog>($"Writing unauthenticated statistical events file finished with state '{result}'.");
     }
 }

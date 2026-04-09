@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2025 Proton AG
+/*
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,7 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.StatisticalEvents.Contracts.Models;
 using ProtonVPN.StatisticalEvents.Dimensions.Mappers;
@@ -26,6 +28,7 @@ namespace ProtonVPN.StatisticalEvents.Dimensions.Builders;
 
 public class VpnConnectionDimensionsBuilder : IVpnConnectionDimensionsBuilder
 {
+    private readonly ISettings _settings;
     private readonly IVpnProtocolDimensionMapper _vpnProtocolDimensionMapper;
     private readonly IOutcomeDimensionMapper _outcomeDimensionMapper;
     private readonly IVpnStatusDimensionMapper _vpnStatusDimensionMapper;
@@ -36,8 +39,12 @@ public class VpnConnectionDimensionsBuilder : IVpnConnectionDimensionsBuilder
     private readonly IServerFeaturesDimensionMapper _serverDetailsDimensionMapper;
     private readonly IPortDimensionMapper _portDimensionMapper;
     private readonly IStringDimensionMapper _stringDimensionMapper;
+    private readonly ITenureDimensionMapper _tenureDimensionMapper;
+    private readonly IUserFeedbackDimensionMapper _userFeedbackDimensionMapper;
+    private readonly IClientFeaturesDimensionMapper _clientFeaturesDimensionMapper;
 
     public VpnConnectionDimensionsBuilder(
+        ISettings settings,
         IVpnProtocolDimensionMapper vpnProtocolDimensionMapper,
         IOutcomeDimensionMapper outcomeDimensionMapper,
         IVpnStatusDimensionMapper vpnStatusDimensionMapper,
@@ -47,8 +54,12 @@ public class VpnConnectionDimensionsBuilder : IVpnConnectionDimensionsBuilder
         IVpnPlanTierDimensionMapper vpnPlanDimensionMapper,
         IServerFeaturesDimensionMapper serverDetailsDimensionMapper,
         IPortDimensionMapper portDimensionMapper,
-        IStringDimensionMapper stringDimensionMapper)
+        IStringDimensionMapper stringDimensionMapper,
+        ITenureDimensionMapper tenureDimensionMapper,
+        IUserFeedbackDimensionMapper userFeedbackDimensionMapper,
+        IClientFeaturesDimensionMapper clientFeaturesDimensionMapper)
     {
+        _settings = settings;
         _vpnProtocolDimensionMapper = vpnProtocolDimensionMapper;
         _outcomeDimensionMapper = outcomeDimensionMapper;
         _vpnStatusDimensionMapper = vpnStatusDimensionMapper;
@@ -59,6 +70,9 @@ public class VpnConnectionDimensionsBuilder : IVpnConnectionDimensionsBuilder
         _serverDetailsDimensionMapper = serverDetailsDimensionMapper;
         _portDimensionMapper = portDimensionMapper;
         _stringDimensionMapper = stringDimensionMapper;
+        _tenureDimensionMapper = tenureDimensionMapper;
+        _userFeedbackDimensionMapper = userFeedbackDimensionMapper;
+        _clientFeaturesDimensionMapper = clientFeaturesDimensionMapper;
     }
 
     public Dictionary<string, string> Build(VpnConnectionEventData eventData)
@@ -78,8 +92,27 @@ public class VpnConnectionDimensionsBuilder : IVpnConnectionDimensionsBuilder
             { "entry_ip", _stringDimensionMapper.Map(eventData.Server?.EntryIp) },
             { "port", _portDimensionMapper.Map(eventData.Port) },
             { "isp",  _stringDimensionMapper.Map(eventData.Isp) },
-            { "vpn_feature_intent", _vpnFeatureIntentDimensionMapper.Map(eventData.VpnFeatureIntent) },
             { "is_ipv6_enabled", (eventData.IsIpv6Enabled && (eventData.Server?.SupportsIpv6 ?? false)).ToBooleanString() },
+        };
+    }
+
+    public Dictionary<string, string> BuildConnectionDimensions(VpnConnectionEventData eventData)
+    {
+        return new Dictionary<string, string>
+        {
+            { "vpn_feature_intent", _vpnFeatureIntentDimensionMapper.Map(eventData.VpnFeatureIntent) },
+        };
+    }
+
+    public Dictionary<string, string> BuildDisconnectionDimensions(VpnConnectionEventData eventData)
+    {
+        DateTimeOffset? accountCreationDateUtc = _settings.UserCreationDateUtc;
+
+        return new Dictionary<string, string>
+        {
+            { "client_features", _clientFeaturesDimensionMapper.Map(eventData.ClientFeatures) },
+            { "tenure", _tenureDimensionMapper.Map(accountCreationDateUtc) },
+            { "user_feedback", _userFeedbackDimensionMapper.Map(null) },
         };
     }
 }

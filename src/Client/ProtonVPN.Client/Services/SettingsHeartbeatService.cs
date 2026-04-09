@@ -36,20 +36,20 @@ public class SettingsHeartbeatService : PollingObserverBase,
     private readonly static TimeSpan HEARTBEAT_MINIMUM_DELAY = TimeSpan.FromMinutes(3);
     private readonly static TimeSpan HEARTBEAT_INTERVAL = TimeSpan.FromHours(24);
 
-    private readonly ISettingsHeartbeatStatisticalEventSender _settingsHeartbeatStatisticalEventSender;
+    private readonly ISettingsHeartbeatReporter _settingsHeartbeatReporter;
     private readonly ISettings _settings;
 
     protected override TimeSpan PollingInterval { get; } = HEARTBEAT_INTERVAL;
     protected override TimeSpan? InitialDelay => CalculateInitialDelay();
 
     public SettingsHeartbeatService(
-        ISettingsHeartbeatStatisticalEventSender settingsHeartbeatStatisticalEventSender,
+        ISettingsHeartbeatReporter settingsHeartbeatReporter,
         ILogger logger,
         IIssueReporter issueReporter,
         ISettings settings)
         : base(logger, issueReporter)
     {
-        _settingsHeartbeatStatisticalEventSender = settingsHeartbeatStatisticalEventSender;
+        _settingsHeartbeatReporter = settingsHeartbeatReporter;
         _settings = settings;
     }
 
@@ -98,7 +98,7 @@ public class SettingsHeartbeatService : PollingObserverBase,
     {
         try
         {
-            await _settingsHeartbeatStatisticalEventSender.SendAsync();
+            await _settingsHeartbeatReporter.ReportAsync();
 
             _settings.LastSettingsHeartbeatTimeUtc = DateTimeOffset.UtcNow;
             Logger.Debug<AppLog>($"Settings heartbeat sent at {_settings.LastSettingsHeartbeatTimeUtc}");

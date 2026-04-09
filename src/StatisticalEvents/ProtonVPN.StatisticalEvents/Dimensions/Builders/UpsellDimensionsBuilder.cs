@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2025 Proton AG
+/*
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -40,6 +40,7 @@ public class UpsellDimensionsBuilder : IUpsellDimensionsBuilder
     private readonly IOnOffDimensionMapper _onOffDimensionMapper;
     private readonly IYesNoDimensionMapper _yesNoDimensionMapper;
     private readonly IStringDimensionMapper _stringDimensionMapper;
+    private readonly IPromoUrlDimensionMapper _promoUrlDimensionMapper;
 
     public UpsellDimensionsBuilder(
         ISettings settings,
@@ -50,7 +51,8 @@ public class UpsellDimensionsBuilder : IUpsellDimensionsBuilder
         IDaysSinceAccountCreationDimensionMapper daysSinceAccountCreationDimensionMapper,
         IOnOffDimensionMapper onOffDimensionMapper,
         IYesNoDimensionMapper yesNoDimensionMapper,
-        IStringDimensionMapper stringDimensionMapper)
+        IStringDimensionMapper stringDimensionMapper,
+        IPromoUrlDimensionMapper promoUrlDimensionMapper)
     {
         _settings = settings;
         _connectionManager = connectionManager;
@@ -61,26 +63,10 @@ public class UpsellDimensionsBuilder : IUpsellDimensionsBuilder
         _onOffDimensionMapper = onOffDimensionMapper;
         _yesNoDimensionMapper = yesNoDimensionMapper;
         _stringDimensionMapper = stringDimensionMapper;
+        _promoUrlDimensionMapper = promoUrlDimensionMapper;
     }
 
     public Dictionary<string, string> Build(ModalSource modalSource, string? reference = null)
-    {
-        VpnPlan vpnPlan = _settings.VpnPlan;
-
-        return BuildInternal(modalSource, vpnPlan, reference);
-    }
-
-    public Dictionary<string, string> Build(ModalSource modalSource, VpnPlan oldPlan, VpnPlan newPlan, string? reference = null)
-    {
-        Dictionary<string, string> dimensions = BuildInternal(modalSource, oldPlan, reference);
-
-        dimensions.Add("upgraded_user_plan", _vpnPlanNameDimensionMapper.Map(newPlan));
-        dimensions.Add("upgraded_user_tier", _vpnPlanTierDimensionMapper.Map(newPlan));
-
-        return dimensions;
-    }
-
-    private Dictionary<string, string> BuildInternal(ModalSource modalSource, VpnPlan vpnPlan, string? reference = null)
     {
         string? deviceCountryLocation = _settings.DeviceLocation?.CountryCode;
         DateTimeOffset? accountCreationDateUtc = _settings.UserCreationDateUtc;
@@ -88,8 +74,6 @@ public class UpsellDimensionsBuilder : IUpsellDimensionsBuilder
         return new()
         {
             { "modal_source", _modalSourceDimensionMapper.Map(modalSource) },
-            { "user_plan", _vpnPlanNameDimensionMapper.Map(vpnPlan) },
-            { "user_tier", _vpnPlanTierDimensionMapper.Map(vpnPlan) },
             { "vpn_status", _onOffDimensionMapper.Map(_connectionManager.IsConnected) },
             { "user_country", _stringDimensionMapper.Map(deviceCountryLocation) },
             { "new_free_plan_ui", _yesNoDimensionMapper.Map(true) },
@@ -97,6 +81,45 @@ public class UpsellDimensionsBuilder : IUpsellDimensionsBuilder
             { "reference", _stringDimensionMapper.Map(reference) },
             { "is_credential_less_enabled", _onOffDimensionMapper.Map(false) },
             { "flow_type", EXTERNAL_FLOW_TYPE }
+        };
+    }
+    public Dictionary<string, string> BuildAttemptDimensions()
+    {
+        return BuildAttemptOrDisplayDimensions();
+    }
+
+    public Dictionary<string, string> BuildDisplayDimensions()
+    {
+        return BuildAttemptOrDisplayDimensions();
+    }
+
+    private Dictionary<string, string> BuildAttemptOrDisplayDimensions()
+    {
+        VpnPlan vpnPlan = _settings.VpnPlan;
+
+        return new()
+        {
+            { "user_plan", _vpnPlanNameDimensionMapper.Map(vpnPlan) },
+            { "user_tier", _vpnPlanTierDimensionMapper.Map(vpnPlan) },
+        };
+    }
+
+    public Dictionary<string, string> BuildSuccessDimensions(string url, VpnPlan oldPlan, VpnPlan newPlan)
+    {
+        Uri? promoUri = null;
+        if (!string.IsNullOrWhiteSpace(url) && Uri.TryCreate(url, UriKind.Absolute, out Uri? absoluteUri))
+        {
+            promoUri = absoluteUri;
+        }
+
+        return new()
+        {
+            { "user_plan", _vpnPlanNameDimensionMapper.Map(oldPlan) },
+            { "user_tier", _vpnPlanTierDimensionMapper.Map(oldPlan) },
+            { "upgraded_user_plan", _vpnPlanNameDimensionMapper.Map(newPlan) },
+            { "upgraded_user_tier", _vpnPlanTierDimensionMapper.Map(newPlan) },
+            { "billing_cycle", _promoUrlDimensionMapper.MapBillingCycle(promoUri) },
+            { "coupon_code", _promoUrlDimensionMapper.MapCouponCode(promoUri) },
         };
     }
 }

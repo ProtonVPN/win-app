@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -28,22 +28,23 @@ namespace ProtonVPN.Client.Services.Upselling;
 public class AccountUpgradeUrlLauncher : IAccountUpgradeUrlLauncher,
     IEventMessageReceiver<VpnPlanChangedMessage>
 {
-    private readonly IUpsellUpgradeAttemptStatisticalEventSender _upsellUpgradeAttemptStatisticalEventSender;
-    private readonly IUpsellSuccessStatisticalEventSender _upsellSuccessStatisticalEventSender;
+    private readonly IUpsellUpgradeAttemptReporter _upsellUpgradeAttemptReporter;
+    private readonly IUpsellSuccessReporter _upsellSuccessReporter;
     private readonly IUrlsBrowser _urlsBrowser;
     private readonly IWebAuthenticator _webAuthenticator;
 
+    private string? _currentAttemptUrl;
     private ModalSource? _currentAttemptModalSource;
     private string? _currentAttemptReference;
 
     public AccountUpgradeUrlLauncher(
-        IUpsellUpgradeAttemptStatisticalEventSender upsellUpgradeAttemptStatisticalEventSender,
-        IUpsellSuccessStatisticalEventSender upsellSuccessStatisticalEventSender,
+        IUpsellUpgradeAttemptReporter upsellUpgradeAttemptReporter,
+        IUpsellSuccessReporter upsellSuccessReporter,
         IUrlsBrowser urlsBrowser,
         IWebAuthenticator webAuthenticator)
     {
-        _upsellUpgradeAttemptStatisticalEventSender = upsellUpgradeAttemptStatisticalEventSender;
-        _upsellSuccessStatisticalEventSender = upsellSuccessStatisticalEventSender;
+        _upsellUpgradeAttemptReporter = upsellUpgradeAttemptReporter;
+        _upsellSuccessReporter = upsellSuccessReporter;
         _urlsBrowser = urlsBrowser;
         _webAuthenticator = webAuthenticator;
     }
@@ -59,13 +60,13 @@ public class AccountUpgradeUrlLauncher : IAccountUpgradeUrlLauncher,
     {
         try
         {
-            _upsellUpgradeAttemptStatisticalEventSender.Send(modalSource, reference);
+            _upsellUpgradeAttemptReporter.Report(modalSource, reference);
 
             _urlsBrowser.BrowseTo(url);
         }
         finally
         {
-            SetAttempt(modalSource, reference);
+            SetAttempt(url, modalSource, reference);
         }
     }
 
@@ -75,7 +76,12 @@ public class AccountUpgradeUrlLauncher : IAccountUpgradeUrlLauncher,
         {
             if (_currentAttemptModalSource.HasValue && message.HasChanged() && !message.IsDowngrade())
             {
-                _upsellSuccessStatisticalEventSender.Send(_currentAttemptModalSource.Value, message.OldPlan, message.NewPlan, _currentAttemptReference);
+                _upsellSuccessReporter.Report(
+                    _currentAttemptUrl ?? string.Empty, 
+                    _currentAttemptModalSource.Value, 
+                    message.OldPlan, 
+                    message.NewPlan, 
+                    _currentAttemptReference);
             }
         }
         finally
@@ -84,14 +90,16 @@ public class AccountUpgradeUrlLauncher : IAccountUpgradeUrlLauncher,
         }
     }
 
-    private void SetAttempt(ModalSource modalSource, string? reference)
+    private void SetAttempt(string url, ModalSource modalSource, string? reference)
     {
+        _currentAttemptUrl = url;
         _currentAttemptModalSource = modalSource;
         _currentAttemptReference = reference;
     }
 
     private void ResetAttempt()
     {
+        _currentAttemptUrl = null;
         _currentAttemptModalSource = null;
         _currentAttemptReference = null;
     }

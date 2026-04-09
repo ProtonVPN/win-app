@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -52,7 +52,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IAppExitInvoker _appExitInvoker;
-    private readonly ISettingsHeartbeatStatisticalEventSender _settingsHeartbeatStatisticalEventSender;
+    private readonly ISettingsHeartbeatReporter _settingsHeartbeatReporter;
     private readonly IEnumerable<IWindowActivator> _windowActivators;
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
 
@@ -101,7 +101,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         IDebugToolsWindowActivator windowActivator,
         IViewModelHelper viewModelHelper,
         IAppExitInvoker appExitInvoker,
-        ISettingsHeartbeatStatisticalEventSender settingsHeartbeatStatisticalEventSender,
+        ISettingsHeartbeatReporter settingsHeartbeatReporter,
         IEnumerable<IWindowActivator> windowActivators,
         IVpnPlanUpdater vpnPlanUpdater)
         : base(windowActivator, viewModelHelper)
@@ -114,7 +114,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         _settings = settings;
         _eventMessageSender = eventMessageSender;
         _appExitInvoker = appExitInvoker;
-        _settingsHeartbeatStatisticalEventSender = settingsHeartbeatStatisticalEventSender;
+        _settingsHeartbeatReporter = settingsHeartbeatReporter;
         _windowActivators = windowActivators;
         _vpnPlanUpdater = vpnPlanUpdater;
 
@@ -333,7 +333,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     [RelayCommand]
     public Task TriggerSettingsTelemetryHeartbeatAsync()
     {
-        return _settingsHeartbeatStatisticalEventSender.SendAsync();
+        return _settingsHeartbeatReporter.ReportAsync();
     }
 
     [RelayCommand]

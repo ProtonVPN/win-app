@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -32,13 +32,15 @@ using ProtonVPN.Logging.Contracts.Events.StatisticsLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Observers;
+using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.Statistics;
 
 public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsManager
 {
-    private readonly IVpnConnectionStatisticalEventSender _vpnConnectionStatisticalEventSender;
-    private readonly IVpnDisconnectionStatisticalEventSender _vpnDisconnectionStatisticalEventSender;
+    private readonly IVpnConnectionReporter _vpnConnectionReporter;
+    private readonly IVpnDisconnectionReporter _vpnDisconnectionReporter;
     private readonly ISystemNetworkInterfaces _networkInterfaces;
     private readonly IFeatureFlagsObserver _featureFlagsObserver;
     private readonly ISettings _settings;
@@ -52,15 +54,15 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
     private ConnectionDetails? _lastKnownConnectionDetails = null;
 
     public ConnectionStatisticalEventsManager(
-        IVpnConnectionStatisticalEventSender vpnConnectionStatisticalEventSender,
-        IVpnDisconnectionStatisticalEventSender vpnDisconnectionStatisticalEventSender,
+        IVpnConnectionReporter vpnConnectionReporter,
+        IVpnDisconnectionReporter vpnDisconnectionReporter,
         ISystemNetworkInterfaces networkInterfaces,
         IFeatureFlagsObserver featureFlagsObserver,
         ISettings settings,
         ILogger logger)
     {
-        _vpnConnectionStatisticalEventSender = vpnConnectionStatisticalEventSender;
-        _vpnDisconnectionStatisticalEventSender = vpnDisconnectionStatisticalEventSender;
+        _vpnConnectionReporter = vpnConnectionReporter;
+        _vpnDisconnectionReporter = vpnDisconnectionReporter;
         _networkInterfaces = networkInterfaces;
         _featureFlagsObserver = featureFlagsObserver;
         _settings = settings;
@@ -185,7 +187,7 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
 
         VpnConnectionEventData eventData = CreateConnectionEventData(outcome);
 
-        _vpnConnectionStatisticalEventSender.Send(eventData, connectionTimeInMs);
+        _vpnConnectionReporter.Report(eventData, connectionTimeInMs);
         _logger.Info<ConnectionStatisticsLog>($"vpn_connection event from {eventData.VpnTrigger} trigger. {eventData.Outcome}. Connection time: {connectionTimeInMs}ms");
     }
 
@@ -197,7 +199,7 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
 
         VpnConnectionEventData eventData = CreateConnectionEventData(outcome);
 
-        _vpnDisconnectionStatisticalEventSender.Send(eventData, sessionTimeInMs);
+        _vpnDisconnectionReporter.Report(eventData, sessionTimeInMs);
         _logger.Info<ConnectionStatisticsLog>($"vpn_disconnection event from {eventData.VpnTrigger} trigger. {eventData.Outcome}. Session time: {sessionTimeInMs}ms");
     }
 
@@ -213,6 +215,8 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
         };
 
         DeviceLocation deviceLocation = _settings.DeviceLocation ?? DeviceLocation.Unknown;
+
+        IConnectionProfile? profile = _lastKnownConnectionDetails?.OriginalConnectionIntent as IConnectionProfile;
 
         return new VpnConnectionEventData
         {
@@ -241,6 +245,17 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
                 SecureCore = _lastKnownConnectionDetails?.Server.Features.IsSupported(ServerFeatures.SecureCore) ?? false,
                 SupportsStreaming = _lastKnownConnectionDetails?.Server.Features.IsSupported(ServerFeatures.Streaming) ?? false,
                 SupportsIpv6 = _lastKnownConnectionDetails?.Server.Features.IsSupported(ServerFeatures.Ipv6) ?? false,
+            },
+            ClientFeatures = new ClientFeaturesEventData
+            {
+                IsKillSwitchEnabled = _settings.IsKillSwitchEnabled,
+                IsNetShieldEnabled = profile?.Settings.IsNetShieldEnabled ?? _settings.IsNetShieldEnabled,
+                IsPortForwardingEnabled = profile?.Settings.IsPortForwardingEnabled ?? _settings.IsPortForwardingEnabled,
+                IsSplitTunnelingEnabled = _settings.IsSplitTunnelingEnabled,
+                IsModerateNatEnabled = (profile?.Settings.NatType ?? _settings.NatType) == NatType.Moderate,
+                IsCustomDnsEnabled = profile?.Settings.IsCustomDnsServersEnabled ?? _settings.IsCustomDnsServersEnabled,
+                IsLanConnectionsEnabled = _settings.IsLocalAreaNetworkAccessEnabled,
+                IsConnectionPreferencesConfigured = false // TODO: Implement when merged with connection preferences branch
             },
         };
     }

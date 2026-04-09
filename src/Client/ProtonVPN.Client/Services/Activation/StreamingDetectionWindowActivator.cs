@@ -36,7 +36,7 @@ public class StreamingDetectionWindowActivator : DialogActivatorBase<StreamingDe
     IEventMessageReceiver<LoggedOutMessage>,
     IEventMessageReceiver<VpnPlanChangedMessage>
 {
-    private readonly IUpsellDisplayStatisticalEventSender _upsellDisplayStatisticalEventSender;
+    private readonly IUpsellDisplayReporter _upsellDisplayReporter;
 
     public override string WindowTitle => Localizer.Get("Dialogs_StreamingDetection_WindowTitle");
 
@@ -49,7 +49,7 @@ public class StreamingDetectionWindowActivator : DialogActivatorBase<StreamingDe
         ILocalizationProvider localizer,
         IApplicationIconSelector iconSelector,
         IMainWindowActivator mainWindowActivator,
-        IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
+        IUpsellDisplayReporter upsellDisplayReporter)
         : base(logger,
                uiThreadDispatcher,
                themeSelector,
@@ -59,14 +59,14 @@ public class StreamingDetectionWindowActivator : DialogActivatorBase<StreamingDe
                iconSelector,
                mainWindowActivator)
     {
-        _upsellDisplayStatisticalEventSender = upsellDisplayStatisticalEventSender;
+        _upsellDisplayReporter = upsellDisplayReporter;
     }
 
     protected override void OnWindowOpened()
     {
         base.OnWindowOpened();
 
-        _upsellDisplayStatisticalEventSender.Send(ModalSource.StreamingActivity);
+        _upsellDisplayReporter.Report(ModalSource.StreamingActivity);
     }
 
     public void Receive(LoggedOutMessage message)

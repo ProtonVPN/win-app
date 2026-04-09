@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -41,9 +41,9 @@ public partial class ProminentBannerViewModel : BannerViewModelBase
     public ProminentBannerViewModel(
         IAnnouncementActivator announcementActivator,
         IAnnouncementsProvider announcementsProvider,
-        IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender,
+        IUpsellDisplayReporter upsellDisplayReporter,
         IViewModelHelper viewModelHelper)
-        : base(announcementActivator, announcementsProvider, upsellDisplayStatisticalEventSender, viewModelHelper)
+        : base(announcementActivator, announcementsProvider, upsellDisplayReporter, viewModelHelper)
     { }
 
     protected override void AfterAnnouncementChange()

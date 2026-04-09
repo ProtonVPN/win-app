@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2025 Proton AG
+/*
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,9 +19,10 @@
 
 using Autofac;
 using ProtonVPN.StatisticalEvents.Dimensions.Builders.Bases;
+using ProtonVPN.StatisticalEvents.Dimensions.Mappers;
 using ProtonVPN.StatisticalEvents.Dimensions.Mappers.Bases;
+using ProtonVPN.StatisticalEvents.Events.Senders;
 using ProtonVPN.StatisticalEvents.Files;
-using ProtonVPN.StatisticalEvents.Sending;
 
 namespace ProtonVPN.StatisticalEvents.Installers;
 
@@ -35,7 +36,7 @@ public class StatisticalEventsModule : Module
 
         RegisterMappers(builder);
         RegisterBuilders(builder);
-        RegisterSpecificSenders(builder);
+        RegisterReporters(builder);
     }
 
     private void RegisterMappers(ContainerBuilder builder)
@@ -54,14 +55,14 @@ public class StatisticalEventsModule : Module
            .SingleInstance();
     }
 
-    private void RegisterSpecificSenders(ContainerBuilder builder)
+    private void RegisterReporters(ContainerBuilder builder)
     {
-        builder.RegisterType<UpsellDisplayStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<UpsellSuccessStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<UpsellUpgradeAttemptStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ClientInstallsStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<VpnConnectionStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<VpnDisconnectionStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<SettingsHeartbeatStatisticalEventSender>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<UpsellDisplayReporter>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<UpsellSuccessReporter>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<UpsellUpgradeAttemptReporter>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ClientInstallsReporter>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<VpnConnectionReporter>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<VpnDisconnectionReporter>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SettingsHeartbeatReporter>().AsImplementedInterfaces().SingleInstance();
     }
 }

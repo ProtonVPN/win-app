@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -43,7 +43,7 @@ namespace ProtonVPN.Client.Services.Bootstrapping;
 
 public class Bootstrapper : IBootstrapper
 {
-    private readonly IClientInstallsStatisticalEventSender _clientInstallsStatisticalEventSender;
+    private readonly IClientInstallsReporter _clientInstallsReporter;
     private readonly IProcessCommunicationStarter _processCommunicationStarter;
     private readonly ISettingsRestorer _settingsRestorer;
     private readonly IServiceManager _serviceManager;
@@ -62,7 +62,7 @@ public class Bootstrapper : IBootstrapper
     private bool _isOpenOnDesktopRequested;
 
     public Bootstrapper(
-        IClientInstallsStatisticalEventSender clientInstallsStatisticalEventSender,
+        IClientInstallsReporter clientInstallsReporter,
         IProcessCommunicationStarter processCommunicationStarter,
         ISettingsRestorer settingsRestorer,
         IServiceManager serviceManager,
@@ -78,7 +78,7 @@ public class Bootstrapper : IBootstrapper
         IVpnPlanUpdater vpnPlanUpdater,
         IUIThreadDispatcher uiThreadDispatcher)
     {
-        _clientInstallsStatisticalEventSender = clientInstallsStatisticalEventSender;
+        _clientInstallsReporter = clientInstallsReporter;
         _processCommunicationStarter = processCommunicationStarter;
         _settingsRestorer = settingsRestorer;
         _serviceManager = serviceManager;
@@ -258,7 +258,7 @@ public class Bootstrapper : IBootstrapper
 
         if (isCleanInstall)
         {
-            _clientInstallsStatisticalEventSender.Send(
+            _clientInstallsReporter.Report(
                 isMailInstalled: isMailInstalled,
                 isDriveInstalled: isDriveInstalled,
                 isPassInstalled: isPassInstalled);
