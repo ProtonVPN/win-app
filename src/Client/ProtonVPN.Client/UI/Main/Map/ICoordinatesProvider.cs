@@ -24,4 +24,6 @@ namespace ProtonVPN.Client.UI.Main.Map;
 public interface ICoordinatesProvider
 {
     (double Latitude, double Longitude)? GetCoordinates(ILocation location);
+
+    (double Latitude, double Longitude)? GetCountryCoordinates(string countryCode);
 }

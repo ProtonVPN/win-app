@@ -37,6 +37,9 @@ using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Dialogs.DebugTools.Models;
+using ProtonVPN.Client.UI.Main.Map;
+using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.StatisticalEvents.Contracts;
 
@@ -55,6 +58,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     private readonly ISettingsHeartbeatReporter _settingsHeartbeatReporter;
     private readonly IEnumerable<IWindowActivator> _windowActivators;
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
+    private readonly ICoordinatesProvider _coordinatesProvider;
 
     [ObservableProperty]
     private Overlay _selectedOverlay;
@@ -103,7 +107,8 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         IAppExitInvoker appExitInvoker,
         ISettingsHeartbeatReporter settingsHeartbeatReporter,
         IEnumerable<IWindowActivator> windowActivators,
-        IVpnPlanUpdater vpnPlanUpdater)
+        IVpnPlanUpdater vpnPlanUpdater,
+        ICoordinatesProvider coordinatesProvider)
         : base(windowActivator, viewModelHelper)
     {
         _serversUpdater = serversUpdater;
@@ -117,6 +122,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         _settingsHeartbeatReporter = settingsHeartbeatReporter;
         _windowActivators = windowActivators;
         _vpnPlanUpdater = vpnPlanUpdater;
+        _coordinatesProvider = coordinatesProvider;
 
         OverlaysList =
         [
@@ -340,5 +346,27 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     public Task TriggerVpnPlanUpdateAsync()
     {
         return _vpnPlanUpdater.ForceUpdateAsync();
+    }
+
+    [RelayCommand]
+    public void OverrideDeviceLocation(string countryCode)
+    {
+        if (string.IsNullOrEmpty(countryCode) || countryCode.Length != 2)   
+        {
+            return;
+        }
+
+        countryCode = countryCode.NormalizeCountryCode();
+
+        (double Latitude, double Longitude)? coordinates = _coordinatesProvider.GetCountryCoordinates(countryCode);
+
+        _settings.DeviceLocation = new DeviceLocation()
+        {
+            IpAddress = "192.168.0.1",
+            CountryCode = countryCode,
+            Isp = "Mock ISP",
+            Latitude = coordinates?.Latitude,
+            Longitude = coordinates?.Longitude
+        };
     }
 }

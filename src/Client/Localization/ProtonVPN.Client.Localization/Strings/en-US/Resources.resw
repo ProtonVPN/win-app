@@ -1277,6 +1277,10 @@
     <value>Samoa</value>
     <comment>The name of WS country</comment>
   </data>
+  <data name="Country_val_XK" xml:space="preserve">
+    <value>Kosovo</value>
+    <comment>The name of XK country</comment>
+  </data>
   <data name="Country_val_YE" xml:space="preserve">
     <value>Yemen</value>
     <comment>The name of YE country</comment>

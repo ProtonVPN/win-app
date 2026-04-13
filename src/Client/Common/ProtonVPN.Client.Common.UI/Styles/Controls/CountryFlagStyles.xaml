@@ -75,8 +75,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     Background="{ThemeResource FlagOutlineColorBrush}"
                                     CornerRadius="4"
                                     Visibility="Collapsed">
-                                <Image Source="{Binding CountryCode, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource CountryCodeToFlagImageSourceConverter}, Mode=OneWay}"
-                                       Stretch="Fill" />
+                                <Border CornerRadius="3">
+                                    <Image Source="{Binding CountryCode, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource CountryCodeToFlagImageSourceConverter}, Mode=OneWay}"
+                                           Stretch="Fill" />
+                                </Border>
                             </Border>
 
                             <Image x:Name="PART_GenericFlag"
