@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -26,33 +26,45 @@ namespace ProtonVPN.Client.Logic.Users.Tests.Messages;
 public class VpnPlanChangedMessageTest
 {
     [TestMethod]
-    [DataRow("old", "oldName", 0, "new", "newName", 2, true)]
-    [DataRow("old", "oldName", 2, "new", "newName", 0, true)]
-    [DataRow("old", "oldName", 0, "new", "newName", 0, true)]
-    [DataRow("old", "oldName", 1, "new", "newName", 1, true)]
-    [DataRow("old", "oldName", 2, "new", "newName", 2, true)]
-    [DataRow("old", "oldName", 3, "new", "newName", 3, true)]
-    [DataRow("same", "oldName", 0, "same", "oldName", 1, true)]
-    [DataRow("same", "oldName", 0, "same", "oldName", 2, true)]
-    [DataRow("same", "oldName", 0, "same", "oldName", 3, true)]
-    [DataRow("same", "oldName", 1, "same", "oldName", 0, true)]
-    [DataRow("same", "oldName", 1, "same", "oldName", 2, true)]
-    [DataRow("same", "oldName", 1, "same", "oldName", 3, true)]
-    [DataRow("same", "oldName", 2, "same", "oldName", 0, true)]
-    [DataRow("same", "oldName", 2, "same", "oldName", 1, true)]
-    [DataRow("same", "oldName", 2, "same", "oldName", 3, true)]
-    [DataRow("same", "oldName", 3, "same", "oldName", 0, true)]
-    [DataRow("same", "oldName", 3, "same", "oldName", 1, true)]
-    [DataRow("same", "oldName", 3, "same", "oldName", 2, true)]
-    [DataRow("same", "oldName", 0, "same", "oldName", 0, false)]
-    [DataRow("same", "oldName", 1, "same", "oldName", 1, false)]
-    [DataRow("same", "oldName", 2, "same", "oldName", 2, false)]
-    [DataRow("same", "oldName", 3, "same", "oldName", 3, false)]
-    public void TestHasChanged(string oldPlanTitle, string oldPlanName, int oldPlanMaxTier,
-        string newPlanTitle, string newPlanName, int newPlanMaxTier, bool expectedResult)
+    [DataRow("old", "oldName", 0, false, "new", "newName", 2, false, true)]
+    [DataRow("old", "oldName", 2, false, "new", "newName", 0, false, true)]
+    [DataRow("old", "oldName", 0, false, "new", "newName", 0, false, true)]
+    [DataRow("old", "oldName", 1, false, "new", "newName", 1, false, true)]
+    [DataRow("old", "oldName", 2, false, "new", "newName", 2, false, true)]
+    [DataRow("old", "oldName", 3, false, "new", "newName", 3, false, true)]
+    [DataRow("same", "oldName", 0, false, "same", "oldName", 1, false, true)]
+    [DataRow("same", "oldName", 0, false, "same", "oldName", 2, false, true)]
+    [DataRow("same", "oldName", 0, false, "same", "oldName", 3, false, true)]
+    [DataRow("same", "oldName", 1, false, "same", "oldName", 0, false, true)]
+    [DataRow("same", "oldName", 1, false, "same", "oldName", 2, false, true)]
+    [DataRow("same", "oldName", 1, false, "same", "oldName", 3, false, true)]
+    [DataRow("same", "oldName", 2, false, "same", "oldName", 0, false, true)]
+    [DataRow("same", "oldName", 2, false, "same", "oldName", 1, false, true)]
+    [DataRow("same", "oldName", 2, false, "same", "oldName", 3, false, true)]
+    [DataRow("same", "oldName", 3, false, "same", "oldName", 0, false, true)]
+    [DataRow("same", "oldName", 3, false, "same", "oldName", 1, false, true)]
+    [DataRow("same", "oldName", 3, false, "same", "oldName", 2, false, true)]
+    [DataRow("same", "oldName", 0, false, "same", "oldName", 0, false, false)]
+    [DataRow("same", "oldName", 1, false, "same", "oldName", 1, false, false)]
+    [DataRow("same", "oldName", 2, false, "same", "oldName", 2, false, false)]
+    [DataRow("same", "oldName", 3, false, "same", "oldName", 3, false, false)]
+    [DataRow("same", "oldName", 0, false, "same", "oldName", 0, true, true)]
+    [DataRow("same", "oldName", 1, false, "same", "oldName", 1, true, true)]
+    [DataRow("same", "oldName", 2, false, "same", "oldName", 2, true, true)]
+    [DataRow("same", "oldName", 3, false, "same", "oldName", 3, true, true)]
+    [DataRow("same", "oldName", 0, true, "same", "oldName", 0, false, true)]
+    [DataRow("same", "oldName", 1, true, "same", "oldName", 1, false, true)]
+    [DataRow("same", "oldName", 2, true, "same", "oldName", 2, false, true)]
+    [DataRow("same", "oldName", 3, true, "same", "oldName", 3, false, true)]
+    [DataRow("same", "oldName", 0, true, "same", "oldName", 0, true, false)]
+    [DataRow("same", "oldName", 1, true, "same", "oldName", 1, true, false)]
+    [DataRow("same", "oldName", 2, true, "same", "oldName", 2, true, false)]
+    [DataRow("same", "oldName", 3, true, "same", "oldName", 3, true, false)]
+    public void TestHasChanged(string oldPlanTitle, string oldPlanName, int oldPlanMaxTier, bool oldPlanIsB2B,
+        string newPlanTitle, string newPlanName, int newPlanMaxTier, bool newPlanIsB2B, bool expectedResult)
     {
-        VpnPlan oldPlan = new(oldPlanTitle, oldPlanName, (sbyte)oldPlanMaxTier);
-        VpnPlan newPlan = new(newPlanTitle, newPlanName, (sbyte)newPlanMaxTier);
+        VpnPlan oldPlan = new(oldPlanTitle, oldPlanName, (sbyte)oldPlanMaxTier, oldPlanIsB2B);
+        VpnPlan newPlan = new(newPlanTitle, newPlanName, (sbyte)newPlanMaxTier, newPlanIsB2B);
         VpnPlanChangedMessage vpnPlanChangedMessage = new(oldPlan, newPlan);
 
         bool result = vpnPlanChangedMessage.HasChanged();
@@ -79,8 +91,8 @@ public class VpnPlanChangedMessageTest
     [DataRow(3, 3, false)]
     public void TestIsDowngrade(int oldPlanMaxTier, int newPlanMaxTier, bool expectedResult)
     {
-        VpnPlan oldPlan = new("test", "test", (sbyte)oldPlanMaxTier);
-        VpnPlan newPlan = new("test", "test", (sbyte)newPlanMaxTier);
+        VpnPlan oldPlan = new("test", "test", (sbyte)oldPlanMaxTier, false);
+        VpnPlan newPlan = new("test", "test", (sbyte)newPlanMaxTier, false);
         VpnPlanChangedMessage vpnPlanChangedMessage = new(oldPlan, newPlan);
 
         bool result = vpnPlanChangedMessage.IsDowngrade();
@@ -107,8 +119,8 @@ public class VpnPlanChangedMessageTest
     [DataRow(3, 3, false)]
     public void TestIsUpgrade(int oldPlanMaxTier, int newPlanMaxTier, bool expectedResult)
     {
-        VpnPlan oldPlan = new("test", "test", (sbyte)oldPlanMaxTier);
-        VpnPlan newPlan = new("test", "test", (sbyte)newPlanMaxTier);
+        VpnPlan oldPlan = new("test", "test", (sbyte)oldPlanMaxTier, false);
+        VpnPlan newPlan = new("test", "test", (sbyte)newPlanMaxTier, false);
         VpnPlanChangedMessage vpnPlanChangedMessage = new(oldPlan, newPlan);
 
         bool result = vpnPlanChangedMessage.IsUpgrade();
@@ -135,8 +147,8 @@ public class VpnPlanChangedMessageTest
     [DataRow(3, 3, false)]
     public void TestHasMaxTierChanged(int oldPlanMaxTier, int newPlanMaxTier, bool expectedResult)
     {
-        VpnPlan oldPlan = new("test", "test", (sbyte)oldPlanMaxTier);
-        VpnPlan newPlan = new("test", "test", (sbyte)newPlanMaxTier);
+        VpnPlan oldPlan = new("test", "test", (sbyte)oldPlanMaxTier, false);
+        VpnPlan newPlan = new("test", "test", (sbyte)newPlanMaxTier, false);
         VpnPlanChangedMessage vpnPlanChangedMessage = new(oldPlan, newPlan);
 
         bool result = vpnPlanChangedMessage.HasMaxTierChanged();

@@ -86,12 +86,14 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
 
     public List<VpnPlan> VpnPlans { get; } =
     [
-        new("VPN Free", "vpnfree", 0),
-        new("VPN Plus", "vpnplus", 1),
-        new("Proton Unlimited", "bundle2022", 1),
-        new("Proton Visionary", "visionary2022", 1),
-        new("Proton Business", "vpnpro2023", 1),
-        new("Proton Duo", "duo2024", 1),
+        new("VPN Free", "free", 0, false),
+        new("VPN Plus", "vpn", 2, false),
+        new("Proton Unlimited", "bundle", 2, false),
+        new("Proton Duo", "duo", 2, false),
+        new("Proton Family", "family", 2, false),
+        new("Proton Visionary", "visionary", 2, false),
+        new("VPN Business", "vpnpro", 2, true),
+        new("Proton Business", "bundlepro", 2, true),
     ];
 
     public DebugToolsShellViewModel(
@@ -235,7 +237,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     public void SimulatePlanChangedToPlus()
     {
         VpnPlan oldPlan = _settings.VpnPlan;
-        VpnPlan newPlan = new("VPN Plus (simulation)", "vpnplus", 1);
+        VpnPlan newPlan = new("VPN Plus (simulation)", "vpnplus", 1, false);
 
         _settings.VpnPlan = newPlan;
         _eventMessageSender.Send(new VpnPlanChangedMessage(oldPlan, newPlan));
@@ -245,7 +247,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     public void SimulatePlanChangedToFree()
     {
         VpnPlan oldPlan = _settings.VpnPlan;
-        VpnPlan newPlan = new("VPN Free (simulation)", "vpnfree", 0);
+        VpnPlan newPlan = new("VPN Free (simulation)", "vpnfree", 0, false);
 
         _settings.VpnPlan = newPlan;
         _eventMessageSender.Send(new VpnPlanChangedMessage(oldPlan, newPlan));

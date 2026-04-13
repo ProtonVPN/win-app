@@ -3163,7 +3163,8 @@
     <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title" xml:space="preserve">
-    <value>Welcome to Proton Unlimited</value>
+    <value>Welcome to {0}</value>
+    <comment>Title to welcome the user after an account upgrade. {0} is a placeholder for the name of the new plan (eg. Proton Unlimited, Proton Duo, Proton Family).</comment>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description" xml:space="preserve">
     <value>You unlocked all premium Proton VPN, Mail, Calendar, Drive, and Pass features.</value>

@@ -133,7 +133,7 @@ public class VpnPlanUpdater : IVpnPlanUpdater,
     private VpnPlanChangedMessage GetVpnPlanChangeMessage(VpnInfoResponse vpnInfoResponse)
     {
         VpnPlan oldPlan = _settings.VpnPlan;
-        VpnPlan newPlan = new(vpnInfoResponse.PlanTitle, vpnInfoResponse.PlanName, vpnInfoResponse.MaxTier);
+        VpnPlan newPlan = new(vpnInfoResponse.PlanTitle, vpnInfoResponse.PlanName, vpnInfoResponse.MaxTier, vpnInfoResponse.IsBusiness);
         return new(oldPlan: oldPlan, newPlan: newPlan);
     }
 

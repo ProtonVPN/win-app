@@ -59,7 +59,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <TextBlock Style="{StaticResource TitleTextBlockStyle}"
                            HorizontalAlignment="Center"
                            TextAlignment="Center"
-                           Text="{x:Bind ViewModel.Localizer.Get('Dialogs_WelcomeUnlimited_Title')}"
+                           Text="{x:Bind ViewModel.Localizer.GetFormat('Dialogs_WelcomeUnlimited_Title', ViewModel.PlanTitle)}"
                            TextWrapping="Wrap" />
 
                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"

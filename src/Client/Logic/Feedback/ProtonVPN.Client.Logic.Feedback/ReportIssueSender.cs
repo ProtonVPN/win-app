@@ -137,7 +137,7 @@ public class ReportIssueSender : IReportIssueSender
     {
         if (_userAuthenticator.IsLoggedIn)
         {
-            string? vpnPlanTitle = _settings.VpnPlan.Title;
+            string vpnPlanTitle = _settings.VpnPlan.Title;
             return !string.IsNullOrEmpty(vpnPlanTitle)
                 ? vpnPlanTitle
                 : FREE_VPN_PLAN_FIELD_VALUE;
