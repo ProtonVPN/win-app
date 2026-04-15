@@ -18,12 +18,12 @@
  */
 
 using System;
-using System.Diagnostics;
-using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Diagnostics.Eventing.Reader;
 using FlaUI.Core.Capturing;
 using NUnit.Framework;
 

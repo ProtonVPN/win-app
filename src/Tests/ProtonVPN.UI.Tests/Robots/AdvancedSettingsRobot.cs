@@ -21,8 +21,8 @@ using System;
 using System.Linq;
 using FlaUI.Core.Tools;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots;
 

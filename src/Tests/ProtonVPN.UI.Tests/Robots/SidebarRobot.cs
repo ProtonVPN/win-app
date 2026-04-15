@@ -18,17 +18,17 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Threading;
+using System.Collections.Generic;
+using NUnit.Framework;
 using FlaUI.Core.Input;
 using FlaUI.Core.Tools;
 using FlaUI.Core.WindowsAPI;
 using FlaUI.Core.AutomationElements;
-using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
+using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
-using ProtonVPN.UI.Tests.UiTools;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
@@ -184,9 +184,9 @@ public class SidebarRobot
         return this;
     }
 
-    public SidebarRobot ConnectToCountry(string countryCode)
+    public SidebarRobot ConnectToCountry(string countryName)
     {
-        ConnectViaServerList(countryCode);
+        ConnectViaServerList(CountryCodes.GetCode(countryName));
         return this;
     }
 
@@ -220,9 +220,9 @@ public class SidebarRobot
         return this;
     }
 
-    public SidebarRobot DisconnectViaCountry(string country)
+    public SidebarRobot DisconnectViaCountry(string countryName)
     {
-        DisconnectViaSidebarButton(country);
+        DisconnectViaSidebarButton(CountryCodes.GetCode(countryName));
         return this;
     }
 
@@ -275,9 +275,9 @@ public class SidebarRobot
         return this;
     }
 
-    public SidebarRobot ExpandCities(string countryCode)
+    public SidebarRobot ExpandCities(string countryName)
     {
-        Element.ByAutomationId($"Navigate_to_{countryCode}").FindChild(CountryExpanderButton).ExpandItem();
+        Element.ByAutomationId($"Navigate_to_{CountryCodes.GetCode(countryName)}").FindChild(CountryExpanderButton).ExpandItem();
         // Remove when VPNWIN-2599 is implemented. 
         Thread.Sleep(TestConstants.AnimationDelay);
         return this;

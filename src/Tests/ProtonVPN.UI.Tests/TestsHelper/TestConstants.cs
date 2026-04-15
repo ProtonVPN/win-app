@@ -25,7 +25,6 @@ namespace ProtonVPN.UI.Tests.TestsHelper;
 
 public static class TestConstants
 {
-    public const string PORT_CHECKER_API_BASE_URL = "https://portchecker.io/api";
     public const int DEFAULT_HOVER_DURATION_MS = 500;
 
     public static TimeSpan? DefaultElementWaitingTime => TimeSpan.FromSeconds(10);
@@ -58,5 +57,11 @@ public static class TestConstants
         OpenVpnTcp,
         WireGuardTls,
         Smart,
+    }
+
+    public enum SplitTunnelingMode
+    {
+        Exclude,
+        Include,
     }
 }

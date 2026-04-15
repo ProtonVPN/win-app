@@ -28,7 +28,6 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("3")]
 public class DefaultConnectionTests : BaseTest
 {
-    private const string COUNTRY_CODE = "AU";
     private const string COUNTRY_TO_SEARCH = "Australia";
     private const string FASTEST_COUNTRY = "Fastest country";
     private const string STREAMING_PROFILE = "Streaming US";
@@ -59,7 +58,7 @@ public class DefaultConnectionTests : BaseTest
     {
         SidebarRobot
             .SearchFor(COUNTRY_TO_SEARCH)
-            .ConnectToCountry(COUNTRY_CODE);
+            .ConnectToCountry(COUNTRY_TO_SEARCH);
 
         HomeRobot
             .Verify.IsConnected()

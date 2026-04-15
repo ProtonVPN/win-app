@@ -18,11 +18,11 @@
  */
 
 using System;
-using FlaUI.Core.AutomationElements;
 using FlaUI.UIA3;
+using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots;
 

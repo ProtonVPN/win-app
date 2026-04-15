@@ -18,13 +18,13 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
+using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
-using System.Drawing;
+using System.Runtime.InteropServices;
 using FlaUI.Core.AutomationElements;
-using ProtonVPN.UI.Tests.UiTools.Interop;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.UiTools.Interop;
 
 namespace ProtonVPN.UI.Tests.UiTools;
 

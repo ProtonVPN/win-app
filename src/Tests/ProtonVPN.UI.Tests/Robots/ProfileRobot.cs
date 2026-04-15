@@ -20,11 +20,11 @@
 using System;
 using System.Linq;
 using System.Threading;
-using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Definitions;
+using FlaUI.Core.AutomationElements;
 using ProtonVPN.UI.Tests.Enums;
-using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots;
 

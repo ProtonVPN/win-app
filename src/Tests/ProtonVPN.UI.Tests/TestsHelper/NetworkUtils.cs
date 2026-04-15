@@ -18,16 +18,16 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.NetworkInformation;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using FlaUI.Core.Tools;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
+using FlaUI.Core.Tools;
 using NUnit.Framework;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;

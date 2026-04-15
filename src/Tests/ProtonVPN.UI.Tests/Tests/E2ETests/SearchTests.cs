@@ -30,7 +30,6 @@ public class SearchTests : FreshSessionSetUp
 {
     private const string COUNTRY_TO_SEARCH = "United States";
     private const string STATE = "Arizona";
-    private const string COUNTRY_CODE = "US";
 
     private const string CITY = "Berlin";
     private const string SERVER = "FR#223";
@@ -48,13 +47,13 @@ public class SearchTests : FreshSessionSetUp
     {
         SidebarRobot
             .SearchFor(COUNTRY_TO_SEARCH)
-            .ConnectToCountry(COUNTRY_CODE);
+            .ConnectToCountry(COUNTRY_TO_SEARCH);
 
         HomeRobot
             .Verify.IsConnected();
 
         SidebarRobot
-            .DisconnectViaCountry(COUNTRY_CODE);
+            .DisconnectViaCountry(COUNTRY_TO_SEARCH);
 
         HomeRobot
             .Verify.IsDisconnected();
@@ -65,7 +64,7 @@ public class SearchTests : FreshSessionSetUp
     {
         SidebarRobot
             .SearchFor(COUNTRY_TO_SEARCH)
-            .ExpandCities(COUNTRY_CODE)
+            .ExpandCities(COUNTRY_TO_SEARCH)
             .ConnectToCity(STATE);
 
         HomeRobot
@@ -83,7 +82,7 @@ public class SearchTests : FreshSessionSetUp
     {
         SidebarRobot
             .SearchFor(COUNTRY_TO_SEARCH)
-            .ExpandCities(COUNTRY_CODE)
+            .ExpandCities(COUNTRY_TO_SEARCH)
             .ExpandSpecificServerList()
             .ConnectToServer();
 

@@ -18,8 +18,8 @@
  */
 
 using System.Net.Sockets;
-using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Tools;
+using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.UiTools;
 

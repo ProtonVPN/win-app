@@ -66,7 +66,9 @@ public class HomeRobot
 
     public HomeRobot DismissWelcomeModal()
     {
-        GetStartedButton.Click();
+        Thread.Sleep(TestConstants.AnimationDelay);
+        GetStartedButton.ClickUntilElementDisappears();
+        Thread.Sleep(TestConstants.AnimationDelay);
         return this;
     }
 

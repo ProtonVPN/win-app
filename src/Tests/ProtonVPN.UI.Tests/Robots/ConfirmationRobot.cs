@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
 using System.Threading;
+using System.Collections.Generic;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots;
 

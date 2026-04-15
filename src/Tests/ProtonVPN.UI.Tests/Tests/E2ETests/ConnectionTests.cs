@@ -295,7 +295,7 @@ public class ConnectionTests : FreshSessionSetUp
             .Verify.IsOnHomePage()
                    .IsOnConnectionsPage();
 
-        SearchAndConnectToCountry(tab, out string countryCode);
+        SearchAndConnectToCountry(tab, out string countryName);
 
         string ipAfterConnection = NetworkUtils.GetIpAddressWithRetry();
 
@@ -306,7 +306,7 @@ public class ConnectionTests : FreshSessionSetUp
             .Verify.IsOnConnectionDetailsPage();
 
         SidebarRobot
-            .DisconnectViaCountry(countryCode);
+            .DisconnectViaCountry(countryName);
 
         HomeRobot
             .Verify.IsDisconnected();
@@ -316,21 +316,20 @@ public class ConnectionTests : FreshSessionSetUp
         NetworkUtils.VerifyIpAddressMatchesWithRetry(ipBeforeConnection);
     }
 
-    private void SearchAndConnectToCountry(CountryTab tab, out string countryCode)
+    private void SearchAndConnectToCountry(CountryTab tab, out string countryName)
     {
-        countryCode = string.Empty;
+        countryName = string.Empty;
         string failureMessages = string.Empty;
 
         foreach (string country in _countries)
         {
             try
             {
-                countryCode = CountryCodes.GetCode(country);
-
+                countryName = country;
                 SidebarRobot
                     .SearchFor(country)
-                     .NavigateToCountriesTabAfterSearch(tab)
-                    .ConnectToCountry(countryCode);
+                    .NavigateToCountriesTabAfterSearch(tab)
+                    .ConnectToCountry(country);
 
                 HomeRobot
                     .Verify.IsConnected();
@@ -341,7 +340,7 @@ public class ConnectionTests : FreshSessionSetUp
             }
             catch (AssertionException e)
             {
-                failureMessages += $"Failed to connect to {countryCode} ({tab}): {e.Message}\n";
+                failureMessages += $"Failed to connect to {country} ({tab}): {e.Message}\n";
             }
         }
 

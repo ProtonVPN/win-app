@@ -17,13 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using FlaUI.Core.Tools;
+using System;
+using System.Diagnostics;
+using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using FlaUI.Core.Tools;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 public class SliHelper

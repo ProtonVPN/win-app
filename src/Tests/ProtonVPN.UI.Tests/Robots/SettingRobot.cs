@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
 using System.Threading;
+using System.Collections.Generic;
 using FlaUI.Core.Input;
 using FlaUI.Core.WindowsAPI;
 using NUnit.Framework;
@@ -93,7 +93,7 @@ public class SettingRobot
     public SettingRobot OpenSettings()
     {
         Thread.Sleep(TestConstants.NavigationDelay);
-        SettingsButton.Click();
+        SettingsButton.ClickUntilElementDisappears();
         Thread.Sleep(TestConstants.NavigationDelay);
         return this;
     }

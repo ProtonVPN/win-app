@@ -18,17 +18,17 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
+using System.Drawing;
 using System.Threading;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using FlaUI.Core.Input;
+using FlaUI.Core.Tools;
+using FlaUI.Core.Patterns;
+using FlaUI.Core.Conditions;
 using FlaUI.Core.Definitions;
 using FlaUI.Core.AutomationElements;
-using FlaUI.Core.Conditions;
-using FlaUI.Core.Input;
-using FlaUI.Core.Patterns;
-using FlaUI.Core.Tools;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -42,6 +42,21 @@ public static class UiActions
         AutomationElement? elementToClick = WaitUntilExists(desiredElement, TestConstants.EighteenSecondsTimeout, retryIntervalOverload);
         elementToClick?.WaitUntilClickable(TestConstants.EighteenSecondsTimeout);
         elementToClick?.Click();
+        return desiredElement;
+    }
+
+    public static T ClickUntilElementDisappears<T>(this T desiredElement, TimeSpan? retryIntervalOverload = null) where T : Element
+    {
+        AutomationElement? elementToClick = WaitUntilExists(desiredElement, TestConstants.EighteenSecondsTimeout, retryIntervalOverload);
+        elementToClick?.WaitUntilClickable(TestConstants.EighteenSecondsTimeout);
+
+        DateTime timeoutDate = DateTime.UtcNow + TestConstants.FiveSecondsTimeout;
+        while (FindFirstDescendantUsingChildren(desiredElement.Condition) != null && (DateTime.UtcNow < timeoutDate))
+        {
+            elementToClick?.Click();
+            Thread.Sleep(TestConstants.AnimationDelay);
+        }
+
         return desiredElement;
     }
 
@@ -166,24 +181,44 @@ public static class UiActions
     public static T SelectDropdownItem<T>(this T desiredElement, string itemToSelect, string? specificInfo = null) where T : Element
     {
         AutomationElement? element = WaitUntilExists(desiredElement);
-        ComboBoxItem[]? items = element.AsComboBox()?.Items;
+        ComboBox? comboBox = element.AsComboBox();
 
-        if (items == null || items.Length == 0)
+        if (comboBox?.Items == null || comboBox.Items.Length == 0)
         {
             throw new Exception($"Dropdown '{desiredElement}' has no items.");
         }
 
-        foreach (ComboBoxItem item in items)
+        DateTime timeoutDate = DateTime.UtcNow + TestConstants.TenSecondsTimeout;
+        while (DateTime.UtcNow < timeoutDate)
         {
-            IEnumerable<string> textNames = item.FindAllDescendants(cf => cf.ByControlType(ControlType.Text)).Select(t => t.Name);
+            Keyboard.Type(FlaUI.Core.WindowsAPI.VirtualKeyShort.NEXT);
+            Thread.Sleep(TestConstants.NavigationDelay);
 
-            bool primaryMatch = textNames.Any(t => t == itemToSelect);
-            bool secondaryMatch = specificInfo == null || textNames.Any(t => t == specificInfo);
+            ComboBoxItem[]? items = comboBox.Items;
 
-            if (primaryMatch && secondaryMatch)
+            bool isItemInView = items.Any(item => item.FindAllDescendants(cf => cf.ByControlType(ControlType.Text)).Select(t => t.Name).Any(t => t == itemToSelect));
+
+            if (isItemInView)
             {
-                item.Click();
-                return desiredElement;
+                foreach (ComboBoxItem item in items)
+                {
+                    IEnumerable<string> textNames = item.FindAllDescendants(cf => cf.ByControlType(ControlType.Text)).Select(t => t.Name);
+
+                    bool primaryMatch = textNames.Any(t => t == itemToSelect);
+                    bool secondaryMatch = specificInfo == null || textNames.Any(t => t == specificInfo);
+
+                    if (primaryMatch && secondaryMatch)
+                    {
+                        while (item.IsOffscreen)
+                        {
+                            Keyboard.Type(FlaUI.Core.WindowsAPI.VirtualKeyShort.NEXT);
+                            Thread.Sleep(TestConstants.NavigationDelay);
+                        }
+
+                        item.Click();
+                        return desiredElement;
+                    }
+                }
             }
         }
 

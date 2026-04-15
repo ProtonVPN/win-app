@@ -18,10 +18,10 @@
  */
 
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.Annotations;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.Annotations;
 
 namespace ProtonVPN.UI.Tests.Tests.SliTests;
 

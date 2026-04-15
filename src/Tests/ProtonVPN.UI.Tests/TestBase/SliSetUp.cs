@@ -18,8 +18,8 @@
  */
 
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.ApiClient.TestEnv;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.ApiClient.TestEnv;
 
 namespace ProtonVPN.UI.Tests.TestBase;
 
