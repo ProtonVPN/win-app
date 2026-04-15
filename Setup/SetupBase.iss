@@ -63,7 +63,7 @@ DisableReadyPage=yes
 DirExistsWarning=no
 VersionInfoProductTextVersion={#MyAppVersion}-{#hash}
 VersionInfoVersion={#MyAppVersion}
-AppCopyright=© 2022 {#MyPublisher}
+AppCopyright=Â© 2022 {#MyPublisher}
 
 SignTool=signtool sign /a /tr http://timestamp.sectigo.com /td SHA256 /fd SHA256 $f
 
@@ -744,8 +744,8 @@ begin
     if RegQueryStringValue(HKEY_LOCAL_MACHINE, RegistryPath, 'Version', Version) then begin
       if (Length(Version) > 0) and (Version[1] = 'v') then
         Delete(Version, 1, 1);
-      if CompareVersions(Version, '14.50.35719.0') >= 0 then begin
-        Log('The latest visual c++ redistributable package is already installed, skipping.');
+      if CompareVersions(Version, '14.50.35719.0') > 0 then begin
+        Log('A more recent visual c++ redistributable package is already installed, skipping.');
         Exit;
       end;
     end;
