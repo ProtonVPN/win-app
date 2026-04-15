@@ -2101,11 +2101,8 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Velkommen til VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Gratulerer! Du låste opp premium sikkerhets- og ytelsesfunksjoner på alle Proton-tjenester.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Nyt det beste av Protons personvern.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Velkommen til Proton Unlimited</value>

@@ -26,6 +26,8 @@ public class VpnPlanNameDimensionMapper : DimensionMapperBase, IVpnPlanNameDimen
 {
     public string Map(VpnPlan? vpnPlan)
     {
-        return vpnPlan?.Name ?? NOT_AVAILABLE;
+        return string.IsNullOrEmpty(vpnPlan?.Name)
+            ? NOT_AVAILABLE
+            : vpnPlan.Value.Name;
     }
 }

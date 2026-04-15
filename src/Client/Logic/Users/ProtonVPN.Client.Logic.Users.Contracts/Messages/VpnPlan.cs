@@ -21,42 +21,30 @@ namespace ProtonVPN.Client.Logic.Users.Contracts.Messages;
 
 public readonly struct VpnPlan
 {
-    public static VpnPlan Default => new(null, null, 0);
+    public static VpnPlan Default => new(string.Empty, string.Empty, 0, false);
 
-    public string? Title { get; }
-    public string? Name { get; }
+    public string Title { get; }
+    public string Name { get; }
     public bool IsPaid { get; }
     public sbyte MaxTier { get; }
+    public bool IsB2B { get; }
 
-    public VpnPlan(string? title, string? name, sbyte maxTier)
+    public VpnPlan(string title, string name, sbyte maxTier, bool isB2B)
     {
-        Title = title;
-        Name = name;
+        Title = title ?? string.Empty;
+        Name = name ?? string.Empty;
         IsPaid = maxTier > 0;
         MaxTier = maxTier;
+        IsB2B = isB2B;
     }
 
-    public bool IsPlus => Name is "vpnplus" or "vpn2022" or "vpnpass2023" or "vpn2024";
+    public bool IsDefaultPlan => string.IsNullOrEmpty(Title) && string.IsNullOrEmpty(Name) && MaxTier == 0;
 
-    public bool IsDuo => Name is "duo2024";
+    public bool IsFreePlan => !IsDefaultPlan && !IsPaid;
 
-    public bool IsFamily => Name is "family2022";
+    public bool IsVpnPlan => !IsDefaultPlan && IsPaid && Name.Contains("vpn", StringComparison.OrdinalIgnoreCase);
 
-    public bool IsUnlimited => Name == "bundle2022";
+    public bool IsProtonPlan => !IsDefaultPlan && IsPaid && !IsVpnPlan;
 
-    public bool IsVisionary => Name == "visionary2022";
-
-
-    public bool IsBusinessVpn => Name is "vpnpro2023" or "vpnbiz2023" or "vpnpassbiz2025";
-
-    public bool IsBusinessBundle => Name is "bundlepro2022" or "bundlepro2024" or "bundlebiz2025";
-
-
-    public bool IsDefault => Title is null && Name is null && MaxTier == 0;
-
-    public bool IsB2B => IsBusinessVpn || IsBusinessBundle;
-
-    public bool IsVpnPlan => IsPlus || IsBusinessVpn;
-
-    public bool IsProtonPlan => IsDuo || IsFamily || IsUnlimited || IsVisionary || IsBusinessBundle;
+    public bool IsPaidB2CPlan => !IsDefaultPlan && IsPaid && !IsB2B;
 }

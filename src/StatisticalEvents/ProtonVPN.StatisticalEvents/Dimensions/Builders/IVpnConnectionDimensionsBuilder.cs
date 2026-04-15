@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -26,4 +26,8 @@ namespace ProtonVPN.StatisticalEvents.Dimensions.Builders;
 public interface IVpnConnectionDimensionsBuilder : IDimensionsBuilder
 {
     Dictionary<string, string> Build(VpnConnectionEventData eventData);
+
+    Dictionary<string, string> BuildConnectionDimensions(VpnConnectionEventData eventData);
+
+    Dictionary<string, string> BuildDisconnectionDimensions(VpnConnectionEventData eventData);
 }

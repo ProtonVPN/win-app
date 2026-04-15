@@ -1277,6 +1277,10 @@
     <value>Samoa</value>
     <comment>The name of WS country</comment>
   </data>
+  <data name="Country_val_XK" xml:space="preserve">
+    <value>Kosovo</value>
+    <comment>The name of XK country</comment>
+  </data>
   <data name="Country_val_YE" xml:space="preserve">
     <value>Yemen</value>
     <comment>The name of YE country</comment>
@@ -3186,13 +3190,11 @@
     <value>Simple. Seamless. Secure. Protect yourself online and securely access your organization's sites, software, and files.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title" xml:space="preserve">
-    <value>Welcome to Proton Unlimited</value>
+    <value>Welcome to {0}</value>
+    <comment>Title to welcome the user after an account upgrade. {0} is a placeholder for the name of the new plan (eg. Proton Unlimited, Proton Duo, Proton Family).</comment>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1" xml:space="preserve">
-    <value>Congratulations! You unlocked premium security and performance features on all Proton services.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2" xml:space="preserve">
-    <value>Enjoy the best of Proton privacy.</value>
+  <data name="Dialogs_WelcomeUnlimited_Description" xml:space="preserve">
+    <value>You unlocked all premium Proton VPN, Mail, Calendar, Drive, and Pass features.</value>
   </data>
   <data name="Dialogs_BaseFilteringEngine_Title" xml:space="preserve">
     <value>Enable Base Filtering Engine to continue</value>

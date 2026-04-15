@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -38,7 +38,7 @@ public class P2PDetectionWindowActivator : DialogActivatorBase<P2PDetectionWindo
     IEventMessageReceiver<VpnPlanChangedMessage>
 {
     private readonly IEventMessageSender _eventMessageSender;
-    private readonly IUpsellDisplayStatisticalEventSender _upsellDisplayStatisticalEventSender;
+    private readonly IUpsellDisplayReporter _upsellDisplayReporter;
 
     public override string WindowTitle => Localizer.Get("Dialogs_P2PDetection_WindowTitle");
 
@@ -52,7 +52,7 @@ public class P2PDetectionWindowActivator : DialogActivatorBase<P2PDetectionWindo
         ILocalizationProvider localizer,
         IApplicationIconSelector iconSelector,
         IMainWindowActivator mainWindowActivator,
-        IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender)
+        IUpsellDisplayReporter upsellDisplayReporter)
         : base(logger,
                uiThreadDispatcher,
                themeSelector,
@@ -63,14 +63,14 @@ public class P2PDetectionWindowActivator : DialogActivatorBase<P2PDetectionWindo
                mainWindowActivator)
     {
         _eventMessageSender = eventMessageSender;
-        _upsellDisplayStatisticalEventSender = upsellDisplayStatisticalEventSender;
+        _upsellDisplayReporter = upsellDisplayReporter;
     }
 
     protected override void OnWindowOpened()
     {
         base.OnWindowOpened();
 
-        _upsellDisplayStatisticalEventSender.Send(ModalSource.P2PActivity);
+        _upsellDisplayReporter.Report(ModalSource.P2PActivity);
     }
 
     protected override void OnWindowHidden()

@@ -2102,11 +2102,8 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Us donem la benvinguda a VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Enhorabona! Heu desblocat funcions de seguretat i rendiment prèmium a tots els serveis del Proton.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Gaudiu del millor de la privadesa de Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Us donem la benvinguda al Proton Unlimited</value>

@@ -115,19 +115,21 @@ public class WelcomeOverlayHandler : IHandler,
 
     public void Receive(VpnPlanChangedMessage message)
     {
-        if (!_userAuthenticator.IsLoggedIn)
+        VpnPlan plan = message.NewPlan;
+
+        if (!_userAuthenticator.IsLoggedIn || message.IsDowngrade() || !plan.IsPaidB2CPlan)
         {
             return;
         }
 
         _uiThreadDispatcher.TryEnqueue(async () =>
         {
-            if (_settings.VpnPlan.IsPlus && !_settings.WasWelcomePlusOverlayDisplayed)
+            if (plan.IsVpnPlan && !_settings.WasWelcomePlusOverlayDisplayed)
             {
                 _settings.WasWelcomePlusOverlayDisplayed = true;
                 await _mainWindowOverlayActivator.ShowWelcomeToVpnPlusOverlayAsync();
             }
-            else if (_settings.VpnPlan.IsUnlimited && !_settings.WasWelcomeUnlimitedOverlayDisplayed)
+            else if (plan.IsProtonPlan && !_settings.WasWelcomeUnlimitedOverlayDisplayed)
             {
                 _settings.WasWelcomeUnlimitedOverlayDisplayed = true;
                 await _mainWindowOverlayActivator.ShowWelcomeToVpnUnlimitedOverlayAsync();

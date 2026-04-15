@@ -2101,11 +2101,8 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Üdvözli a VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Gratulálunk! Ön feloldotta a prémium biztonsági és teljesítményfunkciókat az összes Proton szolgáltatásban.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Élvezze a Proton magánéletének legjavát.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Üdvözli a Proton Unlimited</value>

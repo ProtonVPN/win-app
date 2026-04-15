@@ -83,8 +83,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                     Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
                     <TextBlock Grid.Column="1"
+                               AutomationProperties.AutomationId="ConnectionItemsHeader"
                                VerticalAlignment="Center"
-                                    IsTabStop="False"
+                               IsTabStop="False"
                                Foreground="{ThemeResource TextWeakColorBrush}"
                                Style="{StaticResource BodyTextBlockStyle}"
                                Text="{x:Bind Header}"

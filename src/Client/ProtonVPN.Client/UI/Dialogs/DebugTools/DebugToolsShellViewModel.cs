@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -37,6 +37,9 @@ using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Dialogs.DebugTools.Models;
+using ProtonVPN.Client.UI.Main.Map;
+using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.StatisticalEvents.Contracts;
 
@@ -52,9 +55,10 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     private readonly ISettings _settings;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IAppExitInvoker _appExitInvoker;
-    private readonly ISettingsHeartbeatStatisticalEventSender _settingsHeartbeatStatisticalEventSender;
+    private readonly ISettingsHeartbeatReporter _settingsHeartbeatReporter;
     private readonly IEnumerable<IWindowActivator> _windowActivators;
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
+    private readonly ICoordinatesProvider _coordinatesProvider;
 
     [ObservableProperty]
     private Overlay _selectedOverlay;
@@ -82,12 +86,14 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
 
     public List<VpnPlan> VpnPlans { get; } =
     [
-        new("VPN Free", "vpnfree", 0),
-        new("VPN Plus", "vpnplus", 1),
-        new("Proton Unlimited", "bundle2022", 1),
-        new("Proton Visionary", "visionary2022", 1),
-        new("Proton Business", "vpnpro2023", 1),
-        new("Proton Duo", "duo2024", 1),
+        new("VPN Free", "free", 0, false),
+        new("VPN Plus", "vpn", 2, false),
+        new("Proton Unlimited", "bundle", 2, false),
+        new("Proton Duo", "duo", 2, false),
+        new("Proton Family", "family", 2, false),
+        new("Proton Visionary", "visionary", 2, false),
+        new("VPN Business", "vpnpro", 2, true),
+        new("Proton Business", "bundlepro", 2, true),
     ];
 
     public DebugToolsShellViewModel(
@@ -101,9 +107,10 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         IDebugToolsWindowActivator windowActivator,
         IViewModelHelper viewModelHelper,
         IAppExitInvoker appExitInvoker,
-        ISettingsHeartbeatStatisticalEventSender settingsHeartbeatStatisticalEventSender,
+        ISettingsHeartbeatReporter settingsHeartbeatReporter,
         IEnumerable<IWindowActivator> windowActivators,
-        IVpnPlanUpdater vpnPlanUpdater)
+        IVpnPlanUpdater vpnPlanUpdater,
+        ICoordinatesProvider coordinatesProvider)
         : base(windowActivator, viewModelHelper)
     {
         _serversUpdater = serversUpdater;
@@ -114,9 +121,10 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         _settings = settings;
         _eventMessageSender = eventMessageSender;
         _appExitInvoker = appExitInvoker;
-        _settingsHeartbeatStatisticalEventSender = settingsHeartbeatStatisticalEventSender;
+        _settingsHeartbeatReporter = settingsHeartbeatReporter;
         _windowActivators = windowActivators;
         _vpnPlanUpdater = vpnPlanUpdater;
+        _coordinatesProvider = coordinatesProvider;
 
         OverlaysList =
         [
@@ -229,7 +237,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     public void SimulatePlanChangedToPlus()
     {
         VpnPlan oldPlan = _settings.VpnPlan;
-        VpnPlan newPlan = new("VPN Plus (simulation)", "vpnplus", 1);
+        VpnPlan newPlan = new("VPN Plus (simulation)", "vpnplus", 1, false);
 
         _settings.VpnPlan = newPlan;
         _eventMessageSender.Send(new VpnPlanChangedMessage(oldPlan, newPlan));
@@ -239,7 +247,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     public void SimulatePlanChangedToFree()
     {
         VpnPlan oldPlan = _settings.VpnPlan;
-        VpnPlan newPlan = new("VPN Free (simulation)", "vpnfree", 0);
+        VpnPlan newPlan = new("VPN Free (simulation)", "vpnfree", 0, false);
 
         _settings.VpnPlan = newPlan;
         _eventMessageSender.Send(new VpnPlanChangedMessage(oldPlan, newPlan));
@@ -333,12 +341,34 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     [RelayCommand]
     public Task TriggerSettingsTelemetryHeartbeatAsync()
     {
-        return _settingsHeartbeatStatisticalEventSender.SendAsync();
+        return _settingsHeartbeatReporter.ReportAsync();
     }
 
     [RelayCommand]
     public Task TriggerVpnPlanUpdateAsync()
     {
         return _vpnPlanUpdater.ForceUpdateAsync();
+    }
+
+    [RelayCommand]
+    public void OverrideDeviceLocation(string countryCode)
+    {
+        if (string.IsNullOrEmpty(countryCode) || countryCode.Length != 2)   
+        {
+            return;
+        }
+
+        countryCode = countryCode.NormalizeCountryCode();
+
+        (double Latitude, double Longitude)? coordinates = _coordinatesProvider.GetCountryCoordinates(countryCode);
+
+        _settings.DeviceLocation = new DeviceLocation()
+        {
+            IpAddress = "192.168.0.1",
+            CountryCode = countryCode,
+            Isp = "Mock ISP",
+            Latitude = coordinates?.Latitude,
+            Longitude = coordinates?.Longitude
+        };
     }
 }

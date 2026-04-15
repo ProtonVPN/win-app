@@ -2026,11 +2026,8 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Selamat datang di VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Selamat! Anda telah membuka akses ke berbagai fitur keamanan dan performa premium di seluruh layanan Proton.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Nikmati keunggulan privasi Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Selamat datang di Proton Unlimited</value>

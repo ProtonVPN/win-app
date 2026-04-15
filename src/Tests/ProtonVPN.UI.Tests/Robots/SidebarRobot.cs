@@ -23,6 +23,7 @@ using System.Threading;
 using FlaUI.Core.Input;
 using FlaUI.Core.Tools;
 using FlaUI.Core.WindowsAPI;
+using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.TestBase;
@@ -37,6 +38,7 @@ public class SidebarRobot
     private const int SECURE_CORE_COUNTRIES_TAB_INDEX = 1;
     private const int P2P_COUNTRIES_TAB_INDEX = 2;
     private const int TOR_COUNTRIES_TAB_INDEX = 3;
+    private const int MINIMUM_EXPECTED_COUNTRY_COUNT = 80;
     private const string FASTEST_PROFILE = "Fastest";
 
     protected Element SidebarComponent = Element.ByAutomationId("SidebarComponent");
@@ -83,6 +85,12 @@ public class SidebarRobot
 
     protected Element ConnectToSpecificServer = Element.ByAutomationId("Connect_to_Specific_Server");
     protected Element DisconnectFromSpecificServer = Element.ByAutomationId("Disconnect_from_Specific_Server");
+
+    protected Element CountriesListGroup = Element.ByClassName("ListViewHeaderItem");
+    protected Element ConnectionItemsHeader = Element.ByAutomationId("ConnectionItemsHeader");
+    protected Element CountryItem = Element.ByClassName("ListViewItem");
+
+    protected Element DisconnectBtnOnHover = Element.ByAutomationId("ConnectionRowAction").And(Element.ByName("Disconnect"));
 
     public SidebarRobot NavigateToCountries()
     {
@@ -151,6 +159,22 @@ public class SidebarRobot
         Element countryButton = Element.ByAutomationId($"Connect_to_{connectionValue}");
         countryButton.ScrollIntoView();
         countryButton.FindChild(Element.ByAutomationId("ConnectionRowHeader")).Click();
+        return this;
+    }
+
+    public SidebarRobot ConnectViaSecureCore(string countryName, string viaCountry)
+    {
+        Element countryButton = Element.ByAutomationId($"Connect_to_{countryName}");
+        countryButton.ScrollIntoView();
+        Element.ByName(viaCountry).Click();
+        return this;
+    }
+
+    public SidebarRobot DisconnectViaSecureCore(string countryName, string viaCountry)
+    {
+        Element countryButton = Element.ByAutomationId($"Disconnect_from_{countryName}");
+        countryButton.ScrollIntoView();
+        countryButton.FindChild(Element.ByName(viaCountry)).Click();
         return this;
     }
 
@@ -251,9 +275,9 @@ public class SidebarRobot
         return this;
     }
 
-    public SidebarRobot ExpandCities()
+    public SidebarRobot ExpandCities(string countryCode)
     {
-        CountryExpanderButton.ExpandItem();
+        Element.ByAutomationId($"Navigate_to_{countryCode}").FindChild(CountryExpanderButton).ExpandItem();
         // Remove when VPNWIN-2599 is implemented. 
         Thread.Sleep(TestConstants.AnimationDelay);
         return this;
@@ -403,6 +427,18 @@ public class SidebarRobot
 
     public class Verifications : SidebarRobot
     {
+        public Verifications AreAllServersDisplayed()
+        {
+            string totalCountries = ConnectionItemsHeader.GetAutomationElementName()!;
+            int totalCountriesCount = int.Parse(totalCountries.Split('(', ')')[1]);
+            Assert.That(totalCountriesCount, Is.GreaterThan(MINIMUM_EXPECTED_COUNTRY_COUNT));
+            CountryItem.WaitUntilItemDisplayed(0);
+            ConnectionItemsList.Scroll(verticalPercent: 50);
+            ConnectionItemsList.Scroll(verticalPercent: 100);
+            CountryItem.WaitUntilItemDisplayed(-1);
+            return this;
+        }
+
         public SidebarRobot IsBackBtnInSearchBoxDisplayed()
         {
             SearchTextBox.FindChild(SearchBackButton).WaitUntilDisplayed();
@@ -419,6 +455,22 @@ public class SidebarRobot
         {
             List<string> allChildren = SearchResultsPage.GetAllChildrenNames();
             Assert.That(allChildren, Does.Contain(textToLookFor));
+            return this;
+        }
+
+        public Verifications IsGreenDotDisplayed(string connectionValue)
+        {
+            AutomationElement[] greenDotWhileConnected = Element.ByAutomationId($"Disconnect_from_{connectionValue}").GetControlType(FlaUI.Core.Definitions.ControlType.Custom);
+            if (greenDotWhileConnected.Length == 0)
+            {
+                Assert.Fail("Green dot is not present");
+            }
+            return this;
+        }
+
+        public Verifications IsDisconnectBtnOnHoverDisplayed(string connectionValue)
+        {
+            DisconnectBtnOnHover.WaitUntilDisplayed();
             return this;
         }
 

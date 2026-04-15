@@ -65,7 +65,7 @@ public class SearchTests : FreshSessionSetUp
     {
         SidebarRobot
             .SearchFor(COUNTRY_TO_SEARCH)
-            .ExpandCities()
+            .ExpandCities(COUNTRY_CODE)
             .ConnectToCity(STATE);
 
         HomeRobot
@@ -83,7 +83,7 @@ public class SearchTests : FreshSessionSetUp
     {
         SidebarRobot
             .SearchFor(COUNTRY_TO_SEARCH)
-            .ExpandCities()
+            .ExpandCities(COUNTRY_CODE)
             .ExpandSpecificServerList()
             .ConnectToServer();
 

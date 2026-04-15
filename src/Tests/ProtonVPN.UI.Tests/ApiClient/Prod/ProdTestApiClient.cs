@@ -74,8 +74,8 @@ public class ProdTestApiClient
 
     public async Task<JArray?> GetLogicalServersLoggedInAsync(string username, SecureString password)
     {
-        TestUserAuthenticator _userAuthenticator = new();
-        await _userAuthenticator.CreateSessionAsync(username, password);
+        TestUserAuthenticator userAuthenticator = new();
+        await userAuthenticator.CreateSessionAsync(username, password);
 
         HttpRequestMessage request = GetAuthorizedRequestMessage(HttpMethod.Get, "/vpn/logicals?SignServer=Server.EntryIP,Server.Label", AcessToken, UID);
         HttpResponseMessage response = await _client.SendAsync(request);

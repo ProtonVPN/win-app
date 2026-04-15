@@ -2101,11 +2101,8 @@ En høj serverbelastning kan gøre din forbindelse langsommere.</value>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Velkommen til VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Tillykke! Du har aktiveret premium sikkerheds- og ydeevnefunktioner på alle Proton-tjenester.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Nyd det bedste af Proton privatlivsbeskyttelse.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Velkommen til Proton Unlimited</value>

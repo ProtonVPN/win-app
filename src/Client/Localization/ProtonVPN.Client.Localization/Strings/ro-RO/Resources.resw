@@ -2176,11 +2176,8 @@ O sarcină mare a serverului vă poate încetini conexiunea.</value>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Bun venit la VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Felicitări! Ați deblocat funcțiile de securitate și performanță premium în toate serviciile Proton.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Bucurați-vă de cea mai bună confidențialitate cu Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Bun venit la Proton Unlimited</value>

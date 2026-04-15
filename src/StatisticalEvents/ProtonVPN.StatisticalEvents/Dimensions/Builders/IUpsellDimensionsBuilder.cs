@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2025 Proton AG
+/*
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -28,5 +28,9 @@ public interface IUpsellDimensionsBuilder : IDimensionsBuilder
 {
     Dictionary<string, string> Build(ModalSource modalSource, string? reference = null);
 
-    Dictionary<string, string> Build(ModalSource modalSource, VpnPlan oldPlan, VpnPlan newPlan, string? reference = null);
+    Dictionary<string, string> BuildAttemptDimensions();
+
+    Dictionary<string, string> BuildDisplayDimensions();
+
+    Dictionary<string, string> BuildSuccessDimensions(string url, VpnPlan oldPlan, VpnPlan newPlan);
 }

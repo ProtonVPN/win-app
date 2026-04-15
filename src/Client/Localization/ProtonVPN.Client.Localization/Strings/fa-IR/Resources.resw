@@ -2101,11 +2101,8 @@ Error code: {0}</value>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>به VPN Plus خوش آمدید</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>تبریک! شما به ویژگی‌های پریمیوم امنیت و عملکرد در تمام سرویس‌های Proton دسترسی پیدا کردید.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>از بهترین حریم خصوصی Proton لذت ببرید.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>به Proton Unlimited خوش آمدید</value>

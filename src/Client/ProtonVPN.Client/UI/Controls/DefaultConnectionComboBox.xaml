@@ -187,6 +187,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     </UserControl.Resources>
 
     <ComboBox x:Name="InternalComboBox"
+              AutomationProperties.AutomationId="DefaultConnectionDropdown"
               HorizontalAlignment="Stretch"
               ItemTemplateSelector="{StaticResource DefaultConnectionItemTemplateSelector}"
               ItemContainerStyleSelector="{StaticResource DefaultConnectionItemContainerStyleSelector}"

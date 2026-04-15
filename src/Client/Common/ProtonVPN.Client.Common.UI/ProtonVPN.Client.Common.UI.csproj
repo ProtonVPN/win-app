@@ -400,11 +400,13 @@
         <None Remove="Assets\Flags\AL.svg" />
         <None Remove="Assets\Flags\AM.svg" />
         <None Remove="Assets\Flags\AO.svg" />
+        <None Remove="Assets\Flags\AQ.svg" />
         <None Remove="Assets\Flags\AR.svg" />
         <None Remove="Assets\Flags\AS.svg" />
         <None Remove="Assets\Flags\AT.svg" />
         <None Remove="Assets\Flags\AU.svg" />
         <None Remove="Assets\Flags\AW.svg" />
+        <None Remove="Assets\Flags\AX.svg" />
         <None Remove="Assets\Flags\AZ.svg" />
         <None Remove="Assets\Flags\BA.svg" />
         <None Remove="Assets\Flags\BB.svg" />
@@ -423,10 +425,12 @@
         <None Remove="Assets\Flags\BR.svg" />
         <None Remove="Assets\Flags\BS.svg" />
         <None Remove="Assets\Flags\BT.svg" />
+        <None Remove="Assets\Flags\BV.svg" />
         <None Remove="Assets\Flags\BW.svg" />
         <None Remove="Assets\Flags\BY.svg" />
         <None Remove="Assets\Flags\BZ.svg" />
         <None Remove="Assets\Flags\CA.svg" />
+        <None Remove="Assets\Flags\CC.svg" />
         <None Remove="Assets\Flags\CD.svg" />
         <None Remove="Assets\Flags\CF.svg" />
         <None Remove="Assets\Flags\CG.svg" />
@@ -441,6 +445,7 @@
         <None Remove="Assets\Flags\CU.svg" />
         <None Remove="Assets\Flags\CV.svg" />
         <None Remove="Assets\Flags\CW.svg" />
+        <None Remove="Assets\Flags\CX.svg" />
         <None Remove="Assets\Flags\CY.svg" />
         <None Remove="Assets\Flags\CZ.svg" />
         <None Remove="Assets\Flags\Dark\Gateway.svg" />
@@ -478,11 +483,13 @@
         <None Remove="Assets\Flags\GP.svg" />
         <None Remove="Assets\Flags\GQ.svg" />
         <None Remove="Assets\Flags\GR.svg" />
+        <None Remove="Assets\Flags\GS.svg" />
         <None Remove="Assets\Flags\GT.svg" />
         <None Remove="Assets\Flags\GU.svg" />
         <None Remove="Assets\Flags\GW.svg" />
         <None Remove="Assets\Flags\GY.svg" />
         <None Remove="Assets\Flags\HK.svg" />
+        <None Remove="Assets\Flags\HM.svg" />
         <None Remove="Assets\Flags\HN.svg" />
         <None Remove="Assets\Flags\HR.svg" />
         <None Remove="Assets\Flags\HT.svg" />
@@ -572,6 +579,7 @@
         <None Remove="Assets\Flags\PL.svg" />
         <None Remove="Assets\Flags\Placeholder.svg" />
         <None Remove="Assets\Flags\PM.svg" />
+        <None Remove="Assets\Flags\PN.svg" />
         <None Remove="Assets\Flags\PR.svg" />
         <None Remove="Assets\Flags\PS.svg" />
         <None Remove="Assets\Flags\PT.svg" />
@@ -591,6 +599,7 @@
         <None Remove="Assets\Flags\SG.svg" />
         <None Remove="Assets\Flags\SH.svg" />
         <None Remove="Assets\Flags\SI.svg" />
+        <None Remove="Assets\Flags\SJ.svg" />
         <None Remove="Assets\Flags\SK.svg" />
         <None Remove="Assets\Flags\SL.svg" />
         <None Remove="Assets\Flags\SM.svg" />
@@ -605,6 +614,7 @@
         <None Remove="Assets\Flags\SZ.svg" />
         <None Remove="Assets\Flags\TC.svg" />
         <None Remove="Assets\Flags\TD.svg" />
+        <None Remove="Assets\Flags\TF.svg" />
         <None Remove="Assets\Flags\TG.svg" />
         <None Remove="Assets\Flags\TH.svg" />
         <None Remove="Assets\Flags\TJ.svg" />
@@ -620,6 +630,7 @@
         <None Remove="Assets\Flags\TZ.svg" />
         <None Remove="Assets\Flags\UA.svg" />
         <None Remove="Assets\Flags\UG.svg" />
+        <None Remove="Assets\Flags\UM.svg" />
         <None Remove="Assets\Flags\US.svg" />
         <None Remove="Assets\Flags\UY.svg" />
         <None Remove="Assets\Flags\UZ.svg" />
@@ -1079,6 +1090,24 @@
         <Resource Remove="Styles\Controls\ContentDialogStyles.xaml" />
     </ItemGroup>
     <ItemGroup>
+        <Content Update="Assets\Flags\AQ.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Flags\AX.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Flags\CC.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Flags\CX.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Flags\GS.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Flags\HM.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
         <Content Update="Assets\Flags\Dark\Latest.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -1101,6 +1130,21 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Flags\Light\Random.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Flags\PN.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Flags\SJ.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Flags\BV.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Flags\TF.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Flags\UM.svg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Icons\App\badge-error-w10.ico">

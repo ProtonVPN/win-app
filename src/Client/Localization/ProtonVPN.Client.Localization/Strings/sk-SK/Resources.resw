@@ -2251,11 +2251,8 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Vitajte vo VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Gratulujeme! Odomkli ste prémiové funkcie zabezpečenia a výkonu všetkých služieb Proton.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Vychutnajte si to najlepšie zo súkromia od Protonu.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Vitajte v Proton Unlimited</value>

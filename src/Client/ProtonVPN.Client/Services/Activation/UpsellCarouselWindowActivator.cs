@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -36,7 +36,7 @@ namespace ProtonVPN.Client.Services.Activation;
 public class UpsellCarouselWindowActivator : DialogActivatorBase<UpsellCarouselWindow>, IUpsellCarouselWindowActivator,
     IEventMessageReceiver<LoggedOutMessage>
 {
-    private readonly IUpsellDisplayStatisticalEventSender _upsellDisplayStatisticalEventSender;
+    private readonly IUpsellDisplayReporter _upsellDisplayReporter;
     private readonly IUpsellCarouselViewNavigator _upsellCarouselViewNavigator;
 
     public override string WindowTitle => Localizer.Get("Upsell_Carousel_Title");
@@ -52,7 +52,7 @@ public class UpsellCarouselWindowActivator : DialogActivatorBase<UpsellCarouselW
         ILocalizationProvider localizer,
         IApplicationIconSelector iconSelector,
         IMainWindowActivator mainWindowActivator,
-        IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender,
+        IUpsellDisplayReporter upsellDisplayReporter,
         IUpsellCarouselViewNavigator upsellCarouselViewNavigator)
         : base(logger,
                uiThreadDispatcher,
@@ -63,7 +63,7 @@ public class UpsellCarouselWindowActivator : DialogActivatorBase<UpsellCarouselW
                iconSelector,
                mainWindowActivator)
     {
-        _upsellDisplayStatisticalEventSender = upsellDisplayStatisticalEventSender;
+        _upsellDisplayReporter = upsellDisplayReporter;
         _upsellCarouselViewNavigator = upsellCarouselViewNavigator;
     }
 
@@ -73,7 +73,7 @@ public class UpsellCarouselWindowActivator : DialogActivatorBase<UpsellCarouselW
 
         SetCorrespondingModalSources(upsellFeatureType);
 
-        _upsellDisplayStatisticalEventSender.Send(ModalSource);
+        _upsellDisplayReporter.Report(ModalSource);
 
         return _upsellCarouselViewNavigator.NavigateToFeatureViewAsync(upsellFeatureType);
     }

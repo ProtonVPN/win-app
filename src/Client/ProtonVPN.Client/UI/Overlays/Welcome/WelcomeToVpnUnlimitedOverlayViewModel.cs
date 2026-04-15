@@ -20,14 +20,22 @@
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Activation;
+using ProtonVPN.Client.Settings.Contracts;
 
 namespace ProtonVPN.Client.UI.Overlays.Welcome;
 
 public class WelcomeToVpnUnlimitedOverlayViewModel : OverlayViewModelBase<IMainWindowOverlayActivator>
 {
+    private readonly ISettings _settings;
+
+    public string PlanTitle => _settings.VpnPlan.Title;
+
     public WelcomeToVpnUnlimitedOverlayViewModel(
         IMainWindowOverlayActivator mainWindowOverlayActivator,
+        ISettings settings,
         IViewModelHelper viewModelHelper)
         : base(mainWindowOverlayActivator, viewModelHelper)
-    { }
+    {
+        _settings = settings;
+    }
 }

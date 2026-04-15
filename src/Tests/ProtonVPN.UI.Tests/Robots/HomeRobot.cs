@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -16,12 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 using System;
 using System.Threading;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.UiTools;
-using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
@@ -57,6 +58,7 @@ public class HomeRobot
     protected Element ServerChangesUpsellLabel = Element.ByName("Get unlimited server changes with VPN Plus.");
     protected Element UpgradeButton = Element.ByName("Upgrade");
     protected Element DefaultConnectionSelectorButton = Element.ByAutomationId("DefaultConnectionSelectorButton");
+    protected Element DefaultConnectionDropdown = Element.ByAutomationId("DefaultConnectionDropdown");
     protected Element CustomizeCardConnectionTitleLabel = Element.ByName("Default connection");
     protected Element ProtectedLabelAdvancedKillSwitch = Element.ByName("Advanced kill switch activated");
     protected Element ShowIpFlyoutButton => Element.ByAutomationId("ShowIpFlyoutButton");
@@ -168,7 +170,7 @@ public class HomeRobot
         return this;
     }
 
-    public HomeRobot SelectVpnConnectionOption(VpnConnectionOptions option)
+    public HomeRobot SelectDefaultConnectionOption(VpnConnectionOptions option)
     {
         DefaultConnectionSelectorButton.Click();
         Thread.Sleep(TestConstants.AnimationDelay);
@@ -178,12 +180,20 @@ public class HomeRobot
             VpnConnectionOptions.Fast => "Fastest country",
             VpnConnectionOptions.Random => "Random country",
             VpnConnectionOptions.Last => "Last connection",
-            _ => throw new System.NotImplementedException($"VpnConnectionOption '{option}' is not supported on the home page ComboBox."),
+            _ => throw new NotImplementedException($"VpnConnectionOption '{option}' is not supported on the home page ComboBox."),
         };
 
         Element.ByName(optionName).Click();
         Thread.Sleep(TestConstants.AnimationDelay);
 
+        return this;
+    }
+
+    public HomeRobot SelectDefaultConnectionCountry(string countryName, string? specificInfo = null)
+    {
+        DefaultConnectionSelectorButton.Click();
+        Thread.Sleep(TestConstants.AnimationDelay);
+        DefaultConnectionDropdown.SelectDropdownItem(countryName, specificInfo);
         return this;
     }
 
@@ -268,9 +278,15 @@ public class HomeRobot
             return this;
         }
 
-        public Verifications DoesConnectionCardTitleEqual(string title)
+        public Verifications ConnectionCardTitleEquals(string title)
         {
             ConnectionCardTitle.TextEquals(title);
+            return this;
+        }
+
+        public Verifications ConnectionCardDescriptionEquals(string description)
+        {
+            ConnectionCardDescription.TextEquals(description);
             return this;
         }
 
@@ -298,7 +314,7 @@ public class HomeRobot
             return this;
         }
 
-        public Verifications DoesCustomizedCardTitleEqual(string title)
+        public Verifications CustomizedCardTitleEquals(string title)
         {
             CustomizeCardConnectionTitleLabel.TextEquals(title);
             return this;

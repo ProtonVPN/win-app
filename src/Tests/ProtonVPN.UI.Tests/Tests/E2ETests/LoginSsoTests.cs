@@ -31,39 +31,59 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 public class LoginSsoTests : FreshSessionSetUp
 {
     private const string SSO_LOGIN_ERROR = "Email domain associated to an existing organization. Please sign in with SSO";
+    private const string REGULAR_LOGIN_ERROR = "Email domain not found, please sign in with a password";
 
     [Test]
     [Retry(3)]
-    public void LoginSsoDomainDetection()
+    public void LoginWithSso()
     {
-        //Delay to allow app to setup unauth session
-        Thread.Sleep(TestConstants.FiveSecondsTimeout);
+        VerifyIsOnLoginPage();
 
-        LoginRobot.Login(TestUserData.SsoUser)
-            .Verify.IsErrorMessageDisplayed(SSO_LOGIN_ERROR);
+        LoginRobot
+            .ClickSignInWithSso()
+            .EnterEmail(TestUserData.SsoUser);
 
         CompleteSsoLogin();
     }
 
     [Test]
-    [Retry(3)]
-    public void LoginSsoHappyPath()
+    public void LoginRegularWithSso()
     {
-        //Delay to allow app to setup unauth session
-        Thread.Sleep(TestConstants.FiveSecondsTimeout);
+        VerifyIsOnLoginPage();
 
-        LoginRobot.EnterEmail(TestUserData.SsoUser)
-            .ClickSignInWithSso();
+        LoginRobot
+            .Login(TestUserData.SsoUser)
+            .Verify.IsErrorMessageDisplayed(SSO_LOGIN_ERROR);
+    }
 
-        CompleteSsoLogin();
+    [Test]
+    public void LoginToSsoWithRegular()
+    {
+        VerifyIsOnLoginPage();
+
+        LoginRobot
+            .ClickSignInWithSso()
+            .EnterEmail(TestUserData.FakePlusUserWithDomain)
+            .ClickSignInButton()
+            .Verify.IsErrorMessageDisplayed(REGULAR_LOGIN_ERROR);
     }
 
     private void CompleteSsoLogin()
     {
-        LoginRobot.ClickSignInButton()
-             .DoLoginSsoWebview(TestUserData.SsoUser.Password);
+        LoginRobot
+            .ClickSignInButton()
+            .DoLoginSsoWebview(TestUserData.SsoUser.Password);
 
         NavigationRobot
             .Verify.IsOnMainPage();
+    }
+
+    private void VerifyIsOnLoginPage()
+    {
+        //Delay to allow app to setup unauth session
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
+
+        NavigationRobot
+            .Verify.IsOnLoginPage();
     }
 }

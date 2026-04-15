@@ -18,9 +18,9 @@
  */
 
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
-using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -46,10 +46,10 @@ public class DefaultConnectionTests : BaseTest
     public void DefaultConnectionTitleIsFastest()
     {
         HomeRobot
-            .Verify.DoesConnectionCardTitleEqual(FASTEST_COUNTRY)
+            .Verify.ConnectionCardTitleEquals(FASTEST_COUNTRY)
             .ConnectViaConnectionCard()
             .Verify.IsConnected()
-            .DoesConnectionCardTitleEqual(FASTEST_COUNTRY)
+            .ConnectionCardTitleEquals(FASTEST_COUNTRY)
             .Disconnect()
             .Verify.IsDisconnected();
     }
@@ -63,12 +63,12 @@ public class DefaultConnectionTests : BaseTest
 
         HomeRobot
             .Verify.IsConnected()
-            .DoesConnectionCardTitleEqual(COUNTRY_TO_SEARCH);
+            .ConnectionCardTitleEquals(COUNTRY_TO_SEARCH);
         NetworkUtils.VerifyUserIsConnectedToExpectedCountry(COUNTRY_TO_SEARCH);
 
         HomeRobot.Disconnect()
             .Verify.IsDisconnected()
-            .DoesConnectionCardTitleEqual(FASTEST_COUNTRY);
+            .ConnectionCardTitleEquals(FASTEST_COUNTRY);
 
         SettingRobot
             .OpenSettings()
@@ -78,7 +78,7 @@ public class DefaultConnectionTests : BaseTest
             .CloseSettings();
 
         HomeRobot
-            .Verify.DoesConnectionCardTitleEqual(COUNTRY_TO_SEARCH)
+            .Verify.ConnectionCardTitleEquals(COUNTRY_TO_SEARCH)
             .ConnectViaConnectionCard()
             .Verify.IsConnected()
             .Disconnect()

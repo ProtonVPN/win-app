@@ -2251,11 +2251,8 @@
   <data name="Dialogs_WelcomeToVpnPlus_Title">
     <value>Вітаем у VPN Plus</value>
   </data>
-  <data name="Dialogs_WelcomeUnlimited_Description1">
+  <data name="Dialogs_WelcomeUnlimited_Description">
     <value>Віншуем! Вы разблакіравалі прэміяльныя функцыі бяспекі і прадукцыйнасці ва ўсіх сэрвісах Proton.</value>
-  </data>
-  <data name="Dialogs_WelcomeUnlimited_Description2">
-    <value>Атрымлівайце асалоду ад палепшай прыватнасці, якую прапануе Proton.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Вітаем у Proton Unlimited</value>
@@ -3494,7 +3491,7 @@ Secure Core</value>
     <value>Даныя аб выкарыстанні дапамагаюць нам пераадольваць блакіроўкі VPN і паляпшаць прадукцыйнасць праграмы.</value>
   </data>
   <data name="Settings_Common_Apply">
-    <value>Ужыць</value>
+    <value>Прымяніць</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Common_IpAddresses_AlreadyExists">
@@ -3945,7 +3942,7 @@ Secure Core</value>
     <value>WireGuard</value>
   </data>
   <data name="Settings_Reconnection_Title">
-    <value>Перападключыцца, каб ужыць змены</value>
+    <value>Перападключыцца, каб прымяніць змены</value>
   </data>
   <data name="Settings_RestoreDefault">
     <value>Аднавіць прадвызначаныя налады</value>

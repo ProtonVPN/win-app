@@ -37,5 +37,7 @@ namespace ProtonVPN.Api.Contracts.Auth
 
         [JsonProperty(PropertyName = "GroupID")]
         public string GroupId { get; set; }
+
+        public bool IsBusiness { get; set; }
     }
 }

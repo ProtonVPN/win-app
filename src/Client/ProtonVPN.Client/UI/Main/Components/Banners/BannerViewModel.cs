@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -54,10 +54,10 @@ public partial class BannerViewModel : BannerViewModelBase, IEventMessageReceive
         IUIThreadDispatcher uiThreadDispatcher,
         IAnnouncementActivator announcementActivator,
         IAnnouncementsProvider announcementsProvider,
-        IUpsellDisplayStatisticalEventSender upsellDisplayStatisticalEventSender,
+        IUpsellDisplayReporter upsellDisplayReporter,
         IViewModelHelper viewModelHelper,
         IApplicationThemeSelector themeSelector)
-        : base(announcementActivator, announcementsProvider, upsellDisplayStatisticalEventSender, viewModelHelper)
+        : base(announcementActivator, announcementsProvider, upsellDisplayReporter, viewModelHelper)
     {
         _countdownTimer = uiThreadDispatcher.GetTimer(TimeSpan.FromSeconds(1));
         _countdownTimer.Tick += OnCountdownTimerTick;

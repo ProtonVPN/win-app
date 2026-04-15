@@ -142,6 +142,11 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static AutomationElement[] GetControlType<T>(this T desiredElement, ControlType controlType) where T : Element
+    {
+        return desiredElement.GetDescendantsByControlType(controlType) ?? Array.Empty<AutomationElement>();
+    }
+
     public static List<string> GetAllCheckboxNames<T>(this T desiredElement) where T : Element
     {
         return desiredElement.GetDescendantsByControlType(ControlType.CheckBox)
@@ -158,7 +163,7 @@ public static class UiActions
             .ToList() ?? [];
     }
 
-    public static T SelectDropdownItem<T>(this T desiredElement, string itemToSelect) where T : Element
+    public static T SelectDropdownItem<T>(this T desiredElement, string itemToSelect, string? specificInfo = null) where T : Element
     {
         AutomationElement? element = WaitUntilExists(desiredElement);
         ComboBoxItem[]? items = element.AsComboBox()?.Items;
@@ -170,8 +175,12 @@ public static class UiActions
 
         foreach (ComboBoxItem item in items)
         {
-            AutomationElement? textBlock = item.FindFirstChild(cf => cf.ByControlType(ControlType.Text));
-            if (textBlock?.Name == itemToSelect)
+            IEnumerable<string> textNames = item.FindAllDescendants(cf => cf.ByControlType(ControlType.Text)).Select(t => t.Name);
+
+            bool primaryMatch = textNames.Any(t => t == itemToSelect);
+            bool secondaryMatch = specificInfo == null || textNames.Any(t => t == specificInfo);
+
+            if (primaryMatch && secondaryMatch)
             {
                 item.Click();
                 return desiredElement;
@@ -179,6 +188,19 @@ public static class UiActions
         }
 
         throw new Exception($"Item '{itemToSelect}' was not found in dropdown '{desiredElement}'.");
+    }
+
+    public static T WaitUntilItemDisplayed<T>(this T desiredElement, int index) where T : Element
+    {
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        AutomationElement[]? children = element?.FindAllChildren();
+        Assert.That(children, Is.Not.Null, "List is empty");
+
+        int resolvedIndex = index < 0 ? children!.Length + index : index;
+        AutomationElement item = children![resolvedIndex];
+
+        Assert.That(item.IsEnabled, $"Item at index {index} in '{desiredElement.SelectorName}' is not displayed.");
+        return desiredElement;
     }
 
     public static T ClickItem<T>(this T desiredElement, int index) where T : Element
@@ -242,6 +264,21 @@ public static class UiActions
     {
         AutomationElement? element = WaitUntilExists(desiredElement);
         element?.Patterns.ScrollItem.Pattern.ScrollIntoView();
+        return desiredElement;
+    }
+
+    public static Element Scroll<T>(this T desiredElement, int verticalPercent = 0, int horizontalPercent = 0) where T : Element
+    {
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        IScrollPattern? scrollPattern = element?.Patterns.Scroll.PatternOrDefault;
+
+        if (scrollPattern != null)
+        {
+            double h = scrollPattern.HorizontallyScrollable ? horizontalPercent : scrollPattern.HorizontalScrollPercent;
+            double v = scrollPattern.VerticallyScrollable ? verticalPercent : scrollPattern.VerticalScrollPercent;
+            scrollPattern.SetScrollPercent(h, v);
+        }
+
         return desiredElement;
     }
 

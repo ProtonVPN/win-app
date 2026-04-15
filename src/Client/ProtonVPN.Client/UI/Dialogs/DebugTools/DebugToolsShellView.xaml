@@ -248,6 +248,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             Style="{StaticResource PrimaryButtonStyle}" />
                 </toolkit:SettingsCard>
 
+                <toolkit:SettingsCard Header="Device Location"
+                                      IsTabStop="False"
+                                      Style="{StaticResource DefaultSettingsCardStyle}">
+
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="8">
+                        
+                        <TextBox MaxLength="2"
+                                 x:Name="tbCountryCode"/>
+
+                        <Button Command="{x:Bind ViewModel.OverrideDeviceLocationCommand, Mode=OneTime}"
+                                CommandParameter="{x:Bind tbCountryCode.Text}"
+                                Content="Override"
+                                Style="{StaticResource PrimaryButtonStyle}" />
+                        
+                    </StackPanel>
+
+                </toolkit:SettingsCard>
             </StackPanel>
         </ScrollViewer>
 

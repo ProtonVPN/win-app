@@ -83,9 +83,9 @@ public class ProfileTests : BaseTest
 
         HomeRobot
             .Verify.IsConnecting()
-                   .DoesConnectionCardTitleEqual(PROFILE_NAME)
+                   .ConnectionCardTitleEquals(PROFILE_NAME)
                    .IsConnected()
-                   .DoesConnectionCardTitleEqual(PROFILE_NAME);
+                   .ConnectionCardTitleEquals(PROFILE_NAME);
 
         SettingRobot
             .Verify.IsNetshieldBlocking(NetShieldMode.BlockAdsMalwareTrackers);

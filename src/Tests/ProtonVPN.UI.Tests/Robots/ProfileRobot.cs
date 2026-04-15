@@ -17,7 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Linq;
 using System.Threading;
+using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Definitions;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
@@ -40,7 +44,7 @@ public class ProfileRobot
 
     protected Element NetShieldLevelOneMenuItem = Element.ByAutomationId("NetShieldLevelOneMenuItem");
 
-    protected Element NetShieldLevelTwoMenuItem = Element.ByAutomationId("NetShieldLevelTwoMenuItem");   
+    protected Element NetShieldLevelTwoMenuItem = Element.ByAutomationId("NetShieldLevelTwoMenuItem");
 
     protected Element NetShieldLevelThreeMenuItem = Element.ByAutomationId("NetShieldLevelThreeMenuItem");
 
@@ -72,6 +76,10 @@ public class ProfileRobot
 
     protected Element CountryDropdown = Element.ByName("Country").And(Element.ByClassName("ComboBox"));
 
+    protected Element MiddleCountryDropdown = Element.ByName("Middle country").And(Element.ByClassName("ComboBox"));
+
+    protected Element ConnectionTypes = Element.ByClassName("ListBoxItem");
+
     public ProfileRobot SetProfileName(string profileName)
     {
         ProfileNameTextBox.SetText(profileName);
@@ -90,10 +98,45 @@ public class ProfileRobot
         return this;
     }
 
+    public ProfileRobot SelectConnectionType(ConnectionType connectionType)
+    {
+        string? connectionTypeName = null;
+
+        switch (connectionType)
+        {
+            case ConnectionType.Standard:
+                connectionTypeName = "Standard";
+                break;
+            case ConnectionType.SecureCore:
+                connectionTypeName = "Secure Core";
+                break;
+            case ConnectionType.P2P:
+                connectionTypeName = "P2P";
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(connectionType), connectionType, "Unhandled connection type");
+        }
+
+        AutomationElement connectionTypeElement = ConnectionTypes.FindAllElements()
+            .First(item => item.FindFirstDescendant(cf => cf.ByControlType(ControlType.Text)
+            .And(cf.ByName(connectionTypeName!))) != null);
+
+        connectionTypeElement.Click();
+
+        return this;
+    }
+
     public ProfileRobot SelectCountry(string countryName)
     {
         CountryDropdown.Click()
             .SelectDropdownItem(countryName);
+        return this;
+    }
+
+    public ProfileRobot SelectMiddleCountry(string middleCountryName)
+    {
+        MiddleCountryDropdown.Click()
+            .SelectDropdownItem(middleCountryName);
         return this;
     }
 
@@ -164,7 +207,7 @@ public class ProfileRobot
 
     public class Verifications : ProfileRobot
     {
-        public Verifications DoesProfileNameEqual(string profileName)
+        public Verifications ProfileNameEquals(string profileName)
         {
             ProfileNameTextBox.TextBoxEquals(profileName);
             return this;

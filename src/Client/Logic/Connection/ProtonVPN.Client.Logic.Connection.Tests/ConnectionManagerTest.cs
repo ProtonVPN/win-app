@@ -107,7 +107,7 @@ public class ConnectionManagerTest
     {
         // Arrange
         _settings!.IsPortForwardingEnabled.Returns(true);
-        _settings!.VpnPlan.Returns(new VpnPlan(string.Empty, string.Empty, PAID_PLAN_TIER));
+        _settings!.VpnPlan.Returns(new VpnPlan(string.Empty, string.Empty, PAID_PLAN_TIER, false));
 
         ConnectionManager connectionManager = GetConnectionManager();
         IFeatureIntent featureIntent = GetFeatureIntent(featureIntentType);
@@ -127,7 +127,7 @@ public class ConnectionManagerTest
     {
         // Arrange
         _settings!.IsPortForwardingEnabled.Returns(false);
-        _settings!.VpnPlan.Returns(new VpnPlan(string.Empty, string.Empty, PAID_PLAN_TIER));
+        _settings!.VpnPlan.Returns(new VpnPlan(string.Empty, string.Empty, PAID_PLAN_TIER, false));
 
         ConnectionManager connectionManager = GetConnectionManager();
         IFeatureIntent featureIntent = GetFeatureIntent(featureIntentType);
@@ -147,7 +147,7 @@ public class ConnectionManagerTest
     {
         // Arrange
         _settings!.IsPortForwardingEnabled.Returns(true);
-        _settings!.VpnPlan.Returns(new VpnPlan(string.Empty, string.Empty, PAID_PLAN_TIER));
+        _settings!.VpnPlan.Returns(new VpnPlan(string.Empty, string.Empty, PAID_PLAN_TIER, false));
 
         ConnectionManager connectionManager = GetConnectionManager();
         IFeatureIntent featureIntent = GetFeatureIntent(featureIntentType);
