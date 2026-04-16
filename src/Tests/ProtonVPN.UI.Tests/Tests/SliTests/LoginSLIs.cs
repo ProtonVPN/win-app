@@ -41,6 +41,9 @@ public class LoginSLIs : SliSetUp
     [Sli("login")]
     public void LoginPerformance()
     {
+        NavigationRobot
+            .Verify.IsOnLoginPage();
+
         LoginRobot
             .Login(TestUserData.PlusUser);
 

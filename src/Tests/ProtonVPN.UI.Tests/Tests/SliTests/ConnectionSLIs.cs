@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,6 +22,7 @@ using System.Security;
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -35,6 +36,10 @@ namespace ProtonVPN.UI.Tests.Tests.SliTests;
 [Workflow("main_measurements")]
 public class ConnectionSLIs : SliSetUp
 {
+    private const string SECURE_CORE_COUNTRY = "Australia";
+    private const string P2P_COUNTRY = "Algeria";
+    private const string TOR_COUNTRY = "France";
+
     private ProdTestApiClient _prodTestApiClient = new();
 
     [SetUp]
@@ -46,45 +51,14 @@ public class ConnectionSLIs : SliSetUp
 
     [Test]
     [Duration, TestStatus]
-    [Sli("specific_server_connect")]
-    public async Task ConnectionToSpecificServer()
-    { 
-        SecureString password = new NetworkCredential("", TestUserData.PlusUser.Password).SecurePassword;
-        string serverName = await _prodTestApiClient.GetRandomSpecificPaidServerAsync(TestUserData.PlusUser.Username, password);
-
-        SidebarRobot
-            .SearchFor(serverName)
-            .ConnectToServer();
-
-        HomeRobot.Verify.IsConnected();
-        HomeRobot.Disconnect();
-
-        // Simulate users delay
-        Thread.Sleep(TestConstants.TenSecondsTimeout);
-
-        SidebarRobot
-            .SearchFor(serverName)
-            .ConnectToServer();
-
-        SliHelper.MeasureTime(() =>
-        {
-            HomeRobot.Verify.IsConnected();
-        });
-
-        HomeRobot.Disconnect();
-    }
-
-    [Test]
-    [Duration, TestStatus]
     [Sli("quick_connect")]
     public void QuickConnectPerformance()
     {
         // First connection is made to make sure that everything is setup
         HomeRobot
             .ConnectViaConnectionCard()
-            .Verify.IsConnected();
-
-        HomeRobot.Disconnect();
+            .Verify.IsConnected()
+            .Disconnect();
 
         // Simulate users delay
         Thread.Sleep(TestConstants.TenSecondsTimeout);
@@ -97,5 +71,86 @@ public class ConnectionSLIs : SliSetUp
         });
 
         HomeRobot.Disconnect();
+    }
+
+    [Test]
+    [Duration, TestStatus]
+    [Sli("specific_server_connect")]
+    public async Task ConnectToSpecificServerPerformanceAsync()
+    {
+        SecureString password = new NetworkCredential("", TestUserData.PlusUser.Password).SecurePassword;
+        string serverName = await _prodTestApiClient.GetRandomSpecificPaidServerAsync(TestUserData.PlusUser.Username, password);
+
+        ConnectAndDisconnect(CountryTab.All, serverName, true);
+    }
+
+    [Test]
+    [Duration, TestStatus]
+    [Sli("secure_core_connect")]
+    public void ConnectToSecureCorePerformance()
+    {
+        ConnectAndDisconnect(CountryTab.SecureCore, SECURE_CORE_COUNTRY);
+    }
+
+    [Test]
+    [Duration, TestStatus]
+    [Sli("p2p_connect")]
+    public void ConnectToP2PPerformance()
+    {
+        ConnectAndDisconnect(CountryTab.P2P, P2P_COUNTRY);
+    }
+
+    [Test]
+    [Duration, TestStatus]
+    [Sli("tor_connect")]
+    public void ConnectToTorPerformance()
+    {
+        ConnectAndDisconnect(CountryTab.Tor, TOR_COUNTRY);
+    }
+
+    private void ConnectAndDisconnect(CountryTab tab, string connection, bool isServer = false)
+    {
+        // First connection is made to make sure that everything is setup
+        SidebarRobot
+            .SearchFor(connection)
+            .NavigateToCountriesTabAfterSearch(tab);
+
+        if (isServer)
+        {
+            SidebarRobot.ConnectToServer();
+        }
+        else
+        {
+            SidebarRobot.ConnectToCountry(CountryCodes.GetCode(connection));
+        }
+
+        HomeRobot
+            .Verify.IsConnected()
+            .Disconnect();
+
+        // Simulate users delay
+        Thread.Sleep(TestConstants.TenSecondsTimeout);
+
+        SidebarRobot
+            .SearchFor(connection)
+            .NavigateToCountriesTabAfterSearch(tab);
+
+        if (isServer)
+        {
+            SidebarRobot.ConnectToServer();
+        }
+        else
+        {
+            SidebarRobot.ConnectToCountry(CountryCodes.GetCode(connection));
+        }
+
+        SliHelper.MeasureTime(() =>
+        {
+            HomeRobot.Verify.IsConnected();
+        });
+
+        HomeRobot
+            .Disconnect()
+            .Verify.IsDisconnected();
     }
 }
