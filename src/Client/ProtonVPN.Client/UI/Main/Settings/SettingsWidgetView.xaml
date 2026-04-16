@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2023 Proton AG
+Copyright (c) 2026 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -36,6 +36,30 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                          Style="{StaticResource SideWidgetButtonStyle}"
                          ToolTipService.ToolTip="Ctrl + ,"
                          Visibility="{x:Bind ViewModel.IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <custom:WidgetButton.Resources>
+            <TeachingTip x:Name="ExcludedLocationsTeachingTip"
+                         Target="{x:Bind SettingsButton}"
+                         Title="{x:Bind ViewModel.Localizer.Get('ExcludedLocations_TeachingTip_Title')}"
+                         Subtitle="{x:Bind ViewModel.Localizer.Get('ExcludedLocations_TeachingTip_Subtitle')}"
+                         IsOpen="{x:Bind ViewModel.IsExcludedLocationsTeachingTipOpen, Mode=TwoWay}"
+                         ActionButtonContent="{x:Bind ViewModel.Localizer.Get('ExcludedLocations_TeachingTip_ActionButton')}"
+                         ActionButtonCommand="{x:Bind ViewModel.InvokeTeachingTipActionCommand, Mode=OneTime}"
+                         CloseButtonContent="{x:Bind ViewModel.Localizer.Get('ExcludedLocations_TeachingTip_CloseButton')}"
+                         CloseButtonCommand="{x:Bind ViewModel.DismissTeachingTipCommand, Mode=OneTime}"
+                         Style="{StaticResource DefaultTeachingTipStyle}"
+                         PreferredPlacement="Left"
+                         PlacementMargin="4"
+                         IsLightDismissEnabled="False">
+                <TeachingTip.HeroContent>
+                    <Image Grid.Row="1"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Top"
+                           Source="{StaticResource ExcludedLocationsTootTipIllustrationSource}"
+                           Stretch="Uniform" />
+                </TeachingTip.HeroContent>
+            </TeachingTip>
+        </custom:WidgetButton.Resources>
+
         <Image Source="{ThemeResource SettingsIllustrationSource}"
                Width="{StaticResource FeatureBarDimmableImageSize}"
                Height="{StaticResource FeatureBarDimmableImageSize}" />

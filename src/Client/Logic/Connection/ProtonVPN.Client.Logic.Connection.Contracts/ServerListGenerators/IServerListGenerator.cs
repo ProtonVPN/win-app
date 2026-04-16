@@ -18,12 +18,11 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
-using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 
 public interface IServerListGenerator
 {
-    IEnumerable<PhysicalServer> Generate(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols);
+    ServerListResult Generate(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols);
 }

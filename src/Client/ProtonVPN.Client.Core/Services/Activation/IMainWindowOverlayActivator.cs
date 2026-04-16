@@ -56,4 +56,6 @@ public interface IMainWindowOverlayActivator : IOverlayActivator
     Task<ContentDialogResult> ShowFreeConnectionsOverlayAsync();
 
     Task<ContentDialogResult> ShowWhatsNewOverlayAsync();
+
+    Task<ContentDialogResult> ShowExcludedLocationsSmartDiscoveryPromptAsync();
 }

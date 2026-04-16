@@ -19,7 +19,6 @@
 
 using Autofac;
 using ProtonVPN.StatisticalEvents.Dimensions.Builders.Bases;
-using ProtonVPN.StatisticalEvents.Dimensions.Mappers;
 using ProtonVPN.StatisticalEvents.Dimensions.Mappers.Bases;
 using ProtonVPN.StatisticalEvents.Events.Senders;
 using ProtonVPN.StatisticalEvents.Files;
@@ -64,5 +63,7 @@ public class StatisticalEventsModule : Module
         builder.RegisterType<VpnConnectionReporter>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<VpnDisconnectionReporter>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<SettingsHeartbeatReporter>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ProductPromptDisplayReporter>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ProductPromptActionReporter>().AsImplementedInterfaces().SingleInstance();
     }
 }

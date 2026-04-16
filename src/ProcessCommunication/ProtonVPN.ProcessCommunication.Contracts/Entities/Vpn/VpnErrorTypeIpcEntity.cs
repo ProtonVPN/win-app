@@ -64,6 +64,9 @@ namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn
         NoServers,
 
         [EnumMember]
+        AllServersExcluded,
+
+        [EnumMember]
         Unknown,
 
         [EnumMember]

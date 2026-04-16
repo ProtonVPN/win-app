@@ -56,7 +56,10 @@ public class CustomDnsTests : BaseTest
             .ToggleCustomDnsSetting();
 
         ConfirmationRobot
-            .Verify.IsDialogDisplayed(ENABLE_CUSTOM_DNS_TITLE, ENABLE_CUSTOM_DNS_DESCRIPTION, ENABLE_CUSTOM_DNS_BUTTON)
+            .Verify.IsOverlayDisplayed()
+                   .OverlayTextContains(ENABLE_CUSTOM_DNS_TITLE)
+                   .OverlayTextContains(ENABLE_CUSTOM_DNS_DESCRIPTION)
+                   .OverlayButtonsEquals(primary: ENABLE_CUSTOM_DNS_BUTTON)
             .PrimaryAction();
 
         SettingRobot

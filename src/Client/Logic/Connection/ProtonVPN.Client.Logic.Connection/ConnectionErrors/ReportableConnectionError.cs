@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -24,19 +24,20 @@ namespace ProtonVPN.Client.Logic.Connection.ConnectionErrors;
 
 public abstract class ReportableConnectionError : ConnectionErrorBase
 {
-    private readonly IReportIssueWindowActivator _reportIssueWindowActivator;
+    private readonly IClientWindowsActivator _clientWindowsActivator;
 
     public override string ActionLabel => Localizer.Get("Connection_Error_ReportAnIssue");
 
     public ReportableConnectionError(
         ILocalizationProvider localizer,
-        IReportIssueWindowActivator reportIssueWindowActivator) : base(localizer)
+        IClientWindowsActivator clientWindowsActivator)
+        : base(localizer)
     {
-        _reportIssueWindowActivator = reportIssueWindowActivator;
+        _clientWindowsActivator = clientWindowsActivator;
     }
 
     public override Task ExecuteActionAsync()
     {
-        return _reportIssueWindowActivator.ActivateAsync();
+        return _clientWindowsActivator.ActivateReportIssueAsync();
     }
 }

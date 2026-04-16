@@ -42,6 +42,9 @@ public class ConnectionRequestIpcEntity : IRetryableEntity
     [DataMember(Order = 6, IsRequired = true)]
     public MainSettingsIpcEntity Settings { get; set; }
 
+    [DataMember(Order = 7, IsRequired = false)]
+    public bool AreAllServersExcludedByUserPreference { get; set; }
+
     public ConnectionRequestIpcEntity()
     {
         Servers = [];

@@ -22,6 +22,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
+using ProtonVPN.Client.Logic.Connection.Contracts.Preferences;
 using ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
@@ -42,18 +43,35 @@ public class SmartServerListGenerator : ServerListGeneratorBase, ISmartServerLis
 
     protected override int MaxPhysicalServersInTotal => 64;
 
+    public ServerListDiagnostic Diagnostic { get; private set; } = ServerListDiagnostic.Empty;
+
     public SmartServerListGenerator(
         ISettings settings,
         IServersLoader serversLoader,
+        IExclusionChecker exclusionChecker,
         ILogger logger)
-        : base(settings, serversLoader, logger)
+        : base(settings, serversLoader, exclusionChecker, logger)
     { }
 
-    public IEnumerable<PhysicalServer> Generate(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols)
+    public ServerListResult Generate(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols)
     {
         Logger.Debug<AppLog>($"Generating smart servers list for intent: {connectionIntent}");
 
-        List<Server> availableServers = [.. ServersLoader.GetServers()];
+        List<Server> servers = GenerateServerList(connectionIntent, preferredProtocols, applyExclusions: true);
+
+        ServerListDiagnostic diagnostic = DetermineExclusionDiagnostic(servers.Count,
+            () => SelectLogicalServers(connectionIntent, preferredProtocols, applyExclusions: false).Any());
+
+        Logger.Debug<AppLog>($"Generated smart servers list: {string.Join(", ", servers.Select(s => s.Name))}");
+
+        IReadOnlyList<PhysicalServer> physicalServers = SelectDistinctPhysicalServers(servers, preferredProtocols).ToList();
+        
+        return new ServerListResult(physicalServers, diagnostic);
+    }
+
+    private List<Server> GenerateServerList(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols, bool applyExclusions)
+    {
+        List<Server> availableServers = GetAvailableServers(connectionIntent, applyExclusions).ToList();
         List<Server> servers = [];
 
         IEnumerable<ILocationIntent> locationIntents = connectionIntent.Location.GetIntentHierarchy();
@@ -84,9 +102,7 @@ public class SmartServerListGenerator : ServerListGeneratorBase, ISmartServerLis
             servers.AddRange(matchingServers);
         }
 
-        Logger.Debug<AppLog>($"Generated smart servers list: {string.Join(", ", servers.Select(s => s.Name))}");
-
-        return SelectDistinctPhysicalServers(servers, preferredProtocols);
+        return servers;
     }
 
     /// <summary>

@@ -88,6 +88,9 @@ public interface IUserSettings
     DateTimeOffset? LastSettingsHeartbeatTimeUtc { get; set; }
     DateTimeOffset LastP2PWarningNotificationUtcDate { get; set; }
     DateTimeOffset LastStreamingWarningNotificationUtcDate { get; set; }
+    List<ExcludedLocation> ExcludedLocationsList { get; set; }
+    bool WasExcludedLocationsSmartDiscoveryPromptDisplayed { get; set; }
+    bool WasExcludedLocationsTeachingTipDisplayed { get; set; }
 
     [Obsolete("Use IsLocalDnsEnabled instead. DnsBlockMode is maintained in order to migrate the value for existing users.")]
     DnsBlockMode DnsBlockMode { get; set; }

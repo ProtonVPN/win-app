@@ -19,6 +19,7 @@
 
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
+using ProtonVPN.UI.Tests.Extensions;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 
@@ -33,6 +34,10 @@ public class DefaultConnectionTests : BaseTest
     private const string STREAMING_PROFILE = "Streaming US";
     private const string STREAMING_COUNTRY = "United States";
     private const string DEFAULT_CONNECTION = "Default connection";
+
+    private const string EXCLUDED_LOCATION_AFGHANISTAN = "Afghanistan";
+    private const string EXCLUDED_LOCATION_SEARCH_QUERY = "U";
+    private const string EXCLUDED_LOCATION_UNITED_STATES = "United States";
 
     [OneTimeSetUp]
     public void SetUp()
@@ -51,6 +56,8 @@ public class DefaultConnectionTests : BaseTest
             .ConnectionCardTitleEquals(FASTEST_COUNTRY)
             .Disconnect()
             .Verify.IsDisconnected();
+
+        ConfirmationRobot.DismissExcludedLocationsPrompt();
     }
 
     [Test, Order(1)]
@@ -96,6 +103,26 @@ public class DefaultConnectionTests : BaseTest
             .SelectDefaultConnectionType(VpnConnectionOptions.Fast)
             .SelectDefaultConnectionType(VpnConnectionOptions.Random)
             .SelectDefaultConnectionType(VpnConnectionOptions.Last);
+    }
+
+    [Test, Order(2)]
+    public void ExcludedLocationsSelector_AllowsSelectingAndSearching()
+    {
+        SettingRobot
+            .OpenSettings()
+            .OpenConnectionPreferencesSettingsCard()
+            .OpenExcludedLocationsSelector()
+            .SelectExcludedCountry(EXCLUDED_LOCATION_AFGHANISTAN)
+            .Verify.IsRemoveExcludedLocationButtonDisplayed()
+            .Verify.IsExcludedLocationDisplayed(EXCLUDED_LOCATION_AFGHANISTAN)
+            .OpenExcludedLocationsSelector()
+            .SearchExcludedLocations(EXCLUDED_LOCATION_SEARCH_QUERY)
+            .SelectExcludedCountry(EXCLUDED_LOCATION_UNITED_STATES)
+            .Verify.IsExcludedLocationDisplayed(EXCLUDED_LOCATION_UNITED_STATES)
+            .RemoveFirstExcludedLocation()
+            .Verify.IsExcludedLocationNotDisplayed(EXCLUDED_LOCATION_AFGHANISTAN)
+            .RemoveFirstExcludedLocation()
+            .CloseSettings();
     }
 
     [OneTimeTearDown]

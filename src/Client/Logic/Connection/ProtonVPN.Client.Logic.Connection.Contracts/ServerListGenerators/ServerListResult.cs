@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2024 Proton AG
+/*
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,18 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Contracts.Services.Activation.Bases;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
-namespace ProtonVPN.Client.Contracts.Services.Activation;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 
-public interface IReportIssueWindowActivator : IWindowActivator
+public readonly struct ServerListResult
 {
-    Task ActivateAsync();
+    public IReadOnlyList<PhysicalServer> PhysicalServers { get; }
+    public ServerListDiagnostic Diagnostic { get; }
+
+    public ServerListResult(IReadOnlyList<PhysicalServer> physicalServers, ServerListDiagnostic diagnostic)
+    {
+        PhysicalServers = physicalServers;
+        Diagnostic = diagnostic;
+    }
 }

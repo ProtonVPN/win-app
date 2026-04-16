@@ -478,6 +478,24 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetValueType<DateTimeOffset>(value, SettingEncryption.Unencrypted);
     }
 
+    public List<ExcludedLocation> ExcludedLocationsList
+    {
+        get => _userCache.GetListValueType<ExcludedLocation>(SettingEncryption.Unencrypted) ?? DefaultSettings.ExcludedLocationsList;
+        set => _userCache.SetListValueType<ExcludedLocation>(value, SettingEncryption.Unencrypted);
+    }
+
+    public bool WasExcludedLocationsSmartDiscoveryPromptDisplayed
+    {
+        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? false;
+        set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
+    public bool WasExcludedLocationsTeachingTipDisplayed
+    {
+        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? false;
+        set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+    }
+
     [Obsolete("Use IsLocalDnsEnabled instead. DnsBlockMode is maintained in order to migrate the value for existing users.")]
     public DnsBlockMode DnsBlockMode
     {

@@ -53,6 +53,6 @@ public sealed partial class DefaultConnectionSelectorView : IContextAware
 
     private void FlyoutButton_OnClick(object sender, RoutedEventArgs e)
     {
-        ConnectionComboBox.Open(FlyoutButton);
+        ConnectionSelector.Open();
     }
 }

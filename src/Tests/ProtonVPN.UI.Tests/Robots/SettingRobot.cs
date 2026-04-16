@@ -49,6 +49,8 @@ public class SettingRobot
     protected Element SplitTunnelingSettingsCard = Element.ByAutomationId("SplitTunnelingSettingsCard");
     protected Element VpnAcceleratorSettingsCard = Element.ByAutomationId("VpnAcceleratorSettingsCard");
     protected Element ConnectionPreferencesSettingsCard = Element.ByAutomationId("ConnectionPreferencesSettingsCard");
+    protected Element ExcludedLocationSelectorButton = Element.ByAutomationId("SelectorButton");
+    protected Element RemoveExcludedLocationButton = Element.ByAutomationId("RemoveExcludedLocationButton");
     protected Element PortForwardingToggle = Element.ByAutomationId("PortForwardingToggle");
     protected Element CopyPortNumberButton = Element.ByAutomationId("CopyPortNumberCondensedButton");
 
@@ -165,6 +167,35 @@ public class SettingRobot
         ConnectionPreferencesSettingsCard.ScrollIntoView();
         ConnectionPreferencesSettingsCard.Click();
         Thread.Sleep(TestConstants.NavigationDelay);
+        return this;
+    }
+
+    public SettingRobot OpenExcludedLocationsSelector()
+    {
+        ExcludedLocationSelectorButton.Click();
+        Thread.Sleep(TestConstants.AnimationDelay);
+        return this;
+    }
+
+    public SettingRobot SelectExcludedCountry(string countryName)
+    {
+        Element.ByName(countryName).Click();
+        Thread.Sleep(TestConstants.AnimationDelay);
+        RemoveExcludedLocationButton.WaitUntilDisplayed();
+        return this;
+    }
+
+    public SettingRobot SearchExcludedLocations(string searchText)
+    {
+        Keyboard.Type(searchText);
+        Thread.Sleep(TestConstants.AnimationDelay);
+        return this;
+    }
+
+    public SettingRobot RemoveFirstExcludedLocation()
+    {
+        RemoveExcludedLocationButton.Click();
+        Thread.Sleep(TestConstants.AnimationDelay);
         return this;
     }
 
@@ -527,6 +558,24 @@ public class SettingRobot
         public Verifications IsAutoConnectEnabled()
         {
             AutoConnectToggle.IsToggled();
+            return this;
+        }
+
+        public Verifications IsExcludedLocationDisplayed(string countryName)
+        {
+            SettingsPage.FindDescendant(Element.ByName(countryName)).WaitUntilExists();
+            return this;
+        }
+
+        public Verifications IsExcludedLocationNotDisplayed(string countryName)
+        {
+            SettingsPage.FindDescendant(Element.ByName(countryName)).DoesNotExist();
+            return this;
+        }
+
+        public Verifications IsRemoveExcludedLocationButtonDisplayed()
+        {
+            RemoveExcludedLocationButton.WaitUntilDisplayed();
             return this;
         }
     }

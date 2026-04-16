@@ -29,11 +29,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
     <Grid>
-        <controls:DefaultConnectionComboBox x:Name="ConnectionComboBox"
+        <controls:DefaultConnectionSelector x:Name="ConnectionSelector"
                                             Opacity="0"
                                             IsHitTestVisible="False"
                                             MinWidth="300"
-                                            DropdownAnchorAlignment="BottomRight"
                                             ItemsSource="{x:Bind ViewModel.ConnectionsList}"
                                             SelectedItem="{x:Bind ViewModel.SelectedDefaultConnection, Mode=TwoWay}"/>
         <custom:GhostButton x:Name="FlyoutButton" 

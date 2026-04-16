@@ -219,6 +219,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                               Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <Button x:Name="PrimaryButton"
+                                                AutomationProperties.AutomationId="PrimaryButton"
                                                 HorizontalAlignment="Stretch"
                                                 Content="{TemplateBinding PrimaryButtonText}"
                                                 ElementSoundMode="FocusOnly"
@@ -226,6 +227,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 IsTabStop="False"
                                                 Style="{TemplateBinding PrimaryButtonStyle}" />
                                         <Button x:Name="SecondaryButton"
+                                                AutomationProperties.AutomationId="SecondaryButton"
                                                 HorizontalAlignment="Stretch"
                                                 Content="{TemplateBinding SecondaryButtonText}"
                                                 ElementSoundMode="FocusOnly"
@@ -233,6 +235,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                 IsTabStop="False"
                                                 Style="{TemplateBinding SecondaryButtonStyle}" />
                                         <Button x:Name="CloseButton"
+                                                AutomationProperties.AutomationId="CloseButton"
                                                 Grid.Column="4"
                                                 HorizontalAlignment="Stretch"
                                                 Content="{TemplateBinding CloseButtonText}"

@@ -92,7 +92,7 @@ public class GatewayLocationItem : HostLocationItemBase<Gateway>
         return currentConnectionDetails is not null
             && currentConnectionDetails.IsGateway
             && Gateway.Name == currentConnectionDetails.GatewayName
-            && (FeatureIntent?.GetType().IsAssignableTo(currentConnectionDetails.OriginalConnectionIntent.Feature?.GetType()) ?? true);
+            && (FeatureIntent?.IsSupported(currentConnectionDetails.Server) ?? true);
     }
 
     protected override IEnumerable<ConnectionItemBase> GetSubItems()

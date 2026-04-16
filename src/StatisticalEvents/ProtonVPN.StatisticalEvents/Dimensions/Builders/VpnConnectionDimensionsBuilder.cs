@@ -93,6 +93,7 @@ public class VpnConnectionDimensionsBuilder : IVpnConnectionDimensionsBuilder
             { "port", _portDimensionMapper.Map(eventData.Port) },
             { "isp",  _stringDimensionMapper.Map(eventData.Isp) },
             { "is_ipv6_enabled", (eventData.IsIpv6Enabled && (eventData.Server?.SupportsIpv6 ?? false)).ToBooleanString() },
+            { "has_active_exclusions", eventData.HasActiveExclusions.ToBooleanString() },
         };
     }
 

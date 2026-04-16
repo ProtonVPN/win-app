@@ -38,7 +38,7 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase<IMai
     private readonly IServersLoader _serversLoader;
     private readonly IAccountUpgradeUrlLauncher _accountUpgradeUrlLauncher;
 
-    public SmartObservableCollection<LocalizedCountry> FreeCountries { get; } = new();
+    public SmartObservableCollection<LocalizedFreeCountry> FreeCountries { get; } = [];
 
     public string UpsellTagline
         => Localizer.GetFormat("Upsell_Carousel_WorldwideCoverage",
@@ -83,9 +83,9 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase<IMai
 
     private void InvalidateFreeCountries()
     {
-        List<LocalizedCountry> countries = _serversLoader
+        List<LocalizedFreeCountry> countries = _serversLoader
             .GetFreeCountries()
-            .Select(c => new LocalizedCountry()
+            .Select(c => new LocalizedFreeCountry()
             {
                 Country = c,
                 LocalizedName = Localizer.GetCountryName(c.Code)

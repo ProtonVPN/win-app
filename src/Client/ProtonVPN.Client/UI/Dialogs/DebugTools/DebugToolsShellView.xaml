@@ -266,6 +266,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </StackPanel>
 
                 </toolkit:SettingsCard>
+                <toolkit:SettingsCard Header="Locations exclusion"
+                                      IsTabStop="False"
+                                      Style="{StaticResource DefaultSettingsCardStyle}">
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="8">
+                        <Button Command="{x:Bind ViewModel.IncludeAllLocationsCommand, Mode=OneTime}"
+                                Content="Include All" />
+                        <Button Command="{x:Bind ViewModel.ExcludeAllLocationsCommand, Mode=OneTime}"
+                                Content="Exclude All"
+                                Style="{StaticResource PrimaryButtonStyle}" />
+                    </StackPanel>
+                </toolkit:SettingsCard>
+
             </StackPanel>
         </ScrollViewer>
 

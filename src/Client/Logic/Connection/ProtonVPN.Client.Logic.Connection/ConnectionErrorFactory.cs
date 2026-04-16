@@ -46,8 +46,10 @@ public class ConnectionErrorFactory : IConnectionErrorFactory
         return vpnError switch
         {
             VpnError.None or
-            VpnError.NoneKeepEnabledKillSwitch or
-            VpnError.BaseFilteringEngineServiceNotRunning => GetConnectionError<NoConnectionError>(vpnError),
+                VpnError.NoneKeepEnabledKillSwitch or
+                VpnError.BaseFilteringEngineServiceNotRunning => GetConnectionError<NoConnectionError>(vpnError),
+
+            VpnError.AllServersExcluded => GetConnectionError<AllServersExcludedConnectionError>(vpnError),
 
             VpnError.NoServers when _connectionManager.CurrentConnectionIntent is IConnectionProfile =>
                 GetConnectionError<NoServersForProfileConnectionError>(vpnError),
@@ -64,15 +66,15 @@ public class ConnectionErrorFactory : IConnectionErrorFactory
             VpnError.RpcServerUnavailable => GetConnectionError<RpcServerUnavailableConnectionError>(vpnError),
 
             VpnError.SessionLimitReachedBasic or
-            VpnError.SessionLimitReachedFree or
-            VpnError.SessionLimitReachedPlus or
-            VpnError.SessionLimitReachedPro or
-            VpnError.SessionLimitReachedVisionary or
-            VpnError.SessionLimitReachedUnknown => GetConnectionError<SessionLimitReachedConnectionError>(vpnError),
+                VpnError.SessionLimitReachedFree or
+                VpnError.SessionLimitReachedPlus or
+                VpnError.SessionLimitReachedPro or
+                VpnError.SessionLimitReachedVisionary or
+                VpnError.SessionLimitReachedUnknown => GetConnectionError<SessionLimitReachedConnectionError>(vpnError),
 
             VpnError.TwoFactorRequiredReasonUnknown or
-            VpnError.TwoFactorExpired or
-            VpnError.TwoFactorNewConnection => GetConnectionError<TwoFactorRequiredConnectionError>(vpnError),
+                VpnError.TwoFactorExpired or
+                VpnError.TwoFactorNewConnection => GetConnectionError<TwoFactorRequiredConnectionError>(vpnError),
 
             _ => GetUnknownConnectionError(vpnError),
         };

@@ -60,6 +60,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/SettingsCardStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/SettingsExpanderStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/TooltipStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/TeachingTipStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/InfoBarStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/ProgressBarStyles.xaml" />
                 <ResourceDictionary Source="ms-appx:///ProtonVPN.Client.Common.UI/Styles/Controls/ProgressRingStyles.xaml" />

@@ -18,6 +18,9 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
+using ProtonVPN.Client.Logic.Connection.Contracts.Preferences;
+using ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
@@ -27,12 +30,13 @@ using ProtonVPN.Logging.Contracts;
 
 namespace ProtonVPN.Client.Logic.Connection.ServerListGenerators;
 
-public abstract class ServerListGeneratorBase
+public abstract partial class ServerListGeneratorBase
 {
     protected readonly Random Random = new();
 
     protected readonly ISettings Settings;
     protected readonly IServersLoader ServersLoader;
+    protected readonly IExclusionChecker ExclusionChecker;
     protected readonly ILogger Logger;
 
     protected abstract int MaxPhysicalServersPerLogical { get; }
@@ -40,27 +44,63 @@ public abstract class ServerListGeneratorBase
 
     protected ServerListGeneratorBase(
         ISettings settings,
-        IServersLoader serversLoader,
+        IServersLoader serversLoader,  
+        IExclusionChecker exclusionChecker,
         ILogger logger)
     {
         Settings = settings;
         ServersLoader = serversLoader;
+        ExclusionChecker = exclusionChecker;
         Logger = logger;
     }
 
-    protected IOrderedEnumerable<Server> SelectLogicalServers(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols)
+    protected IEnumerable<Server> GetAvailableServers(IConnectionIntent connectionIntent, bool applyExclusions = true)
     {
-        return SelectLogicalServers(ServersLoader.GetServers(), connectionIntent, preferredProtocols);
+        IEnumerable<Server> servers = ServersLoader.GetServers();
+
+        bool shouldExclude = applyExclusions && ShouldApplyExclusionFilter(connectionIntent);
+
+        return shouldExclude
+            ? servers.Where(s => !ExclusionChecker.IsServerExcluded(s))
+            : servers;
     }
 
-    protected IOrderedEnumerable<Server> SelectLogicalServers(IEnumerable<Server> servers, IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols)
+    protected IOrderedEnumerable<Server> SelectLogicalServers(
+        IConnectionIntent connectionIntent,
+        IList<VpnProtocol> preferredProtocols,
+        bool applyExclusions = true)
     {
+        IEnumerable<Server> servers = GetAvailableServers(connectionIntent, applyExclusions);
+        return SelectLogicalServers(servers, connectionIntent, preferredProtocols);
+    }
+
+    protected IOrderedEnumerable<Server> SelectLogicalServers(
+        IEnumerable<Server> servers,
+        IConnectionIntent connectionIntent,
+        IList<VpnProtocol> preferredProtocols)
+    {
+        IList<Server> serverList = servers as IList<Server> ?? servers.ToList();
+
         bool isPortForwardingEnabled = connectionIntent is IConnectionProfile profile
             ? profile.Settings.IsPortForwardingEnabled
             : Settings.IsPortForwardingEnabled;
 
         return connectionIntent
-            .FilterAndSortServers(servers, Settings.DeviceLocation, preferredProtocols, isPortForwardingEnabled);
+            .FilterAndSortServers(serverList, Settings.DeviceLocation, preferredProtocols, isPortForwardingEnabled);
+    }
+
+    protected ServerListDiagnostic DetermineExclusionDiagnostic(int serverCount, Func<bool> checkUnfilteredHasResults)
+    {
+        bool areAllCandidatesExcluded = serverCount == 0 && checkUnfilteredHasResults();
+        return new ServerListDiagnostic(areAllCandidatesExcluded);
+    }
+
+    private bool ShouldApplyExclusionFilter(IConnectionIntent connectionIntent)
+    {
+        return ExclusionChecker.HasExcludedLocations
+            && Settings.VpnPlan.IsPaid
+            && connectionIntent.Location is MultiCountryLocationIntent intent
+            && intent.IsSelectionEmpty;
     }
 
     protected IEnumerable<PhysicalServer> SelectDistinctPhysicalServers(List<Server> pickedServers, IList<VpnProtocol> preferredProtocols)

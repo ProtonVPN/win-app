@@ -92,6 +92,7 @@ public static class DefaultSettings
     public static DnsBlockMode DnsBlockMode = DnsBlockMode.Nrpt;
     public static bool IsLocalDnsEnabled = false;
     public static DateTimeOffset? LastSettingsHeartbeatTimeUtc = null;
+    public static List<ExcludedLocation> ExcludedLocationsList = [];
 
     public static ChangeServerSettings ChangeServerSettings = new()
     {

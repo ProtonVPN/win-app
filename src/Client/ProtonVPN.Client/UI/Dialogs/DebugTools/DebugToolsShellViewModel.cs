@@ -22,20 +22,22 @@ using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.Models;
-using ProtonVPN.Client.Contracts.Services.Activation.Bases;
 using ProtonVPN.Client.Contracts.Services.Lifecycle;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Extensions;
 using ProtonVPN.Client.Core.Services.Activation;
+using ProtonVPN.Client.Core.Services.Activation.Bases;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.UI.Dialogs.DebugTools.Models;
 using ProtonVPN.Client.UI.Main.Map;
 using ProtonVPN.Common.Core.Extensions;
@@ -48,6 +50,7 @@ namespace ProtonVPN.Client.UI.Dialogs.DebugTools;
 public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWindowActivator>
 {
     private readonly IServersUpdater _serversUpdater;
+    private readonly IServersLoader _serversLoader;
     private readonly IVpnServiceCaller _vpnServiceCaller;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
@@ -99,6 +102,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     public DebugToolsShellViewModel(
         IVpnServiceCaller vpnServiceCaller,
         IServersUpdater serversUpdater,
+        IServersLoader serversLoader,
         IUserAuthenticator userAuthenticator,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
         INpsSurveyWindowActivator npsSurveyWindowActivator,
@@ -114,6 +118,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         : base(windowActivator, viewModelHelper)
     {
         _serversUpdater = serversUpdater;
+        _serversLoader = serversLoader;
         _vpnServiceCaller = vpnServiceCaller;
         _userAuthenticator = userAuthenticator;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
@@ -370,5 +375,23 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
             Latitude = coordinates?.Latitude,
             Longitude = coordinates?.Longitude
         };
+    }
+
+    [RelayCommand]
+    public void ExcludeAllLocations()
+    {
+        List<ExcludedLocation> excludedLocations = [];
+        foreach (Country country in _serversLoader.GetCountries().OrderBy(c => c.Code))
+        {
+            excludedLocations.Add(new(country.Code));
+        }
+
+        _settings.ExcludedLocationsList = excludedLocations;
+    }
+
+    [RelayCommand]
+    public void IncludeAllLocations()
+    {
+        _settings.ExcludedLocationsList = DefaultSettings.ExcludedLocationsList;
     }
 }

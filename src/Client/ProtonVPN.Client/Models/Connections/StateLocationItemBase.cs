@@ -95,6 +95,6 @@ public abstract class StateLocationItemBase : HostLocationItemBase<State>
             && !currentConnectionDetails.IsGateway
             && State.CountryCode == currentConnectionDetails.ExitCountryCode
             && State.Name == currentConnectionDetails.State
-            && (FeatureIntent?.GetType().IsAssignableTo(currentConnectionDetails.OriginalConnectionIntent.Feature?.GetType()) ?? true);
+            && (FeatureIntent?.IsSupported(currentConnectionDetails.Server) ?? true);
     }
 }

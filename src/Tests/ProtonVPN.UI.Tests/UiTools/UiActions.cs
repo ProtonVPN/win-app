@@ -374,7 +374,19 @@ public static class UiActions
     public static void DoesNotExist<T>(this T desiredElement) where T : Element
     {
         AutomationElement? element = FindFirstDescendantUsingChildren(desiredElement.Condition);
-        Assert.That(element, Is.Null, $"Element {desiredElement.SelectorName} was found. But it should not exist.");
+
+        if (desiredElement.ChildElement != null && element != null)
+        {
+            element = desiredElement.ChildElement.UseDescendantSearch
+                ? element.FindFirstDescendant(desiredElement.ChildElement.Condition)
+                : element.FindFirstChild(desiredElement.ChildElement.Condition);
+
+            Assert.That(element, Is.Null, $"Element {desiredElement.ChildElement.SelectorName} inside {desiredElement.SelectorName} was found. But it should not exist.");
+        }
+        else
+        {
+            Assert.That(element, Is.Null, $"Element {desiredElement.SelectorName} was found. But it should not exist.");
+        }
     }
 
     public static void AssertIsFocused<T>(this T desiredElement) where T : Element

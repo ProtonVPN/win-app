@@ -27,10 +27,10 @@ namespace ProtonVPN.UI.Tests.Robots;
 
 public class ConfirmationRobot
 {
-    protected Element OverlayMessage = Element.ByAutomationId("OverlayMessage");
-    protected Element PrimaryActionButton = Element.ByAutomationId("PrimaryButton");
-    protected Element SecondaryActionButton = Element.ByAutomationId("SecondaryButton");
-    protected Element CancelActionButton = Element.ByAutomationId("CloseButton");
+    protected Element OverlayMessage => Element.ByAutomationId("OverlayMessage");
+    protected Element PrimaryActionButton => Element.ByAutomationId("PrimaryButton");
+    protected Element SecondaryActionButton => Element.ByAutomationId("SecondaryButton");
+    protected Element CancelActionButton => Element.ByAutomationId("CloseButton");
 
     public ConfirmationRobot PrimaryAction()
     {
@@ -52,13 +52,38 @@ public class ConfirmationRobot
 
     public class Verifications : ConfirmationRobot
     {
-        public Verifications IsDialogDisplayed(string titleText, string descriptionText, string buttonText)
+        public Verifications IsOverlayDisplayed()
         {
-            Thread.Sleep(TestConstants.OneSecondTimeout);
+            OverlayMessage.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications OverlayTextContains(string text)
+        {
             List<string> allChildren = OverlayMessage.GetAllChildrenNames();
-            Assert.That(allChildren, Does.Contain(titleText));
-            Assert.That(allChildren, Does.Contain(descriptionText));
-            PrimaryActionButton.TextEquals(buttonText);
+            Assert.That(allChildren, Does.Contain(text));
+            return this;
+        }
+
+        public Verifications OverlayButtonsEquals(string? primary = null, string? secondary = null, string? cancel = null)
+        {
+            if (!string.IsNullOrEmpty(primary))
+            {
+                PrimaryActionButton.WaitUntilDisplayed();
+                PrimaryActionButton.TextEquals(primary);
+            }
+
+            if (!string.IsNullOrEmpty(secondary))
+            {
+                SecondaryActionButton.WaitUntilDisplayed();
+                SecondaryActionButton.TextEquals(secondary);
+            }
+
+            if (!string.IsNullOrEmpty(cancel))
+            {
+                CancelActionButton.WaitUntilDisplayed();
+                CancelActionButton.TextEquals(cancel);
+            }
 
             return this;
         }

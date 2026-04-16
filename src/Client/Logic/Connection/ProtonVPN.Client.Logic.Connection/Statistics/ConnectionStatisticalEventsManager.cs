@@ -218,6 +218,8 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
 
         IConnectionProfile? profile = _lastKnownConnectionDetails?.OriginalConnectionIntent as IConnectionProfile;
 
+        bool hasActiveExclusions = _settings.ExcludedLocationsList?.Count > 0;
+
         return new VpnConnectionEventData
         {
             Outcome = outcome,
@@ -255,8 +257,9 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
                 IsModerateNatEnabled = (profile?.Settings.NatType ?? _settings.NatType) == NatType.Moderate,
                 IsCustomDnsEnabled = profile?.Settings.IsCustomDnsServersEnabled ?? _settings.IsCustomDnsServersEnabled,
                 IsLanConnectionsEnabled = _settings.IsLocalAreaNetworkAccessEnabled,
-                IsConnectionPreferencesConfigured = false // TODO: Implement when merged with connection preferences branch
+                IsConnectionPreferencesConfigured = hasActiveExclusions
             },
+            HasActiveExclusions = hasActiveExclusions,
         };
     }
 }

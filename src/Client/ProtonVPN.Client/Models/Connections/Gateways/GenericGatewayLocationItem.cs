@@ -96,7 +96,6 @@ public class GenericGatewayLocationItem : LocationItemBase
     {
         return currentConnectionDetails is not null
             && currentConnectionDetails.OriginalConnectionIntent.Location.IsSameAs(LocationIntent)
-            && ((currentConnectionDetails.OriginalConnectionIntent.Feature == null && FeatureIntent == null)
-               || (currentConnectionDetails.OriginalConnectionIntent.Feature?.IsSameAs(FeatureIntent) ?? false));
+            && FeatureIntent!.IsSupported(currentConnectionDetails.Server);
     }
 }

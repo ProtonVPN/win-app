@@ -41,6 +41,7 @@ using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.LocalAgent;
@@ -198,6 +199,8 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         }
         else
         {
+            _logger.Error<ConnectionErrorLog>($"Failed to connect due to '{error}' error detected.");
+
             await DisconnectAsync(VpnTriggerDimension.Auto);
 
             _eventMessageSender.Send(new ConnectionErrorMessage { VpnError = error });

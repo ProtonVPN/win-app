@@ -23,6 +23,7 @@ using System.Threading;
 using System.Diagnostics;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
+using ProtonVPN.UI.Tests.Extensions;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -72,6 +73,8 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
             .Verify.IsConnected()
             .Disconnect()
             .Verify.IsAdvancedKillSwitchActivated();
+
+        ConfirmationRobot.DismissExcludedLocationsPrompt();
 
         //needs a 5sec wait locally
         //Thread.Sleep(TestConstants.FiveSecondsTimeout);

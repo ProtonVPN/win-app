@@ -23,7 +23,6 @@ using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Common.UI.Controls.Custom;
 using ProtonVPN.Client.Common.UI.Keyboards;
-using ProtonVPN.Client.Contracts.Services.Activation.Bases;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Extensions;
 using ProtonVPN.Client.Core.Services.Selection;

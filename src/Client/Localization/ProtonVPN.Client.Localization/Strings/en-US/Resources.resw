@@ -1644,8 +1644,8 @@
   <data name="Settings_Connection_ConnectionPreferences" xml:space="preserve">
     <value>Connection preferences</value>
   </data>
-   <data name="Settings_Connection_ConnectionPreferences_Description" xml:space="preserve">
-    <value>Manage default and automatic connections</value>
+  <data name="Settings_Connection_ConnectionPreferences_Description" xml:space="preserve">
+    <value>Default connection and excluded locations</value>
   </data>
   <data name="Settings_Connection_Advanced_AlternativeRouting" xml:space="preserve">
     <value>Alternative routing</value>
@@ -1735,6 +1735,27 @@
   </data>
   <data name="Settings_Connection_Default_Random_Description" xml:space="preserve">
     <value>Different server every time you connect</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations" xml:space="preserve">
+    <value>Excluded locations</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Description" xml:space="preserve">
+    <value>The selected locations will never be used when you connect to Fastest or Random</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Search" xml:space="preserve">
+    <value>Select...</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_NoLocations" xml:space="preserve">
+    <value>No locations available</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Countries" xml:space="preserve">
+    <value>Countries</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_States" xml:space="preserve">
+    <value>States</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Cities" xml:space="preserve">
+    <value>Cities</value>
   </data>
   <data name="Settings_Connection_Protocol" xml:space="preserve">
     <value>Protocol</value>
@@ -2599,6 +2620,12 @@
   <data name="Connection_Error_NoServers_Profile" xml:space="preserve">
     <value>Your server selection for '{0}' is unavailable. Select a different server or try again later.</value>
     <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Connection_Error_AllServersExcluded" xml:space="preserve">
+    <value>Your preferences exclude all available servers. Adjust exclusions to connect.</value>
+  </data>
+  <data name="Connection_Error_AllServersExcluded_Action" xml:space="preserve">
+    <value>Excluded locations</value>
   </data>
   <data name="Connection_Error_TapAdapterInUse" xml:space="preserve">
     <value>Your network adapter is currently in use.</value>
@@ -3825,5 +3852,29 @@
   </data>
   <data name="NoServers_NeedHelp" xml:space="preserve">
     <value>Need help?</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Title" xml:space="preserve">
+    <value>Not the country you wanted?</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Message" xml:space="preserve">
+    <value>If there are locations you don't want to be automatically connected to, you can exclude them from Fastest and Random country.</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations" xml:space="preserve">
+    <value>Exclude locations</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_Title" xml:space="preserve">
+    <value>Avoid unwanted locations</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_Subtitle" xml:space="preserve">
+    <value>You can now exclude countries or cities from Fastest and Random connections.</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_ActionButton" xml:space="preserve">
+    <value>Exclude locations</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_CloseButton" xml:space="preserve">
+    <value>Maybe later</value>
   </data>
 </root>

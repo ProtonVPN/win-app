@@ -18,6 +18,7 @@
  */
 
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.Preferences;
 using ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
@@ -39,20 +40,26 @@ public class ServerListGenerator : ServerListGeneratorBase, IServerListGenerator
     public ServerListGenerator(
         ISettings settings,
         IServersLoader serversLoader,
+        IExclusionChecker exclusionChecker,
         ILogger logger)
-        : base(settings, serversLoader, logger)
+        : base(settings, serversLoader, exclusionChecker, logger)
     { }
 
-    public IEnumerable<PhysicalServer> Generate(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols)
+    public ServerListResult Generate(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols)
     {
         Logger.Debug<AppLog>($"Generating servers list for intent: {connectionIntent}");
 
-        List<Server> servers = SelectLogicalServers(connectionIntent, preferredProtocols)
+        List<Server> servers = SelectLogicalServers(connectionIntent, preferredProtocols, applyExclusions: true)
             .Take(MAX_LOGICAL_SERVERS_IN_TOTAL)
             .ToList();
 
+        ServerListDiagnostic diagnostic = DetermineExclusionDiagnostic(servers.Count,
+            () => SelectLogicalServers(connectionIntent, preferredProtocols, applyExclusions: false).Any());
+
         Logger.Debug<AppLog>($"Generated servers list: {string.Join(", ", servers.Select(s => s.Name))}");
 
-        return SelectDistinctPhysicalServers(servers, preferredProtocols);
+        IReadOnlyList<PhysicalServer> physicalServers = SelectDistinctPhysicalServers(servers, preferredProtocols).ToList();
+        
+        return new ServerListResult(physicalServers, diagnostic);
     }
 }

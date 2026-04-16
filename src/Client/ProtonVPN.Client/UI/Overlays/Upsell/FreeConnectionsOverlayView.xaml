@@ -54,7 +54,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
-                <DataTemplate x:DataType="searches:LocalizedCountry">
+                <DataTemplate x:DataType="searches:LocalizedFreeCountry">
                     <StackPanel Orientation="Horizontal"
                                 Spacing="8">
                         <custom:SimpleCountryFlag Width="30"

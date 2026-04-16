@@ -76,13 +76,13 @@ public class WelcomeOverlayHandler : IHandler,
             }
             else if (!_settings.VpnPlan.IsB2B && !_settings.WasWelcomeOverlayDisplayed)
             {
-                _settings.WasWelcomeOverlayDisplayed = true;
                 await _mainWindowOverlayActivator.ShowWelcomeOverlayAsync();
+                _settings.WasWelcomeOverlayDisplayed = true;
             }
             else if (_settings.VpnPlan.IsB2B && !_settings.WasWelcomeB2BOverlayDisplayed)
             {
-                _settings.WasWelcomeB2BOverlayDisplayed = true;
                 await _mainWindowOverlayActivator.ShowWelcomeToVpnB2BOverlayAsync();
+                _settings.WasWelcomeB2BOverlayDisplayed = true;
             }
             else
             {
