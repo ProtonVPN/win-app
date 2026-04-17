@@ -18,6 +18,7 @@
 #define NetworkDriverFileName "Resources\ProtonVPN.CalloutDriver.sys"
 
 #define RestoreInternetExeName "ProtonVPN.RestoreInternet.exe"
+#define NrptWatchdogTaskName "Proton VPN NRPT watchdog"
 
 #define ProtonInstallerName "ProtonInstaller.exe"
 #define Webview2InstallerName "MicrosoftEdgeWebview2Setup.exe"
@@ -865,7 +866,17 @@ begin
 
     Exec(ExpandConstant('{app}\{#VersionFolder}\{#RestoreInternetExeName}'), '', '', SW_HIDE, ewWaitUntilTerminated, res);
     Log(ExpandConstant('{#RestoreInternetExeName} returned: ') + IntToStr(res));
-
+    
+    if Exec('schtasks.exe', ExpandConstant('/Delete /TN "{#NrptWatchdogTaskName}" /F'), '', SW_HIDE, ewWaitUntilTerminated, res) then begin
+      if res = 0 then begin
+        Log('NRPT watchdog scheduled task deleted successfully.');
+      end else begin
+        Log('NRPT watchdog scheduled task not found or could not be deleted. Exit code: ' + IntToStr(res));
+      end;
+    end else begin
+      Log('Failed to execute schtasks.exe (to delete NRPT watchdog scheduled task). Error: ' + IntToStr(res));
+    end;
+    
     Log('Trying to delete client startup record if exists');
     DeleteStartupApp(ExpandConstant('{#ClientName}'));
 

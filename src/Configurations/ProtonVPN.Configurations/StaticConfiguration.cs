@@ -35,6 +35,7 @@ public class StaticConfiguration : IStaticConfiguration
     public string InstallActionsPath { get; } = DefaultConfiguration.InstallActionsPath;
     public string ClientExePath { get; } = DefaultConfiguration.ClientExePath;
     public string ServiceExePath { get; } = DefaultConfiguration.ServiceExePath;
+    public string NrptWatchdogExePath { get; } = DefaultConfiguration.NrptWatchdogExePath;
 
     public string ProtocolActivationScheme { get; } = DefaultConfiguration.ProtocolActivationScheme;
     public string LegacyProtocolActivationScheme { get; } = DefaultConfiguration.LegacyProtocolActivationScheme;

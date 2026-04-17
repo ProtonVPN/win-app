@@ -92,6 +92,9 @@ public static class DefaultConfiguration
     /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ProtonVPNService.exe</returns>
     public static string ServiceExePath => Path.Combine(_baseVersionDirectory.Value, "ProtonVPNService.exe");
 
+    /// <returns>C:\Program Files\Proton\VPN\v4.0.0\ProtonVPN.NrptWatchdog.exe</returns>
+    public static string NrptWatchdogExePath => Path.Combine(_baseVersionDirectory.Value, "ProtonVPN.NrptWatchdog.exe");
+
     public static string ProtocolActivationScheme = "proton-vpn";
 
     public static string LegacyProtocolActivationScheme = "protonvpn";

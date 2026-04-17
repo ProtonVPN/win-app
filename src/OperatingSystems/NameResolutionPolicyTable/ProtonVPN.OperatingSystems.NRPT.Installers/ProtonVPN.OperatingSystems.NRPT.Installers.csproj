@@ -3,6 +3,7 @@
         <TargetFramework>net8.0-windows</TargetFramework>
         <PreserveCompilationContext>true</PreserveCompilationContext>
         <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
         <OutputPath>..\..\..\bin</OutputPath>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <OutputType>Library</OutputType>

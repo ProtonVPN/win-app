@@ -26,5 +26,7 @@ public class NameResolutionPolicyTableModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         builder.RegisterType<NrptInvoker>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<NrptWatchdogScheduler>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<NrptWatchdogStarter>().AsImplementedInterfaces().SingleInstance();
     }
 }

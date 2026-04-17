@@ -150,6 +150,7 @@ using ProtonVPN.ProcessCommunication.Client.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.Serialization.Installers;
 using ProtonVPN.StatisticalEvents.Installers;
+using ProtonVPN.OperatingSystems.TaskScheduling.Installers;
 
 namespace ProtonVPN.Client.Installers;
 

@@ -33,6 +33,7 @@ public interface IStaticConfiguration
     string InstallActionsPath { get; }
     string ClientExePath { get; }
     string ServiceExePath { get; }
+    string NrptWatchdogExePath { get; }
 
     string ProtocolActivationScheme { get; }
     string LegacyProtocolActivationScheme { get; }

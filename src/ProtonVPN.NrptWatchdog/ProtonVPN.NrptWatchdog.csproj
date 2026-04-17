@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
+        <OutputType>Exe</OutputType>
+        <Nullable>enable</Nullable>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <OutputPath>..\src\bin\</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+    <PropertyGroup>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+    </PropertyGroup>
+    <PropertyGroup>
+        <ApplicationIcon>..\ProtonVPN.RestoreInternet\protonvpn.ico</ApplicationIcon>
+        <StartupObject>ProtonVPN.NrptWatchdog.Program</StartupObject>
+        <BaseOutputPath>..\src\bin</BaseOutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <Resource Include="..\ProtonVPN.RestoreInternet\protonvpn.ico" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="System.Collections.Immutable" />
+        <PackageReference Include="System.Diagnostics.DiagnosticSource" />
+        <PackageReference Include="System.Formats.Asn1" />
+        <PackageReference Include="System.Text.Encoding.CodePages" />
+        <PackageReference Include="System.Text.Json" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Properties\" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\OperatingSystems\NameResolutionPolicyTable\ProtonVPN.OperatingSystems.NRPT\ProtonVPN.OperatingSystems.NRPT.csproj" />
+    </ItemGroup>
+</Project>

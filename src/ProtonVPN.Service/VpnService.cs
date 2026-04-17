@@ -53,6 +53,8 @@ internal partial class VpnService : ServiceBase
     private readonly IServiceFactory _serviceFactory;
     private readonly INrptInvoker _nrptInvoker;
     private readonly IProTunManager _proTunManager;
+    private readonly INrptWatchdogScheduler _nrptWatchdogScheduler;
+    private readonly INrptWatchdogStarter _nrptWatchdogStarter;
 
     private bool _isConnected;
 
@@ -66,7 +68,9 @@ internal partial class VpnService : ServiceBase
         IPowerEventNotifier powerEventNotifier,
         IServiceFactory serviceFactory,
         INrptInvoker nrptInvoker,
-        IProTunManager proTunManager)
+        IProTunManager proTunManager,
+        INrptWatchdogScheduler nrptWatchdogScheduler,
+        INrptWatchdogStarter nrptWatchdogStarter)
     {
         _logger = logger;
         _issueReporter = issueReporter;
@@ -77,6 +81,8 @@ internal partial class VpnService : ServiceBase
         _serviceFactory = serviceFactory;
         _nrptInvoker = nrptInvoker;
         _proTunManager = proTunManager;
+        _nrptWatchdogScheduler = nrptWatchdogScheduler;
+        _nrptWatchdogStarter = nrptWatchdogStarter;
 
         powerEventNotifier.OnResume += OnPowerEventResume;
         _vpnConnection.StateChanged += OnVpnStateChanged;
@@ -126,7 +132,8 @@ internal partial class VpnService : ServiceBase
 
             _vpnConnection.Disconnect();
             _nrptInvoker.DeleteRule();
-
+            _nrptWatchdogScheduler.Schedule();
+            _nrptWatchdogStarter.Start();
         }
         catch (Exception ex)
         {

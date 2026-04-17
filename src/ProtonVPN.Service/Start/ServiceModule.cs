@@ -36,6 +36,7 @@ using ProtonVPN.OperatingSystems.Processes.Installers;
 using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.OperatingSystems.Services.Contracts;
 using ProtonVPN.OperatingSystems.Services.Installers;
+using ProtonVPN.OperatingSystems.TaskScheduling.Installers;
 using ProtonVPN.ProcessCommunication.Installers;
 using ProtonVPN.ProcessCommunication.Server.Installers;
 using ProtonVPN.ProTun.Installers;
@@ -112,6 +113,7 @@ internal class ServiceModule : Module
     {
         builder.RegisterAssemblyModule<EntityMappingModule>()
                .RegisterAssemblyModule<RegistriesModule>()
+               .RegisterAssemblyModule<TaskSchedulingModule>()
                .RegisterAssemblyModule<ProcessCommunicationModule>()
                .RegisterAssemblyModule<ServerProcessCommunicationModule>()
                .RegisterAssemblyModule<SerializationModule>()
