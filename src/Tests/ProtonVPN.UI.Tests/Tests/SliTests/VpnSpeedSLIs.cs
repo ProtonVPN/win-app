@@ -19,9 +19,9 @@
 
 using System.Threading;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.Annotations;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.Annotations;
 
 namespace ProtonVPN.UI.Tests.Tests.SliTests;
 
@@ -31,7 +31,6 @@ namespace ProtonVPN.UI.Tests.Tests.SliTests;
 public class VpnSpeedSLIs : SliSetUp
 {
     private const string COUNTRY_NAME = "Germany";
-    private const string COUNTRY_CODE = "DE";
 
     [SetUp]
     public void TestInitialize()
@@ -48,7 +47,7 @@ public class VpnSpeedSLIs : SliSetUp
 
         SidebarRobot
             .SearchFor(COUNTRY_NAME)
-            .ConnectToCountry(COUNTRY_CODE);
+            .ConnectToCountry(COUNTRY_NAME);
 
         HomeRobot.Verify.IsConnected();
 

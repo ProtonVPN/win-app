@@ -19,6 +19,7 @@
 
 using System.Collections.Generic;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.StatisticalEvents.Dimensions.Extensions;
 using ProtonVPN.StatisticalEvents.Dimensions.Mappers;
@@ -42,6 +43,7 @@ public class SettingsHeartbeatDimensionsBuilder : ISettingsHeartbeatDimensionsBu
     private readonly INetShieldModeDimensionMapper _netShieldModeDimensionMapper;
     private readonly IKillSwitchModeDimensionMapper _killSwitchModeDimensionMapper;
     private readonly INatTypeDimensionMapper _natTypeDimensionMapper;
+    private readonly IExcludedLocationsCountDimensionMapper _excludedLocationsCountDimensionMapper;
 
     public SettingsHeartbeatDimensionsBuilder(
         ISettings settings,
@@ -57,7 +59,8 @@ public class SettingsHeartbeatDimensionsBuilder : ISettingsHeartbeatDimensionsBu
         IUiThemeDimensionMapper uiThemeDimensionMapper,
         INetShieldModeDimensionMapper netShieldModeDimensionMapper,
         IKillSwitchModeDimensionMapper killSwitchModeDimensionMapper,
-        INatTypeDimensionMapper natTypeDimensionMapper)
+        INatTypeDimensionMapper natTypeDimensionMapper,
+        IExcludedLocationsCountDimensionMapper excludedLocationsCountDimensionMapper)
     {
         _settings = settings;
         _featureFlagsObserver = featureFlagsObserver;
@@ -73,10 +76,13 @@ public class SettingsHeartbeatDimensionsBuilder : ISettingsHeartbeatDimensionsBu
         _netShieldModeDimensionMapper = netShieldModeDimensionMapper;
         _killSwitchModeDimensionMapper = killSwitchModeDimensionMapper;
         _natTypeDimensionMapper = natTypeDimensionMapper;
+        _excludedLocationsCountDimensionMapper = excludedLocationsCountDimensionMapper;
     }
 
     public Dictionary<string, string> Build()
     {
+        List<ExcludedLocation> excludedLocations = _settings.ExcludedLocationsList ?? [];
+
         Dictionary<string, string> dimensionDictionary = new()
         {
             { "is_auto_connect_enabled", _booleanDimensionMapper.Map(_settings.IsAutoConnectEnabled) },
@@ -103,6 +109,8 @@ public class SettingsHeartbeatDimensionsBuilder : ISettingsHeartbeatDimensionsBu
             { "netshield_level", _netShieldModeDimensionMapper.Map(_settings.IsNetShieldEnabled, _settings.NetShieldMode) },
             { "kill_switch_level", _killSwitchModeDimensionMapper.Map(_settings.IsKillSwitchEnabled, _settings.KillSwitchMode) },
             { "nat_type", _natTypeDimensionMapper.Map(_settings.NatType) },
+            { "excluded_countries_count", _excludedLocationsCountDimensionMapper.MapCountries(excludedLocations) },
+            { "excluded_cities_count", _excludedLocationsCountDimensionMapper.MapCitiesAndStates(excludedLocations) },
             { "is_protun_enabled", _booleanDimensionMapper.Map(_featureFlagsObserver.IsProTunEnabled ? _settings.AreProtonProtocolsEnabled : null) }
         }; 
 

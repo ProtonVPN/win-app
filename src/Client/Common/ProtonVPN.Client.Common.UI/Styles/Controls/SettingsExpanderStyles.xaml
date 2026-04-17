@@ -126,6 +126,54 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Setter>
     </Style>
 
+    <Style x:Key="SingleItemSettingsExpanderStyle"
+           TargetType="toolkit:SettingsExpander"
+           BasedOn="{StaticResource SettingsExpanderStyle}">
+        <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="toolkit:SettingsExpander">
+                <Expander MinWidth="{TemplateBinding MinWidth}"
+                          MinHeight="{TemplateBinding MinHeight}"
+                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          IsExpanded="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                          Style="{StaticResource SettingsExpanderExpanderStyle}">
+                    <Expander.Header>
+                        <toolkit:SettingsCard x:Name="SettingsCard"
+                                              Margin="0"
+                                              attached:CustomTags.IsTagged="{Binding (attached:CustomTags.IsTagged), RelativeSource={RelativeSource TemplatedParent}}"
+                                              Background="{ThemeResource TransparentColorBrush}"
+                                              BorderThickness="0"
+                                              Content="{TemplateBinding Content}"
+                                              CornerRadius="0"
+                                              Description="{TemplateBinding Description}"
+                                              Header="{TemplateBinding Header}"
+                                              HeaderIcon="{TemplateBinding HeaderIcon}"
+                                              IsClickEnabled="False"
+                                              IsTabStop="{TemplateBinding IsTabStop}"
+                                              Style="{StaticResource DefaultSettingsCardStyle}" />
+                    </Expander.Header>
+                    <Expander.Content>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <ContentPresenter Content="{TemplateBinding ItemsHeader}" />
+                            <ContentPresenter Grid.Row="1"
+                                              Content="{Binding Items[0], RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <ContentPresenter Grid.Row="2"
+                                              Content="{TemplateBinding ItemsFooter}" />
+                        </Grid>
+                    </Expander.Content>
+
+                </Expander>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+
     <Style x:Key="SettingsExpanderExpanderStyle" TargetType="Expander">
         <Setter Property="Background" Value="{ThemeResource SettingsExpanderBackground}" />
         <Setter Property="Foreground" Value="{ThemeResource SettingsExpanderForeground}" />

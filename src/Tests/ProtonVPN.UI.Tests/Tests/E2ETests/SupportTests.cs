@@ -28,12 +28,20 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("ARM")]
 public class SupportTests : FreshSessionSetUp
 {
+    private const string REPORT_ONE = "Connecting to VPN";
+    private const string REPORT_TWO = "Browsing speed";
+    private const string REPORT_THREE = "Weak or unstable connection";
+
     [Test]
+    [Retry(3)]
     public void SendBugReportViaLoginScreen()
     {
-        LoginRobot.NavigateToBugReport();
+        LoginRobot
+            .NavigateToBugReport();
         SupportRobot
-            .FillBugReportForm("Connecting to VPN")
+            .SelectBugType(REPORT_ONE)
+            .ClickContactUs()
+            .FillBugReportForm()
             .TickIncludeLogsCheckbox()
             .Verify.IsNoLogsAttachedWarningDisplayed()
             .SendBugReport()
@@ -41,24 +49,42 @@ public class SupportTests : FreshSessionSetUp
     }
 
     [Test]
+    [Retry(3)]
     public void SendBugReportViaKebabMenuFreeUser()
     {
         CommonUiFlows.FullLogin(TestUserData.FreeUser);
-        HomeRobot.ExpandKebabMenuButton()
+
+        HomeRobot
+            .ExpandKebabMenuButton()
             .ClickOnHelpButton();
-        SupportRobot.FillBugReportForm("Connecting to VPN")
+        SupportRobot
+            .SelectBugType(REPORT_TWO)
+            .ClickContactUs()
+            .FillBugReportForm()
             .SendBugReport()
             .Verify.IsSendingSuccessful();
     }
 
     [Test]
+    [Retry(3)]
     public void SendBugReportViaSettings()
     {
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
-        SettingRobot.OpenSettings()
+
+        SettingRobot
+            .OpenSettings()
             .OpenBugReportSetting();
-        SupportRobot.FillBugReportForm("Connecting to VPN")
+        SupportRobot
+            .SelectBugType(REPORT_THREE)
+            .ClickContactUs()
+            .FillBugReportForm()
             .SendBugReport()
             .Verify.IsSendingSuccessful();
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+        BrowserUtils.KillAllBrowsers();
     }
 }

@@ -35,7 +35,6 @@ public class SecureCoreTests : FreshSessionSetUp
     private readonly string _viaCountryIceland = "via Iceland";
     private readonly string _viaCountrySweden = "via Sweden";
     private static readonly string _countryName = "Australia";
-    private static readonly string _countryCode = CountryCodes.GetCode(_countryName);
 
     [SetUp]
     public void TestInitialize()
@@ -49,7 +48,7 @@ public class SecureCoreTests : FreshSessionSetUp
     {
         SidebarRobot
             .NavigateToSecureCoreCountriesTab()
-            .ConnectToCountry(_countryCode);
+            .ConnectToCountry(_countryName);
         HomeRobot
             .Verify.IsConnected();
 
@@ -58,7 +57,7 @@ public class SecureCoreTests : FreshSessionSetUp
             .Verify.AssertVpnConnectionEstablished(_ipAddressNotConnected!, ipAfterConnection);
 
         SidebarRobot
-            .ExpandCities(_countryCode)
+            .ExpandCities(_countryName)
             .ConnectViaSecureCore(_countryName, _viaCountryIceland);
         HomeRobot
             .Verify.IsConnected();
@@ -76,10 +75,10 @@ public class SecureCoreTests : FreshSessionSetUp
     {
         SidebarRobot
             .NavigateToSecureCoreCountriesTab()
-            .ExpandCities(_countryCode);
+            .ExpandCities(_countryName);
         ConnectToSecureCore(_viaCountrySweden);
         SidebarRobot
-            .DisconnectViaCountry(_countryCode);
+            .DisconnectViaCountry(_countryName);
         HomeRobot
             .Verify.IsDisconnected();
         NetworkUtils.VerifyIpAddressMatchesWithRetry(_ipAddressNotConnected);
@@ -173,7 +172,7 @@ public class SecureCoreTests : FreshSessionSetUp
     {
         SidebarRobot
             .NavigateToSecureCoreCountriesTab()
-            .ExpandCities(_countryCode)
+            .ExpandCities(_countryName)
             .ConnectViaSecureCore(_countryName, _viaCountryIceland);
         HomeRobot
             .Verify.IsConnected()

@@ -18,11 +18,11 @@
  */
 
 using System;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
-using FlaUI.Core.AutomationElements;
+using System.Text.RegularExpressions;
 using FlaUI.UIA3;
+using FlaUI.Core.AutomationElements;
 using ProtonVPN.UI.Tests.UiTools;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;

@@ -54,11 +54,10 @@ public partial class GlobalSearchTest
         List<ILocation> result = await _globalSearch!.SearchAsync(input);
 
         Assert.IsNotNull(result);
-        Assert.HasCount(5, result);
+        Assert.HasCount(4, result);
         Assert.IsNotNull(result.Single(l => l is City city && city.Name == "Anchorage"));
         Assert.IsNotNull(result.Single(l => l is City city && city.Name == "Argel"));
         Assert.IsNotNull(result.Single(l => l is State state && state.Name == "Alaska"));
-        Assert.IsNotNull(result.Single(l => l is Country country && country.Code == "AE"));
         Assert.IsNotNull(result.Single(l => l is Country country && country.Code == "DZ"));
     }
 

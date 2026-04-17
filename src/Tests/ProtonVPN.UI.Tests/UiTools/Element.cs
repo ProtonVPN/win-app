@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using FlaUI.Core.Conditions;
 using System;
+using FlaUI.Core.Conditions;
 
 namespace ProtonVPN.UI.Tests.UiTools;
 

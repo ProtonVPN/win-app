@@ -99,6 +99,6 @@ public abstract class CityLocationItemBase : HostLocationItemBase<City>
             && City.CountryCode == currentConnectionDetails.ExitCountryCode
             && City.StateName == currentConnectionDetails.State
             && City.Name == currentConnectionDetails.City
-            && (FeatureIntent?.GetType().IsAssignableTo(currentConnectionDetails.OriginalConnectionIntent.Feature?.GetType()) ?? true);
+            && (FeatureIntent?.IsSupported(currentConnectionDetails.Server) ?? true);
     }
 }

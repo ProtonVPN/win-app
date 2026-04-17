@@ -196,6 +196,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           TintOpacity="0.6" />
             <SolidColorBrush x:Key="FlyoutOverlayBorderColorBrush" Opacity="0.82" Color="{StaticResource BorderWeakColor}" />
 
+            <AcrylicBrush x:Key="TeachingTipBackgroundColorBrush"
+                          FallbackColor="{StaticResource BackgroundNormColor}"
+                          TintColor="{StaticResource BackgroundNormColor}"
+                          TintOpacity="0.6" />
+            <SolidColorBrush x:Key="TeachingTipBorderColorBrush" Opacity="0.82" Color="{StaticResource BorderWeakColor}" />
+
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Dark">
@@ -370,6 +376,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                           TintColor="{StaticResource BackgroundNormColor}"
                           TintOpacity="0.6" />
             <SolidColorBrush x:Key="FlyoutOverlayBorderColorBrush" Opacity="0.82" Color="{StaticResource BorderWeakColor}" />
+
+            <AcrylicBrush x:Key="TeachingTipBackgroundColorBrush"
+                          FallbackColor="{StaticResource BackgroundNormColor}"
+                          TintColor="{StaticResource BackgroundNormColor}"
+                          TintOpacity="0.6" />
+            <SolidColorBrush x:Key="TeachingTipBorderColorBrush" Opacity="0.82" Color="{StaticResource BorderWeakColor}" />
 
         </ResourceDictionary>
         

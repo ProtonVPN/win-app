@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -31,20 +31,24 @@ namespace ProtonVPN.UI.Tests.ApiClient.TestEnv;
 
 public class LokiApiClient
 {
-    private readonly string _lokiCertificate = Environment.GetEnvironmentVariable("LOKI_CERTIFICATE_WINDOWS") ?? throw new Exception("Missing LOKI_CERTIFICATE_WINDOWS env var.");
-    private readonly string _lokiPrivateKey = Environment.GetEnvironmentVariable("LOKI_PRIVATE_KEY_WINDOWS") ?? throw new Exception("Missing LOKI_PRIVATE_KEY_WINDOWS env var.");
+    private static readonly bool _isTestEnvironment = false;
 
     public HttpClient GetHttpClient()
     {
         HttpClientHandler handler = new();
-        X509Certificate2 certWithPrivateKey = GetCertificateWithPrivateKey();
-        handler.ClientCertificates.Add(certWithPrivateKey);
+        if (!_isTestEnvironment)
+        {
+            X509Certificate2 certWithPrivateKey = GetCertificateWithPrivateKey();
+            handler.ClientCertificates.Add(certWithPrivateKey);
+        }
         return new HttpClient(handler);
     }
 
     private X509Certificate2 GetCertificateWithPrivateKey()
     {
-        byte[] certBytes = Convert.FromBase64String(GetCleanedPem(_lokiCertificate, "CERTIFICATE"));
+        string lokiCertificate = Environment.GetEnvironmentVariable("LOKI_CERTIFICATE_WINDOWS") ?? throw new Exception("Missing LOKI_CERTIFICATE_WINDOWS env var.");
+
+        byte[] certBytes = Convert.FromBase64String(GetCleanedPem(lokiCertificate, "CERTIFICATE"));
 
         X509CertificateParser certParser = new();
         Org.BouncyCastle.X509.X509Certificate cert = certParser.ReadCertificate(certBytes);
@@ -57,7 +61,9 @@ public class LokiApiClient
 
     private AsymmetricKeyParameter GetPrivateKeyParameter()
     {
-        StringReader reader = new(_lokiPrivateKey);
+        string lokiPrivateKey = Environment.GetEnvironmentVariable("LOKI_PRIVATE_KEY_WINDOWS") ?? throw new Exception("Missing LOKI_PRIVATE_KEY_WINDOWS env var.");
+
+        StringReader reader = new(lokiPrivateKey);
         PemReader pemReader = new(reader);
         return (AsymmetricKeyParameter)pemReader.ReadObject();
     }

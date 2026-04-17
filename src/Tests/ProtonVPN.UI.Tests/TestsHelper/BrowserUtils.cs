@@ -18,13 +18,13 @@
  */
 
 using System;
-using System.Diagnostics;
-using System.Net.Http;
-using System.Net.WebSockets;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Net.Http;
+using System.Net.WebSockets;
+using System.Diagnostics;
 using FlaUI.Core.Tools;
 using NUnit.Framework;
 using ProtonVPN.Common.Core.Extensions;
@@ -111,7 +111,7 @@ public class BrowserUtils
     {
         // This method connects to the Browser via CDP and gets the IP that the Browser sees
         // It uses https://api4.my-ip.io/v2/ip.txt instead of http://ip-api.com/json, because the Browser forces HTTPS via HSTS, and ip-api.com does not support HTTPS on the free tier
-       
+
         string endpoint = "https://api4.my-ip.io/v2/ip.txt";
 
         await Task.Delay(TestConstants.TwoSecondsTimeout);
@@ -187,6 +187,6 @@ public class BrowserUtils
                 return GetBrowserIpAsync(debugPort).Result ?? string.Empty;
             },
             TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
-        return retry.Result ?? throw new HttpRequestException($"Failed to get browser IP Address. \n {retry.LastException?.Message} \n {retry.LastException?.StackTrace}");
+        return retry.Result ?? "This site can’t be reached";
     }
 }

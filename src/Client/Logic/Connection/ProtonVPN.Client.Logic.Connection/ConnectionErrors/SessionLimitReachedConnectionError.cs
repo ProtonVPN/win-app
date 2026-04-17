@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -35,7 +35,8 @@ public class SessionLimitReachedConnectionError : ReportableConnectionError
     public SessionLimitReachedConnectionError(
         ILocalizationProvider localizer,
         ISettings settings,
-        IReportIssueWindowActivator reportIssueWindowActivator) : base(localizer, reportIssueWindowActivator)
+        IClientWindowsActivator clientWindowsActivator)
+        : base(localizer, clientWindowsActivator)
     {
         _settings = settings;
     }

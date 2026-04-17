@@ -34,6 +34,7 @@ public enum VpnError
     ServerOffline,
     ServerRemoved,
     NoServers,
+    AllServersExcluded,
     Unknown,
     RpcServerUnavailable,
     ServerUnreachable,

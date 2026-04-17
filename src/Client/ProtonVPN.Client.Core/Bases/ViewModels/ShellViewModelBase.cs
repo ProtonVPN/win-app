@@ -20,7 +20,7 @@
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Navigation;
-using ProtonVPN.Client.Contracts.Services.Activation.Bases;
+using ProtonVPN.Client.Core.Services.Activation.Bases;
 using ProtonVPN.Client.Core.Services.Navigation.Bases;
 
 namespace ProtonVPN.Client.Core.Bases.ViewModels;

@@ -17,14 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Linq;
+using System.Net.Http;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using System.Net.Http;
-using NUnit.Framework;
-using System.Linq;
-using System;
 using System.Collections.Generic;
 using FlaUI.Core.Tools;
+using NUnit.Framework;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 

@@ -302,4 +302,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
     <BitmapImage x:Key="SecurityKeyTwoFactorAuthIllustrationSource"
                  UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/security-key-2fa.png" />
 
+    <BitmapImage x:Key="ExcludedLocationsTootTipIllustrationSource"
+                 UriSource="ms-appx:///ProtonVPN.Client.Common.UI/Assets/Illustrations/excluded-locations.png" />
+
 </ResourceDictionary>

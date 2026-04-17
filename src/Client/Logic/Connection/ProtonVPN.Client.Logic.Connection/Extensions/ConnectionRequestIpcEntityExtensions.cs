@@ -30,7 +30,9 @@ public static class ConnectionRequestIpcEntityExtensions
 
         if (request.Servers.Length <= 0)
         {
-            error = VpnError.NoServers;
+            error = request.AreAllServersExcludedByUserPreference
+                ? VpnError.AllServersExcluded
+                : VpnError.NoServers;
         }
         else if (request.Credentials.Certificate is null ||
                  request.Credentials.ClientKeyPair is null ||

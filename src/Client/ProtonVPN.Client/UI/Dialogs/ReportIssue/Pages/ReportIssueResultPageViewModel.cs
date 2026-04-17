@@ -19,8 +19,8 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Bases;
 

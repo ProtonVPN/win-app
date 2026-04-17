@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
+/*
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,23 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Contracts.Services.Activation.Bases;
+namespace ProtonVPN.Client.Contracts.Services.Navigation;
 
-public interface IWindowActivator
+/// <summary>
+/// This interface is exposed from the client contracts to be used in other layers without referencing the client assembly.
+/// </summary>
+public interface IClientViewsNavigator
 {
-    string WindowTitle { get; }
-
-    bool IsWindowVisible { get; }
-
-    event EventHandler? HostDpiChanged;
-
-    event EventHandler? HostSizeChanged;
-
-    void Activate();
-
-    void Hide();
-
-    void Exit();
-
-    void DisableHandleClosedEvent();
+    Task NavigateToConnectionPreferencesSettingsAsync();
 }

@@ -153,6 +153,9 @@ public class UserSettingsLog : LogBase
         yield return new(nameof(IUserSettings.SplitTunnelingInverseAppsList), _settings.SplitTunnelingInverseAppsList);
         yield return new(nameof(IUserSettings.SplitTunnelingInverseIpAddressesList), _settings.SplitTunnelingInverseIpAddressesList);
 
+        yield return new(nameof(IUserSettings.DefaultConnection), _settings.DefaultConnection);
+        yield return new(nameof(IUserSettings.ExcludedLocationsList), _settings.ExcludedLocationsList);
+
         yield return new(nameof(IUserSettings.SidebarWidth), _settings.SidebarWidth);
         yield return new(nameof(IUserSettings.IsRecentsPaneOpened), _settings.IsRecentsPaneOpened);
         yield return new(nameof(IUserSettings.IsNavigationPaneOpened), _settings.IsNavigationPaneOpened);
@@ -168,6 +171,8 @@ public class UserSettingsLog : LogBase
         yield return new(nameof(IUserSettings.WasWelcomePlusOverlayDisplayed), _settings.WasWelcomePlusOverlayDisplayed);
         yield return new(nameof(IUserSettings.WasWelcomeUnlimitedOverlayDisplayed), _settings.WasWelcomeUnlimitedOverlayDisplayed);
         yield return new(nameof(IUserSettings.WasWelcomeB2BOverlayDisplayed), _settings.WasWelcomeB2BOverlayDisplayed);
+        yield return new(nameof(IUserSettings.WasExcludedLocationsSmartDiscoveryPromptDisplayed), _settings.WasExcludedLocationsSmartDiscoveryPromptDisplayed);
+        yield return new(nameof(IUserSettings.WasExcludedLocationsTeachingTipDisplayed), _settings.WasExcludedLocationsTeachingTipDisplayed);
 
         yield return new(nameof(IUserSettings.IsP2PInfoBannerDismissed), _settings.IsP2PInfoBannerDismissed);
         yield return new(nameof(IUserSettings.IsSecureCoreInfoBannerDismissed), _settings.IsSecureCoreInfoBannerDismissed);

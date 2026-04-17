@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2024 Proton AG
+Copyright (c) 2026 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -15,46 +15,172 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
 <Page x:Class="ProtonVPN.Client.UI.Main.Settings.Pages.ConnectionPreferences.ConnectionPreferencesSettingsPageView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
+      xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
+      xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      xmlns:exclusion="using:ProtonVPN.Client.Models.Features.LocationExclusion"
+      xmlns:selectors="using:ProtonVPN.Client.Selectors"
       xmlns:controls="using:ProtonVPN.Client.UI.Controls"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <x:Double x:Key="MinExcludedLocationItemWidth">280</x:Double>
+        <GridLength x:Key="IconColumnWidth">24</GridLength>
+
+        <DataTemplate x:Key="LocationGroupTemplate"
+                      x:DataType="exclusion:ExcludableLocationGroup">
+
+            <TextBlock Grid.Column="1"
+                       VerticalAlignment="Center"
+                       IsTabStop="False"
+                       Foreground="{ThemeResource TextWeakColorBrush}"
+                       Style="{StaticResource BodyTextBlockStyle}"
+                       Text="{x:Bind DisplayName}"
+                       TextTrimming="CharacterEllipsis"
+                       TextWrapping="NoWrap" />
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="CountryLocationTemplate"
+                      x:DataType="exclusion:ExcludableCountryItem">
+            <Grid ColumnSpacing="12"
+                  MinWidth="{StaticResource MinExcludedLocationItemWidth}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource IconColumnWidth}" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <custom:SimpleCountryFlag Grid.Column="0"
+                                          Width="{StaticResource MainFlagWidth}"
+                                          Height="{StaticResource MainFlagHeight}"
+                                          VerticalAlignment="Center"
+                                          CountryCode="{x:Bind CountryCode}"
+                                          FlagType="Country" />
+                <TextBlock Text="{x:Bind DisplayName}"
+                           Style="{ThemeResource BodyTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           Grid.Column="1" />
+                <custom:GhostButton Grid.Column="2"
+                                    VerticalAlignment="Center"
+                                    Command="{x:Bind IncludeLocationCommand, Mode=OneTime}"
+                                    ToolTipService.ToolTip="{x:Bind RemoveTooltip}"
+                                    AutomationProperties.AutomationId="RemoveExcludedLocationButton">
+                    <custom:GhostButton.LeftIcon>
+                        <pathicons:Trash />
+                    </custom:GhostButton.LeftIcon>
+                </custom:GhostButton>
+            </Grid>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="StateLocationTemplate"
+                      x:DataType="exclusion:ExcludableStateItem">
+            <Grid ColumnSpacing="12"
+                  MinWidth="{StaticResource MinExcludedLocationItemWidth}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource IconColumnWidth}" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <pathicons:MapPin Grid.Column="0"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center" />
+                <TextBlock Text="{x:Bind DisplayName}"
+                           Style="{ThemeResource BodyTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           Grid.Column="1" />
+                <custom:GhostButton Grid.Column="2"
+                                    VerticalAlignment="Center"
+                                    Command="{x:Bind IncludeLocationCommand, Mode=OneTime}"
+                                    ToolTipService.ToolTip="{x:Bind RemoveTooltip}"
+                                    AutomationProperties.AutomationId="IncludeLocationButton">
+                    <custom:GhostButton.LeftIcon>
+                        <pathicons:Trash />
+                    </custom:GhostButton.LeftIcon>
+                </custom:GhostButton>
+            </Grid>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="CityLocationTemplate"
+                      x:DataType="exclusion:ExcludableCityItem">
+            <Grid ColumnSpacing="12"
+                  MinWidth="{StaticResource MinExcludedLocationItemWidth}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource IconColumnWidth}" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <pathicons:MapPin Grid.Column="0"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center" />
+                <TextBlock Text="{x:Bind DisplayName}"
+                           Style="{ThemeResource BodyTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           Grid.Column="1" />
+                <custom:GhostButton Grid.Column="2"
+                                    VerticalAlignment="Center"
+                                    Command="{x:Bind IncludeLocationCommand, Mode=OneTime}"
+                                    ToolTipService.ToolTip="{x:Bind RemoveTooltip}"
+                                    AutomationProperties.AutomationId="IncludeLocationButton">
+                    <custom:GhostButton.LeftIcon>
+                        <pathicons:Trash />
+                    </custom:GhostButton.LeftIcon>
+                </custom:GhostButton>
+            </Grid>
+        </DataTemplate>
+
+        <selectors:ExcludableLocationItemTemplateSelector x:Key="ExcludableLocationItemTemplateSelector"
+                                                          LocationGroupTemplate="{StaticResource LocationGroupTemplate}"
+                                                          CountryLocationTemplate="{StaticResource CountryLocationTemplate}"
+                                                          StateLocationTemplate="{StaticResource StateLocationTemplate}"
+                                                          CityLocationTemplate="{StaticResource CityLocationTemplate}" />
+    </UserControl.Resources>
 
     <custom:SettingsPageContentControl x:Name="PageContentHost"
                                        ApplyCommand="{x:Bind ViewModel.ApplyCommand, Mode=OneTime}"
                                        ApplyCommandText="{x:Bind ViewModel.ApplyCommandText}"
                                        BackCommand="{x:Bind ViewModel.NavigateBackCommand, Mode=OneTime}"
                                        CloseCommand="{x:Bind ViewModel.CloseCommand, Mode=OneTime}"
-                                       IsBackButtonVisible="{x:Bind ViewModel.CanGoBack}">
+                                       IsBackButtonVisible="{x:Bind ViewModel.CanGoBack}"
+                                       CanContentScroll="False">
 
         <custom:SettingsPageContentControl.PageHeader>
             <custom:SettingsPageHeaderContentControl Header="{x:Bind ViewModel.Title}" />
         </custom:SettingsPageContentControl.PageHeader>
 
-        <StackPanel>
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
             <toolkit:SettingsCard Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default')}"
                                   IsTabStop="False"
+                                  Grid.Row="0"
+                                  Style="{StaticResource DefaultSettingsCardStyle}"
                                   Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                <controls:DefaultConnectionComboBox AutomationProperties.AutomationId="DefaultConnectionSelectorButton"
+                <controls:DefaultConnectionSelector AutomationProperties.AutomationId="DefaultConnectionSelectorButton"
                                                     MinWidth="220"
-                                                    DropdownAnchorAlignment="TopRight"
+                                                    MaxWidth="380"
                                                     ItemsSource="{x:Bind ViewModel.ConnectionsList}"
                                                     SelectedItem="{x:Bind ViewModel.SelectedDefaultConnection, Mode=TwoWay}" />
 
             </toolkit:SettingsCard>
 
-            <toolkit:SettingsCard AutomationProperties.AutomationId="DefaultConnectionUpsellSettingsCard"
+            <toolkit:SettingsCard AutomationProperties.AutomationId="DefaultConnectionUpsellCard"
+                                  Grid.Row="0"
                                   Command="{x:Bind ViewModel.TriggerDefaultConnectionUpsellProcessCommand, Mode=OneTime}"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Default')}"
                                   IsActionIconVisible="False"
@@ -65,7 +191,55 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.
                 <Image Height="24"
                        Source="{ThemeResource VpnPlusIllustrationSource}" />
             </toolkit:SettingsCard>
-        </StackPanel>
+
+            <toolkit:SettingsExpander AutomationProperties.AutomationId="ExcludedLocationsSettingsCard"
+                                      Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_ExcludedLocations_Description')}"
+                                      Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_ExcludedLocations')}"
+                                      IsExpanded="{x:Bind ViewModel.HasExcludedLocations}"
+                                      IsTabStop="False"
+                                      Grid.Row="1"
+                                      Style="{StaticResource SingleItemSettingsExpanderStyle}"
+                                      Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                <controls:ExcludableLocationSelector MinWidth="220"
+                                                     BorderThickness="0,0,0,0"
+                                                     AutomationProperties.AutomationId="ExcludableLocationSelector"
+                                                     IsEnabled="{x:Bind ViewModel.HasAvailableLocations}"
+                                                     IsFlyoutOpen="{x:Bind ViewModel.IsLocationSelectorOpen, Mode=TwoWay}"
+                                                     PlaceholderText="{x:Bind ViewModel.ExcludableLocationSelectorText}"
+                                                     SearchText="{x:Bind ViewModel.SearchInput, Mode=TwoWay}"
+                                                     LocationsSource="{x:Bind ViewModel.ExcludableLocations}"
+                                                     OpenCommand="{x:Bind ViewModel.OpenLocationSelectorCommand, Mode=OneTime}"
+                                                     CloseCommand="{x:Bind ViewModel.CloseLocationSelectorCommand, Mode=OneTime}"
+                                                     HasNoResults="{x:Bind ViewModel.HasExcludableLocations, Converter={StaticResource NotBooleanToBooleanConverter}}"
+                                                     EmptyResultsText="{x:Bind ViewModel.Localizer.Get('Settings_Connection_ExcludedLocations_NoLocations')}" />
+
+                <toolkit:SettingsExpander.Items>
+
+                    <ListView ItemsSource="{x:Bind ViewModel.ExcludedLocations}"
+                              Margin="8,8,12,8"
+                              SelectionMode="None"
+                              Style="{StaticResource GhostListViewStyle}"
+                              ItemTemplateSelector="{StaticResource ExcludableLocationItemTemplateSelector}" />
+
+                </toolkit:SettingsExpander.Items>
+
+            </toolkit:SettingsExpander>         
+
+            <toolkit:SettingsCard AutomationProperties.AutomationId="ExcludedLocationsUpsellCard"
+                                  Command="{x:Bind ViewModel.TriggerExcludedLocationsUpsellCommand, Mode=OneTime}"
+                                  Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_ExcludedLocations_Description')}"
+                                  Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_ExcludedLocations')}"
+                                  IsActionIconVisible="False"
+                                  IsClickEnabled="True"
+                                  IsTabStop="False"
+                                  Grid.Row="1"
+                                  Style="{StaticResource DefaultSettingsCardStyle}"
+                                  Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource NotBooleanToVisibilityConverter}}">
+                <Image Height="24"
+                       Source="{ThemeResource VpnPlusIllustrationSource}" />
+            </toolkit:SettingsCard>
+        </Grid>
 
     </custom:SettingsPageContentControl>
 </Page>

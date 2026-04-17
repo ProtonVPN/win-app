@@ -32,7 +32,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Assets\ProtonVPN.ico" />
-    <None Remove="UI\Controls\DefaultConnectionComboBox.xaml" />
     <None Remove="UI\Dialogs\DebugTools\DebugToolsShellView.xaml" />
     <None Remove="UI\Dialogs\DebugTools\DebugToolsWindow.xaml" />
     <None Remove="UI\Dialogs\ReportIssue\Pages\ReportIssueCategoriesPageView.xaml" />
@@ -727,12 +726,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="UI\Controls\DefaultConnectionComboBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
     <Page Update="UI\Main\Home\Details\Connection\SpeedChartControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -740,6 +733,12 @@
 
   <ItemGroup>
     <Page Update="UI\Main\Home\Details\Connection\SpeedChartComponentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UI\Controls\DefaultConnectionSelector.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

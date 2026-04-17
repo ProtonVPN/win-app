@@ -19,11 +19,11 @@
 
 using System.Threading;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.Annotations;
-using ProtonVPN.UI.Tests.ApiClient.TestEnv;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.Annotations;
+using ProtonVPN.UI.Tests.ApiClient.TestEnv;
 
 namespace ProtonVPN.UI.Tests.Tests.SliTests;
 

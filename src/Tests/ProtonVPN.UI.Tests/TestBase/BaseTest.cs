@@ -18,16 +18,16 @@
  */
 
 using System;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
-using System.ServiceProcess;
 using System.Threading;
+using System.Diagnostics;
+using System.ComponentModel;
+using System.ServiceProcess;
 using System.Threading.Tasks;
 using FlaUI.Core;
-using FlaUI.Core.AutomationElements;
-using FlaUI.Core.Tools;
 using FlaUI.UIA3;
+using FlaUI.Core.Tools;
+using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using ProtonVPN.UI.Tests.Robots;
@@ -166,7 +166,7 @@ public class BaseTest
 
             if (protonService.Status != ServiceControllerStatus.Stopped)
             {
-                TestContext.WriteLine($"[WARNING] The ProtonVPNCallout service is still running after app close - possible bug or unclean shutdown.");
+                TestContext.WriteLine($"WARNING: The ProtonVPNCallout service is still running after app close - possible bug or unclean shutdown.");
 
                 protonService.Stop();
                 protonService.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(10));
@@ -193,7 +193,7 @@ public class BaseTest
 
         ProcessStartInfo startInfo = new ProcessStartInfo(installedClientPath)
         {
-            Arguments = "-ExitAppOnClose"
+            Arguments = "-ExitAppOnClose -DisableAutoUpdate"
         };
         App = Application.Launch(startInfo);
 

@@ -17,16 +17,16 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Net;
+using System.Linq;
+using System.Security;
+using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.Annotations;
 using ProtonVPN.UI.Tests.ApiClient.Prod;
 using ProtonVPN.UI.Tests.ApiClient.TestEnv;
-using ProtonVPN.UI.Tests.TestsHelper;
-using System.Linq;
-using System.Net;
-using System.Security;
-using System.Threading.Tasks;
 
 namespace ProtonVPN.UI.Tests.Tests.SliTests;
 

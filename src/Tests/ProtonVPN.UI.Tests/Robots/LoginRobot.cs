@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using FlaUI.Core.WindowsAPI;
 using System.Threading;
-using ProtonVPN.UI.Tests.TestsHelper;
-using ProtonVPN.UI.Tests.UiTools;
 using FlaUI.Core.Input;
+using FlaUI.Core.WindowsAPI;
+using ProtonVPN.UI.Tests.UiTools;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots;
 

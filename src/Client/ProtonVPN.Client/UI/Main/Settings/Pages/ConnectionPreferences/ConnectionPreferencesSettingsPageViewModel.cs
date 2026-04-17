@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2025 Proton AG
+/*
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,9 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Specialized;
+using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.Attributes;
+using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Enums;
@@ -28,7 +30,9 @@ using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Preferences;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
+using ProtonVPN.Client.Logic.Searches.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Services.DefaultConnections;
@@ -36,6 +40,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
+using ProtonVPN.Client.Services.LocationExclusion;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.ConnectionPreferences;
 
@@ -46,12 +51,8 @@ public partial class ConnectionPreferencesSettingsPageViewModel : SettingsPageVi
     IEventMessageReceiver<VpnPlanChangedMessage>
 {
     private readonly IDefaultConnectionSelectionManager _defaultConnectionSelectionManager;
+    private readonly IExcludeLocationsManager _excludeLocationsManager;
     private readonly IUpsellCarouselWindowActivator _upsellCarouselWindowActivator;
-
-    [ObservableProperty]
-    [property: SettingName(nameof(ISettings.DefaultConnection))]
-    [NotifyPropertyChangedFor(nameof(SelectedDefaultConnection))]
-    private DefaultConnection _currentDefaultConnection;
 
     [ObservableProperty]
     [property: SettingName(nameof(ISettings.DefaultConnection))]
@@ -65,6 +66,8 @@ public partial class ConnectionPreferencesSettingsPageViewModel : SettingsPageVi
 
     public ConnectionPreferencesSettingsPageViewModel(
         IDefaultConnectionSelectionManager defaultConnectionSelectionManager,
+        IExcludeLocationsManager excludeLocationsManager,
+        IGlobalSearch globalSearch,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
@@ -84,16 +87,19 @@ public partial class ConnectionPreferencesSettingsPageViewModel : SettingsPageVi
                viewModelHelper)
     {
         _defaultConnectionSelectionManager = defaultConnectionSelectionManager;
+        _excludeLocationsManager = excludeLocationsManager;
         _upsellCarouselWindowActivator = upsellCarouselWindowActivator;
 
         InvalidateAllConnections();
 
         PageSettings =
         [
-            ChangedSettingArgs.Create(
-                () => Settings.DefaultConnection,
-                () => _defaultConnectionSelectionManager.TryCreateDefaultConnection(SelectedDefaultConnection))
+            ChangedSettingArgs.Create(() => Settings.DefaultConnection, () => _defaultConnectionSelectionManager.TryCreateDefaultConnection(SelectedDefaultConnection)),
+            ChangedSettingArgs.Create(() => Settings.ExcludedLocationsList, () => GetExcludedLocations())
         ];
+
+        Locations.CollectionChanged += OnLocationsCollectionChanged;
+        Locations.ItemPropertyChanged += OnLocationItemPropertyChanged;
     }
 
     public void Receive(RecentConnectionsChangedMessage message)
@@ -119,16 +125,19 @@ public partial class ConnectionPreferencesSettingsPageViewModel : SettingsPageVi
         }
     }
 
-    [RelayCommand]
-    private Task TriggerDefaultConnectionUpsellProcessAsync()
+    protected override void OnActivated()
     {
-        return _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.Profiles);
+        base.OnActivated();
+
+        UpdateSelectedDefaultConnection();
+        InvalidateExcludableLocations();
     }
 
     protected override void OnRetrieveSettings()
     {
         UpdateSelectedDefaultConnection();
     }
+
     protected override void OnSettingsChanged(string propertyName)
     {
         base.OnSettingsChanged(propertyName);
@@ -138,16 +147,23 @@ public partial class ConnectionPreferencesSettingsPageViewModel : SettingsPageVi
         }
     }
 
-    protected override void OnActivated()
-    {
-        base.OnActivated();
-        UpdateSelectedDefaultConnection();
-    }
-
     private void UpdateSelectedDefaultConnection()
     {
         SelectedDefaultConnection = _defaultConnectionSelectionManager.FindSelectedItem(Settings.DefaultConnection);
     }
+
+    [RelayCommand]
+    private Task TriggerDefaultConnectionUpsellProcessAsync()
+    {
+        return _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.Profiles);
+    }
+
+    [RelayCommand]
+    private Task TriggerExcludedLocationsUpsellAsync()
+    {
+        return _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.AdvancedSettings);
+    }
+
     private void InvalidateAllConnections()
     {
         _defaultConnectionSelectionManager.Refresh();

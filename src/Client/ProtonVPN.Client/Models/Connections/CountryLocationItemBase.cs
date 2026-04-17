@@ -101,7 +101,7 @@ public abstract partial class CountryLocationItemBase : HostLocationItemBase<Cou
         return currentConnectionDetails is not null
             && !currentConnectionDetails.IsGateway
             && ExitCountryCode == currentConnectionDetails.ExitCountryCode
-            && (FeatureIntent?.GetType().IsAssignableTo(currentConnectionDetails.OriginalConnectionIntent.Feature?.GetType()) ?? true);
+            && (FeatureIntent?.IsSupported(currentConnectionDetails.Server) ?? true);
     }
 
     partial void OnIsCountryExpandedChanged(bool value)

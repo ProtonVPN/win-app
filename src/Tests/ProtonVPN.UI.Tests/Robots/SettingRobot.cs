@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
 using System.Threading;
+using System.Collections.Generic;
 using FlaUI.Core.Input;
 using FlaUI.Core.WindowsAPI;
 using NUnit.Framework;
@@ -49,6 +49,8 @@ public class SettingRobot
     protected Element SplitTunnelingSettingsCard = Element.ByAutomationId("SplitTunnelingSettingsCard");
     protected Element VpnAcceleratorSettingsCard = Element.ByAutomationId("VpnAcceleratorSettingsCard");
     protected Element ConnectionPreferencesSettingsCard = Element.ByAutomationId("ConnectionPreferencesSettingsCard");
+    protected Element ExcludedLocationSelectorButton = Element.ByAutomationId("SelectorButton");
+    protected Element RemoveExcludedLocationButton = Element.ByAutomationId("RemoveExcludedLocationButton");
     protected Element PortForwardingToggle = Element.ByAutomationId("PortForwardingToggle");
     protected Element CopyPortNumberButton = Element.ByAutomationId("CopyPortNumberCondensedButton");
 
@@ -82,6 +84,7 @@ public class SettingRobot
     protected Element AutoLaunchToggle = Element.ByAutomationId("AutoLaunchToggle");
     protected Element AutoConnectToggle = Element.ByAutomationId("AutoConnectToggle");
 
+    protected Element ProtonProtocolsToggle = Element.ByName("Proton protocols").And(Element.ByClassName("NamedContainerAutomationPeer"));
     protected Element OpenVpnTcpProtocolRadioButton = Element.ByAutomationId("OpenVpnTcpProtocolRadioButton");
     protected Element OpenVpnUdpProtocolRadioButton = Element.ByAutomationId("OpenVpnUdpProtocolRadioButton");
     protected Element WireGuardUdpProtocolRadioButton = Element.ByAutomationId("WireGuardUdpProtocolRadioButton");
@@ -93,7 +96,7 @@ public class SettingRobot
     public SettingRobot OpenSettings()
     {
         Thread.Sleep(TestConstants.NavigationDelay);
-        SettingsButton.Click();
+        SettingsButton.ClickUntilElementDisappears();
         Thread.Sleep(TestConstants.NavigationDelay);
         return this;
     }
@@ -164,6 +167,35 @@ public class SettingRobot
         ConnectionPreferencesSettingsCard.ScrollIntoView();
         ConnectionPreferencesSettingsCard.Click();
         Thread.Sleep(TestConstants.NavigationDelay);
+        return this;
+    }
+
+    public SettingRobot OpenExcludedLocationsSelector()
+    {
+        ExcludedLocationSelectorButton.Click();
+        Thread.Sleep(TestConstants.AnimationDelay);
+        return this;
+    }
+
+    public SettingRobot SelectExcludedCountry(string countryName)
+    {
+        Element.ByName(countryName).Click();
+        Thread.Sleep(TestConstants.AnimationDelay);
+        RemoveExcludedLocationButton.WaitUntilDisplayed();
+        return this;
+    }
+
+    public SettingRobot SearchExcludedLocations(string searchText)
+    {
+        Keyboard.Type(searchText);
+        Thread.Sleep(TestConstants.AnimationDelay);
+        return this;
+    }
+
+    public SettingRobot RemoveFirstExcludedLocation()
+    {
+        RemoveExcludedLocationButton.Click();
+        Thread.Sleep(TestConstants.AnimationDelay);
         return this;
     }
 
@@ -242,6 +274,12 @@ public class SettingRobot
         ExitTheAppButton.DoubleClick();
         ExitProtonPopUp.WaitUntilDisplayed();
         ExitButton.Click();
+        return this;
+    }
+
+    public SettingRobot ToggleProtun()
+    {
+        ProtonProtocolsToggle.FindChild(Element.ByClassName("ToggleSwitch")).Toggle();
         return this;
     }
 
@@ -418,6 +456,12 @@ public class SettingRobot
             return this;
         }
 
+        public Verifications IsProtunEnabled()
+        {
+            ProtonProtocolsToggle.FindChild(Element.ByClassName("ToggleSwitch")).IsToggled();
+            return this;
+        }
+
         public Verifications IsNetshieldBlocking(NetShieldMode netShieldMode)
         {
             NetworkUtils.FlushDns();
@@ -514,6 +558,24 @@ public class SettingRobot
         public Verifications IsAutoConnectEnabled()
         {
             AutoConnectToggle.IsToggled();
+            return this;
+        }
+
+        public Verifications IsExcludedLocationDisplayed(string countryName)
+        {
+            SettingsPage.FindDescendant(Element.ByName(countryName)).WaitUntilExists();
+            return this;
+        }
+
+        public Verifications IsExcludedLocationNotDisplayed(string countryName)
+        {
+            SettingsPage.FindDescendant(Element.ByName(countryName)).DoesNotExist();
+            return this;
+        }
+
+        public Verifications IsRemoveExcludedLocationButtonDisplayed()
+        {
+            RemoveExcludedLocationButton.WaitUntilDisplayed();
             return this;
         }
     }

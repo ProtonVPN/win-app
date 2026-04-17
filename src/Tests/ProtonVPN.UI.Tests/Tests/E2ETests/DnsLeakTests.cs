@@ -17,9 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -46,7 +44,7 @@ public class DnsLeakTests : FreshSessionSetUp
         
         SidebarRobot
             .SearchFor(COUNTRY_NAME)
-            .ConnectToCountry(CountryCodes.GetCode(COUNTRY_NAME));
+            .ConnectToCountry(COUNTRY_NAME);
 
         HomeRobot
             .Verify.IsConnected();

@@ -144,7 +144,7 @@ public class SplitTunnelingExcludeTests : BaseTest
         //if location change works
         SidebarRobot
            .NavigateToAllCountriesTab()
-           .ConnectToCountry(CountryCodes.GetCode(COUNTRY_NAME));
+           .ConnectToCountry(COUNTRY_NAME);
         HomeRobot
             .Verify.IsConnected();
 

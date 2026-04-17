@@ -151,4 +151,16 @@ public class MainWindowOverlayActivator : OverlayActivatorBase<MainWindow>, IMai
     {
         return ShowOverlayAsync<WhatsNewOverlayViewModel>();
     }
+
+    public Task<ContentDialogResult> ShowExcludedLocationsSmartDiscoveryPromptAsync()
+    {
+        return ShowMessageAsync(
+            new MessageDialogParameters
+            {
+                Title = _localizer.Get("ExcludedLocations_SmartDiscovery_Prompt_Title"),
+                Message = _localizer.Get("ExcludedLocations_SmartDiscovery_Prompt_Message"),
+                PrimaryButtonText = _localizer.Get("ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations"),
+                CloseButtonText = _localizer.Get("ExcludedLocations_SmartDiscovery_Prompt_Skip"),
+            });
+    }
 }

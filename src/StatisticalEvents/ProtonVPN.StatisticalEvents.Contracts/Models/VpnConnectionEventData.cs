@@ -41,5 +41,6 @@ public class VpnConnectionEventData
     public string? Isp { get; init; }
     public bool IsIpv6Enabled { get; init; }
     public required ClientFeaturesEventData ClientFeatures { get; init; }
+    public bool HasActiveExclusions { get; init; }
     public int? FailureCode { get; init; }
 }

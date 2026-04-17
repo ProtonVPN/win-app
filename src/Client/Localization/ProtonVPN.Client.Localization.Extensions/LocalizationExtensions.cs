@@ -214,7 +214,8 @@ public static class LocalizationExtensions
             return string.Empty;
         }
 
-        if (connectionDetails.OriginalConnectionIntent.Feature is SecureCoreFeatureIntent &&
+        if (connectionDetails.IsSecureCore &&
+            connectionDetails.OriginalConnectionIntent.Feature is SecureCoreFeatureIntent &&
             connectionDetails.OriginalConnectionIntent.Location is CountryLocationIntentBase locationIntent)
         {
             return locationIntent is SingleCountryLocationIntent

@@ -83,6 +83,6 @@ public class SecureCoreCountryPairLocationItem : LocationItemBase<SecureCoreCoun
             && !currentConnectionDetails.IsGateway
             && CountryPair.ExitCountry == currentConnectionDetails.ExitCountryCode
             && CountryPair.EntryCountry == currentConnectionDetails.EntryCountryCode
-            && (FeatureIntent?.IsSameAs(currentConnectionDetails.OriginalConnectionIntent.Feature) ?? false);
+            && (FeatureIntent?.IsSupported(currentConnectionDetails.Server) ?? false);
     }
 }

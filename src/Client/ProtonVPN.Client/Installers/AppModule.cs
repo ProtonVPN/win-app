@@ -47,17 +47,19 @@ using ProtonVPN.Client.Services.Activation;
 using ProtonVPN.Client.Services.Bootstrapping;
 using ProtonVPN.Client.Services.Bootstrapping.Activators;
 using ProtonVPN.Client.Services.Browsing;
+using ProtonVPN.Client.Services.DefaultConnections;
 using ProtonVPN.Client.Services.Dispatching;
 using ProtonVPN.Client.Services.Edition;
 using ProtonVPN.Client.Services.Enabling;
 using ProtonVPN.Client.Services.Lifecycle;
+using ProtonVPN.Client.Services.LocationExclusion;
 using ProtonVPN.Client.Services.Mapping;
 using ProtonVPN.Client.Services.Navigation;
-using ProtonVPN.Client.Services.DefaultConnections;
 using ProtonVPN.Client.Services.PortForwarding;
 using ProtonVPN.Client.Services.ProcessCommunication;
 using ProtonVPN.Client.Services.Selection;
 using ProtonVPN.Client.Services.SignoutHandling;
+using ProtonVPN.Client.Services.TeachingTips;
 using ProtonVPN.Client.Services.Upselling;
 using ProtonVPN.Client.Services.Validation;
 using ProtonVPN.Client.Services.Verification;
@@ -266,6 +268,9 @@ public class AppModule : Module
         builder.RegisterType<OneTimeAnnouncementWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NpsSurveyWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
 
+        builder.RegisterType<ClientWindowsActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ClientViewsNavigator>().AsSelf().AsImplementedInterfaces().SingleInstance();
+
         builder.RegisterType<ApplicationIconSelector>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ApplicationThemeSelector>().AsSelf().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<WebBrowserAppSelector>().AsSelf().AsImplementedInterfaces().SingleInstance();
@@ -291,6 +296,9 @@ public class AppModule : Module
         builder.RegisterType<StreamingDetectionWindowActivator>().AsSelf().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<DefaultConnectionSelectionManager>().AsImplementedInterfaces().SingleInstance();
+
+        builder.RegisterType<ExcludeLocationsManager>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<TeachingTipService>().AsImplementedInterfaces().SingleInstance();
     }
 
     private void RegisterLocalHandlers(ContainerBuilder builder)

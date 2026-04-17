@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,22 +20,21 @@
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Logic.Connection.Contracts.ServerListGenerators;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Client.Settings.Contracts.Observers;
+using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.UserCertificateLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.LocalAgent;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.LocalAgent;
 
 namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 
@@ -71,7 +70,9 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
         MainSettingsIpcEntity settings = GetSettings(connectionIntent);
         VpnConfigIpcEntity config = GetVpnConfig(settings, connectionIntent);
         List<VpnProtocol> preferredProtocols = EntityMapper.Map<VpnProtocolIpcEntity, VpnProtocol>(config.PreferredProtocols);
-        IEnumerable<PhysicalServer> physicalServers = GetPhysicalServers(connectionIntent, preferredProtocols);
+        ServerListResult serverListResult = GetServerListResult(connectionIntent, preferredProtocols);
+        VpnServerIpcEntity[] servers = PhysicalServersToVpnServerIpcEntities(serverListResult.PhysicalServers);
+        bool areAllServersExcluded = servers.Length == 0 && serverListResult.Diagnostic.AreAllCandidatesExcluded;
 
         ConnectionRequestIpcEntity request = new()
         {
@@ -79,11 +80,19 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
             Config = config,
             Credentials = await GetVpnCredentialsAsync(),
             Protocol = settings.VpnProtocol,
-            Servers = PhysicalServersToVpnServerIpcEntities(physicalServers),
+            Servers = servers,
             Settings = settings,
+            AreAllServersExcludedByUserPreference = areAllServersExcluded,
         };
 
         return request;
+    }
+
+    protected ServerListResult GetServerListResult(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols)
+    {
+        return IsToBypassSmartServerListGenerator(connectionIntent)
+            ? ServerListGenerator.Generate(connectionIntent, preferredProtocols)
+            : SmartServerListGenerator.Generate(connectionIntent, preferredProtocols);
     }
 
     protected override async Task<VpnCredentialsIpcEntity> GetVpnCredentialsAsync()
@@ -135,13 +144,6 @@ public class ConnectionRequestCreator : ConnectionRequestCreatorBase, IConnectio
             Pem = connectionCertificate.Pem,
             ExpirationDateUtc = connectionCertificate.ExpirationUtcDate.UtcDateTime,
         };
-    }
-
-    protected IEnumerable<PhysicalServer> GetPhysicalServers(IConnectionIntent connectionIntent, IList<VpnProtocol> preferredProtocols)
-    {
-        return IsToBypassSmartServerListGenerator(connectionIntent)
-            ? ServerListGenerator.Generate(connectionIntent, preferredProtocols)
-            : SmartServerListGenerator.Generate(connectionIntent, preferredProtocols);
     }
 
     protected VpnServerIpcEntity[] PhysicalServersToVpnServerIpcEntities(IEnumerable<PhysicalServer> physicalServers)

@@ -66,7 +66,9 @@ public class HomeRobot
 
     public HomeRobot DismissWelcomeModal()
     {
-        GetStartedButton.Click();
+        Thread.Sleep(TestConstants.AnimationDelay);
+        GetStartedButton.ClickUntilElementDisappears();
+        Thread.Sleep(TestConstants.AnimationDelay);
         return this;
     }
 
@@ -290,8 +292,10 @@ public class HomeRobot
             return this;
         }
 
-        public Verifications IsProtocolDisplayed(TestConstants.Protocol protocol)
+        public Verifications IsProtocolDisplayed(TestConstants.Protocol protocol, bool isProtun = false)
         {
+            string? protonPrefix = isProtun ? "Proton " : null;
+
             switch (protocol)
             {
                 case TestConstants.Protocol.OpenVpnUdp:
@@ -301,13 +305,13 @@ public class HomeRobot
                     ConnectionDetailsProtocol.TextEquals("OpenVPN (TCP)");
                     break;
                 case TestConstants.Protocol.WireGuardTcp:
-                    ConnectionDetailsProtocol.TextEquals("WireGuard (TCP)");
+                    ConnectionDetailsProtocol.TextEquals(protonPrefix + "WireGuard (TCP)");
                     break;
                 case TestConstants.Protocol.WireGuardTls:
-                    ConnectionDetailsProtocol.TextEquals("Stealth");
+                    ConnectionDetailsProtocol.TextEquals(protonPrefix + "Stealth");
                     break;
                 case TestConstants.Protocol.WireGuardUdp:
-                    ConnectionDetailsProtocol.TextEquals("WireGuard (UDP)");
+                    ConnectionDetailsProtocol.TextEquals(protonPrefix + "WireGuard (UDP)");
                     break;
             }
 

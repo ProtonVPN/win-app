@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Contracts.Services.Activation.Bases;
+using ProtonVPN.Client.Core.Services.Activation.Bases;
 
 namespace ProtonVPN.Client.Core.Services.Activation;
 

@@ -25,6 +25,7 @@ public static class VpnErrorExtensions
 {
     private static readonly List<VpnError> _errorsForUser =
     [
+        VpnError.AllServersExcluded,
         VpnError.NoServers,
         VpnError.TapAdapterInUseError,
         VpnError.TapRequiresUpdateError,

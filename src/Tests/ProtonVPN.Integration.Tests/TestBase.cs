@@ -19,7 +19,6 @@
  */
 
 using Autofac;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Api;
 using ProtonVPN.Api.Contracts;

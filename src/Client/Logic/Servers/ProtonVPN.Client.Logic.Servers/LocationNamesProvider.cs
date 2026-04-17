@@ -22,7 +22,7 @@ using ProtonVPN.Api.Contracts.Geographical;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Localization.Contracts.Messages;
-using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.Client.Logic.Servers.Cache;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Files;
@@ -30,6 +30,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ApiLogs;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Logic.Servers;
 
@@ -40,6 +41,7 @@ public class LocationNamesProvider :
     private static readonly TimeSpan _cacheExpiry = TimeSpan.FromDays(7);
 
     private readonly IApiClient _apiClient;
+    private readonly IServersCache _serversCache;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly ILogger _logger;
     private readonly ILocationNamesFileReaderWriter _fileReaderWriter;
@@ -50,6 +52,7 @@ public class LocationNamesProvider :
 
     public LocationNamesProvider(
         IApiClient apiClient,
+        IServersCache serversCache,
         IEventMessageSender eventMessageSender,
         ILogger logger,
         ILocationNamesFileReaderWriter fileReaderWriter,
@@ -57,6 +60,7 @@ public class LocationNamesProvider :
         IGlobalSettings globalSettings)
     {
         _apiClient = apiClient;
+        _serversCache = serversCache;
         _eventMessageSender = eventMessageSender;
         _logger = logger;
         _fileReaderWriter = fileReaderWriter;
@@ -66,6 +70,12 @@ public class LocationNamesProvider :
 
     private async Task RefreshAsync(CancellationToken cancellationToken = default)
     {
+        if (_serversCache.Servers.Count == 0)
+        {
+            _logger.Info<AppLog>("Server list is not available yet. Skipping location names refresh.");
+            return;
+        }
+
         string currentLanguage = _globalSettings.Language;
 
         if (_cacheFile.Languages.Count == 0)
@@ -78,12 +88,12 @@ public class LocationNamesProvider :
 
         if (cacheNeedsRefresh)
         {
-            _logger.Info<ApiLog>($"Cache refresh needed for language '{currentLanguage}'. Has cache: {hasCachedLanguage}, Expired: {cacheNeedsRefresh}");
+            _logger.Info<AppLog>($"Cache refresh needed for language '{currentLanguage}'. Has cache: {hasCachedLanguage}, Expired: {cacheNeedsRefresh}");
             await FetchFromApiAsync(currentLanguage, cancellationToken);
         }
         else
         {
-            _logger.Info<ApiLog>($"Using cached location names for language '{currentLanguage}'.");
+            _logger.Info<AppLog>($"Using cached location names for language '{currentLanguage}'.");
             SetActiveLanguage(languageCache!);
         }
     }

@@ -22,4 +22,5 @@ namespace ProtonVPN.Client.Logic.Searches.Contracts;
 public static class SearchConfiguration
 {
     public const int MIN_CONTAINS_LENGTH = 2;
+    public const StringComparison STRING_COMPARISON = StringComparison.InvariantCultureIgnoreCase;
 }

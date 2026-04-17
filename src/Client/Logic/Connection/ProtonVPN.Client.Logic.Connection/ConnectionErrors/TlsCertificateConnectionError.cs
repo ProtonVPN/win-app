@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -26,8 +26,9 @@ public class TlsCertificateConnectionError : ReportableConnectionError
 {
     public override string Message => Localizer.Get("Connection_Error_TlsCertificate");
 
-    public TlsCertificateConnectionError(ILocalizationProvider localizer, IReportIssueWindowActivator reportIssueWindowActivator)
-        : base(localizer, reportIssueWindowActivator)
-    {
-    }
+    public TlsCertificateConnectionError(
+        ILocalizationProvider localizer,
+        IClientWindowsActivator clientWindowsActivator)
+        : base(localizer, clientWindowsActivator)
+    { }
 }

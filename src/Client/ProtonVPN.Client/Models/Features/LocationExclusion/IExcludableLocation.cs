@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.UI.Controls;
+using System.ComponentModel;
+using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Models;
 
-public enum DropdownAnchorAlignment
+namespace ProtonVPN.Client.Models.Features.LocationExclusion;
+
+public interface IExcludableLocation : INotifyPropertyChanged
 {
-    Default,
-    BottomRight,
-    TopRight
+    ExcludedLocationType Type { get; }
+    bool IsExcluded { get; set; }
+    bool IsLocationExcluded { get; }
+    string DisplayName { get; }
+    string AbsoluteSortOrder { get; }
+    string RelativeSortOrder { get; }
+
+    ExcludedLocation ToExcludedLocation();
 }

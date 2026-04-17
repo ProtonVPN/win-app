@@ -28,8 +28,7 @@ public class MobileHotspotConnectionError : ReportableConnectionError
 
     public MobileHotspotConnectionError(
         ILocalizationProvider localizer,
-        IReportIssueWindowActivator reportIssueWindowActivator)
-        : base(localizer, reportIssueWindowActivator)
-    {
-    }
+        IClientWindowsActivator clientWindowsActivator)
+        : base(localizer, clientWindowsActivator)
+    { }
 }

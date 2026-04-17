@@ -178,7 +178,10 @@ public class NetShieldTests : FreshSessionSetUp
             .OpenNetShieldSettings()
             .ToggleNetShieldSetting();
         ConfirmationRobot
-            .Verify.IsDialogDisplayed(ENABLE_NET_SHIELD_TITLE, ENABLE_NET_SHIELD_DESCRIPTION, ENABLE_NET_SHIELD_BUTTON);
+            .Verify.IsOverlayDisplayed()
+                   .OverlayTextContains(ENABLE_NET_SHIELD_TITLE)
+                   .OverlayTextContains(ENABLE_NET_SHIELD_DESCRIPTION)
+                   .OverlayButtonsEquals(primary: ENABLE_NET_SHIELD_BUTTON);
     }
 
     private void VerifyNetShieldIsEnabledAndCustomDnsIsDisabled()

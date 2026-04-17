@@ -18,18 +18,13 @@
  */
 
 using System;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
-using Clipboard = System.Windows.Forms.Clipboard;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -39,29 +34,6 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 public class PortForwardingTests : FreshSessionSetUp
 {
     private const string COUNTRY_NAME = "Austria";
-
-    private static readonly string _projectFolder = AppDomain.CurrentDomain.BaseDirectory;
-    private static readonly string _dotnetSdkFolder = "C:\\Program Files\\dotnet\\sdk";
-    private static readonly string _testhostPath1 = Path.Combine(_projectFolder, "testhost.exe");
-    private static readonly string _testhostPath2 = Path.Combine(_dotnetSdkFolder, Directory.GetDirectories(_dotnetSdkFolder, "8.*").OrderByDescending(d => new Version(Path.GetFileName(d))).First(), "TestHostNetFramework", "testhost.exe");
-    private static readonly string _allowTesthostFirewallScript = $@"
-    $dotnetPath = (Get-Command dotnet).Source
-    $testhostPath = (Get-Command testhost).Source
-
-    $firewallRules = @(
-        @{{ Name = 'ProtonVPN UI Tests - Allow dotnet.exe'; Path = $dotnetPath }},
-        @{{ Name = 'ProtonVPN UI Tests - Allow testhost.exe'; Path = '{_testhostPath1}'}},
-        @{{ Name = 'ProtonVPN UI Tests - Allow second testhost.exe'; Path = '{_testhostPath2}'}}
-        @{{ Name = 'ProtonVPN UI Tests - Allow third testhost.exe'; Path = $testhostPath }}
-    )
-
-    foreach ($rule in $firewallRules) {{
-        if (-not (Get-NetFirewallRule -DisplayName $rule.Name -ErrorAction SilentlyContinue)) {{
-            New-NetFirewallRule -DisplayName $rule.Name -Direction Inbound -Program $rule.Path -Action Allow -Profile Any -Protocol TCP
-        }}
-    }}
-    ";
-
 
     [SetUp]
     public void SetUp()
@@ -73,28 +45,22 @@ public class PortForwardingTests : FreshSessionSetUp
     [Retry(3)]
     public async Task PortForwardingOpensThePortAsync()
     {
-        WindowsUtils.RunPowerShellScript(_allowTesthostFirewallScript);
+        TorrentHelper.AllowAriaFirewallScript();
+        TorrentHelper.StopAndCleanup();
 
         EnablePortForwardingAndConnect();
 
-        //string ipAddressConnected = NetworkUtils.GetIpAddressWithRetry();
         string? ipAddressConnected = HomeRobot.GetVpnServerIp();
+        Assert.That(ipAddressConnected, Is.Not.Null);
 
         SettingRobot.ClickCopyPortNumber();
         int forwardedPort = GetForwardedPortFromClipboard();
 
-        TestContext.WriteLine($"ip: {ipAddressConnected}, port: {forwardedPort}");
-        Assert.That(ipAddressConnected, Is.Not.Null);
+        await TorrentHelper.StartTorrentOnPortAsync(forwardedPort);
 
-        TcpListener listener = StartTcpListener(forwardedPort);
-        await Task.Delay(3_000);
+        await TorrentHelper.IsPortOpenAsync(ipAddressConnected!, forwardedPort);
 
-        bool isPortOpen = await IsPortOpenAsync(ipAddressConnected!, forwardedPort);
-
-        listener.Stop();
-
-        Assert.That(isPortOpen, Is.True,
-            $"Port {forwardedPort} is not reported as open on {ipAddressConnected} by external port-check.");
+        TorrentHelper.StopAndCleanup();
     }
 
     [Test]
@@ -102,14 +68,15 @@ public class PortForwardingTests : FreshSessionSetUp
     {
         EnablePortForwardingAndConnect();
 
-        SettingRobot.ClickCopyPortNumber();
+        SettingRobot
+            .ClickCopyPortNumber();
 
         int uiPort = GetForwardedPortFromClipboard();
 
         DesktopRobot.Verify
-             .IsDisplayed()
-             .PortMatchesUI(uiPort)
-             .ClickCopyMatchesUI(uiPort);
+            .IsDisplayed()
+            .PortMatchesUI(uiPort)
+            .ClickCopyMatchesUI(uiPort);
     }
 
     [Test]
@@ -117,7 +84,8 @@ public class PortForwardingTests : FreshSessionSetUp
     {
         EnablePortForwardingAndConnect();
 
-        SettingRobot.ClickCopyPortNumber();
+        SettingRobot
+            .ClickCopyPortNumber();
 
         int uiPort = GetForwardedPortFromClipboard();
 
@@ -142,8 +110,7 @@ public class PortForwardingTests : FreshSessionSetUp
 
         SidebarRobot
             .NavigateToP2PCountriesTab()
-            .ConnectToCountry(CountryCodes.GetCode(COUNTRY_NAME));
-        //.ConnectToFastest();
+            .ConnectToCountry(COUNTRY_NAME);
 
         HomeRobot
             .Verify.IsConnected();
@@ -167,34 +134,4 @@ public class PortForwardingTests : FreshSessionSetUp
 
         return port;
     }
-
-    private static TcpListener StartTcpListener(int port)
-    {
-        TcpListener listener = new(IPAddress.Any, port);
-        listener.Start();
-        return listener;
-    }
-
-    private static async Task<bool> IsPortOpenAsync(string ip, int port)
-    {
-        using HttpClient client = new();
-        string url = $"{TestConstants.PORT_CHECKER_API_BASE_URL}/{ip}/{port}";
-        DateTime timeoutDate = DateTime.UtcNow + TimeSpan.FromSeconds(40);
-
-        while (DateTime.UtcNow < timeoutDate)
-        {
-            HttpResponseMessage response = await client.GetAsync(url);
-            string result = await response.Content.ReadAsStringAsync();
-
-            if (result.Trim().Equals("true", StringComparison.OrdinalIgnoreCase))
-            {
-                return true;
-            }
-
-            await Task.Delay(5000);
-        }
-
-        return false;
-    }
-
 }

@@ -18,11 +18,10 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using System.Windows.Documents;
+using System.Diagnostics;
+using System.Collections.Generic;
 using FlaUI.Core.WindowsAPI;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestBase;

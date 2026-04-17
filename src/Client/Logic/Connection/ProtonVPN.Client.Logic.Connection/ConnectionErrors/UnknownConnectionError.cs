@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -31,10 +31,9 @@ public class UnknownConnectionError : ReportableConnectionError
 
     public UnknownConnectionError(
         ILocalizationProvider localizer,
-        IReportIssueWindowActivator reportIssueWindowActivator)
-        : base(localizer, reportIssueWindowActivator)
-    {
-    }
+        IClientWindowsActivator clientWindowsActivator)
+        : base(localizer, clientWindowsActivator)
+    { }
 
     public void SetLastError(VpnError error)
     {

@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
@@ -34,7 +33,6 @@ public class ProfileTests : BaseTest
 {
     private const string PROFILE_NAME = "Profile A";
     private const string COUNTRY_NAME = "Australia";
-
 
     [OneTimeSetUp]
     public void SetUp()

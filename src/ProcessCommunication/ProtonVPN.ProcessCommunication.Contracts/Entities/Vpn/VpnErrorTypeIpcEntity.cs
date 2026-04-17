@@ -64,6 +64,9 @@ public enum VpnErrorTypeIpcEntity
     NoServers,
 
     [EnumMember]
+    AllServersExcluded,
+
+    [EnumMember]
     Unknown,
 
     [EnumMember]

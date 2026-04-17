@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Diagnostics;
 using System.Linq;
+using System.Diagnostics;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
 

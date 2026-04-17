@@ -21,6 +21,7 @@ using Autofac;
 using ProtonVPN.Client.Logic.Connection.ConnectionErrors;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.EntityMapping;
+using ProtonVPN.Client.Logic.Connection.Preferences;
 using ProtonVPN.Client.Logic.Connection.GuestHole;
 using ProtonVPN.Client.Logic.Connection.NetworkingTraffic;
 using ProtonVPN.Client.Logic.Connection.RequestCreators;
@@ -53,6 +54,7 @@ public class ConnectionLogicModule : Module
         builder.RegisterType<P2PTrafficObserver>().AsImplementedInterfaces().SingleInstance().AutoActivate();
         builder.RegisterType<ConnectionStatisticalEventsManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<RestrictionsObserver>().AsImplementedInterfaces().SingleInstance().AutoActivate();
+        builder.RegisterType<ExclusionChecker>().AsImplementedInterfaces().SingleInstance();
 
         RegisterRequestCreators(builder);
         RegisterServerListGenerators(builder);

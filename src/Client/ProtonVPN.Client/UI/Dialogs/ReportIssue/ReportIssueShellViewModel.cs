@@ -20,10 +20,10 @@
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Common.Dispatching;
-using ProtonVPN.Client.Contracts.Services.Activation;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Messages;
+using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Updates.Contracts;
