@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Extensions;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -31,6 +31,8 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 public class RecentsTests : BaseTest
 {
     private const string CONNECTION_NAME = "Fastest country";
+    private const string COUNTRY_NAME = "Austria";
+    private const string PROFILE_NAME = "Gaming";
 
     [OneTimeSetUp]
     public void SetUp()
@@ -42,29 +44,88 @@ public class RecentsTests : BaseTest
     [Test, Order(0)]
     public void RecentIsAddedToList()
     {
-        SidebarRobot.NavigateToRecents()
+        SidebarRobot
+            .NavigateToRecents()
             .Verify.IsNoRecentsLabelDisplayed();
 
-        HomeRobot.ConnectViaConnectionCard()
+        HomeRobot
+            .ConnectViaConnectionCard()
             .Verify.IsConnected()
             .Disconnect()
             .Verify.IsDisconnected();
 
-        SidebarRobot.Verify.HasNoRecentsLabel()
-            .IsConnectionOptionDisplayed(CONNECTION_NAME)
-            .IsRecentsCountDisplayed(1);
+        ConfirmationRobot.DismissExcludedLocationsPrompt();
+
+        SidebarRobot
+            .Verify.HasNoRecentsLabel()
+                   .IsConnectionOptionDisplayed(CONNECTION_NAME)
+                   .IsRecentsCountDisplayed(1)
+           .NavigateToAllCountriesTab()
+           .ConnectToCountry(COUNTRY_NAME);
+
+        HomeRobot
+            .Verify.IsConnected()
+            .Disconnect()
+            .Verify.IsDisconnected();
+
+        SidebarRobot
+            .NavigateToRecents()
+            .Verify.IsConnectionOptionDisplayed(COUNTRY_NAME)
+                   .IsRecentsCountDisplayed(2);
     }
 
     [Test, Order(1)]
-    public void RecentDeletion()
+    public void ProfilesAreAddedToRecentList()
     {
-        Thread.Sleep(TestConstants.AnimationDelay);
+        SidebarRobot
+            .NavigateToProfiles()
+            .ConnectToProfile(PROFILE_NAME);
+
+        HomeRobot
+            .Verify.IsConnected()
+            .Disconnect()
+            .Verify.IsDisconnected();
 
         SidebarRobot
-            .ExpandSecondaryActionsForRecents(CONNECTION_NAME)
-            .RemoveRecent();
+            .NavigateToRecents()
+            .Verify.IsConnectionOptionDisplayed(PROFILE_NAME)
+            .IsRecentsCountDisplayed(3);
+    }
 
-        SidebarRobot.Verify.IsNoRecentsLabelDisplayed();
+    [Test, Order(2)]
+    public void RemoveRecentFromList()
+    {
+        SidebarRobot
+            .ExpandSecondaryActionsForRecents(CONNECTION_NAME)
+            .RemoveRecent()
+            .Verify.IsConnectionOptionMissing(CONNECTION_NAME)
+                   .IsRecentsCountDisplayed(2);
+    }
+
+    [Test, Order(3)]
+    public void PinRecentFromList()
+    {
+        SidebarRobot
+            .Verify.IsConnectionOptionDisplayed(PROFILE_NAME)
+                   .IsRecentsCountDisplayed(2)
+                   .IsPinnedCountMissing()
+            .ExpandSecondaryActionsForRecents(PROFILE_NAME)
+            .PinRecent()
+            .Verify.IsPinnedCountDisplayed(1)
+                   .IsRecentsCountDisplayed(1);
+    }
+
+    [Test, Order(4)]
+    public void UnpinRecentFromList()
+    {
+        SidebarRobot
+            .Verify.IsConnectionOptionDisplayed(PROFILE_NAME)
+                   .IsRecentsCountDisplayed(1)
+                   .IsPinnedCountDisplayed(1)
+            .ExpandSecondaryActionsForRecents(PROFILE_NAME)
+            .UnpinRecent()
+            .Verify.IsPinnedCountMissing()
+                   .IsRecentsCountDisplayed(2);
     }
 
     [OneTimeTearDown]

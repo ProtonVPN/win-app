@@ -178,7 +178,7 @@ public class ProfileTests : BaseTest
         Thread.Sleep(TestConstants.AnimationDelay);
 
         SidebarRobot
-            .Verify.DoesConnectionItemNotExist(PROFILE_NAME);
+            .Verify.IsConnectionItemMissing(PROFILE_NAME);
     }
 
     [Test, Order(6)]
@@ -197,7 +197,7 @@ public class ProfileTests : BaseTest
             .PrimaryAction();
 
         SidebarRobot
-            .Verify.DoesConnectionItemNotExist(PROFILE_NAME);
+            .Verify.IsConnectionItemMissing(PROFILE_NAME);
     }
 
     [Test, Order(7)]

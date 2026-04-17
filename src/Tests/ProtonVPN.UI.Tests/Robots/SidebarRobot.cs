@@ -48,10 +48,12 @@ public class SidebarRobot
     protected Element ProfilesPage = Element.ByAutomationId("ProfilesPage");
     protected Element SearchResultsPage = Element.ByAutomationId("SearchResultsPage");
 
-    protected Element NoRecentsLabel = Element.ByName("No recents yet");
-    protected Element RemoveRecentLabel = Element.ByName("Remove").FindChild(Element.ByAutomationId("TextBlock"));
-
     protected Element RecentsLabel = Element.ByAutomationId("ConnectionsPageItem").FindChild(Element.ByName("Recents"));
+    protected Element NoRecentsLabel = Element.ByName("No recents yet");
+    protected Element PinRecentLabel = Element.ByAutomationId("PinRecentMenuItem");
+    protected Element UnpinRecentLabel = Element.ByAutomationId("UnpinRecentMenuItem");
+    protected Element RemoveRecentLabel = Element.ByAutomationId("RemoveMenuItem");
+
     protected Element CountriesListItem = Element.ByName("Countries");
     protected Element GatewaysListItem = Element.ByName("Gateways");
     protected Element ProfilesListItem = Element.ByName("Profiles");
@@ -78,9 +80,8 @@ public class SidebarRobot
     protected Element CreateYourFirstProfileLabel = Element.ByName("Create your first profile");
     protected Element ProfileExplanationLabel = Element.ByName("Profiles are saved connections with your choice of location, server, and protocol.");
 
-    protected Element EditProfileLabel = Element.ByName("Edit").FindChild(Element.ByAutomationId("TextBlock"));
-    protected Element PinLabel = Element.ByName("Pin").FindChild(Element.ByAutomationId("TextBlock"));
-    protected Element DuplicateProfileLabel = Element.ByName("Duplicate").FindChild(Element.ByAutomationId("TextBlock"));
+    protected Element EditProfileLabel = Element.ByAutomationId("EditMenuItem");
+    protected Element DuplicateProfileLabel = Element.ByAutomationId("DuplicateMenuItem");
     protected Element DeleteMenuItem = Element.ByAutomationId("DeleteMenuItem");
 
     protected Element ConnectToSpecificServer = Element.ByAutomationId("Connect_to_Specific_Server");
@@ -311,13 +312,25 @@ public class SidebarRobot
 
     public SidebarRobot ExpandSecondaryActionsForRecents(string connectionName)
     {
-        ExpandSecondaryActions(connectionName, PinLabel);
+        ExpandSecondaryActions(connectionName, RemoveRecentLabel);
         return this;
     }
 
     public SidebarRobot ExpandSecondaryActionsForProfile(string connectionName)
     {
         ExpandSecondaryActions(connectionName, DeleteMenuItem);
+        return this;
+    }
+
+    public SidebarRobot PinRecent()
+    {
+        PinRecentLabel.DoubleClick();
+        return this;
+    }
+
+    public SidebarRobot UnpinRecent()
+    {
+        UnpinRecentLabel.DoubleClick();
         return this;
     }
 
@@ -488,8 +501,15 @@ public class SidebarRobot
 
         public Verifications IsConnectionOptionDisplayed(string connectionValue)
         {
-            Element countryButton = Element.ByAutomationId($"Actions_for_{connectionValue}");
-            countryButton.WaitUntilDisplayed();
+            Element connectionOption = Element.ByAutomationId($"Actions_for_{connectionValue}");
+            connectionOption.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsConnectionOptionMissing(string connectionValue)
+        {
+            Element connectionOption = Element.ByAutomationId($"Actions_for_{connectionValue}");
+            connectionOption.DoesNotExist();
             return this;
         }
 
@@ -499,6 +519,26 @@ public class SidebarRobot
 
             Element recentsLabel = Element.ByName(selector);
             recentsLabel.WaitUntilDisplayed();
+
+            return this;
+        }
+
+        public Verifications IsPinnedCountDisplayed(int count)
+        {
+            string selector = $"Pinned ({count})";
+
+            Element pinnedLabel = Element.ByName(selector);
+            pinnedLabel.WaitUntilDisplayed();
+
+            return this;
+        }
+
+        public Verifications IsPinnedCountMissing()
+        {
+            string selector = $"Pinned (1)";
+
+            Element pinnedLabel = Element.ByName(selector);
+            pinnedLabel.DoesNotExist();
 
             return this;
         }
@@ -515,7 +555,7 @@ public class SidebarRobot
             return this;
         }
 
-        public Verifications DoesConnectionItemNotExist(string connectionItemName)
+        public Verifications IsConnectionItemMissing(string connectionItemName)
         {
             Element.ByName(connectionItemName).DoesNotExist();
             return this;

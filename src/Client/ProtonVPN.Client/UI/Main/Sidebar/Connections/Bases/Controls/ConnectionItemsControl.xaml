@@ -619,21 +619,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <MenuFlyout Closing="OnMenuFlyoutClosing"
                                 Placement="{StaticResource ContextualFlyoutPlacement}"
                                 ShouldConstrainToRootBounds="True">
-                        <MenuFlyoutItem Command="{x:Bind PinCommand, Mode=OneTime}"
+                        <MenuFlyoutItem AutomationProperties.AutomationId="PinRecentMenuItem"
+                                        Command="{x:Bind PinCommand, Mode=OneTime}"
                                         Text="{x:Bind Localizer.Get('Home_Recents_Pin')}"
                                         Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
                             <MenuFlyoutItem.Icon>
                                 <pathicons:PinFilled Size="Pixels20" />
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
-                        <MenuFlyoutItem Command="{x:Bind UnpinCommand, Mode=OneTime}"
+                        <MenuFlyoutItem AutomationProperties.AutomationId="UnpinRecentMenuItem"
+                                        Command="{x:Bind UnpinCommand, Mode=OneTime}"
                                         Text="{x:Bind Localizer.Get('Home_Recents_Unpin')}"
                                         Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}">
                             <MenuFlyoutItem.Icon>
                                 <pathicons:PinSlashFilled Size="Pixels20" />
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
-                        <MenuFlyoutItem Command="{x:Bind RemoveCommand, Mode=OneTime}"
+                        <MenuFlyoutItem AutomationProperties.AutomationId="RemoveMenuItem"
+                                        Command="{x:Bind RemoveCommand, Mode=OneTime}"
                                         Text="{x:Bind Localizer.Get('Common_Actions_Remove')}">
                             <MenuFlyoutItem.Icon>
                                 <pathicons:TrashCross Size="Pixels20" />
@@ -683,21 +686,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <MenuFlyout Closing="OnMenuFlyoutClosing"
                                 Placement="{StaticResource ContextualFlyoutPlacement}"
                                 ShouldConstrainToRootBounds="True">
-                        <MenuFlyoutItem Command="{x:Bind EditProfileCommand}"
+                        <MenuFlyoutItem AutomationProperties.AutomationId="EditMenuItem"
+                                        Command="{x:Bind EditProfileCommand}"
                                         Text="{x:Bind Localizer.Get('Common_Actions_Edit')}">
                             <MenuFlyoutItem.Icon>
                                 <pathicons:Pencil Size="Pixels20" />
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
-                        <MenuFlyoutItem Command="{x:Bind DuplicateProfileCommand}"
+                        <MenuFlyoutItem AutomationProperties.AutomationId="DuplicateMenuItem"
+                                        Command="{x:Bind DuplicateProfileCommand}"
                                         Text="{x:Bind Localizer.Get('Common_Actions_Duplicate')}">
                             <MenuFlyoutItem.Icon>
                                 <pathicons:Squares Size="Pixels20" />
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
-                        <MenuFlyoutItem Command="{x:Bind DeleteProfileCommand}"
-                                        Text="{x:Bind Localizer.Get('Common_Actions_Delete')}"
-                                        AutomationProperties.AutomationId="DeleteMenuItem">
+                        <MenuFlyoutItem AutomationProperties.AutomationId="DeleteMenuItem"
+                                        Command="{x:Bind DeleteProfileCommand}"
+                                        Text="{x:Bind Localizer.Get('Common_Actions_Delete')}">
                             <MenuFlyoutItem.Icon>
                                 <pathicons:TrashCrossFilled Size="Pixels20" />
                             </MenuFlyoutItem.Icon>
