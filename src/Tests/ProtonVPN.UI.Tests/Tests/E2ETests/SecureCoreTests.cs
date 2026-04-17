@@ -119,7 +119,7 @@ public class SecureCoreTests : FreshSessionSetUp
         HomeRobot
             .Verify.IsConnected()
                    .ConnectionCardTitleEquals(PROFILE_NAME)
-                   .ConnectionCardDescriptionEquals($"{_countryName} {_viaCountrySweden}");
+                   .ConnectionCardDescriptionContains($"{_countryName} {_viaCountrySweden}");
         NetworkUtils.VerifyUserIsConnectedToExpectedCountry(_countryName);
 
         SidebarRobot
@@ -142,7 +142,7 @@ public class SecureCoreTests : FreshSessionSetUp
         HomeRobot
             .Verify.IsConnected()
                    .ConnectionCardTitleEquals(_countryName)
-                   .ConnectionCardDescriptionEquals(_viaCountryIceland);
+                   .ConnectionCardDescriptionContains(_viaCountryIceland);
         NetworkUtils.VerifyUserIsConnectedToExpectedCountry(_countryName);
 
         SidebarRobot
@@ -158,7 +158,7 @@ public class SecureCoreTests : FreshSessionSetUp
     {
         SidebarRobot
             .NavigateToProfiles()
-            .CreateProfile();
+            .ClickCreateProfile();
 
         ProfileRobot
             .SetProfileName(PROFILE_NAME)

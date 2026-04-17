@@ -325,6 +325,14 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static Element TextContains<T>(this T desiredElement, string text) where T : Element
+    {
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        string? elementText = element?.AsLabel().Text;
+        Assert.That(elementText?.Contains(text), Is.True, $"Expected string: {text} But was: {elementText}");
+        return desiredElement;
+    }
+
     public static Element ValueEquals<T>(this T desiredElement, string value) where T : Element
     {
         AutomationElement? element = WaitUntilExists(desiredElement);

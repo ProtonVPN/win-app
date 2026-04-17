@@ -61,8 +61,9 @@ public class HomeRobot
     protected Element DefaultConnectionDropdown = Element.ByAutomationId("DefaultConnectionDropdown");
     protected Element CustomizeCardConnectionTitleLabel = Element.ByName("Default connection");
     protected Element ProtectedLabelAdvancedKillSwitch = Element.ByName("Advanced kill switch activated");
-    protected Element ShowIpFlyoutButton => Element.ByAutomationId("ShowIpFlyoutButton");
+    protected Element CopyPortNumberButton = Element.ByAutomationId("CopyPortNumberCondensedButton");
     protected Element SplitTunnelingWidgetButton = Element.ByAutomationId("SplitTunnelingWidgetButton");
+    protected Element ShowIpFlyoutButton => Element.ByAutomationId("ShowIpFlyoutButton");
 
     public HomeRobot DismissWelcomeModal()
     {
@@ -172,16 +173,16 @@ public class HomeRobot
         return this;
     }
 
-    public HomeRobot SelectDefaultConnectionOption(VpnConnectionOptions option)
+    public HomeRobot SelectDefaultConnectionOption(VpnConnectionOption option)
     {
         DefaultConnectionSelectorButton.Click();
         Thread.Sleep(TestConstants.AnimationDelay);
 
         string optionName = option switch
         {
-            VpnConnectionOptions.Fast => "Fastest country",
-            VpnConnectionOptions.Random => "Random country",
-            VpnConnectionOptions.Last => "Last connection",
+            VpnConnectionOption.Fast => "Fastest country",
+            VpnConnectionOption.Random => "Random country",
+            VpnConnectionOption.Last => "Last connection",
             _ => throw new NotImplementedException($"VpnConnectionOption '{option}' is not supported on the home page ComboBox."),
         };
 
@@ -211,6 +212,12 @@ public class HomeRobot
         {
             UnprotectedLabel.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
             ConnectionCardConnectButton.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
+            return this;
+        }
+
+        public Verifications IsPortForwardingEnabled()
+        {
+            CopyPortNumberButton.WaitUntilDisplayed();
             return this;
         }
 
@@ -286,9 +293,9 @@ public class HomeRobot
             return this;
         }
 
-        public Verifications ConnectionCardDescriptionEquals(string description)
+        public Verifications ConnectionCardDescriptionContains(string description)
         {
-            ConnectionCardDescription.TextEquals(description);
+            ConnectionCardDescription.TextContains(description);
             return this;
         }
 

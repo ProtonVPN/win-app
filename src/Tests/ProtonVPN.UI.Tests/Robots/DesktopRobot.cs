@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Linq;
 using FlaUI.UIA3;
 using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
@@ -52,6 +53,14 @@ public class DesktopRobot
 
     public class Verifications : DesktopRobot
     {
+        public Verifications IsWindowTitlePresent(string windowTitlePart)
+        {
+            AutomationElement desktop = _automation.GetDesktop();
+            AutomationElement? desktopApp = desktop.FindAllChildren().FirstOrDefault(e => e.Name != null && e.Name.Contains(windowTitlePart));
+            Assert.That(desktopApp, Is.Not.Null, $"Window with title containing '{windowTitlePart}' was not found");
+            return this;
+        }
+
         public Verifications IsDisplayed(TimeSpan? timeout = null)
         {
             timeout ??= TimeSpan.FromSeconds(8);

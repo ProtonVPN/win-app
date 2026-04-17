@@ -116,7 +116,7 @@ public class ConnectionTests : FreshSessionSetUp
         MakeSureUserIsDisconnected();
 
         HomeRobot
-            .SelectDefaultConnectionOption(VpnConnectionOptions.Random)
+            .SelectDefaultConnectionOption(VpnConnectionOption.Random)
             .ConnectViaConnectionCard(TestConstants.MoreFrequentRetryInterval)
             .Verify.IsConnecting()
             .CancelConnection(TestConstants.MoreFrequentRetryInterval)
@@ -240,7 +240,7 @@ public class ConnectionTests : FreshSessionSetUp
 
         HomeRobot
             .Verify.IsDisconnected()
-            .SelectDefaultConnectionOption(VpnConnectionOptions.Fast)
+            .SelectDefaultConnectionOption(VpnConnectionOption.Fast)
             .ConnectViaConnectionCard()
             .Verify.ConnectionCardTitleEquals(FAST_CONNECTION)
                    .IsConnected()
@@ -250,7 +250,7 @@ public class ConnectionTests : FreshSessionSetUp
 
         HomeRobot
             .Verify.IsDisconnected()
-            .SelectDefaultConnectionOption(VpnConnectionOptions.Random)
+            .SelectDefaultConnectionOption(VpnConnectionOption.Random)
             .ConnectViaConnectionCard()
             .Verify.ConnectionCardTitleEquals(RANDOM_COUNTRY)
                    .IsConnected()

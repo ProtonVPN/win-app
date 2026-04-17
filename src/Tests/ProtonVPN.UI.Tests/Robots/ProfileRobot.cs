@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,6 +20,10 @@
 using System;
 using System.Linq;
 using System.Threading;
+using System.Collections.Generic;
+using NUnit.Framework;
+using FlaUI.Core.Input;
+using FlaUI.Core.WindowsAPI;
 using FlaUI.Core.Definitions;
 using FlaUI.Core.AutomationElements;
 using ProtonVPN.UI.Tests.Enums;
@@ -78,7 +82,23 @@ public class ProfileRobot
 
     protected Element MiddleCountryDropdown = Element.ByName("Middle country").And(Element.ByClassName("ComboBox"));
 
+    protected Element CityDropdown = Element.ByName("City").And(Element.ByClassName("ComboBox"));
+
     protected Element ConnectionTypes = Element.ByClassName("ListBoxItem");
+
+    protected Element ConnectAndGoDropDown = Element.ByAutomationId("ConnectAndGoDropDown");
+
+    protected Element ConnectAndGoOffMenuItem = Element.ByAutomationId("ConnectAndGoOffMenuItem");
+
+    protected Element ConnectAndGoWebsiteMenuItem = Element.ByAutomationId("ConnectAndGoWebsiteMenuItem");
+
+    protected Element ConnectAndGoApplicationMenuItem = Element.ByAutomationId("ConnectAndGoApplicationMenuItem");
+
+    protected Element ConnectAndGoParent = Element.ByAutomationId("ConnectAndGoParentSection");
+
+    protected Element ConnectAndGoAppSelector = Element.ByAutomationId("ConnectAndGoAppSelector");
+
+    protected Element ConnectAndGoPrivateModeCheckbox = Element.ByAutomationId("ConnectAndGoPrivateModeCheckbox");
 
     public ProfileRobot SetProfileName(string profileName)
     {
@@ -119,7 +139,7 @@ public class ProfileRobot
 
         AutomationElement connectionTypeElement = ConnectionTypes.FindAllElements()
             .First(item => item.FindFirstDescendant(cf => cf.ByControlType(ControlType.Text)
-            .And(cf.ByName(connectionTypeName!))) != null);
+            .And(cf.ByName(connectionTypeName))) != null);
 
         connectionTypeElement.Click();
 
@@ -128,15 +148,25 @@ public class ProfileRobot
 
     public ProfileRobot SelectCountry(string countryName)
     {
-        CountryDropdown.Click()
+        CountryDropdown
+            .Click()
             .SelectDropdownItem(countryName);
         return this;
     }
 
     public ProfileRobot SelectMiddleCountry(string middleCountryName)
     {
-        MiddleCountryDropdown.Click()
+        MiddleCountryDropdown
+            .Click()
             .SelectDropdownItem(middleCountryName);
+        return this;
+    }
+
+    public ProfileRobot SelectCity(string cityName)
+    {
+        CityDropdown
+            .Click()
+            .SelectDropdownItem(cityName);
         return this;
     }
 
@@ -205,13 +235,87 @@ public class ProfileRobot
         return this;
     }
 
+    public ProfileRobot SelectPortForwarding(bool state)
+    {
+        PortForwardingDropDown.Click();
+
+        Thread.Sleep(TestConstants.AnimationDelay);
+
+        Element portForwardingMenuItem = state ? PortForwardingOnMenuItem : PortForwardingOffMenuItem;
+        portForwardingMenuItem.DoubleClick();
+
+        return this;
+    }
+
+    public ProfileRobot SelectConnectAndGoOption(ConnectAndGoOption option)
+    {
+        ConnectAndGoDropDown.Click();
+
+        Thread.Sleep(TestConstants.AnimationDelay);
+
+        switch (option)
+        {
+            case ConnectAndGoOption.Off:
+                ConnectAndGoOffMenuItem.DoubleClick();
+                break;
+            case ConnectAndGoOption.OpenWebsite:
+                ConnectAndGoWebsiteMenuItem.DoubleClick();
+                break;
+            case ConnectAndGoOption.OpenApp:
+                ConnectAndGoApplicationMenuItem.DoubleClick();
+                break;
+        }
+
+        return this;
+    }
+
+    public ProfileRobot SelectConnectAndGoApp(string appPath)
+    {
+        ConnectAndGoAppSelector.Click();
+        HandleExplorer(appPath);
+        return this;
+    }
+
+    public ProfileRobot TypeConnectAndGoWebsite(string websiteUrl, bool usePrivateMode = false)
+    {
+        AutomationElement[] children = ConnectAndGoParent.GetControlType(ControlType.Edit);
+        children[0].AsTextBox().Text = websiteUrl;
+
+        if (usePrivateMode)
+        {
+            ConnectAndGoPrivateModeCheckbox.Click();
+        }
+
+        return this;
+    }
+
     public class Verifications : ProfileRobot
     {
+        public Verifications IsAppSelected(string appName)
+        {
+            List<string> allChildren = ConnectAndGoAppSelector.GetAllChildrenNames();
+            Assert.That(allChildren, Does.Contain(appName));
+            return this;
+        }
+
         public Verifications ProfileNameEquals(string profileName)
         {
             ProfileNameTextBox.TextBoxEquals(profileName);
             return this;
         }
+    }
+
+    private ProfileRobot HandleExplorer(string appPath)
+    {
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+        Keyboard.Type(appPath);
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+        Keyboard.Press(VirtualKeyShort.TAB);
+        Keyboard.Press(VirtualKeyShort.TAB);
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+        Keyboard.Press(VirtualKeyShort.ENTER);
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+        return this;
     }
 
     public Verifications Verify => new Verifications();

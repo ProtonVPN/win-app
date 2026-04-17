@@ -100,9 +100,9 @@ public class DefaultConnectionTests : BaseTest
         SettingRobot
             .OpenSettings()
             .OpenConnectionPreferencesSettingsCard()
-            .SelectDefaultConnectionType(VpnConnectionOptions.Fast)
-            .SelectDefaultConnectionType(VpnConnectionOptions.Random)
-            .SelectDefaultConnectionType(VpnConnectionOptions.Last);
+            .SelectDefaultConnectionType(VpnConnectionOption.Fast)
+            .SelectDefaultConnectionType(VpnConnectionOption.Random)
+            .SelectDefaultConnectionType(VpnConnectionOption.Last);
     }
 
     [Test, Order(2)]

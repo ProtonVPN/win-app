@@ -244,7 +244,7 @@ public class SidebarRobot
         return this;
     }
 
-    public SidebarRobot CreateProfile()
+    public SidebarRobot ClickCreateProfile()
     {
         CreateProfileButton.Click();
         return this;
