@@ -25,4 +25,5 @@ public enum CountryTab
     SecureCore,
     P2P,
     Tor,
+    Profile,
 }
