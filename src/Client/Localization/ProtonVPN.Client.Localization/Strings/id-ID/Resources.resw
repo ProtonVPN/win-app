@@ -126,12 +126,6 @@
   <data name="Automation_Properties_Connection_Card_Component">
     <value>Kartu koneksi</value>
   </data>
-  <data name="Automation_Properties_Features_Bar">
-    <value>Bilah fitur</value>
-  </data>
-  <data name="Automation_Properties_Home_Page">
-    <value>Beranda</value>
-  </data>
   <data name="Automation_Properties_KillSwitch_Page">
     <value>Halaman kill switch</value>
   </data>
@@ -189,18 +183,11 @@
   <data name="Automation_Properties_SplitTunneling_Page">
     <value>Halaman split tunneling</value>
   </data>
-  <data name="Cities">
-    <value>Kota</value>
-  </data>
   <data name="City_Fastest">
     <value>Kota tercepat</value>
   </data>
   <data name="City_Random">
     <value>Kota acak</value>
-  </data>
-  <data name="Common_Actions_ActionsFor">
-    <value>Tindakan untuk {0}</value>
-    <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Add">
     <value>Tambahkan</value>
@@ -220,25 +207,14 @@
   <data name="Common_Actions_Connect">
     <value>Hubungkan</value>
   </data>
-  <data name="Common_Actions_ConnectTo">
-    <value>Hubungkan ke {0}</value>
-    <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>Hubungi kami</value>
-  </data>
-  <data name="Common_Actions_Customize">
-    <value>Sesuaikan</value>
   </data>
   <data name="Common_Actions_Delete">
     <value>Hapus</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Putuskan</value>
-  </data>
-  <data name="Common_Actions_DisconnectFrom">
-    <value>Putuskan koneksi dari {0}</value>
-    <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Duplicate">
     <value>Gandakan</value>
@@ -300,17 +276,14 @@
   <data name="Common_Links_LearnMore">
     <value>Pelajari lebih lanjut</value>
   </data>
-  <data name="Common_Message_Loading">
-    <value>Memuat...</value>
+  <data name="Common_Message_AppNotFound">
+    <value>Application not found</value>
   </data>
   <data name="Common_States_Off">
     <value>Nonaktif</value>
   </data>
   <data name="Common_States_On">
     <value>Aktif</value>
-  </data>
-  <data name="Common_States_Updating">
-    <value>Memperbarui...</value>
   </data>
   <data name="Common_Tags_Beta">
     <value>BETA</value>
@@ -335,6 +308,12 @@
   </data>
   <data name="Components_Update_UpdateProtonVpn">
     <value>Perbarui Proton VPN</value>
+  </data>
+  <data name="Connection_Error_AllServersExcluded">
+    <value>Your preferences exclude all available servers. Adjust exclusions to connect.</value>
+  </data>
+  <data name="Connection_Error_AllServersExcluded_Action">
+    <value>Excluded locations</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>Sunting profil</value>
@@ -399,14 +378,6 @@ Kode kesalahan: {0}</value>
   <data name="Connection_Intent_AutoSelected">
     <value>Terpilih secara otomatis dari</value>
     <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
-  </data>
-  <data name="Connection_Intent_City_Server">
-    <value>{0} #{1}</value>
-    <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the number associated to the server (eg. Zurich #20)</comment>
-  </data>
-  <data name="Connection_Intent_Country_Server">
-    <value>{0} #{1}</value>
-    <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
   </data>
   <data name="Connection_Via_SecureCore">
     <value>via {0}</value>
@@ -523,15 +494,6 @@ Kode kesalahan: {0}</value>
     <value>Profil tersedia dengan VPN Plus</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
-  <data name="Connections_Profiles_Settings_Description">
-    <value>Pengaturan profil akan menimpa pengaturan VPN Anda pada saat terhubung.</value>
-  </data>
-  <data name="Connections_Profiles_Settings_Header">
-    <value>Tambahkan pengaturan khusus</value>
-  </data>
-  <data name="Connections_Random">
-    <value>Acak</value>
-  </data>
   <data name="Connections_Recents_Other">
     <value>Terkini ({0})</value>
   </data>
@@ -549,18 +511,6 @@ Kode kesalahan: {0}</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
     <value>Server Secure Core</value>
-  </data>
-  <data name="Connections_SeeCities_Other">
-    <value>Lihat kota ({0})</value>
-  </data>
-  <data name="Connections_SeeServers_Other">
-    <value>Lihat server ({0})</value>
-  </data>
-  <data name="Connections_SeeStates_Other">
-    <value>Lihat negara bagian ({0})</value>
-  </data>
-  <data name="Connections_Server">
-    <value>Server</value>
   </data>
   <data name="Connections_Server_Restricted">
     <value>Server tersedia dengan VPN Plus</value>
@@ -597,41 +547,11 @@ Kode kesalahan: {0}</value>
   <data name="Countries_All">
     <value>Semua</value>
   </data>
-  <data name="Countries_City_Other">
-    <value>{0} kota</value>
-  </data>
-  <data name="Countries_Connect">
-    <value>Hubungkan</value>
-    <comment>Connect button label on a country row in the countries tab</comment>
-  </data>
-  <data name="Countries_Fastest">
-    <value>Negara tercepat</value>
-  </data>
-  <data name="Countries_NoSearchResults">
-    <value>Tidak ada hasil yang ditemukan</value>
-  </data>
-  <data name="Countries_NumberOfServers">
-    <value>Server ({0})</value>
-    <comment>{0} represents a number of servers</comment>
-  </data>
   <data name="Countries_P2P">
     <value>P2P</value>
   </data>
-  <data name="Countries_P2P_Cities">
-    <value>Kota P2P ({0})</value>
-    <comment>{0} represents a number of P2P cities in the country</comment>
-  </data>
   <data name="Countries_P2P_Description">
     <value>Unduh file melalui jaringan P2P (peer-to-peer) serta tingkatkan pengalaman bermain game daring dan panggilan video Anda.</value>
-  </data>
-  <data name="Countries_Page_FreeUser_Description">
-    <value>Akses fitur pemilihan negara dengan VPN Plus</value>
-  </data>
-  <data name="Countries_SearchPlaceholder">
-    <value>Saya ingin menjelajah internet dari…</value>
-  </data>
-  <data name="Countries_Section_Header">
-    <value>Koneksi VPN</value>
   </data>
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
@@ -648,15 +568,8 @@ Kode kesalahan: {0}</value>
   <data name="Countries_Tor">
     <value>Tor</value>
   </data>
-  <data name="Countries_TorServers">
-    <value>Server Tor ({0})</value>
-    <comment>{0} represents a number of tor servers in the country</comment>
-  </data>
   <data name="Countries_Tor_Description">
     <value>Gunakan jaringan Tor melalui koneksi VPN Anda untuk privasi tambahan.</value>
-  </data>
-  <data name="Countries_TryDifferentKeyword">
-    <value>Silakan coba kata kunci yang berbeda</value>
   </data>
   <data name="Country_Fastest">
     <value>Negara tercepat</value>
@@ -1650,6 +1563,10 @@ Kode kesalahan: {0}</value>
     <value>Samoa</value>
     <comment>The name of WS country</comment>
   </data>
+  <data name="Country_val_XK">
+    <value>Kosovo</value>
+    <comment>The name of XK country</comment>
+  </data>
   <data name="Country_val_YE">
     <value>Yaman</value>
     <comment>The name of YE country</comment>
@@ -1713,32 +1630,6 @@ Kode kesalahan: {0}</value>
   <data name="Dialogs_FreeConnections_Title">
     <value>Koneksi Free</value>
   </data>
-  <data name="Dialogs_Latency_Description">
-    <value>Latensi menunjukkan seberapa lama waktu yang dibutuhkan oleh suatu server untuk membalas permintaan.
-
-Latensi yang tinggi dapat memperlambat koneksi Anda.</value>
-  </data>
-  <data name="Dialogs_Latency_HighRange_Description">
-    <value>VPN dapat berjalan lebih lambat dari biasanya</value>
-  </data>
-  <data name="Dialogs_Latency_HighRange_Title">
-    <value>Tinggi (150+ md)</value>
-  </data>
-  <data name="Dialogs_Latency_LowRange_Description">
-    <value>Kecepatan kilat</value>
-  </data>
-  <data name="Dialogs_Latency_LowRange_Title">
-    <value>Rendah (1–50 ms)</value>
-  </data>
-  <data name="Dialogs_Latency_MediumRange_Description">
-    <value>Kecil kemungkinannya berpengaruh pada kecepatan VPN</value>
-  </data>
-  <data name="Dialogs_Latency_MediumRange_Title">
-    <value>Sedang (50–150 md)</value>
-  </data>
-  <data name="Dialogs_Latency_Title">
-    <value>Apa itu latensi?</value>
-  </data>
   <data name="Dialogs_NpsSurvey_CommentLabel">
     <value>Beri tahu kami mengapa Anda memberikan rating tersebut</value>
   </data>
@@ -1780,49 +1671,6 @@ Latensi yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Dialogs_P2PDetection_WindowTitle">
     <value>Telusuri VPN Plus</value>
-  </data>
-  <data name="Dialogs_P2P_HowToTorrentLink">
-    <value>Cara mengambil torrent dengan P2P</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_Title">
-    <value>P2P</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_WhatIsP2PServer">
-    <value>Apa itu server P2P?</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_WhatIsP2PServer_Description">
-    <value>Server VPN P2P (peer-to-peer) membuka pemblokiran situs torrent.</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_WhatIsTorrenting">
-    <value>Apa itu torrenting?</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_WhatIsTorrenting_Description">
-    <value>Proses berbagi dan mengunduh file besar dengan cepat melalui jaringan peer-to-peer (P2P).</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_WhyUse">
-    <value>Mengapa saya sebaiknya menggunakan server P2P pada saat mengambil torrent?</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_WhyUse_Description">
-    <value>• Kecepatan unggahan dan unduhan yang ditingkatkan
-• Tanpa log aktivitas
-• Sembunyikan alamat IP Anda dari penyedia layanan internet dan komputer lain</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_Protocol_Description">
-    <value>Protokol merupakan serangkaian instruksi yang diikuti oleh perangkat Anda untuk dapat terhubung dan berkomunikasi dengan server.</value>
-  </data>
-  <data name="Dialogs_Protocol_SwitchHeader">
-    <value>Ubah Protokol VPN</value>
-  </data>
-  <data name="Dialogs_Protocol_Title">
-    <value>Apa itu protokol VPN?</value>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email">
     <value>Email</value>
@@ -1880,35 +1728,6 @@ Latensi yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Dialogs_ReportIssue_Title">
     <value>Laporkan masalah</value>
   </data>
-  <data name="Dialogs_ServerLoad_Description">
-    <value>Beban server menunjukkan seberapa banyak sisa kapasitas maksimum suatu server. 
-
-Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
-  </data>
-  <data name="Dialogs_ServerLoad_HighRange_Description">
-    <value>VPN dapat berjalan lebih lambat dari biasanya</value>
-  </data>
-  <data name="Dialogs_ServerLoad_HighRange_Title">
-    <value>Tinggi (91-100%)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_LowRange_Description">
-    <value>Kecepatan kilat</value>
-  </data>
-  <data name="Dialogs_ServerLoad_LowRange_Title">
-    <value>Rendah (1-75%)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_MediumRange_Description">
-    <value>Kecil kemungkinannya berpengaruh pada kecepatan VPN</value>
-  </data>
-  <data name="Dialogs_ServerLoad_MediumRange_Title">
-    <value>Sedang (76-90%)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_Title">
-    <value>Apa itu beban server?</value>
-  </data>
-  <data name="Dialogs_SmartRouting_Title">
-    <value>Smart Routing</value>
-  </data>
   <data name="Dialogs_StreamingDetection_WindowTitle">
     <value>Telusuri VPN Plus</value>
   </data>
@@ -1924,20 +1743,8 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Dialogs_SystemProxy_Description">
     <value>Sepertinya perangkat Anda sedang menggunakan server proxy. Hal ini dapat mengganggu perlindungan VPN Anda.</value>
   </data>
-  <data name="Dialogs_SystemProxy_Disable">
-    <value>Nonaktifkan proxy</value>
-  </data>
   <data name="Dialogs_SystemProxy_Title">
     <value>Server proxy terdeteksi</value>
-  </data>
-  <data name="Dialogs_Tor_Description">
-    <value>Hubungkan ke server Tor untuk mengakses layanan tersembunyi dan situs onion menggunakan peramban apa pun.</value>
-  </data>
-  <data name="Dialogs_Tor_LearnMore">
-    <value>Cara mengakses jaringan Tor</value>
-  </data>
-  <data name="Dialogs_Tor_Title">
-    <value>Tor</value>
   </data>
   <data name="Dialogs_Troubleshooting_Antivirus">
     <value>Nonaktifkan perangkat lunak antivirus atau firewall</value>
@@ -2027,22 +1834,11 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Selamat datang di VPN Plus</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>Selamat! Anda telah membuka akses ke berbagai fitur keamanan dan performa premium di seluruh layanan Proton.</value>
+    <value>You unlocked all premium Proton VPN, Mail, Calendar, Drive, and Pass features.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
-    <value>Selamat datang di Proton Unlimited</value>
-  </data>
-  <data name="Dialogs_Welcome_Message">
-    <value>Kami sedang mempersiapkan pengalaman VPN Anda yang baru. Proses ini hanya akan memakan waktu sejenak.</value>
-  </data>
-  <data name="Dialogs_Welcome_Title">
-    <value>Selamat datang di Proton VPN</value>
-  </data>
-  <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>Anda kini dapat mengakses server khusus milik organisasi Anda dari bilah samping.</value>
-  </data>
-  <data name="Dialogs_WhatsNew_Gateways_Title">
-    <value>Gateway telah berpindah</value>
+    <value>Welcome to {0}</value>
+    <comment>Title to welcome the user after an account upgrade. {0} is a placeholder for the name of the new plan (eg. Proton Unlimited, Proton Duo, Proton Family).</comment>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
     <value>Anda kini dapat terhubung ke printer, speaker, dan perangkat lainnya pada jaringan lokal (LAN) Anda tanpa melalui terowongan VPN.</value>
@@ -2050,29 +1846,11 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Dialogs_WhatsNew_LanConnections_Title">
     <value>Koneksi LAN</value>
   </data>
-  <data name="Dialogs_WhatsNew_NewLook_Description">
-    <value>Kami telah memperbarui tata letak kami dan memindahkan sebagian fitur agar aplikasi kami lebih mudah digunakan.</value>
-  </data>
-  <data name="Dialogs_WhatsNew_NewLook_Title">
-    <value>Tampilan baru, perlindungan yang sama</value>
-  </data>
   <data name="Dialogs_WhatsNew_PortNumber_Description">
     <value>Ketika penerusan port diaktifkan, Anda sekarang akan melihat nomor port aktif Anda di layar beranda.</value>
   </data>
   <data name="Dialogs_WhatsNew_PortNumber_Title">
     <value>Nomor port yang aktif</value>
-  </data>
-  <data name="Dialogs_WhatsNew_Profiles_Description">
-    <value>Tambahkan berbagai pengaturan profil tingkat lanjut seperti NetShield dan penerusan port, atau siapkan fitur Hubungkan dan Luncurkan untuk membuka situs pilihan Anda setiap kali Anda terhubung.</value>
-  </data>
-  <data name="Dialogs_WhatsNew_Profiles_Title">
-    <value>Profil yang lebih canggih</value>
-  </data>
-  <data name="Dialogs_WhatsNew_Recents_Description">
-    <value>Kini Anda dapat terhubung ulang ke server favorit Anda secara lebih mudah. Anda dapat melihat koneksi terkini Anda di layar beranda, atau menyematkan koneksi tertentu untuk akses yang cepat.</value>
-  </data>
-  <data name="Dialogs_WhatsNew_Recents_Title">
-    <value>Memperkenalkan fitur Terkini</value>
   </data>
   <data name="Dialogs_WhatsNew_TakeALook">
     <value>Lihat selengkapnya</value>
@@ -2085,6 +1863,30 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Dialogs_WhatsNew_TrayApp_Title">
     <value>Aplikasi baki sistem baru</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations">
+    <value>Exclude locations</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
+    <value>If there are locations you don't want to be automatically connected to, you can exclude them from Fastest and Random country.</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
+    <value>Skip</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
+    <value>Not the country you wanted?</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_ActionButton">
+    <value>Exclude locations</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_CloseButton">
+    <value>Maybe later</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_Subtitle">
+    <value>You can now exclude countries or cities from Fastest and Random connections.</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_Title">
+    <value>Avoid unwanted locations</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Keluar dari Proton VPN?</value>
@@ -2176,17 +1978,20 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Flyouts_KillSwitch_Warning_Disconnected">
     <value>Untuk kembali daring, hubungkan ke VPN atau nonaktifkan kill switch tingkat lanjut</value>
   </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackersAdultContent_Success">
+    <value>You're protected from ads, trackers, malware, and adult content.</value>
+  </data>
   <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
-    <value>Anda terlindungi dari iklan, pelacak, dan malware</value>
+    <value>You're protected from ads, trackers, and malware.</value>
   </data>
   <data name="Flyouts_NetShield_Info">
-    <value>Lindungi diri Anda dari iklan, pelacak, dan malware di berbagai situs web dan aplikasi</value>
+    <value>Protect your browsing on websites and apps.</value>
   </data>
   <data name="Flyouts_NetShield_MalwareOnly_Success">
-    <value>Anda hanya terlindungi dari malware saja</value>
+    <value>You're protected from malware only.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Description">
-    <value>Blokir iklan, pelacak, dan malware dengan VPN Plus.</value>
+    <value>Block ads, trackers, malware, and adult content with VPN Plus.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
     <value>Nikmati penjelajahan tanpa iklan</value>
@@ -2248,9 +2053,6 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Flyouts_ServerLoad_Title">
     <value>Beban server</value>
   </data>
-  <data name="Flyouts_Speed_BoostedByVpnAccelerator">
-    <value>Diperkuat oleh VPN Accelerator</value>
-  </data>
   <data name="Flyouts_Speed_Description1">
     <value>Menampilkan berapa banyak data yang melewati terowongan VPN secara real-time.</value>
   </data>
@@ -2311,10 +2113,6 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Flyouts_Volume_Upload">
     <value>Unggah</value>
     <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
-  </data>
-  <data name="Format_Milliseconds">
-    <value>{0}ms</value>
-    <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
   </data>
   <data name="Format_Size_Bytes">
     <value>{0} B</value>
@@ -2443,9 +2241,6 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Gateways_Page_Title">
     <value>Gateway</value>
   </data>
-  <data name="Gateways_Server">
-    <value>Server khusus</value>
-  </data>
   <data name="Home_Account_SignOut">
     <value>Keluar</value>
   </data>
@@ -2453,46 +2248,17 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Keluar dari {0}?</value>
     <comment>{0} is a placeholder for the username</comment>
   </data>
-  <data name="Home_Account_Title">
-    <value>Akun saya</value>
-  </data>
   <data name="Home_ConnectionCard_ChangeDefaultConnection">
     <value>Ubah koneksi bawaan</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Ubah server</value>
   </data>
-  <data name="Home_ConnectionCard_Header_BrowseSafely">
-    <value>Menjelajah internet secara aman dari</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_ConnectingTo">
-    <value>Menghubungkan ke...</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_DefaultConnection">
-    <value>Koneksi bawaan</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_FreeConnection">
-    <value>Koneksi Free</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_LastConnectedTo">
-    <value>Terakhir terhubung ke</value>
-  </data>
-  <data name="Home_ConnectionCard_Landmark">
-    <value>Kartu koneksi</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
   <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
     <value>Kill switch lanjutan diaktifkan</value>
   </data>
-  <data name="Home_ConnectionDetails_City">
-    <value>Kota</value>
-  </data>
   <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
     <value>Hubungkan ke VPN untuk memulihkan koneksi internet Anda.</value>
-  </data>
-  <data name="Home_ConnectionDetails_ConnectedFor">
-    <value>Terhubung selama</value>
-    <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
   </data>
   <data name="Home_ConnectionDetails_Connecting">
     <value>Menghubungkan</value>
@@ -2503,28 +2269,8 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Home_ConnectionDetails_Country">
     <value>Negara</value>
   </data>
-  <data name="Home_ConnectionDetails_Gateway">
-    <value>Gateway</value>
-  </data>
-  <data name="Home_ConnectionDetails_Hide">
-    <value>Sembunyikan rincian koneksi</value>
-  </data>
-  <data name="Home_ConnectionDetails_HideIP">
-    <value>Sembunyikan</value>
-    <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
-  </data>
-  <data name="Home_ConnectionDetails_HideIP_Description">
-    <value>Sembunyikan alamat IP pengguna</value>
-  </data>
   <data name="Home_ConnectionDetails_Isp">
     <value>Penyedia</value>
-  </data>
-  <data name="Home_ConnectionDetails_Landmark">
-    <value>Rincian koneksi</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_ConnectionDetails_MyIp">
-    <value>IP saya</value>
   </data>
   <data name="Home_ConnectionDetails_Protected">
     <value>Terlindungi</value>
@@ -2532,27 +2278,8 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Home_ConnectionDetails_Protocol">
     <value>Protokol</value>
   </data>
-  <data name="Home_ConnectionDetails_Server">
-    <value>Server</value>
-  </data>
   <data name="Home_ConnectionDetails_ServerLoad">
     <value>Beban server</value>
-  </data>
-  <data name="Home_ConnectionDetails_Show">
-    <value>Tampilkan rincian koneksi</value>
-  </data>
-  <data name="Home_ConnectionDetails_ShowIP">
-    <value>Tampilkan</value>
-    <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
-  </data>
-  <data name="Home_ConnectionDetails_ShowIP_Description">
-    <value>Tampilkan alamat IP pengguna</value>
-  </data>
-  <data name="Home_ConnectionDetails_State">
-    <value>Negara bagian</value>
-  </data>
-  <data name="Home_ConnectionDetails_Title">
-    <value>Rincian koneksi</value>
   </data>
   <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
     <value>Autentikasi ulang di portal 2FA milik organisasi Anda untuk melanjutkan.</value>
@@ -2569,15 +2296,6 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Home_ConnectionDetails_Volume">
     <value>Total lalu lintas</value>
   </data>
-  <data name="Home_ConnectionDetails_Volume_Download">
-    <value>Volume unduhan</value>
-  </data>
-  <data name="Home_ConnectionDetails_Volume_Total">
-    <value>Total volume</value>
-  </data>
-  <data name="Home_ConnectionDetails_Volume_Upload">
-    <value>Volume unggahan</value>
-  </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>IP VPN</value>
   </data>
@@ -2586,13 +2304,6 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Home_FreeConnections_About">
     <value>Informasi lebih lanjut mengenai koneksi Free</value>
-  </data>
-  <data name="Home_Help_Title">
-    <value>Bantuan</value>
-  </data>
-  <data name="Home_Map_Landmark">
-    <value>Peta</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_AdsBlocked_Other">
     <value>Iklan yang diblokir</value>
@@ -2606,34 +2317,17 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Home_NetShield_DataSaved_Description">
     <value>Perkiraan volume data yang dihemat dengan memblokir iklan, pelacak, dan malware yang tidak diinginkan</value>
   </data>
-  <data name="Home_NetShield_Landmark">
-    <value>Statistik NetShield</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_NetShield_Title">
-    <value>Statistik NetShield</value>
-  </data>
   <data name="Home_NetShield_TrackersStopped_Other">
     <value>Pelacak yang dihentikan</value>
   </data>
   <data name="Home_NetShield_TrackersStopped_Description">
     <value>Pelacak adalah kuki dan situs web pihak ketiga yang mengumpulkan, menyimpan, dan menjual informasi tentang aktivitas internet Anda.</value>
   </data>
-  <data name="Home_Page_Title">
-    <value>Beranda</value>
-  </data>
-  <data name="Home_Recents_Landmark">
-    <value>Koneksi terkini</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
   <data name="Home_Recents_Pin">
     <value>Sematkan</value>
   </data>
   <data name="Home_Recents_Restricted">
     <value>Server tersedia dengan VPN Plus</value>
-  </data>
-  <data name="Home_Recents_SecondaryActions_ToolTip">
-    <value>Tindakan</value>
   </data>
   <data name="Home_Recents_ServerUnderMaintenance">
     <value>Server sedang dalam pemeliharaan</value>
@@ -2668,25 +2362,6 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Home_TitleBar_Menu_UpdateNow">
     <value>Perbarui sekarang</value>
   </data>
-  <data name="Home_Update_UpdateAvailable">
-    <value>Pembaruan tersedia</value>
-  </data>
-  <data name="Home_Update_UpdateReady">
-    <value>Pembaruan siap diinstal</value>
-  </data>
-  <data name="Home_VpnStatus_Landmark">
-    <value>Status VPN</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_VpnStatus_Subtitle_Connecting">
-    <value>Melindungi identitas digital Anda...</value>
-  </data>
-  <data name="Home_VpnStatus_Subtitle_Disconnected">
-    <value>Anda tidak terlindung</value>
-  </data>
-  <data name="Home_VpnStatus_Title_Connected">
-    <value>Terlindungi</value>
-  </data>
   <data name="LoadingPage_Tip">
     <value>Dunia yang lebih baik dimulai dengan privasi dan kebebasan digital.</value>
   </data>
@@ -2705,9 +2380,6 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Login_Error_SsoAuthFailed">
     <value>Autentikasi SSO gagal. Silakan coba lagi.</value>
-  </data>
-  <data name="Login_Error_TwoFactorAuthFailed">
-    <value>Nama pengguna atau kata sandi salah. Silakan coba lagi.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>Autentikasi dua faktor gagal. Silakan masuk lagi.</value>
@@ -2796,6 +2468,9 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="NoServers_Title">
     <value>Tidak ada koneksi VPN yang tersedia</value>
   </data>
+  <data name="NoServers_UnderMaintenance_Tip">
+    <value>We couldn't load any servers. Click Refresh to update the server list.</value>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Untuk melindungi alamat IP Anda, kill switch memblokir koneksi internet Anda.</value>
   </data>
@@ -2822,7 +2497,7 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_Ipv6Disabled_Description">
-    <value>Untuk menyertakan alamat ini, Anda perlu memberikan izin kepada koneksi IPv6 untuk melewati terowongan VPN.</value>
+    <value>To include IPv6 addresses, you need to allow IPv6 connections through the VPN tunnel.</value>
   </data>
   <data name="Overlay_Ipv6Disabled_PrimaryButton">
     <value>Aktifkan IPv6</value>
@@ -2998,9 +2673,6 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Profile_Options_ConnectAndGo_Application">
     <value>Buka aplikasi</value>
   </data>
-  <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
-    <value>Peramban bawaan</value>
-  </data>
   <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
     <value>Gunakan mode penjelajahan pribadi</value>
   </data>
@@ -3027,9 +2699,6 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Profiles_Default_MaxSecurity">
     <value>Keamanan maksimum</value>
-  </data>
-  <data name="Profiles_Default_Office">
-    <value>Kantor</value>
   </data>
   <data name="Profiles_Default_P2P">
     <value>P2P</value>
@@ -3115,9 +2784,6 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Servers">
     <value>Server</value>
   </data>
-  <data name="Settings_About">
-    <value>Tentang</value>
-  </data>
   <data name="Settings_About_Changelog">
     <value>Riwayat perubahan</value>
   </data>
@@ -3180,9 +2846,6 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>192.0.2.0</value>
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
-  <data name="Settings_Common_Ipv6WarningButton">
-    <value>Peringatan - pelajari lebih lanjut</value>
-  </data>
   <data name="Settings_Connection">
     <value>Koneksi</value>
   </data>
@@ -3214,12 +2877,15 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
     <value>Kami akan berusaha untuk terhubung ke server ini sesuai urutan. Apabila tidak ada satu pun dari server ini yang dapat digunakan, DNS bawaan milik Proton VPN akan digunakan.</value>
   </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
-    <value>Server DNS ({0})</value>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_FormattedHeader">
+    <value>DNS servers ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
-    <value>Masukkan alamat IPv4 atau IPv6 server</value>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+    <value>DNS servers</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Select">
+    <value>Select DNS servers</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>Dukungan IPv6</value>
@@ -3270,10 +2936,16 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Membatasi data yang memasuki jaringan Anda. Opsi ini lebih aman, tetapi dapat mempersulit koneksi game peer-to-peer.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
-    <value>Merutekan lalu lintas data di antara berbagai jaringan yang berbeda.</value>
+    <value>Bridges network traffic. Slower than TUN, but needed for some legacy or special network setups.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
-    <value>Menggunakan bridging untuk menghubungkan jaringan. TUN memberikan kecepatan yang lebih tinggi dari TAP, tetapi dapat kurang stabil.</value>
+    <value>Routes traffic between different networks. TUN can be faster and more stable than TAP.</value>
+  </data>
+  <data name="Settings_Connection_ConnectionPreferences">
+    <value>Connection preferences</value>
+  </data>
+  <data name="Settings_Connection_ConnectionPreferences_Description">
+    <value>Default connection and excluded locations</value>
   </data>
   <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
     <value>DNS khusus tidak dapat diaktifkan karena Anda sedang terhubung ke profil dengan NetShield yang aktif.</value>
@@ -3305,6 +2977,27 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Settings_Connection_Default_Recents">
     <value>Terkini</value>
   </data>
+  <data name="Settings_Connection_ExcludedLocations">
+    <value>Excluded locations</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Cities">
+    <value>Cities</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Countries">
+    <value>Countries</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Description">
+    <value>The selected locations will never be used when you connect to Fastest or Random</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_NoLocations">
+    <value>No locations available</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Search">
+    <value>Select...</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_States">
+    <value>States</value>
+  </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill switch</value>
   </data>
@@ -3317,9 +3010,6 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Melindungi alamat IP Anda dengan memutuskan koneksi Anda dari internet apabila koneksi VPN hilang.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Footer">
-    <value>Pada saat kill switch sedang aktif, Anda tidak akan dapat terhubung ke situs web dan aplikasi yang dikecualikan dari koneksi VPN Anda melalui split tunneling.</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Standard">
     <value>Standar</value>
   </data>
@@ -3330,7 +3020,10 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>NetShield</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
-    <value>Blokir iklan, malware, dan pelacak</value>
+    <value>Block ads, trackers, and malware</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent">
+    <value>Block ads, trackers, malware, and adult content</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
     <value>Blokir malware saja</value>
@@ -3345,7 +3038,7 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Aktifkan NetShield?</value>
   </data>
   <data name="Settings_Connection_NetShield_Description">
-    <value>Lindungi diri Anda dari iklan, pelacak, dan malware di berbagai situs web dan aplikasi.</value>
+    <value>Protect your browsing on websites and apps.</value>
   </data>
   <data name="Settings_Connection_NetShield_Footer">
     <value>Beberapa situs web mungkin tidak akan dapat termuat dengan benar pada saat iklan dan pelacak diblokir.</value>
@@ -3393,35 +3086,35 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Settings_Connection_Protocol">
     <value>Protokol</value>
   </data>
-  <data name="Settings_Connection_Protocol_NavigationFailed_Action">
-    <value>Buka profil</value>
-  </data>
-  <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>Anda sedang terhubung ke profil VPN. 
-
-• Untuk mengubah protokol bagi koneksi ini, putuskan koneksi lalu edit profil Anda.
-
-• Untuk mengubah protokol bagi koneksi VPN lainnya, Anda perlu memutuskan koneksi dari profil ini terlebih dahulu.</value>
-  </data>
-  <data name="Settings_Connection_Protocol_NavigationFailed_Title">
-    <value>Ubah protokol pada profil</value>
-  </data>
   <data name="Settings_Connection_SplitTunneling">
     <value>Split tunneling</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Description">
+    <value>Select apps which will be excluded from the VPN connection</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_FormattedHeader">
+    <value>Excluded apps ({0})</value>
+    <comment>Header for the list of apps to exclude for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Excluded apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Header">
+    <value>Excluded apps</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>File aplikasi</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_Header">
-    <value>Aplikasi yang dipilih ({0})</value>
-    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_Description">
+    <value>Select apps which will be included in the VPN connection</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
-    <value>Aplikasi tidak ditemukan</value>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader">
+    <value>Included apps ({0})</value>
+    <comment>Header for the list of apps to include for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Included apps (2)")</comment>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_Remove">
-    <value>Hapus aplikasi</value>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_Header">
+    <value>Included apps</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Select">
+    <value>Select apps</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Sesuaikan koneksi Anda dengan menentukan aplikasi dan alamat IP mana saja yang akan terlindungi oleh VPN.</value>
@@ -3439,12 +3132,28 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
     <value>Tambahkan alamat IPv4 atau IPv6 baru</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
-    <value>Alamat IP yang dipilih ({0})</value>
-    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Description">
+    <value>Select IP addresses which will be excluded from the VPN connection</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
-    <value>Hapus IP</value>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_FormattedHeader">
+    <value>Excluded IP addresses ({0})</value>
+    <comment>Header for the list of IP addresses to exclude for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Excluded IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Header">
+    <value>Excluded IP addresses</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Description">
+    <value>Select IP addresses which will be included in the VPN connection</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_FormattedHeader">
+    <value>Included IP addresses ({0})</value>
+    <comment>Header for the list of IP addresses to include for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Included IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Header">
+    <value>Included IP addresses</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Select">
+    <value>Select IP addresses</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
     <value>Mode pengecualian</value>
@@ -3468,9 +3177,6 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Settings_DiscardChanges_Confirmation_Title">
     <value>Buang perubahan yang belum disimpan?</value>
   </data>
-  <data name="Settings_Features">
-    <value>Fitur VPN</value>
-  </data>
   <data name="Settings_General">
     <value>Umum</value>
   </data>
@@ -3482,12 +3188,6 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>Menghubungkan Anda secara otomatis ke koneksi bawaan Anda ketika Proton VPN dibuka.</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
-    <value>Koneksi tercepat</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect_Latest">
-    <value>Terakhir terhubung</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
     <value>Peluncuran otomatis</value>
@@ -3531,20 +3231,8 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>Driver jaringan OpenVPN</value>
   </data>
-  <data name="Settings_General_OpenVpnNetworkDriver_Description">
-    <value>Driver jaringan dapat memengaruhi kecepatan koneksi Anda. Adaptor TUN yang baru menyediakan kecepatan yang lebih tinggi dan akan berbalik ke adaptor TAP apabila adaptor ini menemui masalah konektivitas.</value>
-  </data>
   <data name="Settings_General_Theme">
     <value>Tema</value>
-  </data>
-  <data name="Settings_General_Theme_Dark">
-    <value>Gelap</value>
-  </data>
-  <data name="Settings_General_Theme_Default">
-    <value>Bawaan</value>
-  </data>
-  <data name="Settings_General_Theme_Light">
-    <value>Terang</value>
   </data>
   <data name="Settings_Improve">
     <value>Tingkatkan Proton</value>
@@ -3685,9 +3373,6 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Tingkatkan kecepatan koneksi Anda hingga 400% dengan teknologi peningkat performa.</value>
-  </data>
-  <data name="SignIn_Form">
-    <value>Formulir masuk</value>
   </data>
   <data name="SignIn_Form_AdvancedKillSwitchDescription">
     <value>Kill switch tingkat lanjut sedang memblokir koneksi internet Anda.</value>
@@ -3832,12 +3517,6 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>TB/dtk</value>
     <comment>Unit for Terabytes per second</comment>
   </data>
-  <data name="UpsellBanner_NetShield_Description">
-    <value>Blokir iklan, pelacak, dan malware di berbagai situs web dan aplikasi</value>
-  </data>
-  <data name="UpsellBanner_NetShield_Title">
-    <value>NetShield</value>
-  </data>
   <data name="UpsellBanner_P2P_Description">
     <value>Unduh file melalui BitTorrent dan protokol berbagi file lainnya.</value>
   </data>
@@ -3973,9 +3652,6 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Platforms_HBO">
     <value>HBO Max</value>
-  </data>
-  <data name="Upsell_Carousel_Streaming_Platforms_Hulu">
-    <value>Hulu</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
     <value>Netflix</value>

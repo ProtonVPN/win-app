@@ -126,12 +126,6 @@
   <data name="Automation_Properties_Connection_Card_Component">
     <value>Verbindungskarte</value>
   </data>
-  <data name="Automation_Properties_Features_Bar">
-    <value>Funktionsleiste</value>
-  </data>
-  <data name="Automation_Properties_Home_Page">
-    <value>Startseite</value>
-  </data>
   <data name="Automation_Properties_KillSwitch_Page">
     <value>Kill Switch-Seite</value>
   </data>
@@ -189,18 +183,11 @@
   <data name="Automation_Properties_SplitTunneling_Page">
     <value>Split-Tunneling-Seite</value>
   </data>
-  <data name="Cities">
-    <value>Städte</value>
-  </data>
   <data name="City_Fastest">
     <value>Schnellste Stadt</value>
   </data>
   <data name="City_Random">
     <value>Zufällige Stadt</value>
-  </data>
-  <data name="Common_Actions_ActionsFor">
-    <value>Aktionen für {0}</value>
-    <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Add">
     <value>Hinzufügen</value>
@@ -220,25 +207,14 @@
   <data name="Common_Actions_Connect">
     <value>Verbinden</value>
   </data>
-  <data name="Common_Actions_ConnectTo">
-    <value>Mit {0} verbinden</value>
-    <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>Kontaktiere uns</value>
-  </data>
-  <data name="Common_Actions_Customize">
-    <value>Anpassen</value>
   </data>
   <data name="Common_Actions_Delete">
     <value>Löschen</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Trennen</value>
-  </data>
-  <data name="Common_Actions_DisconnectFrom">
-    <value>Von {0} trennen</value>
-    <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Duplicate">
     <value>Duplizieren</value>
@@ -300,17 +276,14 @@
   <data name="Common_Links_LearnMore">
     <value>Mehr erfahren</value>
   </data>
-  <data name="Common_Message_Loading">
-    <value>Wird geladen...</value>
+  <data name="Common_Message_AppNotFound">
+    <value>Anwendung nicht gefunden</value>
   </data>
   <data name="Common_States_Off">
     <value>Aus</value>
   </data>
   <data name="Common_States_On">
     <value>Ein</value>
-  </data>
-  <data name="Common_States_Updating">
-    <value>Wird aktualisiert...</value>
   </data>
   <data name="Common_Tags_Beta">
     <value>BETA</value>
@@ -335,6 +308,12 @@
   </data>
   <data name="Components_Update_UpdateProtonVpn">
     <value>Proton VPN aktualisieren</value>
+  </data>
+  <data name="Connection_Error_AllServersExcluded">
+    <value>Deine Einstellungen schließen alle verfügbaren Server aus. Passe die Ausschlüsse an, um eine Verbindung herzustellen.</value>
+  </data>
+  <data name="Connection_Error_AllServersExcluded_Action">
+    <value>Ausgeschlossene Standorte</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>Profil bearbeiten</value>
@@ -399,14 +378,6 @@ Fehlercode: {0}</value>
   <data name="Connection_Intent_AutoSelected">
     <value>Automatisch ausgewählt aus</value>
     <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
-  </data>
-  <data name="Connection_Intent_City_Server">
-    <value>{0} #{1}</value>
-    <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the number associated to the server (eg. Zurich #20)</comment>
-  </data>
-  <data name="Connection_Intent_Country_Server">
-    <value>{0} #{1}</value>
-    <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
   </data>
   <data name="Connection_Via_SecureCore">
     <value>über {0}</value>
@@ -553,15 +524,6 @@ Fehlercode: {0}</value>
     <value>Profile sind verfügbar mit VPN Plus</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
-  <data name="Connections_Profiles_Settings_Description">
-    <value>Die Profileinstellungen überschreiben deine VPN-Einstellungen, wenn du verbunden bist.</value>
-  </data>
-  <data name="Connections_Profiles_Settings_Header">
-    <value>Benutzerdefinierte Einstellungen hinzufügen</value>
-  </data>
-  <data name="Connections_Random">
-    <value>Zufällig</value>
-  </data>
   <data name="Connections_Recents_One">
     <value>Letzte ({0})</value>
   </data>
@@ -591,27 +553,6 @@ Fehlercode: {0}</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
     <value>Secure Core‐Server</value>
-  </data>
-  <data name="Connections_SeeCities_One">
-    <value>Siehe Ort ({0})</value>
-  </data>
-  <data name="Connections_SeeCities_Other">
-    <value>Siehe Orte ({0})</value>
-  </data>
-  <data name="Connections_SeeServers_One">
-    <value>Siehe Server ({0})</value>
-  </data>
-  <data name="Connections_SeeServers_Other">
-    <value>Siehe Server ({0})</value>
-  </data>
-  <data name="Connections_SeeStates_One">
-    <value>Siehe Land ({0})</value>
-  </data>
-  <data name="Connections_SeeStates_Other">
-    <value>Siehe Länder ({0})</value>
-  </data>
-  <data name="Connections_Server">
-    <value>Server</value>
   </data>
   <data name="Connections_Server_Restricted">
     <value>Server verfügbar mit VPN Plus</value>
@@ -660,44 +601,11 @@ Fehlercode: {0}</value>
   <data name="Countries_All">
     <value>Alle</value>
   </data>
-  <data name="Countries_City_One">
-    <value>{0} Stadt</value>
-  </data>
-  <data name="Countries_City_Other">
-    <value>{0} Städte</value>
-  </data>
-  <data name="Countries_Connect">
-    <value>Verbinden</value>
-    <comment>Connect button label on a country row in the countries tab</comment>
-  </data>
-  <data name="Countries_Fastest">
-    <value>Schnellstes Land</value>
-  </data>
-  <data name="Countries_NoSearchResults">
-    <value>Keine Ergebnisse gefunden</value>
-  </data>
-  <data name="Countries_NumberOfServers">
-    <value>Server ({0})</value>
-    <comment>{0} represents a number of servers</comment>
-  </data>
   <data name="Countries_P2P">
     <value>P2P</value>
   </data>
-  <data name="Countries_P2P_Cities">
-    <value>P2P-Städte ({0})</value>
-    <comment>{0} represents a number of P2P cities in the country</comment>
-  </data>
   <data name="Countries_P2P_Description">
     <value>Lade Dateien über P2P-Netzwerke (Peer-to-Peer) herunter und verbessere dein Online-Gaming- und Videogesprächserlebnis.</value>
-  </data>
-  <data name="Countries_Page_FreeUser_Description">
-    <value>Mit VPN Plus die Länderauswahl freischalten</value>
-  </data>
-  <data name="Countries_SearchPlaceholder">
-    <value>Ich möchte surfen von...</value>
-  </data>
-  <data name="Countries_Section_Header">
-    <value>VPN-Verbindungen</value>
   </data>
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
@@ -714,15 +622,8 @@ Fehlercode: {0}</value>
   <data name="Countries_Tor">
     <value>Tor</value>
   </data>
-  <data name="Countries_TorServers">
-    <value>Tor-Server ({0})</value>
-    <comment>{0} represents a number of tor servers in the country</comment>
-  </data>
   <data name="Countries_Tor_Description">
     <value>Verwende das Tor-Netzwerk über deine VPN-Verbindung für mehr Privatsphäre.</value>
-  </data>
-  <data name="Countries_TryDifferentKeyword">
-    <value>Bitte versuche es mit einem anderen Schlüsselwort</value>
   </data>
   <data name="Country_Fastest">
     <value>Schnellstes Land</value>
@@ -1716,6 +1617,10 @@ Fehlercode: {0}</value>
     <value>Samoa</value>
     <comment>The name of WS country</comment>
   </data>
+  <data name="Country_val_XK">
+    <value>Kosovo</value>
+    <comment>The name of XK country</comment>
+  </data>
   <data name="Country_val_YE">
     <value>Jemen</value>
     <comment>The name of YE country</comment>
@@ -1785,32 +1690,6 @@ Fehlercode: {0}</value>
   <data name="Dialogs_FreeConnections_Title">
     <value>Kostenlose Verbindungen</value>
   </data>
-  <data name="Dialogs_Latency_Description">
-    <value>Die Latenzzeit gibt an, wie lange es dauert, bis ein Server auf Anfragen reagiert.
-
-Eine hohe Latenzzeit kann deine Verbindung verlangsamen.</value>
-  </data>
-  <data name="Dialogs_Latency_HighRange_Description">
-    <value>VPN läuft möglicherweise langsamer als normal</value>
-  </data>
-  <data name="Dialogs_Latency_HighRange_Title">
-    <value>Hoch (mehr als 150 ms)</value>
-  </data>
-  <data name="Dialogs_Latency_LowRange_Description">
-    <value>Blitzschnelle Geschwindigkeiten</value>
-  </data>
-  <data name="Dialogs_Latency_LowRange_Title">
-    <value>Niedrig (1 ms–50 ms)</value>
-  </data>
-  <data name="Dialogs_Latency_MediumRange_Description">
-    <value>Beeinträchtigung der VPN-Geschwindigkeit unwahrscheinlich</value>
-  </data>
-  <data name="Dialogs_Latency_MediumRange_Title">
-    <value>Mittel (50 ms–150 ms)</value>
-  </data>
-  <data name="Dialogs_Latency_Title">
-    <value>Was ist Latenz?</value>
-  </data>
   <data name="Dialogs_NpsSurvey_CommentLabel">
     <value>Lasse uns bitte wissen, warum du diese Bewertung abgegeben hast</value>
   </data>
@@ -1852,49 +1731,6 @@ Eine hohe Latenzzeit kann deine Verbindung verlangsamen.</value>
   </data>
   <data name="Dialogs_P2PDetection_WindowTitle">
     <value>Entdecke VPN Plus</value>
-  </data>
-  <data name="Dialogs_P2P_HowToTorrentLink">
-    <value>Wie man P2P mit Hilfe von Torrent durchführt</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_Title">
-    <value>P2P</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_WhatIsP2PServer">
-    <value>Was ist ein P2P-Server?</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_WhatIsP2PServer_Description">
-    <value>P2P (Peer-to-Peer)-VPN-Server entsperren Torrent-Seiten.</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_WhatIsTorrenting">
-    <value>Was ist Torrenting?</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_WhatIsTorrenting_Description">
-    <value>Der schnelle Austausch und das Herunterladen großer Dateien über ein Peer-to-Peer-Netzwerk (P2P).</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_WhyUse">
-    <value>Warum sollte ich einen P2P-Server beim Torrenting verwenden?</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_WhyUse_Description">
-    <value>• Höhere Up- und Downloadgeschwindigkeiten
-• Keine Aktivitätsprotokolle
-• Blende deine IP-Adresse vor deinem Dienstanbieter und Peers aus</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_Protocol_Description">
-    <value>Ein Protokoll ist eine Reihe von Anweisungen, die dein Gerät befolgt, um eine Verbindung zu einem Server herzustellen und mit diesem zu kommunizieren.</value>
-  </data>
-  <data name="Dialogs_Protocol_SwitchHeader">
-    <value>VPN-Protokoll wechseln</value>
-  </data>
-  <data name="Dialogs_Protocol_Title">
-    <value>Was ist ein VPN-Protokoll?</value>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email">
     <value>E‐Mail‐Adresse</value>
@@ -1952,35 +1788,6 @@ Eine hohe Latenzzeit kann deine Verbindung verlangsamen.</value>
   <data name="Dialogs_ReportIssue_Title">
     <value>Ein Problem melden</value>
   </data>
-  <data name="Dialogs_ServerLoad_Description">
-    <value>Die Serverauslastung zeigt an, wie nahe ein Server an seiner maximalen Kapazität ist.
-
-Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
-  </data>
-  <data name="Dialogs_ServerLoad_HighRange_Description">
-    <value>VPN läuft möglicherweise langsamer als normal</value>
-  </data>
-  <data name="Dialogs_ServerLoad_HighRange_Title">
-    <value>Hoch (91–100 %)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_LowRange_Description">
-    <value>Blitzschnelle Geschwindigkeiten</value>
-  </data>
-  <data name="Dialogs_ServerLoad_LowRange_Title">
-    <value>Niedrig (1–75 %)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_MediumRange_Description">
-    <value>Beeinträchtigung der VPN-Geschwindigkeit unwahrscheinlich</value>
-  </data>
-  <data name="Dialogs_ServerLoad_MediumRange_Title">
-    <value>Mittel (76–90 %)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_Title">
-    <value>Was ist die Serverauslastung?</value>
-  </data>
-  <data name="Dialogs_SmartRouting_Title">
-    <value>Smart Routing</value>
-  </data>
   <data name="Dialogs_StreamingDetection_WindowTitle">
     <value>Entdecke VPN Plus</value>
   </data>
@@ -1996,20 +1803,8 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   <data name="Dialogs_SystemProxy_Description">
     <value>Es sieht so aus, als ob dein Gerät einen Proxy-Server verwendet. Dies kann den VPN-Schutz beeinträchtigen.</value>
   </data>
-  <data name="Dialogs_SystemProxy_Disable">
-    <value>Proxy deaktivieren</value>
-  </data>
   <data name="Dialogs_SystemProxy_Title">
     <value>Proxyserver erkannt</value>
-  </data>
-  <data name="Dialogs_Tor_Description">
-    <value>Verbinde dich mit einem Tor-Server, um mit einem beliebigen Browser auf ausgeblendete Dienste und Onion-Seiten zuzugreifen.</value>
-  </data>
-  <data name="Dialogs_Tor_LearnMore">
-    <value>Wie man auf das Tor-Netzwerk zugreift</value>
-  </data>
-  <data name="Dialogs_Tor_Title">
-    <value>Tor</value>
   </data>
   <data name="Dialogs_Troubleshooting_Antivirus">
     <value>Deaktiviere Antivirus- oder Firewall-Software</value>
@@ -2102,22 +1897,11 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <value>Willkommen bei VPN Plus</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>Herzlichen Glückwunsch! Du hast die Premium-Sicherheits- und Performance-Funktionen für alle Proton-Dienste freigeschaltet.</value>
+    <value>Du hast alle Premium-Funktionen von Proton VPN, Mail, Kalender, Drive und Pass freigeschaltet.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
-    <value>Willkommen bei Proton Unlimited</value>
-  </data>
-  <data name="Dialogs_Welcome_Message">
-    <value>Wir bereiten dein neues VPN-Erlebnis vor. Dies sollte nur einen Moment dauern.</value>
-  </data>
-  <data name="Dialogs_Welcome_Title">
-    <value>Willkommen bei Proton VPN</value>
-  </data>
-  <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>Du kannst jetzt von der Hauptseitenleiste aus auf die dedizierten Server deines Unternehmens zugreifen.</value>
-  </data>
-  <data name="Dialogs_WhatsNew_Gateways_Title">
-    <value>Gateways wurden verschoben</value>
+    <value>Willkommen bei {0}</value>
+    <comment>Title to welcome the user after an account upgrade. {0} is a placeholder for the name of the new plan (eg. Proton Unlimited, Proton Duo, Proton Family).</comment>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
     <value>Du kannst nun unter Umgehung des VPN-Tunnels eine Verbindung zu Druckern, Lautsprechern und anderen Geräten in deinem lokalen Netzwerk (LAN) herstellen.</value>
@@ -2125,29 +1909,11 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   <data name="Dialogs_WhatsNew_LanConnections_Title">
     <value>LAN‐Verbindungen</value>
   </data>
-  <data name="Dialogs_WhatsNew_NewLook_Description">
-    <value>Wir haben unser Design überarbeitet und einige Dinge umgestellt, um die App benutzerfreundlicher zu gestalten.</value>
-  </data>
-  <data name="Dialogs_WhatsNew_NewLook_Title">
-    <value>Neues Aussehen, gleicher Schutz</value>
-  </data>
   <data name="Dialogs_WhatsNew_PortNumber_Description">
     <value>Wenn die Portweiterleitung aktiviert ist, wird die aktive Portnummer auf dem Startbildschirm angezeigt.</value>
   </data>
   <data name="Dialogs_WhatsNew_PortNumber_Title">
     <value>Aktive Portnummer</value>
-  </data>
-  <data name="Dialogs_WhatsNew_Profiles_Description">
-    <value>Ergänze erweiterte Profileinstellungen wie NetShield und Portweiterleitung oder richte „Verbinden und Los” ein, um eine Website deiner Wahl zu starten, wenn eine Verbindung aufgebaut wird.</value>
-  </data>
-  <data name="Dialogs_WhatsNew_Profiles_Title">
-    <value>Noch leistungsfähigere Profile</value>
-  </data>
-  <data name="Dialogs_WhatsNew_Recents_Description">
-    <value>Jetzt ist es noch einfacher, sich wieder mit deinen bevorzugten Servern zu verbinden. Lasse dir deine letzten Verbindungen auf dem Startbildschirm anzeigen oder hefte sie für schnellen Zugriff an.</value>
-  </data>
-  <data name="Dialogs_WhatsNew_Recents_Title">
-    <value>Zuletzt verwendete Verbindungen</value>
   </data>
   <data name="Dialogs_WhatsNew_TakeALook">
     <value>Anzeigen</value>
@@ -2160,6 +1926,30 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   </data>
   <data name="Dialogs_WhatsNew_TrayApp_Title">
     <value>Neue Anwendung für die Taskleiste</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations">
+    <value>Standorte ausschließen</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
+    <value>Wenn es Standorte gibt, mit denen du dich nicht automatisch verbinden möchtest, kannst du sie aus dem schnellsten oder zufälligen Land ausschließen.</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
+    <value>Überspringen</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
+    <value>Nicht das gewünschte Land?</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_ActionButton">
+    <value>Standorte ausschließen</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_CloseButton">
+    <value>Vielleicht später</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_Subtitle">
+    <value>Länder und Städte können nun von den schnellsten und zufälligen Verbindungen ausgeschlossen werden.</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_Title">
+    <value>Unerwünschte Standorte vermeiden</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Proton VPN beenden?</value>
@@ -2251,17 +2041,20 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   <data name="Flyouts_KillSwitch_Warning_Disconnected">
     <value>Um wieder online zu gehen, musst du wieder eine Verbindung zum VPN herstellen oder den erweiterten Kill Switch deaktivieren.</value>
   </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackersAdultContent_Success">
+    <value>Du bist vor Werbung, Trackern, Malware und jugendgefährdenden Inhalten geschützt.</value>
+  </data>
   <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
-    <value>Du bist geschützt vor Werbung, Trackern und Malware.</value>
+    <value>Du bist vor Werbung, Trackern und Malware geschützt.</value>
   </data>
   <data name="Flyouts_NetShield_Info">
-    <value>Schütz dich selbst vor Werbung, Trackern und Malware auf Websites und in Apps.</value>
+    <value>Dein Surfen auf Websites und in Apps schützen.</value>
   </data>
   <data name="Flyouts_NetShield_MalwareOnly_Success">
     <value>Du bist nur vor Malware geschützt.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Description">
-    <value>Blockiere Werbung, Tracker und Malware mit VPN Plus.</value>
+    <value>Werbung, Tracker, Malware und jugendgefährdende Inhalte mit VPN Plus blockieren.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
     <value>Genieße Surfen ohne Werbung</value>
@@ -2322,9 +2115,6 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   </data>
   <data name="Flyouts_ServerLoad_Title">
     <value>Serverauslastung</value>
-  </data>
-  <data name="Flyouts_Speed_BoostedByVpnAccelerator">
-    <value>Verstärkt durch VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description1">
     <value>Zeigt an, wie viel Daten in Echtzeit durch den VPN-Tunnel geleitet werden.</value>
@@ -2398,10 +2188,6 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   <data name="Flyouts_Volume_Upload">
     <value>Upload</value>
     <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
-  </data>
-  <data name="Format_Milliseconds">
-    <value>{0} ms</value>
-    <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
   </data>
   <data name="Format_Size_Bytes">
     <value>{0} B</value>
@@ -2545,9 +2331,6 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   <data name="Gateways_Page_Title">
     <value>Gateways</value>
   </data>
-  <data name="Gateways_Server">
-    <value>Dedizierter Server</value>
-  </data>
   <data name="Home_Account_SignOut">
     <value>Abmelden</value>
   </data>
@@ -2555,46 +2338,17 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <value>Abmelden von {0}?</value>
     <comment>{0} is a placeholder for the username</comment>
   </data>
-  <data name="Home_Account_Title">
-    <value>Mein Konto</value>
-  </data>
   <data name="Home_ConnectionCard_ChangeDefaultConnection">
     <value>Standardverbindung ändern</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Server wechseln</value>
   </data>
-  <data name="Home_ConnectionCard_Header_BrowseSafely">
-    <value>Sicheres Surfen von</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_ConnectingTo">
-    <value>Verbinde mit...</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_DefaultConnection">
-    <value>Standardverbindung</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_FreeConnection">
-    <value>Kostenlose Verbindung</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_LastConnectedTo">
-    <value>Zuletzt verbunden mit</value>
-  </data>
-  <data name="Home_ConnectionCard_Landmark">
-    <value>Verbindungskarte</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
   <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
     <value>Erweiterter Kill Switch (Abschaltfunktion) aktiviert</value>
   </data>
-  <data name="Home_ConnectionDetails_City">
-    <value>Stadt</value>
-  </data>
   <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
     <value>Mit VPN verbinden, um die Internetverbindung wiederherzustellen.</value>
-  </data>
-  <data name="Home_ConnectionDetails_ConnectedFor">
-    <value>Verbunden für</value>
-    <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
   </data>
   <data name="Home_ConnectionDetails_Connecting">
     <value>Verbindung wird hergestellt</value>
@@ -2605,28 +2359,8 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   <data name="Home_ConnectionDetails_Country">
     <value>Land</value>
   </data>
-  <data name="Home_ConnectionDetails_Gateway">
-    <value>Gateway</value>
-  </data>
-  <data name="Home_ConnectionDetails_Hide">
-    <value>Verbindungsdetails ausblenden</value>
-  </data>
-  <data name="Home_ConnectionDetails_HideIP">
-    <value>Ausblenden</value>
-    <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
-  </data>
-  <data name="Home_ConnectionDetails_HideIP_Description">
-    <value>Benutzer-IP-Adresse ausblenden</value>
-  </data>
   <data name="Home_ConnectionDetails_Isp">
     <value>Anbieter</value>
-  </data>
-  <data name="Home_ConnectionDetails_Landmark">
-    <value>Verbindungsdetails</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_ConnectionDetails_MyIp">
-    <value>Meine IP</value>
   </data>
   <data name="Home_ConnectionDetails_Protected">
     <value>Geschützt</value>
@@ -2634,27 +2368,8 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   <data name="Home_ConnectionDetails_Protocol">
     <value>Protokoll</value>
   </data>
-  <data name="Home_ConnectionDetails_Server">
-    <value>Server</value>
-  </data>
   <data name="Home_ConnectionDetails_ServerLoad">
     <value>Serverauslastung</value>
-  </data>
-  <data name="Home_ConnectionDetails_Show">
-    <value>Verbindungsdetails anzeigen</value>
-  </data>
-  <data name="Home_ConnectionDetails_ShowIP">
-    <value>Anzeigen</value>
-    <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
-  </data>
-  <data name="Home_ConnectionDetails_ShowIP_Description">
-    <value>Benutzer-IP-Adresse anzeigen</value>
-  </data>
-  <data name="Home_ConnectionDetails_State">
-    <value>Bundesland</value>
-  </data>
-  <data name="Home_ConnectionDetails_Title">
-    <value>Verbindungsdetails</value>
   </data>
   <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
     <value>Um fortzufahren, authentifiziere dich erneut im 2FA-Portal deiner Organisation.</value>
@@ -2671,15 +2386,6 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   <data name="Home_ConnectionDetails_Volume">
     <value>Gesamtdatenmenge</value>
   </data>
-  <data name="Home_ConnectionDetails_Volume_Download">
-    <value>Downloadmenge</value>
-  </data>
-  <data name="Home_ConnectionDetails_Volume_Total">
-    <value>Gesamtmenge</value>
-  </data>
-  <data name="Home_ConnectionDetails_Volume_Upload">
-    <value>Uploadmenge</value>
-  </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN-IP</value>
   </data>
@@ -2688,13 +2394,6 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   </data>
   <data name="Home_FreeConnections_About">
     <value>Mehr Informationen zu kostenlosen Verbindungen</value>
-  </data>
-  <data name="Home_Help_Title">
-    <value>Hilfe</value>
-  </data>
-  <data name="Home_Map_Landmark">
-    <value>Karte</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_AdsBlocked_One">
     <value>Werbeanzeige blockiert</value>
@@ -2711,13 +2410,6 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   <data name="Home_NetShield_DataSaved_Description">
     <value>Geschätzte Dateneinsparungen durch das Blockieren von unerwünschter Werbung, Trackern und Malware.</value>
   </data>
-  <data name="Home_NetShield_Landmark">
-    <value>NetShield-Statistiken</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_NetShield_Title">
-    <value>NetShield-Statistiken</value>
-  </data>
   <data name="Home_NetShield_TrackersStopped_One">
     <value>Tracker gestoppt</value>
   </data>
@@ -2727,21 +2419,11 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   <data name="Home_NetShield_TrackersStopped_Description">
     <value>Tracker sind Cookies und Websites von Drittanbietern, die Informationen über deine Webaktivitäten sammeln, speichern und verkaufen.</value>
   </data>
-  <data name="Home_Page_Title">
-    <value>Startseite</value>
-  </data>
-  <data name="Home_Recents_Landmark">
-    <value>Kürzliche Verbindungen</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
   <data name="Home_Recents_Pin">
     <value>Anheften</value>
   </data>
   <data name="Home_Recents_Restricted">
     <value>Server verfügbar mit VPN Plus</value>
-  </data>
-  <data name="Home_Recents_SecondaryActions_ToolTip">
-    <value>Aktionen</value>
   </data>
   <data name="Home_Recents_ServerUnderMaintenance">
     <value>Server wird gewartet</value>
@@ -2776,25 +2458,6 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   <data name="Home_TitleBar_Menu_UpdateNow">
     <value>Jetzt aktualisieren</value>
   </data>
-  <data name="Home_Update_UpdateAvailable">
-    <value>Update verfügbar</value>
-  </data>
-  <data name="Home_Update_UpdateReady">
-    <value>Update bereit</value>
-  </data>
-  <data name="Home_VpnStatus_Landmark">
-    <value>VPN-Status</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_VpnStatus_Subtitle_Connecting">
-    <value>Schützen deiner digitalen Identität ...</value>
-  </data>
-  <data name="Home_VpnStatus_Subtitle_Disconnected">
-    <value>Du bist ungeschützt</value>
-  </data>
-  <data name="Home_VpnStatus_Title_Connected">
-    <value>Geschützt</value>
-  </data>
   <data name="LoadingPage_Tip">
     <value>Eine bessere Welt beginnt mit Privatsphäre und digitaler Freiheit.</value>
   </data>
@@ -2813,9 +2476,6 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   </data>
   <data name="Login_Error_SsoAuthFailed">
     <value>SSO-Authentifizierung fehlgeschlagen. Bitte versuche es erneut.</value>
-  </data>
-  <data name="Login_Error_TwoFactorAuthFailed">
-    <value>Benutzername oder Passwort falsch. Bitte versuche es erneut.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>Fehler bei der Zwei-Faktor-Authentifizierung. Bitte melde dich erneut an.</value>
@@ -2904,6 +2564,9 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
   <data name="NoServers_Title">
     <value>Keine VPN-Verbindungen verfügbar</value>
   </data>
+  <data name="NoServers_UnderMaintenance_Tip">
+    <value>Es konnten keine Server geladen werden. Klicke auf „Aktualisieren“, um die Serverliste zu aktualisieren.</value>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Um deine IP-Adresse zu schützen, blockiert Kill Switch deine Internetverbindung.</value>
   </data>
@@ -2930,7 +2593,7 @@ Eine hohe Serverauslastung kann Ihre Verbindung verlangsamen.</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_Ipv6Disabled_Description">
-    <value>Um diese Adresse verwenden zu können, musst du IPv6-Verbindungen durch den VPN-Tunnel zulassen.</value>
+    <value>Um IPv6-Adressen einzubeziehen, müssen IPv6-Verbindungen über den VPN-Tunnel zugelassen werden.</value>
   </data>
   <data name="Overlay_Ipv6Disabled_PrimaryButton">
     <value>IPv6 aktivieren</value>
@@ -3106,9 +2769,6 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   <data name="Profile_Options_ConnectAndGo_Application">
     <value>App öffnen</value>
   </data>
-  <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
-    <value>Standardbrowser</value>
-  </data>
   <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
     <value>Privaten Browsermodus verwenden</value>
   </data>
@@ -3135,9 +2795,6 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   </data>
   <data name="Profiles_Default_MaxSecurity">
     <value>Maximale Sicherheit</value>
-  </data>
-  <data name="Profiles_Default_Office">
-    <value>Büro</value>
   </data>
   <data name="Profiles_Default_P2P">
     <value>P2P</value>
@@ -3223,9 +2880,6 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   <data name="Servers">
     <value>Server</value>
   </data>
-  <data name="Settings_About">
-    <value>Über</value>
-  </data>
   <data name="Settings_About_Changelog">
     <value>Änderungsprotokoll</value>
   </data>
@@ -3288,9 +2942,6 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>192.0.2.0</value>
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
-  <data name="Settings_Common_Ipv6WarningButton">
-    <value>Warnung - Mehr erfahren</value>
-  </data>
   <data name="Settings_Connection">
     <value>Verbindung</value>
   </data>
@@ -3322,12 +2973,15 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
     <value>Es wird versucht, sich nacheinander mit diesen Servern zu verbinden. Wenn keiner davon funktioniert, wird das Standard-DNS von Proton VPN verwendet.</value>
   </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+  <data name="Settings_Connection_Advanced_CustomDnsServers_FormattedHeader">
     <value>DNS-Server ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
-    <value>Gib die IPv4- oder IPv6-Adresse des Servers ein</value>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+    <value>DNS-Server</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Select">
+    <value>DNS-Server auswählen</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>IPv6-Unterstützung</value>
@@ -3378,10 +3032,16 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Schränkt den Datenverkehr in deinem Netzwerk ein. Diese Option ist sicherer, kann aber Peer-to-Peer Videospiel-Verbindungen erschweren.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
-    <value>Leitet Verkehr zwischen verschiedenen Netzwerken weiter.</value>
+    <value>Leitet den Netzwerkverkehr weiter. Langsamer als TUN, wird jedoch für bestimmte ältere oder spezielle Netzwerkkonfigurationen benötigt.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
-    <value>Verbindet Netzwerke über Bridging. TUN ermöglicht höhere Geschwindigkeiten als TAP, kann aber weniger stabil sein.</value>
+    <value>Leitet den Datenverkehr zwischen verschiedenen Netzwerken weiter. TUN kann schneller und stabiler sein als TAP.</value>
+  </data>
+  <data name="Settings_Connection_ConnectionPreferences">
+    <value>Verbindungseinstellungen</value>
+  </data>
+  <data name="Settings_Connection_ConnectionPreferences_Description">
+    <value>Standardverbindung und ausgeschlossene Standorte</value>
   </data>
   <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
     <value>Benutzerdefiniertes DNS kann nicht aktiviert werden, weil du mit einem Profil verbunden bist, in dem NetShield aktiviert ist.</value>
@@ -3413,6 +3073,27 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   <data name="Settings_Connection_Default_Recents">
     <value>Letzte</value>
   </data>
+  <data name="Settings_Connection_ExcludedLocations">
+    <value>Ausgeschlossene Standorte</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Cities">
+    <value>Städte</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Countries">
+    <value>Länder</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Description">
+    <value>Die ausgewählten Standorte werden niemals verwendet, wenn du dich mit dem schnellsten oder zufälligen Standort verbindest.</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_NoLocations">
+    <value>Keine Standorte verfügbar</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Search">
+    <value>Auswählen...</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_States">
+    <value>Bundesländer</value>
+  </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill Switch</value>
   </data>
@@ -3425,9 +3106,6 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Schütze deine IP-Adresse, indem du dich vom Internet trennst, wenn du deine VPN-Verbindung verlierst.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Footer">
-    <value>Wenn der Kill Switch aktiviert ist, kannst du keine Verbindung zu Websites und Anwendungen herstellen, die von deiner VPN-Verbindung durch Split-Tunneling ausgeschlossen sind.</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Standard">
     <value>Standard</value>
   </data>
@@ -3438,7 +3116,10 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>NetShield</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
-    <value>Werbung, Malware und Tracker blockieren</value>
+    <value>Werbung, Tracker und Malware blockieren</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent">
+    <value>Werbung, Tracker, Malware und jugendgefährdende Inhalte blockieren</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
     <value>Nur Malware blockieren</value>
@@ -3453,7 +3134,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>NetShield aktivieren?</value>
   </data>
   <data name="Settings_Connection_NetShield_Description">
-    <value>Schütze dich vor Werbung, Malware und Trackern auf Websites und in Apps.</value>
+    <value>Dein Surfen auf Websites und in Apps schützen.</value>
   </data>
   <data name="Settings_Connection_NetShield_Footer">
     <value>Einige Websites werden möglicherweise nicht richtig geladen, wenn Werbung und Tracker blockiert sind.</value>
@@ -3501,35 +3182,35 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   <data name="Settings_Connection_Protocol">
     <value>Protokoll</value>
   </data>
-  <data name="Settings_Connection_Protocol_NavigationFailed_Action">
-    <value>Zu Profilen gehen</value>
-  </data>
-  <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>Du bist derzeit mit einem VPN-Profil verbunden.
-
-• Um das Protokoll für diese Verbindung zu ändern, trenne sie und bearbeite dann dein Profil.
-
-• Um das Protokoll für andere VPN-Verbindungen zu ändern, musst du zuerst dein Profil trennen.</value>
-  </data>
-  <data name="Settings_Connection_Protocol_NavigationFailed_Title">
-    <value>Protokoll in Profilen ändern</value>
-  </data>
   <data name="Settings_Connection_SplitTunneling">
     <value>Split‐Tunneling</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Description">
+    <value>Apps auswählen, die von der VPN-Verbindung ausgeschlossen werden sollen</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_FormattedHeader">
+    <value>Ausgeschlossene Apps ({0})</value>
+    <comment>Header for the list of apps to exclude for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Excluded apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Header">
+    <value>Ausgeschlossene Apps</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>App-Dateien</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_Header">
-    <value>Ausgewählte Apps ({0})</value>
-    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_Description">
+    <value>Apps auswählen, die in die VPN-Verbindung einbezogen werden sollen</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
-    <value>Anwendung nicht gefunden</value>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader">
+    <value>Einbezogene Apps ({0})</value>
+    <comment>Header for the list of apps to include for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Included apps (2)")</comment>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_Remove">
-    <value>App entfernen</value>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_Header">
+    <value>Einbezogene Apps</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Select">
+    <value>Apps auswählen</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Passe deine Verbindung an, indem du entscheidest, welche Anwendungen und IP-Adressen durch VPN geschützt werden.</value>
@@ -3547,12 +3228,28 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
     <value>Neue IPv4- oder IPv6-Adresse hinzufügen</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
-    <value>Ausgewählte IP-Adressen ({0})</value>
-    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Description">
+    <value>IP-Adressen auswählen, die von der VPN-Verbindung ausgeschlossen werden sollen</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
-    <value>IP entfernen</value>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_FormattedHeader">
+    <value>Ausgeschlossene IP-Adressen ({0})</value>
+    <comment>Header for the list of IP addresses to exclude for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Excluded IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Header">
+    <value>Ausgeschlossene IP-Adressen</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Description">
+    <value>IP-Adressen auswählen, die in die VPN-Verbindung aufgenommen werden sollen</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_FormattedHeader">
+    <value>Einbezogene IP-Adressen ({0})</value>
+    <comment>Header for the list of IP addresses to include for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Included IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Header">
+    <value>Einbezogene IP-Adressen</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Select">
+    <value>IP-Adressen auswählen</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
     <value>Modus ausschließen</value>
@@ -3576,9 +3273,6 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   <data name="Settings_DiscardChanges_Confirmation_Title">
     <value>Noch nicht gespeicherte Änderungen verwerfen?</value>
   </data>
-  <data name="Settings_Features">
-    <value>VPN-Funktionen</value>
-  </data>
   <data name="Settings_General">
     <value>Allgemein</value>
   </data>
@@ -3590,12 +3284,6 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>Verbindet sich automatisch mit deiner Standardverbindung, wenn Proton VPN geöffnet wird.</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
-    <value>Schnellste Verbindung</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect_Latest">
-    <value>Zuletzt verbunden</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
     <value>Automatisch starten</value>
@@ -3639,20 +3327,8 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>OpenVPN-Netzwerktreiber</value>
   </data>
-  <data name="Settings_General_OpenVpnNetworkDriver_Description">
-    <value>Netzwerktreiber können deine Verbindungsgeschwindigkeit beeinträchtigen. Der neue TUN-Adapter bietet eine höhere Geschwindigkeit und Rückgriff auf den TAP-Adapter, wenn ein Verbindungsproblem festgestellt wird.</value>
-  </data>
   <data name="Settings_General_Theme">
     <value>Farbschema</value>
-  </data>
-  <data name="Settings_General_Theme_Dark">
-    <value>Dunkel</value>
-  </data>
-  <data name="Settings_General_Theme_Default">
-    <value>Standard</value>
-  </data>
-  <data name="Settings_General_Theme_Light">
-    <value>Hell</value>
   </data>
   <data name="Settings_Improve">
     <value>Proton verbessern</value>
@@ -3793,9 +3469,6 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Steigere deine Verbindungsgeschwindigkeit mit leistungssteigernden Technologien um bis zu 400 %.</value>
-  </data>
-  <data name="SignIn_Form">
-    <value>Anmeldeformular</value>
   </data>
   <data name="SignIn_Form_AdvancedKillSwitchDescription">
     <value>Der erweiterte Kill Switch blockiert deine Internetverbindung.</value>
@@ -3940,12 +3613,6 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>TB/s</value>
     <comment>Unit for Terabytes per second</comment>
   </data>
-  <data name="UpsellBanner_NetShield_Description">
-    <value>Blockiere Werbung, Tracker und Malware auf Websites und Apps.</value>
-  </data>
-  <data name="UpsellBanner_NetShield_Title">
-    <value>NetShield</value>
-  </data>
   <data name="UpsellBanner_P2P_Description">
     <value>Lade Dateien über BitTorrent und andere Filesharing-Protokolle herunter.</value>
   </data>
@@ -4081,9 +3748,6 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Platforms_HBO">
     <value>HBO Max</value>
-  </data>
-  <data name="Upsell_Carousel_Streaming_Platforms_Hulu">
-    <value>Hulu</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
     <value>Netflix</value>

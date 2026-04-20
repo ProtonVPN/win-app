@@ -126,12 +126,6 @@
   <data name="Automation_Properties_Connection_Card_Component">
     <value>Anslutningskort</value>
   </data>
-  <data name="Automation_Properties_Features_Bar">
-    <value>Funktionsfält</value>
-  </data>
-  <data name="Automation_Properties_Home_Page">
-    <value>Startsida</value>
-  </data>
   <data name="Automation_Properties_KillSwitch_Page">
     <value>Sida för kill switch</value>
   </data>
@@ -189,18 +183,11 @@
   <data name="Automation_Properties_SplitTunneling_Page">
     <value>Sida för split tunneling</value>
   </data>
-  <data name="Cities">
-    <value>Orter</value>
-  </data>
   <data name="City_Fastest">
     <value>Snabbaste stad</value>
   </data>
   <data name="City_Random">
     <value>Slumpmässig stad</value>
-  </data>
-  <data name="Common_Actions_ActionsFor">
-    <value>Åtgärder för {0}</value>
-    <comment>Used for accessibility purposes (Narrator) in the recents list to open the alternate actions menu (pin, unpin...). {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Add">
     <value>Lägg till</value>
@@ -220,25 +207,14 @@
   <data name="Common_Actions_Connect">
     <value>Anslut</value>
   </data>
-  <data name="Common_Actions_ConnectTo">
-    <value>Anslut till {0}</value>
-    <comment>Used for accessibility purposes (Narrator) to describe the action to Connect to something. {0} is a place holder which can be a country, a city, a server...</comment>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>Kontakta oss</value>
-  </data>
-  <data name="Common_Actions_Customize">
-    <value>Anpassa</value>
   </data>
   <data name="Common_Actions_Delete">
     <value>Ta bort</value>
   </data>
   <data name="Common_Actions_Disconnect">
     <value>Koppla från</value>
-  </data>
-  <data name="Common_Actions_DisconnectFrom">
-    <value>Koppla från {0}</value>
-    <comment>Used for accessibility purposes (Narrator) to describe the action to disconnect from something. {0} is a place holder which can be a country, a city, a server...</comment>
   </data>
   <data name="Common_Actions_Duplicate">
     <value>Duplicera</value>
@@ -300,17 +276,14 @@
   <data name="Common_Links_LearnMore">
     <value>Lär dig mer</value>
   </data>
-  <data name="Common_Message_Loading">
-    <value>Laddar in …</value>
+  <data name="Common_Message_AppNotFound">
+    <value>Applikation hittades inte</value>
   </data>
   <data name="Common_States_Off">
     <value>Av</value>
   </data>
   <data name="Common_States_On">
     <value>På</value>
-  </data>
-  <data name="Common_States_Updating">
-    <value>Uppdaterar...</value>
   </data>
   <data name="Common_Tags_Beta">
     <value>BETA</value>
@@ -336,6 +309,12 @@
   <data name="Components_Update_UpdateProtonVpn">
     <value>Uppdatera Proton VPN</value>
   </data>
+  <data name="Connection_Error_AllServersExcluded">
+    <value>Dina preferenser exkluderar alla tillgängliga servrar. Justera exkluderingar för att ansluta.</value>
+  </data>
+  <data name="Connection_Error_AllServersExcluded_Action">
+    <value>Exkluderade platser</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>Redigera profil</value>
   </data>
@@ -343,7 +322,7 @@
     <value>Proton VPN kunde inte hämta autentiseringscertifikat på grund av nätverksproblem.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>The connection was blocked by network settings on your device. This may be caused by a mobile hotspot, another VPN application, or virtual machine software. Please review your network configuration or contact support for assistance.</value>
+    <value>Anslutningen blockerades av nätverksinställningarna på din enhet. Detta kan orsakas av en mobil hotspot, en annan VPN-applikation eller programvara för virtuella maskiner. Granska din nätverkskonfiguration eller kontakta support för hjälp.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>Alla servrar i ditt val är inte tillgängliga. Utöka ditt val eller försök igen senare.</value>
@@ -399,14 +378,6 @@ Felkod: {0}</value>
   <data name="Connection_Intent_AutoSelected">
     <value>Automatiskt valt från</value>
     <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
-  </data>
-  <data name="Connection_Intent_City_Server">
-    <value>{0} #{1}</value>
-    <comment>Name of the server including city name. {0} is a placeholder for the city name. {1} is a placeholder for the number associated to the server (eg. Zurich #20)</comment>
-  </data>
-  <data name="Connection_Intent_Country_Server">
-    <value>{0} #{1}</value>
-    <comment>Name of the server including country name. {0} is a placeholder for the country name. {1} is a placeholder for the number associated to the server (eg. Switzerland #20)</comment>
   </data>
   <data name="Connection_Via_SecureCore">
     <value>via {0}</value>
@@ -553,15 +524,6 @@ Felkod: {0}</value>
     <value>Profiler är tillgängliga med VPN Plus</value>
     <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
   </data>
-  <data name="Connections_Profiles_Settings_Description">
-    <value>Profilinställningar kommer åsidosätta dina VPN-inställningar när du är ansluten.</value>
-  </data>
-  <data name="Connections_Profiles_Settings_Header">
-    <value>Lägg till anpassade inställningar</value>
-  </data>
-  <data name="Connections_Random">
-    <value>Slumpmässig</value>
-  </data>
   <data name="Connections_Recents_One">
     <value>Senaste ({0})</value>
   </data>
@@ -591,27 +553,6 @@ Felkod: {0}</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
     <value>Secure Core-servrar</value>
-  </data>
-  <data name="Connections_SeeCities_One">
-    <value>Se ort ({0})</value>
-  </data>
-  <data name="Connections_SeeCities_Other">
-    <value>Se orter ({0})</value>
-  </data>
-  <data name="Connections_SeeServers_One">
-    <value>Se server ({0})</value>
-  </data>
-  <data name="Connections_SeeServers_Other">
-    <value>Se servrar ({0})</value>
-  </data>
-  <data name="Connections_SeeStates_One">
-    <value>Se delstat ({0})</value>
-  </data>
-  <data name="Connections_SeeStates_Other">
-    <value>Se delstater ({0})</value>
-  </data>
-  <data name="Connections_Server">
-    <value>Server</value>
   </data>
   <data name="Connections_Server_Restricted">
     <value>Server tillgänglig med VPN Plus</value>
@@ -660,44 +601,11 @@ Felkod: {0}</value>
   <data name="Countries_All">
     <value>Alla</value>
   </data>
-  <data name="Countries_City_One">
-    <value>{0} ort</value>
-  </data>
-  <data name="Countries_City_Other">
-    <value>{0} orter</value>
-  </data>
-  <data name="Countries_Connect">
-    <value>Anslut</value>
-    <comment>Connect button label on a country row in the countries tab</comment>
-  </data>
-  <data name="Countries_Fastest">
-    <value>Snabbaste land</value>
-  </data>
-  <data name="Countries_NoSearchResults">
-    <value>Inga resultat hittades</value>
-  </data>
-  <data name="Countries_NumberOfServers">
-    <value>Servrar ({0})</value>
-    <comment>{0} represents a number of servers</comment>
-  </data>
   <data name="Countries_P2P">
     <value>P2P</value>
   </data>
-  <data name="Countries_P2P_Cities">
-    <value>P2P-orter ({0})</value>
-    <comment>{0} represents a number of P2P cities in the country</comment>
-  </data>
   <data name="Countries_P2P_Description">
     <value>Ladda ner filer via P2P-nätverk (peer-to-peer) och förbättra din upplevelse av onlinespel och videosamtal.</value>
-  </data>
-  <data name="Countries_Page_FreeUser_Description">
-    <value>Lås upp val av länder med VPN Plus</value>
-  </data>
-  <data name="Countries_SearchPlaceholder">
-    <value>Jag vill surfa från...</value>
-  </data>
-  <data name="Countries_Section_Header">
-    <value>VPN-anslutningar</value>
   </data>
   <data name="Countries_SecureCore">
     <value>Secure Core</value>
@@ -714,15 +622,8 @@ Felkod: {0}</value>
   <data name="Countries_Tor">
     <value>Tor</value>
   </data>
-  <data name="Countries_TorServers">
-    <value>Tor-servrar ({0})</value>
-    <comment>{0} represents a number of tor servers in the country</comment>
-  </data>
   <data name="Countries_Tor_Description">
     <value>Använd Tor-nätverket över din VPN-anslutning för extra integritet.</value>
-  </data>
-  <data name="Countries_TryDifferentKeyword">
-    <value>Prova ett annat nyckelord</value>
   </data>
   <data name="Country_Fastest">
     <value>Snabbaste land</value>
@@ -1716,6 +1617,10 @@ Felkod: {0}</value>
     <value>Samoa</value>
     <comment>The name of WS country</comment>
   </data>
+  <data name="Country_val_XK">
+    <value>Kosovo</value>
+    <comment>The name of XK country</comment>
+  </data>
   <data name="Country_val_YE">
     <value>Jemen</value>
     <comment>The name of YE country</comment>
@@ -1785,32 +1690,6 @@ Felkod: {0}</value>
   <data name="Dialogs_FreeConnections_Title">
     <value>Gratis anslutningar</value>
   </data>
-  <data name="Dialogs_Latency_Description">
-    <value>Latens visar hur lång tid det tar för en server att svara på förfrågningar.
-
-Hög latens kan sakta ner din anslutning.</value>
-  </data>
-  <data name="Dialogs_Latency_HighRange_Description">
-    <value>VPN kan gå långsammare än normalt</value>
-  </data>
-  <data name="Dialogs_Latency_HighRange_Title">
-    <value>Hög (150ms+)</value>
-  </data>
-  <data name="Dialogs_Latency_LowRange_Description">
-    <value>Blixtsnabba hastigheter</value>
-  </data>
-  <data name="Dialogs_Latency_LowRange_Title">
-    <value>Låg (1ms - 50ms)</value>
-  </data>
-  <data name="Dialogs_Latency_MediumRange_Description">
-    <value>Osannolikt att det påverkar VPN-hastighet</value>
-  </data>
-  <data name="Dialogs_Latency_MediumRange_Title">
-    <value>Mellan (50ms - 150ms)</value>
-  </data>
-  <data name="Dialogs_Latency_Title">
-    <value>Vad är latens?</value>
-  </data>
   <data name="Dialogs_NpsSurvey_CommentLabel">
     <value>Berätta gärna varför du gav det betyget</value>
   </data>
@@ -1852,49 +1731,6 @@ Hög latens kan sakta ner din anslutning.</value>
   </data>
   <data name="Dialogs_P2PDetection_WindowTitle">
     <value>Upptäck VPN Plus</value>
-  </data>
-  <data name="Dialogs_P2P_HowToTorrentLink">
-    <value>Hur man laddar ner torrents med P2P</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_Title">
-    <value>P2P</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_WhatIsP2PServer">
-    <value>Vad är en P2P-server?</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_WhatIsP2PServer_Description">
-    <value>VPN-servrar för P2P (peer-to-peer) avblockerar torrentwebbplatser.</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_WhatIsTorrenting">
-    <value>Vad är torrenting?</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_WhatIsTorrenting_Description">
-    <value>Snabb delning och nedladdning av stora filer över ett peer-to-peer-nätverk (P2P).</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_WhyUse">
-    <value>Varför använda en P2P-server vid torrenting?</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_P2P_WhyUse_Description">
-    <value>• Ökad upp- och nedladdningshastighet
-• Inga aktivitetsloggar
-• Dölj din IP-adress för din tjänsteleverantör och andra</value>
-    <comment>obsolete</comment>
-  </data>
-  <data name="Dialogs_Protocol_Description">
-    <value>Ett protokoll är en uppsättning instruktioner din enhet följer för att ansluta och kommunicera med en server.</value>
-  </data>
-  <data name="Dialogs_Protocol_SwitchHeader">
-    <value>Byt VPN-protokoll</value>
-  </data>
-  <data name="Dialogs_Protocol_Title">
-    <value>Vad är ett VPN-protokoll?</value>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email">
     <value>E-post</value>
@@ -1952,35 +1788,6 @@ Hög latens kan sakta ner din anslutning.</value>
   <data name="Dialogs_ReportIssue_Title">
     <value>Rapportera ett problem</value>
   </data>
-  <data name="Dialogs_ServerLoad_Description">
-    <value>Serverbelastning visar hur nära en server är sin maximala kapacitet. 
-
-En hög serverbelastning kan sakta ner din anslutning.</value>
-  </data>
-  <data name="Dialogs_ServerLoad_HighRange_Description">
-    <value>VPN kan gå långsammare än normalt</value>
-  </data>
-  <data name="Dialogs_ServerLoad_HighRange_Title">
-    <value>Hög (91-100 %)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_LowRange_Description">
-    <value>Blixtsnabba hastigheter</value>
-  </data>
-  <data name="Dialogs_ServerLoad_LowRange_Title">
-    <value>Låg (1–75 %)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_MediumRange_Description">
-    <value>Osannolikt att det påverkar VPN-hastighet</value>
-  </data>
-  <data name="Dialogs_ServerLoad_MediumRange_Title">
-    <value>Medium (76–90 %)</value>
-  </data>
-  <data name="Dialogs_ServerLoad_Title">
-    <value>Vad är serverbelastning?</value>
-  </data>
-  <data name="Dialogs_SmartRouting_Title">
-    <value>Smart Routing</value>
-  </data>
   <data name="Dialogs_StreamingDetection_WindowTitle">
     <value>Upptäck VPN Plus</value>
   </data>
@@ -1996,20 +1803,8 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Dialogs_SystemProxy_Description">
     <value>Det verkar som att din enhet använder en proxyserver. Detta kan störa ditt VPN-skydd.</value>
   </data>
-  <data name="Dialogs_SystemProxy_Disable">
-    <value>Inaktivera proxy</value>
-  </data>
   <data name="Dialogs_SystemProxy_Title">
     <value>Proxyserver upptäckt</value>
-  </data>
-  <data name="Dialogs_Tor_Description">
-    <value>Anslut till en Tor-server för att komma åt dolda tjänster och onion-webbplatser med vilken webbläsare som helst.</value>
-  </data>
-  <data name="Dialogs_Tor_LearnMore">
-    <value>Hur man kommer åt Tor-nätverket</value>
-  </data>
-  <data name="Dialogs_Tor_Title">
-    <value>Tor</value>
   </data>
   <data name="Dialogs_Troubleshooting_Antivirus">
     <value>Stäng av antivirus- eller brandväggsprogram</value>
@@ -2102,22 +1897,11 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Välkommen till VPN Plus</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>Grattis! Du låste upp premium säkerhets- och prestandafunktioner på alla Proton-tjänster.</value>
+    <value>Du låste upp alla premiumfunktioner i Proton VPN, Mail, Calendar, Drive och Pass.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
-    <value>Välkommen till Proton Unlimited</value>
-  </data>
-  <data name="Dialogs_Welcome_Message">
-    <value>Vi förbereder din nya VPN-upplevelse. Detta bör bara ta en kort stund.</value>
-  </data>
-  <data name="Dialogs_Welcome_Title">
-    <value>Välkommen till Proton VPN</value>
-  </data>
-  <data name="Dialogs_WhatsNew_Gateways_Description">
-    <value>Du kan nu komma åt din organisations dedikerade servrar från den primära sidopanelen.</value>
-  </data>
-  <data name="Dialogs_WhatsNew_Gateways_Title">
-    <value>Gateways har flyttats</value>
+    <value>Välkommen till {0}</value>
+    <comment>Title to welcome the user after an account upgrade. {0} is a placeholder for the name of the new plan (eg. Proton Unlimited, Proton Duo, Proton Family).</comment>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
     <value>Du kan nu ansluta till skrivare, högtalare och andra enheter på ditt lokala nätverk (LAN) och kringgå VPN-tunneln.</value>
@@ -2125,29 +1909,11 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Dialogs_WhatsNew_LanConnections_Title">
     <value>LAN-anslutningar</value>
   </data>
-  <data name="Dialogs_WhatsNew_NewLook_Description">
-    <value>Vi uppdaterade vår design och flyttade runt några saker för att göra appen enklare att använda.</value>
-  </data>
-  <data name="Dialogs_WhatsNew_NewLook_Title">
-    <value>Nytt utseende, samma skydd</value>
-  </data>
   <data name="Dialogs_WhatsNew_PortNumber_Description">
     <value>När vidarebefordring av port är aktiverad ser du nu ditt aktiva portnummer på startskärmen.</value>
   </data>
   <data name="Dialogs_WhatsNew_PortNumber_Title">
     <value>Aktivt portnummer</value>
-  </data>
-  <data name="Dialogs_WhatsNew_Profiles_Description">
-    <value>Lägg till avancerade profilinställningar som NetShield och vidarebefordran av port eller ställ in "Anslut och kör" för att starta en valfri webbplats när du ansluter.</value>
-  </data>
-  <data name="Dialogs_WhatsNew_Profiles_Title">
-    <value>Ännu mer kraftfulla profiler</value>
-  </data>
-  <data name="Dialogs_WhatsNew_Recents_Description">
-    <value>Det är nu ännu enklare att ansluta till dina favoritservrar igen. Visa dina senaste anslutningar på hemskärmen eller fäst dem för snabb åtkomst.</value>
-  </data>
-  <data name="Dialogs_WhatsNew_Recents_Title">
-    <value>Introducerar senaste</value>
   </data>
   <data name="Dialogs_WhatsNew_TakeALook">
     <value>Ta en titt</value>
@@ -2160,6 +1926,30 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Dialogs_WhatsNew_TrayApp_Title">
     <value>New system tray app</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations">
+    <value>Exkludera platser</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
+    <value>Om det finns platser som du inte vill anslutas till automatiskt kan du exkludera dem från landet "Snabbast" och "Slumpmässigt".</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
+    <value>Hoppa över</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
+    <value>Inte det land du ville ha?</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_ActionButton">
+    <value>Exkludera platser</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_CloseButton">
+    <value>Kanske senare</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_Subtitle">
+    <value>Du kan nu exkludera länder eller orter från "Snabbaste" och "Slumpmässiga" anslutningar.</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_Title">
+    <value>Undvik oönskade platser</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Avsluta Proton VPN?</value>
@@ -2251,17 +2041,20 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Flyouts_KillSwitch_Warning_Disconnected">
     <value>För att komma tillbaka online, anslut till VPN eller inaktivera avancerad kill switch</value>
   </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackersAdultContent_Success">
+    <value>Du är skyddad från annonser, spårare, skadlig kod och vuxet innehåll.</value>
+  </data>
   <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
-    <value>Du är skyddad från annonser, spårare och skadlig kod</value>
+    <value>Du är skyddad från annonser, spårare och skadlig kod.</value>
   </data>
   <data name="Flyouts_NetShield_Info">
-    <value>Skydda dig själv från annonser, spårare och skadlig kod på webbplatser och appar</value>
+    <value>Skydda din surfning på webbplatser och appar.</value>
   </data>
   <data name="Flyouts_NetShield_MalwareOnly_Success">
-    <value>Du är endast skyddad från skadlig kod</value>
+    <value>Du är endast skyddad från skadlig kod.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Description">
-    <value>Blockera annonser, spårare och skadlig kod med VPN Plus.</value>
+    <value>Blockera annonser, spårare, skadlig kod och vuxet innehåll med VPN Plus.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
     <value>Njut av annonsfri surfning</value>
@@ -2322,9 +2115,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Flyouts_ServerLoad_Title">
     <value>Serverbelastning</value>
-  </data>
-  <data name="Flyouts_Speed_BoostedByVpnAccelerator">
-    <value>Boostas av VPN Accelerator</value>
   </data>
   <data name="Flyouts_Speed_Description1">
     <value>Visar hur mycket data som går genom VPN-tunneln i realtid.</value>
@@ -2398,10 +2188,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Flyouts_Volume_Upload">
     <value>Uppladdat</value>
     <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
-  </data>
-  <data name="Format_Milliseconds">
-    <value>{0}ms</value>
-    <comment>Format a number as a time in milliseconds. {0} is a place holder for the number of milliseconds (eg. 46ms)</comment>
   </data>
   <data name="Format_Size_Bytes">
     <value>{0} B</value>
@@ -2545,9 +2331,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Gateways_Page_Title">
     <value>Gateways</value>
   </data>
-  <data name="Gateways_Server">
-    <value>Dedikerad server</value>
-  </data>
   <data name="Home_Account_SignOut">
     <value>Logga ut</value>
   </data>
@@ -2555,46 +2338,17 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Logga ut från {0}?</value>
     <comment>{0} is a placeholder for the username</comment>
   </data>
-  <data name="Home_Account_Title">
-    <value>Mitt konto</value>
-  </data>
   <data name="Home_ConnectionCard_ChangeDefaultConnection">
     <value>Ändra standardanslutning</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
     <value>Byt server</value>
   </data>
-  <data name="Home_ConnectionCard_Header_BrowseSafely">
-    <value>Surfar säkert från</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_ConnectingTo">
-    <value>Ansluter till...</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_DefaultConnection">
-    <value>Standardanslutning</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_FreeConnection">
-    <value>Gratis anslutning</value>
-  </data>
-  <data name="Home_ConnectionCard_Header_LastConnectedTo">
-    <value>Senast ansluten till</value>
-  </data>
-  <data name="Home_ConnectionCard_Landmark">
-    <value>Anslutningskort</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
   <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
     <value>Avancerad kill switch aktiverad</value>
   </data>
-  <data name="Home_ConnectionDetails_City">
-    <value>Ort</value>
-  </data>
   <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
     <value>Anslut till VPN för att återställa din internetanslutning.</value>
-  </data>
-  <data name="Home_ConnectionDetails_ConnectedFor">
-    <value>Ansluten i</value>
-    <comment>Label for the time the session has been active. (eg. Connected for     1 h 25 min 2s)</comment>
   </data>
   <data name="Home_ConnectionDetails_Connecting">
     <value>Ansluter</value>
@@ -2605,28 +2359,8 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Home_ConnectionDetails_Country">
     <value>Land</value>
   </data>
-  <data name="Home_ConnectionDetails_Gateway">
-    <value>Gateway</value>
-  </data>
-  <data name="Home_ConnectionDetails_Hide">
-    <value>Dölj anslutningsdetaljer</value>
-  </data>
-  <data name="Home_ConnectionDetails_HideIP">
-    <value>Dölj</value>
-    <comment>Tooltip displayed when the user hover the button to hide the User IP Address</comment>
-  </data>
-  <data name="Home_ConnectionDetails_HideIP_Description">
-    <value>Dölj användarens IP-adress</value>
-  </data>
   <data name="Home_ConnectionDetails_Isp">
     <value>Leverantör</value>
-  </data>
-  <data name="Home_ConnectionDetails_Landmark">
-    <value>Anslutningsdetaljer</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_ConnectionDetails_MyIp">
-    <value>Mitt IP</value>
   </data>
   <data name="Home_ConnectionDetails_Protected">
     <value>Skyddad</value>
@@ -2634,27 +2368,8 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Home_ConnectionDetails_Protocol">
     <value>Protokoll</value>
   </data>
-  <data name="Home_ConnectionDetails_Server">
-    <value>Server</value>
-  </data>
   <data name="Home_ConnectionDetails_ServerLoad">
     <value>Serverbelastning</value>
-  </data>
-  <data name="Home_ConnectionDetails_Show">
-    <value>Visa anslutningsdetaljer</value>
-  </data>
-  <data name="Home_ConnectionDetails_ShowIP">
-    <value>Visa</value>
-    <comment>Tooltip displayed when the user hover the button to show the User IP Address</comment>
-  </data>
-  <data name="Home_ConnectionDetails_ShowIP_Description">
-    <value>Visa användarens IP-adress</value>
-  </data>
-  <data name="Home_ConnectionDetails_State">
-    <value>Delstat</value>
-  </data>
-  <data name="Home_ConnectionDetails_Title">
-    <value>Anslutningsdetaljer</value>
   </data>
   <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
     <value>Autentisera igen i din organisations 2FA-portal för att fortsätta.</value>
@@ -2671,15 +2386,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Home_ConnectionDetails_Volume">
     <value>Total trafik</value>
   </data>
-  <data name="Home_ConnectionDetails_Volume_Download">
-    <value>Nedladdningsvolym</value>
-  </data>
-  <data name="Home_ConnectionDetails_Volume_Total">
-    <value>Total volym</value>
-  </data>
-  <data name="Home_ConnectionDetails_Volume_Upload">
-    <value>Uppladdningsvolym</value>
-  </data>
   <data name="Home_ConnectionDetails_VpnIp">
     <value>VPN-IP</value>
   </data>
@@ -2688,13 +2394,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Home_FreeConnections_About">
     <value>Mer information om gratis anslutningar</value>
-  </data>
-  <data name="Home_Help_Title">
-    <value>Hjälp</value>
-  </data>
-  <data name="Home_Map_Landmark">
-    <value>Karta</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
   </data>
   <data name="Home_NetShield_AdsBlocked_One">
     <value>Annons blockerad</value>
@@ -2711,13 +2410,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Home_NetShield_DataSaved_Description">
     <value>Uppskattad data sparad genom att blockera oönskade annonser, spårare och skadlig kod.</value>
   </data>
-  <data name="Home_NetShield_Landmark">
-    <value>NetShield-statistik</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_NetShield_Title">
-    <value>NetShield-statistik</value>
-  </data>
   <data name="Home_NetShield_TrackersStopped_One">
     <value>Spårare stoppad</value>
   </data>
@@ -2727,21 +2419,11 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Home_NetShield_TrackersStopped_Description">
     <value>Spårare är cookies och tredjepartswebbplatser som samlar in, lagrar och säljer information om din webbaktivitet.</value>
   </data>
-  <data name="Home_Page_Title">
-    <value>Hem</value>
-  </data>
-  <data name="Home_Recents_Landmark">
-    <value>Senaste anslutningar</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
   <data name="Home_Recents_Pin">
     <value>Fäst</value>
   </data>
   <data name="Home_Recents_Restricted">
     <value>Server är tillgänglig med VPN Plus</value>
-  </data>
-  <data name="Home_Recents_SecondaryActions_ToolTip">
-    <value>Åtgärder</value>
   </data>
   <data name="Home_Recents_ServerUnderMaintenance">
     <value>Servern är underhålls</value>
@@ -2776,25 +2458,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Home_TitleBar_Menu_UpdateNow">
     <value>Uppdatera nu</value>
   </data>
-  <data name="Home_Update_UpdateAvailable">
-    <value>Uppdatering tillgänglig</value>
-  </data>
-  <data name="Home_Update_UpdateReady">
-    <value>Uppdatering redo</value>
-  </data>
-  <data name="Home_VpnStatus_Landmark">
-    <value>VPN-status</value>
-    <comment>Landmarks are not displayed on screen but read by a screen reader to identify a group of components for accessibility purposes.</comment>
-  </data>
-  <data name="Home_VpnStatus_Subtitle_Connecting">
-    <value>Skyddar din digitala identitet...</value>
-  </data>
-  <data name="Home_VpnStatus_Subtitle_Disconnected">
-    <value>Du är oskyddad</value>
-  </data>
-  <data name="Home_VpnStatus_Title_Connected">
-    <value>Skyddad</value>
-  </data>
   <data name="LoadingPage_Tip">
     <value>En bättre värld börjar med integritet och digital frihet.</value>
   </data>
@@ -2802,7 +2465,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Ett fel uppstod vid hämtning av sessionsdetaljerna. Försök igen.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>Unable to sign in due to network settings on your device. This may be caused by a mobile hotspot, another VPN application, or virtual machine software. Please review your network configuration or contact support for assistance.</value>
+    <value>Kan inte logga in på grund av nätverksinställningarna på din enhet. Detta kan orsakas av en mobil hotspot, en annan VPN-applikation eller programvara för virtuella maskiner. Kontrollera din nätverkskonfiguration eller kontakta support för hjälp.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Felaktig kod. Försök igen.</value>
@@ -2813,9 +2476,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Login_Error_SsoAuthFailed">
     <value>SSO-autentisering misslyckades. Försök igen.</value>
-  </data>
-  <data name="Login_Error_TwoFactorAuthFailed">
-    <value>Felaktigt användarnamn eller lösenord. Försök igen.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>Tvåfaktorsautentisering misslyckades. Logga in igen.</value>
@@ -2904,6 +2564,9 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="NoServers_Title">
     <value>Inga VPN-anslutningar tillgängliga</value>
   </data>
+  <data name="NoServers_UnderMaintenance_Tip">
+    <value>Vi kunde inte ladda några servrar. Klicka ”Uppdatera” för att uppdatera serverlistan.</value>
+  </data>
   <data name="Notifications_KillSwitch_Description">
     <value>För att skydda din IP-adress blockerar kill switch din internetanslutning.</value>
   </data>
@@ -2930,7 +2593,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_Ipv6Disabled_Description">
-    <value>För att inkludera denna adress måste du tillåta IPv6-anslutningar genom VPN-tunneln.</value>
+    <value>För att inkludera IPv6-adresser måste du tillåta IPv6-anslutningar genom VPN-tunneln.</value>
   </data>
   <data name="Overlay_Ipv6Disabled_PrimaryButton">
     <value>Aktivera IPv6</value>
@@ -3106,9 +2769,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Profile_Options_ConnectAndGo_Application">
     <value>Öppna en app</value>
   </data>
-  <data name="Profile_Options_ConnectAndGo_DefaultBrowser">
-    <value>Standardwebbläsare</value>
-  </data>
   <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
     <value>Använd privat surfläge</value>
   </data>
@@ -3135,9 +2795,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Profiles_Default_MaxSecurity">
     <value>Maximal säkerhet</value>
-  </data>
-  <data name="Profiles_Default_Office">
-    <value>Kontor</value>
   </data>
   <data name="Profiles_Default_P2P">
     <value>P2P</value>
@@ -3223,9 +2880,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Servers">
     <value>Servrar</value>
   </data>
-  <data name="Settings_About">
-    <value>Om</value>
-  </data>
   <data name="Settings_About_Changelog">
     <value>Ändringslogg</value>
   </data>
@@ -3288,9 +2942,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>192.0.2.0</value>
     <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
   </data>
-  <data name="Settings_Common_Ipv6WarningButton">
-    <value>Varning - lär dig mer</value>
-  </data>
   <data name="Settings_Connection">
     <value>Anslutning</value>
   </data>
@@ -3320,14 +2971,17 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Anslut till Proton VPN med ditt eget domännamnssystem (DNS). Använd endast DNS-servrar som du litar på.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
-    <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
+    <value>Vi kommer försöka ansluta till dessa servrar i ordning. Om ingen av dem fungerar kommer standard-DNS för Proton VPN att användas.</value>
   </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+  <data name="Settings_Connection_Advanced_CustomDnsServers_FormattedHeader">
     <value>DNS-servrar ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
-  <data name="Settings_Connection_Advanced_CustomDnsServers_IpAddress_Description">
-    <value>Ange serverns IPv4- eller IPv6-adress</value>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+    <value>DNS-servrar</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Select">
+    <value>Välj DNS-servrar</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>Stöd för IPv6</value>
@@ -3378,10 +3032,16 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Begränsar den data som ankommer till ditt nätverk. Detta alternativ är säkrare, men kan göra peer-to-peer spel-anslutningar svårare.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
-    <value>Dirigerar trafik mellan olika nätverk.</value>
+    <value>Överbryggar nätverkstrafik. Långsammare än TUN, men behövs för vissa äldre eller speciella nätverksinställningar.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
-    <value>Använder bryggning för att ansluta nätverk. TUN ger högre hastigheter än TAP, men kan vara mindre stabil.</value>
+    <value>Dirigerar trafik mellan olika nätverk. TUN kan vara snabbare och stabilare än TAP.</value>
+  </data>
+  <data name="Settings_Connection_ConnectionPreferences">
+    <value>Anslutningspreferenser</value>
+  </data>
+  <data name="Settings_Connection_ConnectionPreferences_Description">
+    <value>Standardanslutning och exkluderade platser</value>
   </data>
   <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
     <value>Anpassad DNS kan inte slås på eftersom du är ansluten till en profil med NetShield aktiverat.</value>
@@ -3413,6 +3073,27 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Settings_Connection_Default_Recents">
     <value>Senaste</value>
   </data>
+  <data name="Settings_Connection_ExcludedLocations">
+    <value>Exkluderade platser</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Cities">
+    <value>Orter</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Countries">
+    <value>Länder</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Description">
+    <value>De valda platserna kommer aldrig att användas när du ansluter till ”Snabbast” eller ”Slumpmässigt”</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_NoLocations">
+    <value>Inga platser tillgängliga</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Search">
+    <value>Välj …</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_States">
+    <value>Delstater</value>
+  </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill switch</value>
   </data>
@@ -3425,9 +3106,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Skyddar din IP-adress genom att koppla från dig från internet om du tappar din VPN-anslutning.</value>
   </data>
-  <data name="Settings_Connection_KillSwitch_Footer">
-    <value>När kill switch är på kommer du inte att kunna ansluta till webbplatser och appar som är exkluderade från din VPN-anslutning genom split tunneling.</value>
-  </data>
   <data name="Settings_Connection_KillSwitch_Standard">
     <value>Standard</value>
   </data>
@@ -3438,7 +3116,10 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>NetShield</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
-    <value>Blockera annonser, skadlig kod och spårare</value>
+    <value>Blockera annonser, spårare och skadlig kod</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent">
+    <value>Blockera annonser, spårare, skadlig kod och vuxet innehåll</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
     <value>Blockera endast skadlig kod</value>
@@ -3453,7 +3134,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Aktivera NetShield?</value>
   </data>
   <data name="Settings_Connection_NetShield_Description">
-    <value>Skydda dig själv från annonser, skadlig kod och spårare på webbplatser och appar.</value>
+    <value>Skydda din surfning på webbplatser och appar.</value>
   </data>
   <data name="Settings_Connection_NetShield_Footer">
     <value>Vissa webbplatser kanske inte laddas korrekt när annonser och spårare är blockerade.</value>
@@ -3501,35 +3182,35 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Settings_Connection_Protocol">
     <value>Protokoll</value>
   </data>
-  <data name="Settings_Connection_Protocol_NavigationFailed_Action">
-    <value>Gå till profiler</value>
-  </data>
-  <data name="Settings_Connection_Protocol_NavigationFailed_Message">
-    <value>Du är för närvarande ansluten till en VPN-profil.
-
-• För att ändra protokollet för denna anslutning, koppla från och redigera sedan din profil.
-
-• För att ändra ditt protokoll för andra VPN-anslutningar måste du först koppla från din profil.</value>
-  </data>
-  <data name="Settings_Connection_Protocol_NavigationFailed_Title">
-    <value>Ändra protokoll i profiler</value>
-  </data>
   <data name="Settings_Connection_SplitTunneling">
     <value>Split tunneling</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Description">
+    <value>Välj appar som ska exkluderas från VPN-anslutningen</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_FormattedHeader">
+    <value>Exkluderade appar ({0})</value>
+    <comment>Header for the list of apps to exclude for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Excluded apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Header">
+    <value>Exkluderade appar</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>Appfiler</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_Header">
-    <value>Valda appar ({0})</value>
-    <comment>Header for the list of Apps defined for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Selected apps (2)")</comment>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_Description">
+    <value>Välj appar som ska inkluderas i VPN-anslutningen</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_NotFound">
-    <value>Applikation hittades inte</value>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader">
+    <value>Inkluderade appar ({0})</value>
+    <comment>Header for the list of apps to include for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Included apps (2)")</comment>
   </data>
-  <data name="Settings_Connection_SplitTunneling_Apps_Remove">
-    <value>Ta bort app</value>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_Header">
+    <value>Inkluderade appar</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Select">
+    <value>Valda appar</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Anpassa din anslutning genom att bestämma vilka appar och IP-adresser som är skyddade av VPN.</value>
@@ -3547,12 +3228,28 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
     <value>Lägg till ny IPv4- eller IPv6-adress</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Header">
-    <value>Valda IP-adresser ({0})</value>
-    <comment>Header for the list of IP addresses defined for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Selected IP addresses (2)")</comment>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Description">
+    <value>Välj IP-adresser som ska exkluderas från VPN-anslutningen</value>
   </data>
-  <data name="Settings_Connection_SplitTunneling_IpAddresses_Remove">
-    <value>Ta bort IP</value>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_FormattedHeader">
+    <value>Exkluderade IP-adresser ({0})</value>
+    <comment>Header for the list of IP addresses to exclude for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Excluded IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Header">
+    <value>Exkluderade IP-adresser</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Description">
+    <value>Välj IP-adresser som ska inkluderas i VPN-anslutningen</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_FormattedHeader">
+    <value>Inkluderade IP-adresser ({0})</value>
+    <comment>Header for the list of IP addresses to include for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Included IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Header">
+    <value>Inkluderade IP-adresser</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Select">
+    <value>Välj IP-adresser</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
     <value>Exkluderingsläge</value>
@@ -3576,9 +3273,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Settings_DiscardChanges_Confirmation_Title">
     <value>Kasta osparade ändringar?</value>
   </data>
-  <data name="Settings_Features">
-    <value>VPN-funktioner</value>
-  </data>
   <data name="Settings_General">
     <value>Allmänt</value>
   </data>
@@ -3590,12 +3284,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>Ansluter automatiskt till din standardanslutning när Proton VPN öppnas.</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect_Fastest">
-    <value>Snabbaste anslutning</value>
-  </data>
-  <data name="Settings_General_AutoStartup_AutoConnect_Latest">
-    <value>Senast ansluten</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoLaunch">
     <value>Starta automatiskt</value>
@@ -3639,20 +3327,8 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Settings_General_OpenVpnNetworkDriver">
     <value>OpenVPN nätverksdrivrutin</value>
   </data>
-  <data name="Settings_General_OpenVpnNetworkDriver_Description">
-    <value>Nätverksdrivrutiner kan påverka din anslutningshastighet. Den nya TUN-adaptern ger högre hastighet och faller tillbaka på TAP-adaptern om den stöter på några anslutningsproblem.</value>
-  </data>
   <data name="Settings_General_Theme">
     <value>Tema</value>
-  </data>
-  <data name="Settings_General_Theme_Dark">
-    <value>Mörk</value>
-  </data>
-  <data name="Settings_General_Theme_Default">
-    <value>Standard</value>
-  </data>
-  <data name="Settings_General_Theme_Light">
-    <value>Ljus</value>
   </data>
   <data name="Settings_Improve">
     <value>Förbättra Proton</value>
@@ -3793,9 +3469,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Settings_VpnAccelerator_Description">
     <value>Öka din anslutningshastighet med upp till 400 % med prestandaförbättrade teknologier.</value>
-  </data>
-  <data name="SignIn_Form">
-    <value>Inloggningsformulär</value>
   </data>
   <data name="SignIn_Form_AdvancedKillSwitchDescription">
     <value>Avancerad kill switch blockerar din internetanslutning.</value>
@@ -3940,12 +3613,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>TB/s</value>
     <comment>Unit for Terabytes per second</comment>
   </data>
-  <data name="UpsellBanner_NetShield_Description">
-    <value>Blockera annonser, spårare och skadlig kod på webbplatser och appar</value>
-  </data>
-  <data name="UpsellBanner_NetShield_Title">
-    <value>NetShield</value>
-  </data>
   <data name="UpsellBanner_P2P_Description">
     <value>Ladda ner filer via BitTorrent och andra fildelningsprotokoll.</value>
   </data>
@@ -4081,9 +3748,6 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Platforms_HBO">
     <value>HBO Max</value>
-  </data>
-  <data name="Upsell_Carousel_Streaming_Platforms_Hulu">
-    <value>Hulu</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
     <value>Netflix</value>
