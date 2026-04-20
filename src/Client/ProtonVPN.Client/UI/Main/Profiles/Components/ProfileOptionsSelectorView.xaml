@@ -38,7 +38,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </Style>
     </UserControl.Resources>
 
-    <controls:SettingsExpander HorizontalAlignment="Stretch"
+    <controls:SettingsExpander AutomationProperties.AutomationId="ConnectAndGoParentSection"
+                               HorizontalAlignment="Stretch"
                                ap:CustomTags.IsTagged="True"
                                ap:CustomTags.Tag="{x:Bind ViewModel.Localizer.Get('Common_Tags_New')}"
                                Description="{x:Bind ViewModel.Localizer.Get('Profile_Options_Description')}"
@@ -105,7 +106,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                  Style="{StaticResource ValidationTextBoxStyle}"
                                  Text="{x:Bind ViewModel.ConnectAndGoUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                        <CheckBox Grid.Row="1"
+                        <CheckBox AutomationProperties.AutomationId="ConnectAndGoPrivateModeCheckbox"
+                                  Grid.Row="1"
                                   Grid.Column="1"
                                   VerticalAlignment="Center"
                                   Content="{x:Bind ViewModel.Localizer.Get('Profile_Options_ConnectAndGo_PrivateBrowsingMode')}"

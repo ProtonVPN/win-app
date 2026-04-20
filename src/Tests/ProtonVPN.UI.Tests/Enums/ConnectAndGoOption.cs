@@ -19,9 +19,9 @@
 
 namespace ProtonVPN.UI.Tests.Enums;
 
-public enum VpnConnectionOptions
+public enum ConnectAndGoOption
 {
-    Fast,
-    Random,
-    Last,
+    Off,
+    OpenWebsite,
+    OpenApp,
 }

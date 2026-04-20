@@ -121,7 +121,7 @@ public class ConnectionSLIs : SliSetUp
         }
         else
         {
-            SidebarRobot.ConnectToCountry(CountryCodes.GetCode(connection));
+            SidebarRobot.ConnectToCountry(connection);
         }
 
         HomeRobot
@@ -141,7 +141,7 @@ public class ConnectionSLIs : SliSetUp
         }
         else
         {
-            SidebarRobot.ConnectToCountry(CountryCodes.GetCode(connection));
+            SidebarRobot.ConnectToCountry(connection);
         }
 
         SliHelper.MeasureTime(() =>
