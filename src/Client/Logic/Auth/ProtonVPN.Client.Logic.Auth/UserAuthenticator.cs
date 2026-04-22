@@ -499,7 +499,7 @@ public class UserAuthenticator : IUserAuthenticator,
             GetCertificateTask(hasPlanChanged),
             _clientConfigObserver.UpdateAsync(_cts.Token));
 
-        if (_guestHoleManager.IsActive)
+        if (_guestHoleManager.IsActive || hasPlanChanged)
         {
             await postAuthInitializationTask;
         }
