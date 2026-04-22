@@ -470,7 +470,7 @@ public static class UiActions
                     ? $"Failed to get child element {desiredElement.ChildElement.SelectorName} inside {desiredElement.SelectorName} element within {time?.TotalSeconds} seconds."
                     : $"Failed to get {desiredElement.SelectorName} element within {time?.TotalSeconds} seconds.");
 
-            Assert.Fail(errorMessage);
+            throw new TimeoutException(errorMessage);
         }
 
         return elementToWaitFor;

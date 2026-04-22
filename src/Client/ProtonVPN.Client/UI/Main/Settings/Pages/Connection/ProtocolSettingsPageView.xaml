@@ -65,7 +65,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                    Visibility="{x:Bind ViewModel.IsProtonProtocolsFeatureEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel Orientation="Horizontal" Spacing="16">
                     <custom:TagControl Text="{x:Bind ViewModel.Beta}" Style="{StaticResource BetaFeatureTagControlStyle}" />
-                    <ToggleSwitch IsOn="{x:Bind ViewModel.AreProtonProtocolsEnabled, Mode=TwoWay}"
+                    <ToggleSwitch AutomationProperties.AutomationId="ProtonProtocolsToggle"
+                                  IsOn="{x:Bind ViewModel.AreProtonProtocolsEnabled, Mode=TwoWay}"
                                   Style="{StaticResource ToggleSwitchStyle}" />
                 </StackPanel>
             </controls:SettingsCard>

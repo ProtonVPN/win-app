@@ -36,6 +36,8 @@ public class ConnectionTests : FreshSessionSetUp
 
     private const string RANDOM_COUNTRY = "Random country";
 
+    private const string SLOW_TOR_COUNTRY = "Hong Kong";
+
     // These 4 countries are all available options in the All, Secure Core, P2P, and Tor tabs.
     // Trying United States first as it has the most servers available and there are less chances for them to be all under maintenance at the same time
     private static readonly List<string> _countries = ["United States", "France", "Germany", "Hong Kong"];
@@ -115,9 +117,10 @@ public class ConnectionTests : FreshSessionSetUp
     {
         MakeSureUserIsDisconnected();
 
-        HomeRobot
-            .SelectDefaultConnectionOption(VpnConnectionOption.Random)
-            .ConnectViaConnectionCard(TestConstants.MoreFrequentRetryInterval)
+        SidebarRobot
+            .NavigateToTorCountriesTab()
+            .ConnectToCountry(SLOW_TOR_COUNTRY);
+       HomeRobot
             .Verify.IsConnecting()
             .CancelConnection(TestConstants.MoreFrequentRetryInterval)
             .Verify.IsDisconnected();

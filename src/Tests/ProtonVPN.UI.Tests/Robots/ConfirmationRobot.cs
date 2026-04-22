@@ -34,7 +34,9 @@ public class ConfirmationRobot
 
     public ConfirmationRobot PrimaryAction()
     {
+        Thread.Sleep(TestConstants.AnimationDelay);
         PrimaryActionButton.Click();
+        Thread.Sleep(TestConstants.AnimationDelay);
         return this;
     }
 

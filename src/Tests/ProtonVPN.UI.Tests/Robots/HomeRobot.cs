@@ -82,6 +82,7 @@ public class HomeRobot
     public HomeRobot HoverOverSplitTunnelingFlyoutWidget()
     {
         SplitTunnelingWidgetButton.Hover();
+        Thread.Sleep(TestConstants.AnimationDelay);
         return this;
     }
 

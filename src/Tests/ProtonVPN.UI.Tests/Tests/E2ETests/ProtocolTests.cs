@@ -66,6 +66,24 @@ public class ProtocolTests : FreshSessionSetUp
     }
 
     [Test]
+    public void ConnectUsingProtunWireguardTcp()
+    {
+        PerformProtocolTest(Protocol.WireGuardTcp, true);
+    }
+
+    [Test]
+    public void ConnectUsingProtunStealth()
+    {
+        PerformProtocolTest(Protocol.WireGuardTls, true);
+    }
+
+    [Test]
+    public void ConnectUsingProtunWireguardUdp()
+    {
+        PerformProtocolTest(Protocol.WireGuardUdp, true);
+    }
+
+    [Test]
     public void ChangeProtocolFromConnectionDetails()
     {
         PerformProtocolTest(Protocol.OpenVpnUdp);
@@ -82,16 +100,38 @@ public class ProtocolTests : FreshSessionSetUp
             .IsProtocolDisplayed(Protocol.WireGuardTls);
     }
 
-    private void PerformProtocolTest(Protocol protocol) {
+    private void PerformProtocolTest(Protocol protocol, bool enableProtun = false)
+    {
         SettingRobot
             .OpenSettings()
-            .OpenProtocolSettings()
+            .OpenProtocolSettings();
+
+        HandleProtun(enableProtun);
+
+        SettingRobot
             .SelectProtocol(protocol)
             .ApplySettings()
             .CloseSettings();
 
-        SidebarRobot.ConnectToFastest();
-        HomeRobot.Verify.IsConnected()
-            .IsProtocolDisplayed(protocol);
+        SidebarRobot
+            .ConnectToFastest();
+        HomeRobot
+            .Verify.IsConnected()
+                   .IsProtocolDisplayed(protocol, enableProtun);
+    }
+
+    private void HandleProtun(bool enableProtun)
+    {
+        if (TestConstants.IsProtunVersion)
+        {
+            if (enableProtun)
+            {
+                SettingRobot.EnableProtunToggle();
+            }
+            else
+            {
+                SettingRobot.DisableProtunToggle();
+            }
+        }
     }
 }

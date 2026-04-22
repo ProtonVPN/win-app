@@ -19,6 +19,7 @@
 
 using System;
 using System.Linq;
+using System.Threading;
 using FlaUI.UIA3;
 using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
@@ -55,9 +56,20 @@ public class DesktopRobot
     {
         public Verifications IsWindowTitlePresent(string windowTitlePart)
         {
-            AutomationElement desktop = _automation.GetDesktop();
-            AutomationElement? desktopApp = desktop.FindAllChildren().FirstOrDefault(e => e.Name != null && e.Name.Contains(windowTitlePart));
-            Assert.That(desktopApp, Is.Not.Null, $"Window with title containing '{windowTitlePart}' was not found");
+            DateTime timeoutDate = DateTime.UtcNow + TestConstants.ThirtySecondsTimeout;
+            while (DateTime.UtcNow < timeoutDate)
+            {
+                AutomationElement desktop = _automation.GetDesktop();
+                AutomationElement? desktopApp = desktop.FindAllChildren().FirstOrDefault(e => e.Name != null && e.Name.Contains(windowTitlePart));
+
+                if (desktopApp != null)
+                {
+                    return this;
+                }
+                Thread.Sleep(TestConstants.FiveSecondsTimeout);
+            }
+
+            Assert.Fail($"Window with title containing '{windowTitlePart}' was not found after 30 seconds");
             return this;
         }
 

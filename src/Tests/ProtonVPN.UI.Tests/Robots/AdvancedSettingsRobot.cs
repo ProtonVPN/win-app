@@ -34,7 +34,7 @@ public class AdvancedSettingsRobot
     protected Element DnsServersSelectorSettingsCard = Element.ByAutomationId("DnsServersSelectorSettingsCard");
     protected Element NatTypeCard = Element.ByAutomationId("NatTypeSettingsCard");
 
-    private string? WireguardDnsAddress => NetworkUtils.GetDnsAddresses("ProtonVPN").FirstOrDefault();
+    private string? WireguardDnsAddress => NetworkUtils.GetDnsAddresses(TestConstants.IsProtunVersion ? "ProTUN" : "ProtonVPN").FirstOrDefault();
     private string? OpenVpnDnsAddress => NetworkUtils.GetDnsAddresses("ProtonVPN TUN").FirstOrDefault();
 
     public AdvancedSettingsRobot NavigateToCustomDns()

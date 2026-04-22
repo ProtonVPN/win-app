@@ -84,7 +84,7 @@ public class SettingRobot
     protected Element AutoLaunchToggle = Element.ByAutomationId("AutoLaunchToggle");
     protected Element AutoConnectToggle = Element.ByAutomationId("AutoConnectToggle");
 
-    protected Element ProtonProtocolsToggle = Element.ByName("Proton protocols").And(Element.ByClassName("NamedContainerAutomationPeer"));
+    protected Element ProtonProtocolsToggle = Element.ByAutomationId("ProtonProtocolsToggle");
     protected Element OpenVpnTcpProtocolRadioButton = Element.ByAutomationId("OpenVpnTcpProtocolRadioButton");
     protected Element OpenVpnUdpProtocolRadioButton = Element.ByAutomationId("OpenVpnUdpProtocolRadioButton");
     protected Element WireGuardUdpProtocolRadioButton = Element.ByAutomationId("WireGuardUdpProtocolRadioButton");
@@ -277,9 +277,21 @@ public class SettingRobot
         return this;
     }
 
-    public SettingRobot ToggleProtun()
+    public SettingRobot EnableProtunToggle()
     {
-        ProtonProtocolsToggle.FindChild(Element.ByClassName("ToggleSwitch")).Toggle();
+        if (!ProtonProtocolsToggle.IsToggled())
+        {
+            ProtonProtocolsToggle.Toggle();
+        }
+        return this;
+    }
+
+    public SettingRobot DisableProtunToggle()
+    {
+        if (ProtonProtocolsToggle.IsToggled())
+        {
+            ProtonProtocolsToggle.Toggle();
+        }
         return this;
     }
 
@@ -458,7 +470,7 @@ public class SettingRobot
 
         public Verifications IsProtunEnabled()
         {
-            ProtonProtocolsToggle.FindChild(Element.ByClassName("ToggleSwitch")).IsToggled();
+            ProtonProtocolsToggle.IsToggled();
             return this;
         }
 

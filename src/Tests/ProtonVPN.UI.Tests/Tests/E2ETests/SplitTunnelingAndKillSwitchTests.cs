@@ -105,7 +105,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
 
             HomeRobot
                 .Verify.IsConnected()
-                       .IsProtocolDisplayed(protocolToChoose);
+                       .IsProtocolDisplayed(protocolToChoose, TestConstants.IsProtunVersion);
 
             NetworkUtils.AssertInternetAvailability(true);
         }

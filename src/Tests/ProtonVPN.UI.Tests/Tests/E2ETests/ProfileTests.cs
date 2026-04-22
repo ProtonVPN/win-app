@@ -222,9 +222,6 @@ public class ProfileTests : BaseTest
             .Verify.IsConnected()
                    .ConnectionCardTitleEquals(WEBSITE_PROFILE_NAME);
 
-        // Giving it some time for the app to open
-        Thread.Sleep(TestConstants.FiveSecondsTimeout);
-
         DesktopRobot
             .Verify.IsWindowTitlePresent(WEBSITE_TO_ASSERT);
 
@@ -253,9 +250,6 @@ public class ProfileTests : BaseTest
         HomeRobot
             .Verify.IsConnected()
                    .ConnectionCardTitleEquals(APP_PROFILE_NAME);
-
-        // Giving it some time for the app to open
-        Thread.Sleep(TestConstants.TenSecondsTimeout);
 
         DesktopRobot
             .Verify.IsWindowTitlePresent(APP_TO_OPEN);
@@ -292,7 +286,7 @@ public class ProfileTests : BaseTest
                    .ConnectionCardTitleEquals(CUSTOM_SETTINGS_PROFILE_NAME)
                    .ConnectionCardDescriptionContains(CONNECTION_CARD_DESCRIPTION)
                    .IsPortForwardingEnabled()
-                   .IsProtocolDisplayed(CUSTOM_SETTINGS_PROTOCOL);
+                   .IsProtocolDisplayed(CUSTOM_SETTINGS_PROTOCOL, TestConstants.IsProtunVersion);
 
         SettingRobot
             .Verify.IsNetshieldBlocking(NetShieldMode.BlockAdsMalwareTrackersAdultContent);
@@ -318,7 +312,7 @@ public class ProfileTests : BaseTest
                 .Verify.IsConnected()
                        .ConnectionCardTitleEquals(_profile.profileName)
                        .ConnectionCardDescriptionContains(_profile.countryName)
-                       .IsProtocolDisplayed(_profile.protocol);
+                       .IsProtocolDisplayed(_profile.protocol, TestConstants.IsProtunVersion);
 
             if (_profile.connectionType == ConnectionType.P2P)
             {

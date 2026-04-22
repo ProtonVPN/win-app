@@ -33,8 +33,6 @@ namespace ProtonVPN.UI.Tests.Tests.SliTests;
 [Workflow("protocol_performance")]
 public class ProtocolSLIs : SliSetUp
 {
-    private readonly bool _isProtun = Version.TryParse(TestEnvironment.GetAppVersion(), out Version? v) && v.Major >= 5;
-
     [SetUp]
     public void TestInitialize()
     {
@@ -84,7 +82,7 @@ public class ProtocolSLIs : SliSetUp
 
     private void PerformProtocolTest(Protocol protocol)
     {
-        bool isProtunWireguard = _isProtun && SliHelper.SliName?.StartsWith("wireguard") == true;
+        bool isProtunWireguard = TestConstants.IsProtunVersion && SliHelper.SliName?.StartsWith("wireguard") == true;
 
         SettingRobot
             .OpenSettings()
@@ -95,7 +93,7 @@ public class ProtocolSLIs : SliSetUp
             SliHelper.SliName = "protun_" + SliHelper.SliName;
 
             SettingRobot
-                .ToggleProtun()
+                .EnableProtunToggle()
                 .Verify.IsProtunEnabled();
         }
 
