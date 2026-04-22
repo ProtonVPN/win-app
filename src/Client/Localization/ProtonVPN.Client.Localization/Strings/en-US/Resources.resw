@@ -3578,6 +3578,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page" xml:space="preserve">
     <value>Connection details page</value>
   </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page" xml:space="preserve">
+    <value>Connection preferences page</value>
+  </data>
   <data name="LoadingPage_Tip" xml:space="preserve">
     <value>A better world starts with privacy and digital freedom.</value>
   </data>

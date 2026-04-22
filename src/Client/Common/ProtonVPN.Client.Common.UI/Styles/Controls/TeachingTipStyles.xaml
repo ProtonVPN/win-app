@@ -83,6 +83,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 Value="False" />
         <Setter Property="HeroContentPlacement"
                 Value="Top" />
+        <Setter Property="AutomationProperties.AutomationId"
+                Value="TeachingTip" />
+        <Setter Property="AutomationProperties.LandmarkType"
+                Value="Custom" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TeachingTip">
@@ -206,6 +210,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                         <ColumnDefinition Width="*" />
                                                     </Grid.ColumnDefinitions>
                                                     <Button x:Name="ActionButton"
+                                                            AutomationProperties.AutomationId="ActionButton"
                                                             HorizontalAlignment="Stretch"
                                                             Style="{TemplateBinding ActionButtonStyle}"
                                                             Command="{TemplateBinding ActionButtonCommand}"
@@ -214,6 +219,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                                           Content="{TemplateBinding ActionButtonContent}" />
                                                     </Button>
                                                     <Button x:Name="CloseButton"
+                                                            AutomationProperties.AutomationId="CloseButton"
                                                             HorizontalAlignment="Stretch"
                                                             Style="{TemplateBinding CloseButtonStyle}"
                                                             Command="{TemplateBinding CloseButtonCommand}"

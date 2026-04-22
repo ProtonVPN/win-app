@@ -29,6 +29,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
       xmlns:exclusion="using:ProtonVPN.Client.Models.Features.LocationExclusion"
       xmlns:selectors="using:ProtonVPN.Client.Selectors"
       xmlns:controls="using:ProtonVPN.Client.UI.Controls"
+      AutomationProperties.AutomationId="ConnectionPreferencesPage"
+      AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_ConnectionPreferences_Page')}"
       x:DefaultBindMode="OneWay"
       NavigationCacheMode="Required"
       mc:Ignorable="d">

@@ -28,7 +28,7 @@ using ProtonVPN.Dns.Contracts;
 
 namespace ProtonVPN.Client.Settings;
 
-public class GlobalSettings : IGlobalSettings
+public class GlobalSettings : TransientSettings, IGlobalSettings
 {
     private readonly IGlobalSettingsCache _globalCache;
 

@@ -23,7 +23,6 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.UiTools;
-using ProtonVPN.UI.Tests.Extensions;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 
@@ -73,7 +72,8 @@ public class SplitTunnelingIncludeTests : BaseTest
             .AddIpAddress(IP_ADDRESS_TO_INCLUDE)
             .Verify.WasIpAdded(IP_ADDRESS_TO_INCLUDE);
         ConfirmationRobot
-            .PrimaryAction();
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
 
         SettingRobot
             .ApplySettings()
@@ -99,7 +99,8 @@ public class SplitTunnelingIncludeTests : BaseTest
             .Verify.IsIpSelectorOpened()
             .TickIpAddressCheckBox(IP_ADDRESS_TO_INCLUDE);
         ConfirmationRobot
-            .PrimaryAction();
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
 
         SettingRobot
             .Reconnect();
@@ -124,7 +125,8 @@ public class SplitTunnelingIncludeTests : BaseTest
             .AddSuggestedApp(APP_TO_INCLUDE)
             .Verify.IsAppChecked(APP_TO_INCLUDE);
         ConfirmationRobot
-            .PrimaryAction();
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
 
         SettingRobot
             .Reconnect();
@@ -140,8 +142,6 @@ public class SplitTunnelingIncludeTests : BaseTest
         HomeRobot
             .Disconnect()
             .Verify.IsDisconnected();
-
-        ConfirmationRobot.DismissExcludedLocationsPrompt();
 
         BrowserUtils.VerifyBrowserIpWithRetry(APP_TO_INCLUDE, false, ipAddressToCompare);
         BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, false, ipAddressToCompare);

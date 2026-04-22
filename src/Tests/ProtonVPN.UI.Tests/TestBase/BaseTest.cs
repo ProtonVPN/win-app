@@ -55,8 +55,8 @@ public class BaseTest
     protected static SplitTunnelingRobot SplitTunnelingRobot { get; } = new();
     protected static IpSelectorRobot IpSelectorRobot { get; } = new();
     protected static AppSelectorRobot AppSelectorRobot { get; } = new();
-
     protected static ConfirmationRobot ConfirmationRobot { get; } = new();
+    protected static TeachingTipRobot TeachingTipRobot { get; } = new();
 
     private const string CLIENT_NAME = "ProtonVPN.Client.exe";
 
@@ -178,7 +178,7 @@ public class BaseTest
         }
     }
 
-    protected static void LaunchApp(bool isFreshStart = true)
+    protected static void LaunchApp(bool isFreshStart = true, bool skipOnboarding = true)
     {
         if (isFreshStart)
         {
@@ -195,6 +195,12 @@ public class BaseTest
         {
             Arguments = "-ExitAppOnClose -DisableAutoUpdate"
         };
+
+        if (skipOnboarding)
+        {
+            startInfo.Arguments += " -SkipOnboarding";
+        }
+
         App = Application.Launch(startInfo);
 
         RetryResult<bool> result = WaitUntilAppIsRunning();

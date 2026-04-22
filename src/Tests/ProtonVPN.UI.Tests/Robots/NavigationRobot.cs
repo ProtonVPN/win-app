@@ -49,6 +49,7 @@ public class NavigationRobot
     protected Element AdvancedSettingsPage => Element.ByAutomationId("AdvancedSettingsPage");
     protected Element LocationDetailsPage => Element.ByAutomationId("LocationDetailsPage");
     protected Element ConnectionDetailsPage => Element.ByAutomationId("ConnectionDetailsPage");
+    protected Element ConnectionPreferencesPage => Element.ByAutomationId("ConnectionPreferencesPage");
 
     protected Element NoServerRefreshBtn => Element.ByName("Refresh");
     protected Element NoServerSignOutBtn => Element.ByName("Sign out");
@@ -115,6 +116,8 @@ public class NavigationRobot
 
         public Verifications IsOnConnectionDetailsPage() => IsOnPage(ConnectionDetailsPage);
 
-        public Verifications IsOnKillSwitchPage() => IsOnPage(KillSwitchPage);
+        public Verifications IsOnKillSwitchPage() => IsOnPage(KillSwitchPage);     
+
+        public Verifications IsOnConnectionPreferencesPage() => IsOnPage(ConnectionPreferencesPage);
     }
 }

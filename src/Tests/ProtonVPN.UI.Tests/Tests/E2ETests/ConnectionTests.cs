@@ -21,7 +21,6 @@ using System.Threading;
 using System.Collections.Generic;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
-using ProtonVPN.UI.Tests.Extensions;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -248,8 +247,6 @@ public class ConnectionTests : FreshSessionSetUp
             .Verify.ConnectionCardTitleEquals(FAST_CONNECTION)
                    .IsConnected()
             .Disconnect();
-
-        ConfirmationRobot.DismissExcludedLocationsPrompt();
 
         HomeRobot
             .Verify.IsDisconnected()

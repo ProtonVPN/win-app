@@ -19,7 +19,6 @@
 
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
-using ProtonVPN.UI.Tests.Extensions;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 
@@ -56,8 +55,6 @@ public class DefaultConnectionTests : BaseTest
             .ConnectionCardTitleEquals(FASTEST_COUNTRY)
             .Disconnect()
             .Verify.IsDisconnected();
-
-        ConfirmationRobot.DismissExcludedLocationsPrompt();
     }
 
     [Test, Order(1)]

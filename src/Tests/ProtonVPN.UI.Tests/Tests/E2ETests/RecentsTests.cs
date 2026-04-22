@@ -18,7 +18,6 @@
  */
 
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.Extensions;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -53,8 +52,6 @@ public class RecentsTests : BaseTest
             .Verify.IsConnected()
             .Disconnect()
             .Verify.IsDisconnected();
-
-        ConfirmationRobot.DismissExcludedLocationsPrompt();
 
         SidebarRobot
             .Verify.HasNoRecentsLabel()

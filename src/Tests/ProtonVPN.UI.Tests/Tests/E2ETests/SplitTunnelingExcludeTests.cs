@@ -85,7 +85,8 @@ public class SplitTunnelingExcludeTests : BaseTest
             .AddIpAddress(IP_ADDRESS_TO_EXCLUDE)
             .Verify.WasIpAdded(IP_ADDRESS_TO_EXCLUDE);
         ConfirmationRobot
-            .PrimaryAction();
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
 
         SettingRobot
             .ApplySettings()
@@ -114,7 +115,8 @@ public class SplitTunnelingExcludeTests : BaseTest
                 .AddIpAddress(specialIP);
         }
         ConfirmationRobot
-            .PrimaryAction();
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
 
         SettingRobot
             .Reconnect();
@@ -165,7 +167,8 @@ public class SplitTunnelingExcludeTests : BaseTest
             .Verify.IsIpSelectorOpened()
             .DeleteAllIps();
         ConfirmationRobot
-            .PrimaryAction();
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
 
         SettingRobot
             .Reconnect();
@@ -190,7 +193,8 @@ public class SplitTunnelingExcludeTests : BaseTest
             .AddSuggestedApp(APP_TO_EXCLUDE)
             .Verify.IsAppChecked(APP_TO_EXCLUDE);
         ConfirmationRobot
-            .PrimaryAction();
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
 
         SettingRobot
             .Reconnect();

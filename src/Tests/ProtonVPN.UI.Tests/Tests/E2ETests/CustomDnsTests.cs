@@ -60,7 +60,8 @@ public class CustomDnsTests : BaseTest
                    .OverlayTextContains(ENABLE_CUSTOM_DNS_TITLE)
                    .OverlayTextContains(ENABLE_CUSTOM_DNS_DESCRIPTION)
                    .OverlayButtonsEquals(primary: ENABLE_CUSTOM_DNS_BUTTON)
-            .PrimaryAction();
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
 
         SettingRobot
             .ApplySettings()
@@ -83,7 +84,8 @@ public class CustomDnsTests : BaseTest
             .AddIpAddress(CUSTOM_DNS_SERVER)
             .Verify.WasIpAdded(CUSTOM_DNS_SERVER);
         ConfirmationRobot
-            .PrimaryAction();
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
 
         SettingRobot
             .ApplySettings()
@@ -108,7 +110,8 @@ public class CustomDnsTests : BaseTest
         IpSelectorRobot
             .TickIpAddressCheckBox(CUSTOM_DNS_SERVER);
         ConfirmationRobot
-            .PrimaryAction();
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
 
         SettingRobot
             .Reconnect();
@@ -133,7 +136,8 @@ public class CustomDnsTests : BaseTest
             .AddIpAddress(SECONDARY_CUSTOM_DNS_SERVER)
             .Verify.WasIpAdded(SECONDARY_CUSTOM_DNS_SERVER);
         ConfirmationRobot
-            .PrimaryAction();
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
 
         SettingRobot
             .Reconnect();

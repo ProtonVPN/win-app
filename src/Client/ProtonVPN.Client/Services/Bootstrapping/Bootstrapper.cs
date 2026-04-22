@@ -223,6 +223,10 @@ public class Bootstrapper : IBootstrapper
             {
                 _isOpenOnDesktopRequested = true;
             }
+            else if (arg.EqualsIgnoringCase("-SkipOnboarding"))
+            {
+                _settings.SkipOnboarding = true;
+            }
         }
 
         HandleProtonInstallerArguments(args);

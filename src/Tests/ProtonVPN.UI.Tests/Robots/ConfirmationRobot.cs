@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading;
 using System.Collections.Generic;
+using System.Threading;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.UiTools;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
@@ -34,9 +34,7 @@ public class ConfirmationRobot
 
     public ConfirmationRobot PrimaryAction()
     {
-        Thread.Sleep(TestConstants.AnimationDelay);
         PrimaryActionButton.Click();
-        Thread.Sleep(TestConstants.AnimationDelay);
         return this;
     }
 
@@ -57,6 +55,13 @@ public class ConfirmationRobot
         public Verifications IsOverlayDisplayed()
         {
             OverlayMessage.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsOverlayClosed()
+        {
+            Thread.Sleep(TestConstants.AnimationDelay);
+            OverlayMessage.DoesNotExist();
             return this;
         }
 

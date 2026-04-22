@@ -18,17 +18,17 @@
  */
 
 using System;
-using System.Threading;
 using System.Collections.Generic;
-using NUnit.Framework;
+using System.Threading;
+using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Input;
 using FlaUI.Core.Tools;
 using FlaUI.Core.WindowsAPI;
-using FlaUI.Core.AutomationElements;
+using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
-using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.UiTools;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
@@ -71,6 +71,8 @@ public class SidebarRobot
     protected Element NetshieldButton = Element.ByName("NetShield");
     protected Element PortForwardingButton = Element.ByName("Port forwarding");
     protected Element SplitTunnelingButton = Element.ByName("Split tunneling");
+
+    protected Element CountryInfoBanner => Element.ByAutomationId("ProminentBannerDescription");
 
     protected Element WorldWideCoverageLabel = Element.ByName("Get worldwide coverage with VPN Plus");
     protected Element ProfileSidebarUpsellLabel = Element.ByName("Configure your own VPN settings and connect in one click");
@@ -558,6 +560,14 @@ public class SidebarRobot
         public Verifications IsConnectionItemMissing(string connectionItemName)
         {
             Element.ByName(connectionItemName).DoesNotExist();
+            return this;
+        }
+
+        public Verifications IsCountryInfoBannerDisplayed(string description)
+        {
+            AutomationElement? banner = CountryInfoBanner.WaitUntilDisplayed();
+            Assert.That(banner, Is.Not.Null);
+            Assert.That(banner?.Name, Does.Contain(description));
             return this;
         }
 

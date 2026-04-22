@@ -49,9 +49,8 @@ public class LoginSLIs : SliSetUp
 
         SliHelper.MeasureTime(() =>
         {
-            HomeRobot.Verify.IsWelcomeModalDisplayed();
+            NavigationRobot
+                .Verify.IsOnMainPage();
         });
-
-        HomeRobot.DismissWelcomeModal();
     }
 }

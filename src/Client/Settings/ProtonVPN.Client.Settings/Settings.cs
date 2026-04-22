@@ -24,20 +24,6 @@ namespace ProtonVPN.Client.Settings;
 
 public class Settings : UserSettings, ISettings
 {
-    public bool IsDebugModeEnabled
-    {
-        get
-        {
-            #if DEBUG
-                return true;
-            #else
-                return false;
-            #endif
-        }
-    }
-
-    public bool SkipNoConnectionsPage { get; set; }
-
     public Settings(IGlobalSettingsCache globalSettingsCache, IUserSettingsCache userSettingsCache)
         : base(globalSettingsCache, userSettingsCache)
     { }

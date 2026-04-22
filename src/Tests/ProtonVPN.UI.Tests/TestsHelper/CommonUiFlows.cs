@@ -24,7 +24,7 @@ using ProtonVPN.UI.Tests.TestBase;
 namespace ProtonVPN.UI.Tests.TestsHelper;
 public class CommonUiFlows : BaseTest
 {
-    public static HomeRobot FullLogin(TestUserData testUser)
+    public static void FullLogin(TestUserData testUser)
     {
         LoginRobot
             .Login(testUser);
@@ -33,12 +33,20 @@ public class CommonUiFlows : BaseTest
             .Verify.IsOnMainPage()
                    .IsOnHomePage();
 
-        HomeRobot
-            .DismissWelcomeModal();
-
         // Remove when VPNWIN-2599 is implemented. 
         Thread.Sleep(TestConstants.AnimationDelay);
+    }
 
-        return new HomeRobot();
+    public static void Logout()
+    {
+        HomeRobot
+            .ExpandKebabMenuButton();
+
+        SettingRobot
+            .SignOut()
+            .ConfirmSignOut();
+
+        LoginRobot
+            .Verify.IsLoginWindowDisplayed();
     }
 }
