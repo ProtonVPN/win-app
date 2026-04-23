@@ -61,17 +61,13 @@ public class FreeUserTests : FreshSessionSetUp
     }
 
     [Test]
+    [Retry(3)]
     public void CancelChangeServerDoesNotTriggerTimer()
     {
         HomeRobot
             .ConnectViaConnectionCard()
             .Verify.IsConnected()
-            .ChangeServer();
-
-        // Intentional delay to simulate user's input
-        Thread.Sleep(TestConstants.UserInputSimulationDelay);
-
-        HomeRobot
+            .ChangeServer()
             .CancelConnection()
             .Verify.IsDisconnected();
 

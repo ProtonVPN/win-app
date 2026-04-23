@@ -337,6 +337,7 @@ public class SettingRobot
         KillSwitchToggle.Toggle();
         return this;
     }
+
     public SettingRobot DisableKillSwitch()
     {
         if (KillSwitchToggle.IsToggled())
@@ -470,7 +471,7 @@ public class SettingRobot
 
         public Verifications IsProtunEnabled()
         {
-            ProtonProtocolsToggle.IsToggled();
+            Assert.That(ProtonProtocolsToggle.IsToggled(), Is.True);
             return this;
         }
 
@@ -569,7 +570,7 @@ public class SettingRobot
 
         public Verifications IsAutoConnectEnabled()
         {
-            AutoConnectToggle.IsToggled();
+            Assert.That(AutoConnectToggle.IsToggled(), Is.True);
             return this;
         }
 

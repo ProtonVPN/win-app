@@ -84,10 +84,15 @@ public static class UiActions
         return desiredElement;
     }
 
-    public static bool IsToggled<T>(this T toggleElement) where T : Element
+    public static bool IsToggled<T>(this T toggleElement, bool checkParent = false) where T : Element
     {
         AutomationElement? elementToCheck = WaitUntilExists(toggleElement);
         elementToCheck.WaitUntilClickable(TestConstants.TenSecondsTimeout);
+
+        if (checkParent)
+        {
+            elementToCheck = elementToCheck?.Parent;
+        }
 
         ToggleButton? toggleButton = elementToCheck?.AsToggleButton();
         return toggleButton?.ToggleState == ToggleState.On;
@@ -402,19 +407,6 @@ public static class UiActions
         AutomationElement? element = WaitUntilExists(desiredElement);
 
         Assert.That(element?.Properties.HasKeyboardFocus.Value, Is.True);
-    }
-
-    public static void AssertIsToggled<T>(this T desiredElement, bool checkParent = false) where T : Element
-    {
-        WaitUntilExists(desiredElement);
-        AutomationElement? element = FindFirstDescendantUsingChildren(desiredElement.Condition);
-
-        if (checkParent)
-        {
-            element = element?.Parent;
-        }
-
-        Assert.That(element?.AsToggleButton().IsToggled, Is.True, $"Element {desiredElement.SelectorName} was not toggled.");
     }
 
     private static AutomationElement[] GetDescendantsByControlType<T>(this T desiredElement, ControlType controlType) where T : Element

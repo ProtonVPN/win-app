@@ -98,6 +98,20 @@ public class BrowserUtils
         }
     }
 
+    public static void AssertBrowserCanLoadDuckDuckGo(string browserApp)
+    {
+        RetryResult<string> retry = Retry.WhileEmpty(
+            () =>
+            {
+                string result = GetBrowserIpWithRetry(browserApp, "https://duckduckgo.com/");
+                return result;
+            },
+            TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval);
+
+        Assert.That(retry.Success, Is.True, "DuckDuckGo did not load within timeout.");
+        Assert.That(retry.Result, Does.Contain("DuckDuckGo"), $"Expected DuckDuckGo page title, got: {retry.Result}");
+    }
+
     private static void StartBrowserWithCDP(string browserPath, int debugPort)
     {
         Process.Start(new ProcessStartInfo
@@ -107,12 +121,13 @@ public class BrowserUtils
         });
     }
 
-    private static async Task<string> GetBrowserIpAsync(int debugPort)
+    private static async Task<string> GetBrowserIpAsync(int debugPort, string? url = null)
     {
         // This method connects to the Browser via CDP and gets the IP that the Browser sees
         // It uses https://api4.my-ip.io/v2/ip.txt instead of http://ip-api.com/json, because the Browser forces HTTPS via HSTS, and ip-api.com does not support HTTPS on the free tier
 
-        string endpoint = "https://api4.my-ip.io/v2/ip.txt";
+        bool isCustomUrl = url is not null;
+        url ??= "https://api4.my-ip.io/v2/ip.txt";
 
         await Task.Delay(TestConstants.TwoSecondsTimeout);
 
@@ -144,14 +159,14 @@ public class BrowserUtils
             return JsonSerializer.Deserialize<JsonElement>(Encoding.UTF8.GetString(buffer, 0, result.Count));
         }
 
-        await Send(new { id = 1, method = "Page.navigate", @params = new { url = endpoint } });
+        await Send(new { id = 1, method = "Page.navigate", @params = new { url } });
         await Task.Delay(TestConstants.TwoSecondsTimeout);
 
         JsonElement evalResult = await Send(new
         {
             id = 2,
             method = "Runtime.evaluate",
-            @params = new { expression = "document.body.innerText.trim()" }
+            @params = new { expression = isCustomUrl ? "document.title" : "document.body.innerText.trim()" }
         });
 
         string rawResult = evalResult
@@ -160,11 +175,18 @@ public class BrowserUtils
             .GetProperty("value")
             .GetString() ?? "unknown";
 
-        string ip = rawResult.Split('\n', StringSplitOptions.RemoveEmptyEntries)[0].Trim();
-        return ip;
+        if (isCustomUrl)
+        {
+            return rawResult;
+        }
+        else
+        {
+            string ip = rawResult.Split('\n', StringSplitOptions.RemoveEmptyEntries)[0].Trim();
+            return ip;
+        }
     }
 
-    private static string GetBrowserIpWithRetry(string browserApp)
+    private static string GetBrowserIpWithRetry(string browserApp, string? customUrl = null)
     {
         string? browserPath = null;
         int debugPort = 0;
@@ -184,7 +206,7 @@ public class BrowserUtils
             () =>
             {
                 StartBrowserWithCDP(browserPath!, debugPort);
-                return GetBrowserIpAsync(debugPort).Result ?? string.Empty;
+                return GetBrowserIpAsync(debugPort, customUrl).Result ?? string.Empty;
             },
             TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
         return retry.Result ?? "This site can’t be reached";

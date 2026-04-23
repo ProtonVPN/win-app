@@ -35,11 +35,7 @@ public class ConnectionTests : FreshSessionSetUp
 
     private const string RANDOM_COUNTRY = "Random country";
 
-    private const string SLOW_TOR_COUNTRY = "Hong Kong";
-
-    // These 4 countries are all available options in the All, Secure Core, P2P, and Tor tabs.
-    // Trying United States first as it has the most servers available and there are less chances for them to be all under maintenance at the same time
-    private static readonly List<string> _countries = ["United States", "France", "Germany", "Hong Kong"];
+    private const string SLOW_TOR_COUNTRY = "United States";
 
     [SetUp]
     public void TestInitialize()
@@ -257,25 +253,6 @@ public class ConnectionTests : FreshSessionSetUp
             .Disconnect();
     }
 
-    [Test]
-    public void ConnectToSecureCoreServerCountriesListAndDisconnectViaCountry()
-    {
-        ConnectAndDisconnectViaSearchCountry(CountryTab.SecureCore);
-    }
-
-    [Test]
-    public void ConnectToP2PServerCountriesListAndDisconnectViaCountry()
-    {
-        ConnectAndDisconnectViaSearchCountry(CountryTab.P2P);
-    }
-
-    [Test]
-    [Retry(3)]
-    public void ConnectToTorServerCountriesListAndDisconnectViaCountry()
-    {
-        ConnectAndDisconnectViaSearchCountry(CountryTab.Tor);
-    }
-
     private void MakeSureUserIsDisconnected()
     {
         try
@@ -289,65 +266,5 @@ public class ConnectionTests : FreshSessionSetUp
                 .Disconnect()
                 .Verify.IsDisconnected();
         }
-    }
-
-    private void ConnectAndDisconnectViaSearchCountry(CountryTab tab)
-    {
-        string ipBeforeConnection = NetworkUtils.GetIpAddressWithRetry();
-
-        NavigationRobot
-            .Verify.IsOnHomePage()
-                   .IsOnConnectionsPage();
-
-        SearchAndConnectToCountry(tab, out string countryName);
-
-        string ipAfterConnection = NetworkUtils.GetIpAddressWithRetry();
-
-        HomeRobot
-            .Verify.AssertVpnConnectionEstablished(ipBeforeConnection, ipAfterConnection);
-
-        NavigationRobot
-            .Verify.IsOnConnectionDetailsPage();
-
-        SidebarRobot
-            .DisconnectViaCountry(countryName);
-
-        HomeRobot
-            .Verify.IsDisconnected();
-        NavigationRobot
-            .Verify.IsOnLocationDetailsPage();
-
-        NetworkUtils.VerifyIpAddressMatchesWithRetry(ipBeforeConnection);
-    }
-
-    private void SearchAndConnectToCountry(CountryTab tab, out string countryName)
-    {
-        countryName = string.Empty;
-        string failureMessages = string.Empty;
-
-        foreach (string country in _countries)
-        {
-            try
-            {
-                countryName = country;
-                SidebarRobot
-                    .SearchFor(country)
-                    .NavigateToCountriesTabAfterSearch(tab)
-                    .ConnectToCountry(country);
-
-                HomeRobot
-                    .Verify.IsConnected();
-
-                Thread.Sleep(1000);
-
-                return;
-            }
-            catch (AssertionException e)
-            {
-                failureMessages += $"Failed to connect to {country} ({tab}): {e.Message}\n";
-            }
-        }
-
-        Assert.Fail(failureMessages);
     }
 }

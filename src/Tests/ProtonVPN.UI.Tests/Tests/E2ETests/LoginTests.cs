@@ -258,7 +258,7 @@ public class LoginTests : FreshSessionSetUp
             .Verify.IsOnLoginPage();
 
         WindowsUtils.RunPowerShellScript(DISABLE_INTERNET_SCRIPT);
-        NetworkUtils.IsInternetAvailable(false);
+        NetworkUtils.AssertInternetAvailability(false);
 
         LoginRobot
            .Login(TestUserData.PlusUser);
@@ -272,7 +272,7 @@ public class LoginTests : FreshSessionSetUp
             .Verify.IsLoginWindowDisplayed();
 
         WindowsUtils.RunPowerShellScript(ENABLE_INTERNET_SCRIPT);
-        NetworkUtils.IsInternetAvailable(true);
+        NetworkUtils.AssertInternetAvailability(true);
     }
 
     private void LoginWithUser(TestUserData user)
@@ -291,6 +291,6 @@ public class LoginTests : FreshSessionSetUp
     public void TearDown()
     {
         WindowsUtils.RunPowerShellScript(ENABLE_INTERNET_SCRIPT);
-        NetworkUtils.IsInternetAvailable(true);
+        NetworkUtils.AssertInternetAvailability(true);
     }
 }

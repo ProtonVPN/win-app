@@ -20,6 +20,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 
@@ -51,6 +52,10 @@ public static class TestConstants
     public static string? ServerStoragePath => Directory.GetFiles(Path.Combine(UserStoragePath, "Storage"), "Servers.*.bin").OrderByDescending(File.GetLastWriteTime).FirstOrDefault();
 
     public static bool IsProtunVersion = Version.TryParse(TestEnvironment.GetAppVersion(), out Version? v) && v.Major >= 5;
+
+    // These 4 countries are all available options in the All, Secure Core, P2P, and Tor tabs.
+    // United States is first as it has the most servers available and there are less chances for all of them to be under maintenance at the same time
+    public static readonly List<string> AvailableCountries = ["United States", "France", "Germany", "Hong Kong"];
 
     public enum Protocol
     {

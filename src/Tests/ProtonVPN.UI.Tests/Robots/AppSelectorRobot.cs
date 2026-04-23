@@ -37,7 +37,7 @@ public class AppSelectorRobot
     {
         public Verifications IsAppChecked(string appName)
         {
-            Element.ByName(appName).AssertIsToggled(true);
+            Assert.That(Element.ByName(appName).IsToggled(checkParent: true), Is.True);
             return this;
         }
 

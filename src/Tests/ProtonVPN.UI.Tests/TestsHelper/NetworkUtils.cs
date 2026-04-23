@@ -75,7 +75,7 @@ public class NetworkUtils
         }
     }
 
-    public static bool IsInternetAvailable(bool shouldBeAvailable)
+    private static bool IsInternetAvailable(bool shouldBeAvailable)
     {
         Thread.Sleep(TestConstants.TenSecondsTimeout);
         JObject? connectionData = GetConnectionDataAsync(shouldBeAvailable).GetAwaiter().GetResult();
@@ -194,6 +194,55 @@ public class NetworkUtils
                 {
                     TestContext.WriteLine($"GetIpAddressWithRetry failed. Result: {e.Message}");
                 }
+                return null;
+            }
+        }
+    }
+
+    public static void AssertTorStatus(bool shouldBeAvailable, string? vpnIp = null)
+    {
+        string? ip = null;
+        bool? isTor = null;
+
+        RetryResult<string> retry = Retry.WhileEmpty(
+            () =>
+            {
+                JObject? result = GetTorStatusAsync().GetAwaiter().GetResult();
+                ip = result?["IP"]?.Value<string>();
+                isTor = result?["IsTor"]?.Value<bool>();
+                // Returning only the IP, since IP and IsTor are always returned together
+                return ip ?? string.Empty;
+            },
+            TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval);
+
+        Assert.That(retry.Success, Is.True, "Failed to retrieve Tor status within timeout.");
+
+        if (shouldBeAvailable)
+        {
+            Assert.That(isTor, Is.True);
+            Assert.That(ip, Does.Not.Contain(vpnIp));
+        }
+        else
+        {
+            Assert.That(isTor, Is.False);
+        }
+    }
+
+    private static async Task<JObject?> GetTorStatusAsync()
+    {
+        string endpoint = "https://check.torproject.org/api/ip";
+        // Make sure that fresh socket is created when requesting connection data
+        using (HttpClient client = new())
+        {
+            try
+            {
+                string response = await client.GetStringAsync(endpoint);
+                JObject json = JObject.Parse(response);
+                return json;
+            }
+            catch (HttpRequestException e)
+            {
+                TestContext.WriteLine($"GetTorStatusWithRetry failed. Result: {e.Message}");
                 return null;
             }
         }
