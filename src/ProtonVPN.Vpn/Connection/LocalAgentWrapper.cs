@@ -491,7 +491,7 @@ internal class LocalAgentWrapper : ISingleVpnConnection
         _lastCredentials = credentials;
         using GoString clientCertPem = credentials.ConnectionCertificate.Pem.ToGoString();
         using GoString clientKeyPem = _credentials.ClientKeyPair.SecretKey.Pem.ToGoString();
-        using GoString serverCaPem = VpnCertConfig.RootCa.ToGoString();
+        using GoString serverCaPem = VpnCertConfig.ROOT_CA.ToGoString();
         using GoString host = $"{gatewayIPAddress}:{DEFAULT_PORT}".ToGoString();
         using GoString featuresJson = GetFeatures().ToGoString();
         using GoString certServerName = _endpoint.Server.Name.ToGoString();

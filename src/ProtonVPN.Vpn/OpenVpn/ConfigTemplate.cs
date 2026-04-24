@@ -97,6 +97,7 @@ aeb893d9a96d1f15519bb3c4dcb40ee3
 
     private string GetCertificate()
     {
+        // Root CA introduced in 2026
         return @"<ca>
 -----BEGIN CERTIFICATE-----
 MIIFnTCCA4WgAwIBAgIUCI574SM3Lyh47GyNl0WAOYrqb5QwDQYJKoZIhvcNAQEL
