@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>連線詳細資訊</value>
   </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page">
+    <value>Connection preferences page</value>
+  </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>連線資訊卡</value>
   </data>
@@ -1871,7 +1874,7 @@
     <value>If there are locations you don't want to be automatically connected to, you can exclude them from Fastest and Random country.</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
-    <value>Skip</value>
+    <value>略過</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
     <value>Not the country you wanted?</value>
@@ -2982,10 +2985,10 @@ VPN 連線</value>
     <value>Excluded locations</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Cities">
-    <value>Cities</value>
+    <value>城市</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Countries">
-    <value>Countries</value>
+    <value>國家</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Description">
     <value>The selected locations will never be used when you connect to Fastest or Random</value>
@@ -2994,10 +2997,10 @@ VPN 連線</value>
     <value>No locations available</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Search">
-    <value>Select...</value>
+    <value>選取...</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_States">
-    <value>States</value>
+    <value>州</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>緊急終止開關</value>
@@ -3276,6 +3279,12 @@ VPN 連線</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description">
+    <value>Use Proton VPN's own implementation of WireGuard. This is an experimental feature, so you may experience some instability.</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title">
+    <value>Proton protocols</value>
+  </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>自動為您選擇最適合的通訊協定。</value>
   </data>
@@ -3329,6 +3338,15 @@ VPN 連線</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnUdp">
     <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp">
+    <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
@@ -3708,6 +3726,24 @@ VPN 連線</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
     <value>已建立、經過良好測試且安全。</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description">
+    <value>State-of-the-art protocol for security and performance</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description">
+    <value>Overcomes VPN blocks by hiding your connection from censors</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description">
+    <value>State-of-the-art protocol for security and performance</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

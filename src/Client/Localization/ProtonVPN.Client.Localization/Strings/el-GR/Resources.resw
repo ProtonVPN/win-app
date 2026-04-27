@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>Σελίδα λεπτομερειών σύνδεσης</value>
   </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page">
+    <value>Σελίδα προτιμήσεων σύνδεσης</value>
+  </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>Κάρτα σύνδεσης</value>
   </data>
@@ -3371,6 +3374,12 @@
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description">
+    <value>Χρησιμοποιήστε την εφαρμογή WireGuard της Proton VPN. Πρόκειται για μια πειραματική λειτουργία, οπότε ενδέχεται να αντιμετωπίσετε κάποια αστάθεια.</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title">
+    <value>Πρωτόκολλα Proton</value>
+  </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Επιλέγει αυτόματα το καλύτερο πρωτόκολλο για τη σύνδεσή σας.</value>
   </data>
@@ -3424,6 +3433,15 @@
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnUdp">
     <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp">
+    <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
@@ -3809,6 +3827,24 @@
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
     <value>Καθιερωμένο, καλά δοκιμασμένο και ασφαλές</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description">
+    <value>Πρωτόκολλο τελευταίας τεχνολογίας για ασφάλεια και απόδοση</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description">
+    <value>Ξεπερνά τα μπλοκαρίσματα VPN κρύβοντας τη σύνδεσή σας από τους λογοκριτές</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description">
+    <value>Πρωτόκολλο τελευταίας τεχνολογίας για ασφάλεια και απόδοση</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

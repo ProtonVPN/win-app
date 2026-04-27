@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>Seite mit Verbindungsdetails</value>
   </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page">
+    <value>Verbindungseinstellungen</value>
+  </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>Verbindungskarte</value>
   </data>
@@ -3371,6 +3374,12 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description">
+    <value>Verwende die in Proton VPN integrierte WireGuard-Implementierung. Da es sich hierbei um eine experimentelle Funktion handelt, ist mit einer gewissen Instabilität zu rechnen.</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title">
+    <value>Proton-Protokolle</value>
+  </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Wählt automatisch das beste Protokoll für deine Verbindung aus.</value>
   </data>
@@ -3424,6 +3433,15 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnUdp">
     <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp">
+    <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
@@ -3809,6 +3827,24 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
     <value>Bewährt, erprobt und sicher</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description">
+    <value>Hochmodernes Protokoll für Sicherheit und Leistung</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description">
+    <value>Umgeht VPN-Sperren, indem deine Verbindung vor Zensoren verborgen wird</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description">
+    <value>Hochmodernes Protokoll für Sicherheit und Leistung</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

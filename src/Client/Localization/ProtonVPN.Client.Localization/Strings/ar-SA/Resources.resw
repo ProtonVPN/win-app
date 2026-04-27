@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>صفحة تفاصيل الاتصال</value>
   </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page">
+    <value>صفحة تفضيلات الاتصال</value>
+  </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>بطاقة الإتصال</value>
   </data>
@@ -3755,6 +3758,12 @@ VPN</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description">
+    <value>استخدم تنفيذ Proton VPN الخاص لبروتوكول WireGuard. هذه ميزة تجريبية، وقد تواجه بعض عدم الاستقرار.</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title">
+    <value>بروتوكولات البروتون</value>
+  </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>يختار تلقائياً أفضل بروتوكول للاتصال الخاص بك.</value>
   </data>
@@ -3808,6 +3817,15 @@ VPN</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnUdp">
     <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp">
+    <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
@@ -4217,6 +4235,24 @@ VPN</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
     <value>راسخ ومختبر جيدًا وآمن</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description">
+    <value>بروتوكول متطور للغاية للأمان والأداء</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description">
+    <value>يتجاوز حظر VPN من خلال إخفاء اتصالك عن جهات الرقابة</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description">
+    <value>بروتوكول متطور للغاية للأمان والأداء</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

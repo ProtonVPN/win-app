@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>Página de detalles de la conexión</value>
   </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page">
+    <value>Página de preferencias de conexión</value>
+  </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>Tarjeta de conexión</value>
   </data>
@@ -3371,6 +3374,12 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description">
+    <value>Use la implementación propia de WireGuard de Proton VPN. Esta es una función experimental, por lo que podría notar algo de inestabilidad al probarla.</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title">
+    <value>Protocolos de Proton</value>
+  </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Selecciona automáticamente el mejor protocolo para su conexión.</value>
   </data>
@@ -3424,6 +3433,15 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnUdp">
     <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp">
+    <value>WireGuard de Proton (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp">
+    <value>WireGuard de Proton (UDP)</value>
   </data>
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
@@ -3809,6 +3827,24 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
     <value>De eficacia demostrada, sometido a numerosas pruebas y seguro</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp">
+    <value>WireGuard de Proton (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description">
+    <value>Protocolo de última generación para seguridad y desempeño</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description">
+    <value>Supere los bloqueos de VPN ocultando su conexión a los censuradores</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp">
+    <value>WireGuard de Proton (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description">
+    <value>Protocolo de última generación para seguridad y desempeño</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

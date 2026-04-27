@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>მიერთების დეტალების გვერდი</value>
   </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page">
+    <value>კავშირის მორგების გვერდი</value>
+  </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>მიერთების ბარათი</value>
   </data>
@@ -310,10 +313,10 @@
     <value>Proton VPN-ის განახლება</value>
   </data>
   <data name="Connection_Error_AllServersExcluded">
-    <value>Your preferences exclude all available servers. Adjust exclusions to connect.</value>
+    <value>თქვენი პარამეტრები გამორიცხავს ყველა ხელმისაწვდომ სერვერს. დასაკავშირებლად გაასწორეთ გამორიცხვის წესები.</value>
   </data>
   <data name="Connection_Error_AllServersExcluded_Action">
-    <value>Excluded locations</value>
+    <value>გამორიცხული მდებარეობები</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>პროფილის ჩასწორება</value>
@@ -1618,7 +1621,7 @@
     <comment>The name of WS country</comment>
   </data>
   <data name="Country_val_XK">
-    <value>Kosovo</value>
+    <value>კოსოვო</value>
     <comment>The name of XK country</comment>
   </data>
   <data name="Country_val_YE">
@@ -1897,10 +1900,10 @@
     <value>მოგესალმებათ VPN Plus</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>You unlocked all premium Proton VPN, Mail, Calendar, Drive, and Pass features.</value>
+    <value>თქვენ განბლოკეთ Proton VPN, Mail, Calendar, Drive და Pass-ის ყველა ფასიანი ფუნქცია.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
-    <value>Welcome to {0}</value>
+    <value>მოგესალმებათ {0}</value>
     <comment>Title to welcome the user after an account upgrade. {0} is a placeholder for the name of the new plan (eg. Proton Unlimited, Proton Duo, Proton Family).</comment>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
@@ -1928,28 +1931,28 @@
     <value>ახალი აპი სისტემურ საათთან</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations">
-    <value>Exclude locations</value>
+    <value>მდებარეობების გამორიცხვა</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
-    <value>If there are locations you don't want to be automatically connected to, you can exclude them from Fastest and Random country.</value>
+    <value>თუ არსებობს მდებარეობები, რომელთაგანაც არ გსურთ ავტომატურად დაკავშირება, შეგიძლიათ გამორიცხოთ ისინი ყველაზე სწრაფი, ან შემთხვევითი ქვეყნიდან.</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
-    <value>Skip</value>
+    <value>გამოტოვება</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
-    <value>Not the country you wanted?</value>
+    <value>ის ქვეყანა არაა, რომელიც გნებავდათ?</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_ActionButton">
-    <value>Exclude locations</value>
+    <value>მდებარეობების გამორიცხვა</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_CloseButton">
-    <value>Maybe later</value>
+    <value>შესაძლოა, მოგვიანებით</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Subtitle">
-    <value>You can now exclude countries or cities from Fastest and Random connections.</value>
+    <value>ახლა შეგიძლიათ ქვეყნების, ან ქალაქების გამორიცხვა ყველაზე სწრაფი, შემთხვევითი კავშირებიდან.</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Title">
-    <value>Avoid unwanted locations</value>
+    <value>არასასურველი მდებარეობების აცილება</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>გავიდე Proton VPN-დან?</value>
@@ -3041,7 +3044,7 @@ VPN მიერთება</value>
     <value>კავშირის პარამეტრები</value>
   </data>
   <data name="Settings_Connection_ConnectionPreferences_Description">
-    <value>Default connection and excluded locations</value>
+    <value>ნაგულისხმევი კავშირი და ამოღებული მდებარეობები</value>
   </data>
   <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
     <value>მორგებყლი DNS-ის ჩართვა შეუძლებელია, რადგან დაკავშირებული ხართ პროფილთან, რომელსაც NetShield აქვს ჩართული.</value>
@@ -3074,25 +3077,25 @@ VPN მიერთება</value>
     <value>ახლახან გამოყენებულები</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations">
-    <value>Excluded locations</value>
+    <value>გამორიცხული მდებარეობები</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Cities">
-    <value>Cities</value>
+    <value>ქალაქები</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Countries">
-    <value>Countries</value>
+    <value>ქვეყნები</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Description">
-    <value>The selected locations will never be used when you connect to Fastest or Random</value>
+    <value>არჩეული მდებარეობები არასოდეს იქნება გამოყენებული, როდესაც დაუკავშირდებით ყველაზე სწრაფს, ან შემთხვევითად არჩეულს</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_NoLocations">
-    <value>No locations available</value>
+    <value>მდებარეობები ხელმისაწვდომი არაა</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Search">
-    <value>Select...</value>
+    <value>აირჩიეთ...</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_States">
-    <value>States</value>
+    <value>შტატები</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill switch</value>
@@ -3371,6 +3374,12 @@ VPN მიერთება</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description">
+    <value>გამოიყენეთ Proton VPN-ის WireGuard-ის საკუთარი ვარიანტი. ეს ექსპერიმენტული ფუნქციაა, ასე რომ, შეიძლება, არასტაბილურობას გადააწყდეთ.</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title">
+    <value>Proton-ის პროტოკოლები</value>
+  </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>ავტომატურად აირჩევს საუკეთესო პროტოკოლს თქვენი მიერთებისთვის.</value>
   </data>
@@ -3424,6 +3433,15 @@ VPN მიერთება</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnUdp">
     <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp">
+    <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
@@ -3809,6 +3827,24 @@ VPN მიერთება</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
     <value>აღიარებული, შემოწმებული, დაცული</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description">
+    <value>ხელოვნების ნიმუში პროტოკოლი უსაფრთხოებისა და წარმადობისთვის</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description">
+    <value>გადაფარეთ VPN-ის დაბლოკვა თქვენი მიერთებების ცენზორებისგან დამალვით</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description">
+    <value>ხელოვნების ნიმუში პროტოკოლი უსაფრთხოებისა და წარმადობისთვის</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>Sida för anslutningsdetaljer</value>
   </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page">
+    <value>Connection preferences page</value>
+  </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>Anslutningskort</value>
   </data>
@@ -3371,6 +3374,12 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description">
+    <value>Use Proton VPN's own implementation of WireGuard. This is an experimental feature, so you may experience some instability.</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title">
+    <value>Proton-protokoll</value>
+  </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Väljer automatiskt det bästa protokollet för din anslutning.</value>
   </data>
@@ -3424,6 +3433,15 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnUdp">
     <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp">
+    <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
@@ -3809,6 +3827,24 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
     <value>Etablerad, väl beprövad och säker</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description">
+    <value>Toppmodernt protokoll för säkerhet och prestanda</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description">
+    <value>Övervinner VPN-blockeringar genom att dölja din anslutning från censurering</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description">
+    <value>Toppmodernt protokoll för säkerhet och prestanda</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>Bağlantı bilgileri sayfası</value>
   </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page">
+    <value>Bağlantı ayarları sayfası</value>
+  </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>Bağlantı kartı</value>
   </data>
@@ -3371,6 +3374,12 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description">
+    <value>Proton VPN içindeki WireGuard uygulamasını kullanın. Bu özellik henüz deneme aşamasında olduğundan bazı kararsızlıklar ile karşılaşabilirsiniz.</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title">
+    <value>Proton iletişim kuralları</value>
+  </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Bağlantınız için en iyi iletişim kuralını otomatik olarak seçer.</value>
   </data>
@@ -3424,6 +3433,15 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnUdp">
     <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp">
+    <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
@@ -3809,6 +3827,24 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
     <value>Sağlam, sıkı denenmiş ve güvenli</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description">
+    <value>Güvenlik ve başarım için son teknoloji iletişim kuralı</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description">
+    <value>Bağlantınızı sansür uygulayıcılarından gizleyerek VPN engellemelerini aşar</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description">
+    <value>Güvenlik ve başarım için son teknoloji iletişim kuralı</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>Падрабязнасці старонкі падключэння</value>
   </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page">
+    <value>Старонка параметраў падключэння</value>
+  </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>Картка падключэння</value>
   </data>
@@ -1996,16 +1999,16 @@
     <value>Свабодны прагляд з любога месца</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
-    <value>Схавайце сваё віртуальнае месцазнаходжанне і карыстайцеся інтэрнэтам у любой з {0} даступнай краіны.</value>
+    <value>Схавайце сваё віртуальнае месцазнаходжанне і карыстайцеся інтэрнэтам у любой краіне (даступна {0} краіна).</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Few">
-    <value>Схавайце сваё віртуальнае месцазнаходжанне і карыстайцеся інтэрнэтам у любой з нашых {0} даступных краін.</value>
+    <value>Схавайце сваё віртуальнае месцазнаходжанне і карыстайцеся інтэрнэтам у любой краіне (даступна {0} краіны).</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Many">
-    <value>Схавайце сваё віртуальнае месцазнаходжанне і карыстайцеся інтэрнэтам у любой з нашых {0} даступных краін.</value>
+    <value>Схавайце сваё віртуальнае месцазнаходжанне і карыстайцеся інтэрнэтам у любой краіне (даступна {0} краін).</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>Схавайце сваё віртуальнае месцазнаходжанне і карыстайцеся інтэрнэтам з любой у нашых {0} даступных краін.</value>
+    <value>Схавайце сваё віртуальнае месцазнаходжанне і карыстайцеся інтэрнэтам у любой краіне (даступна {0} краін).</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
     <value>Абараніце да 10 прылад адначасова</value>
@@ -2072,7 +2075,7 @@
     <value>Магчыма пазней</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Subtitle">
-    <value>Цяпер вы можаце выключыць краіны або гарадоў з найхутчэйшых і выпадковых падключэнняў.</value>
+    <value>Цяпер вы можаце выключыць краіны або гарады з найхутчэйшых і выпадковых падключэнняў.</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Title">
     <value>Пазбягайце непажаданых месцазнаходжанняў</value>
@@ -3563,6 +3566,12 @@ Secure Core</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description">
+    <value>Выкарыстоўвайце ўласную рэалізацыю WireGuard ад Proton VPN. Гэта эксперыментальная функцыя, таму вы можаце сутыкнуцца з некаторай нестабільнасцю.</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title">
+    <value>Пратаколы Proton</value>
+  </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Аўтаматычна выбірае лепшы пратакол для вашага падключэння.</value>
   </data>
@@ -3616,6 +3625,15 @@ Secure Core</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnUdp">
     <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp">
+    <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
@@ -4013,6 +4031,24 @@ Secure Core</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
     <value>Спраўджаны, добра пратэсціраваны і бяспечны</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description">
+    <value>Перадавы пратакол для бяспекі і прадукцыйнасці</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description">
+    <value>Пераадольвае блакіроўкі VPN хаваючы ваша падключэнне ад цэнзараў</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description">
+    <value>Перадавы пратакол для бяспекі і прадукцыйнасці</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

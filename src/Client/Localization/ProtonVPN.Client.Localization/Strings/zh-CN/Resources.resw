@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>连接详细信息页面</value>
   </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page">
+    <value>连接偏好页面</value>
+  </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>连接信息</value>
   </data>
@@ -3275,6 +3278,12 @@ VPN 连接</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description">
+    <value>使用 Proton VPN 自身的 WireGuard 实现。此为实验性功能，可能会遇到一些不稳定情况！</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title">
+    <value>Proton 协议</value>
+  </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>自动为连接选择最佳协议。</value>
   </data>
@@ -3329,6 +3338,15 @@ Stealth 具有抗 DPI（深度数据包检查）能力，但速度可能不如�
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnUdp">
     <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp">
+    <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
@@ -3708,6 +3726,24 @@ Stealth 具有抗 DPI（深度数据包检查）能力，但速度可能不如�
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
     <value>成熟、久经考验且安全可靠</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description">
+    <value>兼顾安全性与性能的先进协议</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description">
+    <value>隐藏您的连接以绕过审查，从而突破 VPN 封锁</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description">
+    <value>兼顾安全性与性能的先进协议</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

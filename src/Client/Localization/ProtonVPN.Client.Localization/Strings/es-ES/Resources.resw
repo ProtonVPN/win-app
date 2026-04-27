@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>Página de detalles de la conexión</value>
   </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page">
+    <value>Preferencias de conexión</value>
+  </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>Tarjeta de conexión</value>
   </data>
@@ -310,10 +313,10 @@
     <value>Actualizar Proton VPN</value>
   </data>
   <data name="Connection_Error_AllServersExcluded">
-    <value>Your preferences exclude all available servers. Adjust exclusions to connect.</value>
+    <value>Tus preferencias excluyen todos los servidores disponibles. Ajusta las exclusiones para conectarte.</value>
   </data>
   <data name="Connection_Error_AllServersExcluded_Action">
-    <value>Excluded locations</value>
+    <value>Ubicaciones excluidas</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>Editar el perfil</value>
@@ -1928,28 +1931,28 @@ Código de error: {0}</value>
     <value>Nueva aplicación de la bandeja del sistema</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations">
-    <value>Exclude locations</value>
+    <value>Excluir ubicaciones</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
-    <value>If there are locations you don't want to be automatically connected to, you can exclude them from Fastest and Random country.</value>
+    <value>Si hay ubicaciones a las que no quieres conectarte automáticamente, puedes excluirlas de El más rápido y País aleatorio.</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
-    <value>Skip</value>
+    <value>Omitir</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
-    <value>Not the country you wanted?</value>
+    <value>¿No es el país que querías?</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_ActionButton">
-    <value>Exclude locations</value>
+    <value>Excluir ubicaciones</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_CloseButton">
-    <value>Maybe later</value>
+    <value>Más tarde</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Subtitle">
-    <value>You can now exclude countries or cities from Fastest and Random connections.</value>
+    <value>Ahora puedes excluir países o ciudades de las conexiones El más rápido y País aleatorio.</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Title">
-    <value>Avoid unwanted locations</value>
+    <value>Evita ubicaciones no deseadas</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>¿Salir de Proton VPN?</value>
@@ -3041,7 +3044,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Preferencias de conexión</value>
   </data>
   <data name="Settings_Connection_ConnectionPreferences_Description">
-    <value>Default connection and excluded locations</value>
+    <value>Conexión predeterminada y ubicaciones excluidas</value>
   </data>
   <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
     <value>El DNS personalizado no se puede activar porque estás conectado a un perfil con NetShield activado.</value>
@@ -3074,25 +3077,25 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Recientes</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations">
-    <value>Excluded locations</value>
+    <value>Ubicaciones excluidas</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Cities">
-    <value>Cities</value>
+    <value>Ciudades</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Countries">
-    <value>Countries</value>
+    <value>Países</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Description">
-    <value>The selected locations will never be used when you connect to Fastest or Random</value>
+    <value>Las ubicaciones seleccionadas nunca se usarán cuando te conectes a El más rápido o País aleatorio.</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_NoLocations">
-    <value>No locations available</value>
+    <value>No hay ubicaciones disponibles</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Search">
-    <value>Select...</value>
+    <value>Seleccionar...</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_States">
-    <value>States</value>
+    <value>Estados</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill Switch</value>
@@ -3371,6 +3374,12 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description">
+    <value>Utiliza la implementación propia de WireGuard de Proton VPN. Esta es una función experimental, por lo que es posible que experimentes cierta inestabilidad.</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title">
+    <value>Protocolos de Proton</value>
+  </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Selecciona automáticamente el mejor protocolo para tu conexión.</value>
   </data>
@@ -3424,6 +3433,15 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnUdp">
     <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp">
+    <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
@@ -3809,6 +3827,24 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
     <value>De eficacia demostrada, sometido a numerosas pruebas y seguro</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description">
+    <value>Protocolo de última generación para seguridad y rendimiento</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description">
+    <value>Supera los bloqueos de VPN ocultando tu conexión a los censuradores</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description">
+    <value>Protocolo de última generación para seguridad y rendimiento</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

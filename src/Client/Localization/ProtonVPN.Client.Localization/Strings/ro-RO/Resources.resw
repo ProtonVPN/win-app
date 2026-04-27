@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>Pagină detalii conexiune</value>
   </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page">
+    <value>Pagină preferințe conexiune</value>
+  </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>Card conexiune</value>
   </data>
@@ -3467,6 +3470,12 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description">
+    <value>Utilizați propria implementare WireGuard de la Proton VPN. Aceasta este o funcționalitate experimentală, deci este posibil să întâmpinați unele instabilități.</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title">
+    <value>Protocoale Proton</value>
+  </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Autoselectează cel mai bun protocol pentru conexiune.</value>
   </data>
@@ -3520,6 +3529,15 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnUdp">
     <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp">
+    <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
@@ -3911,6 +3929,24 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
     <value>Recunoscut, bine testat și sigur</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description">
+    <value>Protocol de ultimă generație pentru securitate și performanță</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description">
+    <value>Depășește blocările VPN prin ascunderea conexiunii față de cenzori</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description">
+    <value>Protocol de ultimă generație pentru securitate și performanță</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

@@ -123,6 +123,9 @@
   <data name="Automation_Properties_ConnectionDetails_Page">
     <value>Stránka s podrobnosťami o pripojení</value>
   </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page">
+    <value>Stránka preferencií pripojenia</value>
+  </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>Pripojovacia karta</value>
   </data>
@@ -3563,6 +3566,12 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description">
+    <value>Použite vlastnú implementáciu WireGuard od Proton VPN. Ide o experimentálnu funkciu, takže sa môže vyskytnúť určitá nestabilita.</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title">
+    <value>Proton protokoly</value>
+  </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Automaticky vyberie najlepší protokol pre vaše pripojenie.</value>
   </data>
@@ -3616,6 +3625,15 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   </data>
   <data name="Settings_SelectedProtocol_OpenVpnUdp">
     <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp">
+    <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="Settings_SelectedProtocol_Smart">
     <value>Smart</value>
@@ -4013,6 +4031,24 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Udp_Description">
     <value>Zavedený, dobre otestovaný a bezpečný</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description">
+    <value>Najmodernejší protokol z hľadiska bezpečnosti a výkonu</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description">
+    <value>Prekonanie blokovania VPN ukrytím pripojenia pred cenzormi</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description">
+    <value>Najmodernejší protokol z hľadiska bezpečnosti a výkonu</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
