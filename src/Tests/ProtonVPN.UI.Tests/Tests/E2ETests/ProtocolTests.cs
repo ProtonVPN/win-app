@@ -68,19 +68,19 @@ public class ProtocolTests : FreshSessionSetUp
     [Test]
     public void ConnectUsingProtunWireguardTcp()
     {
-        PerformProtocolTest(Protocol.WireGuardTcp, true);
+        PerformProtocolTest(Protocol.WireGuardTcp, shouldEnableProTun: true);
     }
 
     [Test]
     public void ConnectUsingProtunStealth()
     {
-        PerformProtocolTest(Protocol.WireGuardTls, true);
+        PerformProtocolTest(Protocol.WireGuardTls, shouldEnableProTun: true);
     }
 
     [Test]
     public void ConnectUsingProtunWireguardUdp()
     {
-        PerformProtocolTest(Protocol.WireGuardUdp, true);
+        PerformProtocolTest(Protocol.WireGuardUdp, shouldEnableProTun: true);
     }
 
     [Test]
@@ -100,13 +100,13 @@ public class ProtocolTests : FreshSessionSetUp
             .IsProtocolDisplayed(Protocol.WireGuardTls);
     }
 
-    private void PerformProtocolTest(Protocol protocol, bool enableProtun = false)
+    private void PerformProtocolTest(Protocol protocol, bool shouldEnableProTun = false)
     {
         SettingRobot
             .OpenSettings()
             .OpenProtocolSettings();
 
-        HandleProtun(enableProtun);
+        HandleProtun(shouldEnableProTun);
 
         SettingRobot
             .SelectProtocol(protocol)
@@ -117,14 +117,14 @@ public class ProtocolTests : FreshSessionSetUp
             .ConnectToFastest();
         HomeRobot
             .Verify.IsConnected()
-                   .IsProtocolDisplayed(protocol, enableProtun);
+                   .IsProtocolDisplayed(protocol, shouldEnableProTun);
     }
 
-    private void HandleProtun(bool enableProtun)
+    private void HandleProtun(bool shouldEnableProTun)
     {
         if (TestConstants.IsProtunVersion)
         {
-            if (enableProtun)
+            if (shouldEnableProTun)
             {
                 SettingRobot.EnableProtunToggle();
             }

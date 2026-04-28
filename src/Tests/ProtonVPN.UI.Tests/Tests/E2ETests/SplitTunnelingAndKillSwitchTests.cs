@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.IO;
 using System.Threading;
 using System.Diagnostics;
 using NUnit.Framework;
@@ -37,23 +36,6 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
     private const string IP_ADDRESS_TO_ADD = "208.95.112.1";
 
     private const string APP_TO_CHECK = "Google Chrome";
-
-    private const string ADD_FIREWALL_RULES_SCRIPT = @"
-    New-NetFirewallRule -DisplayName 'Block Chrome Outbound' -Direction Outbound -Program 'C:\Program Files\Google\Chrome\Application\chrome.exe' -Action Block
-    New-NetFirewallRule -DisplayName 'Block Chrome Inbound' -Direction Inbound -Program 'C:\Program Files\Google\Chrome\Application\chrome.exe' -Action Block
-    ";
-    private const string REMOVE_FIREWALL_RULES_SCRIPT = @"
-    Remove-NetFirewallRule -DisplayName 'Block Chrome Outbound'
-    Remove-NetFirewallRule -DisplayName 'Block Chrome Inbound'
-    ";
-
-    private static readonly string _installedServicePath = Path.Combine(TestEnvironment.GetProtonClientFolder(), "ProtonVPNService.exe");
-
-    private const string VPN_QOS_POLICY_NAME = "LimitProtonVPN";
-
-    private static readonly string _setVpnLimitScript = $"New-NetQosPolicy -Name '{VPN_QOS_POLICY_NAME}' -AppPathNameMatchCondition '{_installedServicePath}' -ThrottleRateActionBitsPerSecond 512";
-
-    private readonly string _removeVpnLimitScript = $"Remove-NetQosPolicy -Name '{VPN_QOS_POLICY_NAME}' -Confirm:$false";
 
     [SetUp]
     public void SetUp()
@@ -84,7 +66,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
     {
         CompletePreconditionsSplitTunnelingIp();
 
-        MakeSureUserIsDisconnected();
+        CommonUiFlows.EnsureUserIsDisconnected(shouldVerifyKillSwitch: true);
 
         HomeRobot
             .ConnectViaConnectionCard()
@@ -112,7 +94,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
     public void FirewallRulesRespectedWithSplitTunnelingIncludeModeAndAdvancedKillSwitchEnabled()
     {
         //unable to test locally due to MDM
-        WindowsUtils.RunPowerShellScript(ADD_FIREWALL_RULES_SCRIPT);
+        ScriptHelper.AddChromeFirewallRule();
 
         CompletePreconditionsSplitTunnelingApp(SplitTunnelingMode.Include);
 
@@ -136,7 +118,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
         BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, true);
         BrowserUtils.KillAllBrowsers();
 
-        WindowsUtils.RunPowerShellScript(REMOVE_FIREWALL_RULES_SCRIPT);
+        ScriptHelper.RemoveChromeFirewallRule();
     }
 
     [Test, Order(4)]
@@ -148,7 +130,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
             .ConnectViaConnectionCard()
             .Verify.IsConnected();
 
-        WindowsUtils.RunPowerShellScript(_setVpnLimitScript);
+        ScriptHelper.SetVpnSpeedLimit();
 
         KillVpnService();
 
@@ -157,18 +139,17 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
 
         BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, false);
 
-        WindowsUtils.RunPowerShellScript(_removeVpnLimitScript);
+        ScriptHelper.RemoveVpnSpeedLimit();
 
         HomeRobot
             .Verify.IsConnected();
-
         BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, true);
     }
 
     [Test, Order(5)]
     public void SplitTunnelingAndAdvancedKillSwitchEnabledBlocksInternetAfterRestart()
     {
-        WindowsUtils.RunPowerShellScript(_removeVpnLimitScript);
+        ScriptHelper.RemoveVpnSpeedLimit();
 
         CompletePreconditionsSplitTunnelingApp(SplitTunnelingMode.Include);
 
@@ -202,14 +183,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
     [Test, Order(6)]
     public void TempTcDisableAdvancedKillSwitchFromSignInPage()
     {
-        HomeRobot
-            .ExpandKebabMenuButton();
-        SettingRobot
-            .SignOut()
-            .ConfirmSignOut();
-
-        NavigationRobot
-            .Verify.IsOnLoginPage();
+        CommonUiFlows.Logout();
 
         Thread.Sleep(TestConstants.OneSecondTimeout);
 
@@ -220,27 +194,12 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
         NetworkUtils.AssertInternetAvailability(true);
     }
 
-    private void MakeSureUserIsDisconnected()
-    {
-        try
-        {
-            HomeRobot
-                .Verify.IsAdvancedKillSwitchActivated();
-        }
-        catch
-        {
-            HomeRobot
-                .Disconnect()
-                .Verify.IsAdvancedKillSwitchActivated();
-        }
-    }
-
     private void CompletePreconditionsKillSwitch()
     {
         SettingRobot
             .OpenSettings()
             .OpenKillSwitchSettings()
-            .ToggleKillSwitchSetting()
+            .EnableKillSwitchToggle()
             .SelectKillSwitchMode(KillSwitchMode.Advanced)
             .ApplySettings()
             .CloseSettings();
@@ -322,7 +281,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
         //these are all backups
         DeleteProtonData();
         BrowserUtils.KillAllBrowsers();
-        WindowsUtils.RunPowerShellScript(_removeVpnLimitScript, true);
-        WindowsUtils.RunPowerShellScript(REMOVE_FIREWALL_RULES_SCRIPT, true);
+        ScriptHelper.RemoveVpnSpeedLimit();
+        ScriptHelper.RemoveChromeFirewallRule();
     }
 }

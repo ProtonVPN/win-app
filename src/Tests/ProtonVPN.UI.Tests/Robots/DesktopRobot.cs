@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,37 +23,23 @@ using System.Threading;
 using FlaUI.UIA3;
 using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
-public class DesktopRobot
+public class DesktopRobot : IDisposable
 {
     private readonly UIA3Automation _automation = new();
 
-    public DesktopRobot HoverOverPortForwarding()
+    public class Verifications
     {
-        AutomationElement desktop = _automation.GetDesktop();
-        AutomationElement? portForwardingButton = desktop.FindFirstDescendant(cf => cf.ByAutomationId("PortForwardingWidgetButton"));
-        Assert.That(portForwardingButton, Is.Not.Null, "Port Forwarding button not found");
+        private readonly UIA3Automation _automation;
 
-        portForwardingButton?.HoverSmart();
+        public Verifications(UIA3Automation automation)
+        {
+            _automation = automation;
+        }
 
-        return this;
-    }
-
-    public DesktopRobot ClickHoverCopyPort()
-    {
-        AutomationElement desktop = _automation.GetDesktop();
-        AutomationElement? copyPortButton = desktop.FindFirstDescendant(cf => cf.ByAutomationId("CopyPortNumberCompactButton"));
-        Assert.That(copyPortButton, Is.Not.Null, "Copy Port button not found");
-        copyPortButton?.Click();
-        return this;
-    }
-
-    public class Verifications : DesktopRobot
-    {
         public Verifications IsWindowTitlePresent(string windowTitlePart)
         {
             DateTime timeoutDate = DateTime.UtcNow + TestConstants.ThirtySecondsTimeout;
@@ -73,7 +59,7 @@ public class DesktopRobot
             return this;
         }
 
-        public Verifications IsDisplayed(TimeSpan? timeout = null)
+        public Verifications IsToastDisplayed(TimeSpan? timeout = null)
         {
             timeout ??= TimeSpan.FromSeconds(8);
             bool visible = ToastCapture.WaitForToastVisible(_automation, timeout.Value);
@@ -81,7 +67,7 @@ public class DesktopRobot
             return this;
         }
 
-        public Verifications PortMatchesUI(int uiPort, TimeSpan? timeout = null)
+        public Verifications DoesToastPortMatchUI(int uiPort, TimeSpan? timeout = null)
         {
             timeout ??= TimeSpan.FromSeconds(6);
             int toastPort = ToastCapture.GetPortFromVisibleToast(_automation, timeout);
@@ -90,7 +76,7 @@ public class DesktopRobot
             return this;
         }
 
-        public Verifications ClickCopyMatchesUI(int uiPort, TimeSpan? timeout = null)
+        public Verifications DoesToastCopyPortMatchUI(int uiPort, TimeSpan? timeout = null)
         {
             int copied = ToastCapture.ClickToastCopyAndGetPort(_automation, timeout);
             Assert.That(copied, Is.EqualTo(uiPort),
@@ -99,5 +85,10 @@ public class DesktopRobot
         }
     }
 
-    public Verifications Verify => new();
+    public void Dispose()
+    {
+        _automation.Dispose();
+    }
+
+    public Verifications Verify => new(this._automation);
 }

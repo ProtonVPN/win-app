@@ -57,12 +57,7 @@ public class KillSwitchTests : FreshSessionSetUp
         NavigationRobot
             .Verify.IsOnConnectionDetailsPage();
 
-        HomeRobot.ExpandKebabMenuButton();
-        SettingRobot
-            .SignOut()
-            .ConfirmSignOut();
-
-        LoginRobot.Verify.IsLoginWindowDisplayed();
+        CommonUiFlows.Logout();
 
         NetworkUtils.AssertInternetAvailability(true);
     }
@@ -123,12 +118,7 @@ public class KillSwitchTests : FreshSessionSetUp
 
         EnsureVpnConnectedFromHome();
 
-        HomeRobot.ExpandKebabMenuButton();
-        SettingRobot.SignOut()
-            .ConfirmSignOut();
-
-        NavigationRobot
-            .Verify.IsOnLoginPage();
+        CommonUiFlows.Logout();
 
         //needs a 5sec wait locally
         //Thread.Sleep(TestConstants.FiveSecondsTimeout);
@@ -144,7 +134,19 @@ public class KillSwitchTests : FreshSessionSetUp
     [Test, Order(6)]
     public void DisableKillSwitchFromSettings()
     {
-        DisableKillSwitch();
+        EnableKillSwitch(KillSwitchMode.Advanced);
+
+        HomeRobot
+            .Verify.IsAdvancedKillSwitchActivated();
+        try
+        {
+            NetworkUtils.AssertInternetAvailability(false);
+        }
+        finally
+        {
+            DisableKillSwitch();
+            NetworkUtils.AssertInternetAvailability(true);
+        }
     }
 
     private void EnableKillSwitch(KillSwitchMode mode)
@@ -158,7 +160,7 @@ public class KillSwitchTests : FreshSessionSetUp
             .Verify.IsOnKillSwitchPage();
 
         SettingRobot
-            .ToggleKillSwitchSetting()
+            .EnableKillSwitchToggle()
             .SelectKillSwitchMode(mode)
             .ApplySettings()
             .CloseSettings();
@@ -178,7 +180,8 @@ public class KillSwitchTests : FreshSessionSetUp
             .Verify.IsOnKillSwitchPage();
 
         SettingRobot
-            .DisableKillSwitch()
+            .DisableKillSwitchToggle()
+            .ApplySettings()
             .CloseSettings();
 
         NavigationRobot

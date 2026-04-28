@@ -75,7 +75,7 @@ public class SettingRobot
     protected Element NetShieldLevelTwoRadioButton = Element.ByAutomationId("NetShieldLevelTwo");
     protected Element NetShieldLevelThreeRadioButton = Element.ByAutomationId("NetShieldLevelThree");
     protected Element KillSwitchToggle = Element.ByAutomationId("KillSwitchToggle");
-    protected Element KillSiwtchStandardRadioButton = Element.ByAutomationId("StandardKillSwitchRadioButton");
+    protected Element KillSwitchStandardRadioButton = Element.ByAutomationId("StandardKillSwitchRadioButton");
     protected Element KillSwitchAdvancedRadioButton = Element.ByAutomationId("AdvancedKillSwitchRadioButton");
 
     protected Element NatTypeStrictRadioButton = Element.ByAutomationId("StrictNatTypeRadioButton");
@@ -332,18 +332,20 @@ public class SettingRobot
         return this;
     }
 
-    public SettingRobot ToggleKillSwitchSetting()
+    public SettingRobot EnableKillSwitchToggle()
     {
-        KillSwitchToggle.Toggle();
+        if (!KillSwitchToggle.IsToggled())
+        {
+            KillSwitchToggle.Toggle();
+        }
         return this;
     }
 
-    public SettingRobot DisableKillSwitch()
+    public SettingRobot DisableKillSwitchToggle()
     {
         if (KillSwitchToggle.IsToggled())
         {
             KillSwitchToggle.Toggle();
-            ApplyButton.Invoke();
         }
         return this;
     }
@@ -408,7 +410,7 @@ public class SettingRobot
     {
         if (killSwitchMode == KillSwitchMode.Standard)
         {
-            KillSiwtchStandardRadioButton.Click();
+            KillSwitchStandardRadioButton.Click();
         }
         else if (killSwitchMode == KillSwitchMode.Advanced)
         {
@@ -420,6 +422,7 @@ public class SettingRobot
 
     public SettingRobot ApplySettings()
     {
+        Thread.Sleep(TestConstants.UserInputSimulationDelay);
         ApplyButton.Invoke();
         return this;
     }

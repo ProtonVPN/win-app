@@ -18,12 +18,12 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Threading;
-using FlaUI.Core.AutomationElements;
+using System.Collections.Generic;
 using FlaUI.Core.Input;
 using FlaUI.Core.Tools;
 using FlaUI.Core.WindowsAPI;
+using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.TestBase;
@@ -231,6 +231,7 @@ public class SidebarRobot
 
     public SidebarRobot DisconnectViaCity(string city)
     {
+        Thread.Sleep(TestConstants.UserInputSimulationDelay);
         DisconnectViaSidebarButton(city);
         return this;
     }
@@ -419,7 +420,7 @@ public class SidebarRobot
             Element countryButton = Element.ByAutomationId($"Actions_for_{connectionValue}");
             Element secondaryActionsButton = countryButton.FindChild(Element.ByAutomationId("SecondaryButton"));
             secondaryActionsButton.Invoke(TestConstants.OneSecondTimeout);
-            FlaUI.Core.AutomationElements.AutomationElement? descendant = BaseTest.Window?.FindFirstDescendant(elementToWaitFor.Condition);
+            AutomationElement? descendant = BaseTest.Window?.FindFirstDescendant(elementToWaitFor.Condition);
             return descendant != null && !descendant.IsOffscreen;
         }, TestConstants.TenSecondsTimeout, ignoreException: true, interval: TestConstants.OneSecondTimeout);
 

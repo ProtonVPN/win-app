@@ -49,15 +49,15 @@ public class WindowsUtils
         }
     }
 
-    public static void RunPowerShellScript(string psScript, bool enableLogging = false, string? stringToAssert = null)
+    public static void RunPowerShellScript(string psScript, bool shouldEnableLogging = false, string? stringToAssert = null)
     {
         ProcessStartInfo psi = new ProcessStartInfo()
         {
             FileName = "powershell.exe",
             Arguments = $"-NoProfile -ExecutionPolicy Bypass -Command \"{psScript}\"",
-            UseShellExecute = !enableLogging,
-            RedirectStandardOutput = enableLogging,
-            RedirectStandardError = enableLogging,
+            UseShellExecute = !shouldEnableLogging,
+            RedirectStandardOutput = shouldEnableLogging,
+            RedirectStandardError = shouldEnableLogging,
             CreateNoWindow = true
         };
 
@@ -66,7 +66,7 @@ public class WindowsUtils
             process.StartInfo = psi;
             process.Start();
 
-            if (enableLogging)
+            if (shouldEnableLogging)
             {
                 string psOutput = process.StandardOutput.ReadToEnd();
                 string psError = process.StandardError.ReadToEnd();

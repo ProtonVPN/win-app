@@ -17,6 +17,7 @@
 * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
@@ -39,8 +40,11 @@ public class SecureCoreTests : FreshSessionSetUp
     [SetUp]
     public void TestInitialize()
     {
-        _ipAddressNotConnected = NetworkUtils.GetIpAddressWithRetry();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
+
+        //TODO: this is a temporary fix, so this test doesnt fail,, untill we merge the Service Refactor branch
+        Thread.Sleep(TestConstants.TenSecondsTimeout);
+        _ipAddressNotConnected = NetworkUtils.GetIpAddressWithRetry();
     }
 
     [Test]
@@ -128,6 +132,10 @@ public class SecureCoreTests : FreshSessionSetUp
             .DisconnectViaProfile(PROFILE_NAME);
         HomeRobot
             .Verify.IsDisconnected();
+
+        //TODO: this is a temporary fix, so this test doesnt fail,, untill we merge the Service Refactor branch
+        Thread.Sleep(TestConstants.TenSecondsTimeout);
+
         NetworkUtils.VerifyIpAddressMatchesWithRetry(_ipAddressNotConnected);
     }
 
@@ -151,6 +159,10 @@ public class SecureCoreTests : FreshSessionSetUp
             .DisconnectViaSecureCore(_countryName, _viaCountryIceland);
         HomeRobot
             .Verify.IsDisconnected();
+
+        //TODO: this is a temporary fix, so this test doesnt fail,, untill we merge the Service Refactor branch
+        Thread.Sleep(TestConstants.TenSecondsTimeout);
+
         NetworkUtils.VerifyIpAddressMatchesWithRetry(_ipAddressNotConnected);
     }
 

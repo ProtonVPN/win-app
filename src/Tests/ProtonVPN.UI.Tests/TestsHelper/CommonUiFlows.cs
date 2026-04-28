@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Threading;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
+
 public class CommonUiFlows : BaseTest
 {
     public static void FullLogin(TestUserData testUser)
@@ -48,5 +50,23 @@ public class CommonUiFlows : BaseTest
 
         LoginRobot
             .Verify.IsLoginWindowDisplayed();
+    }
+
+    public static void EnsureUserIsDisconnected(bool shouldVerifyKillSwitch = false)
+    {
+        Action verifyDisconnectState = shouldVerifyKillSwitch
+            ? () => HomeRobot.Verify.IsAdvancedKillSwitchActivated()
+            : () => HomeRobot.Verify.IsDisconnected();
+
+        try
+        {
+            verifyDisconnectState();
+        }
+        catch (TimeoutException)
+        {
+            HomeRobot
+                .Disconnect();
+            verifyDisconnectState();
+        }
     }
 }

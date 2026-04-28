@@ -73,10 +73,10 @@ public class PortForwardingTests : FreshSessionSetUp
 
         int uiPort = GetForwardedPortFromClipboard();
 
-        DesktopRobot.Verify
-            .IsDisplayed()
-            .PortMatchesUI(uiPort)
-            .ClickCopyMatchesUI(uiPort);
+        DesktopRobot
+            .Verify.IsToastDisplayed()
+                   .DoesToastPortMatchUI(uiPort)
+                   .DoesToastCopyPortMatchUI(uiPort);
     }
 
     [Test]
@@ -89,9 +89,9 @@ public class PortForwardingTests : FreshSessionSetUp
 
         int uiPort = GetForwardedPortFromClipboard();
 
-        DesktopRobot
-            .HoverOverPortForwarding()
-            .ClickHoverCopyPort();
+        HomeRobot
+            .HoverOverPortForwardingWidget()
+            .ClickHoverCopyPortNumber();
 
         int hoverPort = GetForwardedPortFromClipboard();
 
@@ -133,5 +133,11 @@ public class PortForwardingTests : FreshSessionSetUp
         }
 
         return port;
+    }
+
+    [OneTimeTearDown]
+    public void TearDown()
+    {
+        DesktopRobot.Dispose();
     }
 }

@@ -113,10 +113,7 @@ public class NetShieldTests : FreshSessionSetUp
         SettingRobot
             .Verify.IsNetshieldBlocking(NetShieldMode.BlockMalwareOnly);
 
-        SettingRobot.OpenSettings()
-            .ExpandAccountDropdown()
-            .SignOut()
-            .ConfirmSignOut();
+        CommonUiFlows.Logout();
 
         CommonUiFlows.FullLogin(TestUserData.FreeUser);
 

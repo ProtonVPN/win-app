@@ -142,6 +142,10 @@ public class BaseTest
             HomeRobot.CloseClientViaCloseButton();
             Thread.Sleep(TestConstants.OneSecondTimeout);
         }
+        catch (TimeoutException)
+        {
+            //Ignore
+        }
         catch { }
 
         try

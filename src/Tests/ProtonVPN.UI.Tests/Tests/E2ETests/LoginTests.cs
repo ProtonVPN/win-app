@@ -40,9 +40,6 @@ public class LoginTests : FreshSessionSetUp
     private const string INCORRECT_USERNAME_ERROR = "Invalid username";
     private const string NO_SERVERS_ERROR = "To start your journey in Proton VPN please contact your organization administrator to assign VPN connections to your account.";
 
-    private const string DISABLE_INTERNET_SCRIPT = @"Disable-NetAdapter -Name ""Ethernet"" -Confirm:$false"; //Wi-Fi - local, Ethernet - ci
-    private const string ENABLE_INTERNET_SCRIPT = @"Enable-NetAdapter -Name ""Ethernet"" -Confirm:$false";
-
     private const string LINE_TO_LOOK_FOR_IN_CLIENT = "vpn/v2/logicals?";
     private const string WORD_TO_LOOK_FOR_IN_SERVER = "protonvpn.net";
     private const string LINE_TO_LOOK_FOR_IN_SERVER = "node-";
@@ -147,7 +144,6 @@ public class LoginTests : FreshSessionSetUp
     }
 
     [Test]
-    [Ignore("JIRA - VPNWIN-3177")]
     public void LoginWithEmptyCredentials()
     {
         NavigationRobot
@@ -215,12 +211,9 @@ public class LoginTests : FreshSessionSetUp
             SettingRobot
                 .OpenSettings()
                 .Verify.IsCorrectAccountInfoDisplayed(userToCheck.User.Username, userToCheck.Plan)
-                .ExpandAccountDropdown()
-                .SignOut()
-                .ConfirmSignOut();
+                .CloseSettings();
 
-            LoginRobot
-                .Verify.IsLoginWindowDisplayed();
+            CommonUiFlows.Logout();
         }
     }
 
@@ -243,11 +236,7 @@ public class LoginTests : FreshSessionSetUp
 
             WindowsUtils.AssertLogFile(ServerStoragePath!, LINE_TO_LOOK_FOR_IN_SERVER, WORD_TO_LOOK_FOR_IN_SERVER);
 
-            HomeRobot.ExpandKebabMenuButton();
-            SettingRobot
-                .SignOut()
-                .ConfirmSignOut();
-            LoginRobot.Verify.IsLoginWindowDisplayed();
+            CommonUiFlows.Logout();
         }
     }
 
@@ -257,7 +246,7 @@ public class LoginTests : FreshSessionSetUp
         NavigationRobot
             .Verify.IsOnLoginPage();
 
-        WindowsUtils.RunPowerShellScript(DISABLE_INTERNET_SCRIPT);
+        ScriptHelper.DisableInternet();
         NetworkUtils.AssertInternetAvailability(false);
 
         LoginRobot
@@ -271,7 +260,7 @@ public class LoginTests : FreshSessionSetUp
         LoginRobot
             .Verify.IsLoginWindowDisplayed();
 
-        WindowsUtils.RunPowerShellScript(ENABLE_INTERNET_SCRIPT);
+        ScriptHelper.EnableInternet();
         NetworkUtils.AssertInternetAvailability(true);
     }
 
@@ -290,7 +279,7 @@ public class LoginTests : FreshSessionSetUp
     [OneTimeTearDown]
     public void TearDown()
     {
-        WindowsUtils.RunPowerShellScript(ENABLE_INTERNET_SCRIPT);
+        ScriptHelper.EnableInternet();
         NetworkUtils.AssertInternetAvailability(true);
     }
 }

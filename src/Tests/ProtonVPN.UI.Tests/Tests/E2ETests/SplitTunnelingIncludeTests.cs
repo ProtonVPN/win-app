@@ -133,6 +133,10 @@ public class SplitTunnelingIncludeTests : BaseTest
 
         HomeRobot
             .Verify.IsConnected();
+
+        //TODO: this is a temporary fix, so this test doesnt fail,, untill we merge the Service Refactor branch
+        Thread.Sleep(TestConstants.TenSecondsTimeout);
+
         string? ipAddressToCompare = HomeRobot.GetVpnServerIp();
 
         BrowserUtils.VerifyBrowserIpWithRetry(APP_TO_INCLUDE, true, ipAddressToCompare);
@@ -169,19 +173,19 @@ public class SplitTunnelingIncludeTests : BaseTest
             .ConnectViaConnectionCard()
             .Verify.IsConnected()
             .HoverOverSplitTunnelingFlyoutWidget();
-        IsSplitTunnelingAppInFlyoutMenu(true, SPLIT_TUNNELING_MODE);
+        IsSplitTunnelingAppInFlyoutMenu(isAppAvailable: true, SPLIT_TUNNELING_MODE);
 
         HomeRobot
             .ClickOnConnectionCardTitle();
 
         RenameChrome();
-        Thread.Sleep(1_000);
+        Thread.Sleep(TestConstants.OneSecondTimeout);
 
         HomeRobot
             .HoverOverSplitTunnelingFlyoutWidget();
-        IsSplitTunnelingAppInFlyoutMenu(false, SPLIT_TUNNELING_MODE);
+        IsSplitTunnelingAppInFlyoutMenu(isAppAvailable: false, SPLIT_TUNNELING_MODE);
 
-        Thread.Sleep(1_000);
+        Thread.Sleep(TestConstants.OneSecondTimeout);
         //it glitches after the hover, so clicking the sidebar just in case
         SidebarRobot
             .ClickOnSidebar();

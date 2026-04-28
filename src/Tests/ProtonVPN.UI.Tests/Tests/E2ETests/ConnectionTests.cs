@@ -47,7 +47,7 @@ public class ConnectionTests : FreshSessionSetUp
     [Category("ARM")]
     public void QuickConnect()
     {
-        MakeSureUserIsDisconnected();
+        CommonUiFlows.EnsureUserIsDisconnected();
 
         string ipAddressNotConnected = NetworkUtils.GetIpAddressWithRetry();
 
@@ -110,12 +110,12 @@ public class ConnectionTests : FreshSessionSetUp
     [Category("ARM")]
     public void ConnectAndCancel()
     {
-        MakeSureUserIsDisconnected();
+        CommonUiFlows.EnsureUserIsDisconnected();
 
         SidebarRobot
             .NavigateToTorCountriesTab()
             .ConnectToCountry(SLOW_TOR_COUNTRY);
-       HomeRobot
+        HomeRobot
             .Verify.IsConnecting()
             .CancelConnection(TestConstants.MoreFrequentRetryInterval)
             .Verify.IsDisconnected();
@@ -251,20 +251,5 @@ public class ConnectionTests : FreshSessionSetUp
             .Verify.ConnectionCardTitleEquals(RANDOM_COUNTRY)
                    .IsConnected()
             .Disconnect();
-    }
-
-    private void MakeSureUserIsDisconnected()
-    {
-        try
-        {
-            HomeRobot
-                .Verify.IsDisconnected();
-        }
-        catch
-        {
-            HomeRobot
-                .Disconnect()
-                .Verify.IsDisconnected();
-        }
     }
 }

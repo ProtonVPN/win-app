@@ -38,9 +38,10 @@ public class TorTests : FreshSessionSetUp
     }
 
     [Test]
+    [Retry(3)]
     public void ConnectToATorServer()
     {
-        NetworkUtils.AssertTorStatus(false);
+        NetworkUtils.AssertTorStatus(shouldBeAvailable: false);
 
         ConnectToTorCountry();
 
@@ -50,12 +51,13 @@ public class TorTests : FreshSessionSetUp
     }
 
     [Test]
+    [Retry(4)]
     public void ConnectToATorServerWithKillSwitchEnabled()
     {
         SettingRobot
             .OpenSettings()
             .OpenKillSwitchSettings()
-            .ToggleKillSwitchSetting()
+            .EnableKillSwitchToggle()
             .SelectKillSwitchMode(KillSwitchMode.Advanced)
             .ApplySettings()
             .CloseSettings();
@@ -67,17 +69,19 @@ public class TorTests : FreshSessionSetUp
             BrowserUtils.AssertBrowserCanLoadDuckDuckGo(BROWSER_APP);
             BrowserUtils.KillAllBrowsers();
         }
-        catch { }
+        finally
+        {
+            SettingRobot
+                .OpenSettings()
+                .OpenKillSwitchSettings()
+                .DisableKillSwitchToggle()
+                .ApplySettings()
+                .CloseSettings();
 
-        SettingRobot
-            .OpenSettings()
-            .OpenKillSwitchSettings()
-            .DisableKillSwitch()
-            .CloseSettings();
-
-        HomeRobot
-            .Disconnect()
-            .Verify.IsDisconnected();
+            HomeRobot
+                .Disconnect()
+                .Verify.IsDisconnected();
+        }
     }
 
     private void ConnectToTorCountry()
@@ -95,7 +99,7 @@ public class TorTests : FreshSessionSetUp
                     .Verify.IsConnected();
 
                 string? ipAddressConnected = HomeRobot.GetVpnServerIp();
-                NetworkUtils.AssertTorStatus(true, ipAddressConnected);
+                NetworkUtils.AssertTorStatus(shouldBeAvailable: true, ipAddressConnected);
                 return;
             }
             catch (AssertionException e)

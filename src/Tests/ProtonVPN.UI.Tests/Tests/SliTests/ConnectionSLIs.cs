@@ -81,7 +81,7 @@ public class ConnectionSLIs : SliSetUp
         SecureString password = new NetworkCredential("", TestUserData.PlusUser.Password).SecurePassword;
         string serverName = await _prodTestApiClient.GetRandomSpecificPaidServerAsync(TestUserData.PlusUser.Username, password);
 
-        ConnectAndDisconnect(CountryTab.All, serverName, true);
+        ConnectAndDisconnect(CountryTab.All, serverName, isServer: true);
     }
 
     [Test]

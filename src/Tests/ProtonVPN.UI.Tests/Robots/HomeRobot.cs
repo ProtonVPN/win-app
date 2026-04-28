@@ -59,10 +59,13 @@ public class HomeRobot
     protected Element UpgradeButton = Element.ByName("Upgrade");
     protected Element DefaultConnectionSelectorButton = Element.ByAutomationId("DefaultConnectionSelectorButton");
     protected Element DefaultConnectionDropdown = Element.ByAutomationId("DefaultConnectionDropdown");
-    protected Element CustomizeCardConnectionTitleLabel = Element.ByName("Default connection");
     protected Element ProtectedLabelAdvancedKillSwitch = Element.ByName("Advanced kill switch activated");
-    protected Element CopyPortNumberButton = Element.ByAutomationId("CopyPortNumberCondensedButton");
+
     protected Element SplitTunnelingWidgetButton = Element.ByAutomationId("SplitTunnelingWidgetButton");
+    protected Element PortForwardingWidgetButton = Element.ByAutomationId("PortForwardingWidgetButton");
+    protected Element CopyPortNumberButton = Element.ByAutomationId("CopyPortNumberCondensedButton");
+    protected Element CopyPortNumberCompactButton = Element.ByAutomationId("CopyPortNumberCompactButton");
+
     protected Element ShowIpFlyoutButton => Element.ByAutomationId("ShowIpFlyoutButton");
 
     public HomeRobot DismissWelcomeModal()
@@ -83,6 +86,18 @@ public class HomeRobot
     {
         SplitTunnelingWidgetButton.Hover();
         Thread.Sleep(TestConstants.AnimationDelay);
+        return this;
+    }
+
+    public HomeRobot HoverOverPortForwardingWidget()
+    {
+        PortForwardingWidgetButton.Hover();
+        return this;
+    }
+
+    public HomeRobot ClickHoverCopyPortNumber()
+    {
+        CopyPortNumberCompactButton.Click();
         return this;
     }
 
@@ -222,9 +237,16 @@ public class HomeRobot
             return this;
         }
 
-        public Verifications IsAdvancedKillSwitchActivated()
+        public Verifications IsAdvancedKillSwitchActivated(bool isExpectedToBeActive = true)
         {
-            ProtectedLabelAdvancedKillSwitch.WaitUntilDisplayed();
+            if (isExpectedToBeActive)
+            {
+                ProtectedLabelAdvancedKillSwitch.WaitUntilDisplayed();
+            }
+            else
+            {
+                ProtectedLabelAdvancedKillSwitch.DoesNotExist();
+            }
             ConnectionCardConnectButton.WaitUntilDisplayed();
             return this;
         }
@@ -323,12 +345,6 @@ public class HomeRobot
                     break;
             }
 
-            return this;
-        }
-
-        public Verifications CustomizedCardTitleEquals(string title)
-        {
-            CustomizeCardConnectionTitleLabel.TextEquals(title);
             return this;
         }
 

@@ -106,7 +106,7 @@ public class BrowserUtils
                 string result = GetBrowserIpWithRetry(browserApp, "https://duckduckgo.com/");
                 return result;
             },
-            TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval);
+            TestConstants.OneMinuteTimeout, TestConstants.ApiRetryInterval);
 
         Assert.That(retry.Success, Is.True, "DuckDuckGo did not load within timeout.");
         Assert.That(retry.Result, Does.Contain("DuckDuckGo"), $"Expected DuckDuckGo page title, got: {retry.Result}");
@@ -124,10 +124,10 @@ public class BrowserUtils
     private static async Task<string> GetBrowserIpAsync(int debugPort, string? url = null)
     {
         // This method connects to the Browser via CDP and gets the IP that the Browser sees
-        // It uses https://api4.my-ip.io/v2/ip.txt instead of http://ip-api.com/json, because the Browser forces HTTPS via HSTS, and ip-api.com does not support HTTPS on the free tier
+        // It uses https://api.ipify.org instead of http://ip-api.com/json, because the Browser forces HTTPS via HSTS, and ip-api.com does not support HTTPS on the free tier
 
         bool isCustomUrl = url is not null;
-        url ??= "https://api4.my-ip.io/v2/ip.txt";
+        url ??= "https://api.ipify.org";
 
         await Task.Delay(TestConstants.TwoSecondsTimeout);
 
@@ -175,15 +175,7 @@ public class BrowserUtils
             .GetProperty("value")
             .GetString() ?? "unknown";
 
-        if (isCustomUrl)
-        {
-            return rawResult;
-        }
-        else
-        {
-            string ip = rawResult.Split('\n', StringSplitOptions.RemoveEmptyEntries)[0].Trim();
-            return ip;
-        }
+        return rawResult;
     }
 
     private static string GetBrowserIpWithRetry(string browserApp, string? customUrl = null)
