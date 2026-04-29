@@ -48,7 +48,7 @@ public class ProtocolTests : FreshSessionSetUp
     }
 
     [Test]
-    public void ConnectUsingWireguardTcp()
+    public void ConnectUsingWireGuardTcp()
     {
         PerformProtocolTest(Protocol.WireGuardTcp);
     }
@@ -60,13 +60,13 @@ public class ProtocolTests : FreshSessionSetUp
     }
 
     [Test]
-    public void ConnectUsingWireguardUdp()
+    public void ConnectUsingWireGuardUdp()
     {
         PerformProtocolTest(Protocol.WireGuardUdp);
     }
 
     [Test]
-    public void ConnectUsingProtunWireguardTcp()
+    public void ConnectUsingProtunWireGuardTcp()
     {
         PerformProtocolTest(Protocol.WireGuardTcp, shouldEnableProTun: true);
     }
@@ -78,7 +78,7 @@ public class ProtocolTests : FreshSessionSetUp
     }
 
     [Test]
-    public void ConnectUsingProtunWireguardUdp()
+    public void ConnectUsingProtunWireGuardUdp()
     {
         PerformProtocolTest(Protocol.WireGuardUdp, shouldEnableProTun: true);
     }

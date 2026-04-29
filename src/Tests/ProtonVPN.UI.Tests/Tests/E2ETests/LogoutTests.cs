@@ -63,7 +63,8 @@ public class LogoutTests : FreshSessionSetUp
             .ConnectViaConnectionCard()
             .Verify.IsConnected();
 
-        HomeRobot.ExpandKebabMenuButton();
+        HomeRobot
+            .ExpandKebabMenuButton();
         SettingRobot
             .SignOut()
             .CancelSignOut();

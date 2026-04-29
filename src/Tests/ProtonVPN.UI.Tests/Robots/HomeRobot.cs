@@ -19,6 +19,7 @@
 
 using System;
 using System.Threading;
+using FlaUI.Core.Input;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.UiTools;
@@ -40,6 +41,7 @@ public class HomeRobot
     protected Element KebabMenuSettingsItem = Element.ByAutomationId("KebabMenuSettingsItem");
     protected Element KebabMenuExitItem = Element.ByAutomationId("KebabMenuExitItem");
     protected Element CloseButton = Element.ByAutomationId("Close");
+    protected Element MinimizeBtn = Element.ByAutomationId("Minimize");
     protected Element ExitButton = Element.ByName("Exit");
 
     protected Element ConnectionCardTitle = Element.ByAutomationId("ConnectionCardTitle");
@@ -59,12 +61,21 @@ public class HomeRobot
     protected Element UpgradeButton = Element.ByName("Upgrade");
     protected Element DefaultConnectionSelectorButton = Element.ByAutomationId("DefaultConnectionSelectorButton");
     protected Element DefaultConnectionDropdown = Element.ByAutomationId("DefaultConnectionDropdown");
+    protected Element FastestCountryOption = Element.ByName("Fastest country");
+    protected Element RandomCountryOption = Element.ByName("Random country");
+    protected Element LastConnectionOption = Element.ByName("Last connection");
     protected Element ProtectedLabelAdvancedKillSwitch = Element.ByName("Advanced kill switch activated");
 
     protected Element SplitTunnelingWidgetButton = Element.ByAutomationId("SplitTunnelingWidgetButton");
     protected Element PortForwardingWidgetButton = Element.ByAutomationId("PortForwardingWidgetButton");
     protected Element CopyPortNumberButton = Element.ByAutomationId("CopyPortNumberCondensedButton");
     protected Element CopyPortNumberCompactButton = Element.ByAutomationId("CopyPortNumberCompactButton");
+
+    protected Element ConnectionErrorPanel = Element.ByAutomationId("ConnectionErrorPanel");
+    protected Element WireGuardConnectionErrorPanelTitle => ConnectionErrorPanel.FindChild(Element.ByName("Connection failed"));
+    protected Element WireGuardConnectionErrorPanelDescription => ConnectionErrorPanel.FindChild(Element.ByName("Your device's WireGuard adapter is in use. Disconnect from any other VPN running on your device, then try again."));
+    protected Element ConnectionErrorPanelTryAgainBtn => ConnectionErrorPanel.FindChild(Element.ByName("Try again"));
+    protected Element ConnectionErrorPanelCloseBtn => ConnectionErrorPanel.FindChild(Element.ByName("Close"));
 
     protected Element ShowIpFlyoutButton => Element.ByAutomationId("ShowIpFlyoutButton");
 
@@ -189,6 +200,12 @@ public class HomeRobot
         return this;
     }
 
+    public HomeRobot MinimizeClientViaMinimizeButton()
+    {
+        MinimizeBtn.Click();
+        return this;
+    }
+
     public HomeRobot SelectDefaultConnectionOption(VpnConnectionOption option)
     {
         DefaultConnectionSelectorButton.Click();
@@ -216,6 +233,12 @@ public class HomeRobot
         return this;
     }
 
+    public HomeRobot CloseConnectionError()
+    {
+        ConnectionErrorPanelCloseBtn.Click();
+        return this;
+    }
+
     public class Verifications : HomeRobot
     {
         public Verifications IsWelcomeModalDisplayed()
@@ -237,6 +260,15 @@ public class HomeRobot
             return this;
         }
 
+        public Verifications IsWireGuardErrorDisplayed()
+        {
+            WireGuardConnectionErrorPanelTitle.WaitUntilDisplayed(TestConstants.OneMinuteTimeout);
+            WireGuardConnectionErrorPanelDescription.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
+            ConnectionErrorPanelTryAgainBtn.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
+            ConnectionErrorPanelCloseBtn.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
+            return this;
+        }
+
         public Verifications IsAdvancedKillSwitchActivated(bool isExpectedToBeActive = true)
         {
             if (isExpectedToBeActive)
@@ -248,6 +280,18 @@ public class HomeRobot
                 ProtectedLabelAdvancedKillSwitch.DoesNotExist();
             }
             ConnectionCardConnectButton.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications AssertAllVpnConnectionOptions()
+        {
+            DefaultConnectionSelectorButton.Click();
+            Thread.Sleep(TestConstants.AnimationDelay);
+
+            FastestCountryOption.WaitUntilDisplayed();
+            RandomCountryOption.WaitUntilDisplayed();
+            LastConnectionOption.WaitUntilDisplayed();
+            Mouse.Click();
             return this;
         }
 

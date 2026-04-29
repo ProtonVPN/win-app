@@ -26,9 +26,9 @@ using FlaUI.Core.WindowsAPI;
 using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
+using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
-using ProtonVPN.UI.Tests.UiTools;
 
 namespace ProtonVPN.UI.Tests.Robots;
 

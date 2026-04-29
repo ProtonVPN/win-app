@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Diagnostics;
 using System.Net.Sockets;
 using FlaUI.Core.Tools;
 using FlaUI.Core.AutomationElements;
@@ -101,5 +102,11 @@ public static class CommonAssertions
         }
 
         return desiredElement;
+    }
+    
+    public static void VerifyAppIsNotRunning()
+    {
+        Process[] processes = Process.GetProcessesByName("ProtonVPN.Client");
+        Assert.That(processes.Length == 0, Is.True);
     }
 }

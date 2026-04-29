@@ -19,6 +19,7 @@
 
 using System;
 using System.IO;
+using System.Text;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 
@@ -43,10 +44,14 @@ public static class ScriptHelper
 
     private static readonly string _windowsUsername = Environment.UserName;
     private static readonly string _configName = "wg0";
-    private static readonly string _connectWireGuardScript = $@"& 'C:\Program Files\WireGuard\wireguard.exe' /installtunnelservice 'C:\Users\{_windowsUsername}\Downloads\{_configName}.conf'";
+    private static readonly string _configPath = $@"C:\Users\{_windowsUsername}\Downloads\{_configName}.conf";
+
+    private static readonly string _connectWireGuardScript = $@"& 'C:\Program Files\WireGuard\wireguard.exe' /installtunnelservice '{_configPath}'";
     private static readonly string _checkIsWireGuardConnectedScript = "wg show";
     private static readonly string _stringToCheckInWG = "endpoint:";
     private static readonly string _disconnectWireGuardScript = $@"& 'C:\Program Files\WireGuard\wireguard.exe' /uninstalltunnelservice {_configName}";
+
+    private static readonly string _removeWireGuardConfigFileScript = $@"Remove-Item -Path '{_configPath}' -Force";
 
     public static void EnableInternet()
     {
@@ -78,18 +83,47 @@ public static class ScriptHelper
         WindowsUtils.RunPowerShellScript(_removeVpnLimitScript);
     }
 
-    public static void ConnectToWireguard()
+    public static void ConnectToWireGuard()
     {
         WindowsUtils.RunPowerShellScript(_connectWireGuardScript);
     }
 
-    public static void DisconnectFromWireguard()
+    public static void DisconnectFromWireGuard()
     {
         WindowsUtils.RunPowerShellScript(_disconnectWireGuardScript);
     }
 
-    public static void VerifyWireguardIsConnected()
+    public static void VerifyWireGuardIsConnected()
     {
         WindowsUtils.RunPowerShellScript(_checkIsWireGuardConnectedScript, shouldEnableLogging: true, _stringToCheckInWG);
+    }
+
+    public static void CreateWireGuardConfigFile()
+    {
+        string decodedConfig = GetDecodedWireGuardConfig();
+
+        //indentation needs to stay like this
+        string createWireGuardConfigFileScript = $@"
+$Encoding = New-Object System.Text.UTF8Encoding($false)
+$config = @'
+{decodedConfig}
+'@
+[System.IO.File]::WriteAllText('{_configPath}', $config, $Encoding)
+";
+
+        WindowsUtils.RunPowerShellScript(createWireGuardConfigFileScript);
+    }
+
+    public static void RemoveWireGuardConfigFile()
+    {
+        WindowsUtils.RunPowerShellScript(_removeWireGuardConfigFileScript);
+    }
+
+    private static string GetDecodedWireGuardConfig()
+    {
+        string wireGuardConfigBase64 = Environment.GetEnvironmentVariable("UI_TESTS_WIREGUARD_CONFIG") ?? throw new Exception("Missing UI_TESTS_WIREGUARD_CONFIG env var.");
+
+        byte[] configBytes = Convert.FromBase64String(wireGuardConfigBase64);
+        return Encoding.UTF8.GetString(configBytes);
     }
 }

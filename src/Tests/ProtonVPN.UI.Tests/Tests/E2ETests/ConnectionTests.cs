@@ -18,7 +18,6 @@
  */
 
 using System.Threading;
-using System.Collections.Generic;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;

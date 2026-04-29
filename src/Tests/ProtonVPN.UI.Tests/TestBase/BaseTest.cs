@@ -20,18 +20,19 @@
 using System;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Diagnostics;
 using System.ComponentModel;
 using System.ServiceProcess;
-using System.Threading.Tasks;
-using FlaUI.Core;
 using FlaUI.UIA3;
+using FlaUI.Core;
 using FlaUI.Core.Tools;
 using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestsHelper;
+using static ProtonVPN.UI.Tests.Robots.TrayRobot;
 using TimeoutException = System.TimeoutException;
 
 namespace ProtonVPN.UI.Tests.TestBase;
@@ -49,6 +50,8 @@ public class BaseTest
     protected static SidebarRobot SidebarRobot { get; } = new();
     protected static SettingRobot SettingRobot { get; } = new();
     protected static DesktopRobot DesktopRobot { get; } = new();
+    protected static TrayRobot TrayRobot { get; } = new();
+    protected static TrayAppWindow TrayApp => new();
     protected static SupportRobot SupportRobot { get; } = new(() => Window);
     protected static AdvancedSettingsRobot AdvancedSettingsRobot { get; } = new();
     protected static UpsellCarrouselRobot UpsellCarrouselRobot { get; } = new();

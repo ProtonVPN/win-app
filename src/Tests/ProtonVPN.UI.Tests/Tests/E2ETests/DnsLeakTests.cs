@@ -41,7 +41,7 @@ public class DnsLeakTests : FreshSessionSetUp
     public void DnsIsNotLeaking()
     {
         List<string> dnsListNotConnected = DnsLeakHelper.GetDnsServers();
-        
+
         SidebarRobot
             .SearchFor(COUNTRY_NAME)
             .ConnectToCountry(COUNTRY_NAME);

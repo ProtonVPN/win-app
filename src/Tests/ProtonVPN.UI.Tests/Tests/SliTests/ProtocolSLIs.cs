@@ -43,7 +43,7 @@ public class ProtocolSLIs : SliSetUp
     [Test]
     [Duration, TestStatus]
     [Sli("wireguard_udp")]
-    public void WireguardUdpConnectionSpeed()
+    public void WireGuardUdpConnectionSpeed()
     {
         PerformProtocolTest(Protocol.WireGuardUdp);
     }
@@ -59,7 +59,7 @@ public class ProtocolSLIs : SliSetUp
     [Test]
     [Duration, TestStatus]
     [Sli("wireguard_tcp")]
-    public void WireguardTcpConnectionSpeed()
+    public void WireGuardTcpConnectionSpeed()
     {
         PerformProtocolTest(Protocol.WireGuardTcp);
     }
@@ -75,20 +75,20 @@ public class ProtocolSLIs : SliSetUp
     [Test]
     [Duration, TestStatus]
     [Sli("wireguard_tls")]
-    public void WireguardTlsConnectionSpeed()
+    public void WireGuardTlsConnectionSpeed()
     {
         PerformProtocolTest(Protocol.WireGuardTls);
     }
 
     private void PerformProtocolTest(Protocol protocol)
     {
-        bool isProtunWireguard = TestConstants.IsProtunVersion && SliHelper.SliName?.StartsWith("wireguard") == true;
+        bool isProtunWireGuard = TestConstants.IsProtunVersion && SliHelper.SliName?.StartsWith("wireguard") == true;
 
         SettingRobot
             .OpenSettings()
             .OpenProtocolSettings();
 
-        if (isProtunWireguard)
+        if (isProtunWireGuard)
         {
             SliHelper.SliName = "protun_" + SliHelper.SliName;
 
@@ -119,7 +119,7 @@ public class ProtocolSLIs : SliSetUp
         });
         SliHelper.MeasureTestStatus(() =>
         {
-            HomeRobot.Verify.IsProtocolDisplayed(protocol, isProtunWireguard);
+            HomeRobot.Verify.IsProtocolDisplayed(protocol, isProtunWireGuard);
         });
 
         HomeRobot

@@ -600,7 +600,7 @@ public class SettingRobot
     {
         Element settingsDefaultConnectionComboBox = SettingsPage
             .FindDescendant(DefaultConnectionDropdown);
-        
+
         settingsDefaultConnectionComboBox.Click();
         Thread.Sleep(TestConstants.AnimationDelay);
 

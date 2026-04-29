@@ -34,7 +34,7 @@ public class AdvancedSettingsRobot
     protected Element DnsServersSelectorSettingsCard = Element.ByAutomationId("DnsServersSelectorSettingsCard");
     protected Element NatTypeCard = Element.ByAutomationId("NatTypeSettingsCard");
 
-    private string? WireguardDnsAddress => NetworkUtils.GetDnsAddresses(TestConstants.IsProtunVersion ? "ProTUN" : "ProtonVPN").FirstOrDefault();
+    private string? WireGuardDnsAddress => NetworkUtils.GetDnsAddresses(TestConstants.IsProtunVersion ? "ProTUN" : "ProtonVPN").FirstOrDefault();
     private string? OpenVpnDnsAddress => NetworkUtils.GetDnsAddresses("ProtonVPN TUN").FirstOrDefault();
 
     public AdvancedSettingsRobot NavigateToCustomDns()
@@ -115,12 +115,12 @@ public class AdvancedSettingsRobot
 
         private string DnsAdressErrorMessage(string expectedDnsAddress)
         {
-            return $"Wireguard dns address: {WireguardDnsAddress}. OpenVPN dns address: {OpenVpnDnsAddress}. Expected dns value: {expectedDnsAddress}";
+            return $"WireGuard dns address: {WireGuardDnsAddress}. OpenVPN dns address: {OpenVpnDnsAddress}. Expected dns value: {expectedDnsAddress}";
         }
 
         private bool DoesContainDnsAddress(string expectedDnsAddress)
         {
-            return WireguardDnsAddress == expectedDnsAddress || OpenVpnDnsAddress == expectedDnsAddress;
+            return WireGuardDnsAddress == expectedDnsAddress || OpenVpnDnsAddress == expectedDnsAddress;
         }
     }
 

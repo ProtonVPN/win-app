@@ -402,11 +402,11 @@ public static class UiActions
         }
     }
 
-    public static void AssertIsFocused<T>(this T desiredElement) where T : Element
+    public static void AssertIsFocused<T>(this T desiredElement, bool expected = true) where T : Element
     {
         AutomationElement? element = WaitUntilExists(desiredElement);
 
-        Assert.That(element?.Properties.HasKeyboardFocus.Value, Is.True);
+        Assert.That(element?.Properties.HasKeyboardFocus.Value, expected ? Is.True : Is.False);
     }
 
     private static AutomationElement[] GetDescendantsByControlType<T>(this T desiredElement, ControlType controlType) where T : Element
@@ -435,7 +435,9 @@ public static class UiActions
                     BaseTest.RefreshWindow();
                     BaseTest.App?.WaitWhileBusy();
 
-                    elementToWaitFor = FindFirstDescendantUsingChildren(desiredElement.Condition);
+                    elementToWaitFor = Element.Root != null
+                        ? Element.Root.FindFirstDescendant(desiredElement.Condition)
+                        : FindFirstDescendantUsingChildren(desiredElement.Condition);
 
                     if (desiredElement.ChildElement != null && elementToWaitFor != null)
                     {
