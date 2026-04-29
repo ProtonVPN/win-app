@@ -154,6 +154,15 @@ public class NetworkUtils
         }
     }
 
+    public static void AssertCorrectNetworkAdapter(string adapterName)
+    {
+        NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
+        NetworkInterface? matchingAdapter = adapters.FirstOrDefault(a => a.Description.Contains(adapterName));
+
+        Assert.That(matchingAdapter, Is.Not.Null, $"No network adapter found with description containing '{adapterName}'");
+        Assert.That(matchingAdapter!.OperationalStatus, Is.EqualTo(OperationalStatus.Up), $"Adapter '{matchingAdapter.Description}' is not up");
+    }
+
     private static IPAddress? GetDefaultGatewayAddress()
     {
         return NetworkInterface

@@ -41,7 +41,7 @@ public class HomeRobot
     protected Element KebabMenuSettingsItem = Element.ByAutomationId("KebabMenuSettingsItem");
     protected Element KebabMenuExitItem = Element.ByAutomationId("KebabMenuExitItem");
     protected Element CloseButton = Element.ByAutomationId("Close");
-    protected Element MinimizeBtn = Element.ByAutomationId("Minimize");
+    protected Element MinimizeButton = Element.ByAutomationId("Minimize");
     protected Element ExitButton = Element.ByName("Exit");
 
     protected Element ConnectionCardTitle = Element.ByAutomationId("ConnectionCardTitle");
@@ -74,8 +74,8 @@ public class HomeRobot
     protected Element ConnectionErrorPanel = Element.ByAutomationId("ConnectionErrorPanel");
     protected Element WireGuardConnectionErrorPanelTitle => ConnectionErrorPanel.FindChild(Element.ByName("Connection failed"));
     protected Element WireGuardConnectionErrorPanelDescription => ConnectionErrorPanel.FindChild(Element.ByName("Your device's WireGuard adapter is in use. Disconnect from any other VPN running on your device, then try again."));
-    protected Element ConnectionErrorPanelTryAgainBtn => ConnectionErrorPanel.FindChild(Element.ByName("Try again"));
-    protected Element ConnectionErrorPanelCloseBtn => ConnectionErrorPanel.FindChild(Element.ByName("Close"));
+    protected Element ConnectionErrorPanelTryAgainButton => ConnectionErrorPanel.FindChild(Element.ByName("Try again"));
+    protected Element ConnectionErrorPanelCloseButton => ConnectionErrorPanel.FindChild(Element.ByName("Close"));
 
     protected Element ShowIpFlyoutButton => Element.ByAutomationId("ShowIpFlyoutButton");
 
@@ -202,7 +202,7 @@ public class HomeRobot
 
     public HomeRobot MinimizeClientViaMinimizeButton()
     {
-        MinimizeBtn.Click();
+        MinimizeButton.Click();
         return this;
     }
 
@@ -235,7 +235,7 @@ public class HomeRobot
 
     public HomeRobot CloseConnectionError()
     {
-        ConnectionErrorPanelCloseBtn.Click();
+        ConnectionErrorPanelCloseButton.Click();
         return this;
     }
 
@@ -264,8 +264,8 @@ public class HomeRobot
         {
             WireGuardConnectionErrorPanelTitle.WaitUntilDisplayed(TestConstants.OneMinuteTimeout);
             WireGuardConnectionErrorPanelDescription.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
-            ConnectionErrorPanelTryAgainBtn.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
-            ConnectionErrorPanelCloseBtn.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
+            ConnectionErrorPanelTryAgainButton.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
+            ConnectionErrorPanelCloseButton.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
             return this;
         }
 

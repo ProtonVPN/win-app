@@ -51,18 +51,18 @@ public class NavigationRobot
     protected Element ConnectionDetailsPage => Element.ByAutomationId("ConnectionDetailsPage");
     protected Element ConnectionPreferencesPage => Element.ByAutomationId("ConnectionPreferencesPage");
 
-    protected Element NoServerRefreshBtn => Element.ByName("Refresh");
-    protected Element NoServerSignOutBtn => Element.ByName("Sign out");
+    protected Element NoServerRefreshButton => Element.ByName("Refresh");
+    protected Element NoServerSignOutButton => Element.ByName("Sign out");
 
     public NavigationRobot ClickRefreshButtonOnNoServersPage()
     {
-        NoServerRefreshBtn.Invoke();
+        NoServerRefreshButton.Invoke();
         return this;
     }
 
     public NavigationRobot ClickSignOutButtonOnNoServersPage()
     {
-        NoServerSignOutBtn.Invoke();
+        NoServerSignOutButton.Invoke();
         return this;
     }
 

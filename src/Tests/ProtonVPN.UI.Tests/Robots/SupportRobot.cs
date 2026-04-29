@@ -36,8 +36,8 @@ public class SupportRobot
     protected Element NoLogsAttachedWarning => Element.ByAutomationId("Message");
     protected Element IncludeLogsCheckbox => Element.ByAutomationId("IncludeLogsCheckbox");
     protected Element EmailInputField => Element.ByAutomationId("EmailInputField");
-    protected Element DoneBtn => Element.ByName("Done");
-    protected Element CloseBtn => Element.ByAutomationId("Close");
+    protected Element DoneButton => Element.ByName("Done");
+    protected Element CloseButton => Element.ByAutomationId("Close");
     protected Element ConnectionHelpHeader => Element.ByName("Connection help");
 
     public SupportRobot(Func<Window?> windowFunc)
@@ -98,7 +98,7 @@ public class SupportRobot
 
     public SupportRobot CloseSupportWindow()
     {
-        CloseBtn.Click();
+        CloseButton.Click();
         return this;
     }
 
@@ -111,7 +111,7 @@ public class SupportRobot
         public Verifications IsSendingSuccessful()
         {
             ReportSentLabel.WaitUntilExists(TestConstants.ThirtySecondsTimeout);
-            DoneBtn.Click();
+            DoneButton.Click();
             Thread.Sleep(TestConstants.NavigationDelay);
             return this;
         }

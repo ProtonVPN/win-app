@@ -81,6 +81,9 @@ public class SettingRobot
     protected Element NatTypeStrictRadioButton = Element.ByAutomationId("StrictNatTypeRadioButton");
     protected Element NatTypeModerateRadioButton = Element.ByAutomationId("ModerateNatTypeRadioButton");
 
+    protected Element OpenVpnTapAdapterRadioButton = Element.ByAutomationId("TapAdapterRadioButton");
+    protected Element OpenVpnTunAdapterRadioButton = Element.ByAutomationId("TunAdapterRadioButton");
+
     protected Element AutoLaunchToggle = Element.ByAutomationId("AutoLaunchToggle");
     protected Element AutoConnectToggle = Element.ByAutomationId("AutoConnectToggle");
 
@@ -383,6 +386,20 @@ public class SettingRobot
         else if (natType == NatType.Moderate)
         {
             NatTypeModerateRadioButton.Click();
+        }
+
+        return this;
+    }
+
+    public SettingRobot SelectOpenVpnAdapter(OpenVpnAdapter openVpnAdapter)
+    {
+        if (openVpnAdapter == OpenVpnAdapter.TAP)
+        {
+            OpenVpnTapAdapterRadioButton.ScrollIntoView().Click();
+        }
+        else if (openVpnAdapter == OpenVpnAdapter.TUN)
+        {
+            OpenVpnTunAdapterRadioButton.ScrollIntoView().Click();
         }
 
         return this;

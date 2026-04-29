@@ -159,12 +159,12 @@ public class SearchTests : FreshSessionSetUp
     {
         SidebarRobot
             .SearchFor(COUNTRY_TO_SEARCH)
-            .Verify.IsBackBtnInSearchBoxDisplayed()
-            .ClickXBtnInSearchBox()
+            .Verify.IsBackButtonInSearchBoxDisplayed()
+            .ClickXButtonInSearchBox()
             .Verify.AssertSidebarSearchResults(TRY_SEARCHING_TEXT)
             .SearchFor(CITY)
-            .Verify.IsBackBtnInSearchBoxDisplayed()
-            .ClickBackBtnInSearchBox()
+            .Verify.IsBackButtonInSearchBoxDisplayed()
+            .ClickBackButtonInSearchBox()
             .Verify.IsSidebarConnectionsDisplayed();
     }
 }

@@ -127,7 +127,7 @@ public class SecureCoreTests : FreshSessionSetUp
         NetworkUtils.VerifyUserIsConnectedToExpectedCountry(_countryName);
 
         SidebarRobot
-            .Verify.IsDisconnectBtnOnHoverDisplayed(PROFILE_NAME)
+            .Verify.IsDisconnectButtonOnHoverDisplayed(PROFILE_NAME)
                    .IsGreenDotDisplayed(PROFILE_NAME)
             .DisconnectViaProfile(PROFILE_NAME);
         HomeRobot
@@ -154,7 +154,7 @@ public class SecureCoreTests : FreshSessionSetUp
         NetworkUtils.VerifyUserIsConnectedToExpectedCountry(_countryName);
 
         SidebarRobot
-            .Verify.IsDisconnectBtnOnHoverDisplayed(_countryName)
+            .Verify.IsDisconnectButtonOnHoverDisplayed(_countryName)
                    .IsGreenDotDisplayed(_countryName)
             .DisconnectViaSecureCore(_countryName, _viaCountryIceland);
         HomeRobot

@@ -93,7 +93,7 @@ public class SidebarRobot
     protected Element ConnectionItemsHeader = Element.ByAutomationId("ConnectionItemsHeader");
     protected Element CountryItem = Element.ByClassName("ListViewItem");
 
-    protected Element DisconnectBtnOnHover = Element.ByAutomationId("ConnectionRowAction").And(Element.ByName("Disconnect"));
+    protected Element DisconnectButtonOnHover = Element.ByAutomationId("ConnectionRowAction").And(Element.ByName("Disconnect"));
 
     public SidebarRobot NavigateToCountries()
     {
@@ -260,13 +260,13 @@ public class SidebarRobot
         return this;
     }
 
-    public SidebarRobot ClickXBtnInSearchBox()
+    public SidebarRobot ClickXButtonInSearchBox()
     {
         SearchTextBox.ClearSearch();
         return this;
     }
 
-    public SidebarRobot ClickBackBtnInSearchBox()
+    public SidebarRobot ClickBackButtonInSearchBox()
     {
         SearchTextBox.FindChild(SearchBackButton).Click();
         return this;
@@ -455,7 +455,7 @@ public class SidebarRobot
             return this;
         }
 
-        public SidebarRobot IsBackBtnInSearchBoxDisplayed()
+        public SidebarRobot IsBackButtonInSearchBoxDisplayed()
         {
             SearchTextBox.FindChild(SearchBackButton).WaitUntilDisplayed();
             return this;
@@ -484,9 +484,9 @@ public class SidebarRobot
             return this;
         }
 
-        public Verifications IsDisconnectBtnOnHoverDisplayed(string connectionValue)
+        public Verifications IsDisconnectButtonOnHoverDisplayed(string connectionValue)
         {
-            DisconnectBtnOnHover.WaitUntilDisplayed();
+            DisconnectButtonOnHover.WaitUntilDisplayed();
             return this;
         }
 
