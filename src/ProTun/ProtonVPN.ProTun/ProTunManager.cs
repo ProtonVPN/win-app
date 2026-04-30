@@ -40,6 +40,9 @@ public class ProTunManager : IProTunManager
 {
     private const LogLevel LOG_LEVEL = LogLevel.Info;
     private const ushort MTU = 1420;
+    private const uint UDP_SEND_BUFFER_SIZE = 2 * 1024 * 1024; // 2 MiB
+    private const uint UDP_RECEIVE_BUFFER_SIZE = 4 * 1024 * 1024; // 4 MiB
+    private const uint WINTUN_BUFFER_SIZE = 4 * 1024 * 1024; // 4 MiB (Needs to be a power of two between 131072 and 67108864 inclusive)
 
     private readonly IProTunLogger _proTunLogger;
     private readonly IProTunStateChangeHandler _proTunStateChangeHandler;
@@ -123,8 +126,9 @@ public class ProTunManager : IProTunManager
             else
             {
                 InitialConnectionConfig initialConnectionConfig = CreateInitialConnectionConfig(args);
-                AdapterConfig adapterConfig = CreateAdapterConfig(args);
-                _windowsConnection = ProTunWindowsConnection.Connect(initialConnectionConfig, adapterConfig, _proTunStateChangeHandler, _proTunEventsResponseHandler);
+                NetworkConfig networkConfig = CreateNetworkConfig(args);
+                _windowsConnection = ProTunWindowsConnection.Connect(initialConnectionConfig, networkConfig,
+                    _proTunStateChangeHandler, _proTunEventsResponseHandler);
                 AdapterDetails adapterDetails = _windowsConnection.GetAdapterDetails().Map();
                 _adapterDetailsCache.Set(adapterDetails);
                 _connection = _windowsConnection.GetConnection();
@@ -218,12 +222,26 @@ public class ProTunManager : IProTunManager
         );
     }
 
+    private static NetworkConfig CreateNetworkConfig(ConnectionArgs args)
+    {
+        return new(CreateAdapterConfig(args), CreateUdpSocketConfig());
+    }
+
     private static AdapterConfig CreateAdapterConfig(ConnectionArgs args)
     {
         return new AdapterConfig(
             customDnsServerIps: args.CustomDnsServers.ToArray(),
             isIpv6Enabled: args.IsIpv6Enabled,
-            mtu: MTU
+            mtu: MTU,
+            bufferSizeBytes: WINTUN_BUFFER_SIZE
+        );
+    }
+
+    private static SocketConfig CreateUdpSocketConfig()
+    {
+        return new SocketConfig(
+            sendBufferSizeBytes: UDP_SEND_BUFFER_SIZE,
+            receiveBufferSizeBytes: UDP_RECEIVE_BUFFER_SIZE
         );
     }
 

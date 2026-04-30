@@ -898,7 +898,7 @@ static class _UniFFILib {
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
-    public static extern IntPtr uniffi_protun_fn_constructor_windowsconnection_connect(RustBuffer @connectionConfig,RustBuffer @adapterConfig,ulong @clientStateChangeCallback,ulong @eventCallback,ref UniffiRustCallStatus _uniffi_out_err
+    public static extern IntPtr uniffi_protun_fn_constructor_windowsconnection_connect(RustBuffer @connectionConfig,RustBuffer @networkConfig,ulong @clientStateChangeCallback,ulong @eventCallback,ref UniffiRustCallStatus _uniffi_out_err
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
@@ -1339,8 +1339,8 @@ static class _UniFFILib {
         }
         {
             var checksum = _UniFFILib.uniffi_protun_checksum_constructor_windowsconnection_connect();
-            if (checksum != 18644) {
-                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_constructor_windowsconnection_connect` checksum `18644`, library returned `{checksum}`");
+            if (checksum != 6810) {
+                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_constructor_windowsconnection_connect` checksum `6810`, library returned `{checksum}`");
             }
         }
         {
@@ -2156,10 +2156,10 @@ public class WindowsConnection : IWindowsConnection, IDisposable {
 
     
     /// <exception cref="ProTunFatalException"></exception>
-    public static WindowsConnection Connect(InitialConnectionConfig @connectionConfig, AdapterConfig @adapterConfig, StateChangedCallback @clientStateChangeCallback, EventCallback @eventCallback) {
+    public static WindowsConnection Connect(InitialConnectionConfig @connectionConfig, NetworkConfig @networkConfig, StateChangedCallback @clientStateChangeCallback, EventCallback @eventCallback) {
         return new WindowsConnection(
     _UniffiHelpers.RustCallWithError(FfiConverterTypeProTunFatalError.INSTANCE, (ref UniffiRustCallStatus _status) =>
-    _UniFFILib.uniffi_protun_fn_constructor_windowsconnection_connect(FfiConverterTypeInitialConnectionConfig.INSTANCE.Lower(@connectionConfig), FfiConverterTypeAdapterConfig.INSTANCE.Lower(@adapterConfig), FfiConverterTypeStateChangedCallback.INSTANCE.Lower(@clientStateChangeCallback), FfiConverterTypeEventCallback.INSTANCE.Lower(@eventCallback), ref _status)
+    _UniFFILib.uniffi_protun_fn_constructor_windowsconnection_connect(FfiConverterTypeInitialConnectionConfig.INSTANCE.Lower(@connectionConfig), FfiConverterTypeNetworkConfig.INSTANCE.Lower(@networkConfig), FfiConverterTypeStateChangedCallback.INSTANCE.Lower(@clientStateChangeCallback), FfiConverterTypeEventCallback.INSTANCE.Lower(@eventCallback), ref _status)
 ));
     }
     
@@ -2195,7 +2195,8 @@ class FfiConverterTypeWindowsConnection: FfiConverter<WindowsConnection, IntPtr>
 public record AdapterConfig (
     IpAddress[] @customDnsServerIps, 
     bool @isIpv6Enabled, 
-    ushort @mtu
+    ushort @mtu, 
+    uint @bufferSizeBytes
 ) {
 }
 
@@ -2206,7 +2207,8 @@ class FfiConverterTypeAdapterConfig: FfiConverterRustBuffer<AdapterConfig> {
         return new AdapterConfig(
             @customDnsServerIps: FfiConverterSequenceTypeIpAddress.INSTANCE.Read(stream),
             @isIpv6Enabled: FfiConverterBoolean.INSTANCE.Read(stream),
-            @mtu: FfiConverterUInt16.INSTANCE.Read(stream)
+            @mtu: FfiConverterUInt16.INSTANCE.Read(stream),
+            @bufferSizeBytes: FfiConverterUInt32.INSTANCE.Read(stream)
         );
     }
 
@@ -2214,13 +2216,15 @@ class FfiConverterTypeAdapterConfig: FfiConverterRustBuffer<AdapterConfig> {
         return 0
             + FfiConverterSequenceTypeIpAddress.INSTANCE.AllocationSize(value.@customDnsServerIps)
             + FfiConverterBoolean.INSTANCE.AllocationSize(value.@isIpv6Enabled)
-            + FfiConverterUInt16.INSTANCE.AllocationSize(value.@mtu);
+            + FfiConverterUInt16.INSTANCE.AllocationSize(value.@mtu)
+            + FfiConverterUInt32.INSTANCE.AllocationSize(value.@bufferSizeBytes);
     }
 
     public override void Write(AdapterConfig value, BigEndianStream stream) {
             FfiConverterSequenceTypeIpAddress.INSTANCE.Write(value.@customDnsServerIps, stream);
             FfiConverterBoolean.INSTANCE.Write(value.@isIpv6Enabled, stream);
             FfiConverterUInt16.INSTANCE.Write(value.@mtu, stream);
+            FfiConverterUInt32.INSTANCE.Write(value.@bufferSizeBytes, stream);
     }
 }
 
@@ -2259,6 +2263,36 @@ class FfiConverterTypeInitialConnectionConfig: FfiConverterRustBuffer<InitialCon
             FfiConverterSequenceTypePeerInfo.INSTANCE.Write(value.@peers, stream);
             FfiConverterBoolean.INSTANCE.Write(value.@networkAvailable, stream);
             FfiConverterOptionalTypePcapFileInfo.INSTANCE.Write(value.@pcapFile, stream);
+    }
+}
+
+
+
+public record NetworkConfig (
+    AdapterConfig @tunAdapter, 
+    SocketConfig @udpSocket
+) {
+}
+
+class FfiConverterTypeNetworkConfig: FfiConverterRustBuffer<NetworkConfig> {
+    public static FfiConverterTypeNetworkConfig INSTANCE = new FfiConverterTypeNetworkConfig();
+
+    public override NetworkConfig Read(BigEndianStream stream) {
+        return new NetworkConfig(
+            @tunAdapter: FfiConverterTypeAdapterConfig.INSTANCE.Read(stream),
+            @udpSocket: FfiConverterTypeSocketConfig.INSTANCE.Read(stream)
+        );
+    }
+
+    public override int AllocationSize(NetworkConfig value) {
+        return 0
+            + FfiConverterTypeAdapterConfig.INSTANCE.AllocationSize(value.@tunAdapter)
+            + FfiConverterTypeSocketConfig.INSTANCE.AllocationSize(value.@udpSocket);
+    }
+
+    public override void Write(NetworkConfig value, BigEndianStream stream) {
+            FfiConverterTypeAdapterConfig.INSTANCE.Write(value.@tunAdapter, stream);
+            FfiConverterTypeSocketConfig.INSTANCE.Write(value.@udpSocket, stream);
     }
 }
 
@@ -2462,6 +2496,36 @@ class FfiConverterTypeProTunAdapterDetails: FfiConverterRustBuffer<ProTunAdapter
             FfiConverterString.INSTANCE.Write(value.@serverIpv4Addr, stream);
             FfiConverterString.INSTANCE.Write(value.@clientIpv6Addr, stream);
             FfiConverterString.INSTANCE.Write(value.@serverIpv6Addr, stream);
+    }
+}
+
+
+
+public record SocketConfig (
+    uint @sendBufferSizeBytes, 
+    uint @receiveBufferSizeBytes
+) {
+}
+
+class FfiConverterTypeSocketConfig: FfiConverterRustBuffer<SocketConfig> {
+    public static FfiConverterTypeSocketConfig INSTANCE = new FfiConverterTypeSocketConfig();
+
+    public override SocketConfig Read(BigEndianStream stream) {
+        return new SocketConfig(
+            @sendBufferSizeBytes: FfiConverterUInt32.INSTANCE.Read(stream),
+            @receiveBufferSizeBytes: FfiConverterUInt32.INSTANCE.Read(stream)
+        );
+    }
+
+    public override int AllocationSize(SocketConfig value) {
+        return 0
+            + FfiConverterUInt32.INSTANCE.AllocationSize(value.@sendBufferSizeBytes)
+            + FfiConverterUInt32.INSTANCE.AllocationSize(value.@receiveBufferSizeBytes);
+    }
+
+    public override void Write(SocketConfig value, BigEndianStream stream) {
+            FfiConverterUInt32.INSTANCE.Write(value.@sendBufferSizeBytes, stream);
+            FfiConverterUInt32.INSTANCE.Write(value.@receiveBufferSizeBytes, stream);
     }
 }
 
