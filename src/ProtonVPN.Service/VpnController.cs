@@ -105,6 +105,11 @@ public class VpnController : IVpnController
         config.OpenVpnAdapter = _serviceSettings.OpenVpnAdapter;
         IReadOnlyList<VpnHost> endpoints = _entityMapper.Map<VpnServerIpcEntity, VpnHost>(connectionRequest.Servers);
         VpnCredentials credentials = _entityMapper.Map<VpnCredentialsIpcEntity, VpnCredentials>(connectionRequest.Credentials);
+        if (string.IsNullOrEmpty(credentials.ClientCertPem))
+        {
+            _logger.Error<ConnectLog>("Connection certificate is missing, aborting connection.");
+            return;
+        }
 
         await _localAgentTlsCredentialsCache.SetAsync(new LocalAgentTlsCredentials(
             new ConnectionCertificate(credentials.ClientCertPem, credentials.ClientCertificateExpirationDateUtc),
