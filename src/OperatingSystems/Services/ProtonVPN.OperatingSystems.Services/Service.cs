@@ -18,6 +18,7 @@
  */
 
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Polly;
 using Polly.Retry;
@@ -264,11 +265,18 @@ public class Service : IService
 
             if (!await WaitForServiceStateAsync(handle, ServiceState.SERVICE_RUNNING, cancellationToken).ConfigureAwait(false))
             {
-                _logger.Warn<OperatingSystemLog>($"The service '{Name}' did not reach the running state within {_timeoutInterval.TotalSeconds} seconds.");
+                if (!cancellationToken.IsCancellationRequested)
+                {
+                    _logger.Warn<OperatingSystemLog>($"The service '{Name}' did not reach the running state within {_timeoutInterval.TotalSeconds} seconds.");
+                }
                 return false;
             }
 
             return true;
+        }
+        catch (OperationCanceledException)
+        {
+            return false;
         }
         catch (Win32Exception ex) when (ex.NativeErrorCode == ERROR_SERVICE_DOES_NOT_EXIST)
         {
@@ -354,11 +362,6 @@ public class Service : IService
                 return true;
             }
 
-            if (status.dwCurrentState == ServiceState.SERVICE_STOPPED && desiredState == ServiceState.SERVICE_RUNNING)
-            {
-                return false;
-            }
-
             if (DateTime.UtcNow - start >= _timeoutInterval)
             {
                 return false;
@@ -423,6 +426,59 @@ public class Service : IService
         catch (Exception ex)
         {
             _logger.Error<OperatingSystemLog>($"Failed to create Windows service '{Name}'.", ex);
+        }
+    }
+
+    public bool Kill()
+    {
+        _logger.Info<OperatingSystemLog>($"Killing the Windows service '{Name}'.");
+
+        try
+        {
+            using SafeSC_HANDLE handle = GetServiceHandle(ServiceAccessTypes.SERVICE_QUERY_STATUS);
+            SERVICE_STATUS_PROCESS statusProcess = GetServiceStatusProcess(handle);
+
+            if (statusProcess.dwCurrentState == ServiceState.SERVICE_STOPPED)
+            {
+                _logger.Info<OperatingSystemLog>($"Service '{Name}' is stopped, no need to kill.");
+                return true;
+            }
+
+            if (statusProcess.dwProcessId == 0)
+            {
+                _logger.Warn<OperatingSystemLog>($"Cannot kill Windows service '{Name}' because the process ID is not available.");
+                return false;
+            }
+
+            using Process process = Process.GetProcessById((int)statusProcess.dwProcessId);
+            process.Kill();
+
+            _logger.Info<OperatingSystemLog>($"Successfully killed Windows service '{Name}' process (PID: {statusProcess.dwProcessId}).");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<OperatingSystemLog>($"Failed to kill Windows service '{Name}'.", ex);
+            return false;
+        }
+    }
+
+    private SERVICE_STATUS_PROCESS GetServiceStatusProcess(SafeSC_HANDLE serviceHandle)
+    {
+        int size = Marshal.SizeOf<SERVICE_STATUS_PROCESS>();
+        IntPtr buffer = Marshal.AllocHGlobal(size);
+        try
+        {
+            if (!QueryServiceStatusEx(serviceHandle, SC_STATUS_TYPE.SC_STATUS_PROCESS_INFO, buffer, (uint)size, out _))
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error(), $"Failed to query service status process for '{Name}'.");
+            }
+
+            return Marshal.PtrToStructure<SERVICE_STATUS_PROCESS>(buffer);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(buffer);
         }
     }
 

@@ -23,9 +23,9 @@ namespace ProtonVPN.Service.SplitTunneling;
 
 public interface ISplitTunnelClient
 {
-    void EnableExcludeMode(string[] appPaths, IPAddress localIpv4Address, IPAddress localIpv6Address);
+    void EnableExcludeMode(string[] appPaths, IPAddress localIpv4Address, IPAddress? localIpv6Address);
 
-    void EnableIncludeMode(string[] appPaths, IPAddress serverIpv4Address, IPAddress serverIpv6Address);
+    void EnableIncludeMode(string[] appPaths, IPAddress serverIpv4Address, IPAddress? serverIpv6Address);
 
     void Disable();
 }

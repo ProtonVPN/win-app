@@ -17,6 +17,7 @@
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+		<Nullable>enable</Nullable>
     </PropertyGroup>
     <ItemGroup>
         <Compile Include="..\GlobalAssemblyInfo.cs">
@@ -64,8 +65,7 @@
         <ProjectReference Include="..\OperatingSystems\Services\ProtonVPN.OperatingSystems.Services.Installers\ProtonVPN.OperatingSystems.Services.Installers.csproj" />
         <ProjectReference Include="..\OperatingSystems\TaskScheduling\ProtonVPN.OperatingSystems.TaskScheduling.Installers\ProtonVPN.OperatingSystems.TaskScheduling.Installers.csproj" />
         <ProjectReference Include="..\ProcessCommunication\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />
-        <ProjectReference Include="..\ProcessCommunication\ProtonVPN.ProcessCommunication.Installers\ProtonVPN.ProcessCommunication.Installers.csproj" />
-        <ProjectReference Include="..\ProcessCommunication\Server\ProtonVPN.ProcessCommunication.Server.Installers\ProtonVPN.ProcessCommunication.Server.Installers.csproj" />
+        <ProjectReference Include="..\ProcessCommunication\Service\ProtonVPN.ProcessCommunication.Service.Installers\ProtonVPN.ProcessCommunication.Service.Installers.csproj" />
         <ProjectReference Include="..\ProtonVPN.Common.Legacy\ProtonVPN.Common.Legacy.csproj" />
         <ProjectReference Include="..\ProtonVPN.Native\ProtonVPN.Native.csproj" />
         <ProjectReference Include="..\ProtonVPN.NetworkFilter\ProtonVPN.NetworkFilter.csproj" />
@@ -80,6 +80,7 @@
         <PackageReference Include="Polly" />
         <PackageReference Include="protobuf-net.Grpc" />
         <PackageReference Include="protobuf-net.Grpc.Native" />
+        <PackageReference Include="Stateless" />
         <PackageReference Include="System.Collections.Immutable" />
         <PackageReference Include="System.ComponentModel.Annotations" />
         <PackageReference Include="System.Diagnostics.DiagnosticSource" />

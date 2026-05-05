@@ -37,7 +37,7 @@ internal class SplitTunnelClient : ISplitTunnelClient
         _filters = filters;
     }
 
-    public void EnableExcludeMode(string[] appPaths, IPAddress localIpv4Address, IPAddress localIpv6Address)
+    public void EnableExcludeMode(string[] appPaths, IPAddress localIpv4Address, IPAddress? localIpv6Address)
     {
         if ((appPaths == null || appPaths.Length == 0))
         {
@@ -49,7 +49,7 @@ internal class SplitTunnelClient : ISplitTunnelClient
             "SplitTunnel: Enabling exclude mode");
     }
 
-    public void EnableIncludeMode(string[] appPaths, IPAddress serverIpv4Address, IPAddress serverIpv6Address)
+    public void EnableIncludeMode(string[] appPaths, IPAddress serverIpv4Address, IPAddress? serverIpv6Address)
     {
         if ((appPaths == null || appPaths.Length == 0))
         {

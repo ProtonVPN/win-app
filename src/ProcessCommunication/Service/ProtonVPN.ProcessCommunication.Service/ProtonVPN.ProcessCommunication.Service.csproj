@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net8.0-windows</TargetFramework>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
         <ImplicitUsings>enable</ImplicitUsings>
         <OutputPath>..\..\..\bin</OutputPath>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -13,11 +14,16 @@
         </Compile>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="protobuf-net.Grpc.Native" />
-        <PackageReference Include="System.Private.ServiceModel" />
+        <PackageReference Include="protobuf-net.Grpc.AspNetCore" />
+        <PackageReference Include="System.Formats.Asn1" />
+        <PackageReference Include="System.Text.Json" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\ProtonVPN.ProcessCommunication.Common\ProtonVPN.ProcessCommunication.Common.csproj" />
-        <ProjectReference Include="..\..\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />
+      <ProjectReference Include="..\..\..\Crypto\ProtonVPN.Crypto\ProtonVPN.Crypto.csproj" />
+      <ProjectReference Include="..\..\..\IssueReporting\ProtonVPN.IssueReporting.Contracts\ProtonVPN.IssueReporting.Contracts.csproj" />
+      <ProjectReference Include="..\..\..\OperatingSystems\Processes\ProtonVPN.OperatingSystems.Processes.Contracts\ProtonVPN.OperatingSystems.Processes.Contracts.csproj" />
+      <ProjectReference Include="..\..\..\OperatingSystems\Registries\ProtonVPN.OperatingSystems.Registries.Contracts\ProtonVPN.OperatingSystems.Registries.Contracts.csproj" />
+      <ProjectReference Include="..\..\Common\ProtonVPN.ProcessCommunication.Common\ProtonVPN.ProcessCommunication.Common.csproj" />
+      <ProjectReference Include="..\..\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />
     </ItemGroup>
 </Project>

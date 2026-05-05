@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,13 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Channels;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy;
 using ProtonVPN.ProTun.Generated;
 
 namespace ProtonVPN.ProTun.StateChanges;
 
 public interface IProTunStateChangeHandler : StateChangedCallback
 {
-    event EventHandler<EventArgs<VpnState>>? StateChanged;
+    Channel<VpnState> StateChannel { get; }
+
+    void SetCancellationToken(CancellationToken cancellationToken);
 }

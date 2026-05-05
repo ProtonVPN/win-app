@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -53,8 +53,6 @@ public class OpenVpnProcessParams
     public IReadOnlyCollection<string> CustomDns { get; }
 
     public SplitTunnelMode SplitTunnelMode { get; }
-
-    public IReadOnlyCollection<string> SplitTunnelIPs { get; }
 
     public OpenVpnAdapter OpenVpnAdapter { get; }
 

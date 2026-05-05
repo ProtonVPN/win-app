@@ -65,5 +65,6 @@ public interface IStaticConfiguration
     string WintunDriverPath { get; }
     string WintunAdapterName { get; }
 
-    string GetHardwareId(OpenVpnAdapter openVpnAdapter);
+    string GetHardwareId(VpnProtocol vpnProtocol, OpenVpnAdapter openVpnAdapter);
+    string GetWireGuardHardwareId();
 }

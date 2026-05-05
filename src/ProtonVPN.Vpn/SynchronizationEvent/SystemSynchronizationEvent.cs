@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,37 +20,36 @@
 using ProtonVPN.Common.Legacy.Helpers;
 using System.Threading;
 
-namespace ProtonVPN.Vpn.SynchronizationEvent
+namespace ProtonVPN.Vpn.SynchronizationEvent;
+
+/// <summary>
+/// Synchronization event used to force exit of OpenVPN process.
+/// Wraps <see cref="EventWaitHandle"/>.
+/// </summary>
+public class SystemSynchronizationEvent : ISynchronizationEvent
 {
-    /// <summary>
-    /// Synchronization event used to force exit of OpenVPN process.
-    /// Wraps <see cref="EventWaitHandle"/>.
-    /// </summary>
-    internal class SystemSynchronizationEvent : ISynchronizationEvent
+    private EventWaitHandle? _eventWaitHandle;
+
+    public SystemSynchronizationEvent(EventWaitHandle eventWaitHandle)
     {
-        private EventWaitHandle _eventWaitHandle;
+        Ensure.NotNull(eventWaitHandle, nameof(eventWaitHandle));
 
-        public SystemSynchronizationEvent(EventWaitHandle eventWaitHandle)
-        {
-            Ensure.NotNull(eventWaitHandle, nameof(eventWaitHandle));
+        _eventWaitHandle = eventWaitHandle;
+    }
 
-            _eventWaitHandle = eventWaitHandle;
-        }
+    public void Set()
+    {
+        _eventWaitHandle?.Set();
+    }
 
-        public void Set()
-        {
-            _eventWaitHandle.Set();
-        }
+    public void Reset()
+    {
+        _eventWaitHandle?.Reset();
+    }
 
-        public void Reset()
-        {
-            _eventWaitHandle.Reset();
-        }
-
-        public void Dispose()
-        {
-            _eventWaitHandle?.Dispose();
-            _eventWaitHandle = null;
-        }
+    public void Dispose()
+    {
+        _eventWaitHandle?.Dispose();
+        _eventWaitHandle = null;
     }
 }

@@ -23,9 +23,9 @@ namespace ProtonVPN.Vpn.Gateways;
 
 public class GatewayCache : IGatewayCache
 {
-    private IPAddress _defaultGateway;
+    private IPAddress? _defaultGateway;
 
-    public IPAddress Get() => _defaultGateway;
+    public IPAddress? Get() => _defaultGateway;
 
     public void Save(IPAddress defaultGateway)
     {

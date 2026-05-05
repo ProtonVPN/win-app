@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,68 +17,68 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.ProtocolLogs;
 
-namespace ProtonVPN.Vpn.Management
+namespace ProtonVPN.Vpn.Management;
+
+/// <summary>
+/// Messaging wrapper over <see cref="IManagementChannel"/>. 
+/// </summary>
+internal class MessagingManagementChannel : IMessagingManagementChannel
 {
-    /// <summary>
-    /// Messaging wrapper over <see cref="IManagementChannel"/>. 
-    /// </summary>
-    internal class MessagingManagementChannel
+    private readonly ILogger _logger;
+    private readonly IConcurrentManagementChannel _managementChannel;
+
+    public MessagingManagementChannel(ILogger logger, IConcurrentManagementChannel managementChannel)
     {
-        private readonly ILogger _logger;
-        private readonly IManagementChannel _managementChannel;
+        _logger = logger;
+        _managementChannel = managementChannel;
 
-        public MessagingManagementChannel(ILogger logger, IManagementChannel managementChannel) 
+        Messages = new();
+    }
+
+    public ManagementMessages Messages { get; }
+
+    public async Task ConnectAsync(int port, string password, CancellationToken cancellationToken)
+    {
+        await _managementChannel.Connect(port);
+        _logger.Info<ConnectLog>("Management <- [management password]");
+        await _managementChannel.WriteLineAsync(password, cancellationToken);
+    }
+
+    public async Task<ReceivedManagementMessage> ReadMessageAsync(CancellationToken cancellationToken)
+    {
+        string? messageText = await _managementChannel.ReadLineAsync(cancellationToken);
+        ReceivedManagementMessage message = Messages.ReceivedMessage(messageText ?? "");
+        Log(message);
+        return message;
+    }
+
+    public Task WriteMessage(ManagementMessage message, CancellationToken cancellationToken)
+    {
+        Log(message);
+        return _managementChannel.WriteLineAsync(message.ToString(), cancellationToken);
+    }
+
+    public void Disconnect()
+    {
+        _managementChannel.Disconnect();
+    }
+
+    private void Log(ReceivedManagementMessage message)
+    {
+        if (!message.IsByteCount)
         {
-            _logger = logger;
-            _managementChannel = managementChannel;
-
-            Messages = new();
+            _logger.Info<OpenVpnProtocolLog>($"Management -> {message}");
         }
+    }
 
-        public ManagementMessages Messages { get; }
-
-        public async Task Connect(int port, string password)
-        {
-            await _managementChannel.Connect(port);
-            _logger.Info<ConnectLog>("Management <- [management password]");
-            await _managementChannel.WriteLine(password);
-        }
-
-        public async Task<ReceivedManagementMessage> ReadMessage()
-        {
-            string messageText = await _managementChannel.ReadLine();
-            ReceivedManagementMessage message = Messages.ReceivedMessage(messageText ?? "");
-            Log(message);
-            return message;
-        }
-
-        public Task WriteMessage(ManagementMessage message)
-        {
-            Log(message);
-            return _managementChannel.WriteLine(message.ToString());
-        }
-
-        public void Disconnect()
-        {
-            _managementChannel.Disconnect();
-        }
-
-        private void Log(ReceivedManagementMessage message)
-        {
-            if (!message.IsByteCount)
-            {
-                _logger.Info<OpenVpnProtocolLog>($"Management -> {message}");
-            }
-        }
-
-        private void Log(ManagementMessage message)
-        {
-            _logger.Info<OpenVpnProtocolLog>($"Management <- {message.LogText}");
-        }
+    private void Log(ManagementMessage message)
+    {
+        _logger.Info<OpenVpnProtocolLog>($"Management <- {message.LogText}");
     }
 }

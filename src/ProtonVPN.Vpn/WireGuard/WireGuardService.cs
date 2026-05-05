@@ -29,15 +29,17 @@ namespace ProtonVPN.Vpn.WireGuard;
 
 public class WireGuardService : IWireGuardService
 {
+    private const int MAX_SERVICE_STOP_ATTEMPTS = 3;
+
     private readonly ILogger _logger;
     private readonly IStaticConfiguration _staticConfig;
     private readonly IService _origin;
 
-    public WireGuardService(ILogger logger, IStaticConfiguration staticConfig, IService origin)
+    public WireGuardService(ILogger logger, IStaticConfiguration staticConfig, IServiceFactory serviceFactory)
     {
         _logger = logger;
         _staticConfig = staticConfig;
-        _origin = origin;
+        _origin = serviceFactory.Get(staticConfig.WireGuard.ServiceName);
     }
 
     public string Name => _origin.Name;
@@ -70,14 +72,44 @@ public class WireGuardService : IWireGuardService
         await _origin.StartAsync(cancellationToken).ConfigureAwait(false);
     }
 
-    public async Task StopAsync(CancellationToken cancellationToken)
+    public async Task StopAsync()
     {
-        await _origin.StopAsync(cancellationToken).ConfigureAwait(false);
+        if (!_origin.IsCreated() || _origin.IsStopped())
+        {
+            return;
+        }
+
+        int attemptCount = 0;
+        bool result = false;
+
+        while (attemptCount < MAX_SERVICE_STOP_ATTEMPTS)
+        {
+            result = await _origin.StopAsync(CancellationToken.None);
+            await Task.Delay(100);
+
+            if (result)
+            {
+                break;
+            }
+
+            attemptCount++;
+        }
+
+        if (!result)
+        {
+            _logger.Error<AppServiceStartFailedLog>($"Failed to stop WireGuard service after {MAX_SERVICE_STOP_ATTEMPTS} attempts. Trying to kill.");
+            _origin.Kill();
+        }
+    }
+
+    public bool Kill()
+    {
+        return _origin.Kill();
     }
 
     private void UpdateServicePath(VpnProtocol protocol)
     {
-        string servicePathToExecutable = _origin.GetBinaryPath();
+        string? servicePathToExecutable = _origin.GetBinaryPath();
         if (string.IsNullOrEmpty(servicePathToExecutable))
         {
             _logger.Error<AppServiceLog>(ServicePathError);

@@ -23,19 +23,24 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.NetworkFilter;
 using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+using ProtonVPN.ProTun.Contracts.Adapters;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.SplitTunneling;
+using ProtonVPN.Vpn.SplitTunnel;
 
 namespace ProtonVPN.Service.Tests.SplitTunneling;
 
 [TestClass]
 public class SplitTunnelTest
 {
+    private ILogger _logger;
+    private ISplitTunnelRouting _splitTunnelRouting;
     private INetworkUtilities _networkUtilities;
     private ISystemNetworkInterfaces _networkInterfaces;
     private IConfiguration _config;
@@ -43,10 +48,13 @@ public class SplitTunnelTest
     private ISplitTunnelClient _splitTunnelClient;
     private IAppFilter _appFilter;
     private IPermittedRemoteAddress _permittedRemoteAddress;
+    private IAdapterDetailsCache _proTunAdapterDetailsCache;
 
     [TestInitialize]
     public void TestInitialize()
     {
+        _logger = Substitute.For<ILogger>();
+        _splitTunnelRouting = Substitute.For<ISplitTunnelRouting>();
         _networkUtilities = Substitute.For<INetworkUtilities>();
         _networkInterfaces = Substitute.For<ISystemNetworkInterfaces>();
         _config = Substitute.For<IConfiguration>();
@@ -54,6 +62,7 @@ public class SplitTunnelTest
         _splitTunnelClient = Substitute.For<ISplitTunnelClient>();
         _appFilter = Substitute.For<IAppFilter>();
         _permittedRemoteAddress = Substitute.For<IPermittedRemoteAddress>();
+        _proTunAdapterDetailsCache = Substitute.For<IAdapterDetailsCache>();
     }
 
     [TestMethod]
@@ -301,13 +310,16 @@ public class SplitTunnelTest
         return new SplitTunnel(
             enabled,
             reverseEnabled,
+            _logger,
+            _splitTunnelRouting,
             _networkUtilities,
             _networkInterfaces,
             _config,
             _serviceSettings,
             _splitTunnelClient,
             _appFilter,
-            _permittedRemoteAddress);
+            _permittedRemoteAddress,
+            _proTunAdapterDetailsCache);
     }
 
     private VpnState GetConnectedVpnState()

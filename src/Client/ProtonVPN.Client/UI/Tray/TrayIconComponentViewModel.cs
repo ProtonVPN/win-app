@@ -154,6 +154,7 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
     {
         return _userAuthenticator.IsLoggedIn
             && _connectionManager.IsDisconnected
+            && _connectionManager.IsConnectAllowed
             && !_serversCache.HasNoServers();
     }
 

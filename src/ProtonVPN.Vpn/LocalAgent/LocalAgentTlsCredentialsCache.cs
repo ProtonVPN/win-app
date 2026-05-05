@@ -17,9 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
+using System.Threading;
+using System.Threading.Channels;
+using System.Threading.Tasks;
 using ProtonVPN.Common.Core.LocalAgent;
-using ProtonVPN.Common.Legacy;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.LocalAgentLogs;
 
@@ -27,35 +28,49 @@ namespace ProtonVPN.Vpn.LocalAgent;
 
 public class LocalAgentTlsCredentialsCache : ILocalAgentTlsCredentialsCache
 {
-    public event EventHandler<EventArgs<LocalAgentTlsCredentials>> Changed;
+    public Channel<LocalAgentTlsCredentialsUpdate> LocalAgentTlsCredentialsChannel { get; } = Channel.CreateUnbounded<LocalAgentTlsCredentialsUpdate>();
+    public long CurrentVersion => Interlocked.Read(ref _currentVersion);
 
     private readonly ILogger _logger;
-    private readonly object _lock = new();
+    private readonly SemaphoreSlim _semaphore = new(1, 1);
+    private long _currentVersion;
 
-    private LocalAgentTlsCredentials _credentials;
+    private LocalAgentTlsCredentials? _credentials;
 
     public LocalAgentTlsCredentialsCache(ILogger logger)
     {
         _logger = logger;
     }
 
-    public LocalAgentTlsCredentials Get()
+    public async Task<LocalAgentTlsCredentials?> GetAsync(CancellationToken cancellationToken)
     {
-        lock(_lock)
+        await _semaphore.WaitAsync(cancellationToken);
+
+        try
         {
             return _credentials;
         }
-    }
-
-    public void Set(LocalAgentTlsCredentials credentials)
-    {
-        lock (_lock)
+        finally
         {
-            SetCredentialsIfChanged(credentials);
+            _semaphore.Release();
         }
     }
 
-    private void SetCredentialsIfChanged(LocalAgentTlsCredentials credentials)
+    public async Task SetAsync(LocalAgentTlsCredentials credentials, CancellationToken cancellationToken)
+    {
+        await _semaphore.WaitAsync(cancellationToken);
+
+        try
+        {
+            await SetCredentialsIfChangedAsync(credentials, cancellationToken);
+        }
+        finally
+        {
+            _semaphore.Release();
+        }
+    }
+
+    private async Task SetCredentialsIfChangedAsync(LocalAgentTlsCredentials credentials, CancellationToken cancellationToken)
     {
         ConnectionCertificate certificate = credentials.ConnectionCertificate;
 
@@ -85,13 +100,14 @@ public class LocalAgentTlsCredentialsCache : ILocalAgentTlsCredentialsCache
 
         if (_credentials is null)
         {
-            SetCredentials(credentials, $"Credentials set. The certificate expires in '{certificate.ExpirationDateUtc}'.");
+            await SetCredentialsAsync(credentials, $"Credentials set. The certificate expires in '{certificate.ExpirationDateUtc}'.", cancellationToken);
         }
         else if (certificate.ExpirationDateUtc > _credentials.ConnectionCertificate.ExpirationDateUtc)
         {
-            SetCredentials(credentials, $"Credentials updated. " +
+            await SetCredentialsAsync(credentials, $"Credentials updated. " +
                 $"New certificate expires in '{certificate.ExpirationDateUtc}'. " +
-                $"Old certificate expired in '{_credentials.ConnectionCertificate.ExpirationDateUtc}'.");
+                $"Old certificate expired in '{_credentials.ConnectionCertificate.ExpirationDateUtc}'.",
+                cancellationToken);
         }
         else
         {
@@ -101,10 +117,12 @@ public class LocalAgentTlsCredentialsCache : ILocalAgentTlsCredentialsCache
         }
     }
 
-    private void SetCredentials(LocalAgentTlsCredentials credentials, string logMessage)
+    private async Task SetCredentialsAsync(LocalAgentTlsCredentials credentials, string logMessage, CancellationToken cancellationToken)
     {
         _logger.Info<LocalAgentTlsCredentialsLog>(logMessage);
         _credentials = credentials;
-        Changed?.Invoke(this, new EventArgs<LocalAgentTlsCredentials>(credentials));
+
+        long version = Interlocked.Increment(ref _currentVersion);
+        await LocalAgentTlsCredentialsChannel.Writer.WriteAsync(new LocalAgentTlsCredentialsUpdate(credentials, version), cancellationToken);
     }
 }

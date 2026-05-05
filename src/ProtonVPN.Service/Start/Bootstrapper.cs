@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -38,9 +38,8 @@ using ProtonVPN.Logging.Installers;
 using ProtonVPN.Native.PInvoke;
 using ProtonVPN.OperatingSystems.Network.Installers;
 using ProtonVPN.Service.Settings;
-using ProtonVPN.Service.Vpn;
+using ProtonVPN.Service.StateMachine;
 using ProtonVPN.Update.Installers;
-using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.OpenVpn;
 
 namespace ProtonVPN.Service.Start;
@@ -89,7 +88,7 @@ internal class Bootstrapper
 
     private void Start()
     {
-        AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+        AppDomain.CurrentDomain.UnhandledException += OnUnhandledExceptionOccurredAsync;
 
         RegisterEvents();
 
@@ -104,32 +103,6 @@ internal class Bootstrapper
 
     private void RegisterEvents()
     {
-        Resolve<IVpnConnection>().StateChanged += (_, e) =>
-        {
-            VpnState state = e.Data;
-            IEnumerable<IVpnStateAware> instances = Resolve<IEnumerable<IVpnStateAware>>();
-            foreach (IVpnStateAware instance in instances)
-            {
-                switch (state.Status)
-                {
-                    case VpnStatus.Connecting:
-                    case VpnStatus.Reconnecting:
-                        instance.OnVpnConnecting(state);
-                        break;
-                    case VpnStatus.Connected:
-                        instance.OnVpnConnected(state);
-                        break;
-                    case VpnStatus.Disconnecting:
-                    case VpnStatus.Disconnected:
-                        instance.OnVpnDisconnected(state);
-                        break;
-                    case VpnStatus.AssigningIp:
-                        instance.AssigningIp(state);
-                        break;
-                }
-            }
-        };
-
         Resolve<IServiceSettings>().SettingsChanged += (_, e) =>
         {
             IEnumerable<IServiceSettingsAware> instances = Resolve<IEnumerable<IServiceSettingsAware>>();
@@ -142,12 +115,12 @@ internal class Bootstrapper
         };
     }
 
-    private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+    private async void OnUnhandledExceptionOccurredAsync(object sender, UnhandledExceptionEventArgs e)
     {
         IStaticConfiguration config = Resolve<IStaticConfiguration>();
         IOsProcesses processes = Resolve<IOsProcesses>();
-        Resolve<IVpnConnection>().Disconnect();
-        Resolve<OpenVpnProcess>().Stop();
+        Resolve<IVpnConnectionStateMachine>().Disconnect();
+        Resolve<IOpenVpnProcess>().Stop();
         processes.KillProcesses(config.ClientName);
     }
 

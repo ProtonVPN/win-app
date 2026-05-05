@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -26,19 +26,14 @@ using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.EntityMapping.Installers;
 using ProtonVPN.Files.Installers;
-using ProtonVPN.IPv6.Contracts;
 using ProtonVPN.IssueReporting.Installers;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.OperatingSystems.NRPT.Installers;
-using ProtonVPN.OperatingSystems.Processes.Contracts;
 using ProtonVPN.OperatingSystems.Processes.Installers;
 using ProtonVPN.OperatingSystems.Registries.Installers;
 using ProtonVPN.OperatingSystems.Services.Contracts;
 using ProtonVPN.OperatingSystems.Services.Installers;
 using ProtonVPN.OperatingSystems.TaskScheduling.Installers;
-using ProtonVPN.ProcessCommunication.Installers;
-using ProtonVPN.ProcessCommunication.Server.Installers;
+using ProtonVPN.ProcessCommunication.Service.Installers;
 using ProtonVPN.ProTun.Installers;
 using ProtonVPN.Serialization.Installers;
 using ProtonVPN.Service.ControllerRetries;
@@ -47,9 +42,10 @@ using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.ProcessCommunication;
 using ProtonVPN.Service.Settings;
 using ProtonVPN.Service.SplitTunneling;
+using ProtonVPN.Service.StateMachine;
+using ProtonVPN.Service.StateMachine.SideEffects;
 using ProtonVPN.Service.Update;
 using ProtonVPN.Service.Vpn;
-using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Connection;
 using Module = Autofac.Module;
 
@@ -76,14 +72,18 @@ internal class ServiceModule : Module
         ProtonVPN.Vpn.Config.Module vpnModule = new();
         vpnModule.Load(builder);
 
-        builder.Register(c => GetVpnConnection(c, vpnModule.GetVpnConnection(c))).As<IVpnConnection>().SingleInstance();
         builder.Register(_ => new SerialTaskQueue()).As<ITaskQueue>().SingleInstance();
-        builder.RegisterType<KillSwitch.KillSwitch>().AsImplementedInterfaces().AsSelf().SingleInstance();
+        builder.RegisterType<KillSwitch.KillSwitch>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<VpnService>().SingleInstance();
         builder.RegisterType<ServiceSettings>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<Ipv6>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ObservableNetworkInterfaces>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<Firewall.Firewall>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<ConnectionProbe>().As<IConnectionProbe>().SingleInstance();
+        builder.RegisterType<VpnEndpointCandidates>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<VpnConnectionStateMachine>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<TunnelOrchestrator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<VpnStateSideEffects>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<IpFilter>().AsImplementedInterfaces().AsSelf().SingleInstance();
         builder.RegisterType<IpLayer>().AsSelf().SingleInstance();
@@ -93,18 +93,13 @@ internal class ServiceModule : Module
         builder.RegisterType<AppFilter>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<SplitTunnelNetworkFilters>().SingleInstance();
         builder.RegisterType<SplitTunnelClient>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<WintunRegistryFixer>().SingleInstance();
-        builder.Register(c => new NetworkSettings(c.Resolve<ILogger>(), c.Resolve<INetworkInterfaceLoader>(), c.Resolve<INetworkUtilities>(), c.Resolve<WintunRegistryFixer>()))
-            .AsImplementedInterfaces()
-            .AsSelf()
-            .SingleInstance();
-
         builder.RegisterType<HttpClients>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<FeedUrlProvider>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<CurrentAppVersionProvider>().AsImplementedInterfaces().SingleInstance();
 
         builder.RegisterType<DeviceIdCache>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ControllerRetryManager>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<IPv6Manager>().AsImplementedInterfaces().SingleInstance();
 
         RegisterModules(builder);
     }
@@ -114,7 +109,6 @@ internal class ServiceModule : Module
         builder.RegisterAssemblyModule<EntityMappingModule>()
                .RegisterAssemblyModule<RegistriesModule>()
                .RegisterAssemblyModule<TaskSchedulingModule>()
-               .RegisterAssemblyModule<ProcessCommunicationModule>()
                .RegisterAssemblyModule<ServerProcessCommunicationModule>()
                .RegisterAssemblyModule<SerializationModule>()
                .RegisterAssemblyModule<FilesModule>()
@@ -124,24 +118,5 @@ internal class ServiceModule : Module
                .RegisterAssemblyModule<ServicesModule>()
                .RegisterAssemblyModule<NameResolutionPolicyTableModule>()
                .RegisterAssemblyModule<ProTunModule>();
-    }
-
-    private IVpnConnection GetVpnConnection(IComponentContext c, IVpnConnection connection)
-    {
-        return new ObservableConnection(
-            new FilteringStateWrapper(
-                new QueuingRequestsWrapper(
-                    c.Resolve<ITaskQueue>(),
-                    new Ipv6HandlingWrapper(
-                        c.Resolve<IIpv6>(),
-                        c.Resolve<ILogger>(),
-                        c.Resolve<IFirewall>(),
-                        c.Resolve<IServiceSettings>(),
-                        c.Resolve<IFakeIPv6AddressGenerator>(),
-                        c.Resolve<ICommandLineCaller>(),
-                        c.Resolve<INetworkInterfaceLoader>(),
-                        c.Resolve<ISystemNetworkInterfaces>(),
-                        c.Resolve<IObservableNetworkInterfaces>(),
-                        connection)))); 
     }
 }

@@ -23,7 +23,7 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Restrictions;
 
 namespace ProtonVPN.Client.Logic.Connection;
 
-public class RestrictionsObserver : IEventMessageReceiver<RestrictionsIpcEntity>
+public class RestrictionsObserver : IEventMessageReceiver<RestrictionListIpcEntity>
 {
     private readonly IEventMessageSender _eventMessageSender;
 
@@ -32,7 +32,7 @@ public class RestrictionsObserver : IEventMessageReceiver<RestrictionsIpcEntity>
         _eventMessageSender = eventMessageSender;
     }
 
-    public void Receive(RestrictionsIpcEntity message)
+    public void Receive(RestrictionListIpcEntity message)
     {
         if (message.Restrictions == null || message.Restrictions.Count == 0)
         {

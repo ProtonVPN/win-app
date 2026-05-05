@@ -71,7 +71,7 @@ public class WireGuardServerRouteManager : IWireGuardServerRouteManager
 
     public void CreateServerRoute(VpnEndpoint endpoint, VpnConfig vpnConfig)
     {
-        if (!TryBuildRoute(endpoint, vpnConfig, out RouteConfiguration route, out NetworkAddress ipAddress))
+        if (!TryBuildRoute(endpoint, vpnConfig, out RouteConfiguration? route, out NetworkAddress ipAddress) || route is null)
         {
             return;
         }
@@ -102,14 +102,14 @@ public class WireGuardServerRouteManager : IWireGuardServerRouteManager
         }
     }
 
-    private bool TryBuildRoute(VpnEndpoint endpoint, VpnConfig vpnConfig, out RouteConfiguration route, out NetworkAddress ipAddress)
+    private bool TryBuildRoute(VpnEndpoint endpoint, VpnConfig vpnConfig, out RouteConfiguration? route, out NetworkAddress ipAddress)
     {
         if (endpoint is null ||
             vpnConfig is null ||
             !NetworkAddress.TryParse(endpoint.Server.Ip, out ipAddress) ||
             !_ipv4GatewayResolver.TryGetBestIpv4Gateway(
-                _config.GetHardwareId(vpnConfig.OpenVpnAdapter),
-                out Ipv4GatewayInfo ipv4GatewayInfo))
+                _config.GetWireGuardHardwareId(),
+                out Ipv4GatewayInfo? ipv4GatewayInfo))
         {
             route = null;
             ipAddress = NetworkAddress.None;

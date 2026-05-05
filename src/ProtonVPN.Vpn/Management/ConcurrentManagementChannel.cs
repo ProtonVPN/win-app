@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,49 +17,49 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Legacy.Threading;
 
-namespace ProtonVPN.Vpn.Management
+namespace ProtonVPN.Vpn.Management;
+
+/// <summary>
+/// Adds multi-threading support to <see cref="IManagementChannel.WriteLineAsync"/> method.
+/// </summary>
+internal class ConcurrentManagementChannel : IConcurrentManagementChannel
 {
-    /// <summary>
-    /// Adds multi-threading support to <see cref="IManagementChannel.WriteLine"/> method.
-    /// </summary>
-    internal class ConcurrentManagementChannel : IManagementChannel
+    private readonly ITcpManagementChannel _managementChannel;
+    private readonly SerialTaskQueue _writeQueue;
+
+    public ConcurrentManagementChannel(ITcpManagementChannel managementChannel)
     {
-        private readonly IManagementChannel _managementChannel;
-        private readonly SerialTaskQueue _writeQueue;
+        _managementChannel = managementChannel;
 
-        public ConcurrentManagementChannel(IManagementChannel managementChannel)
-        {
-            _managementChannel = managementChannel;
+        _writeQueue = new SerialTaskQueue();
+    }
 
-            _writeQueue = new SerialTaskQueue();
-        }
+    public Task Connect(int port)
+    {
+        return _managementChannel.Connect(port);
+    }
 
-        public Task Connect(int port)
-        {
-            return _managementChannel.Connect(port);
-        }
+    public void Disconnect()
+    {
+        _managementChannel.Disconnect();
+    }
 
-        public void Disconnect()
-        {
-            _managementChannel.Disconnect();
-        }
+    public Task<string?> ReadLineAsync(CancellationToken cancellationToken)
+    {
+        return _managementChannel.ReadLineAsync(cancellationToken);
+    }
 
-        public Task<string> ReadLine()
-        {
-            return _managementChannel.ReadLine();
-        }
-
-        /// <summary>
-        /// Writes message to OpenVPN management interface. Safe to call from multiple threads simultaneously.
-        /// </summary>
-        /// <param name="message">Message to write.</param>
-        /// <exception cref="System.IO.IOException">Thrown if failed to write to OpenVPN management socket.</exception>
-        public Task WriteLine(string message)
-        {
-            return _writeQueue.Enqueue(() => _managementChannel.WriteLine(message));
-        }
+    /// <summary>
+    /// Writes message to OpenVPN management interface. Safe to call from multiple threads simultaneously.
+    /// </summary>
+    /// <param name="message">Message to write.</param>
+    /// <exception cref="System.IO.IOException">Thrown if failed to write to OpenVPN management socket.</exception>
+    public Task WriteLineAsync(string message, CancellationToken cancellationToken)
+    {
+        return _writeQueue.Enqueue(() => _managementChannel.WriteLineAsync(message, cancellationToken));
     }
 }

@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Configurations.Contracts.Entities;
@@ -67,13 +68,24 @@ public class StaticConfiguration : IStaticConfiguration
     public string WintunDriverPath { get; } = DefaultConfiguration.WintunDriverPath;
     public string WintunAdapterName { get; } = DefaultConfiguration.WintunAdapterName;
 
-    public string GetHardwareId(OpenVpnAdapter openVpnAdapter)
+    // This method is bad because we shouldn't be able to receive Smart as a protocol and we are returning ProTUN for it
+    public string GetHardwareId(VpnProtocol vpnProtocol, OpenVpnAdapter openVpnAdapter)
     {
-        return openVpnAdapter switch
+        if (vpnProtocol.IsOpenVpn())
         {
-            OpenVpnAdapter.Tap => OpenVpn.TapAdapterId,
-            OpenVpnAdapter.Tun => OpenVpn.TunAdapterId,
-            _ => WireGuard.WintunAdapterHardwareId
-        };
+            return openVpnAdapter switch
+            {
+                OpenVpnAdapter.Tap => OpenVpn.TapAdapterId,
+                _ => OpenVpn.TunAdapterId,
+            };
+        }
+        return vpnProtocol.IsWireGuard()
+            ? WireGuard.WintunAdapterHardwareId
+            : ProTun.WintunAdapterHardwareId;
+    }
+
+    public string GetWireGuardHardwareId()
+    {
+        return WireGuard.WintunAdapterHardwareId;
     }
 }

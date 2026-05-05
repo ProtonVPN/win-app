@@ -20,52 +20,51 @@
 using System.Net;
 using System.Net.Sockets;
 
-namespace ProtonVPN.Vpn.PortMapping.UdpClients
+namespace ProtonVPN.Vpn.PortMapping.UdpClients;
+
+public class UdpClientWrapper : IUdpClientWrapper
 {
-    public class UdpClientWrapper : IUdpClientWrapper
+    private UdpClient? _udpClient;
+    private IPEndPoint? _endpoint;
+
+    public void Start(IPEndPoint endpoint)
     {
-        private UdpClient _udpClient;
-        private IPEndPoint _endpoint;
+        _udpClient = new();
+        _endpoint = endpoint;
+    }
 
-        public void Start(IPEndPoint endpoint)
-        {
-            _udpClient = new();
-            _endpoint = endpoint;
-        }
+    public void Send(byte[] data)
+    {
+        _udpClient?.Send(data, data.Length, _endpoint);
+    }
 
-        public void Send(byte[] data)
-        {
-            _udpClient.Send(data, data.Length, _endpoint);
-        }
+    public byte[] Receive()
+    {
+        IPEndPoint? remoteEndpoint = _endpoint;
+        return _udpClient?.Receive(ref remoteEndpoint) ?? [];
+    }
 
-        public byte[] Receive()
+    public void Stop()
+    {
+        try
         {
-            IPEndPoint remoteEndpoint = _endpoint;
-            return _udpClient.Receive(ref remoteEndpoint);
+            _udpClient?.Close();
         }
+        finally
+        {
+            _udpClient?.Dispose();
+            _udpClient = null;
+        }
+    }
 
-        public void Stop()
-        {
-            try
-            {
-                _udpClient?.Close();
-            }
-            finally
-            {
-                _udpClient?.Dispose();
-                _udpClient = null;
-            }
-        }
+    public void Reset()
+    {
+        Stop();
+        _udpClient = new();
+    }
 
-        public void Reset()
-        {
-            Stop();
-            _udpClient = new();
-        }
-
-        public void Dispose()
-        {
-            Stop();
-        }
+    public void Dispose()
+    {
+        Stop();
     }
 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,18 +20,20 @@
 using System.Net;
 using System.Net.Sockets;
 
-namespace ProtonVPN.Vpn.OpenVpn
+namespace ProtonVPN.Vpn.OpenVpn;
+
+internal class BestNetworkInterface
 {
-    internal class BestNetworkInterface
+    private readonly string _remoteHost;
+
+    public BestNetworkInterface(string remoteHost)
     {
-        private readonly string _remoteHost;
+        _remoteHost = remoteHost;
+    }
 
-        public BestNetworkInterface(string remoteHost)
-        {
-            _remoteHost = remoteHost;
-        }
-
-        public IPAddress Ip()
+    public IPAddress? GetIpAddress()
+    {
+        try
         {
             using (var socket = new Socket(
                 AddressFamily.InterNetwork,
@@ -39,10 +41,14 @@ namespace ProtonVPN.Vpn.OpenVpn
                 ProtocolType.Udp))
             {
                 socket.Connect(_remoteHost, 1);
-                var localEndpoint = (IPEndPoint) socket.LocalEndPoint;
+                IPEndPoint? localEndpoint = socket.LocalEndPoint as IPEndPoint;
 
-                return localEndpoint.Address;
+                return localEndpoint?.Address;
             }
+        }
+        catch
+        {
+            return null;
         }
     }
 }

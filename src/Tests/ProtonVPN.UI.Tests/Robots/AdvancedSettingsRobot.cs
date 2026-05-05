@@ -36,6 +36,7 @@ public class AdvancedSettingsRobot
 
     private string? WireGuardDnsAddress => NetworkUtils.GetDnsAddresses(TestConstants.IsProtunVersion ? "ProTUN" : "ProtonVPN").FirstOrDefault();
     private string? OpenVpnDnsAddress => NetworkUtils.GetDnsAddresses("ProtonVPN TUN").FirstOrDefault();
+    private string? ProTunDnsAddress => NetworkUtils.GetDnsAddresses("ProTUN").FirstOrDefault();
 
     public AdvancedSettingsRobot NavigateToCustomDns()
     {

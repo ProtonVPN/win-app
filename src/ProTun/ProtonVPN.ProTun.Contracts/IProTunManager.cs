@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,19 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Channels;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy;
 using ProtonVPN.ProTun.Contracts.ConnectionArguments;
 
 namespace ProtonVPN.ProTun.Contracts;
 
 public interface IProTunManager
 {
-    event EventHandler<EventArgs<VpnState>>? OnStateChanged;
-    event EventHandler<EventArgs<NetworkTraffic>>? OnTrafficUpdated;
+    Channel<VpnState> StateChannel { get; }
+    Channel<NetworkTraffic> TrafficChannel { get; }
 
     Task InitializeAsync();
-    Task ConnectAsync(ConnectionArgs args);
-    Task DisconnectAsync(VpnError? vpnError);
+    Task ConnectAsync(ConnectionArgs args, CancellationToken cancellationToken);
+    Task DisconnectAsync();
     Task RequestStatsAsync();
 }

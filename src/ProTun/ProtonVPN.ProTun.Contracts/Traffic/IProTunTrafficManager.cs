@@ -21,6 +21,5 @@ namespace ProtonVPN.ProTun.Contracts.Traffic;
 
 public interface IProTunTrafficManager
 {
-    void Start();
-    void Stop();
+    Task StartAsync(CancellationToken cancellationToken);
 }

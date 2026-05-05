@@ -17,13 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Channels;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy;
 using ProtonVPN.ProTun.Generated;
 
 namespace ProtonVPN.ProTun.StatsResponses;
 
 public interface IProTunEventsResponseHandler : EventCallback
 {
-    event EventHandler<EventArgs<NetworkTraffic>>? TrafficUpdated;
+    Channel<NetworkTraffic> TrafficChannel { get; }
+
+    void SetCancellationToken(CancellationToken cancellationToken);
 }

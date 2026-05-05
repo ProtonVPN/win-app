@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,25 +17,21 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Legacy.Vpn;
 
 namespace ProtonVPN.Vpn.Common;
 
 public interface IVpnConnection
 {
-    event EventHandler<EventArgs<VpnState>> StateChanged;
-    event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
+    string? LocalIpv4Address { get; }
 
     NetworkTraffic NetworkTraffic { get; }
 
-    void Connect(IReadOnlyList<VpnHost> servers, VpnConfig config, VpnCredentials credentials);
-    void ResetConnection();
-    void Disconnect(VpnError error = VpnError.None);
-    void SetFeatures(VpnFeatures vpnFeatures);
-    void RequestNetShieldStats();
-    void RequestConnectionDetails();
+    Task<VpnError> ConnectAsync(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config, CancellationToken cancellationToken);
+    Task DisconnectAsync();
+    IAsyncEnumerable<VpnState> ObserveStatesAsync(CancellationToken cancellationToken);
 }

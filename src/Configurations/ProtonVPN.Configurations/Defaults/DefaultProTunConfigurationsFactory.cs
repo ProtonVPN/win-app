@@ -29,6 +29,7 @@ public static class DefaultProTunConfigurationsFactory
         return new ProTunConfigurations
         {
             WintunAdapterGuid = Guid.Parse("{9BEB3451-4026-4F8A-8762-8F608B124FEC}"),
+            WintunAdapterHardwareId = "Wintun",
         };
     }
 }

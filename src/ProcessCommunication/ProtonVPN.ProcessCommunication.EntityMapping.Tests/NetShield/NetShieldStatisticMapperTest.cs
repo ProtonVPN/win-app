@@ -17,10 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.Common.Legacy.NetShield;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.NetShield;
-using ProtonVPN.ProcessCommunication.EntityMapping.NetShield;
+using ProtonVPN.ProcessCommunication.EntityMapping.Common.Legacy.NetShield;
 
 namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.NetShield;
 

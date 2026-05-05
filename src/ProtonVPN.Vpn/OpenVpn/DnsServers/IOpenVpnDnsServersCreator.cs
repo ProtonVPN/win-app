@@ -21,6 +21,4 @@ using ProtonVPN.Configurations.Contracts;
 
 namespace ProtonVPN.Vpn.OpenVpn.DnsServers;
 
-public interface IOpenVpnDnsServersCreator : IDnsServersCreator
-{
-}
+public interface IOpenVpnDnsServersCreator : IDnsServersCreator;

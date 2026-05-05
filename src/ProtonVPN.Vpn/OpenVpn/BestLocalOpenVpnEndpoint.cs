@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -24,17 +24,17 @@ namespace ProtonVPN.Vpn.OpenVpn;
 
 internal class BestLocalOpenVpnEndpoint
 {
-    private readonly SafeBestNetworkInterface _interface;
+    private readonly BestNetworkInterface? _interface;
 
     public BestLocalOpenVpnEndpoint(VpnEndpoint endpoint)
     {
         _interface = endpoint.VpnProtocol == VpnProtocol.OpenVpnUdp ?
-            new SafeBestNetworkInterface(new BestNetworkInterface(endpoint.Server.Ip)) :
+            new BestNetworkInterface(endpoint.Server.Ip) :
             null;
     }
 
     public string Ip()
     {
-        return _interface?.Ip()?.ToString() ?? string.Empty;
+        return _interface?.GetIpAddress()?.ToString() ?? string.Empty;
     }
 }

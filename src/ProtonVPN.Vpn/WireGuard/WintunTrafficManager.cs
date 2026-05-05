@@ -18,55 +18,91 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Pipes;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy.Threading;
+using ProtonVPN.Configurations.Contracts;
 
 namespace ProtonVPN.Vpn.WireGuard;
 
-public class WintunTrafficManager
+public class WintunTrafficManager : IWintunTrafficManager
 {
     private readonly string _pipeName;
-    private StreamReader _reader;
-    private NamedPipeClientStream _stream;
-    private readonly SingleAction _updateBytesTransferredAction;
+    private StreamReader? _reader;
+    private NamedPipeClientStream? _stream;
 
-    public event EventHandler<NetworkTraffic> TrafficSent;
-
-    public WintunTrafficManager(string pipeName)
+    public WintunTrafficManager(IStaticConfiguration config)
     {
-        _pipeName = pipeName;
-        _updateBytesTransferredAction = new SingleAction(UpdateBytesTransferred);
+        _pipeName = config.WireGuard.PipeName;
     }
 
-    public void Start()
+    public async IAsyncEnumerable<NetworkTraffic> WatchTrafficAsync([EnumeratorCancellation] CancellationToken cancellationToken)
     {
-        _updateBytesTransferredAction.Run();
+        while (!cancellationToken.IsCancellationRequested)
+        {
+            await using (IAsyncEnumerator<NetworkTraffic> enumerator = WatchOnceAsync(cancellationToken).GetAsyncEnumerator(cancellationToken))
+            {
+                while (true)
+                {
+                    bool hasNext;
+                    try
+                    {
+                        hasNext = await enumerator.MoveNextAsync();
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        throw;
+                    }
+                    catch
+                    {
+                        // ignored; retry outer loop
+                        break;
+                    }
+
+                    if (!hasNext)
+                    {
+                        break;
+                    }
+
+                    yield return enumerator.Current;
+                }
+            }
+
+            try
+            {
+                await Task.Delay(1000, cancellationToken);
+            }
+            catch (OperationCanceledException)
+            {
+                yield break;
+            }
+        }
     }
 
-    public void Stop()
+    private async IAsyncEnumerable<NetworkTraffic> WatchOnceAsync([EnumeratorCancellation] CancellationToken cancellationToken)
     {
-        _stream?.Dispose();
-        _updateBytesTransferredAction.Cancel();
-    }
-
-    private void UpdateBytesTransferred()
-    {
-        ConnectToPipe();
+        await ConnectToPipeAsync(cancellationToken);
 
         try
         {
-            while (_stream != null && _stream.IsConnected)
+            while (_stream != null && _stream.IsConnected && !cancellationToken.IsCancellationRequested)
             {
                 byte[] bytes = Encoding.UTF8.GetBytes("get=1\n\n");
-                _stream.Write(bytes, 0, bytes.Length);
+                await _stream.WriteAsync(bytes, 0, bytes.Length, cancellationToken);
                 ulong rx = 0, tx = 0;
                 while (true)
                 {
-                    string line = _reader.ReadLine();
+                    if (_reader == null)
+                    {
+                        break;
+                    }
+
+                    string? line = await _reader.ReadLineAsync(cancellationToken);
                     if (line == null)
                     {
                         break;
@@ -87,39 +123,42 @@ public class WintunTrafficManager
                         tx += ulong.Parse(line.Substring(9));
                     }
 
-                    TrafficSent?.Invoke(this, new NetworkTraffic(rx, tx));
+                    yield return new NetworkTraffic(rx, tx);
                 }
 
-                Thread.Sleep(1000);
+                await Task.Delay(1000, cancellationToken);
             }
-        }
-        catch
-        {
-            // ignored
         }
         finally
         {
+            _reader?.Dispose();
+            _reader = null;
             _stream?.Dispose();
+            _stream = null;
         }
     }
 
-    private void ConnectToPipe()
+    private async Task ConnectToPipeAsync(CancellationToken cancellationToken)
     {
         while (true)
         {
             try
             {
                 _stream = new NamedPipeClientStream(_pipeName);
-                _stream.Connect();
+                await _stream.ConnectAsync(cancellationToken);
                 _reader = new StreamReader(_stream);
                 break;
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
             }
             catch
             {
                 // ignored
             }
 
-            Thread.Sleep(1000);
+            await Task.Delay(1000, cancellationToken);
         }
     }
 }

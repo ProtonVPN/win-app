@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -26,7 +26,7 @@ using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
 
 namespace ProtonVPN.Vpn.NetworkAdapters;
 
-public class WintunAdapter
+public class WintunAdapter : IWintunAdapter
 {
     private const string WINTUN_DLL = "wintun.dll";
     private const string WINTUN_GUID = "344dba6b-6834-489e-a556-22e36b502107";

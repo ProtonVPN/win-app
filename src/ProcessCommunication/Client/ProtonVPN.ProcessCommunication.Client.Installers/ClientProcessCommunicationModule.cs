@@ -18,6 +18,12 @@
  */
 
 using Autofac;
+using ProtonVPN.EntityMapping.Common.Installers.Extensions;
+using ProtonVPN.ProcessCommunication.EntityMapping.Client.Logic.Connection.Enums;
+using ProtonVPN.ProcessCommunication.EntityMapping.Common.Core.Dns;
+using ProtonVPN.ProcessCommunication.EntityMapping.Common.Legacy.NetShield;
+using ProtonVPN.ProcessCommunication.EntityMapping.Crypto;
+using ProtonVPN.ProcessCommunication.EntityMapping.Update;
 
 namespace ProtonVPN.ProcessCommunication.Client.Installers;
 
@@ -27,5 +33,16 @@ public class ClientProcessCommunicationModule : Module
     {
         builder.RegisterType<GrpcClient>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NamedPipesConnectionFactory>().AsImplementedInterfaces().SingleInstance();
+
+        RegisterMappers(builder);
+    }
+
+    private static void RegisterMappers(ContainerBuilder builder)
+    {
+        builder.RegisterAllMappersInAssembly<ConnectionStatusMapper>();
+        builder.RegisterAllMappersInAssembly<DnsBlockModeMapper>();
+        builder.RegisterAllMappersInAssembly<NetShieldStatisticMapper>();
+        builder.RegisterAllMappersInAssembly<AsymmetricKeyPairMapper>();
+        builder.RegisterAllMappersInAssembly<ReleaseMapper>();
     }
 }

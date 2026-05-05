@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -166,7 +166,7 @@ public class ClientControllerListener : IClientControllerListener
 
     private async Task StartRestrictionsListenerAsync()
     {
-        await foreach (RestrictionsIpcEntity restrictions in
+        await foreach (RestrictionListIpcEntity restrictions in
             _grpcClient.ClientController.StreamRestrictionsChangeAsync(_cancellationTokenSource.Token))
         {
             _logger.Info<ProcessCommunicationLog>($"Received restrictions change {string.Join(',', restrictions.Restrictions)}");

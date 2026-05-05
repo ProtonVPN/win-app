@@ -54,15 +54,15 @@ public class PortMappingProtocolClient : IPortMappingProtocolClient
     private readonly IGatewayCache _gatewayCache;
     private readonly IIssueReporter _issueReporter;
 
-    private IPEndPoint _endpoint;
-    private HelloReplyMessage _helloReply;
-    private TemporaryMappedPort _mappedPort;
+    private IPEndPoint? _endpoint;
+    private HelloReplyMessage? _helloReply;
+    private TemporaryMappedPort? _mappedPort;
     private Lazy<CancellationTokenSource> _cancellationTokenSource = new(CancelledCancellationTokenSource.Create);
     private Lazy<CancellationTokenSource> _stopCancellationTokenSource = new(CancelledCancellationTokenSource.Create);
-    private PortForwardingState _lastState;
+    private PortForwardingState? _lastState;
     private VpnState _vpnState = VpnState.Default;
 
-    public event EventHandler<EventArgs<PortForwardingState>> StateChanged;
+    public event EventHandler<EventArgs<PortForwardingState>>? StateChanged;
 
     public PortMappingProtocolClient(ILogger logger,
         IUdpClientWrapper udpClientWrapper,
@@ -159,7 +159,7 @@ public class PortMappingProtocolClient : IPortMappingProtocolClient
 
     private async Task<byte[]> SendMessageWithTimeoutAsync(byte[] serializedMessage, CancellationToken cancellationToken)
     {
-        byte[] serializedReply = null;
+        byte[]? serializedReply = null;
         Exception exception = new("The serialized reply received is empty.");
         for (int timeoutInMilliseconds = MIN_TIMEOUT_MILLISECONDS; timeoutInMilliseconds <= MAX_TIMEOUT_MILLISECONDS; timeoutInMilliseconds *= 2)
         {
@@ -216,7 +216,7 @@ public class PortMappingProtocolClient : IPortMappingProtocolClient
         return _udpClientWrapper.Receive();
     }
 
-    private async Task SendPortMappingMessagesAsync(CancellationToken cancellationToken, PortMappingQueryMessages queryMessages = null)
+    private async Task SendPortMappingMessagesAsync(CancellationToken cancellationToken, PortMappingQueryMessages? queryMessages = null)
     {
         ChangeState(PortMappingStatus.PortMappingCommunication);
 

@@ -30,5 +30,6 @@ public interface IWireGuardService
     bool IsStopped();
     bool Running();
     Task StartAsync(CancellationToken cancellationToken, VpnProtocol protocol);
-    Task StopAsync(CancellationToken cancellationToken);
+    Task StopAsync();
+    bool Kill();
 }

@@ -242,8 +242,6 @@
   <Folder Name="/ProcessCommunication/">
     <Project Path="src/ProcessCommunication/ProtonVPN.ProcessCommunication.Contracts/ProtonVPN.ProcessCommunication.Contracts.csproj" />
     <Project Path="src/ProcessCommunication/ProtonVPN.ProcessCommunication.EntityMapping.Tests/ProtonVPN.ProcessCommunication.EntityMapping.Tests.csproj" />
-    <Project Path="src/ProcessCommunication/ProtonVPN.ProcessCommunication.EntityMapping/ProtonVPN.ProcessCommunication.EntityMapping.csproj" />
-    <Project Path="src/ProcessCommunication/ProtonVPN.ProcessCommunication.Installers/ProtonVPN.ProcessCommunication.Installers.csproj" />
   </Folder>
   <Folder Name="/ProcessCommunication/Client/">
     <Project Path="src/ProcessCommunication/Client/ProtonVPN.ProcessCommunication.Client.Installers/ProtonVPN.ProcessCommunication.Client.Installers.csproj" />
@@ -252,9 +250,17 @@
   <Folder Name="/ProcessCommunication/Common/">
     <Project Path="src/ProcessCommunication/Common/ProtonVPN.ProcessCommunication.Common/ProtonVPN.ProcessCommunication.Common.csproj" />
   </Folder>
-  <Folder Name="/ProcessCommunication/Server/">
-    <Project Path="src/ProcessCommunication/Server/ProtonVPN.ProcessCommunication.Server.Installers/ProtonVPN.ProcessCommunication.Server.Installers.csproj" />
-    <Project Path="src/ProcessCommunication/Server/ProtonVPN.ProcessCommunication.Server/ProtonVPN.ProcessCommunication.Server.csproj" />
+  <Folder Name="/ProcessCommunication/EntityMapping/">
+    <Project Path="src/ProcessCommunication/EntityMapping/ProtonVPN.ProcessCommunication.EntityMapping.Client.Logic.Connection/ProtonVPN.ProcessCommunication.EntityMapping.Client.Logic.Connection.csproj" Id="44a03117-de42-48bb-9a34-edbb38f71ca7" />
+    <Project Path="src/ProcessCommunication/EntityMapping/ProtonVPN.ProcessCommunication.EntityMapping.Common.Core/ProtonVPN.ProcessCommunication.EntityMapping.Common.Core.csproj" Id="3608ec04-1011-434d-ab88-cf73983f785d" />
+    <Project Path="src/ProcessCommunication/EntityMapping/ProtonVPN.ProcessCommunication.EntityMapping.Common.Legacy/ProtonVPN.ProcessCommunication.EntityMapping.Common.Legacy.csproj" Id="3670c8a3-d396-456b-b68f-d8c6690937aa" />
+    <Project Path="src/ProcessCommunication/EntityMapping/ProtonVPN.ProcessCommunication.EntityMapping.Crypto/ProtonVPN.ProcessCommunication.EntityMapping.Crypto.csproj" Id="c0951c46-5e9b-4fb5-b191-c942d11d5a0b" />
+    <Project Path="src/ProcessCommunication/EntityMapping/ProtonVPN.ProcessCommunication.EntityMapping.Update/ProtonVPN.ProcessCommunication.EntityMapping.Update.csproj" Id="c0cc6972-a27f-4bf1-af14-ddaf63e3e73e" />
+    <Project Path="src/ProcessCommunication/EntityMapping/ProtonVPN.ProcessCommunication.EntityMapping.Vpn/ProtonVPN.ProcessCommunication.EntityMapping.Vpn.csproj" Id="e8f5eca4-604a-4cb1-8ab4-712c6c2dde95" />
+  </Folder>
+  <Folder Name="/ProcessCommunication/Service/">
+    <Project Path="src/ProcessCommunication/Service/ProtonVPN.ProcessCommunication.Service.Installers/ProtonVPN.ProcessCommunication.Service.Installers.csproj" />
+    <Project Path="src/ProcessCommunication/Service/ProtonVPN.ProcessCommunication.Service/ProtonVPN.ProcessCommunication.Service.csproj" />
   </Folder>
   <Folder Name="/ProtonInstaller/">
     <Project Path="src/ProtonInstaller/ProtonInstaller.csproj" />

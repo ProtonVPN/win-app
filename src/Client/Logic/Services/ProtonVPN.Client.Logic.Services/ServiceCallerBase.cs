@@ -60,8 +60,8 @@ public abstract class ServiceCallerBase<TController> : IServiceCaller
             {
                 TController serviceController =
                     await _grpcClient.GetServiceControllerOrThrowAsync<TController>(TimeSpan.FromSeconds(1));
-                CancellationTokenSource cancellationTokenSource = new(_callTimeout);
-                T result = await serviceCall(serviceController, cancellationTokenSource.Token);
+                //CancellationTokenSource cancellationTokenSource = new(_callTimeout);
+                T result = await serviceCall(serviceController, _cancellationTokenSource.Token);
                 if (result is Task task)
                 {
                     await task;

@@ -18,20 +18,21 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Timers;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy;
-using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
+using ProtonVPN.Logging.Contracts.Events.ProtocolLogs;
 using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.OperatingSystems.Network.Contracts.Monitors;
 using ProtonVPN.Vpn.Common;
@@ -40,7 +41,7 @@ using Timer = System.Timers.Timer;
 
 namespace ProtonVPN.Vpn.WireGuard;
 
-public class WireGuardConnection : IAdapterSingleVpnConnection
+public class WireGuardConnection: IWireGuardConnection
 {
     private const int MIN_CONNECTION_TIMEOUT = 5000;
     private const int MAX_CONNECTION_TIMEOUT = 30000;
@@ -48,28 +49,32 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
     private readonly ILogger _logger;
     private readonly IConfiguration _config;
     private readonly IGatewayCache _gatewayCache;
-    private readonly ISystemNetworkInterfaces _networkInterfaces;
-    private readonly INetworkInterfacePolicyManager _interfacePolicyManager;
     private readonly IWireGuardService _wireGuardService;
     private readonly IWireGuardConfigGenerator _wireGuardConfigGenerator;
-    private readonly NtTrafficManager _ntTrafficManager;
-    private readonly WintunTrafficManager _wintunTrafficManager;
-    private readonly StatusManager _statusManager;
-    private readonly IWireGuardServerRouteManager _serverRouteManager;
-    private readonly SingleAction _connectAction;
-    private readonly SingleAction _disconnectAction;
-    private readonly IInterfaceForwardingMonitor _interfaceForwardingMonitor;
+    private readonly INtTrafficManager _ntTrafficManager;
+    private readonly IWintunTrafficManager _wintunTrafficManager;
+    private readonly IWireGuardStateMonitor _wireGuardStateMonitor;
     private readonly IRouteChangeMonitor _routeChangeMonitor;
-    private INetworkInterfacePolicyLease _interfacePolicyLease;
+    private readonly ISystemNetworkInterfaces _networkInterfaces;
+    private readonly IInterfaceForwardingMonitor _interfaceForwardingMonitor;
+    private readonly INetworkInterfacePolicyManager _interfacePolicyManager;
+    private readonly IWireGuardServerRouteManager _serverRouteManager;
+    private readonly SemaphoreSlim _serviceSemaphore = new(1, 1);
 
-    private VpnError _lastVpnError;
+    private readonly Channel<VpnState> _stateChannel = Channel.CreateUnbounded<VpnState>();
+
+    private CancellationTokenSource _cts = new();
+    public VpnError LastError { get; private set; }
+    public string LocalIpv4Address => _config.WireGuard.DefaultClientIpv4Address;
+
+    public NetworkTraffic NetworkTraffic { get; private set; } = NetworkTraffic.Zero;
+
+    private TaskCompletionSource<bool>? _connectionTaskCompletionSource;
+    private volatile bool _isConnected;
     private VpnCredentials _credentials;
-    private VpnEndpoint _endpoint;
-    private VpnConfig _vpnConfig;
-    private bool _isConnected;
-    private bool _isServiceStopPending;
-    private VpnStatus _vpnStatus;
-    private CancellationTokenSource _disconnectCancellationTokenSource;
+    private VpnEndpoint? _endpoint;
+    private VpnConfig? _vpnConfig;
+    private INetworkInterfacePolicyLease? _interfacePolicyLease;
 
     private readonly Timer _serviceHealthCheckTimer = new();
 
@@ -79,89 +84,68 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         ILogger logger,
         IConfiguration config,
         IGatewayCache gatewayCache,
-        ISystemNetworkInterfaces networkInterfaces,
-        IInterfaceForwardingMonitor interfaceForwardingMonitor,
-        IRouteChangeMonitor routeChangeMonitor,
-        INetworkInterfacePolicyManager interfacePolicyManager,
         IWireGuardService wireGuardService,
         IWireGuardConfigGenerator wireGuardConfigGenerator,
-        NtTrafficManager ntTrafficManager,
-        WintunTrafficManager wintunTrafficManager,
-        StatusManager statusManager,
+        INtTrafficManager ntTrafficManager,
+        IWintunTrafficManager wintunTrafficManager,
+        IWireGuardStateMonitor wireGuardStateMonitor,
+        IRouteChangeMonitor routeChangeMonitor,
+        ISystemNetworkInterfaces networkInterfaces,
+        IInterfaceForwardingMonitor interfaceForwardingMonitor,
+        INetworkInterfacePolicyManager interfacePolicyManager,
         IWireGuardServerRouteManager serverRouteManager)
     {
         _logger = logger;
         _config = config;
         _gatewayCache = gatewayCache;
-        _networkInterfaces = networkInterfaces;
-        _interfaceForwardingMonitor = interfaceForwardingMonitor;
-        _routeChangeMonitor = routeChangeMonitor;
-        _interfacePolicyManager = interfacePolicyManager;
         _wireGuardService = wireGuardService;
         _wireGuardConfigGenerator = wireGuardConfigGenerator;
         _ntTrafficManager = ntTrafficManager;
         _wintunTrafficManager = wintunTrafficManager;
-        _statusManager = statusManager;
+        _wireGuardStateMonitor = wireGuardStateMonitor;
+        _routeChangeMonitor = routeChangeMonitor;
+        _networkInterfaces = networkInterfaces;
+        _interfaceForwardingMonitor = interfaceForwardingMonitor;
+        _interfacePolicyManager = interfacePolicyManager;
         _serverRouteManager = serverRouteManager;
 
-        _ntTrafficManager.TrafficSent += OnTrafficSent;
-        _wintunTrafficManager.TrafficSent += OnTrafficSent;
-        _statusManager.StateChanged += OnStateChanged;
-        _connectAction = new SingleAction(ConnectActionAsync);
-        _connectAction.Completed += OnConnectActionCompleted;
-        _disconnectAction = new SingleAction(DisconnectActionAsync);
-        _disconnectAction.Completed += OnDisconnectActionCompleted;
-        _serviceHealthCheckTimer.Interval = config.ServiceCheckInterval.TotalMilliseconds;
-        _serviceHealthCheckTimer.Elapsed += CheckIfServiceIsRunning;
         _routeChangeMonitor.RouteChanged += OnRouteChanged;
-        _interfaceForwardingMonitor.ForwardingEnabled += OnInterfaceForwardingEnabled;
+        _interfaceForwardingMonitor.ForwardingEnabled += OnInterfaceForwardingEnabledAsync;
+        _serviceHealthCheckTimer.Interval = config.ServiceCheckInterval.TotalMilliseconds;
+        _serviceHealthCheckTimer.Elapsed += CheckIfServiceIsRunningAsync;
     }
 
-    public event EventHandler<EventArgs<VpnState>> StateChanged;
-    public event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
-    public NetworkTraffic NetworkTraffic { get; private set; } = NetworkTraffic.Zero;
-
-    public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
+    public async Task<VpnError> ConnectAsync(VpnEndpoint endpoint, VpnCredentials credentials,
+        VpnConfig config, CancellationToken cancellationToken)
     {
         _credentials = credentials;
         _endpoint = endpoint;
         _vpnConfig = config;
 
-        _connectAction.Run();
-    }
+        _connectionTaskCompletionSource = new();
+        _cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+        _isConnected = false;
 
-    private async Task ConnectActionAsync(CancellationToken cancellationToken)
-    {
-        try
-        {
-            await ConnectActionInnerAsync(cancellationToken);
-        }
-        catch (OperationCanceledException)
-        {
-            _logger.Info<ConnectLog>("Connection attempt was canceled.");
-        }
-    }
+        NetworkTraffic = NetworkTraffic.Zero;
+        LastError = VpnError.None;
 
-    private async Task ConnectActionInnerAsync(CancellationToken cancellationToken)
-    {
         bool isWireGuardServerRouteEnabled = IsWireGuardServerRouteEnabled;
-        INetworkInterface bestInterface = null;
+        INetworkInterface bestInterface = GetBestInterface();
+
         if (!isWireGuardServerRouteEnabled)
         {
-            bestInterface = GetBestInterface();
             if (bestInterface.IsIPv4ForwardingEnabled)
             {
                 _logger.Warn<ConnectLog>($"Triggering disconnect due to active interface forwarding " +
-                    $"on interface {bestInterface.Name} with index {bestInterface.Index}.");
+                $"on interface {bestInterface.Name} with index {bestInterface.Index}.");
 
-                Disconnect(VpnError.InterfaceHasForwardingEnabled);
-                return;
+                return VpnError.InterfaceHasForwardingEnabled;
             }
         }
 
-        _logger.Info<ConnectStartLog>("Connect action started.");
         WriteConfig();
         UpdateGatewayCache();
+
         if (isWireGuardServerRouteEnabled)
         {
             _serverRouteManager.CleanupPersistedRoutes();
@@ -171,239 +155,41 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         {
             ApplyInterfacePolicy(bestInterface);
         }
-        InvokeStateChange(VpnStatus.Connecting);
-        await EnsureServiceIsStoppedAsync(cancellationToken);
-        _statusManager.Start();
-        await StartWireGuardServiceAsync(cancellationToken);
 
-        CancellationToken linkedCancellationToken = CreateLinkedCancellationToken(cancellationToken);
+        await RunWithServiceLockAsync(_wireGuardService.StopAsync, _cts.Token);
+
+        StartMonitoringVpnStateAsync(_cts.Token);
+
+        await RunWithServiceLockAsync(() => _wireGuardService.StartAsync(_cts.Token, _vpnConfig.VpnProtocol), _cts.Token);
+
         int timeout = Math.Clamp((int)_vpnConfig.WireGuardConnectionTimeout.TotalMilliseconds, MIN_CONNECTION_TIMEOUT, MAX_CONNECTION_TIMEOUT);
-        await Task.Delay(timeout, linkedCancellationToken);
-        if (!_isConnected)
+        // cancellationToken instead of _cts.Token to avoid cancelling the delay when disconnecting
+        Task timeoutTask = Task.Delay(timeout, cancellationToken);
+
+        Task completedTask = await Task.WhenAny(timeoutTask, _connectionTaskCompletionSource.Task);
+        cancellationToken.ThrowIfCancellationRequested();
+
+        if (completedTask == timeoutTask)
         {
             _logger.Warn<ConnectLog>($"{timeout}ms timeout reached, disconnecting.");
-            Disconnect(VpnError.AdapterTimeoutError);
+            return VpnError.AdapterTimeoutError;
         }
+
+        if (!_connectionTaskCompletionSource.Task.IsCompleted || !_connectionTaskCompletionSource.Task.Result)
+        {
+            return LastError;
+        }
+
+        StartMonitoringNetworkTrafficAsync(_cts.Token);
+
+        return VpnError.None;
     }
 
-    private CancellationToken CreateLinkedCancellationToken(CancellationToken cancellationToken)
+    private INetworkInterface GetBestInterface()
     {
-        CancelDisconnectCancellationToken();
-        _disconnectCancellationTokenSource = new CancellationTokenSource();
-        CancellationTokenSource childCancellationTokenSource =
-            CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, _disconnectCancellationTokenSource.Token);
-        return childCancellationTokenSource.Token;
-    }
-
-    private void CancelDisconnectCancellationToken()
-    {
-        _disconnectCancellationTokenSource?.Cancel();
-    }
-
-    private void UpdateGatewayCache()
-    {
-        _gatewayCache.Save(IPAddress.Parse("10.2.0.1"));
-    }
-
-    public void Disconnect(VpnError error)
-    {
-        _lastVpnError = error;
-        _disconnectAction.Run();
-    }
-
-    private async Task StartWireGuardServiceAsync(CancellationToken cancellationToken)
-    {
-        _logger.Info<AppServiceStartLog>("Starting service.");
-        try
-        {
-            await _wireGuardService.StartAsync(cancellationToken, _vpnConfig.VpnProtocol);
-        }
-        catch (InvalidOperationException e)
-        {
-            _logger.Error<AppServiceStartFailedLog>("Failed to start WireGuard service: ", e);
-        }
-    }
-
-    private async Task DisconnectActionAsync(CancellationToken cancellationToken)
-    {
-        _logger.Info<DisconnectLog>("Disconnect action started.");
-        if (_vpnStatus is not VpnStatus.Disconnected)
-        {
-            InvokeStateChange(VpnStatus.Disconnecting, _lastVpnError);
-        }
-
-        Task connectTask = _connectAction.Task;
-        if (!connectTask.IsCompleted)
-        {
-            if (_isConnected)
-            {
-                _connectAction.Cancel();
-            }
-
-            await _connectAction.Task;
-        }
-
-        _serviceHealthCheckTimer.Stop();
-        if (IsWireGuardServerRouteEnabled)
-        {
-            _routeChangeMonitor.Stop();
-        }
-        else
-        {
-            _interfaceForwardingMonitor.Stop();
-            ReleaseInterfacePolicy();
-        }
-        StopServiceDependencies();
-        await EnsureServiceIsStoppedAsync(cancellationToken);
-        if (IsWireGuardServerRouteEnabled)
-        {
-            _serverRouteManager.DeleteServerRoutes(_endpoint);
-        }
-        _isConnected = false;
-        CancelDisconnectCancellationToken();
-    }
-
-    private void OnConnectActionCompleted(object sender, TaskCompletedEventArgs e)
-    {
-        _logger.Info<ConnectLog>("Connect action completed.");
-    }
-
-    private void OnDisconnectActionCompleted(object sender, TaskCompletedEventArgs e)
-    {
-        _logger.Info<DisconnectLog>("Disconnect action completed.");
-        InvokeStateChange(VpnStatus.Disconnected, _lastVpnError);
-        _lastVpnError = VpnError.None;
-    }
-
-    private void OnTrafficSent(object sender, NetworkTraffic total)
-    {
-        NetworkTraffic = total;
-    }
-
-    private async Task EnsureServiceIsStoppedAsync(CancellationToken cancellationToken)
-    {
-        while (_wireGuardService.Exists() && !_wireGuardService.IsStopped())
-        {
-            if (_isServiceStopPending)
-            {
-                _logger.Debug<AppServiceStopLog>("Waiting for WireGuard service to stop.");
-                await Task.Delay(100, cancellationToken);
-            }
-            else
-            {
-                _logger.Info<AppServiceStopLog>("WireGuard service is running, trying to stop.");
-                await _wireGuardService.StopAsync(cancellationToken);
-                _isServiceStopPending = true;
-            }
-        }
-
-        if (_isServiceStopPending)
-        {
-            _logger.Info<AppServiceStopLog>("WireGuard service is stopped.");
-            _isServiceStopPending = false;
-        }
-    }
-
-    private void OnStateChanged(object sender, EventArgs<VpnState> state)
-    {
-        switch (state.Data.Status)
-        {
-            case VpnStatus.Connected:
-                OnVpnConnected(state);
-                break;
-            case VpnStatus.Disconnected:
-                OnVpnDisconnected(state);
-                NetworkTraffic = NetworkTraffic.Zero;
-                break;
-            case VpnStatus.AssigningIp:
-                InvokeStateChange(VpnStatus.AssigningIp);
-                break;
-        }
-    }
-
-    private void OnVpnConnected(EventArgs<VpnState> state)
-    {
-        if (!_isConnected)
-        {
-            _isConnected = true;
-            StartTrafficManager();
-            _serviceHealthCheckTimer.Start();
-            if (IsWireGuardServerRouteEnabled)
-            {
-                _routeChangeMonitor.Start();
-            }
-            else
-            {
-                _interfaceForwardingMonitor.Start();
-            }
-            UpdateGatewayCache();
-            _logger.Info<ConnectConnectedLog>("Connected state received and decorated by WireGuard.");
-            InvokeStateChange(VpnStatus.Connected, state.Data.Error);
-        }
-    }
-
-    private void StartTrafficManager()
-    {
-        if (_vpnConfig.VpnProtocol == VpnProtocol.WireGuardUdp)
-        {
-            _ntTrafficManager.Start();
-        }
-        else
-        {
-            _wintunTrafficManager.Start();
-        }
-    }
-
-    private void OnVpnDisconnected(EventArgs<VpnState> state)
-    {
-        if (state.Data.Error is VpnError.Unknown or VpnError.InterfaceHasForwardingEnabled)
-        {
-            Disconnect(state.Data.Error);
-            return;
-        }
-
-        _isConnected = false;
-        _serviceHealthCheckTimer.Stop();
-        if (IsWireGuardServerRouteEnabled)
-        {
-            _routeChangeMonitor.Stop();
-        }
-        else
-        {
-            _interfaceForwardingMonitor.Stop();
-            ReleaseInterfacePolicy();
-        }
-        StopServiceDependencies();
-        InvokeStateChange(VpnStatus.Disconnected, state.Data.Error);
-        CancelDisconnectCancellationToken();
-    }
-
-    private void StopServiceDependencies()
-    {
-        _ntTrafficManager.Stop();
-        _wintunTrafficManager.Stop();
-        _statusManager.Stop();
-    }
-
-    private void WriteConfig()
-    {
-        if (_endpoint is null)
-        {
-            return;
-        }
-
-        CreateConfigDirectoryPathIfNotExists();
-        string configContent = _wireGuardConfigGenerator.GenerateConfig(_endpoint, _credentials, _vpnConfig);
-        File.WriteAllText(_config.WireGuard.ConfigFilePath, configContent);
-    }
-
-    private void CreateConfigDirectoryPathIfNotExists()
-    {
-        string directoryPath = Path.GetDirectoryName(_config.WireGuard.ConfigFilePath);
-        if (directoryPath != null)
-        {
-            Directory.CreateDirectory(directoryPath);
-        }
+        return _vpnConfig is null
+            ? new NullNetworkInterface()
+            : _networkInterfaces.GetBestInterfaceExcludingHardwareId(_config.GetWireGuardHardwareId());
     }
 
     private void ApplyInterfacePolicy(INetworkInterface bestInterface)
@@ -431,11 +217,6 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         }
     }
 
-    private INetworkInterface GetBestInterface()
-    {
-        return _networkInterfaces.GetBestInterfaceExcludingHardwareId(_config.GetHardwareId(_vpnConfig.OpenVpnAdapter));
-    }
-
     private void ReleaseInterfacePolicy()
     {
         try
@@ -449,53 +230,172 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         }
     }
 
-    private void InvokeStateChange(VpnStatus status, VpnError error = VpnError.None)
+    private void UpdateGatewayCache()
     {
-        _vpnStatus = status;
-        VpnState vpnState = CreateVpnState(status, error);
-        StateChanged?.Invoke(this, new EventArgs<VpnState>(vpnState));
+        _gatewayCache.Save(IPAddress.Parse(_config.WireGuard.DefaultServerGatewayIpv4Address));
     }
 
-    private VpnState CreateVpnState(VpnStatus status, VpnError error)
+    public async Task DisconnectAsync()
     {
-        if (_vpnConfig is null)
+        _isConnected = false;
+
+        ReleaseInterfacePolicy();
+        _serviceHealthCheckTimer.Stop();
+        await RunWithServiceLockAsync(_wireGuardService.StopAsync);
+
+        if (IsWireGuardServerRouteEnabled)
         {
-            return new VpnState(
-                status,
-                error,
-                _config.WireGuard.DefaultClientIpv4Address,
-                _endpoint?.Server.Ip ?? string.Empty,
-                _endpoint?.Port ?? 0,
-                VpnProtocol.WireGuardUdp,
-                openVpnAdapter: null,
-                label: _endpoint?.Server.Label ?? string.Empty);
+            if (_endpoint is not null)
+            {
+                _serverRouteManager.DeleteServerRoutes(_endpoint);
+            }
+        }
+        else
+        {
+            _interfaceForwardingMonitor.Stop();
         }
 
-        return new VpnState(
-            status,
-            error,
-            _config.WireGuard.DefaultClientIpv4Address,
-            _endpoint?.Server.Ip ?? string.Empty,
-            _endpoint?.Port ?? 0,
-            _vpnConfig.VpnProtocol,
-            _vpnConfig.PortForwarding,
-            null,
-            _endpoint?.Server.Label ?? string.Empty);
+        SetConnectionTaskResult(false);
     }
 
-    private void CheckIfServiceIsRunning(object sender, ElapsedEventArgs e)
+    public async IAsyncEnumerable<VpnState> ObserveStatesAsync([EnumeratorCancellation] CancellationToken cancellationToken)
     {
-        if (_isConnected && !_wireGuardService.Running() && !_disconnectAction.IsRunning)
+        while (!cancellationToken.IsCancellationRequested)
         {
-            _logger.Info<DisconnectTriggerLog>($"The service {_wireGuardService.Name} is not running. " +
-                         "Disconnecting with VpnError.Unknown to get reconnected.");
-            Disconnect(VpnError.Unknown);
+            yield return await _stateChannel.Reader.ReadAsync(cancellationToken);
         }
     }
 
-    private void OnInterfaceForwardingEnabled(object sender, InterfaceForwardingEventArgs e)
+    private void SetConnectionTaskResult(bool result)
     {
-        if (IsWireGuardServerRouteEnabled || !_isConnected)
+        if (_connectionTaskCompletionSource?.Task.IsCompletedSuccessfully == false)
+        {
+            _connectionTaskCompletionSource?.SetResult(result);
+        }
+    }
+
+    private void WriteConfig()
+    {
+        if (_endpoint is null || _vpnConfig is null)
+        {
+            return;
+        }
+
+        CreateConfigDirectoryPathIfNotExists();
+        string configContent = _wireGuardConfigGenerator.GenerateConfig(_endpoint, _credentials, _vpnConfig);
+        File.WriteAllText(_config.WireGuard.ConfigFilePath, configContent);
+    }
+
+    private void CreateConfigDirectoryPathIfNotExists()
+    {
+        string? directoryPath = Path.GetDirectoryName(_config.WireGuard.ConfigFilePath);
+        if (!string.IsNullOrEmpty(directoryPath))
+        {
+            Directory.CreateDirectory(directoryPath);
+        }
+    }
+
+    private void StartMonitoringVpnStateAsync(CancellationToken cancellationToken)
+    {
+        _ = Task.Run(async () => await MonitorVpnStateAsync(cancellationToken), cancellationToken);
+    }
+
+    private async Task MonitorVpnStateAsync(CancellationToken cancellationToken)
+    {
+        try
+        {
+            await foreach (VpnState state in _wireGuardStateMonitor.WatchStatesAsync(cancellationToken))
+            {
+                if (state.Status == VpnStatus.Connected)
+                {
+                    _isConnected = true;
+                    SetConnectionTaskResult(true);
+                    UpdateGatewayCache();
+                    _serviceHealthCheckTimer.Start();
+
+                    if (IsWireGuardServerRouteEnabled)
+                    {
+                        _routeChangeMonitor.Start();
+                    }
+                    else
+                    {
+                        _interfaceForwardingMonitor.Start();
+                    }
+                }
+                else
+                {
+                    if (state.Error != VpnError.None)
+                    {
+                        LastError = state.Error;
+                        SetConnectionTaskResult(false);
+
+                        if (!_isConnected)
+                        {
+                            _cts.Cancel();
+                            return;
+                        }
+                    }
+
+                    await _stateChannel.Writer.WriteAsync(state, cancellationToken);
+                }
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            // expected on cancellation
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<WireGuardProtocolLog>("Status monitor failed.", ex);
+        }
+    }
+
+    private void StartMonitoringNetworkTrafficAsync(CancellationToken cancellationToken)
+    {
+        _ = Task.Run(async () => await MonitorNetworkTrafficAsync(cancellationToken), cancellationToken);
+    }
+
+    private async Task MonitorNetworkTrafficAsync(CancellationToken cancellationToken)
+    {
+        try
+        {
+            IAsyncEnumerable<NetworkTraffic> trafficStream =
+                _vpnConfig?.VpnProtocol == VpnProtocol.WireGuardUdp
+                    ? _ntTrafficManager.WatchTrafficAsync(cancellationToken)
+                    : _wintunTrafficManager.WatchTrafficAsync(cancellationToken);
+
+            await foreach (NetworkTraffic traffic in trafficStream.WithCancellation(cancellationToken))
+            {
+                NetworkTraffic = traffic;
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            // expected on cancellation
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<WireGuardProtocolLog>("Traffic monitor failed.", ex);
+        }
+    }
+
+    private async Task RunWithServiceLockAsync(Func<Task> action, CancellationToken cancellationToken = default)
+    {
+        await _serviceSemaphore.WaitAsync(cancellationToken);
+
+        try
+        {
+            await action();
+        }
+        finally
+        {
+            _serviceSemaphore.Release();
+        }
+    }
+
+    private async void OnInterfaceForwardingEnabledAsync(object? sender, InterfaceForwardingEventArgs e)
+    {
+        if (IsWireGuardServerRouteEnabled || !_isConnected || _endpoint is null)
         {
             return;
         }
@@ -509,9 +409,9 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
             }
 
             _logger.Warn<DisconnectTriggerLog>(
-                $"Detected active interface forwarding on interface {bestInterface.Name} with index {e.InterfaceIndex}. Disconnecting.");
+                $"Detected active interface forwarding on interface {bestInterface.Name} with index {e.InterfaceIndex}.");
 
-            Disconnect(VpnError.InterfaceHasForwardingEnabled);
+            await _stateChannel.Writer.WriteAsync(new VpnState(VpnStatus.Connected, VpnError.InterfaceHasForwardingEnabled, _endpoint.VpnProtocol), _cts.Token);
         }
         catch (Exception ex)
         {
@@ -519,7 +419,7 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         }
     }
 
-    private void OnRouteChanged(object sender, RouteChangeEventArgs e)
+    private void OnRouteChanged(object? sender, RouteChangeEventArgs e)
     {
         if (!IsWireGuardServerRouteEnabled || !_isConnected || _endpoint is null || _vpnConfig is null)
         {
@@ -527,5 +427,16 @@ public class WireGuardConnection : IAdapterSingleVpnConnection
         }
 
         _serverRouteManager.CreateServerRoute(_endpoint, _vpnConfig);
+    }
+
+    private async void CheckIfServiceIsRunningAsync(object? sender, ElapsedEventArgs e)
+    {
+        if (_isConnected && !_wireGuardService.Running() && !_cts.IsCancellationRequested && _endpoint is not null)
+        {
+            _logger.Info<DisconnectTriggerLog>($"The service {_wireGuardService.Name} is not running. " +
+                         "Sending VpnError.Unknown to get reconnected.");
+
+            await _stateChannel.Writer.WriteAsync(new VpnState(VpnStatus.Connected, VpnError.Unknown, _endpoint.VpnProtocol), _cts.Token);
+        }
     }
 }

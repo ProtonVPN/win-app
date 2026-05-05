@@ -33,10 +33,11 @@ namespace ProtonVPN.Service.Tests.KillSwitch;
 [TestClass]
 public class KillSwitchTest
 {
+    private const string REMOTE_IP = "2.2.2.2";
+
     private IFirewall _firewall;
     private IServiceSettings _serviceSettings;
     private INetworkInterfaceLoader _networkInterfaceLoader;
-    private const string RemoteIp = "2.2.2.2";
 
     [TestInitialize]
     public void Setup()
@@ -120,7 +121,7 @@ public class KillSwitchTest
         Service.KillSwitch.KillSwitch killSwitch = new(_firewall, _serviceSettings, _networkInterfaceLoader);
 
         // Act
-        bool result = killSwitch.ExpectedLeakProtectionStatus(state);
+        bool result = killSwitch.GetExpectedLeakProtectionStatus(state);
 
         //Assert
         result.Should().Be(true);
@@ -154,7 +155,7 @@ public class KillSwitchTest
             new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
 
         // Act
-        bool result = killSwitch.ExpectedLeakProtectionStatus(state);
+        bool result = killSwitch.GetExpectedLeakProtectionStatus(state);
 
         //Assert
         result.Should().Be(expected);
@@ -179,7 +180,7 @@ public class KillSwitchTest
             new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
 
         // Act
-        bool result = killSwitch.ExpectedLeakProtectionStatus(state);
+        bool result = killSwitch.GetExpectedLeakProtectionStatus(state);
 
         //Assert
         result.Should().Be(leakProtectionEnabled);
@@ -201,7 +202,7 @@ public class KillSwitchTest
             VpnStatus.Disconnected,
             manualDisconnect ? VpnError.None : VpnError.Unknown,
             "1.1.1.1",
-            RemoteIp,
+            REMOTE_IP,
             443,
             default);
     }
@@ -212,7 +213,7 @@ public class KillSwitchTest
             VpnStatus.Connected,
             VpnError.None,
             "1.1.1.1",
-            RemoteIp,
+            REMOTE_IP,
             443,
             default);
     }
@@ -223,7 +224,7 @@ public class KillSwitchTest
             VpnStatus.Connecting,
             VpnError.None,
             "1.1.1.1",
-            RemoteIp,
+            REMOTE_IP,
             443,
             default);
     }

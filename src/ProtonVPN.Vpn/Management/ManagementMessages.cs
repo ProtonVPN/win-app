@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,76 +17,75 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Vpn.Management
+namespace ProtonVPN.Vpn.Management;
+
+/// <summary>
+/// Collection of predefined messages to be send to OpenVPN management interface.
+/// </summary>
+public class ManagementMessages
 {
-    /// <summary>
-    /// Collection of predefined messages to be send to OpenVPN management interface.
-    /// </summary>
-    internal class ManagementMessages
+    public ReceivedManagementMessage ReceivedMessage(string messageText)
     {
-        public ReceivedManagementMessage ReceivedMessage(string messageText)
-        {
-            return new ReceivedManagementMessage(messageText ?? "");
-        }
+        return new ReceivedManagementMessage(messageText ?? "");
+    }
 
-        public ManagementMessage EchoOn()
-        {
-            return ManagementMessage("echo on");
-        }
+    public ManagementMessage EchoOn()
+    {
+        return ManagementMessage("echo on");
+    }
 
-        public ManagementMessage StateOn()
-        {
-            return ManagementMessage("state on");
-        }
+    public ManagementMessage StateOn()
+    {
+        return ManagementMessage("state on");
+    }
 
-        public ManagementMessage Bytecount()
-        {
-            return ManagementMessage("bytecount 1");
-        }
+    public ManagementMessage Bytecount()
+    {
+        return ManagementMessage("bytecount 1");
+    }
 
-        public ManagementMessage LogOn()
-        {
-            return ManagementMessage("log on");
-        }
+    public ManagementMessage LogOn()
+    {
+        return ManagementMessage("log on");
+    }
 
-        public ManagementMessage HoldRelease()
-        {
-            return ManagementMessage("hold release");
-        }
+    public ManagementMessage HoldRelease()
+    {
+        return ManagementMessage("hold release");
+    }
 
-        public ManagementMessage Username(string username)
-        {
-            return ManagementMessage($"username 'Auth' {EscapedString(username)}");
-        }
+    public ManagementMessage Username(string username)
+    {
+        return ManagementMessage($"username 'Auth' {EscapedString(username)}");
+    }
 
-        public ManagementMessage Password(string password)
-        {
-            return ManagementMessage($"password 'Auth' {EscapedString(password)}");
-        }
+    public ManagementMessage Password(string password)
+    {
+        return ManagementMessage($"password 'Auth' {EscapedString(password)}");
+    }
 
-        public ManagementMessage Disconnect()
-        {
-            return ManagementMessage("signal SIGTERM");
-        }
+    public ManagementMessage Disconnect()
+    {
+        return ManagementMessage("signal SIGTERM");
+    }
 
-        public ManagementMessage Exit()
-        {
-            return ManagementMessage("exit");
-        }
+    public ManagementMessage Exit()
+    {
+        return ManagementMessage("exit");
+    }
 
 
-        private ManagementMessage ManagementMessage(string messageText)
-        {
-            return new ManagementMessage(messageText);
-        }
+    private ManagementMessage ManagementMessage(string messageText)
+    {
+        return new ManagementMessage(messageText);
+    }
 
-        private static string EscapedString(string value)
-        {
-            return "\"" + value
-                .Replace("\\", "\\\\")
-                .Replace("\"", "\\\"")
-                .Replace(" ", "\\ ")
-                + "\"";
-        }
+    private static string EscapedString(string value)
+    {
+        return "\"" + value
+            .Replace("\\", "\\\\")
+            .Replace("\"", "\\\"")
+            .Replace(" ", "\\ ")
+            + "\"";
     }
 }

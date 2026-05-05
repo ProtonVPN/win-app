@@ -42,7 +42,7 @@ public interface IClientController
     IAsyncEnumerable<NetShieldStatisticIpcEntity> StreamNetShieldStatisticChangeAsync(CancellationToken cancelToken);
 
     [OperationContract]
-    IAsyncEnumerable<RestrictionsIpcEntity> StreamRestrictionsChangeAsync(CancellationToken cancelToken);
+    IAsyncEnumerable<RestrictionListIpcEntity> StreamRestrictionsChangeAsync(CancellationToken cancelToken);
 
     [OperationContract]
     IAsyncEnumerable<UpdateStateIpcEntity> StreamUpdateStateChangeAsync(CancellationToken cancelToken);

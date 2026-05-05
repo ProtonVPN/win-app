@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.ProTun.Contracts;
@@ -27,7 +26,6 @@ namespace ProtonVPN.ProTun.Traffic;
 
 public class ProTunTrafficManager : IProTunTrafficManager
 {
-    private readonly SingleAction _updateBytesTransferredAction;
     private readonly ILogger _logger;
     private readonly IProTunManager _proTunManager;
 
@@ -35,20 +33,9 @@ public class ProTunTrafficManager : IProTunTrafficManager
     {
         _logger = logger;
         _proTunManager = proTunManager;
-        _updateBytesTransferredAction = new SingleAction(UpdateBytesTransferredAsync);
     }
 
-    public void Start()
-    {
-        _updateBytesTransferredAction.Run();
-    }
-
-    public void Stop()
-    {
-        _updateBytesTransferredAction.Cancel();
-    }
-
-    private async Task UpdateBytesTransferredAsync(CancellationToken cancellationToken)
+    public async Task StartAsync(CancellationToken cancellationToken)
     {
         try
         {
@@ -59,9 +46,13 @@ public class ProTunTrafficManager : IProTunTrafficManager
                 await Task.Delay(1000, cancellationToken);
             }
         }
+        catch (OperationCanceledException)
+        {
+            // Cancellations are expected
+        }
         catch (Exception e)
         {
-            _logger.Error<AppLog>($"Failed to start {nameof(ProTunTrafficManager)}.", e);
+            _logger.Error<AppLog>($"Error occurred in {nameof(ProTunTrafficManager)}.", e);
         }
     }
 }

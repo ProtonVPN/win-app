@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -25,7 +25,7 @@ using ProtonVPN.Logging.Contracts.Events.OperatingSystemLogs;
 
 namespace ProtonVPN.Vpn.NetworkAdapters;
 
-public class TapAdapter
+public class TapAdapter : ITapAdapter
 {
     private const string INSTALL_ACTIONS_DLL = "ProtonVPN.InstallActions.dll";
     private IntPtr _libraryHandle;
@@ -71,7 +71,7 @@ public class TapAdapter
 
     private void LogMessage(IntPtr ptr)
     {
-        string message = Marshal.PtrToStringAuto(ptr);
+        string? message = Marshal.PtrToStringAuto(ptr);
         _logger.Info<OperatingSystemLog>(message);
     }
 

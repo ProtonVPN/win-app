@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,20 +21,16 @@ using System.Collections.Generic;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Vpn.Common;
 
-namespace ProtonVPN.Vpn.Connection
-{
-    public interface IVpnEndpointCandidates
-    {
-        VpnEndpoint Current { get; }
+namespace ProtonVPN.Vpn.Connection;
 
-        /// <summary>Excludes the last returned host [IP+Label] (if not the first call) and returns the next endpoint</summary>
-        VpnEndpoint NextHost(VpnConfig config);
-        /// <summary>Excludes the last returned IP (if not the first call) and returns the next endpoint</summary>
-        VpnEndpoint NextIp(VpnConfig config);
-        void Set(IReadOnlyList<VpnHost> servers);
-        void Reset();
-        bool Contains(VpnEndpoint endpoint);
-        int CountHosts();
-        int CountIPs();
-    }
+public interface IVpnEndpointCandidates
+{
+    VpnEndpoint? Current { get; }
+
+    /// <summary>Excludes the last returned IP and returns the next endpoint</summary>
+    VpnEndpoint NextIp(VpnConfig config);
+    void Set(IReadOnlyList<VpnHost> servers);
+    void Reset();
+    bool Contains(VpnEndpoint endpoint);
+    int CountIPs();
 }

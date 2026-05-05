@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Channels;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy;
 using ProtonVPN.ProTun.Generated;
 using static ProtonVPN.ProTun.Generated.Event;
 
@@ -26,7 +26,14 @@ namespace ProtonVPN.ProTun.StatsResponses;
 
 public class ProTunEventsResponseHandler : IProTunEventsResponseHandler
 {
-    public event EventHandler<EventArgs<NetworkTraffic>>? TrafficUpdated;
+    public Channel<NetworkTraffic> TrafficChannel { get; } = Channel.CreateUnbounded<NetworkTraffic>();
+
+    private CancellationToken? _cancellationToken;
+
+    public void SetCancellationToken(CancellationToken cancellationToken)
+    {
+        _cancellationToken = cancellationToken;
+    }
 
     public async void OnEvent(Event proTunEvent)
     {
@@ -36,14 +43,18 @@ public class ProTunEventsResponseHandler : IProTunEventsResponseHandler
         }
     }
 
-    private async Task OnConnectionStatsEventAsync(ConnectionStats stats)
+    private async Task OnConnectionStatsEventAsync(ConnectionStats connectionStatsEvent)
     {
-        NetworkTraffic traffic = new(stats.receivedBytes, stats.sentBytes);
-        InvokeTrafficUpdate(traffic);
+        NetworkTraffic traffic = new(connectionStatsEvent.receivedBytes, connectionStatsEvent.sentBytes);
+        await InvokeTrafficUpdateAsync(traffic);
     }
 
-    private void InvokeTrafficUpdate(NetworkTraffic traffic)
+    private async Task InvokeTrafficUpdateAsync(NetworkTraffic traffic)
     {
-        TrafficUpdated?.Invoke(this, new EventArgs<NetworkTraffic>(traffic));
+        CancellationToken? cancellationToken = _cancellationToken;
+        if (cancellationToken is not null)
+        {
+            await TrafficChannel.Writer.WriteAsync(traffic, cancellationToken.Value);
+        }
     }
 }

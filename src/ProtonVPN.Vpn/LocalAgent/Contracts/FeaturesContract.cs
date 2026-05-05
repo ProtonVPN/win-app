@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -27,7 +27,7 @@ public class FeaturesContract
     public bool RandomizedNat { get; set; }
 
     [JsonProperty(PropertyName = "bouncing")]
-    public string Bouncing { get; set; }
+    public string Bouncing { get; set; } = string.Empty;
 
     [JsonProperty(PropertyName = "split-tcp")]
     public bool SplitTcp { get; set; }

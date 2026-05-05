@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,17 +22,18 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Vpn.OpenVpn;
 
 namespace ProtonVPN.Vpn.PortScanning;
 
-public class TcpPortScanner
+public class TcpPortScanner : ITcpPortScanner
 {
-    private byte[] _staticKey;
+    private readonly byte[] _staticKey;
 
-    public void Config(byte[] staticKey)
+    public TcpPortScanner(IStaticConfiguration config)
     {
-        _staticKey = staticKey;
+        _staticKey = config.OpenVpn.StaticKey;
     }
 
     public async Task<bool> IsAliveAsync(string ip, int port, Task timeoutTask)

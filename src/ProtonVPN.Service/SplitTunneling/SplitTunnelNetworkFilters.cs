@@ -35,7 +35,7 @@ public class SplitTunnelNetworkFilters
     private IpFilter _ipFilter;
     private Sublayer _subLayer;
 
-    public void EnableExcludeMode(string[] apps, IPAddress localIpv4Address, IPAddress localIpv6Address)
+    public void EnableExcludeMode(string[] apps, IPAddress localIpv4Address, IPAddress? localIpv6Address)
     {
         Create();
 
@@ -53,7 +53,7 @@ public class SplitTunnelNetworkFilters
         }
     }
 
-    public void EnableIncludeMode(string[] apps, IPAddress serverIpv4Address, IPAddress serverIpv6Address)
+    public void EnableIncludeMode(string[] apps, IPAddress serverIpv4Address, IPAddress? serverIpv6Address)
     {
         Create();
 
@@ -71,7 +71,7 @@ public class SplitTunnelNetworkFilters
         }
     }
 
-    private void Redirect(string[] apps, IPAddress ipv4Address, IPAddress ipv6Address)
+    private void Redirect(string[] apps, IPAddress ipv4Address, IPAddress? ipv6Address)
     {
         Callout connectRedirectCalloutV4 = CreateConnectRedirectCallout(Layer.AppConnectRedirectV4, _connectRedirectV4CalloutKey);
         Callout bindRedirectCalloutV4 = CreateUDPRedirectCallout(Layer.BindRedirectV4, _bindRedirectV4CalloutKey);

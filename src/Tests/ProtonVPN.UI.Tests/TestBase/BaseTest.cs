@@ -179,9 +179,9 @@ public class BaseTest
                 protonService.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(10));
             }
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            Assert.Fail("ProtonVPNCallout service failed to stop");
+            Assert.Fail($"ProtonVPNCallout service failed to stop: {e.Message}");
         }
     }
 

@@ -279,6 +279,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     </StackPanel>
                 </toolkit:SettingsCard>
 
+
+                <toolkit:SettingsCard Header="Connection certificate update"
+                                      IsTabStop="False"
+                                      Style="{StaticResource DefaultSettingsCardStyle}">
+                    <Button Command="{x:Bind ViewModel.TriggerConnectionCertificateUpdateCommand, Mode=OneTime}"
+                            Content="Trigger"
+                            Style="{StaticResource PrimaryButtonStyle}" />
+                </toolkit:SettingsCard>
+
             </StackPanel>
         </ScrollViewer>
 

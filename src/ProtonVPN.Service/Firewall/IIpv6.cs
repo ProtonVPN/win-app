@@ -18,15 +18,17 @@
  */
 
 using System.Threading.Tasks;
+using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Service.Firewall;
 
 internal interface IIpv6
 {
+    VpnProtocol VpnProtocol { get; }
     bool IsEnabled { get; }
 
-    Task DisableAsync();
-    void Enable();
-    Task EnableAsync();
-    Task EnableOnVPNInterfaceAsync();
+    Task DisableAsync(VpnProtocol vpnProtocol);
+    void Enable(VpnProtocol vpnProtocol);
+    Task EnableAsync(VpnProtocol vpnProtocol);
+    Task EnableOnVPNInterfaceAsync(VpnProtocol vpnProtocol);
 }

@@ -23,5 +23,6 @@ namespace ProtonVPN.Configurations.Entities;
 
 public class ProTunConfigurations : IProTunConfigurations
 {
-    public Guid WintunAdapterGuid { get; set; }
+    public required Guid WintunAdapterGuid { get; init; }
+    public required string WintunAdapterHardwareId { get; init; }
 }

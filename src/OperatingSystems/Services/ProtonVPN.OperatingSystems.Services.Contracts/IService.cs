@@ -42,5 +42,7 @@ public interface IService
     bool StopWithRetry();
     Task<bool> StopAsync(CancellationToken cancellationToken);
 
+    bool Kill();
+
     ServiceStatus? GetStatus();
 }

@@ -26,7 +26,7 @@ using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Dns;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
-using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
+using ProtonVPN.ProcessCommunication.EntityMapping.Common.Legacy.Vpn;
 
 namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn;
 

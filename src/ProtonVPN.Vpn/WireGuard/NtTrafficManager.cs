@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,77 +18,75 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy.Threading;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.WireGuardDriver;
 
-namespace ProtonVPN.Vpn.WireGuard
+namespace ProtonVPN.Vpn.WireGuard;
+
+public class NtTrafficManager : INtTrafficManager
 {
-    public class NtTrafficManager
+    private readonly string _adapterName;
+    private readonly ILogger _logger;
+
+    public NtTrafficManager(IStaticConfiguration config, ILogger logger)
     {
-        private readonly string _adapterName;
-        private readonly SingleAction _updateBytesTransferredAction;
-        private readonly ILogger _logger;
+        _adapterName = config.WireGuard.ConfigFileName;
+        _logger = logger;
+    }
 
-        public event EventHandler<NetworkTraffic> TrafficSent;
-
-        public NtTrafficManager(string adapterName, ILogger logger)
+    public async IAsyncEnumerable<NetworkTraffic> WatchTrafficAsync([EnumeratorCancellation] CancellationToken cancellationToken)
+    {
+        Adapter adapter;
+        try
         {
-            _adapterName = adapterName;
-            _logger = logger;
-            _updateBytesTransferredAction = new SingleAction(UpdateBytesTransferred);
+            adapter = new Adapter(_adapterName);
+        }
+        catch (Win32Exception e)
+        {
+            _logger.Error<AppLog>("Failed to open adapter.", e);
+            yield break;
         }
 
-        public void Start()
+        using (adapter)
         {
-            _updateBytesTransferredAction.Run();
-        }
-
-        public void Stop()
-        {
-            _updateBytesTransferredAction.Cancel();
-        }
-
-        private async Task UpdateBytesTransferred(CancellationToken cancellationToken)
-        {
-            try
+            while (!cancellationToken.IsCancellationRequested)
             {
-                using Adapter adapter = new(_adapterName);
-                while (!cancellationToken.IsCancellationRequested)
+                ulong rx = 0;
+                ulong tx = 0;
+
+                try
                 {
-                    cancellationToken.ThrowIfCancellationRequested();
-
-                    ulong rx = 0;
-                    ulong tx = 0;
-
-                    try
+                    Interface iface = adapter.GetConfiguration();
+                    foreach (Peer peer in iface.Peers)
                     {
-                        Interface iface = adapter.GetConfiguration();
-                        foreach (Peer peer in iface.Peers)
-                        {
-                            rx += peer.RxBytes;
-                            tx += peer.TxBytes;
-                        }
+                        rx += peer.RxBytes;
+                        tx += peer.TxBytes;
                     }
-                    catch (Win32Exception)
-                    {
-                        //can be safely ignored as it's only thrown when WireGuard Service is stopped due to the app exit
-                        //or computer is put to sleep.
-                    }
+                }
+                catch (Win32Exception)
+                {
+                    // Can be safely ignored as it's only thrown when WireGuard Service is stopped due to the app exit
+                    // or computer is put to sleep.
+                }
 
-                    TrafficSent?.Invoke(this, new NetworkTraffic(rx, tx));
+                yield return new NetworkTraffic(rx, tx);
 
+                try
+                {
                     await Task.Delay(1000, cancellationToken);
                 }
-            }
-            catch (Win32Exception e)
-            {
-                _logger.Error<AppLog>("Failed to receive interface configuration.", e);
+                catch (OperationCanceledException)
+                {
+                    yield break;
+                }
             }
         }
     }

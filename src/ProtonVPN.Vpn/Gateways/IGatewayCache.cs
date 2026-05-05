@@ -23,6 +23,6 @@ namespace ProtonVPN.Vpn.Gateways;
 
 public interface IGatewayCache
 {
-    public IPAddress Get();
+    public IPAddress? Get();
     public void Save(IPAddress defaultGateway);
 }

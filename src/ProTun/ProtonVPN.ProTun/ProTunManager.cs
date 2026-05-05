@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Channels;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
 using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
@@ -57,12 +57,8 @@ public class ProTunManager : IProTunManager
     private ProTunWindowsConnection? _windowsConnection;
     private ProTunConnection? _connection;
 
-    public event EventHandler<EventArgs<VpnState>>? OnStateChanged;
-    public event EventHandler<EventArgs<NetworkTraffic>>? OnTrafficUpdated
-    {
-        add => _proTunEventsResponseHandler.TrafficUpdated += value;
-        remove => _proTunEventsResponseHandler.TrafficUpdated -= value;
-    }
+    public Channel<VpnState> StateChannel { get; }
+    public Channel<NetworkTraffic> TrafficChannel { get; }
 
     public ProTunManager(IProTunLogger proTunLogger,
         IProTunStateChangeHandler proTunStateChangeHandler,
@@ -78,12 +74,8 @@ public class ProTunManager : IProTunManager
 
         ProTunDllLoader.Register();
 
-        proTunStateChangeHandler.StateChanged += OnHandlerStateChanged;
-    }
-
-    private void OnHandlerStateChanged(object? sender, EventArgs<VpnState> e)
-    {
-        OnStateChanged?.Invoke(sender, e);
+        StateChannel = _proTunStateChangeHandler.StateChannel;
+        TrafficChannel = _proTunEventsResponseHandler.TrafficChannel;
     }
 
     public async Task InitializeAsync()
@@ -111,13 +103,13 @@ public class ProTunManager : IProTunManager
         }
     }
 
-    public async Task ConnectAsync(ConnectionArgs args)
+    public async Task ConnectAsync(ConnectionArgs args, CancellationToken cancellationToken)
     {
         await _connectionSemaphore.WaitAsync();
         VpnState? disconnectState = null;
         try
         {
-            TryDisconnect(null);
+            TryDisconnect();
             await InitializeAsync();
             if (_protun is null)
             {
@@ -127,6 +119,8 @@ public class ProTunManager : IProTunManager
             {
                 InitialConnectionConfig initialConnectionConfig = CreateInitialConnectionConfig(args);
                 NetworkConfig networkConfig = CreateNetworkConfig(args);
+                _proTunStateChangeHandler.SetCancellationToken(cancellationToken);
+                _proTunEventsResponseHandler.SetCancellationToken(cancellationToken);
                 _windowsConnection = ProTunWindowsConnection.Connect(initialConnectionConfig, networkConfig,
                     _proTunStateChangeHandler, _proTunEventsResponseHandler);
                 AdapterDetails adapterDetails = _windowsConnection.GetAdapterDetails().Map();
@@ -146,25 +140,34 @@ public class ProTunManager : IProTunManager
 
         if (disconnectState != null)
         {
-            OnHandlerStateChanged(null, new EventArgs<VpnState>(disconnectState));
+            await InvokeStateChangeAsync(disconnectState, cancellationToken);
         }
     }
 
-    private VpnState? TryDisconnect(VpnError? vpnError)
+    private async Task InvokeStateChangeAsync(VpnState vpnState, CancellationToken cancellationToken)
+    {
+        await StateChannel.Writer.WriteAsync(vpnState, cancellationToken);
+    }
+
+    private void TryDisconnect()
+    {
+        Disconnect();
+        DestroyConnection();
+    }
+
+    private VpnState TryDisconnect(VpnError vpnError)
     {
         Disconnect();
         DestroyConnection();
 
-        return vpnError.HasValue
-            ? new(VpnStatus.Disconnected, vpnError.Value, VpnProtocol.Smart)
-            : null;
+        return new(VpnStatus.Disconnected, vpnError, VpnProtocol.Smart);
     }
 
     private void Disconnect()
     {
         try
         {
-            _connection?.Disconnect(); // Can't use DisconnectAndWait as a deadlock occurs on wake from sleep due to the state changes
+            _connection?.DisconnectAndWait();
         }
         catch (Exception ex)
         {
@@ -245,22 +248,16 @@ public class ProTunManager : IProTunManager
         );
     }
 
-    public async Task DisconnectAsync(VpnError? vpnError)
+    public async Task DisconnectAsync()
     {
         await _connectionSemaphore.WaitAsync();
-        VpnState? disconnectState = null;
         try
         {
-            disconnectState = TryDisconnect(vpnError);
+            TryDisconnect();
         }
         finally
         {
             _connectionSemaphore.Release();
-        }
-
-        if (disconnectState != null)
-        {
-            OnHandlerStateChanged(null, new EventArgs<VpnState>(disconnectState));
         }
     }
 

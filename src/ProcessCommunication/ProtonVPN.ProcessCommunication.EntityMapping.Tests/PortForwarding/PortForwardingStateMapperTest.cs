@@ -17,12 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common.Legacy.PortForwarding;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.PortForwarding;
-using ProtonVPN.ProcessCommunication.EntityMapping.PortForwarding;
+using ProtonVPN.ProcessCommunication.EntityMapping.Common.Legacy.PortForwarding;
 
 namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.PortForwarding;
 

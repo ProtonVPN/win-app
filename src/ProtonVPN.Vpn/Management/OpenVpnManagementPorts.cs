@@ -20,20 +20,20 @@
 using System.Net;
 using System.Net.Sockets;
 
-namespace ProtonVPN.Vpn.Management
-{
-    /// <summary>
-    /// Gets available TCP port from network stack for OpenVPN management interface.
-    /// </summary>
-    public class OpenVpnManagementPorts
-    {
-        private readonly IPEndPoint _loopbackEndpoint = new(IPAddress.Loopback, port: 0);
+namespace ProtonVPN.Vpn.Management;
 
-        public int Port()
-        {
-            using Socket socket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            socket.Bind(_loopbackEndpoint);
-            return ((IPEndPoint)socket.LocalEndPoint).Port;
-        }
+/// <summary>
+/// Gets available TCP port from network stack for OpenVPN management interface.
+/// </summary>
+public class OpenVpnManagementPorts
+{
+    private readonly IPEndPoint _loopbackEndpoint = new(IPAddress.Loopback, port: 0);
+
+    public int Port()
+    {
+        using Socket socket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        socket.Bind(_loopbackEndpoint);
+        IPEndPoint? localEndPoint = socket.LocalEndPoint as IPEndPoint;
+        return localEndPoint?.Port ?? 0;
     }
 }

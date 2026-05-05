@@ -17,15 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using ProtonVPN.Common.Legacy;
+using System.Threading;
+using System.Threading.Channels;
+using System.Threading.Tasks;
 
 namespace ProtonVPN.Vpn.LocalAgent;
 
 public interface ILocalAgentTlsCredentialsCache
 {
-    void Set(LocalAgentTlsCredentials credentials);
-    LocalAgentTlsCredentials Get();
+    Channel<LocalAgentTlsCredentialsUpdate> LocalAgentTlsCredentialsChannel { get; }
+    long CurrentVersion { get; }
 
-    event EventHandler<EventArgs<LocalAgentTlsCredentials>> Changed;
+    Task SetAsync(LocalAgentTlsCredentials credentials, CancellationToken cancellationToken);
+    Task<LocalAgentTlsCredentials?> GetAsync(CancellationToken cancellationToken);
 }

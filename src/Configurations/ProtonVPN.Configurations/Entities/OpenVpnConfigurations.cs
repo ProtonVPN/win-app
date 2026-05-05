@@ -23,20 +23,20 @@ namespace ProtonVPN.Configurations.Entities;
 
 public class OpenVpnConfigurations : IOpenVpnConfigurations
 {
-    public string ConfigPath { get; set; } = string.Empty;
+    public required string ConfigPath { get; init; }
 
-    public string TapAdapterId { get; set; } = string.Empty;
-    public string TapAdapterDescription { get; set; } = string.Empty;
-    public string TapInstallerDir { get; set; } = string.Empty;
+    public required string TapAdapterId { get; init; }
+    public required string TapAdapterDescription { get; init; }
+    public required string TapInstallerDir { get; init; }
 
-    public string TunAdapterId { get; set; } = string.Empty;
-    public string TunAdapterName { get; set; } = string.Empty;
+    public required string TunAdapterId { get; init; }
+    public required string TunAdapterName { get; init; }
 
-    public string TlsExportCertFolder { get; set; } = string.Empty;
-    public string ExePath { get; set; } = string.Empty;
-    public string TlsVerifyExePath { get; set; } = string.Empty;
+    public required string TlsExportCertFolder { get; init; }
+    public required string ExePath { get; init; }
+    public required string TlsVerifyExePath { get; init; }
 
-    public string ManagementHost { get; set; } = string.Empty;
-    public string ExitEventName { get; set; } = string.Empty;
-    public byte[] StaticKey { get; set; } = Array.Empty<byte>();
+    public required string ManagementHost { get; init; }
+    public required string ExitEventName { get; init; }
+    public required byte[] StaticKey { get; init; }
 }

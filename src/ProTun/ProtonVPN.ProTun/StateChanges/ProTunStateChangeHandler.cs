@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,8 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading.Channels;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
@@ -33,7 +33,9 @@ public class ProTunStateChangeHandler : IProTunStateChangeHandler
     private readonly ILogger _logger;
     private readonly IIssueReporter _issueReporter;
 
-    public event EventHandler<EventArgs<VpnState>>? StateChanged;
+    public Channel<VpnState> StateChannel { get; } = Channel.CreateUnbounded<VpnState>();
+
+    private CancellationToken? _cancellationToken;
 
     public ProTunStateChangeHandler(ILogger logger, IIssueReporter issueReporter)
     {
@@ -41,38 +43,43 @@ public class ProTunStateChangeHandler : IProTunStateChangeHandler
         _issueReporter = issueReporter;
     }
 
-    public void OnStateChanged(State state)
+    public void SetCancellationToken(CancellationToken cancellationToken)
+    {
+        _cancellationToken = cancellationToken;
+    }
+
+    public async void OnStateChanged(State state)
     {
         if (state is Disconnected disconnectedState)
         {
             if (disconnectedState.error is null)
             {
-                InvokeState(new(VpnStatus.Disconnected, VpnProtocol.Smart));
+                await InvokeStateAsync(new(VpnStatus.Disconnected, VpnProtocol.Smart));
             }
             else
             {
                 _logger.Error<ConnectionErrorLog>($"ProTUN disconnected with error: {disconnectedState.error}");
-                InvokeState(new(VpnStatus.Disconnected, VpnError.Unknown, VpnProtocol.Smart));
+                await InvokeStateAsync(new(VpnStatus.Disconnected, VpnError.Unknown, VpnProtocol.Smart));
             }
         }
         else if (state is Connected connectedState)
         {
-            InvokeStateWithPeer(VpnStatus.Connected, connectedState.peer);
+            await InvokeStateWithPeerAsync(VpnStatus.Connected, connectedState.peer);
         }
         else if (state is WaitingForAction)
         {
-            InvokeState(new(VpnStatus.Waiting, VpnProtocol.Smart));
+            await InvokeStateAsync(new(VpnStatus.Waiting, VpnProtocol.Smart));
         }
         else if (state is Connecting connectingState)
         {
             PeerConnectionInfo? peer = connectingState.peers.FirstOrDefault();
             if (peer is null) // ProTUN sends connecting without peers on a change of peers, or network availability change
             {
-                InvokeState(new(VpnStatus.Connecting, VpnProtocol.Smart));
+                await InvokeStateAsync(new(VpnStatus.Connecting, VpnProtocol.Smart));
             }
             else
             {
-                InvokeStateWithPeer(VpnStatus.Connecting, peer);
+                await InvokeStateWithPeerAsync(VpnStatus.Connecting, peer);
             }
         }
         else
@@ -83,9 +90,9 @@ public class ProTunStateChangeHandler : IProTunStateChangeHandler
         }
     }
 
-    private void InvokeStateWithPeer(VpnStatus vpnStatus, PeerConnectionInfo peer)
+    private async Task InvokeStateWithPeerAsync(VpnStatus vpnStatus, PeerConnectionInfo peer)
     {
-        InvokeState(new(vpnStatus,
+        await InvokeStateAsync(new(vpnStatus,
             remoteIp: peer.entryIp,
             endpointPort: peer.port,
             vpnProtocol: MapProtocol(peer.protocol),
@@ -124,8 +131,18 @@ public class ProTunStateChangeHandler : IProTunStateChangeHandler
         return parts[1];
     }
 
-    private void InvokeState(VpnState vpnState)
+    private async Task InvokeStateAsync(VpnState vpnState)
     {
-        StateChanged?.Invoke(this, new EventArgs<VpnState>(vpnState));
+        try
+        {
+            CancellationToken? cancellationToken = _cancellationToken;
+            if (cancellationToken is not null)
+            {
+                await StateChannel.Writer.WriteAsync(vpnState, cancellationToken.Value);
+            }
+        }
+        catch (OperationCanceledException)
+        {
+        }
     }
 }

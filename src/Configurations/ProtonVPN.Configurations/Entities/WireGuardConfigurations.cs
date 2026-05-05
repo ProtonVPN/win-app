@@ -23,21 +23,21 @@ namespace ProtonVPN.Configurations.Entities;
 
 public class WireGuardConfigurations : IWireGuardConfigurations
 {
-    public string ServiceName { get; set; } = string.Empty;
-    public string ConfigFileName { get; set; } = string.Empty;
+    public required string ServiceName { get; init; }
+    public required string ConfigFileName { get; init; }
 
-    public string WintunAdapterHardwareId { get; set; } = string.Empty;
-    public Guid WintunAdapterGuid { get; set; }
-    public Guid NtAdapterGuid { get; set; }
+    public required string WintunAdapterHardwareId { get; init; }
+    public required Guid WintunAdapterGuid { get; init; }
+    public required Guid NtAdapterGuid { get; init; }
 
-    public string DefaultServerGatewayIpv4Address { get; set; } = string.Empty;
-    public string DefaultClientIpv4Address { get; set; } = string.Empty;
+    public required string DefaultServerGatewayIpv4Address { get; init; }
+    public required string DefaultClientIpv4Address { get; init; }
 
-    public string DefaultServerGatewayIpv6Address { get; set; } = string.Empty;
-    public string DefaultClientIpv6Address { get; set; } = string.Empty;
+    public required string DefaultServerGatewayIpv6Address { get; init; }
+    public required string DefaultClientIpv6Address { get; init; }
 
-    public string ConfigFilePath { get; set; } = string.Empty;
-    public string ServicePath { get; set; } = string.Empty;
-    public string LogFilePath { get; set; } = string.Empty;
-    public string PipeName { get; set; } = string.Empty;
+    public required string ConfigFilePath { get; init; }
+    public required string ServicePath { get; init; }
+    public required string LogFilePath { get; init; }
+    public required string PipeName { get; init; }
 }

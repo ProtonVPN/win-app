@@ -17,11 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProtonVPN.Common.Core.Dns;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Dns;
-using ProtonVPN.ProcessCommunication.EntityMapping.Dns;
+using ProtonVPN.ProcessCommunication.EntityMapping.Common.Core.Dns;
 using ProtonVPN.ProcessCommunication.EntityMapping.Tests.Common;
 
 namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Dns;

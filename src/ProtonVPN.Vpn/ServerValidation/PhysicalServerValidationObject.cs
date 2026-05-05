@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Vpn.ServerValidation
+namespace ProtonVPN.Vpn.ServerValidation;
+
+public class PhysicalServerValidationObject
 {
-    public class PhysicalServerValidationObject
-    {
-        public string EntryIP { get; set; }
-        public string Label { get; set; }
-    }
+    public required string EntryIP { get; init; }
+    public required string Label { get; init; }
 }

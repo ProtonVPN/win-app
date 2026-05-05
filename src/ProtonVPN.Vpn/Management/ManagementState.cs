@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -27,7 +27,7 @@ namespace ProtonVPN.Vpn.Management;
 /// <summary>
 /// Maps OpenVPN state received over management interface to VPN status.
 /// </summary>
-internal class ManagementState
+public class ManagementState
 {
     private static readonly Dictionary<string, VpnStatus> _statusMapping = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -44,10 +44,10 @@ internal class ManagementState
         ["RECONNECTING"] = VpnStatus.Reconnecting,
     };
 
-    private readonly string _state;
-    private readonly string _status;
+    private readonly string? _state;
+    private readonly string? _status;
 
-    public ManagementState(string stateMessage, string statusMessage, string localIpAddress, string remoteAddress)
+    public ManagementState(string? stateMessage, string? statusMessage, string? localIpAddress, string? remoteAddress)
     {
         _state = stateMessage;
         _status = statusMessage;
@@ -59,24 +59,26 @@ internal class ManagementState
 
     public bool HasStatus => GetStatus() != default(VpnStatus);
 
-    public bool HasError => Status == VpnStatus.Connected && _status.EqualsIgnoringCase("ERROR")
+    public bool HasError => Status == VpnStatus.Connected && _status is not null && _status.EqualsIgnoringCase("ERROR")
                             || HasTlsError();
 
     public VpnError Error => HasTlsError() ? VpnError.TlsError : VpnError.None;
 
     public static ManagementState Null => new(null, null, null, null);
 
-    public string LocalIpAddress { get; }
+    public string? LocalIpAddress { get; }
 
-    public string RemoteIpAddress { get; }
+    public string? RemoteIpAddress { get; }
 
     private VpnStatus GetStatus()
     {
-        return _statusMapping.TryGetValue(_state, out VpnStatus status) ? status : default(VpnStatus);
+        return _state is not null && _statusMapping.TryGetValue(_state, out VpnStatus status)
+            ? status
+            : default(VpnStatus);
     }
 
     private bool HasTlsError()
     {
-        return Status == VpnStatus.Reconnecting && _status.EqualsIgnoringCase("tls-error");
+        return Status == VpnStatus.Reconnecting && _status is not null && _status.EqualsIgnoringCase("tls-error");
     }
 }

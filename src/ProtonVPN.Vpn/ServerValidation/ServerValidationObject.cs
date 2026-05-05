@@ -17,10 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Vpn.ServerValidation
+namespace ProtonVPN.Vpn.ServerValidation;
+
+public class ServerValidationObject
 {
-    public class ServerValidationObject
-    {
-        public PhysicalServerValidationObject Server { get; set; }
-    }
+    public required PhysicalServerValidationObject Server { get; init; }
 }

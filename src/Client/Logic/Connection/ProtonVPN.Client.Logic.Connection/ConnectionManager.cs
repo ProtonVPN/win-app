@@ -94,7 +94,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
     public bool IsDisconnected => ConnectionStatus == ConnectionStatus.Disconnected;
     public bool IsConnecting => ConnectionStatus == ConnectionStatus.Connecting;
     public bool IsConnected => ConnectionStatus == ConnectionStatus.Connected;
-    public bool HasError => _currentError.HasError();
+    public bool IsConnectAllowed => _currentError != VpnErrorTypeIpcEntity.BaseFilteringEngineServiceNotRunning;
     public bool IsNetworkBlocked => _isNetworkBlocked;
     public bool IsTwoFactorError => !IsDisconnected && _currentError.IsTwoFactorError();
     public bool IsMobileHotspotError => _currentError == VpnErrorTypeIpcEntity.InterfaceHasForwardingEnabled;

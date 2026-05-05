@@ -310,9 +310,9 @@ public partial class ConnectionCardComponentViewModel : ActivatableViewModelBase
     }
 
     [RelayCommand(CanExecute = nameof(CanCancelConnection))]
-    private Task CancelConnectionAsync()
+    private async Task CancelConnectionAsync()
     {
-        return _connectionManager.DisconnectAsync(VpnTriggerDimension.ConnectionCard);
+        await _connectionManager.DisconnectAsync(VpnTriggerDimension.ConnectionCard);
     }
 
     private bool CanCancelConnection()

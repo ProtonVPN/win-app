@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
+/*
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,14 +18,14 @@
  */
 
 using System;
-using System.ComponentModel;
+using System.Collections.Generic;
 using System.IO;
-using System.Net.Sockets;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Threading.Channels;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Legacy;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Crypto.Contracts;
@@ -33,46 +33,61 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
+using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
+using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Management;
+using ProtonVPN.Vpn.NetworkAdapters;
 using ProtonVPN.Vpn.OpenVpn;
-using ProtonVPN.OperatingSystems.Network.Contracts;
-using System.Collections.Generic;
-using System.Linq;
-using ProtonVPN.OperatingSystems.Processes.Contracts;
+using ProtonVPN.Vpn.Wintun;
 
 namespace ProtonVPN.Vpn.Connection;
 
-internal class OpenVpnConnection : IAdapterSingleVpnConnection
+internal class OpenVpnConnection : IOpenVpnConnection
 {
-    private static readonly TimeSpan WaitForConnectionTaskToFinishAfterClose = TimeSpan.FromSeconds(3);
-    private static readonly TimeSpan WaitForConnectionTaskToFinishAfterCancellation = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan _waitForConnectionTaskToFinishAfterClose = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan _waitForConnectionTaskToFinishAfterCancellation = TimeSpan.FromSeconds(3);
     private const int MANAGEMENT_PASSWORD_LENGTH = 16;
 
     private readonly ILogger _logger;
     private readonly IStaticConfiguration _config;
     private readonly INetworkInterfaceLoader _networkInterfaceLoader;
-    private readonly OpenVpnProcess _process;
-    private readonly ManagementClient _managementClient;
+    private readonly IOpenVpnProcess _process;
+    private readonly IManagementClient _managementClient;
+    private readonly IWintunAdapter _winTunAdapter;
+    private readonly ITapAdapter _tapAdapter;
+    private readonly INetworkUtilities _networkUtilities;
+    private readonly IWintunRegistryFixer _wintunRegistryFixer;
 
     private readonly OpenVpnManagementPorts _managementPorts;
     private readonly IRandomStringGenerator _randomStringGenerator;
-    private readonly SingleAction _connectAction;
-    private readonly SingleAction _disconnectAction;
 
-    private VpnEndpoint _endpoint;
+    private readonly Channel<VpnState> _stateChannel = Channel.CreateUnbounded<VpnState>();
+    private Channel<VpnState> _managementStateChannel = Channel.CreateUnbounded<VpnState>();
+
+    private CancellationTokenSource _connectionCts = new();
+    private Task? _connectTask;
+    private TaskCompletionSource<bool>? _connectionTaskCompletionSource;
+    private volatile bool _isConnected;
+    private volatile bool _disconnectRequested;
+    private string? _localIpv4Address;
+
+    private VpnEndpoint? _endpoint;
     private VpnCredentials _credentials;
-    private VpnError _disconnectError = VpnError.Unknown;
-    private VpnConfig _vpnConfig;
+    private VpnError _disconnectError = VpnError.None;
+    private VpnConfig? _vpnConfig;
 
     public OpenVpnConnection(
         ILogger logger,
         IStaticConfiguration config,
         INetworkInterfaceLoader networkInterfaceLoader,
-        OpenVpnProcess process,
+        IOpenVpnProcess process,
         IRandomStringGenerator randomStringGenerator,
-        ICommandLineCaller commandLineCaller,
-        ManagementClient managementClient)
+        IManagementClient managementClient,
+        IWintunAdapter winTunAdapter,
+        ITapAdapter tapAdapter,
+        INetworkUtilities networkUtilities,
+        IWintunRegistryFixer wintunRegistryFixer)
     {
         _logger = logger;
         _config = config;
@@ -80,227 +95,215 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
         _process = process;
         _randomStringGenerator = randomStringGenerator;
         _managementClient = managementClient;
-
-        _managementClient.VpnStateChanged += ManagementClient_StateChanged;
-        _managementClient.TransportStatsChanged += ManagementClient_TransportStatsChanged;
+        _winTunAdapter = winTunAdapter;
+        _tapAdapter = tapAdapter;
+        _wintunRegistryFixer = wintunRegistryFixer;
 
         _managementPorts = new OpenVpnManagementPorts();
-        _connectAction = new SingleAction(ConnectAction);
-        _connectAction.Completed += ConnectAction_Completed;
-        _disconnectAction = new SingleAction(DisconnectAction);
-        _disconnectAction.Completed += DisconnectAction_Completed;
+        _networkUtilities = networkUtilities;
     }
 
-    public event EventHandler<EventArgs<VpnState>> StateChanged;
-    public event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
+    public string? LocalIpv4Address => _localIpv4Address;
 
-    public NetworkTraffic NetworkTraffic { get; private set; } = NetworkTraffic.Zero;
+    public NetworkTraffic NetworkTraffic => _managementClient.NetworkTraffic;
 
-    public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig vpnConfig)
+    public async Task<VpnError> ConnectAsync(
+        VpnEndpoint endpoint,
+        VpnCredentials credentials,
+        VpnConfig vpnConfig,
+        CancellationToken cancellationToken)
     {
         _vpnConfig = vpnConfig;
         _endpoint = endpoint;
         _credentials = credentials;
 
-        _connectAction.Run();
-    }
+        _connectionTaskCompletionSource = new(TaskCreationOptions.RunContinuationsAsynchronously);
+        _localIpv4Address = null;
+        _isConnected = false;
+        _disconnectRequested = false;
 
-    public void Disconnect(VpnError error)
-    {
-        _disconnectError = error;
-        _disconnectAction.Run();
-    }
+        ResetConnectionCancellation(cancellationToken);
+        StartMonitoringStateChannel(_connectionCts.Token);
+        StartMonitoringManagementChannelStates(_connectionCts.Token);
 
-    private async Task ConnectAction(CancellationToken cancellationToken)
-    {
-        _logger.Info<ConnectStartLog>("Connect action started");
-
-        OnStateChanged(VpnStatus.Connecting);
-        if (!WriteConfig())
+        if (_vpnConfig.OpenVpnAdapter == OpenVpnAdapter.Tun)
         {
-            Disconnect(VpnError.Unknown);
-            return;
-        }
-
-        int port = _managementPorts.Port();
-        string password = ManagementPassword();
-
-        OpenVpnProcessParams processParams = new(
-            _endpoint,
-            port,
-            password,
-            GetCustomDnsServers(_vpnConfig),
-            _vpnConfig.SplitTunnelMode,
-            _vpnConfig.OpenVpnAdapter,
-            GetNetworkInterfaceIdOrEmpty());
-
-        cancellationToken.ThrowIfCancellationRequested();
-
-        if (!await _process.Start(processParams))
-        {
-            _disconnectError = VpnError.Unknown;
+            _winTunAdapter.Create();
         }
         else
         {
-            await _managementClient.Connect(port, password);
-
-            if (cancellationToken.IsCancellationRequested)
-            {
-                await _managementClient.CloseVpnConnection();
-                cancellationToken.ThrowIfCancellationRequested();
-            }
-
-            await _managementClient.StartVpnConnection(_credentials, _endpoint, cancellationToken);
+            _tapAdapter.Create();
         }
 
-        cancellationToken.ThrowIfCancellationRequested();
-    }
+        _connectTask = Task.Run(() => ConnectActionAsync(_connectionCts.Token), _connectionCts.Token);
 
-    private List<string> GetCustomDnsServers(VpnConfig config)
-    {
-        return config.CustomDns
-            .Where(dns => NetworkAddress.TryParse(dns, out NetworkAddress networkAddress) &&
-                          networkAddress.IsIpV4 || (networkAddress.IsIpV6 && config.IsIpv6Enabled)).ToList();
-    }
+        await WaitForConnectionResultAsync(_connectTask, _connectionTaskCompletionSource.Task, _connectionCts.Token);
 
-    private bool WriteConfig()
-    {
-        try
+        if (_connectionCts.IsCancellationRequested)
         {
-            bool isIpv6Enabled = _vpnConfig.IsIpv6Enabled && _endpoint.Server.IsIpv6Supported;
-            ConfigTemplate template = new();
-            string content = template.GetConfig(_credentials, isIpv6Enabled);
-            File.WriteAllText(_config.OpenVpn.ConfigPath, content);
-            return true;
+            _connectionCts.Token.ThrowIfCancellationRequested();
         }
-        catch (Exception e)
+
+        bool isConnected = _connectionTaskCompletionSource.Task.Result;
+        if (!isConnected)
         {
-            _logger.Error<ConnectionErrorLog>("Failed to update OpenVPN config file.", e);
-            return false;
+            return _disconnectError;
         }
+
+        return VpnError.None;
     }
 
-    private string GetNetworkInterfaceIdOrEmpty()
+    public async Task DisconnectAsync()
     {
-        return _networkInterfaceLoader.GetByVpnProtocol(_vpnConfig.VpnProtocol, _vpnConfig.OpenVpnAdapter)?.Id ?? string.Empty;
-    }
+        _disconnectRequested = true;
+        _isConnected = false;
 
-    private string ManagementPassword()
-    {
-        return _randomStringGenerator.Generate(MANAGEMENT_PASSWORD_LENGTH);
-    }
+        _connectionCts.Cancel();
 
-    private async Task DisconnectAction()
-    {
         _logger.Info<DisconnectLog>("Disconnect action started");
         OnStateChanged(VpnStatus.Disconnecting);
 
-        await CloseVpnConnection();
-        _managementClient.Disconnect();
-        _process.Stop();
-    }
-
-    private void ConnectAction_Completed(object sender, TaskCompletedEventArgs e)
-    {
-        _logger.Info<ConnectLog>("Connect action completed");
-
-        HandleTaskExceptionsIfAny(e.Task, "Connection action failed");
-
-        if (!e.Task.IsCanceled && !_disconnectAction.IsRunning)
+        try
         {
-            OnStateChanged(VpnStatus.Disconnecting);
+            await CloseVpnConnectionAsync();
         }
-    }
+        catch (OperationCanceledException)
+        {
+        }
+        finally
+        {
+            _managementClient.Disconnect();
+            _process.Stop();
+        }
 
-    private void DisconnectAction_Completed(object sender, TaskCompletedEventArgs e)
-    {
+        _winTunAdapter.Close();
+        RestoreNetworkSettings();
+
         _logger.Info<DisconnectLog>("Disconnect action completed");
-
-        HandleTaskExceptionsIfAny(e.Task, "Disconnect action failed");
-
         OnStateChanged(VpnStatus.Disconnected);
     }
 
-    private async Task CloseVpnConnection()
+    public async IAsyncEnumerable<VpnState> ObserveStatesAsync([EnumeratorCancellation] CancellationToken cancellationToken)
     {
-        Task connectTask = _connectAction.Task;
-        if (!connectTask.IsCompleted)
+        while (!cancellationToken.IsCancellationRequested)
         {
-            await TryCloseVpnConnectionAndWait(connectTask);
-        }
-
-        if (!connectTask.IsCompleted)
-        {
-            await CancelVpnConnectionAndWait(connectTask);
+            yield return await _stateChannel.Reader.ReadAsync(cancellationToken);
         }
     }
 
-    private async Task TryCloseVpnConnectionAndWait(Task connectTask)
+    private void ResetConnectionCancellation(CancellationToken cancellationToken)
     {
-        try
-        {
-            await _managementClient.CloseVpnConnection();
-        }
-        catch (Exception ex) when (IsImplementationException(ex))
-        {
-            _logger.Warn<DisconnectLog>($"Failed writing to management channel: {ex.Message}");
-        }
+        CancellationTokenSource next = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+        CancellationTokenSource? previous = Interlocked.Exchange(ref _connectionCts, next);
+        previous?.Cancel();
+        previous?.Dispose();
 
-        try
-        {
-            _logger.Info<DisconnectLog>("Waiting for Connection task to finish...");
-            if (await Task.WhenAny(connectTask, Task.Delay(WaitForConnectionTaskToFinishAfterClose)) != connectTask)
-            {
-                _logger.Warn<DisconnectLog>(
-                    $"Connection task has not finished in {WaitForConnectionTaskToFinishAfterClose}");
-                return;
-            }
-
-            // Task completed within timeout. The task may have faulted or been canceled.
-            // Re-await the task so that any exceptions/cancellation is rethrown.
-            await connectTask;
-        }
-        catch (Exception ex) when (IsImplementationException(ex))
-        {
-            _logger.Error<DisconnectLog>($"Connection task failed with exception: {ex}");
-        }
+        _managementStateChannel = Channel.CreateUnbounded<VpnState>();
+        _managementClient.ResetState();
     }
 
-    private async Task CancelVpnConnectionAndWait(Task connectTask)
+    private void StartMonitoringStateChannel(CancellationToken cancellationToken)
+    {
+        _ = Task.Run(() => MonitorStateChannelAsync(cancellationToken), cancellationToken);
+    }
+
+    private void StartMonitoringManagementChannelStates(CancellationToken cancellationToken)
+    {
+        _ = Task.Run(() => MonitorManagementChannelStatesAsync(cancellationToken), cancellationToken);
+    }
+
+    private async Task MonitorStateChannelAsync(CancellationToken cancellationToken)
     {
         try
         {
-            _logger.Info<DisconnectLog>("Cancelling Connection task");
-            _connectAction.Cancel();
-
-            _logger.Info<DisconnectLog>("Waiting for Connection task to finish...");
-            if (await Task.WhenAny(connectTask,
-                    Task.Delay(WaitForConnectionTaskToFinishAfterCancellation)) != connectTask)
+            while (!cancellationToken.IsCancellationRequested)
             {
-                _logger.Warn<DisconnectLog>(
-                    $"Connection task has not finished in {WaitForConnectionTaskToFinishAfterCancellation}");
+                VpnState state = await _managementStateChannel.Reader.ReadAsync(cancellationToken);
+                ProcessState(state);
+                await _stateChannel.Writer.WriteAsync(state, cancellationToken);
             }
         }
-        catch (Exception ex) when (IsImplementationException(ex))
+        catch (OperationCanceledException)
         {
-            _logger.Error<DisconnectLog>($"Connection task failed: {ex}");
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<ConnectionLog>("State monitor failed.", ex);
         }
     }
 
-    private void ManagementClient_StateChanged(object sender, EventArgs<VpnState> e)
+    private void ProcessState(VpnState state)
     {
-        _logger.Info<ConnectionStateChangeLog>($"ManagementClient: State changed to {e.Data.Status}");
+        if (!string.IsNullOrEmpty(state.LocalIp))
+        {
+            _localIpv4Address = state.LocalIp;
+        }
+
+        if (state.Error != VpnError.None)
+        {
+            _disconnectError = state.Error;
+            if (!_isConnected)
+            {
+                SetConnectionTaskResult(false);
+            }
+        }
+
+        if (state.Status == VpnStatus.Connected)
+        {
+            _isConnected = true;
+            SetConnectionTaskResult(true);
+            return;
+        }
+
+        if (state.Status is VpnStatus.Disconnecting or VpnStatus.Disconnected)
+        {
+            if (!_isConnected)
+            {
+                SetConnectionTaskResult(false);
+            }
+
+            _isConnected = false;
+        }
+    }
+
+    private async Task MonitorManagementChannelStatesAsync(CancellationToken cancellationToken)
+    {
+        try
+        {
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                VpnState state = await _managementClient.StateChannel.Reader.ReadAsync(cancellationToken);
+                HandleManagementState(state);
+            }
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<ConnectionLog>("Management state monitor failed.", ex);
+        }
+    }
+
+    private void HandleManagementState(VpnState managementState)
+    {
+        if (_endpoint is null || _vpnConfig is null)
+        {
+            return;
+        }
+
+        _logger.Info<ConnectionStateChangeLog>($"ManagementClient: State changed to {managementState.Status}");
 
         VpnState state = new(
-            e.Data.Status,
-            e.Data.Error,
-            e.Data.LocalIp,
-            e.Data.RemoteIp,
+            managementState.Status,
+            managementState.Error,
+            managementState.LocalIp ?? string.Empty,
+            managementState.RemoteIp,
             _endpoint.Port,
             _endpoint.VpnProtocol,
             _vpnConfig.PortForwarding,
             _vpnConfig.OpenVpnAdapter,
-            e.Data.Label);
+            managementState.Label);
 
         if ((state.Status == VpnStatus.Pinging || state.Status == VpnStatus.Connecting || state.Status == VpnStatus.Reconnecting) &&
             string.IsNullOrEmpty(state.RemoteIp))
@@ -317,7 +320,7 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
                 _endpoint.Server.Label);
         }
 
-        if (state.Status == VpnStatus.Disconnecting && !_disconnectAction.IsRunning)
+        if (state.Status == VpnStatus.Disconnecting && !_disconnectRequested)
         {
             _disconnectError = state.Error;
         }
@@ -325,13 +328,226 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
         OnStateChanged(state);
     }
 
-    private void ManagementClient_TransportStatsChanged(object sender, EventArgs<NetworkTraffic> e)
+    private void SetConnectionTaskResult(bool result)
     {
-        NetworkTraffic = e.Data;
+        if (_connectionTaskCompletionSource?.Task.IsCompletedSuccessfully == false)
+        {
+            _connectionTaskCompletionSource.SetResult(result);
+        }
+    }
+
+    private async Task WaitForConnectionResultAsync(Task connectTask, Task<bool> completionTask, CancellationToken cancellationToken)
+    {
+        Task cancellationTask = Task.Delay(Timeout.Infinite, cancellationToken);
+        Task completed = await Task.WhenAny(completionTask, connectTask, cancellationTask);
+
+        if (completed == cancellationTask)
+        {
+            return;
+        }
+
+        if (completed == connectTask && !completionTask.IsCompleted)
+        {
+            SetConnectionTaskResult(false);
+        }
+
+        if (connectTask.IsCompleted && connectTask.IsFaulted)
+        {
+            _logger.Error<ConnectionLog>("An OpenVpnConnection task threw an exception.", connectTask.Exception?.InnerException);
+        }
+    }
+
+    private async Task ConnectActionAsync(CancellationToken cancellationToken)
+    {
+        if (_endpoint is null || _vpnConfig is null)
+        {
+            _disconnectError = VpnError.Unknown;
+            _logger.Error<ConnectionLog>("Trying to connect, but either _endpoint or _vpnConfig is null");
+            return;
+        }
+
+        _logger.Info<ConnectStartLog>("Connect action started");
+
+        try
+        {
+            OnStateChanged(VpnStatus.Connecting);
+            if (!WriteConfig())
+            {
+                _disconnectError = VpnError.Unknown;
+                return;
+            }
+
+            ApplyNetworkSettings();
+            _wintunRegistryFixer.EnsureTunAdapterRegistryIsCorrect();
+
+            int port = _managementPorts.Port();
+            string password = ManagementPassword();
+
+            OpenVpnProcessParams processParams = new(
+                _endpoint,
+                port,
+                password,
+                GetCustomDnsServers(_vpnConfig),
+                _vpnConfig.SplitTunnelMode,
+                _vpnConfig.OpenVpnAdapter,
+                GetNetworkInterfaceIdOrEmpty());
+
+            cancellationToken.ThrowIfCancellationRequested();
+
+            if (!await _process.Start(processParams))
+            {
+                _disconnectError = VpnError.Unknown;
+            }
+            else
+            {
+                await _managementClient.ConnectAsync(port, password, cancellationToken);
+
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    await _managementClient.CloseVpnConnectionAsync();
+                    cancellationToken.ThrowIfCancellationRequested();
+                }
+
+                await _managementClient.StartVpnConnectionAsync(_credentials, _endpoint, cancellationToken);
+            }
+
+            cancellationToken.ThrowIfCancellationRequested();
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        finally
+        {
+            _logger.Info<ConnectLog>("Connect action completed");
+
+            if (!cancellationToken.IsCancellationRequested && !_disconnectRequested)
+            {
+                OnStateChanged(VpnStatus.Disconnecting);
+            }
+        }
+    }
+
+    private static List<string> GetCustomDnsServers(VpnConfig config)
+    {
+        return config.CustomDns
+            .Where(dns => NetworkAddress.TryParse(dns, out NetworkAddress networkAddress) &&
+                          networkAddress.IsIpV4 || (networkAddress.IsIpV6 && config.IsIpv6Enabled)).ToList();
+    }
+
+    private bool WriteConfig()
+    {
+        try
+        {
+            bool isIpv6Enabled = _vpnConfig?.IsIpv6Enabled == true && _endpoint?.Server.IsIpv6Supported == true;
+            ConfigTemplate template = new();
+            string content = template.GetConfig(_credentials, isIpv6Enabled);
+            File.WriteAllText(_config.OpenVpn.ConfigPath, content);
+            return true;
+        }
+        catch (Exception e)
+        {
+            _logger.Error<ConnectionErrorLog>("Failed to update OpenVPN config file.", e);
+            return false;
+        }
+    }
+
+    private string GetNetworkInterfaceIdOrEmpty()
+    {
+        if (_vpnConfig is null)
+        {
+            return string.Empty;
+        }
+
+        return _networkInterfaceLoader.GetByVpnProtocol(_vpnConfig.VpnProtocol, _vpnConfig.OpenVpnAdapter)?.Id ?? string.Empty;
+    }
+
+    private string ManagementPassword()
+    {
+        return _randomStringGenerator.Generate(MANAGEMENT_PASSWORD_LENGTH);
+    }
+
+    private async Task CloseVpnConnectionAsync()
+    {
+        Task? connectTask = _connectTask;
+        if (connectTask is null)
+        {
+            return;
+        }
+
+        if (!connectTask.IsCompleted)
+        {
+            await TryCloseVpnConnectionAndWaitAsync(connectTask);
+        }
+
+        if (!connectTask.IsCompleted)
+        {
+            await CancelVpnConnectionAndWaitAsync(connectTask);
+        }
+    }
+
+    private async Task TryCloseVpnConnectionAndWaitAsync(Task connectTask)
+    {
+        try
+        {
+            await _managementClient.CloseVpnConnectionAsync();
+        }
+        catch (Exception ex)
+        {
+            _logger.Warn<DisconnectLog>($"Failed writing to management channel: {ex.Message}");
+        }
+
+        try
+        {
+            _logger.Info<DisconnectLog>("Waiting for Connection task to finish...");
+            if (await Task.WhenAny(connectTask, Task.Delay(_waitForConnectionTaskToFinishAfterClose)) != connectTask)
+            {
+                _logger.Warn<DisconnectLog>(
+                    $"Connection task has not finished in {_waitForConnectionTaskToFinishAfterClose}");
+                return;
+            }
+
+            await connectTask;
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<DisconnectLog>($"Connection task failed with exception: {ex}");
+        }
+    }
+
+    private async Task CancelVpnConnectionAndWaitAsync(Task connectTask)
+    {
+        try
+        {
+            _logger.Info<DisconnectLog>("Cancelling Connection task");
+            _connectionCts?.Cancel();
+
+            _logger.Info<DisconnectLog>("Waiting for Connection task to finish...");
+            if (await Task.WhenAny(connectTask,
+                    Task.Delay(_waitForConnectionTaskToFinishAfterCancellation)) != connectTask)
+            {
+                _logger.Warn<DisconnectLog>(
+                    $"Connection task has not finished in {_waitForConnectionTaskToFinishAfterCancellation}");
+            }
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<DisconnectLog>($"Connection task failed: {ex}");
+        }
     }
 
     private void OnStateChanged(VpnStatus status)
     {
+        if (_endpoint is null || _vpnConfig is null)
+        {
+            return;
+        }
+
         VpnState state;
         switch (status)
         {
@@ -343,7 +559,6 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
             case VpnStatus.Disconnecting:
             case VpnStatus.Disconnected:
                 state = new VpnState(status, _disconnectError, _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart);
-                NetworkTraffic = NetworkTraffic.Zero;
                 break;
             default:
                 state = new VpnState(status, VpnError.None, _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart);
@@ -356,27 +571,56 @@ internal class OpenVpnConnection : IAdapterSingleVpnConnection
 
     private void OnStateChanged(VpnState state)
     {
-        StateChanged?.Invoke(this, new EventArgs<VpnState>(state));
+        _managementStateChannel.Writer.TryWrite(state);
     }
 
-    private void HandleTaskExceptionsIfAny(Task task, string message)
+    private void ApplyNetworkSettings()
     {
-        if (task.IsFaulted)
+        uint interfaceIndex = GetInterfaceIndex();
+        if (interfaceIndex == 0)
         {
-            Exception ex = task.Exception?.InnerException;
-            if (IsImplementationException(ex))
-            {
-                _logger.Error<ConnectionLog>("An OpenVpnConnection task threw an exception.", ex);
-            }
-            else
-            {
-                throw new VpnException(message, ex);
-            }
+            return;
+        }
+
+        try
+        {
+            _logger.Info<NetworkLog>("Setting interface metric...");
+            _networkUtilities.SetLowestTapMetric(interfaceIndex);
+            _logger.Info<NetworkLog>("Interface metric set.");
+        }
+        catch (NetworkUtilException e)
+        {
+            _logger.Error<NetworkLog>("Failed to apply network settings. Error code: " + e.Code);
         }
     }
 
-    private static bool IsImplementationException(Exception ex)
+    private void RestoreNetworkSettings()
     {
-        return ex is SocketException or Win32Exception or IOException;
+        uint interfaceIndex = GetInterfaceIndex();
+        if (interfaceIndex == 0)
+        {
+            return;
+        }
+
+        try
+        {
+            _logger.Info<NetworkLog>("Restoring interface metric...");
+            _networkUtilities.RestoreDefaultTapMetric(interfaceIndex);
+            _logger.Info<NetworkLog>("Interface metric restored.");
+        }
+        catch (NetworkUtilException e)
+        {
+            _logger.Error<NetworkLog>("Failed restore network settings. Error code: " + e.Code);
+        }
+    }
+
+    private uint GetInterfaceIndex()
+    {
+        if (_vpnConfig is null)
+        {
+            return 0;
+        }
+
+        return _networkInterfaceLoader.GetByVpnProtocol(_vpnConfig.VpnProtocol, _vpnConfig.OpenVpnAdapter).Index;
     }
 }

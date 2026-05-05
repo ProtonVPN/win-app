@@ -24,4 +24,5 @@ public enum VpnConnectionOption
     Fast,
     Random,
     Last,
+    Customized,
 }

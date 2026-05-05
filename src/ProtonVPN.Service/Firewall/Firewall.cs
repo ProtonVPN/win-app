@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -43,6 +43,8 @@ internal class Firewall : IFirewall, IStartable
     private readonly IpLayer _ipLayer;
     private readonly IpFilter _ipFilter;
     private readonly INrptWrapper _nrptWrapper;
+
+    private readonly object _lock = new();
 
     private FirewallParams _lastParams = FirewallParams.Empty;
     private bool _dnsCalloutFiltersAdded;
@@ -97,40 +99,46 @@ internal class Firewall : IFirewall, IStartable
 
     public void EnableLeakProtection(FirewallParams firewallParams)
     {
-        if (LeakProtectionEnabled)
+        lock (_lock)
         {
-            ApplyChange(firewallParams);
-            return;
-        }
+            if (LeakProtectionEnabled)
+            {
+                ApplyChange(firewallParams);
+                return;
+            }
 
-        _calloutDriver.Start();
-        PermitServerAddress(firewallParams);
-        ApplyFilters(firewallParams);
-        SetLastParams(firewallParams);
+            _calloutDriver.Start();
+            PermitServerAddress(firewallParams);
+            ApplyFilters(firewallParams);
+            SetLastParams(firewallParams);
+        }
     }
 
     public void DisableLeakProtection()
     {
-        try
+        lock (_lock)
         {
-            _logger.Info<FirewallLog>("Restoring internet");
+            try
+            {
+                _logger.Info<FirewallLog>("Restoring internet");
 
-            _nrptWrapper.DeleteRule();
-            _ipFilter.DynamicSublayer.DestroyAllFilters();
-            _ipFilter.PermanentSublayer.DestroyAllFilters();
-            _serverAddressFilterCollection.Clear();
-            _firewallItems.Clear();
-            LeakProtectionEnabled = false;
-            _dnsCalloutFiltersAdded = false;
-            _isNrptRuleCreated = false;
-            _calloutDriver.Stop();
-            _lastParams = FirewallParams.Empty;
+                _nrptWrapper.DeleteRule();
+                _ipFilter.DynamicSublayer.DestroyAllFilters();
+                _ipFilter.PermanentSublayer.DestroyAllFilters();
+                _serverAddressFilterCollection.Clear();
+                _firewallItems.Clear();
+                LeakProtectionEnabled = false;
+                _dnsCalloutFiltersAdded = false;
+                _isNrptRuleCreated = false;
+                _calloutDriver.Stop();
+                _lastParams = FirewallParams.Empty;
 
-            _logger.Info<FirewallLog>("Internet restored");
-        }
-        catch (NetworkFilterException ex)
-        {
-            _logger.Error<FirewallLog>("An error occurred when deleting the network filters.", ex);
+                _logger.Info<FirewallLog>("Internet restored");
+            }
+            catch (NetworkFilterException ex)
+            {
+                _logger.Error<FirewallLog>("An error occurred when deleting the network filters.", ex);
+            }
         }
     }
 

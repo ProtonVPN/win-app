@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,18 +21,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.Common.Legacy;
-using ProtonVPN.Common.Legacy.Threading;
 using ProtonVPN.Common.Legacy.Vpn;
-using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
-using ProtonVPN.Logging.Contracts.Events.DisconnectLogs;
+using ProtonVPN.Logging.Contracts.Events.ProtocolLogs;
 using ProtonVPN.ProTun.Contracts;
 using ProtonVPN.ProTun.Contracts.Adapters;
 using ProtonVPN.ProTun.Contracts.ConnectionArguments;
@@ -42,32 +41,34 @@ using ProtonVPN.Vpn.Gateways;
 
 namespace ProtonVPN.Vpn.ProTun;
 
-public class ProTunConnection : IAdapterSingleVpnConnection
+public class ProTunConnection : IProTunConnection
 {
     private const int MIN_CONNECTION_TIMEOUT = 5000;
     private const int MAX_CONNECTION_TIMEOUT = 30000;
 
     private readonly ILogger _logger;
-    private readonly IStaticConfiguration _staticConfig;
     private readonly IGatewayCache _gatewayCache;
     private readonly IProTunManager _proTunManager;
     private readonly IProTunTrafficManager _proTunTrafficManager;
     private readonly IX25519KeyGenerator _x25519KeyGenerator;
     private readonly IAdapterDetailsCache _adapterDetailsCache;
-    private readonly SingleAction _connectAction;
-    private readonly SingleAction _disconnectAction;
 
-    private VpnError _lastVpnError;
-    private VpnEndpoint _endpoint;
+    private readonly Channel<VpnState> _stateChannel = Channel.CreateUnbounded<VpnState>();
+
+    private CancellationTokenSource _cts = new();
+    private volatile bool _isConnected;
+
+    private TaskCompletionSource<bool>? _connectionTaskCompletionSource;
     private VpnCredentials _credentials;
-    private VpnConfig _vpnConfig;
-    private bool _isConnected;
-    private VpnStatus _vpnStatus;
-    private CancellationTokenSource _disconnectCancellationTokenSource;
+    private VpnEndpoint? _endpoint;
+    private VpnConfig? _vpnConfig;
+
+    public VpnError LastError { get; private set; }
+    public NetworkTraffic NetworkTraffic { get; private set; } = NetworkTraffic.Zero;
+    public string LocalIpv4Address => _adapterDetailsCache.ClientIpv4Address;
 
     public ProTunConnection(
         ILogger logger,
-        IStaticConfiguration staticConfig,
         IGatewayCache gatewayCache,
         IProTunManager proTunManager,
         IProTunTrafficManager proTunTrafficManager,
@@ -75,127 +76,137 @@ public class ProTunConnection : IAdapterSingleVpnConnection
         IAdapterDetailsCache adapterDetailsCache)
     {
         _logger = logger;
-        _staticConfig = staticConfig;
         _gatewayCache = gatewayCache;
         _proTunManager = proTunManager;
         _proTunTrafficManager = proTunTrafficManager;
         _x25519KeyGenerator = x25519KeyGenerator;
         _adapterDetailsCache = adapterDetailsCache;
-        _proTunManager.OnStateChanged += OnStateChangedAsync;
-        _proTunManager.OnTrafficUpdated += OnTrafficUpdatedAsync;
-        _connectAction = new SingleAction(ConnectActionAsync);
-        _connectAction.Completed += OnConnectActionCompleted;
-        _disconnectAction = new SingleAction(DisconnectActionAsync);
-        _disconnectAction.Completed += OnDisconnectActionCompleted;
     }
 
-    public event EventHandler<EventArgs<VpnState>> StateChanged;
-    public event EventHandler<ConnectionDetails> ConnectionDetailsChanged;
-    public NetworkTraffic NetworkTraffic { get; private set; } = NetworkTraffic.Zero;
-
-    public void Connect(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig config)
+    public async Task<VpnError> ConnectAsync(VpnEndpoint endpoint, VpnCredentials credentials,
+         VpnConfig config, CancellationToken cancellationToken)
     {
-        _endpoint = endpoint;
         _credentials = credentials;
+        _endpoint = endpoint;
         _vpnConfig = config;
 
-        _connectAction.Run();
-    }
+        _connectionTaskCompletionSource = new();
+        _cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+        _isConnected = false;
 
-    private async Task ConnectActionAsync(CancellationToken cancellationToken)
-    {
-        _logger.Info<ConnectStartLog>("Connect action started.");
+        NetworkTraffic = NetworkTraffic.Zero;
+        LastError = VpnError.None;
 
-        InvokeStatusChange(VpnStatus.Connecting);
         UpdateGatewayCache();
 
-        ConnectionArgs connectionArgs = CreateConnectionArgs();
-        _proTunManager.ConnectAsync(connectionArgs).FireAndForget();
+        StartMonitoringVpnStateAsync(_cts.Token);
 
-        CancellationToken linkedCancellationToken = CreateLinkedCancellationToken(cancellationToken);
+        ConnectionArgs? connectionArgs = CreateConnectionArgs();
+        if (connectionArgs is null)
+        {
+            const string ERR_MSG = "The endpoint or the config are null when creating the ProTun connection args.";
+            _logger.Error<ProTunProtocolLog>(ERR_MSG);
+            throw new NotImplementedException(ERR_MSG);
+        }
+
+        _proTunManager.ConnectAsync(connectionArgs, _cts.Token).FireAndForget();
+
         int timeout = Math.Clamp((int)_vpnConfig.WireGuardConnectionTimeout.TotalMilliseconds, MIN_CONNECTION_TIMEOUT, MAX_CONNECTION_TIMEOUT);
-        await Task.Delay(timeout, linkedCancellationToken);
-        if (!_isConnected)
+        // cancellationToken instead of _cts.Token to avoid cancelling the delay when disconnecting
+        Task timeoutTask = Task.Delay(timeout, cancellationToken);
+
+        Task completedTask = await Task.WhenAny(timeoutTask, _connectionTaskCompletionSource.Task);
+        cancellationToken.ThrowIfCancellationRequested();
+
+        if (completedTask == timeoutTask)
         {
             _logger.Warn<ConnectLog>($"{timeout}ms timeout reached, disconnecting.");
-            Disconnect(VpnError.AdapterTimeoutError);
+            return VpnError.AdapterTimeoutError;
         }
-    }
 
-    private void InvokeStatusChange(VpnStatus status, VpnError error = VpnError.None)
-    {
-        _vpnStatus = status;
-        VpnState vpnState = CreateVpnState(status, error);
-        StateChanged?.Invoke(this, new EventArgs<VpnState>(vpnState));
-    }
-
-    private void InvokeStateChange(VpnState state)
-    {
-        _vpnStatus = state.Status;
-        VpnState vpnState = CreateVpnStateFromIncompleteState(state);
-        StateChanged?.Invoke(this, new EventArgs<VpnState>(vpnState));
-    }
-
-    private VpnState CreateVpnStateFromIncompleteState(VpnState state)
-    {
-        string label = string.IsNullOrEmpty(state.Label) ? _endpoint?.Server.Label ?? string.Empty : state.Label;
-        string localIp = state.LocalIp ?? _staticConfig.WireGuard.DefaultClientIpv4Address;
-        string remoteIp = state.RemoteIp ?? _endpoint?.Server.Ip ?? string.Empty;
-        int port = state.EndpointPort > 0 ? state.EndpointPort : _endpoint?.Port ?? 0;
-        VpnProtocol vpnProtocol = state.VpnProtocol;
-        bool portForwarding = false;
-
-        if (_vpnConfig is not null)
+        if (!_connectionTaskCompletionSource.Task.IsCompleted || !_connectionTaskCompletionSource.Task.Result)
         {
-            if (vpnProtocol == VpnProtocol.Smart)
+            return LastError;
+        }
+
+        StartMonitoringNetworkTrafficAsync(_cts.Token);
+
+        return VpnError.None;
+    }
+
+    private void StartMonitoringVpnStateAsync(CancellationToken cancellationToken)
+    {
+        _ = Task.Run(async () => await MonitorVpnStateAsync(cancellationToken), cancellationToken);
+    }
+
+    private async Task MonitorVpnStateAsync(CancellationToken cancellationToken)
+    {
+        try
+        {
+            await foreach (VpnState state in WatchStatesAsync(cancellationToken))
             {
-                vpnProtocol = _vpnConfig.VpnProtocol;
+                if (state.Status == VpnStatus.Connected)
+                {
+                    _isConnected = true;
+                    SetConnectionTaskResult(true);
+                    UpdateGatewayCache();
+                    _proTunTrafficManager.StartAsync(cancellationToken).FireAndForget();
+                }
+                else
+                {
+                    if (state.Error != VpnError.None)
+                    {
+                        LastError = state.Error;
+                        SetConnectionTaskResult(false);
+
+                        if (!_isConnected)
+                        {
+                            _cts.Cancel();
+                            return;
+                        }
+                    }
+
+                    await _stateChannel.Writer.WriteAsync(state, cancellationToken);
+                }
             }
-
-            portForwarding = _vpnConfig.PortForwarding;
         }
-
-        return new VpnState(
-            status: state.Status,
-            error: state.Error,
-            localIp: localIp,
-            remoteIp: remoteIp,
-            endpointPort: port,
-            vpnProtocol: vpnProtocol,
-            portForwarding: portForwarding,
-            label: label);
+        catch (OperationCanceledException)
+        {
+            // expected on cancellation
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<WireGuardProtocolLog>("Status monitor failed.", ex);
+        }
     }
 
-    private VpnState CreateVpnState(VpnStatus status, VpnError error)
+    private async IAsyncEnumerable<VpnState> WatchStatesAsync([EnumeratorCancellation] CancellationToken cancellationToken)
     {
-        if (_vpnConfig is null)
+        while (!cancellationToken.IsCancellationRequested)
         {
-            return new VpnState(status, error, _staticConfig.WireGuard.DefaultClientIpv4Address,
-                _endpoint?.Server.Ip ?? string.Empty, _endpoint?.Port ?? 0, VpnProtocol.ProTunUdp,
-                openVpnAdapter: null, label: _endpoint?.Server.Label ?? string.Empty);
+            yield return await _proTunManager.StateChannel.Reader.ReadAsync(cancellationToken);
         }
-
-        return new VpnState(status, error, _staticConfig.WireGuard.DefaultClientIpv4Address,
-            _endpoint?.Server.Ip ?? string.Empty, _endpoint?.Port ?? 0, _vpnConfig.VpnProtocol,
-            _vpnConfig.PortForwarding, null, _endpoint?.Server.Label ?? string.Empty);
     }
 
     private void UpdateGatewayCache()
     {
-        if (IPAddress.TryParse(_adapterDetailsCache.ServerGatewayIpv4Address, out IPAddress address) && address is not null)
+        if (IPAddress.TryParse(_adapterDetailsCache.ServerGatewayIpv4Address, out IPAddress? address) && address is not null)
         {
             _gatewayCache.Save(address);
         }
     }
 
-    private ConnectionArgs CreateConnectionArgs()
+    private ConnectionArgs? CreateConnectionArgs()
     {
-        return new()
+        VpnConfig? config = _vpnConfig;
+        VpnEndpoint? endpoint = _endpoint;
+
+        return config == null || endpoint is null ? null: new()
         {
             WireGuardPrivateKey = GetX25519SecretKey().Bytes,
-            Peers = CreatePeers(),
-            IsIpv6Enabled = _vpnConfig.IsIpv6Enabled,
-            CustomDnsServers = _vpnConfig.CustomDns
+            Peers = CreatePeers(config, endpoint),
+            IsIpv6Enabled = config.IsIpv6Enabled,
+            CustomDnsServers = config.CustomDns
         };
     }
 
@@ -204,130 +215,83 @@ public class ProTunConnection : IAdapterSingleVpnConnection
         return _x25519KeyGenerator.FromEd25519SecretKey(_credentials.ClientKeyPair.SecretKey);
     }
 
-    private List<ConnectionPeer> CreatePeers()
+    private List<ConnectionPeer> CreatePeers(VpnConfig config, VpnEndpoint endpoint)
     {
         return [new()
         {
-            PeerId = $"{_endpoint.Server.Ip}@{_endpoint.Server.Label}",
-            ServerIp = _endpoint.Server.Ip,
-            ServerPublicKey = _endpoint.Server.X25519PublicKey.Bytes,
-            UdpPorts = GetPorts(VpnProtocol.ProTunUdp),
-            TcpPorts = GetPorts(VpnProtocol.ProTunTcp),
-            TlsPorts = GetPorts(VpnProtocol.ProTunTls),
+            PeerId = $"{endpoint.Server.Ip}@{endpoint.Server.Label}",
+            ServerIp = endpoint.Server.Ip,
+            ServerPublicKey = endpoint.Server.X25519PublicKey.Bytes,
+            UdpPorts = GetPorts(config, endpoint, VpnProtocol.ProTunUdp),
+            TcpPorts = GetPorts(config, endpoint, VpnProtocol.ProTunTcp),
+            TlsPorts = GetPorts(config, endpoint, VpnProtocol.ProTunTls),
             Priority = 1
         }];
     }
 
-    private ushort[] GetPorts(VpnProtocol protocol)
+    private ushort[] GetPorts(VpnConfig config, VpnEndpoint endpoint, VpnProtocol protocol)
     {
-        if (_endpoint.VpnProtocol is VpnProtocol.Smart || _endpoint.VpnProtocol == protocol)
+        if (endpoint.VpnProtocol is VpnProtocol.Smart || endpoint.VpnProtocol == protocol)
         {
-            bool hasPorts = _vpnConfig.Ports.TryGetValue(protocol, out IReadOnlyCollection<int> ports);
-            return hasPorts ? ports.Select(p => (ushort)p).ToArray() : [];
+            bool hasPorts = config.Ports.TryGetValue(protocol, out IReadOnlyCollection<int>? ports);
+            return hasPorts && ports is not null ? ports.Select(p => (ushort)p).ToArray() : [];
         }
 
         return [];
     }
 
-    private CancellationToken CreateLinkedCancellationToken(CancellationToken cancellationToken)
+    private void StartMonitoringNetworkTrafficAsync(CancellationToken cancellationToken)
     {
-        CancelDisconnectCancellationToken();
-        _disconnectCancellationTokenSource = new CancellationTokenSource();
-        CancellationTokenSource childCancellationTokenSource =
-            CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, _disconnectCancellationTokenSource.Token);
-        return childCancellationTokenSource.Token;
+        _ = Task.Run(async () => await MonitorNetworkTrafficAsync(cancellationToken), cancellationToken);
     }
 
-    private void CancelDisconnectCancellationToken()
+    private async Task MonitorNetworkTrafficAsync(CancellationToken cancellationToken)
     {
-        _disconnectCancellationTokenSource?.Cancel();
-    }
-
-    public void Disconnect(VpnError error)
-    {
-        _lastVpnError = error;
-        _disconnectAction.Run();
-    }
-
-    private async Task DisconnectActionAsync(CancellationToken cancellationToken)
-    {
-        _logger.Info<DisconnectLog>("Disconnect action started.");
-        if (_vpnStatus is not VpnStatus.Disconnected)
+        try
         {
-            InvokeStatusChange(VpnStatus.Disconnecting, _lastVpnError);
-        }
-
-        Task connectTask = _connectAction.Task;
-        if (!connectTask.IsCompleted)
-        {
-            if (_isConnected)
+            await foreach (NetworkTraffic traffic in WatchTrafficAsync(cancellationToken))
             {
-                _connectAction.Cancel();
+                NetworkTraffic = traffic;
             }
-
-            await _connectAction.Task;
         }
-
-        await _proTunManager.DisconnectAsync(_lastVpnError);
-
-        _isConnected = false;
-        CancelDisconnectCancellationToken();
-    }
-
-    private void OnConnectActionCompleted(object sender, TaskCompletedEventArgs e)
-    {
-        _logger.Info<ConnectLog>("Connect action completed.");
-    }
-
-    private void OnDisconnectActionCompleted(object sender, TaskCompletedEventArgs e)
-    {
-        _logger.Info<DisconnectLog>("Disconnect action completed.");
-        InvokeStatusChange(VpnStatus.Disconnected, _lastVpnError);
-        _lastVpnError = VpnError.None;
-    }
-
-    private async void OnTrafficUpdatedAsync(object sender, EventArgs<NetworkTraffic> traffic)
-    {
-        NetworkTraffic = traffic.Data;
-    }
-
-    private async void OnStateChangedAsync(object sender, EventArgs<VpnState> state)
-    {
-        switch (state.Data.Status)
+        catch (OperationCanceledException)
         {
-            case VpnStatus.Connected:
-                OnVpnConnected(state);
-                break;
-            case VpnStatus.Disconnected:
-                OnVpnDisconnected(state);
-                break;
-            case VpnStatus.Waiting:
-                InvokeStateChange(state.Data);
-                break;
-            case VpnStatus.Connecting when _isConnected:
-                await _proTunManager.DisconnectAsync(VpnError.NetworkUnavailable);
-                break;
+            // expected on cancellation
         }
-    }
-
-    private void OnVpnConnected(EventArgs<VpnState> state)
-    {
-        if (!_isConnected)
+        catch (Exception ex)
         {
-            _isConnected = true;
-            _logger.Info<ConnectConnectedLog>("Connected state received by ProTUN.");
-            _proTunTrafficManager.Start();
-            UpdateGatewayCache();
-            InvokeStateChange(state.Data);
+            _logger.Error<WireGuardProtocolLog>("Traffic monitor failed.", ex);
         }
     }
 
-    private void OnVpnDisconnected(EventArgs<VpnState> state)
+    private async IAsyncEnumerable<NetworkTraffic> WatchTrafficAsync([EnumeratorCancellation] CancellationToken cancellationToken)
     {
-        NetworkTraffic = NetworkTraffic.Zero;
-        _isConnected = false;
-        _proTunTrafficManager.Stop();
-        InvokeStateChange(state.Data);
-        CancelDisconnectCancellationToken();
+        while (!cancellationToken.IsCancellationRequested)
+        {
+            yield return await _proTunManager.TrafficChannel.Reader.ReadAsync(cancellationToken);
+        }
+    }
+
+    public async Task DisconnectAsync()
+    {
+        await _proTunManager.DisconnectAsync();
+
+        SetConnectionTaskResult(false);
+    }
+
+    private void SetConnectionTaskResult(bool result)
+    {
+        if (_connectionTaskCompletionSource?.Task.IsCompletedSuccessfully == false)
+        {
+            _connectionTaskCompletionSource?.SetResult(result);
+        }
+    }
+
+    public async IAsyncEnumerable<VpnState> ObserveStatesAsync([EnumeratorCancellation] CancellationToken cancellationToken)
+    {
+        while (!cancellationToken.IsCancellationRequested)
+        {
+            yield return await _stateChannel.Reader.ReadAsync(cancellationToken);
+        }
     }
 }

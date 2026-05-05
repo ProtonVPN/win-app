@@ -17,14 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
-using ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
+using ProtonVPN.ProcessCommunication.EntityMapping.Common.Legacy.Vpn;
 
 namespace ProtonVPN.ProcessCommunication.EntityMapping.Tests.Vpn;
 

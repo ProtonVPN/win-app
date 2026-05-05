@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -34,25 +34,25 @@ namespace ProtonVPN.Vpn.OpenVpn;
 /// <summary>
 /// Starts and stops OpenVPN process.
 /// </summary>
-public class OpenVpnProcess
+public class OpenVpnProcess : IOpenVpnProcess
 {
     private const string TAP_DRIVER = "tap-windows6";
 
-    private static readonly TimeSpan WaitAfterSignalingExit = TimeSpan.FromSeconds(6);
+    private static readonly TimeSpan _waitAfterSignalingExit = TimeSpan.FromSeconds(6);
 
     private readonly ILogger _logger;
     private readonly IOsProcesses _processes;
-    private readonly OpenVpnExitEvent _processExitEvent;
+    private readonly IOpenVpnExitEvent _processExitEvent;
     private readonly IStaticConfiguration _staticConfig;
     private readonly IOsProcess _nullProcess;
 
     private IOsProcess _process;
-    private TaskCompletionSource<bool> _startCompletionSource;
+    private TaskCompletionSource<bool>? _startCompletionSource;
 
-    internal OpenVpnProcess(
+    public OpenVpnProcess(
         ILogger logger,
         IOsProcesses processes,
-        OpenVpnExitEvent processExitEvent,
+        IOpenVpnExitEvent processExitEvent,
         IStaticConfiguration staticConfig)
     {
         _logger = logger;
@@ -83,7 +83,7 @@ public class OpenVpnProcess
     {
         _startCompletionSource?.TrySetCanceled();
         SignalProcessToExit();
-        WaitForProcessToExit(WaitAfterSignalingExit);
+        WaitForProcessToExit(_waitAfterSignalingExit);
         KillNotExitedProcesses();
         Cleanup();
     }
@@ -139,21 +139,21 @@ public class OpenVpnProcess
         }
     }
 
-    private void Process_OutputDataReceived(object sender, EventArgs<string> e)
+    private void Process_OutputDataReceived(object? sender, EventArgs<string> e)
     {
         _logger.Info<ConnectionLog>($"OpenVPN -> {e.Data}");
 
         if (e.Data.StartsWithIgnoringCase("MANAGEMENT: TCP Socket listening on"))
         {
-            _startCompletionSource.TrySetResult(true);
+            _startCompletionSource?.TrySetResult(true);
         }
         else if (e.Data == null)
         {
-            _startCompletionSource.TrySetResult(false);
+            _startCompletionSource?.TrySetResult(false);
         }
     }
 
-    private void Process_ErrorDataReceived(object sender, EventArgs<string> e)
+    private void Process_ErrorDataReceived(object? sender, EventArgs<string> e)
     {
         string message = $"OpenVPN -> {e.Data}";
 
@@ -167,11 +167,11 @@ public class OpenVpnProcess
         }
     }
 
-    private void Process_Exited(object sender, EventArgs e)
+    private void Process_Exited(object? sender, EventArgs e)
     {
         _logger.Info<ProcessStopLog>("OpenVPN process exited");
 
-        _startCompletionSource.TrySetResult(false);
+        _startCompletionSource?.TrySetResult(false);
     }
 
     private void Cleanup()

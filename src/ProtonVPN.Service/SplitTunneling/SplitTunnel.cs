@@ -23,21 +23,27 @@ using System.Net;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.SplitTunnelLogs;
 using ProtonVPN.NetworkFilter;
 using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
+using ProtonVPN.ProTun.Contracts.Adapters;
 using ProtonVPN.Service.Firewall;
 using ProtonVPN.Service.Settings;
-using ProtonVPN.Service.Vpn;
+using ProtonVPN.Vpn.SplitTunnel;
 using Action = ProtonVPN.NetworkFilter.Action;
 
 namespace ProtonVPN.Service.SplitTunneling;
 
-public class SplitTunnel : IVpnStateAware
+public class SplitTunnel : ISplitTunnel
 {
     private bool _reverseEnabled;
     private bool _enabled;
+    private SplitTunnelContext? _context;
 
+    private readonly ILogger _logger;
+    private readonly ISplitTunnelRouting _splitTunnelRouting;
     private readonly INetworkUtilities _networkUtilities;
     private readonly ISystemNetworkInterfaces _networkInterfaces;
     private readonly IConfiguration _config;
@@ -45,42 +51,55 @@ public class SplitTunnel : IVpnStateAware
     private readonly ISplitTunnelClient _splitTunnelClient;
     private readonly IAppFilter _appFilter;
     private readonly IPermittedRemoteAddress _permittedRemoteAddress;
+    private readonly IAdapterDetailsCache _proTunAdapterDetailsCache;
 
     public SplitTunnel(
+        ILogger logger,
+        ISplitTunnelRouting splitTunnelRouting,
         INetworkUtilities networkUtilities,
         ISystemNetworkInterfaces networkInterfaces,
         IConfiguration config,
         IServiceSettings serviceSettings,
         ISplitTunnelClient splitTunnelClient,
         IAppFilter appFilter,
-        IPermittedRemoteAddress permittedRemoteAddress)
+        IPermittedRemoteAddress permittedRemoteAddress,
+        IAdapterDetailsCache proTunAdapterDetailsCache)
     {
+        _logger = logger;
+        _splitTunnelRouting = splitTunnelRouting;
         _networkUtilities = networkUtilities;
         _networkInterfaces = networkInterfaces;
         _config = config;
-        _permittedRemoteAddress = permittedRemoteAddress;
-        _appFilter = appFilter;
-        _splitTunnelClient = splitTunnelClient;
         _serviceSettings = serviceSettings;
+        _splitTunnelClient = splitTunnelClient;
+        _appFilter = appFilter;
+        _permittedRemoteAddress = permittedRemoteAddress;
+        _proTunAdapterDetailsCache = proTunAdapterDetailsCache;
     }
 
     public SplitTunnel(
         bool enabled,
         bool reverseEnabled,
+        ILogger logger,
+        ISplitTunnelRouting splitTunnelRouting,
         INetworkUtilities networkUtilities,
         ISystemNetworkInterfaces networkInterfaces,
         IConfiguration config,
         IServiceSettings serviceSettings,
         ISplitTunnelClient splitTunnelClient,
         IAppFilter appFilter,
-        IPermittedRemoteAddress permittedRemoteAddress) :
-        this(networkUtilities,
+        IPermittedRemoteAddress permittedRemoteAddress,
+        IAdapterDetailsCache proTunAdapterDetailsCache) :
+        this(logger,
+            splitTunnelRouting,
+            networkUtilities,
             networkInterfaces,
             config,
             serviceSettings,
             splitTunnelClient,
             appFilter,
-            permittedRemoteAddress)
+            permittedRemoteAddress,
+            proTunAdapterDetailsCache)
     {
         _enabled = enabled;
         _reverseEnabled = reverseEnabled;
@@ -110,11 +129,17 @@ public class SplitTunnel : IVpnStateAware
             return;
         }
 
+        SetUpApps(state);
+        SetUpIps(state);
+    }
+
+    private void SetUpApps(VpnState state)
+    {
         switch (_serviceSettings.SplitTunnelSettings.Mode)
         {
             case SplitTunnelModeIpcEntity.Block:
                 DisableReversed();
-                Enable();
+                Enable(state);
                 break;
             case SplitTunnelModeIpcEntity.Permit:
                 _appFilter.RemoveAll();
@@ -124,32 +149,63 @@ public class SplitTunnel : IVpnStateAware
         }
     }
 
+    public void UpdateContext(SplitTunnelContext context)
+    {
+        _context = context;
+    }
+
+    private void SetUpIps(VpnState state)
+    {
+        if (_context is null)
+        {
+            _logger.Warn<SplitTunnelLog>("Split tunnel context is missing, routes won't be added.");
+            return;
+        }
+
+        string? localIpv4Address = state.LocalIp;
+        if (string.IsNullOrEmpty(localIpv4Address))
+        {
+            _logger.Warn<SplitTunnelLog>("Local IPv4 address is missing, split tunneling routes won't be added.");
+        }
+        else
+        {
+            bool isIpv6Supported = _context.Config.IsIpv6Enabled && _context.Endpoint.Server.IsIpv6Supported;
+            _splitTunnelRouting.SetUpRoutingTable(_context.Config, localIpv4Address, isIpv6Supported);
+        }
+    }
+
     public void OnVpnDisconnected(VpnState state)
     {
         if (state.Error == VpnError.None)
         {
             DisableSplitTunnel();
             _appFilter.RemoveAll();
+            _context = null;
         }
-    }
-
-    public void AssigningIp(VpnState state)
-    {
     }
 
     private void DisableSplitTunnel()
     {
         Disable();
         DisableReversed();
+
+        if (_context is null)
+        {
+            _logger.Warn<SplitTunnelLog>("Split tunnel context is missing, routes won't be removed.");
+        }
+        else
+        {
+            _splitTunnelRouting.DeleteRoutes(_context.Config);
+        }
     }
 
-    private void Enable()
+    private void Enable(VpnState state)
     {
-        string excludedHardwareId = _config.GetHardwareId(_serviceSettings.OpenVpnAdapter);
+        string excludedHardwareId = _config.GetHardwareId(state.VpnProtocol, _serviceSettings.OpenVpnAdapter);
         IPAddress localIpv4Address = _networkUtilities.GetBestInterfaceIPv4Address(excludedHardwareId);
         INetworkInterface bestInterface = _networkInterfaces.GetBestInterfaceExcludingHardwareId(excludedHardwareId);
 
-        IPAddress localIpv6Address = null;
+        IPAddress? localIpv6Address = null;
         if (!string.IsNullOrEmpty(bestInterface.Id))
         {
             localIpv6Address = bestInterface.GetPreferredIpv6UnicastAddress();
@@ -190,10 +246,14 @@ public class SplitTunnel : IVpnStateAware
 
     private void EnableReversed(VpnState vpnState)
     {
-        IPAddress localIpv6Address = null;
+        IPAddress? localIpv6Address = null;
         if (vpnState.VpnProtocol.IsWireGuard())
         {
-            localIpv6Address = IPAddress.Parse(_config.WireGuard.DefaultClientIpv6Address);
+            IPAddress.TryParse(_config.WireGuard.DefaultClientIpv6Address, out localIpv6Address);
+        }
+        else if (vpnState.VpnProtocol.IsProTun())
+        {
+            IPAddress.TryParse(_proTunAdapterDetailsCache.ClientIpv6Address, out localIpv6Address);
         }
         else if (vpnState.VpnProtocol.IsOpenVpn())
         {

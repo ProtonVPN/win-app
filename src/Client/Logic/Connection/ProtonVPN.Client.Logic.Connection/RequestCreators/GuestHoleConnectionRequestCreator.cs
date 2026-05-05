@@ -84,6 +84,7 @@ public class GuestHoleConnectionRequestCreator : ConnectionRequestCreatorBase, I
                 { VpnProtocolIpcEntity.OpenVpnTcp, Settings.OpenVpnTcpPorts },
             },
             IsWireGuardServerRouteEnabled = FeatureFlagsObserver.IsWireGuardServerRouteEnabled,
+            WireGuardConnectionTimeout = Settings.WireGuardConnectionTimeout,
         };
     }
 

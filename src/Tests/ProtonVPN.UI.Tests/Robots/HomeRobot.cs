@@ -24,6 +24,7 @@ using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.TestsHelper;
+using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
@@ -372,10 +373,10 @@ public class HomeRobot
 
             switch (protocol)
             {
-                case TestConstants.Protocol.OpenVpnUdp:
+                case Protocol.OpenVpnUdp:
                     ConnectionDetailsProtocol.TextEquals("OpenVPN (UDP)");
                     break;
-                case TestConstants.Protocol.OpenVpnTcp:
+                case Protocol.OpenVpnTcp:
                     ConnectionDetailsProtocol.TextEquals("OpenVPN (TCP)");
                     break;
                 case TestConstants.Protocol.WireGuardTcp:

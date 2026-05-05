@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,14 +21,13 @@ using System;
 using System.Collections.Generic;
 using ProtonVPN.NetworkFilter;
 
-namespace ProtonVPN.Service.Firewall
+namespace ProtonVPN.Service.Firewall;
+
+public class ServerAddressFilterCollection
 {
-    public class ServerAddressFilterCollection
-    {
-        public string ServerIp { get; set; }
+    public string ServerIp { get; set; } = string.Empty;
 
-        public SessionType SessionType { get; set; }
+    public SessionType SessionType { get; set; }
 
-        public List<Guid> Filters { get; set; } = new();
-    }
+    public List<Guid> Filters { get; set; } = new();
 }

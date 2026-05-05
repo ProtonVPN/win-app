@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,20 +17,19 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Vpn.SynchronizationEvent
+namespace ProtonVPN.Vpn.SynchronizationEvent;
+
+internal class NullSynchronizationEvent : ISynchronizationEvent
 {
-    internal class NullSynchronizationEvent : ISynchronizationEvent
+    public void Set()
     {
-        public void Set()
-        {
-        }
+    }
 
-        public void Reset()
-        {
-        }
+    public void Reset()
+    {
+    }
 
-        public void Dispose()
-        {
-        }
+    public void Dispose()
+    {
     }
 }

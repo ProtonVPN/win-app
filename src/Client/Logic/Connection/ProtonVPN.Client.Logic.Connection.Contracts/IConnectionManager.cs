@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -33,7 +33,7 @@ public interface IConnectionManager
     bool IsDisconnected { get; }
     bool IsConnecting { get; }
     bool IsConnected { get; }
-    bool HasError { get; }
+    bool IsConnectAllowed { get; }
     bool IsNetworkBlocked { get; }
     bool IsTwoFactorError { get; }
     bool IsMobileHotspotError { get; }

@@ -62,6 +62,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     private readonly IEnumerable<IWindowActivator> _windowActivators;
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
     private readonly ICoordinatesProvider _coordinatesProvider;
+    private readonly IConnectionCertificateManager _connectionCertificateManager;
 
     [ObservableProperty]
     private Overlay _selectedOverlay;
@@ -114,7 +115,8 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         ISettingsHeartbeatReporter settingsHeartbeatReporter,
         IEnumerable<IWindowActivator> windowActivators,
         IVpnPlanUpdater vpnPlanUpdater,
-        ICoordinatesProvider coordinatesProvider)
+        ICoordinatesProvider coordinatesProvider,
+        IConnectionCertificateManager connectionCertificateManager)
         : base(windowActivator, viewModelHelper)
     {
         _serversUpdater = serversUpdater;
@@ -130,6 +132,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         _windowActivators = windowActivators;
         _vpnPlanUpdater = vpnPlanUpdater;
         _coordinatesProvider = coordinatesProvider;
+        _connectionCertificateManager = connectionCertificateManager;
 
         OverlaysList =
         [
@@ -393,5 +396,11 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     public void IncludeAllLocations()
     {
         _settings.ExcludedLocationsList = DefaultSettings.ExcludedLocationsList;
+    }
+
+    [RelayCommand]
+    public Task TriggerConnectionCertificateUpdateAsync()
+    {
+        return _connectionCertificateManager.ForceRequestNewCertificateAsync();
     }
 }

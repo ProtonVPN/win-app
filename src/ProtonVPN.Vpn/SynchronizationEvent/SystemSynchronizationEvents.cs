@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,50 +17,48 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Logging.Contracts;
 using System;
 using System.IO;
-using System.Security.AccessControl;
 using System.Threading;
+using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
-namespace ProtonVPN.Vpn.SynchronizationEvent
+namespace ProtonVPN.Vpn.SynchronizationEvent;
+
+/// <summary>
+/// Provides access to system synchronization events.
+/// </summary>
+internal class SystemSynchronizationEvents : ISynchronizationEvents
 {
-    /// <summary>
-    /// Provides access to system synchronization events.
-    /// </summary>
-    internal class SystemSynchronizationEvents : ISynchronizationEvents
+    private readonly ILogger _logger;
+
+    public SystemSynchronizationEvents(ILogger logger)
     {
-        private readonly ILogger _logger;
+        _logger = logger;
+    }
 
-        public SystemSynchronizationEvents(ILogger logger)
+    public ISynchronizationEvent SynchronizationEvent(string eventName)
+    {
+        try
         {
-            _logger = logger;
+            if (EventWaitHandle.TryOpenExisting(eventName, out EventWaitHandle? eventWaitHandle))
+            {
+                return new SystemSynchronizationEvent(eventWaitHandle);
+            }
         }
-
-        public ISynchronizationEvent SynchronizationEvent(string eventName)
+        catch (UnauthorizedAccessException ex)
         {
-            try
-            {
-                if (EventWaitHandle.TryOpenExisting(eventName, out EventWaitHandle eventWaitHandle))
-                {
-                    return new SystemSynchronizationEvent(eventWaitHandle);
-                }
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                LogException(ex);
-            }
-            catch (IOException ex)
-            {
-                LogException(ex);
-            }
-            return new NullSynchronizationEvent(); 
+            LogException(ex);
+        }
+        catch (IOException ex)
+        {
+            LogException(ex);
+        }
+        return new NullSynchronizationEvent(); 
 
-            void LogException(Exception e)
-            {
-                _logger.Warn<AppLog>($"Synchronization: Failed to open event {eventName}.", e);
-            }
+        void LogException(Exception e)
+        {
+            _logger.Warn<AppLog>($"Synchronization: Failed to open event {eventName}.", e);
         }
     }
 }

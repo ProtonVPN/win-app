@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,24 +19,23 @@
 
 using ProtonVPN.Common.Core.Extensions;
 
-namespace ProtonVPN.Vpn.Management
+namespace ProtonVPN.Vpn.Management;
+
+/// <summary>
+/// Message to be send to OpenVPN management interface.
+/// </summary>
+public class ManagementMessage
 {
-    /// <summary>
-    /// Message to be send to OpenVPN management interface.
-    /// </summary>
-    internal class ManagementMessage
+    private readonly string _messageText;
+
+    public ManagementMessage(string messageText)
     {
-        private readonly string _messageText;
-
-        public ManagementMessage(string messageText)
-        {
-            _messageText = messageText;
-        }
-
-        public override string ToString() => _messageText;
-
-        public string LogText => IsPasswordMessage? "password [...]" : ToString();
-
-        private bool IsPasswordMessage => _messageText.StartsWithIgnoringCase("password");
+        _messageText = messageText;
     }
+
+    public override string ToString() => _messageText;
+
+    public string LogText => IsPasswordMessage? "password [...]" : ToString();
+
+    private bool IsPasswordMessage => _messageText.StartsWithIgnoringCase("password");
 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,36 +17,36 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
 using ProtonVPN.Vpn.SynchronizationEvent;
 
-namespace ProtonVPN.Vpn.OpenVpn
+namespace ProtonVPN.Vpn.OpenVpn;
+
+/// <summary>
+/// Signals OpenVPN process to exit using synchronization event.
+/// </summary>
+internal class OpenVpnExitEvent : IOpenVpnExitEvent
 {
-    /// <summary>
-    /// Signals OpenVPN process to exit using synchronization event.
-    /// </summary>
-    internal class OpenVpnExitEvent
+    private readonly ILogger _logger;
+    private readonly ISynchronizationEvents _synchronizationEvents;
+    private readonly string _exitEventName;
+
+    public OpenVpnExitEvent(ILogger logger, ISynchronizationEvents synchronizationEvents, IStaticConfiguration config)
     {
-        private readonly ILogger _logger;
-        private readonly ISynchronizationEvents _synchronizationEvents;
-        private readonly string _exitEventName;
+        _logger = logger;
+        _synchronizationEvents = synchronizationEvents;
+        _exitEventName = config.OpenVpn.ExitEventName;
+    }
 
-        public OpenVpnExitEvent(ILogger logger, ISynchronizationEvents synchronizationEvents, string exitEventName)
+    public void Signal()
+    {
+        _logger.Info<ConnectionLog>($"OpenVPN <- Signaling {_exitEventName}");
+        using (ISynchronizationEvent exitEvent = _synchronizationEvents.SynchronizationEvent(_exitEventName))
         {
-            _logger = logger;
-            _synchronizationEvents = synchronizationEvents;
-            _exitEventName = exitEventName;
-        }
-
-        public void Signal()
-        {
-            _logger.Info<ConnectionLog>($"OpenVPN <- Signaling {_exitEventName}");
-            using (ISynchronizationEvent exitEvent = _synchronizationEvents.SynchronizationEvent(_exitEventName))
-            {
-                exitEvent.Set();
-                exitEvent.Reset();
-            }
+            exitEvent.Set();
+            exitEvent.Reset();
         }
     }
 }

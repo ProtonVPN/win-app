@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net8.0-windows</TargetFramework>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
         <ImplicitUsings>enable</ImplicitUsings>
         <OutputPath>..\..\..\bin</OutputPath>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -14,10 +15,17 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Autofac" />
-        <PackageReference Include="System.Private.ServiceModel" />
+        <PackageReference Include="System.Formats.Asn1" />
+        <PackageReference Include="System.Text.Json" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />
-        <ProjectReference Include="..\ProtonVPN.ProcessCommunication.Service\ProtonVPN.ProcessCommunication.Service.csproj" />
+      <ProjectReference Include="..\..\..\EntityMapping\ProtonVPN.EntityMapping.Common.Installers\ProtonVPN.EntityMapping.Common.Installers.csproj" />
+      <ProjectReference Include="..\..\EntityMapping\ProtonVPN.ProcessCommunication.EntityMapping.Common.Core\ProtonVPN.ProcessCommunication.EntityMapping.Common.Core.csproj" />
+      <ProjectReference Include="..\..\EntityMapping\ProtonVPN.ProcessCommunication.EntityMapping.Common.Legacy\ProtonVPN.ProcessCommunication.EntityMapping.Common.Legacy.csproj" />
+      <ProjectReference Include="..\..\EntityMapping\ProtonVPN.ProcessCommunication.EntityMapping.Crypto\ProtonVPN.ProcessCommunication.EntityMapping.Crypto.csproj" />
+      <ProjectReference Include="..\..\EntityMapping\ProtonVPN.ProcessCommunication.EntityMapping.Update\ProtonVPN.ProcessCommunication.EntityMapping.Update.csproj" />
+      <ProjectReference Include="..\..\EntityMapping\ProtonVPN.ProcessCommunication.EntityMapping.Vpn\ProtonVPN.ProcessCommunication.EntityMapping.Vpn.csproj" />
+      <ProjectReference Include="..\..\ProtonVPN.ProcessCommunication.Contracts\ProtonVPN.ProcessCommunication.Contracts.csproj" />
+      <ProjectReference Include="..\ProtonVPN.ProcessCommunication.Service\ProtonVPN.ProcessCommunication.Service.csproj" />
     </ItemGroup>
 </Project>
