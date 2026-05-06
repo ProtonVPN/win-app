@@ -55,8 +55,6 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
             .Disconnect()
             .Verify.IsAdvancedKillSwitchActivated();
 
-        //needs a 5sec wait locally
-        //Thread.Sleep(TestConstants.FiveSecondsTimeout);
         NetworkUtils.AssertInternetAvailability(false);
     }
 

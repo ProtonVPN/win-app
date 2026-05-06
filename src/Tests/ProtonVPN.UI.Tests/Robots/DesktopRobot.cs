@@ -31,6 +31,20 @@ public class DesktopRobot : IDisposable
 {
     private readonly UIA3Automation _automation = new();
 
+    public DesktopRobot DismissOldToastsIfVisible(TimeSpan? timeout = null)
+    {
+        timeout ??= TimeSpan.FromSeconds(2);
+        try
+        {
+            ToastCapture.DismissToast(_automation, timeout);
+        }
+        catch (TimeoutException)
+        {
+            // Ignore
+        }
+        return this;
+    }
+
     public class Verifications
     {
         private readonly UIA3Automation _automation;

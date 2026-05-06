@@ -38,7 +38,8 @@ public static partial class ToastCapture
 
     private static readonly Element _title2 = Element.ByAutomationId("Title2");
     private static readonly Element _messageText2 = Element.ByAutomationId("MessageText2");
-    private static readonly Element _verbButton = Element.ByAutomationId("VerbButton");    
+    private static readonly Element _verbButton = Element.ByAutomationId("VerbButton");
+    private static readonly Element _dismissButton = Element.ByAutomationId("DismissButton");
 
     public static bool WaitForToastVisible(UIA3Automation automation, TimeSpan timeout)
     {
@@ -66,6 +67,51 @@ public static partial class ToastCapture
         }
 
         return false;
+    }
+
+    public static void DismissToast(UIA3Automation automation, TimeSpan? timeout = null)
+    {
+        AutomationElement desktop = automation.GetDesktop();
+        TimeSpan effectiveTimeout = timeout ?? TimeSpan.FromMilliseconds(TOAST_DEFAULT_TIMEOUT_MS);
+        DateTime end = DateTime.UtcNow + effectiveTimeout;
+
+        while (DateTime.UtcNow < end)
+        {
+            AutomationElement? scope = FindToastRoot(desktop);
+            if (scope != null)
+            {
+                AutomationElement? dismissButton = scope.FindFirstDescendant(_dismissButton.Condition);
+                if (dismissButton != null && !dismissButton.Properties.IsOffscreen.ValueOrDefault && dismissButton.IsEnabled)
+                {
+                    try
+                    {
+                        FlaUI.Core.Patterns.IInvokePattern? invokable = dismissButton.Patterns.Invoke.PatternOrDefault;
+                        if (invokable != null)
+                        {
+                            invokable.Invoke();
+                        }
+                        else
+                        {
+                            dismissButton.Click();
+                        }
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            dismissButton.Click();
+                        }
+                        catch { }
+                    }
+
+                    return;
+                }
+            }
+
+            Thread.Sleep(TOAST_POLL_INTERVAL_MS);
+        }
+
+        throw new TimeoutException("Dismiss button not found or not clickable.");
     }
 
     public static int GetPortFromVisibleToast(UIA3Automation automation, TimeSpan? timeout = null)
@@ -144,7 +190,7 @@ public static partial class ToastCapture
         AutomationElement? element = scope.FindFirstDescendant(_title2.Condition);
         return ParsePortFromElement(element);
     }
- 
+
     private static int? TryResolveByClickThenClipboard(AutomationElement scope)
     {
         AutomationElement? verb = scope.FindFirstDescendant(_verbButton.Condition);

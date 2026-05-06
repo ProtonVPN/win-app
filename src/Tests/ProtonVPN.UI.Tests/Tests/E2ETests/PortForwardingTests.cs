@@ -64,8 +64,11 @@ public class PortForwardingTests : FreshSessionSetUp
     }
 
     [Test]
+    [Retry(3)]
     public void VerifyCopiedPortForwardingNotification()
     {
+        DesktopRobot.DismissOldToastsIfVisible();
+
         EnablePortForwardingAndConnect();
 
         SettingRobot

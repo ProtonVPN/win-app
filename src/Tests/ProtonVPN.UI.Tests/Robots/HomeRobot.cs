@@ -19,6 +19,7 @@
 
 using System;
 using System.Threading;
+using System.Collections.Generic;
 using FlaUI.Core.Input;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
@@ -30,6 +31,11 @@ namespace ProtonVPN.UI.Tests.Robots;
 
 public class HomeRobot
 {
+    private const string KILL_SWITCH_FLYOUT_TEXT_1 = "Advanced kill switch disables your internet to protect your IP address while you're not connected to Proton VPN.";
+    private const string KILL_SWITCH_FLYOUT_TEXT_2 = "To get back online, connect to VPN or disable advanced kill switch";
+
+    private const string SPLIT_TUNNELING_NO_APP_SELECTED_TEXT = "Select apps";
+
     protected Element UnprotectedLabel = Element.ByName("Unprotected");
     protected Element ConnectingLabel = Element.ByName("Connecting");
     protected Element ProtectedLabel = Element.ByName("Protected");
@@ -67,6 +73,8 @@ public class HomeRobot
     protected Element LastConnectionOption = Element.ByName("Last connection");
     protected Element ProtectedLabelAdvancedKillSwitch = Element.ByName("Advanced kill switch activated");
 
+    protected Element WidgetFlyout = Element.ByAutomationId("WidgetFlyout");
+    protected Element KillSwitchWidgetButton = Element.ByAutomationId("KillSwitchWidgetButton");
     protected Element SplitTunnelingWidgetButton = Element.ByAutomationId("SplitTunnelingWidgetButton");
     protected Element PortForwardingWidgetButton = Element.ByAutomationId("PortForwardingWidgetButton");
     protected Element CopyPortNumberButton = Element.ByAutomationId("CopyPortNumberCondensedButton");
@@ -91,6 +99,12 @@ public class HomeRobot
     public HomeRobot ClickOnConnectionCardTitle()
     {
         ConnectionCardTitle.Click();
+        return this;
+    }
+
+    public HomeRobot HoverOverKillSwitchFlyoutWidget()
+    {
+        KillSwitchWidgetButton.Hover();
         return this;
     }
 
@@ -126,7 +140,7 @@ public class HomeRobot
 
     public HomeRobot CancelConnection(TimeSpan? retryIntervalOverload = null)
     {
-        ConnectionCardCancelButton.Click(retryIntervalOverload);
+        ConnectionCardCancelButton.ClickUntilElementDisappears(retryIntervalOverload);
         return this;
     }
 
@@ -393,6 +407,31 @@ public class HomeRobot
             return this;
         }
 
+        public Verifications IsAdvancedKillSwitchTextInFlyoutMenu()
+        {
+            List<string> allChildren = GetFlyoutChildren();
+            Assert.That(allChildren, Does.Contain(KillSwitchMode.Advanced.ToString()));
+            Assert.That(allChildren, Does.Contain(KILL_SWITCH_FLYOUT_TEXT_1));
+            Assert.That(allChildren, Does.Contain(KILL_SWITCH_FLYOUT_TEXT_2));
+            return this;
+        }
+
+        public Verifications IsSplitTunnelingAppAvailableInFlyoutMenu(string splitTunnelingMode)
+        {
+            List<string> allChildren = GetFlyoutChildren();
+            Assert.That(allChildren, Does.Contain(splitTunnelingMode));
+            Assert.That(allChildren, Does.Not.Contain(SPLIT_TUNNELING_NO_APP_SELECTED_TEXT));
+            return this;
+        }
+
+        public Verifications IsSplitTunnelingAppUnavailableInFlyoutMenu(string splitTunnelingMode)
+        {
+            List<string> allChildren = GetFlyoutChildren();
+            Assert.That(allChildren, Does.Contain(splitTunnelingMode.Replace("1", "0")));
+            Assert.That(allChildren, Does.Contain(SPLIT_TUNNELING_NO_APP_SELECTED_TEXT));
+            return this;
+        }
+
         public Verifications AssertVPNIpAndExternalIpMatch(string vpnIpAddress, string externalIpAddress)
         {
             Assert.That(vpnIpAddress.Equals(externalIpAddress), Is.True);
@@ -424,6 +463,12 @@ public class HomeRobot
                 $"IP Address after client was restored: {ipAddressAfterRestore}");
             return this;
         }
+    }
+
+    private List<string> GetFlyoutChildren()
+    {
+        WidgetFlyout.WaitUntilDisplayed();
+        return WidgetFlyout.GetAllChildrenNames();
     }
 
     public Verifications Verify => new();

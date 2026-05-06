@@ -64,9 +64,6 @@ public static class TestConstants
         WireGuardTcp,
         OpenVpnTcp,
         WireGuardTls,
-        ProTunUdp,
-        ProTunTcp,
-        ProTunTls,
         Smart,
     }
 

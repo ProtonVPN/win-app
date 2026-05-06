@@ -20,9 +20,7 @@
 using System.IO;
 using System.Threading;
 using System.Diagnostics;
-using System.Collections.Generic;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 
@@ -43,9 +41,7 @@ public class SplitTunnelingIncludeTests : BaseTest
     private const string RENAMED_CHROME_FOLDER = @"C:\Program Files\Google\Chrome\Application\chrome_disabled.exe";
 
     private const string APP_NOT_FOUND_TEXT = "Application not found";
-    private const string NO_APP_SELECTED_TEXT = "Select apps";
-    private const string SPLIT_TUNNELING_MODE = "Included apps (1)"; //Excluded apps (1)
-
+    private const string SPLIT_TUNNELING_MODE = "Included apps (1)";
 
     [OneTimeSetUp]
     public void SetUp()
@@ -173,7 +169,7 @@ public class SplitTunnelingIncludeTests : BaseTest
             .ConnectViaConnectionCard()
             .Verify.IsConnected()
             .HoverOverSplitTunnelingFlyoutWidget();
-        IsSplitTunnelingAppInFlyoutMenu(isAppAvailable: true, SPLIT_TUNNELING_MODE);
+        VerifyIsSplitTunnelingAppInFlyoutMenu(isAppAvailable: true);
 
         HomeRobot
             .ClickOnConnectionCardTitle();
@@ -183,7 +179,7 @@ public class SplitTunnelingIncludeTests : BaseTest
 
         HomeRobot
             .HoverOverSplitTunnelingFlyoutWidget();
-        IsSplitTunnelingAppInFlyoutMenu(isAppAvailable: false, SPLIT_TUNNELING_MODE);
+        VerifyIsSplitTunnelingAppInFlyoutMenu(isAppAvailable: false);
 
         Thread.Sleep(TestConstants.OneSecondTimeout);
         //it glitches after the hover, so clicking the sidebar just in case
@@ -201,14 +197,20 @@ public class SplitTunnelingIncludeTests : BaseTest
                    .AssertAppAvailability(APP_NOT_FOUND_TEXT, true);
     }
 
-    private void IsSplitTunnelingAppInFlyoutMenu(bool isAppAvailable, string splitTunnelingMode)
+    private void VerifyIsSplitTunnelingAppInFlyoutMenu(bool isAppAvailable)
     {
-        Thread.Sleep(TestConstants.OneSecondTimeout);
         string appName = isAppAvailable ? APP_TO_INCLUDE : APP_NOT_FOUND_TEXT;
 
-        List<string> allChildren = Element.ByAutomationId("WidgetFlyout").GetAllChildrenNames();
-        Assert.That(allChildren, isAppAvailable ? Does.Contain(splitTunnelingMode) : Does.Contain(splitTunnelingMode.Replace("1", "0")));
-        Assert.That(allChildren, isAppAvailable ? Does.Not.Contain(NO_APP_SELECTED_TEXT) : Does.Contain(NO_APP_SELECTED_TEXT));
+        if (isAppAvailable)
+        {
+            HomeRobot
+                .Verify.IsSplitTunnelingAppAvailableInFlyoutMenu(SPLIT_TUNNELING_MODE);
+        }
+        else
+        {
+            HomeRobot
+                .Verify.IsSplitTunnelingAppUnavailableInFlyoutMenu(SPLIT_TUNNELING_MODE);
+        }
 
         SplitTunnelingRobot
             .EditSplitTunnelingApps();

@@ -53,7 +53,7 @@ public class ProfileTests : BaseTest
     private static readonly (string profileName, ConnectionType connectionType, string countryName, TestConstants.Protocol protocol)[] _profiles =
     {
         (profileName: "Profile 1", connectionType: ConnectionType.Standard, countryName: "Argentina", protocol: TestConstants.Protocol.OpenVpnUdp),
-        (profileName: "Profile 2", connectionType: ConnectionType.P2P, countryName: "Bosnia and Herzegovina", protocol: TestConstants.Protocol.WireGuardTcp),
+        (profileName: "Profile 2", connectionType: ConnectionType.P2P, countryName: "Belgium", protocol: TestConstants.Protocol.WireGuardTcp),
         (profileName: "Profile 3", connectionType: ConnectionType.SecureCore, countryName: "Egypt", protocol: TestConstants.Protocol.WireGuardUdp)
     };
 

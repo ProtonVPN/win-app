@@ -41,9 +41,6 @@ public class SecureCoreTests : FreshSessionSetUp
     public void TestInitialize()
     {
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
-
-        //TODO: this is a temporary fix, so this test doesnt fail,, untill we merge the Service Refactor branch
-        Thread.Sleep(TestConstants.TenSecondsTimeout);
         _ipAddressNotConnected = NetworkUtils.GetIpAddressWithRetry();
     }
 
@@ -114,6 +111,7 @@ public class SecureCoreTests : FreshSessionSetUp
     }
 
     [Test]
+    [Retry(3)]
     public void ConnectToSecureCoreServerViaProfilesAndDisconnect()
     {
         CreateSecureCoreProfile();

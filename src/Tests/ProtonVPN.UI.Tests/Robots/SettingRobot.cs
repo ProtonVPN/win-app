@@ -1,21 +1,21 @@
 ﻿/*
-* Copyright (c) 2026 Proton AG
-*
-* This file is part of ProtonVPN.
-*
-* ProtonVPN is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* ProtonVPN is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
-*/
+ * Copyright (c) 2026 Proton AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
 
 using System.Threading;
 using System.Collections.Generic;
@@ -425,6 +425,7 @@ public class SettingRobot
 
     public SettingRobot SelectKillSwitchMode(KillSwitchMode killSwitchMode)
     {
+        Thread.Sleep(TestConstants.UserInputSimulationDelay);
         if (killSwitchMode == KillSwitchMode.Standard)
         {
             KillSwitchStandardRadioButton.Click();
@@ -534,6 +535,12 @@ public class SettingRobot
         public Verifications IsNetshieldEnabledStateDisplayed()
         {
             NetShieldSettingsCard.FindChild(Element.ByName("On")).WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsKillSwitchEnabledStateDisplayed(KillSwitchMode killSwitchMode)
+        {
+            KillSwitchSettingsCard.FindChild(Element.ByName(killSwitchMode.ToString())).WaitUntilDisplayed();
             return this;
         }
 
