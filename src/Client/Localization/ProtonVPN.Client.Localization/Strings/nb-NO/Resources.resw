@@ -124,7 +124,7 @@
     <value>Side med tilkoblingsdetaljer</value>
   </data>
   <data name="Automation_Properties_ConnectionPreferences_Page">
-    <value>Connection preferences page</value>
+    <value>Side med tilkoblingspreferanser</value>
   </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>Tilkoblingskort</value>
@@ -313,10 +313,10 @@
     <value>Oppdater Proton VPN</value>
   </data>
   <data name="Connection_Error_AllServersExcluded">
-    <value>Your preferences exclude all available servers. Adjust exclusions to connect.</value>
+    <value>Dine preferanser ekskluderer alle tilgjengelige servere. Juster ekskluderingene for å koble til.</value>
   </data>
   <data name="Connection_Error_AllServersExcluded_Action">
-    <value>Excluded locations</value>
+    <value>Ekskluderte plasseringer</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>Rediger profil</value>
@@ -1931,28 +1931,28 @@ Feilkode: {0}</value>
     <value>Ny systemstatusfelt-app</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations">
-    <value>Exclude locations</value>
+    <value>Ekskluder plasseringer</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
-    <value>If there are locations you don't want to be automatically connected to, you can exclude them from Fastest and Random country.</value>
+    <value>Hvis det finnes steder du ikke vil bli koblet til automatisk, kan du ekskludere dem fra Raskeste og Tilfeldige land.</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
-    <value>Skip</value>
+    <value>Hopp over</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
-    <value>Not the country you wanted?</value>
+    <value>Ikke landet du ønsket?</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_ActionButton">
-    <value>Exclude locations</value>
+    <value>Ekskluder plasseringer</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_CloseButton">
-    <value>Maybe later</value>
+    <value>Kanskje senere</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Subtitle">
-    <value>You can now exclude countries or cities from Fastest and Random connections.</value>
+    <value>Du kan nå ekskludere land eller byer fra Raskeste og Tilfeldige tilkoblinger.</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Title">
-    <value>Avoid unwanted locations</value>
+    <value>Unngå uønskede steder</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Avslutte Proton VPN?</value>
@@ -3044,7 +3044,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Tilkoblingspreferanser</value>
   </data>
   <data name="Settings_Connection_ConnectionPreferences_Description">
-    <value>Default connection and excluded locations</value>
+    <value>Standardtilkobling og ekskluderte steder</value>
   </data>
   <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
     <value>Egendefinert DNS kan ikke slås på fordi du er koblet til en profil med NetShield aktivert.</value>
@@ -3077,25 +3077,25 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Nylige</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations">
-    <value>Excluded locations</value>
+    <value>Ekskluderte plasseringer</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Cities">
-    <value>Cities</value>
+    <value>Byer</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Countries">
-    <value>Countries</value>
+    <value>Land</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Description">
-    <value>The selected locations will never be used when you connect to Fastest or Random</value>
+    <value>De valgte stedene vil aldri bli brukt når du kobler til Raskest eller Tilfeldig</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_NoLocations">
-    <value>No locations available</value>
+    <value>Ingen steder tilgjengelig</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Search">
-    <value>Select...</value>
+    <value>Velg...</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_States">
-    <value>States</value>
+    <value>Stater</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Nødstopp</value>
@@ -3375,10 +3375,10 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_ProtonProtocols_Description">
-    <value>Use Proton VPN's own implementation of WireGuard. This is an experimental feature, so you may experience some instability.</value>
+    <value>Bruk Proton VPN sin egen implementering av WireGuard. Dette er en eksperimentell funksjon, så du kan oppleve en viss ustabilitet.</value>
   </data>
   <data name="Settings_Protocols_ProtonProtocols_Title">
-    <value>Proton protocols</value>
+    <value>Proton-protokoller</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Velger automatisk den beste protokollen for tilkoblingen din.</value>
@@ -3832,19 +3832,19 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Proton WireGuard (TCP)</value>
   </data>
   <data name="VpnProtocol_ProTun_Tcp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Toppmoderne protokoll for sikkerhet og ytelse</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls">
     <value>Proton Stealth</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls_Description">
-    <value>Overcomes VPN blocks by hiding your connection from censors</value>
+    <value>Overvinner VPN-blokkeringer ved å skjule tilkoblingen din for sensurer</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp">
     <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Toppmoderne protokoll for sikkerhet og ytelse</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

@@ -187,7 +187,7 @@
     <value>分隔通道</value>
   </data>
   <data name="City_Fastest">
-    <value>Fastest city</value>
+    <value>最快的城市</value>
   </data>
   <data name="City_Random">
     <value>Random city</value>
@@ -238,16 +238,16 @@
     <value>安裝</value>
   </data>
   <data name="Common_Actions_MoveDown">
-    <value>Move Down</value>
+    <value>向下移動</value>
   </data>
   <data name="Common_Actions_MoveUp">
-    <value>Move Up</value>
+    <value>向上移動</value>
   </data>
   <data name="Common_Actions_Reconnect">
     <value>重新連線</value>
   </data>
   <data name="Common_Actions_Refresh">
-    <value>Refresh</value>
+    <value>重新整理</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>移除</value>
@@ -297,7 +297,7 @@
     <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Common_Tags_Recommended">
-    <value>Recommended</value>
+    <value>推薦</value>
     <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
@@ -1567,7 +1567,7 @@
     <comment>The name of WS country</comment>
   </data>
   <data name="Country_val_XK">
-    <value>Kosovo</value>
+    <value>科索沃</value>
     <comment>The name of XK country</comment>
   </data>
   <data name="Country_val_YE">
@@ -1840,7 +1840,7 @@
     <value>You unlocked all premium Proton VPN, Mail, Calendar, Drive, and Pass features.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
-    <value>Welcome to {0}</value>
+    <value>歡迎使用 {0}</value>
     <comment>Title to welcome the user after an account upgrade. {0} is a placeholder for the name of the new plan (eg. Proton Unlimited, Proton Duo, Proton Family).</comment>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
@@ -2402,7 +2402,7 @@
     <value>兩步驟驗證</value>
   </data>
   <data name="Login_TwoFactor_Authenticator">
-    <value>Authenticator app</value>
+    <value>驗證 app</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>第一個數字</value>
@@ -2455,7 +2455,7 @@
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
   </data>
   <data name="NoServers_ContactUs">
-    <value>Contact us</value>
+    <value>聯絡我們</value>
   </data>
   <data name="NoServers_FailedToLoad">
     <value>We couldn't load the server list.</value>
@@ -2464,7 +2464,7 @@
     <value>Need help?</value>
   </data>
   <data name="NoServers_SignOut">
-    <value>Sign out</value>
+    <value>登出</value>
   </data>
   <data name="NoServers_Tip">
     <value>Ask your administrator to enable VPN access for your account.</value>
@@ -2672,7 +2672,7 @@ VPN 連線</value>
     <value>App</value>
   </data>
   <data name="Profile_Options_Application_Select">
-    <value>Select an app</value>
+    <value>選擇應用程式</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_Application">
     <value>Open an app</value>
@@ -2750,7 +2750,7 @@ VPN 連線</value>
     <value>伺服器</value>
   </data>
   <data name="Server_Fastest">
-    <value>Fastest server</value>
+    <value>最快速的伺服器</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>最快速的免費伺服器</value>
@@ -2866,7 +2866,7 @@ VPN 連線</value>
     <value>自訂 DNS 伺服器</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
-    <value>Add new DNS server</value>
+    <value>加入新增的 DNS 伺服器</value>
     <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
@@ -3097,7 +3097,7 @@ VPN 連線</value>
     <value>Select apps which will be excluded from the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Excluded_FormattedHeader">
-    <value>Excluded apps ({0})</value>
+    <value>排除的應用程式 ({0})</value>
     <comment>Header for the list of apps to exclude for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Excluded apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Header">
@@ -3118,7 +3118,7 @@ VPN 連線</value>
     <value>Included apps</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Select">
-    <value>Select apps</value>
+    <value>選取應用程式</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>透過決定哪些應用程式和 IP 位址受到 VPN 保護，來自訂您的連線設定。</value>

@@ -3044,7 +3044,7 @@ Uma carga alta de servidor pode tornar sua conexão mais lenta.</value>
     <value>Preferências de conexão</value>
   </data>
   <data name="Settings_Connection_ConnectionPreferences_Description">
-    <value>Default connection and excluded locations</value>
+    <value>Conexão padrão e locais excluídos</value>
   </data>
   <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
     <value>O DNS personalizado não pode ser ativado porque a conexão a um perfil com o NetShield está ativada.</value>
