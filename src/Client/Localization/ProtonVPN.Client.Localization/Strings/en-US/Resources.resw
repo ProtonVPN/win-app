@@ -2696,6 +2696,12 @@
   <data name="Connection_Error_TwoFactorRequired_Description" xml:space="preserve">
     <value>To connect to VPN, go to your organization's 2FA portal and tap your security key.</value>
   </data>
+    <data name="Connection_Error_ConflictingAdapter_Title" xml:space="preserve">
+    <value>Another app might be preventing Proton VPN from connecting</value>
+  </data>
+    <data name="Connection_Error_ConflictingAdapter_Description" xml:space="preserve">
+    <value>To fix it, close or uninstall the app associated with:</value>
+  </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection" xml:space="preserve">
     <value>IPv6 leak protection</value>
   </data>

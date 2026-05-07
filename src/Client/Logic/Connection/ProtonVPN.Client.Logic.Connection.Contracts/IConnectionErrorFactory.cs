@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Logic.Connection.Contracts.ConnectionErrors;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 
 namespace ProtonVPN.Client.Logic.Connection.Contracts;
@@ -24,4 +25,5 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts;
 public interface IConnectionErrorFactory
 {
     IConnectionError GetConnectionError(VpnError vpnError);
+    IConflictingAdapterConnectionError GetConflictingAdapterConnectionError();
 }

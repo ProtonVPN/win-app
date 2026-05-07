@@ -34,8 +34,8 @@ public class KillSwitch : IKillSwitch, IServiceSettingsAware, IStartable
 {
     private readonly IFirewall _firewall;
     private readonly IServiceSettings _serviceSettings;
-    private readonly INetworkInterfaceLoader _networkInterfaceLoader;
     private readonly object _stateLock = new();
+    private readonly INetworkInterfaceProvider _networkInterfaceProvider;
     private VpnState _lastVpnState = new(VpnStatus.Disconnected, default);
     private KillSwitchMode _killSwitchMode;
 
@@ -44,11 +44,11 @@ public class KillSwitch : IKillSwitch, IServiceSettingsAware, IStartable
     public KillSwitch(
         IFirewall firewall,
         IServiceSettings serviceSettings,
-        INetworkInterfaceLoader networkInterfaceLoader)
+        INetworkInterfaceProvider networkInterfaceProvider)
     {
         _firewall = firewall;
         _serviceSettings = serviceSettings;
-        _networkInterfaceLoader = networkInterfaceLoader;
+        _networkInterfaceProvider = networkInterfaceProvider;
     }
 
     public void Start()
@@ -187,7 +187,7 @@ public class KillSwitch : IKillSwitch, IServiceSettingsAware, IStartable
     {
         bool dnsLeakOnly = _serviceSettings.SplitTunnelSettings.Mode == SplitTunnelModeIpcEntity.Permit && state.Status == VpnStatus.Connected;
         bool persistent = _serviceSettings.KillSwitchMode == KillSwitchMode.Hard;
-        INetworkInterface networkInterface = _networkInterfaceLoader.GetByVpnProtocol(state.VpnProtocol, state.OpenVpnAdapter);
+        INetworkInterface networkInterface = _networkInterfaceProvider.GetByVpnProtocol(state.VpnProtocol, state.OpenVpnAdapter);
         uint interfaceIndex = networkInterface?.Index ?? 0;
         FirewallParams firewallParams = new()
         {

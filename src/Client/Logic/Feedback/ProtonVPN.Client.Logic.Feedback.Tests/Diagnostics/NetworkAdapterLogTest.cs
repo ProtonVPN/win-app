@@ -17,24 +17,25 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Net.NetworkInformation;
 using FluentAssertions;
 using NSubstitute;
 using ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;
-using ProtonVPN.OperatingSystems.Network.Contracts;
+using ProtonVPN.OperatingSystems.Network.Contracts.NetworkInterfaces;
 
 namespace ProtonVPN.Client.Logic.Feedback.Tests.Diagnostics;
 
 [TestClass]
 public class NetworkAdapterLogTest : LogBaseTest
 {
-    private ISystemNetworkInterfaces? _networkInterfaces;
+    private INetworkInterfacesProvider? _networkInterfacesProvider;
 
     [TestInitialize]
     public override void Initialize()
     {
         base.Initialize();
 
-        _networkInterfaces = Substitute.For<ISystemNetworkInterfaces>();
+        _networkInterfacesProvider = Substitute.For<INetworkInterfacesProvider>();
     }
 
     [TestCleanup]
@@ -42,21 +43,21 @@ public class NetworkAdapterLogTest : LogBaseTest
     {
         base.Cleanup();
 
-        _networkInterfaces = null;
+        _networkInterfacesProvider = null;
     }
 
     [TestMethod]
     public void ItShouldCreateLogFile()
     {
         // Arrange
-        INetworkInterface[] interfaces = new[]
+        NetworkInterfaceInfo[] interfaces = new[]
         {
             CreateInterface("interface1"),
             CreateInterface("interface2"),
         };
-        _networkInterfaces!.GetInterfaces().Returns(interfaces);
+        _networkInterfacesProvider!.Get().Returns(interfaces);
 
-        NetworkAdapterLog log = new(_networkInterfaces, StaticConfig!);
+        NetworkAdapterLog log = new(_networkInterfacesProvider, StaticConfig!);
 
         // Act
         log.Write();
@@ -70,11 +71,15 @@ public class NetworkAdapterLogTest : LogBaseTest
         content.Should().Contain("interface2");
     }
 
-    private INetworkInterface CreateInterface(string name)
+    private static NetworkInterfaceInfo CreateInterface(string name)
     {
-        INetworkInterface i = Substitute.For<INetworkInterface>();
-        i.Name.Returns(name);
-
-        return i;
+        return new()
+        {
+            Guid = $"Guid of {name}",
+            Name = name,
+            Description = $"Description of {name}",
+            Type = NetworkInterfaceType.Wireless80211,
+            OperationalStatus = OperationalStatus.Up
+        };
     }
 }

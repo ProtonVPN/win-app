@@ -43,7 +43,7 @@ internal class IPv6Manager : IIPv6Manager
     private readonly IServiceSettings _serviceSettings;
     private readonly IFakeIPv6AddressGenerator _fakeIPv6AddressGenerator;
     private readonly ICommandLineCaller _commandLineCaller;
-    private readonly INetworkInterfaceLoader _networkInterfaceLoader;
+    private readonly INetworkInterfaceProvider _networkInterfaceProvider;
     private readonly ISystemNetworkInterfaces _networkInterfaces;
 
     private readonly SemaphoreSlim _networkSemaphore = new(1, 1);
@@ -64,7 +64,7 @@ internal class IPv6Manager : IIPv6Manager
         IServiceSettings serviceSettings,
         IFakeIPv6AddressGenerator fakeIPv6AddressGenerator,
         ICommandLineCaller commandLineCaller,
-        INetworkInterfaceLoader networkInterfaceLoader,
+        INetworkInterfaceProvider networkInterfaceProvider,
         ISystemNetworkInterfaces networkInterfaces,
         IObservableNetworkInterfaces observableNetworkInterfaces)
     {
@@ -74,7 +74,7 @@ internal class IPv6Manager : IIPv6Manager
         _serviceSettings = serviceSettings;
         _fakeIPv6AddressGenerator = fakeIPv6AddressGenerator;
         _commandLineCaller = commandLineCaller;
-        _networkInterfaceLoader = networkInterfaceLoader;
+        _networkInterfaceProvider = networkInterfaceProvider;
         _networkInterfaces = networkInterfaces;
 
         observableNetworkInterfaces.NetworkInterfacesAdded += OnNetworkInterfacesAddedAsync;
@@ -222,7 +222,7 @@ internal class IPv6Manager : IIPv6Manager
             return null;
         }
 
-        return _networkInterfaceLoader.GetByVpnProtocol(_vpnProtocol.Value, _openVpnAdapter.Value);
+        return _networkInterfaceProvider.GetByVpnProtocol(_vpnProtocol.Value, _openVpnAdapter.Value);
     }
 
     private async Task DisableIpv6Async(VpnProtocol vpnProtocol)

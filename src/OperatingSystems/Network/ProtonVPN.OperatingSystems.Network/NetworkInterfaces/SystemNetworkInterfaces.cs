@@ -24,7 +24,7 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.NetworkLogs;
 using ProtonVPN.OperatingSystems.Network.Contracts;
 
-namespace ProtonVPN.OperatingSystems.Network.NetworkInterface;
+namespace ProtonVPN.OperatingSystems.Network.NetworkInterfaces;
 
 public class SystemNetworkInterfaces : ISystemNetworkInterfaces
 {
@@ -45,7 +45,7 @@ public class SystemNetworkInterfaces : ISystemNetworkInterfaces
     {
         try
         {
-            System.Net.NetworkInformation.NetworkInterface[] interfaces =
+            NetworkInterface[] interfaces =
                 System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces();
 
             return interfaces
@@ -73,10 +73,10 @@ public class SystemNetworkInterfaces : ISystemNetworkInterfaces
     {
         return TryGet(() =>
         {
-            System.Net.NetworkInformation.NetworkInterface[] interfaces =
+            NetworkInterface[] interfaces =
             System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces();
 
-            foreach (System.Net.NetworkInformation.NetworkInterface i in interfaces)
+            foreach (NetworkInterface i in interfaces)
             {
                 if (i.GetIPProperties().UnicastAddresses.FirstOrDefault(a => a.Address.Equals(localAddress)) != null)
                 {
@@ -121,13 +121,13 @@ public class SystemNetworkInterfaces : ISystemNetworkInterfaces
     {
         try
         {
-            System.Net.NetworkInformation.NetworkInterface[] activeInterfaces = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces()
+            NetworkInterface[] activeInterfaces = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces()
                 .Where(ni => ni.OperationalStatus == OperationalStatus.Up &&
                              (ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
                               ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211))
                 .ToArray();
 
-            foreach (System.Net.NetworkInformation.NetworkInterface networkInterface in activeInterfaces)
+            foreach (NetworkInterface networkInterface in activeInterfaces)
             {
                 IPInterfaceProperties ipProperties = networkInterface.GetIPProperties();
                 bool hasDefaultGateway = ipProperties.GatewayAddresses.Any(g =>

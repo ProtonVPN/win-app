@@ -22,14 +22,14 @@ using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.OperatingSystems.Network.Contracts;
 
-namespace ProtonVPN.OperatingSystems.Network.NetworkInterface;
+namespace ProtonVPN.OperatingSystems.Network.NetworkInterfaces;
 
-public class NetworkInterfaceLoader : INetworkInterfaceLoader
+public class NetworkInterfaceProvider : INetworkInterfaceProvider
 {
     private readonly IStaticConfiguration _config;
     private readonly ISystemNetworkInterfaces _networkInterfaces;
 
-    public NetworkInterfaceLoader(IStaticConfiguration config, ISystemNetworkInterfaces networkInterfaces)
+    public NetworkInterfaceProvider(IStaticConfiguration config, ISystemNetworkInterfaces networkInterfaces)
     {
         _networkInterfaces = networkInterfaces;
         _config = config;

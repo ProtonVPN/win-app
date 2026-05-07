@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Logic.Connection.ConnectionErrors;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.ConnectionErrors;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 
@@ -39,6 +40,11 @@ public class ConnectionErrorFactory : IConnectionErrorFactory
         _connectionManager = connectionManager;
         _connectionErrors = connectionErrors;
         _unknownConnectionError = unknownConnectionError;
+    }
+
+    public IConflictingAdapterConnectionError GetConflictingAdapterConnectionError()
+    {
+        return _connectionErrors.Value.OfType<IConflictingAdapterConnectionError>().Single();
     }
 
     public IConnectionError GetConnectionError(VpnError vpnError)

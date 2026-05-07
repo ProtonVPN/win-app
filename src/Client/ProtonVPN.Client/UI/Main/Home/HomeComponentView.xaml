@@ -106,11 +106,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           HorizontalAlignment="Center" />
 
         <components:ConnectionErrorComponent x:Name="ConnectionErrorComponent"
-                                             Grid.Row="1"
-                                             Grid.RowSpan="4"
+                                             Grid.Row="2"
+                                             Grid.RowSpan="3"
                                              Grid.Column="2"
                                              MaxWidth="{StaticResource MaximumHomePageContentWidth}"
-                                             Margin="0,1,0,0"
+                                             Margin="0,16,0,0"
                                              HorizontalAlignment="Center"
                                              VerticalAlignment="Top" />
 

@@ -34,6 +34,8 @@ public class NoConnectionError : IConnectionError
 
     public bool IsToCloseErrorOnDisconnect => false;
 
+    public bool IsToCloseErrorOnConnecting => true;
+
     public Task ExecuteActionAsync()
     {
         return Task.CompletedTask;

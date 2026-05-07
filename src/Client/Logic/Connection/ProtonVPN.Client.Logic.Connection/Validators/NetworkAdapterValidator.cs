@@ -26,19 +26,19 @@ namespace ProtonVPN.Client.Logic.Connection.Validators;
 
 public class NetworkAdapterValidator : INetworkAdapterValidator
 {
-    private readonly INetworkInterfaceLoader _networkInterfaceLoader;
+    private readonly INetworkInterfaceProvider _networkInterfaceProvider;
     private readonly ILogger _logger;
 
-    public NetworkAdapterValidator(INetworkInterfaceLoader networkInterfaceLoader, ILogger logger)
+    public NetworkAdapterValidator(INetworkInterfaceProvider networkInterfaceProvider, ILogger logger)
     {
-        _networkInterfaceLoader = networkInterfaceLoader;
+        _networkInterfaceProvider = networkInterfaceProvider;
         _logger = logger;
     }
 
     public bool IsOpenVpnAdapterAvailable()
     {
-        INetworkInterface? openVpnTapInterface = _networkInterfaceLoader.GetOpenVpnTapInterface();
-        INetworkInterface? openVpnTunInterface = _networkInterfaceLoader.GetOpenVpnTunInterface();
+        INetworkInterface? openVpnTapInterface = _networkInterfaceProvider.GetOpenVpnTapInterface();
+        INetworkInterface? openVpnTunInterface = _networkInterfaceProvider.GetOpenVpnTunInterface();
         bool isOpenVpnAdapterAvailable = openVpnTapInterface != null || openVpnTunInterface != null;
 
         LogIsOpenVpnAdapterAvailable(isOpenVpnAdapterAvailable,

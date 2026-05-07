@@ -34,5 +34,7 @@ public interface IConnectionError
 
     public bool IsToCloseErrorOnDisconnect { get; }
 
+    public bool IsToCloseErrorOnConnecting { get; }
+
     public Task ExecuteActionAsync();
 }

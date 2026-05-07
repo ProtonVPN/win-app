@@ -37,6 +37,8 @@ public abstract class ConnectionErrorBase : IConnectionError
 
     public virtual bool IsToCloseErrorOnDisconnect => false;
 
+    public virtual bool IsToCloseErrorOnConnecting => true;
+
     protected ConnectionErrorBase(ILocalizationProvider localizer)
     {
         Localizer = localizer;

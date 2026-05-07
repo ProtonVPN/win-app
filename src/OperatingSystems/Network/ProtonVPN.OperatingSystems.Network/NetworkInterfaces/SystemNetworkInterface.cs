@@ -26,16 +26,16 @@ using Vanara.PInvoke;
 using static Vanara.PInvoke.IpHlpApi;
 using static Vanara.PInvoke.Ws2_32;
 
-namespace ProtonVPN.OperatingSystems.Network.NetworkInterface;
+namespace ProtonVPN.OperatingSystems.Network.NetworkInterfaces;
 
 /// <summary>
 /// Provides access to network interface on the system.
 /// </summary>
 public class SystemNetworkInterface : INetworkInterface, IEquatable<SystemNetworkInterface>
 {
-    private readonly System.Net.NetworkInformation.NetworkInterface _networkInterface;
+    private readonly NetworkInterface _networkInterface;
 
-    public SystemNetworkInterface(System.Net.NetworkInformation.NetworkInterface networkInterface)
+    public SystemNetworkInterface(NetworkInterface networkInterface)
     {
         _networkInterface = networkInterface ?? throw new ArgumentNullException(nameof(networkInterface), "NetworkInterface cannot be null.");
     }

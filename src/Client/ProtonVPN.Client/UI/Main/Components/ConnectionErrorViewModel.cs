@@ -25,9 +25,14 @@ using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.Core.Services.Selection;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
+using ProtonVPN.Client.Logic.Connection.ConnectionErrors;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.ConnectionErrors;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
+using ProtonVPN.OperatingSystems.Network.Contracts.NetworkInterfaces;
 
 namespace ProtonVPN.Client.UI.Main.Components;
 
@@ -38,6 +43,7 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
 {
     private readonly IConnectionErrorFactory _connectionErrorFactory;
     private readonly IApplicationIconSelector _applicationIconSelector;
+    private readonly IConflictingNetworkInterfacesProvider _conflictingNetworkInterfacesProvider;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(TriggerActionButtonCommand))]
@@ -53,6 +59,8 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
     [NotifyCanExecuteChangedFor(nameof(TriggerActionButtonCommand))]
     private IConnectionError? _connectionError;
 
+    private ConnectionStatus _lastStatus = ConnectionStatus.Disconnected;
+
     public Severity ConnectionErrorSeverity => ConnectionError?.Severity ?? Severity.None;
 
     public string ConnectionErrorTitle => ConnectionError?.Title ?? string.Empty;
@@ -64,29 +72,58 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
     public ConnectionErrorViewModel(
         IConnectionErrorFactory connectionErrorFactory,
         IApplicationIconSelector applicationIconSelector,
-        IViewModelHelper viewModelHelper)
+        IViewModelHelper viewModelHelper,
+        IConflictingNetworkInterfacesProvider conflictingNetworkInterfacesProvider)
         : base(viewModelHelper)
     {
         _connectionErrorFactory = connectionErrorFactory;
         _applicationIconSelector = applicationIconSelector;
+        _conflictingNetworkInterfacesProvider = conflictingNetworkInterfacesProvider;
     }
 
     public void Receive(ConnectionErrorMessage message)
     {
         ExecuteOnUIThread(() =>
         {
-            ConnectionError = _connectionErrorFactory.GetConnectionError(message.VpnError);
-            IsConnectionErrorVisible = !string.IsNullOrEmpty(ConnectionErrorTitle) && !string.IsNullOrEmpty(ConnectionErrorMessage);
-
-            OnPropertyChanged(nameof(ConnectionErrorMessage));
+            IConnectionError connectionError = _connectionErrorFactory.GetConnectionError(message.VpnError);
+            if (IsConnectionErrorVisible && ConnectionError is IConflictingAdapterConnectionError &&
+                (connectionError is WireGuardAdapterInUseConnectionError or TapAdapterInUseConnectionError or UnknownConnectionError))
+            {
+                Logger.Info<AppLog>($"Not showing {connectionError.GetType().Name} because there is already a ConflictingAdapterConnectionError being shown.");
+            }
+            else
+            {
+                SetConnectionError(connectionError);
+            }
         });
+    }
+
+    private void SetConnectionError(IConnectionError connectionError)
+    {
+        ConnectionError = connectionError;
+        IsConnectionErrorVisible = !string.IsNullOrEmpty(ConnectionErrorTitle) && !string.IsNullOrEmpty(ConnectionErrorMessage);
+
+        OnPropertyChanged(nameof(ConnectionErrorMessage));
+        OnPropertyChanged(nameof(ConnectionErrorSeverity));
+        _applicationIconSelector.OnConnectionErrorTriggered(ConnectionErrorSeverity);
     }
 
     public void Receive(ConnectionStatusChangedMessage message)
     {
+        IReadOnlyList<NetworkInterfaceInfo> conflictingAdapters = [];
+        if (_lastStatus != message.ConnectionStatus && message.ConnectionStatus is ConnectionStatus.Connecting)
+        {
+            conflictingAdapters = _conflictingNetworkInterfacesProvider.Get();
+        }
+        _lastStatus = message.ConnectionStatus;
+
         ExecuteOnUIThread(() =>
         {
-            if (message.ConnectionStatus == ConnectionStatus.Connecting && !IsToCloseErrorOnDisconnect())
+            if (conflictingAdapters.Any())
+            {
+                SetConflictingAdapterError(conflictingAdapters, message.ConnectionStatus);
+            }
+            else if (message.ConnectionStatus == ConnectionStatus.Connecting && IsToCloseErrorOnConnecting())
             {
                 CloseError();
             }
@@ -98,7 +135,26 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
             {
                 CloseError();
             }
+            else if (IsConnectionErrorVisible && ConnectionError is IConflictingAdapterConnectionError conflictingAdapterConnectionError)
+            {
+                conflictingAdapterConnectionError.SetConnectionStatus(message.ConnectionStatus);
+                OnPropertyChanged(nameof(ConnectionErrorSeverity));
+                _applicationIconSelector.OnConnectionErrorTriggered(ConnectionErrorSeverity);
+            }
         });
+    }
+
+    private void SetConflictingAdapterError(IReadOnlyList<NetworkInterfaceInfo> conflictingAdapters, ConnectionStatus connectionStatus)
+    {
+        IConflictingAdapterConnectionError conflictingAdapterConnectionError = _connectionErrorFactory.GetConflictingAdapterConnectionError();
+        conflictingAdapterConnectionError.SetConflictingAdapters(conflictingAdapters);
+        conflictingAdapterConnectionError.SetConnectionStatus(connectionStatus);
+        SetConnectionError(conflictingAdapterConnectionError);
+    }
+
+    private bool IsToCloseErrorOnConnecting()
+    {
+        return ConnectionError?.IsToCloseErrorOnConnecting ?? true;
     }
 
     private bool IsToCloseErrorOnDisconnect()

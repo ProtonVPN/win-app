@@ -17,35 +17,34 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Core.Extensions;
+using System.Text;
 using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.OperatingSystems.Network.Contracts;
+using ProtonVPN.OperatingSystems.Network.Contracts.NetworkInterfaces;
 
 namespace ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;
 
 public class NetworkAdapterLog : LogBase
 {
-    private readonly ISystemNetworkInterfaces _networkInterfaces;
+    private readonly INetworkInterfacesProvider _networkInterfacesProvider;
 
     protected string Content
     {
         get
         {
-            string str = string.Empty;
-            INetworkInterface[] interfaces = _networkInterfaces.GetInterfaces();
-            foreach (INetworkInterface networkInterface in interfaces)
+            StringBuilder stringBuilder = new();
+            IReadOnlyList<NetworkInterfaceInfo> interfaces = _networkInterfacesProvider.Get();
+            foreach (NetworkInterfaceInfo networkInterfaceInfo in interfaces)
             {
-                str += GetInterfaceDetails(networkInterface);
+                GetInterfaceDetails(stringBuilder, networkInterfaceInfo);
             }
-
-            return str;
+            return stringBuilder.ToString();
         }
     }
 
-    public NetworkAdapterLog(ISystemNetworkInterfaces networkInterfaces, IStaticConfiguration config)
+    public NetworkAdapterLog(INetworkInterfacesProvider networkInterfacesProvider, IStaticConfiguration config)
         : base(config.DiagnosticLogsFolder, "NetworkAdapters.txt")
     {
-        _networkInterfaces = networkInterfaces;
+        _networkInterfacesProvider = networkInterfacesProvider;
     }
 
     public override void Write()
@@ -53,10 +52,29 @@ public class NetworkAdapterLog : LogBase
         File.WriteAllText(Path, Content);
     }
 
-    private string GetInterfaceDetails(INetworkInterface networkInterface)
+    private void GetInterfaceDetails(StringBuilder stringBuilder, NetworkInterfaceInfo networkInterfaceInfo)
     {
-        return $"Name: {networkInterface.Name}\n" +
-               $"Description: {networkInterface.Description}\n" +
-               $"Active: {networkInterface.IsActive.ToYesNoString()}\n\n";
+        stringBuilder
+            .AppendLine($"Name: {networkInterfaceInfo.Name}")
+            .AppendLine($"Description: {networkInterfaceInfo.Description}")
+            .AppendLine($"Operational status: {networkInterfaceInfo.OperationalStatus}")
+            .AppendLine($"Guid: {networkInterfaceInfo.Guid}")
+            .AppendLine($"Type: {(int)networkInterfaceInfo.Type} ({networkInterfaceInfo.Type})");
+
+        if (networkInterfaceInfo.Driver is null)
+        {
+            stringBuilder.AppendLine("Driver: n/a");
+        }
+        else
+        {
+            stringBuilder
+                .AppendLine("Driver:")
+                .AppendLine($"    FileName: {networkInterfaceInfo.Driver.FileName}")
+                .AppendLine($"    Provider: {networkInterfaceInfo.Driver.Provider}")
+                .AppendLine($"    Description: {networkInterfaceInfo.Driver.Description}")
+                .AppendLine($"    ComponentId: {networkInterfaceInfo.Driver.ComponentId}");
+        }
+
+        stringBuilder.AppendLine();
     }
 }

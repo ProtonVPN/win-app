@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,17 +17,17 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Core.Networking;
+using System.Net.NetworkInformation;
 
-namespace ProtonVPN.OperatingSystems.Network.Contracts;
+namespace ProtonVPN.OperatingSystems.Network.Contracts.NetworkInterfaces;
 
-public interface INetworkInterfaceLoader
+public class NetworkInterfaceInfo
 {
-    INetworkInterface GetProTunInterface();
-    INetworkInterface GetWireGuardInterface(VpnProtocol protocol);
-    INetworkInterface GetOpenVpnTunInterface();
-    INetworkInterface GetOpenVpnTapInterface();
+    public required string Guid { get; init; }
+    public required string Name { get; init; }
+    public required string Description { get; init; }
+    public required NetworkInterfaceType Type { get; init; }
+    public required OperationalStatus OperationalStatus { get; init; }
 
-    INetworkInterface GetByVpnProtocol(VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter);
-    INetworkInterface GetByOpenVpnAdapter(OpenVpnAdapter? openVpnAdapter);
+    public NetworkInterfaceDriverInfo? Driver { get; init; }
 }

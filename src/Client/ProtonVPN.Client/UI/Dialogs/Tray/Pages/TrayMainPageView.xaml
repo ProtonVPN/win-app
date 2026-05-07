@@ -80,10 +80,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                              VerticalAlignment="Center"/>
 
         <components:ConnectionErrorComponent x:Name="ConnectionErrorComponent"
-                                             Grid.Row="0"
-                                             Grid.RowSpan="4"
-                                             Margin="20"
+                                             Grid.Row="2"
+                                             Grid.RowSpan="2"
+                                             Margin="16,16,16,0"
                                              HorizontalAlignment="Center"
-                                             VerticalAlignment="Top"/>
+                                             VerticalAlignment="{x:Bind ViewModel.ConnectionErrorVerticalAlignment}"/>
     </Grid>
 </Page>

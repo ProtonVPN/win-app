@@ -51,7 +51,7 @@ internal class OpenVpnConnection : IOpenVpnConnection
 
     private readonly ILogger _logger;
     private readonly IStaticConfiguration _config;
-    private readonly INetworkInterfaceLoader _networkInterfaceLoader;
+    private readonly INetworkInterfaceProvider _networkInterfaceProvider;
     private readonly IOpenVpnProcess _process;
     private readonly IManagementClient _managementClient;
     private readonly IWintunAdapter _winTunAdapter;
@@ -80,7 +80,7 @@ internal class OpenVpnConnection : IOpenVpnConnection
     public OpenVpnConnection(
         ILogger logger,
         IStaticConfiguration config,
-        INetworkInterfaceLoader networkInterfaceLoader,
+        INetworkInterfaceProvider networkInterfaceProvider,
         IOpenVpnProcess process,
         IRandomStringGenerator randomStringGenerator,
         IManagementClient managementClient,
@@ -91,7 +91,7 @@ internal class OpenVpnConnection : IOpenVpnConnection
     {
         _logger = logger;
         _config = config;
-        _networkInterfaceLoader = networkInterfaceLoader;
+        _networkInterfaceProvider = networkInterfaceProvider;
         _process = process;
         _randomStringGenerator = randomStringGenerator;
         _managementClient = managementClient;
@@ -458,7 +458,7 @@ internal class OpenVpnConnection : IOpenVpnConnection
             return string.Empty;
         }
 
-        return _networkInterfaceLoader.GetByVpnProtocol(_vpnConfig.VpnProtocol, _vpnConfig.OpenVpnAdapter)?.Id ?? string.Empty;
+        return _networkInterfaceProvider.GetByVpnProtocol(_vpnConfig.VpnProtocol, _vpnConfig.OpenVpnAdapter)?.Id ?? string.Empty;
     }
 
     private string ManagementPassword()
@@ -621,6 +621,6 @@ internal class OpenVpnConnection : IOpenVpnConnection
             return 0;
         }
 
-        return _networkInterfaceLoader.GetByVpnProtocol(_vpnConfig.VpnProtocol, _vpnConfig.OpenVpnAdapter).Index;
+        return _networkInterfaceProvider.GetByVpnProtocol(_vpnConfig.VpnProtocol, _vpnConfig.OpenVpnAdapter).Index;
     }
 }

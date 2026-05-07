@@ -37,14 +37,14 @@ public class KillSwitchTest
 
     private IFirewall _firewall;
     private IServiceSettings _serviceSettings;
-    private INetworkInterfaceLoader _networkInterfaceLoader;
+    private INetworkInterfaceProvider _networkInterfaceProvider;
 
     [TestInitialize]
     public void Setup()
     {
         _firewall = Substitute.For<IFirewall>();
         _serviceSettings = Substitute.For<IServiceSettings>();
-        _networkInterfaceLoader = Substitute.For<INetworkInterfaceLoader>();
+        _networkInterfaceProvider = Substitute.For<INetworkInterfaceProvider>();
     }
 
     [TestMethod]
@@ -83,7 +83,7 @@ public class KillSwitchTest
     {
         // Arrange
         Service.KillSwitch.KillSwitch sut =
-            new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
+            new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceProvider);
 
         // Act
         sut.OnVpnDisconnected(GetDisconnectedVpnState(manualDisconnect: true));
@@ -97,7 +97,7 @@ public class KillSwitchTest
     {
         // Arrange
         _serviceSettings.KillSwitchMode.Returns(KillSwitchMode.Off);
-        var sut = new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
+        var sut = new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceProvider);
 
         // Act
         sut.OnVpnDisconnected(GetDisconnectedVpnState());
@@ -118,7 +118,7 @@ public class KillSwitchTest
         {
             Mode = SplitTunnelModeIpcEntity.Block
         });
-        Service.KillSwitch.KillSwitch killSwitch = new(_firewall, _serviceSettings, _networkInterfaceLoader);
+        Service.KillSwitch.KillSwitch killSwitch = new(_firewall, _serviceSettings, _networkInterfaceProvider);
 
         // Act
         bool result = killSwitch.GetExpectedLeakProtectionStatus(state);
@@ -152,7 +152,7 @@ public class KillSwitchTest
         _serviceSettings.KillSwitchMode.Returns(killSwitchMode);
         _firewall.LeakProtectionEnabled.Returns(leakProtectionEnabled);
         Service.KillSwitch.KillSwitch killSwitch =
-            new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
+            new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceProvider);
 
         // Act
         bool result = killSwitch.GetExpectedLeakProtectionStatus(state);
@@ -177,7 +177,7 @@ public class KillSwitchTest
         var state = new VpnState(status, default);
         _firewall.LeakProtectionEnabled.Returns(leakProtectionEnabled);
         Service.KillSwitch.KillSwitch killSwitch =
-            new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
+            new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceProvider);
 
         // Act
         bool result = killSwitch.GetExpectedLeakProtectionStatus(state);
@@ -193,7 +193,7 @@ public class KillSwitchTest
             Mode = mode, AppPaths = new string[0], Ips = new string[0]
         });
 
-        return new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceLoader);
+        return new Service.KillSwitch.KillSwitch(_firewall, _serviceSettings, _networkInterfaceProvider);
     }
 
     private VpnState GetDisconnectedVpnState(bool manualDisconnect = false)

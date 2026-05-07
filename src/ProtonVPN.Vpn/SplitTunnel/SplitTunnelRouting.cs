@@ -41,7 +41,7 @@ public class SplitTunnelRouting : ISplitTunnelRouting
     private readonly IRoutingTableHelper _routingTableHelper;
     private readonly INetworkUtilities _networkUtilities;
     private readonly ISystemNetworkInterfaces _networkInterfaces;
-    private readonly INetworkInterfaceLoader _networkInterfaceLoader;
+    private readonly INetworkInterfaceProvider _networkInterfaceProvider;
 
     public SplitTunnelRouting(
         ILogger logger,
@@ -51,7 +51,7 @@ public class SplitTunnelRouting : ISplitTunnelRouting
         IRoutingTableHelper routingTableHelper,
         INetworkUtilities networkUtilities,
         ISystemNetworkInterfaces networkInterfaces,
-        INetworkInterfaceLoader networkInterfaceLoader)
+        INetworkInterfaceProvider networkInterfaceProvider)
     {
         _logger = logger;
         _config = config;
@@ -60,12 +60,12 @@ public class SplitTunnelRouting : ISplitTunnelRouting
         _routingTableHelper = routingTableHelper;
         _networkUtilities = networkUtilities;
         _networkInterfaces = networkInterfaces;
-        _networkInterfaceLoader = networkInterfaceLoader;
+        _networkInterfaceProvider = networkInterfaceProvider;
     }
 
     public void SetUpRoutingTable(VpnConfig vpnConfig, string localIp, bool isIpv6Supported)
     {
-        INetworkInterface tunnelInterface = _networkInterfaceLoader.GetByVpnProtocol(vpnConfig.VpnProtocol, vpnConfig.OpenVpnAdapter);
+        INetworkInterface tunnelInterface = _networkInterfaceProvider.GetByVpnProtocol(vpnConfig.VpnProtocol, vpnConfig.OpenVpnAdapter);
         INetworkInterface[] networkInterfaces = _networkInterfaces.GetInterfaces();
 
         switch (vpnConfig.SplitTunnelMode)
