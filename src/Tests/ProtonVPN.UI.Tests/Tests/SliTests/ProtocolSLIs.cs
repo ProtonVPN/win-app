@@ -83,24 +83,10 @@ public class ProtocolSLIs : SliSetUp
     private void PerformProtocolTest(Protocol protocol)
     {
         bool isProtunWireGuard = TestConstants.IsProtunVersion && SliHelper.SliName?.StartsWith("wireguard") == true;
+        string? protunPrefix = isProtunWireGuard ? "protun_ " : null;
+        SliHelper.SliName = protunPrefix + SliHelper.SliName;
 
-        SettingRobot
-            .OpenSettings()
-            .OpenProtocolSettings();
-
-        if (isProtunWireGuard)
-        {
-            SliHelper.SliName = "protun_" + SliHelper.SliName;
-
-            SettingRobot
-                .EnableProtunToggle()
-                .Verify.IsProtunEnabled();
-        }
-
-        SettingRobot
-            .SelectProtocol(protocol)
-            .ApplySettings()
-            .CloseSettings();
+        CommonUiFlows.ChangeProtocol(protocol, isProtunWireGuard);
 
         // Two time connection is needed to test real conditions, when everything was setup.
         HomeRobot

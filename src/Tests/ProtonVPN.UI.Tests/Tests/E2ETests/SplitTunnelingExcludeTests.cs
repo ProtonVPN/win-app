@@ -202,9 +202,6 @@ public class SplitTunnelingExcludeTests : BaseTest
         HomeRobot
             .Verify.IsConnected();
 
-        //TODO: this is a temporary fix, so this test doesnt fail,, untill we merge the Service Refactor branch
-        Thread.Sleep(TestConstants.TenSecondsTimeout);
-
         string? ipAddressToCompare = HomeRobot.GetVpnServerIp();
 
         BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, true, ipAddressToCompare);

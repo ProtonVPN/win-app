@@ -33,18 +33,20 @@ public class TorrentHelper
     private const string PORT_CHECKER_API_BASE_URL = "https://portchecker.io/api";
     private const string TORRENT_URL = "https://releases.ubuntu.com/24.04/ubuntu-24.04.4-desktop-amd64.iso.torrent";
 
-    private static string _aria2Path = @"C:\aria2\aria2-1.36.0-win-64bit-build1\aria2c.exe";
-    private static string _torrentsPath = @"C:\aria2\torrents";
+    private static string _aria2Folder = @"C:\aria2";
+    private static string _aria2ExePath = @$"{_aria2Folder}\aria2-1.36.0-win-64bit-build1\aria2c.exe";
+    private static string _torrentsPath = @$"{_aria2Folder}\torrents";
+
     private static readonly string _aria2RuleName = "ProtonVPN UI Tests - Allow aria2c";
     private static readonly string _allowAria2FirewallScript = $@"
     if (-not (Get-NetFirewallRule -DisplayName '{_aria2RuleName} - TCP' -ErrorAction SilentlyContinue))
     {{
-    New-NetFirewallRule -DisplayName '{_aria2RuleName} - TCP' -Direction Inbound -Program '{_aria2Path}' -Action Allow -Profile Private,Public -Protocol TCP
+    New-NetFirewallRule -DisplayName '{_aria2RuleName} - TCP' -Direction Inbound -Program '{_aria2ExePath}' -Action Allow -Profile Private,Public -Protocol TCP
     }}
 
     if (-not (Get-NetFirewallRule -DisplayName '{_aria2RuleName} - UDP' -ErrorAction SilentlyContinue))
     {{
-    New-NetFirewallRule -DisplayName '{_aria2RuleName} - UDP' -Direction Inbound -Program '{_aria2Path}' -Action Allow -Profile Private,Public -Protocol UDP
+    New-NetFirewallRule -DisplayName '{_aria2RuleName} - UDP' -Direction Inbound -Program '{_aria2ExePath}' -Action Allow -Profile Private,Public -Protocol UDP
     }}
     ";
 
@@ -57,7 +59,7 @@ public class TorrentHelper
     {
         Directory.CreateDirectory(_torrentsPath);
 
-        string torrentFile = Path.Combine(_torrentsPath, "test.torrent");
+        string torrentFile = Path.Combine(_aria2Folder, "test.torrent");
 
         if (!File.Exists(torrentFile))
         {
@@ -70,7 +72,7 @@ public class TorrentHelper
         {
             StartInfo = new ProcessStartInfo
             {
-                FileName = _aria2Path,
+                FileName = _aria2ExePath,
                 Arguments = $"--listen-port={port} --seed-time=0 --max-download-limit=1K --dir={_torrentsPath} {torrentFile}",
                 UseShellExecute = false,
                 CreateNoWindow = true

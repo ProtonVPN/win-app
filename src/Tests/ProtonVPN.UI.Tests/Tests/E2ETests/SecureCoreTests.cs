@@ -131,9 +131,6 @@ public class SecureCoreTests : FreshSessionSetUp
         HomeRobot
             .Verify.IsDisconnected();
 
-        //TODO: this is a temporary fix, so this test doesnt fail,, untill we merge the Service Refactor branch
-        Thread.Sleep(TestConstants.TenSecondsTimeout);
-
         NetworkUtils.VerifyIpAddressMatchesWithRetry(_ipAddressNotConnected);
     }
 
@@ -157,9 +154,6 @@ public class SecureCoreTests : FreshSessionSetUp
             .DisconnectViaSecureCore(_countryName, _viaCountryIceland);
         HomeRobot
             .Verify.IsDisconnected();
-
-        //TODO: this is a temporary fix, so this test doesnt fail,, untill we merge the Service Refactor branch
-        Thread.Sleep(TestConstants.TenSecondsTimeout);
 
         NetworkUtils.VerifyIpAddressMatchesWithRetry(_ipAddressNotConnected);
     }

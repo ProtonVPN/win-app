@@ -18,13 +18,15 @@
  */
 
 using System;
-using System.Text;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Net.WebSockets;
-using System.Diagnostics;
+using System.Text;
+using System.Text.Json;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using FlaUI.Core.Tools;
 using NUnit.Framework;
 using ProtonVPN.Common.Core.Extensions;
@@ -37,6 +39,22 @@ public class BrowserUtils
     private const int EDGE_PORT = 9223;
     private const string CHROME_PATH = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
     private const string EDGE_PATH = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe";
+
+    private const string WEB_RTC_SCRIPT = """
+        new Promise((resolve) => {
+            const candidates = [];
+            const pc = new RTCPeerConnection({
+                iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
+            });
+            pc.createDataChannel('');
+            pc.createOffer().then(o => pc.setLocalDescription(o));
+            pc.onicecandidate = e => {
+                if (!e.candidate) { pc.close(); resolve(candidates); return; }
+                candidates.push(e.candidate.candidate);
+            };
+            setTimeout(() => { pc.close(); resolve(candidates); }, 5000);
+        })
+        """;
 
     public static void KillAllBrowsers()
     {
@@ -55,6 +73,16 @@ public class BrowserUtils
         Thread.Sleep(TestConstants.OneSecondTimeout);
     }
 
+    public static void VerifyWebRtcNotLeaking(string browserApp, string vpnIp)
+    {
+        string publicIp = GetBrowserWebRtcIpWithRetry(browserApp);
+
+        Assert.That(publicIp, Is.EqualTo(vpnIp),
+            $"WebRTC leak detected in {browserApp}!" +
+            $"\nExposed IP: {publicIp}" +
+            $"\nExpected VPN IP: {vpnIp}");
+    }
+
     public static void VerifyBrowserIpWithRetry(string browserApp, bool hasVpn, string? ipAddressToCompare)
     {
         string? browserIp = null;
@@ -68,9 +96,10 @@ public class BrowserUtils
 
         if (retry.Success)
         {
-            Assert.That((browserIp == ipAddressToCompare) == hasVpn, $"Expected {browserApp} to have VPN {hasVpn.ToOnOffString()}" +
-            $"\n {browserApp} has IP: {browserIp}" +
-            $"\n VPN App has IP: {ipAddressToCompare}");
+            Assert.That((browserIp == ipAddressToCompare) == hasVpn,
+            $"Expected {browserApp} to have VPN {hasVpn.ToOnOffString()}" +
+            $"\n{browserApp} has IP: {browserIp}" +
+            $"\nVPN App has IP: {ipAddressToCompare}");
         }
     }
 
@@ -100,16 +129,71 @@ public class BrowserUtils
 
     public static void AssertBrowserCanLoadDuckDuckGo(string browserApp)
     {
+        string url = "https://duckduckgo.com/";
+
         RetryResult<string> retry = Retry.WhileEmpty(
             () =>
             {
-                string result = GetBrowserIpWithRetry(browserApp, "https://duckduckgo.com/");
+                string result = GetBrowserPageTitleWithRetry(browserApp, url);
                 return result;
             },
             TestConstants.OneMinuteTimeout, TestConstants.ApiRetryInterval);
 
         Assert.That(retry.Success, Is.True, "DuckDuckGo did not load within timeout.");
         Assert.That(retry.Result, Does.Contain("DuckDuckGo"), $"Expected DuckDuckGo page title, got: {retry.Result}");
+    }
+
+    private static string GetBrowserIpWithRetry(string browserApp)
+    {
+        // This method connects to the Browser via CDP and gets the IP that the Browser sees
+        // It uses https://api.ipify.org instead of http://ip-api.com/json, because the Browser forces HTTPS via HSTS, and ip-api.com does not support HTTPS on the free tier
+
+        string url = "https://api.ipify.org";
+
+        return ExecuteWithBrowserRetry(browserApp,
+            port => ExecuteScriptInBrowserAsync(port, url, "document.body.innerText.trim()"));
+    }
+
+    private static string GetBrowserWebRtcIpWithRetry(string browserApp)
+    {
+        return ExecuteWithBrowserRetry(browserApp,
+            port => ExecuteWebRtcScriptInBrowserAsync(port));
+    }
+
+    private static string GetBrowserPageTitleWithRetry(string browserApp, string url)
+    {
+        return ExecuteWithBrowserRetry(browserApp,
+            port => ExecuteScriptInBrowserAsync(port, url, "document.title"));
+    }
+
+    private static string ExecuteWithBrowserRetry(
+        string browserApp,
+        Func<int, Task<string>> operation)
+    {
+        (string Path, int DebugPort) browserConfig = GetBrowserConfig(browserApp);
+
+        RetryResult<string> retry = Retry.WhileEmpty(
+            () =>
+            {
+                StartBrowserWithCDP(browserConfig.Path, browserConfig.DebugPort);
+                return operation(browserConfig.DebugPort).Result ?? string.Empty;
+            },
+            TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
+
+        return retry.Result ?? "This site can't be reached";
+    }
+
+    private static (string Path, int DebugPort) GetBrowserConfig(string browserApp)
+    {
+        switch (browserApp)
+        {
+            case "Google Chrome":
+                return (CHROME_PATH, CHROME_PORT);
+            case "Edge":
+                return (EDGE_PATH, EDGE_PORT);
+            default:
+                throw new ArgumentException($"Unknown browser: {browserApp}");
+        }
     }
 
     private static void StartBrowserWithCDP(string browserPath, int debugPort)
@@ -121,86 +205,104 @@ public class BrowserUtils
         });
     }
 
-    private static async Task<string> GetBrowserIpAsync(int debugPort, string? url = null)
+    private static async Task<string> ExecuteScriptInBrowserAsync(int debugPort, string url, string expression)
     {
-        // This method connects to the Browser via CDP and gets the IP that the Browser sees
-        // It uses https://api.ipify.org instead of http://ip-api.com/json, because the Browser forces HTTPS via HSTS, and ip-api.com does not support HTTPS on the free tier
+        await Task.Delay(TestConstants.TwoSecondsTimeout);
+        using ClientWebSocket ws = await ConnectToBrowserAsync(debugPort);
 
-        bool isCustomUrl = url is not null;
-        url ??= "https://api.ipify.org";
-
+        await NavigateToUrlAsync(ws, url);
         await Task.Delay(TestConstants.TwoSecondsTimeout);
 
+        JsonElement evalResult = await EvaluateExpressionAsync(ws, expression, awaitPromise: false);
+        return ExtractStringResult(evalResult);
+    }
+
+    private static async Task<string> ExecuteWebRtcScriptInBrowserAsync(int debugPort)
+    {
+        await Task.Delay(TestConstants.TwoSecondsTimeout);
+        using ClientWebSocket ws = await ConnectToBrowserAsync(debugPort);
+        JsonElement evalResult = await EvaluateExpressionAsync(ws, WEB_RTC_SCRIPT, awaitPromise: true);
+        return ExtractWebRtcIp(evalResult);
+    }
+
+    private static async Task<ClientWebSocket> ConnectToBrowserAsync(int debugPort)
+    {
         using HttpClient http = new HttpClient();
         string json = await http.GetStringAsync($"http://localhost:{debugPort}/json");
         JsonElement tabs = JsonSerializer.Deserialize<JsonElement>(json);
 
-        // Find the actual page
-        string? wsUrl = null;
+        string wsUrl = FindPageWebSocketUrl(tabs);
+
+        ClientWebSocket ws = new ClientWebSocket();
+        await ws.ConnectAsync(new Uri(wsUrl), CancellationToken.None);
+        return ws;
+    }
+
+    private static string FindPageWebSocketUrl(JsonElement tabs)
+    {
         foreach (JsonElement tab in tabs.EnumerateArray())
         {
             if (tab.GetProperty("type").GetString() == "page")
             {
-                wsUrl = tab.GetProperty("webSocketDebuggerUrl").GetString();
-                break;
+                return tab.GetProperty("webSocketDebuggerUrl").GetString() ?? "";
             }
         }
 
-        using ClientWebSocket ws = new ClientWebSocket();
-        await ws.ConnectAsync(new Uri(wsUrl!), CancellationToken.None);
+        throw new InvalidOperationException("No page tab found in browser");
+    }
 
-        // Helper function to send commands to the browser
-        async Task<JsonElement> Send(object cmd)
+    private static async Task<JsonElement> SendCommandAsync(ClientWebSocket ws, object command)
+    {
+        string msg = JsonSerializer.Serialize(command);
+        await ws.SendAsync(
+            Encoding.UTF8.GetBytes(msg),
+            WebSocketMessageType.Text,
+            true,
+            CancellationToken.None);
+
+        byte[] buffer = new byte[4096];
+        WebSocketReceiveResult result = await ws.ReceiveAsync(buffer, CancellationToken.None);
+        return JsonSerializer.Deserialize<JsonElement>(Encoding.UTF8.GetString(buffer, 0, result.Count));
+    }
+
+    private static async Task NavigateToUrlAsync(ClientWebSocket ws, string url)
+    {
+        await SendCommandAsync(ws, new
         {
-            string msg = JsonSerializer.Serialize(cmd);
-            await ws.SendAsync(Encoding.UTF8.GetBytes(msg), WebSocketMessageType.Text, true, CancellationToken.None);
-            byte[] buffer = new byte[4096];
-            WebSocketReceiveResult result = await ws.ReceiveAsync(buffer, CancellationToken.None);
-            return JsonSerializer.Deserialize<JsonElement>(Encoding.UTF8.GetString(buffer, 0, result.Count));
-        }
+            id = 1,
+            method = "Page.navigate",
+            @params = new { url }
+        });
+    }
 
-        await Send(new { id = 1, method = "Page.navigate", @params = new { url } });
-        await Task.Delay(TestConstants.TwoSecondsTimeout);
-
-        JsonElement evalResult = await Send(new
+    private static async Task<JsonElement> EvaluateExpressionAsync(ClientWebSocket ws, string expression, bool awaitPromise)
+    {
+        return await SendCommandAsync(ws, new
         {
             id = 2,
             method = "Runtime.evaluate",
-            @params = new { expression = isCustomUrl ? "document.title" : "document.body.innerText.trim()" }
+            @params = new { expression, awaitPromise, returnByValue = awaitPromise }
         });
+    }
 
-        string rawResult = evalResult
+    private static string ExtractStringResult(JsonElement evalResult)
+    {
+        return evalResult
             .GetProperty("result")
             .GetProperty("result")
             .GetProperty("value")
             .GetString() ?? "unknown";
-
-        return rawResult;
     }
 
-    private static string GetBrowserIpWithRetry(string browserApp, string? customUrl = null)
+    private static string ExtractWebRtcIp(JsonElement evalResult)
     {
-        string? browserPath = null;
-        int debugPort = 0;
+        JsonElement rawResult = evalResult
+            .GetProperty("result")
+            .GetProperty("result")
+            .GetProperty("value");
 
-        if (browserApp == "Google Chrome")
-        {
-            browserPath = CHROME_PATH;
-            debugPort = CHROME_PORT;
-        }
-        else if (browserApp == "Edge")
-        {
-            browserPath = EDGE_PATH;
-            debugPort = EDGE_PORT;
-        }
-
-        RetryResult<string> retry = Retry.WhileEmpty(
-            () =>
-            {
-                StartBrowserWithCDP(browserPath!, debugPort);
-                return GetBrowserIpAsync(debugPort, customUrl).Result ?? string.Empty;
-            },
-            TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
-        return retry.Result ?? "This site can’t be reached";
+        string candidates = string.Join("\n", rawResult.EnumerateArray().Select(c => c.GetString() ?? ""));
+        Match match = Regex.Match(candidates, @"udp \d+ (\d{1,3}(?:\.\d{1,3}){3}) \d+ typ srflx");
+        return match.Groups[1].Value;
     }
 }

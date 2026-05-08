@@ -21,6 +21,7 @@ using System;
 using System.Threading;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
+using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 
@@ -67,6 +68,35 @@ public class CommonUiFlows : BaseTest
             HomeRobot
                 .Disconnect();
             verifyDisconnectState();
+        }
+    }
+
+    public static void ChangeProtocol(Protocol protocol, bool shouldEnableProTun = false)
+    {
+        SettingRobot
+            .OpenSettings()
+            .OpenProtocolSettings();
+
+        HandleProtun(shouldEnableProTun);
+
+        SettingRobot
+            .SelectProtocol(protocol)
+            .ApplySettings()
+            .CloseSettings();
+    }
+
+    private static void HandleProtun(bool shouldEnableProTun)
+    {
+        if (TestConstants.IsProtunVersion)
+        {
+            if (shouldEnableProTun)
+            {
+                SettingRobot.EnableProtunToggle();
+            }
+            else
+            {
+                SettingRobot.DisableProtunToggle();
+            }
         }
     }
 }

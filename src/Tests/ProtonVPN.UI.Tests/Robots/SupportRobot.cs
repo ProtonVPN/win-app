@@ -73,7 +73,8 @@ public class SupportRobot
     public SupportRobot SelectBugType(string bugType)
     {
         Thread.Sleep(TestConstants.TwoSecondsTimeout);
-        Element.ByName(bugType).WaitUntilExists(TestConstants.FiveSecondsTimeout)?.DoubleClick();
+        Element.ByName(bugType).ClickUntilElementDisappears();
+        Thread.Sleep(TestConstants.TwoSecondsTimeout);
         return this;
     }
 

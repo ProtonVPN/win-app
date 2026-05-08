@@ -69,30 +69,7 @@ public class FreeUserTests : FreshSessionSetUp
             .ConnectViaConnectionCard()
             .Verify.IsConnected();
 
-        //TODO: this is a temporary fix, so this test doesnt fail,, untill we merge the Service Refactor branch
-        Thread.Sleep(TestConstants.TenSecondsTimeout);
-
-        Retry.WhileFalse(
-              () =>
-              {
-                  try
-                  {
-                      HomeRobot
-                          .ChangeServer()
-                          .CancelConnection(TestConstants.MoreFrequentRetryInterval)
-                          .Verify.IsDisconnected();
-
-                      return true;
-                  }
-                  catch (TimeoutException)
-                  {
-                      return false;
-                  }
-              },
-              TestConstants.ThirtySecondsTimeout, TestConstants.TenSecondsTimeout);
-
-        //TODO: this is a temporary fix, so this test doesnt fail,, untill we merge the Service Refactor branch
-        Thread.Sleep(TestConstants.TenSecondsTimeout);
+        CancelChangeServerWithRetry();
 
         HomeRobot
             .ConnectViaConnectionCard()
@@ -207,9 +184,6 @@ public class FreeUserTests : FreshSessionSetUp
             .ConnectViaConnectionCard()
             .Verify.IsConnected();
 
-        //TODO: this is a temporary fix, so this test doesnt fail,, untill we merge the Service Refactor branch
-        Thread.Sleep(TestConstants.TenSecondsTimeout);
-
         string? ipAddressToCompare = HomeRobot.GetVpnServerIp();
 
         SidebarRobot.NavigateToAllCountriesTab();
@@ -305,5 +279,27 @@ public class FreeUserTests : FreshSessionSetUp
         verifyAction();
 
         UpsellCarrouselRobot.CloseModal();
+    }
+
+    private void CancelChangeServerWithRetry()
+    {
+        Retry.WhileFalse(
+           () =>
+           {
+               try
+               {
+                   HomeRobot
+                       .ChangeServer()
+                       .CancelConnection(TestConstants.MoreFrequentRetryInterval)
+                       .Verify.IsDisconnected();
+
+                   return true;
+               }
+               catch (TimeoutException)
+               {
+                   return false;
+               }
+           },
+           TestConstants.ThirtySecondsTimeout, TestConstants.TenSecondsTimeout);
     }
 }

@@ -307,7 +307,7 @@ public class ProfileRobot
 
     private ProfileRobot HandleExplorer(string appPath)
     {
-        Thread.Sleep(TestConstants.OneSecondTimeout);
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
         Keyboard.Type(appPath);
         Thread.Sleep(TestConstants.OneSecondTimeout);
         Keyboard.Press(VirtualKeyShort.TAB);

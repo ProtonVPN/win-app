@@ -127,12 +127,7 @@ public class ProtocolTests : FreshSessionSetUp
         {
             foreach (Protocol wireGuardProtocol in _wireGuardProtocols)
             {
-                SettingRobot
-                    .OpenSettings()
-                    .OpenProtocolSettings()
-                    .SelectProtocol(wireGuardProtocol)
-                    .ApplySettings()
-                    .CloseSettings();
+                CommonUiFlows.ChangeProtocol(wireGuardProtocol, shouldEnableProTun: false);
 
                 HomeRobot
                     .ConnectViaConnectionCard()
@@ -195,35 +190,11 @@ public class ProtocolTests : FreshSessionSetUp
 
     private void PerformProtocolTest(Protocol protocol, bool shouldEnableProTun = false)
     {
-        SettingRobot
-            .OpenSettings()
-            .OpenProtocolSettings();
-
-        HandleProtun(shouldEnableProTun);
-
-        SettingRobot
-            .SelectProtocol(protocol)
-            .ApplySettings()
-            .CloseSettings();
+        CommonUiFlows.ChangeProtocol(protocol, shouldEnableProTun);
 
         HomeRobot
             .ConnectViaConnectionCard()
             .Verify.IsConnected()
                    .IsProtocolDisplayed(protocol, shouldEnableProTun);
-    }
-
-    private void HandleProtun(bool shouldEnableProTun)
-    {
-        if (TestConstants.IsProtunVersion)
-        {
-            if (shouldEnableProTun)
-            {
-                SettingRobot.EnableProtunToggle();
-            }
-            else
-            {
-                SettingRobot.DisableProtunToggle();
-            }
-        }
     }
 }
