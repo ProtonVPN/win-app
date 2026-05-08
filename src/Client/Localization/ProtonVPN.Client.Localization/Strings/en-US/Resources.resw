@@ -3919,4 +3919,7 @@
   <data name="Settings_Protocols_ProtonProtocols_Description" xml:space="preserve">
     <value>Use Proton VPN's own implementation of WireGuard. This is an experimental feature, so you may experience some instability.</value>
   </data>
+  <data name="Connection_Feedback_Question" xml:space="preserve">
+    <value>How is your connection?</value>
+  </data>
 </root>

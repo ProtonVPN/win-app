@@ -261,6 +261,13 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
         _eventMessageSender.Send(new ApplicationStoppedMessage());
     }
 
+    protected override void OnWindowFocused()
+    {
+        base.OnWindowFocused();
+
+        _eventMessageSender.Send(new MainWindowFocusedMessage());
+    }
+
     private void OnAppWindowChanged(AppWindow sender, AppWindowChangedEventArgs args)
     {
         if (args.DidSizeChange)

@@ -149,7 +149,7 @@ using ProtonVPN.OperatingSystems.WebAuthn.Installers;
 using ProtonVPN.ProcessCommunication.Client.Installers;
 using ProtonVPN.Serialization.Installers;
 using ProtonVPN.StatisticalEvents.Installers;
-using ProtonVPN.OperatingSystems.TaskScheduling.Installers;
+using ProtonVPN.Client.UI.Main.Home.Card.Feedback;
 
 namespace ProtonVPN.Client.Installers;
 
@@ -355,6 +355,7 @@ public class AppModule : Module
         RegisterViewModel<HomeComponentViewModel>(builder);
         RegisterViewModel<MapComponentViewModel>(builder).AutoActivate();
         RegisterViewModel<ConnectionCardComponentViewModel>(builder);
+        RegisterViewModel<ConnectionFeedbackComponentViewModel>(builder);
         RegisterViewModel<DefaultConnectionSelectorViewModel>(builder);
         RegisterViewModel<ChangeServerComponentViewModel>(builder);
         RegisterViewModel<ConnectionCardUpsellBannerViewModel>(builder);

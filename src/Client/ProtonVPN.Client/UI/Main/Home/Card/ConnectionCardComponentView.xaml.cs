@@ -21,6 +21,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Extensions;
+using ProtonVPN.Client.UI.Main.Home.Upsell;
 
 namespace ProtonVPN.Client.UI.Main.Home.Card;
 
@@ -37,9 +38,12 @@ public sealed partial class ConnectionCardComponentView : IContextAware
 
     public ConnectionCardComponentViewModel ViewModel { get; }
 
+    public ConnectionCardUpsellBannerViewModel UpsellViewModel { get; }
+
     public ConnectionCardComponentView()
     {
         ViewModel = App.GetService<ConnectionCardComponentViewModel>();
+        UpsellViewModel = App.GetService<ConnectionCardUpsellBannerViewModel>();
 
         InitializeComponent();
 

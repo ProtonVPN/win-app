@@ -122,7 +122,7 @@ public class VpnConnectionDimensionsBuilder : IVpnConnectionDimensionsBuilder
         {
             { "client_features", _clientFeaturesDimensionMapper.Map(eventData.ClientFeatures) },
             { "tenure", _tenureDimensionMapper.Map(accountCreationDateUtc) },
-            { "user_feedback", _userFeedbackDimensionMapper.Map(null) },
+            { "user_feedback", _userFeedbackDimensionMapper.Map(eventData.UserFeedback) },
         };
     }
 }

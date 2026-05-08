@@ -139,7 +139,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Content="{TemplateBinding LeftIcon}"
                                               Foreground="{TemplateBinding Foreground}"
                                               HighContrastAdjustment="None"
-                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" 
+                                              AnimatedIcon.State="Normal"/>
 
                             <ContentPresenter x:Name="PART_ContentPresenter"
                                               Grid.Column="1"
@@ -160,7 +161,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Content="{TemplateBinding RightIcon}"
                                               Foreground="{TemplateBinding Foreground}"
                                               HighContrastAdjustment="None"
-                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}"
+                                              AnimatedIcon.State="Normal" />
                         </Grid>
 
                         <VisualStateManager.VisualStateGroups>
@@ -174,6 +176,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="PART_LeftIconPresenter.Foreground" Value="{ThemeResource PrimaryGhostButtonForegroundPointerOver}" />
                                         <Setter Target="PART_ContentPresenter.Foreground" Value="{ThemeResource PrimaryGhostButtonForegroundPointerOver}" />
                                         <Setter Target="PART_RightIconPresenter.Foreground" Value="{ThemeResource PrimaryGhostButtonForegroundPointerOver}" />
+                                        <Setter Target="PART_LeftIconPresenter.(AnimatedIcon.State)" Value="PointerOver" />
+                                        <Setter Target="PART_RightIconPresenter.(AnimatedIcon.State)" Value="PointerOver" />
                                     </VisualState.Setters>
                                 </VisualState>
 
@@ -184,6 +188,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="PART_LeftIconPresenter.Foreground" Value="{ThemeResource PrimaryGhostButtonForegroundPressed}" />
                                         <Setter Target="PART_ContentPresenter.Foreground" Value="{ThemeResource PrimaryGhostButtonForegroundPressed}" />
                                         <Setter Target="PART_RightIconPresenter.Foreground" Value="{ThemeResource PrimaryGhostButtonForegroundPressed}" />
+                                        <Setter Target="PART_LeftIconPresenter.(AnimatedIcon.State)" Value="Pressed" />
+                                        <Setter Target="PART_RightIconPresenter.(AnimatedIcon.State)" Value="Pressed" />
                                     </VisualState.Setters>
                                 </VisualState>
 
@@ -194,6 +200,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="PART_LeftIconPresenter.Foreground" Value="{ThemeResource PrimaryGhostButtonForegroundDisabled}" />
                                         <Setter Target="PART_ContentPresenter.Foreground" Value="{ThemeResource PrimaryGhostButtonForegroundDisabled}" />
                                         <Setter Target="PART_RightIconPresenter.Foreground" Value="{ThemeResource PrimaryGhostButtonForegroundDisabled}" />
+                                        <Setter Target="PART_LeftIconPresenter.(AnimatedIcon.State)" Value="Normal" />
+                                        <Setter Target="PART_RightIconPresenter.(AnimatedIcon.State)" Value="Normal" />
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
@@ -253,7 +261,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Content="{TemplateBinding LeftIcon}"
                                               Foreground="{TemplateBinding Foreground}"
                                               HighContrastAdjustment="None"
-                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}"
+                                              AnimatedIcon.State="Normal" />
 
                             <ContentPresenter x:Name="PART_ContentPresenter"
                                               Grid.Column="1"
@@ -273,7 +282,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Content="{TemplateBinding RightIcon}"
                                               Foreground="{TemplateBinding Foreground}"
                                               HighContrastAdjustment="None"
-                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}" />
+                                              Visibility="{Binding Content, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NotNullToVisibilityConverter}}"
+                                              AnimatedIcon.State="Normal" />
                         </Grid>
 
                         <VisualStateManager.VisualStateGroups>
@@ -287,6 +297,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="PART_LeftIconPresenter.Foreground" Value="{ThemeResource SecondaryGhostButtonForegroundPointerOver}" />
                                         <Setter Target="PART_ContentPresenter.Foreground" Value="{ThemeResource SecondaryGhostButtonForegroundPointerOver}" />
                                         <Setter Target="PART_RightIconPresenter.Foreground" Value="{ThemeResource SecondaryGhostButtonForegroundPointerOver}" />
+                                        <Setter Target="PART_LeftIconPresenter.(AnimatedIcon.State)" Value="PointerOver" />
+                                        <Setter Target="PART_RightIconPresenter.(AnimatedIcon.State)" Value="PointerOver" />
                                     </VisualState.Setters>
                                 </VisualState>
 
@@ -297,6 +309,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="PART_LeftIconPresenter.Foreground" Value="{ThemeResource SecondaryGhostButtonForegroundPressed}" />
                                         <Setter Target="PART_ContentPresenter.Foreground" Value="{ThemeResource SecondaryGhostButtonForegroundPressed}" />
                                         <Setter Target="PART_RightIconPresenter.Foreground" Value="{ThemeResource SecondaryGhostButtonForegroundPressed}" />
+                                        <Setter Target="PART_LeftIconPresenter.(AnimatedIcon.State)" Value="Pressed" />
+                                        <Setter Target="PART_RightIconPresenter.(AnimatedIcon.State)" Value="Pressed" />
                                     </VisualState.Setters>
                                 </VisualState>
 
@@ -307,6 +321,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         <Setter Target="PART_LeftIconPresenter.Foreground" Value="{ThemeResource SecondaryGhostButtonForegroundDisabled}" />
                                         <Setter Target="PART_ContentPresenter.Foreground" Value="{ThemeResource SecondaryGhostButtonForegroundDisabled}" />
                                         <Setter Target="PART_RightIconPresenter.Foreground" Value="{ThemeResource SecondaryGhostButtonForegroundDisabled}" />
+                                        <Setter Target="PART_LeftIconPresenter.(AnimatedIcon.State)" Value="Normal" />
+                                        <Setter Target="PART_RightIconPresenter.(AnimatedIcon.State)" Value="Normal" />
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>

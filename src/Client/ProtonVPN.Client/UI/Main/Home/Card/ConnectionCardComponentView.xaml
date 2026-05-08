@@ -28,6 +28,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
              xmlns:upsell="using:ProtonVPN.Client.UI.Main.Home.Upsell"
+             xmlns:feedback="using:ProtonVPN.Client.UI.Main.Home.Card.Feedback"
              x:DefaultBindMode="OneWay"
              AutomationProperties.AutomationId="ConnectionCardComponent"
              AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('Automation_Properties_Connection_Card_Component')}"
@@ -227,6 +228,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         </controls:UniformGrid>
 
+        <feedback:ConnectionFeedbackComponentView HorizontalAlignment="Center"
+                                                  Visibility="{x:Bind UpsellViewModel.IsBannerVisible, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+        
         <upsell:ConnectionCardUpsellBannerView />
 
         <VisualStateManager.VisualStateGroups>

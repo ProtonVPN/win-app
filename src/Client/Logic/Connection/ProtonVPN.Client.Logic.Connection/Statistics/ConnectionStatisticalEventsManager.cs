@@ -20,6 +20,7 @@
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
+using ProtonVPN.Client.Logic.Connection.Contracts.Statistics;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts.Enums;
 using ProtonVPN.Client.Logic.Servers.Contracts.Extensions;
@@ -33,11 +34,12 @@ using ProtonVPN.OperatingSystems.Network.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
+using ProtonVPN.StatisticalEvents.Contracts.Enums;
 using ProtonVPN.StatisticalEvents.Contracts.Models;
 
 namespace ProtonVPN.Client.Logic.Connection.Statistics;
 
-public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsManager
+public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsManager, IConnectionStatisticsFeedback
 {
     private readonly IVpnConnectionReporter _vpnConnectionReporter;
     private readonly IVpnDisconnectionReporter _vpnDisconnectionReporter;
@@ -50,6 +52,7 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
     private VpnTriggerDimension? _currentAttemptTrigger = null;
     private DateTime? _currentAttemptDateUtc = null;
     private ConnectionStatus? _currentAttemptConnectionStatus = null;
+    private UserFeedback? _currentAttemptUserFeedback = null;
 
     private ConnectionDetails? _lastKnownConnectionDetails = null;
 
@@ -71,6 +74,11 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
 
     public void SetConnectionAttempt(VpnTriggerDimension trigger, ConnectionStatus currentConnectionStatus)
     {
+        if (currentConnectionStatus == ConnectionStatus.Connected)
+        {
+            SetAttempt(AttemptType.Disconnection, trigger, currentConnectionStatus);
+        }
+
         SetAttempt(AttemptType.Connection, trigger, currentConnectionStatus);
     }
 
@@ -81,12 +89,27 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
             return;
         }
 
-        SetAttempt(AttemptType.Connection, trigger, currentConnectionStatus);
+        SetConnectionAttempt(trigger, currentConnectionStatus);
     }
 
     public void SetDisconnectionAttempt(VpnTriggerDimension trigger, ConnectionStatus currentConnectionStatus)
     {
         SetAttempt(AttemptType.Disconnection, trigger, currentConnectionStatus);
+    }
+
+    public void InitializeFeedback()
+    {
+        _currentAttemptUserFeedback = UserFeedback.Ignored;
+    }
+
+    public void SubmitPositiveFeedback()
+    {
+        _currentAttemptUserFeedback = UserFeedback.Positive;
+    }
+
+    public void SubmitNegativeFeedback()
+    {
+        _currentAttemptUserFeedback = UserFeedback.Negative;
     }
 
     public void OnVpnStateChanged(VpnStatusIpcEntity vpnStatus, VpnErrorTypeIpcEntity vpnError, ConnectionDetails? connectionDetails)
@@ -181,6 +204,7 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
         _currentAttemptTrigger = null;
         _currentAttemptDateUtc = null;
         _currentAttemptConnectionStatus = null;
+        _currentAttemptUserFeedback = null;
     }
 
     private void SendConnectionEvent(OutcomeDimension outcome, int? failureCode)
@@ -266,6 +290,7 @@ public class ConnectionStatisticalEventsManager : IConnectionStatisticalEventsMa
             },
             HasActiveExclusions = hasActiveExclusions,
             FailureCode = failureCode,
+            UserFeedback = _currentAttemptUserFeedback
         };
     }
 }

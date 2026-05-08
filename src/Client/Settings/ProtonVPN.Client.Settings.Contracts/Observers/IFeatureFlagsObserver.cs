@@ -31,7 +31,8 @@ public interface IFeatureFlagsObserver : IObserver
     bool IsBinaryServerStatusEnabled { get; }
     bool IsWireGuardServerRouteEnabled { get; }
     bool IsNetShieldLevelThreeEnabled { get; }
-    bool IsProTunEnabled { get; }
+    bool IsProTunEnabled { get; }                                        
+    bool IsConnectionFeedbackEnabled { get; }
 
     Task UpdateAsync(CancellationToken cancellationToken);
 }

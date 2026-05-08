@@ -13,6 +13,8 @@
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     </PropertyGroup>
     <ItemGroup>
+        <Content Remove="Assets\Animations\ThumbsDownAnimatedIcon.cs" />
+        <Content Remove="Assets\Animations\ThumbsUpAnimatedIcon.cs" />
         <Content Remove="Assets\Icons\ActivePortNumber.xaml" />
         <Content Remove="Assets\Icons\ActivePortNumber.xaml.cs" />
         <Content Remove="Assets\Icons\Base\CustomPathIcon.cs" />
@@ -901,6 +903,7 @@
         <PackageReference Include="CommunityToolkit.WinUI.Controls.Sizers" />
         <PackageReference Include="CommunityToolkit.WinUI.Converters" />
         <PackageReference Include="CommunityToolkit.WinUI.Triggers" />
+        <PackageReference Include="Microsoft.Graphics.Win2D" />
         <PackageReference Include="Microsoft.WindowsAppSDK" />
         <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
         <PackageReference Include="System.Formats.Asn1" />

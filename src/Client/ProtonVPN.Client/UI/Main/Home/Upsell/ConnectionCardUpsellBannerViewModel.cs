@@ -33,6 +33,7 @@ using ProtonVPN.Client.Settings.Contracts;
 namespace ProtonVPN.Client.UI.Main.Home.Upsell;
 
 public partial class ConnectionCardUpsellBannerViewModel : ActivatableViewModelBase,
+    IConnectionCardUpsellBannerModerator,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<VpnPlanChangedMessage>,
     IEventMessageReceiver<ChangeServerAttemptInvalidatedMessage>,

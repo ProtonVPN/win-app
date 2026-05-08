@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.StatisticalEvents.Contracts.Enums;
 using ProtonVPN.StatisticalEvents.Dimensions.Mappers.Bases;
 
 namespace ProtonVPN.StatisticalEvents.Dimensions.Mappers;

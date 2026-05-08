@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2026 Proton AG
+ * Copyright (c) 2024 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+namespace ProtonVPN.Client.Contracts.Messages;
 
-public enum UserFeedback
-{
-    Positive,
-    Negative,
-    Ignored
-}
+public class MainWindowFocusedMessage;
