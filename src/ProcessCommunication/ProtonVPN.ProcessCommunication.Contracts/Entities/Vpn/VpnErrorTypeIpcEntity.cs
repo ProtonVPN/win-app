@@ -161,4 +161,7 @@ public enum VpnErrorTypeIpcEntity
 
     [EnumMember]
     ServerSessionError = 86203,
+
+    [EnumMember]
+    PortForwardingNotSupported = 86223,
 }

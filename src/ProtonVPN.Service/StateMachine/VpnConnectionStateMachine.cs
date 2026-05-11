@@ -64,6 +64,7 @@ internal sealed partial class VpnConnectionStateMachine : IVpnConnectionStateMac
     private Task? _disconnectTask;
     private bool _connectionCredentialsMonitorStarted;
     private long _connectionCredentialsSubscribedVersion;
+    private bool _hasPortForwardingError;
     private bool _keepConnectedDuringLocalAgentReconnect;
     private IReadOnlyList<VpnHost> _servers = [];
     private VpnConfig? _vpnConfig;
@@ -322,6 +323,8 @@ internal sealed partial class VpnConnectionStateMachine : IVpnConnectionStateMac
 
             _disconnectTask = Task.Run(async() =>
             {
+                _hasPortForwardingError = false;
+
                 await _tunnelOrchestrator.DisconnectAsync();
                 await RunVpnStateSideEffectsAsync(State.Disconnected);
             });
@@ -502,6 +505,10 @@ internal sealed partial class VpnConnectionStateMachine : IVpnConnectionStateMac
         else if (error == VpnError.CertificateExpired)
         {
             await HandleConnectionCertificateExpirationAsync(ct);
+        }
+        else if (error == VpnError.PortForwardingNotSupported)
+        {
+            _hasPortForwardingError = true;
         }
         else
         {
@@ -777,7 +784,7 @@ internal sealed partial class VpnConnectionStateMachine : IVpnConnectionStateMac
             remoteIp: server?.Ip ?? string.Empty,
             endpointPort: _selectedEndpoint?.Port ?? 0,
             vpnProtocol: _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart,
-            portForwarding: _vpnConfig?.PortForwarding ?? false,
+            portForwarding: !_hasPortForwardingError && (_vpnConfig?.PortForwarding ?? false),
             openVpnAdapter: _vpnConfig?.VpnProtocol.IsOpenVpn() == true
                 ? _vpnConfig.OpenVpnAdapter
                 : null,

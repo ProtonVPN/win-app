@@ -18,6 +18,7 @@
  */
 
 using System.Threading.Tasks;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
@@ -103,11 +104,12 @@ internal sealed class VpnStateSideEffects : IVpnStateSideEffects
         if (IsToStartPortMappingProtocolClient(state))
         {
             _logger.Debug<ConnectLog>("Requesting NAT-PMP client to start.");
-            await _portMappingProtocolClient.StartAsync();
+            _portMappingProtocolClient.StartAsync().FireAndForget();
         }
         else if (IsToStopPortMappingProtocolClient(state))
         {
-            await StopPortMappingProtocolClientAsync();
+            _logger.Debug<ConnectLog>("Requesting NAT-PMP client to stop.");
+            _portMappingProtocolClient.StopAsync().FireAndForget();
         }
     }
 
@@ -119,11 +121,5 @@ internal sealed class VpnStateSideEffects : IVpnStateSideEffects
     private static bool IsToStopPortMappingProtocolClient(VpnState state)
     {
         return state.Status != VpnStatus.Connected || !state.PortForwarding;
-    }
-
-    private async Task StopPortMappingProtocolClientAsync()
-    {
-        _logger.Debug<ConnectLog>("Requesting NAT-PMP client to stop.");
-        await _portMappingProtocolClient.StopAsync();
     }
 }
