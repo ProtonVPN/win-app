@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -26,13 +26,13 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("3")]
-public class DefaultConnectionTests : BaseTest
+public class ConnectionPreferencesTests : BaseTest
 {
+    private const string FAST_CONNECTION = "Fastest country";
+    private const string RANDOM_COUNTRY = "Random country";
+
     private const string COUNTRY_TO_SEARCH = "Australia";
     private const string FASTEST_COUNTRY = "Fastest country";
-    private const string STREAMING_PROFILE = "Streaming US";
-    private const string STREAMING_COUNTRY = "United States";
-    private const string DEFAULT_CONNECTION = "Default connection";
 
     private const string EXCLUDED_LOCATION_AFGHANISTAN = "Afghanistan";
     private const string EXCLUDED_LOCATION_SEARCH_QUERY = "U";
@@ -88,20 +88,6 @@ public class DefaultConnectionTests : BaseTest
             .Verify.IsDisconnected();
     }
 
-    [Test]
-    public void DefaultConnection()
-    {
-        HomeRobot
-            .Verify.IsDisconnected();
-
-        SettingRobot
-            .OpenSettings()
-            .OpenConnectionPreferencesSettingsCard()
-            .SelectDefaultConnectionType(VpnConnectionOption.Fast)
-            .SelectDefaultConnectionType(VpnConnectionOption.Random)
-            .SelectDefaultConnectionType(VpnConnectionOption.Last);
-    }
-
     [Test, Order(2)]
     public void ExcludedLocationsSelector_AllowsSelectingAndSearching()
     {
@@ -120,6 +106,38 @@ public class DefaultConnectionTests : BaseTest
             .Verify.IsExcludedLocationNotDisplayed(EXCLUDED_LOCATION_AFGHANISTAN)
             .RemoveFirstExcludedLocation()
             .CloseSettings();
+    }
+
+    [Test]
+    public void DefaultConnection()
+    {
+        HomeRobot
+            .Verify.IsDisconnected();
+
+        SettingRobot
+            .OpenSettings()
+            .OpenConnectionPreferencesSettingsCard()
+            .SelectDefaultConnectionType(VpnConnectionOption.Fastest)
+            .SelectDefaultConnectionType(VpnConnectionOption.Random)
+            .SelectDefaultConnectionType(VpnConnectionOption.Last);
+    }
+
+    [Test]
+    public void ConnectToVpnFastestCountryAndRandomCountry()
+    {
+        ConnectToDefaultConnectionAndVerify(VpnConnectionOption.Fastest, FAST_CONNECTION);
+        ConnectToDefaultConnectionAndVerify(VpnConnectionOption.Random, RANDOM_COUNTRY);
+    }
+
+    private void ConnectToDefaultConnectionAndVerify(VpnConnectionOption vpnConnectionOption, string expectedConnectionCardTitle)
+    {
+        HomeRobot
+            .SelectDefaultConnectionOption(vpnConnectionOption)
+            .ConnectViaConnectionCard()
+            .Verify.ConnectionCardTitleEquals(expectedConnectionCardTitle)
+                   .IsConnected()
+            .Disconnect()
+            .Verify.IsDisconnected();
     }
 
     [OneTimeTearDown]

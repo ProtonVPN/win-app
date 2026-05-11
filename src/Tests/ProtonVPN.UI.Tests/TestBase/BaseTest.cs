@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -142,7 +142,15 @@ public class BaseTest
 
         try
         {
-            HomeRobot.CloseClientViaCloseButton();
+            HomeRobot.ExpandKebabMenuButton();
+            try
+            {
+                HomeRobot.ExitViaKebabMenuWithConfirmation();
+            }
+            catch (TimeoutException)
+            {
+                HomeRobot.ExitViaKebabMenu();
+            }
             Thread.Sleep(TestConstants.OneSecondTimeout);
         }
         catch (TimeoutException)
@@ -185,6 +193,21 @@ public class BaseTest
         }
     }
 
+    public void KillVpnService()
+    {
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+
+        foreach (Process process in Process.GetProcessesByName("ProtonVPNService"))
+        {
+            try
+            {
+                process.Kill(true);
+            }
+            catch { }
+        }
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+    }
+
     protected static void LaunchApp(bool isFreshStart = true, bool skipOnboarding = true)
     {
         if (isFreshStart)
@@ -200,7 +223,7 @@ public class BaseTest
 
         ProcessStartInfo startInfo = new ProcessStartInfo(installedClientPath)
         {
-            Arguments = "-ExitAppOnClose -DisableAutoUpdate"
+            Arguments = "-DisableAutoUpdate"
         };
 
         if (skipOnboarding)

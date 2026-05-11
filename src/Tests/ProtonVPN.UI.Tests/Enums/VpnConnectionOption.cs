@@ -21,8 +21,7 @@ namespace ProtonVPN.UI.Tests.Enums;
 
 public enum VpnConnectionOption
 {
-    Fast,
+    Fastest,
     Random,
     Last,
-    Customized,
 }

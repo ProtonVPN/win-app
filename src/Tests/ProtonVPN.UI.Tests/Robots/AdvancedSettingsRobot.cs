@@ -33,10 +33,18 @@ public class AdvancedSettingsRobot
     protected Element EnableButton = Element.ByName("Enable");
     protected Element DnsServersSelectorSettingsCard = Element.ByAutomationId("DnsServersSelectorSettingsCard");
     protected Element NatTypeCard = Element.ByAutomationId("NatTypeSettingsCard");
+    protected Element LanConnectionsSettingsCard = Element.ByAutomationId("LanConnectionsSettingsCard");
+    protected Element AllowLanToggle = Element.ByAutomationId("AllowLanConnectionsToggleSwitch");
 
     private string? WireGuardDnsAddress => NetworkUtils.GetDnsAddresses(TestConstants.IsProtunVersion ? "ProTUN" : "ProtonVPN").FirstOrDefault();
     private string? OpenVpnDnsAddress => NetworkUtils.GetDnsAddresses("ProtonVPN TUN").FirstOrDefault();
     private string? ProTunDnsAddress => NetworkUtils.GetDnsAddresses("ProTUN").FirstOrDefault();
+
+    public AdvancedSettingsRobot NavigateToLan()
+    {
+        LanConnectionsSettingsCard.Click();
+        return this;
+    }
 
     public AdvancedSettingsRobot NavigateToCustomDns()
     {
@@ -47,6 +55,24 @@ public class AdvancedSettingsRobot
     public AdvancedSettingsRobot NavigateToNatSettings()
     {
         NatTypeCard.Click();
+        return this;
+    }
+
+    public AdvancedSettingsRobot EnableLanToggle()
+    {
+        if (!AllowLanToggle.IsToggled())
+        {
+            AllowLanToggle.Toggle();
+        }
+        return this;
+    }
+
+    public AdvancedSettingsRobot DisableLanToggle()
+    {
+        if (AllowLanToggle.IsToggled())
+        {
+            AllowLanToggle.Toggle();
+        }
         return this;
     }
 
@@ -70,6 +96,12 @@ public class AdvancedSettingsRobot
 
     public class Verifications : AdvancedSettingsRobot
     {
+        public Verifications IsLanEnabled()
+        {
+            Assert.That(AllowLanToggle.IsToggled(), Is.True);
+            return this;
+        }
+
         public Verifications IsCustomDnsEnabled()
         {
             Assert.That(CustomDnsToggle.IsToggled(), Is.True);

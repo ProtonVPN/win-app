@@ -19,6 +19,7 @@
 
 using System;
 using System.Threading;
+using System.Collections.Generic;
 using FlaUI.Core.Tools;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
@@ -40,10 +41,22 @@ public class FreeUserTests : FreshSessionSetUp
     private const string SERVER_COUNTRY = "Australia";
     private const string TOR_COUNTRY = "France";
 
+    private static readonly List<string> _freeCountries = ["Canada", "Japan", "Mexico", "Netherlands", "Norway", "Poland", "Romania", "Singapore", "Switzerland", "United States"];
+
     [SetUp]
     public void TestInitialize()
     {
         CommonUiFlows.FullLogin(TestUserData.FreeUser);
+    }
+
+    [Test]
+    public void ConnectToServerFreeUser()
+    {
+        HomeRobot
+            .Verify.IsConnectionCardFreeConnectionsTaglineDisplayed()
+            .ConnectViaConnectionCard()
+            .Verify.IsConnected()
+                   .ConnectionCardDescriptionContainsOneOf(_freeCountries);
     }
 
     [Test]
@@ -75,6 +88,25 @@ public class FreeUserTests : FreshSessionSetUp
             .ConnectViaConnectionCard()
             .Verify.IsConnected()
             .IsChangeServerNotLocked();
+    }
+
+    [Test]
+    public void LocalNetworkingIsNotReachableWhileConnected()
+    {
+        HomeRobot
+            .Verify.IsDisconnected()
+            .ConnectViaConnectionCard()
+            .Verify.IsConnected();
+
+        NetworkUtils.VerifyLocalNetworking(isLanEnabled: false);
+
+        SettingRobot
+            .OpenSettings()
+            .OpenAdvancedSettings();
+        AdvancedSettingsRobot
+            .NavigateToLan();
+        UpsellCarrouselRobot
+            .Verify.IsAdvancedSettingsUpsellDisplayed();
     }
 
     [Test]
@@ -216,7 +248,7 @@ public class FreeUserTests : FreshSessionSetUp
             UpsellCarrouselRobot.Verify.IsProfilesUpsellDisplayed,
             profileName: PROFILE_NAME);
 
-        //Hover over the map and click a country's pin
+        //TODO: Hover over the map and click a country's pin
         //The "Discover VPN Plus" pop-up modal is displayed
 
         CommonAssertions.AssertIpAddressUnchanged(ipAddressToCompare!);

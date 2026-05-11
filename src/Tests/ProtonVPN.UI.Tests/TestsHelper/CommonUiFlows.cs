@@ -21,7 +21,6 @@ using System;
 using System.Threading;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
-using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 
@@ -71,7 +70,7 @@ public class CommonUiFlows : BaseTest
         }
     }
 
-    public static void ChangeProtocol(Protocol protocol, bool shouldEnableProTun = false)
+    public static void ChangeProtocol(TestConstants.Protocol protocol, bool shouldEnableProTun = false)
     {
         SettingRobot
             .OpenSettings()

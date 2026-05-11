@@ -470,7 +470,7 @@ public class SettingRobot
 
     public SettingRobot SelectFastestConnectionOption()
     {
-        return SelectDefaultConnectionType(VpnConnectionOption.Fast);
+        return SelectDefaultConnectionType(VpnConnectionOption.Fastest);
     }
 
     public SettingRobot SelectProfileDefaultConnectionOption(string profileName)
@@ -622,15 +622,13 @@ public class SettingRobot
 
     public SettingRobot SelectDefaultConnectionType(VpnConnectionOption option)
     {
-        Element settingsDefaultConnectionComboBox = SettingsPage
-            .FindDescendant(DefaultConnectionDropdown);
-
+        Element settingsDefaultConnectionComboBox = SettingsPage.FindDescendant(DefaultConnectionDropdown);
         settingsDefaultConnectionComboBox.Click();
         Thread.Sleep(TestConstants.AnimationDelay);
 
         string optionName = option switch
         {
-            VpnConnectionOption.Fast => "Fastest country",
+            VpnConnectionOption.Fastest => "Fastest country",
             VpnConnectionOption.Random => "Random country",
             VpnConnectionOption.Last => "Last connection",
             _ => throw new System.NotImplementedException($"VpnConnectionOption '{option}' is not supported in Settings."),

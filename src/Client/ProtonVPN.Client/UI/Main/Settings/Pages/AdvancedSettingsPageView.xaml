@@ -88,7 +88,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           Style="{StaticResource SettingsExpanderStyle}"
                                           Visibility="{x:Bind ViewModel.IsPaidUser, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                    <ToggleSwitch IsOn="{x:Bind ViewModel.IsLocalAreaNetworkAccessEnabled, Mode=TwoWay}"
+                    <ToggleSwitch AutomationProperties.AutomationId="AllowLanConnectionsToggleSwitch"
+                                  IsOn="{x:Bind ViewModel.IsLocalAreaNetworkAccessEnabled, Mode=TwoWay}"
                                   Style="{StaticResource ToggleSwitchStyle}" />
 
                     <toolkit:SettingsExpander.Items>

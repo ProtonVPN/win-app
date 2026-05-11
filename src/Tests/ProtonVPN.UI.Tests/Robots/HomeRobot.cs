@@ -18,8 +18,8 @@
  */
 
 using System;
-using System.Threading;
 using System.Collections.Generic;
+using System.Threading;
 using FlaUI.Core.Input;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
@@ -35,6 +35,10 @@ public class HomeRobot
     private const string KILL_SWITCH_FLYOUT_TEXT_2 = "To get back online, connect to VPN or disable advanced kill switch";
 
     private const string SPLIT_TUNNELING_NO_APP_SELECTED_TEXT = "Select apps";
+
+    protected Element EmptyIpAddress = Element.ByName("Your IP address").And(Element.ByName("-"));
+    protected Element EmptyCountry = Element.ByName("Country").And(Element.ByName("-"));
+    protected Element EmptyProvider = Element.ByName("Provider").And(Element.ByName("-"));
 
     protected Element UnprotectedLabel = Element.ByName("Unprotected");
     protected Element ConnectingLabel = Element.ByName("Connecting");
@@ -228,7 +232,7 @@ public class HomeRobot
 
         string optionName = option switch
         {
-            VpnConnectionOption.Fast => "Fastest country",
+            VpnConnectionOption.Fastest => "Fastest country",
             VpnConnectionOption.Random => "Random country",
             VpnConnectionOption.Last => "Last connection",
             _ => throw new NotImplementedException($"VpnConnectionOption '{option}' is not supported on the home page ComboBox."),
@@ -256,6 +260,22 @@ public class HomeRobot
 
     public class Verifications : HomeRobot
     {
+        public Verifications IsLocationDetailsPanelEmpty()
+        {
+            EmptyIpAddress.WaitUntilDisplayed();
+            EmptyCountry.WaitUntilDisplayed();
+            EmptyProvider.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications AreLocationDetailsShown()
+        {
+            EmptyIpAddress.DoesNotExist();
+            EmptyCountry.DoesNotExist();
+            EmptyProvider.DoesNotExist();
+            return this;
+        }
+
         public Verifications IsWelcomeModalDisplayed()
         {
             GetStartedButton.WaitUntilDisplayed(TestConstants.TwoMinutesTimeout);
@@ -372,6 +392,12 @@ public class HomeRobot
         public Verifications ConnectionCardTitleEquals(string title)
         {
             ConnectionCardTitle.TextEquals(title);
+            return this;
+        }
+
+        public Verifications ConnectionCardDescriptionContainsOneOf(List<string> countries)
+        {
+            ConnectionCardDescription.TextContainsOneOf(countries);
             return this;
         }
 

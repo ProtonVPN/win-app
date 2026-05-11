@@ -55,11 +55,11 @@ public class NetworkUtils
         DnsFlushResolverCache();
     }
 
-    public static void VerifyIfLocalNetworkingWorks()
+    public static void VerifyLocalNetworking(bool isLanEnabled)
     {
         IPAddress? ipAddress = GetDefaultGatewayAddress() ?? throw new Exception("Default gateway is null.");
         PingReply reply = new Ping().Send(ipAddress.ToString());
-        Assert.That(reply.Status == IPStatus.Success, Is.True);
+        Assert.That(reply.Status == IPStatus.Success, isLanEnabled ? Is.True : Is.False);
     }
 
     public static void AssertInternetAvailability(bool shouldBeAvailable)

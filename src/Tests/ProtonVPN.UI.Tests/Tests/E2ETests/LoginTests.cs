@@ -240,28 +240,33 @@ public class LoginTests : FreshSessionSetUp
         }
     }
 
-    [Test, Order(99)]
+    [Test]
     public void LoginWithoutInternet()
     {
-        NavigationRobot
-            .Verify.IsOnLoginPage();
+        try
+        {
+            NavigationRobot
+                .Verify.IsOnLoginPage();
 
-        ScriptHelper.DisableInternet();
-        NetworkUtils.AssertInternetAvailability(false);
+            ScriptHelper.DisableInternet();
+            NetworkUtils.AssertInternetAvailability(false);
 
-        LoginRobot
-           .Login(TestUserData.PlusUser);
+            LoginRobot
+               .Login(TestUserData.PlusUser);
 
-        Thread.Sleep(TestConstants.FiveSecondsTimeout);
-        SupportRobot
-            .Verify.IsConnectionHelpDisplayed()
-            .CloseSupportWindow();
+            Thread.Sleep(TestConstants.FiveSecondsTimeout);
+            SupportRobot
+                .Verify.IsConnectionHelpDisplayed()
+                .CloseSupportWindow();
 
-        LoginRobot
-            .Verify.IsLoginWindowDisplayed();
-
-        ScriptHelper.EnableInternet();
-        NetworkUtils.AssertInternetAvailability(true);
+            LoginRobot
+                .Verify.IsLoginWindowDisplayed();
+        }
+        finally
+        {
+            ScriptHelper.EnableInternet();
+            NetworkUtils.AssertInternetAvailability(true);
+        }
     }
 
     private void LoginWithUser(TestUserData user)

@@ -19,7 +19,6 @@
 
 using System;
 using System.Threading;
-using System.Diagnostics;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
@@ -256,21 +255,6 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
         SettingRobot
             .ApplySettings()
             .CloseSettings();
-    }
-
-    private void KillVpnService()
-    {
-        Thread.Sleep(TestConstants.OneSecondTimeout);
-
-        foreach (Process process in Process.GetProcessesByName("ProtonVPNService"))
-        {
-            try
-            {
-                process.Kill(true);
-            }
-            catch { }
-        }
-        Thread.Sleep(TestConstants.OneSecondTimeout);
     }
 
     [OneTimeTearDown]

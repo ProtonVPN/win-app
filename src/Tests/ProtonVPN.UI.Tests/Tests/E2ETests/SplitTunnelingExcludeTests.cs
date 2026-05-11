@@ -139,7 +139,7 @@ public class SplitTunnelingExcludeTests : BaseTest
             .Verify.IsConnected();
 
         //if LAN works
-        NetworkUtils.VerifyIfLocalNetworkingWorks();
+        NetworkUtils.VerifyLocalNetworking(isLanEnabled: true);
 
         //if location change works
         SidebarRobot

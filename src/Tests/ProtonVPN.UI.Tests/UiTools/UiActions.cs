@@ -338,6 +338,14 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static Element TextContainsOneOf<T>(this T desiredElement, List<string> texts) where T : Element
+    {
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        string? elementText = element?.AsLabel().Text;
+        Assert.That(texts.Any(oneOfText => elementText?.Contains(oneOfText) == true), Is.True, $"Expected string to contain at least one of: {string.Join(", ", texts)}, but was: {elementText}");
+        return desiredElement;
+    }
+
     public static Element ValueEquals<T>(this T desiredElement, string value) where T : Element
     {
         AutomationElement? element = WaitUntilExists(desiredElement);

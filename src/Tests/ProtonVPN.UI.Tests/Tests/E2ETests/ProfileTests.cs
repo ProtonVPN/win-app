@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
@@ -260,6 +261,8 @@ public class ProfileTests : BaseTest
     [Test, Order(9)]
     public void ConnectWithCustomSettings()
     {
+        CloseLeftoverProfilePage();
+
         SidebarRobot
             .NavigateToProfiles()
             .ClickCreateProfile();
@@ -298,6 +301,8 @@ public class ProfileTests : BaseTest
     [Retry(3)]
     public void ConnectToDifferentProfilesWithDifferentConnectionTypesAndProtocols()
     {
+        CloseLeftoverProfilePage();
+
         SidebarRobot
             .NavigateToProfiles();
 
@@ -372,6 +377,19 @@ public class ProfileTests : BaseTest
         ProfileRobot
             .SaveProfile();
         Thread.Sleep(TestConstants.AnimationDelay);
+    }
+
+    private void CloseLeftoverProfilePage()
+    {
+        try
+        {
+            ProfileRobot.CloseProfile();
+            ConfirmationRobot.PrimaryAction();
+        }
+        catch (TimeoutException)
+        {
+            //do nothing
+        }
     }
 
     [OneTimeTearDown]
