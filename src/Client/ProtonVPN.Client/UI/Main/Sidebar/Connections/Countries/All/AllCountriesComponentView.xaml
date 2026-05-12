@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2025 Proton AG
+Copyright (c) 2026 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -22,22 +22,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:banners="using:ProtonVPN.Client.UI.Main.Components.Banners"
-             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="using:ProtonVPN.Client.UI.Main.Sidebar.Connections.Countries.All"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <banners:BannerComponent>
-        <banners:BannerComponent.FallbackContent>
-            <custom:UpsellBanner Title="{x:Bind ViewModel.Localizer.Get('FreeConnections_WorldwideCoverageUpsell')}"
-                                 IsTabStop="False"
-                                 Command="{x:Bind ViewModel.UpgradeCommand, Mode=OneTime}"
-                                 IllustrationSource="{StaticResource WorldwideCoverageUpsellSmallIllustrationSource}"
-                                 Style="{StaticResource SidebarUpsellBannerStyle}"
-                                 Visibility="{x:Bind ViewModel.IsUpsellBannerVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
-        </banners:BannerComponent.FallbackContent>
-    </banners:BannerComponent>
+    <banners:BannerComponent IsUpsellBannerVisible="{x:Bind ViewModel.IsUpsellBannerVisible}"
+                             UpsellBannerCommand="{x:Bind ViewModel.UpgradeCommand, Mode=OneTime}"
+                             UpsellBannerIllustrationSource="{StaticResource WorldwideCoverageUpsellSmallIllustrationSource}"
+                             UpsellBannerTitle="{x:Bind ViewModel.UpsellBannerTitle}" />
 
 </UserControl>

@@ -23,10 +23,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:entities="using:ProtonVPN.Client.Logic.Announcements.Contracts.Entities"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
-             xmlns:selectors="using:ProtonVPN.Client.Selectors"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
@@ -41,8 +38,23 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               LargeIllustrationSource="{x:Bind ViewModel.LargeIllustrationSource}"
                               Visibility="{x:Bind ViewModel.ActiveAnnouncement, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
-        <ContentPresenter Content="{x:Bind FallbackContent}"
-                          Visibility="{x:Bind ViewModel.ActiveAnnouncement, Converter={StaticResource NullToVisibilityConverter}}"/>
+        <StackPanel Visibility="{x:Bind ViewModel.ActiveAnnouncement, Converter={StaticResource NullToVisibilityConverter}}"
+                    Orientation="Vertical"
+                    Spacing="8">
+            
+            <custom:InfoBanner Description="{x:Bind InfoBannerDescription}"
+                               DismissButtonText="{x:Bind InfoBannerDismissButtonText}"
+                               DismissCommand="{x:Bind InfoBannerDismissCommand}"
+                               IllustrationSource="{x:Bind InfoBannerIllustrationSource}"
+                               Visibility="{x:Bind IsInfoBannerVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            
+            <custom:UpsellBanner Command="{x:Bind UpsellBannerCommand}"
+                                 IllustrationSource="{x:Bind UpsellBannerIllustrationSource}"
+                                 Style="{StaticResource SidebarUpsellBannerStyle}"
+                                 Title="{x:Bind UpsellBannerTitle}"
+                                 Visibility="{x:Bind IsUpsellBannerVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            
+        </StackPanel>
     </Grid>
 
 </UserControl>

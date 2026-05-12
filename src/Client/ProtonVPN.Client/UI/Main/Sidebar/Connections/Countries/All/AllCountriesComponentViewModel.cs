@@ -39,6 +39,8 @@ public class AllCountriesComponentViewModel : CountriesComponentViewModelBase
 
     public override string Description => string.Empty;
 
+    public override string UpsellBannerTitle => Localizer.Get("FreeConnections_WorldwideCoverageUpsell");
+
     public override bool IsInfoBannerVisible => false;
 
     protected override ModalSource UpsellModalSource => ModalSource.Countries;

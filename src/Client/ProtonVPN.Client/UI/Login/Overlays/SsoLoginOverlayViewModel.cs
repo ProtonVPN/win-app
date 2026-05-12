@@ -44,9 +44,10 @@ public partial class SsoLoginOverlayViewModel :  OverlayViewModelBase<IMainWindo
     [ObservableProperty]
     private bool _isLoadingPage;
 
-    private string? _ssoResponseToken;
+    [ObservableProperty]
+    private WebView2? _ssoWebView;
 
-    public WebView2 SsoWebView { get; }
+    private string? _ssoResponseToken;
 
     public SsoLoginOverlayViewModel(
         IMainWindowOverlayActivator overlayActivator,
@@ -59,11 +60,12 @@ public partial class SsoLoginOverlayViewModel :  OverlayViewModelBase<IMainWindo
         _userAuthenticator = userAuthenticator;
         _settings = settings;
         _configuration = configuration;
+    }
 
-        SsoWebView = new WebView2 { VerticalAlignment = VerticalAlignment.Stretch };
-
-        SsoWebView.NavigationStarting += OnNavigationStarting;
-        SsoWebView.NavigationCompleted += OnNavigationCompleted;
+    protected override void OnDeactivated()
+    {
+        base.OnDeactivated();
+        CleanupWebView();
     }
 
     private void OnNavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
@@ -104,35 +106,80 @@ public partial class SsoLoginOverlayViewModel :  OverlayViewModelBase<IMainWindo
     {
         try
         {
-            if (SsoWebView.CoreWebView2 == null)
+            CreateWebView();
+
+            WebView2? webView = SsoWebView;
+            if (webView is null)
+            {
+                return;
+            }
+
+            if (webView.CoreWebView2 == null)
             {
                 CoreWebView2Environment environment = await CoreWebView2Environment.CreateWithOptionsAsync(null, _configuration.WebViewFolder, null);
 
                 // WinUI3 does not support creating CoreWebView2 with custom environment. Set environment variable instead.
                 Environment.SetEnvironmentVariable("WEBVIEW2_USER_DATA_FOLDER", environment.UserDataFolder);
 
-                await SsoWebView.EnsureCoreWebView2Async();
+                await webView.EnsureCoreWebView2Async();
 
-                SsoWebView.CoreWebView2!.Settings.IsWebMessageEnabled = true;
+                if (webView.CoreWebView2 is null || SsoWebView != webView)
+                {
+                    return;
+                }
+
+                webView.CoreWebView2.Settings.IsWebMessageEnabled = true;
             }
 
             // Delete cookies to prevent auto authentication after a first successful login.
-            SsoWebView.CoreWebView2.CookieManager.DeleteAllCookies();
+            webView.CoreWebView2.CookieManager.DeleteAllCookies();
 
             Uri requestUri = new(new Uri(_configuration.Urls.ApiUrl), $"auth/sso/{ssoChallengeToken}");
 
-            CoreWebView2WebResourceRequest request = SsoWebView.CoreWebView2.Environment.CreateWebResourceRequest(
+            CoreWebView2WebResourceRequest request = webView.CoreWebView2.Environment.CreateWebResourceRequest(
                 requestUri.AbsoluteUri,
                 "GET",
                 null,
                 $"x-pm-uid: {_settings.UnauthUniqueSessionId}\r\n" +
                 $"Authorization: Bearer {_settings.UnauthAccessToken}");
 
-            SsoWebView.CoreWebView2.NavigateWithWebResourceRequest(request);
+            webView.CoreWebView2.NavigateWithWebResourceRequest(request);
         }
         catch (Exception e)
         {
             Logger.Error<AppLog>($"Error occured when trying to navigate to the SSO login page.", e);
+        }
+    }
+
+    private void CreateWebView()
+    {
+        CleanupWebView();
+        WebView2 webView = new() { VerticalAlignment = VerticalAlignment.Stretch };
+        webView.NavigationStarting += OnNavigationStarting;
+        webView.NavigationCompleted += OnNavigationCompleted;
+        SsoWebView = webView;
+    }
+
+    private void CleanupWebView()
+    {
+        if (SsoWebView is null)
+        {
+            return;
+        }
+
+        WebView2 webView = SsoWebView;
+        SsoWebView = null;
+
+        webView.NavigationStarting -= OnNavigationStarting;
+        webView.NavigationCompleted -= OnNavigationCompleted;
+
+        try
+        {
+            webView.Close();
+        }
+        catch (Exception ex)
+        {
+            Logger.Error<AppLog>("Failed to close WebView2.", ex);
         }
     }
 }

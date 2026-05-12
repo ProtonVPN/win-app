@@ -38,6 +38,8 @@ public class TorCountriesComponentViewModel : CountriesComponentViewModelBase
 
     public override string Description => Localizer.Get("Countries_Tor_Description");
 
+    public override string UpsellBannerTitle => Localizer.Get("FreeConnections_TorUpsell");
+
     public override bool IsInfoBannerVisible => !IsUpsellBannerVisible
                                              && !Settings.IsTorInfoBannerDismissed;
 

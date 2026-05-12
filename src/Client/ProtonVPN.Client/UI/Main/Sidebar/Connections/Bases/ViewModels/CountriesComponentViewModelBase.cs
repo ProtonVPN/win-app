@@ -51,6 +51,8 @@ public abstract partial class CountriesComponentViewModelBase : ActivatableViewM
     public abstract int SortIndex { get; }
     public abstract string Header { get; }
     public abstract string Description { get; }
+    public abstract string UpsellBannerTitle { get; }
+    public virtual string DismissButtonText => Localizer.Get("Common_Actions_Close");
     public abstract bool IsInfoBannerVisible { get; }
 
     public bool IsUpsellBannerVisible => IsRestricted;
@@ -112,6 +114,8 @@ public abstract partial class CountriesComponentViewModelBase : ActivatableViewM
 
         OnPropertyChanged(nameof(Header));
         OnPropertyChanged(nameof(Description));
+        OnPropertyChanged(nameof(UpsellBannerTitle));
+        OnPropertyChanged(nameof(DismissButtonText));
     }
 
     [RelayCommand]

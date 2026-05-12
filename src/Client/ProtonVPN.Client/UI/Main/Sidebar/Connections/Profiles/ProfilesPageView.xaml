@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2025 Proton AG
+Copyright (c) 2026 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -15,7 +15,8 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
 
 <Page x:Class="ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles.ProfilesPageView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -24,7 +25,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
       xmlns:controls="using:ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Controls"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="using:ProtonVPN.Client.UI.Main.Sidebar.Connections.Profiles"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       x:DefaultBindMode="OneWay"
@@ -42,15 +42,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.-->
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <banners:BannerComponent Grid.Row="0">
-            <banners:BannerComponent.FallbackContent>
-                <custom:UpsellBanner Title="{x:Bind ViewModel.Localizer.Get('Profiles_Page_Description')}"
-                                     Command="{x:Bind ViewModel.UpgradeCommand, Mode=OneTime}"
-                                     IllustrationSource="{StaticResource ProfilesUpsellSmallIllustrationSource}"
-                                     Style="{StaticResource SidebarUpsellBannerStyle}"
-                                     Visibility="{x:Bind ViewModel.IsUpsellBannerVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            </banners:BannerComponent.FallbackContent>
-        </banners:BannerComponent>
+        <banners:BannerComponent Grid.Row="0"
+                                 IsUpsellBannerVisible="{x:Bind ViewModel.IsUpsellBannerVisible}"
+                                 UpsellBannerCommand="{x:Bind ViewModel.UpgradeCommand, Mode=OneTime}"
+                                 UpsellBannerIllustrationSource="{StaticResource ProfilesUpsellSmallIllustrationSource}"
+                                 UpsellBannerTitle="{x:Bind ViewModel.UpsellBannerTitle}" />
 
         <StackPanel Grid.Row="1"
                     MaxWidth="240"

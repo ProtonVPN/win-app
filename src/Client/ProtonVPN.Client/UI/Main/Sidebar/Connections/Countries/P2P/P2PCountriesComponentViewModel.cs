@@ -38,6 +38,8 @@ public class P2PCountriesComponentViewModel : CountriesComponentViewModelBase
 
     public override string Description => Localizer.Get("Countries_P2P_Description");
 
+    public override string UpsellBannerTitle => Localizer.Get("FreeConnections_P2PUpsell");
+
     public override bool IsInfoBannerVisible => !IsUpsellBannerVisible
                                              && !Settings.IsP2PInfoBannerDismissed;
 

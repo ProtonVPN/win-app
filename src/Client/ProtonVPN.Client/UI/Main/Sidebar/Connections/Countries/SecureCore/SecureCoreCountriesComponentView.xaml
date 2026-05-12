@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2025 Proton AG
+Copyright (c) 2026 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -22,27 +22,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:banners="using:ProtonVPN.Client.UI.Main.Components.Banners"
-             xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="using:ProtonVPN.Client.UI.Main.Sidebar.Connections.Countries.All"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <banners:BannerComponent>
-        <banners:BannerComponent.FallbackContent>
-            <Grid>
-                <custom:InfoBanner Description="{x:Bind ViewModel.Description}"
-                                   DismissButtonText="{x:Bind ViewModel.Localizer.Get('Common_Actions_Close')}"
-                                   DismissCommand="{x:Bind ViewModel.DismissInfoBannerCommand, Mode=OneTime}"
-                                   IllustrationSource="{StaticResource SecureCoreUpsellLargeIllustrationSource}"
-                                   Visibility="{x:Bind ViewModel.IsInfoBannerVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                <custom:UpsellBanner Title="{x:Bind ViewModel.Localizer.Get('FreeConnections_SecureCoreUpsell')}"
-                                     Command="{x:Bind ViewModel.UpgradeCommand, Mode=OneTime}"
-                                     IllustrationSource="{StaticResource SecureCoreUpsellSmallIllustrationSource}"
-                                     Style="{StaticResource SidebarUpsellBannerStyle}"
-                                     Visibility="{x:Bind ViewModel.IsUpsellBannerVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            </Grid>
-        </banners:BannerComponent.FallbackContent>
-    </banners:BannerComponent>
+    <banners:BannerComponent IsInfoBannerVisible="{x:Bind ViewModel.IsInfoBannerVisible}"
+                             InfoBannerDescription="{x:Bind ViewModel.Description}"
+                             InfoBannerDismissButtonText="{x:Bind ViewModel.DismissButtonText}"
+                             InfoBannerDismissCommand="{x:Bind ViewModel.DismissInfoBannerCommand, Mode=OneTime}"
+                             InfoBannerIllustrationSource="{StaticResource SecureCoreUpsellLargeIllustrationSource}"
+                             IsUpsellBannerVisible="{x:Bind ViewModel.IsUpsellBannerVisible}"
+                             UpsellBannerCommand="{x:Bind ViewModel.UpgradeCommand, Mode=OneTime}"
+                             UpsellBannerIllustrationSource="{StaticResource SecureCoreUpsellSmallIllustrationSource}"
+                             UpsellBannerTitle="{x:Bind ViewModel.UpsellBannerTitle}" />
 </UserControl>

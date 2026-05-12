@@ -38,6 +38,8 @@ public class SecureCoreCountriesComponentViewModel : CountriesComponentViewModel
 
     public override string Description => Localizer.Get("Countries_SecureCore_Description");
 
+    public override string UpsellBannerTitle => Localizer.Get("FreeConnections_SecureCoreUpsell");
+
     public override bool IsInfoBannerVisible => !IsUpsellBannerVisible
                                              && !Settings.IsSecureCoreInfoBannerDismissed;
 

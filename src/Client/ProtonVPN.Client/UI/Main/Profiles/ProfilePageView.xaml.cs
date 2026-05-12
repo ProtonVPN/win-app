@@ -55,8 +55,13 @@ public sealed partial class ProfilePageView : IContextAware
 
     private void OnProfileNameTextBoxLoaded(object sender, RoutedEventArgs e)
     {
-        ProfileNameTextBox.Focus(FocusState.Programmatic);
-        ProfileNameTextBox.SelectAll();
+        // Defer focus and selection to avoid triggering layout invalidation
+        // during the current measure/arrange pass (Loaded fires mid-layout).
+        DispatcherQueue.TryEnqueue(() =>
+        {
+            ProfileNameTextBox.Focus(FocusState.Programmatic);
+            ProfileNameTextBox.SelectAll();
+        });
     }
 
     private void OnResetContentScrollRequested(object? sender, EventArgs e)
