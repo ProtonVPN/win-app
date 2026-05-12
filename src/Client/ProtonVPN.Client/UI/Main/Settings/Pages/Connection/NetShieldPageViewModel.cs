@@ -28,20 +28,18 @@ using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
-using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Connection;
 
 public partial class NetShieldPageViewModel : SettingsPageViewModelBase,
-    IEventMessageReceiver<FeatureFlagsChangedMessage>
+    IEventMessageReceiver<VpnPlanChangedMessage>
 {
     private readonly IUrlsBrowser _urlsBrowser;
-    private readonly IFeatureFlagsObserver _featureFlagsObserver;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(NetShieldFeatureIconSource))]
@@ -75,7 +73,7 @@ public partial class NetShieldPageViewModel : SettingsPageViewModelBase,
         set => SetNetShieldMode(value, NetShieldMode.BlockAdsMalwareTrackersAdultContent);
     }
 
-    public bool IsNetShieldLevelThreeAvailable => _featureFlagsObserver.IsNetShieldLevelThreeEnabled;
+    public bool IsNetShieldLevelThreeAvailable => !Settings.VpnPlan.IsB2B;
 
     public bool IsNetShieldStatsPanelVisible => ConnectionManager.IsConnected
                                              && IsNetShieldEnabled
@@ -98,7 +96,6 @@ public partial class NetShieldPageViewModel : SettingsPageViewModelBase,
         ISettings settings,
         ISettingsConflictResolver settingsConflictResolver,
         IConnectionManager connectionManager,
-        IFeatureFlagsObserver featureFlagsObserver,
         IViewModelHelper viewModelHelper)
         : base(requiredReconnectionSettings,
                mainViewNavigator,
@@ -110,7 +107,6 @@ public partial class NetShieldPageViewModel : SettingsPageViewModelBase,
                viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
-        _featureFlagsObserver = featureFlagsObserver;
 
         PageSettings =
         [
@@ -126,7 +122,7 @@ public partial class NetShieldPageViewModel : SettingsPageViewModelBase,
             : ResourceHelper.GetIllustration("NetShieldOffIllustrationSource");
     }
 
-    public void Receive(FeatureFlagsChangedMessage message)
+    public void Receive(VpnPlanChangedMessage message)
     {
         ExecuteOnUIThread(() =>
         {

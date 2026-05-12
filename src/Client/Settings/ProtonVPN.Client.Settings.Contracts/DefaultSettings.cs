@@ -97,6 +97,8 @@ public static class DefaultSettings
     public static bool IsLocalDnsEnabled = false;
     public static DateTimeOffset? LastSettingsHeartbeatTimeUtc = null;
     public static List<ExcludedLocation> ExcludedLocationsList = [];
+    public static bool ShouldDisableWeakHostSetting = true;
+    public static bool IsWireGuardServerRouteEnabled = true;
 
     public static ChangeServerSettings ChangeServerSettings = new()
     {

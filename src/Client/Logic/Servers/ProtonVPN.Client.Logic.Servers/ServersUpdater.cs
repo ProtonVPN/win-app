@@ -22,8 +22,6 @@ using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Cache;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
@@ -31,7 +29,6 @@ using ProtonVPN.Logging.Contracts.Events.AppLogs;
 namespace ProtonVPN.Client.Logic.Servers;
 
 public class ServersUpdater : IServersUpdater,
-    IEventMessageReceiver<FeatureFlagsChangedMessage>,
     IEventMessageReceiver<LoggedInMessage>,
     IEventMessageReceiver<LoggedOutMessage>
 {
@@ -137,20 +134,6 @@ public class ServersUpdater : IServersUpdater,
     public void Receive(LoggedOutMessage message)
     {
         _isLoggedIn = false;
-    }
-
-    public async void Receive(FeatureFlagsChangedMessage message)
-    {
-        if (!_isLoggedIn)
-        {
-            return;
-        }
-
-        FeatureFlagChange? binaryLoadsFeatureFlag = message.Changes.FirstOrDefault(f => f.Name == nameof(IFeatureFlagsObserver.IsBinaryServerStatusEnabled));
-        if (binaryLoadsFeatureFlag is not null)
-        {
-            await ForceUpdateAsync(CancellationToken.None);
-        }
     }
 
     private Task ForceUpdateServersAsync(CancellationToken cancellationToken)

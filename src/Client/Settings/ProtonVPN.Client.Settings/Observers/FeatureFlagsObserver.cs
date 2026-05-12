@@ -43,29 +43,8 @@ public class FeatureFlagsObserver : PollingObserverBase, IFeatureFlagsObserver
     private readonly IConfiguration _config;
     private readonly IEventMessageSender _eventMessageSender;
 
-    [FeatureFlag("IPv6Support")]
-    public bool IsIpv6SupportEnabled => IsEnabled();
-
-    [FeatureFlag("IsLocalAreaNetworkAllowedForPaidUsersOnly")]
-    public bool IsLocalAreaNetworkAllowedForPaidUsersOnly => IsEnabled();
-
-    [FeatureFlag("ShouldDisableWeakHostSetting")]
-    public bool ShouldDisableWeakHostSetting => IsEnabled();
-
-    [FeatureFlag("ServerListTruncation")]
-    public bool IsServerListTruncationEnabled => IsEnabled();
-
     [FeatureFlag("U2FGatewayPortalUrl")]
     public string U2FGatewayPortalUrl => GetPayload();
-
-    [FeatureFlag("BinaryServerStatus")]
-    public bool IsBinaryServerStatusEnabled => IsEnabled();
-
-    [FeatureFlag("IsWireGuardServerRouteEnabled")]
-    public bool IsWireGuardServerRouteEnabled => IsEnabled();                                                   
-
-    [FeatureFlag("IsNetShieldLevelThreeEnabled")]
-    public bool IsNetShieldLevelThreeEnabled => IsEnabled() && !_settings.VpnPlan.IsB2B; // NetShield Level 3 is not available for B2B users due to lack of support on Gateways
 
     [FeatureFlag("ProTunV1")]
     public bool IsProTunEnabled => IsEnabled();    

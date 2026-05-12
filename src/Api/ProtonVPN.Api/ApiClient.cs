@@ -131,22 +131,16 @@ public class ApiClient : BaseApiClient, IApiClient
 
     public async Task<ApiResponseResult<ServersResponse>> GetServersAsync(
         DeviceLocation? deviceLocation,
-        bool isServerListTruncationEnabled,
-        bool useLegacyEndpoint,
-        IEnumerable<string> favoriteServerIds = null,
+        IEnumerable<string> favoriteServerIds = default,
         CancellationToken cancellationToken = default)
     {
-        string endpointUrl = useLegacyEndpoint
-            ? "vpn/v1/logicals"
-            : "vpn/v2/logicals";
-
-        StringBuilder endpoint = new(endpointUrl +
+        StringBuilder endpoint = new("vpn/v2/logicals" +
             $"?SignServer={LOGICALS_SIGN_SERVER_PARAM_VALUE}" +
             "&SecureCoreFilter=all" +
             "&WithState=true" +
             $"&WithEntriesForProtocols={LOGICALS_PROTOCOL_ENTRIES_PARAM_VALUE}");
 
-        if (isServerListTruncationEnabled && favoriteServerIds is not null && favoriteServerIds.Any())
+        if (favoriteServerIds is not null && favoriteServerIds.Any())
         {
             foreach (string requestServerId in favoriteServerIds)
             {
@@ -158,11 +152,7 @@ public class ApiClient : BaseApiClient, IApiClient
         request.SetRetryCount(SERVERS_RETRY_COUNT);
         request.SetCustomTimeout(TimeSpan.FromSeconds(SERVERS_TIMEOUT_IN_SECONDS));
         request.Headers.IfModifiedSince = Settings.LogicalsLastModifiedDate;
-
-        if (isServerListTruncationEnabled)
-        {
-            request.Headers.Add("x-pm-response-truncation-permitted", "true");
-        }
+        request.Headers.Add("x-pm-response-truncation-permitted", "true");
 
         return await SendRequestAsync<ServersResponse>(request, cancellationToken, "Get servers");
     }

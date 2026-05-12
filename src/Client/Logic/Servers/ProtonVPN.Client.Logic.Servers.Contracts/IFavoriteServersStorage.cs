@@ -21,7 +21,7 @@ namespace ProtonVPN.Client.Logic.Servers.Contracts;
 
 public interface IFavoriteServersStorage
 {
-    IEnumerable<string>? Get();
+    IEnumerable<string> Get();
 
     void SetCurrentServerId(string? serverId);
     void SetLastSearchedServerId(string? serverId);

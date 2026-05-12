@@ -23,14 +23,7 @@ namespace ProtonVPN.Client.Settings.Contracts.Observers;
 
 public interface IFeatureFlagsObserver : IObserver
 {
-    bool IsIpv6SupportEnabled { get; }
-    bool IsLocalAreaNetworkAllowedForPaidUsersOnly { get; }
-    bool ShouldDisableWeakHostSetting { get; }
-    bool IsServerListTruncationEnabled { get; }
     string U2FGatewayPortalUrl { get; }
-    bool IsBinaryServerStatusEnabled { get; }
-    bool IsWireGuardServerRouteEnabled { get; }
-    bool IsNetShieldLevelThreeEnabled { get; }
     bool IsProTunEnabled { get; }                                        
     bool IsConnectionFeedbackEnabled { get; }
 

@@ -78,7 +78,7 @@ public class ApiClientTest
         });
 
         DeviceLocation deviceLocation = new() { CountryCode = "CH", IpAddress = "127.0.0.0" };
-        ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(deviceLocation, isServerListTruncationEnabled: true, useLegacyEndpoint: false);
+        ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(deviceLocation);
 
         response.Success.Should().BeTrue();
     }

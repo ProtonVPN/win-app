@@ -28,8 +28,6 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Files;
 using ProtonVPN.Client.Logic.Servers.Loads;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Observers;
-using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Common.Core.Geographical;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
@@ -39,8 +37,7 @@ using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Logic.Servers.Cache;
 
-public class ServersCache : IServersCache,
-    IEventMessageReceiver<FeatureFlagsChangedMessage>
+public class ServersCache : IServersCache
 {
     private readonly IApiClient _apiClient;
     private readonly IEntityMapper _entityMapper;
@@ -49,7 +46,6 @@ public class ServersCache : IServersCache,
     private readonly IConfiguration _config;
     private readonly ISettings _settings;
     private readonly ILogger _logger;
-    private readonly IFeatureFlagsObserver _featureFlagsObserver;
     private readonly IFavoriteServersStorage _favoriteServersStorage;
     private readonly IServerLoadsCalculator _serverLoadsCalculator;
 
@@ -94,7 +90,6 @@ public class ServersCache : IServersCache,
         IConfiguration config,
         ISettings settings,
         ILogger logger,
-        IFeatureFlagsObserver featureFlagsObserver,
         IFavoriteServersStorage favoriteServersLoader,
         IServerLoadsCalculator serverLoadsCalculator)
     {
@@ -105,7 +100,6 @@ public class ServersCache : IServersCache,
         _config = config;
         _settings = settings;
         _logger = logger;
-        _featureFlagsObserver = featureFlagsObserver;
         _favoriteServersStorage = favoriteServersLoader;
         _serverLoadsCalculator = serverLoadsCalculator;
     }
@@ -212,17 +206,13 @@ public class ServersCache : IServersCache,
     {
         try
         {
-            bool isBinaryServerStatusEnabled = _featureFlagsObserver.IsBinaryServerStatusEnabled;
-            bool isServerListTruncationEnabled = _featureFlagsObserver.IsServerListTruncationEnabled;
-            IEnumerable<string>? favoriteServerIds = GetFavoriteServerIds(isServerListTruncationEnabled);
+            IEnumerable<string> favoriteServerIds = GetFavoriteServerIds();
 
             DeviceLocation? deviceLocation = _settings.DeviceLocation;
             DateTime utcNow = DateTime.UtcNow;
 
             ApiResponseResult<ServersResponse> response = await _apiClient.GetServersAsync(
                 deviceLocation,
-                isServerListTruncationEnabled,
-                useLegacyEndpoint: !isBinaryServerStatusEnabled,
                 favoriteServerIds,
                 cancellationToken);
 
@@ -248,30 +238,23 @@ public class ServersCache : IServersCache,
                     List<Server> servers = _entityMapper.Map<LogicalServerResponse, Server>(response.Value.Servers);
 
                     // Handle race condition when new favorite servers are added between API request and response
-                    if (response.Value.ResponseMetadata is not null && response.Value.ResponseMetadata.ListIsTruncated && favoriteServerIds?.Count() > 0)
+                    if (response.Value.ResponseMetadata is not null && response.Value.ResponseMetadata.ListIsTruncated && favoriteServerIds.Any())
                     {
-                        IEnumerable<string>? favoriteServerIdsUpdated = GetFavoriteServerIds(isServerListTruncationEnabled);
-                        IEnumerable<string>? preserveIds = favoriteServerIdsUpdated?.Except(favoriteServerIds);
-                        if (preserveIds?.Count() > 0)
+                        IEnumerable<string> favoriteServerIdsUpdated = GetFavoriteServerIds();
+                        IEnumerable<string> preserveIds = favoriteServerIdsUpdated.Except(favoriteServerIds);
+                        if (preserveIds.Any())
                         {
                             servers.AddRange(_originalServers.Where(s => preserveIds.Contains(s.Id)));
                         }
                     }
 
-                    if (isBinaryServerStatusEnabled)
-                    {
-                        _settings.LastLogicalsStatusId = response.Value.StatusId;
+                    _settings.LastLogicalsStatusId = response.Value.StatusId;
 
-                        bool result = await UpdateBinaryLoadsAsync(servers, cancellationToken);
-                        if (!result)
-                        {
-                            _logger.Warn<ApiLog>("Loads were not updated.");
-                            return;
-                        }
-                    }
-                    else
+                    bool result = await UpdateBinaryLoadsAsync(servers, cancellationToken);
+                    if (!result)
                     {
-                        _settings.LastLogicalsStatusId = null;
+                        _logger.Warn<ApiLog>("Loads were not updated.");
+                        return;
                     }
 
                     string deviceCountryLocation = deviceLocation?.CountryCode ?? string.Empty;
@@ -299,11 +282,9 @@ public class ServersCache : IServersCache,
         }
     }
 
-    private IEnumerable<string>? GetFavoriteServerIds(bool isServerListTruncationEnabled)
+    private IEnumerable<string> GetFavoriteServerIds()
     {
-        return isServerListTruncationEnabled
-            ? _favoriteServersStorage.Get()
-            : [];
+        return _favoriteServersStorage.Get();
     }
 
     private async Task<byte[]?> GetServerStatusAndLoadFileAsync(string statusId, CancellationToken cancellationToken)
@@ -326,9 +307,7 @@ public class ServersCache : IServersCache,
     {
         List<Server> servers = Servers.ToList();
 
-        bool result = _featureFlagsObserver.IsBinaryServerStatusEnabled
-            ? await UpdateBinaryLoadsAsync(servers, cancellationToken)
-            : await UpdateLegacyLoadsAsync(servers, cancellationToken);
+        bool result = await UpdateBinaryLoadsAsync(servers, cancellationToken);
 
         if (result)
         {
@@ -369,53 +348,6 @@ public class ServersCache : IServersCache,
         }
 
         return true;
-    }
-
-    private async Task<bool> UpdateLegacyLoadsAsync(List<Server> servers, CancellationToken cancellationToken)
-    {
-        try
-        {
-            ApiResponseResult<ServersResponse> response = await _apiClient.GetServerLoadsAsync(_settings.DeviceLocation, cancellationToken);
-            if (response.Success)
-            {
-                _logger.Info<ApiLog>("API: Get server loads response received, updating cached data.");
-
-                List<ServerLoad> serverLoads = _entityMapper.Map<LogicalServerResponse, ServerLoad>(response.Value.Servers);
-
-                foreach (ServerLoad serverLoad in serverLoads)
-                {
-                    Server? server = servers.FirstOrDefault(s => s.Id == serverLoad.Id);
-                    if (server != null)
-                    {
-                        server.Load = serverLoad.Load;
-                        server.Score = serverLoad.Score;
-
-                        // Server loads response does not give physical server details, so...
-                        // If the logical server only has one physical server, then the status of the logical and physical server are tied
-                        // If the status for the logical is down, it means that all physical servers for this logical are down
-                        // If the status for the logical is up, it means that at least one physical server is up, but we can't know which one(s)
-                        // -> in that case, we need to wait the update servers call to update the status properly
-                        if (serverLoad.Status == 0 || server.Servers.Count <= 1)
-                        {
-                            foreach (PhysicalServer physicalServer in server.Servers)
-                            {
-                                physicalServer.Status = serverLoad.Status;
-                            }
-                            server.Status = serverLoad.Status;
-                        }
-                    }
-                }
-
-                return true;
-            }
-
-            return false;
-        }
-        catch (Exception e)
-        {
-            _logger.Error<ApiErrorLog>("API: Get servers load failed", e);
-            return false;
-        }
     }
 
     private void ProcessServers(string? deviceCountryLocation, sbyte? userMaxTier, IReadOnlyList<Server> servers)
@@ -613,23 +545,6 @@ public class ServersCache : IServersCache,
             Servers = servers,
         };
         _serversFileReaderWriter.Save(serversFile);
-    }
-
-    public void Receive(FeatureFlagsChangedMessage message)
-    {
-        FeatureFlagChange? ipv6FeatureFlag = message.Changes.FirstOrDefault(f => f.Name == nameof(IFeatureFlagsObserver.IsIpv6SupportEnabled));
-        if (ipv6FeatureFlag is not null && ipv6FeatureFlag.NewValue == true)
-        {
-            _logger.Info<AppLog>("Reprocessing servers.");
-            ProcessServers(_deviceCountryLocation, _userMaxTier, _originalServers);
-        }
-
-        FeatureFlagChange? serverListTruncationFeatureFlag = message.Changes.FirstOrDefault(f => f.Name == nameof(IFeatureFlagsObserver.IsServerListTruncationEnabled));
-        if (serverListTruncationFeatureFlag is not null)
-        {
-            _logger.Info<AppLog>("Resetting servers last modified date due to server list truncation feature flag change.");
-            _settings.LogicalsLastModifiedDate = DefaultSettings.LogicalsLastModifiedDate;
-        }
     }
 
     public void ReprocessServers()

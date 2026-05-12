@@ -68,11 +68,11 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
             PreferredProtocols = GetPreferredProtocol(settings.VpnProtocol),
             Ports = GetPorts(),
             CustomDns = GetCustomDns(isCustomDnsEnabled),
-            IsIpv6Enabled = FeatureFlagsObserver.IsIpv6SupportEnabled && Settings.IsIpv6Enabled,
+            IsIpv6Enabled = Settings.IsIpv6Enabled,
             WireGuardConnectionTimeout = settings.WireGuardConnectionTimeout,
             DnsBlockMode = settings.DnsBlockMode,
-            ShouldDisableWeakHostSetting = FeatureFlagsObserver.ShouldDisableWeakHostSetting,
-            IsWireGuardServerRouteEnabled = FeatureFlagsObserver.IsWireGuardServerRouteEnabled,
+            ShouldDisableWeakHostSetting = DefaultSettings.ShouldDisableWeakHostSetting,
+            IsWireGuardServerRouteEnabled = DefaultSettings.IsWireGuardServerRouteEnabled,
         };
     }
 

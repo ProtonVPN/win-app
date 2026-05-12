@@ -78,7 +78,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               Style="{StaticResource ToggleSwitchStyle}" />
             </toolkit:SettingsCard>
 
-            <Grid Visibility="{x:Bind ViewModel.IsLocalAreaNetworkSettingVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid>
 
                 <toolkit:SettingsExpander AutomationProperties.AutomationId="LanConnectionsSettingsCard"
                                           Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections_Description')}"
@@ -311,8 +311,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <toolkit:SettingsCard AutomationProperties.AutomationId="Ipv6SettingsCard"
                                   Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_Ipv6')}"
                                   IsTabStop="False"
-                                  Style="{StaticResource DefaultSettingsCardStyle}"
-                                  Visibility="{x:Bind ViewModel.IsIpv6SettingVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                  Style="{StaticResource DefaultSettingsCardStyle}">
                 <toolkit:SettingsCard.Description>
                     <TextBlock TextWrapping="Wrap">
                         <Run Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_Ipv6_Description')}" />

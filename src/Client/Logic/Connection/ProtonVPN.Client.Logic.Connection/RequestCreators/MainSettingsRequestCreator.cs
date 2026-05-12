@@ -24,7 +24,6 @@ using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
-using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Dns;
@@ -36,16 +35,13 @@ namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 public class MainSettingsRequestCreator : IMainSettingsRequestCreator
 {
     private readonly ISettings _settings;
-    private readonly IFeatureFlagsObserver _featureFlagsObserver;
     private readonly IEntityMapper _entityMapper;
 
     public MainSettingsRequestCreator(
         ISettings settings,
-        IFeatureFlagsObserver featureFlagsObserver,
         IEntityMapper entityMapper)
     {
         _settings = settings;
-        _featureFlagsObserver = featureFlagsObserver;
         _entityMapper = entityMapper;
     }
 
@@ -61,8 +57,8 @@ public class MainSettingsRequestCreator : IMainSettingsRequestCreator
             settings.ModerateNat = connectionProfile.Settings.NatType == NatType.Moderate;
         }
 
-        if (settings.NetShieldMode == (int)NetShieldMode.BlockAdsMalwareTrackersAdultContent
-            && (!_featureFlagsObserver.IsNetShieldLevelThreeEnabled || connectionIntent?.Feature is B2BFeatureIntent))
+        if (settings.NetShieldMode == (int)NetShieldMode.BlockAdsMalwareTrackersAdultContent && 
+            (_settings.VpnPlan.IsB2B || connectionIntent?.Feature is B2BFeatureIntent))
         {
             settings.NetShieldMode = (int)NetShieldMode.BlockAdsMalwareTrackers;
         }
@@ -89,10 +85,10 @@ public class MainSettingsRequestCreator : IMainSettingsRequestCreator
             ModerateNat = _settings.NatType == NatType.Moderate,
             NetShieldMode = _settings.IsNetShieldEnabled ? (int)_settings.NetShieldMode : 0,
             Ipv6LeakProtection = _settings.IsIpv6LeakProtectionEnabled,
-            IsIpv6Enabled = _featureFlagsObserver.IsIpv6SupportEnabled && _settings.IsIpv6Enabled,
+            IsIpv6Enabled = _settings.IsIpv6Enabled,
             Ipv6Fragments = _settings.Ipv6Fragments,
             IsShareCrashReportsEnabled = _settings.IsShareCrashReportsEnabled,
-            IsLocalAreaNetworkAccessEnabled = !_featureFlagsObserver.IsLocalAreaNetworkAllowedForPaidUsersOnly || _settings.IsLocalAreaNetworkAccessEnabled,
+            IsLocalAreaNetworkAccessEnabled = _settings.IsLocalAreaNetworkAccessEnabled,
             PortForwarding = _settings.IsPortForwardingEnabled,
             SplitTcp = _settings.IsVpnAcceleratorEnabled,
             OpenVpnAdapter = _entityMapper.Map<OpenVpnAdapter, OpenVpnAdapterIpcEntity>(_settings.OpenVpnAdapter),
@@ -100,7 +96,7 @@ public class MainSettingsRequestCreator : IMainSettingsRequestCreator
             DnsBlockMode = _settings.IsLocalAreaNetworkAccessEnabled && _settings.IsLocalDnsEnabled
                 ? DnsBlockModeIpcEntity.Callout
                 : DnsBlockModeIpcEntity.Nrpt,
-            ShouldDisableWeakHostSetting = _featureFlagsObserver.ShouldDisableWeakHostSetting,
+            ShouldDisableWeakHostSetting = DefaultSettings.ShouldDisableWeakHostSetting,
         };
     }
 

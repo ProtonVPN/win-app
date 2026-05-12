@@ -50,7 +50,7 @@ public interface IApiClient : IClientBase
     Task<ApiResponseResult<VpnInfoWrapperResponse>> GetVpnInfoResponse(CancellationToken cancellationToken = default);
     Task<ApiResponseResult<BaseResponse>> GetLogoutResponse();
     Task<ApiResponseResult<EventResponse>> GetEventResponse(string lastId = default);
-    Task<ApiResponseResult<ServersResponse>> GetServersAsync(DeviceLocation? deviceLocation, bool isServerListTruncationEnabled, bool useLegacyEndpoint, IEnumerable<string> favoriteServerIds = null, CancellationToken cancellationToken = default);
+    Task<ApiResponseResult<ServersResponse>> GetServersAsync(DeviceLocation? deviceLocation, IEnumerable<string> favoriteServerIds = null, CancellationToken cancellationToken = default);
     Task<ApiResponseResult<byte[]>> GetServerLoadsAndStatusBinaryStringAsync(string statusId, CancellationToken cancellationToken = default);
     Task<ApiResponseResult<ServerCountResponse>> GetServersCountAsync();
     Task<ApiResponseResult<ReportAnIssueFormResponse>> GetReportAnIssueFormData();

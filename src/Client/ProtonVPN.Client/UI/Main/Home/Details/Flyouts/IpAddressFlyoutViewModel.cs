@@ -27,7 +27,6 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Observers;
 
 namespace ProtonVPN.Client.UI.Main.Home.Details.Flyouts;
 
@@ -41,7 +40,6 @@ public partial class IpAddressFlyoutViewModel : ActivatableViewModelBase,
     private readonly IUrlsBrowser _urlsBrowser;
     private readonly ISettings _settings;
     private readonly IConnectionManager _connectionManager;
-    private readonly IFeatureFlagsObserver _featureFlagsObserver;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(DeviceIpAddressOrHidden))]
@@ -76,10 +74,9 @@ public partial class IpAddressFlyoutViewModel : ActivatableViewModelBase,
     public bool IsIpAddressExposed => IsDisconnected && !string.IsNullOrWhiteSpace(_settings.DeviceLocation?.IpAddress);
 
     public bool IsConnectedWithIpv4 => IsConnected &&
-        (!_featureFlagsObserver.IsIpv6SupportEnabled
-            || !_settings.IsIpv6Enabled
-            || _connectionManager.CurrentConnectionDetails?.IsIpv6Supported == false
-            || string.IsNullOrWhiteSpace(_connectionManager.CurrentConnectionDetails?.ServerIpAddress?.Ipv6Address));
+        (!_settings.IsIpv6Enabled
+        || _connectionManager.CurrentConnectionDetails?.IsIpv6Supported == false
+        || string.IsNullOrWhiteSpace(_connectionManager.CurrentConnectionDetails?.ServerIpAddress?.Ipv6Address));
 
     public bool IsConnectedWithIpv6 => IsConnected && !IsConnectedWithIpv4;
 
@@ -92,14 +89,12 @@ public partial class IpAddressFlyoutViewModel : ActivatableViewModelBase,
         IUrlsBrowser urlsBrowser,
         ISettings settings,
         IConnectionManager connectionManager,
-        IFeatureFlagsObserver featureFlagsObserver,
         IViewModelHelper viewModelHelper)
         : base(viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
         _settings = settings;
         _connectionManager = connectionManager;
-        _featureFlagsObserver = featureFlagsObserver;
     }
 
     public void Receive(DeviceLocationChangedMessage message)

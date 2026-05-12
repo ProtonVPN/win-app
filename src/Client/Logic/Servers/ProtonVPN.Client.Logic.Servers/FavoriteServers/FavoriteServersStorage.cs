@@ -18,7 +18,6 @@
  */
 
 using ProtonVPN.Client.Logic.Servers.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.Logic.Servers.FavoriteServers;
@@ -28,25 +27,16 @@ public class FavoriteServersStorage : IFavoriteServersStorage
     private const int MAX_TOTAL = 35;
     private const int MAX_RECENTS = 15;
 
-    private readonly IFeatureFlagsObserver _featureFlagsObserver;
-
     private string? _currentServerId;
     private string? _lastSearchedServerId;
     private IList<string> _recentServerIds = [];
     private IList<string> _profileServerIds = [];
 
-    public FavoriteServersStorage(IFeatureFlagsObserver featureFlagsObserver)
-    {
-        _featureFlagsObserver = featureFlagsObserver;
-    }
+    public FavoriteServersStorage()
+    { }
 
-    public IEnumerable<string>? Get()
+    public IEnumerable<string> Get()
     {
-        if (!_featureFlagsObserver.IsServerListTruncationEnabled)
-        {
-            return null;
-        }
-
         List<string> serverIds = [];
 
         serverIds.AddIfNotNull(_currentServerId);

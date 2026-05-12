@@ -31,8 +31,6 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
-using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Features.Bases;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
@@ -41,12 +39,9 @@ using ProtonVPN.Client.UI.Main.Settings.Connection;
 namespace ProtonVPN.Client.UI.Main.Features.NetShield;
 
 public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
-    IEventMessageReceiver<NetShieldStatsChangedMessage>,
-    IEventMessageReceiver<FeatureFlagsChangedMessage>
+    IEventMessageReceiver<NetShieldStatsChangedMessage>
 {
     private const int BADGE_MAXIMUM_NUMBER = 99;
-
-    private readonly IFeatureFlagsObserver _featureFlagsObserver;
 
     private readonly Lazy<List<ChangedSettingArgs>> _disableNetShieldSettings;
     private readonly Lazy<List<ChangedSettingArgs>> _enableNetShieldLevelOneSettings;
@@ -110,7 +105,7 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
 
     public bool IsNetShieldLevelThreeEnabled => IsNetShieldLevelThreeAvailable && IsNetShieldEnabled && NetShieldMode == NetShieldMode.BlockAdsMalwareTrackersAdultContent;
 
-    public bool IsNetShieldLevelThreeAvailable => _featureFlagsObserver.IsNetShieldLevelThreeEnabled;
+    public bool IsNetShieldLevelThreeAvailable => !Settings.VpnPlan.IsB2B;
 
     protected override UpsellFeatureType? UpsellFeature { get; } = UpsellFeatureType.NetShield;
 
@@ -127,8 +122,7 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
         IUpsellCarouselWindowActivator upsellCarouselWindowActivator,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         ISettingsConflictResolver settingsConflictResolver,
-        IProfileEditor profileEditor,
-        IFeatureFlagsObserver featureFlagsObserver)
+        IProfileEditor profileEditor)
         : base(viewModelHelper,
                mainViewNavigator,
                settingsViewNavigator,
@@ -141,8 +135,6 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
                profileEditor,
                ConnectionFeature.NetShield)
     {
-        _featureFlagsObserver = featureFlagsObserver;
-
         _disableNetShieldSettings = new(() =>
         [
             ChangedSettingArgs.Create(() => Settings.IsNetShieldEnabled, () => false)
@@ -179,18 +171,6 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
             {
                 ClearNetShieldStats();
             }
-        });
-    }          
-
-    public void Receive(FeatureFlagsChangedMessage message)
-    {
-        ExecuteOnUIThread(() =>
-        {
-            OnPropertyChanged(nameof(IsNetShieldLevelThreeAvailable));
-            OnPropertyChanged(nameof(IsNetShieldLevelTwoEnabled));
-            OnPropertyChanged(nameof(IsNetShieldLevelThreeEnabled));
-            OnPropertyChanged(nameof(IsBlockAdsMalwareTrackersMessageVisible));
-            OnPropertyChanged(nameof(IsBlockAdsMalwareTrackersAdultContentMessageVisible));
         });
     }
 

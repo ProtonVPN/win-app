@@ -29,26 +29,25 @@ using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Models.Settings;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
-using ProtonVPN.Client.Settings.Contracts.Messages;
-using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Profiles.Contracts;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.UI.Main.Profiles.Components;
 
-public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileSettingsSelector,
-    IEventMessageReceiver<FeatureFlagsChangedMessage>
+public partial class ProfileSettingsSelectorViewModel : ViewModelBase, 
+    IProfileSettingsSelector,
+    IEventMessageReceiver<VpnPlanChangedMessage>
 {
     private readonly ISettings _settings;
     private readonly ICommonItemFactory _commonItemFactory;
     private readonly IRequiredReconnectionSettings _requiredReconnectionSettings;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
     private readonly IUrlsBrowser _urlsBrowser;
-    private readonly IFeatureFlagsObserver _featureFlagsObserver;
 
     private IProfileSettings _originalProfileSettings = ProfileSettings.Default;
 
@@ -89,7 +88,7 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileS
 
     protected bool PortForwardingHasChanged => _originalProfileSettings.IsPortForwardingEnabled != SelectedPortForwardingState?.IsEnabled;
 
-    public bool IsNetShieldLevelThreeAvailable => _featureFlagsObserver.IsNetShieldLevelThreeEnabled;
+    public bool IsNetShieldLevelThreeAvailable => !_settings.VpnPlan.IsB2B;
 
     public ProfileSettingsSelectorViewModel(
         IViewModelHelper viewModelHelper,
@@ -97,8 +96,7 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileS
         ICommonItemFactory commonItemFactory,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
-        IUrlsBrowser urlsBrowser,
-        IFeatureFlagsObserver featureFlagsObserver)
+        IUrlsBrowser urlsBrowser)
         : base(viewModelHelper)
     {
         _settings = settings;
@@ -106,7 +104,6 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileS
         _requiredReconnectionSettings = requiredReconnectionSettings;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _urlsBrowser = urlsBrowser;
-        _featureFlagsObserver = featureFlagsObserver;
     }
 
     public IProfileSettings GetProfileSettings()
@@ -151,7 +148,7 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase, IProfileS
             || (NetShieldStateHasChanged && _settings.IsCustomDnsServersEnabled);
     }
 
-    public void Receive(FeatureFlagsChangedMessage message)
+    public void Receive(VpnPlanChangedMessage message)
     {
         ExecuteOnUIThread(() =>
         {
