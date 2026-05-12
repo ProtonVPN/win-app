@@ -318,6 +318,12 @@
   <data name="Connection_Error_AllServersExcluded_Action">
     <value>Excluded locations</value>
   </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>To fix it, close or uninstall the app associated with:</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>Another app might be preventing Proton VPN from connecting</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>프로필 편집</value>
   </data>
@@ -377,6 +383,9 @@
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
     <value>기기의 WireGuard 어댑터가 사용 중입니다. 기기에서 실행 중인 다른 VPN에서 연결을 끊은 다음 다시 시도해 주세요.</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>How is your connection?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>다음 국가에서 자동 선택됨:</value>

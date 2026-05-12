@@ -318,6 +318,12 @@
   <data name="Connection_Error_AllServersExcluded_Action">
     <value>Excluded locations</value>
   </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>لإصلاح ذلك، أغلق التطبيق المرتبط بـ أو قم بإلغاء تثبيته:</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>قد يمنع تطبيق آخر Proton VPN من الاتصال</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>تعديل الملف الشخصي</value>
   </data>
@@ -377,6 +383,9 @@
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
     <value>محول WireGuard على جهازك قيد الاستخدام. اقطع الاتصال بأي VPN آخر يعمل على جهازك، ثم حاول مرة أخرى.</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>How is your connection?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>تم الاختيار التقائي من</value>

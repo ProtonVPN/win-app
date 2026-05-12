@@ -318,6 +318,12 @@
   <data name="Connection_Error_AllServersExcluded_Action">
     <value>Ubicacions excloses</value>
   </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>Per solucionar-ho, tanqueu o desinstal·leu l'aplicació associada:</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>És possible que una altra aplicació estigui impedint que Proton VPN es connecti</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>Edita el perfil</value>
   </data>
@@ -377,6 +383,9 @@ Codi d'error: {0}</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
     <value>L'adaptador WireGuard del vostre dispositiu està en ús. Desconnecteu-vos de qualsevol altra VPN que s'executi al vostre dispositiu i, a continuació, torneu-ho a provar.</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>Com us va la connexió?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Selecció automàtica de</value>

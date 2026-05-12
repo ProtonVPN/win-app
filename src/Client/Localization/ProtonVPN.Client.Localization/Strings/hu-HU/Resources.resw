@@ -318,6 +318,12 @@
   <data name="Connection_Error_AllServersExcluded_Action">
     <value>Excluded locations</value>
   </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>To fix it, close or uninstall the app associated with:</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>Another app might be preventing Proton VPN from connecting</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>Profil szerkesztése</value>
   </data>
@@ -377,6 +383,9 @@ Error code: {0}</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
     <value>A készülék WireGuard adaptere használatban van. Kapcsolódjon le az eszközén futó bármely más VPN-ről, majd próbálja meg újra.</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>How is your connection?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Automatikusan kiválasztva a következők közül:</value>

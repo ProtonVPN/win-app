@@ -318,6 +318,12 @@
   <data name="Connection_Error_AllServersExcluded_Action">
     <value>Katılmayacak konumlar</value>
   </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>Sorunu düzeltmek için şununla ilişkili uygulamayı kapatın ya da kaldırın:</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>Başka bir uygulama Proton VPN bağlantısının kurulmasını engelliyor olabilir</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>Profili düzenle</value>
   </data>
@@ -377,6 +383,9 @@ Hata kodu: {0}</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
     <value>Aygıtınızın WireGuard bağdaştırıcısı kullanılıyor. Aygıtınızda çalışan diğer VPN uygulamalarının bağlantısını kesip yeniden deneyin.</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>Bağlantınız nasıldı?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Şuralardan otomatik seçildi</value>

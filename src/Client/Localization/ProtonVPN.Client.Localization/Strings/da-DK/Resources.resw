@@ -318,6 +318,12 @@
   <data name="Connection_Error_AllServersExcluded_Action">
     <value>Udelukkede lokationer</value>
   </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>For at fikse det, luk eller afinstaller appen forbundet med:</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>En anden app forhindrer muligvis Proton VPN i at forbinde</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>Rediger profil</value>
   </data>
@@ -377,6 +383,9 @@ Fejlkode: {0}</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
     <value>Din enheds WireGuard-adapter er i brug. Afbryd forbindelsen til enhver anden VPN, der kører på din enhed, og prøv derefter igen.</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>Hvordan er din forbindelse?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Auto-valgt fra</value>

@@ -318,6 +318,12 @@
   <data name="Connection_Error_AllServersExcluded_Action">
     <value>Locuri excluse</value>
   </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>Pentru a remedia problema, închideți sau dezinstalați aplicația asociată cu:</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>O altă aplicație ar putea să împiedice conectarea Proton VPN</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>Editare profil</value>
   </data>
@@ -377,6 +383,9 @@ Cod eroare: {0}</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
     <value>Adaptorul WireGuard este deja accesat. Deconectați-vă de la orice alt VPN care rulează pe dispozitiv și reîncercați.</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>How is your connection?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Autoselectare din</value>

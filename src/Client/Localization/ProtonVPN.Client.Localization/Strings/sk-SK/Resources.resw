@@ -318,6 +318,12 @@
   <data name="Connection_Error_AllServersExcluded_Action">
     <value>Vylúčené lokality</value>
   </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>Na vyriešenie tohto problému zatvorte alebo odinštalujte aplikáciu, ktorá s tým súvisí:</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>Pripojeniu Proton VPN môže brániť iná aplikácia</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>Upraviť profil</value>
   </data>
@@ -377,6 +383,9 @@ Chybový kód: {0}</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
     <value>Adaptér WireGuard vášho zariadenia sa používa. Odpojte sa od akejkoľvek inej siete VPN spustenej na vašom zariadení a potom to skúste znova.</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>Ako funguje vaše pripojenie?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Automatický výber z</value>

@@ -318,6 +318,12 @@
   <data name="Connection_Error_AllServersExcluded_Action">
     <value>Выключаныя месцазнаходжанні</value>
   </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>Для выпраўлення, закрыйце або выдаліце праграму звязаную з:</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>Іншая праграма можа перашкаджаць Proton VPN падключыцца.</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>Рэдагаваць профіль</value>
   </data>
@@ -377,6 +383,9 @@
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
     <value>Адаптар прылады WireGuard у цяперашні час выкарыстоўваецца. Адключыце любы іншы VPN, які запушчаны на вашай прыладзе і паспрабуйце яшчэ раз.</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>Як вы ацэньваеце сваё падключэнне?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Аўтаматычны выбар з</value>

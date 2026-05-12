@@ -318,6 +318,12 @@
   <data name="Connection_Error_AllServersExcluded_Action">
     <value>Ausgeschlossene Standorte</value>
   </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>Um das Problem zu beheben, schließe oder deinstalliere die zugehörige App:</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>Möglicherweise verhindert eine andere App, dass Proton VPN eine Verbindung herstellen kann</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>Profil bearbeiten</value>
   </data>
@@ -377,6 +383,9 @@ Fehlercode: {0}</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
     <value>Der WireGuard-Adapter deines Geräts ist in Verwendung. Bitte trenne die Verbindung zu allen anderen VPNs und versuche es erneut.</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>Wie gut ist deine Internetverbindung?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Automatisch ausgewählt aus</value>

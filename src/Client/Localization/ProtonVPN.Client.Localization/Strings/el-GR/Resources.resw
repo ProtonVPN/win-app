@@ -318,6 +318,12 @@
   <data name="Connection_Error_AllServersExcluded_Action">
     <value>Εξαιρούμενες τοποθεσίες</value>
   </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>Για να το διορθώσετε, κλείστε ή απεγκαταστήστε την εφαρμογή που σχετίζεται με:</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>Μια άλλη εφαρμογή ενδέχεται να εμποδίζει το Proton VPN να συνδεθεί</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>Επεξεργασία προφίλ</value>
   </data>
@@ -377,6 +383,9 @@
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
     <value>Ο προσαρμογέας WireGuard της συσκευής σας βρίσκεται σε χρήση. Αποσυνδεθείτε από οποιοδήποτε άλλο VPN που εκτελείται στη συσκευή σας και, στη συνέχεια, δοκιμάστε ξανά.</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>Πώς είναι η σύνδεσή σας;</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Επιλέχθηκε αυτόματα από</value>

@@ -318,6 +318,12 @@
   <data name="Connection_Error_AllServersExcluded_Action">
     <value>გამორიცხული მდებარეობები</value>
   </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>გასასწორებლად დახურეთ, ან წაშალეთ აპლიკაცია, რომელიც ასოცირებულია:</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>შეიძლება, Protong VPN-ს დაკავშირებაში სხვა აპი უშლის ხელს</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>პროფილის ჩასწორება</value>
   </data>
@@ -377,6 +383,9 @@
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
     <value>თქვენი მოწყობილობის WireGuard ადაპტერი გამოიყენება. გათიშეთ ნებისმიერი სხვა VPN, რომელიც მუშაობს თქვენს მოწყობილობაზე და თავიდან სცადეთ.</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>როგორია თქვენი შეერთება?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>ავტომატურადაა არჩეული წყაროდან</value>

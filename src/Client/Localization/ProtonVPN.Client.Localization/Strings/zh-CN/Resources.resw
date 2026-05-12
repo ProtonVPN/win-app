@@ -318,6 +318,12 @@
   <data name="Connection_Error_AllServersExcluded_Action">
     <value>排除的位置</value>
   </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>若要解决此问题，请关闭或卸载与以下内容关联的应用：</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>其他应用可能正在阻止 Proton VPN 连接</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>修改个人资料</value>
   </data>
@@ -377,6 +383,9 @@
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
     <value>您设备的 WireGuard 适配器正在使用中。断开设备上运行的任何其他 VPN，然后再试一次。</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>您的连接状况如何？</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>自动选择</value>

@@ -318,6 +318,12 @@
   <data name="Connection_Error_AllServersExcluded_Action">
     <value>Ekskluderte plasseringer</value>
   </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>To fix it, close or uninstall the app associated with:</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>Another app might be preventing Proton VPN from connecting</value>
+  </data>
   <data name="Connection_Error_EditProfile">
     <value>Rediger profil</value>
   </data>
@@ -377,6 +383,9 @@ Feilkode: {0}</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
     <value>Enhetens WireGuard-adapter er i bruk. Koble fra alle andre VPN-er som kjører på enheten din, og prøv igjen.</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>How is your connection?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Auto-valgt fra</value>
