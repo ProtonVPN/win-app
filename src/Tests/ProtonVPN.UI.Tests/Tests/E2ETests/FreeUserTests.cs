@@ -107,7 +107,8 @@ public class FreeUserTests : FreshSessionSetUp
         AdvancedSettingsRobot
             .NavigateToLan();
         UpsellCarrouselRobot
-            .Verify.IsAdvancedSettingsUpsellDisplayed();
+            .Verify.IsAdvancedSettingsUpsellDisplayed()
+            .CloseModal();
     }
 
     [Test]

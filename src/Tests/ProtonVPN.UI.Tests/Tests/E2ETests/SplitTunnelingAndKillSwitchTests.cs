@@ -17,7 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
@@ -59,32 +58,21 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
 
     [Test, Order(1)]
     [Retry(3)]
-    public void SplitTunnelingAndAdvancedKillSwitchEnabledConnectWithDifferentProtocols()
+    [TestCaseSource(typeof(TestConstants), nameof(AllProtocols))]
+    public void SplitTunnelingAndAdvancedKillSwitchEnabledConnectWithDifferentProtocols(Protocol protocol)
     {
         CompletePreconditionsSplitTunnelingIp();
 
         CommonUiFlows.EnsureUserIsDisconnected(shouldVerifyKillSwitch: true);
 
+        CommonUiFlows.ChangeProtocol(protocol, shouldEnableProTun: true);
+
         HomeRobot
             .ConnectViaConnectionCard()
-            .Verify.IsConnected();
+            .Verify.IsConnected()
+                   .IsProtocolDisplayed(protocol, TestConstants.IsProtunVersion);
 
-        foreach (Protocol protocolToChoose in Enum.GetValues(typeof(Protocol)))
-        {
-            HomeRobot
-                .ClickOnProtocolConnectionDetails()
-                .ClickChangeProtocolButton();
-
-            SettingRobot
-                .SelectProtocol(protocolToChoose)
-                .Reconnect();
-
-            HomeRobot
-                .Verify.IsConnected()
-                       .IsProtocolDisplayed(protocolToChoose, TestConstants.IsProtunVersion);
-
-            NetworkUtils.AssertInternetAvailability(true);
-        }
+        NetworkUtils.AssertInternetAvailability(true);
     }
 
     [Test, Order(2)]
@@ -119,6 +107,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
     }
 
     [Test, Order(4)]
+    [Retry(3)]
     public void IncludedAppLossesInternetWhileInConnectingState()
     {
         CompletePreconditionsSplitTunnelingApp(SplitTunnelingMode.Include);

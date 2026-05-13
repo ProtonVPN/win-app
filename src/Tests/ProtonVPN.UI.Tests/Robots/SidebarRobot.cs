@@ -91,8 +91,6 @@ public class SidebarRobot
 
     protected Element CountriesListGroup = Element.ByClassName("ListViewHeaderItem");
     protected Element ConnectionItemsHeader = Element.ByAutomationId("ConnectionItemsHeader");
-    protected Element CountryItem = Element.ByClassName("ListViewItem");
-
     protected Element DisconnectButtonOnHover = Element.ByAutomationId("ConnectionRowAction").And(Element.ByName("Disconnect"));
 
     public SidebarRobot NavigateToCountries()
@@ -448,10 +446,10 @@ public class SidebarRobot
             string totalCountries = ConnectionItemsHeader.GetAutomationElementName()!;
             int totalCountriesCount = int.Parse(totalCountries.Split('(', ')')[1]);
             Assert.That(totalCountriesCount, Is.GreaterThan(MINIMUM_EXPECTED_COUNTRY_COUNT));
-            CountryItem.WaitUntilItemDisplayed(0);
+            CountriesListGroup.WaitUntilItemDisplayed(0);
             ConnectionItemsList.Scroll(verticalPercent: 50);
             ConnectionItemsList.Scroll(verticalPercent: 100);
-            CountryItem.WaitUntilItemDisplayed(-1);
+            CountriesListGroup.WaitUntilItemDisplayed(-1);
             return this;
         }
 

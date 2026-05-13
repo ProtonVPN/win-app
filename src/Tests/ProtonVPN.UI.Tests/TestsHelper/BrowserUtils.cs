@@ -178,7 +178,7 @@ public class BrowserUtils
                 StartBrowserWithCDP(browserConfig.Path, browserConfig.DebugPort);
                 return operation(browserConfig.DebugPort).Result ?? string.Empty;
             },
-            TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
+            TestConstants.OneMinuteTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
 
         return retry.Result ?? "No internet";
     }

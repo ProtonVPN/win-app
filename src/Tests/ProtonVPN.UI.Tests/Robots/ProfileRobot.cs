@@ -318,5 +318,5 @@ public class ProfileRobot
         return this;
     }
 
-    public Verifications Verify => new Verifications();
+    public Verifications Verify => new();
 }

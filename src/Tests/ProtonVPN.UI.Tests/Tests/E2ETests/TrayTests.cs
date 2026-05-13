@@ -404,23 +404,24 @@ public class TrayTests : BaseTest
         SidebarRobot
             .NavigateToAllCountriesTab()
             .ConnectToCountry(COUNTRY_NAME);
-        HomeRobot
-            .Verify.IsConnected();
+        VerifyIsConnectedThenDisconnect();
 
         SidebarRobot
             .NavigateToSecureCoreCountriesTab()
             .ExpandCities(SECURE_CORE_COUNTRY_NAME)
             .ConnectViaSecureCore(SECURE_CORE_COUNTRY_NAME, VIA_COUNTRY_ICELAND);
-        HomeRobot
-            .Verify.IsConnected();
+        VerifyIsConnectedThenDisconnect();
 
         SidebarRobot
             .NavigateToProfiles()
             .ConnectToProfile(PROFILE_NAME);
-        HomeRobot
-            .Verify.IsConnected();
+        VerifyIsConnectedThenDisconnect();
+    }
 
+    private void VerifyIsConnectedThenDisconnect()
+    {
         HomeRobot
+            .Verify.IsConnected()
             .Disconnect()
             .Verify.IsDisconnected();
     }

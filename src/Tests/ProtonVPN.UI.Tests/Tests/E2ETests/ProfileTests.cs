@@ -261,6 +261,8 @@ public class ProfileTests : BaseTest
     [Test, Order(9)]
     public void ConnectWithCustomSettings()
     {
+        BrowserUtils.KillAllBrowsers();
+
         CloseLeftoverProfilePage();
 
         SidebarRobot
@@ -299,40 +301,38 @@ public class ProfileTests : BaseTest
 
     [Test, Order(10)]
     [Retry(3)]
-    public void ConnectToDifferentProfilesWithDifferentConnectionTypesAndProtocols()
+    [TestCaseSource(nameof(_profiles))]
+    public void ConnectToDifferentProfilesWithDifferentConnectionTypesAndProtocols((string profileName, ConnectionType connectionType, string countryName, TestConstants.Protocol protocol) profile)
     {
         CloseLeftoverProfilePage();
 
         SidebarRobot
             .NavigateToProfiles();
 
-        foreach ((string profileName, ConnectionType connectionType, string countryName, TestConstants.Protocol protocol) _profile in _profiles)
+        CreateProfile(profile.profileName, profile.connectionType, profile.countryName, profile.protocol);
+
+        SidebarRobot
+            .ConnectToProfile(profile.profileName);
+
+        HomeRobot
+            .Verify.IsConnected()
+                   .ConnectionCardTitleEquals(profile.profileName)
+                   .ConnectionCardDescriptionContains(profile.countryName)
+                   .IsProtocolDisplayed(profile.protocol, TestConstants.IsProtunVersion);
+
+        if (profile.connectionType == ConnectionType.P2P)
         {
-            CreateProfile(_profile.profileName, _profile.connectionType, _profile.countryName, _profile.protocol);
-
-            SidebarRobot
-                .ConnectToProfile(_profile.profileName);
-
             HomeRobot
-                .Verify.IsConnected()
-                       .ConnectionCardTitleEquals(_profile.profileName)
-                       .ConnectionCardDescriptionContains(_profile.countryName)
-                       .IsProtocolDisplayed(_profile.protocol, TestConstants.IsProtunVersion);
-
-            if (_profile.connectionType == ConnectionType.P2P)
-            {
-                HomeRobot
-                    .Verify.IsP2PConnection();
-            }
-
-            if (_profile.connectionType == ConnectionType.SecureCore)
-            {
-                HomeRobot.Verify
-                    .ConnectionCardDescriptionContains(" via ");
-            }
-
-            //TODO: The map highlights the country of the server;
+                .Verify.IsP2PConnection();
         }
+
+        if (profile.connectionType == ConnectionType.SecureCore)
+        {
+            HomeRobot.Verify
+                .ConnectionCardDescriptionContains(" via ");
+        }
+
+        //TODO: The map highlights the country of the server;
     }
 
     private void CreateProfile(string profileName, ConnectionType connectionType, string country, TestConstants.Protocol protocol)

@@ -33,9 +33,9 @@ public class TorrentHelper
     private const string PORT_CHECKER_API_BASE_URL = "https://portchecker.io/api";
     private const string TORRENT_URL = "https://releases.ubuntu.com/24.04/ubuntu-24.04.4-desktop-amd64.iso.torrent";
 
-    private static string _aria2Folder = @"C:\aria2";
-    private static string _aria2ExePath = @$"{_aria2Folder}\aria2-1.36.0-win-64bit-build1\aria2c.exe";
-    private static string _torrentsPath = @$"{_aria2Folder}\torrents";
+    private static readonly string _aria2Folder = @"C:\aria2";
+    private static readonly string _aria2ExePath = @$"{_aria2Folder}\aria2-1.36.0-win-64bit-build1\aria2c.exe";
+    private static readonly string _torrentsPath = @$"{_aria2Folder}\torrents";
 
     private static readonly string _aria2RuleName = "ProtonVPN UI Tests - Allow aria2c";
     private static readonly string _allowAria2FirewallScript = $@"

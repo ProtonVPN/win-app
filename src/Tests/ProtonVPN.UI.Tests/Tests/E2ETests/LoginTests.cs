@@ -47,6 +47,20 @@ public class LoginTests : FreshSessionSetUp
     private static string ClientLogsPath => TestConstants.ClientLogsPath;
     private static string? ServerStoragePath => TestConstants.ServerStoragePath;
 
+    private static readonly (string Plan, TestUserData User)[] _validCredentialUsersToCheck =
+        [
+            (Plan: "VPN Plus", User: TestUserData.PlusUser),
+            (Plan: "Visionary", User: TestUserData.VisionaryUser),
+            (Plan: "Proton Unlimited", User: TestUserData.UnlimitedUser),
+            (Plan: "Proton VPN Free", User: TestUserData.FreeUser)
+        ];
+
+    private static readonly (string Plan, TestUserData User)[] _serverListUsersToCheck =
+        [
+            (Plan: "VPN Plus", User: TestUserData.PlusUser),
+            (Plan: "Proton VPN Free", User: TestUserData.FreeUser)
+        ];
+
     [Test]
     public void LoginWithSpecialCharsUser()
     {
@@ -194,50 +208,36 @@ public class LoginTests : FreshSessionSetUp
 
     [Test]
     [Retry(3)]
-    public void LoginWithValidCredentials()
+    [TestCaseSource(nameof(_validCredentialUsersToCheck))]
+    public void LoginWithValidCredentials((string Plan, TestUserData User) userToCheck)
     {
-        (string Plan, TestUserData User)[] usersToCheck =
-        {
-            (Plan: "VPN Plus", User: TestUserData.PlusUser),
-            (Plan: "Visionary", User: TestUserData.VisionaryUser),
-            (Plan: "Proton Unlimited", User: TestUserData.UnlimitedUser),
-            (Plan: "Proton VPN Free", User: TestUserData.FreeUser)
-        };
+        CommonUiFlows.FullLogin(userToCheck.User);
 
-        foreach ((string Plan, TestUserData User) userToCheck in usersToCheck)
-        {
-            CommonUiFlows.FullLogin(userToCheck.User);
+        SettingRobot
+            .OpenSettings()
+            .Verify.IsCorrectAccountInfoDisplayed(userToCheck.User.Username, userToCheck.Plan)
+            .CloseSettings();
 
-            SettingRobot
-                .OpenSettings()
-                .Verify.IsCorrectAccountInfoDisplayed(userToCheck.User.Username, userToCheck.Plan)
-                .CloseSettings();
-
-            CommonUiFlows.Logout();
-        }
+        CommonUiFlows.Logout();
     }
 
     [Test]
-    public void ServerListFullyLoadedAfterLogin()
+    [TestCaseSource(nameof(_serverListUsersToCheck))]
+    public void ServerListFullyLoadedAfterLogin((string Plan, TestUserData User) userToCheck)
     {
-        TestUserData[] usersToCheck = { TestUserData.PlusUser, TestUserData.FreeUser };
+        CommonUiFlows.FullLogin(userToCheck.User);
 
-        foreach (TestUserData userToCheck in usersToCheck)
-        {
-            CommonUiFlows.FullLogin(userToCheck);
+        SidebarRobot
+            .Verify.AreAllServersDisplayed();
 
-            SidebarRobot
-                .Verify.AreAllServersDisplayed();
+        //give it time to populate the service-logs after connecting
+        Thread.Sleep(TestConstants.OneSecondTimeout);
 
-            //give it time to populate the service-logs after connecting
-            Thread.Sleep(TestConstants.OneSecondTimeout);
+        WindowsUtils.AssertLogFile(ClientLogsPath, LINE_TO_LOOK_FOR_IN_CLIENT);
 
-            WindowsUtils.AssertLogFile(ClientLogsPath, LINE_TO_LOOK_FOR_IN_CLIENT);
+        WindowsUtils.AssertLogFile(ServerStoragePath!, LINE_TO_LOOK_FOR_IN_SERVER, WORD_TO_LOOK_FOR_IN_SERVER);
 
-            WindowsUtils.AssertLogFile(ServerStoragePath!, LINE_TO_LOOK_FOR_IN_SERVER, WORD_TO_LOOK_FOR_IN_SERVER);
-
-            CommonUiFlows.Logout();
-        }
+        CommonUiFlows.Logout();
     }
 
     [Test]

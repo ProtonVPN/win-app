@@ -19,12 +19,10 @@
 
 using System.Collections.Generic;
 using NUnit.Framework;
-using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
-using Windows.Networking.Connectivity;
 using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
@@ -34,16 +32,21 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("ARM")]
 public class ProtocolTests : FreshSessionSetUp
 {
-    private const string LINE_TO_LOOK_FOR = "OpenVpnAdapter";
+    private const string LINE_TO_LOOK_FOR = "VpnProtocol: ";
     private const string OPENVPN_TUN_ADAPTER_LOG_LINE = "VpnProtocol: 'OpenVpnUdp', OpenVpnAdapter: 'Tun'";
     private const string OPENVPN_TAP_ADAPTER_LOG_LINE = "VpnProtocol: 'OpenVpnUdp', OpenVpnAdapter: 'Tap'";
 
     private const string OPENVPN_TUN_ADAPTER_FULL_NAME = "ProtonVPN TUN Tunnel";
     private const string OPENVPN_TAP_ADAPTER_FULL_NAME = "TAP-ProtonVPN Windows Adapter V9";
 
-    private static readonly List<Protocol> _wireGuardProtocols = [Protocol.WireGuardUdp, Protocol.WireGuardTcp, Protocol.WireGuardTls];
-
     private static readonly string _serviceLogsPath = TestEnvironment.GetServiceLogsPath();
+
+    private static readonly Dictionary<Protocol, ProTunProtocol> _proTunProtocolMapping = new()
+    {
+        { Protocol.WireGuardUdp, ProTunProtocol.ProTunUdp },
+        { Protocol.WireGuardTcp, ProTunProtocol.ProTunTcp },
+        { Protocol.WireGuardTls, ProTunProtocol.ProTunTls },
+    };
 
     [SetUp]
     public void TestInitialize()
@@ -52,51 +55,17 @@ public class ProtocolTests : FreshSessionSetUp
     }
 
     [Test]
-    public void ConnectUsingOpenVpnUdp()
+    [TestCaseSource(typeof(TestConstants), nameof(AllProtocols))]
+    public void ConnectUsingDifferentProtocols(Protocol protocol)
     {
-        PerformProtocolTest(Protocol.OpenVpnUdp);
+        PerformProtocolTest(protocol);
     }
 
     [Test]
-    public void ConnectUsingOpenVpnTcp()
+    [TestCaseSource(typeof(TestConstants), nameof(WireGuardProtocols))]
+    public void ConnectUsingDifferentProTunProtocols(Protocol protocol)
     {
-        PerformProtocolTest(Protocol.OpenVpnTcp);
-    }
-
-    [Test]
-    public void ConnectUsingWireGuardTcp()
-    {
-        PerformProtocolTest(Protocol.WireGuardTcp);
-    }
-
-    [Test]
-    public void ConnectUsingStealth()
-    {
-        PerformProtocolTest(Protocol.WireGuardTls);
-    }
-
-    [Test]
-    public void ConnectUsingWireGuardUdp()
-    {
-        PerformProtocolTest(Protocol.WireGuardUdp);
-    }
-
-    [Test]
-    public void ConnectUsingProtunWireGuardTcp()
-    {
-        PerformProtocolTest(Protocol.WireGuardTcp, shouldEnableProTun: true);
-    }
-
-    [Test]
-    public void ConnectUsingProtunStealth()
-    {
-        PerformProtocolTest(Protocol.WireGuardTls, shouldEnableProTun: true);
-    }
-
-    [Test]
-    public void ConnectUsingProtunWireGuardUdp()
-    {
-        PerformProtocolTest(Protocol.WireGuardUdp, shouldEnableProTun: true);
+        PerformProtocolTest(protocol, shouldEnableProTun: true);
     }
 
     [Test]
@@ -118,23 +87,21 @@ public class ProtocolTests : FreshSessionSetUp
 
     [Test]
     [Ignore("JIRA - VPNWIN-2605")]
-    public void ConnectUsingWireGuardWhileConnectedToNativeWireGuard()
+    [TestCaseSource(nameof(WireGuardProtocols))]
+    public void ConnectUsingWireGuardWhileConnectedToNativeWireGuard(Protocol wireGuardProtocol)
     {
         ScriptHelper.ConnectToWireGuard();
         ScriptHelper.VerifyWireGuardIsConnected();
 
         try
         {
-            foreach (Protocol wireGuardProtocol in _wireGuardProtocols)
-            {
-                CommonUiFlows.ChangeProtocol(wireGuardProtocol, shouldEnableProTun: false);
+            CommonUiFlows.ChangeProtocol(wireGuardProtocol);
 
-                HomeRobot
-                    .ConnectViaConnectionCard()
-                    .Verify.IsWireGuardErrorDisplayed()
-                    .CloseConnectionError()
-                    .Verify.IsDisconnected();
-            }
+            HomeRobot
+                .ConnectViaConnectionCard()
+                .Verify.IsWireGuardErrorDisplayed()
+                .CloseConnectionError()
+                .Verify.IsDisconnected();
         }
         finally
         {
@@ -146,8 +113,8 @@ public class ProtocolTests : FreshSessionSetUp
     public void OpenVpnAdapterTAP()
     {
         VerifyOpenVpnAdapter(
-            OpenVpnAdapter.TAP, 
-            OPENVPN_TAP_ADAPTER_LOG_LINE, 
+            OpenVpnAdapter.TAP,
+            OPENVPN_TAP_ADAPTER_LOG_LINE,
             OPENVPN_TAP_ADAPTER_FULL_NAME);
     }
 
@@ -155,21 +122,19 @@ public class ProtocolTests : FreshSessionSetUp
     public void OpenVpnAdapterTUN()
     {
         VerifyOpenVpnAdapter(
-            OpenVpnAdapter.TUN, 
-            OPENVPN_TUN_ADAPTER_LOG_LINE, 
+            OpenVpnAdapter.TUN,
+            OPENVPN_TUN_ADAPTER_LOG_LINE,
             OPENVPN_TUN_ADAPTER_FULL_NAME);
     }
 
     private void VerifyOpenVpnAdapter(
-        OpenVpnAdapter openVpnAdapter, 
-        string expectedLogLine, 
+        OpenVpnAdapter openVpnAdapter,
+        string expectedLogLine,
         string expectedNetworkAdapterName)
     {
+        CommonUiFlows.ChangeProtocol(Protocol.OpenVpnUdp, shouldEnableProTun: true);
         SettingRobot
             .OpenSettings()
-            .OpenProtocolSettings()
-            .SelectProtocol(Protocol.OpenVpnUdp)
-            .ApplySettings()
             .OpenAdvancedSettings()
             .SelectOpenVpnAdapter(openVpnAdapter);
 
@@ -196,5 +161,11 @@ public class ProtocolTests : FreshSessionSetUp
             .ConnectViaConnectionCard()
             .Verify.IsConnected()
                    .IsProtocolDisplayed(protocol, shouldEnableProTun);
+
+        string logLine = shouldEnableProTun && _proTunProtocolMapping.TryGetValue(protocol, out ProTunProtocol proTunValue)
+            ? proTunValue.ToString()
+            : protocol.ToString();
+
+        WindowsUtils.AssertLogFile(_serviceLogsPath, LINE_TO_LOOK_FOR, logLine);
     }
 }

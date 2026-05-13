@@ -39,16 +39,6 @@ public class LeakTests : FreshSessionSetUp
 
     private List<string> _dnsListNotConnected = [];
 
-    private static IEnumerable<Protocol> AllProtocols()
-    {
-        return Enum.GetValues<Protocol>().Where(p => p != Protocol.Smart);
-    }
-
-    private static IEnumerable<Protocol> WireGuardProtocols()
-    {
-        return AllProtocols().Where(p => p.ToString().StartsWith("WireGuard"));
-    }
-
     [SetUp]
     public void TestInitialize()
     {
@@ -109,14 +99,14 @@ public class LeakTests : FreshSessionSetUp
     }
 
     [Test]
-    [TestCaseSource(nameof(AllProtocols))]
+    [TestCaseSource(typeof(TestConstants), nameof(AllProtocols))]
     public void DnsIsNotLeakingUsingDifferentProtocols(Protocol protocol)
     {
         PerformProtocolTest(protocol);
     }
 
     [Test]
-    [TestCaseSource(nameof(WireGuardProtocols))]
+    [TestCaseSource(typeof(TestConstants), nameof(WireGuardProtocols))]
     public void DnsIsNotLeakingUsingDifferentProTunProtocols(Protocol protocol)
     {
         PerformProtocolTest(protocol, shouldEnableProTun: true);

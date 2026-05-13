@@ -57,6 +57,16 @@ public static class TestConstants
     // United States is first as it has the most servers available and there are less chances for all of them to be under maintenance at the same time
     public static readonly List<string> AvailableCountries = ["United States", "France", "Germany", "Hong Kong"];
 
+    public static IEnumerable<Protocol> AllProtocols()
+    {
+        return Enum.GetValues<Protocol>().Where(p => p != Protocol.Smart);
+    }
+
+    public static IEnumerable<Protocol> WireGuardProtocols()
+    {
+        return AllProtocols().Where(p => p.ToString().StartsWith("WireGuard"));
+    }
+
     public enum Protocol
     {
         WireGuardUdp,
@@ -65,6 +75,13 @@ public static class TestConstants
         OpenVpnTcp,
         WireGuardTls,
         Smart,
+    }
+
+    public enum ProTunProtocol
+    {
+        ProTunUdp,
+        ProTunTcp,
+        ProTunTls,
     }
 
     public enum SplitTunnelingMode

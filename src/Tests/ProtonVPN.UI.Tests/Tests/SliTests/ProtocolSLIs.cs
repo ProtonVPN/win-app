@@ -83,7 +83,7 @@ public class ProtocolSLIs : SliSetUp
     private void PerformProtocolTest(Protocol protocol)
     {
         bool isProtunWireGuard = TestConstants.IsProtunVersion && SliHelper.SliName?.StartsWith("wireguard") == true;
-        string? protunPrefix = isProtunWireGuard ? "protun_ " : null;
+        string? protunPrefix = isProtunWireGuard ? "protun_" : null;
         SliHelper.SliName = protunPrefix + SliHelper.SliName;
 
         CommonUiFlows.ChangeProtocol(protocol, isProtunWireGuard);

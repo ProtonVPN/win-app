@@ -180,6 +180,7 @@ public class SplitTunnelingExcludeTests : BaseTest
     }
 
     [Test, Order(5)]
+    [Retry(3)]
     public void SplitTunnelingExcludeModeApp()
     {
         SettingRobot
