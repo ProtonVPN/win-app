@@ -51,6 +51,8 @@ public class TwoFactorRequiredConnectionError : ConnectionErrorBase,
 
     public override bool IsToCloseErrorOnDisconnect => true;
 
+    public override bool IsToCloseErrorOnConnecting => false;
+
     public TwoFactorRequiredConnectionError(
         ILocalizationProvider localizer,
         IFeatureFlagsObserver featureFlagsObserver,
