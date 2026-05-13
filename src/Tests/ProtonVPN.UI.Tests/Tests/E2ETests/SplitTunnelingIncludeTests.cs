@@ -117,7 +117,7 @@ public class SplitTunnelingIncludeTests : BaseTest
         SplitTunnelingRobot
             .EditSplitTunnelingApps();
         AppSelectorRobot
-            .Verify.AssertAppAvailability(APP_TO_INCLUDE, true)
+            .Verify.AssertAppAvailability(APP_TO_INCLUDE, shouldBeAvailable: true)
             .AddSuggestedApp(APP_TO_INCLUDE)
             .Verify.IsAppChecked(APP_TO_INCLUDE);
         ConfirmationRobot
@@ -132,16 +132,16 @@ public class SplitTunnelingIncludeTests : BaseTest
 
         string? ipAddressToCompare = HomeRobot.GetVpnServerIp();
 
-        BrowserUtils.VerifyBrowserIpWithRetry(APP_TO_INCLUDE, true, ipAddressToCompare);
-        BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, false, ipAddressToCompare);
+        BrowserUtils.VerifyBrowserIpWithRetry(APP_TO_INCLUDE, hasVpn: true, ipAddressToCompare);
+        BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, hasVpn: false, ipAddressToCompare);
         BrowserUtils.KillAllBrowsers();
 
         HomeRobot
             .Disconnect()
             .Verify.IsDisconnected();
 
-        BrowserUtils.VerifyBrowserIpWithRetry(APP_TO_INCLUDE, false, ipAddressToCompare);
-        BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, false, ipAddressToCompare);
+        BrowserUtils.VerifyBrowserIpWithRetry(APP_TO_INCLUDE, hasVpn: false, ipAddressToCompare);
+        BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, hasVpn: false, ipAddressToCompare);
     }
 
     [Test, Order(3)]
@@ -155,7 +155,7 @@ public class SplitTunnelingIncludeTests : BaseTest
             .EditSplitTunnelingApps();
         AppSelectorRobot
             .Verify.IsAppChecked(APP_TO_INCLUDE)
-                   .AssertAppAvailability(APP_TO_INCLUDE, true);
+                   .AssertAppAvailability(APP_TO_INCLUDE, shouldBeAvailable: true);
         ConfirmationRobot
             .CancelAction();
 
@@ -190,8 +190,8 @@ public class SplitTunnelingIncludeTests : BaseTest
         SplitTunnelingRobot
             .EditSplitTunnelingApps();
         AppSelectorRobot
-            .Verify.AssertAppAvailability(APP_TO_INCLUDE, false)
-                   .AssertAppAvailability(APP_NOT_FOUND_TEXT, true);
+            .Verify.AssertAppAvailability(APP_TO_INCLUDE, shouldBeAvailable: false)
+                   .AssertAppAvailability(APP_NOT_FOUND_TEXT, shouldBeAvailable: true);
     }
 
     private void VerifyIsSplitTunnelingAppInFlyoutMenu(bool isAppAvailable)
@@ -212,7 +212,7 @@ public class SplitTunnelingIncludeTests : BaseTest
         SplitTunnelingRobot
             .EditSplitTunnelingApps();
         AppSelectorRobot
-            .Verify.AssertAppAvailability(appName, true);
+            .Verify.AssertAppAvailability(appName, shouldBeAvailable: true);
         ConfirmationRobot
             .CancelAction();
     }

@@ -99,7 +99,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
             .ConnectViaConnectionCard()
             .Verify.IsConnected();
 
-        BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, false);
+        BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: false);
         BrowserUtils.KillAllBrowsers();
     }
 
@@ -112,7 +112,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
             .ConnectViaConnectionCard()
             .Verify.IsConnected();
 
-        BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, true);
+        BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: true);
         BrowserUtils.KillAllBrowsers();
 
         ScriptHelper.RemoveChromeFirewallRule();
@@ -134,13 +134,13 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
         HomeRobot
             .Verify.IsConnecting();
 
-        BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, false);
+        BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: false);
 
         ScriptHelper.RemoveVpnSpeedLimit();
 
         HomeRobot
             .Verify.IsConnected();
-        BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, true);
+        BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: true);
     }
 
     [Test, Order(5)]
@@ -174,7 +174,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
         HomeRobot
             .Verify.IsAdvancedKillSwitchActivated();
 
-        BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, false);
+        BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: false);
     }
 
     [Test, Order(6)]

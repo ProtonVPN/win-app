@@ -189,7 +189,7 @@ public class SplitTunnelingExcludeTests : BaseTest
         SplitTunnelingRobot
             .EditSplitTunnelingApps();
         AppSelectorRobot
-            .Verify.AssertAppAvailability(APP_TO_EXCLUDE, true)
+            .Verify.AssertAppAvailability(APP_TO_EXCLUDE, shouldBeAvailable: true)
             .AddSuggestedApp(APP_TO_EXCLUDE)
             .Verify.IsAppChecked(APP_TO_EXCLUDE);
         ConfirmationRobot
@@ -204,16 +204,16 @@ public class SplitTunnelingExcludeTests : BaseTest
 
         string? ipAddressToCompare = HomeRobot.GetVpnServerIp();
 
-        BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, true, ipAddressToCompare);
-        BrowserUtils.VerifyBrowserIpWithRetry(APP_TO_EXCLUDE, false, ipAddressToCompare);
+        BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, hasVpn: true, ipAddressToCompare);
+        BrowserUtils.VerifyBrowserIpWithRetry(APP_TO_EXCLUDE, hasVpn: false, ipAddressToCompare);
         BrowserUtils.KillAllBrowsers();
 
         HomeRobot
             .Disconnect()
             .Verify.IsDisconnected();
 
-        BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, false, ipAddressToCompare);
-        BrowserUtils.VerifyBrowserIpWithRetry(APP_TO_EXCLUDE, false, ipAddressToCompare);
+        BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, hasVpn: false, ipAddressToCompare);
+        BrowserUtils.VerifyBrowserIpWithRetry(APP_TO_EXCLUDE, hasVpn: false, ipAddressToCompare);
     }
 
     [OneTimeTearDown]

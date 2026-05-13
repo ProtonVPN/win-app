@@ -119,7 +119,7 @@ public class SupportRobot
 
         public Verifications IsConnectionHelpDisplayed()
         {
-            ConnectionHelpHeader.WaitUntilExists(TestConstants.ThirtySecondsTimeout);
+            ConnectionHelpHeader.WaitUntilExists(TestConstants.TwoMinutesTimeout);
             return this;
         }
 

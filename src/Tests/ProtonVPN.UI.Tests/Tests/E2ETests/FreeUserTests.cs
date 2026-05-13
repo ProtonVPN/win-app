@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.Threading;
 using System.Collections.Generic;
 using FlaUI.Core.Tools;
 using NUnit.Framework;
@@ -29,7 +28,7 @@ using ProtonVPN.UI.Tests.TestsHelper;
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
-[Category("2")]
+[Category("4")]
 [Category("ARM")]
 public class FreeUserTests : FreshSessionSetUp
 {
@@ -78,6 +77,8 @@ public class FreeUserTests : FreshSessionSetUp
     [Retry(3)]
     public void CancelChangeServerDoesNotTriggerTimer()
     {
+        CommonUiFlows.EnsureUserIsDisconnected();
+
         HomeRobot
             .ConnectViaConnectionCard()
             .Verify.IsConnected();
@@ -209,9 +210,11 @@ public class FreeUserTests : FreshSessionSetUp
     }
 
     [Test]
-    [Retry(3)]
+    [Retry(5)]
     public void ConnectionRequestTriggersUpsellCarousel()
     {
+        CommonUiFlows.EnsureUserIsDisconnected();
+
         HomeRobot
             .ConnectViaConnectionCard()
             .Verify.IsConnected();

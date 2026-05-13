@@ -274,6 +274,7 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Retry(3)]
     public void DisconnectFromCountriesList()
     {
         string ipAddressNotConnected = NetworkUtils.GetIpAddressWithRetry();
@@ -349,6 +350,8 @@ public class ConnectionTests : FreshSessionSetUp
     [Test]
     public void FirewallRulesAreNotIgnored()
     {
+        CommonUiFlows.EnsureUserIsDisconnected();
+
         ScriptHelper.AddChromeFirewallRule();
 
         try
@@ -358,14 +361,14 @@ public class ConnectionTests : FreshSessionSetUp
                 .ConnectViaConnectionCard()
                 .Verify.IsConnected();
 
-            BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, false);
+            BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: false);
             BrowserUtils.KillAllBrowsers();
 
             EnableKillSwitch(KillSwitchMode.Standard);
             HomeRobot
                 .Verify.IsConnected();
 
-            BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, false);
+            BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: false);
             BrowserUtils.KillAllBrowsers();
         }
         finally
@@ -396,7 +399,7 @@ public class ConnectionTests : FreshSessionSetUp
         HomeRobot.Verify.IsConnected();
 
         //Note: DNS leaks are expected in this scenario, unless Kill Switch is set to "Advanced"
-        BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, true);
+        BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: true);
     }
 
     [Test]

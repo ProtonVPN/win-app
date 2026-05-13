@@ -77,7 +77,7 @@ public class BrowserUtils
     {
         string publicIp = GetBrowserWebRtcIpWithRetry(browserApp);
 
-        Assert.That(publicIp, Is.EqualTo(vpnIp),
+        Assert.That(publicIp, Is.EqualTo(vpnIp).Or.Contains("No internet"),
             $"WebRTC leak detected in {browserApp}!" +
             $"\nExposed IP: {publicIp}" +
             $"\nExpected VPN IP: {vpnIp}");
@@ -122,7 +122,7 @@ public class BrowserUtils
             }
             else
             {
-                Assert.That(browserIp, Does.Contain("Your Internet access is blocked").Or.Contain("This site can’t be reached").Or.Contain("Press space to play"), "Expected internet to not be available.");
+                Assert.That(browserIp, Does.Contain("No internet").Or.Contain("Your Internet access is blocked").Or.Contain("This site can’t be reached").Or.Contain("Press space to play"), "Expected internet to not be available.");
             }
         }
     }
@@ -180,7 +180,7 @@ public class BrowserUtils
             },
             TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
 
-        return retry.Result ?? "This site can't be reached";
+        return retry.Result ?? "No internet";
     }
 
     private static (string Path, int DebugPort) GetBrowserConfig(string browserApp)

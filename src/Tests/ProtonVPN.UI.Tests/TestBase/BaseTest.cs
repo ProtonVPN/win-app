@@ -142,15 +142,10 @@ public class BaseTest
 
         try
         {
-            HomeRobot.ExpandKebabMenuButton();
-            try
-            {
-                HomeRobot.ExitViaKebabMenuWithConfirmation();
-            }
-            catch (TimeoutException)
-            {
-                HomeRobot.ExitViaKebabMenu();
-            }
+            HomeRobot
+                .ExpandKebabMenuButton()
+                .ExitViaKebabMenuWithConfirmation();
+
             Thread.Sleep(TestConstants.OneSecondTimeout);
         }
         catch (TimeoutException)

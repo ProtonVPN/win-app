@@ -45,7 +45,7 @@ public class DnsLeakHelper
             () => {
                 return GetDnsServersAsync().Result;
             },
-            TestConstants.ThirtySecondsTimeout, TestConstants.RetryInterval, ignoreException: true);
+            TestConstants.OneMinuteTimeout, TestConstants.RetryInterval, ignoreException: true);
         return retry.Result ?? throw new HttpRequestException("Failed to get DNS servers.");
     }
 

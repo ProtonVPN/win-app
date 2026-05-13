@@ -24,7 +24,7 @@ using ProtonVPN.UI.Tests.TestsHelper;
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
-[Category("1")]
+[Category("4")]
 public class OnboardingTests : BaseTest
 {
     private const string EXCLUDED_LOCATIONS_TIP_PROMPT = "Avoid unwanted locations";
