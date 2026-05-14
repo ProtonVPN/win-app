@@ -19,9 +19,10 @@
 
 using System;
 using System.IO;
+using System.Net.Http;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using System.Net.Http;
+using FlaUI.Core.Tools;
 using NUnit.Framework;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
@@ -55,7 +56,42 @@ public class TorrentHelper
         WindowsUtils.RunPowerShellScript(_allowAria2FirewallScript);
     }
 
-    public static async Task StartTorrentOnPortAsync(int port)
+    public static void StartTorrentOnPort(int port)
+    {
+        RetryResult<bool> retry = Retry.WhileFalse(
+            () =>
+            {
+                return StartTorrentOnPortAsync(port).GetAwaiter().GetResult();
+            },
+            TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval);
+
+        Assert.That(retry.Result, Is.True, $"Failed to start aria2c with port: {port}");
+    }
+
+    public static void IsPortOpen(string ip, int port)
+    {
+        RetryResult<bool> retry = Retry.WhileFalse(
+            () =>
+            {
+                return IsPortOpenAsync(ip, port).GetAwaiter().GetResult();
+            },
+            TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval);
+    }
+
+    public static void StopAndCleanup()
+    {
+        _torrentProcess?.Kill();
+        _torrentProcess?.WaitForExit(5000);
+        _torrentProcess?.Dispose();
+        _torrentProcess = null;
+
+        if (Directory.Exists(_torrentsPath))
+        {
+            Directory.Delete(_torrentsPath, recursive: true);
+        }
+    }
+
+    private static async Task<bool> StartTorrentOnPortAsync(int port)
     {
         Directory.CreateDirectory(_torrentsPath);
 
@@ -80,22 +116,10 @@ public class TorrentHelper
         };
 
         _torrentProcess.Start();
+        return true;
     }
 
-    public static void StopAndCleanup()
-    {
-        _torrentProcess?.Kill();
-        _torrentProcess?.WaitForExit(5000);
-        _torrentProcess?.Dispose();
-        _torrentProcess = null;
-
-        if (Directory.Exists(_torrentsPath))
-        {
-            Directory.Delete(_torrentsPath, recursive: true);
-        }
-    }
-
-    public static async Task IsPortOpenAsync(string ip, int port)
+    private static async Task<bool> IsPortOpenAsync(string ip, int port)
     {
         using HttpClient client = new();
         string url = $"{PORT_CHECKER_API_BASE_URL}/{ip}/{port}";
@@ -109,12 +133,13 @@ public class TorrentHelper
             if (result.Trim().Equals("true", StringComparison.OrdinalIgnoreCase))
             {
                 TestContext.WriteLine($"SUCCESS: Port {port} is open on {ip}");
-                return;
+                return true;
             }
 
             await Task.Delay(TestConstants.FiveSecondsTimeout);
         }
 
         TestContext.WriteLine($"WARNING: Port {port} is not reported as open on {ip} by external port-check after 40 seconds");
+        return false;
     }
 }

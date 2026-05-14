@@ -80,7 +80,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <toolkit:SettingsCard.HeaderIcon>
                             <pathicons:Bell />
                         </toolkit:SettingsCard.HeaderIcon>
-                        <ToggleSwitch IsOn="{x:Bind ViewModel.IsNotificationEnabled, Mode=TwoWay}"
+                        <ToggleSwitch AutomationProperties.AutomationId="NotificationsToggle"
+                                      IsOn="{x:Bind ViewModel.IsNotificationEnabled, Mode=TwoWay}"
                                       Style="{StaticResource ToggleSwitchStyle}" />
                     </toolkit:SettingsCard>
 

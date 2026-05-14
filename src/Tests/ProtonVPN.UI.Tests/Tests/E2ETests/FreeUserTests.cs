@@ -258,6 +258,32 @@ public class FreeUserTests : FreshSessionSetUp
         CommonAssertions.AssertIpAddressUnchanged(ipAddressToCompare!);
     }
 
+    [Test]
+    [Ignore("Aria2 Doesnt Trigger modal")]
+    public void P2PConnectionDisabledUpsell()
+    {
+        TorrentHelper.AllowAriaFirewallScript();
+        TorrentHelper.StopAndCleanup();
+
+        HomeRobot
+            .ConnectViaConnectionCard()
+            .Verify.IsConnected();
+        try
+        {
+            TorrentHelper.StartTorrentOnPort(1111);
+
+            UpsellCarrouselRobot
+                .Verify.IsP2PTorrentInProgressUpsellDisplayed();
+
+            NetworkUtils.AssertInternetAvailability(false);
+        }
+        finally
+        {
+            TorrentHelper.StopAndCleanup();
+            NetworkUtils.AssertInternetAvailability(true);
+        }
+    }
+
     private void VerifyTabUpsells(
         Func<UpsellCarrouselRobot.Verifications> verifyAction,
         string? country = null,

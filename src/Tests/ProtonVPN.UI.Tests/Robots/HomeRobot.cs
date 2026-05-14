@@ -18,8 +18,8 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Threading;
+using System.Collections.Generic;
 using FlaUI.Core.Input;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
@@ -81,8 +81,8 @@ public class HomeRobot
     protected Element KillSwitchWidgetButton = Element.ByAutomationId("KillSwitchWidgetButton");
     protected Element SplitTunnelingWidgetButton = Element.ByAutomationId("SplitTunnelingWidgetButton");
     protected Element PortForwardingWidgetButton = Element.ByAutomationId("PortForwardingWidgetButton");
-    protected Element CopyPortNumberButton = Element.ByAutomationId("CopyPortNumberCondensedButton");
     protected Element CopyPortNumberCompactButton = Element.ByAutomationId("CopyPortNumberCompactButton");
+    protected Element CopyPortNumberButton = Element.ByAutomationId("CopyPortNumberCondensedButton");
 
     protected Element ConnectionErrorPanel = Element.ByAutomationId("ConnectionErrorPanel");
     protected Element WireGuardConnectionErrorPanelTitle => ConnectionErrorPanel.FindChild(Element.ByName("Connection failed"));
@@ -128,6 +128,12 @@ public class HomeRobot
     public HomeRobot ClickHoverCopyPortNumber()
     {
         CopyPortNumberCompactButton.Click();
+        return this;
+    }
+
+    public HomeRobot ClickCopyPortNumber()
+    {
+        CopyPortNumberButton.Invoke();
         return this;
     }
 
@@ -455,6 +461,21 @@ public class HomeRobot
             List<string> allChildren = GetFlyoutChildren();
             Assert.That(allChildren, Does.Contain(splitTunnelingMode.Replace("1", "0")));
             Assert.That(allChildren, Does.Contain(SPLIT_TUNNELING_NO_APP_SELECTED_TEXT));
+            return this;
+        }
+
+        public Verifications IsLastChangedTimerDisplayed()
+        {
+            List<string> allChildren = GetFlyoutChildren();
+            Assert.That(allChildren, Has.Some.Match("Last changed: \\d+ second[s]? ago"));
+            return this;
+        }
+
+        public Verifications IsPortUnavailable()
+        {
+            List<string> allChildren = GetFlyoutChildren();
+            Assert.That(allChildren, Does.Contain("Connect to a P2P server to improve torrenting speeds"));
+            Assert.That(allChildren, Does.Contain("Unavailable"));
             return this;
         }
 

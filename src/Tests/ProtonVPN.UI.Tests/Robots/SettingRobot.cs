@@ -52,7 +52,7 @@ public class SettingRobot
     protected Element ExcludedLocationSelectorButton = Element.ByAutomationId("SelectorButton");
     protected Element RemoveExcludedLocationButton = Element.ByAutomationId("RemoveExcludedLocationButton");
     protected Element PortForwardingToggle = Element.ByAutomationId("PortForwardingToggle");
-    protected Element CopyPortNumberButton = Element.ByAutomationId("CopyPortNumberCondensedButton");
+    protected Element CopyPortNumberButton = Element.ByAutomationId("CopyPortNumberCompactButton");
 
     protected Element AutoStartupSettingsCard = Element.ByAutomationId("AutoStartupSettingsCard");
     protected Element ReportIssueSettingsCard = Element.ByAutomationId("ReportIssueSettingsCard");
@@ -86,6 +86,8 @@ public class SettingRobot
 
     protected Element AutoLaunchToggle = Element.ByAutomationId("AutoLaunchToggle");
     protected Element AutoConnectToggle = Element.ByAutomationId("AutoConnectToggle");
+
+    protected Element NotificationsToggle = Element.ByAutomationId("NotificationsToggle");
 
     protected Element ProtonProtocolsToggle = Element.ByAutomationId("ProtonProtocolsToggle");
     protected Element OpenVpnTcpProtocolRadioButton = Element.ByAutomationId("OpenVpnTcpProtocolRadioButton");
@@ -365,9 +367,21 @@ public class SettingRobot
         return this;
     }
 
-    public SettingRobot TogglePortForwardingnSetting()
+    public SettingRobot EnablePortForwarding()
     {
-        PortForwardingToggle.Toggle();
+        if (!PortForwardingToggle.IsToggled())
+        {
+            PortForwardingToggle.Toggle();
+        }
+        return this;
+    }
+
+    public SettingRobot DisablePortForwarding()
+    {
+        if (PortForwardingToggle.IsToggled())
+        {
+            PortForwardingToggle.Toggle();
+        }
         return this;
     }
 
@@ -538,6 +552,18 @@ public class SettingRobot
             return this;
         }
 
+        public Verifications IsPortForwardingDisabledStateDisplayed()
+        {
+            PortForwardingSettingsCard.FindChild(Element.ByName("Off")).WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsPortForwardingEnabledStateDisplayed()
+        {
+            PortForwardingSettingsCard.FindChild(Element.ByName("On")).WaitUntilDisplayed();
+            return this;
+        }
+
         public Verifications IsKillSwitchEnabledStateDisplayed(KillSwitchMode killSwitchMode)
         {
             KillSwitchSettingsCard.FindChild(Element.ByName(killSwitchMode.ToString())).WaitUntilDisplayed();
@@ -547,6 +573,13 @@ public class SettingRobot
         public Verifications IsKillSwitchDisabledStateDisplayed()
         {
             KillSwitchSettingsCard.FindChild(Element.ByName("Off")).WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications AreNotificationsEnabled()
+        {
+            NotificationsToggle.ScrollIntoView();
+            Assert.That(NotificationsToggle.IsToggled(), Is.True);
             return this;
         }
 

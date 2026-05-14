@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -34,6 +33,20 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 public class PortForwardingTests : FreshSessionSetUp
 {
     private const string COUNTRY_NAME = "Austria";
+    private const string SERVER_WITHOUT_P2P_SUPPORT = "FI#3";
+
+    private const string ENABLE_MODERATE_NAT_TITLE = "Enable Moderate NAT?";
+    private const string ENABLE_MODERATE_NAT_DESCRIPTION = "You won't be able to use port forwarding with Moderate NAT.";
+
+    private const string ENABLE_PORT_FORWARDING_TITLE = "Enable port forwarding?";
+    private const string ENABLE_PORT_FORWARDING_DESCRIPTION = "You won't be able to use Moderate NAT when port forwarding is enabled.";
+
+    private const string ENABLE_BUTTON = "Enable";
+
+    private const string MODERATE_NAT_ENABLED_LINE_TO_LOOK_FOR = "\"randomized-nat\": false, \"port-forwarding\": false";
+    private const string MODERATE_NAT_DISABLED_LINE_TO_LOOK_FOR = "\"randomized-nat\": true, \"port-forwarding\": true";
+
+    private static readonly string _serviceLogsPath = TestEnvironment.GetServiceLogsPath();
 
     [SetUp]
     public void SetUp()
@@ -43,7 +56,7 @@ public class PortForwardingTests : FreshSessionSetUp
 
     [Test]
     [Retry(3)]
-    public async Task PortForwardingOpensThePortAsync()
+    public void PortForwardingOpensThePort()
     {
         TorrentHelper.AllowAriaFirewallScript();
         TorrentHelper.StopAndCleanup();
@@ -53,53 +66,151 @@ public class PortForwardingTests : FreshSessionSetUp
         string? ipAddressConnected = HomeRobot.GetVpnServerIp();
         Assert.That(ipAddressConnected, Is.Not.Null);
 
-        SettingRobot.ClickCopyPortNumber();
+        HomeRobot.ClickCopyPortNumber();
         int forwardedPort = GetForwardedPortFromClipboard();
 
-        await TorrentHelper.StartTorrentOnPortAsync(forwardedPort);
+        try
+        {
+            TorrentHelper.StartTorrentOnPort(forwardedPort);
+            TorrentHelper.IsPortOpen(ipAddressConnected!, forwardedPort);
+        }
+        finally
+        {
+            TorrentHelper.StopAndCleanup();
+            CommonUiFlows.EnsureUserIsDisconnected();
+        }
+    }
 
-        await TorrentHelper.IsPortOpenAsync(ipAddressConnected!, forwardedPort);
+    [Test]
+    public void PortForwardingIsDisabledWhenModerateNatIsEnabled()
+    {
+        SettingRobot
+            .OpenSettings()
+            .OpenPortForwardingSettings()
+            .EnablePortForwarding()
+            .ApplySettings()
+            .OpenAdvancedSettings()
+            .SelectNatType(NatType.Moderate);
 
-        TorrentHelper.StopAndCleanup();
+        ConfirmationRobot
+            .Verify.IsOverlayDisplayed()
+                   .OverlayTextContains(ENABLE_MODERATE_NAT_TITLE)
+                   .OverlayTextContains(ENABLE_MODERATE_NAT_DESCRIPTION)
+                   .OverlayButtonsEquals(primary: ENABLE_BUTTON)
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
+
+        SettingRobot
+            .ApplySettings()
+            .Verify.IsPortForwardingDisabledStateDisplayed()
+            .CloseSettings();
+
+        ConnectAndVerify();
+
+        WindowsUtils.AssertLogFile(_serviceLogsPath, MODERATE_NAT_ENABLED_LINE_TO_LOOK_FOR);
+
+        CommonUiFlows.EnsureUserIsDisconnected();
+    }
+
+    [Test]
+    public void ModerateNatIsDisabledWhenPortForwardingIsEnabled()
+    {
+        SettingRobot
+            .OpenSettings()
+            .OpenAdvancedSettings()
+            .SelectNatType(NatType.Moderate)
+            .ApplySettings()
+            .OpenPortForwardingSettings()
+            .EnablePortForwarding();
+
+        ConfirmationRobot
+            .Verify.IsOverlayDisplayed()
+                   .OverlayTextContains(ENABLE_PORT_FORWARDING_TITLE)
+                   .OverlayTextContains(ENABLE_PORT_FORWARDING_DESCRIPTION)
+                   .OverlayButtonsEquals(primary: ENABLE_BUTTON)
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
+
+        SettingRobot
+            .ApplySettings()
+            .Verify.IsPortForwardingEnabledStateDisplayed();
+
+        ConnectAndVerify();
+
+        WindowsUtils.AssertLogFile(_serviceLogsPath, MODERATE_NAT_DISABLED_LINE_TO_LOOK_FOR);
+
+        CommonUiFlows.EnsureUserIsDisconnected();
     }
 
     [Test]
     [Retry(3)]
-    public void VerifyCopiedPortForwardingNotification()
+    public void VerifyP2PServerGeneratesPortNumber()
     {
-        DesktopRobot.DismissOldToastsIfVisible();
+        SettingRobot
+            .OpenSettings()
+            .Verify.AreNotificationsEnabled()
+            .CloseSettings();
 
         EnablePortForwardingAndConnect();
 
-        SettingRobot
-            .ClickCopyPortNumber();
+        HomeRobot.ClickCopyPortNumber();
+        int widgetMenuPort = GetForwardedPortFromClipboard();
 
-        int uiPort = GetForwardedPortFromClipboard();
+        VerifyPortInToast(widgetMenuPort);
 
-        DesktopRobot
-            .Verify.IsToastDisplayed()
-                   .DoesToastPortMatchUI(uiPort)
-                   .DoesToastCopyPortMatchUI(uiPort);
+        CopyPortFromFlyoutHover();
+        int flyoutHoverPort = GetForwardedPortFromClipboard();
+
+        CopyPortFromSettings();
+        int settingsPort = GetForwardedPortFromClipboard();
+
+        Assert.That(widgetMenuPort == flyoutHoverPort && flyoutHoverPort == settingsPort,
+            $"Port in Flyout menu ({flyoutHoverPort}) does not match port in UI ({widgetMenuPort}) or settings ({settingsPort}).");
+
+        VerifyPortUnavailableForServerWithoutP2PSupport();
+
+        CommonUiFlows.EnsureUserIsDisconnected();
     }
 
-    [Test]
-    public void VerifyPortForwardingHoverOver()
+    private void CopyPortFromFlyoutHover()
     {
-        EnablePortForwardingAndConnect();
+        HomeRobot
+            .HoverOverPortForwardingWidget()
+            .Verify.IsLastChangedTimerDisplayed()
+            .ClickHoverCopyPortNumber();
+    }
 
+    private void CopyPortFromSettings()
+    {
         SettingRobot
+            .OpenSettings()
+            .OpenPortForwardingSettings()
             .ClickCopyPortNumber();
+    }
 
-        int uiPort = GetForwardedPortFromClipboard();
+    private void VerifyPortUnavailableForServerWithoutP2PSupport()
+    {
+        SidebarRobot
+            .SearchFor(SERVER_WITHOUT_P2P_SUPPORT)
+            .ConnectToServer(SERVER_WITHOUT_P2P_SUPPORT);
+
+        HomeRobot
+            .Verify.IsConnected();
+
+        DesktopRobot
+            .Verify.IsToastNotDisplayed();
 
         HomeRobot
             .HoverOverPortForwardingWidget()
-            .ClickHoverCopyPortNumber();
+            .Verify.IsPortUnavailable();
+    }
 
-        int hoverPort = GetForwardedPortFromClipboard();
-
-        Assert.That(hoverPort, Is.EqualTo(uiPort),
-                $"Port in toast ({hoverPort}) does not match port in UI ({uiPort}).");
+    private void VerifyPortInToast(int port)
+    {
+        DesktopRobot
+            .Verify.IsToastDisplayed()
+            .DoesToastPortMatchUI(port)
+            .DoesToastCopyPortMatchUI(port);
     }
 
     private static void EnablePortForwardingAndConnect()
@@ -107,14 +218,18 @@ public class PortForwardingTests : FreshSessionSetUp
         SettingRobot
             .OpenSettings()
             .OpenPortForwardingSettings()
-            .TogglePortForwardingnSetting()
+            .EnablePortForwarding()
             .ApplySettings()
             .CloseSettings();
 
+        ConnectAndVerify();
+    }
+
+    private static void ConnectAndVerify()
+    {
         SidebarRobot
             .NavigateToP2PCountriesTab()
             .ConnectToCountry(COUNTRY_NAME);
-
         HomeRobot
             .Verify.IsConnected();
     }

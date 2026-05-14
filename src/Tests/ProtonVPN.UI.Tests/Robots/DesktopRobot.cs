@@ -76,8 +76,16 @@ public class DesktopRobot : IDisposable
         public Verifications IsToastDisplayed(TimeSpan? timeout = null)
         {
             timeout ??= TimeSpan.FromSeconds(8);
-            bool visible = ToastCapture.WaitForToastVisible(_automation, timeout.Value);
-            Assert.That(visible, Is.True, "Toast notification was not found.");
+            bool isVisible = ToastCapture.WaitForToastVisible(_automation, timeout.Value);
+            Assert.That(isVisible, Is.True, "Toast notification was not found.");
+            return this;
+        }
+
+        public Verifications IsToastNotDisplayed(TimeSpan? timeout = null)
+        {
+            timeout ??= TimeSpan.FromSeconds(8);
+            bool isVisible = ToastCapture.WaitForToastVisible(_automation, timeout.Value);
+            Assert.That(isVisible, Is.False, "Toast notification was found.");
             return this;
         }
 
