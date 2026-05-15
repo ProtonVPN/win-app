@@ -25,7 +25,6 @@ using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.TestsHelper;
-using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
@@ -288,10 +287,11 @@ public class HomeRobot
             return this;
         }
 
-        public Verifications IsDisconnected()
+        public Verifications IsDisconnected(TimeSpan? timeout = null)
         {
-            UnprotectedLabel.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
-            ConnectionCardConnectButton.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
+            timeout ??= TestConstants.ThirtySecondsTimeout;
+            UnprotectedLabel.WaitUntilDisplayed(timeout);
+            ConnectionCardConnectButton.WaitUntilDisplayed(timeout);
             return this;
         }
 
@@ -413,7 +413,7 @@ public class HomeRobot
             return this;
         }
 
-        public Verifications IsProtocolDisplayed(TestConstants.Protocol protocol, bool isProtun = false)
+        public Verifications IsProtocolDisplayed(Protocol protocol, bool isProtun = false)
         {
             string? protonPrefix = isProtun ? "Proton " : null;
 
@@ -425,13 +425,13 @@ public class HomeRobot
                 case Protocol.OpenVpnTcp:
                     ConnectionDetailsProtocol.TextEquals("OpenVPN (TCP)");
                     break;
-                case TestConstants.Protocol.WireGuardTcp:
+                case Protocol.WireGuardTcp:
                     ConnectionDetailsProtocol.TextEquals(protonPrefix + "WireGuard (TCP)");
                     break;
-                case TestConstants.Protocol.WireGuardTls:
+                case Protocol.WireGuardTls:
                     ConnectionDetailsProtocol.TextEquals(protonPrefix + "Stealth");
                     break;
-                case TestConstants.Protocol.WireGuardUdp:
+                case Protocol.WireGuardUdp:
                     ConnectionDetailsProtocol.TextEquals(protonPrefix + "WireGuard (UDP)");
                     break;
             }

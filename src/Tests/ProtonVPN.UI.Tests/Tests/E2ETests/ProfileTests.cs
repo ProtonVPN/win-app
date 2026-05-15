@@ -24,7 +24,6 @@ using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
-using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -51,11 +50,11 @@ public class ProfileTests : BaseTest
 
     private static readonly string[] _defaultProfiles = { "Streaming US", "Gaming", "P2P", "Max security", "Work/School" };
 
-    private static readonly (string profileName, ConnectionType connectionType, string countryName, TestConstants.Protocol protocol)[] _profiles =
+    private static readonly (string profileName, ConnectionType connectionType, string countryName, Protocol protocol)[] _profiles =
     {
-        (profileName: "Profile 1", connectionType: ConnectionType.Standard, countryName: "Argentina", protocol: TestConstants.Protocol.OpenVpnUdp),
-        (profileName: "Profile 2", connectionType: ConnectionType.P2P, countryName: "Belgium", protocol: TestConstants.Protocol.WireGuardTcp),
-        (profileName: "Profile 3", connectionType: ConnectionType.SecureCore, countryName: "Egypt", protocol: TestConstants.Protocol.WireGuardUdp)
+        (profileName: "Profile 1", connectionType: ConnectionType.Standard, countryName: "Argentina", protocol: Protocol.OpenVpnUdp),
+        (profileName: "Profile 2", connectionType: ConnectionType.P2P, countryName: "Belgium", protocol: Protocol.WireGuardTcp),
+        (profileName: "Profile 3", connectionType: ConnectionType.SecureCore, countryName: "Egypt", protocol: Protocol.WireGuardUdp)
     };
 
     [OneTimeSetUp]
@@ -302,7 +301,7 @@ public class ProfileTests : BaseTest
     [Test, Order(10)]
     [Retry(3)]
     [TestCaseSource(nameof(_profiles))]
-    public void ConnectToDifferentProfilesWithDifferentConnectionTypesAndProtocols((string profileName, ConnectionType connectionType, string countryName, TestConstants.Protocol protocol) profile)
+    public void ConnectToDifferentProfilesWithDifferentConnectionTypesAndProtocols((string profileName, ConnectionType connectionType, string countryName, Protocol protocol) profile)
     {
         CloseLeftoverProfilePage();
 
@@ -335,7 +334,7 @@ public class ProfileTests : BaseTest
         //TODO: The map highlights the country of the server;
     }
 
-    private void CreateProfile(string profileName, ConnectionType connectionType, string country, TestConstants.Protocol protocol)
+    private void CreateProfile(string profileName, ConnectionType connectionType, string country, Protocol protocol)
     {
         SidebarRobot
             .ClickCreateProfile();

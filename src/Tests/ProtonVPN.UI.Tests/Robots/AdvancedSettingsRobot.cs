@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,12 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Linq;
-using FlaUI.Core.Tools;
+using System.Collections.Generic;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.UiTools;
-using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
@@ -35,10 +32,6 @@ public class AdvancedSettingsRobot
     protected Element NatTypeCard = Element.ByAutomationId("NatTypeSettingsCard");
     protected Element LanConnectionsSettingsCard = Element.ByAutomationId("LanConnectionsSettingsCard");
     protected Element AllowLanToggle = Element.ByAutomationId("AllowLanConnectionsToggleSwitch");
-
-    private string? WireGuardDnsAddress => NetworkUtils.GetDnsAddresses(TestConstants.IsProtunVersion ? "ProTUN" : "ProtonVPN").FirstOrDefault();
-    private string? OpenVpnDnsAddress => NetworkUtils.GetDnsAddresses("ProtonVPN TUN").FirstOrDefault();
-    private string? ProTunDnsAddress => NetworkUtils.GetDnsAddresses("ProTUN").FirstOrDefault();
 
     public AdvancedSettingsRobot NavigateToLan()
     {
@@ -76,9 +69,21 @@ public class AdvancedSettingsRobot
         return this;
     }
 
-    public AdvancedSettingsRobot ToggleCustomDnsSetting()
+    public AdvancedSettingsRobot EnableCustomDnsToggle()
     {
-        CustomDnsToggle.Click();
+        if (!CustomDnsToggle.IsToggled())
+        {
+            CustomDnsToggle.Toggle();
+        }
+        return this;
+    }
+
+    public AdvancedSettingsRobot DisableCustomDnsToggle()
+    {
+        if (CustomDnsToggle.IsToggled())
+        {
+            CustomDnsToggle.Toggle();
+        }
         return this;
     }
 
@@ -114,46 +119,18 @@ public class AdvancedSettingsRobot
             return this;
         }
 
-        public Verifications IsCustomDnsAddressSet(string dnsAddress)
+        public Verifications CustomDnsContainsIpAddress(string ip)
         {
-            RetryResult<bool> retry = Retry.WhileFalse(
-                () =>
-                {
-                    return DoesContainDnsAddress(dnsAddress);
-                },
-                TestConstants.FiveSecondsTimeout, TestConstants.RetryInterval);
-
-            if (!retry.Success)
-            {
-                throw new Exception(DnsAdressErrorMessage(dnsAddress));
-            }
+            List<string> allChildren = DnsServersSelectorSettingsCard.GetAllChildrenNames();
+            Assert.That(allChildren, Does.Contain(ip));
             return this;
         }
 
-        public Verifications IsCustomDnsAddressNotSet(string dnsAddress)
+        public Verifications CustomDnsDoesNotContainIpAddress(string ip)
         {
-            RetryResult<bool> retry = Retry.WhileTrue(
-                () =>
-                {
-                    return DoesContainDnsAddress(dnsAddress);
-                },
-                TestConstants.FiveSecondsTimeout, TestConstants.RetryInterval);
-
-            if (!retry.Success)
-            {
-                throw new Exception(DnsAdressErrorMessage(dnsAddress));
-            }
+            List<string> allChildren = DnsServersSelectorSettingsCard.GetAllChildrenNames();
+            Assert.That(allChildren, Does.Not.Contain(ip));
             return this;
-        }
-
-        private string DnsAdressErrorMessage(string expectedDnsAddress)
-        {
-            return $"WireGuard dns address: {WireGuardDnsAddress}. OpenVPN dns address: {OpenVpnDnsAddress}. Expected dns value: {expectedDnsAddress}";
-        }
-
-        private bool DoesContainDnsAddress(string expectedDnsAddress)
-        {
-            return WireGuardDnsAddress == expectedDnsAddress || OpenVpnDnsAddress == expectedDnsAddress;
         }
     }
 

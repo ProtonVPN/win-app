@@ -17,9 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.TestBase;
@@ -43,7 +41,7 @@ public class LeakTests : FreshSessionSetUp
     public void TestInitialize()
     {
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
-        _dnsListNotConnected = DnsLeakHelper.GetDnsServers();
+        _dnsListNotConnected = DnsHelper.GetDnsServers();
     }
 
     [Test]
@@ -68,7 +66,7 @@ public class LeakTests : FreshSessionSetUp
             .ConnectViaConnectionCard()
             .Verify.IsConnected();
 
-        DnsLeakHelper.VerifyIsNotLeaking(_dnsListNotConnected);
+        DnsHelper.VerifyDnsIsNotLeaking(_dnsListNotConnected);
 
         CommonUiFlows.EnsureUserIsDisconnected();
     }
@@ -121,7 +119,7 @@ public class LeakTests : FreshSessionSetUp
             .Verify.IsConnected()
                    .IsProtocolDisplayed(protocol, shouldEnableProTun);
 
-        DnsLeakHelper.VerifyIsNotLeaking(_dnsListNotConnected);
+        DnsHelper.VerifyDnsIsNotLeaking(_dnsListNotConnected);
 
         CommonUiFlows.EnsureUserIsDisconnected();
     }
@@ -140,15 +138,15 @@ public class LeakTests : FreshSessionSetUp
         HomeRobot
             .Verify.IsConnecting();
 
-        DnsLeakHelper.VerifyIsNotLeaking(_dnsListNotConnected);
+        DnsHelper.VerifyDnsIsNotLeaking(_dnsListNotConnected);
 
         HomeRobot
             .Verify.IsConnected();
 
-        DnsLeakHelper.VerifyIsNotLeaking(_dnsListNotConnected);
+        DnsHelper.VerifyDnsIsNotLeaking(_dnsListNotConnected);
     }
 
-    private void EnableKillSwitch(KillSwitchMode mode)
+    private static void EnableKillSwitch(KillSwitchMode mode)
     {
         SettingRobot
             .OpenSettings()
@@ -159,7 +157,7 @@ public class LeakTests : FreshSessionSetUp
             .CloseSettings();
     }
 
-    private void DisableKillSwitch()
+    private static void DisableKillSwitch()
     {
         SettingRobot
             .OpenSettings()

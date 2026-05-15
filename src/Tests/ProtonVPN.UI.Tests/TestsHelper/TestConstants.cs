@@ -21,6 +21,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using ProtonVPN.UI.Tests.Enums;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 
@@ -48,7 +49,7 @@ public static class TestConstants
     public static string LauncherPath = @"C:\Program Files\Proton\VPN\ProtonVPN.Launcher.exe";
     public static string MapCountry = "CA";
     public static string ClientLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN\Logs\client-logs.txt");
-    public static string UserStoragePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN");    
+    public static string UserStoragePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN");
     public static string? ServerStoragePath => Directory.GetFiles(Path.Combine(UserStoragePath, "Storage"), "Servers.*.bin").OrderByDescending(File.GetLastWriteTime).FirstOrDefault();
 
     public static bool IsProtunVersion = Version.TryParse(TestEnvironment.GetAppVersion(), out Version? v) && v.Major >= 5;
@@ -65,28 +66,5 @@ public static class TestConstants
     public static IEnumerable<Protocol> WireGuardProtocols()
     {
         return AllProtocols().Where(p => p.ToString().StartsWith("WireGuard"));
-    }
-
-    public enum Protocol
-    {
-        WireGuardUdp,
-        OpenVpnUdp,
-        WireGuardTcp,
-        OpenVpnTcp,
-        WireGuardTls,
-        Smart,
-    }
-
-    public enum ProTunProtocol
-    {
-        ProTunUdp,
-        ProTunTcp,
-        ProTunTls,
-    }
-
-    public enum SplitTunnelingMode
-    {
-        Exclude,
-        Include,
     }
 }

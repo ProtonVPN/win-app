@@ -26,6 +26,7 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
+
 public class SliHelper
 {
     public static string? SliName { get; set; }
@@ -65,7 +66,7 @@ public class SliHelper
 
     public static void AddDuration()
     {
-        if(Duration != 0)
+        if (Duration != 0)
         {
             AddMetric("duration", Duration.ToString());
         }
@@ -86,7 +87,7 @@ public class SliHelper
 
     public static void AddNetworkSpeedToMetrics(string downloadSpeedLabel, string uploadSpeedLabel)
     {
-        NetworkUtils.FlushDns();
+        DnsHelper.FlushDns();
         Dictionary<string, double>? networkSpeedConnected = null;
         RetryResult<bool> retry = Retry.WhileException(
             () =>
@@ -99,7 +100,7 @@ public class SliHelper
         {
             throw new Exception(retry.LastException?.Message);
         }
-        
+
         AddMetric(downloadSpeedLabel, networkSpeedConnected?["downloadSpeed"].ToString() ?? string.Empty);
         AddMetric(uploadSpeedLabel, networkSpeedConnected?["uploadSpeed"].ToString() ?? string.Empty);
     }

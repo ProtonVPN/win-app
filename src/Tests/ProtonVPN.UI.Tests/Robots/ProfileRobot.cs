@@ -189,24 +189,24 @@ public class ProfileRobot
         return this;
     }
 
-    public ProfileRobot SelectProtocol(TestConstants.Protocol protocol)
+    public ProfileRobot SelectProtocol(Protocol protocol)
     {
         ProtocolsDropDown.Click();
         switch (protocol)
         {
-            case TestConstants.Protocol.OpenVpnUdp:
+            case Protocol.OpenVpnUdp:
                 OpenVpnUdpProtocolMenuItem.Invoke();
                 break;
-            case TestConstants.Protocol.OpenVpnTcp:
+            case Protocol.OpenVpnTcp:
                 OpenVpnTcpProtocolMenuItem.Invoke();
                 break;
-            case TestConstants.Protocol.WireGuardTcp:
+            case Protocol.WireGuardTcp:
                 WireGuardTcpProtocolMenuItem.Invoke();
                 break;
-            case TestConstants.Protocol.WireGuardTls:
+            case Protocol.WireGuardTls:
                 WireGuardTlsProtocolMenuItem.Invoke();
                 break;
-            case TestConstants.Protocol.WireGuardUdp:
+            case Protocol.WireGuardUdp:
                 WireGuardUdpProtocolMenuItem.Invoke();
                 break;
         }

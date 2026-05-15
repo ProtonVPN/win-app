@@ -162,7 +162,7 @@ public class NetShieldTests : FreshSessionSetUp
             .OpenAdvancedSettings();
         AdvancedSettingsRobot
             .NavigateToCustomDns()
-            .ToggleCustomDnsSetting();
+            .EnableCustomDnsToggle();
         ConfirmationRobot
             .PrimaryAction();
         SettingRobot

@@ -19,6 +19,7 @@
 
 using System;
 using System.Threading;
+using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 
@@ -56,7 +57,7 @@ public class CommonUiFlows : BaseTest
     {
         Action verifyDisconnectState = shouldVerifyKillSwitch
             ? () => HomeRobot.Verify.IsAdvancedKillSwitchActivated()
-            : () => HomeRobot.Verify.IsDisconnected();
+            : () => HomeRobot.Verify.IsDisconnected(TestConstants.TenSecondsTimeout);
 
         try
         {
@@ -70,7 +71,7 @@ public class CommonUiFlows : BaseTest
         }
     }
 
-    public static void ChangeProtocol(TestConstants.Protocol protocol, bool shouldEnableProTun = false)
+    public static void ChangeProtocol(Protocol protocol, bool shouldEnableProTun = false)
     {
         SettingRobot
             .OpenSettings()

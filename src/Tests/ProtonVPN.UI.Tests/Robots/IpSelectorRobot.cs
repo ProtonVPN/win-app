@@ -18,6 +18,7 @@
  */
 
 using FlaUI.Core.AutomationElements;
+using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.UiTools;
 
 namespace ProtonVPN.UI.Tests.Robots;
@@ -29,6 +30,8 @@ public class IpSelectorRobot
     protected Element IpAddressCheckBox = Element.ByAutomationId("AddressItemToggle");
     protected Element AddIpAddressButton = Element.ByAutomationId("AddButton");
     protected Element RemoveIpAddressButton = Element.ByAutomationId("TrashIcon");
+    protected Element MoveIpAddressUpButton = Element.ByAutomationId("MoveUpButton");
+    protected Element MoveIpAddressDownButton = Element.ByAutomationId("MoveDownButton");
 
     public IpSelectorRobot AddIpAddress(string ipAddress)
     {
@@ -50,7 +53,27 @@ public class IpSelectorRobot
         return this;
     }
 
-    public IpSelectorRobot DeleteAllIps()
+    public IpSelectorRobot ReorderIpAddress(string ipAddress, IpOrderDirection direction)
+    {
+        Element moveDirection = direction == IpOrderDirection.Up
+            ? MoveIpAddressUpButton
+            : MoveIpAddressDownButton;
+
+        AutomationElement parent = Element.ByName(ipAddress).WaitUntilExists()?.Parent!;
+        AutomationElement moveIcon = parent.FindFirstDescendant(cf => moveDirection.Condition(cf))!;
+        moveIcon.Click();
+        return this;
+    }
+
+    public IpSelectorRobot RemoveIp(string ipAddress)
+    {
+        AutomationElement parent = Element.ByName(ipAddress).WaitUntilExists()?.Parent!;
+        AutomationElement ipTrashIcon = parent.FindFirstDescendant(cf => RemoveIpAddressButton.Condition(cf))!;
+        ipTrashIcon.Click();
+        return this;
+    }
+
+    public IpSelectorRobot RemoveAllIps()
     {
         RemoveIpAddressButton.WaitUntilExists();
         AutomationElement[] IpAllTrashIcons = RemoveIpAddressButton.FindAllElements();

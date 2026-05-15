@@ -24,8 +24,6 @@ using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 using FlaUI.Core.Tools;
 using NUnit.Framework;
@@ -34,30 +32,9 @@ namespace ProtonVPN.UI.Tests.TestsHelper;
 
 public class NetworkUtils
 {
-    [DllImport("dnsapi.dll", EntryPoint = "DnsFlushResolverCache")]
-
-    public static extern uint DnsFlushResolverCache();
-
-    public static List<string> GetDnsAddresses(string adapterName)
-    {
-        RetryResult<List<string>> retry = Retry.WhileEmpty(
-            () =>
-            {
-                return GetDnsAddressesForAdapterByName(adapterName);
-            },
-            TestConstants.FiveSecondsTimeout, TestConstants.RetryInterval);
-
-        return retry.Result ?? [];
-    }
-
-    public static void FlushDns()
-    {
-        DnsFlushResolverCache();
-    }
-
-    public static void VerifyLocalNetworking(bool isLanEnabled)
-    {
-        IPAddress? ipAddress = GetDefaultGatewayAddress() ?? throw new Exception("Default gateway is null.");
+	public static void VerifyLocalNetworking(bool isLanEnabled)
+	{
+		IPAddress? ipAddress = GetDefaultGatewayAddress() ?? throw new Exception("Default gateway is null.");
         PingReply reply = new Ping().Send(ipAddress.ToString());
         Assert.That(reply.Status == IPStatus.Success, isLanEnabled ? Is.True : Is.False);
     }
@@ -87,7 +64,7 @@ public class NetworkUtils
         RetryResult<string> retry = Retry.WhileEmpty(
             () =>
             {
-                FlushDns();
+                DnsHelper.FlushDns();
                 return GetIpAddressAsync().GetAwaiter().GetResult() ?? string.Empty;
             },
             TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
@@ -99,7 +76,7 @@ public class NetworkUtils
         RetryResult<string> retry = Retry.WhileEmpty(
             () =>
             {
-                FlushDns();
+                DnsHelper.FlushDns();
                 return GetCountryNameAsync().Result ?? string.Empty;
             },
             TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
@@ -120,7 +97,7 @@ public class NetworkUtils
         RetryResult<bool> retry = Retry.WhileTrue(
            () =>
            {
-               FlushDns();
+               DnsHelper.FlushDns();
                ipAddressFomAPI = GetIpAddressWithRetry();
                return ipAddressFomAPI.Equals(ipAddressToCompare);
            },
@@ -140,7 +117,7 @@ public class NetworkUtils
         RetryResult<bool> retry = Retry.WhileFalse(
            () =>
            {
-               FlushDns();
+               DnsHelper.FlushDns();
                ipAddressFomAPI = GetIpAddressWithRetry();
                return ipAddressFomAPI.Equals(ipAddressToCompare);
            },
@@ -255,25 +232,5 @@ public class NetworkUtils
                 return null;
             }
         }
-    }
-
-    private static List<string> GetDnsAddressesForAdapterByName(string adapterName)
-    {
-        List<string> dnsAddresses = new();
-        NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
-        foreach (NetworkInterface adapter in adapters)
-        {
-            IPInterfaceProperties adapterProperties = adapter.GetIPProperties();
-            IPAddressCollection dnsServers = adapterProperties.DnsAddresses;
-            if (adapter.Name.Equals(adapterName))
-            {
-                foreach (IPAddress dns in dnsServers)
-                {
-                    dnsAddresses.Add(dns.ToString());
-                }
-            }
-        }
-
-        return dnsAddresses;
     }
 }

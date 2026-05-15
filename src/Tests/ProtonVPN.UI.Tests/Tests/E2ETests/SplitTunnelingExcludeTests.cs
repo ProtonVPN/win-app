@@ -165,7 +165,7 @@ public class SplitTunnelingExcludeTests : BaseTest
             .EditSplitTunnelingIps();
         IpSelectorRobot
             .Verify.IsIpSelectorOpened()
-            .DeleteAllIps();
+            .RemoveAllIps();
         ConfirmationRobot
             .PrimaryAction()
             .Verify.IsOverlayClosed();

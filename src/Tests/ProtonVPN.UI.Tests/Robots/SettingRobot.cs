@@ -300,31 +300,31 @@ public class SettingRobot
         return this;
     }
 
-    public SettingRobot SelectProtocol(TestConstants.Protocol protocol)
+    public SettingRobot SelectProtocol(Protocol protocol)
     {
         switch (protocol)
         {
-            case TestConstants.Protocol.Smart:
+            case Protocol.Smart:
                 SmartProtocolRadioButton.Click();
                 break;
 
-            case TestConstants.Protocol.OpenVpnUdp:
+            case Protocol.OpenVpnUdp:
                 OpenVpnUdpProtocolRadioButton.Click();
                 break;
 
-            case TestConstants.Protocol.OpenVpnTcp:
+            case Protocol.OpenVpnTcp:
                 OpenVpnTcpProtocolRadioButton.Click();
                 break;
 
-            case TestConstants.Protocol.WireGuardTcp:
+            case Protocol.WireGuardTcp:
                 WireGuardTcpProtocolRadioButton.Click();
                 break;
 
-            case TestConstants.Protocol.WireGuardTls:
+            case Protocol.WireGuardTls:
                 WireGuardTlsProtocolRadioButton.Click();
                 break;
 
-            case TestConstants.Protocol.WireGuardUdp:
+            case Protocol.WireGuardUdp:
                 WireGuardUdpProtocolRadioButton.Click();
                 break;
         }
@@ -465,6 +465,12 @@ public class SettingRobot
         return this;
     }
 
+    public SettingRobot GoBack()
+    {
+        GoBackButton.Click();
+        return this;
+    }
+
     public SettingRobot CloseSettingsUsingEscButton()
     {
         Keyboard.Type(VirtualKeyShort.ESC);
@@ -495,6 +501,18 @@ public class SettingRobot
 
     public class Verifications : SettingRobot
     {
+        public Verifications IsReconnectBtnDisplayed()
+        {
+            ReconnectButton.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsApplyBtnDisplayed()
+        {
+            ApplyButton.WaitUntilDisplayed();
+            return this;
+        }
+
         public Verifications IsCorrectAccountInfoDisplayed(string accountName, string accountPlan)
         {
             Thread.Sleep(TestConstants.OneSecondTimeout);
@@ -512,7 +530,7 @@ public class SettingRobot
 
         public Verifications IsNetshieldBlocking(NetShieldMode netShieldMode)
         {
-            NetworkUtils.FlushDns();
+            DnsHelper.FlushDns();
             CommonAssertions.AssertDnsIsResolved(NETSHIELD_NO_BLOCK);
 
             switch (netShieldMode)
@@ -585,7 +603,7 @@ public class SettingRobot
 
         public Verifications IsNetshieldNotBlocking()
         {
-            NetworkUtils.FlushDns();
+            DnsHelper.FlushDns();
             CommonAssertions.AssertDnsIsResolved(NETSHIELD_NO_BLOCK);
             CommonAssertions.AssertDnsIsResolved(NETSHIELD_MALWARE_ENDPOINT);
             CommonAssertions.AssertDnsIsResolved(NETSHIELD_ADS_ENDPOINT);
