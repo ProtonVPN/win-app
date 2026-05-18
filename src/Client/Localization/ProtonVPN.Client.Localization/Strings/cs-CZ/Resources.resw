@@ -319,10 +319,10 @@
     <value>Vyloučená umístění</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Description">
-    <value>To fix it, close or uninstall the app associated with:</value>
+    <value>Chcete-li tento problém vyřešit, zavřete nebo odinstalujte aplikaci, která s tím souvisí:</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Title">
-    <value>Another app might be preventing Proton VPN from connecting</value>
+    <value>Je možné, že připojení aplikace Proton VPN brání jiná aplikace</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>Upravit profil</value>
@@ -385,7 +385,7 @@ Kód chyby: {0}</value>
     <value>Adaptér WireGuard vašeho zařízení je používán. Odpojte se od všech ostatních VPN spuštěných v zařízení a zkuste to znovu.</value>
   </data>
   <data name="Connection_Feedback_Question">
-    <value>How is your connection?</value>
+    <value>Jaké máte připojení?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Automaticky vybráno z</value>

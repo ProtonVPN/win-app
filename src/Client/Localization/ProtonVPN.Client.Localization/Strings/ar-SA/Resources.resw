@@ -385,7 +385,7 @@
     <value>محول WireGuard على جهازك قيد الاستخدام. اقطع الاتصال بأي VPN آخر يعمل على جهازك، ثم حاول مرة أخرى.</value>
   </data>
   <data name="Connection_Feedback_Question">
-    <value>How is your connection?</value>
+    <value>كيف جودة اتصالك؟</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>تم الاختيار التقائي من</value>

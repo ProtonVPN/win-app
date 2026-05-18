@@ -316,7 +316,7 @@
     <value>Preferințele alese exclud toate serverele disponibile. Ajustați excluderile pentru a vă conecta.</value>
   </data>
   <data name="Connection_Error_AllServersExcluded_Action">
-    <value>Locuri excluse</value>
+    <value>Țări excluse</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Description">
     <value>Pentru a remedia problema, închideți sau dezinstalați aplicația asociată cu:</value>
@@ -385,7 +385,7 @@ Cod eroare: {0}</value>
     <value>Adaptorul WireGuard este deja accesat. Deconectați-vă de la orice alt VPN care rulează pe dispozitiv și reîncercați.</value>
   </data>
   <data name="Connection_Feedback_Question">
-    <value>How is your connection?</value>
+    <value>Cum vă este conexiunea?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Autoselectare din</value>
@@ -2003,10 +2003,10 @@ Cod eroare: {0}</value>
     <value>Aplicație nouă în zona de notificare</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations">
-    <value>Excludere locuri</value>
+    <value>Excludere țări</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
-    <value>Dacă există locuri la care nu doriți să vă conectați automat, le puteți exclude din „Țara cea mai rapidă” și „Țară aleatorie”.</value>
+    <value>Dacă există țări la care nu doriți să vă conectați automat, le puteți exclude din „Cea mai rapidă țară” și „Țară aleatorie”.</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
     <value>Omitere</value>
@@ -2015,7 +2015,7 @@ Cod eroare: {0}</value>
     <value>Nu este țara pe care o doriți?</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_ActionButton">
-    <value>Excludere locuri</value>
+    <value>Excludere țări</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_CloseButton">
     <value>Poate mai târziu</value>
@@ -2024,7 +2024,7 @@ Cod eroare: {0}</value>
     <value>Acum puteți exclude țări și orașe de la conexiunile cele mai rapide și aleatorii.</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Title">
-    <value>Evitați locurile nedorite</value>
+    <value>Evitați țările nedorite</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Închideți Proton VPN?</value>
@@ -2114,7 +2114,7 @@ Cod eroare: {0}</value>
     <value>Întrerupătorul avansat de conexiune se aplică chiar și când vă deconectați intenționat de la VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Disconnected">
-    <value>Pentru reveni online, conectați-vă la VPN sau dezactivați întrerupătorul de conexiune.</value>
+    <value>Pentru a reveni online, conectați-vă la VPN sau dezactivați întrerupătorul de conexiune.</value>
   </data>
   <data name="Flyouts_NetShield_AdsMalwareTrackersAdultContent_Success">
     <value>Aveți protecție împotriva reclamelor, instrumentelor de urmărire, programelor malițioase și a conținutului pentru adulți.</value>
@@ -3149,7 +3149,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Preferințe conexiune</value>
   </data>
   <data name="Settings_Connection_ConnectionPreferences_Description">
-    <value>Conexiune implicită și locuri excluse</value>
+    <value>Conexiune implicită și țări excluse</value>
   </data>
   <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
     <value>DNS-ul personal nu poate fi activat deoarece v-ați conectat la un profil cu NetShield activat.</value>
@@ -3182,7 +3182,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Recente</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations">
-    <value>Locuri excluse</value>
+    <value>Țări excluse</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Cities">
     <value>Orașe</value>
@@ -3191,10 +3191,10 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Țări</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Description">
-    <value>Locurile selectate nu vor fi folosite niciodată la conexiunea cea mai rapidă sau aleatorie.</value>
+    <value>Țările selectate nu vor fi folosite niciodată la conexiunea cea mai rapidă sau cea aleatorie.</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_NoLocations">
-    <value>Nu există locuri disponibile</value>
+    <value>Nu există țări disponibile</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Search">
     <value>Selectare...</value>
@@ -3209,7 +3209,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Avansat</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
-    <value>Permitere accesare internet doar când există conexiune la Proton VPN. Întrerupătorul de conexiune avansat va rămâne activ chiar și după repornirea dispozitivului.</value>
+    <value>Permite accesul la internet doar când există conexiune la Proton VPN. Întrerupătorul de conexiune avansat va rămâne activ chiar și după repornirea dispozitivului.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Vă protejează adresa IP deconectându-vă de la internet dacă se pierde conexiunea prin VPN.</value>
@@ -3224,13 +3224,13 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>NetShield</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
-    <value>Blocare reclamele, monitorizarea și programele malițioase</value>
+    <value>Blocare reclame, instrumente de urmărire și programe malițioase</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent">
-    <value>Blocare reclamele, monitorizarea și programele malițioase și conținutul pentru adulți</value>
+    <value>Blocare reclame, instrumente de urmărire, programe malițioase și conținut pentru adulți</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
-    <value>Blocare doar malware</value>
+    <value>Blocare doar programe malițioase</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Description">
     <value>Nu vă veți putea conecta cu un server DNS personal atunci când NetShield este activat.</value>

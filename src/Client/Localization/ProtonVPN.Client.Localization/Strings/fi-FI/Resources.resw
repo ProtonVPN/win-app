@@ -319,10 +319,10 @@
     <value>Excluded locations</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Description">
-    <value>To fix it, close or uninstall the app associated with:</value>
+    <value>Korjaa ongelma sulkemalla tai poistamalla seuraava sovellus:</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Title">
-    <value>Another app might be preventing Proton VPN from connecting</value>
+    <value>Jokin toinen sovellus saattaa estää Proton VPN:n yhteyden muodostamisen</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>Muokkaa profiilia</value>

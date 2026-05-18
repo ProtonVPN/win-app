@@ -121,10 +121,10 @@
     <value>Proton VPN Free</value>
   </data>
   <data name="Automation_Properties_ConnectionDetails_Page">
-    <value>连接详细信息页面</value>
+    <value>连接详情</value>
   </data>
   <data name="Automation_Properties_ConnectionPreferences_Page">
-    <value>连接偏好页面</value>
+    <value>连接偏好</value>
   </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>连接信息</value>
@@ -133,25 +133,25 @@
     <value>终止开关</value>
   </data>
   <data name="Automation_Properties_LocationDetails_Page">
-    <value>节点详情</value>
+    <value>位置详情</value>
   </data>
   <data name="Automation_Properties_Login_Page">
     <value>登录</value>
   </data>
   <data name="Automation_Properties_Main_Page">
-    <value>主页</value>
+    <value>主界面</value>
   </data>
   <data name="Automation_Properties_NetShield_Page">
-    <value>安全防护</value>
+    <value>NetShield 防护</value>
   </data>
   <data name="Automation_Properties_NoServers_Page">
-    <value>无服务器页面</value>
+    <value>无服务器</value>
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>端口转发</value>
   </data>
   <data name="Automation_Properties_Profile_Page">
-    <value>个人资料</value>
+    <value>配置文件</value>
   </data>
   <data name="Automation_Properties_Settings_Advanced_Page">
     <value>高级设置</value>
@@ -166,7 +166,7 @@
     <value>侧边栏</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Countries_Page">
-    <value>国家</value>
+    <value>国家/地区</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
     <value>网关</value>
@@ -178,13 +178,13 @@
     <value>配置文件</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Recents_Page">
-    <value>最近访问</value>
+    <value>最近使用</value>
   </data>
   <data name="Automation_Properties_Sidebar_Search_Results_Page">
     <value>搜索结果</value>
   </data>
   <data name="Automation_Properties_SplitTunneling_Page">
-    <value>分流设置</value>
+    <value>拆分隧道</value>
   </data>
   <data name="City_Fastest">
     <value>最快的城市</value>
@@ -268,13 +268,13 @@
     <value>升级账户</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>高级 Kill Switch 已开启。要在没有 VPN 的情况下使用互联网，请禁用高级 Kill Switch 。</value>
+    <value>高级终止开关已启用。若要使用非 VPN 的互联网，请禁用高级终止开关。</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>高级 Kill Switch 已启用。如果您继续，您将被断开连接。</value>
+    <value>高级终止开关已启用。如果继续，您将断开互联网连接。</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
-    <value>断开 VPN 连接。</value>
+    <value>您将断开与 VPN 的连接！</value>
   </data>
   <data name="Common_Links_LearnMore">
     <value>了解详情</value>
@@ -289,11 +289,11 @@
     <value>启用</value>
   </data>
   <data name="Common_Tags_Beta">
-    <value>公测版</value>
+    <value>测试版</value>
     <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
   </data>
   <data name="Common_Tags_New">
-    <value>新功能</value>
+    <value>新</value>
     <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Common_Tags_Recommended">
@@ -310,7 +310,7 @@
     <value>有可用更新</value>
   </data>
   <data name="Components_Update_UpdateProtonVpn">
-    <value>升级 Proton VPN</value>
+    <value>更新 Proton VPN</value>
   </data>
   <data name="Connection_Error_AllServersExcluded">
     <value>您的偏好设置排除了所有可用服务器，请调整排除项以进行连接！</value>
@@ -337,7 +337,7 @@
     <value>您选择的所有服务器均不可用。请扩大选择范围或稍后再试。</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
-    <value>您为 ' {0} ' 选择的服务器不可用。请选择其他服务器或稍后再试。</value>
+    <value>您在“{0}”中选择的服务器不可用，请选择其他服务器或稍后重试。</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
@@ -396,31 +396,31 @@
     <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
   </data>
   <data name="Connections_Cities_Other">
-    <value>城市（{0}）</value>
+    <value>城市 ({0})</value>
   </data>
   <data name="Connections_City">
-    <value>城市 / 区县</value>
+    <value>城市</value>
   </data>
   <data name="Connections_City_Restricted">
-    <value>该城市的服务器可用 VPN Plus 服务</value>
+    <value>此城市的服务器需使用 VPN Plus 方可连接</value>
   </data>
   <data name="Connections_City_UnderMaintenance">
-    <value>所有在该城市的服务器均在维护</value>
+    <value>此城市的所有服务器均处于维护中</value>
   </data>
   <data name="Connections_Countries_Other">
-    <value>国家/地区（{0}）</value>
+    <value>国家/地区 ({0})</value>
   </data>
   <data name="Connections_Country">
     <value>国家/地区</value>
   </data>
   <data name="Connections_Country_Middle">
-    <value>中间国家</value>
+    <value>中转国家/地区</value>
   </data>
   <data name="Connections_Country_Restricted">
-    <value>该国家的服务器可用 VPN Plus 服务</value>
+    <value>此国家/地区的服务器需使用 VPN Plus 方可连接</value>
   </data>
   <data name="Connections_Country_UnderMaintenance">
-    <value>此国家的所有服务器都在维护中</value>
+    <value>此国家/地区的所有服务器均处于维护中</value>
   </data>
   <data name="Connections_Country_UnderMaintenance_Title">
     <value>无法连接</value>
@@ -453,7 +453,7 @@
     <value>P2P 城市 ({0})</value>
   </data>
   <data name="Connections_P2P_Countries_Other">
-    <value>P2P 国家 ({0})</value>
+    <value>P2P 国家/地区 ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
     <value>P2P 服务器</value>
@@ -519,7 +519,7 @@
     <value>已固定 ({0})</value>
   </data>
   <data name="Connections_SecureCore_Countries_Other">
-    <value>Secure Core 国家/地区（{0}）</value>
+    <value>Secure Core 国家/地区 ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
     <value>Secure Core 服务器</value>
@@ -548,13 +548,13 @@
     <value>州 ({0})</value>
   </data>
   <data name="Connections_Tor_Countries_Other">
-    <value>Tor 国家/地区（{0}）</value>
+    <value>Tor 国家/地区 ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
     <value>Tor 服务器</value>
   </data>
   <data name="Countries">
-    <value>国家</value>
+    <value>国家/地区</value>
   </data>
   <data name="Countries_All">
     <value>全部</value>
@@ -584,16 +584,16 @@
     <value>经 Tor 网络，连接 VPN，更强隐私.</value>
   </data>
   <data name="Country_Fastest">
-    <value>最快的地域</value>
+    <value>最快的国家/地区</value>
   </data>
   <data name="Country_Fastest_ExcludingMyCountry">
-    <value>最快 (不包括我国)</value>
+    <value>最快 (排除当前位置)</value>
   </data>
   <data name="Country_Random">
-    <value>随机国家</value>
+    <value>随机国家/地区</value>
   </data>
   <data name="Country_Random_ExcludingMyCountry">
-    <value>随机 (不包括我国)</value>
+    <value>随机 (排除当前位置)</value>
   </data>
   <data name="Country_val_AD">
     <value>安道尔</value>
@@ -1634,10 +1634,10 @@
     <value>启用 Windows 服务以继续</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free 会自动将您连接到 {0} 个免费国家中最快的可用免费服务器。这通常是离您最近的服务器。</value>
+    <value>Proton Free 会从我们提供的 {0} 个免费国家/地区中，自动将您连接到可用的最快免费服务器。通常，这将是离您所在位置最近的服务器。</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other">
-    <value>免费服务器所在的国家 ({0})</value>
+    <value>免费服务器国家/地区 ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Title">
     <value>免费连接</value>
@@ -1780,7 +1780,7 @@
     <value>尝试切换 Wi-Fi 网络，或改用移动数据。</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage">
-    <value>检查我们的状态页面</value>
+    <value>查看当前状态</value>
   </data>
   <data name="Dialogs_Troubleshooting_StatusPage_Description">
     <value>确保 Proton 的服务正常运行。</value>
@@ -1792,7 +1792,7 @@
     <value>这将断开您的 VPN 连接。任何活动的互联网连接都将暂时不受保护。</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
-    <value>这将断开你的 VPN 连接，并暂时禁用 Kill Switch。任何活动的互联网连接都将暂时不受保护。</value>
+    <value>此操作将使您断开 VPN 连接并暂时禁用终止开关，任何活动的互联网连接将暂时不受保护。</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Title_Install">
     <value>安装更新？</value>
@@ -1828,7 +1828,7 @@
     <value>随时随地自由浏览</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>隐藏您的虚拟位置，在 {0} 个可用国家体验互联网。</value>
+    <value>隐藏您的虚拟位置，并从我们提供的 {0} 个可用国家/地区中的任意一个访问互联网。</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
     <value>可同时保护 10 台设备</value>
@@ -1880,13 +1880,13 @@
     <value>排除位置</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
-    <value>如果您不希望自动连接到某些位置，可以将它们从“最快国家/地区”和“随机国家/地区”中排除！</value>
+    <value>如果您不希望自动连接到某些位置，可以将其从“最快”和“随机”国家/地区中排除。</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
     <value>跳过</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
-    <value>不是您想要的国家/地区？</value>
+    <value>需要连接到其他地方？</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_ActionButton">
     <value>排除位置</value>
@@ -1895,7 +1895,7 @@
     <value>以后再说</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Subtitle">
-    <value>现在您可以将国家/地区或城市从“最快”和“随机”连接中排除！</value>
+    <value>您现在可以从“最快”和“随机”连接中排除特定国家/地区或城市。</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Title">
     <value>避开不想连接的位置</value>
@@ -1904,7 +1904,7 @@
     <value>退出 Proton VPN？</value>
   </data>
   <data name="Exit_Message">
-    <value>正在断开 VPN...</value>
+    <value>正在断开 VPN 连接...</value>
   </data>
   <data name="Exit_Title">
     <value>退出 Proton VPN</value>
@@ -1913,7 +1913,7 @@
     <value>在没有 VPN 的情况下浏览，您很容易受到基于位置的互联网限制。</value>
   </data>
   <data name="Flyouts_Country_Description2">
-    <value>网站可以使用地理封锁来限制某些地区的内容。各国政府也可以指示 ISP（互联网服务提供商）屏蔽本国的某些网站。</value>
+    <value>网站可以利用地理封锁，将内容限制在特定位置。政府也可以指示 ISP（互联网服务提供商）在其国家/地区内屏蔽某些网站。</value>
   </data>
   <data name="Flyouts_Country_Description3">
     <value>VPN 可以让您看起来像是在其他地方浏览，保护您免受监视和审查。</value>
@@ -1958,7 +1958,7 @@
     <value>您的 ISP（互联网服务提供商）是为您连接互联网的公司。</value>
   </data>
   <data name="Flyouts_Isp_Description2">
-    <value>他们可以记录您的在线活动。在一些国家，他们可以将您的数据卖给广告商。在其他国家，他们可能被要求将数据交给政府。</value>
+    <value>他们可以记录您的在线活动。在某些国家/地区，他们可能会将您的数据出售给广告商；在另一些国家/地区，他们可能被要求将数据交给政府。</value>
   </data>
   <data name="Flyouts_Isp_Description3">
     <value>VPN 隐藏了您的 IP 地址，保护您不受互联网服务供应商的干扰。</value>
@@ -1979,16 +1979,16 @@
     <value>如果 VPN 连接中断，您的 IP 地址可能会被暴露</value>
   </data>
   <data name="Flyouts_KillSwitch_Info_Disconnected">
-    <value>当您未连接到 Proton VPN 时，高级 Kill Switch 会关闭您的互联网，以保护您的 IP 地址不被泄露。</value>
+    <value>当您未连接到 Proton VPN 时，高级终止开关会断开您的互联网以保护您的 IP 地址。</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>如果 VPN 连接中断，在 VPN 恢复之前，您将无法上网</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Connected">
-    <value>即使故意断开 VPN 连接，高级 Kill Switch 也会启动</value>
+    <value>即使您故意断开 VPN 连接，高级终止开关也会生效</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Disconnected">
-    <value>要重新联网，请连接 VPN 或禁用高级 Kill Switch</value>
+    <value>若要恢复上网，请连接到 VPN 或禁用高级终止开关</value>
   </data>
   <data name="Flyouts_NetShield_AdsMalwareTrackersAdultContent_Success">
     <value>您已免受广告、跟踪器、恶意软件及成人内容的侵扰。</value>
@@ -2039,7 +2039,7 @@
     <value>协议</value>
   </data>
   <data name="Flyouts_ServerLoad_Description">
-    <value>服务器负载显示服务器有多接近满载。荷载高，网速会慢。</value>
+    <value>服务器负载表示服务器接近其最大容量的程度。负载过高可能会降低您的连接速度。</value>
   </data>
   <data name="Flyouts_ServerLoad_High">
     <value>高延迟（91-100%）</value>
@@ -2267,7 +2267,7 @@
     <value>切换服务器</value>
   </data>
   <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
-    <value>高级 Kill Switch 已开启</value>
+    <value>高级终止开关已激活</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
     <value>连接 VPN 以恢复网络连接。</value>
@@ -2276,7 +2276,7 @@
     <value>正在连接</value>
   </data>
   <data name="Home_ConnectionDetails_ConnectingSubLabel">
-    <value>保护您的数字身份...</value>
+    <value>正在保护您的数字身份...</value>
   </data>
   <data name="Home_ConnectionDetails_Country">
     <value>国家/地区</value>
@@ -2443,11 +2443,11 @@
     <value>请插入与您 Proton 账户关联的 U2F 或 FIDO 密钥。</value>
   </data>
   <data name="Main_Loading">
-    <value>登录中，请稍候…</value>
+    <value>正在加载，请稍候...</value>
     <comment>Message in the loading screen when starting the app</comment>
   </data>
   <data name="Main_Loading_SigningIn">
-    <value>登录中，请稍候…</value>
+    <value>正在登录，请稍候...</value>
     <comment>Message in the loading screen when signing in</comment>
   </data>
   <data name="Main_Loading_SigningIn_Longer">
@@ -2455,7 +2455,7 @@
     <comment>Message in the loading screen when sign in action takes longer than expected</comment>
   </data>
   <data name="Main_Loading_SigningOut">
-    <value>正在登出, 请稍候...</value>
+    <value>正在登出，请稍候...</value>
     <comment>Message in the loading screen when signing out</comment>
   </data>
   <data name="Map_ConnectTo">
@@ -2484,7 +2484,7 @@
     <value>我们无法加载任何服务器，请点击刷新以更新服务器列表。</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
-    <value>为了保护您的 IP 地址，Kill Switch 会阻止您的互联网连接。</value>
+    <value>为保护您的 IP 地址，终止开关正在阻断您的互联网连接</value>
   </data>
   <data name="Notifications_PortForwarding_CopyPortNumber">
     <value>复制端口号</value>
@@ -2600,9 +2600,9 @@ VPN 连接</value>
     <value>Secure Core</value>
   </data>
   <data name="Overlay_ServerLoad_Description">
-    <value>服务器负载反映了某个服务器距离达到其可用资源上限还有多少。
+    <value>服务器负载表示服务器接近其最大容量的程度。
 
-高服务器负载会导致您的网速变慢。</value>
+负载过高可能会降低您的连接速度。</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Description">
     <value>VPN可能会导致网速比平常时候更慢</value>
@@ -2629,10 +2629,10 @@ VPN 连接</value>
     <value>服务器负载</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
-    <value>智能路由使我们能够在难以覆盖的国家/地区提供 VPN 服务</value>
+    <value>智能路由使我们能够在难以覆盖的国家/地区提供 VPN 服务。</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
-    <value>当您连接到智能路由服务器时，虽然物理服务器位于其他地方，但您似乎是在目的地国家浏览。</value>
+    <value>当您连接到智能路由服务器时，即使物理服务器位于其他位置，您也会显示为在目标国家/地区上网。</value>
   </data>
   <data name="Overlay_SmartRouting_Description3">
     <value>智能路由通常用于规避反隐私法和其他形式的审查。</value>
@@ -2731,10 +2731,10 @@ VPN 连接</value>
     <value>收藏</value>
   </data>
   <data name="Search_InputBox_Placeholder">
-    <value>从...浏览</value>
+    <value>从以下位置浏览...</value>
   </data>
   <data name="Search_NoInput_CityOrState">
-    <value>城市或美国州县</value>
+    <value>城市或美国州份</value>
     <comment>The word used for one single city and one single United States state</comment>
   </data>
   <data name="Search_NoInput_Country">
@@ -2746,7 +2746,7 @@ VPN 连接</value>
     <comment>The word used for one single server</comment>
   </data>
   <data name="Search_NoInput_TrySearchingFor">
-    <value>寻找…</value>
+    <value>尝试搜索...</value>
   </data>
   <data name="Search_NoResults_Description">
     <value>尝试另一个关键字。</value>
@@ -2969,7 +2969,7 @@ VPN 连接</value>
     <value>默认连接</value>
   </data>
   <data name="Settings_Connection_Default_Fastest">
-    <value>最快的地域</value>
+    <value>最快的国家/地区</value>
   </data>
   <data name="Settings_Connection_Default_Fastest_Description">
     <value>从所在位置来看最适合的服务器</value>
@@ -3011,13 +3011,13 @@ VPN 连接</value>
     <value>州/省</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
-    <value>Kill Switch</value>
+    <value>终止开关</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced">
     <value>高级</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
-    <value>只有连接到 Proton VPN 时才允许访问互联网。即使重新启动设备，高级 Kill Switch 也会保持激活状态。</value>
+    <value>仅允许在连接到 Proton VPN 时访问互联网。即使重启设备，高级终止开关仍将保持启用状态。</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>如果失去 VPN 连接，会断开与互联网的连接，从而保护你的 IP 地址。</value>
@@ -3084,7 +3084,7 @@ VPN 连接</value>
     <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
   </data>
   <data name="Settings_Connection_PortForwarding_Loading">
-    <value>正在载入…</value>
+    <value>正在加载...</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications">
     <value>通知</value>
@@ -3099,7 +3099,7 @@ VPN 连接</value>
     <value>协议</value>
   </data>
   <data name="Settings_Connection_SplitTunneling">
-    <value>线路分离</value>
+    <value>拆分隧道</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Description">
     <value>选择将从 VPN 连接中排除的应用</value>
@@ -3403,7 +3403,7 @@ Stealth 具有抗 DPI（深度数据包检查）能力，但速度可能不如�
     <value>利用性能增强技术，连接速度提高达 400%。</value>
   </data>
   <data name="SignIn_Form_AdvancedKillSwitchDescription">
-    <value>高级 Kill Switch 正在阻止您的网络连接。</value>
+    <value>高级终止开关正在阻断您的互联网连接。</value>
   </data>
   <data name="SignIn_Form_BestSecureVpnForSpeed">
     <value>速度最佳的安全 VPN</value>
@@ -3416,7 +3416,7 @@ Stealth 具有抗 DPI（深度数据包检查）能力，但速度可能不如�
     <value>请输入您的 Proton 账户详细信息</value>
   </data>
   <data name="SignIn_Form_DisableKillSwitch">
-    <value>禁用 Kill Switch</value>
+    <value>禁用终止开关</value>
   </data>
   <data name="SignIn_Form_Email">
     <value>邮箱</value>
@@ -3455,7 +3455,7 @@ Stealth 具有抗 DPI（深度数据包检查）能力，但速度可能不如�
     <comment>A button inside sign in form</comment>
   </data>
   <data name="SignIn_Form_SignInWithSso">
-    <value>使用SSO登录</value>
+    <value>使用 SSO 登录</value>
   </data>
   <data name="SignIn_Form_SwissBased">
     <value>立足瑞士</value>
@@ -3471,11 +3471,11 @@ Stealth 具有抗 DPI（深度数据包检查）能力，但速度可能不如�
     <value>邮箱或用户名</value>
   </data>
   <data name="SignIn_Form_UsernameError">
-    <value>输入您的电子邮件或用户名</value>
+    <value>请输入您的邮箱或用户名</value>
     <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
   </data>
   <data name="SignIn_KillSwitch_Disabled">
-    <value>Kill Switch 已禁用</value>
+    <value>终止开关已禁用</value>
   </data>
   <data name="State_Fastest">
     <value>最快的州</value>
@@ -3489,14 +3489,14 @@ Stealth 具有抗 DPI（深度数据包检查）能力，但速度可能不如�
     <value>您现在受到保护</value>
   </data>
   <data name="SystemNotification_ConnectedTo">
-    <value>连接至 {0}.</value>
+    <value>连接至 {0}</value>
     <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
   </data>
   <data name="SystemNotification_Disconnected">
     <value>已断开</value>
   </data>
   <data name="SystemNotification_P2PWarning_Description">
-    <value>使用付费VPN服务器通过P2P（点对点）协议解锁P2P（点对点）在线游戏。</value>
+    <value>通过付费 VPN 服务器解锁基于 P2P（点对点）协议的 BT 下载和在线游戏。</value>
   </data>
   <data name="SystemNotification_P2PWarning_Title">
     <value>VPN Free 不支持 P2P</value>
@@ -3555,7 +3555,7 @@ Stealth 具有抗 DPI（深度数据包检查）能力，但速度可能不如�
     <value>升级套餐，任意选择服务器.</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Title">
-    <value>想连到别的某个地方？</value>
+    <value>需要连接到其他地方？</value>
   </data>
   <data name="Upsell_Carousel_AdvancedSettings">
     <value>VPN 高级自定义</value>
@@ -3661,7 +3661,7 @@ Stealth 具有抗 DPI（深度数据包检查）能力，但速度可能不如�
     <value>两全其美</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Browsing">
-    <value>利用拆分隧道技术同时从两个地址浏览</value>
+    <value>利用拆分隧道同时从两个位置进行上网</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Configuration">
     <value>允许受信任的应用和IP地址直接连接到互联网，同时使用VPN保护其他所有内容。</value>
