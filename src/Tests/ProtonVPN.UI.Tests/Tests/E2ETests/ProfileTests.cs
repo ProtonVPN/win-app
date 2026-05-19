@@ -65,6 +65,7 @@ public class ProfileTests : BaseTest
     }
 
     [Test, Order(0)]
+    [Property("TestCaseId", "247")]
     public void VerifyDefaultProfilesExist()
     {
         NavigationRobot
@@ -80,6 +81,7 @@ public class ProfileTests : BaseTest
     }
 
     [Test, Order(1)]
+    [Property("TestCaseId", "602398")]
     public void EmptyProfileList()
     {
         NavigationRobot
@@ -92,6 +94,7 @@ public class ProfileTests : BaseTest
     }
 
     [Test, Order(2)]
+    [Property("TestCaseId", "602399")]
     public void CreateProfile()
     {
         SidebarRobot
@@ -108,6 +111,7 @@ public class ProfileTests : BaseTest
     }
 
     [Test, Order(3)]
+    [Property("TestCaseId", "602400")]
     public void ConnectToProfileAndDisconnect()
     {
         SidebarRobot
@@ -129,6 +133,7 @@ public class ProfileTests : BaseTest
     }
 
     [Test, Order(4)]
+    [Property("TestCaseId", "602401")]
     public void EditProfile()
     {
         SidebarRobot
@@ -159,6 +164,7 @@ public class ProfileTests : BaseTest
     }
 
     [Test, Order(5)]
+    [Property("TestCaseId", "602402")]
     public void DeleteProfile()
     {
         SidebarRobot
@@ -182,6 +188,7 @@ public class ProfileTests : BaseTest
     }
 
     [Test, Order(6)]
+    [Property("TestCaseId", "254")]
     public void DiscardNewProfile()
     {
         SidebarRobot
@@ -201,6 +208,7 @@ public class ProfileTests : BaseTest
     }
 
     [Test, Order(7)]
+    [Property("TestCaseId", "610978")]
     public void ConnectAndGoWebsite()
     {
         BrowserUtils.KillAllBrowsers();
@@ -229,6 +237,7 @@ public class ProfileTests : BaseTest
     }
 
     [Test, Order(8)]
+    [Property("TestCaseId", "760486")]
     public void ConnectAndGoApp()
     {
         BrowserUtils.KillAllBrowsers();
@@ -258,6 +267,7 @@ public class ProfileTests : BaseTest
     }
 
     [Test, Order(9)]
+    [Property("TestCaseId", "610977")]
     public void ConnectWithCustomSettings()
     {
         BrowserUtils.KillAllBrowsers();
@@ -299,6 +309,7 @@ public class ProfileTests : BaseTest
     }
 
     [Test, Order(10)]
+    [Property("TestCaseId", "602437")]
     [Retry(3)]
     [TestCaseSource(nameof(_profiles))]
     public void ConnectToDifferentProfilesWithDifferentConnectionTypesAndProtocols((string profileName, ConnectionType connectionType, string countryName, Protocol protocol) profile)

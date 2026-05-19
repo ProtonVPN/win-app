@@ -41,6 +41,7 @@ public class RecentsTests : BaseTest
     }
 
     [Test, Order(0)]
+    [Property("TestCaseId", "602418")]
     public void RecentIsAddedToList()
     {
         SidebarRobot
@@ -72,6 +73,7 @@ public class RecentsTests : BaseTest
     }
 
     [Test, Order(1)]
+    [Property("TestCaseId", "602425")]
     public void ProfilesAreAddedToRecentList()
     {
         SidebarRobot
@@ -90,6 +92,7 @@ public class RecentsTests : BaseTest
     }
 
     [Test, Order(2)]
+    [Property("TestCaseId", "602419")]
     public void RemoveRecentFromList()
     {
         SidebarRobot
@@ -100,6 +103,7 @@ public class RecentsTests : BaseTest
     }
 
     [Test, Order(3)]
+    [Property("TestCaseId", "602420")]
     public void PinRecentFromList()
     {
         SidebarRobot
@@ -113,6 +117,7 @@ public class RecentsTests : BaseTest
     }
 
     [Test, Order(4)]
+    [Property("TestCaseId", "800922")]
     public void UnpinRecentFromList()
     {
         SidebarRobot

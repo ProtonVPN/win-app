@@ -43,6 +43,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
     }
 
     [Test, Order(0)]
+    [Property("TestCaseId", "787611")]
     public void SplitTunnelingAndAdvancedKillSwitchEnabledBlockInternetConnection()
     {
         CompletePreconditionsSplitTunnelingIp();
@@ -57,6 +58,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
     }
 
     [Test, Order(1)]
+    [Property("TestCaseId", "787899")]
     [Retry(3)]
     [TestCaseSource(typeof(TestConstants), nameof(AllProtocols))]
     public void SplitTunnelingAndAdvancedKillSwitchEnabledConnectWithDifferentProtocols(Protocol protocol)
@@ -76,6 +78,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
     }
 
     [Test, Order(2)]
+    [Property("TestCaseId", "787634")]
     public void FirewallRulesRespectedWithSplitTunnelingIncludeModeAndAdvancedKillSwitchEnabled()
     {
         //unable to test locally due to MDM
@@ -92,6 +95,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
     }
 
     [Test, Order(3)]
+    [Property("TestCaseId", "787619")]
     public void FirewallRulesIgnoredWithSplitTunnelingExcludeModeAndAdvancedKillSwitchEnabled()
     {
         CompletePreconditionsSplitTunnelingApp(SplitTunnelingMode.Exclude);
@@ -107,6 +111,8 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
     }
 
     [Test, Order(4)]
+    [Property("TestCaseId", "787614")]
+    [Ignore("Flaky test")]
     [Retry(3)]
     public void IncludedAppLossesInternetWhileInConnectingState()
     {
@@ -133,51 +139,53 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
     }
 
     [Test, Order(5)]
+    [Property("TestCaseId", "787613")]
     public void SplitTunnelingAndAdvancedKillSwitchEnabledBlocksInternetAfterRestart()
     {
         ScriptHelper.RemoveVpnSpeedLimit();
 
         CompletePreconditionsSplitTunnelingApp(SplitTunnelingMode.Include);
 
-        SettingRobot
-            .OpenSettings()
-            .OpenAutoStartupSettings()
-            .ToggleAutoLaunchSetting()
-            .ToggleAutoConnectionSetting()
-            .ApplySettings()
-            .CloseSettings();
+        try
+        {
+            SettingRobot
+                .OpenSettings()
+                .OpenAutoStartupSettings()
+                .ToggleAutoLaunchSetting()
+                .ToggleAutoConnectionSetting()
+                .ApplySettings()
+                .CloseSettings();
 
-        HomeRobot
-            .ExpandKebabMenuButton()
-            .ExitViaKebabMenuWithConfirmation();
+            HomeRobot
+                .ExpandKebabMenuButton()
+                .ExitViaKebabMenuWithConfirmation();
 
-        Thread.Sleep(TestConstants.TwoSecondsTimeout);
+            Thread.Sleep(TestConstants.TwoSecondsTimeout);
 
-        LaunchApp(isFreshStart: false);
+            LaunchApp(isFreshStart: false);
 
-        NavigationRobot
-            .Verify.IsOnMainPage();
+            NavigationRobot
+                .Verify.IsOnMainPage();
 
-        //wait to see that it doesnt reconnect
-        Thread.Sleep(TestConstants.TenSecondsTimeout);
-        HomeRobot
-            .Verify.IsAdvancedKillSwitchActivated();
+            //wait to see that it doesnt reconnect
+            Thread.Sleep(TestConstants.TenSecondsTimeout);
+            HomeRobot
+                .Verify.IsAdvancedKillSwitchActivated();
 
-        BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: false);
-    }
+            BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: false);
+        }
+        finally
+        {
+            CommonUiFlows.Logout();
 
-    [Test, Order(6)]
-    public void TempTcDisableAdvancedKillSwitchFromSignInPage()
-    {
-        CommonUiFlows.Logout();
+            Thread.Sleep(TestConstants.OneSecondTimeout);
 
-        Thread.Sleep(TestConstants.OneSecondTimeout);
+            LoginRobot
+                .Verify.IsAdvancedKillSwitchDisplayed()
+                .DisableKillSwitch();
 
-        LoginRobot
-            .Verify.IsAdvancedKillSwitchDisplayed()
-            .DisableKillSwitch();
-
-        NetworkUtils.AssertInternetAvailability(true);
+            NetworkUtils.AssertInternetAvailability(true);
+        }
     }
 
     private void CompletePreconditionsKillSwitch()

@@ -43,6 +43,7 @@ public class SearchTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602383")]
     public void SearchForCountryConnectAndDisconnect()
     {
         SidebarRobot
@@ -60,6 +61,7 @@ public class SearchTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602382")]
     public void SearchForCountryAndConnectDisconnectToCity()
     {
         SidebarRobot
@@ -78,6 +80,7 @@ public class SearchTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602381")]
     public void SearchCountryAndConnectDisconnectToSpecificServer()
     {
         SidebarRobot
@@ -98,6 +101,7 @@ public class SearchTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "610985")]
     public void SearchForCityAndConnectDisconnect()
     {
         SidebarRobot
@@ -115,6 +119,7 @@ public class SearchTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "610986")]
     public void SearchForServerAndConnectDisconnect()
     {
         SidebarRobot
@@ -132,6 +137,7 @@ public class SearchTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "610987")]
     public void SearchBehaviorAfterRemovingFocus()
     {
         SidebarRobot
@@ -155,6 +161,7 @@ public class SearchTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "610988")]
     public void SearchBehaviorAfterRemovingText()
     {
         SidebarRobot

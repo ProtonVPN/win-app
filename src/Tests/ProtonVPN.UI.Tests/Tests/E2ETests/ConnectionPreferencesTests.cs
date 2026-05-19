@@ -46,6 +46,7 @@ public class ConnectionPreferencesTests : BaseTest
     }
 
     [Test, Order(0)]
+    [Property("TestCaseId", "NO_TC_FOUND")]
     public void DefaultConnectionTitleIsFastest()
     {
         HomeRobot
@@ -58,6 +59,7 @@ public class ConnectionPreferencesTests : BaseTest
     }
 
     [Test, Order(1)]
+    [Property("TestCaseId", "NO_TC_FOUND")]
     public void DefaultLastConnectionConnectsToCorrectServer()
     {
         SidebarRobot
@@ -89,6 +91,7 @@ public class ConnectionPreferencesTests : BaseTest
     }
 
     [Test, Order(2)]
+    [Property("TestCaseId", "NO_TC_FOUND")]
     public void ExcludedLocationsSelector_AllowsSelectingAndSearching()
     {
         SettingRobot
@@ -109,6 +112,7 @@ public class ConnectionPreferencesTests : BaseTest
     }
 
     [Test]
+    [Property("TestCaseId", "NO_TC_FOUND")]
     public void DefaultConnection()
     {
         HomeRobot
@@ -123,6 +127,7 @@ public class ConnectionPreferencesTests : BaseTest
     }
 
     [Test]
+    [Property("TestCaseId", "NO_TC_FOUND")]
     public void ConnectToVpnFastestCountryAndRandomCountry()
     {
         ConnectToDefaultConnectionAndVerify(VpnConnectionOption.Fastest, FAST_CONNECTION);

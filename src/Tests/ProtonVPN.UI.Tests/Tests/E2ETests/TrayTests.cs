@@ -50,6 +50,7 @@ public class TrayTests : BaseTest
     }
 
     [Test, Order(0)]
+    [Property("TestCaseId", "602473")]
     [Retry(3)]
     public void TriggerTrayIconOnClick()
     {
@@ -74,6 +75,7 @@ public class TrayTests : BaseTest
     }
 
     [Test, Order(1)]
+    [Property("TestCaseId", "609946")]
     [Retry(3)]
     public void ChangeDefaultConnectionFromTray()
     {
@@ -87,6 +89,7 @@ public class TrayTests : BaseTest
     }
 
     [Test, Order(2)]
+    [Property("TestCaseId", "602461")]
     [Retry(3)]
     public void ConnectToAServerFromTray()
     {
@@ -107,6 +110,7 @@ public class TrayTests : BaseTest
     }
 
     [Test, Order(3)]
+    [Property("TestCaseId", "602462")]
     [Retry(3)]
     public void DisconnectFromAServerFromTray()
     {
@@ -123,6 +127,7 @@ public class TrayTests : BaseTest
     }
 
     [Test, Order(4)]
+    [Property("TestCaseId", "602463")]
     [Ignore("Native WireGuard causes infinite connecting on the ProTUN build")]
     public void ConnectingErrorsInTray()
     {
@@ -151,6 +156,7 @@ public class TrayTests : BaseTest
     }
 
     [Test, Order(5)]
+    [Property("TestCaseId", "607014")]
     [Retry(3)]
     public void WarningsInTray()
     {
@@ -187,6 +193,7 @@ public class TrayTests : BaseTest
     }
 
     [Test, Order(6)]
+    [Property("TestCaseId", "602464")]
     [Retry(3)]
     public void OpenAppFromTray()
     {
@@ -209,6 +216,7 @@ public class TrayTests : BaseTest
     }
 
     [Test, Order(7)]
+    [Property("TestCaseId", "602469")]
     [Retry(3)]
     public void RecentIsAddedToListInTray()
     {
@@ -228,6 +236,7 @@ public class TrayTests : BaseTest
     }
 
     [Test, Order(8)]
+    [Property("TestCaseId", "602470")]
     [Retry(3)]
     public void RemoveRecentFromListInTray()
     {
@@ -250,6 +259,7 @@ public class TrayTests : BaseTest
     }
 
     [Test, Order(9)]
+    [Property("TestCaseId", "602471")]
     [Retry(3)]
     public void PinRecentFromListInTray()
     {
@@ -272,6 +282,7 @@ public class TrayTests : BaseTest
     }
 
     [Test, Order(10)]
+    [Property("TestCaseId", "602472")]
     [Retry(3)]
     public void UnpinRecentFromListInTray()
     {
@@ -292,6 +303,7 @@ public class TrayTests : BaseTest
     }
 
     [Test, Order(11)]
+    [Property("TestCaseId", "602466")]
     [Retry(3)]
     public void ChangeServerFromTray()
     {
@@ -315,6 +327,7 @@ public class TrayTests : BaseTest
     }
 
     [Test, Order(12)]
+    [Property("TestCaseId", "602460")]
     [Retry(3)]
     public void CheckTrayOnLogin()
     {
@@ -335,6 +348,7 @@ public class TrayTests : BaseTest
     }
 
     [Test, Order(13)]
+    [Property("TestCaseId", "602465")]
     [Retry(3)]
     public void ExitAppFromTray()
     {

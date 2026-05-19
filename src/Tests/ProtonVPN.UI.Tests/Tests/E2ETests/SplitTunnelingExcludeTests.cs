@@ -51,6 +51,7 @@ public class SplitTunnelingExcludeTests : BaseTest
     }
 
     [Test, Order(0)]
+    [Property("TestCaseId", "602413")]
     public void SplitTunnelingIpInputDoesNotAllowInvalidIp()
     {
         SettingRobot
@@ -71,6 +72,7 @@ public class SplitTunnelingExcludeTests : BaseTest
     }
 
     [Test, Order(1)]
+    [Property("TestCaseId", "788411")]
     public void SplitTunnelingIpInputAllowsIpV6()
     {
         IpSelectorRobot
@@ -79,6 +81,7 @@ public class SplitTunnelingExcludeTests : BaseTest
     }
 
     [Test, Order(2)]
+    [Property("TestCaseId", "602414")]
     public void SplitTunnelingExcludeIpAddress()
     {
         IpSelectorRobot
@@ -100,6 +103,7 @@ public class SplitTunnelingExcludeTests : BaseTest
     }
 
     [Test, Order(3)]
+    [Property("TestCaseId", "787617")]
     [Ignore("JIRA - VPNWIN-1563")]
     public void SplitTunnelingExcludeModeSpecialIP()
     {
@@ -155,6 +159,7 @@ public class SplitTunnelingExcludeTests : BaseTest
     }
 
     [Test, Order(4)]
+    [Property("TestCaseId", "602417")]
     public void SplitTunnelingDeleteIpAddress()
     {
         SettingRobot
@@ -180,6 +185,7 @@ public class SplitTunnelingExcludeTests : BaseTest
     }
 
     [Test, Order(5)]
+    [Property("TestCaseId", "787609")]
     [Retry(3)]
     public void SplitTunnelingExcludeModeApp()
     {

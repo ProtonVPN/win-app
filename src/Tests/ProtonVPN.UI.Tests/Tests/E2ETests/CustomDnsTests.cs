@@ -62,6 +62,7 @@ public class CustomDnsTests : BaseTest
     }
 
     [Test, Order(0)]
+    [Property("TestCaseId", "602403")]
     public void NetshieldIsDisabledWhenCustomDnsIsEnabled()
     {
         SettingRobot
@@ -88,6 +89,7 @@ public class CustomDnsTests : BaseTest
     }
 
     [Test, Order(1)]
+    [Property("TestCaseId", "602404")]
     public void CustomDnsIsSet()
     {
         NavigateToCustomDnsSetting();
@@ -117,6 +119,7 @@ public class CustomDnsTests : BaseTest
     }
 
     [Test, Order(2)]
+    [Property("TestCaseId", "602405")]
     public void CustomDnsIsDisabledByTickingCheckBox()
     {
         NavigateToCustomDnsSetting();
@@ -141,6 +144,7 @@ public class CustomDnsTests : BaseTest
     }
 
     [Test, Order(3)]
+    [Property("TestCaseId", "863611")]
     [TestCaseSource(typeof(TestConstants), nameof(AllProtocols))]
     public void CustomDnsUsingDifferentProtocols(Protocol protocol)
     {
@@ -148,6 +152,7 @@ public class CustomDnsTests : BaseTest
     }
 
     [Test, Order(4)]
+    [Property("TestCaseId", "863616")]
     [TestCaseSource(typeof(TestConstants), nameof(WireGuardProtocols))]
     public void CustomDnsUsingDifferentProTunProtocols(Protocol protocol)
     {
@@ -155,6 +160,7 @@ public class CustomDnsTests : BaseTest
     }
 
     [Test, Order(5)]
+    [Property("TestCaseId", "610989")]
     public void ReconnectionRequiredAfterUpdatingTheCustomDnsConfiguration()
     {
         // Pre-condition: FIRST_CUSTOM_DNS_SERVER is added and disabled, SECOND_CUSTOM_DNS_SERVER is added and enabled
@@ -210,6 +216,7 @@ public class CustomDnsTests : BaseTest
     }
 
     [Test, Order(6)]
+    [Property("TestCaseId", "610990")]
     public void DiscardCustomDnsConfiguration()
     {
         NavigateToCustomDnsSetting();
@@ -254,6 +261,7 @@ public class CustomDnsTests : BaseTest
     }
 
     [Test, Order(7)]
+    [Property("TestCaseId", "760743")]
     public void ReorderingCustomDnsServers()
     {
         AdvancedSettingsRobot
@@ -306,6 +314,7 @@ public class CustomDnsTests : BaseTest
     }
 
     [Test, Order(8)]
+    [Property("TestCaseId", "602406")]
     public void CustomDnsServerRemoval()
     {
         NavigateToCustomDnsSetting();
@@ -331,6 +340,7 @@ public class CustomDnsTests : BaseTest
     }
 
     [Test, Order(9)]
+    [Property("TestCaseId", "602407")]
     public void DisablingCustomDnsRemovesDnsServers()
     {
         NavigateToCustomDnsSetting();

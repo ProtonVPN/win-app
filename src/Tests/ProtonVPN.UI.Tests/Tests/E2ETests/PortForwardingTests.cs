@@ -55,6 +55,7 @@ public class PortForwardingTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602439")]
     [Retry(3)]
     public void PortForwardingOpensThePort()
     {
@@ -82,6 +83,7 @@ public class PortForwardingTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602440")]
     public void PortForwardingIsDisabledWhenModerateNatIsEnabled()
     {
         SettingRobot
@@ -113,6 +115,7 @@ public class PortForwardingTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "786553")]
     public void ModerateNatIsDisabledWhenPortForwardingIsEnabled()
     {
         SettingRobot
@@ -144,6 +147,7 @@ public class PortForwardingTests : FreshSessionSetUp
 
     [Test]
     [Retry(3)]
+    [Property("TestCaseId", "602441")]
     public void VerifyP2PServerGeneratesPortNumber()
     {
         SettingRobot

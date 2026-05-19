@@ -34,6 +34,7 @@ public class LoginSsoTests : FreshSessionSetUp
     private const string REGULAR_LOGIN_ERROR = "Email domain not found, please sign in with a password";
 
     [Test]
+    [Property("TestCaseId", "602334")]
     [Retry(3)]
     public void LoginWithSso()
     {
@@ -47,6 +48,7 @@ public class LoginSsoTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602335")]
     public void LoginRegularWithSso()
     {
         VerifyIsOnLoginPage();
@@ -57,6 +59,7 @@ public class LoginSsoTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602336")]
     public void LoginToSsoWithRegular()
     {
         VerifyIsOnLoginPage();

@@ -41,12 +41,14 @@ public class NatTypeTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602445")]
     public void NatTypeSetToModerate()
     {
         VerifyNatType(NatType.Moderate, MODERATE_NAT_TYPE);
     }
 
     [Test]
+    [Property("TestCaseId", "602444")]
     public void NatTypeSetToStrict()
     {
         VerifyNatType(NatType.Strict, STRICT_NAT_TYPE);

@@ -52,6 +52,7 @@ public class SplitTunnelingIncludeTests : BaseTest
     }
 
     [Test, Order(0)]
+    [Property("TestCaseId", "602416")]
     public void SplitTunnelingIncludeIpAddress()
     {
         SettingRobot
@@ -83,6 +84,7 @@ public class SplitTunnelingIncludeTests : BaseTest
     }
 
     [Test, Order(1)]
+    [Property("TestCaseId", "602415")]
     public void SplitTunnelingDisableIpAddress()
     {
         SettingRobot
@@ -108,6 +110,7 @@ public class SplitTunnelingIncludeTests : BaseTest
     }
 
     [Test, Order(2)]
+    [Property("TestCaseId", "787610")]
     public void SplitTunnelingIncludeModeApp()
     {
         SettingRobot
@@ -145,6 +148,7 @@ public class SplitTunnelingIncludeTests : BaseTest
     }
 
     [Test, Order(3)]
+    [Property("TestCaseId", "724450")]
     public void SplitTunnelingWithUninstalledApp()
     {
         SettingRobot

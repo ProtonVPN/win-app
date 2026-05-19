@@ -37,6 +37,7 @@ public class LogoutTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602331")]
     public void LogoutWhileConnectedToVpn()
     {
         HomeRobot
@@ -57,6 +58,7 @@ public class LogoutTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602332")]
     public void CancelLogoutWhileConnectedToVpn()
     {
         HomeRobot
@@ -74,12 +76,14 @@ public class LogoutTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602391")]
     public void LogoutViaKebabMenu()
     {
         CommonUiFlows.Logout();
     }
 
     [Test]
+    [Property("TestCaseId", "602330")]
     public void LogoutViaAccountMenu()
     {
         SettingRobot

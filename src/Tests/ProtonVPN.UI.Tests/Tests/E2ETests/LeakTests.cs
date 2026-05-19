@@ -45,6 +45,7 @@ public class LeakTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602456")]
     public void WebRtcIsNotLeakingWhileConnected()
     {
         HomeRobot
@@ -60,6 +61,7 @@ public class LeakTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602457")]
     public void DnsIsNotLeakingWhileConnected()
     {
         HomeRobot
@@ -72,6 +74,7 @@ public class LeakTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "609948")]
     public void DnsIsNotLeakingOnReconnect()
     {
         CheckDnsLeaksWhileReconnecting();
@@ -79,6 +82,7 @@ public class LeakTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "609949")]
     public void DnsIsNotLeakingWithKillSwitchOn()
     {
         try
@@ -97,6 +101,7 @@ public class LeakTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "863617")]
     [TestCaseSource(typeof(TestConstants), nameof(AllProtocols))]
     public void DnsIsNotLeakingUsingDifferentProtocols(Protocol protocol)
     {
@@ -104,6 +109,7 @@ public class LeakTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "863618")]
     [TestCaseSource(typeof(TestConstants), nameof(WireGuardProtocols))]
     public void DnsIsNotLeakingUsingDifferentProTunProtocols(Protocol protocol)
     {

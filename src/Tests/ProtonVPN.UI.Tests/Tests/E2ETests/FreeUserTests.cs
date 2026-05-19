@@ -49,6 +49,7 @@ public class FreeUserTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602338")]
     public void ConnectToServerFreeUser()
     {
         HomeRobot
@@ -59,6 +60,7 @@ public class FreeUserTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602339")]
     public void ChangeServerFreeUser()
     {
         HomeRobot
@@ -74,6 +76,7 @@ public class FreeUserTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602387")]
     [Retry(3)]
     public void CancelChangeServerDoesNotTriggerTimer()
     {
@@ -92,6 +95,7 @@ public class FreeUserTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602459")]
     public void LocalNetworkingIsNotReachableWhileConnected()
     {
         HomeRobot
@@ -112,6 +116,7 @@ public class FreeUserTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602390")]
     public void UpsellCarousel()
     {
         CommonUiFlows.EnsureUserIsDisconnected();
@@ -150,6 +155,7 @@ public class FreeUserTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602388")]
     public void UpsellThroughSettings()
     {
         SettingRobot
@@ -193,6 +199,7 @@ public class FreeUserTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602389")]
     public void HomeScreenUpsell()
     {
         HomeRobot
@@ -211,6 +218,7 @@ public class FreeUserTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "609947")]
     [Retry(5)]
     public void ConnectionRequestTriggersUpsellCarousel()
     {
@@ -259,6 +267,7 @@ public class FreeUserTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602438")]
     [Ignore("Aria2 Doesnt Trigger modal")]
     public void P2PConnectionDisabledUpsell()
     {

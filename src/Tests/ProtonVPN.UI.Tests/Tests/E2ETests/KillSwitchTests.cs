@@ -37,6 +37,7 @@ public class KillSwitchTests : FreshSessionSetUp
     }
 
     [Test, Order(0)]
+    [Property("TestCaseId", "602468")]
     public void WarningIsDisplayedWhenAdvancedKillSwitchIsOn()
     {
         HomeRobot
@@ -62,6 +63,7 @@ public class KillSwitchTests : FreshSessionSetUp
     }
 
     [Test, Order(1)]
+    [Property("TestCaseId", "791685")]
     public void EnableKillSwitchFromSettings()
     {
         EnableKillSwitch(KillSwitchMode.Standard);
@@ -72,6 +74,7 @@ public class KillSwitchTests : FreshSessionSetUp
     }
 
     [Test, Order(2)]
+    [Property("TestCaseId", "602450")]
     public void SignOutWithStandardKillSwitchEnabled()
     {
         EnableKillSwitch(KillSwitchMode.Standard);
@@ -91,6 +94,7 @@ public class KillSwitchTests : FreshSessionSetUp
     }
 
     [Test, Order(3)]
+    [Property("TestCaseId", "610981")]
     public void ExitTheAppWithStandardKillSwitchEnabled()
     {
         EnableKillSwitch(KillSwitchMode.Standard);
@@ -112,6 +116,7 @@ public class KillSwitchTests : FreshSessionSetUp
     }
 
     [Test, Order(4)]
+    [Property("TestCaseId", "737760")]
     public void SignOutWithAdvancedKillSwitchEnabled()
     {
         EnableKillSwitch(KillSwitchMode.Advanced);
@@ -134,6 +139,7 @@ public class KillSwitchTests : FreshSessionSetUp
     }
 
     [Test, Order(5)]
+    [Property("TestCaseId", "610982")]
     public void InternetConnectionBlockedAdvancedKillSwitchEnabled()
     {
         EnableKillSwitch(KillSwitchMode.Advanced);
@@ -148,6 +154,7 @@ public class KillSwitchTests : FreshSessionSetUp
     }
 
     [Test, Order(6)]
+    [Property("TestCaseId", "610983")]
     public void ExitTheAppWithAdvancedKillSwitchEnabled()
     {
         EnableKillSwitch(KillSwitchMode.Advanced);
@@ -162,6 +169,7 @@ public class KillSwitchTests : FreshSessionSetUp
     }
 
     [Test, Order(7)]
+    [Property("TestCaseId", "610984")]
     public void DisableAdvancedKillSwitchFromSignInPage()
     {
         EnableKillSwitch(KillSwitchMode.Advanced);
@@ -180,6 +188,7 @@ public class KillSwitchTests : FreshSessionSetUp
     }
 
     [Test, Order(8)]
+    [Property("TestCaseId", "791686")]
     public void DisableKillSwitchFromSettings()
     {
         EnableKillSwitch(KillSwitchMode.Advanced);

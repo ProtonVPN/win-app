@@ -41,6 +41,7 @@ public class NetShieldTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602409")]
     public void NetshieldOnLevelTwo()
     {
         ConnectAndVerifyIsConnected();
@@ -50,6 +51,7 @@ public class NetShieldTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "789802")]
     public void NetshieldOnLevelThree()
     {
         SettingRobot
@@ -66,6 +68,7 @@ public class NetShieldTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602410")]
     public void NetshieldOnLevelOne()
     {
         SettingRobot
@@ -82,6 +85,7 @@ public class NetShieldTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602408")]
     public void NetshieldOff()
     {
         SettingRobot
@@ -98,6 +102,7 @@ public class NetShieldTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602411")]
     public void PaidSettingsAreNotTransferedOnPaidToFreeUserSwitch()
     {
         SettingRobot
@@ -126,6 +131,7 @@ public class NetShieldTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "610991")]
     public void CustomDnsIsDisabledWhenNetshieldIsEnabled()
     {
         TurnOnDns();

@@ -45,6 +45,7 @@ public class SecureCoreTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602370")]
     public void ConnectToSecureCoreServerViaCountriesList()
     {
         SidebarRobot
@@ -72,6 +73,7 @@ public class SecureCoreTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602374")]
     public void DisconnectFromSecureCoreServerViaCountriesList()
     {
         SidebarRobot
@@ -93,6 +95,7 @@ public class SecureCoreTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602372,602373")]
     public void QuickConnectToSecureCoreServerAndDisconnect()
     {
         AddConnectionInRecents();
@@ -111,6 +114,7 @@ public class SecureCoreTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602430,602431")]
     [Retry(3)]
     public void ConnectToSecureCoreServerViaProfilesAndDisconnect()
     {
@@ -135,6 +139,7 @@ public class SecureCoreTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602432,602433")]
     public void ConnectToSecureCoreServerViaRecentsAndDisconnect()
     {
         AddConnectionInRecents();

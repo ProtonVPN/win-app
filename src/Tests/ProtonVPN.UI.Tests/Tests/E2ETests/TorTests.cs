@@ -38,6 +38,7 @@ public class TorTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602368")]
     [Retry(3)]
     public void ConnectToATorServer()
     {
@@ -51,6 +52,7 @@ public class TorTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "760479")]
     [Retry(4)]
     public void ConnectToATorServerWithKillSwitchEnabled()
     {

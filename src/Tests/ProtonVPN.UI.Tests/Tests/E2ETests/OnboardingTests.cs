@@ -46,6 +46,7 @@ public class OnboardingTests : BaseTest
     }
 
     [Test, Order(0)]
+    [Property("TestCaseId", "NO_TC_FOUND")]
     public void ConfirmWelcomeModalIsDisplayed()
     {
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
@@ -56,6 +57,7 @@ public class OnboardingTests : BaseTest
     }
 
     [Test, Order(1)]
+    [Property("TestCaseId", "NO_TC_FOUND")]
     public void ConfirmInfoBannersAreDisplayed()
     {
         NavigationRobot
@@ -72,6 +74,7 @@ public class OnboardingTests : BaseTest
     }
 
     [Test, Order(2)]
+    [Property("TestCaseId", "NO_TC_FOUND")]
     public void ConfirmExcludingLocationsTipsAreDisplayed()
     {
         CommonUiFlows.Logout();

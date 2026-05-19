@@ -55,21 +55,24 @@ public class ProtocolTests : FreshSessionSetUp
     }
 
     [Test]
-    [TestCaseSource(typeof(TestConstants), nameof(AllProtocols))]
+	[Property("TestCaseId", "602365")]
+	[TestCaseSource(typeof(TestConstants), nameof(AllProtocols))]
     public void ConnectUsingDifferentProtocols(Protocol protocol)
     {
         PerformProtocolTest(protocol);
     }
 
     [Test]
-    [TestCaseSource(typeof(TestConstants), nameof(WireGuardProtocols))]
+	[Property("TestCaseId", "841907")]
+	[TestCaseSource(typeof(TestConstants), nameof(WireGuardProtocols))]
     public void ConnectUsingDifferentProTunProtocols(Protocol protocol)
     {
         PerformProtocolTest(protocol, shouldEnableProTun: true);
     }
 
     [Test]
-    public void ChangeProtocolFromConnectionDetails()
+	[Property("TestCaseId", "602412")]
+	public void ChangeProtocolFromConnectionDetails()
     {
         PerformProtocolTest(Protocol.OpenVpnUdp);
 
@@ -86,7 +89,8 @@ public class ProtocolTests : FreshSessionSetUp
     }
 
     [Test]
-    [Ignore("JIRA - VPNWIN-2605")]
+    [Property("TestCaseId", "602354")]
+    [Ignore("Native WireGuard causes infinite connecting on the ProTUN build")]
     [TestCaseSource(nameof(WireGuardProtocols))]
     public void ConnectUsingWireGuardWhileConnectedToNativeWireGuard(Protocol wireGuardProtocol)
     {
@@ -110,6 +114,7 @@ public class ProtocolTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602448")]
     public void OpenVpnAdapterTAP()
     {
         VerifyOpenVpnAdapter(
@@ -119,6 +124,7 @@ public class ProtocolTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602447")]
     public void OpenVpnAdapterTUN()
     {
         VerifyOpenVpnAdapter(

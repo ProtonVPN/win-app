@@ -62,18 +62,21 @@ public class LoginTests : FreshSessionSetUp
         ];
 
     [Test]
+    [Property("TestCaseId", "602337")]
     public void LoginWithSpecialCharsUser()
     {
         LoginWithUser(TestUserData.SpecialCharsUser);
     }
 
     [Test]
+    [Property("TestCaseId", "602325")]
     public void LoginWithTwoPassUser()
     {
         LoginWithUser(TestUserData.TwoPassUser);
     }
 
     [Test]
+    [Property("TestCaseId", "602321")]
     public void LoginWithIncorrectCredentials()
     {
         NavigationRobot
@@ -85,6 +88,7 @@ public class LoginTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602322")]
     [Retry(3)]
     public void LoginWithTwoFactor()
     {
@@ -100,6 +104,7 @@ public class LoginTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602324")]
     public void LoginWithIncorrectTwoFactorCode()
     {
         LoginRobot
@@ -109,6 +114,7 @@ public class LoginTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "791683")]
     public void LoginWithWhitespaceUsername()
     {
         NavigationRobot
@@ -125,6 +131,7 @@ public class LoginTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "760480")]
     public void CancelLogin()
     {
         NavigationRobot
@@ -141,6 +148,7 @@ public class LoginTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "760481")]
     public void CancelTwoFactorLogin()
     {
         NavigationRobot
@@ -158,6 +166,7 @@ public class LoginTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602323")]
     public void LoginWithEmptyCredentials()
     {
         NavigationRobot
@@ -175,6 +184,7 @@ public class LoginTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602326")]
     public void LoginWithZeroConnectionsAccount()
     {
         NavigationRobot
@@ -193,6 +203,7 @@ public class LoginTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602328")]
     public void LoginWithInvalidCredentialsFiveTimes()
     {
         for (int i = 0; i < 5; i++)
@@ -207,6 +218,7 @@ public class LoginTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602320")]
     [Retry(3)]
     [TestCaseSource(nameof(_validCredentialUsersToCheck))]
     public void LoginWithValidCredentials((string Plan, TestUserData User) userToCheck)
@@ -222,6 +234,7 @@ public class LoginTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602329")]
     [TestCaseSource(nameof(_serverListUsersToCheck))]
     public void ServerListFullyLoadedAfterLogin((string Plan, TestUserData User) userToCheck)
     {
@@ -241,6 +254,7 @@ public class LoginTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602319")]
     [Retry(3)]
     public void LoginWithoutInternet()
     {
@@ -255,7 +269,7 @@ public class LoginTests : FreshSessionSetUp
             LoginRobot
                .Login(TestUserData.PlusUser);
 
-            Thread.Sleep(TestConstants.FiveSecondsTimeout);
+            Thread.Sleep(TestConstants.TenSecondsTimeout);
             SupportRobot
                 .Verify.IsConnectionHelpDisplayed()
                 .CloseSupportWindow();

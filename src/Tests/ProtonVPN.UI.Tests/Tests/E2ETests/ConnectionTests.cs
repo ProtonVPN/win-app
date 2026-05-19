@@ -47,6 +47,7 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602341,602342")]
     [Category("ARM")]
     public void QuickConnectToServerAndDisconnect()
     {
@@ -84,6 +85,7 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602346")]
     [Retry(3)]
     [Category("ARM")]
     public void ConnectAndCancel()
@@ -100,6 +102,7 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602363")]
     public void LocalNetworkingIsReachableWhileConnected()
     {
         SettingRobot
@@ -133,6 +136,7 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602380")]
     public void AutoConnectionOn()
     {
         SettingRobot
@@ -155,6 +159,7 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602379")]
     public void AutoConnectionOff()
     {
         SettingRobot
@@ -180,6 +185,7 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602340")]
     public void ClientKillDoesNotStopVpnConnection()
     {
         SettingRobot
@@ -215,6 +221,7 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "789177")]
     public void AppExitStopsVpnConnection()
     {
         string ipAddressBeforeConnected = NetworkUtils.GetIpAddressWithRetry();
@@ -231,6 +238,7 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602378")]
     public void AppWindowCloseDoesNotStopVpnConnection()
     {
         HomeRobot
@@ -248,6 +256,7 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602343")]
     public void ConnectToServerFromCountriesList()
     {
         SidebarRobot
@@ -274,6 +283,7 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602344")]
     [Retry(3)]
     public void DisconnectFromCountriesList()
     {
@@ -310,6 +320,7 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602347")]
     public void CorrectIpIsShown()
     {
         HomeRobot
@@ -327,6 +338,7 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602424")]
     [Ignore("Native WireGuard causes infinite connecting on the ProTUN build")]
     public void FreshSignInWhileConnectedToWireGuard()
     {
@@ -348,6 +360,7 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "609951")]
     public void FirewallRulesAreNotIgnored()
     {
         CommonUiFlows.EnsureUserIsDisconnected();
@@ -379,6 +392,7 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602422")]
     public void ConnectionRestoresAfterStoppingVpnService()
     {
         HomeRobot
@@ -403,6 +417,7 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602345")]
     public void ConnectWithoutInternet()
     {
         try

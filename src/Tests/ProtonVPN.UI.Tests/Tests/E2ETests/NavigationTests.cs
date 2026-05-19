@@ -40,6 +40,7 @@ public class NavigationTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602397")]
     public void NavigateToSettingsViaKebabMenu()
     {
         HomeRobot.ExpandKebabMenuButton()
@@ -49,6 +50,7 @@ public class NavigationTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602394")]
     public void AppExitViaKebabMenu()
     {
         HomeRobot.ExpandKebabMenuButton()
@@ -61,6 +63,7 @@ public class NavigationTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602393")]
     public void AppExitViaAccountDropDown()
     {
         SettingRobot
@@ -75,6 +78,7 @@ public class NavigationTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602395")]
     public void ClickingOnSidebarClosesSettings()
     {
         SettingRobot.OpenSettings()
@@ -84,6 +88,7 @@ public class NavigationTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602396")]
     public void KeyboardShortcutsNavigateToRelevantComponents()
     {
         SidebarRobot
@@ -127,6 +132,7 @@ public class NavigationTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602392")]
     public void AboutPageIsOpened()
     {
         SettingRobot
