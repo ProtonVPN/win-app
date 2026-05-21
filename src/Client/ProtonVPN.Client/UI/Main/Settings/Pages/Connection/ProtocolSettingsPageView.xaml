@@ -111,6 +111,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         </StackPanel>
                     </RadioButton>
 
+                    <RadioButton AutomationProperties.AutomationId="ProTunUdpProtocolRadioButton"
+                                 IsChecked="{x:Bind ViewModel.IsProTunUdpProtocol, Mode=TwoWay}"
+                                 Style="{StaticResource ProtocolRadioButtonStyle}"
+                                 Visibility="{x:Bind ViewModel.AreProtonProtocolsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_ProTunUdp_Title')}" />
+
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_ProTunUdp_Description')}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
+
                     <RadioButton AutomationProperties.AutomationId="OpenVpnUdpProtocolRadioButton"
                                  IsChecked="{x:Bind ViewModel.IsOpenVpnUdpProtocol, Mode=TwoWay}"
                                  Style="{StaticResource ProtocolRadioButtonStyle}">
@@ -127,6 +142,36 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                     <TextBlock Style="{StaticResource ProtocolTypeTextBlockStyle}"
                                Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_TcpCategory')}" />
+
+                    <RadioButton AutomationProperties.AutomationId="ProTunTcpProtocolRadioButton"
+                                 IsChecked="{x:Bind ViewModel.IsProTunTcpProtocol, Mode=TwoWay}"
+                                 Style="{StaticResource ProtocolRadioButtonStyle}"
+                                 Visibility="{x:Bind ViewModel.AreProtonProtocolsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_ProTunTcp_Title')}" />
+
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_ProTunTcp_Description')}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton AutomationProperties.AutomationId="ProTunTlsProtocolRadioButton"
+                                 IsChecked="{x:Bind ViewModel.IsProTunTlsProtocol, Mode=TwoWay}"
+                                 Style="{StaticResource ProtocolRadioButtonStyle}"
+                                 Visibility="{x:Bind ViewModel.AreProtonProtocolsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_ProTunTls_Title')}" />
+
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_ProTunTls_Description')}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
 
                     <RadioButton AutomationProperties.AutomationId="WireGuardTcpProtocolRadioButton"
                                  IsChecked="{x:Bind ViewModel.IsWireGuardTcpProtocol, Mode=TwoWay}"

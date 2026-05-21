@@ -191,6 +191,21 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                               Command="{x:Bind ViewModel.SelectWireGuardUdpProtocolCommand, Mode=OneTime}"
                                                               IsActive="{x:Bind ViewModel.SelectedProtocol.IsWireGuardUdpProtocol}"
                                                               Text="{x:Bind ViewModel.Localizer.Get('VpnProtocol_WireGuard_Udp')}"/>
+                            <custom:ActivatableMenuFlyoutItem AutomationProperties.AutomationId="ProTunUdpProtocolMenuItem" 
+                                                              Command="{x:Bind ViewModel.SelectProTunUdpProtocolCommand, Mode=OneTime}"
+                                                              IsActive="{x:Bind ViewModel.SelectedProtocol.IsProTunUdpProtocol}"
+                                                              Text="{x:Bind ViewModel.Localizer.Get('VpnProtocol_ProTun_Udp')}"
+                                                              Visibility="{x:Bind ViewModel.AreProtonProtocolsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <custom:ActivatableMenuFlyoutItem AutomationProperties.AutomationId="ProTunTcpProtocolMenuItem" 
+                                                              Command="{x:Bind ViewModel.SelectProTunTcpProtocolCommand, Mode=OneTime}"
+                                                              IsActive="{x:Bind ViewModel.SelectedProtocol.IsProTunTcpProtocol}"
+                                                              Text="{x:Bind ViewModel.Localizer.Get('VpnProtocol_ProTun_Tcp')}"
+                                                              Visibility="{x:Bind ViewModel.AreProtonProtocolsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <custom:ActivatableMenuFlyoutItem AutomationProperties.AutomationId="ProTunTlsProtocolMenuItem" 
+                                                              Command="{x:Bind ViewModel.SelectProTunTlsProtocolCommand, Mode=OneTime}"
+                                                              IsActive="{x:Bind ViewModel.SelectedProtocol.IsProTunTlsProtocol}"
+                                                              Text="{x:Bind ViewModel.Localizer.Get('VpnProtocol_ProTun_Tls')}"
+                                                              Visibility="{x:Bind ViewModel.AreProtonProtocolsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             <custom:ActivatableMenuFlyoutItem AutomationProperties.AutomationId="WireGuardTcpProtocolMenuItem" 
                                                               Command="{x:Bind ViewModel.SelectWireGuardTcpProtocolCommand, Mode=OneTime}"
                                                               IsActive="{x:Bind ViewModel.SelectedProtocol.IsWireGuardTcpProtocol}"

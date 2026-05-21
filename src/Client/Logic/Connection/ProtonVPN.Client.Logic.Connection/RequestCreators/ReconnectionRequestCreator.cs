@@ -63,8 +63,8 @@ public class ReconnectionRequestCreator : ConnectionRequestCreator, IReconnectio
         // If the protocol in the settings is a specific one (not Smart), put it at the top of the smart protocol list
         if (settings.VpnProtocol != VpnProtocolIpcEntity.Smart)
         {
-            IList<VpnProtocolIpcEntity> smartProtocols = GetPreferredProtocol(VpnProtocolIpcEntity.Smart);
-            VpnProtocolIpcEntity? specificProtocol = GetPreferredProtocol(settings.VpnProtocol).FirstOrDefault();
+            IList<VpnProtocolIpcEntity> smartProtocols = GetPreferredProtocol(VpnProtocolIpcEntity.Smart, connectionIntent);
+            VpnProtocolIpcEntity? specificProtocol = GetPreferredProtocol(settings.VpnProtocol, connectionIntent).FirstOrDefault();
             if (specificProtocol is not null)
             {
                 smartProtocols.Remove(specificProtocol.Value);

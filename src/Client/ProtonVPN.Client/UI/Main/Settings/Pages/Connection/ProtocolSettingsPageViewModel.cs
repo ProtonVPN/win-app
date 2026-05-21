@@ -30,6 +30,7 @@ using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.Connection;
@@ -57,6 +58,8 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase,
     private VpnProtocol _currentVpnProtocol;
 
     public bool IsProtonProtocolsFeatureEnabled => _featureFlagsObserver.IsProTunEnabled;
+
+    public bool AreProtonProtocolsVisible => IsProtonProtocolsFeatureEnabled && AreProtonProtocolsEnabled;
 
     public override string Title => Localizer.Get("Settings_Connection_Protocol");
 
@@ -149,6 +152,15 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase,
         ];
     }
 
+    partial void OnAreProtonProtocolsEnabledChanged(bool value)
+    {
+        if (!value && CurrentVpnProtocol.IsProTun())
+        {
+            CurrentVpnProtocol = VpnProtocol.Smart;
+        }
+        OnPropertyChanged(nameof(AreProtonProtocolsVisible));
+    }
+
     protected override void OnLanguageChanged()
     {
         base.OnLanguageChanged();
@@ -160,7 +172,13 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase,
     protected override void OnRetrieveSettings()
     {
         AreProtonProtocolsEnabled = Settings.AreProtonProtocolsEnabled;
-        CurrentVpnProtocol = Settings.VpnProtocol;
+
+        VpnProtocol savedProtocol = Settings.VpnProtocol;
+        CurrentVpnProtocol = AreProtonProtocolsVisible
+            ? savedProtocol
+            : savedProtocol.IsProTun()
+                ? VpnProtocol.Smart
+                : savedProtocol;
     }
 
     private bool IsProtocol(VpnProtocol protocol)
@@ -172,7 +190,10 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase,
     {
         if (value)
         {
-            CurrentVpnProtocol = protocol;
+            if (AreProtonProtocolsVisible || !protocol.IsProTun())
+            {
+                CurrentVpnProtocol = protocol;
+            }
         }
     }
 
@@ -181,6 +202,7 @@ public partial class ProtocolSettingsPageViewModel : SettingsPageViewModelBase,
         ExecuteOnUIThread(() =>
         {
             OnPropertyChanged(nameof(IsProtonProtocolsFeatureEnabled));
+            OnPropertyChanged(nameof(AreProtonProtocolsVisible));
         });
     }
 }

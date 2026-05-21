@@ -1876,6 +1876,24 @@
   <data name="Settings_Protocols_WireGuardTls_Description" xml:space="preserve">
     <value>Overcomes VPN blocks by hiding your VPN connection from censors. Stealth is DPI (deep packet inspection) resistant, but may not be as fast as other protocols.</value>
   </data>
+  <data name="Settings_Protocols_ProTunUdp_Title" xml:space="preserve">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Description" xml:space="preserve">
+    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Title" xml:space="preserve">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Description" xml:space="preserve">
+    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Title" xml:space="preserve">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Description" xml:space="preserve">
+    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+  </data>
   <data name="Settings_RestoreDefault" xml:space="preserve">
     <value>Restore default settings</value>
   </data>

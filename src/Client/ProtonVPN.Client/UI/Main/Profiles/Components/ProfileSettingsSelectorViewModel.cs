@@ -33,6 +33,8 @@ using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Models.Settings;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
+using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Profiles.Contracts;
 using ProtonVPN.Common.Core.Networking;
@@ -41,13 +43,16 @@ namespace ProtonVPN.Client.UI.Main.Profiles.Components;
 
 public partial class ProfileSettingsSelectorViewModel : ViewModelBase, 
     IProfileSettingsSelector,
-    IEventMessageReceiver<VpnPlanChangedMessage>
+    IEventMessageReceiver<VpnPlanChangedMessage>,
+    IEventMessageReceiver<FeatureFlagsChangedMessage>,
+    IEventMessageReceiver<SettingChangedMessage>
 {
     private readonly ISettings _settings;
     private readonly ICommonItemFactory _commonItemFactory;
     private readonly IRequiredReconnectionSettings _requiredReconnectionSettings;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
     private readonly IUrlsBrowser _urlsBrowser;
+    private readonly IFeatureFlagsObserver _featureFlagsObserver;
 
     private IProfileSettings _originalProfileSettings = ProfileSettings.Default;
 
@@ -90,13 +95,16 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase,
 
     public bool IsNetShieldLevelThreeAvailable => !_settings.VpnPlan.IsB2B;
 
+    public bool AreProtonProtocolsVisible => _featureFlagsObserver.IsProTunEnabled && _settings.AreProtonProtocolsEnabled;
+
     public ProfileSettingsSelectorViewModel(
         IViewModelHelper viewModelHelper,
         ISettings settings,
         ICommonItemFactory commonItemFactory,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainWindowOverlayActivator mainWindowOverlayActivator,
-        IUrlsBrowser urlsBrowser)
+        IUrlsBrowser urlsBrowser,
+        IFeatureFlagsObserver featureFlagsObserver)
         : base(viewModelHelper)
     {
         _settings = settings;
@@ -104,6 +112,7 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase,
         _requiredReconnectionSettings = requiredReconnectionSettings;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _urlsBrowser = urlsBrowser;
+        _featureFlagsObserver = featureFlagsObserver;
     }
 
     public IProfileSettings GetProfileSettings()
@@ -156,17 +165,36 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase,
         });
     }
 
+    public void Receive(FeatureFlagsChangedMessage message)
+    {
+        ExecuteOnUIThread(() =>
+        {
+            OnPropertyChanged(nameof(AreProtonProtocolsVisible));
+        });
+    }
+
+    public void Receive(SettingChangedMessage message)
+    {
+        if (message.PropertyName == nameof(ISettings.AreProtonProtocolsEnabled))
+        {
+            ExecuteOnUIThread(() =>
+            {
+                OnPropertyChanged(nameof(AreProtonProtocolsVisible));
+            });
+        }
+    }
+
     private static IEnumerable<VpnProtocol> GetProtocolsByOrder()
     {
         yield return VpnProtocol.Smart;
         yield return VpnProtocol.WireGuardUdp;
+        yield return VpnProtocol.ProTunUdp;
+        yield return VpnProtocol.ProTunTcp;
+        yield return VpnProtocol.ProTunTls;
         yield return VpnProtocol.WireGuardTcp;
         yield return VpnProtocol.WireGuardTls;
         yield return VpnProtocol.OpenVpnUdp;
         yield return VpnProtocol.OpenVpnTcp;
-        yield return VpnProtocol.ProTunUdp;
-        yield return VpnProtocol.ProTunTcp;
-        yield return VpnProtocol.ProTunTls;
     }
 
     private static IEnumerable<NetShieldMode?> GetNetShieldModesByOrder()
@@ -354,6 +382,24 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase,
     }
 
     [RelayCommand]
+    private void SelectProTunUdpProtocol()
+    {
+        SelectProtocol(VpnProtocol.ProTunUdp);
+    }
+
+    [RelayCommand]
+    private void SelectProTunTcpProtocol()
+    {
+        SelectProtocol(VpnProtocol.ProTunTcp);
+    }
+
+    [RelayCommand]
+    private void SelectProTunTlsProtocol()
+    {
+        SelectProtocol(VpnProtocol.ProTunTls);
+    }
+
+    [RelayCommand]
     private void SelectWireGuardTcpProtocol()
     {
         SelectProtocol(VpnProtocol.WireGuardTcp);
@@ -375,24 +421,6 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase,
     private void SelectOpenVpnTcpProtocol()
     {
         SelectProtocol(VpnProtocol.OpenVpnTcp);
-    }
-
-    [RelayCommand]
-    private void SelectProTunUdpProtocol()
-    {
-        SelectProtocol(VpnProtocol.ProTunUdp);
-    }
-
-    [RelayCommand]
-    private void SelectProTunTcpProtocol()
-    {
-        SelectProtocol(VpnProtocol.ProTunTcp);
-    }
-
-    [RelayCommand]
-    private void SelectProTunTlsProtocol()
-    {
-        SelectProtocol(VpnProtocol.ProTunTls);
     }
 
     private void SelectProtocol(VpnProtocol protocol)

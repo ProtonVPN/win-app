@@ -369,7 +369,9 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
         _eventMessageSender.Send(new ConnectionStatusChangedMessage(ConnectionStatus));
 
-        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Status updated to {ConnectionStatus}{(_isGuestHoleActive ? " (Guest hole)" : string.Empty)}.{(IsConnected ? $" Connected to server {CurrentConnectionDetails?.ServerName}" : string.Empty)}");
+        _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Status updated to {ConnectionStatus}" +
+            $"{(_isGuestHoleActive ? " (Guest hole)" : string.Empty)}." +
+            $"{(IsConnected ? $" Connected to server {CurrentConnectionDetails?.ServerName}" : string.Empty)}");
 
         _statisticalEventManager.OnVpnStateChanged(status, error, CurrentConnectionDetails);
     }
