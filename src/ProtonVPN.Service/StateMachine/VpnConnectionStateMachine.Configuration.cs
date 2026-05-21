@@ -77,6 +77,7 @@ internal sealed partial class VpnConnectionStateMachine
             .Permit(Trigger.ConnectionCertificateChanged, State.EstablishingLocalAgentChannel)
             .Permit(Trigger.RequireCertificateUpdate, State.ActionRequired)
             .Permit(Trigger.ClientSecretKeyChanged, State.EstablishingTunnel)
+            .Permit(Trigger.TwoFactorRequested, State.ActionRequired)
             .Permit(Trigger.ConnectRequested, State.AvailabilityCheck);
 
         _machine.Configure(State.ActionRequired)

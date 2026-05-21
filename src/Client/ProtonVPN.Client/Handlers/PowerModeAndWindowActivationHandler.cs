@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,12 +21,14 @@ using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.OperatingSystems.PowerEvents.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Handlers;
 
@@ -38,6 +40,7 @@ public class PowerModeAndWindowActivationHandler : IHandler,
     private readonly IVpnServiceCaller _vpnServiceCaller;
     private readonly IConnectionCertificateManager _connectionCertificateManager;
     private readonly IUserAuthenticator _userAuthenticator;
+    private readonly IConnectionManager _connectionManager;
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
 
     public PowerModeAndWindowActivationHandler(ILogger logger,
@@ -46,6 +49,7 @@ public class PowerModeAndWindowActivationHandler : IHandler,
         IConnectionCertificateManager connectionCertificateManager,
         IUserAuthenticator userAuthenticator,
         IPowerEventNotifier powerEventNotifier,
+        IConnectionManager connectionManager,
         IVpnPlanUpdater vpnPlanUpdater)
     {
         _logger = logger;
@@ -53,6 +57,7 @@ public class PowerModeAndWindowActivationHandler : IHandler,
         _vpnServiceCaller = vpnServiceCaller;
         _connectionCertificateManager = connectionCertificateManager;
         _userAuthenticator = userAuthenticator;
+        _connectionManager = connectionManager;
         _vpnPlanUpdater = vpnPlanUpdater;
 
         powerEventNotifier.OnResume += OnResume;
@@ -77,6 +82,7 @@ public class PowerModeAndWindowActivationHandler : IHandler,
         if (_userAuthenticator.IsLoggedIn)
         {
             _logger.Info<AppLog>("Resuming from sleep while logged in");
+            _connectionManager.ReconnectAsync(VpnTriggerDimension.Auto);
             OnResumeOrWindowActivation();
         }
         else
