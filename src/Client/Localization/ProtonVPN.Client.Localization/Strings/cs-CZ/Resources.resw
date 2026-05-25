@@ -319,7 +319,7 @@
     <value>Vyloučená umístění</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Description">
-    <value>Chcete-li tento problém vyřešit, zavřete nebo odinstalujte aplikaci, která s tím souvisí:</value>
+    <value>Chcete-li tento problém vyřešit, zavřete nebo odinstalujte aplikaci, která souvisí s:</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Title">
     <value>Je možné, že připojení aplikace Proton VPN brání jiná aplikace</value>
@@ -3574,6 +3574,24 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Description">
+    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Description">
+    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Title">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Description">
+    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Title">
+    <value>Proton WireGuard</value>
   </data>
   <data name="Settings_Protocols_ProtonProtocols_Description">
     <value>Použijte vlastní implementaci VPN protokolu WireGuard od Proton. Jedná se o experimentální funkci, takže můžete zaznamenat určitou nestabilitu.</value>

@@ -3383,6 +3383,24 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProTunTcp_Description">
+    <value>Artırılmış kararlılık, işlevsellik ve sansür direnci için yeni WireGuard tabanlı çerçevemiz.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Description">
+    <value>Artırılmış kararlılık, işlevsellik ve sansür direnci için yeni WireGuard tabanlı çerçevemiz.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Title">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Description">
+    <value>Artırılmış kararlılık, işlevsellik ve sansür direnci için yeni WireGuard tabanlı çerçevemiz.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Title">
+    <value>Proton WireGuard</value>
+  </data>
   <data name="Settings_Protocols_ProtonProtocols_Description">
     <value>Proton VPN içindeki WireGuard uygulamasını kullanın. Bu özellik henüz deneme aşamasında olduğundan bazı kararsızlıklar ile karşılaşabilirsiniz.</value>
   </data>

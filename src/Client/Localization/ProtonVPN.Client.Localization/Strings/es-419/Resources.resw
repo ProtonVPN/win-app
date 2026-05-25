@@ -3383,6 +3383,24 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProTunTcp_Description">
+    <value>Nuestra estructura nueva basada en WireGuard para una mejor estabilidad, funcionalidad y resistencia a la censura.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Description">
+    <value>Nuestra estructura nueva basada en WireGuard para una mejor estabilidad, funcionalidad y resistencia a la censura.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Title">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Description">
+    <value>Nuestra estructura nueva basada en WireGuard para una mejor estabilidad, funcionalidad y resistencia a la censura.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Title">
+    <value>Proton WireGuard</value>
+  </data>
   <data name="Settings_Protocols_ProtonProtocols_Description">
     <value>Use la implementación propia de WireGuard de Proton VPN. Esta es una función experimental, por lo que podría notar algo de inestabilidad al probarla.</value>
   </data>

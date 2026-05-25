@@ -3383,6 +3383,24 @@
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProTunTcp_Description">
+    <value>Το νέο μας πλαίσιο που βασίζεται στο WireGuard για αυξημένη σταθερότητα, λειτουργικότητα και αντοχή στη λογοκρισία.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Description">
+    <value>Το νέο μας πλαίσιο που βασίζεται στο WireGuard για αυξημένη σταθερότητα, λειτουργικότητα και αντοχή στη λογοκρισία.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Title">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Description">
+    <value>Το νέο μας πλαίσιο που βασίζεται στο WireGuard για αυξημένη σταθερότητα, λειτουργικότητα και αντοχή στη λογοκρισία.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Title">
+    <value>Proton WireGuard</value>
+  </data>
   <data name="Settings_Protocols_ProtonProtocols_Description">
     <value>Χρησιμοποιήστε την εφαρμογή WireGuard της Proton VPN. Πρόκειται για μια πειραματική λειτουργία, οπότε ενδέχεται να αντιμετωπίσετε κάποια αστάθεια.</value>
   </data>

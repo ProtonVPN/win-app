@@ -3479,6 +3479,24 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProTunTcp_Description">
+    <value>Noul noastră librărie bazată pe WireGuard pentru stabilitate, funcționalitate și rezistență la cenzură sporite.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Description">
+    <value>Noul noastră librărie bazată pe WireGuard pentru stabilitate, funcționalitate și rezistență la cenzură sporite.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Title">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Description">
+    <value>Noul noastră librărie bazată pe WireGuard pentru stabilitate, funcționalitate și rezistență la cenzură sporite.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Title">
+    <value>Proton WireGuard</value>
+  </data>
   <data name="Settings_Protocols_ProtonProtocols_Description">
     <value>Utilizați propria implementare WireGuard de la Proton VPN. Aceasta este o funcționalitate experimentală, deci este posibil să întâmpinați unele instabilități.</value>
   </data>

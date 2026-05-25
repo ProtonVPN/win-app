@@ -3575,6 +3575,24 @@ Secure Core</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProTunTcp_Description">
+    <value>Наша новая структура на аснове WireGuard для павышэння стабільнасці, функцыянальнасці і ўстойлівасці да цэнзуры.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Description">
+    <value>Наша новая структура на аснове WireGuard для павышэння стабільнасці, функцыянальнасці і ўстойлівасці да цэнзуры.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Title">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Description">
+    <value>Наша новая структура на аснове WireGuard для павышэння стабільнасці, функцыянальнасці і ўстойлівасці да цэнзуры.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Title">
+    <value>Proton WireGuard</value>
+  </data>
   <data name="Settings_Protocols_ProtonProtocols_Description">
     <value>Выкарыстоўвайце ўласную рэалізацыю WireGuard ад Proton VPN. Гэта эксперыментальная функцыя, таму вы можаце сутыкнуцца з некаторай нестабільнасцю.</value>
   </data>

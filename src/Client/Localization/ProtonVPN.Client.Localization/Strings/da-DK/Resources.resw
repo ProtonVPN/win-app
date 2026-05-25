@@ -3383,6 +3383,24 @@ En høj serverbelastning kan gøre din forbindelse langsommere.</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProTunTcp_Description">
+    <value>Vores nye WireGuard-baseret framework med forbedret stabilitet, funktionalitet, og modstand mod censur.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Description">
+    <value>Vores nye WireGuard-baseret framework med forbedret stabilitet, funktionalitet, og modstand mod censur.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Title">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Description">
+    <value>Vores nye WireGuard-baseret framework med forbedret stabilitet, funktionalitet, og modstand mod censur.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Title">
+    <value>Proton WireGuard</value>
+  </data>
   <data name="Settings_Protocols_ProtonProtocols_Description">
     <value>Brug Proton VPN's egen implementering af WireGuard. Dette er en eksperimentel funktion, så du kan opleve en vis ustabilitet.</value>
   </data>

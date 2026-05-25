@@ -3383,6 +3383,24 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
   </data>
+  <data name="Settings_Protocols_ProTunTcp_Description">
+    <value>Unser neues WireGuard-basiertes Framework für mehr Stabilität, Funktionalität und Zensurresistenz.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Description">
+    <value>Unser neues WireGuard-basiertes Framework für mehr Stabilität, Funktionalität und Zensurresistenz.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Title">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Description">
+    <value>Unser neues WireGuard-basiertes Framework für mehr Stabilität, Funktionalität und Zensurresistenz.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Title">
+    <value>Proton WireGuard</value>
+  </data>
   <data name="Settings_Protocols_ProtonProtocols_Description">
     <value>Verwende die in Proton VPN integrierte WireGuard-Implementierung. Da es sich hierbei um eine experimentelle Funktion handelt, ist mit einer gewissen Instabilität zu rechnen.</value>
   </data>

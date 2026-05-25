@@ -2515,7 +2515,7 @@
     <value>启用 IPv6</value>
   </data>
   <data name="Overlay_Ipv6Disabled_SecondaryButton">
-    <value>暂时不要</value>
+    <value>以后再说</value>
   </data>
   <data name="Overlay_Ipv6Disabled_Title">
     <value>IPv6 已禁用</value>
@@ -2536,7 +2536,7 @@
     <value>什么是 P2P VPN？</value>
   </data>
   <data name="Overlay_P2P_Bullet2_Description">
-    <value>P2P 网络允许两台设备连接并传输数据，而无需通过中央服务器。</value>
+    <value>P2P 网络允许两台设备直接连接并传输数据，无需经过中央服务器。</value>
   </data>
   <data name="Overlay_P2P_Bullet2_Header">
     <value>什么是 P2P 网络？</value>
@@ -2644,10 +2644,10 @@ VPN 连接</value>
     Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
   </data>
   <data name="Overlay_SmartRouting_LearnMore">
-    <value>什么是 Smart Routing？</value>
+    <value>什么是智能路由？</value>
   </data>
   <data name="Overlay_SmartRouting_Title">
-    <value>Smart Routing</value>
+    <value>智能路由</value>
   </data>
   <data name="Overlay_Tor_Description">
     <value>连接到 Tor 服务器，使用任何浏览器访问隐藏服务和洋葱站点。</value>
@@ -3286,6 +3286,24 @@ VPN 连接</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Description">
+    <value>我们基于 WireGuard 的新框架，可提升稳定性、功能性及抗审查能力。</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Description">
+    <value>我们基于 WireGuard 的新框架，可提升稳定性、功能性及抗审查能力。</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Title">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Description">
+    <value>我们基于 WireGuard 的新框架，可提升稳定性、功能性及抗审查能力。</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Title">
+    <value>Proton WireGuard</value>
   </data>
   <data name="Settings_Protocols_ProtonProtocols_Description">
     <value>使用 Proton VPN 自身的 WireGuard 实现。此为实验性功能，可能会遇到一些不稳定情况！</value>

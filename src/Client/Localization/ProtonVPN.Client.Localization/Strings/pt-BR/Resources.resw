@@ -385,7 +385,7 @@ Código de erro: {0}</value>
     <value>O adaptador WireGuard do seu dispositivo está em uso. Desconecte-se de qualquer outra VPN em execução e tente novamente.</value>
   </data>
   <data name="Connection_Feedback_Question">
-    <value>How is your connection?</value>
+    <value>Como está sua conexão?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Seleção automática de</value>
@@ -3044,10 +3044,10 @@ Uma carga alta de servidor pode tornar sua conexão mais lenta.</value>
     <value>Restringe a entrada de dados na sua rede. Esta opção é mais segura, mas pode dificultar as conexões de jogos peer-to-peer.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
-    <value>Bridges network traffic. Slower than TUN, but needed for some legacy or special network setups.</value>
+    <value>Encaminha o tráfego de rede. É mais lento que o TUN, mas é necessário para algumas configurações de rede legadas ou especiais.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
-    <value>Routes traffic between different networks. TUN can be faster and more stable than TAP.</value>
+    <value>Roteia o tráfego entre diferentes redes. O TUN pode ser mais rápido e mais estável do que o TAP.</value>
   </data>
   <data name="Settings_Connection_ConnectionPreferences">
     <value>Preferências de conexão</value>
@@ -3382,6 +3382,24 @@ Uma carga alta de servidor pode tornar sua conexão mais lenta.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnUdp_Title">
     <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Description">
+    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Description">
+    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Title">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Description">
+    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Title">
+    <value>Proton WireGuard</value>
   </data>
   <data name="Settings_Protocols_ProtonProtocols_Description">
     <value>Use a implementação própria do WireGuard do Proton VPN. Este é um recurso experimental, portanto, você pode enfrentar alguma instabilidade.</value>
