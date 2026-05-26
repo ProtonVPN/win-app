@@ -73,6 +73,8 @@ public class FreeUserTests : FreshSessionSetUp
             .ClickLockedChangedServer()
             .Verify.IsConnected()
             .IsUnlimitedServersChangesUpsellDisplayed();
+
+        SettingRobot.CloseSettingsUsingEscButton();
     }
 
     [Test]

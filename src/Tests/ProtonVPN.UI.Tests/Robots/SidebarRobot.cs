@@ -86,7 +86,7 @@ public class SidebarRobot
     protected Element DuplicateProfileLabel = Element.ByAutomationId("DuplicateMenuItem");
     protected Element DeleteMenuItem = Element.ByAutomationId("DeleteMenuItem");
 
-    protected Element ConnectToSpecificServer = Element.ByAutomationId("Connect_to_Specific_Server");
+    protected Element ConnectToSpecificServer => Element.ByAutomationId("Connect_to_Specific_Server");
     protected Element DisconnectFromSpecificServer = Element.ByAutomationId("Disconnect_from_Specific_Server");
 
     protected Element CountriesListGroup = Element.ByClassName("ListViewHeaderItem");

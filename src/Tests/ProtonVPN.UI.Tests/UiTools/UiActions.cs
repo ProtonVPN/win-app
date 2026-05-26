@@ -162,6 +162,18 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static AutomationElement? TryGetElement<T>(this T desiredElement) where T : Element
+    {
+        try
+        {
+            return WaitUntilExists(desiredElement, TestConstants.FiveSecondsTimeout);
+        }
+        catch (TimeoutException)
+        {
+            return null;
+        }
+    }
+
     public static AutomationElement[] GetControlType<T>(this T desiredElement, ControlType controlType) where T : Element
     {
         return desiredElement.GetDescendantsByControlType(controlType) ?? Array.Empty<AutomationElement>();
@@ -334,7 +346,12 @@ public static class UiActions
     {
         AutomationElement? element = WaitUntilExists(desiredElement);
         string? elementText = element?.AsLabel().Text;
-        Assert.That(elementText?.Contains(text), Is.True, $"Expected string: {text} But was: {elementText}");
+
+        if (elementText?.Contains(text) != true)
+        {
+            throw new AssertionException($"Expected string: {text} But was: {elementText}");
+        }
+
         return desiredElement;
     }
 

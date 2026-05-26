@@ -23,7 +23,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.ComponentModel;
-using System.ServiceProcess;
 using FlaUI.UIA3;
 using FlaUI.Core;
 using FlaUI.Core.Tools;
@@ -32,6 +31,7 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.UiTools;
 using static ProtonVPN.UI.Tests.Robots.TrayRobot;
 using TimeoutException = System.TimeoutException;
 
@@ -142,9 +142,17 @@ public class BaseTest
 
         try
         {
-            HomeRobot
-                .ExpandKebabMenuButton()
-                .ExitViaKebabMenuWithConfirmation();
+            AutomationElement? KebabMenu = Element.ByAutomationId("TitleBarMenuButton").TryGetElement();
+            if (KebabMenu == null)
+            {
+                HomeRobot.CloseClientViaCloseButton();
+            }
+            else
+            {
+                HomeRobot
+                    .ExpandKebabMenuButton()
+                    .ExitViaKebabMenuWithConfirmation();
+            }
 
             Thread.Sleep(TestConstants.OneSecondTimeout);
         }

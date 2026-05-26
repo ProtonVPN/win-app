@@ -118,24 +118,31 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
     {
         CompletePreconditionsSplitTunnelingApp(SplitTunnelingMode.Include);
 
-        HomeRobot
-            .ConnectViaConnectionCard()
-            .Verify.IsConnected();
+        try
+        {
+            HomeRobot
+                .ConnectViaConnectionCard()
+                .Verify.IsConnected();
 
-        ScriptHelper.SetVpnSpeedLimit();
+            ScriptHelper.SetVpnSpeedLimit();
 
-        KillVpnService();
+            KillVpnService();
 
-        HomeRobot
-            .Verify.IsConnecting();
+            HomeRobot
+                .Verify.IsConnecting();
 
-        BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: false);
+            BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: false);
 
-        ScriptHelper.RemoveVpnSpeedLimit();
+            ScriptHelper.RemoveVpnSpeedLimit();
 
-        HomeRobot
-            .Verify.IsConnected();
-        BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: true);
+            HomeRobot
+                .Verify.IsConnected();
+            BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: true);
+        }
+        finally
+        {
+            ScriptHelper.RemoveVpnSpeedLimit();
+        }
     }
 
     [Test, Order(5)]
@@ -146,46 +153,46 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
 
         CompletePreconditionsSplitTunnelingApp(SplitTunnelingMode.Include);
 
-        try
-        {
-            SettingRobot
-                .OpenSettings()
-                .OpenAutoStartupSettings()
-                .ToggleAutoLaunchSetting()
-                .ToggleAutoConnectionSetting()
-                .ApplySettings()
-                .CloseSettings();
+        SettingRobot
+            .OpenSettings()
+            .OpenAutoStartupSettings()
+            .ToggleAutoLaunchSetting()
+            .ToggleAutoConnectionSetting()
+            .ApplySettings()
+            .CloseSettings();
 
-            HomeRobot
-                .ExpandKebabMenuButton()
-                .ExitViaKebabMenuWithConfirmation();
+        HomeRobot
+            .ExpandKebabMenuButton()
+            .ExitViaKebabMenuWithConfirmation();
 
-            Thread.Sleep(TestConstants.TwoSecondsTimeout);
+        Thread.Sleep(TestConstants.TwoSecondsTimeout);
 
-            LaunchApp(isFreshStart: false);
+        LaunchApp(isFreshStart: false);
 
-            NavigationRobot
-                .Verify.IsOnMainPage();
+        NavigationRobot
+            .Verify.IsOnMainPage();
 
-            //wait to see that it doesnt reconnect
-            Thread.Sleep(TestConstants.TenSecondsTimeout);
-            HomeRobot
-                .Verify.IsAdvancedKillSwitchActivated();
+        //wait to see that it doesnt reconnect
+        Thread.Sleep(TestConstants.TenSecondsTimeout);
+        HomeRobot
+            .Verify.IsAdvancedKillSwitchActivated();
 
-            BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: false);
-        }
-        finally
-        {
-            CommonUiFlows.Logout();
+        BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: false);
+    }
 
-            Thread.Sleep(TestConstants.OneSecondTimeout);
+    [Test, Order(6)]
+    [Property("TestCaseId", "IGNORE")]
+    public void TempTcDisableAdvancedKillSwitchFromSignInPage()
+    {
+        CommonUiFlows.Logout();
 
-            LoginRobot
-                .Verify.IsAdvancedKillSwitchDisplayed()
-                .DisableKillSwitch();
+        Thread.Sleep(TestConstants.OneSecondTimeout);
 
-            NetworkUtils.AssertInternetAvailability(true);
-        }
+        LoginRobot
+            .Verify.IsAdvancedKillSwitchDisplayed()
+            .DisableKillSwitch();
+
+        NetworkUtils.AssertInternetAvailability(true);
     }
 
     private void CompletePreconditionsKillSwitch()

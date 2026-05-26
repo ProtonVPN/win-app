@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Text;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
@@ -88,7 +89,7 @@ public class TorTests : FreshSessionSetUp
 
     private void ConnectToTorCountry()
     {
-        string failureMessages = string.Empty;
+        StringBuilder failureMessages = new();
 
         foreach (string country in TestConstants.AvailableCountries)
         {
@@ -106,10 +107,10 @@ public class TorTests : FreshSessionSetUp
             }
             catch (AssertionException e)
             {
-                failureMessages += $"Failed to connect to {country}: {e.Message}\n";
+                failureMessages.AppendLine($"Failed to connect to {country}: {e.Message}");
             }
         }
 
-        Assert.Fail(failureMessages);
+        Assert.Fail(failureMessages.ToString());
     }
 }

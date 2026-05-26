@@ -17,6 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using NUnit.Framework;
@@ -33,7 +36,6 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 public class PortForwardingTests : FreshSessionSetUp
 {
     private const string COUNTRY_NAME = "Austria";
-    private const string SERVER_WITHOUT_P2P_SUPPORT = "FI#3";
 
     private const string ENABLE_MODERATE_NAT_TITLE = "Enable Moderate NAT?";
     private const string ENABLE_MODERATE_NAT_DESCRIPTION = "You won't be able to use port forwarding with Moderate NAT.";
@@ -47,6 +49,8 @@ public class PortForwardingTests : FreshSessionSetUp
     private const string MODERATE_NAT_DISABLED_LINE_TO_LOOK_FOR = "\"randomized-nat\": true, \"port-forwarding\": true";
 
     private static readonly string _serviceLogsPath = TestEnvironment.GetServiceLogsPath();
+
+    private static readonly List<string> _serversWithoutP2PSupport = ["FI#3", "MD#48"];
 
     [SetUp]
     public void SetUp()
@@ -176,7 +180,7 @@ public class PortForwardingTests : FreshSessionSetUp
         CommonUiFlows.EnsureUserIsDisconnected();
     }
 
-    private void CopyPortFromFlyoutHover()
+    private static void CopyPortFromFlyoutHover()
     {
         HomeRobot
             .HoverOverPortForwardingWidget()
@@ -184,7 +188,7 @@ public class PortForwardingTests : FreshSessionSetUp
             .ClickHoverCopyPortNumber();
     }
 
-    private void CopyPortFromSettings()
+    private static void CopyPortFromSettings()
     {
         SettingRobot
             .OpenSettings()
@@ -192,14 +196,9 @@ public class PortForwardingTests : FreshSessionSetUp
             .ClickCopyPortNumber();
     }
 
-    private void VerifyPortUnavailableForServerWithoutP2PSupport()
+    private static void VerifyPortUnavailableForServerWithoutP2PSupport()
     {
-        SidebarRobot
-            .SearchFor(SERVER_WITHOUT_P2P_SUPPORT)
-            .ConnectToServer(SERVER_WITHOUT_P2P_SUPPORT);
-
-        HomeRobot
-            .Verify.IsConnected();
+        ConnectToServerWithoutP2PSupport();
 
         DesktopRobot
             .Verify.IsToastNotDisplayed();
@@ -209,7 +208,33 @@ public class PortForwardingTests : FreshSessionSetUp
             .Verify.IsPortUnavailable();
     }
 
-    private void VerifyPortInToast(int port)
+    private static void ConnectToServerWithoutP2PSupport()
+    {
+        StringBuilder failureMessages = new();
+
+        foreach (string server in _serversWithoutP2PSupport)
+        {
+            try
+            {
+                SidebarRobot
+                    .SearchFor(server)
+                    .ConnectToServer(server);
+
+                HomeRobot
+                    .Verify.ConnectionCardDescriptionContains(server);
+
+                return;
+            }
+            catch (Exception e)
+            {
+                failureMessages.AppendLine($"Failed to connect to {server}: {e.Message}");
+            }
+        }
+
+        Assert.Fail(failureMessages.ToString());
+    }
+
+    private static void VerifyPortInToast(int port)
     {
         DesktopRobot
             .Verify.IsToastDisplayed()
