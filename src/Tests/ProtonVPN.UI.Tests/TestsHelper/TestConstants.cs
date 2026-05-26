@@ -58,13 +58,21 @@ public static class TestConstants
     // United States is first as it has the most servers available and there are less chances for all of them to be under maintenance at the same time
     public static readonly List<string> AvailableCountries = ["United States", "France", "Germany", "Hong Kong"];
 
-    public static IEnumerable<Protocol> AllProtocols()
+    private const string PROTUN_PROTOCOL_PREFIX = "ProTun";
+    private const string WIREGUARD_PROTOCOL_PREFIX = "WireGuard";
+
+    public static IEnumerable<Protocol> AllNonProTunProtocols()
     {
-        return Enum.GetValues<Protocol>().Where(p => p != Protocol.Smart);
+        return Enum.GetValues<Protocol>().Where(p => p != Protocol.Smart && !p.ToString().StartsWith(PROTUN_PROTOCOL_PREFIX));
     }
 
     public static IEnumerable<Protocol> WireGuardProtocols()
     {
-        return AllProtocols().Where(p => p.ToString().StartsWith("WireGuard"));
+        return AllNonProTunProtocols().Where(p => p.ToString().StartsWith(WIREGUARD_PROTOCOL_PREFIX));
+    }
+
+    public static IEnumerable<Protocol> ProTunProtocols()
+    {
+        return Enum.GetValues<Protocol>().Where(p => p.ToString().StartsWith(PROTUN_PROTOCOL_PREFIX));
     }
 }

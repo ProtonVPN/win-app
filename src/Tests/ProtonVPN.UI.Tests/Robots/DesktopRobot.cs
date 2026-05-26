@@ -45,6 +45,15 @@ public class DesktopRobot : IDisposable
         return this;
     }
 
+    public DesktopRobot CloseSurvey()
+    {
+        AutomationElement Desktop = _automation.GetDesktop();
+        AutomationElement SurveyWindow = Desktop.FindFirstChild(cf => cf.ByName("Proton VPN - Survey"))!;
+        AutomationElement CloseButton = SurveyWindow!.FindFirstDescendant(cf => cf.ByAutomationId("Close"))!;
+        CloseButton.Click();
+        return this;
+    }
+
     public class Verifications
     {
         private readonly UIA3Automation _automation;

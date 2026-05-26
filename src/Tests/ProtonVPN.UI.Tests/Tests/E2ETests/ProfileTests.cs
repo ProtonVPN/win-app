@@ -300,7 +300,7 @@ public class ProfileTests : BaseTest
                    .ConnectionCardTitleEquals(CUSTOM_SETTINGS_PROFILE_NAME)
                    .ConnectionCardDescriptionContains(CONNECTION_CARD_DESCRIPTION)
                    .IsPortForwardingEnabled()
-                   .IsProtocolDisplayed(CUSTOM_SETTINGS_PROTOCOL, TestConstants.IsProtunVersion);
+                   .IsProtocolDisplayed(CUSTOM_SETTINGS_PROTOCOL);
 
         SettingRobot
             .Verify.IsNetshieldBlocking(NetShieldMode.BlockAdsMalwareTrackersAdultContent);
@@ -328,7 +328,7 @@ public class ProfileTests : BaseTest
             .Verify.IsConnected()
                    .ConnectionCardTitleEquals(profile.profileName)
                    .ConnectionCardDescriptionContains(profile.countryName)
-                   .IsProtocolDisplayed(profile.protocol, TestConstants.IsProtunVersion);
+                   .IsProtocolDisplayed(profile.protocol);
 
         if (profile.connectionType == ConnectionType.P2P)
         {

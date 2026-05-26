@@ -145,7 +145,7 @@ public class CustomDnsTests : BaseTest
 
     [Test, Order(3)]
     [Property("TestCaseId", "863611")]
-    [TestCaseSource(typeof(TestConstants), nameof(AllProtocols))]
+    [TestCaseSource(typeof(TestConstants), nameof(AllNonProTunProtocols))]
     public void CustomDnsUsingDifferentProtocols(Protocol protocol)
     {
         PerformProtocolTest(protocol);
@@ -153,7 +153,7 @@ public class CustomDnsTests : BaseTest
 
     [Test, Order(4)]
     [Property("TestCaseId", "863616")]
-    [TestCaseSource(typeof(TestConstants), nameof(WireGuardProtocols))]
+    [TestCaseSource(typeof(TestConstants), nameof(ProTunProtocols))]
     public void CustomDnsUsingDifferentProTunProtocols(Protocol protocol)
     {
         PerformProtocolTest(protocol, shouldEnableProTun: true);

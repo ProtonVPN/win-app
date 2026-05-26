@@ -41,13 +41,6 @@ public class ProtocolTests : FreshSessionSetUp
 
     private static readonly string _serviceLogsPath = TestEnvironment.GetServiceLogsPath();
 
-    private static readonly Dictionary<Protocol, ProTunProtocol> _proTunProtocolMapping = new()
-    {
-        { Protocol.WireGuardUdp, ProTunProtocol.ProTunUdp },
-        { Protocol.WireGuardTcp, ProTunProtocol.ProTunTcp },
-        { Protocol.WireGuardTls, ProTunProtocol.ProTunTls },
-    };
-
     [SetUp]
     public void TestInitialize()
     {
@@ -56,7 +49,7 @@ public class ProtocolTests : FreshSessionSetUp
 
     [Test]
 	[Property("TestCaseId", "602365")]
-	[TestCaseSource(typeof(TestConstants), nameof(AllProtocols))]
+	[TestCaseSource(typeof(TestConstants), nameof(AllNonProTunProtocols))]
     public void ConnectUsingDifferentProtocols(Protocol protocol)
     {
         PerformProtocolTest(protocol);
@@ -64,7 +57,7 @@ public class ProtocolTests : FreshSessionSetUp
 
     [Test]
 	[Property("TestCaseId", "841907")]
-	[TestCaseSource(typeof(TestConstants), nameof(WireGuardProtocols))]
+	[TestCaseSource(typeof(TestConstants), nameof(ProTunProtocols))]
     public void ConnectUsingDifferentProTunProtocols(Protocol protocol)
     {
         PerformProtocolTest(protocol, shouldEnableProTun: true);
@@ -168,10 +161,6 @@ public class ProtocolTests : FreshSessionSetUp
             .Verify.IsConnected()
                    .IsProtocolDisplayed(protocol, shouldEnableProTun);
 
-        string logLine = shouldEnableProTun && _proTunProtocolMapping.TryGetValue(protocol, out ProTunProtocol proTunValue)
-            ? proTunValue.ToString()
-            : protocol.ToString();
-
-        WindowsUtils.AssertLogFile(_serviceLogsPath, LINE_TO_LOOK_FOR, logLine);
+        WindowsUtils.AssertLogFile(_serviceLogsPath, LINE_TO_LOOK_FOR, protocol.ToString());
     }
 }

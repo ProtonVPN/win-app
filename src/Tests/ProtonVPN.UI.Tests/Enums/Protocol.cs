@@ -21,17 +21,13 @@ namespace ProtonVPN.UI.Tests.Enums;
 
 public enum Protocol
 {
-    WireGuardUdp,
-    OpenVpnUdp,
-    WireGuardTcp,
-    OpenVpnTcp,
-    WireGuardTls,
     Smart,
-}
-
-public enum ProTunProtocol
-{
+    WireGuardUdp,
     ProTunUdp,
+    OpenVpnUdp,
     ProTunTcp,
     ProTunTls,
+    WireGuardTcp,
+    WireGuardTls,
+    OpenVpnTcp,
 }

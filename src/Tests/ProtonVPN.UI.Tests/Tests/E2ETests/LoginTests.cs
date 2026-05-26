@@ -225,6 +225,12 @@ public class LoginTests : FreshSessionSetUp
     {
         CommonUiFlows.FullLogin(userToCheck.User);
 
+        try
+        {
+            DesktopRobot.CloseSurvey();
+        }
+        catch { }
+
         SettingRobot
             .OpenSettings()
             .Verify.IsCorrectAccountInfoDisplayed(userToCheck.User.Username, userToCheck.Plan)

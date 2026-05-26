@@ -102,7 +102,7 @@ public class LeakTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "863617")]
-    [TestCaseSource(typeof(TestConstants), nameof(AllProtocols))]
+    [TestCaseSource(typeof(TestConstants), nameof(AllNonProTunProtocols))]
     public void DnsIsNotLeakingUsingDifferentProtocols(Protocol protocol)
     {
         PerformProtocolTest(protocol);
@@ -110,7 +110,7 @@ public class LeakTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "863618")]
-    [TestCaseSource(typeof(TestConstants), nameof(WireGuardProtocols))]
+    [TestCaseSource(typeof(TestConstants), nameof(ProTunProtocols))]
     public void DnsIsNotLeakingUsingDifferentProTunProtocols(Protocol protocol)
     {
         PerformProtocolTest(protocol, shouldEnableProTun: true);

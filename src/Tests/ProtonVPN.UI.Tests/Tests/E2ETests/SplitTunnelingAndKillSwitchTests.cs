@@ -60,7 +60,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
     [Test, Order(1)]
     [Property("TestCaseId", "787899")]
     [Retry(3)]
-    [TestCaseSource(typeof(TestConstants), nameof(AllProtocols))]
+    [TestCaseSource(typeof(TestConstants), nameof(AllNonProTunProtocols))]
     public void SplitTunnelingAndAdvancedKillSwitchEnabledConnectWithDifferentProtocols(Protocol protocol)
     {
         CompletePreconditionsSplitTunnelingIp();
@@ -72,7 +72,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
         HomeRobot
             .ConnectViaConnectionCard()
             .Verify.IsConnected()
-                   .IsProtocolDisplayed(protocol, TestConstants.IsProtunVersion);
+                   .IsProtocolDisplayed(protocol);
 
         NetworkUtils.AssertInternetAvailability(true);
     }

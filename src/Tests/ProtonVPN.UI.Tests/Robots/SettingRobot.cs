@@ -95,6 +95,9 @@ public class SettingRobot
     protected Element WireGuardUdpProtocolRadioButton = Element.ByAutomationId("WireGuardUdpProtocolRadioButton");
     protected Element WireGuardTlsProtocolRadioButton = Element.ByAutomationId("WireGuardTlsProtocolRadioButton");
     protected Element WireGuardTcpProtocolRadioButton = Element.ByAutomationId("WireGuardTcpProtocolRadioButton");
+    protected Element ProTunUdpProtocolRadioButton = Element.ByAutomationId("ProTunUdpProtocolRadioButton");
+    protected Element ProTunTcpProtocolRadioButton = Element.ByAutomationId("ProTunTcpProtocolRadioButton");
+    protected Element ProTunTlsProtocolRadioButton = Element.ByAutomationId("ProTunTlsProtocolRadioButton");
     protected Element SmartProtocolRadioButton = Element.ByAutomationId("SmartProtocolRadioButton");
     protected Element ExitProtonPopUp = Element.ByName("Exit Proton VPN?");
 
@@ -308,25 +311,38 @@ public class SettingRobot
                 SmartProtocolRadioButton.Click();
                 break;
 
+            case Protocol.WireGuardUdp:
+                WireGuardUdpProtocolRadioButton.Click();
+                break;
+
+            case Protocol.ProTunUdp:
+                ProTunUdpProtocolRadioButton.Click();
+                break;
+
             case Protocol.OpenVpnUdp:
                 OpenVpnUdpProtocolRadioButton.Click();
                 break;
 
-            case Protocol.OpenVpnTcp:
-                OpenVpnTcpProtocolRadioButton.Click();
+            case Protocol.ProTunTcp:
+                ProTunTcpProtocolRadioButton.Click();
+                break;
+
+            case Protocol.ProTunTls:
+                ProTunTlsProtocolRadioButton.Click();
                 break;
 
             case Protocol.WireGuardTcp:
-                WireGuardTcpProtocolRadioButton.Click();
+                WireGuardTcpProtocolRadioButton.ScrollIntoView().Click();
                 break;
 
             case Protocol.WireGuardTls:
-                WireGuardTlsProtocolRadioButton.Click();
+                WireGuardTlsProtocolRadioButton.ScrollIntoView().Click();
                 break;
 
-            case Protocol.WireGuardUdp:
-                WireGuardUdpProtocolRadioButton.Click();
+            case Protocol.OpenVpnTcp:
+                OpenVpnTcpProtocolRadioButton.ScrollIntoView().Click();
                 break;
+
         }
         return this;
     }
@@ -525,6 +541,14 @@ public class SettingRobot
         public Verifications IsProtunEnabled()
         {
             Assert.That(ProtonProtocolsToggle.IsToggled(), Is.True);
+            return this;
+        }
+
+        public Verifications ProtonProtocolsAreHidden()
+        {
+            ProTunUdpProtocolRadioButton.DoesNotExist();
+            ProTunTcpProtocolRadioButton.DoesNotExist();
+            ProTunTlsProtocolRadioButton.DoesNotExist();
             return this;
         }
 

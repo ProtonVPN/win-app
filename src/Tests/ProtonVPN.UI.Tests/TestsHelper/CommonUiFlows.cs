@@ -95,7 +95,9 @@ public class CommonUiFlows : BaseTest
             }
             else
             {
-                SettingRobot.DisableProtunToggle();
+                SettingRobot
+                    .DisableProtunToggle()
+                    .Verify.ProtonProtocolsAreHidden();
             }
         }
     }
