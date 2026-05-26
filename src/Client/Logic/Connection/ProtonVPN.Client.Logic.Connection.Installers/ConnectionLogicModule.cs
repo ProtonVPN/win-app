@@ -51,7 +51,6 @@ public class ConnectionLogicModule : Module
         builder.RegisterType<NetworkTrafficScheduler>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NetworkTrafficManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ConnectionErrorFactory>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<P2PTrafficObserver>().AsImplementedInterfaces().SingleInstance().AutoActivate();
         builder.RegisterType<ConnectionStatisticalEventsManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<RestrictionsObserver>().AsImplementedInterfaces().SingleInstance().AutoActivate();
         builder.RegisterType<ExclusionChecker>().AsImplementedInterfaces().SingleInstance();

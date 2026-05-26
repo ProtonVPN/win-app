@@ -36,7 +36,6 @@ public class UrlsConfiguration : IUrlsConfiguration
     public string AboutSecureCoreUrl { get; set; } = string.Empty;
     public string RegisterUrl { get; set; } = string.Empty;
     public string TroubleShootingUrl { get; set; } = string.Empty;
-    public string P2PStatusUrl { get; set; } = string.Empty;
     public string ProtonMailPricingUrl { get; set; } = string.Empty;
     public string PublicWifiSafetyUrl { get; set; } = string.Empty;
     public string ProtonStatusUrl { get; set; } = string.Empty;

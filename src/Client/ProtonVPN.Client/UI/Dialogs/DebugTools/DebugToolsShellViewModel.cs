@@ -42,6 +42,7 @@ using ProtonVPN.Client.UI.Dialogs.DebugTools.Models;
 using ProtonVPN.Client.UI.Main.Map;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Geographical;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Restrictions;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.StatisticalEvents.Contracts;
 
@@ -402,5 +403,27 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     public Task TriggerConnectionCertificateUpdateAsync()
     {
         return _connectionCertificateManager.ForceRequestNewCertificateAsync();
+    }
+
+    [RelayCommand]
+    public void SimulateP2PRestriction()
+    {
+        RestrictionListIpcEntity restrictionList = new()
+        {
+            Restrictions = [RestrictionIpcEntity.Bittorrenting]
+        };
+
+        _eventMessageSender.Send(restrictionList);
+    }
+
+    [RelayCommand]
+    public void SimulateStreamingRestriction()
+    {
+        RestrictionListIpcEntity restrictionList = new()
+        {
+            Restrictions = [RestrictionIpcEntity.Streaming]
+        };
+
+        _eventMessageSender.Send(restrictionList);
     }
 }

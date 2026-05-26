@@ -34,7 +34,6 @@ public interface IUrlsConfiguration
     string AboutSecureCoreUrl { get; }
     string RegisterUrl { get; }
     string TroubleShootingUrl { get; }
-    string P2PStatusUrl { get; }
     string ProtonMailPricingUrl { get; }
     string PublicWifiSafetyUrl { get; }
     string ProtonStatusUrl { get; }

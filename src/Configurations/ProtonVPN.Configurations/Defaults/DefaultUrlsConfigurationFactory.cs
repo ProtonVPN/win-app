@@ -41,7 +41,6 @@ public static class DefaultUrlsConfigurationFactory
             AboutSecureCoreUrl = "https://protonvpn.com/support/secure-core-vpn",
             RegisterUrl = "https://account.protonvpn.com/signup",
             TroubleShootingUrl = "https://protonvpn.com/support/windows-vpn-issues",
-            P2PStatusUrl = "http://protonstatus.com/vpn_status",
             ProtonMailPricingUrl = "https://protonmail.com/pricing",
             PublicWifiSafetyUrl = "https://protonvpn.com/blog/public-wifi-safety",
             ProtonStatusUrl = "https://protonstatus.com",
