@@ -100,6 +100,14 @@ public class NavigationRobot
 
         public Verifications IsOnSettingsPage() => IsOnPage(SettingsPage);
 
+        public Verifications IsOnNetShieldPage() => IsOnPage(NetShieldPage);
+
+        public Verifications IsOnKillSwitchPage() => IsOnPage(KillSwitchPage);
+
+        public Verifications IsOnPortForwardingPage() => IsOnPage(PortForwardingPage);
+
+        public Verifications IsOnSplitTunnelingPage() => IsOnPage(SplitTunnelingPage);
+
         public Verifications IsOnConnectionsPage() => IsOnPage(ConnectionsPage);
 
         public Verifications IsOnRecentsPage() => IsOnPage(RecentsPage);
@@ -115,8 +123,6 @@ public class NavigationRobot
         public Verifications IsOnLocationDetailsPage() => IsOnPage(LocationDetailsPage);
 
         public Verifications IsOnConnectionDetailsPage() => IsOnPage(ConnectionDetailsPage);
-
-        public Verifications IsOnKillSwitchPage() => IsOnPage(KillSwitchPage);     
 
         public Verifications IsOnConnectionPreferencesPage() => IsOnPage(ConnectionPreferencesPage);
     }

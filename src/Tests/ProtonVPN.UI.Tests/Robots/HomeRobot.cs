@@ -30,11 +30,6 @@ namespace ProtonVPN.UI.Tests.Robots;
 
 public class HomeRobot
 {
-    private const string KILL_SWITCH_FLYOUT_TEXT_1 = "Advanced kill switch disables your internet to protect your IP address while you're not connected to Proton VPN.";
-    private const string KILL_SWITCH_FLYOUT_TEXT_2 = "To get back online, connect to VPN or disable advanced kill switch";
-
-    private const string SPLIT_TUNNELING_NO_APP_SELECTED_TEXT = "Select apps";
-
     protected Element EmptyIpAddress = Element.ByName("Your IP address").And(Element.ByName("-"));
     protected Element EmptyCountry = Element.ByName("Country").And(Element.ByName("-"));
     protected Element EmptyProvider = Element.ByName("Provider").And(Element.ByName("-"));
@@ -79,13 +74,6 @@ public class HomeRobot
     protected Element LastConnectionOption = Element.ByName("Last connection");
     protected Element ProtectedLabelAdvancedKillSwitch = Element.ByName("Advanced kill switch activated");
 
-    protected Element WidgetFlyout = Element.ByAutomationId("WidgetFlyout");
-    protected Element KillSwitchWidgetButton = Element.ByAutomationId("KillSwitchWidgetButton");
-    protected Element SplitTunnelingWidgetButton = Element.ByAutomationId("SplitTunnelingWidgetButton");
-    protected Element PortForwardingWidgetButton = Element.ByAutomationId("PortForwardingWidgetButton");
-    protected Element CopyPortNumberCompactButton = Element.ByAutomationId("CopyPortNumberCompactButton");
-    protected Element CopyPortNumberButton = Element.ByAutomationId("CopyPortNumberCondensedButton");
-
     protected Element ConnectionErrorPanel = Element.ByAutomationId("ConnectionErrorPanel");
     protected Element WireGuardConnectionErrorPanelTitle => ConnectionErrorPanel.FindChild(Element.ByName("Connection failed"));
     protected Element WireGuardConnectionErrorPanelDescription => ConnectionErrorPanel.FindChild(Element.ByName("Your device's WireGuard adapter is in use. Disconnect from any other VPN running on your device, then try again."));
@@ -107,38 +95,6 @@ public class HomeRobot
         ConnectionCardTitle.Click();
         return this;
     }
-
-    public HomeRobot HoverOverKillSwitchFlyoutWidget()
-    {
-        KillSwitchWidgetButton.Hover();
-        return this;
-    }
-
-    public HomeRobot HoverOverSplitTunnelingFlyoutWidget()
-    {
-        SplitTunnelingWidgetButton.Hover();
-        Thread.Sleep(TestConstants.AnimationDelay);
-        return this;
-    }
-
-    public HomeRobot HoverOverPortForwardingWidget()
-    {
-        PortForwardingWidgetButton.Hover();
-        return this;
-    }
-
-    public HomeRobot ClickHoverCopyPortNumber()
-    {
-        CopyPortNumberCompactButton.Click();
-        return this;
-    }
-
-    public HomeRobot ClickCopyPortNumber()
-    {
-        CopyPortNumberButton.Invoke();
-        return this;
-    }
-
     public string? GetVpnServerIp()
     {
         return ShowIpFlyoutButton.GetAutomationElementName();
@@ -310,12 +266,6 @@ public class HomeRobot
             return this;
         }
 
-        public Verifications IsPortForwardingEnabled()
-        {
-            CopyPortNumberButton.WaitUntilDisplayed();
-            return this;
-        }
-
         public Verifications IsWireGuardErrorDisplayed()
         {
             WireGuardConnectionErrorPanelTitle.WaitUntilDisplayed(TestConstants.OneMinuteTimeout);
@@ -454,46 +404,6 @@ public class HomeRobot
             return this;
         }
 
-        public Verifications IsAdvancedKillSwitchTextInFlyoutMenu()
-        {
-            List<string> allChildren = GetFlyoutChildren();
-            Assert.That(allChildren, Does.Contain(KillSwitchMode.Advanced.ToString()));
-            Assert.That(allChildren, Does.Contain(KILL_SWITCH_FLYOUT_TEXT_1));
-            Assert.That(allChildren, Does.Contain(KILL_SWITCH_FLYOUT_TEXT_2));
-            return this;
-        }
-
-        public Verifications IsSplitTunnelingAppAvailableInFlyoutMenu(string splitTunnelingMode)
-        {
-            List<string> allChildren = GetFlyoutChildren();
-            Assert.That(allChildren, Does.Contain(splitTunnelingMode));
-            Assert.That(allChildren, Does.Not.Contain(SPLIT_TUNNELING_NO_APP_SELECTED_TEXT));
-            return this;
-        }
-
-        public Verifications IsSplitTunnelingAppUnavailableInFlyoutMenu(string splitTunnelingMode)
-        {
-            List<string> allChildren = GetFlyoutChildren();
-            Assert.That(allChildren, Does.Contain(splitTunnelingMode.Replace("1", "0")));
-            Assert.That(allChildren, Does.Contain(SPLIT_TUNNELING_NO_APP_SELECTED_TEXT));
-            return this;
-        }
-
-        public Verifications IsLastChangedTimerDisplayed()
-        {
-            List<string> allChildren = GetFlyoutChildren();
-            Assert.That(allChildren, Has.Some.Match("Last changed: \\d+ second[s]? ago"));
-            return this;
-        }
-
-        public Verifications IsPortUnavailable()
-        {
-            List<string> allChildren = GetFlyoutChildren();
-            Assert.That(allChildren, Does.Contain("Connect to a P2P server to improve torrenting speeds"));
-            Assert.That(allChildren, Does.Contain("Unavailable"));
-            return this;
-        }
-
         public Verifications AssertVPNIpAndExternalIpMatch(string vpnIpAddress, string externalIpAddress)
         {
             Assert.That(vpnIpAddress.Equals(externalIpAddress), Is.True);
@@ -525,12 +435,6 @@ public class HomeRobot
                 $"IP Address after client was restored: {ipAddressAfterRestore}");
             return this;
         }
-    }
-
-    private List<string> GetFlyoutChildren()
-    {
-        WidgetFlyout.WaitUntilDisplayed();
-        return WidgetFlyout.GetAllChildrenNames();
     }
 
     public Verifications Verify => new();

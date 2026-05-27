@@ -71,7 +71,7 @@ public class PortForwardingTests : FreshSessionSetUp
         string? ipAddressConnected = HomeRobot.GetVpnServerIp();
         Assert.That(ipAddressConnected, Is.Not.Null);
 
-        HomeRobot.ClickCopyPortNumber();
+        FeaturesRobot.ClickCopyPortNumberFromActivePortSection();
         int forwardedPort = GetForwardedPortFromClipboard();
 
         try
@@ -161,7 +161,7 @@ public class PortForwardingTests : FreshSessionSetUp
 
         EnablePortForwardingAndConnect();
 
-        HomeRobot.ClickCopyPortNumber();
+        FeaturesRobot.ClickCopyPortNumberFromActivePortSection();
         int widgetMenuPort = GetForwardedPortFromClipboard();
 
         VerifyPortInToast(widgetMenuPort);
@@ -182,10 +182,10 @@ public class PortForwardingTests : FreshSessionSetUp
 
     private static void CopyPortFromFlyoutHover()
     {
-        HomeRobot
+        FeaturesRobot
             .HoverOverPortForwardingWidget()
             .Verify.IsLastChangedTimerDisplayed()
-            .ClickHoverCopyPortNumber();
+            .ClickCopyPortNumberFromFlyoutMenu();
     }
 
     private static void CopyPortFromSettings()
@@ -203,7 +203,7 @@ public class PortForwardingTests : FreshSessionSetUp
         DesktopRobot
             .Verify.IsToastNotDisplayed();
 
-        HomeRobot
+        FeaturesRobot
             .HoverOverPortForwardingWidget()
             .Verify.IsPortUnavailable();
     }

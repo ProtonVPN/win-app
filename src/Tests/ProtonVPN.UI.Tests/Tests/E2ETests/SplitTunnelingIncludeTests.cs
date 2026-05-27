@@ -168,8 +168,9 @@ public class SplitTunnelingIncludeTests : BaseTest
 
         HomeRobot
             .ConnectViaConnectionCard()
-            .Verify.IsConnected()
-            .HoverOverSplitTunnelingFlyoutWidget();
+            .Verify.IsConnected();
+        FeaturesRobot
+            .HoverOverSplitTunnelingWidget();
         VerifyIsSplitTunnelingAppInFlyoutMenu(isAppAvailable: true);
 
         HomeRobot
@@ -178,8 +179,8 @@ public class SplitTunnelingIncludeTests : BaseTest
         RenameChrome();
         Thread.Sleep(TestConstants.OneSecondTimeout);
 
-        HomeRobot
-            .HoverOverSplitTunnelingFlyoutWidget();
+        FeaturesRobot
+            .HoverOverSplitTunnelingWidget();
         VerifyIsSplitTunnelingAppInFlyoutMenu(isAppAvailable: false);
 
         Thread.Sleep(TestConstants.OneSecondTimeout);
@@ -198,18 +199,18 @@ public class SplitTunnelingIncludeTests : BaseTest
                    .AssertAppAvailability(APP_NOT_FOUND_TEXT, shouldBeAvailable: true);
     }
 
-    private void VerifyIsSplitTunnelingAppInFlyoutMenu(bool isAppAvailable)
+    private static void VerifyIsSplitTunnelingAppInFlyoutMenu(bool isAppAvailable)
     {
         string appName = isAppAvailable ? APP_TO_INCLUDE : APP_NOT_FOUND_TEXT;
 
         if (isAppAvailable)
         {
-            HomeRobot
+            FeaturesRobot
                 .Verify.IsSplitTunnelingAppAvailableInFlyoutMenu(SPLIT_TUNNELING_MODE);
         }
         else
         {
-            HomeRobot
+            FeaturesRobot
                 .Verify.IsSplitTunnelingAppUnavailableInFlyoutMenu(SPLIT_TUNNELING_MODE);
         }
 

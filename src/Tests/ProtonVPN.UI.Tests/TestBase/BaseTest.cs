@@ -48,6 +48,7 @@ public class BaseTest
     protected static NavigationRobot NavigationRobot { get; } = new();
     protected static ProfileRobot ProfileRobot { get; } = new();
     protected static SidebarRobot SidebarRobot { get; } = new();
+    protected static FeaturesRobot FeaturesRobot { get; } = new();
     protected static SettingRobot SettingRobot { get; } = new();
     protected static DesktopRobot DesktopRobot { get; } = new();
     protected static TrayRobot TrayRobot { get; } = new();

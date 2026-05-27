@@ -50,6 +50,27 @@ public class NavigationTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "602429")]
+    public void NavigateToFeatureSettingsPageFromHome()
+    {
+        FeaturesRobot.ClickNetShieldWidget();
+        NavigationRobot.Verify.IsOnNetShieldPage();
+        SettingRobot.CloseSettings();
+
+        FeaturesRobot.ClickKillSwitchWidget();
+        NavigationRobot.Verify.IsOnKillSwitchPage();
+        SettingRobot.CloseSettings();
+
+        FeaturesRobot.ClickPortForwardingWidget();
+        NavigationRobot.Verify.IsOnPortForwardingPage();
+        SettingRobot.CloseSettings();
+
+        FeaturesRobot.ClickSplitTunnelingWidget();
+        NavigationRobot.Verify.IsOnSplitTunnelingPage();
+        SettingRobot.CloseSettings();
+    }
+
+    [Test]
     [Property("TestCaseId", "602394")]
     public void AppExitViaKebabMenu()
     {

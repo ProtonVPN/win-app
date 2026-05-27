@@ -298,9 +298,11 @@ public class ProfileTests : BaseTest
             .Verify.IsConnecting()
                    .IsConnected()
                    .ConnectionCardTitleEquals(CUSTOM_SETTINGS_PROFILE_NAME)
-                   .ConnectionCardDescriptionContains(CONNECTION_CARD_DESCRIPTION)
-                   .IsPortForwardingEnabled()
-                   .IsProtocolDisplayed(CUSTOM_SETTINGS_PROTOCOL);
+                   .ConnectionCardDescriptionContains(CONNECTION_CARD_DESCRIPTION);
+        FeaturesRobot
+            .Verify.IsPortForwardingEnabled();
+        HomeRobot
+            .Verify.IsProtocolDisplayed(CUSTOM_SETTINGS_PROTOCOL);
 
         SettingRobot
             .Verify.IsNetshieldBlocking(NetShieldMode.BlockAdsMalwareTrackersAdultContent);
