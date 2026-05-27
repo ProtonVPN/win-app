@@ -159,7 +159,7 @@ public class ProtocolTests : FreshSessionSetUp
         HomeRobot
             .ConnectViaConnectionCard()
             .Verify.IsConnected()
-                   .IsProtocolDisplayed(protocol, shouldEnableProTun);
+                   .IsProtocolDisplayed(protocol);
 
         WindowsUtils.AssertLogFile(_serviceLogsPath, LINE_TO_LOOK_FOR, protocol.ToString());
     }

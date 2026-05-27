@@ -123,7 +123,7 @@ public class LeakTests : FreshSessionSetUp
         HomeRobot
             .ConnectViaConnectionCard()
             .Verify.IsConnected()
-                   .IsProtocolDisplayed(protocol, shouldEnableProTun);
+                   .IsProtocolDisplayed(protocol);
 
         DnsHelper.VerifyDnsIsNotLeaking(_dnsListNotConnected);
 

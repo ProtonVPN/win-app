@@ -36,7 +36,7 @@ public class DnsHelper
     private const string DNS_LEAK_TEST_URL = "https://bash.ws/";
     private static readonly HttpClient _httpClient = new();
     private static List<string> WireGuardDnsAddress => GetDnsAddresses("ProtonVPN");
-    private static List<string> ProTunDnsAddress => GetDnsAddresses(TestConstants.IsProtunVersion ? "ProTUN" : "ProtonVPN");
+    private static List<string> ProTunDnsAddress => GetDnsAddresses(TestConstants.IsProTunVersion ? "ProTUN" : "ProtonVPN");
     private static List<string> OpenVpnDnsAddress => GetDnsAddresses("ProtonVPN TUN");
 
     [DllImport("dnsapi.dll", EntryPoint = "DnsFlushResolverCache")]

@@ -27,7 +27,7 @@ namespace ProtonVPN.UI.Tests.TestsHelper;
 
 public class CommonUiFlows : BaseTest
 {
-    public static void FullLogin(TestUserData testUser)
+    public static void FullLogin(TestUserData testUser, bool isProTunVersion = true)
     {
         LoginRobot
             .Login(testUser);
@@ -38,6 +38,11 @@ public class CommonUiFlows : BaseTest
 
         // Remove when VPNWIN-2599 is implemented. 
         Thread.Sleep(TestConstants.AnimationDelay);
+
+        if (!isProTunVersion)
+        {
+            HomeRobot.DismissWelcomeModal();
+        }
     }
 
     public static void Logout()
@@ -87,7 +92,7 @@ public class CommonUiFlows : BaseTest
 
     private static void HandleProtun(bool shouldEnableProTun)
     {
-        if (TestConstants.IsProtunVersion)
+        if (TestConstants.IsProTunVersion)
         {
             if (shouldEnableProTun)
             {

@@ -46,7 +46,7 @@ public class ConnectionSLIs : SliSetUp
     public void TestInitialize()
     {
         LaunchClient();
-        CommonUiFlows.FullLogin(TestUserData.PlusUser);
+        CommonUiFlows.FullLogin(TestUserData.PlusUser, TestConstants.IsProTunVersion);
     }
 
     [Test]
@@ -59,6 +59,12 @@ public class ConnectionSLIs : SliSetUp
             .ConnectViaConnectionCard()
             .Verify.IsConnected()
             .Disconnect();
+
+        if (!TestConstants.IsProTunVersion)
+        {
+            ConfirmationRobot
+                .CancelAction();
+        }
 
         // Simulate users delay
         Thread.Sleep(TestConstants.TenSecondsTimeout);

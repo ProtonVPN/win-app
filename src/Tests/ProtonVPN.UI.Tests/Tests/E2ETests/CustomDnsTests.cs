@@ -369,7 +369,7 @@ public class CustomDnsTests : BaseTest
         HomeRobot
             .ConnectViaConnectionCard()
             .Verify.IsConnected()
-                   .IsProtocolDisplayed(protocol, shouldEnableProTun);
+                   .IsProtocolDisplayed(protocol);
 
         DnsHelper.IsCustomDnsAddressSet(SECOND_CUSTOM_DNS_SERVER);
 

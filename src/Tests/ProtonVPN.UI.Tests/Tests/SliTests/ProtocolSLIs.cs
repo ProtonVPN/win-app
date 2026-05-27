@@ -17,13 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Annotations;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
-using ProtonVPN.UI.Tests.Annotations;
 
 namespace ProtonVPN.UI.Tests.Tests.SliTests;
 
@@ -32,11 +33,18 @@ namespace ProtonVPN.UI.Tests.Tests.SliTests;
 [Workflow("protocol_performance")]
 public class ProtocolSLIs : SliSetUp
 {
+    private static readonly Dictionary<Protocol, Protocol> _proTunProtocolMapping = new()
+    {
+        { Protocol.WireGuardUdp, Protocol.ProTunUdp },
+        { Protocol.WireGuardTcp, Protocol.ProTunTcp },
+        { Protocol.WireGuardTls, Protocol.ProTunTls },
+    };
+
     [SetUp]
     public void TestInitialize()
     {
         LaunchClient();
-        CommonUiFlows.FullLogin(TestUserData.PlusUser);
+        CommonUiFlows.FullLogin(TestUserData.PlusUser, TestConstants.IsProTunVersion);
     }
 
     [Test]
@@ -81,17 +89,28 @@ public class ProtocolSLIs : SliSetUp
 
     private void PerformProtocolTest(Protocol protocol)
     {
-        bool isProtunWireGuard = TestConstants.IsProtunVersion && SliHelper.SliName?.StartsWith("wireguard") == true;
-        string? protunPrefix = isProtunWireGuard ? "protun_" : null;
+        bool isProTunWireGuard = TestConstants.IsProTunVersion && SliHelper.SliName?.StartsWith("wireguard") == true;
+        
+        string? protunPrefix = isProTunWireGuard ? "protun_" : null;
         SliHelper.SliName = protunPrefix + SliHelper.SliName;
 
-        CommonUiFlows.ChangeProtocol(protocol, isProtunWireGuard);
+        protocol = isProTunWireGuard && _proTunProtocolMapping.TryGetValue(protocol, out Protocol proTunValue)
+             ? proTunValue
+             : protocol;
+
+        CommonUiFlows.ChangeProtocol(protocol, isProTunWireGuard);
 
         // Two time connection is needed to test real conditions, when everything was setup.
         HomeRobot
             .ConnectViaConnectionCard()
             .Verify.IsConnected()
             .Disconnect();
+
+        if (!TestConstants.IsProTunVersion)
+        {
+            ConfirmationRobot
+                .CancelAction();
+        }
 
         // Imitate users delay
         Thread.Sleep(TestConstants.TenSecondsTimeout);
@@ -104,7 +123,7 @@ public class ProtocolSLIs : SliSetUp
         });
         SliHelper.MeasureTestStatus(() =>
         {
-            HomeRobot.Verify.IsProtocolDisplayed(protocol, isProtunWireGuard);
+            HomeRobot.Verify.IsProtocolDisplayed(protocol);
         });
 
         HomeRobot

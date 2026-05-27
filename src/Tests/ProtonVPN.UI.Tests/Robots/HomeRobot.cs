@@ -378,26 +378,33 @@ public class HomeRobot
             return this;
         }
 
-        public Verifications IsProtocolDisplayed(Protocol protocol, bool isProtun = false)
+        public Verifications IsProtocolDisplayed(Protocol protocol)
         {
-            string? protonPrefix = isProtun ? "Proton " : null;
-
             switch (protocol)
             {
+                case Protocol.WireGuardUdp:
+                    ConnectionDetailsProtocol.TextEquals("WireGuard (UDP)");
+                    break;
+                case Protocol.ProTunUdp:
+                    ConnectionDetailsProtocol.TextEquals("Proton WireGuard (UDP)");
+                    break;
                 case Protocol.OpenVpnUdp:
                     ConnectionDetailsProtocol.TextEquals("OpenVPN (UDP)");
                     break;
-                case Protocol.OpenVpnTcp:
-                    ConnectionDetailsProtocol.TextEquals("OpenVPN (TCP)");
+                case Protocol.ProTunTcp:
+                    ConnectionDetailsProtocol.TextEquals("Proton WireGuard (TCP)");
+                    break;
+                case Protocol.ProTunTls:
+                    ConnectionDetailsProtocol.TextEquals("Proton Stealth");
                     break;
                 case Protocol.WireGuardTcp:
-                    ConnectionDetailsProtocol.TextEquals(protonPrefix + "WireGuard (TCP)");
+                    ConnectionDetailsProtocol.TextEquals("WireGuard (TCP)");
                     break;
                 case Protocol.WireGuardTls:
-                    ConnectionDetailsProtocol.TextEquals(protonPrefix + "Stealth");
+                    ConnectionDetailsProtocol.TextEquals("Stealth");
                     break;
-                case Protocol.WireGuardUdp:
-                    ConnectionDetailsProtocol.TextEquals(protonPrefix + "WireGuard (UDP)");
+                case Protocol.OpenVpnTcp:
+                    ConnectionDetailsProtocol.TextEquals("OpenVPN (TCP)");
                     break;
             }
 

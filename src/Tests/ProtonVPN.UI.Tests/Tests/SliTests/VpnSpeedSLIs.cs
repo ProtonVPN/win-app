@@ -36,7 +36,7 @@ public class VpnSpeedSLIs : SliSetUp
     public void TestInitialize()
     {
         LaunchClient();
-        CommonUiFlows.FullLogin(TestUserData.PlusUser);
+        CommonUiFlows.FullLogin(TestUserData.PlusUser, TestConstants.IsProTunVersion);
     }
 
     [Test]
