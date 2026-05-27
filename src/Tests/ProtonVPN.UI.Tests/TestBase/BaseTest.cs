@@ -190,9 +190,11 @@ public class BaseTest
         Thread.Sleep(TestConstants.OneSecondTimeout);
     }
 
-    protected static void LaunchApp(bool isFreshStart = true, bool skipOnboarding = true)
+    protected static void LaunchClient(ClientLaunchParams? parameters = null)
     {
-        if (isFreshStart)
+        parameters ??= ClientLaunchParams.FreshStartWithNoOnboarding;
+
+        if (parameters.IsFreshStart)
         {
             DeleteProtonData();
         }
@@ -203,15 +205,10 @@ public class BaseTest
                 : TestEnvironment.GetProtonClientFolder(),
             CLIENT_NAME);
 
-        ProcessStartInfo startInfo = new ProcessStartInfo(installedClientPath)
+        ProcessStartInfo startInfo = new(installedClientPath)
         {
-            Arguments = "-DisableAutoUpdate"
+            Arguments = parameters.BuildArguments()
         };
-
-        if (skipOnboarding)
-        {
-            startInfo.Arguments += " -SkipOnboarding";
-        }
 
         App = Application.Launch(startInfo);
 
@@ -222,8 +219,29 @@ public class BaseTest
             App = Application.Launch(installedClientPath);
         }
 
-        RefreshWindow(TestConstants.OneMinuteTimeout);
-        Window?.Focus();
+        if (parameters.ShouldRefreshWindow)
+        {
+            RefreshWindow(TestConstants.OneMinuteTimeout);
+            Window?.Focus();
+        }
+    }
+
+    protected static void RestartApp(bool shouldRefreshWindow = true)
+    {
+        App?.Close();
+        App?.Dispose();
+
+        ClientLaunchParams parameters = shouldRefreshWindow
+            ? ClientLaunchParams.StartWithNoOnboarding
+            : ClientLaunchParams.StartWithNoOnboardingNoRefresh;
+
+        LaunchClient(parameters);
+
+        if (!shouldRefreshWindow)
+        {
+            //give it time to start
+            Thread.Sleep(TestConstants.TenSecondsTimeout);
+        }
     }
 
     protected static void SaveScreenshotAndLogsIfFailed()

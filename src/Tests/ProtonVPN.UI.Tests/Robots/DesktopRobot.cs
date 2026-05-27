@@ -66,19 +66,27 @@ public class DesktopRobot : IDisposable
         public Verifications IsWindowTitlePresent(string windowTitlePart)
         {
             DateTime timeoutDate = DateTime.UtcNow + TestConstants.ThirtySecondsTimeout;
+            AutomationElement[]? desktopApps = null;
+
             while (DateTime.UtcNow < timeoutDate)
             {
                 AutomationElement desktop = _automation.GetDesktop();
-                AutomationElement? desktopApp = desktop.FindAllChildren().FirstOrDefault(e => e.Name != null && e.Name.Contains(windowTitlePart));
+                desktopApps = desktop.FindAllChildren();
 
-                if (desktopApp != null)
+                if (desktopApps.Any(e => e.Name != null && e.Name.Contains(windowTitlePart)))
                 {
                     return this;
                 }
                 Thread.Sleep(TestConstants.FiveSecondsTimeout);
             }
 
-            Assert.Fail($"Window with title containing '{windowTitlePart}' was not found after 30 seconds");
+            var windowNames = desktopApps!.Where(e => e.Name != null && !string.IsNullOrWhiteSpace(e.Name)).Select(e => $"  • {e.Name}").ToList();
+
+            string windowList = windowNames.Any() ? string.Join("\n", windowNames) : " (No windows found)";
+
+            string failureMessage = $"Window with title containing '{windowTitlePart}' was not found after 30 seconds.\nAvailable windows:\n{windowList}";
+
+            Assert.Fail(failureMessage);
             return this;
         }
 

@@ -42,7 +42,7 @@ public class OnboardingTests : BaseTest
     [OneTimeSetUp]
     public void SetUp()
     {
-        LaunchApp(skipOnboarding: false);
+        LaunchClient(ClientLaunchParams.FreshStartWithOnboarding);
     }
 
     [Test, Order(0)]

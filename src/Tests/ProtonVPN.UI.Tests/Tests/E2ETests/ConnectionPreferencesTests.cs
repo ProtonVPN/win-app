@@ -41,7 +41,7 @@ public class ConnectionPreferencesTests : BaseTest
     [OneTimeSetUp]
     public void SetUp()
     {
-        LaunchApp();
+        LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
 

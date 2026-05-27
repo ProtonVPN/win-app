@@ -46,7 +46,7 @@ public class SplitTunnelingExcludeTests : BaseTest
     public void SetUp()
     {
         _ipAddressNotConnected = NetworkUtils.GetIpAddressWithRetry();
-        LaunchApp();
+        LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
 

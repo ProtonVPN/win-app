@@ -126,6 +126,8 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
 
             ScriptHelper.SetVpnSpeedLimit();
 
+            Thread.Sleep(TestConstants.FiveSecondsTimeout);
+
             KillVpnService();
 
             HomeRobot
@@ -134,9 +136,13 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
             BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: false);
 
             ScriptHelper.RemoveVpnSpeedLimit();
+            Thread.Sleep(TestConstants.TenSecondsTimeout);
+            ScriptHelper.RemoveVpnSpeedLimit();
+            Thread.Sleep(TestConstants.OneMinuteTimeout);
 
             HomeRobot
                 .Verify.IsConnected();
+
             BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: true);
         }
         finally
@@ -149,15 +155,13 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
     [Property("TestCaseId", "787613")]
     public void SplitTunnelingAndAdvancedKillSwitchEnabledBlocksInternetAfterRestart()
     {
-        ScriptHelper.RemoveVpnSpeedLimit();
-
         CompletePreconditionsSplitTunnelingApp(SplitTunnelingMode.Include);
 
         SettingRobot
             .OpenSettings()
             .OpenAutoStartupSettings()
-            .ToggleAutoLaunchSetting()
-            .ToggleAutoConnectionSetting()
+            .DisableAutoLaunchSetting()
+            .DisableAutoConnectionSetting()
             .ApplySettings()
             .CloseSettings();
 
@@ -167,7 +171,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
 
         Thread.Sleep(TestConstants.TwoSecondsTimeout);
 
-        LaunchApp(isFreshStart: false);
+        LaunchClient(ClientLaunchParams.StartWithNoOnboarding);
 
         NavigationRobot
             .Verify.IsOnMainPage();

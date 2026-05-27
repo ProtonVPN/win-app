@@ -35,7 +35,7 @@ public class ProtocolSLIs : SliSetUp
     [SetUp]
     public void TestInitialize()
     {
-        LaunchApp();
+        LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
 

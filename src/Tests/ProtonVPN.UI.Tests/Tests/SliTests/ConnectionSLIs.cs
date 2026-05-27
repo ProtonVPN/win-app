@@ -45,7 +45,7 @@ public class ConnectionSLIs : SliSetUp
     [SetUp]
     public void TestInitialize()
     {
-        LaunchApp();
+        LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
 

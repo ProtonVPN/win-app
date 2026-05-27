@@ -48,7 +48,7 @@ public class ClientPropertiesSLIs : BaseTest
     [Duration]
     public void ClientFreshLaunchTimeSli()
     {
-        LaunchApp();
+        LaunchClient();
 
         SliHelper.MeasureTime(() =>
         {

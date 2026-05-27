@@ -33,7 +33,7 @@ public class LoginSLIs : SliSetUp
     [OneTimeSetUp]
     public void TestInitialize()
     {
-        LaunchApp();
+        LaunchClient();
     }
 
     [Test]

@@ -43,7 +43,7 @@ public class AntiCensorshipSLIs : SliSetUp
         // Allow some time for network to settle down
         Thread.Sleep(TestConstants.FiveSecondsTimeout);
 
-        LaunchApp();
+        LaunchClient();
 
         LoginRobot.Login(TestUserData.PlusUser);
         SliHelper.MeasureTime(() =>
@@ -63,7 +63,7 @@ public class AntiCensorshipSLIs : SliSetUp
         // Allow some time for network to settle down
         Thread.Sleep(TestConstants.FiveSecondsTimeout);
 
-        LaunchApp();
+        LaunchClient();
 
         LoginRobot.Login(TestUserData.PlusUser);
         SliHelper.MeasureTime(() =>

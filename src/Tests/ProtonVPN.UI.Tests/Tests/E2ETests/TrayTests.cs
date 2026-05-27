@@ -43,7 +43,7 @@ public class TrayTests : BaseTest
     [OneTimeSetUp]
     public void SetUp()
     {
-        LaunchApp();
+        LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
         HomeRobot.MinimizeClientViaMinimizeButton();
         TrayRobot.Verify.IsTrayIconDisplayed();

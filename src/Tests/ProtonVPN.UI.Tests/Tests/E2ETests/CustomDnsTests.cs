@@ -57,7 +57,7 @@ public class CustomDnsTests : BaseTest
     [OneTimeSetUp]
     public void OneTimeSetup()
     {
-        LaunchApp();
+        LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
 

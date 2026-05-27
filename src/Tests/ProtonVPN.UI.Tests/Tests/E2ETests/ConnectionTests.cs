@@ -136,65 +136,16 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
-    [Property("TestCaseId", "602380")]
-    public void AutoConnectionOn()
+	[Property("TestCaseId", "602340")]
+	public void ClientKillDoesNotStopVpnConnection()
     {
         SettingRobot
-            .OpenSettings()
-            .OpenAutoStartupSettings()
-            .Verify.IsAutoConnectEnabled()
-            .ToggleAutoLaunchSetting()
-            .ApplySettings();
-
-        App?.Close();
-        App?.Dispose();
-
-        LaunchApp(isFreshStart: false);
-
-        NavigationRobot
-            .Verify.IsOnMainPage();
-
-        HomeRobot
-            .Verify.IsConnected();
-    }
-
-    [Test]
-    [Property("TestCaseId", "602379")]
-    public void AutoConnectionOff()
-    {
-        SettingRobot
-            .OpenSettings()
-            .OpenAutoStartupSettings()
-            .Verify.IsAutoConnectEnabled()
-            .ToggleAutoLaunchSetting()
-            .ToggleAutoConnectionSetting()
-            .ApplySettings();
-
-        App?.Close();
-        App?.Dispose();
-
-        LaunchApp(isFreshStart: false);
-
-        NavigationRobot
-            .Verify.IsOnMainPage();
-
-        //wait to see that it doesnt reconnect
-        Thread.Sleep(TestConstants.TenSecondsTimeout);
-        HomeRobot
-            .Verify.IsDisconnected();
-    }
-
-    [Test]
-    [Property("TestCaseId", "602340")]
-    public void ClientKillDoesNotStopVpnConnection()
-    {
-        SettingRobot
-            .OpenSettings()
-            .OpenAutoStartupSettings()
-            .ToggleAutoLaunchSetting()
-            .ToggleAutoConnectionSetting()
-            .ApplySettings()
-            .CloseSettings();
+           .OpenSettings()
+           .OpenAutoStartupSettings()
+           .DisableAutoLaunchSetting()
+           .DisableAutoConnectionSetting()
+           .ApplySettings()
+           .CloseSettings();
 
         HomeRobot
             .ConnectViaConnectionCard()
@@ -213,7 +164,8 @@ public class ConnectionTests : FreshSessionSetUp
 
         HomeRobot.Verify.AssertVpnConnectionAfterKill(ipAddressBeforeClientKill, ipAddressAfterClientKill);
 
-        LaunchApp(isFreshStart: false);
+        LaunchClient(ClientLaunchParams.StartWithNoOnboarding);
+
         HomeRobot.Verify.IsConnected();
 
         string ipAddressAfterClientIsRestored = NetworkUtils.GetIpAddressWithRetry();
@@ -459,7 +411,7 @@ public class ConnectionTests : FreshSessionSetUp
         ScriptHelper.ConnectToWireGuard();
         Thread.Sleep(TestConstants.TwoSecondsTimeout);
         ScriptHelper.VerifyWireGuardIsConnected();
-        LaunchApp();
+        LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
 

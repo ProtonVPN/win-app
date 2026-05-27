@@ -56,10 +56,12 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                               AutomationProperties.AutomationId="AutoLaunchToggle"/>
                 <toolkit:SettingsExpander.Items>
                     <StackPanel Spacing="16">
-                        <RadioButton Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch_SystemTray')}"
+                        <RadioButton AutomationProperties.AutomationId="MinimizeToSystemTrayRadioButton"
+                                     Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch_SystemTray')}"
                                      IsChecked="{x:Bind ViewModel.IsAutoLaunchMinimizeToSystemTray, Mode=TwoWay}"
                                      Style="{StaticResource AutoLaunchRadioButtonStyle}" />
-                        <RadioButton Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch_Desktop')}"
+                        <RadioButton AutomationProperties.AutomationId="OpenOnDesktopRadioButton"
+                                     Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch_Desktop')}"
                                      IsChecked="{x:Bind ViewModel.IsAutoLaunchOpenOnDesktop, Mode=TwoWay}"
                                      Style="{StaticResource AutoLaunchRadioButtonStyle}" />
                         <!--  <RadioButton Content="{x:Bind ViewModel.Localizer.Get('Settings_General_AutoStartup_AutoLaunch_Taskbar')}"  -->

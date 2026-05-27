@@ -36,7 +36,7 @@ public class RecentsTests : BaseTest
     [OneTimeSetUp]
     public void SetUp()
     {
-        LaunchApp();
+        LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
 

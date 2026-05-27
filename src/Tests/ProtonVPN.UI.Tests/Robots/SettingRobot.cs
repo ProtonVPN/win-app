@@ -86,6 +86,9 @@ public class SettingRobot
 
     protected Element AutoLaunchToggle = Element.ByAutomationId("AutoLaunchToggle");
     protected Element AutoConnectToggle = Element.ByAutomationId("AutoConnectToggle");
+    protected Element MinimizeToSystemTrayRadioButton = Element.ByAutomationId("MinimizeToSystemTrayRadioButton");
+    protected Element OpenOnDesktopRadioButton = Element.ByAutomationId("OpenOnDesktopRadioButton");
+    protected Element MainPage => Element.ByAutomationId("MainPage");
 
     protected Element NotificationsToggle = Element.ByAutomationId("NotificationsToggle");
 
@@ -371,15 +374,53 @@ public class SettingRobot
         return this;
     }
 
-    public SettingRobot ToggleAutoLaunchSetting()
+    public SettingRobot EnableAutoLaunchSetting()
     {
-        AutoLaunchToggle.Toggle();
+        if (!AutoLaunchToggle.IsToggled())
+        {
+            AutoLaunchToggle.Toggle();
+        }
         return this;
     }
 
-    public SettingRobot ToggleAutoConnectionSetting()
+    public SettingRobot DisableAutoLaunchSetting()
     {
-        AutoConnectToggle.Toggle();
+        if (AutoLaunchToggle.IsToggled())
+        {
+            AutoLaunchToggle.Toggle();
+        }
+        return this;
+    }
+
+    public SettingRobot SelectAutoLaunchSetting(AutoLaunchOption autoLaunchOption)
+    {
+        switch (autoLaunchOption)
+        {
+            case AutoLaunchOption.MinimizeToSystemTray:
+                MinimizeToSystemTrayRadioButton.Click();
+                break;
+            case AutoLaunchOption.OpenOnDesktop:
+                OpenOnDesktopRadioButton.Click();
+                break;
+        }
+        return this;
+    }
+
+    public SettingRobot EnableAutoConnectionSetting()
+    {
+        if (!AutoConnectToggle.IsToggled())
+        {
+            AutoConnectToggle.Toggle();
+        }
+        return this;
+    }
+
+    public SettingRobot DisableAutoConnectionSetting()
+    {
+        if (AutoConnectToggle.IsToggled())
+        {
+            AutoConnectToggle.Toggle();
+        }
         return this;
     }
 
@@ -526,6 +567,12 @@ public class SettingRobot
         public Verifications IsApplyBtnDisplayed()
         {
             ApplyButton.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsApplyButtonMissing()
+        {
+            ApplyButton.DoesNotExist();
             return this;
         }
 

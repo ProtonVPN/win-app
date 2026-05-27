@@ -50,9 +50,12 @@ public class HomeRobot
     protected Element HelpButton = Element.ByAutomationId("HelpMenu");
     protected Element KebabMenuSettingsItem = Element.ByAutomationId("KebabMenuSettingsItem");
     protected Element KebabMenuExitItem = Element.ByAutomationId("KebabMenuExitItem");
-    protected Element CloseButton = Element.ByAutomationId("Close");
-    protected Element MinimizeButton = Element.ByAutomationId("Minimize");
     protected Element ExitButton = Element.ByName("Exit");
+
+    protected Element MaximizeClientSizeButton = Element.ByAutomationId("Maximize");
+    protected Element RestoreClientSizeButton = Element.ByAutomationId("Restore");
+    protected Element CloseClientButton = Element.ByAutomationId("Close");
+    protected Element MinimizeClientButton = Element.ByAutomationId("Minimize");
 
     protected Element ConnectionCardTitle = Element.ByAutomationId("ConnectionCardTitle");
     protected Element ConnectionCardDescription = Element.ByAutomationId("ConnectionCardDescription");
@@ -220,13 +223,25 @@ public class HomeRobot
 
     public HomeRobot CloseClientViaCloseButton()
     {
-        CloseButton.Click();
+        CloseClientButton.Click();
         return this;
     }
 
     public HomeRobot MinimizeClientViaMinimizeButton()
     {
-        MinimizeButton.Click();
+        MinimizeClientButton.Click();
+        return this;
+    }
+
+    public HomeRobot MaximizeClientSizeViaMaximizeButton()
+    {
+        MaximizeClientSizeButton.Click();
+        return this;
+    }
+
+    public HomeRobot RestoreClientSizeViaRestoreButton()
+    {
+        RestoreClientSizeButton.Click();
         return this;
     }
 

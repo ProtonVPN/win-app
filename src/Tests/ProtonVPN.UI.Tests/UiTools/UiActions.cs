@@ -282,6 +282,40 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static void ResizeAndRepositionWindow()
+    {
+        Window appWindow = BaseTest.Window!;
+
+        ITransformPattern transformPattern = appWindow.Patterns.Transform.Pattern;
+        Rectangle rect = appWindow.BoundingRectangle;
+
+        Point start = new(rect.Right - 5, rect.Bottom - 5);
+        Point end = new(rect.Left + 50, rect.Top + 50);
+
+        Mouse.MoveTo(start);
+        Mouse.Down();
+        Mouse.MoveTo(end);
+        Thread.Sleep(100);
+        Mouse.Up();
+
+        transformPattern.Move(700, 10);
+    }
+
+    public static (Point Position, Size Size) GetWindowSizeAndPosition()
+    {
+        //give it time to stabilize the position
+        Thread.Sleep(TestConstants.TwoSecondsTimeout);
+
+        Window appWindow = BaseTest.Window!;
+
+        Rectangle windowBoundingRectangle = appWindow.BoundingRectangle;
+
+        Point windowPosition = new(windowBoundingRectangle.X, windowBoundingRectangle.Y);
+        Size windowSize = new(windowBoundingRectangle.Width, windowBoundingRectangle.Height);
+
+        return (windowPosition, windowSize);
+    }
+
     public static T ClearInput<T>(this T desiredElement) where T : Element
     {
         AutomationElement? element = WaitUntilExists(desiredElement);
@@ -524,7 +558,7 @@ public static class UiActions
             return false;
         }
 
-        RadioButton radioButton = new RadioButton(element.FrameworkAutomationElement);
+        RadioButton radioButton = new(element.FrameworkAutomationElement);
         return radioButton.IsChecked;
     }
 

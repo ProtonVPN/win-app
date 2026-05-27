@@ -60,7 +60,7 @@ public class ProfileTests : BaseTest
     [OneTimeSetUp]
     public void SetUp()
     {
-        LaunchApp();
+        LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
 

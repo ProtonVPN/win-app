@@ -27,7 +27,7 @@ public class FreshSessionSetUp : BaseTest
     [SetUp]
     public void BeforeTest()
     {
-        LaunchApp();
+        LaunchClient();
     }
 
     [TearDown]
