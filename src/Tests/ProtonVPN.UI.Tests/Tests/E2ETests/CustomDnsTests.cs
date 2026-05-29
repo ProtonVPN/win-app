@@ -63,6 +63,7 @@ public class CustomDnsTests : BaseTest
 
     [Test, Order(0)]
     [Property("TestCaseId", "602403")]
+    [Category("SMOKE_3")]
     public void NetshieldIsDisabledWhenCustomDnsIsEnabled()
     {
         SettingRobot
@@ -90,6 +91,7 @@ public class CustomDnsTests : BaseTest
 
     [Test, Order(1)]
     [Property("TestCaseId", "602404")]
+    [Category("SMOKE_3")]
     public void CustomDnsIsSet()
     {
         NavigateToCustomDnsSetting();

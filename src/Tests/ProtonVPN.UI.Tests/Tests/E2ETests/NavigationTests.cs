@@ -31,6 +31,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [TestFixture]
 [Category("2")]
 [Category("ARM")]
+[Category("SMOKE_1")]
 public class NavigationTests : FreshSessionSetUp
 {
     [SetUp]

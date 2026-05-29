@@ -29,6 +29,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [TestFixture]
 [Category("3")]
 [Category("ARM")]
+[Category("SMOKE_3")]
 public class SplitTunnelingIncludeTests : BaseTest
 {
     private string? _ipAddressNotConnected = null;
@@ -46,9 +47,9 @@ public class SplitTunnelingIncludeTests : BaseTest
     [OneTimeSetUp]
     public void SetUp()
     {
-        _ipAddressNotConnected = NetworkUtils.GetIpAddressWithRetry();
         LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
+        _ipAddressNotConnected = NetworkUtils.GetIpAddressWithRetry();
     }
 
     [Test, Order(0)]
@@ -176,6 +177,7 @@ public class SplitTunnelingIncludeTests : BaseTest
         HomeRobot
             .ClickOnConnectionCardTitle();
 
+        BrowserUtils.KillAllBrowsers();
         RenameChrome();
         Thread.Sleep(TestConstants.OneSecondTimeout);
 
@@ -224,12 +226,6 @@ public class SplitTunnelingIncludeTests : BaseTest
 
     private static void RenameChrome()
     {
-        foreach (Process process in Process.GetProcessesByName("chrome"))
-        {
-            process.Kill();
-            process.WaitForExit();
-        }
-
         if (File.Exists(ORIGINAL_CHROME_FOLDER))
         {
             File.Move(ORIGINAL_CHROME_FOLDER, RENAMED_CHROME_FOLDER);

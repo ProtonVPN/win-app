@@ -77,6 +77,7 @@ public class LogoutTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602391")]
+    [Category("SMOKE_1")]
     public void LogoutViaKebabMenu()
     {
         CommonUiFlows.Logout();

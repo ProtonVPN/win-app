@@ -41,6 +41,8 @@ public class TorTests : FreshSessionSetUp
     [Test]
     [Property("TestCaseId", "602368")]
     [Retry(3)]
+    [Category("ARM")]
+    [Category("SMOKE_1")]
     public void ConnectToATorServer()
     {
         NetworkUtils.AssertTorStatus(shouldBeAvailable: false);

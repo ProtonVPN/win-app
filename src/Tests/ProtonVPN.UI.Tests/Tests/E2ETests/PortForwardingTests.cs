@@ -152,6 +152,7 @@ public class PortForwardingTests : FreshSessionSetUp
     [Test]
     [Retry(3)]
     [Property("TestCaseId", "602441")]
+    [Category("SMOKE_3")]
     public void VerifyP2PServerGeneratesPortNumber()
     {
         SettingRobot

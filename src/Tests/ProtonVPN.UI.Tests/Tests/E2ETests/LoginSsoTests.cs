@@ -36,6 +36,7 @@ public class LoginSsoTests : FreshSessionSetUp
     [Test]
     [Property("TestCaseId", "602334")]
     [Retry(3)]
+    [Category("SMOKE_1")]
     public void LoginWithSso()
     {
         VerifyIsOnLoginPage();

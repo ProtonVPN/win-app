@@ -84,7 +84,7 @@ public class WindowsUtils
                 }
             }
 
-            process.WaitForExit();
+            process.WaitForExit(TestConstants.TenSecondsTimeout);
         }
     }
 

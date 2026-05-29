@@ -219,6 +219,7 @@ public class LoginTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602320")]
+    [Category("SMOKE_1")]
     [Retry(3)]
     [TestCaseSource(nameof(_validCredentialUsersToCheck))]
     public void LoginWithValidCredentials((string Plan, TestUserData User) userToCheck)

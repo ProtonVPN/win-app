@@ -26,6 +26,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [TestFixture]
 [Category("1")]
 [Category("ARM")]
+[Category("SMOKE_1")]
 public class SearchTests : FreshSessionSetUp
 {
     private const string COUNTRY_TO_SEARCH = "United States";

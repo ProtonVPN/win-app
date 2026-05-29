@@ -27,6 +27,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [TestFixture]
 [Category("3")]
 [Category("ARM")]
+[Category("SMOKE_3")]
 public class RecentsTests : BaseTest
 {
     private const string CONNECTION_NAME = "Fastest country";

@@ -49,6 +49,7 @@ public class ConnectionTests : FreshSessionSetUp
     [Test]
     [Property("TestCaseId", "602341,602342")]
     [Category("ARM")]
+    [Category("SMOKE_1")]
     public void QuickConnectToServerAndDisconnect()
     {
         CommonUiFlows.EnsureUserIsDisconnected();
@@ -103,6 +104,7 @@ public class ConnectionTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602363")]
+    [Category("SMOKE_1")]
     public void LocalNetworkingIsReachableWhileConnected()
     {
         SettingRobot

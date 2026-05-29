@@ -28,6 +28,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [TestFixture]
 [Category("3")]
 [Category("ARM")]
+[Category("SMOKE_4")]
 public class NetShieldTests : FreshSessionSetUp
 {
     private const string ENABLE_NET_SHIELD_TITLE = "Enable NetShield?";

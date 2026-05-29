@@ -81,7 +81,7 @@ public class TorrentHelper
     public static void StopAndCleanup()
     {
         _torrentProcess?.Kill();
-        _torrentProcess?.WaitForExit(5000);
+        _torrentProcess?.WaitForExit(TestConstants.FiveSecondsTimeout);
         _torrentProcess?.Dispose();
         _torrentProcess = null;
 

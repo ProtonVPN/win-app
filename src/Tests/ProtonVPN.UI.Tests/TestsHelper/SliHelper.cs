@@ -128,7 +128,7 @@ public class SliHelper
             if (process != null)
             {
                 string output = process.StandardOutput.ReadToEnd();
-                process.WaitForExit();
+                process.WaitForExit(TestConstants.TenSecondsTimeout);
                 JObject result = JObject.Parse(output);
 
                 JToken? downloadToken = result["download"]?["bandwidth"];

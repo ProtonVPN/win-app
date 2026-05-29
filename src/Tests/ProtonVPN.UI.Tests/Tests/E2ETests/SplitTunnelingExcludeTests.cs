@@ -27,6 +27,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [TestFixture]
 [Category("3")]
 [Category("ARM")]
+[Category("SMOKE_3")]
 public class SplitTunnelingExcludeTests : BaseTest
 {
     private const string COUNTRY_NAME = "Austria";
@@ -45,9 +46,9 @@ public class SplitTunnelingExcludeTests : BaseTest
     [OneTimeSetUp]
     public void SetUp()
     {
-        _ipAddressNotConnected = NetworkUtils.GetIpAddressWithRetry();
         LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
+        _ipAddressNotConnected = NetworkUtils.GetIpAddressWithRetry();
     }
 
     [Test, Order(0)]
@@ -186,41 +187,55 @@ public class SplitTunnelingExcludeTests : BaseTest
 
     [Test, Order(5)]
     [Property("TestCaseId", "787609")]
-    [Retry(3)]
     public void SplitTunnelingExcludeModeApp()
     {
-        SettingRobot
-            .OpenSettings()
-            .OpenSplitTunnelingSettings();
+        try
+        {
+            SettingRobot
+                .OpenSettings()
+                .OpenSplitTunnelingSettings();
 
-        SplitTunnelingRobot
-            .EditSplitTunnelingApps();
-        AppSelectorRobot
-            .Verify.AssertAppAvailability(APP_TO_EXCLUDE, shouldBeAvailable: true)
-            .AddSuggestedApp(APP_TO_EXCLUDE)
-            .Verify.IsAppChecked(APP_TO_EXCLUDE);
-        ConfirmationRobot
-            .PrimaryAction()
-            .Verify.IsOverlayClosed();
+            SplitTunnelingRobot
+                .EditSplitTunnelingApps();
+            AppSelectorRobot
+                .Verify.AssertAppAvailability(APP_TO_EXCLUDE, shouldBeAvailable: true)
+                .AddSuggestedApp(APP_TO_EXCLUDE)
+                .Verify.IsAppChecked(APP_TO_EXCLUDE);
+            ConfirmationRobot
+                .PrimaryAction()
+                .Verify.IsOverlayClosed();
 
-        SettingRobot
-            .Reconnect();
+            SettingRobot
+                .Reconnect();
 
-        HomeRobot
-            .Verify.IsConnected();
+            HomeRobot
+                .Verify.IsConnected();
 
-        string? ipAddressToCompare = HomeRobot.GetVpnServerIp();
+            string? ipAddressToCompare = HomeRobot.GetVpnServerIp();
 
-        BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, hasVpn: true, ipAddressToCompare);
-        BrowserUtils.VerifyBrowserIpWithRetry(APP_TO_EXCLUDE, hasVpn: false, ipAddressToCompare);
-        BrowserUtils.KillAllBrowsers();
+            BrowserUtils.KillAllBrowsers();
+            BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, hasVpn: true, ipAddressToCompare);
+            BrowserUtils.VerifyBrowserIpWithRetry(APP_TO_EXCLUDE, hasVpn: false, ipAddressToCompare);
 
-        HomeRobot
-            .Disconnect()
-            .Verify.IsDisconnected();
+            HomeRobot
+                .Disconnect()
+                .Verify.IsDisconnected();
 
-        BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, hasVpn: false, ipAddressToCompare);
-        BrowserUtils.VerifyBrowserIpWithRetry(APP_TO_EXCLUDE, hasVpn: false, ipAddressToCompare);
+            BrowserUtils.KillAllBrowsers();
+            BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, hasVpn: false, ipAddressToCompare);
+            BrowserUtils.VerifyBrowserIpWithRetry(APP_TO_EXCLUDE, hasVpn: false, ipAddressToCompare);
+        }
+        finally
+        {
+            SettingRobot
+                .OpenSettings()
+                .OpenSplitTunnelingSettings();
+            SplitTunnelingRobot
+                .ToggleSplitTunnelingSwitch();
+            SettingRobot
+                .ApplySettings()
+                .CloseSettings();
+        }
     }
 
     [OneTimeTearDown]

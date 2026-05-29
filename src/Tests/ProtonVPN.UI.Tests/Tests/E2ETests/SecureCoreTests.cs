@@ -96,6 +96,8 @@ public class SecureCoreTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602372,602373")]
+    [Category("ARM")]
+    [Category("SMOKE_1")]
     public void QuickConnectToSecureCoreServerAndDisconnect()
     {
         AddConnectionInRecents();

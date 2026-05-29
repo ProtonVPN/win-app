@@ -30,6 +30,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [TestFixture]
 [Category("4")]
 [Category("ARM")]
+[Category("SMOKE_4")]
 public class FreeUserTests : FreshSessionSetUp
 {
     private const string PROFILE_NAME = "Max security";

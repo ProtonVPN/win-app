@@ -65,12 +65,17 @@ public class BrowserUtils
             {
                 try
                 {
-                    process.Kill(true);
+                    process.Kill();
+                    process.WaitForExit(TestConstants.FiveSecondsTimeout);
                 }
-                catch { }
+                catch
+                {
+                    process.Kill(true);
+                    process.WaitForExit(TestConstants.FiveSecondsTimeout);
+                }
             }
         }
-        Thread.Sleep(TestConstants.OneSecondTimeout);
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
     }
 
     public static void VerifyWebRtcNotLeaking(string browserApp, string vpnIp)

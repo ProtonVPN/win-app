@@ -70,6 +70,7 @@ public class SupportTests : FreshSessionSetUp
     [Test]
     [Property("TestCaseId", "602386")]
     [Retry(3)]
+    [Category("SMOKE_1")]
     public void SendBugReportViaSettings()
     {
         CommonUiFlows.FullLogin(TestUserData.PlusUser);

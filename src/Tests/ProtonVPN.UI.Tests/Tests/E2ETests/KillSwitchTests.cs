@@ -28,6 +28,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [TestFixture]
 [Category("2")]
 [Category("ARM")]
+[Category("SMOKE_2")]
 public class KillSwitchTests : FreshSessionSetUp
 {
     [SetUp]

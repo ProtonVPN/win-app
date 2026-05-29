@@ -49,6 +49,7 @@ public class ProtocolTests : FreshSessionSetUp
 
     [Test]
 	[Property("TestCaseId", "602365")]
+    [Category("SMOKE_3")]
 	[TestCaseSource(typeof(TestConstants), nameof(AllNonProTunProtocols))]
     public void ConnectUsingDifferentProtocols(Protocol protocol)
     {
@@ -57,6 +58,7 @@ public class ProtocolTests : FreshSessionSetUp
 
     [Test]
 	[Property("TestCaseId", "841907")]
+    [Category("SMOKE_3")]
 	[TestCaseSource(typeof(TestConstants), nameof(ProTunProtocols))]
     public void ConnectUsingDifferentProTunProtocols(Protocol protocol)
     {
