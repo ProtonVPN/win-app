@@ -3576,19 +3576,19 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_ProTunTcp_Description">
-    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+    <value>Náš nový framework založený na WireGuard, který přináší vyšší stabilitu, lepší funkčnost a odolnost proti cenzuře.</value>
   </data>
   <data name="Settings_Protocols_ProTunTcp_Title">
     <value>Proton WireGuard</value>
   </data>
   <data name="Settings_Protocols_ProTunTls_Description">
-    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+    <value>Náš nový framework založený na WireGuard, který přináší vyšší stabilitu, lepší funkčnost a odolnost proti cenzuře.</value>
   </data>
   <data name="Settings_Protocols_ProTunTls_Title">
     <value>Proton Stealth</value>
   </data>
   <data name="Settings_Protocols_ProTunUdp_Description">
-    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+    <value>Náš nový framework založený na WireGuard, který přináší vyšší stabilitu, lepší funkčnost a odolnost proti cenzuře.</value>
   </data>
   <data name="Settings_Protocols_ProTunUdp_Title">
     <value>Proton WireGuard</value>

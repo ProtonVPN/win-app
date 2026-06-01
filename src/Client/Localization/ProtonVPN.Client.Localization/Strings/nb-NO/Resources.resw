@@ -319,10 +319,10 @@
     <value>Ekskluderte plasseringer</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Description">
-    <value>To fix it, close or uninstall the app associated with:</value>
+    <value>For å fikse det, lukk eller avinstaller appen som er knyttet til:</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Title">
-    <value>Another app might be preventing Proton VPN from connecting</value>
+    <value>En annen app kan hindre Proton VPN i å koble til</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>Rediger profil</value>
@@ -385,7 +385,7 @@ Feilkode: {0}</value>
     <value>Enhetens WireGuard-adapter er i bruk. Koble fra alle andre VPN-er som kjører på enheten din, og prøv igjen.</value>
   </data>
   <data name="Connection_Feedback_Question">
-    <value>How is your connection?</value>
+    <value>Hvordan er forbindelsen din?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Auto-valgt fra</value>
@@ -3384,19 +3384,19 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_ProTunTcp_Description">
-    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+    <value>Vårt nye WireGuard-baserte rammeverk for økt stabilitet, funksjonalitet og sensurmotstand.</value>
   </data>
   <data name="Settings_Protocols_ProTunTcp_Title">
     <value>Proton WireGuard</value>
   </data>
   <data name="Settings_Protocols_ProTunTls_Description">
-    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+    <value>Vårt nye WireGuard-baserte rammeverk for økt stabilitet, funksjonalitet og sensurmotstand.</value>
   </data>
   <data name="Settings_Protocols_ProTunTls_Title">
     <value>Proton Stealth</value>
   </data>
   <data name="Settings_Protocols_ProTunUdp_Description">
-    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+    <value>Vårt nye WireGuard-baserte rammeverk for økt stabilitet, funksjonalitet og sensurmotstand.</value>
   </data>
   <data name="Settings_Protocols_ProTunUdp_Title">
     <value>Proton WireGuard</value>
