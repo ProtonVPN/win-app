@@ -67,5 +67,6 @@ public class SettingsRestorer : ISettingsRestorer
         _settings.DefaultConnection = DefaultSettings.DefaultConnection;
         _settings.ExcludedLocationsList = DefaultSettings.ExcludedLocationsList;
         _settings.IsIpv6Enabled = DefaultSettings.IsIpv6Enabled;
+        _settings.AreProtonProtocolsEnabled = DefaultSettings.AreProtonProtocolsEnabled;
     }
 }
