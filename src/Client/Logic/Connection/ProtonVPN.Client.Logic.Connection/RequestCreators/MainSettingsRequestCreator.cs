@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -79,7 +79,7 @@ public class MainSettingsRequestCreator : IMainSettingsRequestCreator
                 Mode = _settings.IsSplitTunnelingEnabled
                     ? _entityMapper.Map<SplitTunnelingMode, SplitTunnelModeIpcEntity>(_settings.SplitTunnelingMode)
                     : SplitTunnelModeIpcEntity.Disabled,
-                AppPaths = GetSplitTunnelingApps(),
+                AppPaths = GetAllSplitTunnelExecutables(),
                 Ips = GetSplitTunnelingIpAddresses()
             },
             ModerateNat = _settings.NatType == NatType.Moderate,
@@ -100,16 +100,51 @@ public class MainSettingsRequestCreator : IMainSettingsRequestCreator
         };
     }
 
-    private string[] GetSplitTunnelingApps()
+    private string[] GetAllSplitTunnelExecutables()
     {
-        return _settings.SplitTunnelingMode == SplitTunnelingMode.Standard
-            ? GetSplitTunnelingApps(_settings.SplitTunnelingStandardAppsList)
-            : GetSplitTunnelingApps(_settings.SplitTunnelingInverseAppsList);
+        string[] appPaths = GetSplitTunnelingApps();
+        string[] folderExePaths = GetSplitTunnelingFolders();
+
+        return appPaths.Concat(folderExePaths).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
     }
 
-    private string[] GetSplitTunnelingApps(List<SplitTunnelingApp> settingsApps)
+    private string[] GetSplitTunnelingApps()
     {
-        return settingsApps.Where(app => app.IsActive).SelectMany(app => app.GetAllAppFilePaths()).ToArray();
+        var apps = _settings.SplitTunnelingMode == SplitTunnelingMode.Standard
+            ? _settings.SplitTunnelingStandardAppsList
+            : _settings.SplitTunnelingInverseAppsList;
+
+        if (apps == null) return [];
+
+        return apps.Where(app => app.IsActive).SelectMany(app => app.GetAllAppFilePaths()).ToArray();
+    }
+
+    private string[] GetSplitTunnelingFolders()
+    {
+        var folders = _settings.SplitTunnelingMode == SplitTunnelingMode.Standard
+            ? _settings.SplitTunnelingStandardFoldersList
+            : _settings.SplitTunnelingInverseFoldersList;
+
+        if (folders == null) return [];
+
+        List<string> allExePaths = [];
+
+        foreach (SplitTunnelingFolder folder in folders.Where(f => f.IsActive))
+        {
+            try
+            {
+                if (Directory.Exists(folder.FolderPath))
+                {
+                    string[] exeFiles = Directory.GetFiles(folder.FolderPath, "*.exe", SearchOption.AllDirectories);
+                    allExePaths.AddRange(exeFiles);
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        return allExePaths.ToArray();
     }
 
     private string[] GetSplitTunnelingIpAddresses()

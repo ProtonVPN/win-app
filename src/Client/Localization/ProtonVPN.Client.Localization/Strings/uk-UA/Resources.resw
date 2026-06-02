@@ -3453,6 +3453,15 @@ VPN-з'єднання</value>
     <value>Винятки</value>
     <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Folders_Header" xml:space="preserve">
+    <value>Вибрані папки ({0})</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Folders_Remove" xml:space="preserve">
+    <value>Видалити папку</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Folders_NotFound" xml:space="preserve">
+    <value>Папка не знайдена</value>
+  </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
   </data>

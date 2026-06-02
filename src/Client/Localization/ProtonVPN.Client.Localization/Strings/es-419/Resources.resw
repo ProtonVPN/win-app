@@ -3261,6 +3261,15 @@ Una carga alta del servidor puede ralentizar la conexión.</value>
     <value>Excluir</value>
     <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Folders_Header" xml:space="preserve">
+    <value>Carpetas seleccionadas ({0})</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Folders_Remove" xml:space="preserve">
+    <value>Eliminar carpeta</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Folders_NotFound" xml:space="preserve">
+    <value>Carpeta no encontrada</value>
+  </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
   </data>

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -39,4 +39,7 @@ public interface IVpnServiceCaller
 
     Task RepeatStateAsync();
     Task RepeatPortForwardingStateAsync();
+
+    Task AddAppPathsDynamicallyAsync(DynamicAppPathsIpcEntity appPathsEntity);
+    Task RemoveAppPathsDynamicallyAsync(DynamicAppPathsIpcEntity appPathsEntity);
 }

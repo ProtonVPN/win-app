@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -80,5 +80,15 @@ public class VpnServiceCaller : ServiceCallerBase<IVpnController>, IVpnServiceCa
     public Task RepeatPortForwardingStateAsync()
     {
         return InvokeAsync((c, ct) => c.RepeatPortForwardingState(ct).Wrap());
+    }
+
+    public Task AddAppPathsDynamicallyAsync(DynamicAppPathsIpcEntity appPathsEntity)
+    {
+        return InvokeAsync((c, ct) => c.AddAppPathsDynamically(appPathsEntity, ct).Wrap());
+    }
+
+    public Task RemoveAppPathsDynamicallyAsync(DynamicAppPathsIpcEntity appPathsEntity)
+    {
+        return InvokeAsync((c, ct) => c.RemoveAppPathsDynamically(appPathsEntity, ct).Wrap());
     }
 }

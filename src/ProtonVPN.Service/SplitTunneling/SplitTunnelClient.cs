@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -66,6 +66,30 @@ internal class SplitTunnelClient : ISplitTunnelClient
     public void Disable()
     {
         EnsureSucceeded(_filters.Disable, "SplitTunnel: Disabling");
+    }
+
+    public void AddAppPathsDynamically(string[] appPaths)
+    {
+        if (appPaths == null || appPaths.Length == 0)
+        {
+            return;
+        }
+
+        EnsureSucceeded(
+            () => _filters.AddAppPathsDynamically(appPaths),
+            "SplitTunnel: Adding app paths dynamically");
+    }
+
+    public void RemoveAppPathsDynamically(string[] appPaths)
+    {
+        if (appPaths == null || appPaths.Length == 0)
+        {
+            return;
+        }
+
+        EnsureSucceeded(
+            () => _filters.RemoveAppPathsDynamically(appPaths),
+            "SplitTunnel: Removing app paths dynamically");
     }
 
     private void EnsureSucceeded(System.Action action, string actionMessage)

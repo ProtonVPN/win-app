@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -3260,6 +3260,15 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="Settings_Connection_SplitTunneling_Standard_Short">
     <value>Katma</value>
     <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Folders_Header" xml:space="preserve">
+    <value>Seçilmiş klasörler ({0})</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Folders_Remove" xml:space="preserve">
+    <value>Klasörü kaldır</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Folders_NotFound" xml:space="preserve">
+    <value>Klasör bulunamadı</value>
   </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>

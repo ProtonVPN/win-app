@@ -3166,6 +3166,15 @@ VPN 連線</value>
     <value>排除</value>
     <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Folders_Header" xml:space="preserve">
+    <value>已選取資料夾 ({0})</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Folders_Remove" xml:space="preserve">
+    <value>移除資料夾</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Folders_NotFound" xml:space="preserve">
+    <value>找不到資料夾</value>
+  </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
   </data>

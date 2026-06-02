@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -38,4 +38,7 @@ public interface IVpnController : IServiceController
 
     Task RequestNetShieldStats(CancellationToken cancelToken);
     Task RequestConnectionDetails(CancellationToken cancelToken);
+
+    Task AddAppPathsDynamically(DynamicAppPathsIpcEntity appPathsEntity, CancellationToken cancelToken);
+    Task RemoveAppPathsDynamically(DynamicAppPathsIpcEntity appPathsEntity, CancellationToken cancelToken);
 }

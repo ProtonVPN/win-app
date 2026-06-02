@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -357,6 +357,18 @@ public class UserSettings : GlobalSettings, IUserSettings
     {
         get => _userCache.GetListValueType<SplitTunnelingIpAddress>(SettingEncryption.Unencrypted) ?? DefaultSettings.SplitTunnelingIpAddressesList;
         set => _userCache.SetListValueType<SplitTunnelingIpAddress>(value, SettingEncryption.Unencrypted);
+    }
+
+    public List<SplitTunnelingFolder> SplitTunnelingStandardFoldersList
+    {
+        get => _userCache.GetListValueType<SplitTunnelingFolder>(SettingEncryption.Unencrypted) ?? DefaultSettings.SplitTunnelingFoldersList;
+        set => _userCache.SetListValueType<SplitTunnelingFolder>(value, SettingEncryption.Unencrypted);
+    }
+
+    public List<SplitTunnelingFolder> SplitTunnelingInverseFoldersList
+    {
+        get => _userCache.GetListValueType<SplitTunnelingFolder>(SettingEncryption.Unencrypted) ?? DefaultSettings.SplitTunnelingFoldersList;
+        set => _userCache.SetListValueType<SplitTunnelingFolder>(value, SettingEncryption.Unencrypted);
     }
 
     public List<string> Ipv6Fragments

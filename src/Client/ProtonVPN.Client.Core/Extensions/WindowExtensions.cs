@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -309,6 +309,23 @@ public static class WindowExtensions
         {
             // The method above fails when the app run in elevated mode. Use Win32 API instead.
             return RuntimeHelper.PickSingleFile(window, filterName, filterFileExtensions);
+        }
+    }
+
+    public static async Task<string> PickSingleFolderAsync(this Window window)
+    {
+        try
+        {
+            FolderPicker picker = new();
+            WinRT.Interop.InitializeWithWindow.Initialize(picker, WinRT.Interop.WindowNative.GetWindowHandle(window));
+            picker.FileTypeFilter.Add("*");
+
+            StorageFolder folder = await picker.PickSingleFolderAsync();
+            return folder?.Path ?? string.Empty;
+        }
+        catch (Exception)
+        {
+            return string.Empty;
         }
     }
 

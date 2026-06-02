@@ -3165,6 +3165,15 @@ VPN接続</value>
     <value>除外</value>
     <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
   </data>
+  <data name="Settings_Connection_SplitTunneling_Folders_Header" xml:space="preserve">
+    <value>選択したフォルダー ({0})</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Folders_Remove" xml:space="preserve">
+    <value>フォルダーを削除</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Folders_NotFound" xml:space="preserve">
+    <value>フォルダーが見つかりません</value>
+  </data>
   <data name="Settings_Connection_VpnAccelerator">
     <value>VPN Accelerator</value>
   </data>

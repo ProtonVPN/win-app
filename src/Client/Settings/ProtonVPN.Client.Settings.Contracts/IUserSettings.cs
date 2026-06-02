@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -71,6 +71,8 @@ public interface IUserSettings
     List<SplitTunnelingApp> SplitTunnelingInverseAppsList { get; set; }
     List<SplitTunnelingIpAddress> SplitTunnelingStandardIpAddressesList { get; set; }
     List<SplitTunnelingIpAddress> SplitTunnelingInverseIpAddressesList { get; set; }
+    List<SplitTunnelingFolder> SplitTunnelingStandardFoldersList { get; set; }
+    List<SplitTunnelingFolder> SplitTunnelingInverseFoldersList { get; set; }
     List<string> Ipv6Fragments { get; set; }
     string? LastLogicalsStatusId { get; set; }
     ChangeServerAttempts ChangeServerAttempts { get; set; }

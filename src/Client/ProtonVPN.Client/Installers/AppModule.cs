@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -26,6 +26,7 @@ using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Installers;
 using ProtonVPN.Client.Factories;
 using ProtonVPN.Client.Files.Installers;
+using ProtonVPN.Client.Core.Services.SplitTunneling;
 using ProtonVPN.Client.Handlers;
 using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Localization.Installers;
@@ -232,6 +233,7 @@ public class AppModule : Module
         builder.RegisterType<AppStartupActivator>().AsImplementedInterfaces().SingleInstance().AutoActivate();
         builder.RegisterType<PageViewMapper>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<OverlayViewMapper>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<FolderWatcherService>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<UIThreadDispatcher>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<HumanVerifier>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<HumanVerificationConfig>().AsImplementedInterfaces().SingleInstance();

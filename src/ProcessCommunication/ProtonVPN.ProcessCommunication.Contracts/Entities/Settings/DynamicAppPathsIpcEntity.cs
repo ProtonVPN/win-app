@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,19 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Net;
+using System.Runtime.Serialization;
 
-namespace ProtonVPN.Service.SplitTunneling;
+namespace ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 
-public interface ISplitTunnelClient
+[DataContract]
+public class DynamicAppPathsIpcEntity
 {
-    void EnableExcludeMode(string[] appPaths, IPAddress localIpv4Address, IPAddress localIpv6Address);
-
-    void EnableIncludeMode(string[] appPaths, IPAddress serverIpv4Address, IPAddress serverIpv6Address);
-
-    void Disable();
-
-    void AddAppPathsDynamically(string[] appPaths);
-
-    void RemoveAppPathsDynamically(string[] appPaths);
+    [DataMember]
+    public string[] AppPaths { get; set; } = [];
 }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -2299,6 +2299,16 @@
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName" xml:space="preserve">
     <value>App files</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Folders_Header" xml:space="preserve">
+    <value>Selected folders ({0})</value>
+    <comment>{0} is a placeholder for the number of selected folders in the list.</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Folders_Remove" xml:space="preserve">
+    <value>Remove folder</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Folders_NotFound" xml:space="preserve">
+    <value>Folder not found</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description" xml:space="preserve">
     <value>You won't be able to use NetShield when connected with a custom DNS server.</value>

@@ -15,7 +15,8 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
+along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+-->
 
 <Page x:Class="ProtonVPN.Client.UI.Main.Settings.Connection.SplitTunnelingPageView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -25,6 +26,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
       xmlns:controls="using:CommunityToolkit.WinUI.Controls"
       xmlns:pathicons="using:ProtonVPN.Client.Common.UI.Assets.Icons.PathIcons"
       xmlns:custom="using:ProtonVPN.Client.Common.UI.Controls.Custom"
+      xmlns:connection="using:ProtonVPN.Client.UI.Main.Settings.Connection"
       xmlns:models="using:ProtonVPN.Client.Core.Models"
       xmlns:featureicons="using:ProtonVPN.Client.UI.Main.FeatureIcons"
       xmlns:networking="using:ProtonVPN.Common.Core.Networking"
@@ -138,9 +140,10 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
                               IsActive="{x:Bind ViewModel.IsLoading}"
                               Visibility="{x:Bind ViewModel.IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-                <StackPanel Spacing="8"
+                <StackPanel Spacing="16"
                             Visibility="{x:Bind ViewModel.IsLoading, Converter={StaticResource NotBooleanToVisibilityConverter}}">
 
+                    <!--  Apps Section  -->
                     <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                                Text="{x:Bind ViewModel.AppsHeader}"
                                TextTrimming="CharacterEllipsis" />
@@ -151,7 +154,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
                                            Style="{StaticResource DefaultSettingsCardStyle}">
 
                         <controls:SettingsCard.Header>
-
                             <Grid>
                                 <TextBlock Foreground="{ThemeResource TextHintColorBrush}"
                                            Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_Apps_Select')}"
@@ -192,7 +194,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
                                     </ItemsControl>
                                 </ScrollViewer>
                             </Grid>
-
                         </controls:SettingsCard.Header>
 
                         <controls:SettingsCard.ActionIcon>
@@ -200,9 +201,152 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
                         </controls:SettingsCard.ActionIcon>
                     </controls:SettingsCard>
 
-                    <Grid Margin="0,16,0,0"
-                          HorizontalAlignment="Left">
+                    <!--  Folders Section  -->
+                    <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Localizer.GetFormat('Settings_Connection_SplitTunneling_Folders_Header', ViewModel.ActiveFoldersCount)}" />
 
+                    <controls:SettingsCard IsTabStop="False"
+                                           Style="{StaticResource VerticalSettingsCardStyle}">
+                        <Grid Margin="0,-8,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <ItemsRepeater Grid.Row="0"
+                                           Margin="0,0,0,16"
+                                           ItemsSource="{x:Bind ViewModel.StandardFolders}"
+                                           Visibility="{x:Bind ViewModel.HasStandardFolders, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <ItemsRepeater.Layout>
+                                    <StackLayout Spacing="8" />
+                                </ItemsRepeater.Layout>
+                                <ItemsRepeater.ItemTemplate>
+                                    <DataTemplate x:DataType="connection:SplitTunnelingFolderViewModel">
+                                        <Grid ColumnSpacing="8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Border Grid.Column="0"
+                                                    Background="Transparent"
+                                                    ToolTipService.ToolTip="{x:Bind FolderPath}">
+                                                <CheckBox IsChecked="{x:Bind IsActive, Mode=TwoWay}"
+                                                          IsEnabled="{x:Bind IsValidPath}">
+                                                    <Grid ColumnSpacing="8">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <pathicons:Folder Grid.Column="0"
+                                                                           Foreground="{ThemeResource TextNormColorBrush}"
+                                                                           Opacity="0.8"
+                                                                           Size="Pixels20"
+                                                                           Visibility="{x:Bind IsValidPath, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                        <TextBlock Grid.Column="1"
+                                                                   Text="{x:Bind FolderPath}"
+                                                                   TextTrimming="CharacterEllipsis"
+                                                                   Visibility="{x:Bind IsValidPath, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                        <pathicons:ExclamationCircleFilled Grid.Column="0"
+                                                                                           Foreground="{ThemeResource SignalDangerColorBrush}"
+                                                                                           Opacity="0.6"
+                                                                                           Size="Pixels20"
+                                                                                           Visibility="{x:Bind IsValidPath, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                                                        <TextBlock Grid.Column="1"
+                                                                   Foreground="{ThemeResource SignalDangerColorBrush}"
+                                                                   Opacity="0.6"
+                                                                   Text="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_Folders_NotFound')}"
+                                                                   TextTrimming="CharacterEllipsis"
+                                                                   Visibility="{x:Bind IsValidPath, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                                                    </Grid>
+                                                </CheckBox>
+                                            </Border>
+                                            <custom:GhostButton Grid.Column="1"
+                                                                AutomationProperties.AutomationId="RemoveFolderButton"
+                                                                AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_Folders_Remove')}"
+                                                                Command="{x:Bind RemoveFolderCommand, Mode=OneTime}"
+                                                                ToolTipService.ToolTip="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_Folders_Remove')}">
+                                                <custom:GhostButton.LeftIcon>
+                                                    <pathicons:Trash />
+                                                </custom:GhostButton.LeftIcon>
+                                            </custom:GhostButton>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsRepeater.ItemTemplate>
+                            </ItemsRepeater>
+
+                            <ItemsRepeater Grid.Row="0"
+                                           Margin="0,0,0,16"
+                                           ItemsSource="{x:Bind ViewModel.InverseFolders}"
+                                           Visibility="{x:Bind ViewModel.HasInverseFolders, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <ItemsRepeater.Layout>
+                                    <StackLayout Spacing="8" />
+                                </ItemsRepeater.Layout>
+                                <ItemsRepeater.ItemTemplate>
+                                    <DataTemplate x:DataType="connection:SplitTunnelingFolderViewModel">
+                                        <Grid ColumnSpacing="8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Border Grid.Column="0"
+                                                    Background="Transparent"
+                                                    ToolTipService.ToolTip="{x:Bind FolderPath}">
+                                                <CheckBox IsChecked="{x:Bind IsActive, Mode=TwoWay}"
+                                                          IsEnabled="{x:Bind IsValidPath}">
+                                                    <Grid ColumnSpacing="8">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <pathicons:Folder Grid.Column="0"
+                                                                           Foreground="{ThemeResource TextNormColorBrush}"
+                                                                           Opacity="0.8"
+                                                                           Size="Pixels20"
+                                                                           Visibility="{x:Bind IsValidPath, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                        <TextBlock Grid.Column="1"
+                                                                   Text="{x:Bind FolderPath}"
+                                                                   TextTrimming="CharacterEllipsis"
+                                                                   Visibility="{x:Bind IsValidPath, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                        <pathicons:ExclamationCircleFilled Grid.Column="0"
+                                                                                           Foreground="{ThemeResource SignalDangerColorBrush}"
+                                                                                           Opacity="0.6"
+                                                                                           Size="Pixels20"
+                                                                                           Visibility="{x:Bind IsValidPath, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                                                        <TextBlock Grid.Column="1"
+                                                                   Foreground="{ThemeResource SignalDangerColorBrush}"
+                                                                   Opacity="0.6"
+                                                                   Text="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_Folders_NotFound')}"
+                                                                   TextTrimming="CharacterEllipsis"
+                                                                   Visibility="{x:Bind IsValidPath, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+                                                    </Grid>
+                                                </CheckBox>
+                                            </Border>
+                                            <custom:GhostButton Grid.Column="1"
+                                                                AutomationProperties.AutomationId="RemoveFolderButton"
+                                                                AutomationProperties.Name="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_Folders_Remove')}"
+                                                                Command="{x:Bind RemoveFolderCommand, Mode=OneTime}"
+                                                                ToolTipService.ToolTip="{x:Bind Localizer.Get('Settings_Connection_SplitTunneling_Folders_Remove')}">
+                                                <custom:GhostButton.LeftIcon>
+                                                    <pathicons:Trash />
+                                                </custom:GhostButton.LeftIcon>
+                                            </custom:GhostButton>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsRepeater.ItemTemplate>
+                            </ItemsRepeater>
+
+                            <Button Grid.Row="1"
+                                    HorizontalAlignment="Left"
+                                    AutomationProperties.AutomationId="AddFolderButton"
+                                    Command="{x:Bind ViewModel.AddFolderCommand, Mode=OneTime}"
+                                    Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Add')}"
+                                    IsEnabled="{x:Bind ViewModel.CanAddFolder, Mode=OneWay}" />
+                        </Grid>
+                    </controls:SettingsCard>
+
+                    <!--  IP Addresses Section  -->
+                    <Grid HorizontalAlignment="Left">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
@@ -235,7 +379,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
                                            Style="{StaticResource DefaultSettingsCardStyle}">
 
                         <controls:SettingsCard.Header>
-
                             <Grid>
                                 <TextBlock Foreground="{ThemeResource TextHintColorBrush}"
                                            Text="{x:Bind ViewModel.Localizer.Get('Settings_Connection_SplitTunneling_IpAddresses_Select')}"
@@ -258,7 +401,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
                                     </ItemsControl>
                                 </ScrollViewer>
                             </Grid>
-
                         </controls:SettingsCard.Header>
 
                         <controls:SettingsCard.ActionIcon>

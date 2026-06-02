@@ -35,6 +35,7 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.Service.ControllerRetries;
 using ProtonVPN.Service.ProcessCommunication;
 using ProtonVPN.Service.Settings;
+using ProtonVPN.Service.SplitTunneling;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.LocalAgent;
 using ProtonVPN.Vpn.PortMapping;
@@ -52,6 +53,7 @@ public class VpnController : IVpnController
     private readonly IEntityMapper _entityMapper;
     private readonly ILocalAgentTlsCredentialsCache _localAgentTlsCredentialsCache;
     private readonly IControllerRetryManager _controllerRetryManager;
+    private readonly ISplitTunnelClient _splitTunnelClient;
 
     public VpnController(
         IVpnConnection vpnConnection,
@@ -62,7 +64,8 @@ public class VpnController : IVpnController
         IClientControllerSender appControllerCaller,
         IEntityMapper entityMapper,
         ILocalAgentTlsCredentialsCache localAgentTlsCredentialsCache,
-        IControllerRetryManager controllerRetryManager)
+        IControllerRetryManager controllerRetryManager,
+        ISplitTunnelClient splitTunnelClient)
     {
         _vpnConnection = vpnConnection;
         _logger = logger;
@@ -73,6 +76,7 @@ public class VpnController : IVpnController
         _entityMapper = entityMapper;
         _localAgentTlsCredentialsCache = localAgentTlsCredentialsCache;
         _controllerRetryManager = controllerRetryManager;
+        _splitTunnelClient = splitTunnelClient;
     }
 
     public async Task Connect(ConnectionRequestIpcEntity connectionRequest, CancellationToken cancelToken)
@@ -142,5 +146,15 @@ public class VpnController : IVpnController
     public async Task RequestConnectionDetails(CancellationToken cancelToken)
     {
         _vpnConnection.RequestConnectionDetails();
+    }
+
+    public async Task AddAppPathsDynamically(DynamicAppPathsIpcEntity appPathsEntity, CancellationToken cancelToken)
+    {
+        _splitTunnelClient.AddAppPathsDynamically(appPathsEntity.AppPaths ?? System.Array.Empty<string>());
+    }
+
+    public async Task RemoveAppPathsDynamically(DynamicAppPathsIpcEntity appPathsEntity, CancellationToken cancelToken)
+    {
+        _splitTunnelClient.RemoveAppPathsDynamically(appPathsEntity.AppPaths ?? System.Array.Empty<string>());
     }
 }

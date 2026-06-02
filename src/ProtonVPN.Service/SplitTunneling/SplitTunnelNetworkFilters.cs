@@ -35,6 +35,15 @@ public class SplitTunnelNetworkFilters
     private IpFilter _ipFilter;
     private Sublayer _subLayer;
 
+    private bool _isActive;
+    private Callout _connectRedirectCalloutV4;
+    private Callout _bindRedirectCalloutV4;
+    private ProviderContext _providerContextV4;
+    private Callout _connectRedirectCalloutV6;
+    private Callout _bindRedirectCalloutV6;
+    private ProviderContext _providerContextV6;
+    private readonly System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<Guid>> _appFilterIds = new(StringComparer.OrdinalIgnoreCase);
+
     public void EnableExcludeMode(string[] apps, IPAddress localIpv4Address, IPAddress localIpv6Address)
     {
         Create();
@@ -71,23 +80,75 @@ public class SplitTunnelNetworkFilters
         }
     }
 
+    public void AddAppPathsDynamically(string[] apps)
+    {
+        if (!_isActive || _ipFilter == null || _subLayer == null) return;
+
+        _ipFilter.Session.StartTransaction();
+        try
+        {
+            CreateAppCalloutFilters(apps, _bindRedirectCalloutV4, Layer.BindRedirectV4, _providerContextV4);
+            CreateAppCalloutFilters(apps, _connectRedirectCalloutV4, Layer.AppConnectRedirectV4, _providerContextV4);
+
+            if (_bindRedirectCalloutV6 != null && _connectRedirectCalloutV6 != null && _providerContextV6 != null)
+            {
+                CreateAppCalloutFilters(apps, _connectRedirectCalloutV6, Layer.AppConnectRedirectV6, _providerContextV6);
+                CreateAppCalloutFilters(apps, _bindRedirectCalloutV6, Layer.BindRedirectV6, _providerContextV6);
+            }
+
+            _ipFilter.Session.CommitTransaction();
+        }
+        catch
+        {
+            _ipFilter.Session.AbortTransaction();
+            throw;
+        }
+    }
+
+    public void RemoveAppPathsDynamically(string[] apps)
+    {
+        if (!_isActive || _ipFilter == null || _subLayer == null) return;
+
+        _ipFilter.Session.StartTransaction();
+        try
+        {
+            foreach (string app in apps)
+            {
+                if (_appFilterIds.TryGetValue(app, out System.Collections.Generic.List<Guid> filterIds))
+                {
+                    foreach (Guid filterId in filterIds)
+                    {
+                        _subLayer.DestroyFilter(filterId);
+                    }
+                    _appFilterIds.Remove(app);
+                }
+            }
+            _ipFilter.Session.CommitTransaction();
+        }
+        catch
+        {
+            _ipFilter.Session.AbortTransaction();
+            throw;
+        }
+    }
+
     private void Redirect(string[] apps, IPAddress ipv4Address, IPAddress ipv6Address)
     {
-        Callout connectRedirectCalloutV4 = CreateConnectRedirectCallout(Layer.AppConnectRedirectV4, _connectRedirectV4CalloutKey);
-        Callout bindRedirectCalloutV4 = CreateUDPRedirectCallout(Layer.BindRedirectV4, _bindRedirectV4CalloutKey);
+        _connectRedirectCalloutV4 = CreateConnectRedirectCallout(Layer.AppConnectRedirectV4, _connectRedirectV4CalloutKey);
+        _bindRedirectCalloutV4 = CreateUDPRedirectCallout(Layer.BindRedirectV4, _bindRedirectV4CalloutKey);
 
-        ProviderContext providerContextV4 = GetProviderContext(ipv4Address);
-        CreateAppCalloutFilters(apps, bindRedirectCalloutV4, Layer.BindRedirectV4, providerContextV4);
-        CreateAppCalloutFilters(apps, connectRedirectCalloutV4, Layer.AppConnectRedirectV4, providerContextV4);
+        _providerContextV4 = GetProviderContext(ipv4Address);
+        CreateAppCalloutFilters(apps, _bindRedirectCalloutV4, Layer.BindRedirectV4, _providerContextV4);
+        CreateAppCalloutFilters(apps, _connectRedirectCalloutV4, Layer.AppConnectRedirectV4, _providerContextV4);
 
         if (ipv6Address is not null)
         {
-            ProviderContext providerContextV6 = GetProviderContext(ipv6Address);
-            Callout connectRedirectCalloutV6 = CreateConnectRedirectCallout(Layer.AppConnectRedirectV6, _connectRedirectV6CalloutKey);
-            Callout redirectUDPCalloutV6 = CreateUDPRedirectCallout(Layer.BindRedirectV6, _bindRedirectV6CalloutKey);
+            _providerContextV6 = GetProviderContext(ipv6Address);
+            _connectRedirectCalloutV6 = CreateConnectRedirectCallout(Layer.AppConnectRedirectV6, _connectRedirectV6CalloutKey);
+            _bindRedirectCalloutV6 = CreateUDPRedirectCallout(Layer.BindRedirectV6, _bindRedirectV6CalloutKey);
 
-            CreateAppCalloutFilters(apps, connectRedirectCalloutV6, Layer.AppConnectRedirectV6, providerContextV6);
-            CreateAppCalloutFilters(apps, redirectUDPCalloutV6, Layer.BindRedirectV6, providerContextV6);
+            CreateAppCalloutFilters(apps, _connectRedirectCalloutV6, Layer.AppConnectRedirectV6, _providerContextV6);
+            CreateAppCalloutFilters(apps, _bindRedirectCalloutV6, Layer.BindRedirectV6, _providerContextV6);
         }
     }
 
@@ -109,6 +170,9 @@ public class SplitTunnelNetworkFilters
 
     private void Create()
     {
+        _appFilterIds.Clear();
+        _isActive = true;
+
         _ipFilter = IpFilter.Create(
             Session.Dynamic(),
             new DisplayData { Name = "Proton AG", Description = "ProtonVPN Split Tunnel provider" });
@@ -123,6 +187,15 @@ public class SplitTunnelNetworkFilters
         _ipFilter?.Session.Close();
         _ipFilter = null;
         _subLayer = null;
+
+        _isActive = false;
+        _appFilterIds.Clear();
+        _connectRedirectCalloutV4 = null;
+        _bindRedirectCalloutV4 = null;
+        _providerContextV4 = null;
+        _connectRedirectCalloutV6 = null;
+        _bindRedirectCalloutV6 = null;
+        _providerContextV6 = null;
     }
 
     private void CreateAppCalloutFilters(string[] apps, Callout callout, Layer layer, ProviderContext providerContext)
@@ -137,16 +210,24 @@ public class SplitTunnelNetworkFilters
     {
         try
         {
-            CreateAppFilter(app, callout, layer, providerContext);
+            Guid filterId = CreateAppFilter(app, callout, layer, providerContext);
+
+            if (!_appFilterIds.TryGetValue(app, out System.Collections.Generic.List<Guid> ids))
+            {
+                ids = new System.Collections.Generic.List<Guid>();
+                _appFilterIds[app] = ids;
+            }
+            
+            ids.Add(filterId);
         }
         catch (NetworkFilterException)
         {
         }
     }
 
-    private void CreateAppFilter(string app, Callout callout, Layer layer, ProviderContext providerContext)
+    private Guid CreateAppFilter(string app, Callout callout, Layer layer, ProviderContext providerContext)
     {
-        _subLayer.CreateAppCalloutFilter(
+        return _subLayer.CreateAppCalloutFilter(
             new DisplayData
             {
                 Name = "ProtonVPN Split Tunnel redirect app",

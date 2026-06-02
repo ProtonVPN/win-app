@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -42,9 +43,12 @@ namespace ProtonVPN.Client.UI.Main.Settings.Connection;
 
 public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
 {
+    private const int MAX_FOLDERS = 50;
+
     private readonly IUrlsBrowser _urlsBrowser;
     private readonly IIpSelector _ipSelector;
     private readonly IAppSelector _appSelector;
+    private readonly IMainWindowActivator _mainWindowActivator;
 
     private bool _wasIpv6WarningDisplayed;
 
@@ -61,6 +65,9 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
     [property: SettingName(nameof(ISettings.SplitTunnelingMode))]
     [NotifyPropertyChangedFor(nameof(IsStandardSplitTunneling))]
     [NotifyPropertyChangedFor(nameof(IsInverseSplitTunneling))]
+    [NotifyPropertyChangedFor(nameof(HasStandardFolders))]
+    [NotifyPropertyChangedFor(nameof(HasInverseFolders))]
+    [NotifyPropertyChangedFor(nameof(ActiveFoldersCount))]
     [NotifyPropertyChangedFor(nameof(SplitTunnelingFeatureIconSource))]
     [NotifyPropertyChangedFor(nameof(IpAddresses))]
     [NotifyPropertyChangedFor(nameof(IpAddressesHeader))]
@@ -94,11 +101,28 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         set => SetSplitTunnelingMode(value, SplitTunnelingMode.Inverse);
     }
 
-    [property: SettingName(nameof(ISettings.SplitTunnelingInverseIpAddressesList))]
-    public SmartObservableCollection<SelectableNetworkAddress> IncludedIpAddresses { get; } = [];
+    // Folders
+    [property: SettingName(nameof(ISettings.SplitTunnelingStandardFoldersList))]
+    public ObservableCollection<SplitTunnelingFolderViewModel> StandardFolders { get; }
 
+    [property: SettingName(nameof(ISettings.SplitTunnelingInverseFoldersList))]
+    public ObservableCollection<SplitTunnelingFolderViewModel> InverseFolders { get; }
+
+    public bool HasStandardFolders => CurrentSplitTunnelingMode == SplitTunnelingMode.Standard && StandardFolders.Any();
+    public bool HasInverseFolders => CurrentSplitTunnelingMode == SplitTunnelingMode.Inverse && InverseFolders.Any();
+
+    public int ActiveFoldersCount => CurrentSplitTunnelingMode == SplitTunnelingMode.Standard
+                                      ? StandardFolders.Count(a => a.IsActive)
+                                      : InverseFolders.Count(a => a.IsActive);
+
+    public bool CanAddFolder => StandardFolders.Count + InverseFolders.Count < MAX_FOLDERS;
+
+    // IP Addresses
     [property: SettingName(nameof(ISettings.SplitTunnelingStandardIpAddressesList))]
     public SmartObservableCollection<SelectableNetworkAddress> ExcludedIpAddresses { get; } = [];
+
+    [property: SettingName(nameof(ISettings.SplitTunnelingInverseIpAddressesList))]
+    public SmartObservableCollection<SelectableNetworkAddress> IncludedIpAddresses { get; } = [];
 
     public SmartObservableCollection<SelectableNetworkAddress> IpAddresses
         => IsStandardSplitTunneling ? ExcludedIpAddresses : IncludedIpAddresses;
@@ -118,11 +142,12 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         ? "Settings_Connection_SplitTunneling_IpAddresses_Excluded_FormattedHeader"
         : "Settings_Connection_SplitTunneling_IpAddresses_Included_FormattedHeader", SelectedIpAddresses.Count());
 
-    [property: SettingName(nameof(ISettings.SplitTunnelingInverseAppsList))]
-    public SmartObservableCollection<SelectableTunnelingApp> IncludedApps { get; } = [];
-
+    // Apps
     [property: SettingName(nameof(ISettings.SplitTunnelingStandardAppsList))]
     public SmartObservableCollection<SelectableTunnelingApp> ExcludedApps { get; } = [];
+
+    [property: SettingName(nameof(ISettings.SplitTunnelingInverseAppsList))]
+    public SmartObservableCollection<SelectableTunnelingApp> IncludedApps { get; } = [];
 
     public SmartObservableCollection<SelectableTunnelingApp> Apps
         => IsStandardSplitTunneling ? ExcludedApps : IncludedApps;
@@ -138,6 +163,7 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
 
     public SplitTunnelingPageViewModel(
         IUrlsBrowser urlsBrowser,
+        IMainWindowActivator mainWindowActivator,
         IRequiredReconnectionSettings requiredReconnectionSettings,
         IMainViewNavigator mainViewNavigator,
         ISettingsViewNavigator settingsViewNavigator,
@@ -158,8 +184,15 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
                viewModelHelper)
     {
         _urlsBrowser = urlsBrowser;
+        _mainWindowActivator = mainWindowActivator;
         _ipSelector = ipSelector;
         _appSelector = appSelector;
+
+        StandardFolders = new();
+        StandardFolders.CollectionChanged += OnFoldersCollectionChanged;
+
+        InverseFolders = new();
+        InverseFolders.CollectionChanged += OnFoldersCollectionChanged;
 
         ExcludedIpAddresses.CollectionChanged += OnIpAddressesCollectionChanged;
         IncludedIpAddresses.CollectionChanged += OnIpAddressesCollectionChanged;
@@ -169,8 +202,10 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         PageSettings =
         [
             ChangedSettingArgs.Create(() => Settings.SplitTunnelingStandardAppsList, () => GetSettingsApps(ExcludedApps)),
+            ChangedSettingArgs.Create(() => Settings.SplitTunnelingStandardFoldersList, () => GetSplitTunnelingFoldersList(StandardFolders)),
             ChangedSettingArgs.Create(() => Settings.SplitTunnelingStandardIpAddressesList, () => GetSettingsIpAddresses(ExcludedIpAddresses)),
             ChangedSettingArgs.Create(() => Settings.SplitTunnelingInverseAppsList, () => GetSettingsApps(IncludedApps)),
+            ChangedSettingArgs.Create(() => Settings.SplitTunnelingInverseFoldersList, () => GetSplitTunnelingFoldersList(InverseFolders)),
             ChangedSettingArgs.Create(() => Settings.SplitTunnelingInverseIpAddressesList, () => GetSettingsIpAddresses(IncludedIpAddresses)),
             ChangedSettingArgs.Create(() => Settings.SplitTunnelingMode, () => CurrentSplitTunnelingMode),
             ChangedSettingArgs.Create(() => Settings.IsSplitTunnelingEnabled, () => IsSplitTunnelingEnabled),
@@ -203,6 +238,40 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
 
         // Show this warning only once per app launch
         _wasIpv6WarningDisplayed = true;
+    }
+
+    [RelayCommand]
+    public async Task AddFolderAsync()
+    {
+        if (_mainWindowActivator.Window == null)
+        {
+            return;
+        }
+
+        if (!CanAddFolder)
+        {
+            return;
+        }
+
+        ObservableCollection<SplitTunnelingFolderViewModel> folders = GetFolders();
+        string? folderPath = await _mainWindowActivator.Window.PickSingleFolderAsync();
+
+        if (string.IsNullOrEmpty(folderPath) || !Directory.Exists(folderPath))
+        {
+            return;
+        }
+
+        SplitTunnelingFolderViewModel? existing = folders.FirstOrDefault(f =>
+            string.Equals(f.FolderPath, folderPath, StringComparison.OrdinalIgnoreCase));
+
+        if (existing != null)
+        {
+            existing.IsActive = true;
+        }
+        else
+        {
+            folders.Add(new SplitTunnelingFolderViewModel(ViewModelHelper, this, folderPath, true));
+        }
     }
 
     [RelayCommand]
@@ -247,6 +316,16 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         }
     }
 
+    public void RemoveFolder(SplitTunnelingFolderViewModel folder)
+    {
+        GetFolders().Remove(folder);
+    }
+
+    public void InvalidateFoldersCount()
+    {
+        OnPropertyChanged(nameof(ActiveFoldersCount));
+    }
+
     protected override async Task OnRetrieveSettingsAsync()
     {
         try
@@ -256,6 +335,9 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
             IsIpv6Enabled = Settings.IsIpv6Enabled;
             IsSplitTunnelingEnabled = Settings.IsSplitTunnelingEnabled;
             CurrentSplitTunnelingMode = Settings.SplitTunnelingMode;
+
+            SetFolders(StandardFolders, Settings.SplitTunnelingStandardFoldersList);
+            SetFolders(InverseFolders, Settings.SplitTunnelingInverseFoldersList);
 
             ExcludedIpAddresses.Reset(GetObservableIpAddresses(Settings.SplitTunnelingStandardIpAddressesList));
             IncludedIpAddresses.Reset(GetObservableIpAddresses(Settings.SplitTunnelingInverseIpAddressesList));
@@ -274,24 +356,29 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         bool isReconnectionRequired = base.IsReconnectionRequiredDueToChanges(changedSettings);
         if (isReconnectionRequired)
         {
-            // Check if there was any active apps or IP adresses from the settings
-            // then check if there is any active apps or IP adresses now.
-            // If there is none in both case, no need to reconnect.
             bool isSameSplitTunnelingMode = CurrentSplitTunnelingMode == Settings.SplitTunnelingMode;
             bool hadAnyActiveAppsOrIps =
                 Settings.IsSplitTunnelingEnabled &&
                 Settings.SplitTunnelingMode switch
                 {
-                    SplitTunnelingMode.Standard => Settings.SplitTunnelingStandardAppsList.Any(app => app.IsActive) || Settings.SplitTunnelingStandardIpAddressesList.Any(ip => ip.IsActive),
-                    SplitTunnelingMode.Inverse => Settings.SplitTunnelingInverseAppsList.Any(app => app.IsActive) || Settings.SplitTunnelingInverseIpAddressesList.Any(ip => ip.IsActive),
+                    SplitTunnelingMode.Standard => Settings.SplitTunnelingStandardAppsList.Any(app => app.IsActive)
+                                                || Settings.SplitTunnelingStandardFoldersList.Any(f => f.IsActive)
+                                                || Settings.SplitTunnelingStandardIpAddressesList.Any(ip => ip.IsActive),
+                    SplitTunnelingMode.Inverse => Settings.SplitTunnelingInverseAppsList.Any(app => app.IsActive)
+                                               || Settings.SplitTunnelingInverseFoldersList.Any(f => f.IsActive)
+                                               || Settings.SplitTunnelingInverseIpAddressesList.Any(ip => ip.IsActive),
                     _ => false
                 };
             bool hasAnyActiveAppsOrIps =
                 IsSplitTunnelingEnabled &&
                 CurrentSplitTunnelingMode switch
                 {
-                    SplitTunnelingMode.Standard => ExcludedApps.Any(app => app.IsSelected) || ExcludedIpAddresses.Any(ip => ip.IsSelected),
-                    SplitTunnelingMode.Inverse => IncludedApps.Any(app => app.IsSelected) || IncludedIpAddresses.Any(ip => ip.IsSelected),
+                    SplitTunnelingMode.Standard => ExcludedApps.Any(app => app.IsSelected)
+                                                || StandardFolders.Any(f => f.IsActive)
+                                                || ExcludedIpAddresses.Any(ip => ip.IsSelected),
+                    SplitTunnelingMode.Inverse => IncludedApps.Any(app => app.IsSelected)
+                                               || InverseFolders.Any(f => f.IsActive)
+                                               || IncludedIpAddresses.Any(ip => ip.IsSelected),
                     _ => false
                 };
             if (isSameSplitTunnelingMode && !hadAnyActiveAppsOrIps && !hasAnyActiveAppsOrIps)
@@ -303,6 +390,25 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         return isReconnectionRequired;
     }
 
+    private ObservableCollection<SplitTunnelingFolderViewModel> GetFolders()
+    {
+        return CurrentSplitTunnelingMode == SplitTunnelingMode.Standard ? StandardFolders : InverseFolders;
+    }
+
+    private void SetFolders(ObservableCollection<SplitTunnelingFolderViewModel> folders, List<SplitTunnelingFolder> settingsFolders)
+    {
+        folders.Clear();
+        foreach (SplitTunnelingFolder folder in settingsFolders)
+        {
+            folders.Add(new SplitTunnelingFolderViewModel(ViewModelHelper, this, folder.FolderPath, folder.IsActive));
+        }
+    }
+
+    private List<SplitTunnelingFolder> GetSplitTunnelingFoldersList(ObservableCollection<SplitTunnelingFolderViewModel> folders)
+    {
+        return folders.Select(f => new SplitTunnelingFolder(f.FolderPath, f.IsActive)).ToList();
+    }
+
     private List<SplitTunnelingIpAddress> GetSettingsIpAddresses(IEnumerable<SelectableNetworkAddress> ipAddresses)
     {
         return ipAddresses.Select(ip => new SplitTunnelingIpAddress(ip.Value.ToString(), ip.IsSelected)).ToList();
@@ -311,7 +417,6 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
     private List<SelectableNetworkAddress> GetObservableIpAddresses(List<SplitTunnelingIpAddress> settingsIpAddresses)
     {
         List<SelectableNetworkAddress> addresses = [];
-
         foreach (SplitTunnelingIpAddress ip in settingsIpAddresses)
         {
             if (NetworkAddress.TryParse(ip.IpAddress, out NetworkAddress address))
@@ -319,7 +424,6 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
                 addresses.Add(new SelectableNetworkAddress(address, ip.IsActive));
             }
         }
-
         return addresses;
     }
 
@@ -331,15 +435,12 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
     private async Task<List<SelectableTunnelingApp>> GetObservableAppsAsync(List<SplitTunnelingApp> settingsApps)
     {
         List<SelectableTunnelingApp> apps = [];
-
         foreach (SplitTunnelingApp app in settingsApps)
         {
             TunnelingApp tunnelingApp = await TunnelingApp.TryCreateAsync(app.AppFilePath, app.AlternateAppFilePaths)
                 ?? TunnelingApp.NotFound(app.AppFilePath, Localizer.Get("Common_Message_AppNotFound"), app.AlternateAppFilePaths);
-
             apps.Add(new SelectableTunnelingApp(tunnelingApp, app.IsActive));
         }
-
         return apps;
     }
 
@@ -362,6 +463,14 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         OnPropertyChanged(nameof(AppsHeader));
         OnPropertyChanged(nameof(SelectedApps));
         OnPropertyChanged(nameof(HasSelectedApps));
+    }
+
+    private void OnFoldersCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        OnPropertyChanged(nameof(HasStandardFolders));
+        OnPropertyChanged(nameof(HasInverseFolders));
+        OnPropertyChanged(nameof(CanAddFolder));
+        InvalidateFoldersCount();
     }
 
     private void OnIpAddressesCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -66,6 +66,7 @@ public static class DefaultSettings
     public static bool IsSmartReconnectEnabled = true;
     public static SplitTunnelingMode SplitTunnelingMode = SplitTunnelingMode.Standard;
     public static List<SplitTunnelingIpAddress> SplitTunnelingIpAddressesList = [];
+    public static List<SplitTunnelingFolder> SplitTunnelingFoldersList = [];
     public static List<string> Ipv6Fragments = [];
     public static bool IsIpv6LeakProtectionEnabled = true;
     public static bool IsIpv6Enabled = false;
