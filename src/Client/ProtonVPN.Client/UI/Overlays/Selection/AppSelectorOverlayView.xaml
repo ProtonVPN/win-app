@@ -130,21 +130,20 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
 
         <Grid Grid.Row="2"
               Margin="0,0,12,16"
-              ColumnSpacing="8"
-              DataContext="{x:Bind ViewModel}">
+              ColumnSpacing="8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Column="0"
+            <TextBox x:Name="CustomAppPathTextBox"
+                     Grid.Column="0"
                      AutomationProperties.AutomationId="CustomAppPathTextBox"
-                     PlaceholderText="C:\Program Files\WindowsApps\Microsoft.WindowsStore_*\WinStore.App.exe"
-                     Text="{Binding CustomAppPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                     PlaceholderText="C:\Program Files\WindowsApps\Microsoft.WindowsStore_*\WinStore.App.exe" />
 
             <Button Grid.Column="1"
                     AutomationProperties.AutomationId="AddCustomPathButton"
-                    Command="{Binding AddCustomAppCommand}"
+                    Click="OnAddCustomPathButtonClick"
                     Content="Add path" />
         </Grid>
 
