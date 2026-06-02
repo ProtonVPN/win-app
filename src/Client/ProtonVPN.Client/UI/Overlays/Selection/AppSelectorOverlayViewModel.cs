@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -44,6 +44,9 @@ public partial class AppSelectorOverlayViewModel : OverlayViewModelBase<IMainWin
     [ObservableProperty]
     private string _description = string.Empty;
 
+    [ObservableProperty]
+    private string _customAppPath = string.Empty;
+
     public string RemoveTooltip => Localizer.Get("Common_Actions_Remove");
 
     public SmartNotifyObservableCollection<SelectableTunnelingApp> Apps { get; } = [];
@@ -68,6 +71,7 @@ public partial class AppSelectorOverlayViewModel : OverlayViewModelBase<IMainWin
     {
         _originalApps = apps.Select(a => a.Clone()).ToList();
 
+        CustomAppPath = string.Empty;
         Apps.Reset(apps);
 
         ContentDialogResult result = await InvokeAsync();
@@ -111,10 +115,24 @@ public partial class AppSelectorOverlayViewModel : OverlayViewModelBase<IMainWin
 
         string filePath = await _mainWindowActivator.Window.PickSingleFileAsync(Localizer.Get("Settings_Connection_SplitTunneling_Apps_FilesFilterName"), [ExternalApp.EXE_FILE_EXTENSION]);
 
+        await AddAppFromPathAsync(filePath);
+    }
+
+    [RelayCommand]
+    private async Task AddCustomAppAsync()
+    {
+        if (await AddAppFromPathAsync(CustomAppPath))
+        {
+            CustomAppPath = string.Empty;
+        }
+    }
+
+    private async Task<bool> AddAppFromPathAsync(string filePath)
+    {
         TunnelingApp? app = await TunnelingApp.TryCreateAsync(filePath);
         if (app == null)
         {
-            return;
+            return false;
         }
 
         SelectableTunnelingApp? existingApp = Apps.FirstOrDefault(a => IsSameAppPath(a.Value.AppPath, app.AppPath) || a.Value.AlternateAppPaths.Any(alt => IsSameAppPath(alt, app.AppPath)));
@@ -126,6 +144,8 @@ public partial class AppSelectorOverlayViewModel : OverlayViewModelBase<IMainWin
         {
             Apps.Add(new SelectableTunnelingApp(app));
         }
+
+        return true;
     }
 
     [RelayCommand]
