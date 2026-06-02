@@ -5,7 +5,7 @@ on:
 
 jobs:
   build-client:
-    name: Build Windows client project
+    name: Build Windows client and service projects
     runs-on: windows-latest
 
     defaults:
@@ -42,8 +42,14 @@ jobs:
       - name: Restore client project
         run: dotnet restore src/Client/ProtonVPN.Client/ProtonVPN.Client.csproj --runtime win-x64
 
+      - name: Restore service project
+        run: dotnet restore src/ProtonVPN.Service/ProtonVPN.Service.csproj --runtime win-x64
+
       - name: Build client project
         run: dotnet build src/Client/ProtonVPN.Client/ProtonVPN.Client.csproj --configuration Release --runtime win-x64 --no-restore -p:Platform=x64
+
+      - name: Build service project
+        run: dotnet build src/ProtonVPN.Service/ProtonVPN.Service.csproj --configuration Release --runtime win-x64 --no-restore -p:Platform=x64
 
       - name: Create patch artifact folder
         run: |
@@ -51,8 +57,20 @@ jobs:
           $patchDir = Join-Path $env:GITHUB_WORKSPACE 'artifacts\ProtonVPN.Client.Patch'
           New-Item -ItemType Directory -Force -Path $patchDir | Out-Null
 
-          Copy-Item (Join-Path $sourceDir 'ProtonVPN.Client.dll') $patchDir -Force
-          Copy-Item (Join-Path $sourceDir 'ProtonVPN.Client.Core.dll') $patchDir -Force
+          $requiredFiles = @(
+            'ProtonVPN.Client.dll',
+            'ProtonVPN.Client.Core.dll',
+            'ProtonVPN.Client.Settings.dll',
+            'ProtonVPNService.dll'
+          )
+
+          foreach ($file in $requiredFiles) {
+            $path = Join-Path $sourceDir $file
+            if (!(Test-Path $path)) {
+              throw "Required patch file missing: $path"
+            }
+            Copy-Item $path $patchDir -Force
+          }
 
           $optionalFiles = @(
             'ProtonVPN.Client.pri',
