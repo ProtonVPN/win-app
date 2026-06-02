@@ -1,0 +1,66 @@
+name: Windows client smoke build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-client:
+    name: Build Windows client project
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.x'
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Show tool versions
+        run: |
+          dotnet --info
+          go version
+          msbuild -version
+          rustc --version
+          cargo --version
+
+      - name: Restore client project
+        run: dotnet restore src/Client/ProtonVPN.Client/ProtonVPN.Client.csproj --runtime win-x64
+
+      - name: Build client project
+        run: dotnet build src/Client/ProtonVPN.Client/ProtonVPN.Client.csproj --configuration Release --runtime win-x64 --no-restore -p:Platform=x64
+
+      - name: Create patch-only artifact folder
+        run: |
+          $patchDir = Join-Path $env:GITHUB_WORKSPACE 'artifacts\ProtonVPN.Client.Patch'
+          New-Item -ItemType Directory -Force -Path $patchDir | Out-Null
+          Copy-Item 'src\bin\ProtonVPN.Client.dll' $patchDir -Force
+          Copy-Item 'src\bin\ProtonVPN.Client.Core.dll' $patchDir -Force
+
+      - name: Upload patch-only artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: protonvpn-client-patch-dlls
+          path: artifacts/ProtonVPN.Client.Patch
+
+      - name: Upload build output artifact
+        if: always() && hashFiles('src/bin/**') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: protonvpn-client-bin
+          path: src/bin
