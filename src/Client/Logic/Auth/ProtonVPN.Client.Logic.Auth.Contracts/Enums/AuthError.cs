@@ -24,7 +24,7 @@ public enum AuthError
     None,
     NoVpnAccess,
     InvalidServerProof,
-    MissingGoSrpDll,
+    MissingSrpDll,
     TwoFactorRequired,
     IncorrectTwoFactorCode,
     TwoFactorAuthFailed,

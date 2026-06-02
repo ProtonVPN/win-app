@@ -119,9 +119,9 @@ public class SrpAuthenticator : AuthenticatorBase, ISrpAuthenticator
 
             return AuthResult.Ok();
         }
-        catch (TypeInitializationException e) when (e.InnerException is DllNotFoundException)
+        catch (DllNotFoundException)
         {
-            return AuthResult.Fail(AuthError.MissingGoSrpDll);
+            return AuthResult.Fail(AuthError.MissingSrpDll);
         }
     }
 

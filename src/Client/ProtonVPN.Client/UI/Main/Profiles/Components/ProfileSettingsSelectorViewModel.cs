@@ -49,7 +49,6 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase,
 {
     private readonly ISettings _settings;
     private readonly ICommonItemFactory _commonItemFactory;
-    private readonly IRequiredReconnectionSettings _requiredReconnectionSettings;
     private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
     private readonly IUrlsBrowser _urlsBrowser;
     private readonly IFeatureFlagsObserver _featureFlagsObserver;
@@ -109,7 +108,6 @@ public partial class ProfileSettingsSelectorViewModel : ViewModelBase,
     {
         _settings = settings;
         _commonItemFactory = commonItemFactory;
-        _requiredReconnectionSettings = requiredReconnectionSettings;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _urlsBrowser = urlsBrowser;
         _featureFlagsObserver = featureFlagsObserver;

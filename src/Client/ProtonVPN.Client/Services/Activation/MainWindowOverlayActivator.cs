@@ -29,7 +29,6 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Overlays.HumanVerification;
 using ProtonVPN.Client.UI.Overlays.Information;
 using ProtonVPN.Client.UI.Overlays.Information.Notification;
-using ProtonVPN.Client.UI.Overlays.Selection;
 using ProtonVPN.Client.UI.Overlays.Upsell;
 using ProtonVPN.Client.UI.Overlays.Welcome;
 using ProtonVPN.Client.UI.Overlays.WhatsNew;

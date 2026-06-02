@@ -21,6 +21,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Navigation;
 using ProtonVPN.Client.Common.Enums;
+using ProtonVPN.Client.Common.Models;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
@@ -47,6 +48,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
 {
     private readonly IUrlsBrowser _urlsBrowser;
     private readonly IMainWindowActivator _mainWindowActivator;
+    private readonly IMainWindowOverlayActivator _mainWindowOverlayActivator;
     private readonly IReportIssueWindowActivator _reportIssueWindowActivator;
     private readonly ITroubleshootingWindowActivator _troubleshootingWindowActivator;
     private readonly ISettings _settings;
@@ -73,6 +75,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     public LoginPageViewModel(
         IUrlsBrowser urlsBrowser,
         IMainWindowActivator mainWindowActivator,
+        IMainWindowOverlayActivator mainWindowOverlayActivator,
         IReportIssueWindowActivator reportIssueWindowActivator,
         ITroubleshootingWindowActivator troubleshootingWindowActivator,
         ISettings settings,
@@ -85,6 +88,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
     {
         _urlsBrowser = urlsBrowser;
         _mainWindowActivator = mainWindowActivator;
+        _mainWindowOverlayActivator = mainWindowOverlayActivator;
         _reportIssueWindowActivator = reportIssueWindowActivator;
         _troubleshootingWindowActivator = troubleshootingWindowActivator;
         _settings = settings;
@@ -149,7 +153,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
 
                 case LoginState.Error:
                     await ChildViewNavigator.NavigateToSignInViewAsync();
-                    HandleAuthError(message);
+                    HandleAuthErrorAsync(message);
                     break;
             }
         });
@@ -184,7 +188,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
         });
     }
 
-    private void HandleAuthError(LoginStateChangedMessage message)
+    private async void HandleAuthErrorAsync(LoginStateChangedMessage message)
     {
         ActionButtonTitle = string.Empty;
 
@@ -195,9 +199,15 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
 
         switch (message.AuthError)
         {
-            case AuthError.MissingGoSrpDll:
-                Logger.Fatal<AppCrashLog>("The app is missing GoSrp.dll");
-                // VPNWIN-2109 - Add modal about missing file
+            case AuthError.MissingSrpDll:
+                Logger.Fatal<AppCrashLog>("The app is missing proton_srp_cffi.dll");
+                await _mainWindowOverlayActivator.ShowMessageAsync(new MessageDialogParameters
+                {
+                    Title = Localizer.Get("Login_Error_MissingSrpDll_Title"),
+                    Message = Localizer.Get("Login_Error_MissingSrpDll_Message"),
+                    PrimaryButtonText = Localizer.Get("Common_Actions_GotIt"),
+                    UseVerticalLayoutForButtons = true,
+                });
                 _mainWindowActivator.Exit();
                 break;
 
