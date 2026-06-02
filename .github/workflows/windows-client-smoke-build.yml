@@ -57,6 +57,23 @@ jobs:
           $patchDir = Join-Path $env:GITHUB_WORKSPACE 'artifacts\ProtonVPN.Client.Patch'
           New-Item -ItemType Directory -Force -Path $patchDir | Out-Null
 
+          function Copy-FirstMatchingFile {
+            param(
+              [Parameter(Mandatory = $true)] [string] $FileName,
+              [Parameter(Mandatory = $true)] [string] $Destination
+            )
+
+            $matches = Get-ChildItem $sourceDir -Recurse -File -Filter $FileName | Sort-Object FullName
+            if (!$matches -or $matches.Count -eq 0) {
+              Write-Host "Available DLLs under $sourceDir:"
+              Get-ChildItem $sourceDir -Recurse -File -Filter '*.dll' | Select-Object -ExpandProperty FullName | Sort-Object
+              throw "Required patch file missing: $FileName"
+            }
+
+            Copy-Item $matches[0].FullName $Destination -Force
+            Write-Host "Copied $FileName from $($matches[0].FullName)"
+          }
+
           $requiredFiles = @(
             'ProtonVPN.Client.dll',
             'ProtonVPN.Client.Core.dll',
@@ -65,11 +82,7 @@ jobs:
           )
 
           foreach ($file in $requiredFiles) {
-            $path = Join-Path $sourceDir $file
-            if (!(Test-Path $path)) {
-              throw "Required patch file missing: $path"
-            }
-            Copy-Item $path $patchDir -Force
+            Copy-FirstMatchingFile -FileName $file -Destination $patchDir
           }
 
           $optionalFiles = @(
@@ -78,9 +91,10 @@ jobs:
           )
 
           foreach ($file in $optionalFiles) {
-            $path = Join-Path $sourceDir $file
-            if (Test-Path $path) {
-              Copy-Item $path $patchDir -Force
+            $matches = Get-ChildItem $sourceDir -Recurse -File -Filter $file | Sort-Object FullName
+            if ($matches -and $matches.Count -gt 0) {
+              Copy-Item $matches[0].FullName $patchDir -Force
+              Write-Host "Copied $file from $($matches[0].FullName)"
             }
           }
 
