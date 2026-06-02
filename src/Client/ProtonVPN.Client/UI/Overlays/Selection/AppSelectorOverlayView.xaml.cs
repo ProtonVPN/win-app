@@ -60,4 +60,11 @@ public sealed partial class AppSelectorOverlayView : IContextAware
             AppsListView.ScrollIntoView(e.NewItems[e.NewItems.Count - 1]);
         }
     }
+
+    private async void OnAddCustomPathButtonClick(object sender, RoutedEventArgs e)
+    {
+        ViewModel.CustomAppPath = CustomAppPathTextBox.Text;
+        await ViewModel.AddCustomAppCommand.ExecuteAsync(null);
+        CustomAppPathTextBox.Text = ViewModel.CustomAppPath;
+    }
 }
