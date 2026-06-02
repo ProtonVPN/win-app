@@ -65,7 +65,7 @@ jobs:
 
             $matches = Get-ChildItem $sourceDir -Recurse -File -Filter $FileName | Sort-Object FullName
             if (!$matches -or $matches.Count -eq 0) {
-              Write-Host "Available DLLs under $sourceDir:"
+              Write-Host "Available DLLs under ${sourceDir}:"
               Get-ChildItem $sourceDir -Recurse -File -Filter '*.dll' | Select-Object -ExpandProperty FullName | Sort-Object
               throw "Required patch file missing: $FileName"
             }
