@@ -45,17 +45,39 @@ jobs:
       - name: Build client project
         run: dotnet build src/Client/ProtonVPN.Client/ProtonVPN.Client.csproj --configuration Release --runtime win-x64 --no-restore -p:Platform=x64
 
-      - name: Create patch-only artifact folder
+      - name: Create patch artifact folder
         run: |
+          $sourceDir = Join-Path $env:GITHUB_WORKSPACE 'src\bin'
           $patchDir = Join-Path $env:GITHUB_WORKSPACE 'artifacts\ProtonVPN.Client.Patch'
           New-Item -ItemType Directory -Force -Path $patchDir | Out-Null
-          Copy-Item 'src\bin\ProtonVPN.Client.dll' $patchDir -Force
-          Copy-Item 'src\bin\ProtonVPN.Client.Core.dll' $patchDir -Force
 
-      - name: Upload patch-only artifact
+          Copy-Item (Join-Path $sourceDir 'ProtonVPN.Client.dll') $patchDir -Force
+          Copy-Item (Join-Path $sourceDir 'ProtonVPN.Client.Core.dll') $patchDir -Force
+
+          $optionalFiles = @(
+            'ProtonVPN.Client.pri',
+            'resources.pri'
+          )
+
+          foreach ($file in $optionalFiles) {
+            $path = Join-Path $sourceDir $file
+            if (Test-Path $path) {
+              Copy-Item $path $patchDir -Force
+            }
+          }
+
+          Get-ChildItem $sourceDir -Recurse -File -Include '*.xbf' | ForEach-Object {
+            $relativePath = [System.IO.Path]::GetRelativePath($sourceDir, $_.FullName)
+            $targetPath = Join-Path $patchDir $relativePath
+            $targetDirectory = Split-Path $targetPath -Parent
+            New-Item -ItemType Directory -Force -Path $targetDirectory | Out-Null
+            Copy-Item $_.FullName $targetPath -Force
+          }
+
+      - name: Upload patch artifact
         uses: actions/upload-artifact@v4
         with:
-          name: protonvpn-client-patch-dlls
+          name: protonvpn-client-patch
           path: artifacts/ProtonVPN.Client.Patch
 
       - name: Upload build output artifact
