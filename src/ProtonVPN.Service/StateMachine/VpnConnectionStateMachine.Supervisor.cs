@@ -21,6 +21,7 @@ using System;
 using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Logging.Contracts.Events.VpnStateMachineLogs;
@@ -44,19 +45,9 @@ internal sealed partial class VpnConnectionStateMachine
         }
 
         _messageSupervisorTask = Task.Run(SuperviseMessagesAsync);
-
-        _messageSupervisorTask.ContinueWith(task =>
-            {
-                Exception ex = task.Exception?.GetBaseException()
-                    ?? new InvalidOperationException("Message supervisor task faulted without exception details.");
-
-                _logger.Error<VpnStateMachineLog>(
-                    "VPN state machine message supervisor task terminated unexpectedly.",
-                    ex);
-            },
-            CancellationToken.None,
-            TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.ExecuteSynchronously,
-            TaskScheduler.Default);
+        _messageSupervisorTask.FireAndForget(ex =>
+            _logger.Error<VpnStateMachineLog>(
+                "VPN state machine message supervisor task terminated unexpectedly.", ex));
     }
 
     private void Fire(Trigger trigger, CancellationToken cancellationToken)

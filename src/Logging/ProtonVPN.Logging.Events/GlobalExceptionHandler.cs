@@ -18,6 +18,8 @@
  */
 
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using TaskExtensions = ProtonVPN.Common.Core.Extensions.TaskExtensions;
 
 namespace ProtonVPN.Logging.Events;
 
@@ -29,13 +31,31 @@ public static class GlobalExceptionHandler
 
         AppDomain.CurrentDomain.UnhandledException += OnAppDomainUnhandledException;
         TaskScheduler.UnobservedTaskException += OnUnobservedTaskException;
+
+        TaskExtensions.SetDefaultExceptionHandler(ex =>
+            TryWriteEventLog("Fire-and-forget task exception", ex));
     }
 
     private static void OnAppDomainUnhandledException(object? sender, UnhandledExceptionEventArgs eventArgs)
     {
         const string HANDLER = "AppDomain unhandled exception";
-        Exception? ex = eventArgs.ExceptionObject as Exception;
         string terminatingText = eventArgs.IsTerminating ? "(Terminating)" : string.Empty;
+
+        Exception ex = eventArgs.ExceptionObject switch
+        {
+            RuntimeWrappedException wrappedException => new Exception(
+                $"Non-Exception object thrown: " +
+                $"{wrappedException.WrappedException?.GetType().FullName} — {wrappedException.WrappedException}",
+                wrappedException),
+
+            Exception exception => exception,
+
+            object thrownObject => new Exception(
+                $"Non-Exception object thrown: " +
+                $"{thrownObject.GetType().FullName} — {thrownObject}"),
+
+            null => new Exception("Non-Exception object thrown: <null>")
+        };
 
         TryWriteEventLog($"{HANDLER} {terminatingText}", ex);
     }
@@ -43,6 +63,7 @@ public static class GlobalExceptionHandler
     private static void OnUnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs ex)
     {
         TryWriteEventLog("Unobserved task exception", ex.Exception);
+        ex.SetObserved();
     }
 
     public static void TryWriteEventLog(string handler, Exception? ex)
@@ -54,18 +75,45 @@ public static class GlobalExceptionHandler
                 return;
             }
 
-            string message = $"Proton VPN Windows error event log{Environment.NewLine}" +
-                    $"Date: {DateTime.UtcNow:o}{Environment.NewLine}" +
-                    $"Handler: {handler}{Environment.NewLine}" +
-                    Environment.NewLine +
-                    $"Exception HResult: 0x{ex.HResult:X8}{Environment.NewLine}" +
-                    $"Exception type: {ex.GetType().FullName}{Environment.NewLine}" +
-                    $"Exception message: {ex.Message}{Environment.NewLine}" +
-                    Environment.NewLine +
-                    $"Full exception: {ex}";
+            Exception diagnosticEx = ex is AggregateException agg && agg.Flatten().InnerExceptions.Count == 1
+                ? agg.Flatten().InnerExceptions[0]
+                : ex;
+
+            string flattenedDetails = ex is AggregateException aggregate
+                ? FormatAggregateException(aggregate)
+                : string.Empty;
+
+            string message =
+                $"Proton VPN Windows error event log{Environment.NewLine}" +
+                $"Date: {DateTimeOffset.UtcNow:o}{Environment.NewLine}" +
+                $"Handler: {handler}{Environment.NewLine}" +
+                Environment.NewLine +
+                $"Exception HResult: 0x{diagnosticEx.HResult:X8}{Environment.NewLine}" +
+                $"Exception type: {diagnosticEx.GetType().FullName}{Environment.NewLine}" +
+                $"Exception message: {diagnosticEx.Message}{Environment.NewLine}" +
+                flattenedDetails +
+                Environment.NewLine +
+                $"Full exception: {ex}";
 
             EventLogger.Log(EventLogEntryType.Error, message);
         }
         catch { }
     }
+
+    private static string FormatAggregateException(AggregateException aggregate)
+    {
+        AggregateException flattened = aggregate.Flatten();
+        if (flattened.InnerExceptions.Count <= 1)
+        {
+            return string.Empty;
+        }
+
+        string details = string.Join(Environment.NewLine,
+            flattened.InnerExceptions.Select((e, i) =>
+                $"  [{i + 1}] {e.GetType().FullName}: {e.Message}"));
+
+        return $"Inner exceptions ({flattened.InnerExceptions.Count}):{Environment.NewLine}" +
+               details + Environment.NewLine;
+    }
+
 }

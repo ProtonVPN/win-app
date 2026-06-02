@@ -392,25 +392,28 @@ public class PortMappingProtocolClient : IPortMappingProtocolClient
     {
         SetMappedPort(mappedPort);
 
-        try
-        {
-            Task.Delay(TimeSpan.FromSeconds(portDurationInSeconds), cancellationToken)
-                .ContinueWith(async t => await RenewPortMappingAsync(mappedPort.MappedPort, cancellationToken));
-        }
-        catch (Exception e)
-        {
-            if (cancellationToken.IsCancellationRequested)
-            {
-                _logger.Info<ConnectionLog>("The scheduled renewal of port mapping was cancelled with an exception.", e);
-                return;
-            }
-
-            _logger.Error<ConnectionLog>("An error occurred on a NAT-PMP scheduled renewal.", e);
-        }
+        SchedulePortMappingRenewalAsync(mappedPort.MappedPort, portDurationInSeconds, cancellationToken).FireAndForget();
 
         if (!cancellationToken.IsCancellationRequested)
         {
             ChangeState(PortMappingStatus.SleepingUntilRefresh);
+        }
+    }
+
+    private async Task SchedulePortMappingRenewalAsync(MappedPort mappedPort, int portDurationInSeconds, CancellationToken cancellationToken)
+    {
+        try
+        {
+            await Task.Delay(TimeSpan.FromSeconds(portDurationInSeconds), cancellationToken);
+            await RenewPortMappingAsync(mappedPort, cancellationToken);
+        }
+        catch (OperationCanceledException)
+        {
+            _logger.Info<ConnectionLog>("The scheduled renewal of port mapping was cancelled.");
+        }
+        catch (Exception e)
+        {
+            _logger.Error<ConnectionLog>("An error occurred on a NAT-PMP scheduled renewal.", e);
         }
     }
 

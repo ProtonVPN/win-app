@@ -29,6 +29,7 @@ using Microsoft.Extensions.Logging;
 using ProtoBuf.Grpc.Server;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Configurations.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ProcessCommunicationLogs;
 using ProtonVPN.Crypto;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.OperatingSystems.Processes.Contracts;
@@ -87,19 +88,59 @@ public class GrpcServer : IGrpcServer
         if (!_cancellationTokenSource.Token.IsCancellationRequested)
         {
             _app = Create();
-            _app.RunAsync().ContinueWith(t => RecreateAndStartAsync()).FireAndForget();
+            RunAppAsync().FireAndForget();
         }
     }
 
-    private async Task RecreateAndStartAsync()
+    private async Task RunAppAsync()
+    {
+        try
+        {
+            await _app.RunAsync();
+        }
+        catch (OperationCanceledException)
+        {
+            _logger.Info<ProcessCommunicationLog>("gRPC server stopped.");
+        }
+        catch (Exception ex)
+        {
+            _logger.Error<ProcessCommunicationErrorLog>("gRPC server stopped unexpectedly.", ex);
+        }
+
+        if (_cancellationTokenSource.Token.IsCancellationRequested)
+        {
+            await DisposeAppAsync();
+        }
+        else
+        {
+            await WaitAndRestartAppAsync();
+        }
+    }
+
+    private async Task WaitAndRestartAppAsync()
+    {
+        await DisposeAppAsync();
+
+        try
+        {
+            await Task.Delay(TimeSpan.FromSeconds(3), _cancellationTokenSource.Token);
+        }
+        catch (OperationCanceledException)
+        {
+            _logger.Info<ProcessCommunicationLog>("gRPC server restart cancelled.");
+            return;
+        }
+
+        CreateAndStart();
+    }
+
+    private async Task DisposeAppAsync()
     {
         WebApplication app = _app;
         if (app is not null)
         {
             await app.DisposeAsync();
         }
-        await Task.Delay(TimeSpan.FromSeconds(3), _cancellationTokenSource.Token);
-        CreateAndStart();
     }
 
     public async Task StopAsync()
@@ -136,7 +177,7 @@ public class GrpcServer : IGrpcServer
         WebApplication app = builder.Build();
 
         app.UseMiddleware<NamedPipeAuthorizationMiddleware>(_logger, _issueReporter, _config, _pipeStreamProcessIdentifier,
-            _registryEditor, InvokingServiceStop, RecreateAndStartAsync);
+            _registryEditor, InvokingServiceStop, WaitAndRestartAppAsync);
         app.MapGrpcService<IClientController>();
         app.MapGrpcService<IUpdateController>();
         app.MapGrpcService<IVpnController>();

@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Diagnostics;
+
 namespace ProtonVPN.Common.Core.Extensions;
 
 public static class TaskExtensions
@@ -97,12 +99,40 @@ public static class TaskExtensions
         }
     }
 
-    /// <summary>Run this task in parallel without awaiting, and ignore any exceptions</summary>
-    public static void FireAndForget(this Task task)
+    private static Action<Exception> _defaultExceptionHandler =
+        ex => Debug.WriteLine($"[FireAndForget] Unhandled exception: {ex}");
+
+    /// <summary>
+    /// Set a global default exception handler invoked by all <see cref="FireAndForget"/> calls.
+    /// </summary>
+    public static void SetDefaultExceptionHandler(Action<Exception> handler)
     {
-        task.ContinueWith(c => { AggregateException? ignored = c.Exception; },
-            TaskContinuationOptions.OnlyOnFaulted |
-            TaskContinuationOptions.ExecuteSynchronously);
+        ArgumentNullException.ThrowIfNull(handler);
+        _defaultExceptionHandler = handler;
+    }
+
+    /// <summary>
+    /// Safely fire-and-forget a <see cref="Task"/>.
+    /// Exceptions are routed to <paramref name="onException"/> and/or the global default handler.
+    /// Cancellation exceptions are silently ignored.
+    /// </summary>
+    public static void FireAndForget(this Task task, Action<Exception>? onException = null)
+    {
+        HandleFireAndForgetAsync(task, onException);
+    }
+
+    private static async void HandleFireAndForgetAsync(Task task, Action<Exception>? onException)
+    {
+        try
+        {
+            await task.ConfigureAwait(false);
+        }
+        catch (OperationCanceledException) { }
+        catch (Exception ex)
+        {
+            onException?.Invoke(ex);
+            _defaultExceptionHandler.Invoke(ex);
+        }
     }
 
     public static Task NullSafe<T>(this Task<T>? task)

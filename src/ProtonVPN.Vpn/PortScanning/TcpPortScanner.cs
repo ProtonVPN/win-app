@@ -44,13 +44,13 @@ public class TcpPortScanner : ITcpPortScanner
 
         try
         {
-            await SafeSocketAction(socket.ConnectAsync(endpoint)).WithTimeout(timeoutTask);
+            await SafeSocketActionAsync(socket.ConnectAsync(endpoint)).WithTimeout(timeoutTask);
 
             byte[] bytes = packet.Bytes(true);
-            await SafeSocketAction(socket.SendAsync(new ArraySegment<byte>(bytes), SocketFlags.None)).WithTimeout(timeoutTask);
+            await SafeSocketActionAsync(socket.SendAsync(new ArraySegment<byte>(bytes), SocketFlags.None)).WithTimeout(timeoutTask);
 
             byte[] answer = new byte[1024];
-            int received = await SafeSocketFunc(socket.ReceiveAsync(new ArraySegment<byte>(answer), SocketFlags.None)).WithTimeout(timeoutTask);
+            int received = await SafeSocketFuncAsync(socket.ReceiveAsync(new ArraySegment<byte>(answer), SocketFlags.None)).WithTimeout(timeoutTask);
 
             return received > 0;
         }
@@ -64,41 +64,27 @@ public class TcpPortScanner : ITcpPortScanner
         }
     }
 
-    private static Task SafeSocketAction(Task task)
+    private static async Task SafeSocketActionAsync(Task task)
     {
-        task.ContinueWith(t =>
-            {
-                switch (t.Exception?.InnerException)
-                {
-                    case null:
-                    case SocketException _:
-                    case ObjectDisposedException _:
-                        return;
-                    default:
-                        throw t.Exception;
-                }
-            },
-            TaskContinuationOptions.OnlyOnFaulted);
-
-        return task;
+        try
+        {
+            await task.ConfigureAwait(false);
+        }
+        catch (SocketException) { }           // swallowed
+        catch (ObjectDisposedException) { }   // swallowed
+        // Any other exception propagates naturally to the caller
     }
 
-    private static Task<TResult> SafeSocketFunc<TResult>(Task<TResult> task)
+    private static async Task<TResult> SafeSocketFuncAsync<TResult>(Task<TResult> task)
     {
-        task.ContinueWith(t =>
-            {
-                switch (t.Exception?.InnerException)
-                {
-                    case null:
-                    case SocketException _:
-                    case ObjectDisposedException _:
-                        return;
-                    default:
-                        throw t.Exception;
-                }
-            },
-            TaskContinuationOptions.OnlyOnFaulted);
+        try
+        {
+            return await task.ConfigureAwait(false);
+        }
+        catch (SocketException) { }           // swallowed
+        catch (ObjectDisposedException) { }   // swallowed
+        // Any other exception propagates naturally to the caller
 
-        return task;
+        return default!;
     }
 }

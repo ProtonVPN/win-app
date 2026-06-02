@@ -191,7 +191,7 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
                 IsToShowPasswordError = Password is null || Password.Length == 0;
                 break;
             case SignInFormType.SSO:
-                Username = Username.Trim();
+                Username = Username?.Trim() ?? string.Empty;
                 IsToShowUsernameError = string.IsNullOrWhiteSpace(Username) || !Username.IsValidEmailAddress();
                 break;
         }
@@ -206,9 +206,11 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
 
     private async Task<AuthResult> HandleSrpLoginAsync()
     {
+        // Copy password so it can be cleared immediately without affecting the ongoing authentication.
+        SecureString password = Password;
         try
         {
-            return await _userAuthenticator.LoginUserAsync(Username, Password);
+            return await _userAuthenticator.LoginUserAsync(Username, password);
         }
         finally
         {
