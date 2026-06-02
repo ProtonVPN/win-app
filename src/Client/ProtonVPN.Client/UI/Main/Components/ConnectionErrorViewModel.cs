@@ -30,7 +30,8 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.ConnectionErrors;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Common.Core.Helpers;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.OperatingSystems.Network.Contracts.NetworkInterfaces;
 
@@ -41,6 +42,7 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<LoggingOutMessage>
 {
+    private readonly IConfiguration _config;
     private readonly IConnectionErrorFactory _connectionErrorFactory;
     private readonly IApplicationIconSelector _applicationIconSelector;
     private readonly IConflictingNetworkInterfacesProvider _conflictingNetworkInterfacesProvider;
@@ -69,16 +71,40 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
 
     public string ActionButtonTitle => ConnectionError?.ActionLabel ?? string.Empty;
 
+    private readonly Lazy<Debouncer<ConnectionStatus>> _conflictingAdapterCheckerDebouncer;
+
     public ConnectionErrorViewModel(
+        IConfiguration config,
         IConnectionErrorFactory connectionErrorFactory,
         IApplicationIconSelector applicationIconSelector,
         IViewModelHelper viewModelHelper,
         IConflictingNetworkInterfacesProvider conflictingNetworkInterfacesProvider)
         : base(viewModelHelper)
     {
+        _config = config;
         _connectionErrorFactory = connectionErrorFactory;
         _applicationIconSelector = applicationIconSelector;
         _conflictingNetworkInterfacesProvider = conflictingNetworkInterfacesProvider;
+
+        _conflictingAdapterCheckerDebouncer = new(() => new(_config.ConflictingAdapterCheckerDelay,
+            input => TriggerConflictingAdapterCheckAsync(input)));
+    }
+
+    private async Task TriggerConflictingAdapterCheckAsync(ConnectionStatus connectionStatus)
+    {
+        if (connectionStatus is not ConnectionStatus.Connecting)
+        {
+            return;
+        }
+
+        IReadOnlyList<NetworkInterfaceInfo> conflictingAdapters = _conflictingNetworkInterfacesProvider.Get();
+        if (conflictingAdapters.Any())
+        {
+            ExecuteOnUIThread(() =>
+            {
+                SetConflictingAdapterError(conflictingAdapters, connectionStatus);
+            });
+        }
     }
 
     public void Receive(ConnectionErrorMessage message)
@@ -86,10 +112,24 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
         ExecuteOnUIThread(() =>
         {
             IConnectionError connectionError = _connectionErrorFactory.GetConnectionError(message.VpnError);
-            if (IsConnectionErrorVisible && ConnectionError is IConflictingAdapterConnectionError &&
-                (connectionError is WireGuardAdapterInUseConnectionError or TapAdapterInUseConnectionError or UnknownConnectionError))
+            if (connectionError is WireGuardAdapterInUseConnectionError or TapAdapterInUseConnectionError or UnknownConnectionError)
             {
-                Logger.Info<AppLog>($"Not showing {connectionError.GetType().Name} because there is already a ConflictingAdapterConnectionError being shown.");
+                if (IsConnectionErrorVisible && ConnectionError is IConflictingAdapterConnectionError)
+                {
+                    Logger.Info<AppLog>($"Not showing {connectionError.GetType().Name} because there is already a ConflictingAdapterConnectionError being shown.");
+                }
+                else
+                {
+                    IReadOnlyList<NetworkInterfaceInfo> conflictingAdapters = _conflictingNetworkInterfacesProvider.Get();
+                    if (conflictingAdapters.Any())
+                    {
+                        SetConflictingAdapterError(conflictingAdapters, _lastStatus);
+                    }
+                    else
+                    {
+                        SetConnectionError(connectionError);
+                    }
+                }
             }
             else
             {
@@ -110,20 +150,15 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
 
     public void Receive(ConnectionStatusChangedMessage message)
     {
-        IReadOnlyList<NetworkInterfaceInfo> conflictingAdapters = [];
-        if (_lastStatus != message.ConnectionStatus && message.ConnectionStatus is ConnectionStatus.Connecting)
+        if (_lastStatus != message.ConnectionStatus)
         {
-            conflictingAdapters = _conflictingNetworkInterfacesProvider.Get();
+            _conflictingAdapterCheckerDebouncer.Value.Call(message.ConnectionStatus);
         }
         _lastStatus = message.ConnectionStatus;
 
         ExecuteOnUIThread(() =>
         {
-            if (conflictingAdapters.Any())
-            {
-                SetConflictingAdapterError(conflictingAdapters, message.ConnectionStatus);
-            }
-            else if (message.ConnectionStatus == ConnectionStatus.Connecting && IsToCloseErrorOnConnecting())
+            if (message.ConnectionStatus == ConnectionStatus.Connecting && IsToCloseErrorOnConnecting())
             {
                 CloseError();
             }

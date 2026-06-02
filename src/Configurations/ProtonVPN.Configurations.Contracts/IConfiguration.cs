@@ -76,6 +76,7 @@ public interface IConfiguration : IStaticConfiguration
     TimeSpan StatisticalEventMinimumWaitInterval { get; }
     TimeSpan StatisticalEventSendTriggerInterval { get; }
     TimeSpan ServerSearchDelay { get; }
+    TimeSpan ConflictingAdapterCheckerDelay { get; }
 
     IList<string> DohProviders { get; }
     IUrlsConfiguration Urls { get; }

@@ -206,6 +206,7 @@ public static class DefaultConfiguration
     public static TimeSpan StatisticalEventSendTriggerInterval => TimeSpan.FromMinutes(15);
     public static TimeSpan StatisticalEventMinimumWaitInterval => TimeSpan.FromMinutes(10);
     public static TimeSpan ServerSearchDelay => TimeSpan.FromSeconds(2.5);
+    public static TimeSpan ConflictingAdapterCheckerDelay => TimeSpan.FromSeconds(5);
 
     public static IProTunConfigurations ProTun => DefaultProTunConfigurationsFactory.Create();
     public static IWireGuardConfigurations WireGuard => DefaultWireGuardConfigurationsFactory.Create(
