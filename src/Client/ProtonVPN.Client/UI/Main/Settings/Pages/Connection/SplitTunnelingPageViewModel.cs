@@ -1,22 +1,3 @@
-﻿/*
- * Copyright (c) 2025 Proton AG
- *
- * This file is part of ProtonVPN.
- *
- * ProtonVPN is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * ProtonVPN is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 using System.Collections.Specialized;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -30,6 +11,8 @@ using ProtonVPN.Client.Core.Models;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
+using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
@@ -45,6 +28,8 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
     private readonly IUrlsBrowser _urlsBrowser;
     private readonly IIpSelector _ipSelector;
     private readonly IAppSelector _appSelector;
+    private readonly IVpnServiceCaller _vpnServiceCaller;
+    private readonly IMainSettingsRequestCreator _mainSettingsRequestCreator;
 
     private bool _wasIpv6WarningDisplayed;
 
@@ -147,6 +132,8 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         IConnectionManager connectionManager,
         IIpSelector ipSelector,
         IAppSelector appSelector,
+        IVpnServiceCaller vpnServiceCaller,
+        IMainSettingsRequestCreator mainSettingsRequestCreator,
         IViewModelHelper viewModelHelper)
         : base(requiredReconnectionSettings,
                mainViewNavigator,
@@ -160,6 +147,8 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         _urlsBrowser = urlsBrowser;
         _ipSelector = ipSelector;
         _appSelector = appSelector;
+        _vpnServiceCaller = vpnServiceCaller;
+        _mainSettingsRequestCreator = mainSettingsRequestCreator;
 
         ExcludedIpAddresses.CollectionChanged += OnIpAddressesCollectionChanged;
         IncludedIpAddresses.CollectionChanged += OnIpAddressesCollectionChanged;
@@ -201,7 +190,6 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
             IsIpv6Enabled = true;
         }
 
-        // Show this warning only once per app launch
         _wasIpv6WarningDisplayed = true;
     }
 
@@ -269,14 +257,21 @@ public partial class SplitTunnelingPageViewModel : SettingsPageViewModelBase
         }
     }
 
+    protected override async Task OnSaveSettingsAsync()
+    {
+        await base.OnSaveSettingsAsync();
+
+        if (ConnectionManager.IsConnected)
+        {
+            await _vpnServiceCaller.ApplySettingsAsync(_mainSettingsRequestCreator.Create(ConnectionManager.CurrentConnectionIntent));
+        }
+    }
+
     protected override bool IsReconnectionRequiredDueToChanges(IEnumerable<ChangedSettingArgs> changedSettings)
     {
         bool isReconnectionRequired = base.IsReconnectionRequiredDueToChanges(changedSettings);
         if (isReconnectionRequired)
         {
-            // Check if there was any active apps or IP adresses from the settings
-            // then check if there is any active apps or IP adresses now.
-            // If there is none in both case, no need to reconnect.
             bool isSameSplitTunnelingMode = CurrentSplitTunnelingMode == Settings.SplitTunnelingMode;
             bool hadAnyActiveAppsOrIps =
                 Settings.IsSplitTunnelingEnabled &&
