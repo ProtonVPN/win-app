@@ -115,5 +115,4 @@ public static class GlobalExceptionHandler
         return $"Inner exceptions ({flattened.InnerExceptions.Count}):{Environment.NewLine}" +
                details + Environment.NewLine;
     }
-
 }

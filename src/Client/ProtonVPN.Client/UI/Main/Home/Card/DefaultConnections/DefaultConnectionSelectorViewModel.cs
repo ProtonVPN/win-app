@@ -100,6 +100,13 @@ public partial class DefaultConnectionSelectorViewModel : ActivatableViewModelBa
         RefreshConnections();
     }
 
+    protected override void OnLanguageChanged()
+    {
+        base.OnLanguageChanged();
+
+        RefreshConnections();
+    }
+
     private void RefreshConnections()
     {
         _defaultConnectionSelectionManager.Refresh();
