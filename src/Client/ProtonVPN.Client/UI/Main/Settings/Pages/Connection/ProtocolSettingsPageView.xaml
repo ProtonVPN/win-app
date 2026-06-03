@@ -143,6 +143,34 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <TextBlock Style="{StaticResource ProtocolTypeTextBlockStyle}"
                                Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_TcpCategory')}" />
 
+                    <RadioButton AutomationProperties.AutomationId="WireGuardTcpProtocolRadioButton"
+                                 IsChecked="{x:Bind ViewModel.IsWireGuardTcpProtocol, Mode=TwoWay}"
+                                 Style="{StaticResource ProtocolRadioButtonStyle}">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardTcp_Title')}" />
+
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardTcp_Description')}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton AutomationProperties.AutomationId="WireGuardTlsProtocolRadioButton"
+                                 IsChecked="{x:Bind ViewModel.IsWireGuardTlsProtocol, Mode=TwoWay}"
+                                 Style="{StaticResource ProtocolRadioButtonStyle}">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardTls_Title')}" />
+
+                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardTls_Description')}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </RadioButton>
+
                     <RadioButton AutomationProperties.AutomationId="ProTunTcpProtocolRadioButton"
                                  IsChecked="{x:Bind ViewModel.IsProTunTcpProtocol, Mode=TwoWay}"
                                  Style="{StaticResource ProtocolRadioButtonStyle}"
@@ -169,34 +197,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
                                        Style="{StaticResource CaptionTextBlockStyle}"
                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_ProTunTls_Description')}"
-                                       TextWrapping="Wrap" />
-                        </StackPanel>
-                    </RadioButton>
-
-                    <RadioButton AutomationProperties.AutomationId="WireGuardTcpProtocolRadioButton"
-                                 IsChecked="{x:Bind ViewModel.IsWireGuardTcpProtocol, Mode=TwoWay}"
-                                 Style="{StaticResource ProtocolRadioButtonStyle}">
-                        <StackPanel>
-                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardTcp_Title')}" />
-
-                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                                       Style="{StaticResource CaptionTextBlockStyle}"
-                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardTcp_Description')}"
-                                       TextWrapping="Wrap" />
-                        </StackPanel>
-                    </RadioButton>
-
-                    <RadioButton AutomationProperties.AutomationId="WireGuardTlsProtocolRadioButton"
-                                 IsChecked="{x:Bind ViewModel.IsWireGuardTlsProtocol, Mode=TwoWay}"
-                                 Style="{StaticResource ProtocolRadioButtonStyle}">
-                        <StackPanel>
-                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardTls_Title')}" />
-
-                            <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-                                       Style="{StaticResource CaptionTextBlockStyle}"
-                                       Text="{x:Bind ViewModel.Localizer.Get('Settings_Protocols_WireGuardTls_Description')}"
                                        TextWrapping="Wrap" />
                         </StackPanel>
                     </RadioButton>

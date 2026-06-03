@@ -140,14 +140,17 @@ public class ClientConfigObserver :
             if (!value.SmartProtocol.WireGuardUdp)
             {
                 disabledVpnProtocols.Add(VpnProtocol.WireGuardUdp);
+                disabledVpnProtocols.Add(VpnProtocol.ProTunUdp);
             }
             if (!value.SmartProtocol.WireGuardTcp)
             {
                 disabledVpnProtocols.Add(VpnProtocol.WireGuardTcp);
+                disabledVpnProtocols.Add(VpnProtocol.ProTunTcp);
             }
             if (!value.SmartProtocol.WireGuardTls)
             {
                 disabledVpnProtocols.Add(VpnProtocol.WireGuardTls);
+                disabledVpnProtocols.Add(VpnProtocol.ProTunTls);
             }
             if (!value.SmartProtocol.OpenVpnUdp)
             {

@@ -120,13 +120,18 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
         if (FeatureFlagsObserver.IsProTunEnabled && Settings.AreProtonProtocolsEnabled)
         {
             SetProtocolBucket(VpnProtocol.ProTunUdp, preferredProtocols, fallbackProtocols);
-            SetProtocolBucket(VpnProtocol.ProTunTcp, preferredProtocols, fallbackProtocols);
-            SetProtocolBucket(VpnProtocol.ProTunTls, preferredProtocols, fallbackProtocols);
         }
 
         SetProtocolBucket(VpnProtocol.WireGuardUdp, preferredProtocols, fallbackProtocols);
         SetProtocolBucket(VpnProtocol.WireGuardTcp, preferredProtocols, fallbackProtocols);
         SetProtocolBucket(VpnProtocol.WireGuardTls, preferredProtocols, fallbackProtocols);
+
+        if (FeatureFlagsObserver.IsProTunEnabled && Settings.AreProtonProtocolsEnabled)
+        {
+            SetProtocolBucket(VpnProtocol.ProTunTcp, preferredProtocols, fallbackProtocols);
+            SetProtocolBucket(VpnProtocol.ProTunTls, preferredProtocols, fallbackProtocols);
+        }
+
         SetProtocolBucket(VpnProtocol.OpenVpnUdp, preferredProtocols, fallbackProtocols);
         SetProtocolBucket(VpnProtocol.OpenVpnTcp, preferredProtocols, fallbackProtocols);
     }
@@ -138,12 +143,17 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
         if (FeatureFlagsObserver.IsProTunEnabled && Settings.AreProtonProtocolsEnabled)
         {
             SetProtocolBucket(VpnProtocol.ProTunUdp, preferredProtocols, fallbackProtocols);
-            SetProtocolBucket(VpnProtocol.ProTunTcp, preferredProtocols, fallbackProtocols);
-            SetProtocolBucket(VpnProtocol.ProTunTls, preferredProtocols, fallbackProtocols);
         }
 
         SetProtocolBucket(VpnProtocol.WireGuardTcp, preferredProtocols, fallbackProtocols);
         SetProtocolBucket(VpnProtocol.WireGuardTls, preferredProtocols, fallbackProtocols);
+
+        if (FeatureFlagsObserver.IsProTunEnabled && Settings.AreProtonProtocolsEnabled)
+        {
+            SetProtocolBucket(VpnProtocol.ProTunTcp, preferredProtocols, fallbackProtocols);
+            SetProtocolBucket(VpnProtocol.ProTunTls, preferredProtocols, fallbackProtocols);
+        }
+
         SetProtocolBucket(VpnProtocol.OpenVpnUdp, preferredProtocols, fallbackProtocols);
         SetProtocolBucket(VpnProtocol.OpenVpnTcp, preferredProtocols, fallbackProtocols);
     }

@@ -196,6 +196,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                               IsActive="{x:Bind ViewModel.SelectedProtocol.IsProTunUdpProtocol}"
                                                               Text="{x:Bind ViewModel.Localizer.Get('VpnProtocol_ProTun_Udp')}"
                                                               Visibility="{x:Bind ViewModel.AreProtonProtocolsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <custom:ActivatableMenuFlyoutItem AutomationProperties.AutomationId="WireGuardTcpProtocolMenuItem" 
+                                                              Command="{x:Bind ViewModel.SelectWireGuardTcpProtocolCommand, Mode=OneTime}"
+                                                              IsActive="{x:Bind ViewModel.SelectedProtocol.IsWireGuardTcpProtocol}"
+                                                              Text="{x:Bind ViewModel.Localizer.Get('VpnProtocol_WireGuard_Tcp')}"/>
+                            <custom:ActivatableMenuFlyoutItem AutomationProperties.AutomationId="WireGuardTlsProtocolMenuItem" 
+                                                              Command="{x:Bind ViewModel.SelectWireGuardTlsProtocolCommand, Mode=OneTime}"
+                                                              IsActive="{x:Bind ViewModel.SelectedProtocol.IsWireGuardTlsProtocol}"
+                                                              Text="{x:Bind ViewModel.Localizer.Get('VpnProtocol_WireGuard_Tls')}"/>
                             <custom:ActivatableMenuFlyoutItem AutomationProperties.AutomationId="ProTunTcpProtocolMenuItem" 
                                                               Command="{x:Bind ViewModel.SelectProTunTcpProtocolCommand, Mode=OneTime}"
                                                               IsActive="{x:Bind ViewModel.SelectedProtocol.IsProTunTcpProtocol}"
@@ -206,14 +214,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                                               IsActive="{x:Bind ViewModel.SelectedProtocol.IsProTunTlsProtocol}"
                                                               Text="{x:Bind ViewModel.Localizer.Get('VpnProtocol_ProTun_Tls')}"
                                                               Visibility="{x:Bind ViewModel.AreProtonProtocolsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            <custom:ActivatableMenuFlyoutItem AutomationProperties.AutomationId="WireGuardTcpProtocolMenuItem" 
-                                                              Command="{x:Bind ViewModel.SelectWireGuardTcpProtocolCommand, Mode=OneTime}"
-                                                              IsActive="{x:Bind ViewModel.SelectedProtocol.IsWireGuardTcpProtocol}"
-                                                              Text="{x:Bind ViewModel.Localizer.Get('VpnProtocol_WireGuard_Tcp')}"/>
-                            <custom:ActivatableMenuFlyoutItem AutomationProperties.AutomationId="WireGuardTlsProtocolMenuItem" 
-                                                              Command="{x:Bind ViewModel.SelectWireGuardTlsProtocolCommand, Mode=OneTime}"
-                                                              IsActive="{x:Bind ViewModel.SelectedProtocol.IsWireGuardTlsProtocol}"
-                                                              Text="{x:Bind ViewModel.Localizer.Get('VpnProtocol_WireGuard_Tls')}"/>
                             <custom:ActivatableMenuFlyoutItem AutomationProperties.AutomationId="OpenVpnUdpProtocolMenuItem" 
                                                               Command="{x:Bind ViewModel.SelectOpenVpnUdpProtocolCommand, Mode=OneTime}"
                                                               IsActive="{x:Bind ViewModel.SelectedProtocol.IsOpenVpnUdpProtocol}"
