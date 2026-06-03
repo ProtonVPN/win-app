@@ -200,7 +200,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                 <ContentPresenter x:Name="ActionArea"
                                                   Grid.Row="1"
                                                   Grid.Column="1"
-                                                  Margin="-5,4,0,0"
+                                                  Margin="-5,0,0,0"
                                                   HorizontalAlignment="Left"
                                                   VerticalAlignment="Center"
                                                   Content="{TemplateBinding ActionButton}"

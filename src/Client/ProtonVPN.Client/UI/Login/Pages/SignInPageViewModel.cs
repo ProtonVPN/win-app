@@ -38,6 +38,7 @@ using ProtonVPN.Client.UI.Login.Enums;
 using ProtonVPN.Client.UI.Login.Overlays;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Legacy.Abstract;
+using ProtonVPN.Logging.Contracts.Events.UserLogs;
 using Windows.System;
 
 namespace ProtonVPN.Client.UI.Login.Pages;
@@ -172,8 +173,13 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
                 HandleError(result);
             }
         }
+        catch (OperationCanceledException)
+        {
+            Logger.Info<UserLog>("Authentication was cancelled by the user.");
+        }
         catch (Exception e)
         {
+            Logger.Error<UserLog>("An error occurred during authentication.", e);
             _eventMessageSender.Send(new LoginStateChangedMessage(LoginState.Error, AuthError.Unknown, e.Message));
         }
         finally

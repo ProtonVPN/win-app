@@ -125,10 +125,10 @@ public class UserAuthenticator : IUserAuthenticator,
         ClearAuthSessionDetails();
         ResetCancellationTokenIfCancelled();
 
-        await _unauthSessionManager.CreateIfDoesNotExistAsync(_cts.Token);
-
         try
         {
+            await _unauthSessionManager.CreateIfDoesNotExistAsync(_cts.Token);
+
             AuthResult result = await _srpAuthenticator.LoginUserAsync(username, password, _cts.Token);
             if (result.Failure)
             {
@@ -234,10 +234,10 @@ public class UserAuthenticator : IUserAuthenticator,
         ClearAuthSessionDetails();
         ResetCancellationTokenIfCancelled();
 
-        await _unauthSessionManager.CreateIfDoesNotExistAsync(_cts.Token);
-
         try
-        {
+        {   
+            await _unauthSessionManager.CreateIfDoesNotExistAsync(_cts.Token);
+
             return await _ssoAuthenticator.StartSsoAuthAsync(username, _cts.Token);
         }
         catch (Exception) when (_cts.IsCancellationRequested)
@@ -325,7 +325,18 @@ public class UserAuthenticator : IUserAuthenticator,
         if (HasAuthenticatedSessionData())
         {
             SetAuthenticationStatus(AuthenticationStatus.LoggingIn);
-            return await CompleteLoginAsync(isAutoLogin: isAppStartup, isToSendLoggedInEvent: true);
+            ResetCancellationTokenIfCancelled();
+
+            try
+            {
+                return await CompleteLoginAsync(isAutoLogin: isAppStartup, isToSendLoggedInEvent: true);
+            }
+            catch (Exception) when (_cts.IsCancellationRequested)
+            {
+                HandleAuthCancellation();
+
+                return AuthResult.Fail(AuthError.None);
+            }
         }
         else
         {
@@ -436,9 +447,6 @@ public class UserAuthenticator : IUserAuthenticator,
 
             hasPlanChanged = vpnPlanChangeResult.PlanChangeMessage?.HasChanged() ?? false;
 
-            // Fetch feature flags before before asking for servers
-            await _featureFlagsObserver.UpdateAsync(_cts.Token);
-
             Task serversUpdateTask;
             if (hasPlanChanged)
             {
@@ -489,6 +497,12 @@ public class UserAuthenticator : IUserAuthenticator,
             }
 
             _logger.Error<AppLog>("An unexpected exception was thrown when updating the user info.", e);
+        }
+
+        if (_cts.IsCancellationRequested)
+        {
+            ClearAuthSessionDetails();
+            throw new OperationCanceledException(_cts.Token);
         }
 
         _unauthSessionManager.Revoke();

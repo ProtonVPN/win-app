@@ -49,9 +49,10 @@ public partial class LoadingPageViewModel : LoginPageViewModelBase
     };
 
     public bool IsSigningIn => _userAuthenticator.AuthenticationStatus == AuthenticationStatus.LoggingIn &&
-                               _userAuthenticator.IsAutoLogin != true;
+                               (_userAuthenticator.IsAutoLogin != true || IsSignInTakingLongerThanExpected);
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsSigningIn))]
     private bool _isSignInTakingLongerThanExpected;
 
     public LoadingPageViewModel(
@@ -71,7 +72,7 @@ public partial class LoadingPageViewModel : LoginPageViewModelBase
     {
         base.OnActivated();
 
-        if (IsSigningIn)
+        if (_userAuthenticator.AuthenticationStatus == AuthenticationStatus.LoggingIn)
         {
             _timer = _uiThreadDispatcher.GetTimer(_longLoginThreshold);
             _timer.Tick += OnTimerTick;
