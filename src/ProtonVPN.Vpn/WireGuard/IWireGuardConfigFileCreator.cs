@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,7 +22,7 @@ using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Vpn.WireGuard;
 
-public interface IWireGuardConfigGenerator
+public interface IWireGuardConfigFileCreator
 {
-    string GenerateConfig(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig vpnConfig);
+    void Create(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig vpnConfig);
 }

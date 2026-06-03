@@ -19,7 +19,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -50,7 +49,7 @@ public class WireGuardConnection: IWireGuardConnection
     private readonly IConfiguration _config;
     private readonly IGatewayCache _gatewayCache;
     private readonly IWireGuardService _wireGuardService;
-    private readonly IWireGuardConfigGenerator _wireGuardConfigGenerator;
+    private readonly IWireGuardConfigFileCreator _wireGuardConfigFileCreator;
     private readonly INtTrafficManager _ntTrafficManager;
     private readonly IWintunTrafficManager _wintunTrafficManager;
     private readonly IWireGuardStateMonitor _wireGuardStateMonitor;
@@ -85,7 +84,7 @@ public class WireGuardConnection: IWireGuardConnection
         IConfiguration config,
         IGatewayCache gatewayCache,
         IWireGuardService wireGuardService,
-        IWireGuardConfigGenerator wireGuardConfigGenerator,
+        IWireGuardConfigFileCreator wireGuardConfigFileCreator,
         INtTrafficManager ntTrafficManager,
         IWintunTrafficManager wintunTrafficManager,
         IWireGuardStateMonitor wireGuardStateMonitor,
@@ -99,7 +98,7 @@ public class WireGuardConnection: IWireGuardConnection
         _config = config;
         _gatewayCache = gatewayCache;
         _wireGuardService = wireGuardService;
-        _wireGuardConfigGenerator = wireGuardConfigGenerator;
+        _wireGuardConfigFileCreator = wireGuardConfigFileCreator;
         _ntTrafficManager = ntTrafficManager;
         _wintunTrafficManager = wintunTrafficManager;
         _wireGuardStateMonitor = wireGuardStateMonitor;
@@ -143,7 +142,7 @@ public class WireGuardConnection: IWireGuardConnection
             }
         }
 
-        WriteConfig();
+        _wireGuardConfigFileCreator.Create(_endpoint, _credentials, _vpnConfig);
         UpdateGatewayCache();
 
         if (isWireGuardServerRouteEnabled)
@@ -271,27 +270,6 @@ public class WireGuardConnection: IWireGuardConnection
         if (_connectionTaskCompletionSource?.Task.IsCompletedSuccessfully == false)
         {
             _connectionTaskCompletionSource?.SetResult(result);
-        }
-    }
-
-    private void WriteConfig()
-    {
-        if (_endpoint is null || _vpnConfig is null)
-        {
-            return;
-        }
-
-        CreateConfigDirectoryPathIfNotExists();
-        string configContent = _wireGuardConfigGenerator.GenerateConfig(_endpoint, _credentials, _vpnConfig);
-        File.WriteAllText(_config.WireGuard.ConfigFilePath, configContent);
-    }
-
-    private void CreateConfigDirectoryPathIfNotExists()
-    {
-        string? directoryPath = Path.GetDirectoryName(_config.WireGuard.ConfigFilePath);
-        if (!string.IsNullOrEmpty(directoryPath))
-        {
-            Directory.CreateDirectory(directoryPath);
         }
     }
 

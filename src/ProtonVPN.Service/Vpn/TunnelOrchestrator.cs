@@ -26,7 +26,6 @@ using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
-using ProtonVPN.Service.Settings;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.NRPT;
 
@@ -42,7 +41,6 @@ internal class TunnelOrchestrator : ITunnelOrchestrator
     private readonly INrptWrapper _nrptWrapper;
 
     private VpnProtocol? _protocol;
-    private VpnConfig? _vpnConfig;
 
     public IVpnConnection? VpnConnection =>
         _protocol?.IsProTun() == true
@@ -76,7 +74,6 @@ internal class TunnelOrchestrator : ITunnelOrchestrator
     public async Task<VpnError> ConnectAsync(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig vpnConfig, CancellationToken cancellationToken)
     {
         _protocol = vpnConfig.VpnProtocol;
-        _vpnConfig = vpnConfig;
 
         IVpnConnection? connection = VpnConnection;
         if (connection is null)

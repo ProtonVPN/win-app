@@ -61,7 +61,7 @@ public class Module
         builder.RegisterType<WireGuardStateMonitor>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<WintunTrafficManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<WireGuardService>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<WireGuardConfigGenerator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<WireGuardConfigFileCreator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<LocalAgent.LocalAgent>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<LocalAgentEventReceiver>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ProTunConnection>().AsImplementedInterfaces().SingleInstance();

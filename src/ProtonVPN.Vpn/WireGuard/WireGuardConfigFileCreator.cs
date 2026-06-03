@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,6 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.IO;
+using System.Security.AccessControl;
 using System.Text;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
@@ -26,16 +28,21 @@ using ProtonVPN.Vpn.Common;
 
 namespace ProtonVPN.Vpn.WireGuard;
 
-public class WireGuardConfigGenerator : IWireGuardConfigGenerator
+public class WireGuardConfigFileCreator : IWireGuardConfigFileCreator
 {
     private const string IPV4_ALLOWED_IP = "0.0.0.0/0";
     private const string IPV6_ALLOWED_IP = "::/0";
+
+    // SYSTEM: Full Control; Administrators: Delete only; inheritance blocked.
+    // Only processes running under the SYSTEM account can read.
+    private const string SECURE_SDDL = "O:SYG:SYD:P(A;;FA;;;SY)(A;;SD;;;BA)";
 
     private readonly IStaticConfiguration _staticConfig;
     private readonly IX25519KeyGenerator _x25519KeyGenerator;
     private readonly IWireGuardDnsServersCreator _wireGuardDnsServersCreator;
 
-    public WireGuardConfigGenerator(IStaticConfiguration staticConfig,
+    public WireGuardConfigFileCreator(
+        IStaticConfiguration staticConfig,
         IX25519KeyGenerator x25519KeyGenerator,
         IWireGuardDnsServersCreator wireGuardDnsServersCreator)
     {
@@ -44,7 +51,23 @@ public class WireGuardConfigGenerator : IWireGuardConfigGenerator
         _wireGuardDnsServersCreator = wireGuardDnsServersCreator;
     }
 
-    public string GenerateConfig(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig vpnConfig)
+    public void Create(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig vpnConfig)
+    {
+        CreateDirectory();
+        string configContent = GenerateConfig(endpoint, credentials, vpnConfig);
+        WriteConfigSecurely(_staticConfig.WireGuard.ConfigFilePath, configContent);
+    }
+
+    private void CreateDirectory()
+    {
+        string? directoryPath = Path.GetDirectoryName(_staticConfig.WireGuard.ConfigFilePath);
+        if (!string.IsNullOrEmpty(directoryPath))
+        {
+            Directory.CreateDirectory(directoryPath);
+        }
+    }
+
+    private string GenerateConfig(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig vpnConfig)
     {
         bool isIpv6Supported = vpnConfig.IsIpv6Enabled && endpoint.Server.IsIpv6Supported;
         string address = GetClientAddress(isIpv6Supported);
@@ -65,6 +88,29 @@ public class WireGuardConfigGenerator : IWireGuardConfigGenerator
         return sb.ToString();
     }
 
+    private static void WriteConfigSecurely(string path, string content)
+    {
+        // Delete first so FileMode.CreateNew applies the FileSecurity
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
+
+        FileSecurity fileSecurity = new();
+        fileSecurity.SetSecurityDescriptorSddlForm(SECURE_SDDL);
+
+        FileInfo fileInfo = new(path);
+        using FileStream stream = fileInfo.Create(
+            FileMode.CreateNew,
+            FileSystemRights.WriteData,
+            FileShare.None,
+            bufferSize: 4096,
+            FileOptions.None,
+            fileSecurity);
+        using StreamWriter writer = new(stream);
+        writer.Write(content);
+    }
+
     private SecretKey GetX25519SecretKey(SecretKey secretKey)
     {
         return _x25519KeyGenerator.FromEd25519SecretKey(secretKey);
@@ -79,7 +125,7 @@ public class WireGuardConfigGenerator : IWireGuardConfigGenerator
             : ipv4;
     }
 
-    private string GetAllowedIpAddresses(bool isIpv6Supported)
+    private static string GetAllowedIpAddresses(bool isIpv6Supported)
     {
         return isIpv6Supported
             ? $"{IPV4_ALLOWED_IP}, {IPV6_ALLOWED_IP}"
