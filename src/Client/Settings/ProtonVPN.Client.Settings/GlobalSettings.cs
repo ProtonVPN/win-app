@@ -1,22 +1,3 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
- *
- * This file is part of ProtonVPN.
- *
- * ProtonVPN is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * ProtonVPN is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 using System.Collections.Concurrent;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
@@ -158,6 +139,12 @@ public class GlobalSettings : IGlobalSettings
         set => _globalCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
+    public string? SkippedUpdateVersion
+    {
+        get => _globalCache.GetReferenceType<string>(SettingEncryption.Unencrypted);
+        set => _globalCache.SetReferenceType(value, SettingEncryption.Unencrypted);
+    }
+
     public bool IsGlobalSettingsMigrationDone
     {
         get => _globalCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsGlobalSettingsMigrationDone;
@@ -167,7 +154,7 @@ public class GlobalSettings : IGlobalSettings
     public KillSwitchMode KillSwitchMode
     {
         get => _globalCache.GetValueType<KillSwitchMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.KillSwitchMode;
-        set => _globalCache.SetValueType<KillSwitchMode>(value, SettingEncryption.Unencrypted);
+        set => _globalCache.SetValueType(value, SettingEncryption.Unencrypted);
     }
 
     public List<FeatureFlag> FeatureFlags
@@ -185,19 +172,19 @@ public class GlobalSettings : IGlobalSettings
     public TimeSpan ConnectedServerCheckInterval
     {
         get => _globalCache.GetValueType<TimeSpan>(SettingEncryption.Encrypted) ?? DefaultSettings.ConnectedServerCheckInterval;
-        set => _globalCache.SetValueType<TimeSpan>(value, SettingEncryption.Encrypted);
+        set => _globalCache.SetValueType(value, SettingEncryption.Encrypted);
     }
 
     public ChangeServerSettings ChangeServerSettings
     {
         get => _globalCache.GetValueType<ChangeServerSettings>(SettingEncryption.Encrypted) ?? DefaultSettings.ChangeServerSettings;
-        set => _globalCache.SetValueType<ChangeServerSettings>(value, SettingEncryption.Encrypted);
+        set => _globalCache.SetValueType(value, SettingEncryption.Encrypted);
     }
 
     public bool IsShareCrashReportsEnabled
     {
         get => _globalCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsShareCrashReportsEnabled;
-        set => _globalCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+        set => _globalCache.SetValueType(value, SettingEncryption.Unencrypted);
     }
 
     public string? ActiveAlternativeApiBaseUrl
@@ -221,13 +208,13 @@ public class GlobalSettings : IGlobalSettings
     public int TotalCountryCount
     {
         get => _globalCache.GetValueType<int>(SettingEncryption.Unencrypted) ?? DefaultSettings.TotalCountryCount;
-        set => _globalCache.SetValueType<int>(value, SettingEncryption.Unencrypted);
+        set => _globalCache.SetValueType(value, SettingEncryption.Unencrypted);
     }
 
     public int TotalServerCount
     {
         get => _globalCache.GetValueType<int>(SettingEncryption.Unencrypted) ?? DefaultSettings.TotalServerCount;
-        set => _globalCache.SetValueType<int>(value, SettingEncryption.Unencrypted);
+        set => _globalCache.SetValueType(value, SettingEncryption.Unencrypted);
     }
 
     public string? LastProcessVersionMismatchRestartVersions
@@ -245,13 +232,13 @@ public class GlobalSettings : IGlobalSettings
     public TimeSpan WireGuardConnectionTimeout
     {
         get => _globalCache.GetValueType<TimeSpan>(SettingEncryption.Unencrypted) ?? DefaultSettings.WireGuardConnectionTimeout;
-        set => _globalCache.SetValueType<TimeSpan>(value, SettingEncryption.Unencrypted);
+        set => _globalCache.SetValueType(value, SettingEncryption.Unencrypted);
     }
 
     public bool IsEfficiencyModeAllowed
     {
         get => _globalCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsEfficiencyModeAllowed;
-        set => _globalCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
+        set => _globalCache.SetValueType(value, SettingEncryption.Unencrypted);
     }
 
     public GlobalSettings(IGlobalSettingsCache globalSettingsCache)
