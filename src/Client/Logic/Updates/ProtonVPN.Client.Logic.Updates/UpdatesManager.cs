@@ -1,22 +1,3 @@
-/*
- * Copyright (c) 2024 Proton AG
- *
- * This file is part of ProtonVPN.
- *
- * ProtonVPN is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * ProtonVPN is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 using ProtonVPN.Client.Common.Observers;
 using ProtonVPN.Client.Contracts.Services.Lifecycle;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -71,7 +52,13 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
 
     public bool IsAutoUpdateInProgress { get; private set; }
 
-    public bool IsUpdateAvailable => _lastUpdateState?.IsReady == true && (!_settings.AreAutomaticUpdatesEnabled || IsAutoUpdated);
+    public bool IsUpdateAvailable => _lastUpdateState?.IsReady == true
+        && !IsSkippedUpdate(_lastUpdateState)
+        && (!_settings.AreAutomaticUpdatesEnabled || IsAutoUpdated || _settings.IsBetaAccessEnabled);
+
+    public bool CanSkipCurrentUpdate => _lastUpdateState?.IsReady == true
+        && !IsAutoUpdated
+        && !IsSkippedUpdate(_lastUpdateState);
 
     public UpdatesManager(
         ILogger logger,
@@ -123,6 +110,11 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
     {
         if (message.PropertyName == nameof(ISettings.IsBetaAccessEnabled))
         {
+            if (!_settings.IsBetaAccessEnabled && _lastUpdateState?.IsReady == true)
+            {
+                SkipUpdate(_lastUpdateState);
+            }
+
             SendClientUpdateStateChangeMessage(new ClientUpdateStateChangedMessage());
             CheckForUpdate(true);
         }
@@ -141,7 +133,15 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
     public void Receive(UpdateStateIpcEntity message)
     {
         AppUpdateStateContract state = _entityMapper.Map<UpdateStateIpcEntity, AppUpdateStateContract>(message);
-        if (state.IsReady && _settings.AreAutomaticUpdatesEnabled && state.Status == AppUpdateStatus.Ready)
+
+        if (state.IsReady && IsSkippedUpdate(state))
+        {
+            IsAutoUpdateInProgress = false;
+            OnUpdateStateChanged(state);
+            return;
+        }
+
+        if (state.IsReady && _settings.AreAutomaticUpdatesEnabled && state.Status == AppUpdateStatus.Ready && !_settings.IsBetaAccessEnabled)
         {
             IsAutoUpdateInProgress = true;
             SendClientUpdateStateChangeMessage(new ClientUpdateStateChangedMessage());
@@ -200,7 +200,7 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
 
     public async Task UpdateAsync(bool isToOpenOnDesktop)
     {
-        if (_lastUpdateState == null)
+        if (_lastUpdateState == null || IsSkippedUpdate(_lastUpdateState))
         {
             return;
         }
@@ -214,6 +214,33 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
         {
             await UpdateManuallyAsync(isToOpenOnDesktop);
         }
+    }
+
+    public void SkipCurrentUpdate()
+    {
+        if (_lastUpdateState?.IsReady != true)
+        {
+            return;
+        }
+
+        SkipUpdate(_lastUpdateState);
+        SendClientUpdateStateChangeMessage(new ClientUpdateStateChangedMessage
+        {
+            State = _lastUpdateState
+        });
+    }
+
+    private void SkipUpdate(AppUpdateStateContract state)
+    {
+        _settings.SkippedUpdateVersion = state.Version.ToString();
+        IsAutoUpdateInProgress = false;
+        Logger.Info<AppUpdateLog>($"Skipping app update version '{state.Version}'.");
+    }
+
+    private bool IsSkippedUpdate(AppUpdateStateContract state)
+    {
+        return !string.IsNullOrWhiteSpace(_settings.SkippedUpdateVersion)
+            && string.Equals(_settings.SkippedUpdateVersion, state.Version.ToString(), StringComparison.OrdinalIgnoreCase);
     }
 
     private async Task UpdateManuallyAsync(bool isToOpenOnDesktop)
@@ -240,7 +267,6 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
         }
         catch (System.ComponentModel.Win32Exception)
         {
-            // Privileges were not granted
             if (_settings.IsAdvancedKillSwitchActive())
             {
                 await _vpnServiceSettingsUpdater.SendAsync(KillSwitchModeIpcEntity.Hard);
