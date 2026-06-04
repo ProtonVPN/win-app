@@ -1,22 +1,4 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!--
-Copyright (c) 2024 Proton AG
-
-This file is part of ProtonVPN.
-
-ProtonVPN is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-ProtonVPN is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
--->
 
 <UserControl x:Class="ProtonVPN.Client.UI.Update.UpdateComponent"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -48,10 +30,18 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                        Text="{x:Bind Description}" />
         </StackPanel>
 
-        <Button Grid.Column="2"
-                Command="{x:Bind ViewModel.UpdateCommand, Mode=OneTime}"
-                Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Update')}"
-                Style="{StaticResource PrimaryButtonStyle}" />
+        <StackPanel Grid.Column="2"
+                    Orientation="Horizontal"
+                    Spacing="8">
+            <Button Command="{x:Bind ViewModel.SkipUpdateCommand, Mode=OneTime}"
+                    Content="Skip this version"
+                    Style="{StaticResource DefaultButtonStyle}"
+                    Visibility="{x:Bind ViewModel.CanSkipUpdate, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            <Button Command="{x:Bind ViewModel.UpdateCommand, Mode=OneTime}"
+                    Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Update')}"
+                    Style="{StaticResource PrimaryButtonStyle}" />
+        </StackPanel>
 
     </Grid>
 
