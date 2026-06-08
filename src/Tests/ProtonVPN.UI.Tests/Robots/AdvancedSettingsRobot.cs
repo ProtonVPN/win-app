@@ -17,8 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.UiTools;
 
 namespace ProtonVPN.UI.Tests.Robots;
@@ -32,6 +34,12 @@ public class AdvancedSettingsRobot
     protected Element NatTypeCard = Element.ByAutomationId("NatTypeSettingsCard");
     protected Element LanConnectionsSettingsCard = Element.ByAutomationId("LanConnectionsSettingsCard");
     protected Element AllowLanToggle = Element.ByAutomationId("AllowLanConnectionsToggleSwitch");
+
+    protected Element NatTypeStrictRadioButton = Element.ByAutomationId("StrictNatTypeRadioButton");
+    protected Element NatTypeModerateRadioButton = Element.ByAutomationId("ModerateNatTypeRadioButton");
+
+    protected Element OpenVpnTapAdapterRadioButton = Element.ByAutomationId("TapAdapterRadioButton");
+    protected Element OpenVpnTunAdapterRadioButton = Element.ByAutomationId("TunAdapterRadioButton");
 
     public AdvancedSettingsRobot NavigateToLan()
     {
@@ -99,11 +107,29 @@ public class AdvancedSettingsRobot
         return this;
     }
 
+    public AdvancedSettingsRobot SelectNatType(NatType natType)
+    {
+        GetNatTypeRadioButton(natType).Click();
+        return this;
+    }
+
+    public AdvancedSettingsRobot SelectOpenVpnAdapter(OpenVpnAdapter openVpnAdapter)
+    {
+        GetOpenVpnAdapterRadioButton(openVpnAdapter).Click();
+        return this;
+    }
+
     public class Verifications : AdvancedSettingsRobot
     {
         public Verifications IsLanEnabled()
         {
             Assert.That(AllowLanToggle.IsToggled(), Is.True);
+            return this;
+        }
+
+        public Verifications IsLanDisabled()
+        {
+            Assert.That(AllowLanToggle.IsToggled(), Is.False);
             return this;
         }
 
@@ -119,6 +145,18 @@ public class AdvancedSettingsRobot
             return this;
         }
 
+        public Verifications IsCorrectNatTypeChecked(NatType natType)
+        {
+            Assert.That(GetNatTypeRadioButton(natType).IsChecked(), Is.True);
+            return this;
+        }
+
+        public Verifications IsCorrectOpenVpnChecked(OpenVpnAdapter openVpnAdapter)
+        {
+            Assert.That(GetOpenVpnAdapterRadioButton(openVpnAdapter).IsChecked(), Is.True);
+            return this;
+        }
+
         public Verifications CustomDnsContainsIpAddress(string ip)
         {
             List<string> allChildren = DnsServersSelectorSettingsCard.GetAllChildrenNames();
@@ -131,6 +169,32 @@ public class AdvancedSettingsRobot
             List<string> allChildren = DnsServersSelectorSettingsCard.GetAllChildrenNames();
             Assert.That(allChildren, Does.Not.Contain(ip));
             return this;
+        }
+    }
+
+    private Element GetNatTypeRadioButton(NatType natType)
+    {
+        switch (natType)
+        {
+            case NatType.Strict:
+                return NatTypeStrictRadioButton;
+            case NatType.Moderate:
+                return NatTypeModerateRadioButton;
+            default:
+                throw new ArgumentException($"Unknown NAT type: {natType}");
+        }
+    }
+
+    private Element GetOpenVpnAdapterRadioButton(OpenVpnAdapter openVpnAdapter)
+    {
+        switch (openVpnAdapter)
+        {
+            case OpenVpnAdapter.TAP:
+                return OpenVpnTapAdapterRadioButton.ScrollIntoView();
+            case OpenVpnAdapter.TUN:
+                return OpenVpnTunAdapterRadioButton.ScrollIntoView();
+            default:
+                throw new ArgumentException($"Unknown Open VPN Adapter: {openVpnAdapter}");
         }
     }
 

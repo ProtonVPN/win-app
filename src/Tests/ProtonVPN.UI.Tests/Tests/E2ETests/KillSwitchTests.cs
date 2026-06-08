@@ -56,7 +56,7 @@ public class KillSwitchTests : FreshSessionSetUp
 
         FeaturesRobot
             .HoverOverKillSwitchWidget()
-            .Verify.IsAdvancedKillSwitchTextInFlyoutMenu();
+            .Verify.IsAdvancedKillSwitchTextInFlyoutMenu(isConnected: false);
 
         SettingRobot
             .OpenSettings()

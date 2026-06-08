@@ -64,7 +64,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Run/>
                     </TextBlock>
                 </toolkit:SettingsCard.Description>
-                <ToggleSwitch IsOn="{x:Bind ViewModel.IsVpnAcceleratorEnabled, Mode=TwoWay}"
+                <ToggleSwitch AutomationProperties.AutomationId="VpnAcceleratorToggle"
+                              IsOn="{x:Bind ViewModel.IsVpnAcceleratorEnabled, Mode=TwoWay}"
                               Style="{StaticResource ToggleSwitchStyle}" />
             </toolkit:SettingsCard>
         </StackPanel>

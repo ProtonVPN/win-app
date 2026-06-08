@@ -41,6 +41,12 @@ public class SidebarRobot
     private const int MINIMUM_EXPECTED_COUNTRY_COUNT = 80;
     private const string FASTEST_PROFILE = "Fastest";
 
+    private const string SERVER_LOAD_INFO = "Server load shows how close a server is to its maximum capacity.\r\n\r\nA high server load can slow down your connection.";
+    private const string PROFILES_INFO = "Profiles are custom VPN connections that you can tailor to your needs and save for quick access.\r\n\r\nSet your preferred location and optimize your settings for security, performance, gaming, or any other scenario.";
+    private const string SECURE_CORE_INFO = "Secure Core connects you to your destination server via a second, maximum security VPN server.\r\n\r\nThis higher level of protection may cause higher latency and slower speeds.";
+    private const string P2P_INFO = "P2P networks allow two devices to connect and transfer data without passing through a central server. ";
+    private const string TOR_INFO = "Connect to a Tor server to access hidden services and onion sites using any browser.";
+
     protected Element SidebarComponent = Element.ByAutomationId("SidebarComponent");
     protected Element ConnectionsPage = Element.ByAutomationId("ConnectionsPage");
     protected Element RecentsPage = Element.ByAutomationId("RecentsPage");
@@ -73,6 +79,10 @@ public class SidebarRobot
     protected Element SplitTunnelingButton = Element.ByName("Split tunneling");
 
     protected Element CountryInfoBanner => Element.ByAutomationId("ProminentBannerDescription");
+    protected Element TabInfoButton = Element.ByAutomationId("TabInfoButton");
+    protected Element ServerLoadInfoButton = Element.ByAutomationId("ServerLoadInfoButton");
+    protected Element CloseContentDialogButton = Element.ByAutomationId("CloseContentDialogButton");
+    protected Element OverlayMessage = Element.ByAutomationId("OverlayMessage");
 
     protected Element WorldWideCoverageLabel = Element.ByName("Get worldwide coverage with VPN Plus");
     protected Element ProfileSidebarUpsellLabel = Element.ByName("Configure your own VPN settings and connect in one click");
@@ -102,24 +112,6 @@ public class SidebarRobot
     public SidebarRobot NavigateToRecents()
     {
         RecentsLabel.Click();
-        return this;
-    }
-
-    public SidebarRobot ClickOnNetshieldSetting()
-    {
-        NetshieldButton.Click();
-        return this;
-    }
-
-    public SidebarRobot ClickOnPortForwardingButton()
-    {
-        PortForwardingButton.Click();
-        return this;
-    }
-
-    public SidebarRobot ClickOnSplitTunnelingButton()
-    {
-        SplitTunnelingButton.Click();
         return this;
     }
 
@@ -274,6 +266,24 @@ public class SidebarRobot
     {
         ClickSearchBox();
         SearchTextBox.SetText(query);
+        return this;
+    }
+
+    public SidebarRobot ClickServerLoadInfoButton()
+    {
+        ServerLoadInfoButton.Click();
+        return this;
+    }
+
+    public SidebarRobot ClickTabInfoButton()
+    {
+        TabInfoButton.Click();
+        return this;
+    }
+
+    public SidebarRobot CloseTabInfoModal()
+    {
+        CloseContentDialogButton.Click();
         return this;
     }
 
@@ -441,6 +451,41 @@ public class SidebarRobot
 
     public class Verifications : SidebarRobot
     {
+        public Verifications IsServerLoadInfoShown()
+        {
+            List<string> allChildren = GetOverlayMessageChildren();
+            Assert.That(allChildren, Does.Contain(SERVER_LOAD_INFO));
+            return this;
+        }
+
+        public Verifications IsProfilesInfoShown()
+        {
+            List<string> allChildren = GetOverlayMessageChildren();
+            Assert.That(allChildren, Does.Contain(PROFILES_INFO));
+            return this;
+        }
+
+        public Verifications IsSecureCoreInfoShown()
+        {
+            List<string> allChildren = GetOverlayMessageChildren();
+            Assert.That(allChildren, Does.Contain(SECURE_CORE_INFO));
+            return this;
+        }
+
+        public Verifications IsP2PInfoShown()
+        {
+            List<string> allChildren = GetOverlayMessageChildren();
+            Assert.That(allChildren, Does.Contain(P2P_INFO));
+            return this;
+        }
+
+        public Verifications IsTorInfoShown()
+        {
+            List<string> allChildren = GetOverlayMessageChildren();
+            Assert.That(allChildren, Does.Contain(TOR_INFO));
+            return this;
+        }
+
         public Verifications AreAllServersDisplayed()
         {
             string totalCountries = ConnectionItemsHeader.GetAutomationElementName()!;
@@ -636,7 +681,13 @@ public class SidebarRobot
             ProfileExplanationLabel.WaitUntilDisplayed();
             return this;
         }
+
+        private List<string> GetOverlayMessageChildren()
+        {
+            OverlayMessage.WaitUntilDisplayed();
+            return OverlayMessage.GetAllChildrenNames();
+        }
     }
 
-    public Verifications Verify => new Verifications();
+    public Verifications Verify => new();
 }

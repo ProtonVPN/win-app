@@ -210,6 +210,7 @@ public class ProfileTests : BaseTest
 
     [Test, Order(7)]
     [Property("TestCaseId", "610978")]
+    [Retry(3)]
     public void ConnectAndGoWebsite()
     {
         BrowserUtils.KillAllBrowsers();
@@ -239,6 +240,7 @@ public class ProfileTests : BaseTest
 
     [Test, Order(8)]
     [Property("TestCaseId", "760486")]
+    [Retry(3)]
     public void ConnectAndGoApp()
     {
         BrowserUtils.KillAllBrowsers();

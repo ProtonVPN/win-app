@@ -175,13 +175,13 @@ public class FreeUserTests : FreshSessionSetUp
             .CloseModal();
 
         SettingRobot
-            .OpenSplitTunnelingSettingsCard();
+            .OpenSplitTunnelingSettings();
         UpsellCarrouselRobot
             .Verify.IsSplitTunnelingUpsellDisplayed()
             .CloseModal();
 
         SettingRobot
-            .OpenVpnAcceleratorSettingsCard();
+            .OpenVpnAcceleratorSettings();
         UpsellCarrouselRobot
             .Verify.IsServersSpeedUpsellDisplayed()
             .CloseModal();

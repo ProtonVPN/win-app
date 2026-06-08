@@ -93,6 +93,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                TextWrapping="NoWrap" />
 
                     <custom:GhostButton Grid.Column="2"
+                                        AutomationProperties.AutomationId="TabInfoButton"
                                         Margin="8,0,0,0"
                                         IsTabStop="True"
                                         TabIndex="0"
@@ -106,6 +107,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </Grid>
 
                 <custom:GhostButton Grid.Column="1"
+                                    AutomationProperties.AutomationId="ServerLoadInfoButton"
                                     Command="{x:Bind ShowServerLoadInfoOverlayCommand, Mode=OneTime}"
                                     Content="{x:Bind Localizer.Get('Countries_ServerLoad')}"
                                     IsTabStop="True"

@@ -92,7 +92,7 @@ public class NetShieldTests : FreshSessionSetUp
         SettingRobot
             .OpenSettings()
             .OpenNetShieldSettings()
-            .ToggleNetShieldSetting()
+            .DisableNetShieldToggle()
             .ApplySettings()
             .CloseSettings();
 
@@ -180,7 +180,7 @@ public class NetShieldTests : FreshSessionSetUp
     {
         SettingRobot
             .OpenNetShieldSettings()
-            .ToggleNetShieldSetting();
+            .EnableNetShieldToggle();
         ConfirmationRobot
             .Verify.IsOverlayDisplayed()
                    .OverlayTextContains(ENABLE_NET_SHIELD_TITLE)

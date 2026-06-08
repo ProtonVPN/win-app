@@ -17,19 +17,27 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
-using ProtonVPN.UI.Tests.Enums;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
 public class FeaturesRobot
 {
-    private const string KILL_SWITCH_ENABLED_FLYOUT_TEXT_1 = "Advanced kill switch disables your internet to protect your IP address while you're not connected to Proton VPN.";
-    private const string KILL_SWITCH_ENABLED_FLYOUT_TEXT_2 = "To get back online, connect to VPN or disable advanced kill switch";
+    private const string NET_SHIELD_ENABLED_FLYOUT_TEXT_1 = "Ads blocked";
+    private const string NET_SHIELD_ENABLED_FLYOUT_TEXT_2 = "Trackers stopped";
+    private const string NET_SHIELD_ENABLED_FLYOUT_TEXT_3 = "Data saved";
+
+    private const string DISCONNECTED_KILL_SWITCH_ENABLED_FLYOUT_TEXT_1 = "Advanced kill switch disables your internet to protect your IP address while you're not connected to Proton VPN.";
+    private const string DISCONNECTED_KILL_SWITCH_ENABLED_FLYOUT_TEXT_2 = "To get back online, connect to VPN or disable advanced kill switch";
+
+    private const string CONNECTED_KILL_SWITCH_ENABLED_FLYOUT_TEXT_1 = "Blocks all internet access when you're not connected to Proton VPN";
+    private const string CONNECTED_KILL_SWITCH_ENABLED_FLYOUT_TEXT_2 = "Advanced kill switch applies even if you intentionally disconnect from VPN";
 
     private const string SPLIT_TUNNELING_NO_APP_SELECTED_FLYOUT_TEXT = "Select apps";
 
@@ -44,6 +52,9 @@ public class FeaturesRobot
     protected Element CopyPortNumberFromActivePortSection = Element.ByAutomationId("CopyPortNumberCondensedButton");
 
     protected Element WidgetFlyout = Element.ByAutomationId("WidgetFlyout");
+    protected Element MenuFlyout = Element.ByClassName("MenuFlyout");
+    protected Element WidgetFlyoutToggle => WidgetFlyout.FindDescendant(Element.ByClassName("Button"));
+
     protected Element CopyPortNumberFromFlyoutMenu = Element.ByAutomationId("CopyPortNumberCompactButton");
 
     public FeaturesRobot HoverOverNetShieldWidget()
@@ -110,14 +121,70 @@ public class FeaturesRobot
         return this;
     }
 
+    public FeaturesRobot EnableNetShield(NetShieldMode netShieldMode)
+    {
+        string netshieldModeString;
+
+        switch (netShieldMode)
+        {
+            case NetShieldMode.BlockMalwareOnly:
+                netshieldModeString = "Block malware only";
+                break;
+            case NetShieldMode.BlockAdsMalwareTrackers:
+                netshieldModeString = "Block ads, trackers, and malware";
+                break;
+            case NetShieldMode.BlockAdsMalwareTrackersAdultContent:
+                netshieldModeString = "Block ads, trackers, malware, and adult content";
+                break;
+            default:
+                throw new ArgumentException($"Unknown mode: {netShieldMode}");
+        }
+
+        ToggleFeature(netshieldModeString);
+        return this;
+    }
+
+    public FeaturesRobot EnableKillSwitch(KillSwitchMode killSwitchMode)
+    {
+        ToggleFeature(killSwitchMode.ToString());
+        return this;
+    }
+
+    public FeaturesRobot EnableSplitTunneling(SplitTunnelingMode splitTunnelingMode)
+    {
+        ToggleFeature(splitTunnelingMode.ToString());
+        return this;
+    }
+
+    public FeaturesRobot EnableFeature()
+    {
+        ToggleFeature(SimpleToggle.On.ToString());
+        return this;
+    }
+
+    public FeaturesRobot DisableFeature()
+    {
+        ToggleFeature(SimpleToggle.Off.ToString());
+        return this;
+    }
+
     public class Verifications : FeaturesRobot
     {
-        public Verifications IsAdvancedKillSwitchTextInFlyoutMenu()
+        public Verifications IsNetShieldTextInFlyoutMenu()
+        {
+            List<string> allChildren = GetFlyoutChildren();
+            Assert.That(allChildren, Does.Contain(NET_SHIELD_ENABLED_FLYOUT_TEXT_1));
+            Assert.That(allChildren, Does.Contain(NET_SHIELD_ENABLED_FLYOUT_TEXT_2));
+            Assert.That(allChildren, Does.Contain(NET_SHIELD_ENABLED_FLYOUT_TEXT_3));
+            return this;
+        }
+
+        public Verifications IsAdvancedKillSwitchTextInFlyoutMenu(bool isConnected)
         {
             List<string> allChildren = GetFlyoutChildren();
             Assert.That(allChildren, Does.Contain(KillSwitchMode.Advanced.ToString()));
-            Assert.That(allChildren, Does.Contain(KILL_SWITCH_ENABLED_FLYOUT_TEXT_1));
-            Assert.That(allChildren, Does.Contain(KILL_SWITCH_ENABLED_FLYOUT_TEXT_2));
+            Assert.That(allChildren, Does.Contain(isConnected ? CONNECTED_KILL_SWITCH_ENABLED_FLYOUT_TEXT_1 : DISCONNECTED_KILL_SWITCH_ENABLED_FLYOUT_TEXT_1));
+            Assert.That(allChildren, Does.Contain(isConnected ? CONNECTED_KILL_SWITCH_ENABLED_FLYOUT_TEXT_2 : DISCONNECTED_KILL_SWITCH_ENABLED_FLYOUT_TEXT_2));
             return this;
         }
 
@@ -156,6 +223,18 @@ public class FeaturesRobot
             Assert.That(allChildren, Does.Contain(PORT_UNAVAILABLE_FLYOUT_TEXT_1));
             Assert.That(allChildren, Does.Contain(PORT_UNAVAILABLE_FLYOUT_TEXT_2));
             return this;
+        }
+    }
+
+    private void ToggleFeature(string optionToSelect)
+    {
+        List<string> allChildren = GetFlyoutChildren();
+        if (!allChildren.Contains(optionToSelect))
+        {
+            WidgetFlyoutToggle.Click();
+            Thread.Sleep(TestConstants.UserInputSimulationDelay);
+            MenuFlyout.FindDescendant(Element.ByName(optionToSelect)).DoubleClick();
+            Thread.Sleep(TestConstants.UserInputSimulationDelay);
         }
     }
 

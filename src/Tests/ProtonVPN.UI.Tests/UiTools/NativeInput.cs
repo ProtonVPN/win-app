@@ -92,6 +92,21 @@ public static class NativeInput
         SendMouseAbsolute(cx - (int)r.Width, cy - (int)r.Height);
         SendMouseAbsolute(cx - HOVER_RAMP_STEP_PX, cy - HOVER_RAMP_STEP_PX);
         SendMouseAbsolute(cx, cy);
+
+        MicroJitter(cx, cy);
+
         Thread.Sleep(hoverDurationMs);
+    }
+
+    private static void MicroJitter(int cx, int cy)
+    {
+        int delayBetweenMs = 16;
+        (int dx, int dy)[] offsets = { (1, 0), (1, 1), (0, 0) };
+
+        foreach ((int dx, int dy) in offsets)
+        {
+            SendMouseAbsolute(cx + dx, cy + dy);
+            Thread.Sleep(delayBetweenMs);
+        }
     }
 }

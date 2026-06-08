@@ -20,9 +20,7 @@
 using System.Diagnostics;
 using System.Net.Sockets;
 using FlaUI.Core.Tools;
-using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
-using ProtonVPN.UI.Tests.UiTools;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 
@@ -36,7 +34,23 @@ public static class CommonAssertions
         },
         TestConstants.TenSecondsTimeout, TestConstants.RetryInterval);
 
-        Assert.That(retry.Result,Is.True, $"Dns was not resolved for {url}.");
+        Assert.That(retry.Result, Is.True, $"Dns was not resolved for {url}.");
+    }
+
+    public static void AssertAtLeastOneDomainResolved(string[] domains)
+    {
+        foreach (string domain in domains)
+        {
+            RetryResult<bool> retry = Retry.WhileFalse(() => TryToResolveDns(domain),
+                TestConstants.TenSecondsTimeout, TestConstants.RetryInterval);
+
+            if (retry.Result)
+            {
+                return; // at least one resolved, we're done
+            }
+        }
+
+        throw new System.Exception($"None of the expected domains resolved: {string.Join(", ", domains)}");
     }
 
     public static void AssertDnsIsNotResolved(string url)
@@ -47,7 +61,7 @@ public static class CommonAssertions
         },
         TestConstants.TenSecondsTimeout, TestConstants.RetryInterval);
 
-        Assert.That(retry.Result,Is.True, $"DNS was resolved for {url}");
+        Assert.That(retry.Result, Is.True, $"DNS was resolved for {url}");
     }
 
     public static void AssertIpAddressChanged(string previousIpAddress)
@@ -88,22 +102,6 @@ public static class CommonAssertions
         }
     }
 
-    public static T AssertChecked<T>(this T desiredElement) where T : Element
-    {
-        AutomationElement? element = UiActions.WaitUntilExists(desiredElement);
-        if (element == null)
-        {
-            Assert.Fail("Radio button not found.");
-        }
-        else
-        {
-            RadioButton radioButton = new(element.FrameworkAutomationElement);
-            Assert.That(radioButton.IsChecked, Is.True, $"Radio button '{desiredElement.SelectorName}' should be checked.");
-        }
-
-        return desiredElement;
-    }
-    
     public static void VerifyAppIsNotRunning()
     {
         Process[] processes = Process.GetProcessesByName("ProtonVPN.Client");

@@ -21,7 +21,7 @@ namespace ProtonVPN.UI.Tests.Enums;
 
 public enum NetShieldMode
 {
-    BlockMalwareOnly = 1,
-    BlockAdsMalwareTrackers = 2,
-    BlockAdsMalwareTrackersAdultContent = 3,
+    BlockMalwareOnly,
+    BlockAdsMalwareTrackers,
+    BlockAdsMalwareTrackersAdultContent,
 }

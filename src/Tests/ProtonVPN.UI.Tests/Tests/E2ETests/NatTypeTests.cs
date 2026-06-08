@@ -60,7 +60,8 @@ public class NatTypeTests : FreshSessionSetUp
     {
         SettingRobot
             .OpenSettings()
-            .OpenAdvancedSettings()
+            .OpenAdvancedSettings();
+        AdvancedSettingsRobot
             .SelectNatType(natType);
 
         if (natType == NatType.Moderate)

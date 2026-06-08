@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,6 +21,6 @@ namespace ProtonVPN.UI.Tests.Enums;
 
 public enum KillSwitchMode
 {
-    Standard = 1,
-    Advanced = 2,
+    Standard,
+    Advanced,
 }

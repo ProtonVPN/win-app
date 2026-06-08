@@ -32,9 +32,9 @@ namespace ProtonVPN.UI.Tests.TestsHelper;
 
 public class NetworkUtils
 {
-	public static void VerifyLocalNetworking(bool isLanEnabled)
-	{
-		IPAddress? ipAddress = GetDefaultGatewayAddress() ?? throw new Exception("Default gateway is null.");
+    public static void VerifyLocalNetworking(bool isLanEnabled)
+    {
+        IPAddress? ipAddress = GetDefaultGatewayAddress() ?? throw new Exception("Default gateway is null.");
         PingReply reply = new Ping().Send(ipAddress.ToString());
         Assert.That(reply.Status == IPStatus.Success, isLanEnabled ? Is.True : Is.False);
     }
@@ -93,6 +93,12 @@ public class NetworkUtils
 
     public static void VerifyIpAddressDoesNotMatchWithRetry(string? ipAddressToCompare)
     {
+        if (ipAddressToCompare is null)
+        {
+            Assert.Fail("ipAddressToCompare is null - was GetIpAddressWithRetry() called before network was ready?");
+            return;
+        }
+
         string? ipAddressFomAPI = null;
         RetryResult<bool> retry = Retry.WhileTrue(
            () =>
@@ -113,6 +119,12 @@ public class NetworkUtils
 
     public static void VerifyIpAddressMatchesWithRetry(string? ipAddressToCompare)
     {
+        if (ipAddressToCompare is null)
+        {
+            Assert.Fail("ipAddressToCompare is null - was GetIpAddressWithRetry() called before network was ready?");
+            return;
+        }
+
         string? ipAddressFomAPI = null;
         RetryResult<bool> retry = Retry.WhileFalse(
            () =>
@@ -166,22 +178,21 @@ public class NetworkUtils
     {
         string endpoint = "http://ip-api.com/json/";
         // Make sure that fresh socket is created when requesting connection data
-        using (HttpClient client = new())
+        using HttpClient client = new() { Timeout = TimeSpan.FromSeconds(10) };
+
+        try
         {
-            try
+            string response = await client.GetStringAsync(endpoint);
+            JObject json = JObject.Parse(response);
+            return json;
+        }
+        catch (Exception e)
+        {
+            if (errorIsNotExpected)
             {
-                string response = await client.GetStringAsync(endpoint);
-                JObject json = JObject.Parse(response);
-                return json;
+                TestContext.WriteLine($"GetIpAddressWithRetry failed. Result: {e.Message}");
             }
-            catch (HttpRequestException e)
-            {
-                if (errorIsNotExpected)
-                {
-                    TestContext.WriteLine($"GetIpAddressWithRetry failed. Result: {e.Message}");
-                }
-                return null;
-            }
+            return null;
         }
     }
 

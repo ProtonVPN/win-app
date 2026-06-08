@@ -136,7 +136,8 @@ public class ProtocolTests : FreshSessionSetUp
         CommonUiFlows.ChangeProtocol(Protocol.OpenVpnUdp, shouldEnableProTun: true);
         SettingRobot
             .OpenSettings()
-            .OpenAdvancedSettings()
+            .OpenAdvancedSettings();
+        AdvancedSettingsRobot
             .SelectOpenVpnAdapter(openVpnAdapter);
 
         if (openVpnAdapter == OpenVpnAdapter.TAP)

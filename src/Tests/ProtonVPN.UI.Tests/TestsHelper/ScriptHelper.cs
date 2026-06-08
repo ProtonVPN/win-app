@@ -39,6 +39,7 @@ public static class ScriptHelper
 
     private const string VPN_QOS_POLICY_NAME = "LimitProtonVPN";
     private static readonly string _installedServicePath = Path.Combine(TestEnvironment.GetProtonClientFolder(), "ProtonVPNService.exe");
+    private static readonly string _restoreInternetExe = Path.Combine(TestEnvironment.GetProtonClientFolder(), "ProtonVPN.RestoreInternet.exe");
     private static readonly string _setVpnLimitScript = $"New-NetQosPolicy -Name '{VPN_QOS_POLICY_NAME}' -AppPathNameMatchCondition '{_installedServicePath}' -ThrottleRateActionBitsPerSecond 512";
     private static readonly string _removeVpnLimitScript = $"Remove-NetQosPolicy -Name '{VPN_QOS_POLICY_NAME}' -Confirm:$false";
 
@@ -52,6 +53,11 @@ public static class ScriptHelper
     private static readonly string _disconnectWireGuardScript = $@"& 'C:\Program Files\WireGuard\wireguard.exe' /uninstalltunnelservice {_configName}";
 
     private static readonly string _removeWireGuardConfigFileScript = $@"Remove-Item -Path '{_configPath}' -Force";
+
+    public static void RestoreInternet()
+    {
+        WindowsUtils.RunPowerShellScript(_restoreInternetExe);
+    }
 
     public static void EnableInternet()
     {

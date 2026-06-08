@@ -23,15 +23,27 @@ namespace ProtonVPN.UI.Tests.Robots;
 
 public class SplitTunnelingRobot
 {
-    protected Element SplitTunnelingSwitch = Element.ByAutomationId("SplitTunnelingSwitch");
+    protected Element SplitTunnelingToggle = Element.ByAutomationId("SplitTunnelingSwitch");
     protected Element AppsSelectorSettingsCard = Element.ByAutomationId("AppsSelectorSettingsCard");
     protected Element IpAddressesSelectorSettingsCard = Element.ByAutomationId("IpAddressesSelectorSettingsCard");
     protected Element ExcludeModeRadioButton = Element.ByName("Exclude mode");
     protected Element IncludeModeRadioButton = Element.ByName("Include mode");
 
-    public SplitTunnelingRobot ToggleSplitTunnelingSwitch()
+    public SplitTunnelingRobot EnableSplitTunnelingToggle()
     {
-        SplitTunnelingSwitch.Click();
+        if (!SplitTunnelingToggle.IsToggled())
+        {
+            SplitTunnelingToggle.Toggle();
+        }
+        return this;
+    }
+
+    public SplitTunnelingRobot DisableSplitTunnelingToggle()
+    {
+        if (SplitTunnelingToggle.IsToggled())
+        {
+            SplitTunnelingToggle.Toggle();
+        }
         return this;
     }
 

@@ -48,6 +48,7 @@ public class SplitTunnelingExcludeTests : BaseTest
     {
         LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
+        NetworkUtils.AssertInternetAvailability(true);
         _ipAddressNotConnected = NetworkUtils.GetIpAddressWithRetry();
     }
 
@@ -60,7 +61,7 @@ public class SplitTunnelingExcludeTests : BaseTest
             .OpenSplitTunnelingSettings();
 
         SplitTunnelingRobot
-            .ToggleSplitTunnelingSwitch()
+            .EnableSplitTunnelingToggle()
             .SelectExcludeMode()
             .EditSplitTunnelingIps();
 
@@ -231,7 +232,7 @@ public class SplitTunnelingExcludeTests : BaseTest
                 .OpenSettings()
                 .OpenSplitTunnelingSettings();
             SplitTunnelingRobot
-                .ToggleSplitTunnelingSwitch();
+                .DisableSplitTunnelingToggle();
             SettingRobot
                 .ApplySettings()
                 .CloseSettings();

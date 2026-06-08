@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -35,12 +35,18 @@ public class LoginRobot
     protected Element TwoFactorFourthDigit = Element.ByAutomationId("FourthDigit");
     protected Element TwoFactorFifthDigit = Element.ByAutomationId("FifthDigit");
     protected Element TwoFactorLastDigit = Element.ByAutomationId("LastDigit");
+
     protected Element SignInButton = Element.ByAutomationId("SignInButton");
+    protected Element CreateAccountButton = Element.ByAutomationId("CreateAccountButton");
     protected Element SsoWindow = Element.ByAutomationId("ContentScrollViewer");
     protected Element SignInWithSsoButton = Element.ByName("Sign in with SSO");
+    protected Element CancelSignInButton = Element.ByAutomationId("CancelSignInButton");
+
     protected Element HelpButton = Element.ByAutomationId("HelpButton");
     protected Element ReportIssueMenuItem = Element.ByAutomationId("ReportIssueMenuItem");
-    protected Element CancelSignInButton = Element.ByAutomationId("CancelSignInButton");
+    protected Element ForgotUsernameMenuItem = Element.ByName("Forgot username");
+    protected Element ForgotPasswordMenuItem = Element.ByName("Forgot password");
+
     protected Element DisableKillSwitchButton = Element.ByAutomationId("DisableKillSwitchButton");
     protected Element DisableKillSwitchLabel = Element.ByAutomationId("AdvancedKillSwitchDescriptionText");
     protected Element KillSwitchDisabledLabel = Element.ByName("Kill switch is disabled");
@@ -63,6 +69,12 @@ public class LoginRobot
     public LoginRobot ClickSignInButton()
     {
         SignInButton.Invoke();
+        return this;
+    }
+
+    public LoginRobot ClickCreateAccountButton()
+    {
+        CreateAccountButton.Invoke();
         return this;
     }
 
@@ -98,11 +110,28 @@ public class LoginRobot
         return this;
     }
 
-    public void NavigateToBugReport()
+    public void OpenHelpMenu()
     {
         HelpButton.Click();
         // Remove when VPNWIN-2599 is implemented.
         Thread.Sleep(TestConstants.AnimationDelay);
+    }
+
+    public void NavigateToForgotUsername()
+    {
+        OpenHelpMenu();
+        ForgotUsernameMenuItem.DoubleClick();
+    }
+
+    public void NavigateToForgotPassword()
+    {
+        OpenHelpMenu();
+        ForgotPasswordMenuItem.DoubleClick();
+    }
+
+    public void NavigateToBugReport()
+    {
+        OpenHelpMenu();
         ReportIssueMenuItem.DoubleClick();
     }
 

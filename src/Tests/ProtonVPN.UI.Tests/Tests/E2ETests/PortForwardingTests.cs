@@ -95,7 +95,8 @@ public class PortForwardingTests : FreshSessionSetUp
             .OpenPortForwardingSettings()
             .EnablePortForwarding()
             .ApplySettings()
-            .OpenAdvancedSettings()
+            .OpenAdvancedSettings();
+        AdvancedSettingsRobot
             .SelectNatType(NatType.Moderate);
 
         ConfirmationRobot
@@ -124,8 +125,10 @@ public class PortForwardingTests : FreshSessionSetUp
     {
         SettingRobot
             .OpenSettings()
-            .OpenAdvancedSettings()
-            .SelectNatType(NatType.Moderate)
+            .OpenAdvancedSettings();
+        AdvancedSettingsRobot
+            .SelectNatType(NatType.Moderate);
+        SettingRobot
             .ApplySettings()
             .OpenPortForwardingSettings()
             .EnablePortForwarding();
