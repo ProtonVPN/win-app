@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -102,7 +102,8 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
     public IOrderedEnumerable<IRecentConnection> GetRecentConnections()
     {
         return _recentConnections.OrderByDescending(c => c.IsPinned)
-                                 .ThenBy(c => c.PinTime);
+                                 .ThenBy(c => c.PinTime)
+                                 .ThenByDescending(c => c.LastConnectionTimeUtc);
     }
 
     public IRecentConnection? GetMostRecentConnection()
@@ -111,6 +112,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         DeviceLocation? deviceLocation = _settings.DeviceLocation;
 
         IRecentConnection? mostRecentConnection = _recentConnections
+            .OrderByDescending(c => c.LastConnectionTimeUtc)
             .FirstOrDefault(c => !c.ConnectionIntent.AreAllServersUnderMaintenance(servers, deviceLocation));
 
         return mostRecentConnection;
@@ -287,14 +289,13 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
 
         foreach (IRecentConnection duplicate in duplicates)
         {
-            // Remove duplicated intent, so it can be inserted at the top of the list
             _recentConnections.Remove(duplicate);
         }
 
         IRecentConnection recentConnection = duplicates.FirstOrDefault() ?? new RecentConnection(Guid.NewGuid(), recentIntent);
         recentConnection.LastConnectionTimeUtc = connectionTime;
 
-        _recentConnections.Insert(0, recentConnection);
+        _recentConnections.Add(recentConnection);
 
         return true;
     }
@@ -441,9 +442,14 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
 
     private void TrimRecentConnections()
     {
-        while (_recentConnections.Count(c => !IsRecentInUseOrPinned(c)) > MAXIMUM_RECENT_CONNECTIONS)
+        List<IRecentConnection> recentConnections = _recentConnections
+            .Where(rc => !IsRecentInUseOrPinned(rc))
+            .OrderByDescending(rc => rc.LastConnectionTimeUtc)
+            .ToList();
+
+        for (int i = MAXIMUM_RECENT_CONNECTIONS; i < recentConnections.Count; i++)
         {
-            _recentConnections.Remove(_recentConnections.Last(c => !IsRecentInUseOrPinned(c)));
+            _recentConnections.Remove(recentConnections[i]);
         }
     }
 
