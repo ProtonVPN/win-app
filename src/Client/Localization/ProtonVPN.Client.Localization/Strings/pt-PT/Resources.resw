@@ -210,6 +210,9 @@
   <data name="Common_Actions_Connect">
     <value>Ligar</value>
   </data>
+  <data name="System_Tray_Actions_Connect">
+    <value>Ligar</value>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>Contacte-nos</value>
   </data>
@@ -217,6 +220,9 @@
     <value>Eliminar</value>
   </data>
   <data name="Common_Actions_Disconnect">
+    <value>Desconectar</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
     <value>Desconectar</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -3623,7 +3629,14 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
   <data name="Tray_Actions_ExitApplication">
     <value>Sair</value>
   </data>
+  <data name="System_Tray_Actions_ExitApplication">
+    <value>Sair</value>
+  </data>
   <data name="Tray_Actions_OpenApplication">
+    <value>Abrir {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
     <value>Abrir {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>

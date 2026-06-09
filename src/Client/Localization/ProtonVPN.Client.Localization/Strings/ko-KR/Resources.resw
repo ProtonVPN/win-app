@@ -210,6 +210,9 @@
   <data name="Common_Actions_Connect">
     <value>연결</value>
   </data>
+  <data name="System_Tray_Actions_Connect">
+    <value>연결</value>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>문의</value>
   </data>
@@ -217,6 +220,9 @@
     <value>삭제</value>
   </data>
   <data name="Common_Actions_Disconnect">
+    <value>연결 해제</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
     <value>연결 해제</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -3527,7 +3533,14 @@ VPN 연결</value>
   <data name="Tray_Actions_ExitApplication">
     <value>닫기</value>
   </data>
+  <data name="System_Tray_Actions_ExitApplication">
+    <value>닫기</value>
+  </data>
   <data name="Tray_Actions_OpenApplication">
+    <value>{0} 열기</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
     <value>{0} 열기</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>

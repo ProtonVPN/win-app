@@ -651,6 +651,7 @@
         <None Remove="Assets\Flags\ZA.svg" />
         <None Remove="Assets\Flags\ZM.svg" />
         <None Remove="Assets\Flags\ZW.svg" />
+        <None Remove="Assets\Fonts\NotoSansTagalog-Regular.ttf" />
         <None Remove="Assets\Icons\ActivePortNumber.xaml" />
         <None Remove="Assets\Icons\App\badge-error-w10.ico" />
         <None Remove="Assets\Icons\App\badge-protected-w10.ico" />
@@ -1148,6 +1149,9 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Flags\UM.svg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="Assets\Fonts\NotoSansTagalog-Regular.ttf">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="Assets\Icons\App\badge-error-w10.ico">

@@ -210,6 +210,9 @@
   <data name="Common_Actions_Connect">
     <value>Kapcsolódás</value>
   </data>
+  <data name="System_Tray_Actions_Connect">
+    <value>Kapcsolódás</value>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>Lépjen velünk kapcsolatba</value>
   </data>
@@ -217,6 +220,9 @@
     <value>Törlés</value>
   </data>
   <data name="Common_Actions_Disconnect">
+    <value>Kapcsolat bontása</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
     <value>Kapcsolat bontása</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -3623,7 +3629,14 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
   <data name="Tray_Actions_ExitApplication">
     <value>Kilépés</value>
   </data>
+  <data name="System_Tray_Actions_ExitApplication">
+    <value>Kilépés</value>
+  </data>
   <data name="Tray_Actions_OpenApplication">
+    <value>{0} megnyitása</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
     <value>{0} megnyitása</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>

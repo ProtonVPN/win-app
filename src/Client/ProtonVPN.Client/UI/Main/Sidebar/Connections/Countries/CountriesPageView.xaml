@@ -78,7 +78,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                SelectedItem="{x:Bind ViewModel.SelectedCountriesComponent, Mode=TwoWay}">
             <Pivot.HeaderTemplate>
                 <DataTemplate x:DataType="bases:ICountriesComponent">
-                    <TextBlock Text="{x:Bind Header}" />
+                    <TextBlock Text="{x:Bind Header}"
+                               FontFamily="{ThemeResource ContentControlThemeFontFamily}" />
                 </DataTemplate>
             </Pivot.HeaderTemplate>
         </Pivot>

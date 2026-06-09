@@ -44,14 +44,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <MenuFlyoutSeparator />
 
                 <MenuFlyoutItem Command="{x:Bind ViewModel.ConnectCommand, Mode=OneTime}"
-                                Text="{x:Bind ViewModel.Localizer.Get('Common_Actions_Connect')}" />
+                                Text="{x:Bind ViewModel.Localizer.Get('System_Tray_Actions_Connect')}" />
                 <MenuFlyoutItem Command="{x:Bind ViewModel.DisconnectCommand, Mode=OneTime}"
-                                Text="{x:Bind ViewModel.Localizer.Get('Common_Actions_Disconnect')}" />
+                                Text="{x:Bind ViewModel.Localizer.Get('System_Tray_Actions_Disconnect')}" />
                 
                 <MenuFlyoutSeparator />
 
                 <MenuFlyoutItem Command="{x:Bind ViewModel.ExitApplicationCommand, Mode=OneTime}"
-                                Text="{x:Bind ViewModel.Localizer.Get('Tray_Actions_ExitApplication')}" />
+                                Text="{x:Bind ViewModel.Localizer.Get('System_Tray_Actions_ExitApplication')}" />
 
             </MenuFlyout>
         </tray:TaskbarIcon.ContextFlyout>

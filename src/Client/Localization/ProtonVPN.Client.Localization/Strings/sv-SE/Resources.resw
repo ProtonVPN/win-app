@@ -210,6 +210,9 @@
   <data name="Common_Actions_Connect">
     <value>Anslut</value>
   </data>
+  <data name="System_Tray_Actions_Connect">
+    <value>Anslut</value>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>Kontakta oss</value>
   </data>
@@ -217,6 +220,9 @@
     <value>Ta bort</value>
   </data>
   <data name="Common_Actions_Disconnect">
+    <value>Koppla från</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
     <value>Koppla från</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -3623,7 +3629,14 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
   <data name="Tray_Actions_ExitApplication">
     <value>Avsluta</value>
   </data>
+  <data name="System_Tray_Actions_ExitApplication">
+    <value>Avsluta</value>
+  </data>
   <data name="Tray_Actions_OpenApplication">
+    <value>Öppna {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
     <value>Öppna {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>

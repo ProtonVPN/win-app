@@ -141,7 +141,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
                 <StackPanel Spacing="8"
                             Visibility="{x:Bind ViewModel.IsLoading, Converter={StaticResource NotBooleanToVisibilityConverter}}">
 
-                    <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                    <TextBlock Style="{StaticResource BodyTextBlockStyle}" 
+                               Foreground="{ThemeResource TextWeakColorBrush}"
                                Text="{x:Bind ViewModel.AppsHeader}"
                                TextTrimming="CharacterEllipsis" />
 
@@ -209,6 +210,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0"
+                                   Style="{StaticResource BodyTextBlockStyle}"
                                    Foreground="{ThemeResource TextWeakColorBrush}"
                                    Text="{x:Bind ViewModel.IpAddressesHeader}"
                                    TextTrimming="CharacterEllipsis" />

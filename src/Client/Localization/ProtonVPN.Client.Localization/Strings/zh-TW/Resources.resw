@@ -210,6 +210,9 @@
   <data name="Common_Actions_Connect">
     <value>連線</value>
   </data>
+  <data name="System_Tray_Actions_Connect">
+    <value>連線</value>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>聯絡我們</value>
   </data>
@@ -217,6 +220,9 @@
     <value>刪除</value>
   </data>
   <data name="Common_Actions_Disconnect">
+    <value>斷線</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
     <value>斷線</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -3528,7 +3534,14 @@ VPN 連線</value>
   <data name="Tray_Actions_ExitApplication">
     <value>離開</value>
   </data>
+  <data name="System_Tray_Actions_ExitApplication">
+    <value>離開</value>
+  </data>
   <data name="Tray_Actions_OpenApplication">
+    <value>Open {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
     <value>Open {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>

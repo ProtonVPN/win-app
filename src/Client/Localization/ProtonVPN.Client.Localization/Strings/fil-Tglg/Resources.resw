@@ -1,0 +1,3910 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account_VpnPlan_Free">
+    <value>Proton VPN Free</value>
+  </data>
+  <data name="Automation_Properties_ConnectionDetails_Page">
+    <value>ᜉᜑᜒᜈ ᜈᜅ᜔ ᜋᜅ ᜇᜒᜆᜎ᜔ᜌᜒ ᜈᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page">
+    <value>ᜉᜑᜒᜈ ᜈᜅ᜔ ᜋᜅ ᜃᜄᜓᜐ᜔ᜆᜓᜑᜈ᜔ ᜐ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Automation_Properties_Connection_Card_Component">
+    <value>ᜃᜇ᜔ᜇ᜔ ᜈᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Automation_Properties_KillSwitch_Page">
+    <value>ᜉᜑᜒᜈ ᜈᜅ᜔ kill switch</value>
+  </data>
+  <data name="Automation_Properties_LocationDetails_Page">
+    <value>ᜉᜑᜒᜈ ᜈᜅ᜔ ᜋᜅ ᜇᜒᜆᜎ᜔ᜌᜒ ᜈᜅ᜔ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Automation_Properties_Login_Page">
+    <value>ᜉᜑᜒᜈ ᜐ ᜉᜄ᜔-log in</value>
+  </data>
+  <data name="Automation_Properties_Main_Page">
+    <value>ᜉᜅᜓᜈᜑᜒᜅ᜔ ᜉᜑᜒᜈ</value>
+  </data>
+  <data name="Automation_Properties_NetShield_Page">
+    <value>ᜉᜑᜒᜈ ᜈᜅ᜔ NetShield</value>
+  </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>ᜉᜑᜒᜈ ᜈᜅ᜔ ᜏᜎᜅ᜔ ᜋᜅ server</value>
+  </data>
+  <data name="Automation_Properties_PortForwarding_Page">
+    <value>ᜉᜑᜒᜈ ᜈᜅ᜔ port forwarding</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page">
+    <value>ᜉᜑᜒᜈ ᜈᜅ᜔ profile</value>
+  </data>
+  <data name="Automation_Properties_Settings_Advanced_Page">
+    <value>ᜉᜑᜒᜈ ᜈᜅ᜔ ᜋᜅ advanced ᜈ ᜐᜒᜆ᜔ᜆᜒᜅ᜔</value>
+  </data>
+  <data name="Automation_Properties_Settings_Common_Page">
+    <value>ᜉᜑᜒᜈ ᜈᜅ᜔ ᜋᜅ ᜃᜇᜈᜒᜏᜈ᜔ᜄ᜔ ᜐᜒᜆ᜔ᜆᜒᜈ᜔ᜄ᜔</value>
+  </data>
+  <data name="Automation_Properties_Settings_Page">
+    <value>ᜉᜑᜒᜈ ᜈᜅ᜔ ᜋᜅ ᜐᜒᜆ᜔ᜆᜒᜅ᜔</value>
+  </data>
+  <data name="Automation_Properties_Sidebar">
+    <value>Sidebar</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Countries_Page">
+    <value>ᜉᜑᜒᜈ ᜈᜅ᜔ ᜋᜅ ᜊᜈ᜔ᜐ</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
+    <value>ᜉᜑᜒᜈ ᜈᜅ᜔ ᜋᜅ gateway</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Page">
+    <value>ᜉᜑᜒᜈ ᜈᜅ᜔ ᜋᜅ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Profiles_Page">
+    <value>ᜉᜑᜒᜈ ᜈᜅ᜔ ᜋᜅ profile</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Recents_Page">
+    <value>ᜉᜑᜒᜈ ᜈᜅ᜔ ᜋᜅ recent</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Search_Results_Page">
+    <value>ᜋᜅ ᜇᜒᜐᜓᜎ᜔ᜆ ᜈᜅ᜔ ᜉᜄ᜔ᜑᜑᜈᜉ᜔</value>
+  </data>
+  <data name="Automation_Properties_SplitTunneling_Page">
+    <value>ᜉᜑᜒᜈ ᜈᜅ᜔ split tunneling</value>
+  </data>
+  <data name="City_Fastest">
+    <value>ᜉᜒᜈᜃᜋᜊᜒᜎᜒᜐ᜔ ᜈ ᜎᜓᜅ᜔ᜐᜓᜇ᜔</value>
+  </data>
+  <data name="City_Random">
+    <value>Random ᜈ ᜎᜓᜅ᜔ᜐᜓᜇ᜔</value>
+  </data>
+  <data name="Common_Actions_Add">
+    <value>ᜁᜇᜄ᜔ᜇᜄ᜔</value>
+  </data>
+  <data name="Common_Actions_Back">
+    <value>ᜊᜓᜋᜎᜒᜃ᜔</value>
+  </data>
+  <data name="Common_Actions_Cancel">
+    <value>ᜃᜈ᜔ᜐᜒᜎᜑᜒᜈ᜔</value>
+  </data>
+  <data name="Common_Actions_Change">
+    <value>ᜊᜄᜓᜑᜒᜈ᜔</value>
+  </data>
+  <data name="Common_Actions_Close">
+    <value>ᜁᜐᜇ</value>
+  </data>
+  <data name="Common_Actions_Connect">
+    <value>ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ</value>
+  </data>
+  <data name="Common_Actions_ContactUs">
+    <value>ᜋᜃᜒᜉᜄ᜔-ᜂᜄ᜔ᜈᜌᜈ᜔ ᜐ ᜀᜋᜒᜈ᜔</value>
+  </data>
+  <data name="Common_Actions_Delete">
+    <value>ᜊᜓᜇᜑᜒᜈ᜔</value>
+  </data>
+  <data name="Common_Actions_Disconnect">
+    <value>ᜁ-disconnect</value>
+  </data>
+  <data name="Common_Actions_Duplicate">
+    <value>ᜁ-duplicate</value>
+  </data>
+  <data name="Common_Actions_Edit">
+    <value>ᜁ-edit</value>
+  </data>
+  <data name="Common_Actions_Enable">
+    <value>ᜉᜄᜈᜑᜒᜈ᜔</value>
+  </data>
+  <data name="Common_Actions_Exit_ProtonVPN">
+    <value>ᜎᜓᜋᜊᜐ᜔ ᜈᜅ᜔ Proton VPN</value>
+  </data>
+  <data name="Common_Actions_GotIt">
+    <value>ᜈᜁᜈ᜔ᜆᜒᜈ᜔ᜇᜒᜑᜈ᜔</value>
+  </data>
+  <data name="Common_Actions_Install">
+    <value>ᜁ-install</value>
+  </data>
+  <data name="Common_Actions_MoveDown">
+    <value>ᜁᜎᜒᜉᜆ᜔ ᜉᜊᜊ</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>ᜁᜎᜒᜉᜆ᜔ ᜉᜆᜀᜐ᜔</value>
+  </data>
+  <data name="Common_Actions_Reconnect">
+    <value>ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆᜅ᜔ ᜋᜓᜎᜒ</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>ᜁ-refresh</value>
+  </data>
+  <data name="Common_Actions_Remove">
+    <value>ᜀᜎᜒᜐᜒᜈ᜔</value>
+  </data>
+  <data name="Common_Actions_Restart">
+    <value>ᜁ-restart</value>
+  </data>
+  <data name="Common_Actions_Save">
+    <value>ᜁ-save</value>
+  </data>
+  <data name="Common_Actions_TryAgain">
+    <value>ᜐᜓᜊᜓᜃᜅ᜔ ᜋᜓᜎᜒ</value>
+  </data>
+  <data name="Common_Actions_Update">
+    <value>ᜁ-update</value>
+  </data>
+  <data name="Common_Actions_Upgrade">
+    <value>ᜁ-upgrade</value>
+  </data>
+  <data name="Common_Confirmation_KillSwitch_Message">
+    <value>ᜈᜃ-enable ᜀᜅ᜔ advanced kill switch. ᜂᜉᜅ᜔ ᜄᜋᜒᜆᜒᜈ᜔ ᜀᜅ᜔ internet ᜈᜅ᜔ ᜏᜎᜅ᜔ VPN, ᜁ-disable ᜀᜅ᜔ advanced kill switch.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
+    <value>ᜈᜃ-enable ᜀᜅ᜔ advanced kill switch. ᜃᜓᜅ᜔ ᜋᜄ᜔ᜉᜉᜆᜓᜎᜓᜌ᜔ ᜃ, ᜋᜇᜒ-disconnect ᜃ ᜋᜓᜎ ᜐ internet.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnected_Message">
+    <value>ᜋᜇᜒ-disconnect ᜃ ᜐ VPN.</value>
+  </data>
+  <data name="Common_Links_LearnMore">
+    <value>ᜋᜆᜓᜆᜓ ᜉ</value>
+  </data>
+  <data name="Common_Message_AppNotFound">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜈᜑᜈᜉ᜔ ᜀᜅ᜔ application</value>
+  </data>
+  <data name="Common_States_Off">
+    <value>ᜈᜃ-off</value>
+  </data>
+  <data name="Common_States_On">
+    <value>ᜈᜃ-on</value>
+  </data>
+  <data name="Common_Tags_Beta">
+    <value>BETA</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
+  <data name="Common_Tags_New">
+    <value>ᜊᜄᜓ</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
+  </data>
+  <data name="Common_Tags_Recommended">
+    <value>ᜁᜈᜒᜇᜒᜇᜒᜃᜓᜋᜒᜈ᜔ᜇ</value>
+    <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
+  </data>
+  <data name="Components_Update_GetMostFromYourVpn">
+    <value>ᜐᜓᜎᜒᜆᜒᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ VPN ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ ᜉᜄ᜔-update ᜐ ᜉᜒᜈᜃᜊᜄᜓᜅ᜔ ᜊᜒᜇ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ app.</value>
+  </data>
+  <data name="Components_Update_MoreLikelyIssues">
+    <value>ᜋᜐ᜔ ᜋᜎᜃᜒ ᜀᜅ᜔ ᜉᜓᜐᜒᜊᜒᜎᜒᜇᜇ᜔ ᜈ ᜋᜄ᜔ᜃᜇᜓᜂᜈ᜔ ᜃ ᜈᜅ᜔ ᜁᜐ᜔ᜌᜓ ᜐ ᜋᜅ ᜎᜓᜋᜅ᜔ ᜊᜒᜇ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ Proton VPN.</value>
+  </data>
+  <data name="Components_Update_UpdateAvailable">
+    <value>ᜋᜌ᜔ update ᜈ available</value>
+  </data>
+  <data name="Components_Update_UpdateProtonVpn">
+    <value>ᜁ-update ᜀᜅ᜔ Proton VPN</value>
+  </data>
+  <data name="Connection_Error_AllServersExcluded">
+    <value>ᜁᜊᜒᜈᜓᜃᜓᜇ᜔ ᜈᜅ᜔ ᜁᜌᜓᜅ᜔ ᜋᜅ ᜃᜄᜓᜐ᜔ᜆᜓᜑᜈ᜔ ᜀᜅ᜔ ᜎᜑᜆ᜔ ᜈᜅ᜔ available ᜈ server. I-adjust ᜀᜅ᜔ ᜋᜅ exclusion ᜉᜇ ᜋᜃᜃᜓᜈᜒᜃ᜔ᜆ.</value>
+  </data>
+  <data name="Connection_Error_AllServersExcluded_Action">
+    <value>ᜋᜅ ᜁᜊᜒᜈᜓᜃᜓᜇ᜔ ᜈ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>ᜉᜇ ᜀᜌᜓᜐᜒᜈ᜔ ᜁᜆᜓ, ᜁᜐᜇ ᜂ ᜁ-ᜀᜈ᜔ᜁᜈ᜔ᜐ᜔ᜆᜓᜎ᜔ ᜀᜅ᜔ ᜀᜉ᜔ ᜈ ᜈᜌᜓᜊᜅ᜔ ᜐ:</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>ᜋᜀᜇᜒᜅ᜔ ᜋᜌ᜔ ᜁᜊᜅ᜔ ᜀᜉ᜔ ᜈ ᜉᜓᜋᜒᜉᜒᜄᜒᜎ᜔ ᜐ Proton VPN ᜈ ᜃᜓᜋᜓᜈᜃ᜔ᜆ</value>
+  </data>
+  <data name="Connection_Error_EditProfile">
+    <value>ᜁ-ᜁᜇᜒᜆ᜔ ᜀᜅ᜔ ᜉ᜔ᜇᜓᜉᜌ᜔ᜎ᜔</value>
+  </data>
+  <data name="Connection_Error_MissingConnectionCertificate">
+    <value>ᜈᜊᜒᜄᜓ ᜀᜅ᜔ Proton VPN ᜈ ᜃᜓᜈᜒᜈ᜔ ᜀᜅ᜔ ᜐᜒᜇ᜔ᜆᜒᜉᜒᜃᜒᜌ᜔ᜆ᜔ ᜈᜅ᜔ ᜉᜄ᜔-ᜂᜆᜒᜈ᜔ᜆᜒᜃᜒᜌ᜔ᜆ᜔ ᜇᜑᜒᜎ᜔ ᜐ ᜁᜐ᜔ᜌᜓ ᜐ ᜈᜒᜆ᜔ᜏᜓᜇ᜔ᜃ᜔.</value>
+  </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>ᜀᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜀᜌ᜔ ᜑᜒᜈᜇᜅ᜔ ᜈᜅ᜔ ᜋᜅ ᜐᜒᜆ᜔ᜆᜒᜅ᜔ ᜈᜅ᜔ ᜈᜒᜆ᜔ᜏᜓᜇ᜔ᜃ᜔ ᜐ ᜁᜌᜓᜅ᜔ device. ᜋᜀᜀᜇᜒᜅ᜔ ᜁᜆᜓ ᜀᜅ᜔ ᜇᜑᜒᜎ᜔ ᜐ mobile hotspot, ᜁᜊ ᜉᜅ᜔ VPN application, ᜂ virtual machine software. ᜋᜀᜇᜒᜅ᜔ ᜐᜓᜇᜒᜁᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ network configuration ᜂ ᜋᜃᜒᜉᜄ᜔-ᜂᜄ᜔ᜈᜌᜈ᜔ ᜐ support ᜉᜇ ᜐ ᜆᜓᜎᜓᜅ᜔.</value>
+  </data>
+  <data name="Connection_Error_NoServers">
+    <value>ᜑᜒᜈ᜔ᜇᜒ available ᜀᜅ᜔ ᜎᜑᜆ᜔ ᜈᜅ᜔ ᜈᜉᜒᜎᜒ ᜋᜓᜅ᜔ server. ᜉᜃᜒᜎᜏᜃᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜉᜄ᜔ᜉᜒᜎᜒ ᜂ ᜐᜓᜊᜓᜃᜅ᜔ ᜋᜓᜎᜒ ᜋᜋᜌ.</value>
+  </data>
+  <data name="Connection_Error_NoServers_Profile">
+    <value>ᜑᜒᜈ᜔ᜇᜒ available ᜀᜅ᜔ ᜉᜒᜈᜒᜎᜒ ᜋᜓᜅ᜔ server ᜉᜇ ᜐ {0}. ᜉᜓᜋᜒᜎᜒ ᜈᜅ᜔ ᜁᜊᜅ᜔ server ᜂ ᜐᜓᜊᜓᜃᜅ᜔ ᜋᜓᜎᜒ ᜋᜋᜌ.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Connection_Error_NoTapAdapters">
+    <value>ᜈᜏᜏᜎ ᜀᜅ᜔ network adapter.</value>
+  </data>
+  <data name="Connection_Error_ReportAnIssue">
+    <value>ᜋᜄ᜔-ᜂᜎᜆ᜔ ᜈᜅ᜔ ᜁᜐ᜔ᜌᜓ</value>
+  </data>
+  <data name="Connection_Error_RpcServerUnavailable">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜋᜃᜃᜓᜈᜒᜃ᜔ᜆ ᜀᜅ᜔ Proton VPN ᜇᜑᜒᜎ᜔ ᜑᜒᜈ᜔ᜇᜒ available ᜀᜅ᜔ RPC server ᜐ system ᜋᜓ.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedFreeUser">
+    <value>ᜈᜀᜊᜓᜆ᜔ ᜋᜓ ᜈ ᜀᜅ᜔ maximum ᜈ ᜎᜒᜋᜒᜆᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ device ᜋᜓ. ᜋᜅ᜔ᜌᜇᜒᜅ᜔ ᜋᜄ᜔-disconnect ᜈᜅ᜔ ᜁᜊᜅ᜔ device ᜂᜉᜅ᜔ ᜋᜁᜃᜓᜈᜒᜃ᜔ᜆ ᜁᜆᜓ ᜂ ᜋᜄ᜔-upgrade ᜐ Plus ᜂᜉᜅ᜔ ᜋᜃᜃᜓᜈᜒᜃ᜔ᜆ ᜈᜅ᜔ ᜑᜅ᜔ᜄᜅ᜔ 10 device ᜈᜅ᜔ ᜐᜊᜌ᜔-ᜐᜊᜌ᜔.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedPaidUser">
+    <value>ᜈᜀᜊᜓᜆ᜔ ᜋᜓ ᜈ ᜀᜅ᜔ maximum ᜈ ᜎᜒᜋᜒᜆᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ device ᜋᜓ. ᜉᜃᜒ-disconnect ᜀᜅ᜔ ᜁᜊᜅ᜔ device ᜂᜉᜅ᜔ ᜋᜁᜃᜓᜈᜒᜃ᜔ᜆ ᜁᜆᜓ.</value>
+  </data>
+  <data name="Connection_Error_TapAdapterInUse">
+    <value>ᜃᜐᜎᜓᜃᜓᜌᜅ᜔ ᜄᜒᜈᜄᜋᜒᜆ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ network adapter.</value>
+  </data>
+  <data name="Connection_Error_TapRequiresUpdate">
+    <value>ᜎᜓᜋ ᜈ ᜀᜅ᜔ ᜊᜒᜇ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ network adapter.</value>
+  </data>
+  <data name="Connection_Error_Title">
+    <value>ᜈᜊᜒᜄᜓ ᜀᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Connection_Error_TlsCertificate">
+    <value>ᜋᜌ᜔ ᜉ᜔ᜇᜓᜊ᜔ᜎᜒᜋ ᜐ ᜉᜄ᜔-validate ᜈᜅ᜔ certificate ᜈᜅ᜔ VPN server, ᜈ ᜋᜀᜀᜇᜒᜅ᜔ ᜈᜄ᜔ᜉᜉᜑᜒᜏᜆᜒᜄ᜔ ᜈ ᜉᜒᜈᜃᜒᜀᜎᜋ᜔ ᜀᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜐ network ᜂ ᜋᜌ᜔ ᜉ᜔ᜇᜓᜊ᜔ᜎᜒᜋ ᜐ configuration ᜀᜅ᜔ server ᜈ ᜐᜒᜈᜓᜐᜓᜊᜓᜃᜅ᜔ ᜋᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜆᜑᜈ᜔. ᜑᜓᜋᜒᜅᜒ ᜈᜅ᜔ ᜆᜓᜎᜓᜅ᜔ ᜐ ᜀᜋᜒᜅ᜔ customer support ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ ᜉᜄ᜔-ᜉᜉᜇᜎ ᜈᜅ᜔ ᜂᜎᜆ᜔ ᜈᜅ᜔ ᜁᜐ᜔ᜌᜓ.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>ᜂᜉᜅ᜔ ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜐ VPN, ᜉᜓᜋᜓᜈ᜔ᜆ ᜐ 2FA portal ᜈᜅ᜔ ᜁᜌᜓᜅ᜔ ᜂᜇ᜔ᜄᜈᜒᜐᜐ᜔ᜌᜓᜈ᜔ ᜀᜆ᜔ i-tap ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ security key.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>ᜃᜒᜈᜃᜁᜎᜅ᜔ᜈ᜔ ᜀᜅ᜔ two-factor authentication (2FA)</value>
+  </data>
+  <data name="Connection_Error_Unknown">
+    <value>ᜐᜓᜇᜒᜁᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜐ internet ᜀᜆ᜔ ᜐᜓᜊᜓᜃᜅ᜔ ᜋᜓᜎᜒ. ᜃᜓᜅ᜔ ᜑᜒᜈ᜔ᜇᜒ ᜁᜌᜓᜈ᜔ ᜄᜓᜋᜈ, ᜋᜃᜒᜉᜄ᜔-ᜂᜄ᜔ᜈᜌᜈ᜔ ᜐ ᜀᜋᜒᜅ᜔ customer support team.
+
+Error code: {0}</value>
+  </data>
+  <data name="Connection_Error_ViewPossibleSolutions">
+    <value>ᜆᜒᜅ᜔ᜈᜈ᜔ ᜀᜅ᜔ ᜋᜅ ᜉᜄ᜔-ᜀᜀᜌᜓᜐ᜔</value>
+  </data>
+  <data name="Connection_Error_WireGuardAdapterInUse">
+    <value>ᜄᜒᜈᜄᜋᜒᜆ᜔ ᜀᜅ᜔ WireGuard adapter ᜈᜅ᜔ device ᜋᜓ. ᜋᜄ᜔-disconnect ᜋᜓᜎ ᜐ ᜀᜈᜓᜋᜅ᜔ ᜁᜊ ᜉᜅ᜔ VPN ᜈ ᜆᜓᜋᜆᜃ᜔ᜊᜓ ᜐ device ᜋᜓ, ᜉᜄ᜔ᜃᜆᜉᜓᜐ᜔ ᜀᜌ᜔ ᜐᜓᜊᜓᜃᜅ᜔ ᜋᜓᜎᜒ.</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>ᜃᜓᜋᜓᜐ᜔ᜆ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜃ᜔ᜐᜌᜓᜈ᜔?</value>
+  </data>
+  <data name="Connection_Intent_AutoSelected">
+    <value>ᜀᜏ᜔ᜆᜓᜋᜆᜒᜃᜓᜅ᜔ ᜉᜒᜈᜒᜎᜒ ᜋᜓᜎ ᜐ</value>
+    <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
+  </data>
+  <data name="Connection_Via_SecureCore">
+    <value>via {0}</value>
+    <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
+  </data>
+  <data name="Connections_Cities_One">
+    <value>ᜎᜓᜅ᜔ᜐᜓᜇ᜔ ({0})</value>
+  </data>
+  <data name="Connections_Cities_Other">
+    <value>ᜋᜅ ᜎᜓᜅ᜔ᜐᜓᜇ᜔ ({0})</value>
+  </data>
+  <data name="Connections_City">
+    <value>ᜎᜓᜅ᜔ᜐᜓᜇ᜔</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>Available ᜀᜅ᜔ ᜋᜅ server ᜐ ᜎᜓᜅ᜔ᜐᜓᜇ᜔ ᜈ ᜁᜆᜓ ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ VPN Plus</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>ᜀᜅ᜔ ᜎᜑᜆ᜔ ᜈᜅ᜔ server ᜐ ᜎᜓᜅ᜔ᜐᜓᜇ᜔ ᜈ ᜁᜆᜓ ᜀᜌ᜔ ᜐᜓᜋᜐᜁᜎᜎᜒᜋ᜔ ᜐ maintenance</value>
+  </data>
+  <data name="Connections_Countries_One">
+    <value>ᜊᜈ᜔ᜐ ({0})</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>ᜋᜅ ᜊᜈ᜔ᜐ ({0})</value>
+  </data>
+  <data name="Connections_Country">
+    <value>ᜊᜈ᜔ᜐ</value>
+  </data>
+  <data name="Connections_Country_Middle">
+    <value>ᜄᜒᜆ᜔ᜈᜅ᜔ ᜊᜈ᜔ᜐ</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>Available ᜀᜅ᜔ ᜋᜅ server ᜐ ᜊᜈ᜔ᜐᜅ᜔ ᜁᜆᜓ ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ VPN Plus</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>ᜀᜅ᜔ ᜎᜑᜆ᜔ ᜈᜅ᜔ server ᜐ ᜊᜈ᜔ᜐᜅ᜔ ᜁᜆᜓ ᜀᜌ᜔ ᜐᜓᜋᜐᜁᜎᜎᜒᜋ᜔ ᜐ maintenance</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜋᜃᜃᜓᜈᜒᜃ᜔ᜆ</value>
+  </data>
+  <data name="Connections_Fastest">
+    <value>ᜉᜒᜈᜃᜋᜊᜒᜎᜒᜐ᜔</value>
+  </data>
+  <data name="Connections_Free_Servers_One">
+    <value>ᜎᜒᜊ᜔ᜇᜒᜅ᜔ server</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>ᜋᜅ ᜎᜒᜊ᜔ᜇᜒᜅ᜔ server</value>
+  </data>
+  <data name="Connections_Gateway">
+    <value>Gateway</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>Available ᜀᜅ᜔ ᜋᜅ server ᜐ gateway ᜈ ᜁᜆᜓ ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ VPN Plus</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>ᜐᜓᜋᜐᜀᜁᜎᜎᜒᜋ᜔ ᜐ maintenance ᜀᜅ᜔ ᜎᜑᜆ᜔ ᜈᜅ᜔ server ᜐ gateway ᜈ ᜁᜆᜓ</value>
+  </data>
+  <data name="Connections_Gateways_One">
+    <value>gateway ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>ᜋᜄ gateway ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Server">
+    <value>Dedicated server</value>
+  </data>
+  <data name="Connections_Gateways_Servers_One">
+    <value>dedicated server ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>ᜋᜅ dedicated server ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_One">
+    <value>ᜎᜓᜅ᜔ᜐᜓᜇ᜔ ᜈ P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>ᜋᜅ ᜎᜓᜅ᜔ᜐᜓᜇ᜔ ᜈ P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_One">
+    <value>P2P ᜈ ᜊᜈ᜔ᜐ ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>ᜋᜅ P2P ᜈ ᜊᜈ᜔ᜐ ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_One">
+    <value>P2P server</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>ᜋᜅ P2P server</value>
+  </data>
+  <data name="Connections_P2P_States_One">
+    <value>P2P ᜈ ᜁᜐ᜔ᜆᜇᜓ ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>ᜋᜅ P2P ᜈ ᜁᜐ᜔ᜆᜇᜓ ({0})</value>
+  </data>
+  <data name="Connections_Profiles_One">
+    <value>ᜉ᜔ᜇᜓᜉᜌ᜔ᜎ᜔ ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Other">
+    <value>ᜋᜅ ᜉ᜔ᜇᜓᜉᜌ᜔ᜎ᜔ ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Create">
+    <value>ᜄᜓᜋᜏ ᜈᜅ᜔ ᜉ᜔ᜇᜓᜉᜌ᜔ᜎ᜔</value>
+    <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
+  </data>
+  <data name="Connections_Profiles_Delete">
+    <value>ᜊᜓᜇᜑᜒᜈ᜔ ᜀᜅ᜔ ᜉ᜔ᜇᜓᜉᜌ᜔ᜎ᜔</value>
+  </data>
+  <data name="Connections_Profiles_Delete_Message">
+    <value>ᜉᜒᜇ᜔ᜋᜈᜒᜈ᜔ᜆᜒᜅ᜔ ᜀᜀᜎᜒᜐᜒᜈ᜔ ᜀᜅ᜔ '{0}'.</value>
+    <comment>{0} is a placeholder for the name of the profile.</comment>
+  </data>
+  <data name="Connections_Profiles_Delete_Title">
+    <value>ᜊᜓᜇᜑᜒᜈ᜔ ᜀᜅ᜔ ᜉ᜔ᜇᜓᜉᜌ᜔ᜎ᜔?</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Description">
+    <value>ᜀᜅ᜔ ᜋᜅ ᜉ᜔ᜇᜓᜉᜌ᜔ᜎ᜔ ᜀᜌ᜔ ᜋᜅ ᜈᜃ-save ᜋᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈ ᜋᜌ᜔ ᜈᜉᜒᜎᜒᜅ᜔ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔, server ᜀᜆ᜔ protocol.</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Title">
+    <value>ᜄᜓᜋᜏ ᜈᜅ᜔ ᜁᜌᜓᜅ᜔ ᜂᜈᜅ᜔ ᜉ᜔ᜇᜓᜉᜌ᜔ᜎ᜔</value>
+  </data>
+  <data name="Connections_Profiles_Location_Header">
+    <value>ᜉᜒᜎᜒᜁᜈ᜔ ᜀᜅ᜔ ᜂᜇᜒ ᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜀᜆ᜔ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Connections_Profiles_Name">
+    <value>ᜉᜅᜎᜈᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ᜉ᜔ᜇᜓᜉᜌ᜔ᜎ᜔</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default">
+    <value>ᜏᜎᜅ᜔ ᜉᜋᜄᜆ᜔</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate">
+    <value>ᜃᜓᜉ᜔ᜌ ᜈᜅ᜔ {0}</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
+  </data>
+  <data name="Connections_Profiles_New">
+    <value>ᜊᜄᜓᜈ᜔ᜄ᜔ ᜉ᜔ᜇᜓᜉᜌ᜔ᜎ᜔</value>
+    <comment>"New profile" is more appropriate when you already have a profile</comment>
+  </data>
+  <data name="Connections_Profiles_NotAvailable_Tooltip">
+    <value>Available ᜀᜅ᜔ ᜋᜅ ᜉ᜔ᜇᜓᜉᜌ᜔ᜎ᜔ ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ Proton VPN Plus</value>
+    <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
+  </data>
+  <data name="Connections_Recents_One">
+    <value>ᜃᜋᜃᜁᜎᜈ᜔ ({0})</value>
+  </data>
+  <data name="Connections_Recents_Other">
+    <value>ᜋᜅ ᜃᜋᜃᜁᜎᜈ᜔ ({0})</value>
+  </data>
+  <data name="Connections_Recents_Empty_Description">
+    <value>ᜆᜒᜅ᜔ᜈᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ history ᜈᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜇᜒᜆᜓ</value>
+  </data>
+  <data name="Connections_Recents_Empty_Title">
+    <value>ᜏᜎ ᜉᜅ᜔ ᜋᜅ recent</value>
+  </data>
+  <data name="Connections_Recents_Pinned_One">
+    <value>ᜈᜃ-pin ({0})</value>
+  </data>
+  <data name="Connections_Recents_Pinned_Other">
+    <value>ᜋᜅ ᜈᜃ-pin ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_One">
+    <value>ᜊᜈ᜔ᜐᜅ᜔ Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>ᜋᜅ ᜊᜈ᜔ᜐᜅ᜔ Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_One">
+    <value>Secure Core ᜈ server</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>ᜋᜅ Secure Core ᜈ server</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>Available ᜀᜅ᜔ server ᜐ VPN Plus</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>ᜐᜓᜋᜐᜁᜎᜎᜒᜋ᜔ ᜐ maintenance ᜀᜅ᜔ server ᜈ ᜁᜆᜓ</value>
+  </data>
+  <data name="Connections_Servers_One">
+    <value>Server</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>ᜋᜅ Server</value>
+  </data>
+  <data name="Connections_State">
+    <value>ᜁᜐ᜔ᜆᜇᜓ</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Available ᜀᜅ᜔ ᜋᜄ server ᜐ ᜁᜐ᜔ᜆᜇᜓᜅ᜔ ᜁᜆᜓ ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ VPN Plus.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>ᜀᜅ᜔ ᜎᜑᜆ᜔ ᜈᜅ᜔ server ᜐ ᜁᜐ᜔ᜆᜇᜓᜅ᜔ ᜁᜆᜓ ᜀᜌ᜔ ᜐᜓᜋᜐᜁᜎᜎᜒᜋ᜔ ᜐ maintenance.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_One">
+    <value>ᜁᜐ᜔ᜆᜇᜓ ({0})</value>
+  </data>
+  <data name="Connections_States_Other">
+    <value>ᜋᜅ ᜁᜐ᜔ᜆᜇᜓ ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_One">
+    <value>ᜊᜈ᜔ᜐᜅ᜔ Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>ᜋᜅ ᜊᜈ᜔ᜐᜅ᜔ Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_One">
+    <value>Tor server</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>ᜋᜅ Tor server</value>
+  </data>
+  <data name="Countries">
+    <value>ᜋᜅ ᜊᜈ᜔ᜐ</value>
+  </data>
+  <data name="Countries_All">
+    <value>ᜎᜑᜆ᜔</value>
+  </data>
+  <data name="Countries_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Countries_P2P_Description">
+    <value>ᜋᜄ᜔-download ᜈᜅ᜔ ᜋᜅ file ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ ᜋᜅ network ᜈ P2P (peer-to-peer) ᜀᜆ᜔ ᜉᜑᜓᜐᜌᜒᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜃᜇᜈᜐᜈ᜔ ᜐ online gaming ᜀᜆ᜔ video call.</value>
+  </data>
+  <data name="Countries_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>ᜋᜄ᜔ᜇᜄ᜔ᜇᜄ᜔ ᜈᜅ᜔ ᜁᜐ ᜉᜅ᜔ layer ᜈᜅ᜔ encryption ᜐ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN.</value>
+  </data>
+  <data name="Countries_ServerLoad">
+    <value>Load ᜈᜅ᜔ server</value>
+  </data>
+  <data name="Countries_SmartRouting">
+    <value>Smart routing</value>
+  </data>
+  <data name="Countries_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>ᜄᜋᜒᜆᜒᜈ᜔ ᜀᜅ᜔ Tor network ᜐ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN ᜉᜇ ᜐ ᜃᜇᜄ᜔ᜇᜄᜅ᜔ privacy.</value>
+  </data>
+  <data name="Country_Fastest">
+    <value>ᜉᜒᜈᜃᜋᜊᜒᜎᜒᜐ᜔ ᜈ ᜊᜈ᜔ᜐ</value>
+  </data>
+  <data name="Country_Fastest_ExcludingMyCountry">
+    <value>ᜉᜒᜈᜃᜋᜊᜒᜎᜒᜐ᜔ (ᜑᜒᜈ᜔ᜇᜒ ᜃᜐᜋ ᜀᜅ᜔ ᜀᜃᜒᜅ᜔ ᜊᜈ᜔ᜐ)</value>
+  </data>
+  <data name="Country_Random">
+    <value>Random ᜈ ᜊᜈ᜔ᜐ</value>
+  </data>
+  <data name="Country_Random_ExcludingMyCountry">
+    <value>Random (ᜑᜒᜈ᜔ᜇᜒ ᜃᜐᜋ ᜀᜅ᜔ ᜀᜃᜒᜅ᜔ ᜊᜈ᜔ᜐ)</value>
+  </data>
+  <data name="Country_val_AD">
+    <value>Andorra</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE">
+    <value>United Arab Emirates</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF">
+    <value>Afghanistan</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG">
+    <value>Antigua and Barbuda</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI">
+    <value>Anguilla</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL">
+    <value>Albania</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM">
+    <value>Armenia</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO">
+    <value>Angola</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ">
+    <value>Antarctica</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR">
+    <value>Argentina</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS">
+    <value>American Samoa</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT">
+    <value>Austria</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU">
+    <value>Australia</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW">
+    <value>Aruba</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX">
+    <value>Aland Islands</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ">
+    <value>Azerbaijan</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA">
+    <value>Bosnia and Herzegovina</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB">
+    <value>Barbados</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD">
+    <value>Bangladesh</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE">
+    <value>Belgium</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF">
+    <value>Burkina Faso</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG">
+    <value>Bulgaria</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH">
+    <value>Bahrain</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI">
+    <value>Burundi</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ">
+    <value>Benin</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL">
+    <value>Saint Barthélemy</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM">
+    <value>Bermuda</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN">
+    <value>Brunei Darussalam</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO">
+    <value>Bolivia</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ">
+    <value>Bonaire, Sint Eustatius and Saba</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR">
+    <value>Brazil</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS">
+    <value>Bahamas</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT">
+    <value>Bhutan</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV">
+    <value>Bouvet Island</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW">
+    <value>Botswana</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY">
+    <value>Belarus</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ">
+    <value>Belize</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA">
+    <value>Canada</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC">
+    <value>Cocos (Keeling) Islands</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD">
+    <value>Congo (Democratic Republic of the Congo)</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF">
+    <value>Central African Republic</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG">
+    <value>Congo</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH">
+    <value>Switzerland</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI">
+    <value>Côte d'Ivoire</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK">
+    <value>Cook Islands</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL">
+    <value>Chile</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM">
+    <value>Cameroon</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN">
+    <value>China</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO">
+    <value>Colombia</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR">
+    <value>Costa Rica</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU">
+    <value>Cuba</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV">
+    <value>Cape Verde</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW">
+    <value>Curaçao</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX">
+    <value>Christmas Island</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY">
+    <value>Cyprus</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ">
+    <value>Czechia</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE">
+    <value>Germany</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ">
+    <value>Djibouti</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK">
+    <value>Denmark</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM">
+    <value>Dominica</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO">
+    <value>Dominican Republic</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ">
+    <value>Algeria</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC">
+    <value>Ecuador</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE">
+    <value>Estonia</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG">
+    <value>Egypt</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH">
+    <value>Western Sahara</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER">
+    <value>Eritrea</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES">
+    <value>Spain</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET">
+    <value>Ethiopia</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI">
+    <value>Finland</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ">
+    <value>Fiji</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK">
+    <value>Falkland Islands (Malvinas)</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM">
+    <value>Micronesia</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO">
+    <value>Faroe Islands</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR">
+    <value>France</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA">
+    <value>Gabon</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB">
+    <value>United Kingdom</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD">
+    <value>Grenada</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE">
+    <value>Georgia</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF">
+    <value>French Guiana</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG">
+    <value>Guernsey</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH">
+    <value>Ghana</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI">
+    <value>Gibraltar</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL">
+    <value>Greenland</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM">
+    <value>Gambia</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN">
+    <value>Guinea</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP">
+    <value>Guadeloupe</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ">
+    <value>Equatorial Guinea</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR">
+    <value>Greece</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS">
+    <value>South Georgia and the South Sandwich Islands</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT">
+    <value>Guatemala</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU">
+    <value>Guam</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW">
+    <value>Guinea-Bissau</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY">
+    <value>Guyana</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK">
+    <value>Hong Kong</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM">
+    <value>Heard Island and McDonald Islands</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN">
+    <value>Honduras</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR">
+    <value>Croatia</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT">
+    <value>Haiti</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU">
+    <value>Hungary</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID">
+    <value>Indonesia</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE">
+    <value>Ireland</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL">
+    <value>Israel</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM">
+    <value>Isle of Man</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN">
+    <value>India</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO">
+    <value>British Indian Ocean Territory</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ">
+    <value>Iraq</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR">
+    <value>Iran</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS">
+    <value>Iceland</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT">
+    <value>Italy</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE">
+    <value>Jersey</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM">
+    <value>Jamaica</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO">
+    <value>Jordan</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP">
+    <value>Japan</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE">
+    <value>Kenya</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG">
+    <value>Kyrgyzstan</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH">
+    <value>Cambodia</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI">
+    <value>Kiribati</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM">
+    <value>Comoros</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN">
+    <value>Saint Kitts and Nevis</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP">
+    <value>North Korea</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR">
+    <value>South Korea</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW">
+    <value>Kuwait</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY">
+    <value>Cayman Islands</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ">
+    <value>Kazakhstan</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA">
+    <value>Laos</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB">
+    <value>Lebanon</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC">
+    <value>Saint Lucia</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI">
+    <value>Liechtenstein</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK">
+    <value>Sri Lanka</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR">
+    <value>Liberia</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS">
+    <value>Lesotho</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT">
+    <value>Lithuania</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU">
+    <value>Luxembourg</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV">
+    <value>Latvia</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY">
+    <value>Libya</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA">
+    <value>Morocco</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC">
+    <value>Monaco</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD">
+    <value>Moldova</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME">
+    <value>Montenegro</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF">
+    <value>Saint Martin (French part)</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG">
+    <value>Madagascar</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH">
+    <value>Marshall Islands</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK">
+    <value>Macedonia</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML">
+    <value>Mali</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM">
+    <value>Myanmar</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN">
+    <value>Mongolia</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO">
+    <value>Macao</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP">
+    <value>Northern Mariana Islands</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ">
+    <value>Martinique</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR">
+    <value>Mauritania</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS">
+    <value>Montserrat</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT">
+    <value>Malta</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU">
+    <value>Mauritius</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV">
+    <value>Maldives</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW">
+    <value>Malawi</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX">
+    <value>Mexico</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY">
+    <value>Malaysia</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ">
+    <value>Mozambique</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA">
+    <value>Namibia</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC">
+    <value>New Caledonia</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE">
+    <value>Niger</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF">
+    <value>Norfolk Island</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG">
+    <value>Nigeria</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI">
+    <value>Nicaragua</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL">
+    <value>Netherlands</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO">
+    <value>Norway</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP">
+    <value>Nepal</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR">
+    <value>Nauru</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU">
+    <value>Niue</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ">
+    <value>New Zealand</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM">
+    <value>Oman</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA">
+    <value>Panama</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE">
+    <value>Peru</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF">
+    <value>French Polynesia</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG">
+    <value>Papua New Guinea</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH">
+    <value>ᜉᜒᜎᜒᜉᜒᜈᜐ᜔</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK">
+    <value>Pakistan</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL">
+    <value>Poland</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM">
+    <value>Saint Pierre and Miquelon</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN">
+    <value>Pitcairn</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR">
+    <value>Puerto Rico</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS">
+    <value>Palestine</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT">
+    <value>Portugal</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW">
+    <value>Palau</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY">
+    <value>Paraguay</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA">
+    <value>Qatar</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE">
+    <value>Réunion</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO">
+    <value>Romania</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS">
+    <value>Serbia</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU">
+    <value>Russia</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW">
+    <value>Rwanda</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA">
+    <value>Saudi Arabia</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB">
+    <value>Solomon Islands</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC">
+    <value>Seychelles</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD">
+    <value>Sudan</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE">
+    <value>Sweden</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG">
+    <value>Singapore</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH">
+    <value>Saint Helena, Ascension and Tristan da Cunha</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI">
+    <value>Slovenia</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ">
+    <value>Svalbard and Jan Mayen</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK">
+    <value>Slovakia</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL">
+    <value>Sierra Leone</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM">
+    <value>San Marino</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN">
+    <value>Senegal</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO">
+    <value>Somalia</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR">
+    <value>Suriname</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS">
+    <value>South Sudan</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST">
+    <value>Sao Tome and Principe</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV">
+    <value>El Salvador</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX">
+    <value>Sint Maarten (Dutch part)</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY">
+    <value>Syrian Arab Republic</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ">
+    <value>Eswatini</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC">
+    <value>Turks and Caicos Islands</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD">
+    <value>Chad</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF">
+    <value>French Southern Territories</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG">
+    <value>Togo</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH">
+    <value>Thailand</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ">
+    <value>Tajikistan</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK">
+    <value>Tokelau</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL">
+    <value>Timor-Leste</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM">
+    <value>Turkmenistan</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN">
+    <value>Tunisia</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO">
+    <value>Tonga</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR">
+    <value>Türkiye</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT">
+    <value>Trinidad and Tobago</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV">
+    <value>Tuvalu</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW">
+    <value>Taiwan</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ">
+    <value>Tanzania</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA">
+    <value>Ukraine</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG">
+    <value>Uganda</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK">
+    <value>United Kingdom</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM">
+    <value>United States Minor Outlying Islands</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US">
+    <value>United States</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY">
+    <value>Uruguay</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ">
+    <value>Uzbekistan</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA">
+    <value>Vatican City</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC">
+    <value>Saint Vincent and the Grenadines</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE">
+    <value>Venezuela</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG">
+    <value>Virgin Islands, British</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI">
+    <value>Virgin Islands, USA</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN">
+    <value>Vietnam</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU">
+    <value>Vanuatu</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF">
+    <value>Wallis and Futuna</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS">
+    <value>Samoa</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_XK">
+    <value>Kosovo</value>
+    <comment>The name of XK country</comment>
+  </data>
+  <data name="Country_val_YE">
+    <value>Yemen</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT">
+    <value>Mayotte</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA">
+    <value>South Africa</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM">
+    <value>Zambia</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW">
+    <value>Zimbabwe</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜀᜎᜋ᜔</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Description">
+    <value>ᜈᜃ-disable ᜀᜅ᜔ ᜐᜒᜇ᜔ᜊᜒᜐ᜔ᜌᜓᜅ᜔ Base Filtering Engine (BFE) ᜐ ᜁᜌᜓᜅ᜔ Windows device. ᜃᜁᜎᜅᜅ᜔ ᜁ-enable ᜀᜅ᜔ ᜐᜒᜇ᜔ᜊᜒᜐ᜔ᜌᜓᜅ᜔ ᜁᜆᜓ ᜂᜉᜅ᜔ ᜄᜓᜋᜈ ᜈᜅ᜔ ᜋᜀᜌᜓᜐ᜔ ᜀᜅ᜔ Proton VPN.</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable">
+    <value>ᜉᜀᜈᜓ ᜁ-enable ᜀᜅ᜔ Base Filtering Engine</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title">
+    <value>ᜁ-enable ᜀᜅ᜔ Base Filtering Engine ᜂᜉᜅ᜔ ᜋᜄ᜔ᜉᜆᜓᜎᜓᜌ᜔</value>
+  </data>
+  <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
+    <value>ᜋᜄ᜔ᜃᜇᜓᜂᜐᜓᜈ᜔ ᜈᜅ᜔ unlimited server changes ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ VPN Plus.</value>
+  </data>
+  <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
+    <value>ᜈᜀᜊᜓᜆ᜔ ᜋᜓ ᜈ ᜀᜅ᜔ ᜋᜃ᜔ᜐᜒᜋᜓᜋ᜔ (maximum) ᜈ ᜊᜒᜎᜅ᜔ ᜈᜅ᜔ ᜎᜒᜊ᜔ᜇᜒᜅ᜔ ᜉᜄ᜔ᜉᜉᜎᜒᜆ᜔ ᜈᜅ᜔ server ᜐ ᜅᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>ᜋᜄ᜔ᜐᜒᜋᜓᜎ</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>ᜈᜄ᜔-ᜁᜃ᜔ᜐ᜔ᜉᜌᜇ᜔ (expired) ᜈ ᜀᜅ᜔ ᜐᜊ᜔ᜐ᜔ᜃ᜔ᜇᜒᜉ᜔ᜐ᜔ᜌᜓᜈ᜔ (subscription)</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>ᜋᜄ᜔-upgrade ᜂᜉᜅ᜔ ᜋᜄ᜔ᜃᜇᜓᜐᜓᜅ᜔ ᜋᜓᜎᜒ ᜈᜅ᜔ access ᜐ ᜋᜅ server ᜀᜆ᜔ feature ᜈᜅ᜔ Plus.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description">
+    <value>ᜋᜓᜃ᜔ᜑᜅ᜔ ᜈᜃ-disable ᜀᜅ᜔ Proton VPN Service. ᜃᜃᜁᜎᜅᜈᜒᜈ᜔ ᜋᜓᜅ᜔ ᜁ-enable ᜋᜓᜎᜒ ᜀᜅ᜔ ᜐᜒᜇ᜔ᜊᜒᜐ᜔ᜌᜓ ᜂᜉᜅ᜔ ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title">
+    <value>ᜁ-enable ᜀᜅ᜔ Windows Service ᜂᜉᜅ᜔ ᜋᜄ᜔ᜉᜆᜓᜎᜓᜌ᜔</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_One">
+    <value>ᜀᜏ᜔ᜆᜓᜋᜆᜒᜃᜓ ᜃᜅ᜔ ᜁᜃᜒᜈᜓᜃᜓᜈᜒᜃ᜔ᜆ ᜈᜅ᜔ Proton Free ᜐ ᜉᜒᜈᜃᜋᜊᜒᜎᜒᜐ᜔ ᜈ available ᜈ ᜎᜒᜊ᜔ᜇᜒᜅ᜔ server ᜋᜓᜎ ᜐ ᜀᜋᜒᜅ᜔ {0} ᜎᜒᜊ᜔ᜇᜒᜅ᜔ ᜊᜈ᜔ᜐ. ᜃᜇᜈᜒᜏᜅ᜔ ᜁᜆᜓ ᜀᜅ᜔ ᜉᜒᜈᜃᜋᜎᜉᜒᜆ᜔ ᜈ server ᜐ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔ ᜋᜓ.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Other">
+    <value>ᜀᜏ᜔ᜆᜓᜋᜆᜒᜃᜓ ᜃᜅ᜔ ᜁᜃᜒᜈᜓᜃᜓᜈᜒᜃ᜔ᜆ ᜈᜅ᜔ Proton Free ᜐ ᜉᜒᜈᜃᜋᜊᜒᜎᜒᜐ᜔ ᜈ available ᜈ ᜎᜒᜊ᜔ᜇᜒᜅ᜔ server ᜋᜓᜎ ᜐ ᜀᜋᜒᜅ᜔ {0} ᜋᜅ ᜎᜒᜊ᜔ᜇᜒᜅ᜔ ᜊᜈ᜔ᜐ. ᜃᜇᜈᜒᜏᜅ᜔ ᜁᜆᜓ ᜀᜅ᜔ ᜉᜒᜈᜃᜋᜎᜉᜒᜆ᜔ ᜈ ᜐᜒᜇ᜔ᜊᜒᜇ᜔ ᜐ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔ ᜋᜓ.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_One">
+    <value>ᜊᜈ᜔ᜐᜅ᜔ ᜋᜌ᜔ ᜎᜒᜊ᜔ᜇᜒᜅ᜔ server ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Other">
+    <value>ᜋᜅ ᜊᜈ᜔ᜐᜅ᜔ ᜋᜌ᜔ ᜎᜒᜊ᜔ᜇᜒᜅ᜔ server ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Title">
+    <value>ᜋᜅ ᜎᜒᜊ᜔ᜇᜒᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>ᜁᜉᜀᜎᜋ᜔ ᜐ ᜀᜋᜒᜈ᜔ ᜃᜓᜅ᜔ ᜊᜃᜒᜆ᜔ ᜁᜊᜒᜈᜒᜄᜌ᜔ ᜋᜓ ᜀᜅ᜔ rating ᜈ ᜁᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜈᜋᜒᜈ᜔ ᜋᜁᜉᜇᜎ ᜀᜅ᜔ feedback ᜋᜓ. ᜉᜃᜒᜐᜓᜇᜒ ᜀᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜋᜓ ᜀᜆ᜔ ᜐᜓᜊᜓᜃᜅ᜔ ᜋᜓᜎᜒ.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>ᜈᜄ᜔ᜃᜇᜓᜂᜈ᜔ ᜈᜅ᜔ ᜉ᜔ᜇᜓᜊ᜔ᜎᜒᜋ</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>ᜀᜅ᜔ 10 ᜀᜌ᜔ ᜆᜎᜄᜅ᜔ ᜉᜓᜐᜒᜊ᜔ᜎᜒ</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>ᜀᜅ᜔ 0 ᜀᜌ᜔ ᜆᜎᜄᜅ᜔ ᜑᜒᜈ᜔ᜇᜒ ᜉᜓᜐᜒᜊ᜔ᜎᜒ</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>ᜂᜉ᜔ᜐ᜔ᜌᜓᜈᜎ᜔</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>ᜁᜊᜑᜄᜒ ᜈᜅ᜔ anonymous</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>ᜈᜃᜃᜆᜓᜎᜓᜅ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ feedback ᜈ ᜋᜉᜊᜓᜆᜒ ᜈᜋᜒᜈ᜔ ᜀᜅ᜔ Proton VPN.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>ᜐᜎᜋᜆ᜔ ᜐ ᜁᜌᜓᜅ᜔ feedback</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>ᜁᜇᜒᜇᜒᜃᜓᜋᜒᜈ᜔ᜇ ᜋᜓ ᜊ ᜀᜅ᜔ Proton VPN ᜐ ᜁᜐᜅ᜔ ᜃᜁᜊᜒᜄᜈ᜔?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>ᜐᜓᜊᜓᜃᜅ᜔ ᜋᜓᜎᜒ</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description">
+    <value>ᜋᜄ᜔-upgrade ᜂᜉᜅ᜔ ᜋ-unlock ᜀᜅ᜔ ᜋᜅ P2P (peer-to-peer) server ᜉᜇ ᜐ ᜋᜊᜒᜎᜒᜐ᜔ ᜈ online gaming ᜀᜆ᜔ torrenting, ᜂ ᜆᜉᜓᜐᜒᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ P2P activity ᜂᜉᜅ᜔ ᜋᜁᜊᜎᜒᜃ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔.</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Title">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜉᜒᜈᜉᜌᜄᜈ᜔ ᜀᜅ᜔ P2P ᜐ ᜋᜄ ᜎᜒᜊ᜔ᜇᜒᜅ᜔ VPN server</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>ᜆᜓᜃ᜔ᜎᜐᜒᜈ᜔ ᜀᜅ᜔ VPN Plus</value>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email">
+    <value>Email</value>
+    <comment>The label for user e-mail address in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
+    <value>example@domain.com</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
+    <value>ᜁᜉᜇᜎ ᜀᜅ᜔ ᜋᜅ error log</value>
+    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
+    <value>ᜁᜉᜒᜈᜉᜃᜒᜆ ᜅ᜔ ᜋᜅ error log ᜃᜓᜅ᜔ ᜀᜈᜓ ᜀᜅ᜔ ᜈᜅ᜔ᜌᜇᜒ ᜀᜆ᜔ ᜃᜓᜅ᜔ ᜀᜎᜒᜅ᜔ ᜋᜅ ᜀᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜀᜅ᜔ ᜈᜄ᜔ᜇᜓᜎᜓᜆ᜔ ᜅ᜔ ᜁᜐ᜔ᜌᜓ ᜋᜓ. ᜄᜄᜋᜒᜆᜒᜈ᜔ ᜎᜅ᜔ ᜈᜋᜒᜈ᜔ ᜀᜅ᜔ ᜋᜅ ᜁᜆᜓ ᜉᜇ ᜆᜓᜎᜓᜅᜈ᜔ ᜀᜅ᜔ ᜀᜋᜒᜅ᜔ ᜋᜅ engineer ᜈ ᜀᜌᜓᜐᜒᜈ᜔ ᜀᜅ᜔ ᜋᜅ bug.</value>
+    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Header">
+    <value>ᜀᜈᜓ ᜀᜅ᜔ ᜁᜐ᜔ᜌᜓ?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_NoLogsWarning">
+    <value>ᜈᜃᜃᜆᜓᜎᜓᜅ᜔ ᜀᜅ᜔ ᜋᜅ error log ᜂᜉᜅ᜔ ᜋᜎᜋᜈ᜔ ᜈᜋᜒᜈ᜔ ᜀᜅ᜔ ᜉᜒᜈᜄ᜔ᜋᜓᜎᜈ᜔ ᜅ᜔ ᜁᜐ᜔ᜌᜓ ᜋᜓ. ᜃᜓᜅ᜔ ᜑᜒᜈ᜔ᜇᜒ ᜋᜓ ᜁᜐᜐᜋ ᜀᜅ᜔ ᜋᜅ ᜁᜆᜓ, ᜋᜀᜀᜇᜒᜅ᜔ ᜑᜒᜈ᜔ᜇᜒ ᜃᜋᜒ ᜎᜓᜊᜓᜐ᜔ ᜈ ᜋᜃᜉᜄ᜔-ᜁᜋ᜔ᜊᜒᜐ᜔ᜆᜒᜄ.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes">
+    <value>ᜋᜊᜒᜊᜒᜎᜒᜐ᜔ ᜈ ᜐᜓᜎᜓᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Footer">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜄᜓᜋᜈ?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Header">
+    <value>ᜋᜀᜀᜇᜒᜅ᜔ ᜋᜃᜆᜓᜎᜓᜅ᜔ ᜀᜅ᜔ ᜋᜅ ᜆᜒᜉ᜔ ᜈ ᜁᜆᜓ ᜂᜉᜅ᜔ ᜋᜐ᜔ ᜋᜊᜒᜎᜒᜐ᜔ ᜈ ᜋᜐᜓᜎᜓᜐ᜔ᜌᜓᜈᜈ᜔ ᜀᜅ᜔ ᜁᜐ᜔ᜌᜓ ᜋᜓ.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_DoneAction">
+    <value>ᜆᜉᜓᜐ᜔ ᜈ</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail">
+    <value>ᜈᜄ᜔ᜃᜇᜓᜂᜈ᜔ ᜅ᜔ ᜉ᜔ᜇᜓᜊ᜔ᜎᜒᜋ</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail_Description">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜈᜋᜒᜈ᜔ ᜋᜁᜉᜇᜎ ᜀᜅ᜔ ᜇᜒᜉᜓᜇ᜔ᜆ᜔ ᜋᜓ. ᜉᜃᜒᜐᜓᜇᜒ ᜀᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜋᜓ ᜀᜆ᜔ ᜐᜓᜊᜓᜃᜅ᜔ ᜋᜓᜎᜒ.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success">
+    <value>ᜁᜉᜒᜈᜇᜎ ᜀᜅ᜔ ᜇᜒᜉᜓᜇ᜔ᜆ᜔</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success_Description">
+    <value>ᜐᜎᜋᜆ᜔ ᜐ ᜁᜌᜓᜅ᜔ feedback. ᜊᜊᜎᜒᜃᜈ᜔ ᜃ ᜈᜋᜒᜈ᜔ ᜐ ᜎᜎᜓᜅ᜔ ᜋᜇᜎᜒᜅ᜔ ᜉᜈᜑᜓᜈ᜔.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_SendReport">
+    <value>ᜋᜄ᜔ᜉᜇᜎ ᜈᜅ᜔ ᜇᜒᜉᜓᜇ᜔ᜆ᜔</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Steps">
+    <value>ᜑᜃ᜔ᜊᜅ᜔ {0} ᜈᜅ᜔ {1}</value>
+    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Title">
+    <value>ᜋᜄ᜔-ᜂᜎᜆ᜔ ᜈᜅ᜔ ᜁᜐ᜔ᜌᜓ</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>ᜆᜓᜃ᜔ᜎᜐᜒᜈ᜔ ᜀᜅ᜔ VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>ᜊᜒᜈᜒᜊᜒᜄ᜔ᜌᜅ᜔-ᜇᜀᜈ᜔ ᜈᜅ᜔ ᜋᜄ server ᜈᜅ᜔ VPN Plus ᜈ ᜋ-enjoy ᜋᜓ ᜀᜅ᜔ ᜋᜅ ᜉᜊᜓᜇᜒᜆᜓ ᜋᜓᜅ᜔ ᜉᜒᜎᜒᜃᜓᜎ ᜀᜆ᜔ ᜉᜎᜊᜐ᜔ ᜐ TV ᜋᜓᜎ ᜐ ᜊᜓᜂᜅ᜔ ᜋᜓᜈ᜔ᜇᜓ.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>ᜋᜄ᜔-upgrade ᜂᜉᜅ᜔ ᜁ-bypass ᜀᜅ᜔ ᜋᜅ VPN block</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>ᜋᜋᜌ ᜈ ᜎᜅ᜔</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description">
+    <value>ᜋᜓᜃ᜔ᜑᜅ᜔ ᜄᜓᜋᜄᜋᜒᜆ᜔ ᜈᜅ᜔ proxy server ᜀᜅ᜔ device ᜋᜓ. ᜊᜃ ᜋᜃᜐᜄᜊᜎ᜔ ᜁᜆᜓ ᜐ ᜁᜌᜓᜅ᜔ ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN.</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Title">
+    <value>ᜋᜌ᜔ ᜈ-detect ᜈproxy server</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>ᜁ-off ᜀᜅ᜔ antivirus ᜂ firewall software</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>ᜊᜃ ᜋᜃᜐᜄᜊᜎ᜔ ᜀᜅ᜔ ᜋᜅ ᜉ᜔ᜇᜓᜄ᜔ᜇᜋᜅ᜔ ᜁᜆᜓ ᜐ ᜋᜅ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>ᜐᜓᜇᜒᜁᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜐ ᜁᜈ᜔ᜆᜒᜇ᜔ᜈᜒᜆ᜔</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>ᜐᜒᜂᜇᜇᜓᜑᜒᜅ᜔ online ᜃ ᜀᜆ᜔ stable ᜀᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜋᜓ.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>ᜊᜃ ᜋᜃᜆᜓᜎᜓᜅ᜔ ᜀᜅ᜔ ᜋᜊᜒᜊᜒᜎᜒᜐ᜔ ᜈ ᜐᜓᜎᜓᜐ᜔ᜌᜓᜅ᜔ ᜁᜆᜓ ᜂᜉᜅ᜔ ᜋᜃᜃᜓᜈᜒᜃ᜔ᜆ ᜃ ᜐ Proton.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>ᜄᜓᜋᜋᜒᜆ᜔ ᜅ᜔ ᜁᜊᜅ᜔ ᜈᜒᜆ᜔ᜏᜓᜇ᜔ᜃ᜔</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>ᜐᜓᜊᜓᜃᜅ᜔ ᜋᜄ᜔ᜉᜎᜒᜆ᜔ ᜈᜅ᜔ ᜋᜅ Wi-Fi network ᜂ ᜄᜓᜋᜋᜒᜆ᜔ ᜈ ᜎᜅ᜔ ᜈᜅ᜔ mobile data.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>ᜆᜒᜅ᜔ᜈᜈ᜔ ᜀᜅ᜔ ᜀᜋᜒᜅ᜔ ᜉᜑᜒᜈ ᜈᜅ᜔ ᜐ᜔ᜆᜆᜓᜐ᜔</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>Pᜉᜇ ᜎᜅ᜔ ᜋᜆᜒᜌᜃ᜔ ᜈ ᜆᜓᜋᜆᜃ᜔ᜊᜓ ᜈᜅ᜔ ᜈᜓᜇ᜔ᜋᜎ᜔ ᜀᜅ᜔ ᜋᜅ ᜐᜒᜇ᜔ᜊᜒᜐ᜔ᜌᜓ ᜈᜅ᜔ Proton</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>ᜆᜓᜎᜓᜅ᜔ ᜐ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
+    <value>ᜁᜇᜒ-disconnect ᜃ ᜈᜒᜆᜓ ᜋᜓᜎ ᜐ VPN. ᜀᜅ᜔ ᜀᜈᜓᜋᜅ᜔ ᜀᜃ᜔ᜆᜒᜊᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜐ ᜁᜈ᜔ᜆᜒᜇ᜔ᜈᜒᜆ᜔ ᜀᜌ᜔ ᜉᜈ᜔ᜐᜋᜈ᜔ᜆᜎᜅ᜔ ᜋᜏᜏᜎᜈ᜔ ᜅ᜔ ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
+    <value>ᜁᜇᜒ-disconnect ᜃ ᜈᜒᜆᜓ ᜋᜓᜎ ᜐ VPN ᜀᜆ᜔ ᜉᜈ᜔ᜐᜋᜈ᜔ᜆᜎᜅ᜔ ᜁᜇᜒ-disable ᜀᜅ᜔ kill switch. ᜀᜅ᜔ ᜀᜈᜓᜋᜅ᜔ ᜀᜃ᜔ᜆᜒᜊᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜐ ᜁᜈ᜔ᜆᜒᜇ᜔ᜈᜒᜆ᜔ ᜀᜌ᜔ ᜉᜈ᜔ᜐᜋᜈ᜔ᜆᜎᜅ᜔ ᜋᜏᜏᜎᜈ᜔ ᜈᜅ᜔ ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install">
+    <value>ᜁ-install ᜀᜅ᜔ update?</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart">
+    <value>ᜁ-ᜇᜒᜐ᜔ᜆᜇ᜔ᜆ᜔ ᜀᜅ᜔ Proton VPN ᜂᜉᜅ᜔ ᜃᜓᜋ᜔ᜉ᜔ᜎᜒᜆᜓᜑᜒᜈ᜔ ᜀᜅ᜔ update</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Description">
+    <value>ᜋᜓᜃ᜔ᜑᜅ᜔ ᜑᜒᜈ᜔ᜇᜒ ᜈᜃ-sync ᜀᜅ᜔ system clock ᜋᜓ. ᜋᜀᜀᜇᜒ ᜁᜆᜓᜅ᜔ ᜋᜄ᜔ᜇᜓᜎᜓᜆ᜔ ᜅ᜔ ᜋ᜔ᜄ ᜁᜐ᜔ᜌᜓ ᜃᜉᜄ᜔ ᜃᜓᜋᜓᜃᜓᜈᜒᜃ᜔ᜆ ᜐ VPN.</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_PrimaryButton">
+    <value>ᜉᜀᜈᜓ ᜁ-update ᜀᜅ᜔ system clock</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Title">
+    <value>ᜁ-update ᜀᜅ᜔ system clock</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>ᜐᜒᜋ᜔ᜉ᜔ᜎᜒ. ᜆᜓᜎᜓᜌ᜔-ᜆᜓᜎᜓᜌ᜔. ᜎᜒᜄ᜔ᜆᜐ᜔. ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜑᜈ᜔ ᜀᜅ᜔ ᜐᜇᜒᜎᜒ online ᜀᜆ᜔ ᜎᜒᜄ᜔ᜆᜐ᜔ ᜈ ᜁ-access ᜀᜅ᜔ ᜋᜅ site, software ᜀᜆ᜔ file ᜈᜅ᜔ ᜁᜌᜓᜅ᜔ ᜂᜇ᜔ᜄᜈᜒᜐᜐ᜔ᜌᜓᜈ᜔.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Welcome ᜐ Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>ᜋᜄ᜔-browse ᜈᜅ᜔ ᜉ᜔ᜇᜒᜊᜇᜓ, ᜁ-access ᜀᜅ᜔ ᜈᜃ-block ᜈ content ᜀᜆ᜔ ᜁ-enjoy ᜀᜅ᜔ digital freedom ᜈᜅ᜔ ᜏᜎᜅ᜔ ᜎᜒᜋᜒᜆᜐ᜔ᜌᜓᜈ᜔ ᜐ ᜇᜆ ᜂ ᜊᜒᜎᜒᜐ᜔.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>VPN ᜈ ᜐᜒᜇ᜔ᜆᜒᜉᜒᜃᜇᜓᜅ᜔ ᜏᜎᜅ᜔ logs</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>ᜉᜒᜈᜓᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜑᜈ᜔ ᜈᜅ᜔ ᜋᜅ ᜊᜆᜐ᜔ ᜐ privacy ᜈᜅ᜔ Switzerland ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜀᜃ᜔ᜆᜒᜊᜒᜇᜇ᜔. ᜑᜒᜈ᜔ᜇᜒᜅ᜔-ᜑᜒᜈ᜔ᜇᜒ ᜃ ᜈᜋᜒᜈ᜔ ᜁᜆ-track online ᜂ ᜁᜊᜊᜑᜄᜒ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜁᜋ᜔ᜉᜓᜇ᜔ᜋᜐ᜔ᜌᜓᜈ᜔ ᜐ ᜋᜅ third party.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>ᜋᜄ᜔-browse ᜈᜅ᜔ ᜋᜎᜌ ᜋᜓᜎ ᜃᜑᜒᜆ᜔ ᜐᜀᜈ᜔</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
+    <value>ᜁᜆᜄᜓ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ virtual ᜈ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔ ᜀᜆ᜔ ᜋᜇᜈᜐᜈ᜔ ᜀᜅ᜔ ᜁᜈ᜔ᜆᜒᜇ᜔ᜈᜒᜆ᜔ ᜋᜓᜎ ᜐ ᜀᜎᜒᜈ᜔ᜋᜈ᜔ ᜐ ᜀᜋᜒᜅ᜔ {0} available ᜈ ᜊᜈ᜔ᜐ.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>ᜁᜆᜄᜓ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ virtual ᜈ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔ ᜀᜆ᜔ ᜋᜇᜈᜐᜈ᜔ ᜀᜅ᜔ ᜁᜈ᜔ᜆᜒᜇ᜔ᜈᜒᜆ᜔ ᜋᜓᜎ ᜐ ᜀᜎᜒᜈ᜔ᜋᜈ᜔ ᜐ ᜀᜋᜒᜅ᜔ {0} ᜋᜅ available ᜈ ᜊᜈ᜔ᜐ.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜑᜈ᜔ ᜀᜅ᜔ 10 devices ᜈᜅ᜔ ᜐᜊᜌ᜔-ᜐᜊᜌ᜔</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>ᜉᜎᜏᜃᜒᜈ᜔ ᜀᜅ᜔ ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN ᜐ ᜌᜓᜅ᜔ desktop, mobile, browser, TV, ᜀᜆ᜔ ᜋᜇᜋᜒ ᜉ.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>ᜋᜄ᜔-stream ᜐ high resolution</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>ᜋᜈᜓᜂᜇ᜔ ᜈᜅ᜔ ᜋᜅ ᜉᜒᜎᜒᜃᜓᜎ ᜀᜆ᜔ ᜉᜎᜊᜐ᜔ ᜐ TV ᜋᜓᜎ ᜐ ᜊᜓᜂᜅ᜔ ᜋᜓᜈ᜔ᜇᜓ ᜈᜅ᜔ ᜑᜒᜈ᜔ᜇᜒ ᜈᜃᜓᜃᜓᜋ᜔ᜉ᜔ᜇᜓᜋᜒᜐᜓ ᜀᜅ᜔ ᜊᜒᜎᜒᜐ᜔ ᜂ ᜃᜎᜒᜇᜇ᜔.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>Welcome ᜐ VPN Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description">
+    <value>ᜈ-unlock ᜋᜓ ᜈ ᜀᜅ᜔ ᜎᜑᜆ᜔ ᜈᜅ᜔ premium ᜈ feature ᜈᜅ᜔ Proton VPN, Mail, Calendar, Drive, ᜀᜆ᜔ Pass.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>ᜋᜎᜒᜄᜌᜅ᜔ ᜉᜄ᜔ᜇᜆᜒᜅ᜔ ᜐ {0}</value>
+    <comment>Title to welcome the user after an account upgrade. {0} is a placeholder for the name of the new plan (eg. Proton Unlimited, Proton Duo, Proton Family).</comment>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>ᜋᜀᜀᜇᜒ ᜃ ᜈ ᜅᜌᜓᜅ᜔ ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜐ ᜋᜅ ᜉ᜔printer, speaker, ᜀᜆ᜔ ᜁᜊ ᜉᜅ᜔ devices ᜐ ᜁᜌᜓᜅ᜔ local network (LAN) ᜈᜅ᜔ ᜊᜒᜈ-bypass ᜀᜅ᜔ VPN tunnel.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>ᜋᜅ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ LAN</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>ᜃᜉᜄ᜔ ᜈᜃ-enable ᜀᜅ᜔ port forwarding, ᜋᜃᜒᜃᜒᜆ ᜋᜓ ᜈ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ active port number ᜐ home screen.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>ᜀᜃ᜔ᜆᜒᜊᜓᜅ᜔ port number</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>ᜆᜒᜅ᜔ᜈᜈ᜔</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>ᜀᜈᜓ ᜀᜅ᜔ ᜊᜄᜓ</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>ᜋᜀᜀᜇᜒ ᜃ ᜈ ᜅᜌᜓᜅ᜔ ᜃᜓᜋᜓᜈ᜔ᜒᜃ᜔ᜆ, ᜋᜄ᜔-disconnect, ᜀᜆ᜔ ᜋᜄ᜔ᜉᜎᜒᜆ᜔ ᜈᜅ᜔ ᜁᜌᜓᜅ᜔ default ᜈ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜋᜓᜎ ᜐ system tray.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>ᜊᜄᜓᜅ᜔ system tray app</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations">
+    <value>ᜁ-exclude ᜈ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
+    <value>ᜃᜓᜅ᜔ ᜋᜌ᜔ ᜋᜅ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔ ᜈ ᜑᜒᜈ᜔ᜇᜒ ᜋᜓ ᜄᜓᜐ᜔ᜆᜓᜅ᜔ ᜀᜏ᜔ᜆᜓᜋᜆᜒᜃᜓᜅ᜔ ᜋᜃᜓᜈᜒᜃ᜔ᜆ, ᜋᜀᜀᜇᜒ ᜋᜓ ᜐᜒᜎᜅ᜔ ᜀᜎᜒᜐᜒᜈ᜔ ᜋᜓᜎ ᜐ Fastest ᜀᜆ᜔ Random ᜈ ᜊᜈ᜔ᜐ.</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
+    <value>ᜎᜃ᜔ᜆᜏᜈ᜔</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜀᜅ᜔ ᜊᜈ᜔ᜐᜅ᜔ ᜄᜓᜐ᜔ᜆᜓ ᜋᜓ?</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_ActionButton">
+    <value>ᜁ-exclude ᜈ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_CloseButton">
+    <value>ᜐᜒᜄᜓᜇᜓ ᜐ ᜁᜊᜅ᜔ ᜉᜄ᜔ᜃᜃᜆᜓᜈ᜔</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_Subtitle">
+    <value>ᜋᜀᜀᜇᜒ ᜋᜓ ᜈᜅ᜔ ᜁ-exclude ᜀᜅ᜔ ᜋᜅ ᜊᜈ᜔ᜐ ᜂ ᜎᜓᜅ᜔ᜐᜓᜇ᜔ ᜋᜓᜎ ᜐ Fastest ᜀᜆ᜔ Random ᜈ ᜋᜅ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔.</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_Title">
+    <value>ᜁᜏᜐᜈ᜔ ᜀᜅ᜔ ᜋᜅ ᜑᜒᜈ᜔ᜇᜒ ᜈᜁᜐ᜔ ᜈ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>ᜎᜓᜋᜊᜐ᜔ ᜈᜅ᜔ Proton VPN?</value>
+  </data>
+  <data name="Exit_Message">
+    <value>ᜇᜓᜋᜒ-disconnect ᜋᜓᜎ ᜐ VPN...</value>
+  </data>
+  <data name="Exit_Title">
+    <value>ᜎᜓᜋᜊᜐ᜔ ᜈᜅ᜔ Proton VPN</value>
+  </data>
+  <data name="Flyouts_Country_Description1">
+    <value>ᜃᜉᜄ᜔ ᜈᜄ᜔-browse ᜈᜅ᜔ ᜏᜎᜅ᜔ VPN, ᜋᜄᜒᜄᜒᜅ᜔ vulnerable ᜃ ᜐ ᜋᜅ restriction ᜐ internet ᜈ ᜈᜃᜊᜆᜌ᜔ ᜐ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔.</value>
+  </data>
+  <data name="Flyouts_Country_Description2">
+    <value>ᜋᜀᜀᜇᜒᜅ᜔ ᜄᜓᜋᜓᜋᜒᜆ᜔ ᜀᜅ᜔ ᜋᜅ website ᜈᜅ᜔ ᜋᜅ geoblock ᜂᜉᜅ᜔ ᜁ-restrict ᜀᜅ᜔ content ᜐ ᜁᜎᜅ᜔ ᜉᜇ᜔ᜆᜒᜃᜓᜎᜇ᜔ ᜈ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔. ᜋᜀᜀᜇᜒ ᜇᜒᜅ᜔ ᜂᜆᜓᜐᜈ᜔ ᜈᜅ᜔ ᜋᜅ ᜄᜓᜊ᜔ᜌᜒᜇ᜔ᜈᜓ ᜀᜅ᜔ ᜋᜅ ISP (Internet Service Provider) ᜈ ᜁ-block ᜀᜅ᜔ ᜁᜎᜅ᜔ ᜉᜇ᜔ᜆᜒᜃᜓᜎᜇ᜔ ᜈ website ᜐ ᜃᜈᜒᜎᜅ᜔ ᜊᜈ᜔ᜐ.</value>
+  </data>
+  <data name="Flyouts_Country_Description3">
+    <value>ᜄᜒᜈᜄᜏ ᜈᜅ᜔ VPN ᜈ ᜉᜇᜅ᜔ ᜈᜄ᜔ᜊ-browse ᜃ ᜋᜓᜎ ᜐ ᜁᜊᜅ᜔ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔, ᜈ ᜈᜄ᜔ᜉᜓᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆ ᜐ ᜁᜌᜓ ᜋᜓᜎ ᜐ surveillance ᜀᜆ᜔ censorship.</value>
+  </data>
+  <data name="Flyouts_Country_Title">
+    <value>ᜊᜈ᜔ᜐ</value>
+  </data>
+  <data name="Flyouts_Country_Warning">
+    <value>ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜐ VPN ᜂᜉᜅ᜔ ᜊᜄᜓᜑᜒᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ virtual ᜈ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Connected">
+    <value>ᜁᜆᜒᜈᜆᜄᜓ ᜈᜅ᜔ VPN IP ᜀᜅ᜔ ᜆᜓᜆᜓᜂ ᜋᜓᜅ᜔ IP address. ᜇᜑᜒᜎ᜔ ᜇᜒᜆᜓ, ᜈᜄ᜔ᜋᜓᜋᜓᜃ᜔ᜑᜅ᜔ ᜈᜄ᜔ᜊ-browse ᜃ ᜋᜓᜎ ᜐ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN, ᜃᜌ ᜑᜒᜈ᜔ᜇᜒ ᜋᜁᜂᜂᜄ᜔ᜈᜌ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ online ᜈ ᜀᜃ᜔ᜆᜒᜊᜒᜇᜇ᜔ ᜐ device ᜋᜓ.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected1">
+    <value>ᜋᜀᜀᜇᜒᜅ᜔ ᜄᜋᜒᜆᜒᜈ᜔ ᜈᜅ᜔ ᜋᜅ website ᜀᜆ᜔ ISP (Internet Service Provider) ᜀᜅ᜔ unique code ᜈ ᜁᜆᜓ ᜂᜉᜅ᜔ ᜁᜂᜄ᜔ᜈᜌ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔ ᜀᜆ᜔ history ᜈᜅ᜔ ᜉᜄ᜔-browse ᜐ ᜁᜌᜓᜅ᜔ device.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2">
+    <value>ᜁᜆᜒᜈᜆᜄᜓ ᜈᜅ᜔ VPN ᜀᜅ᜔ ᜆᜓᜆᜓᜂ ᜋᜓᜅ᜔ IP address, ᜃᜌ ᜋᜐ᜔ ᜋᜑᜒᜇᜉ᜔ ᜈ ᜁ-trace ᜉᜊᜎᜒᜃ᜔ ᜐ ᜁᜌᜓ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜀᜃ᜔ᜆᜒᜊᜒᜇᜇ᜔.</value>
+  </data>
+  <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
+    <value>ᜀᜈᜓ ᜀᜅ᜔ IP address?</value>
+  </data>
+  <data name="Flyouts_IpAddress_Title">
+    <value>IP address</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIp">
+    <value>VPN IP</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv6</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIp">
+    <value>IP ᜋᜓ</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIpIsVisible">
+    <value>ᜈᜃᜒᜃᜒᜆ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ IP address</value>
+  </data>
+  <data name="Flyouts_Isp_Description1">
+    <value>ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ISP (Internet Service Provider) ᜀᜌ᜔ ᜀᜅ᜔ ᜃᜓᜋ᜔ᜉᜈ᜔ᜌᜅ᜔ ᜈᜄ᜔ᜃᜓᜃᜓᜈᜒᜃ᜔ᜆ ᜐ ᜁᜌᜓ ᜐ internet.</value>
+  </data>
+  <data name="Flyouts_Isp_Description2">
+    <value>ᜋᜀᜀᜇᜒ ᜈᜒᜎᜅ᜔ ᜁ-log ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ online ᜈ ᜀᜃ᜔ᜆᜒᜊᜒᜇᜇ᜔. ᜐ ᜁᜎᜅ᜔ ᜊᜈ᜔ᜐ, ᜋᜀᜀᜇᜒ ᜈᜒᜎᜅ᜔ ᜁᜊᜒᜈ᜔ᜆ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ data ᜐ ᜋᜅ advertiser. ᜐ ᜁᜊ ᜈᜋᜈ᜔, ᜋᜀᜀᜇᜒ ᜐᜒᜎᜅ᜔ ᜀᜆᜐᜈ᜔ ᜈ ᜁᜊᜒᜄᜌ᜔ ᜁᜆᜓ ᜐ ᜄᜓᜊ᜔ᜌᜒᜇ᜔ᜈᜓ.</value>
+  </data>
+  <data name="Flyouts_Isp_Description3">
+    <value>ᜁᜆᜒᜈᜆᜄᜓ ᜈᜅ᜔ VPN ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ IP address, ᜈ ᜈᜄ᜔ᜉᜓᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆ ᜐ ᜁᜌᜓ ᜋᜓᜎ ᜐ ISP interference.</value>
+  </data>
+  <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
+    <value>ᜀᜈᜓ ᜀᜅ᜔ Internet Service Provider (ISP)?</value>
+  </data>
+  <data name="Flyouts_Isp_Title">
+    <value>Provider</value>
+  </data>
+  <data name="Flyouts_Isp_Warning">
+    <value>ᜈᜃᜒᜃᜒᜆ ᜈᜅ᜔ ᜁᜌᜓᜅ᜔ provider ᜃᜓᜅ᜔ ᜀᜎᜒᜅ᜔ ᜋᜅ website ᜀᜅ᜔ ᜊᜒᜈᜒᜊᜒᜐᜒᜆ ᜋᜓ</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success">
+    <value>ᜊᜒᜈ-block ᜀᜅ᜔ ᜎᜑᜆ᜔ ᜈᜅ᜔ access ᜐ internet ᜃᜉᜄ᜔ ᜑᜒᜈ᜔ᜇᜒ ᜃ ᜈᜃᜃᜓᜈᜒᜃ᜔ᜆ ᜐ Proton VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info">
+    <value>ᜋᜀᜀᜇᜒᜅ᜔ ᜋ-expose ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ IP address ᜃᜓᜅ᜔ ᜋᜉᜓᜆᜓᜎ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>ᜁᜇᜒ-disable ᜈᜅ᜔ advanced kill switch ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ internet ᜂᜉᜅ᜔ ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜑᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ IP address ᜑᜊᜅ᜔ ᜑᜒᜈ᜔ᜇᜒ ᜃ ᜈᜃᜃᜓᜈᜒᜃ᜔ᜆ ᜐ Proton VPN.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success">
+    <value>ᜃᜓᜅ᜔ ᜋᜉᜓᜆᜓᜎ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜐ VPN, ᜋᜇᜒ-disconnect ᜃ ᜋᜓᜎ ᜐ internet ᜑᜅ᜔ᜄᜅ᜔ ᜐ ᜋᜁᜊᜎᜒᜃ᜔ ᜀᜅ᜔ VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected">
+    <value>ᜄᜓᜋᜄᜈ ᜉ ᜇᜒᜈ᜔ ᜀᜅ᜔ advanced kill switch ᜃᜑᜒᜆ᜔ ᜐᜇ᜔ᜌᜅ᜔ ᜋᜄ᜔-disconnect ᜃ ᜐ VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected">
+    <value>ᜂᜉᜅ᜔ ᜋᜃᜊᜎᜒᜃ᜔ online, ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜐ VPN ᜂ ᜁ-disable ᜀᜅ᜔ advanced kill switch</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackersAdultContent_Success">
+    <value>ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜇᜓ ᜃ ᜋᜓᜎ ᜐ ᜋᜅ ad, tracker, malware, ᜀᜆ᜔ ᜉᜓᜇ᜔ᜈᜓᜄ᜔ᜇᜉᜒᜌ.</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
+    <value>ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜇᜓ ᜃ ᜋᜓᜎ ᜐ ᜋᜅ ad, tracker, ᜀᜆ᜔ malware.</value>
+  </data>
+  <data name="Flyouts_NetShield_Info">
+    <value>ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜑᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜉᜄ᜔-browse ᜐ ᜋᜅ website ᜀᜆ᜔ app.</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success">
+    <value>ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜇᜓ ᜃ ᜋᜓᜎ ᜐ malware ᜎᜋᜅ᜔.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description">
+    <value>ᜁ-block ᜀᜅ᜔ ᜋᜅ ad, tracker, malware, ᜀᜆ᜔ ᜉᜓᜇ᜔ᜈᜓᜄ᜔ᜇᜉᜒᜌ ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ VPN Plus.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title">
+    <value>ᜁ-enjoy ᜀᜅ᜔ ᜉᜄ᜔-browse ᜈᜅ᜔ ᜏᜎᜅ᜔ ads</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort">
+    <value>ᜀᜃ᜔ᜆᜒᜊᜓᜅ᜔ port number</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜋᜃᜓᜑ ᜀᜅ᜔ active port number. ᜁ-restart ᜀᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜋᜓ ᜀᜆ᜔ ᜐᜓᜊᜓᜃᜅ᜔ ᜋᜓᜎᜒ.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info">
+    <value>ᜁᜎᜄᜌ᜔ ᜀᜅ᜔ active port number ᜐ ᜁᜌᜓᜅ᜔ torrent client ᜂ P2P app ᜉᜇ ᜐ ᜉᜒᜈᜑᜓᜐᜌ᜔ ᜈ performance.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info">
+    <value>ᜉᜒᜈᜉᜑᜓᜐᜌ᜔ ᜀᜅ᜔ ᜊᜒᜎᜒᜐ᜔ ᜈᜅ᜔ peer-to-peer download</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description">
+    <value>ᜉᜑᜓᜐᜌᜒᜈ᜔ ᜀᜅ᜔ performance ᜈᜅ᜔ peer-to-peer (P2P) file sharing ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ VPN Plus.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title">
+    <value>ᜉᜑᜓᜐᜌᜒᜈ᜔ ᜀᜅ᜔ ᜊᜒᜎᜒᜐ᜔ ᜈᜅ᜔ P2P</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning">
+    <value>ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜐ P2P server ᜂᜉᜅ᜔ ᜋᜉᜑᜓᜐᜌ᜔ ᜀᜅ᜔ ᜊᜒᜎᜒᜐ᜔ ᜈᜅ᜔ torrenting</value>
+  </data>
+  <data name="Flyouts_Protocol_Description">
+    <value>ᜆᜒᜈᜓᜆᜓᜃᜓᜌ᜔ ᜈᜅ᜔ VPN protocol ᜃᜓᜅ᜔ ᜉᜀᜈᜓ ᜁᜈᜒ-encrypt ᜀᜆ᜔ ᜁᜉᜒᜈᜉᜇᜎ ᜀᜅ᜔ traffic ᜐ VPN.</value>
+  </data>
+  <data name="Flyouts_Protocol_KnowledgeBaseLinkTitle">
+    <value>ᜀᜎᜒᜅ᜔ VPN protocol ᜀᜅ᜔ ᜉᜒᜈᜃᜋᜑᜓᜐᜌ᜔?</value>
+  </data>
+  <data name="Flyouts_Protocol_Title">
+    <value>Protocol</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Description">
+    <value>ᜁᜉᜒᜈᜉᜃᜒᜆ ᜈᜅ᜔ load ᜈᜅ᜔ server ᜃᜓᜅ᜔ ᜄᜀᜈᜓ ᜃᜎᜉᜒᜆ᜔ ᜀᜅ᜔ ᜁᜐᜅ᜔ server ᜐ maximum ᜈ ᜃᜉᜐᜒᜇᜇ᜔ ᜈᜒᜆᜓ. ᜋᜀᜀᜇᜒᜅ᜔ ᜉᜊᜄᜎᜒᜈ᜔ ᜈᜅ᜔ ᜋᜆᜀᜐ᜔ ᜈ load ᜈᜅ᜔ server ᜀᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜋᜓ.</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High">
+    <value>ᜋᜆᜀᜐ᜔ (91-100%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High_Description">
+    <value>ᜋᜀᜀᜇᜒᜅ᜔ ᜆᜓᜋᜃ᜔ᜊᜓ ᜀᜅ᜔ VPN ᜈᜅ᜔ ᜋᜐ᜔ ᜋᜊᜄᜎ᜔ ᜃᜌ᜔ᜐ normal</value>
+  </data>
+  <data name="Flyouts_ServerLoad_KnowledgeBaseLinkTitle">
+    <value>ᜀᜈᜓ ᜀᜅ᜔ load ᜈᜅ᜔ server?</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low">
+    <value>ᜋᜊᜊ (1-75%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low_Description">
+    <value>ᜈᜉᜃᜊᜒᜎᜒᜐ᜔ ᜈ speed</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium">
+    <value>ᜃᜆᜋ᜔ᜆᜋᜈ᜔ (76-90%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium_Description">
+    <value>ᜋᜎᜋᜅ᜔ ᜈ ᜑᜒᜈ᜔ᜇᜒ ᜋᜃᜀᜉᜒᜃ᜔ᜆᜓ ᜐ ᜊᜒᜎᜒᜐ᜔ ᜈᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Title">
+    <value>Load ᜈᜅ᜔ server</value>
+  </data>
+  <data name="Flyouts_Speed_Description1">
+    <value>ᜁᜉᜒᜈᜉᜃᜒᜆ ᜃᜓᜅ᜔ ᜄᜀᜈᜓ ᜃᜇᜋᜒᜅ᜔ data ᜀᜅ᜔ ᜇᜓᜋᜇᜀᜈ᜔ ᜐ VPN tunnel ᜈᜅ᜔ real time</value>
+  </data>
+  <data name="Flyouts_Speed_Description2">
+    <value>ᜈᜃᜊᜆᜌ᜔ ᜁᜆᜓ ᜐ ᜃᜐᜎᜓᜃᜓᜌᜅ᜔ ᜀᜃ᜔ᜆᜒᜊᜒᜇᜇ᜔ ᜈᜅ᜔ device ᜋᜓ. ᜐ ᜃᜇᜋᜒᜑᜈ᜔ ᜈᜅ᜔ ᜋᜅ ᜃᜐᜓ, ᜑᜒᜈ᜔ᜇᜒ ᜈᜒᜆᜓ ᜈᜒᜇᜒ-represent ᜀᜅ᜔ maximum ᜈ ᜊᜒᜎᜒᜐ᜔ ᜈᜅ᜔ VPN.</value>
+  </data>
+  <data name="Flyouts_Speed_Download">
+    <value>Download</value>
+    <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
+  </data>
+  <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
+    <value>ᜉᜎᜒᜏᜈᜄ᜔ ᜐ VPN speed ᜀᜆ᜔ traffic</value>
+  </data>
+  <data name="Flyouts_Speed_Title">
+    <value>ᜃᜐᜎᜓᜃᜓᜌᜅ᜔ traffic</value>
+  </data>
+  <data name="Flyouts_Speed_Upload">
+    <value>Upload</value>
+    <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
+    <value>ᜁᜊᜒᜈᜓᜃᜓᜇ᜔ ᜈ app ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
+    <value>ᜋᜅ ᜁᜊᜒᜈᜓᜃᜓᜇ᜔ ᜈ app ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
+    <value>ᜁᜊᜒᜈᜓᜃᜓᜇ᜔ ᜈ IP address ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
+    <value>ᜋᜅ ᜁᜊᜒᜈᜓᜃᜓᜇ᜔ ᜈ IP address ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Info">
+    <value>ᜉᜒᜈᜉᜌᜄᜈ᜔ ᜀᜅ᜔ ᜋᜅ ᜉᜒᜈᜄ᜔ᜃᜃᜆᜒᜏᜎᜀᜅ᜔ app ᜀᜆ᜔ IP address ᜈ ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜈᜅ᜔ ᜏᜎᜅ᜔ ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info">
+    <value>ᜀᜅ᜔ ᜋᜅ ᜉᜒᜈᜒᜎᜒᜅ᜔ app ᜀᜆ᜔ IP address ᜎᜅ᜔ ᜀᜅ᜔ ᜃᜓᜋᜓᜃᜓᜈᜒᜃ᜔ᜆ ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ VPN. ᜀᜅ᜔ ᜎᜑᜆ᜔ ᜈᜅ᜔ ᜁᜊ ᜉᜅ᜔ traffic ᜀᜌ᜔ ᜑᜒᜈ᜔ᜇᜒ ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜇᜓ.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_One">
+    <value>ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜇᜓᜅ᜔ app ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
+    <value>ᜋᜅ ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜇᜓᜅ᜔ app ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_One">
+    <value>ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜇᜓᜅ᜔ IP address ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
+    <value>ᜋᜅ ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜇᜓᜅ᜔ IP address ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info">
+    <value>ᜃᜓᜋᜓᜃᜓᜈᜒᜃ᜔ᜆ ᜀᜅ᜔ ᜋᜅ app ᜀᜆ᜔ IP address ᜈ ᜁᜆᜓ ᜈᜅ᜔ ᜏᜎᜅ᜔ ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN. ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜇᜓ ᜀᜅ᜔ ᜎᜑᜆ᜔ ᜈᜅ᜔ ᜁᜊ ᜉᜅ᜔ traffic.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description">
+    <value>ᜑᜆᜒᜁᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ traffic ᜐ ᜋᜅ VPN ᜀᜆ᜔ non-VPN tunnel ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ VPN Plus.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title">
+    <value>ᜐᜓᜎᜒᜆᜒᜈ᜔ ᜀᜅ᜔ ᜇᜎᜏᜅ᜔ ᜋᜓᜈ᜔ᜇᜓ</value>
+  </data>
+  <data name="Flyouts_Volume_Description">
+    <value>ᜁᜉᜒᜈᜉᜃᜒᜆ ᜀᜅ᜔ ᜃᜊᜓᜂᜀᜅ᜔ ᜇᜋᜒ ᜈᜅ᜔ data ᜈ ᜇᜓᜋᜀᜈ᜔ ᜐ VPN tunnel ᜋᜓᜎ ᜈᜓᜂᜅ᜔ ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜃ</value>
+  </data>
+  <data name="Flyouts_Volume_Download">
+    <value>Download</value>
+    <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
+  </data>
+  <data name="Flyouts_Volume_Title">
+    <value>ᜃᜊᜓᜂᜀᜅ᜔ traffic</value>
+  </data>
+  <data name="Flyouts_Volume_Upload">
+    <value>Upload</value>
+    <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
+  </data>
+  <data name="Format_Size_Bytes">
+    <value>{0} B</value>
+    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
+  </data>
+  <data name="Format_Size_Exabytes">
+    <value>{0} EB</value>
+    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
+  </data>
+  <data name="Format_Size_Gigabytes">
+    <value>{0} GB</value>
+    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
+  </data>
+  <data name="Format_Size_Kilobytes">
+    <value>{0} KB</value>
+    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
+  </data>
+  <data name="Format_Size_Megabytes">
+    <value>{0} MB</value>
+    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
+  </data>
+  <data name="Format_Size_Petabytes">
+    <value>{0} PB</value>
+    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
+  </data>
+  <data name="Format_Size_Terabytes">
+    <value>{0} TB</value>
+    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_SpeedUnit">
+    <value>ᜃᜐᜎᜓᜃᜓᜌᜅ᜔ traffic ({0})</value>
+    <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
+  </data>
+  <data name="Format_Speed_BytesPerSecond">
+    <value>{0} B/s</value>
+    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
+  </data>
+  <data name="Format_Speed_ExabytesPerSecond">
+    <value>{0} EB/s</value>
+    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
+  </data>
+  <data name="Format_Speed_GigabytesPerSecond">
+    <value>{0} GB/s</value>
+    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
+  </data>
+  <data name="Format_Speed_KilobytesPerSecond">
+    <value>{0} KB/s</value>
+    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
+  </data>
+  <data name="Format_Speed_MegabytesPerSecond">
+    <value>{0} MB/s</value>
+    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
+  </data>
+  <data name="Format_Speed_PetabytesPerSecond">
+    <value>{0} PB/s</value>
+    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
+  </data>
+  <data name="Format_Speed_TerabytesPerSecond">
+    <value>{0} TB/s</value>
+    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
+  </data>
+  <data name="Format_Time_Day_One">
+    <value>{0} ᜀᜇᜏ᜔</value>
+  </data>
+  <data name="Format_Time_Day_Other">
+    <value>{0} ᜋᜅ ᜀᜇᜏ᜔</value>
+  </data>
+  <data name="Format_Time_DayHour_One">
+    <value>{0} ᜀᜇᜏ᜔ {1} hr</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
+    <value>{0} ᜋᜅ ᜀᜇᜏ᜔ {1} hr</value>
+  </data>
+  <data name="Format_Time_Hours">
+    <value>{0} hr</value>
+    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutes">
+    <value>{0} hr {1} min</value>
+    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutesSeconds_Short">
+    <value>hh\:mm\:ss</value>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
+  </data>
+  <data name="Format_Time_Hours_Ago_One">
+    <value>{0} ᜂᜇᜐ᜔ ᜀᜅ᜔ ᜈᜃᜎᜒᜉᜐ᜔</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>{0} ᜋᜅ ᜂᜇᜐ᜔ ᜀᜅ᜔ ᜈᜃᜎᜒᜉᜐ᜔</value>
+  </data>
+  <data name="Format_Time_Minutes">
+    <value>{0} min</value>
+    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds">
+    <value>{0} min {1} seg</value>
+    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds_Short">
+    <value>mm\:ss</value>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
+  </data>
+  <data name="Format_Time_Minutes_Ago_One">
+    <value>{0} ᜋᜒᜈᜓᜆᜓ ᜀᜅ᜔ ᜈᜃᜎᜒᜉᜐ᜔</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>{0} ᜋᜅ ᜋᜒᜈᜓᜆᜓ ᜀᜅ᜔ ᜈᜃᜎᜒᜉᜐ᜔</value>
+  </data>
+  <data name="Format_Time_Seconds">
+    <value>{0} seg</value>
+    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_One">
+    <value>{0} ᜐᜒᜄᜓᜈ᜔ᜇᜓ ᜀᜅ᜔ ᜈᜃᜎᜒᜉᜐ᜔</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>{0} ᜋᜅ ᜐᜒᜄᜓᜈ᜔ᜇᜓ ᜀᜅ᜔ ᜈᜃᜎᜒᜉᜐ᜔</value>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>ᜋᜄ᜔-download ᜈᜅ᜔ ᜋᜅ file ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ BitTorrent ᜀᜆ᜔ ᜁᜊ ᜉᜅ᜔ protocol ᜐ ᜉᜄ᜔ᜊᜊᜑᜄᜒ ᜈᜅ᜔ file</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>ᜋᜄ᜔ᜇᜄ᜔ᜇᜄ᜔ ᜈᜅ᜔ ᜁᜐ ᜉᜅ᜔ layer ᜈᜅ᜔ encryption ᜐ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>ᜄᜋᜒᜆᜒᜈ᜔ ᜀᜅ᜔ Tor network ᜐ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN ᜉᜇ ᜐ ᜃᜇᜄ᜔ᜇᜄᜅ᜔ privacy</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>ᜋᜄ᜔ᜃᜇᜓᜂᜈ᜔ ᜈᜅ᜔ ᜉᜈ᜔ᜇᜁᜄ᜔ᜇᜒᜄᜅ᜔ coverage ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ VPN Plus</value>
+  </data>
+  <data name="Gateway_Fastest">
+    <value>ᜉᜒᜈᜃᜋᜊᜒᜎᜒᜐ᜔ ᜈ gateway</value>
+  </data>
+  <data name="Gateway_Random">
+    <value>ᜇᜈ᜔ᜇᜓᜋ᜔ ᜈ gateway</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜐ ᜁᜐᜅ᜔ gateway ᜂᜉᜅ᜔ ᜋ-access ᜀᜅ᜔ VPN ᜈᜅ᜔ ᜁᜌᜓᜅ᜔ ᜂᜇ᜔ᜄᜈᜒᜐᜐ᜔ᜌᜓᜈ᜔.</value>
+  </data>
+  <data name="Gateways_Page_Title">
+    <value>ᜋᜅ Gateway</value>
+  </data>
+  <data name="Home_Account_SignOut">
+    <value>ᜋᜄ᜔-sign out</value>
+  </data>
+  <data name="Home_Account_SignOut_Confirmation_Title">
+    <value>ᜋᜄ᜔-sign out ᜋᜓᜎ ᜐ {0}?</value>
+    <comment>{0} is a placeholder for the username</comment>
+  </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>ᜊᜄᜓᜑᜒᜈ᜔ ᜀᜅ᜔ default ᜈ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeServer">
+    <value>ᜋᜄ᜔ᜉᜎᜒᜆ᜔ ᜈᜅ᜔ server</value>
+  </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>activated ᜀᜅ᜔ advanced kill switch</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜐ VPN ᜂᜉᜅ᜔ ᜋᜁᜊᜎᜒᜃ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜐ internet.</value>
+  </data>
+  <data name="Home_ConnectionDetails_Connecting">
+    <value>ᜃᜓᜋᜓᜃᜓᜈᜒᜃ᜔ᜆ</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectingSubLabel">
+    <value>ᜉᜒᜈᜓᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜑᜀᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ digital ᜈ ᜉᜄ᜔ᜃᜃᜃᜒᜎᜈ᜔ᜎᜈ᜔...</value>
+  </data>
+  <data name="Home_ConnectionDetails_Country">
+    <value>ᜊᜈ᜔ᜐ</value>
+  </data>
+  <data name="Home_ConnectionDetails_Isp">
+    <value>Provider</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protected">
+    <value>ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜇᜓ</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protocol">
+    <value>Protocol</value>
+  </data>
+  <data name="Home_ConnectionDetails_ServerLoad">
+    <value>Load ᜈᜅ᜔ server</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>ᜋᜄ᜔-authenticate ᜋᜓᜎᜒ ᜐ 2FA portal ᜈᜅ᜔ ᜁᜌᜓᜅ᜔ ᜂᜇ᜔ᜄᜈᜒᜐᜐ᜔ᜌᜓᜈ᜔ ᜂᜉᜅ᜔ ᜋᜄ᜔ᜉᜆᜓᜎᜓᜌ᜔.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>ᜈᜄ᜔-expire ᜀᜅ᜔ 2FA</value>
+  </data>
+  <data name="Home_ConnectionDetails_Unprotected">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜇᜓ</value>
+  </data>
+  <data name="Home_ConnectionDetails_UnprotectedSubLabel">
+    <value>ᜁ-encrypt ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ online ᜈ ᜀᜃ᜔ᜆᜒᜊᜒᜇᜓᜇ᜔ ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ ᜉᜄ᜔ᜃᜓᜈᜒᜃ᜔ᜆ ᜐ VPN.</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume">
+    <value>ᜃᜊᜓᜂᜀᜅ᜔ traffic</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnIp">
+    <value>VPN IP</value>
+  </data>
+  <data name="Home_ConnectionDetails_YourIpAddress">
+    <value>ᜁᜌᜓᜅ᜔ IP address</value>
+  </data>
+  <data name="Home_FreeConnections_About">
+    <value>ᜃᜇᜄ᜔ᜇᜄᜅ᜔ ᜁᜋ᜔ᜉᜓᜇ᜔ᜋᜐ᜔ᜌᜓᜈ᜔ ᜆᜓᜅ᜔ᜃᜓᜎ᜔ ᜐ ᜋᜅ ᜎᜒᜊ᜔ᜇᜒᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_One">
+    <value>ad ᜈ ᜈ-block</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>ᜋᜅ ads ᜈ ᜈ-block</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>ᜀᜅ᜔ ᜋᜅ ads ᜀᜌ᜔ ᜋᜅ ᜉ᜔ᜇᜓᜋᜓᜐ᜔ᜌᜓᜈᜎ᜔ ᜈ banner ᜂ pop-up ᜈ ᜎᜓᜋᜎᜊᜐ᜔ ᜐ ᜋᜅ website ᜀᜆ᜔ app.</value>
+  </data>
+  <data name="Home_NetShield_DataSaved">
+    <value>Data ᜈ ᜈ-save</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>Estimated data ᜈ ᜈ-save ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ ᜉᜄ᜔-block ᜈᜅ᜔ ᜋᜅ ᜑᜒᜈ᜔ᜇᜒ ᜄᜓᜐ᜔ᜆᜓᜅ᜔ ads, tracker, at malware</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_One">
+    <value>tracker ᜈ ᜈᜑᜒᜈ᜔ᜆᜓ</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>ᜋᜅ tracker ᜈ ᜈᜑᜒᜈ᜔ᜆᜓ</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>ᜀᜅ᜔ ᜋᜅ tracker ᜀᜌ᜔ ᜋᜅ cookie ᜀᜆ᜔ third-party ᜈ website ᜈ ᜈᜅᜓᜅᜓᜎᜒᜃ᜔ᜆ, ᜈᜄ᜔-ᜁᜁᜋ᜔ᜊᜃ᜔ ᜀᜆ᜔ ᜈᜄ᜔ᜊᜒᜊᜒᜈ᜔ᜆ ᜈᜅ᜔ ᜁᜋ᜔ᜉᜓᜇ᜔ᜋᜐ᜔ᜌᜓᜈ᜔ ᜆᜓᜅ᜔ᜃᜓᜎ᜔ ᜐ ᜁᜌᜓᜅ᜔ ᜀᜃ᜔ᜆᜒᜊᜒᜇᜇ᜔ ᜐ web.</value>
+  </data>
+  <data name="Home_Recents_Pin">
+    <value>ᜁ-pin</value>
+  </data>
+  <data name="Home_Recents_Restricted">
+    <value>Available ᜀᜅ᜔ server ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ VPN Plus</value>
+  </data>
+  <data name="Home_Recents_ServerUnderMaintenance">
+    <value>ᜐᜓᜋᜐᜁᜎᜎᜒᜋ᜔ ᜐ maintenance ᜀᜅ᜔ server</value>
+  </data>
+  <data name="Home_Recents_Title">
+    <value>ᜋᜅ Recent</value>
+  </data>
+  <data name="Home_Recents_Unpin">
+    <value>ᜁ-unpin</value>
+  </data>
+  <data name="Home_TitleBar_Menu_About">
+    <value>ᜆᜓᜅ᜔ᜃᜓᜎ᜔ ᜇᜒᜆᜓ</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Account">
+    <value>Account</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp">
+    <value>ᜎᜓᜋᜊᜐ᜔ ᜐ app</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help">
+    <value>ᜆᜓᜎᜓᜅ᜔</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
+    <value>ᜀᜈᜓ ᜀᜅ᜔ ᜁᜐ᜔ᜌᜓ?</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings">
+    <value>ᜋᜅ setting</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout">
+    <value>ᜋᜄ᜔-sign out</value>
+  </data>
+  <data name="Home_TitleBar_Menu_UpdateNow">
+    <value>ᜁ-update ᜅᜌᜓᜈ᜔</value>
+  </data>
+  <data name="LoadingPage_Tip">
+    <value>ᜈᜄ᜔ᜐᜒᜐᜒᜋᜓᜎ ᜀᜅ᜔ ᜋᜐ᜔ ᜋᜄᜈ᜔ᜇᜅ᜔ ᜋᜓᜈ᜔ᜇᜓ ᜐ privacy ᜀᜆ᜔ digital ᜈ ᜃᜎᜌᜀᜈ᜔.</value>
+  </data>
+  <data name="Login_Error_GetSessionDetailsFailed">
+    <value>ᜈᜄ᜔ᜃᜇᜓᜇᜓᜈ᜔ ᜈᜅ᜔ error ᜐ ᜉᜄ᜔ᜃᜓᜑ ᜈᜅ᜔ ᜋᜅ ᜇᜒᜆᜎ᜔ᜌᜒ ᜈᜅ᜔ session. ᜉᜃᜒᜐᜓᜊᜓᜃᜅ᜔ ᜋᜓᜎᜒ.</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜋᜃᜉᜄ᜔-sign in ᜇᜑᜒᜎ᜔ ᜐ ᜋᜅ ᜐᜒᜆ᜔ᜆᜒᜅ᜔ ᜈᜅ᜔ network ᜐ ᜁᜌᜓᜅ᜔ device. ᜋᜀᜀᜇᜒᜅ᜔ ᜐᜈ᜔ᜑᜒ ᜁᜆᜓ ᜈᜅ᜔ mobile hotspot, ᜁᜊᜅ᜔ VPN application, ᜂ virtual machine software. ᜉᜃᜒ-review ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ network configuration ᜂ makipag-ugnayan ᜐ support ᜉᜇ ᜐ ᜆᜓᜎᜓᜅ᜔.</value>
+  </data>
+  <data name="Login_Error_IncorrectTwoFactorCode">
+    <value>ᜋᜎᜒᜅ᜔ code. ᜉᜃᜒᜐᜓᜊᜓᜃᜅ᜔ ᜋᜓᜎᜒ.</value>
+  </data>
+  <data name="Login_Error_SessionExpired">
+    <value>ᜈᜄ᜔-expire ᜈ ᜀᜅ᜔ session ᜋᜓ. ᜋᜅ᜔ᜌᜇᜒᜅ᜔ ᜋᜄ᜔-sign in ᜋᜓᜎᜒ.</value>
+    <comment>The message displayed in Login window when expired session is detected</comment>
+  </data>
+  <data name="Login_Error_SsoAuthFailed">
+    <value>ᜈᜊᜒᜄᜓ ᜀᜅ᜔ SSO Authentication. ᜉᜃᜒᜐᜓᜊᜓᜃᜅ᜔ ᜋᜓᜎᜒ.</value>
+  </data>
+  <data name="Login_Error_TwoFactorFailed">
+    <value>ᜈᜊᜒᜄᜓ ᜀᜅ᜔ two-factor authentication. ᜉᜃᜒᜐᜓᜊᜓᜃᜅ᜔ ᜋᜄ᜔-sign in ᜋᜓᜎᜒ.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>ᜑᜒᜈ᜔ᜇᜒ available ᜀᜅ᜔ ecurity key authentication ᜉᜇ ᜐ ᜁᜌᜓᜅ᜔ device ᜂ remote desktop connection.</value>
+  </data>
+  <data name="Login_TwoFactorForm_Authenticate">
+    <value>ᜋᜄ᜔-authenticate</value>
+    <comment>Authenticate button inside two factor form during login</comment>
+  </data>
+  <data name="Login_TwoFactorForm_Subtitle">
+    <value>6-digit authentication code</value>
+  </data>
+  <data name="Login_TwoFactorForm_Title">
+    <value>Two-factor authentication</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>Authenticator app</value>
+  </data>
+  <data name="Login_TwoFactor_Digit1">
+    <value>ᜐᜈᜅ᜔ digit</value>
+  </data>
+  <data name="Login_TwoFactor_Digit2">
+    <value>ᜉᜅᜎᜓᜏᜅ᜔ digit</value>
+  </data>
+  <data name="Login_TwoFactor_Digit3">
+    <value>ᜉᜅᜆ᜔ᜎᜓᜅ᜔ digit</value>
+  </data>
+  <data name="Login_TwoFactor_Digit4">
+    <value>ᜉᜅ᜔-ᜀᜉᜆ᜔ ᜈ digit</value>
+  </data>
+  <data name="Login_TwoFactor_Digit5">
+    <value>ᜉᜅ᜔-ᜎᜒᜋᜅ᜔ digit</value>
+  </data>
+  <data name="Login_TwoFactor_Digit6">
+    <value>ᜉᜅ᜔-ᜀᜈᜒᜋ᜔ ᜈ digit</value>
+  </data>
+  <data name="Login_TwoFactor_EnterCode">
+    <value>ᜁᜎᜄᜌ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ code</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>ᜏᜎᜅ᜔ ᜈᜃᜒᜆᜅ᜔ ᜃᜒᜎᜎᜅ᜔ ᜉᜇᜀᜈ᜔ ᜈᜅ᜔ two-factor authentication</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>Security key</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>ᜁᜎᜄᜌ᜔ ᜀᜅ᜔ U2F ᜂ FIDO key ᜈ ᜈᜃ-link ᜐ Proton Account ᜋᜓ.</value>
+  </data>
+  <data name="Main_Loading">
+    <value>Loading, ᜋᜅ᜔ᜌᜄᜒᜅ᜔ ᜋᜄ᜔ᜑᜒᜈ᜔ᜆᜌ᜔...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
+  <data name="Main_Loading_SigningIn">
+    <value>ᜈᜄ᜔ᜐ-sign in. ᜋᜅ᜔ᜌᜇᜒᜅ᜔ ᜋᜄ᜔ᜑᜒᜈ᜔ᜆᜌ᜔...</value>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>ᜋᜐ᜔ ᜋᜆᜄᜎ᜔ ᜁᜆᜓ ᜃᜌ᜔ᜐ ᜃᜇᜈᜒᜏᜈ᜔, ᜅᜓᜈᜒᜆ᜔ ᜁᜈᜀᜐᜒᜃᜐᜓ ᜈ ᜈᜋᜒᜈ᜔ ᜁᜆᜓ.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
+  </data>
+  <data name="Main_Loading_SigningOut">
+    <value>ᜈᜄ᜔ᜐ-sign out. ᜋᜅ᜔ᜌᜇᜒᜅ᜔ ᜋᜄ᜔ᜑᜒᜈ᜔ᜆᜌ᜔...</value>
+    <comment>Message in the loading screen when signing out</comment>
+  </data>
+  <data name="Map_ConnectTo">
+    <value>ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>ᜋᜃᜒᜉᜄ᜔-ᜄᜓᜈᜌᜈ᜔ ᜐ ᜀᜋᜒᜈ᜔</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜈᜋᜒᜈ᜔ ᜋ-load ᜀᜅ᜔ ᜎᜒᜐ᜔ᜆᜑᜈ᜔ ᜈᜅ᜔ ᜋᜅ server.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>ᜃᜁᜎᜅᜈ᜔ ᜈᜅ᜔ ᜆᜓᜎᜓᜅ᜔?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>ᜋᜄ᜔-sign out</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>ᜑᜒᜎᜒᜅᜒᜈ᜔ ᜐ ᜁᜌᜓᜅ᜔ administrator ᜈ ᜁ-enable ᜀᜅ᜔ access ᜐ VPN ᜉᜇ ᜐ account ᜋᜓ.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>ᜏᜎᜅ᜔ available ᜈ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN</value>
+  </data>
+  <data name="NoServers_UnderMaintenance_Tip">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜈᜋᜒᜈ᜔ ᜋ-load ᜀᜅ᜔ ᜀᜈᜓᜋᜅ᜔ server. ᜁ-click ᜀᜅ᜔ Refresh ᜂᜉᜅ᜔ ᜁ-update ᜀᜅ᜔ ᜎᜒᜐ᜔ᜆᜑᜈ᜔ ᜅ᜔ server.</value>
+  </data>
+  <data name="Notifications_KillSwitch_Description">
+    <value>ᜂᜉᜅ᜔ ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜑᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ IP address, ᜊᜒᜈ-block ᜈᜅ᜔ kill switch ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜐ internet.</value>
+  </data>
+  <data name="Notifications_PortForwarding_CopyPortNumber">
+    <value>ᜃᜓᜉ᜔ᜌᜑᜒᜈ᜔ ᜀᜅ᜔ port number</value>
+  </data>
+  <data name="Notifications_PortForwarding_Description">
+    <value>ᜉᜓᜋᜓᜈ᜔ᜆ ᜐ ᜁᜌᜓᜅ᜔ torrent client ᜂ P2P app ᜀᜆ᜔ ᜁᜎᜄᜌ᜔ ᜀᜅ᜔ ᜈᜓᜋᜒᜇᜓᜅ᜔ ᜁᜆᜓ.</value>
+  </data>
+  <data name="Notifications_SessionLimit_Description">
+    <value>ᜈᜀᜊᜓᜆ᜔ ᜋᜓ ᜈ ᜀᜅ᜔ maximum ᜈ ᜎᜒᜋᜒᜆᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ device ᜋᜓ. ᜂᜉᜅ᜔ ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆᜅ᜔ ᜋᜓᜎᜒ ᜐ VPN, ᜋᜅ᜔ᜌᜇᜒᜅ᜔ ᜋᜄ᜔-disconnect ᜋᜓᜎ ᜐ ᜁᜊᜅ᜔ device.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>ᜈ-downgrade ᜀᜅ᜔ plan ᜋᜓ ᜐ Proton Free, ᜀᜆ᜔ ᜋᜓᜎᜒ ᜃ ᜈᜋᜒᜅ᜔ ᜁᜃᜒᜈᜓᜃᜓᜈᜒᜃ᜔ᜆ ᜐ ᜉᜒᜈᜃᜋᜊᜒᜎᜒᜐ᜔ ᜈ ᜎᜒᜊ᜔ᜇᜒᜅ᜔ server.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Description">
+    <value>ᜋᜐ᜔ vulnerable ᜐ ᜋᜅ ᜊᜈ᜔ᜆ ᜐ ᜐᜒᜄᜓᜇᜒᜇᜇ᜔ ᜀᜅ᜔ ᜋᜅ ᜉᜋ᜔ᜉᜓᜊ᜔ᜎᜒᜃᜓᜅ᜔ Wi-Fi network. ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜐ VPN ᜂᜉᜅ᜔ ᜎᜒᜄ᜔ᜆᜐ᜔ ᜈ ᜋᜃᜉᜄ᜔-browse.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Title">
+    <value>ᜋᜌ᜔ ᜈ-detect ᜈ ᜑᜒᜈ᜔ᜇᜒ ᜎᜒᜄ᜔ᜆᜐ᜔ ᜈ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜐ Wi-Fi</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Proton VPN - Survey</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>ᜂᜉᜅ᜔ ᜁᜐᜋ ᜀᜅ᜔ address ᜈ ᜁᜆᜓ, ᜃᜁᜎᜅᜈ᜔ ᜋᜓᜅ᜔ ᜉᜌᜄᜈ᜔ ᜀᜅ᜔ ᜋᜅ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ IPv6 ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ VPN tunnel.</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>ᜁ-enable ᜀᜅ᜔ IPv6</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>ᜑᜓᜏᜄ᜔ ᜋᜓᜈ</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>ᜈᜃ-disable ᜀᜅ᜔ IPv6</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Action">
+    <value>ᜁ-update ᜅᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Message">
+    <value>ᜎᜓᜋ ᜈ ᜀᜅ᜔ ᜊᜒᜇ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ app ᜈ ᜁᜆᜓ. ᜇᜉᜆ᜔ ᜋᜓᜅ᜔ ᜁ-update ᜀᜅ᜔ app ᜂᜉᜅ᜔ ᜉᜆᜓᜎᜓᜌ᜔ ᜈ ᜋᜄᜋᜒᜆ᜔ ᜀᜅ᜔ Proton VPN.</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Title">
+    <value>ᜁ-update ᜀᜅ᜔ Proton VPN ᜂᜉᜅ᜔ ᜋᜄ᜔ᜉᜆᜓᜎᜓᜌ᜔</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Description">
+    <value>ᜊᜒᜈᜒᜊᜒᜄ᜔ᜌᜅ᜔-ᜇᜀᜈ᜔ ᜈᜅ᜔ ᜀᜋᜒᜅ᜔ ᜋᜅ P2P (peer-to-peer) server ᜈ ᜋ-access ᜋᜓ ᜀᜅ᜔ ᜋᜅ P2P network ᜑᜊᜅ᜔ ᜉᜒᜈᜓᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜑᜈ᜔ ᜉ ᜇᜒᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ IP address ᜀᜆ᜔ online ᜈ ᜀᜃ᜔ᜆᜒᜊᜒᜇᜇ᜔.</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Header">
+    <value>ᜀᜈᜓ ᜀᜅ᜔ P2P VPN?</value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Description">
+    <value>ᜉᜒᜈᜉᜌᜄᜈ᜔ ᜈᜅ᜔ ᜋᜅ P2P network ᜀᜅ᜔ ᜇᜎᜏᜅ᜔ device ᜈ ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜀᜆ᜔ ᜋᜄ᜔ᜎᜒᜉᜆ᜔ ᜈᜅ᜔ data ᜈᜅ᜔ ᜑᜒᜈ᜔ᜇᜒ ᜇᜓᜋᜇᜀᜈ᜔ ᜐ ᜁᜐᜅ᜔ central server. </value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Header">
+    <value>ᜀᜈᜓ ᜀᜅ᜔ P2P network?</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Description">
+    <value>  •  ᜉᜄ᜔-download ᜈᜅ᜔ ᜋᜅ torrent file
+  •  ᜉᜄ᜔ᜉᜉᜑᜓᜐᜌ᜔ ᜈᜅ᜔ performance ᜐ online gaming ᜀᜆ᜔ video call
+  •  ᜉᜄ᜔ᜃᜓᜈᜒᜃ᜔ᜆ ᜐ ᜋᜅ local area network (LAN) device</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Header">
+    <value>ᜉᜇ ᜐᜀᜈ᜔ ᜄᜒᜈᜄᜋᜒᜆ᜔ ᜀᜅ᜔ ᜋᜅ P2P network?</value>
+  </data>
+  <data name="Overlay_P2P_LearnMore">
+    <value>ᜀᜈᜓ ᜀᜅ᜔ P2P?</value>
+  </data>
+  <data name="Overlay_P2P_Title">
+    <value>P2P</value>
+  </data>
+  <data name="Overlay_Profile_Description1">
+    <value>ᜀᜅ᜔ ᜋᜅ profile ᜀᜌ᜔ ᜋᜅ custom ᜈ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN ᜈ ᜋᜀᜀᜇᜒ ᜋᜓᜅ᜔ ᜁᜀᜃ᜔ᜋ ᜐ ᜁᜌᜓᜅ᜔ ᜋᜅ ᜉᜅᜅᜁᜎᜅᜈ᜔ ᜀᜆ᜔ ᜁ-save ᜉᜇ ᜐ ᜋᜊᜒᜎᜒᜐ᜔ ᜈ access.</value>
+  </data>
+  <data name="Overlay_Profile_Description2">
+    <value>ᜁᜆᜃ᜔ᜇ ᜀᜅ᜔ ᜄᜓᜐ᜔ᜆᜓ ᜋᜓᜅ᜔ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔ ᜀᜆ᜔ ᜁ-optimize ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜋᜅ setting ᜉᜇ ᜐ ᜐᜒᜄᜓᜇᜒᜇᜇ᜔, performance, gaming ᜂ ᜀᜈᜓᜋᜅ᜔ ᜁᜊ ᜉᜅ᜔ ᜐᜒᜆ᜔ᜏᜐ᜔ᜌᜓᜈ᜔.</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore">
+    <value>ᜀᜈᜓ ᜀᜅ᜔ VPN profile?</value>
+  </data>
+  <data name="Overlay_Profile_Title">
+    <value>ᜋᜅ Profile</value>
+  </data>
+  <data name="Overlay_SecureCore_Description1">
+    <value>ᜁᜃᜒᜈᜓᜃᜓᜈᜒᜃ᜔ᜆ ᜃ ᜈᜅ᜔ Secure Core ᜐ ᜁᜌᜓᜅ᜔ ᜇᜒᜐ᜔ᜆᜒᜈᜐ᜔ᜌᜓᜅ᜔ server ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ ᜉᜅᜎᜏᜅ᜔ server ᜈᜅ᜔ VPN ᜈ ᜋᜌ᜔ maximum ᜈ ᜐᜒᜄᜓᜇᜒᜇᜇ᜔.</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2">
+    <value>ᜋᜀᜀᜇᜒᜅ᜔ ᜋᜄ᜔ᜇᜓᜎᜓᜆ᜔ ᜈᜅ᜔ ᜋᜐ᜔ ᜋᜆᜀᜐ᜔ ᜈ latency ᜀᜆ᜔ ᜋᜐ᜔ ᜋᜊᜄᜎ᜔ ᜈ speed ᜀᜅ᜔ ᜋᜐ᜔ ᜋᜆᜀᜐ᜔ ᜈ ᜀᜈ᜔ᜆᜐ᜔ ᜈᜅ᜔ ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈ ᜁᜆᜓ.</value>
+  </data>
+  <data name="Overlay_SecureCore_LearnMore">
+    <value>ᜀᜈᜓ ᜀᜅ᜔ Secure Core?</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection">
+    <value>Secure Core
+VPN connection</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
+    <value>ᜋᜐ᜔ ᜋᜆᜀᜐ᜔ ᜈ latency</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Privacy">
+    <value>Advanced ᜈ privacy</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection">
+    <value>Standard
+VPN connection</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Latency">
+    <value>ᜋᜐ᜔ ᜋᜊᜊᜅ᜔ latency</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Privacy">
+    <value>ᜋᜆᜀᜐ᜔ ᜈ privacy</value>
+  </data>
+  <data name="Overlay_SecureCore_Title">
+    <value>Secure Core</value>
+  </data>
+  <data name="Overlay_ServerLoad_Description">
+    <value>ᜁᜉᜒᜈᜉᜃᜒᜆ ᜈᜅ᜔ load ᜈᜅ᜔ server ᜃᜓᜅ᜔ ᜄᜀᜈᜓ ᜃᜎᜉᜒᜆ᜔ ᜀᜅ᜔ ᜁᜐᜅ᜔ server ᜐ maximum ᜈ ᜃᜉᜐᜒᜇᜇ᜔ ᜈᜒᜆᜓ.
+
+ᜋᜀᜀᜇᜒᜅ᜔ ᜉᜊᜄᜎᜒᜈ᜔ ᜈᜅ᜔ ᜋᜆᜀᜐ᜔ ᜈ load ᜈᜅ᜔ server ᜀᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜋᜓ.</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Description">
+    <value>ᜋᜀᜀᜇᜒᜅ᜔ ᜆᜓᜋᜃ᜔ᜊᜓ ᜀᜅ᜔ VPN ᜈᜅ᜔ ᜋᜐ᜔ ᜋᜊᜄᜎ᜔ ᜃᜌ᜔ᜐ ᜈᜓᜇ᜔ᜋᜎ᜔</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Title">
+    <value>ᜋᜆᜀᜐ᜔ (91-100%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_LearnMore">
+    <value>ᜀᜈᜓ ᜀᜅ᜔ load ᜈᜅ᜔ server?</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Description">
+    <value>ᜈᜉᜃᜊᜒᜎᜒᜐ᜔ ᜈ speed</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Title">
+    <value>ᜋᜊᜊ (1-75%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Description">
+    <value>ᜋᜎᜋᜅ᜔ ᜈ ᜑᜒᜈ᜔ᜇᜒ ᜋᜃᜀᜀᜉᜒᜃ᜔ᜆᜓ ᜐ ᜊᜒᜎᜒᜐ᜔ ᜈᜅ᜔ VPN</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Title">
+    <value>ᜃᜆᜋ᜔ᜆᜋᜈ᜔ (76-90%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_Title">
+    <value>Load ᜈᜅ᜔ Server</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description1">
+    <value>ᜀᜅ᜔ Smart Routing ᜀᜌ᜔ ᜈᜄ᜔ᜊᜒᜊᜒᜄᜌ᜔-ᜇᜀᜈ᜔ ᜐ ᜀᜋᜒᜈ᜔ ᜈ ᜋᜄ᜔ᜊᜒᜄᜌ᜔ ᜈᜅ᜔ VPN coverage ᜐ ᜋᜅ ᜊᜈ᜔ᜐᜅ᜔ ᜋᜑᜒᜇᜉ᜔ ᜋᜀᜊᜓᜆ᜔.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2">
+    <value>ᜃᜉᜄ᜔ ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜃ ᜐ ᜁᜐᜅ᜔ Smart Routing server, ᜎᜎᜊᜐ᜔ ᜈ ᜈᜄ᜔ᜊ-browse ᜃ ᜐ ᜁᜌᜓᜅ᜔ ᜇᜒᜐ᜔ᜆᜒᜈᜐ᜔ᜌᜓᜅ᜔ ᜊᜈ᜔ᜐ, ᜃᜑᜒᜆ᜔ ᜈ ᜀᜅ᜔ ᜉᜒᜐᜒᜃᜎ᜔ ᜈ server ᜀᜌ᜔ ᜋᜆᜆᜄ᜔ᜉᜓᜀᜈ᜔ ᜐ ᜁᜊᜅ᜔ ᜎᜓᜄᜇ᜔.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3">
+    <value>ᜃᜇᜈᜒᜏᜅ᜔ ᜄᜒᜈᜄᜋᜒᜆ᜔ ᜀᜅ᜔ Smart Routing ᜂᜉᜅ᜔ ᜋᜎᜋ᜔ᜉᜐᜈ᜔ ᜀᜅ᜔ ᜋᜅ ᜊᜆᜐ᜔ ᜐ anti-privacy ᜀᜆ᜔ ᜁᜊ ᜉᜅ᜔ ᜀᜈ᜔ᜌᜓ ᜈᜅ᜔ censorship.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Header">
+    <value>ᜉᜒᜐᜒᜃᜎ᜔ ᜈ ᜋᜆᜆᜄ᜔ᜉᜓᜀᜈ᜔ ᜀᜅ᜔ ᜋᜅ server ᜐ {0}, ᜅᜓᜈᜒᜆ᜔ ᜎᜎᜊᜐ᜔ ᜈ ᜈᜄ᜔ᜊ-browse ᜃ ᜋᜓᜎ ᜐ {1}</value>
+    <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
+    Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
+    Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
+  </data>
+  <data name="Overlay_SmartRouting_LearnMore">
+    <value>ᜀᜈᜓ ᜀᜅ᜔ Smart Routing?</value>
+  </data>
+  <data name="Overlay_SmartRouting_Title">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Overlay_Tor_Description">
+    <value>ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜐ Tor server ᜂᜉᜅ᜔ ᜋ-access ᜀᜅ᜔ ᜋᜅ ᜈᜃᜆᜄᜓᜅ᜔ ᜐᜒᜇ᜔ᜊᜒᜐ᜔ᜌᜓ ᜀᜆ᜔ onion site ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ ᜀᜈᜓᜋᜅ᜔ browser.</value>
+  </data>
+  <data name="Overlay_Tor_LearnMore">
+    <value>ᜉᜀᜈᜓ ᜁ-access ᜀᜅ᜔ Tor network</value>
+  </data>
+  <data name="Overlay_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Profile_CustomSettings_Description">
+    <value>ᜋᜂ-override ᜈᜅ᜔ ᜋᜅ setting ᜈᜅ᜔profile ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜋᜅ setting ᜈᜅ᜔ VPN ᜃᜉᜄ᜔ ᜈᜃᜃᜓᜈᜒᜃ᜔ᜆ.</value>
+  </data>
+  <data name="Profile_CustomSettings_Header">
+    <value>ᜋᜄ᜔ᜇᜄ᜔ᜇᜄ᜔ ᜈᜅ᜔ ᜋᜅ custom ᜈ ᜐᜒᜆ᜔ᜆᜒᜅ᜔</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide">
+    <value>ᜁᜆᜄᜓ ᜀᜅ᜔ ᜋᜅ ᜐᜒᜆ᜔ᜆᜒᜅ᜔</value>
+  </data>
+  <data name="Profile_CustomSettings_Show">
+    <value>ᜁᜉᜃᜒᜆ ᜀᜅ᜔ ᜋᜅ ᜐᜒᜆ᜔ᜆᜒᜅ᜔</value>
+  </data>
+  <data name="Profile_NatType_Conflict_Description">
+    <value>ᜁᜇᜒ-disable ᜈᜒᜆᜓ ᜀᜅ᜔ port forwarding ᜉᜇ ᜐ profile ᜈ ᜁᜆᜓ.</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description">
+    <value>ᜁᜇᜒ-disable ᜈᜒᜆᜓ ᜀᜅ᜔ custom DNS ᜉᜇ ᜐ profile ᜈ ᜁᜆᜓ.</value>
+  </data>
+  <data name="Profile_Options_Application">
+    <value>App</value>
+  </data>
+  <data name="Profile_Options_Application_Select">
+    <value>ᜉᜓᜋᜒᜎᜒ ᜈᜅ᜔ app</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Application">
+    <value>ᜋᜄ᜔ᜊᜓᜃᜐ᜔ ᜈᜅ᜔ app</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
+    <value>ᜈᜅ᜔-private browsing mode</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Website">
+    <value>ᜋᜄ᜔ᜊᜓᜃᜐ᜔ ᜈᜅ᜔ website</value>
+  </data>
+  <data name="Profile_Options_Description">
+    <value>ᜀᜏ᜔ᜆᜓᜋᜆᜒᜃᜓᜅ᜔ ᜊᜓᜃ᜔ᜐᜈ᜔ ᜀᜅ᜔ ᜈᜉᜒᜎᜒ ᜋᜓᜅ᜔ website ᜂ app ᜃᜉᜄ᜔ ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜃ ᜐ profile ᜈ ᜁᜆᜓ.</value>
+  </data>
+  <data name="Profile_Options_Header">
+    <value>Connect and Go</value>
+  </data>
+  <data name="Profile_Options_Url">
+    <value>Website URL</value>
+  </data>
+  <data name="Profile_Options_Url_Error">
+    <value>ᜋᜄ᜔ᜎᜄᜌ᜔ ᜈᜅ᜔ valid ᜈ URL</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description">
+    <value>ᜊᜊᜄᜓᜑᜒᜈ᜔ ᜈᜒᜆᜓ ᜀᜅ᜔ ᜂᜇᜒ ᜈᜅ᜔ NAT ᜉᜇ ᜐ profile ᜈ ᜁᜆᜓ ᜐ Strict (type 3).</value>
+  </data>
+  <data name="Profiles_Default_Gaming">
+    <value>Gaming</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity">
+    <value>Max ᜈ ᜐᜒᜄᜓᜇᜒᜇᜇ᜔</value>
+  </data>
+  <data name="Profiles_Default_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection">
+    <value>Random ᜈ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Profiles_Default_Streaming">
+    <value>Streaming US</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool">
+    <value>ᜆ᜔ᜇᜊᜑᜓ/ᜉᜀᜇᜎᜈ᜔</value>
+  </data>
+  <data name="Profiles_Page_Description">
+    <value>ᜁ-configure ᜀᜅ᜔ ᜐᜇᜒᜎᜒ ᜋᜓᜅ᜔ ᜋᜅ setting ᜈᜅ᜔ VPN ᜀᜆ᜔ ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜐ ᜁᜐᜅ᜔ click</value>
+  </data>
+  <data name="Profiles_Page_Title">
+    <value>ᜋᜅ Profile</value>
+  </data>
+  <data name="Search_InputBox_Placeholder">
+    <value>ᜋᜄ᜔-browse ᜋᜓᜎ ᜐ...</value>
+  </data>
+  <data name="Search_NoInput_CityOrState">
+    <value>ᜎᜓᜅ᜔ᜐᜓᜇ᜔ ᜂ ᜁᜐ᜔ᜆᜇᜓ ᜈᜅ᜔ US</value>
+    <comment>The word used for one single city and one single United States state</comment>
+  </data>
+  <data name="Search_NoInput_Country">
+    <value>ᜊᜈ᜔ᜐ</value>
+    <comment>The word used for one single country</comment>
+  </data>
+  <data name="Search_NoInput_Server">
+    <value>Server</value>
+    <comment>The word used for one single server</comment>
+  </data>
+  <data name="Search_NoInput_TrySearchingFor">
+    <value>ᜐᜓᜊᜓᜃᜅ᜔ ᜋᜄ᜔ᜑᜈᜉ᜔ ᜈᜅ᜔...</value>
+  </data>
+  <data name="Search_NoResults_Description">
+    <value>ᜐᜓᜊᜓᜃᜈ᜔ ᜀᜅ᜔ ᜁᜊᜅ᜔ keyword᜶</value>
+  </data>
+  <data name="Search_NoResults_Title">
+    <value>ᜏᜎᜅ᜔ ᜈᜃᜒᜆᜅ᜔ ᜇᜒᜐᜓᜎ᜔ᜆ</value>
+  </data>
+  <data name="Server">
+    <value>Server</value>
+  </data>
+  <data name="Server_Fastest">
+    <value>ᜉᜒᜈᜃᜋᜊᜒᜎᜒᜐ᜔ ᜈ server</value>
+  </data>
+  <data name="Server_Fastest_Free">
+    <value>ᜉᜒᜈᜃᜋᜊᜒᜎᜒᜐ᜔ ᜈ ᜎᜒᜊ᜔ᜇᜒᜅ᜔ server</value>
+  </data>
+  <data name="Server_Feature_B2B">
+    <value>Gateway</value>
+  </data>
+  <data name="Server_Feature_B2B_Description">
+    <value>ᜁ-access ᜀᜅ᜔ ᜋᜅ server ᜈᜅ᜔ ᜁᜌᜓᜅ᜔ ᜂᜇ᜔ᜄᜈᜒᜐᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Server_Feature_None">
+    <value>Standard</value>
+  </data>
+  <data name="Server_Feature_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Server_Feature_P2P_Description">
+    <value>Torrent-optimized</value>
+  </data>
+  <data name="Server_Feature_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description">
+    <value>ᜇᜓᜊ᜔ᜎᜒᜅ᜔ ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Server_Feature_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Server_Free">
+    <value>ᜎᜒᜊ᜔ᜇᜒᜅ᜔ server</value>
+  </data>
+  <data name="Server_Random">
+    <value>Random ᜈ server</value>
+  </data>
+  <data name="Servers">
+    <value>ᜋᜅ server</value>
+  </data>
+  <data name="Settings_About_Changelog">
+    <value>Changelog</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>ᜃᜐᜎᜓᜃᜓᜌᜅ᜔ ᜊᜒᜇ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>ᜈᜊᜒᜄᜓᜅ᜔ ᜁ-load ᜀᜅ᜔ ᜁᜋ᜔ᜉᜓᜇ᜔ᜋᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ changelog.</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>ᜋᜆᜓᜆᜓ ᜉ</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Licensing</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Loading</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>ᜆᜓᜅ᜔ᜃᜓᜎ᜔ ᜇᜒᜆᜓ</value>
+  </data>
+  <data name="Settings_Account_Account">
+    <value>Account</value>
+  </data>
+  <data name="Settings_Account_Exit">
+    <value>ᜎᜓᜋᜊᜐ᜔ ᜐ app</value>
+  </data>
+  <data name="Settings_Account_SignOut">
+    <value>ᜋᜄ᜔-sign out</value>
+  </data>
+  <data name="Settings_AppVersion">
+    <value>ᜊᜒᜇ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ app</value>
+  </data>
+  <data name="Settings_Censorship_Footer">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜈᜄ᜔ᜎᜎᜋᜈ᜔ ᜀᜅ᜔ statistics ᜈ ᜁᜆᜓ ᜈᜅ᜔ ᜁᜌᜓᜅ᜔ IP address, ᜀᜆ᜔ ᜑᜒᜈ᜔ᜇᜒ ᜋᜄᜄᜋᜒᜆ᜔ ᜀᜅ᜔ ᜋᜅ ᜁᜆᜓ ᜂᜉᜅ᜔ ᜋᜆᜓᜃᜓᜌ᜔ ᜃ. ᜑᜒᜈ᜔ᜇᜒᜅ᜔-ᜑᜒᜈ᜔ᜇᜒ ᜈᜋᜒᜈ᜔ ᜁᜐᜒ-share ᜀᜅ᜔ ᜋᜅ ᜁᜆᜓ ᜐ ᜋᜅ third party.</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports">
+    <value>ᜁ-share ᜀᜅ᜔ ᜋᜅ anonymous ᜈ ᜂᜎᜆ᜔ ᜈᜅ᜔ ᜉᜄ᜔-crash</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports_Description">
+    <value>ᜈᜃᜃᜆᜓᜎᜓᜅ᜔ ᜀᜅ᜔ ᜋᜅ ᜂᜎᜆ᜔ ᜅ᜔ ᜉᜄ᜔-crash ᜂᜉᜅ᜔ ᜋᜀᜌᜓᜐ᜔ ᜈᜋᜒᜈ᜔ ᜀᜅ᜔ ᜋᜅ bug, ᜋ-detect ᜀᜅ᜔ ᜋᜅ firewall ᜀᜆ᜔ ᜋᜁᜏᜐᜈ᜔ ᜀᜅ᜔ ᜋᜅ block ᜐ VPN.</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics">
+    <value>ᜁ-share ᜀᜅ᜔ anonymous ᜈ usage statistics</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics_Description">
+    <value>ᜆᜓᜋᜓᜆᜓᜎᜓᜅ᜔ ᜀᜅ᜔ usage data ᜈ ᜋᜎᜋ᜔ᜉᜐᜈ᜔ ᜀᜅ᜔ ᜋᜅ VPN block ᜀᜆ᜔ ᜋᜉᜑᜓᜐᜌ᜔ ᜀᜅ᜔ performance ᜈᜅ᜔ app.</value>
+  </data>
+  <data name="Settings_Common_Apply">
+    <value>ᜁ-apply</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>ᜈᜁᜇᜄ᜔ᜇᜄ᜔ ᜈ ᜀᜅ᜔ address</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>ᜋᜄ᜔ᜎᜄᜌ᜔ ᜈᜅ᜔ valid ᜈ IPv4 ᜂ IPv6 address</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Connection">
+    <value>ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Settings_Connection_AdvancedSettings">
+    <value>ᜋᜅ advanced ᜈ setting</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting">
+    <value>ᜀᜎ᜔ᜆᜒᜇ᜔ᜈᜆᜒᜊᜓᜅ᜔ routing</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
+    <value>ᜃᜓᜅ᜔ ᜈᜃ-block ᜀᜅ᜔ ᜋᜅ ᜐᜒᜇ᜔ᜊᜒᜐ᜔ᜌᜓ ᜈᜅ᜔ Proton ᜇᜑᜒᜎ᜔ ᜐ ᜋᜅ ᜉᜄ᜔ᜑᜒᜑᜒᜄ᜔ᜉᜒᜆ᜔ ᜐ network, ᜐᜓᜐᜓᜊᜓᜃᜈ᜔ ᜈᜋᜒᜅ᜔ ᜄᜓᜋᜋᜒᜆ᜔ ᜈᜅ᜔ ᜀᜎ᜔ᜆᜒᜇ᜔ᜈᜆᜒᜊᜓᜅ᜔ network routing ᜂᜉᜅ᜔ ᜁᜃᜓᜈᜒᜃ᜔ᜆ ᜃ ᜐ ᜀᜋᜒᜅ᜔ ᜋᜅ site.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers">
+    <value>ᜋᜅ custom ᜈ DNS server</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>ᜋᜄ᜔ᜇᜄ᜔ᜇᜄ᜔ ᜈᜅ᜔ ᜊᜄᜓᜅ᜔ DNS server</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜋᜓ ᜋᜄᜄᜋᜒᜆ᜔ ᜀᜅ᜔ NetShield ᜃᜉᜄ᜔ ᜈᜃᜃᜓᜈᜒᜃ᜔ᜆ ᜐ ᜁᜐᜅ᜔ custom ᜈ DNS server.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
+    <value>ᜁ-enable ᜀᜅ᜔ ᜋᜅ custom ᜈ DNS server?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
+    <value>ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜐ Proton VPN ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ ᜐᜇᜒᜎᜒ ᜋᜓᜅ᜔ Domain Name System (DNS). ᜄᜓᜋᜋᜒᜆ᜔ ᜎᜅ᜔ ᜈᜅ᜔ ᜋᜅ DNS server ᜈ ᜉᜒᜈᜄ᜔ᜃᜃᜆᜒᜏᜎᜀᜈ᜔ ᜋᜓ.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>ᜐᜓᜐᜓᜊᜓᜃᜈ᜔ ᜈᜋᜒᜈᜅ᜔ ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜐ ᜋᜅ server ᜈ ᜁᜆᜓ ᜈᜅ᜔ ᜐᜓᜈᜓᜇ᜔-ᜐᜓᜈᜓᜇ᜔. ᜃᜓᜅ᜔ ᜏᜎᜅ᜔ ᜄᜓᜋᜈ ᜐ ᜋᜅ ᜁᜆᜓ, ᜄᜄᜋᜒᜆᜒᜈ᜔ ᜀᜅ᜔ default ᜈ Proton VPN DNS.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_FormattedHeader">
+    <value>ᜋᜅ DNS server ({0})</value>
+    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+    <value>ᜋᜅ DNS server</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Select">
+    <value>ᜉᜒᜎᜒᜁᜈ᜔ ᜀᜅ᜔ Server</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>IPv6 support</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
+    <value>IPv6 leak protection</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
+    <value>ᜉᜒᜈᜒᜉᜒᜄᜒᜎᜈ᜔ ᜀᜅ᜔ ᜉᜄ᜔-leak ᜈᜅ᜔ data ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ ᜉᜄ᜔-block ᜐ IPv6 traffic ᜈ ᜑᜒᜈ᜔ᜇᜒ ᜇᜓᜋᜇᜀᜈ᜔ ᜐ VPN tunnel</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>ᜉᜒᜈᜉᜌᜄᜈ᜔ ᜀᜅ᜔ IPv6 traffic ᜈ ᜇᜓᜋᜀᜈ᜔ ᜐ VPN tunnel. ᜉᜒᜈᜉᜑᜓᜐᜌ᜔ ᜈᜒᜆᜓ ᜀᜅ᜔ compatibility ᜐ ᜋᜅ website ᜀᜆ᜔ ᜐᜒᜇ᜔ᜊᜒᜐ᜔ᜌᜓ ᜈᜅ᜔ IPv6.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections">
+    <value>ᜉᜌᜄᜈ᜔ ᜀᜅ᜔ ᜋᜅ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ LAN</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_Description">
+    <value>ᜉᜒᜈᜉᜌᜄᜈ᜔ ᜀᜅ᜔ ᜋᜅ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜐ ᜋᜅ printer, speaker ᜀᜆ᜔ ᜁᜊ ᜉᜅ᜔ device ᜐ ᜁᜌᜓᜅ᜔ ᜎᜓᜃᜎ᜔ ᜈ network</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
+    <value>ᜄᜓᜋᜄᜋᜒᜆ᜔ ᜈᜅ᜔ mDNS ᜂᜉᜅ᜔ ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜐ ᜋᜅ device ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ ᜋᜅ ᜉᜅᜎᜈ᜔ ᜆᜓᜎᜇ᜔ ᜈᜅ᜔ 'My-Printer' ᜂ 'router.local' ᜐ ᜑᜎᜒᜉ᜔ ᜈ ᜋᜅ IP address. ᜉᜆᜓᜎᜓᜌ᜔ ᜈ ᜁᜇ-route ᜀᜅ᜔ standard DNS ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ VPN tunnel. ᜈᜃ-disable ᜊᜒᜎᜅ᜔ default ᜉᜇ ᜐ ᜋᜐ᜔ ᜋᜊᜒᜊᜒᜎᜒᜐ᜔ ᜈ speed ᜈᜅ᜔ VPN.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
+    <value>ᜁ-access ᜀᜅ᜔ ᜋᜅ device ᜀᜌᜓᜈ᜔ ᜐ ᜉᜅᜎᜈ᜔</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType">
+    <value>ᜂᜇᜒ ᜈᜅ᜔ NAT</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜋᜓ ᜋᜄᜄᜋᜒᜆ᜔ ᜀᜅ᜔ port forwarding ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ Moderate NAT.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
+    <value>ᜁ-enable ᜀᜅ᜔ Moderate NAT?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Description">
+    <value>ᜉᜓᜋᜒᜎᜒ ᜈᜅ᜔ ᜂᜇᜒ ᜈᜅ᜔ network address translation ᜉᜇ ᜐ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate">
+    <value>Moderate (ᜓtype 2)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
+    <value>ᜋᜌ᜔ ᜁᜎᜅ᜔ ᜎᜒᜋᜒᜆᜐ᜔ᜌᜓᜈ᜔ ᜐ data ᜈ ᜉᜓᜋᜉᜐᜓᜃ᜔ ᜐ ᜁᜌᜓᜅ᜔ network. ᜀᜅ᜔ ᜂᜉ᜔ᜐ᜔ᜌᜓᜅ᜔ ᜁᜆᜓ ᜀᜌ᜔ ᜉᜒᜈᜃᜋᜑᜓᜐᜌ᜔ ᜉᜇ ᜐ online video gaming.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict">
+    <value>Strict (ᜓtype 3)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict_Description">
+    <value>ᜈᜒᜎᜒᜎᜒᜋᜒᜆᜑᜈ᜔ ᜀᜅ᜔ data ᜈ ᜉᜓᜋᜉᜐᜓᜃ᜔ ᜐ ᜁᜌᜓᜅ᜔ network. ᜋᜐ᜔ ᜎᜒᜄ᜔ᜆᜐ᜔ ᜀᜅ᜔ ᜂᜉ᜔ᜐ᜔ᜌᜓᜅ᜔ ᜁᜆᜓ ᜅᜓᜈᜒᜆ᜔ ᜋᜀᜀᜇᜒᜅ᜔ ᜋᜄ᜔ᜉᜑᜒᜇᜉ᜔ ᜐ ᜋᜅ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜐ peer-to-peer gaming.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
+    <value>ᜊᜒᜈᜒ-bridge ᜈᜒᜆᜓ ᜀᜅ᜔ network traffic. ᜋᜐ᜔ ᜋᜊᜄᜎ᜔ ᜃᜌ᜔ᜐ ᜐ TUN, ᜅᜓᜈᜒᜆ᜔ ᜃᜒᜈᜃᜁᜎᜅᜈ᜔ ᜉᜇ ᜐ ᜁᜎᜅ᜔ legacy ᜂ ᜁᜐ᜔ᜉᜒᜐ᜔ᜌᜎ᜔ ᜈ network setup</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
+    <value>ᜈᜒᜇ-route ᜈᜒᜆᜓ ᜀᜅ᜔ traffic ᜐ ᜉᜄᜒᜆᜈ᜔ ᜈᜅ᜔ ᜁᜊ’ᜆ᜔ ᜁᜊᜅ᜔ network. ᜋᜀᜀᜇᜒᜅ᜔ ᜋᜐ᜔ ᜋᜊᜒᜎᜒᜐ᜔ ᜀᜆ᜔ ᜋᜐ᜔ stable ᜀᜅ᜔ TUN ᜃᜌ᜔ᜐ ᜐ TAP.</value>
+  </data>
+  <data name="Settings_Connection_ConnectionPreferences">
+    <value>ᜋᜅ ᜃᜄᜓᜐ᜔ᜆᜓᜑᜈ᜔ ᜐ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Settings_Connection_ConnectionPreferences_Description">
+    <value>Default ᜈ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜀᜆ᜔ ᜋᜅ ᜈ-exclude ᜈ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜋ-on ᜀᜅ᜔ custom DNS ᜇᜑᜒᜎ᜔ ᜈᜃᜃᜓᜈᜒᜃ᜔ᜆ ᜃ ᜐ ᜁᜐᜅ᜔ profile ᜈ ᜈᜃ-enable ᜀᜅ᜔ NetShield.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
+    <value>ᜈᜃ-disable ᜀᜅ᜔ custom DNS ᜇᜑᜒᜎ᜔ ᜃᜐᜎᜓᜃᜓᜌᜈ᜔ ᜃᜅ᜔ ᜈᜃᜃᜓᜈᜒᜃ᜔ᜆ ᜐ ᜁᜐᜅ᜔ profile ᜈ ᜈᜃ-enable ᜀᜅ᜔ NetShield.</value>
+  </data>
+  <data name="Settings_Connection_Default">
+    <value>Default ᜈ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>ᜉᜒᜈᜃᜋᜊᜒᜎᜒᜐ᜔ ᜈ ᜊᜈ᜔ᜐ</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>ᜀᜅ᜔ ᜉᜒᜈᜃᜋᜑᜓᜐᜌ᜔ ᜈ server ᜊᜆᜌ᜔ ᜐ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔ ᜋᜓ</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>ᜑᜓᜎᜒᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>ᜀᜅ᜔ ᜉᜒᜈᜃᜑᜓᜎᜒ ᜋᜓᜅ᜔ ᜄᜒᜈᜋᜒᜆ᜔ ᜈ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Random ᜈ ᜊᜈ᜔ᜐ</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>ᜁᜊᜅ᜔ server ᜐ ᜆᜓᜏᜒᜅ᜔ ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜃ</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>ᜋᜅ Recent</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations">
+    <value>ᜋᜅ ᜁᜊᜒᜈᜓᜃᜓᜇ᜔ ᜈ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Cities">
+    <value>ᜋᜅ ᜎᜓᜅ᜔ᜐᜓᜇ᜔</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Countries">
+    <value>ᜋᜅ ᜊᜈ᜔ᜐ</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Description">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜃᜁᜎᜈ᜔ᜋᜈ᜔ ᜄᜄᜋᜒᜆᜒᜈ᜔ ᜀᜅ᜔ ᜋᜅ ᜉᜒᜈᜒᜎᜒᜅ᜔ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔ ᜃᜉᜄ᜔ ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜃ ᜐ Fastest.</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_NoLocations">
+    <value>ᜏᜎᜅ᜔ available ᜈ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Search">
+    <value>ᜉᜓᜋᜒᜎᜒ…...</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_States">
+    <value>ᜋᜅ ᜁᜐ᜔ᜆᜇᜓ</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch">
+    <value>Kill switch</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced">
+    <value>Advanced</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced_Description">
+    <value>ᜉᜌᜄᜈ᜔ ᜎᜋᜅ᜔ ᜀᜅ᜔ internet access ᜃᜉᜄ᜔ ᜈᜃᜃᜓᜈᜒᜃ᜔ᜆ ᜐ Proton VPN. ᜋᜈᜈᜆᜒᜎᜒᜅ᜔ ᜀᜃ᜔ᜆᜒᜊᜓ ᜀᜅ᜔ advanced kill switch ᜃᜑᜒᜆ᜔ ᜈ ᜁ-restart ᜋᜓ ᜀᜅ᜔ device ᜋᜓ.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Description">
+    <value>ᜉᜒᜈᜓᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜑ᜔ᜀᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ IP address ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ ᜉᜄ᜔-disconnect ᜋᜓᜎ ᜐ internet ᜃᜓᜅ᜔ ᜋᜏᜎ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard">
+    <value>Standard</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard_Description">
+    <value>ᜀᜏ᜔ᜆᜓᜋᜆᜒᜃᜓᜅ᜔ ᜋᜄ᜔-disconnect ᜋᜓᜎ ᜐ internet ᜃᜓᜅ᜔ ᜋᜏᜎ ᜀᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜐ VPN.</value>
+  </data>
+  <data name="Settings_Connection_NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
+    <value>ᜁ-block ᜀᜅ᜔ ᜋᜅ advertisement, tracker ᜀᜆ᜔ malware</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent">
+    <value>ᜁ-block ᜀᜅ᜔ ᜋᜅ ads, tracker, malware, ᜀᜆ᜔ adult content</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockMalwareOnly">
+    <value>ᜁ-block ᜀᜅ᜔ malware ᜎᜅ᜔</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Description">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜃ ᜋᜃᜃᜃᜓᜈᜒᜃ᜔ᜆ ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ custom DNS server ᜃᜉᜄ᜔ ᜈᜃ-enable ᜀᜅ᜔ NetShield.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜆᜓᜄ᜔ᜋ ᜀᜅ᜔ NetShield ᜐ Custom DNS.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Title">
+    <value>ᜁ-enable ᜀᜅ᜔ NetShield?</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Description">
+    <value>ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜑᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜉᜄ᜔-brose ᜐ ᜋᜅ website ᜀᜆ᜔ ᜋᜅ app.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Footer">
+    <value>ᜋᜀᜀᜇᜒᜅ᜔ ᜑᜒᜈ᜔ᜇᜒ ᜋᜄ᜔-load ᜈᜅ᜔ ᜋᜀᜌᜓᜐ᜔ ᜀᜅ᜔ ᜁᜎᜅ᜔ website ᜃᜉᜄ᜔ ᜈᜃ-block ᜀᜅ᜔ ᜋᜅ ad ᜀᜆ᜔ tracker.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_PrivacyPanel">
+    <value>NetShield Privacy Panel</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding">
+    <value>Port forwarding</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort">
+    <value>ᜀᜃ᜔ᜆᜒᜊᜓᜅ᜔ port number:</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
+    <value>ᜃᜓᜉ᜔ᜌᜑᜒᜈ᜔ ᜀᜅ᜔ port number</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Description">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜋᜓ ᜋᜄᜄᜋᜒᜆ᜔ ᜀᜅ᜔ Moderate NAT ᜃᜉᜄ᜔ ᜈᜃ-enable ᜀᜅ᜔ port forwarding.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Title">
+    <value>ᜁ-enable ᜀᜅ᜔ port forwarding?</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Description">
+    <value>ᜉᜒᜈᜉᜑᜓᜐᜌ᜔ ᜀᜅ᜔ ᜊᜒᜎᜒᜐ᜔ ᜈᜅ᜔ torrenting ᜀᜆ᜔ gaming ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ ᜉᜄ᜔ᜉᜌᜄ᜔ ᜐ ᜋᜅ ᜇᜒᜇᜒᜃ᜔ᜆᜅ᜔ P2P ᜈ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ ᜁᜐᜅ᜔ ᜁᜆᜒᜈᜎᜄᜅ᜔ port</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Footer">
+    <value>ᜂᜉᜅ᜔ ᜋᜄᜋᜒᜆ᜔ ᜀᜅ᜔ port forwarding, ᜋᜅ᜔ᜌᜇᜒᜅ᜔ ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜐ ᜁᜐᜅ᜔ server ᜈ ᜐᜓᜋᜓᜐᜓᜉᜓᜇ᜔ᜆ ᜐ P2P.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>ᜑᜓᜎᜒᜅ᜔ ᜊᜒᜈᜄᜓ: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Loading">
+    <value>ᜈᜄ᜔ᜎᜓ-load...</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications">
+    <value>ᜋᜅ ᜀᜊᜒᜐᜓ</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications_Description">
+    <value>ᜋᜀᜊᜒᜐᜓᜑᜈ᜔ ᜃᜉᜄ᜔ ᜈᜄ᜔ᜊᜄᜓ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ active port number</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>ᜑᜒᜈ᜔ᜇᜒ available</value>
+  </data>
+  <data name="Settings_Connection_Protocol">
+    <value>Protocol</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling">
+    <value>Split tunneling</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Description">
+    <value>ᜉᜒᜎᜒᜁᜈ᜔ ᜀᜅ᜔ ᜋᜅᜐ app ᜈ ᜁᜁ-exclude ᜐ VPN connection</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_FormattedHeader">
+    <value>ᜋᜅ ᜁᜊᜒᜈᜓᜃᜓᜇ᜔ ᜈ app ({0})</value>
+    <comment>Header for the list of apps to exclude for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Excluded apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Header">
+    <value>ᜋᜅ ᜈ-exclude ᜈ app</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
+    <value>ᜋᜅ app file</value>
+    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_Description">
+    <value>ᜉᜒᜎᜒᜁᜈ᜔ ᜀᜅ᜔ ᜋᜅ app ᜈ ᜁᜐᜐᜋ ᜐ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader">
+    <value>ᜋᜅ included ᜈ app ({0})</value>
+    <comment>Header for the list of apps to include for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Included apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_Header">
+    <value>ᜋᜅ included ᜈ app</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Select">
+    <value>ᜋᜅ ᜈᜉᜒᜎᜒᜅ᜔ app</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Description">
+    <value>ᜁ-customize ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ ᜉᜄ᜔ᜉᜉᜐ᜔ᜌ ᜃᜓᜅ᜔ ᜀᜎᜒᜅ᜔ ᜋᜅ app ᜀᜆ᜔ IP address ᜀᜅ᜔ ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜇᜓ ᜈᜅ᜔ VPN.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse">
+    <value>Include mode</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Description">
+    <value>ᜀᜅ᜔ ᜋᜅ ᜉᜒᜈᜒᜎᜒᜅ᜔ app ᜀᜆ᜔ IP address ᜎᜅ᜔ ᜀᜅ᜔ ᜃᜓᜋᜓᜃᜓᜈᜒᜃ᜔ᜆ ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ VPN. ᜀᜅ᜔ ᜎᜑᜆ᜔ ᜈᜅ᜔ ᜁᜊ ᜉᜅ᜔ traffic ᜀᜌ᜔ ᜑᜒᜈ᜔ᜇᜒ ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜇᜓ.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>ᜁᜐᜋ</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>ᜋᜄ᜔ᜇᜄ᜔ᜇᜄ᜔ ᜈᜅ᜔ ᜊᜄᜓᜅ᜔ IPv4 ᜂ IPv6 address</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Description">
+    <value>ᜀᜅ᜔ ᜋᜅ ᜉᜒᜈᜒᜎᜒᜅ᜔ app ᜀᜆ᜔ IP address ᜀᜌ᜔ ᜁᜊᜒᜈᜓᜃᜓᜇ᜔ ᜐ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_FormattedHeader">
+    <value>ᜋᜅ ᜁᜊᜒᜈᜓᜃᜓᜇ᜔ ᜈ IP address ({0})</value>
+    <comment>Header for the list of IP addresses to exclude for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Excluded IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Header">
+    <value>ᜋᜅ ᜁᜊᜒᜈᜓᜃᜓᜇ᜔ ᜈ IP address</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Description">
+    <value>ᜉᜒᜎᜒᜁᜈ᜔ ᜀᜅ᜔ ᜋᜅ IP address ᜈ ᜁᜐᜐᜋ ᜐ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_FormattedHeader">
+    <value>ᜋᜅ ᜁᜐᜒᜈᜋᜅ᜔ IP address ({0})</value>
+    <comment>Header for the list of IP addresses to include for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Included IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Header">
+    <value>ᜋᜅ ᜁᜐᜒᜈᜋᜅ᜔ IP address</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Select">
+    <value>ᜋᜅ ᜈᜉᜒᜎᜒᜅ᜔ IP address</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard">
+    <value>Exclude mode</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Description">
+    <value>ᜀᜅ᜔ ᜋᜅ ᜉᜒᜈᜒᜎᜒᜅ᜔ app ᜀᜆ᜔ IP address ᜀᜌ᜔ ᜁᜊᜒᜈᜓᜃᜓᜇ᜔ ᜐ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>ᜁᜊᜓᜃᜓᜇ᜔</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
+  </data>
+  <data name="Settings_Connection_VpnAccelerator">
+    <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>ᜁ-discard ᜀᜅ᜔ ᜋᜅ ᜉᜄ᜔ᜊᜊᜄᜓ</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>ᜁᜉᜄ᜔ᜉᜆᜓᜎᜓᜌ᜔ ᜀᜅ᜔ ᜉᜄ᜔-ᜁᜇᜒᜆ᜔</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>ᜁ-discard ᜀᜅ᜔ ᜋᜅ ᜉᜄ᜔ᜊᜊᜄᜓᜅ᜔ ᜑᜒᜈ᜔ᜇᜒ ᜈ-save?</value>
+  </data>
+  <data name="Settings_General">
+    <value>ᜉᜅ᜔ᜃᜎᜑᜆᜈ᜔</value>
+  </data>
+  <data name="Settings_General_AutoStartup">
+    <value>Auto startup</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect">
+    <value>Auto-connect</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Description">
+    <value>ᜀᜏ᜔ᜆᜓᜋᜆᜒᜃᜓᜅ᜔ ᜃᜓᜋᜓᜃᜓᜈᜒᜃ᜔ᜆ ᜐ ᜁᜌᜓᜅ᜔ default ᜈ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜃᜉᜄ᜔ ᜈᜄ᜔ᜊᜓᜃᜐ᜔ ᜀᜅ᜔ Proton VPN</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch">
+    <value>Auto-launch</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Description">
+    <value>ᜀᜏ᜔ᜆᜓᜋᜆᜒᜃᜓᜅ᜔ ᜋᜄ᜔ᜊᜓᜊᜓᜃᜐ᜔ ᜀᜅ᜔ Proton VPN ᜃᜉᜄ᜔ ᜈᜄ᜔-sign in ᜃ ᜐ device ᜋᜓ</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
+    <value>ᜊᜓᜃ᜔ᜐᜈ᜔ ᜐ desktop</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
+    <value>ᜁ-minimize ᜐ System Tray</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
+    <value>ᜁ-minimize ᜐ Taskbar</value>
+  </data>
+  <data name="Settings_General_AutoStartup_Description">
+    <value>ᜁᜆᜃ᜔ᜇ ᜀᜅ᜔ app ᜈ ᜀᜏ᜔ᜆᜓᜋᜆᜒᜃᜓᜅ᜔ ᜋᜄ᜔-launch ᜂ ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ.</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates">
+    <value>ᜋᜅ ᜀᜏ᜔ᜆᜓᜋᜆᜒᜃᜓᜅ᜔ ᜉᜄ᜔-update</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates_Description">
+    <value>ᜀᜏ᜔ᜆᜓᜋᜆᜒᜃᜓᜅ᜔ ᜐᜓᜇᜒᜁᜈ᜔ ᜀᜆ᜔ ᜁ-install ᜀᜅ᜔ ᜋᜅ update ᜈᜅ᜔ Proton VPN.</value>
+  </data>
+  <data name="Settings_General_BetaAccess">
+    <value>Beta access</value>
+  </data>
+  <data name="Settings_General_BetaAccess_Description">
+    <value>ᜋᜄ᜔ᜃᜇᜓᜂᜈ᜔ ᜈᜅ᜔ ᜋᜀᜄᜅ᜔ ᜉᜄ᜔-access ᜀᜆ᜔ ᜆᜓᜎᜓᜅᜈ᜔ ᜃᜋᜒᜅ᜔ ᜐᜓᜊᜓᜃᜈ᜔ ᜀᜅ᜔ ᜋᜅ ᜊᜄᜓᜅ᜔ ᜊᜒᜇ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ Proton VPN.</value>
+  </data>
+  <data name="Settings_General_Language">
+    <value>ᜏᜒᜃ</value>
+  </data>
+  <data name="Settings_General_Notifications">
+    <value>ᜋᜅ ᜀᜊᜒᜐᜓ</value>
+  </data>
+  <data name="Settings_General_Notifications_Description">
+    <value>ᜋᜀᜊᜒᜐᜓᜑᜈ᜔ ᜆᜓᜅ᜔ᜃᜓᜎ᜔ ᜐ ᜋᜅ ᜉᜄ᜔ᜊᜊᜄᜓ ᜐ ᜁᜌᜓᜅ᜔ status ᜈᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver">
+    <value>OpenVPN network driver</value>
+  </data>
+  <data name="Settings_General_Theme">
+    <value>ᜆᜒᜋ</value>
+  </data>
+  <data name="Settings_Improve">
+    <value>ᜉᜑᜓᜐᜌᜒᜈ᜔ ᜀᜅ᜔ Proton</value>
+  </data>
+  <data name="Settings_Improve_Censorship">
+    <value>ᜆᜓᜎᜓᜅᜈ᜔ ᜃᜋᜒᜅ᜔ ᜎᜊᜈᜈ᜔ ᜀᜅ᜔ censorship</value>
+  </data>
+  <data name="Settings_OperatingSystemVersion">
+    <value>ᜊᜒᜇ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ Operating System</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description1">
+    <value>ᜃᜓᜈᜒᜃ᜔ᜆᜇᜓ ᜀᜅ᜔ setting ᜈ ᜁᜆᜓ ᜐ ᜁᜌᜓᜅ᜔ ᜀᜃ᜔ᜆᜒᜊᜓᜅ᜔ profile.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2">
+    <value>ᜁ-edit ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ profile ᜂᜉᜅ᜔ ᜄᜓᜋᜏ ᜈᜅ᜔ ᜋᜅ ᜉᜄ᜔ᜊᜊᜄᜓ, ᜂ ᜋᜄ᜔-disconnect ᜂᜉᜅ᜔ ᜁ-edit ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜋᜅ ᜉᜅ᜔ᜃᜎᜑᜆᜅ᜔ setting ᜈᜅ᜔ VPN.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline">
+    <value>ᜃᜓᜈᜒᜃ᜔ᜆᜇᜓ ᜀᜅ᜔ ᜋᜅ setting ᜈ ᜁᜆᜓ ᜐ profile ᜈ '{0}' ᜀᜆ᜔ ᜋᜉᜉᜋᜑᜎᜀᜈ᜔ ᜋᜓ ᜎᜅ᜔ ᜐ ᜋᜅ Profile.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Title">
+    <value>ᜉᜋᜑᜎᜀᜈ᜔ ᜀᜅ᜔ {0} ᜐ ᜋᜅ Profile</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
+  <data name="Settings_Page_Title">
+    <value>ᜋᜅ Setting</value>
+  </data>
+  <data name="Settings_Protocols_Explanation">
+    <value>ᜆᜒᜈᜓᜆᜓᜃᜓᜌ᜔ ᜈᜅ᜔ VPN protocol ᜃᜓᜅ᜔ ᜉᜀᜈᜓ ᜄᜓᜋᜄᜎᜏ᜔ ᜀᜅ᜔ data ᜐ ᜉᜄᜒᜆᜈ᜔ ᜈᜅ᜔ ᜁᜐᜅ᜔ server ᜈᜅ᜔ VPN ᜀᜆ᜔ ᜈᜅ᜔ ᜁᜌᜓᜅ᜔ device.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Description">
+    <value>ᜋᜆᜆᜄ᜔, ᜐᜓᜊᜓᜃ᜔ ᜈ, ᜀᜆ᜔ ᜎᜒᜄ᜔ᜆᜐ᜔. ᜋᜀᜀᜐᜑᜈ᜔ ᜀᜅ᜔ OpenVPN ᜐ ᜋᜑᜒᜑᜒᜈᜅ᜔ ᜃᜓᜈ᜔ᜇᜒᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ network, ᜅᜓᜈᜒᜆ᜔ ᜋᜀᜀᜇᜒᜅ᜔ ᜑᜒᜈ᜔ᜇᜒ ᜃᜐᜒᜅ᜔ᜊᜒᜎᜒᜐ᜔ ᜈᜅ᜔ ᜁᜊᜅ᜔ ᜋᜅ protocol.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Description">
+    <value>ᜋᜆᜆᜄ᜔, ᜐᜓᜊᜓᜃ᜔ ᜈ, ᜀᜆ᜔ ᜎᜒᜄ᜔ᜆᜐ᜔. ᜑᜒᜈ᜔ᜇᜒ ᜄᜀᜈᜓᜅ᜔ ᜋᜆᜒᜉᜒᜇ᜔ ᜐ ᜊᜆᜒᜇ᜔ᜌ ᜀᜅ᜔ OpenVPN ᜃᜌ᜔ᜐ ᜐ ᜁᜎᜅ᜔ ᜁᜊᜅ᜔ protocol.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Description">
+    <value>ᜀᜅ᜔ ᜀᜋᜒᜅ᜔ ᜊᜄᜓᜅ᜔ framework ᜈ ᜈᜃᜊᜆᜌ᜔ ᜐ WireGuard ᜉᜇ ᜐ ᜋᜐ᜔ ᜋᜆᜀᜐ᜔ ᜈ ᜃᜆᜆᜄᜈ᜔, functionality, ᜀᜆ᜔ ᜉᜄ᜔ᜎᜊᜈ᜔ ᜐ censorship.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Description">
+    <value>ᜀᜅ᜔ ᜀᜋᜒᜅ᜔ ᜊᜄᜓᜅ᜔ framework ᜈ ᜈᜃᜊᜆᜌ᜔ ᜐ WireGuard ᜉᜇ ᜐ ᜋᜐ᜔ ᜋᜆᜀᜐ᜔ ᜈ ᜃᜆᜆᜄᜈ᜔, functionality, ᜀᜆ᜔ ᜉᜄ᜔ᜎᜊᜈ᜔ ᜐ censorship.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Title">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Description">
+    <value>ᜀᜅ᜔ ᜀᜋᜒᜅ᜔ ᜊᜄᜓᜅ᜔ framework ᜈ ᜈᜃᜊᜆᜌ᜔ ᜐ WireGuard ᜉᜇ ᜐ ᜋᜐ᜔ ᜋᜆᜀᜐ᜔ ᜈ ᜃᜆᜆᜄᜈ᜔, functionality, ᜀᜆ᜔ ᜉᜄ᜔ᜎᜊᜈ᜔ ᜐ censorship.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description">
+    <value>ᜄᜋᜒᜆᜒᜈ᜔ ᜀᜅ᜔ ᜐᜇᜒᜎᜒᜅ᜔ ᜁᜋ᜔ᜉ᜔ᜎᜒᜋᜒᜈ᜔ᜆᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ Proton VPN ᜈᜅ᜔ WireGuard. ᜁᜐ ᜁᜆᜓᜅ᜔ experimental ᜈ feature, ᜃᜌ ᜋᜀᜀᜇᜒ ᜃᜅ᜔ ᜋᜃᜇᜈᜐ᜔ ᜈᜅ᜔ ᜁᜎᜅ᜔ instability.</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title">
+    <value>ᜋᜅ ᜉ᜔ᜇᜓᜆᜓᜃᜓᜎ᜔ ᜈᜅ᜔ Proton</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Description">
+    <value>ᜀᜏ᜔ᜆᜓᜋᜆᜒᜃᜓᜅ᜔ ᜉᜒᜈᜒᜉᜒᜎᜒ ᜀᜅ᜔ ᜉᜒᜈᜃᜋᜑᜓᜐᜌ᜔ ᜈ protocol ᜉᜇ ᜐ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Title">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_Protocols_TcpCategory">
+    <value>Reliability (TCP)</value>
+  </data>
+  <data name="Settings_Protocols_UdpCategory">
+    <value>ᜊᜒᜎᜒᜐ᜔ (UDP)</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>State-of-the-art protocol ᜉᜇ ᜐ ᜐᜒᜄᜓᜇᜒᜇᜇ᜔ ᜀᜆ᜔ performance</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>ᜈᜒᜎᜎᜋ᜔ᜉᜐᜈ᜔ ᜀᜅ᜔ ᜋᜅ ᜉᜄ᜔-block ᜐ VPN ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ ᜉᜄ᜔ᜆᜆᜄᜓ ᜈᜅ᜔ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ VPN ᜋᜓᜎ ᜐ ᜋᜅ censor. ᜀᜅ᜔ Stealth ᜀᜌ᜔ DPI (deep packet inspection) resistant, ᜅᜓᜈᜒᜆ᜔ ᜋᜀᜀᜇᜒᜅ᜔ ᜑᜒᜈ᜔ᜇᜒ ᜃᜐᜒᜅ᜔ ᜊᜒᜎᜒᜐ᜔ ᜈᜅ᜔ ᜁᜊᜅ᜔ ᜋᜅ protocol.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Description">
+    <value>State-of-the-art protocol ᜉᜇ ᜐ ᜐᜒᜄᜓᜇᜒᜇᜇ᜔ ᜀᜆ᜔ performance</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Reconnection_Title">
+    <value>ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆᜅ᜔ ᜋᜓᜎᜒ ᜂᜉᜅ᜔ ᜁ-apply ᜀᜅ᜔ ᜋᜅ ᜉᜄ᜔ᜊᜊᜄᜓ</value>
+  </data>
+  <data name="Settings_RestoreDefault">
+    <value>ᜁᜊᜎᜒᜃ᜔ ᜀᜅ᜔ ᜋᜅ default ᜈ setting</value>
+  </data>
+  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
+    <value>ᜁ-restore ᜀᜆ᜔ ᜁ-reconnect</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Action">
+    <value>ᜁ-restore ᜀᜅ᜔ ᜋᜅ default ᜈ setting</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Message">
+    <value>ᜁᜇᜒ-reset ᜈᜒᜆᜓ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜋᜅ setting ᜈᜅ᜔ Proton VPN ᜐ ᜂᜇᜒᜑᜒᜈᜎ᜔ ᜈ ᜁᜐ᜔ᜆᜇᜓ.</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Title">
+    <value>ᜁᜊᜎᜒᜃ᜔ ᜀᜅ᜔ ᜋᜅ default ᜈ setting?</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnTcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnUdp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardUdp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="Settings_Support">
+    <value>ᜐᜓᜉᜓᜇ᜔ᜆ</value>
+  </data>
+  <data name="Settings_Support_DebugLogs">
+    <value>ᜋᜅ log ᜈᜅ᜔ debug</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Application">
+    <value>ᜋᜅ log ᜈᜅ᜔ application</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_ErrorMessage">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜋᜑᜈᜉ᜔ ᜀᜅ᜔ folder ᜈᜅ᜔ ᜋᜅ log.</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Service">
+    <value>ᜋᜅ log ᜈᜅ᜔ ᜐᜒᜇ᜔ᜊᜒᜐ᜔ᜌᜓ</value>
+  </data>
+  <data name="Settings_Support_ReportIssue">
+    <value>ᜋᜄ᜔-ᜂᜎᜆ᜔ ᜈᜅ᜔ ᜁᜐ᜔ᜌᜓ</value>
+  </data>
+  <data name="Settings_Support_SupportCenter">
+    <value>Support center</value>
+  </data>
+  <data name="Settings_Theme_Dark">
+    <value>Dark</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Default</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Light</value>
+  </data>
+  <data name="Settings_VpnAccelerator_Description">
+    <value>ᜉᜆᜀᜐᜒᜈ᜔ ᜀᜅ᜔ ᜊᜒᜎᜒᜐ᜔ ᜈᜅ᜔ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ ᜑᜅ᜔ᜄᜅ᜔ 400% ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ ᜋᜅ ᜆᜒᜃ᜔ᜈᜓᜎᜓᜑᜒᜌᜅ᜔ ᜈᜄ᜔ᜉᜉᜑᜓᜐᜌ᜔ ᜈᜅ᜔ performance.</value>
+  </data>
+  <data name="SignIn_Form_AdvancedKillSwitchDescription">
+    <value>ᜊᜒᜈ-block ᜈᜅ᜔ advanced kill switch ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜐ internet.</value>
+  </data>
+  <data name="SignIn_Form_BestSecureVpnForSpeed">
+    <value>ᜀᜅ᜔ ᜉᜒᜈᜃᜋᜑᜓᜐᜌ᜔ ᜈ ᜎᜒᜄ᜔ᜆᜐ᜔ ᜈ VPN ᜉᜇ ᜐ ᜊᜒᜎᜒᜐ᜔</value>
+  </data>
+  <data name="SignIn_Form_CreateAccount">
+    <value>ᜄᜓᜋᜏ ᜈᜅ᜔ account</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_Description">
+    <value>ᜁᜎᜄᜌ᜔ ᜀᜅ᜔ ᜋᜅ ᜇᜒᜆᜎ᜔ᜌᜒ ᜈᜅ᜔ Proton Account ᜋᜓ.</value>
+  </data>
+  <data name="SignIn_Form_DisableKillSwitch">
+    <value>ᜁ-disable ᜀᜅ᜔ kill switch</value>
+  </data>
+  <data name="SignIn_Form_Email">
+    <value>Email</value>
+  </data>
+  <data name="SignIn_Form_ForgotUsername">
+    <value>ᜈᜃᜎᜒᜋᜓᜆᜈ᜔ ᜀᜅ᜔ username</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_Help">
+    <value>ᜆᜓᜎᜓᜅ᜔</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_NoLogsPolicy">
+    <value>ᜉᜆᜃᜇᜈ᜔ ᜈᜅ᜔ ᜏᜎᜅ᜔ ᜉᜄ᜔ᜆᜆᜎ</value>
+  </data>
+  <data name="SignIn_Form_OpenSource">
+    <value>Open-source</value>
+  </data>
+  <data name="SignIn_Form_Password">
+    <value>Password</value>
+  </data>
+  <data name="SignIn_Form_PasswordError">
+    <value>ᜁᜎᜄᜌ᜔ ᜀᜅ᜔ password ᜋᜓ</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a password</comment>
+  </data>
+  <data name="SignIn_Form_ReportAnIssue">
+    <value>ᜋᜄ᜔-ᜂᜎᜆ᜔ ᜈᜅ᜔ ᜁᜐ᜔ᜌᜓ</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_ResetPassword">
+    <value>ᜈᜃᜎᜒᜋᜓᜆᜈ᜔ ᜀᜅ᜔ password</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_SignIn">
+    <value>ᜋᜄ᜔-sign in</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_SignInWithSso">
+    <value>ᜋᜄ᜔-sign in ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ SSO</value>
+  </data>
+  <data name="SignIn_Form_SwissBased">
+    <value>Swiss-based</value>
+  </data>
+  <data name="SignIn_Form_Title">
+    <value>ᜋᜄ᜔-sign in</value>
+  </data>
+  <data name="SignIn_Form_TroubleSigningIn">
+    <value>Support Center</value>
+    <comment>A button at the bottom of the login window inside Get help popup</comment>
+  </data>
+  <data name="SignIn_Form_Username">
+    <value>Email ᜂ username</value>
+  </data>
+  <data name="SignIn_Form_UsernameError">
+    <value>ᜁᜎᜄᜌ᜔ ᜀᜅ᜔ email ᜂ username ᜋᜓ</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
+  </data>
+  <data name="SignIn_KillSwitch_Disabled">
+    <value>ᜈᜃ-disable ᜀᜅ᜔ kill switch</value>
+  </data>
+  <data name="State_Fastest">
+    <value>ᜉᜒᜈᜃᜋᜊᜒᜎᜒᜐ᜔ ᜈ ᜁᜐ᜔ᜆᜇᜓ</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>Random ᜈ ᜁᜐ᜔ᜆᜇᜓ</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="SystemNotification_Connected">
+    <value>ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜇᜓ ᜃ ᜈ ᜅᜌᜓᜈ᜔</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>ᜃᜓᜈᜒᜃ᜔ᜆᜇᜓ ᜐ {0}.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>ᜈ-disconnect</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>ᜁ-unlock ᜀᜅ᜔ torrenting ᜀᜆ᜔ online gaming ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ ᜋᜅ P2P (peer-to-peer) protocol ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ ᜋᜅ ᜊᜌᜇ᜔ ᜈ VPN server.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>ᜑᜒᜈ᜔ᜇᜒ available ᜀᜅ᜔ P2P ᜐ VPN Free</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>ᜊᜒᜈ-block ᜈᜅ᜔ ᜁᜎᜅ᜔ website ᜀᜆ᜔ streaming service ᜀᜅ᜔ ᜋᜅ user ᜈᜅ᜔ ᜎᜒᜊ᜔ᜇᜒᜅ᜔ VPN. ᜋᜄ᜔-upgrade ᜐ Proton VPN Plus ᜂᜉᜅ᜔ ᜁ-bypass ᜀᜅ᜔ ᜋᜅ ᜉᜄ᜔-block ᜈ ᜁᜆᜓ.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>ᜈᜃ-block ᜈ website?</value>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
+    <value>ᜎᜓᜋᜊᜐ᜔</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication">
+    <value>ᜊᜓᜃ᜔ᜐᜈ᜔ ᜀᜅ᜔ {0}</value>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>ᜊᜓᜃ᜔ᜐᜈ᜔ ᜀᜅ᜔ app ᜂᜉᜅ᜔ ᜋᜄ᜔-sign in</value>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication" xml:space="preserve">
+    <value>Open {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="System_Tray_Actions_ExitApplication" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="System_Tray_Actions_Connect" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect" xml:space="preserve">
+    <value>Disconnect</value>
+  </data>
+  <data name="Unit_BytesPerSecond">
+    <value>B/s</value>
+    <comment>Unit for Bytes per second</comment>
+  </data>
+  <data name="Unit_ExabytesPerSecond">
+    <value>EB/s</value>
+    <comment>Unit for Exabytes per second</comment>
+  </data>
+  <data name="Unit_GigabytesPerSecond">
+    <value>GB/s</value>
+    <comment>Unit for Gigabytes per second</comment>
+  </data>
+  <data name="Unit_KilobytesPerSecond">
+    <value>KB/s</value>
+    <comment>Unit for Kilobytes per second</comment>
+  </data>
+  <data name="Unit_MegabytesPerSecond">
+    <value>MB/s</value>
+    <comment>Unit for Megabytes per second</comment>
+  </data>
+  <data name="Unit_PetabytesPerSecond">
+    <value>PB/s</value>
+    <comment>Unit for Petabytes per second</comment>
+  </data>
+  <data name="Unit_TerabytesPerSecond">
+    <value>TB/s</value>
+    <comment>Unit for Terabytes per second</comment>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>ᜋᜄ᜔-download ᜈᜅ᜔ ᜋᜅ file ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ BitTorrent ᜀᜆ᜔ ᜁᜊ ᜉᜅ᜔ protocol ᜐ ᜉᜄ᜔ᜊᜊᜑᜄᜒ ᜈᜅ᜔ file.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>ᜐᜓᜉᜓᜇ᜔ᜆ ᜐ P2P</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>ᜋᜄ᜔-upgrade ᜂᜉᜅ᜔ ᜉᜓᜋᜒᜎᜒ ᜈᜅ᜔ ᜀᜈᜓᜋᜅ᜔ server.</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>ᜑᜒᜈ᜔ᜇᜒ ᜀᜅ᜔ ᜊᜈ᜔ᜐᜅ᜔ ᜄᜓᜐ᜔ᜆᜓ ᜋᜓ?</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>ᜁ-unlock ᜀᜅ᜔ advanced ᜈ customization ᜈᜅ᜔ VPN</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜐ VPN ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ custom ᜈ Domain Name System (DNS)</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>ᜁ-access ᜀᜅ᜔ ᜋᜅ device ᜐ ᜁᜌᜓᜅ᜔ local area network (LAN) ᜑᜊᜅ᜔ ᜈᜃᜃᜓᜈᜒᜃ᜔ᜆ</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>ᜁ-level up ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ gaming experience ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ ᜉᜄ᜔ᜎᜒᜉᜆ᜔ ᜐ NAT type 2 (moderate)</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜈᜅ᜔ ᜑᜅ᜔ᜄᜅ᜔ 10 devices ᜈᜅ᜔ ᜐᜊᜌ᜔-ᜐᜊᜌ᜔</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>ᜄᜋᜒᜆᜒᜈ᜔ ᜀᜅ᜔ Proton VPN ᜐ ᜋᜄ᜔ᜃᜃᜁᜊᜅ᜔ platform</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>Android ᜀᜆ᜔ Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>Browser</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>Seguridad ᜀᜆ᜔ privacy ᜐ ᜎᜑᜆ᜔ ᜈᜅ᜔ device ᜋᜓ</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>ᜁ-enjoy ᜀᜅ᜔ ᜉᜄ᜔-browse ᜈᜅ᜔ ᜏᜎᜅ᜔ ad</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>ᜁ-block ᜀᜅ᜔ ᜋᜅ ad ᜀᜆ᜔ tracker ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ NetShield</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜑᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜈ᜔ device ᜋᜓᜎ ᜐ malware</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>ᜁ-unlock ᜀᜅ᜔ ᜋᜅ peer-to-peer download ᜀᜆ᜔ file sharing (P2P)</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>ᜁᜆᜄᜓ ᜀᜅ᜔ IP ᜋᜓ ᜐ provider ᜀᜆ᜔ ᜋᜅ peer</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>ᜉᜊᜒᜎᜒᜐᜒᜈ᜔ ᜀᜅ᜔ P2P speeds ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ port forwarding.</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>ᜋᜐ᜔ ᜋᜊᜒᜎᜒᜐ᜔ ᜈ ᜉᜄ᜔-upload ᜀᜆ᜔ ᜉᜄ᜔-download</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ ᜋᜇᜋᜒ ᜉ</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_Profiles">
+    <value>ᜋᜄ᜔ᜃᜇᜓᜂᜈ᜔ ᜈᜅ᜔ ᜋᜊᜒᜎᜒᜐ᜔ ᜈ access ᜐ ᜋᜅ ᜋᜇᜎᜐ᜔ ᜈ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience">
+    <value>ᜋᜄ᜔ᜆᜃ᜔ᜇ ᜈᜅ᜔ profile ᜊᜒᜎᜅ᜔ ᜁᜌᜓᜅ᜔ default ᜈ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜀᜆ᜔ ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜐ ᜁᜐᜅ᜔ click</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Creation">
+    <value>ᜄᜓᜋᜏ ᜀᜆ᜔ ᜁ-save ᜀᜅ᜔ ᜐᜇᜒᜎᜒ ᜋᜓᜅ᜔ ᜋᜅ configuration ᜈᜅ᜔ VPN ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ ᜋᜅ Profile</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization">
+    <value>ᜁ-customize ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔, protocol, ᜀᜆ᜔ ᜋᜅ setting</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>ᜋᜄ᜔ᜇᜄ᜔ᜇᜄ᜔ ᜈᜅ᜔ ᜁᜐ ᜉᜅ᜔ layer ᜈᜅ᜔ ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜐ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>ᜇᜓᜊ᜔ᜎᜒᜑᜒᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ encryption ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ Secure Core</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜑᜈ᜔ ᜀᜅ᜔ ᜐᜇᜒᜎᜒ ᜋᜓᜎ ᜐ ᜋᜅ ᜀᜆᜃᜒ ᜐ network</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>ᜋᜄ᜔-route ᜐ ᜋᜅ ᜐᜓᜊ᜔ᜇᜅ᜔ ᜎᜒᜄ᜔ᜆᜐ᜔ ᜈ server ᜐ Switzerland, Sweden ᜀᜆ᜔ Iceland</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>ᜋᜄ᜔-browse ᜐ ᜋᜐ᜔ ᜋᜆᜆᜀᜐ᜔ ᜈ speed</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>ᜋᜄ᜔-browse ᜈᜅ᜔ ᜑᜅ᜔ᜄᜅ᜔ 400% ᜋᜐ᜔ ᜋᜊᜒᜎᜒᜐ᜔ ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ VPN Accelerator</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>ᜁ-access ᜀᜅ᜔ ᜋᜐ᜔ ᜋᜊᜒᜎᜒᜐ᜔, ᜑᜒᜈ᜔ᜇᜒ ᜐᜒᜃ᜔ᜐᜒᜃᜅ᜔ ᜋᜅ server</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>ᜋᜄ᜔ᜃᜇᜓᜂᜈ᜔ ᜈᜅ᜔ ᜊᜒᜎᜒᜐ᜔ ᜈᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜈ ᜑᜅ᜔ᜄᜅ᜔ 10 Gbps</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>ᜃᜓᜈᜒᜈ᜔ ᜀᜅ᜔ ᜉᜒᜈᜃᜋᜑᜓᜐᜌ᜔ ᜋᜓᜎ ᜐ ᜇᜎᜏᜅ᜔ ᜋᜓᜈ᜔ᜇᜓ</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>ᜋᜄ᜔-browse ᜋᜓᜎ ᜐ ᜇᜎᜏᜅ᜔ ᜎᜓᜃᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ ᜐᜊᜌ᜔ ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ split tunneling</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>ᜉᜌᜄᜈ᜔ ᜀᜅ᜔ ᜋᜅ ᜉᜒᜈᜄ᜔ᜃᜃᜆᜒᜏᜎᜀᜅ᜔ app ᜀᜆ᜔ IP address ᜈ ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ ᜈᜅ᜔ direkta ᜐ internet, ᜑᜊᜅ᜔ ᜉᜒᜈᜓᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜑᜈ᜔ ᜀᜅ᜔ ᜎᜑᜆ᜔ ᜈᜅ᜔ ᜁᜊ ᜉ ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ VPN</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>ᜁ-stream ᜀᜅ᜔ ᜋᜅ ᜉᜊᜓᜇᜒᜆᜓ ᜋᜓᜅ᜔ ᜉᜒᜎᜒᜃᜓᜎ ᜀᜆ᜔ ᜉᜎᜊᜐ᜔ ᜐ TV</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>ᜁ-access ᜀᜅ᜔ ᜋᜅ ᜈᜃ-geoblock ᜈ TV ᜀᜆ᜔ ᜉᜒᜎᜒᜃᜓᜎ ᜋᜓᜎ ᜐᜀᜈ᜔ᜋᜈ᜔ ᜐ ᜋᜓᜈ᜔ᜇᜓ</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>ᜋᜈᜓᜂᜇ᜔ ᜐ 4K ᜈᜅ᜔ ᜏᜎᜅ᜔ buffering, ᜋᜅ ᜉᜄ᜔ᜊᜊᜄᜎ᜔, ᜂ throttling</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>ᜆᜓᜃ᜔ᜎᜐᜒᜈ᜔ ᜀᜅ᜔ VPN Plus</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>ᜁ-access ᜀᜅ᜔ Tor network ᜉᜇ ᜐ ᜃᜇᜄ᜔ᜇᜄᜅ᜔ privacy</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>ᜁ-access ᜀᜅ᜔ ᜋᜅ ᜈᜃᜆᜄᜓᜅ᜔ site ᜀᜆ᜔ onion site</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>ᜋᜄ᜔-browse ᜐ Tor network ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜇᜒᜄᜓᜎᜇ᜔ ᜈ browser</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>ᜉ᜔ᜇᜓᜆᜒᜃ᜔ᜆᜑᜈ᜔ ᜀᜅ᜔ ᜁᜌᜓᜅ᜔ ᜉᜒᜇ᜔ᜐᜓᜈᜎ᜔ ᜈ data ᜑᜊᜅ᜔ ᜈᜄ᜔ᜊ-browse</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>ᜁ-access ᜀᜅ᜔ ᜋᜑᜒᜄᜒᜆ᜔ {0} ᜐ {1}</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>ᜁ-bypass ᜀᜅ᜔ censorship ᜄᜋᜒᜆ᜔ ᜀᜅ᜔ ᜋᜅ advanced security features</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
+    <value>{0} ᜊᜈ᜔ᜐ</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>{0} ᜋᜅ ᜊᜈ᜔ᜐ</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>ᜎᜒᜄ᜔ᜆᜐ᜔ ᜈ streaming, torrenting, ᜀᜆ᜔ ᜋᜇᜋᜒ ᜉ</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>ᜉᜓᜋᜒᜎᜒ ᜈᜅ᜔ ᜀᜈᜓᜋᜅ᜔ ᜊᜈ᜔ᜐ ᜋᜓᜎ ᜐ ᜀᜋᜒᜅ᜔ ᜉᜈ᜔ᜇᜁᜄ᜔ᜇᜒᜄᜅ᜔ network</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
+    <value>{0} secure server</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>{0} ᜋᜅ secure server</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp_Description">
+    <value>ᜋᜆᜆᜄ᜔, ᜐᜓᜊᜓᜃ᜔ ᜈ, ᜀᜆ᜔ ᜎᜒᜄ᜔ᜆᜐ᜔</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp_Description">
+    <value>ᜋᜆᜆᜄ᜔, ᜐᜓᜊᜓᜃ᜔ ᜈ, ᜀᜆ᜔ ᜎᜒᜄ᜔ᜆᜐ᜔</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description">
+    <value>State-of-the-art ᜈ protocol ᜉᜇ ᜐ ᜐᜒᜄᜓᜇᜒᜇᜇ᜔ ᜀᜆ᜔ performance</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description">
+    <value>ᜈᜒᜎᜎᜋ᜔ᜉᜐᜈ᜔ ᜀᜅ᜔ ᜋ᜔ᜄ ᜉᜄ᜔-block ᜐ VPN ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ ᜉᜄ᜔ᜆᜆᜄᜓ ᜈᜅ᜔ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜋᜓᜎ ᜐ ᜋᜅ censor</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description">
+    <value>State-of-the-art ᜈ protocol ᜉᜇ ᜐ ᜐᜒᜄᜓᜇᜒᜇᜇ᜔ ᜀᜆ᜔ performance</value>
+  </data>
+  <data name="VpnProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp_Description">
+    <value>State-of-the-art protocol ᜉᜇ ᜐ ᜐᜒᜄᜓᜇᜒᜇᜇ᜔ ᜀᜆ᜔ performance</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls_Description">
+    <value>ᜈᜒᜎᜎᜋ᜔ᜉᜐᜈ᜔ ᜀᜅ᜔ ᜋ᜔ᜄ ᜉᜄ᜔-block ᜐ VPN ᜐ ᜉᜋᜋᜄᜒᜆᜈ᜔ ᜈᜅ᜔ ᜉᜄ᜔ᜆᜆᜄᜓ ᜈᜅ᜔ ᜁᜌᜓᜅ᜔ ᜃᜓᜈᜒᜃ᜔ᜐ᜔ᜌᜓᜈ᜔ ᜋᜓᜎ ᜐ ᜋᜅ censor</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp_Description">
+    <value>State-of-the-art protocol ᜉᜇ ᜐ ᜐᜒᜄᜓᜇᜒᜇᜇ᜔ ᜀᜆ᜔ performance</value>
+  </data>
+</root>

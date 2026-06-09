@@ -47,6 +47,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                             <ContentPresenter x:Name="HeaderPresenter"
                                               Content="{TemplateBinding Header}"
+                                              FontFamily="{ThemeResource ContentControlThemeFontFamily}"
                                               FontSize="{StaticResource CaptionFontSize}"
                                               FontWeight="{StaticResource CaptionFontWeight}"
                                               Foreground="{ThemeResource TextWeakColorBrush}"
@@ -58,6 +59,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Content="{TemplateBinding Content}"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               ContentTransitions="{TemplateBinding ContentTransitions}"
+                                              FontFamily="{ThemeResource ContentControlThemeFontFamily}"
                                               FontSize="{StaticResource BodyStrongFontSize}"
                                               FontWeight="{StaticResource BodyStrongFontWeight}"
                                               Foreground="{ThemeResource TextNormColorBrush}"

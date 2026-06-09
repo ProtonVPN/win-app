@@ -151,7 +151,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Top" />
-        <Setter Property="FontFamily" Value="{ThemeResource DefaultFontFamily}" />
+        <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontSize" Value="{ThemeResource BodyFontSize}" />
         <Setter Property="FontWeight" Value="{ThemeResource BodyFontWeight}" />
         <Setter Property="MinWidth" Value="{StaticResource CheckBoxMinWidth}" />

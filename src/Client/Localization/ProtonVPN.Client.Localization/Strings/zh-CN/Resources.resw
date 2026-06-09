@@ -210,6 +210,9 @@
   <data name="Common_Actions_Connect">
     <value>连接</value>
   </data>
+  <data name="System_Tray_Actions_Connect">
+    <value>连接</value>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>联系我们</value>
   </data>
@@ -217,6 +220,9 @@
     <value>删除</value>
   </data>
   <data name="Common_Actions_Disconnect">
+    <value>断开连接</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
     <value>断开连接</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -3528,7 +3534,14 @@ Stealth 具有抗 DPI（深度数据包检查）能力，但速度可能不如�
   <data name="Tray_Actions_ExitApplication">
     <value>退出</value>
   </data>
+  <data name="System_Tray_Actions_ExitApplication">
+    <value>退出</value>
+  </data>
   <data name="Tray_Actions_OpenApplication">
+    <value>打开 {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
     <value>打开 {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>

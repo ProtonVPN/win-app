@@ -210,6 +210,9 @@
   <data name="Common_Actions_Connect">
     <value>اتصل</value>
   </data>
+  <data name="System_Tray_Actions_Connect">
+    <value>اتصل</value>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>تواصل معنا</value>
   </data>
@@ -217,6 +220,9 @@
     <value>حذف</value>
   </data>
   <data name="Common_Actions_Disconnect">
+    <value>قطع الاتصال</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
     <value>قطع الاتصال</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -4007,7 +4013,14 @@ VPN</value>
   <data name="Tray_Actions_ExitApplication">
     <value>خروج</value>
   </data>
+  <data name="System_Tray_Actions_ExitApplication">
+    <value>خروج</value>
+  </data>
   <data name="Tray_Actions_OpenApplication">
+    <value>فتح {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
     <value>فتح {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>

@@ -45,7 +45,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="Background" Value="{ThemeResource ToolTipBackground}" />
         <Setter Property="BorderBrush" Value="{ThemeResource ToolTipBorderBrush}" />
         <Setter Property="BorderThickness" Value="{ThemeResource ToolTipBorderThemeThickness}" />
-        <Setter Property="FontFamily" Value="{ThemeResource DefaultFontFamily}" />
+        <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontSize" Value="{ThemeResource CaptionFontSize}" />
         <Setter Property="FontWeight" Value="{ThemeResource CaptionFontWeight}" />
         <Setter Property="Padding" Value="8,5,8,7" />

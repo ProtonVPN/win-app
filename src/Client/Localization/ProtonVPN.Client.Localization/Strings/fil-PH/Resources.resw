@@ -210,6 +210,9 @@
   <data name="Common_Actions_Connect">
     <value>Kumonekta</value>
   </data>
+  <data name="System_Tray_Actions_Connect">
+    <value>Kumonekta</value>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>Makipag-ugnayan sa amin</value>
   </data>
@@ -217,6 +220,9 @@
     <value>Burahin</value>
   </data>
   <data name="Common_Actions_Disconnect">
+    <value>I-disconnect</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
     <value>I-disconnect</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -3623,7 +3629,14 @@ Maaaring pabagalin ng mataas na load ng server ang koneksyon mo.</value>
   <data name="Tray_Actions_ExitApplication">
     <value>Lumabas</value>
   </data>
+  <data name="System_Tray_Actions_ExitApplication">
+    <value>Lumabas</value>
+  </data>
   <data name="Tray_Actions_OpenApplication">
+    <value>Buksan ang {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
     <value>Buksan ang {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>

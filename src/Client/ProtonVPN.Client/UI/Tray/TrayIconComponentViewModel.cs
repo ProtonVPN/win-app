@@ -60,7 +60,7 @@ public partial class TrayIconComponentViewModel : ViewModelBase,
 
     public string ApplicationName { get; } = App.APPLICATION_NAME;
 
-    public string OpenApplicationLabel => Localizer.GetFormat("Tray_Actions_OpenApplication", ApplicationName);
+    public string OpenApplicationLabel => Localizer.GetFormat("System_Tray_Actions_OpenApplication", ApplicationName);
 
     public TrayIconComponentViewModel(
         IAppExitInvoker appExitInvoker,

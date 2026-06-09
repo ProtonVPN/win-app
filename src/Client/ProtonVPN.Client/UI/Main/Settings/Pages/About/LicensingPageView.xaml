@@ -41,6 +41,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <RichTextBlock Foreground="{ThemeResource TextNormColorBrush}"
                        TextAlignment="Justify"
+                       FontFamily="{ThemeResource ContentControlThemeFontFamily}"
                        AutomationProperties.AutomationId="LicensingTextBlock">
             <RichTextBlock.Resources>
                 <Thickness x:Key="ParagraphMargin">0,0,0,12</Thickness>

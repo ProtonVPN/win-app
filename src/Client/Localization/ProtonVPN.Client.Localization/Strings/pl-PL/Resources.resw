@@ -210,6 +210,9 @@
   <data name="Common_Actions_Connect">
     <value>Połącz</value>
   </data>
+  <data name="System_Tray_Actions_Connect">
+    <value>Połącz</value>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>Skontaktuj się z nami</value>
   </data>
@@ -217,6 +220,9 @@
     <value>Usuń</value>
   </data>
   <data name="Common_Actions_Disconnect">
+    <value>Rozłącz</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
     <value>Rozłącz</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -3815,7 +3821,14 @@ Duże obciążenie serwera może spowolnić połączenie.</value>
   <data name="Tray_Actions_ExitApplication">
     <value>Wyjście</value>
   </data>
+  <data name="System_Tray_Actions_ExitApplication">
+    <value>Wyjście</value>
+  </data>
   <data name="Tray_Actions_OpenApplication">
+    <value>Otwórz {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
     <value>Otwórz {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>

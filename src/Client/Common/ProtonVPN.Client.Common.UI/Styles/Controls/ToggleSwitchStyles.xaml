@@ -126,7 +126,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     <Style BasedOn="{StaticResource ToggleSwitchStyle}" TargetType="ToggleSwitch" />
 
     <Style x:Key="ToggleSwitchStyle" BasedOn="{StaticResource DefaultToggleSwitchStyle}" TargetType="ToggleSwitch">
-        <Setter Property="FontFamily" Value="{ThemeResource DefaultFontFamily}" />
+        <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontSize" Value="{ThemeResource BodyFontSize}" />
         <Setter Property="FontWeight" Value="{ThemeResource BodyFontWeight}" />
         <Setter Property="FocusVisualMargin" Value="{StaticResource ToggleSwitchFocusVisualMargin}" />

@@ -210,6 +210,9 @@
   <data name="Common_Actions_Connect">
     <value>Conecta</value>
   </data>
+  <data name="System_Tray_Actions_Connect">
+    <value>Conecta</value>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>Contacteu amb nosaltres</value>
   </data>
@@ -217,6 +220,9 @@
     <value>Elimina</value>
   </data>
   <data name="Common_Actions_Disconnect">
+    <value>Desconnecta</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
     <value>Desconnecta</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -3623,7 +3629,14 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   <data name="Tray_Actions_ExitApplication">
     <value>Surt</value>
   </data>
+  <data name="System_Tray_Actions_ExitApplication">
+    <value>Surt</value>
+  </data>
   <data name="Tray_Actions_OpenApplication">
+    <value>Obre {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
     <value>Obre {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>

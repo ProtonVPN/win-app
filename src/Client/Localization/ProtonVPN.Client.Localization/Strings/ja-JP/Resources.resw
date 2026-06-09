@@ -210,6 +210,9 @@
   <data name="Common_Actions_Connect">
     <value>接続</value>
   </data>
+  <data name="System_Tray_Actions_Connect">
+    <value>接続</value>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>お問い合わせ先</value>
   </data>
@@ -217,6 +220,9 @@
     <value>削除</value>
   </data>
   <data name="Common_Actions_Disconnect">
+    <value>接続解除</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
     <value>接続解除</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -3527,7 +3533,14 @@ VPN接続</value>
   <data name="Tray_Actions_ExitApplication">
     <value>終了</value>
   </data>
+  <data name="System_Tray_Actions_ExitApplication">
+    <value>終了</value>
+  </data>
   <data name="Tray_Actions_OpenApplication">
+    <value>{0} を開く</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
     <value>{0} を開く</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>

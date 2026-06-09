@@ -80,6 +80,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
                                           ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                                           ContentTransitions="{TemplateBinding ContentTransitions}"
+                                          FontFamily="{ThemeResource ContentControlThemeFontFamily}"
                                           FontSize="{StaticResource BodyMediumFontSize}"
                                           FontWeight="{StaticResource BodyMediumFontWeight}"
                                           Foreground="{TemplateBinding Foreground}"
@@ -98,6 +99,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             <ContentPresenter Content="{TemplateBinding PrimaryCommandContent}"
                                               ContentTemplate="{TemplateBinding PrimaryCommandContentTemplate}"
                                               ContentTemplateSelector="{TemplateBinding PrimaryCommandContentTemplateSelector}"
+                                              FontFamily="{ThemeResource ContentControlThemeFontFamily}"
                                               FontSize="{StaticResource BodyMediumStrongFontSize}"
                                               FontWeight="{StaticResource BodyMediumStrongFontWeight}"
                                               Foreground="{TemplateBinding Foreground}"
@@ -116,8 +118,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                         Spacing="{StaticResource SecondaryCommandContentSpacing}">
                                 <TextBlock x:Name="SecondaryText"
                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                           FontSize="{StaticResource BodyMediumStrongFontSize}"
-                                           FontWeight="{StaticResource BodyMediumStrongFontWeight}"
+                                           Style="{StaticResource BodyMediumStrongTextBlockStyle}"
                                            Foreground="{ThemeResource TextWeakColorBrush}"
                                            Text="{TemplateBinding SecondaryCommandText}"
                                            Visibility="{Binding SecondaryCommandText, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NotNullToVisibilityConverter}}" />

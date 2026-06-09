@@ -105,6 +105,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                         <TextBlock Grid.Row="2"
                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   Style="{StaticResource BodyTextBlockStyle}"
                                    Foreground="{ThemeResource TextWeakColorBrush}"
                                    Text="{TemplateBinding Content}"
                                    TextAlignment="Center"

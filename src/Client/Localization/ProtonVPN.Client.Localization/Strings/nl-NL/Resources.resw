@@ -210,6 +210,9 @@
   <data name="Common_Actions_Connect">
     <value>Verbinden</value>
   </data>
+  <data name="System_Tray_Actions_Connect">
+    <value>Verbinden</value>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>Neem contact op</value>
   </data>
@@ -217,6 +220,9 @@
     <value>Verwijderen</value>
   </data>
   <data name="Common_Actions_Disconnect">
+    <value>Verbinding verbreken</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
     <value>Verbinding verbreken</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -3623,7 +3629,14 @@ VPN-verbinding</value>
   <data name="Tray_Actions_ExitApplication">
     <value>Sluiten</value>
   </data>
+  <data name="System_Tray_Actions_ExitApplication">
+    <value>Sluiten</value>
+  </data>
   <data name="Tray_Actions_OpenApplication">
+    <value>{0} openen</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
     <value>{0} openen</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>

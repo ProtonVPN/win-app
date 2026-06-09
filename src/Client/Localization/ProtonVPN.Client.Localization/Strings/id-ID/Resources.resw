@@ -210,6 +210,9 @@
   <data name="Common_Actions_Connect">
     <value>Hubungkan</value>
   </data>
+  <data name="System_Tray_Actions_Connect">
+    <value>Hubungkan</value>
+  </data>
   <data name="Common_Actions_ContactUs">
     <value>Hubungi kami</value>
   </data>
@@ -217,6 +220,9 @@
     <value>Hapus</value>
   </data>
   <data name="Common_Actions_Disconnect">
+    <value>Putuskan</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
     <value>Putuskan</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -3527,7 +3533,14 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="Tray_Actions_ExitApplication">
     <value>Keluar</value>
   </data>
+  <data name="System_Tray_Actions_ExitApplication">
+    <value>Keluar</value>
+  </data>
   <data name="Tray_Actions_OpenApplication">
+    <value>Buka {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
     <value>Buka {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>

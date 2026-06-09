@@ -70,6 +70,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               x:DeferLoadStrategy="Lazy"
                                               Content="{TemplateBinding Header}"
                                               ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                              FontFamily="{ThemeResource ContentControlThemeFontFamily}"
                                               FontSize="{StaticResource TitleFontSize}"
                                               FontWeight="{StaticResource TitleFontWeight}"
                                               LineHeight="{StaticResource TitleLineHeight}" />
@@ -80,6 +81,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               Grid.ColumnSpan="2"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               Content="{TemplateBinding Content}"
+                                              FontFamily="{ThemeResource ContentControlThemeFontFamily}"
                                               FontSize="{StaticResource BodyFontSize}"
                                               FontWeight="{StaticResource BodyFontWeight}"
                                               LineHeight="{StaticResource BodyLineHeight}" 
@@ -114,6 +116,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <Setter.Value>
                 <DataTemplate>
                     <TextBlock Text="{Binding}"
+                               Style="{ThemeResource TitleTextBlockStyle}"
                                TextTrimming="CharacterEllipsis"
                                TextWrapping="NoWrap" />
                 </DataTemplate>

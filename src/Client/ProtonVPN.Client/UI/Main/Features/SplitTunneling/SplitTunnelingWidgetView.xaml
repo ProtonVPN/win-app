@@ -135,8 +135,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
 					<StackPanel Spacing="4"
 								Visibility="{x:Bind ViewModel.IsLoading, Converter={StaticResource NotBooleanToVisibilityConverter}}">
 
-						<TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
-								   Text="{x:Bind ViewModel.AppsHeader}"
+                        <TextBlock Foreground="{ThemeResource TextWeakColorBrush}"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   Text="{x:Bind ViewModel.AppsHeader}"
 								   TextTrimming="CharacterEllipsis" />
 
 						<controls:SettingsCard AutomationProperties.AutomationId="AppsSelectorSettingsCard"
@@ -205,8 +206,9 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
 							</Grid.ColumnDefinitions>
 
 							<TextBlock Grid.Column="0"
-									   Foreground="{ThemeResource TextWeakColorBrush}"
-									   Text="{x:Bind ViewModel.IpAddressesHeader}"
+                                       Foreground="{ThemeResource TextWeakColorBrush}"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Text="{x:Bind ViewModel.IpAddressesHeader}"
 									   TextTrimming="CharacterEllipsis" />
 
 							<custom:GhostButton Grid.Column="1"
