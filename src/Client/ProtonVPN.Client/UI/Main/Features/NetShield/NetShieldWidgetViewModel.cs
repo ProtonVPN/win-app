@@ -35,6 +35,7 @@ using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Features.Bases;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.UI.Main.Settings.Connection;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Features.NetShield;
 
@@ -107,7 +108,7 @@ public partial class NetShieldWidgetViewModel : FeatureWidgetViewModelBase,
 
     public bool IsNetShieldLevelThreeAvailable => !Settings.VpnPlan.IsB2B;
 
-    protected override UpsellFeatureType? UpsellFeature { get; } = UpsellFeatureType.NetShield;
+    protected override UpsellModalContext ModalContext { get; } = new(ModalSource.NetShield, ModalTrigger.Settings);
 
     public override bool IsFeatureOverridden => ConnectionManager.IsConnected 
                                              && CurrentProfile != null;

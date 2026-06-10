@@ -23,7 +23,6 @@ using ProtonVPN.Client.Common.UI.Controls.Map;
 using ProtonVPN.Client.Contracts.Messages;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
-using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Localization.Extensions;
@@ -31,13 +30,12 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
-using ProtonVPN.Client.Logic.Servers;
 using ProtonVPN.Client.Logic.Servers.Cache;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.UI.Main.Map;
@@ -180,7 +178,7 @@ public partial class MapComponentViewModel : ViewModelBase,
     {
         if (!_settings.VpnPlan.IsPaid)
         {
-            return _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.WorldwideCoverage);
+            return _upsellCarouselWindowActivator.ActivateAsync(new UpsellModalContext(ModalSource.Countries, ModalTrigger.Map, country?.Code));
         }
 
         if (country == null || country.IsUnderMaintenance)

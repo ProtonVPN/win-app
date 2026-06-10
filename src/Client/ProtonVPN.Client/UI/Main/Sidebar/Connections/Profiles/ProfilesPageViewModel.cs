@@ -149,6 +149,6 @@ public partial class ProfilesPageViewModel : ConnectionPageViewModelBase,
     [RelayCommand]
     private async Task UpgradeAsync()
     {
-        await _accountUpgradeUrlLauncher.OpenAsync(ModalSource.Profiles);
+        await _accountUpgradeUrlLauncher.OpenAsync(new UpsellModalContext(ModalSource.Profiles, ModalTrigger.CountriesBanner));
     }
 }

@@ -21,15 +21,16 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.Enums;
 using ProtonVPN.Client.Core.Bases.Models;
-using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Localization.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Extensions;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Profiles.Contracts.Models;
 using ProtonVPN.Client.Logic.Servers.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Models.Connections;
@@ -126,25 +127,13 @@ public abstract partial class ConnectionItemBase : ModelBase, IConnectionItem
     protected abstract bool MatchesActiveConnection(ConnectionDetails? currentConnectionDetails);
 
     [RelayCommand(CanExecute = nameof(CanToggleConnection))]
-    protected virtual Task ToggleConnectionAsync()
+    protected Task ToggleConnectionAsync()
     {
         IConnectionIntent connectionIntent = GetConnectionIntent();
 
         if (IsRestricted)
         {
-            return UpsellCarouselWindowActivator.ActivateAsync(
-                connectionIntent switch
-                {
-                    IConnectionProfile => UpsellFeatureType.Profiles,
-                    _ => connectionIntent?.Feature switch
-                    {
-                        SecureCoreFeatureIntent => UpsellFeatureType.SecureCore,
-                        P2PFeatureIntent => UpsellFeatureType.P2P,
-                        TorFeatureIntent => UpsellFeatureType.Tor,
-                        _ => UpsellFeatureType.WorldwideCoverage
-                    }
-                }
-            );
+            return ActivateUpsellCarouselAsync(connectionIntent);
         }
 
         return IsActiveConnection
@@ -157,5 +146,28 @@ public abstract partial class ConnectionItemBase : ModelBase, IConnectionItem
         return !IsUnderMaintenance
             || IsActiveConnection
             || IsRestricted;
+    }
+
+    private Task ActivateUpsellCarouselAsync(IConnectionIntent connectionIntent)
+    {
+        ModalSource modalSource = connectionIntent switch
+        {
+            IConnectionProfile => ModalSource.Profiles,
+            _ => connectionIntent?.Feature switch
+            {
+                SecureCoreFeatureIntent => ModalSource.SecureCore,
+                P2PFeatureIntent => ModalSource.P2P,
+                TorFeatureIntent => ModalSource.Tor,
+                _ => ModalSource.Countries
+            }
+        };
+
+        ModalTrigger modalTrigger = IsSearchItem
+            ? ModalTrigger.SearchSelection
+            : ModalTrigger.CountrySelection;
+
+        string? upsellCountryCode = connectionIntent?.Location.GetCountryCode();
+
+        return UpsellCarouselWindowActivator.ActivateAsync(new UpsellModalContext(modalSource, modalTrigger, upsellCountryCode));
     }
 }

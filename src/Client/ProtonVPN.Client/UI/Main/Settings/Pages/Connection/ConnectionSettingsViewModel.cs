@@ -21,7 +21,6 @@ using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Contracts.Profiles;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
-using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -34,6 +33,7 @@ using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.Connection;
 
@@ -196,7 +196,7 @@ public partial class ConnectionSettingsViewModel : ActivatableViewModelBase,
             ? AreSettingsOverridden
                 ? _profileEditor.TryRedirectToProfileAsync(Localizer.Get("Settings_Connection_NetShield"), CurrentProfile!)
                 : _settingsViewNavigator.NavigateToNetShieldSettingsViewAsync()
-            : _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.NetShield);
+            : TriggerSettingsUpsellProcessAsync(ModalSource.NetShield);
     }
 
     [RelayCommand]
@@ -212,7 +212,7 @@ public partial class ConnectionSettingsViewModel : ActivatableViewModelBase,
             ? AreSettingsOverridden
                 ? _profileEditor.TryRedirectToProfileAsync(Localizer.Get("Settings_Connection_PortForwarding"), CurrentProfile!)
                 : _settingsViewNavigator.NavigateToPortForwardingSettingsViewAsync()
-            : _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.P2P);
+            : TriggerSettingsUpsellProcessAsync(ModalSource.PortForwarding);
     }
 
     [RelayCommand]
@@ -220,7 +220,7 @@ public partial class ConnectionSettingsViewModel : ActivatableViewModelBase,
     {
         return IsPaidUser
             ? _settingsViewNavigator.NavigateToSplitTunnelingSettingsViewAsync()
-            : _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.SplitTunneling);
+            : TriggerSettingsUpsellProcessAsync(ModalSource.SplitTunneling);
     }
 
     [RelayCommand]
@@ -228,12 +228,17 @@ public partial class ConnectionSettingsViewModel : ActivatableViewModelBase,
     {
         return IsPaidUser
             ? _settingsViewNavigator.NavigateToVpnAcceleratorSettingsViewAsync()
-            : _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.Speed);
+            : TriggerSettingsUpsellProcessAsync(ModalSource.VpnAccelerator);
     }
 
     [RelayCommand]
     private async Task NavigateToAdvancedSettingsPageAsync()
     {
         await _settingsViewNavigator.NavigateToAdvancedSettingsViewAsync();
+    }
+
+    private Task TriggerSettingsUpsellProcessAsync(ModalSource modalSource)
+    {
+        return _upsellCarouselWindowActivator.ActivateAsync(new UpsellModalContext(modalSource, ModalTrigger.Settings));
     }
 }

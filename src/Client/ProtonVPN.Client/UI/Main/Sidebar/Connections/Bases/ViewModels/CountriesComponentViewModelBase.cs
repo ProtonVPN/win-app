@@ -57,6 +57,7 @@ public abstract partial class CountriesComponentViewModelBase : ActivatableViewM
 
     public bool IsUpsellBannerVisible => IsRestricted;
     public bool IsRestricted => !Settings.VpnPlan.IsPaid;
+
     protected abstract ModalSource UpsellModalSource { get; }
 
     protected CountriesComponentViewModelBase(
@@ -121,6 +122,6 @@ public abstract partial class CountriesComponentViewModelBase : ActivatableViewM
     [RelayCommand]
     private async Task UpgradeAsync()
     {
-        await _accountUpgradeUrlLauncher.OpenAsync(UpsellModalSource);
+        await _accountUpgradeUrlLauncher.OpenAsync(new UpsellModalContext(UpsellModalSource, ModalTrigger.CountriesBanner));
     }
 }

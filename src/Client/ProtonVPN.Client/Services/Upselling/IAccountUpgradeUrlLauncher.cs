@@ -23,6 +23,6 @@ namespace ProtonVPN.Client.Services.Upselling;
 
 public interface IAccountUpgradeUrlLauncher
 {
-    Task OpenAsync(ModalSource modalSource, string? reference = null);
-    void Open(string url, ModalSource modalSource, string? reference = null);
+    Task OpenAsync(UpsellModalContext context);
+    void Open(string url, UpsellModalContext context, string? reference = null);
 }

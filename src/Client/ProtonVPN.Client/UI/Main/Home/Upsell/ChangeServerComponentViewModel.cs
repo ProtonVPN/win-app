@@ -27,7 +27,6 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.FreeServers;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Services.Upselling;
@@ -108,7 +107,7 @@ public partial class ChangeServerComponentViewModel : ActivatableViewModelBase,
     [RelayCommand]
     private async Task UpgradePlanAsync()
     {
-        await _accountUpgradeUrlLauncher.OpenAsync(ModalSource.ChangeServer);
+        await _accountUpgradeUrlLauncher.OpenAsync(new UpsellModalContext(ModalSource.ChangeServer, ModalTrigger.Home));
     }
 
     private void InvalidateChangeServer()

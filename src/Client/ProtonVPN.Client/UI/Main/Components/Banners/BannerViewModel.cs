@@ -48,7 +48,7 @@ public partial class BannerViewModel : BannerViewModelBase, IEventMessageReceive
 
     protected override AnnouncementType AnnouncementType { get; } = AnnouncementType.Banner;
 
-    protected override ModalSource ModalSource { get; } = ModalSource.PromoOffer;
+    protected override UpsellModalContext ModalContext { get; } = new(ModalSource.PromoOffer, ModalTrigger.PromoOfferBanner);
 
     public BannerViewModel(
         IUIThreadDispatcher uiThreadDispatcher,

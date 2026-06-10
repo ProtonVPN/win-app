@@ -23,7 +23,6 @@ using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Contracts.Profiles;
 using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Core.Bases;
-using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -39,6 +38,7 @@ using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages;
 
@@ -260,19 +260,19 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
             ? IsCustomDnsServersOverridden
                 ? _profileEditor.TryRedirectToProfileAsync(Localizer.Get("Settings_Connection_Advanced_CustomDnsServers"), CurrentProfile!)
                 : ParentViewNavigator.NavigateToCustomDnsSettingsViewAsync()
-            : TriggerAdvancedSettingsUpsellProcessAsync(UpsellFeatureType.CustomDns);
+            : TriggerAdvancedSettingsUpsellProcessAsync(ModalSource.CustomDns);
     }
 
     [RelayCommand]
-    private Task TriggerLanConnectonsUpsellProcessAsync()
+    private Task TriggerLanConnectionsUpsellProcessAsync()
     {
-        return TriggerAdvancedSettingsUpsellProcessAsync(UpsellFeatureType.AllowLanConnections);
+        return TriggerAdvancedSettingsUpsellProcessAsync(ModalSource.AllowLanConnections);
     }
 
     [RelayCommand]
     private Task TriggerNatTypeUpsellProcessAsync()
     {
-        return TriggerAdvancedSettingsUpsellProcessAsync(UpsellFeatureType.ModerateNat);
+        return TriggerAdvancedSettingsUpsellProcessAsync(ModalSource.ModerateNat);
     }
 
     [RelayCommand]
@@ -281,15 +281,9 @@ public partial class AdvancedSettingsPageViewModel : SettingsPageViewModelBase,
         return _profileEditor.TryRedirectToProfileAsync(Localizer.Get("Settings_Connection_Advanced_NatType"), CurrentProfile!);
     }
 
-    [RelayCommand]
-    private Task TriggerDnsBlockModeUpsellProcessAsync()
+    private Task TriggerAdvancedSettingsUpsellProcessAsync(ModalSource modalSource)
     {
-        return TriggerAdvancedSettingsUpsellProcessAsync(UpsellFeatureType.AllowLanConnections);
-    }
-
-    private Task TriggerAdvancedSettingsUpsellProcessAsync(UpsellFeatureType upsellFeatureType)
-    {
-        return _upsellCarouselWindowActivator.ActivateAsync(upsellFeatureType);
+        return _upsellCarouselWindowActivator.ActivateAsync(new UpsellModalContext(modalSource, ModalTrigger.Settings));
     }
 
     private bool IsNatType(NatType natType)

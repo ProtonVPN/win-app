@@ -40,11 +40,11 @@ public class UpsellSuccessReporter : ReporterBase<UpsellMeasurementGroup>,
         _dimensionsBuilder = dimensionsBuilder;
     }
 
-    public void Report(string url, ModalSource modalSource, VpnPlan oldPlan, VpnPlan newPlan, string? reference = null)
+    public void Report(string url, UpsellModalContext context, VpnPlan oldPlan, VpnPlan newPlan, string? reference = null)
     {
         ReportEvent(
             CreateStatisticalEventBuilder()
-                .WithDimensions(_dimensionsBuilder.Build(modalSource, reference))
+                .WithDimensions(_dimensionsBuilder.Build(context, reference))
                 .WithDimensions(_dimensionsBuilder.BuildSuccessDimensions(url, oldPlan, newPlan))
                 .Build());
     }

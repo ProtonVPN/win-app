@@ -43,7 +43,7 @@ public class AnnouncementActivator : IAnnouncementActivator
         _accountUpgradeUrlLauncher = accountUpgradeUrlLauncher;
     }
 
-    public async Task ActivateAsync(Announcement? announcement)
+    public async Task ActivateAsync(Announcement? announcement, UpsellModalContext context)
     {
         string action = announcement?.Panel?.Button?.Action ?? string.Empty;
 
@@ -51,14 +51,13 @@ public class AnnouncementActivator : IAnnouncementActivator
         {
             string baseUrl = announcement?.Panel?.Button?.Url ?? string.Empty;
             List<string> behaviors = announcement?.Panel?.Button?.Behaviors ?? new();
-            ModalSource modalSource = ModalSource.PromoOffer;
             string reference = announcement?.Reference ?? string.Empty;
 
             string url = behaviors.Contains("AutoLogin")
-                ? await _webAuthenticator.GetAuthUrlAsync(baseUrl, modalSource, reference)
+                ? await _webAuthenticator.GetAuthUrlAsync(baseUrl, context.Source, reference)
                 : baseUrl;
 
-            _accountUpgradeUrlLauncher.Open(url, modalSource, reference);
+            _accountUpgradeUrlLauncher.Open(url, context, reference: reference);
         }
         else
         {

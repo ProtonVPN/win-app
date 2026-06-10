@@ -42,7 +42,7 @@ public partial class StreamingDetectionShellViewModel : ShellViewModelBase<IStre
     [RelayCommand]
     private async Task UpgradeAsync()
     {
-        await _accountUpgradeUrlLauncher.OpenAsync(ModalSource.StreamingActivity);
+        await _accountUpgradeUrlLauncher.OpenAsync(new UpsellModalContext(ModalSource.StreamingActivity, ModalTrigger.NetworkRestriction));
 
         Hide();
     }

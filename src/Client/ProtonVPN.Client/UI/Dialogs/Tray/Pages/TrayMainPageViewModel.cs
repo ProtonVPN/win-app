@@ -125,6 +125,6 @@ public partial class TrayMainPageViewModel : PageViewModelBase<ITrayAppViewNavig
     [RelayCommand]
     private async Task UpgradeAsync()
     {
-        await _accountUpgradeUrlLauncher.OpenAsync(ModalSource.Tray);
+        await _accountUpgradeUrlLauncher.OpenAsync(new UpsellModalContext(ModalSource.Countries, ModalTrigger.Tray));
     }
 }

@@ -141,7 +141,7 @@ public class VpnPlanChangedHandler : IHandler,
             return;
         }
 
-        await _accountUpgradeUrlLauncher.OpenAsync(ModalSource.Downgrade);
+        await _accountUpgradeUrlLauncher.OpenAsync(new UpsellModalContext(ModalSource.Downgrade, ModalTrigger.ErrorDialog));
     }
 
     private async Task ResetNavigationAsync()

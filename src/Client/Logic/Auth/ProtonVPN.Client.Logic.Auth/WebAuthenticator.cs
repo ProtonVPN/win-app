@@ -58,7 +58,7 @@ public class WebAuthenticator : IWebAuthenticator
         return Task.FromResult(_config.Urls.AccountUrl);
     }
 
-    public async Task<string> GetUpgradeAccountUrlAsync(ModalSource modalSource, string? notificationReference = null)
+    public async Task<string> GetUpgradeAccountUrlAsync(ModalSource? modalSource, string? notificationReference = null)
     {
         string redirectUrl = GetRedirectUrl(modalSource, notificationReference);
 
@@ -83,14 +83,22 @@ public class WebAuthenticator : IWebAuthenticator
             : GetAutoLoginUrl(parameters, selector);
     }
 
-    public async Task<string> GetAuthUrlAsync(string url, ModalSource modalSource, string notificationReference)
+    public async Task<string> GetAuthUrlAsync(string url, ModalSource? modalSource, string notificationReference)
     {
         Uri uri = new(url);
         NameValueCollection uriQuery = HttpUtility.ParseQueryString(uri.Query);
         if (uriQuery.AllKeys.Contains("redirect") && uriQuery["redirect"] is not null)
         {
-            string queryPrefix = uriQuery["redirect"]?.Contains('?') ?? false ? "&" : "?";
-            uriQuery["redirect"] += $"{queryPrefix}modal-source={modalSource}&notification-reference={notificationReference}";
+            string separator = uriQuery["redirect"]?.Contains('?') ?? false ? "&" : "?";
+            if (modalSource.HasValue)
+            {
+                uriQuery["redirect"] += $"{separator}modal-source={modalSource}";
+                separator = "&";
+            }
+            if (!string.IsNullOrEmpty(notificationReference))
+            {
+                uriQuery["redirect"] += $"{separator}notification-reference={notificationReference}";
+            }
         }
 
         url = $"{uri.GetLeftPart(UriPartial.Path)}?{uriQuery}";
@@ -101,12 +109,18 @@ public class WebAuthenticator : IWebAuthenticator
             : url + $"#selector={selector}";
     }
 
-    private string GetRedirectUrl(ModalSource modalSource, string? notificationReference = null)
+    private string GetRedirectUrl(ModalSource? modalSource, string? notificationReference)
     {
-        string url = $"{GetRedirectUrl()}?modal-source={modalSource}";
+        string url = GetRedirectUrl();
+        string separator = "?";
+        if (modalSource.HasValue)
+        {
+            url += $"{separator}modal-source={modalSource}";
+            separator = "&";
+        }
         if (!string.IsNullOrWhiteSpace(notificationReference))
         {
-            url += $"&notification-reference={notificationReference}";
+            url += $"{separator}notification-reference={notificationReference}";
         }
 
         return url;
@@ -119,14 +133,14 @@ public class WebAuthenticator : IWebAuthenticator
 
     private string GetAutoLoginUrl(AuthUrlParameters parameters, string selector)
     {
-        return _config.Urls.AutoLoginBaseUrl + "?" +
-               $"action={parameters.Action}&" +
-               $"fullscreen={parameters.Fullscreen}&" +
-               $"redirect={ActivationProtocol + parameters.Redirect}&" +
-               $"start={parameters.Start}&" +
-               $"type={parameters.Type}&" +
-               "app=vpn" +
-               "#selector=" + selector;
+         return _config.Urls.AutoLoginBaseUrl
+            + $"?action={parameters.Action}"
+            + $"&fullscreen={parameters.Fullscreen}"
+            + $"&redirect={ActivationProtocol + parameters.Redirect}"
+            + $"&start={parameters.Start}"
+            + $"&type={parameters.Type}"
+            + $"&app=vpn"
+            + $"#selector={selector}";
     }
 
     private async Task<string> GetSelectorAsync()

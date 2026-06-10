@@ -17,30 +17,26 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Specialized;
-using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using ProtonVPN.Client.Common.Attributes;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Common.Attributes;
 using ProtonVPN.Client.Common.Collections;
 using ProtonVPN.Client.Core.Bases;
-using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts;
-using ProtonVPN.Client.Logic.Connection.Contracts.Preferences;
 using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 using ProtonVPN.Client.Logic.Searches.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Services.DefaultConnections;
+using ProtonVPN.Client.Services.LocationExclusion;
 using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
-using ProtonVPN.Client.Services.LocationExclusion;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Settings.Pages.ConnectionPreferences;
 
@@ -155,13 +151,18 @@ public partial class ConnectionPreferencesSettingsPageViewModel : SettingsPageVi
     [RelayCommand]
     private Task TriggerDefaultConnectionUpsellProcessAsync()
     {
-        return _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.Profiles);
+        return TriggerUpsellProcessAsync(ModalSource.DefaultConnection);
     }
 
     [RelayCommand]
     private Task TriggerExcludedLocationsUpsellAsync()
     {
-        return _upsellCarouselWindowActivator.ActivateAsync(UpsellFeatureType.AdvancedSettings);
+        return TriggerUpsellProcessAsync(ModalSource.ExcludeLocations);
+    }
+
+    private Task TriggerUpsellProcessAsync(ModalSource modalSource)
+    {
+        return _upsellCarouselWindowActivator.ActivateAsync(new UpsellModalContext(modalSource, ModalTrigger.Settings));
     }
 
     private void InvalidateAllConnections()

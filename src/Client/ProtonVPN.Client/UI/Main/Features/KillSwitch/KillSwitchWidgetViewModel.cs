@@ -72,8 +72,6 @@ public partial class KillSwitchWidgetViewModel : FeatureWidgetViewModelBase
 
     public bool IsAdvancedKillSwitchEnabled => IsKillSwitchEnabled && KillSwitchMode == KillSwitchMode.Advanced;
 
-    protected override UpsellFeatureType? UpsellFeature { get; } = null;
-
     public KillSwitchWidgetViewModel(
         IViewModelHelper viewModelHelper,
         ISettings settings,

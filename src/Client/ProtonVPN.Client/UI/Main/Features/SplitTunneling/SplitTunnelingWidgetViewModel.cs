@@ -41,6 +41,7 @@ using ProtonVPN.Client.UI.Main.Settings.Connection;
 using ProtonVPN.Client.UI.Overlays.Selection.Contracts;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Features.SplitTunneling;
 
@@ -131,7 +132,7 @@ public partial class SplitTunnelingWidgetViewModel : FeatureWidgetViewModelBase
         ? "Settings_Connection_SplitTunneling_Apps_Excluded_FormattedHeader"
         : "Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader", SelectedApps.Count());
 
-    protected override UpsellFeatureType? UpsellFeature { get; } = UpsellFeatureType.SplitTunneling;
+    protected override UpsellModalContext ModalContext { get; } = new(ModalSource.SplitTunneling, ModalTrigger.Settings);
 
     public SplitTunnelingWidgetViewModel(
         IViewModelHelper viewModelHelper,

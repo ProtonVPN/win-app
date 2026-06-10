@@ -70,7 +70,7 @@ public class P2PDetectionWindowActivator : DialogActivatorBase<P2PDetectionWindo
     {
         base.OnWindowOpened();
 
-        _upsellDisplayReporter.Report(ModalSource.P2PActivity);
+        _upsellDisplayReporter.Report(new UpsellModalContext(ModalSource.P2PActivity, ModalTrigger.NetworkRestriction));
     }
 
     protected override void OnWindowHidden()

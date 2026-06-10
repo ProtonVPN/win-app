@@ -41,6 +41,7 @@ using ProtonVPN.Client.UI.Main.Settings;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.UI.Main.Widgets.Bases;
 using ProtonVPN.Client.UI.Main.Widgets.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.UI.Main.Features.Bases;
@@ -75,7 +76,7 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
 
     public virtual bool IsRestricted => !Settings.VpnPlan.IsPaid;
 
-    protected abstract UpsellFeatureType? UpsellFeature { get; }
+    protected virtual UpsellModalContext ModalContext { get; } = UpsellModalContext.Undefined;
 
     public virtual bool IsFeatureOverridden => false;
 
@@ -113,7 +114,7 @@ public abstract partial class FeatureWidgetViewModelBase : SideWidgetViewModelBa
     {
         if (IsRestricted)
         {
-            return await UpsellCarouselWindowActivator.ActivateAsync(UpsellFeature);
+            return await UpsellCarouselWindowActivator.ActivateAsync(ModalContext);
         }
 
         if (IsFeatureOverridden && CurrentProfile != null)

@@ -102,6 +102,6 @@ public partial class FreeConnectionsOverlayViewModel : OverlayViewModelBase<IMai
     [RelayCommand]
     private async Task UpgradePlanAsync()
     {
-        await _accountUpgradeUrlLauncher.OpenAsync(ModalSource.Countries);
+        await _accountUpgradeUrlLauncher.OpenAsync(new UpsellModalContext(ModalSource.Countries, ModalTrigger.Home));
     }
 }

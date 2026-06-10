@@ -57,6 +57,8 @@ public partial class OneTimeAnnouncementShellViewModel : ShellViewModelBase<IOne
     public ImageSource? ImageSource => ActiveAnnouncement?.Panel?.FullScreenImage
         .GetImageForTheme(_themeSelector.GetTheme())?.LocalPath?.ToImageSource();
 
+    private UpsellModalContext ModalContext => new(ModalSource.PromoOffer, ModalTrigger.PromoOfferPopup);
+
     public OneTimeAnnouncementShellViewModel(
         IAnnouncementsProvider announcementsProvider,
         IAnnouncementActivator announcementActivator,
@@ -109,7 +111,7 @@ public partial class OneTimeAnnouncementShellViewModel : ShellViewModelBase<IOne
         if (ActiveAnnouncement is not null)
         {
             _announcementsProvider.MarkAsSeen(ActiveAnnouncement.Id);
-            _upsellDisplayReporter.Report(ModalSource.PromoOffer, ActiveAnnouncement.Reference);
+            _upsellDisplayReporter.Report(ModalContext, reference: ActiveAnnouncement.Reference);
         }
     }
 
@@ -122,7 +124,7 @@ public partial class OneTimeAnnouncementShellViewModel : ShellViewModelBase<IOne
     [RelayCommand]
     public async Task OpenAnnouncementAsync()
     {
-        await _announcementActivator.ActivateAsync(ActiveAnnouncement);
+        await _announcementActivator.ActivateAsync(ActiveAnnouncement, ModalContext);
 
         Exit();
     }

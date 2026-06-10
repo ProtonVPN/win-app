@@ -38,7 +38,7 @@ public class ModalSourceDimensionMapper : DimensionMapperBase, IModalSourceDimen
     private const string CUSTOM_DNS = "custom_dns";
     private const string ALLOW_LAN = "allow_lan";
     private const string MODERATE_NAT = "moderate_nat";
-    private const string SAFE_MODE = "safe_mode"; // Not used on Windows
+    private const string SAFE_MODE = "safe_mode";
     private const string CHANGE_SERVER = "change_server";
     private const string PROMO_OFFER = "promo_offer";
     private const string DOWNGRADE = "downgrade";
@@ -56,6 +56,14 @@ public class ModalSourceDimensionMapper : DimensionMapperBase, IModalSourceDimen
     private const string ACCOUNT = "account";
     private const string TOR = "tor";
     private const string TRAY = "tray";
+    private const string ONBOARDING = "onboarding";
+    private const string ADVANCED_CUSTOMIZATION = "advanced_customization";
+    private const string HOME_CAROUSEL_PROFILES = "home_carousel_profiles";
+    private const string DEVICES = "devices";
+    private const string HERMES = "hermes";
+    private const string SPEED = "speed";
+    private const string DEFAULT_CONNECTION = "default_connection";
+    private const string EXCLUDE_LOCATIONS = "exclude_locations";
 
     public string Map(ModalSource? modalSource)
     {
@@ -75,6 +83,7 @@ public class ModalSourceDimensionMapper : DimensionMapperBase, IModalSourceDimen
             ModalSource.CustomDns => CUSTOM_DNS,
             ModalSource.AllowLanConnections => ALLOW_LAN,
             ModalSource.ModerateNat => MODERATE_NAT,
+            ModalSource.SafeMode => SAFE_MODE,
             ModalSource.ChangeServer => CHANGE_SERVER,
             ModalSource.PromoOffer => PROMO_OFFER,
             ModalSource.Downgrade => DOWNGRADE,
@@ -92,6 +101,14 @@ public class ModalSourceDimensionMapper : DimensionMapperBase, IModalSourceDimen
             ModalSource.Account => ACCOUNT,
             ModalSource.Tor => TOR,
             ModalSource.Tray => TRAY,
+            ModalSource.Onboarding => ONBOARDING,
+            ModalSource.AdvancedCustomization => ADVANCED_CUSTOMIZATION,
+            ModalSource.CarouselProfiles => HOME_CAROUSEL_PROFILES,
+            ModalSource.Devices => DEVICES,
+            ModalSource.Hermes => HERMES,
+            ModalSource.Speed => SPEED,
+            ModalSource.DefaultConnection => DEFAULT_CONNECTION,
+            ModalSource.ExcludeLocations => EXCLUDE_LOCATIONS,
             _ => NOT_AVAILABLE
         };
     }

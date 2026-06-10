@@ -42,7 +42,7 @@ public partial class P2PDetectionShellViewModel : ShellViewModelBase<IP2PDetecti
     [RelayCommand]
     private async Task UpgradeAsync()
     {
-        await _accountUpgradeUrlLauncher.OpenAsync(ModalSource.P2PActivity);
+        await _accountUpgradeUrlLauncher.OpenAsync(new UpsellModalContext(ModalSource.P2PActivity, ModalTrigger.NetworkRestriction));
 
         Hide();
     }

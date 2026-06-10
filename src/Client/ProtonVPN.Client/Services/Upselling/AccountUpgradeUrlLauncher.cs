@@ -34,7 +34,7 @@ public class AccountUpgradeUrlLauncher : IAccountUpgradeUrlLauncher,
     private readonly IWebAuthenticator _webAuthenticator;
 
     private string? _currentAttemptUrl;
-    private ModalSource? _currentAttemptModalSource;
+    private UpsellModalContext? _currentAttemptContext;
     private string? _currentAttemptReference;
 
     public AccountUpgradeUrlLauncher(
@@ -49,24 +49,24 @@ public class AccountUpgradeUrlLauncher : IAccountUpgradeUrlLauncher,
         _webAuthenticator = webAuthenticator;
     }
 
-    public async Task OpenAsync(ModalSource modalSource, string? reference = null)
+    public async Task OpenAsync(UpsellModalContext context)
     {
-        string url = await _webAuthenticator.GetUpgradeAccountUrlAsync(modalSource, reference);
+        string url = await _webAuthenticator.GetUpgradeAccountUrlAsync(context.Source);
 
-        Open(url, modalSource, reference);
+        Open(url, context);
     }
 
-    public void Open(string url, ModalSource modalSource, string? reference = null)
+    public void Open(string url, UpsellModalContext context, string? reference = null)
     {
         try
         {
-            _upsellUpgradeAttemptReporter.Report(modalSource, reference);
+            _upsellUpgradeAttemptReporter.Report(context, reference);
 
             _urlsBrowser.BrowseTo(url);
         }
         finally
         {
-            SetAttempt(url, modalSource, reference);
+            SetAttempt(url, context, reference);
         }
     }
 
@@ -74,13 +74,13 @@ public class AccountUpgradeUrlLauncher : IAccountUpgradeUrlLauncher,
     {
         try
         {
-            if (_currentAttemptModalSource.HasValue && message.HasChanged() && !message.IsDowngrade())
+            if (_currentAttemptContext.HasValue && message.HasChanged() && !message.IsDowngrade())
             {
                 _upsellSuccessReporter.Report(
-                    _currentAttemptUrl ?? string.Empty, 
-                    _currentAttemptModalSource.Value, 
-                    message.OldPlan, 
-                    message.NewPlan, 
+                    _currentAttemptUrl ?? string.Empty,
+                    _currentAttemptContext.Value,
+                    message.OldPlan,
+                    message.NewPlan,
                     _currentAttemptReference);
             }
         }
@@ -90,17 +90,17 @@ public class AccountUpgradeUrlLauncher : IAccountUpgradeUrlLauncher,
         }
     }
 
-    private void SetAttempt(string url, ModalSource modalSource, string? reference)
+    private void SetAttempt(string url, UpsellModalContext context, string? reference)
     {
         _currentAttemptUrl = url;
-        _currentAttemptModalSource = modalSource;
+        _currentAttemptContext = context;
         _currentAttemptReference = reference;
     }
 
     private void ResetAttempt()
     {
         _currentAttemptUrl = null;
-        _currentAttemptModalSource = null;
+        _currentAttemptContext = null;
         _currentAttemptReference = null;
     }
 }

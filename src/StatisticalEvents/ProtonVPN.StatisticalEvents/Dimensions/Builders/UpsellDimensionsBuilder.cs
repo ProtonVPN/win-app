@@ -34,6 +34,7 @@ public class UpsellDimensionsBuilder : IUpsellDimensionsBuilder
     private readonly ISettings _settings;
     private readonly IConnectionManager _connectionManager;
     private readonly IModalSourceDimensionMapper _modalSourceDimensionMapper;
+    private readonly IModalTriggerDimensionMapper _modalTriggerDimensionMapper;
     private readonly IVpnPlanTierDimensionMapper _vpnPlanTierDimensionMapper;
     private readonly IVpnPlanNameDimensionMapper _vpnPlanNameDimensionMapper;
     private readonly IDaysSinceAccountCreationDimensionMapper _daysSinceAccountCreationDimensionMapper;
@@ -46,6 +47,7 @@ public class UpsellDimensionsBuilder : IUpsellDimensionsBuilder
         ISettings settings,
         IConnectionManager connectionManager,
         IModalSourceDimensionMapper modalSourceDimensionMapper,
+        IModalTriggerDimensionMapper modalTriggerDimensionMapper,
         IVpnPlanTierDimensionMapper vpnPlanTierDimensionMapper,
         IVpnPlanNameDimensionMapper vpnPlanNameDimensionMapper,
         IDaysSinceAccountCreationDimensionMapper daysSinceAccountCreationDimensionMapper,
@@ -57,6 +59,7 @@ public class UpsellDimensionsBuilder : IUpsellDimensionsBuilder
         _settings = settings;
         _connectionManager = connectionManager;
         _modalSourceDimensionMapper = modalSourceDimensionMapper;
+        _modalTriggerDimensionMapper = modalTriggerDimensionMapper;
         _vpnPlanTierDimensionMapper = vpnPlanTierDimensionMapper;
         _vpnPlanNameDimensionMapper = vpnPlanNameDimensionMapper;
         _daysSinceAccountCreationDimensionMapper = daysSinceAccountCreationDimensionMapper;
@@ -66,21 +69,23 @@ public class UpsellDimensionsBuilder : IUpsellDimensionsBuilder
         _promoUrlDimensionMapper = promoUrlDimensionMapper;
     }
 
-    public Dictionary<string, string> Build(ModalSource modalSource, string? reference = null)
+    public Dictionary<string, string> Build(UpsellModalContext context, string? reference = null)
     {
         string? deviceCountryLocation = _settings.DeviceLocation?.CountryCode;
         DateTimeOffset? accountCreationDateUtc = _settings.UserCreationDateUtc;
 
         return new()
         {
-            { "modal_source", _modalSourceDimensionMapper.Map(modalSource) },
+            { "modal_source", _modalSourceDimensionMapper.Map(context.Source) },
+            { "modal_trigger", _modalTriggerDimensionMapper.Map(context.Trigger) },
             { "vpn_status", _onOffDimensionMapper.Map(_connectionManager.IsConnected) },
             { "user_country", _stringDimensionMapper.Map(deviceCountryLocation) },
             { "new_free_plan_ui", _yesNoDimensionMapper.Map(true) },
             { "days_since_account_creation", _daysSinceAccountCreationDimensionMapper.Map(accountCreationDateUtc) },
             { "reference", _stringDimensionMapper.Map(reference) },
             { "is_credential_less_enabled", _onOffDimensionMapper.Map(false) },
-            { "flow_type", EXTERNAL_FLOW_TYPE }
+            { "flow_type", EXTERNAL_FLOW_TYPE },
+            { "country", _stringDimensionMapper.Map(context.CountryCode) }
         };
     }
     public Dictionary<string, string> BuildAttemptDimensions()

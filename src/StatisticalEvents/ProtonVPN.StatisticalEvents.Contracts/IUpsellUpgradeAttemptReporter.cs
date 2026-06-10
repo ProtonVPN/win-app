@@ -21,5 +21,5 @@ namespace ProtonVPN.StatisticalEvents.Contracts;
 
 public interface IUpsellUpgradeAttemptReporter
 {
-    void Report(ModalSource modalSource, string? reference = null);
+    void Report(UpsellModalContext context, string? reference = null);
 }

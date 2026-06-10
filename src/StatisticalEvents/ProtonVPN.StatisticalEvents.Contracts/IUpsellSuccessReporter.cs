@@ -23,5 +23,5 @@ namespace ProtonVPN.StatisticalEvents.Contracts;
 
 public interface IUpsellSuccessReporter
 {
-    void Report(string url, ModalSource modalSource, VpnPlan oldPlan, VpnPlan newPlan, string? reference = null);
+    void Report(string url, UpsellModalContext context, VpnPlan oldPlan, VpnPlan newPlan, string? reference = null);
 }

@@ -61,7 +61,7 @@ public class NotificationActivationHandler : IHandler,
         switch (argument)
         {
             case NotificationArguments.UPGRADE:
-                await _accountUpgradeUrlLauncher.OpenAsync(ModalSource.Downgrade);
+                await _accountUpgradeUrlLauncher.OpenAsync(new UpsellModalContext(ModalSource.Downgrade, ModalTrigger.ErrorDialog));
                 break;
             case NotificationArguments.COPY_PORT_FORWARDING_PORT_TO_CLIPBOARD:
                 _uiThreadDispatcher.TryEnqueue(async () =>

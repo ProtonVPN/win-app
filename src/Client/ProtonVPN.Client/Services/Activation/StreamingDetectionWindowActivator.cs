@@ -66,7 +66,7 @@ public class StreamingDetectionWindowActivator : DialogActivatorBase<StreamingDe
     {
         base.OnWindowOpened();
 
-        _upsellDisplayReporter.Report(ModalSource.StreamingActivity);
+        _upsellDisplayReporter.Report(new UpsellModalContext(ModalSource.StreamingActivity, ModalTrigger.NetworkRestriction));
     }
 
     public void Receive(LoggedOutMessage message)

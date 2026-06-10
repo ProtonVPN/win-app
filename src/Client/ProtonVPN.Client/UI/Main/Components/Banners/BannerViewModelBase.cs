@@ -37,7 +37,7 @@ public abstract partial class BannerViewModelBase : ViewModelBase,
     private readonly IAnnouncementActivator _announcementActivator;
     private readonly IUpsellDisplayReporter _upsellDisplayReporter;
 
-    protected abstract ModalSource ModalSource { get; }
+    protected abstract UpsellModalContext ModalContext { get; }
 
     protected BannerViewModelBase(
         IAnnouncementActivator announcementActivator,
@@ -81,7 +81,7 @@ public abstract partial class BannerViewModelBase : ViewModelBase,
 
             if (ActiveAnnouncement?.Id != announcement.Id)
             {
-                _upsellDisplayReporter.Report(ModalSource, announcement.Reference);
+                _upsellDisplayReporter.Report(ModalContext, reference: announcement.Reference);
             }
 
             BeforeAnnouncementChange();
@@ -99,7 +99,7 @@ public abstract partial class BannerViewModelBase : ViewModelBase,
     [RelayCommand(CanExecute = nameof(CanOpenAnnouncement))]
     private async Task OpenAnnouncementAsync()
     {
-        await _announcementActivator.ActivateAsync(ActiveAnnouncement);
+        await _announcementActivator.ActivateAsync(ActiveAnnouncement, ModalContext);
     }
 
     private bool CanOpenAnnouncement()

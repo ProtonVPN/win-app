@@ -94,7 +94,7 @@ public partial class UpsellCarouselShellViewModel : ShellViewModelBase<IUpsellCa
     [RelayCommand]
     private async Task UpgradeAsync()
     {
-        await _accountUpgradeUrlLauncher.OpenAsync(WindowActivator.ModalSource);
+        await _accountUpgradeUrlLauncher.OpenAsync(WindowActivator.ModalContext);
         
         Hide();
     }

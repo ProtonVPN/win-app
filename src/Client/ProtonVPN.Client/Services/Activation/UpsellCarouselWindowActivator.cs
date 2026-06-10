@@ -41,7 +41,7 @@ public class UpsellCarouselWindowActivator : DialogActivatorBase<UpsellCarouselW
 
     public override string WindowTitle => Localizer.Get("Upsell_Carousel_Title");
 
-    public ModalSource ModalSource { get; private set; } = ModalSource.Undefined;
+    public UpsellModalContext ModalContext { get; private set; } = UpsellModalContext.Undefined;
 
     public UpsellCarouselWindowActivator(
         ILogger logger,
@@ -67,36 +67,72 @@ public class UpsellCarouselWindowActivator : DialogActivatorBase<UpsellCarouselW
         _upsellCarouselViewNavigator = upsellCarouselViewNavigator;
     }
 
-    public Task<bool> ActivateAsync(UpsellFeatureType? upsellFeatureType)
+    public Task<bool> ActivateAsync(UpsellModalContext context)
     {
         Activate();
 
-        SetCorrespondingModalSources(upsellFeatureType);
+        ModalContext = context;
 
-        _upsellDisplayReporter.Report(ModalSource);
+        _upsellDisplayReporter.Report(context);
+
+        UpsellFeatureType? upsellFeatureType = GetUpsellFeatureType(context.Source);
 
         return _upsellCarouselViewNavigator.NavigateToFeatureViewAsync(upsellFeatureType);
     }
 
-    private void SetCorrespondingModalSources(UpsellFeatureType? upsellFeatureType)
+    private UpsellFeatureType? GetUpsellFeatureType(ModalSource? modalSource)
     {
-        ModalSource = upsellFeatureType switch
+        return modalSource switch
         {
-            UpsellFeatureType.WorldwideCoverage => ModalSource.Countries,
-            UpsellFeatureType.Speed => ModalSource.VpnAccelerator,
-            UpsellFeatureType.Streaming => ModalSource.Streaming,
-            UpsellFeatureType.NetShield => ModalSource.NetShield,
-            UpsellFeatureType.SecureCore => ModalSource.SecureCore,
-            UpsellFeatureType.P2P => ModalSource.P2P,
-            UpsellFeatureType.MultipleDevices => ModalSource.CarouselMultipleDevices,
-            UpsellFeatureType.Tor => ModalSource.Tor,
-            UpsellFeatureType.SplitTunneling => ModalSource.SplitTunneling,
-            UpsellFeatureType.Profiles => ModalSource.Profiles,
-            UpsellFeatureType.AdvancedSettings => ModalSource.CarouselCustomization,
-            UpsellFeatureType.ModerateNat => ModalSource.ModerateNat,
-            UpsellFeatureType.CustomDns => ModalSource.CustomDns,
-            UpsellFeatureType.AllowLanConnections => ModalSource.AllowLanConnections,
-            _ => ModalSource.Undefined
+            ModalSource.Countries or
+            ModalSource.ChangeServer or
+            ModalSource.DefaultConnection or
+            ModalSource.ExcludeLocations or
+            ModalSource.CarouselCountries => UpsellFeatureType.WorldwideCoverage,
+
+            ModalSource.VpnAccelerator or
+            ModalSource.Speed or
+            ModalSource.CarouselSpeed => UpsellFeatureType.Speed,
+
+            ModalSource.Streaming or
+            ModalSource.StreamingActivity or
+            ModalSource.CarouselStreaming => UpsellFeatureType.Streaming,
+
+            ModalSource.NetShield or
+            ModalSource.CarouselNetShield => UpsellFeatureType.NetShield,
+
+            ModalSource.SecureCore or
+            ModalSource.CarouselSecureCore => UpsellFeatureType.SecureCore,
+
+            ModalSource.P2P or
+            ModalSource.P2PActivity or
+            ModalSource.PortForwarding or
+            ModalSource.CarouselP2P => UpsellFeatureType.P2P,
+
+            ModalSource.MaxConnections or
+            ModalSource.CarouselMultipleDevices or
+            ModalSource.Account or
+            ModalSource.Devices => UpsellFeatureType.MultipleDevices,
+
+            ModalSource.Tor or
+            ModalSource.CarouselTor => UpsellFeatureType.Tor,
+
+            ModalSource.SplitTunneling or
+            ModalSource.CarouselSplitTunneling => UpsellFeatureType.SplitTunneling,
+
+            ModalSource.Profiles or
+            ModalSource.CarouselProfiles => UpsellFeatureType.Profiles,
+
+            ModalSource.CarouselCustomization or
+            ModalSource.AdvancedCustomization => UpsellFeatureType.AdvancedSettings,
+
+            ModalSource.CustomDns => UpsellFeatureType.CustomDns,
+
+            ModalSource.AllowLanConnections => UpsellFeatureType.AllowLanConnections,
+
+            ModalSource.ModerateNat => UpsellFeatureType.ModerateNat,
+
+            _ => null
         };
     }
 

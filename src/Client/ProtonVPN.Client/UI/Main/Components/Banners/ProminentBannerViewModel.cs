@@ -36,7 +36,7 @@ public partial class ProminentBannerViewModel : BannerViewModelBase
 
     protected override AnnouncementType AnnouncementType { get; } = AnnouncementType.ProminentBanner;
 
-    protected override ModalSource ModalSource { get; } = ModalSource.Account;
+    protected override UpsellModalContext ModalContext { get; } = new(ModalSource.Account, ModalTrigger.Home);
 
     public ProminentBannerViewModel(
         IAnnouncementActivator announcementActivator,

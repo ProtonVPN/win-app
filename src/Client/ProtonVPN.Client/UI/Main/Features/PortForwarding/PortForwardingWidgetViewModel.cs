@@ -34,6 +34,7 @@ using ProtonVPN.Client.Settings.Contracts.RequiredReconnections;
 using ProtonVPN.Client.UI.Main.Features.Bases;
 using ProtonVPN.Client.UI.Main.Settings.Bases;
 using ProtonVPN.Client.UI.Main.Settings.Connection;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Features.PortForwarding;
 
@@ -72,7 +73,7 @@ public partial class PortForwardingWidgetViewModel : FeatureWidgetViewModelBase,
     public bool IsActivePortComponentVisible => ConnectionManager.IsConnected
                                              && IsPortForwardingEnabled;
 
-    protected override UpsellFeatureType? UpsellFeature { get; } = UpsellFeatureType.P2P;
+    protected override UpsellModalContext ModalContext { get; } = new(ModalSource.PortForwarding, ModalTrigger.Settings);
 
     public override bool IsFeatureOverridden => ConnectionManager.IsConnected
                                              && CurrentProfile != null;

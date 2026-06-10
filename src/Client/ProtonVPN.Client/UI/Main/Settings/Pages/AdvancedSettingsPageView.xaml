@@ -40,9 +40,6 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Style x:Key="OpenVpnDriverRadioButtonStyle" BasedOn="{StaticResource RadioButtonStyle}" TargetType="RadioButton">
             <Setter Property="GroupName" Value="OpenVpnDriverSetting" />
         </Style>
-        <Style x:Key="DnsBlockModeRadioButtonStyle" BasedOn="{StaticResource RadioButtonStyle}" TargetType="RadioButton">
-            <Setter Property="GroupName" Value="DnsBlockModeSetting" />
-        </Style>
     </Page.Resources>
 
     <custom:SettingsPageContentControl x:Name="PageContentHost"
@@ -118,7 +115,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 </toolkit:SettingsExpander>
 
                 <toolkit:SettingsCard AutomationProperties.AutomationId="LanConnectionsSettingsCard"
-                                      Command="{x:Bind ViewModel.TriggerLanConnectonsUpsellProcessCommand, Mode=OneTime}"
+                                      Command="{x:Bind ViewModel.TriggerLanConnectionsUpsellProcessCommand, Mode=OneTime}"
                                       Description="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections_Description')}"
                                       Header="{x:Bind ViewModel.Localizer.Get('Settings_Connection_Advanced_LanConnections')}"
                                       IsActionIconVisible="False"

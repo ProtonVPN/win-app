@@ -39,11 +39,11 @@ public class UpsellDisplayReporter : ReporterBase<UpsellMeasurementGroup>,
         _dimensionsBuilder = dimensionsBuilder;
     }
 
-    public void Report(ModalSource modalSource, string? reference = null)
+    public void Report(UpsellModalContext context, string? reference = null)
     {
         ReportEvent(
             CreateStatisticalEventBuilder()
-                .WithDimensions(_dimensionsBuilder.Build(modalSource, reference))
+                .WithDimensions(_dimensionsBuilder.Build(context, reference))
                 .WithDimensions(_dimensionsBuilder.BuildDisplayDimensions())
                 .Build());
     }

@@ -20,7 +20,6 @@
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
-using ProtonVPN.Client.Core.Enums;
 using ProtonVPN.Client.Core.Messages;
 using ProtonVPN.Client.Core.Services.Activation;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -29,6 +28,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.UI.Main.Home.Upsell;
 
@@ -132,9 +132,9 @@ public partial class ConnectionCardUpsellBannerViewModel : ActivatableViewModelB
     [RelayCommand]
     public Task UpgradeAsync()
     {
-        return _upsellCarouselWindowActivator.ActivateAsync(IsP2PUpsellBannerVisible
-            ? UpsellFeatureType.P2P
-            : UpsellFeatureType.WorldwideCoverage);
+        ModalSource modalSource = IsP2PUpsellBannerVisible ? ModalSource.P2P : ModalSource.Countries;
+
+        return _upsellCarouselWindowActivator.ActivateAsync(new UpsellModalContext(modalSource, ModalTrigger.HomeBanner));
     }
 
     protected override void OnActivated()

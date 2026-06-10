@@ -18,10 +18,11 @@
  */
 
 using ProtonVPN.Client.Logic.Announcements.Contracts.Entities;
+using ProtonVPN.StatisticalEvents.Contracts;
 
 namespace ProtonVPN.Client.Models.Announcements;
 
 public interface IAnnouncementActivator
 {
-    Task ActivateAsync(Announcement? announcement);
+    Task ActivateAsync(Announcement? announcement, UpsellModalContext context);
 }
