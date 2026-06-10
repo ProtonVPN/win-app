@@ -130,9 +130,23 @@ public class ConnectionErrorHandler : IConnectionErrorHandler
 
         if (error == VpnError.PlanNeedsToBeUpgraded)
         {
-            await _vpnPlanUpdater.ForceUpdateAsync();
-            // No reconnect is asked directly here. If the VPN Plan is updated due to the line above,
-            // a VpnPlanChangedMessage should be triggered by it and handled by a class that reconnects.
+            VpnPlanChangeResult vpnPlanChangeResult = await _vpnPlanUpdater.ForceUpdateAsync();
+            if (vpnPlanChangeResult.PlanChangeMessage?.HasChanged() == true)
+            {
+                // No reconnect is asked directly here. If the VPN Plan is updated due to the line above,
+                // a VpnPlanChangedMessage should be triggered by it and handled by a class that reconnects.
+                return ConnectionErrorHandlerResult.NoAction;
+            }
+
+            if (_connectionCertificateManager.IsCertificateOutOfSyncWithPlan())
+            {
+                _logger.Warn<ConnectLog>("Detected PlanNeedsToBeUpgraded error with certificate out of sync with the plan. " +
+                    "Requesting new certificate and reconnection.");
+
+                await _connectionCertificateManager.ForceRequestNewCertificateAsync();
+                return await ReconnectAsync();
+            }
+
             return ConnectionErrorHandlerResult.NoAction;
         }
 

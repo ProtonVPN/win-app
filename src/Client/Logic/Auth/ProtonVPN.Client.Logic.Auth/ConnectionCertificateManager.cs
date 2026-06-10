@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -23,7 +23,9 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.UserCertificateLogs;
 
@@ -31,32 +33,32 @@ namespace ProtonVPN.Client.Logic.Auth;
 
 public class ConnectionCertificateManager : IConnectionCertificateManager
 {
+    private const string USER_GROUP_EXTENSION_OID = "1.3.6.1.4.1.56809.1.0.0.2";
+    private const string FREE_USER_GROUP = "vpn-free";
+    private const string PAID_USER_GROUP = "vpn-paid";
+
     private readonly ISettings _settings;
     private readonly IConnectionKeyManager _connectionKeyManager;
     private readonly IApiClient _apiClient;
     private readonly ILogger _logger;
     private readonly IEventMessageSender _eventMessageSender;
+    private readonly ICertificateParser _certificateParser;
     private readonly SemaphoreSlim _semaphore = new(1, 1);
-
-    private IList<string> _features = new List<string>();
 
     public ConnectionCertificateManager(
         ISettings settings,
         IConnectionKeyManager connectionKeyManager,
         IApiClient apiClient,
         ILogger logger,
-        IEventMessageSender eventMessageSender)
+        IEventMessageSender eventMessageSender,
+        ICertificateParser certificateParser)
     {
         _settings = settings;
         _connectionKeyManager = connectionKeyManager;
         _apiClient = apiClient;
         _logger = logger;
         _eventMessageSender = eventMessageSender;
-    }
-
-    public void SetFeatures(IList<string> features)
-    {
-        _features = features.ToList();
+        _certificateParser = certificateParser;
     }
 
     public void DeleteKeyPairAndCertificate()
@@ -89,6 +91,36 @@ public class ConnectionCertificateManager : IConnectionCertificateManager
             expiredCertificatePem);
     }
 
+    public bool IsCertificateOutOfSyncWithPlan()
+    {
+        ConnectionCertificate? connectionCertificate = _settings.ConnectionCertificate;
+        if (connectionCertificate is null || string.IsNullOrWhiteSpace(connectionCertificate.Value.Pem))
+        {
+            return true;
+        }
+
+        VpnPlan vpnPlan = _settings.VpnPlan;
+
+        const string outOfSyncLog = "User plan and connection certificate are out of sync.";
+
+        List<string> userGroups = _certificateParser.GetExtensionStrings(connectionCertificate.Value.Pem, USER_GROUP_EXTENSION_OID);
+        if (vpnPlan.IsPaid && userGroups.Contains(FREE_USER_GROUP))
+        {
+            _logger.Warn<UserCertificateLog>($"{outOfSyncLog} Paid plan, but free certificate.");
+            return true;
+        }
+
+        if (!vpnPlan.IsPaid && userGroups.Contains(PAID_USER_GROUP))
+        {
+            _logger.Warn<UserCertificateLog>($"{outOfSyncLog} Free plan, but paid certificate.");
+            return true;
+        }
+
+        _logger.Info<UserCertificateLog>("User plan and connection certificate are in sync.");
+
+        return false;
+    }
+
     public async Task ForceRequestNewCertificateAsync(CancellationToken cancellationToken = default)
     {
         await EnqueueRequestAsync(NewCertificateRequestParameter.ForceNewCertificate, cancellationToken);
@@ -113,8 +145,7 @@ public class ConnectionCertificateManager : IConnectionCertificateManager
             {
                 LogNewCertificateRequest(parameter);
                 RegenerateKeyPairIfRequested(parameter);
-                IList<string> features = _features.ToList();
-                ApiResponseResult<CertificateResponse> response = await RequestAsync(features, cancellationToken);
+                ApiResponseResult<CertificateResponse> response = await RequestAsync(cancellationToken);
                 if (response.Failure)
                 {
                     _logger.Error<UserCertificateRefreshErrorLog>("Connection certificate request failed with " +
@@ -173,25 +204,25 @@ public class ConnectionCertificateManager : IConnectionCertificateManager
         }
     }
 
-    private async Task<ApiResponseResult<CertificateResponse>> RequestAsync(IList<string> features, CancellationToken cancellationToken)
+    private async Task<ApiResponseResult<CertificateResponse>> RequestAsync(CancellationToken cancellationToken)
     {
         ApiResponseResult<CertificateResponse> certificateResponseData =
-            await RequestConnectionCertificateAsync(features, cancellationToken);
+            await RequestConnectionCertificateAsync(cancellationToken);
 
         if (certificateResponseData.Failure && certificateResponseData.Value.Code == ResponseCodes.CLIENT_PUBLIC_KEY_CONFLICT)
         {
             _logger.Warn<UserCertificateRefreshErrorLog>("New connection certificate failed because the " +
                                                          "client public key is already in use. Generating a new key pair and retrying.");
             _connectionKeyManager.RegenerateKeyPair();
-            certificateResponseData = await RequestConnectionCertificateAsync(features, cancellationToken);
+            certificateResponseData = await RequestConnectionCertificateAsync(cancellationToken);
         }
 
         return certificateResponseData;
     }
 
-    private async Task<ApiResponseResult<CertificateResponse>> RequestConnectionCertificateAsync(IList<string> features, CancellationToken cancellationToken)
+    private async Task<ApiResponseResult<CertificateResponse>> RequestConnectionCertificateAsync(CancellationToken cancellationToken)
     {
-        CertificateRequest certificateRequest = CreateCertificateRequestData(features);
+        CertificateRequest certificateRequest = CreateCertificateRequestData();
         ApiResponseResult<CertificateResponse> certificateResponseData =
             await _apiClient.RequestConnectionCertificateAsync(certificateRequest, cancellationToken);
 
@@ -206,7 +237,10 @@ public class ConnectionCertificateManager : IConnectionCertificateManager
             };
             _settings.ConnectionCertificate = connectionCertificate;
 
+            string userGroups = string.Join(", ", _certificateParser.GetExtensionStrings(connectionCertificate.Pem, USER_GROUP_EXTENSION_OID));
+
             _logger.Info<UserCertificateNewLog>("New connection certificate successfully saved. " +
+                                                $"User groups: [{userGroups}]. " +
                                                 $"Expires at {connectionCertificate.ExpirationUtcDate}.");
 
             SendUpdateMessage(connectionCertificate);
@@ -215,12 +249,12 @@ public class ConnectionCertificateManager : IConnectionCertificateManager
         return certificateResponseData;
     }
 
-    private CertificateRequest CreateCertificateRequestData(IList<string> features)
+    private CertificateRequest CreateCertificateRequestData()
     {
         return new()
         {
             ClientPublicKey = GetOrCreateClientPublicKeyPem(),
-            Features = features,
+            Features = [],
         };
     }
 

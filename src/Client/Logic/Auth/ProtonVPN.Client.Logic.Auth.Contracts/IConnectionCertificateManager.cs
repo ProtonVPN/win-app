@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -21,7 +21,7 @@ namespace ProtonVPN.Client.Logic.Auth.Contracts;
 
 public interface IConnectionCertificateManager
 {
-    void SetFeatures(IList<string> features);
+    bool IsCertificateOutOfSyncWithPlan();
     void DeleteKeyPairAndCertificate();
     void DeleteKeyPairAndCertificateIfMatches(string expiredCertificatePem);
     Task RequestNewCertificateAsync(CancellationToken cancellationToken = default, string? expiredCertificatePem = null);
