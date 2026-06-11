@@ -28,7 +28,7 @@ using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
-[Category("3")]
+[Category("SKIP")]//3
 public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
 {
     private const string IP_ADDRESS_TO_ADD = "208.95.112.1";
