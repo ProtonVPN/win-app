@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using FlaUI.Core.Tools;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
@@ -33,6 +34,8 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("SMOKE_4")]
 public class FreeUserTests : FreshSessionSetUp
 {
+    private const string BROWSER_APP = "Google Chrome";
+
     private const string PROFILE_NAME = "Max security";
 
     private const string COUNTRY = "Austria";
@@ -270,29 +273,57 @@ public class FreeUserTests : FreshSessionSetUp
     }
 
     [Test]
-    [Property("TestCaseId", "602438")]
-    [Ignore("Aria2 Doesnt Trigger modal")]
-    public void P2PConnectionDisabledUpsell()
+    [Property("TestCaseId", "870071")]
+    [Retry(3)]
+    public void StreamingInProgressUpsell()
     {
-        TorrentHelper.AllowAriaFirewallScript();
+        HomeRobot
+            .ConnectViaConnectionCard()
+            .Verify.IsConnected();
+
+        BrowserUtils.OpenStreamingWebsite(BROWSER_APP);
+
+        UpsellCarrouselRobot
+            .Verify.IsStreamingInProgressUpsellDisplayed()
+            .CloseModal();
+
+        BrowserUtils.KillAllBrowsers();
+    }
+
+    [Test]
+    [Property("TestCaseId", "602438")]
+    [Retry(4)]
+    public void P2PInProgressUpsell()
+    {
+        TorrentHelper.AllowTorrentFirewall();
         TorrentHelper.StopAndCleanup();
 
         HomeRobot
             .ConnectViaConnectionCard()
             .Verify.IsConnected();
+
+        string? ipAddressConnected = HomeRobot.GetVpnServerIp();
+        Assert.That(ipAddressConnected, Is.Not.Null);
+        int portToCheck = 52069;
+
         try
         {
-            TorrentHelper.StartTorrentOnPort(1111);
+            TorrentHelper.StartTorrentOnPort(portToCheck);
+            Window?.Focus();
 
             UpsellCarrouselRobot
-                .Verify.IsP2PTorrentInProgressUpsellDisplayed();
+                .Verify.IsP2PTorrentInProgressUpsellDisplayed()
+                .CloseModal();
 
-            NetworkUtils.AssertInternetAvailability(false);
+            // give it time so that the internet restores
+            Thread.Sleep(TestConstants.TenSecondsTimeout);
+            BrowserUtils.AssertBrowserInternetAvailability(BROWSER_APP, shouldBeAvailable: true);
+            TorrentHelper.IsPortClosed(ipAddressConnected!, portToCheck);
         }
         finally
         {
+            BrowserUtils.KillAllBrowsers();
             TorrentHelper.StopAndCleanup();
-            NetworkUtils.AssertInternetAvailability(true);
         }
     }
 

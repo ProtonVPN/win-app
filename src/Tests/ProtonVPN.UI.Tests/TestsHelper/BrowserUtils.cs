@@ -134,18 +134,22 @@ public class BrowserUtils
 
     public static void AssertBrowserCanLoadDuckDuckGo(string browserApp)
     {
-        string url = "https://duckduckgo.com/";
+        AssertBrowserLoadsUrl(browserApp, "https://duckduckgo.com/", "DuckDuckGo");
+    }
 
+    public static void OpenStreamingWebsite(string browserApp)
+    {
+        AssertBrowserLoadsUrl(browserApp, "https://abc.com/watch-live", "ABC Live Stream");
+    }
+
+    private static void AssertBrowserLoadsUrl(string browserApp, string url, string expectedTitle)
+    {
         RetryResult<string> retry = Retry.WhileEmpty(
-            () =>
-            {
-                string result = GetBrowserPageTitleWithRetry(browserApp, url);
-                return result;
-            },
+            () => GetBrowserPageTitleWithRetry(browserApp, url),
             TestConstants.OneMinuteTimeout, TestConstants.ApiRetryInterval);
 
-        Assert.That(retry.Success, Is.True, "DuckDuckGo did not load within timeout.");
-        Assert.That(retry.Result, Does.Contain("DuckDuckGo"), $"Expected DuckDuckGo page title, got: {retry.Result}");
+        Assert.That(retry.Success, Is.True, $"{expectedTitle} did not load within timeout.");
+        Assert.That(retry.Result, Does.Contain(expectedTitle), $"Expected {expectedTitle} page title, got: {retry.Result}");
     }
 
     private static string GetBrowserIpWithRetry(string browserApp)

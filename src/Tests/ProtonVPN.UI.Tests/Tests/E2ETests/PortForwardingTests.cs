@@ -63,7 +63,7 @@ public class PortForwardingTests : FreshSessionSetUp
     [Retry(3)]
     public void PortForwardingOpensThePort()
     {
-        TorrentHelper.AllowAriaFirewallScript();
+        TorrentHelper.AllowTorrentFirewall();
         TorrentHelper.StopAndCleanup();
 
         EnablePortForwardingAndConnect();
@@ -77,6 +77,7 @@ public class PortForwardingTests : FreshSessionSetUp
         try
         {
             TorrentHelper.StartTorrentOnPort(forwardedPort);
+            Window?.Focus();
             TorrentHelper.IsPortOpen(ipAddressConnected!, forwardedPort);
         }
         finally

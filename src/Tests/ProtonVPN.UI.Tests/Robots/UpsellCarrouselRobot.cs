@@ -34,6 +34,7 @@ public class UpsellCarrouselRobot
     protected Element SecureCoreUpsellTitle = Element.ByName("Add another layer of protection to your connection");
     protected Element P2PUpsellTitle = Element.ByName("Unlock peer-to-peer downloads and file sharing (P2P)");
     protected Element P2PTorrentInProgressUpsellTitle = Element.ByName("P2P is not allowed on free VPN servers");
+    protected Element StreamingInProgressUpsellTitle = Element.ByName("Upgrade to bypass VPN blocks");
     protected Element TenDevicesUpsellTitle = Element.ByName("Connect up to 10 devices at once");
     protected Element TorUpsellTitle = Element.ByName("Access the Tor network for extra privacy");
     protected Element SplitTunnelingUpsellTitle = Element.ByName("Get the best of both worlds");
@@ -105,6 +106,13 @@ public class UpsellCarrouselRobot
         public Verifications IsP2PTorrentInProgressUpsellDisplayed()
         {
             P2PTorrentInProgressUpsellTitle.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
+            UpgradeButton.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsStreamingInProgressUpsellDisplayed()
+        {
+            StreamingInProgressUpsellTitle.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
             UpgradeButton.WaitUntilDisplayed();
             return this;
         }
