@@ -217,7 +217,7 @@ internal partial class VpnService : ServiceBase
             ServiceStartMode bfeServiceStartType = serviceController.StartType;
             ServiceControllerStatus bfeServiceStatus = serviceController.Status;
 
-            _logger.Info<AppServiceStartLog>($"´{bfeServiceName} Service - Start type: {bfeServiceStartType}, Status: {bfeServiceStatus}");
+            _logger.Info<AppServiceStartLog>($"{bfeServiceName} Service - Start type: {bfeServiceStartType}, Status: {bfeServiceStatus}");
 
             return bfeServiceStartType != ServiceStartMode.Disabled
                 && bfeServiceStatus == ServiceControllerStatus.Running;
