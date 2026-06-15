@@ -96,11 +96,15 @@ public class VpnPlanUpdater : IVpnPlanUpdater,
                 }
                 else
                 {
-                    AuthResponseDetails = response.Failure && response.Value.Code == ResponseCodes.NO_VPN_CONNECTIONS_ASSIGNED
-                        ? response.Value.Details
-                        : null;
-
-                    _eventMessageSender.Send<NoVpnConnectionsAssignedMessage>();
+                    if (response.Failure && response.Value.Code == ResponseCodes.NO_VPN_CONNECTIONS_ASSIGNED)
+                    {
+                        AuthResponseDetails = response.Value.Details;
+                        _eventMessageSender.Send<NoVpnConnectionsAssignedMessage>();
+                    }
+                    else
+                    {
+                        AuthResponseDetails = null;
+                    }
 
                     _logger.Error<AppLog>("VPN plan request failed with " +
                         $"Status Code {response.ResponseMessage.StatusCode}, " +
