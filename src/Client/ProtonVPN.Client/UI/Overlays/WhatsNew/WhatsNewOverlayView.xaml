@@ -71,7 +71,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
     </ContentDialog.Resources>
 
-    <Grid Margin="0,0,0,48">
+    <Grid Margin="0,0,0,48"
+          RowSpacing="24">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -92,7 +93,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
         <ScrollViewer Grid.Row="1"
                       Padding="0,0,6,0"
-                      Margin="110,24,110,0">
+                      MaxWidth="400"
+                      Style="{StaticResource LargeOffsetScrollViewer}">
             <Grid ColumnSpacing="12"
                   RowSpacing="16">
                 <Grid.ColumnDefinitions>
@@ -157,7 +159,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </ScrollViewer>
 
         <Button Grid.Row="2"
-                Margin="110,24,110,0"
+                MaxWidth="380"
                 HorizontalAlignment="Stretch"
                 AutomationProperties.AutomationId="TakeALookButton"
                 Command="{x:Bind ViewModel.CloseOverlayCommand, Mode=OneTime}"
