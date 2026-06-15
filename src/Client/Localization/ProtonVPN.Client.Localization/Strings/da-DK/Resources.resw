@@ -210,9 +210,6 @@
   <data name="Common_Actions_Connect">
     <value>Forbind</value>
   </data>
-  <data name="System_Tray_Actions_Connect">
-    <value>Forbind</value>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>Kontakt os</value>
   </data>
@@ -220,9 +217,6 @@
     <value>Slet</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Afbryd</value>
-  </data>
-  <data name="System_Tray_Actions_Disconnect">
     <value>Afbryd</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -2488,6 +2482,12 @@ Fejlkode: {0}</value>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Forkert kode. Prøv igen.</value>
   </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>En fil, der er påkrævet for at du kan logge ind, mangler fra din installation. Geninstaller venligst Proton VPN for at løse problemet.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>Kunne ikke logge ind</value>
+  </data>
   <data name="Login_Error_SessionExpired">
     <value>Din session er udløbet. Log ind igen.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -3626,19 +3626,25 @@ En høj serverbelastning kan gøre din forbindelse langsommere.</value>
   <data name="SystemNotification_StreamingWarning_Title">
     <value>Blokeret websted?</value>
   </data>
-  <data name="Tray_Actions_ExitApplication">
-    <value>Afslut</value>
+  <data name="System_Tray_Actions_Connect">
+    <value>Forbind</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Afbryd</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
     <value>Afslut</value>
   </data>
-  <data name="Tray_Actions_OpenApplication">
-    <value>Åbn {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
-  </data>
   <data name="System_Tray_Actions_OpenApplication">
     <value>Åbn {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
+    <value>Afslut</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication">
+    <value>Åbn {0}</value>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
     <value>Åbn app for at logge ind</value>

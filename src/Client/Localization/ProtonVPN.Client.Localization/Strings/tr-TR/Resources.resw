@@ -210,9 +210,6 @@
   <data name="Common_Actions_Connect">
     <value>Bağlan</value>
   </data>
-  <data name="System_Tray_Actions_Connect">
-    <value>Bağlan</value>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>Bizimle görüşün</value>
   </data>
@@ -220,9 +217,6 @@
     <value>Sil</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Bağlantıyı kes</value>
-  </data>
-  <data name="System_Tray_Actions_Disconnect">
     <value>Bağlantıyı kes</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -2488,6 +2482,12 @@ Hata kodu: {0}</value>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Kod yanlış. Lütfen yeniden deneyin.</value>
   </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>Kurulumunuzda oturum açmak için gerekli bir dosya eksik. Bu sorunu çözmek için Proton VPN uygulamasını yeniden kurun.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>Oturum açılamadı</value>
+  </data>
   <data name="Login_Error_SessionExpired">
     <value>Oturumunuzun geçerlilik süresi dolmuş. Lütfen yeniden oturum açın.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -3134,10 +3134,10 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>NetShield</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
-    <value>Reklamları, etkinlik izleyicileri ve kötü amaçlı yazılımları engelleyin</value>
+    <value>Reklamlar, etkinlik izleyiciler ve kötü amaçlı yazılımlar engellensin</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent">
-    <value>Reklamları, etkinlik izleyicileri, kötü amaçlı yazılımları ve yetişkin içeriklerini engelleyin</value>
+    <value>Reklamlar, etkinlik izleyiciler, kötü amaçlı yazılımlar ve yetişkin içerikleri engellensin</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
     <value>Yalnızca kötü amaçlı yazılımlar engellensin</value>
@@ -3626,19 +3626,25 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
   <data name="SystemNotification_StreamingWarning_Title">
     <value>Site engelleniyor mu?</value>
   </data>
-  <data name="Tray_Actions_ExitApplication">
-    <value>Çık</value>
+  <data name="System_Tray_Actions_Connect">
+    <value>Bağlan</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Bağlantıyı kes</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
     <value>Çık</value>
   </data>
-  <data name="Tray_Actions_OpenApplication">
-    <value>{0} aç</value>
+  <data name="System_Tray_Actions_OpenApplication">
+    <value>{0} uygulamasını aç</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
-  <data name="System_Tray_Actions_OpenApplication">
+  <data name="Tray_Actions_ExitApplication">
+    <value>Çık</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication">
     <value>{0} aç</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
     <value>Oturum açmak için uygulamayı açın</value>

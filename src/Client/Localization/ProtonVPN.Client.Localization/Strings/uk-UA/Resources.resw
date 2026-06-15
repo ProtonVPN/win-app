@@ -210,9 +210,6 @@
   <data name="Common_Actions_Connect">
     <value>З'єднатися</value>
   </data>
-  <data name="System_Tray_Actions_Connect">
-    <value>З'єднатися</value>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>Зв'язок з нами</value>
   </data>
@@ -220,9 +217,6 @@
     <value>Видалити</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Від'єднатися</value>
-  </data>
-  <data name="System_Tray_Actions_Disconnect">
     <value>Від'єднатися</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -2680,6 +2674,12 @@
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Неправильний код. Повторіть спробу.</value>
   </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>A file required for sign-in is missing from your installation. Please reinstall Proton VPN to fix this issue.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>Unable to sign in</value>
+  </data>
   <data name="Login_Error_SessionExpired">
     <value>Термін дії вашого сеансу завершився. Увійдіть знову.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -3818,19 +3818,25 @@ VPN-з'єднання</value>
   <data name="SystemNotification_StreamingWarning_Title">
     <value>Заблокований вебсайт?</value>
   </data>
-  <data name="Tray_Actions_ExitApplication">
-    <value>Вийти</value>
+  <data name="System_Tray_Actions_Connect">
+    <value>Connect</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Disconnect</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
+    <value>Exit</value>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
+    <value>Open {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
     <value>Вийти</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>Відкрити {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
-  </data>
-  <data name="System_Tray_Actions_OpenApplication">
-    <value>Відкрити {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
     <value>Відкрийте програму, щоб увійти</value>

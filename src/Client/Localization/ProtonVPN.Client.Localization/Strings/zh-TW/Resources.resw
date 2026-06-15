@@ -210,9 +210,6 @@
   <data name="Common_Actions_Connect">
     <value>連線</value>
   </data>
-  <data name="System_Tray_Actions_Connect">
-    <value>連線</value>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>聯絡我們</value>
   </data>
@@ -220,9 +217,6 @@
     <value>刪除</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>斷線</value>
-  </data>
-  <data name="System_Tray_Actions_Disconnect">
     <value>斷線</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -2393,6 +2387,12 @@
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>驗證碼不正確，請重試。</value>
   </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>A file required for sign-in is missing from your installation. Please reinstall Proton VPN to fix this issue.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>無法登入</value>
+  </data>
   <data name="Login_Error_SessionExpired">
     <value>連線逾時，請重新登入。</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -3531,19 +3531,25 @@ VPN 連線</value>
   <data name="SystemNotification_StreamingWarning_Title">
     <value>Blocked website?</value>
   </data>
-  <data name="Tray_Actions_ExitApplication">
-    <value>離開</value>
+  <data name="System_Tray_Actions_Connect">
+    <value>連線</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>斷線</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
     <value>離開</value>
   </data>
-  <data name="Tray_Actions_OpenApplication">
-    <value>Open {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
-  </data>
   <data name="System_Tray_Actions_OpenApplication">
     <value>Open {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
+    <value>離開</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication">
+    <value>Open {0}</value>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
     <value>開啟應用程式以登入。</value>

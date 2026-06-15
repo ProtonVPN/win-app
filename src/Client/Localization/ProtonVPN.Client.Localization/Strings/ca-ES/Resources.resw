@@ -210,9 +210,6 @@
   <data name="Common_Actions_Connect">
     <value>Conecta</value>
   </data>
-  <data name="System_Tray_Actions_Connect">
-    <value>Conecta</value>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>Contacteu amb nosaltres</value>
   </data>
@@ -220,9 +217,6 @@
     <value>Elimina</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Desconnecta</value>
-  </data>
-  <data name="System_Tray_Actions_Disconnect">
     <value>Desconnecta</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -2488,6 +2482,12 @@ Codi d'error: {0}</value>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Codi incorrecte. Torneu-ho a provar.</value>
   </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>Falta un fitxer necessari per iniciar la sessió a la vostra instal·lació. Torneu a instal·lar Proton VPN per solucionar aquest problema.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>No s'ha pogut iniciar la sessió</value>
+  </data>
   <data name="Login_Error_SessionExpired">
     <value>La sessió ha caducat. Torneu a iniciar sessió.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -3626,19 +3626,25 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
   <data name="SystemNotification_StreamingWarning_Title">
     <value>Lloc web bloquejat?</value>
   </data>
-  <data name="Tray_Actions_ExitApplication">
-    <value>Surt</value>
+  <data name="System_Tray_Actions_Connect">
+    <value>Connecteu-vos</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Desconnecteu-vos</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
+    <value>Sortir</value>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
+    <value>Obrir {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
     <value>Surt</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>Obre {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
-  </data>
-  <data name="System_Tray_Actions_OpenApplication">
-    <value>Obre {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
     <value>Obriu 'l'aplicació per iniciar la sessió</value>

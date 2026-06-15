@@ -210,9 +210,6 @@
   <data name="Common_Actions_Connect">
     <value>Connetti</value>
   </data>
-  <data name="System_Tray_Actions_Connect">
-    <value>Connetti</value>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>Contattaci</value>
   </data>
@@ -220,9 +217,6 @@
     <value>Elimina</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Disconnetti</value>
-  </data>
-  <data name="System_Tray_Actions_Disconnect">
     <value>Disconnetti</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -2488,6 +2482,12 @@ Codice errore: {0}</value>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Codice errato. Riprova.</value>
   </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>A file required for sign-in is missing from your installation. Please reinstall Proton VPN to fix this issue.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>Unable to sign in</value>
+  </data>
   <data name="Login_Error_SessionExpired">
     <value>La tua sessione è scaduta. Effettua nuovamente l'accesso.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -3626,19 +3626,25 @@ Un carico elevato può rallentare la connessione.</value>
   <data name="SystemNotification_StreamingWarning_Title">
     <value>Sito web bloccato?</value>
   </data>
-  <data name="Tray_Actions_ExitApplication">
-    <value>Chiudi</value>
+  <data name="System_Tray_Actions_Connect">
+    <value>Connect</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Disconnect</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
+    <value>Exit</value>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
+    <value>Open {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
     <value>Chiudi</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>Apri {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
-  </data>
-  <data name="System_Tray_Actions_OpenApplication">
-    <value>Apri {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
     <value>Apri l'app per accedere</value>

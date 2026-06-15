@@ -210,9 +210,6 @@
   <data name="Common_Actions_Connect">
     <value>연결</value>
   </data>
-  <data name="System_Tray_Actions_Connect">
-    <value>연결</value>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>문의</value>
   </data>
@@ -220,9 +217,6 @@
     <value>삭제</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>연결 해제</value>
-  </data>
-  <data name="System_Tray_Actions_Disconnect">
     <value>연결 해제</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -2392,6 +2386,12 @@
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>잘못된 코드입니다. 다시 시도해 주세요.</value>
   </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>A file required for sign-in is missing from your installation. Please reinstall Proton VPN to fix this issue.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>Unable to sign in</value>
+  </data>
   <data name="Login_Error_SessionExpired">
     <value>세션이 만료되었습니다. 다시 로그인하십시오.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -3530,19 +3530,25 @@ VPN 연결</value>
   <data name="SystemNotification_StreamingWarning_Title">
     <value>일부 웹사이트 및 스트리밍 서비스는 무료 VPN 사용자를 차단합니다. 이러한 차단을 우회하려면 Proton VPN Plus로 업그레이드하세요.</value>
   </data>
-  <data name="Tray_Actions_ExitApplication">
-    <value>닫기</value>
+  <data name="System_Tray_Actions_Connect">
+    <value>Connect</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Disconnect</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
+    <value>Exit</value>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
+    <value>Open {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
     <value>닫기</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>{0} 열기</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
-  </data>
-  <data name="System_Tray_Actions_OpenApplication">
-    <value>{0} 열기</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
     <value>앱을 실행하여 로그인하세요</value>

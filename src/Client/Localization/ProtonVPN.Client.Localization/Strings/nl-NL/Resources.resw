@@ -210,9 +210,6 @@
   <data name="Common_Actions_Connect">
     <value>Verbinden</value>
   </data>
-  <data name="System_Tray_Actions_Connect">
-    <value>Verbinden</value>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>Neem contact op</value>
   </data>
@@ -220,9 +217,6 @@
     <value>Verwijderen</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Verbinding verbreken</value>
-  </data>
-  <data name="System_Tray_Actions_Disconnect">
     <value>Verbinding verbreken</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -2488,6 +2482,12 @@ Foutcode: {0}</value>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Onjuiste code. Probeer het opnieuw.</value>
   </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>Een noodzakelijk bestand om in te kunnen loggen ontbreekt. Installeer Proton VPN alstublieft opnieuw om dit probleem op te lossen.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>Aanmelden niet mogelijk</value>
+  </data>
   <data name="Login_Error_SessionExpired">
     <value>Uw sessie is verlopen. Log opnieuw in.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -3626,19 +3626,25 @@ VPN-verbinding</value>
   <data name="SystemNotification_StreamingWarning_Title">
     <value>Geblokkeerde website?</value>
   </data>
-  <data name="Tray_Actions_ExitApplication">
-    <value>Sluiten</value>
+  <data name="System_Tray_Actions_Connect">
+    <value>Verbind</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Verbinding verbreken</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
+    <value>Afsluiten</value>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
+    <value>Open {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
     <value>Sluiten</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>{0} openen</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
-  </data>
-  <data name="System_Tray_Actions_OpenApplication">
-    <value>{0} openen</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
     <value>Open app om in te loggen</value>

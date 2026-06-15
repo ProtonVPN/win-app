@@ -210,9 +210,6 @@
   <data name="Common_Actions_Connect">
     <value>Conectar</value>
   </data>
-  <data name="System_Tray_Actions_Connect">
-    <value>Conectar</value>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>Contáctanos</value>
   </data>
@@ -220,9 +217,6 @@
     <value>Eliminar</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Desconectar</value>
-  </data>
-  <data name="System_Tray_Actions_Disconnect">
     <value>Desconectar</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -325,10 +319,10 @@
     <value>Ubicaciones excluidas</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Description">
-    <value>To fix it, close or uninstall the app associated with:</value>
+    <value>Para solucionarlo, cierra o desinstala la aplicación asociada a:</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Title">
-    <value>Another app might be preventing Proton VPN from connecting</value>
+    <value>Puede que otra aplicación esté impidiendo la conexión de Proton VPN</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>Editar el perfil</value>
@@ -391,7 +385,7 @@ Código de error: {0}</value>
     <value>El adaptador WireGuard de tu dispositivo está en uso. Desconecta de cualquier otra VPN que se ejecute en tu dispositivo y vuelve a intentarlo.</value>
   </data>
   <data name="Connection_Feedback_Question">
-    <value>How is your connection?</value>
+    <value>¿Cómo es tu conexión?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Selección automática desde</value>
@@ -2488,6 +2482,12 @@ Código de error: {0}</value>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Código incorrecto. Inténtalo de nuevo.</value>
   </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>Falta un archivo necesario para iniciar sesión en tu instalación. Reinstala Proton VPN para solucionar este problema.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>No se ha podido iniciar sesión</value>
+  </data>
   <data name="Login_Error_SessionExpired">
     <value>Tu sesión ha expirado. Vuelve a iniciar sesión.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -3390,19 +3390,19 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_ProTunTcp_Description">
-    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+    <value>El nuevo entorno basado en WireGuard para una mayor estabilidad, funcionalidad y resistencia a la censura.</value>
   </data>
   <data name="Settings_Protocols_ProTunTcp_Title">
     <value>Proton WireGuard</value>
   </data>
   <data name="Settings_Protocols_ProTunTls_Description">
-    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+    <value>El nuevo entorno basado en WireGuard para una mayor estabilidad, funcionalidad y resistencia a la censura.</value>
   </data>
   <data name="Settings_Protocols_ProTunTls_Title">
     <value>Proton Stealth</value>
   </data>
   <data name="Settings_Protocols_ProTunUdp_Description">
-    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+    <value>El nuevo entorno basado en WireGuard para una mayor estabilidad, funcionalidad y resistencia a la censura.</value>
   </data>
   <data name="Settings_Protocols_ProTunUdp_Title">
     <value>Proton WireGuard</value>
@@ -3626,19 +3626,25 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
   <data name="SystemNotification_StreamingWarning_Title">
     <value>¿Sitio web bloqueado?</value>
   </data>
-  <data name="Tray_Actions_ExitApplication">
-    <value>Salir</value>
+  <data name="System_Tray_Actions_Connect">
+    <value>Conectar</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Desconectar</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
     <value>Salir</value>
   </data>
-  <data name="Tray_Actions_OpenApplication">
-    <value>Abrir {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
-  </data>
   <data name="System_Tray_Actions_OpenApplication">
     <value>Abrir {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
+    <value>Salir</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication">
+    <value>Abrir {0}</value>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
     <value>Abrir la aplicación para iniciar sesión</value>

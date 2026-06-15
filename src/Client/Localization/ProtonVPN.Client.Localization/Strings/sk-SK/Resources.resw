@@ -210,9 +210,6 @@
   <data name="Common_Actions_Connect">
     <value>Pripojiť</value>
   </data>
-  <data name="System_Tray_Actions_Connect">
-    <value>Pripojiť</value>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>Kontaktujte nás</value>
   </data>
@@ -220,9 +217,6 @@
     <value>Vymazať</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Odpojiť</value>
-  </data>
-  <data name="System_Tray_Actions_Disconnect">
     <value>Odpojiť</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -2680,6 +2674,12 @@ Chybový kód: {0}</value>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Nesprávny kód! Skúste to prosím znovu.</value>
   </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>V inštalácii chýba súbor potrebný na prihlásenie. Na vyriešenie tohto problému prosím preinštalujte aplikáciu Proton VPN.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>Prihlásenie nie je možné.</value>
+  </data>
   <data name="Login_Error_SessionExpired">
     <value>Vaša relácia vypršala, musíte sa znova prihlásiť.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -3818,19 +3818,25 @@ Vysoké vyťaženie servera môže spomaliť vaše pripojenie.</value>
   <data name="SystemNotification_StreamingWarning_Title">
     <value>Blokovaná webová stránka?</value>
   </data>
-  <data name="Tray_Actions_ExitApplication">
-    <value>Skončiť</value>
+  <data name="System_Tray_Actions_Connect">
+    <value>Pripojiť</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Odpojiť</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
     <value>Skončiť</value>
   </data>
-  <data name="Tray_Actions_OpenApplication">
-    <value>Otvoriť {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
-  </data>
   <data name="System_Tray_Actions_OpenApplication">
     <value>Otvoriť {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
+    <value>Skončiť</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication">
+    <value>Otvoriť {0}</value>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
     <value>Otvoriť aplikáciu pre prihlásenie</value>

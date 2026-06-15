@@ -210,9 +210,6 @@
   <data name="Common_Actions_Connect">
     <value>Σύνδεση</value>
   </data>
-  <data name="System_Tray_Actions_Connect">
-    <value>Σύνδεση</value>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>Επικοινωνήστε μαζί μας</value>
   </data>
@@ -220,9 +217,6 @@
     <value>Διαγραφή</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Αποσύνδεση</value>
-  </data>
-  <data name="System_Tray_Actions_Disconnect">
     <value>Αποσύνδεση</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -2488,6 +2482,12 @@
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Λανθασμένος κωδικός. Παρακαλούμε δοκιμάστε ξανά.</value>
   </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>Λείπει ένα αρχείο που απαιτείται για τη σύνδεση από την εγκατάστασή σας. Παρακαλούμε επανεγκαταστήστε το Proton VPN για να διορθώσετε αυτό το πρόβλημα.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>Αδυναμία σύνδεσης</value>
+  </data>
   <data name="Login_Error_SessionExpired">
     <value>Η συνεδρία σας έχει λήξει. Παρακαλούμε εισέλθετε ξανά.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -3626,19 +3626,25 @@
   <data name="SystemNotification_StreamingWarning_Title">
     <value>Αποκλεισμένος ιστότοπος;</value>
   </data>
-  <data name="Tray_Actions_ExitApplication">
-    <value>Έξοδος</value>
+  <data name="System_Tray_Actions_Connect">
+    <value>Σύνδεση</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Αποσύνδεση</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
     <value>Έξοδος</value>
   </data>
-  <data name="Tray_Actions_OpenApplication">
-    <value>Άνοιγμα {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
-  </data>
   <data name="System_Tray_Actions_OpenApplication">
     <value>Άνοιγμα {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
+    <value>Έξοδος</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication">
+    <value>Άνοιγμα {0}</value>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
     <value>Άνοιγμα εφαρμογής για είσοδο</value>

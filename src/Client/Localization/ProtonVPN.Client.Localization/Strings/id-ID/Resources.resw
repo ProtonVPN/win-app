@@ -210,9 +210,6 @@
   <data name="Common_Actions_Connect">
     <value>Hubungkan</value>
   </data>
-  <data name="System_Tray_Actions_Connect">
-    <value>Hubungkan</value>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>Hubungi kami</value>
   </data>
@@ -220,9 +217,6 @@
     <value>Hapus</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Putuskan</value>
-  </data>
-  <data name="System_Tray_Actions_Disconnect">
     <value>Putuskan</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -2392,6 +2386,12 @@ Kode kesalahan: {0}</value>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Kode salah. Silakan coba lagi.</value>
   </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>A file required for sign-in is missing from your installation. Please reinstall Proton VPN to fix this issue.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>Unable to sign in</value>
+  </data>
   <data name="Login_Error_SessionExpired">
     <value>Masa berlaku sesi Anda telah berakhir. Silakan masuk kembali.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -3530,19 +3530,25 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
   <data name="SystemNotification_StreamingWarning_Title">
     <value>Situs web diblokir?</value>
   </data>
-  <data name="Tray_Actions_ExitApplication">
-    <value>Keluar</value>
+  <data name="System_Tray_Actions_Connect">
+    <value>Connect</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Disconnect</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
+    <value>Exit</value>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
+    <value>Open {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
     <value>Keluar</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>Buka {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
-  </data>
-  <data name="System_Tray_Actions_OpenApplication">
-    <value>Buka {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
     <value>Buka aplikasi untuk masuk</value>

@@ -210,9 +210,6 @@
   <data name="Common_Actions_Connect">
     <value>Ligar</value>
   </data>
-  <data name="System_Tray_Actions_Connect">
-    <value>Ligar</value>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>Contacte-nos</value>
   </data>
@@ -220,9 +217,6 @@
     <value>Eliminar</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Desconectar</value>
-  </data>
-  <data name="System_Tray_Actions_Disconnect">
     <value>Desconectar</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -2488,6 +2482,12 @@ Error code: {0}</value>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Palavra-passe incorreta. Tente novamente.</value>
   </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>A file required for sign-in is missing from your installation. Please reinstall Proton VPN to fix this issue.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>Unable to sign in</value>
+  </data>
   <data name="Login_Error_SessionExpired">
     <value>A sua sessão expirou. Inicie sessão novamente.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -3626,19 +3626,25 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
   <data name="SystemNotification_StreamingWarning_Title">
     <value>Blocked website?</value>
   </data>
-  <data name="Tray_Actions_ExitApplication">
-    <value>Sair</value>
+  <data name="System_Tray_Actions_Connect">
+    <value>Connect</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Disconnect</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
+    <value>Exit</value>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
+    <value>Open {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
     <value>Sair</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>Abrir {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
-  </data>
-  <data name="System_Tray_Actions_OpenApplication">
-    <value>Abrir {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
     <value>Abrir a aplicação para iniciar sessão</value>

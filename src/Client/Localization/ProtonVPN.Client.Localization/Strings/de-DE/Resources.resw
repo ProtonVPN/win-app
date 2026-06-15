@@ -210,9 +210,6 @@
   <data name="Common_Actions_Connect">
     <value>Verbinden</value>
   </data>
-  <data name="System_Tray_Actions_Connect">
-    <value>Verbinden</value>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>Kontaktiere uns</value>
   </data>
@@ -220,9 +217,6 @@
     <value>Löschen</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Trennen</value>
-  </data>
-  <data name="System_Tray_Actions_Disconnect">
     <value>Trennen</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -2488,6 +2482,12 @@ Fehlercode: {0}</value>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Ungültiger Code. Bitte versuche es erneut.</value>
   </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>In deiner Installation fehlt eine für die Anmeldung erforderliche Datei. Bitte installiere Proton VPN neu, um dieses Problem zu beheben.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>Anmelden nicht möglich</value>
+  </data>
   <data name="Login_Error_SessionExpired">
     <value>Deine Sitzung ist abgelaufen. Bitte melde dich erneut an.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -3626,19 +3626,25 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
   <data name="SystemNotification_StreamingWarning_Title">
     <value>Website gesperrt?</value>
   </data>
-  <data name="Tray_Actions_ExitApplication">
-    <value>Beenden</value>
+  <data name="System_Tray_Actions_Connect">
+    <value>Verbinden</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Verbindung trennen</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
     <value>Beenden</value>
   </data>
-  <data name="Tray_Actions_OpenApplication">
-    <value>{0} öffnen</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
-  </data>
   <data name="System_Tray_Actions_OpenApplication">
     <value>{0} öffnen</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
+    <value>Beenden</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication">
+    <value>{0} öffnen</value>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
     <value>App öffnen, um sich anzumelden</value>
@@ -3878,7 +3884,7 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Proton Stealth</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls_Description">
-    <value>Umgeht VPN-Sperren, indem deine Verbindung vor Zensoren verborgen wird</value>
+    <value>Umgeht VPN-Sperren, indem es deine Verbindung vor Zensoren verbirgt</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp">
     <value>Proton WireGuard (UDP)</value>

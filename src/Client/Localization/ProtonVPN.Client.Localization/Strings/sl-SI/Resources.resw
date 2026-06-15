@@ -130,7 +130,7 @@
     <value>Priključna kartica</value>
   </data>
   <data name="Automation_Properties_KillSwitch_Page">
-    <value>Stran stikala za izklop</value>
+    <value>Stran za odklopno stikalo</value>
   </data>
   <data name="Automation_Properties_LocationDetails_Page">
     <value>Stran s podrobnostmi o lokaciji</value>
@@ -210,9 +210,6 @@
   <data name="Common_Actions_Connect">
     <value>Poveži</value>
   </data>
-  <data name="System_Tray_Actions_Connect">
-    <value>Poveži</value>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>Stopite v stik z nami</value>
   </data>
@@ -220,9 +217,6 @@
     <value>Izbriši</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Prekini povezavo</value>
-  </data>
-  <data name="System_Tray_Actions_Disconnect">
     <value>Prekini povezavo</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -274,10 +268,10 @@
     <value>Nadgradnja</value>
   </data>
   <data name="Common_Confirmation_KillSwitch_Message">
-    <value>Napredno stikalo za izkop je omogočeno. Če želite uporabljati internet brez VPN, onemogočite napredno stikalo za izklop.</value>
+    <value>Napredno odklopno stikalo je omogočeno. Če želite uporabljati internet brez VPN, onemogočite napredno odklopno stikalo.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>Napredno stikalo za izklop je omogočeno. Če nadaljujete, bo povezava z internetom prekinjena.</value>
+    <value>Napredno odklopno stikalo je omogočeno. Če nadaljujete, bo povezava z internetom prekinjena.</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>Povezava z VPN bo prekinjena.</value>
@@ -462,7 +456,7 @@ Koda napake: {0}</value>
     <value>Brezplačni strežniki</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Brezplačni strežniki</value>
+    <value>Brezplačnih strežnikov</value>
   </data>
   <data name="Connections_Gateway">
     <value>Prehod</value>
@@ -534,7 +528,7 @@ Koda napake: {0}</value>
     <value>P2P strežniki</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P strežniki</value>
+    <value>P2P strežnikov</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>Zvezna država P2P ({0})</value>
@@ -645,16 +639,16 @@ Koda napake: {0}</value>
     <value>Držav Secure Core ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Secure Core strežnik</value>
+    <value>Strežnik Secure Core</value>
   </data>
   <data name="Connections_SecureCore_Servers_Two">
-    <value>Secure Core strežnika</value>
+    <value>Strežnika Secure Core</value>
   </data>
   <data name="Connections_SecureCore_Servers_Few">
     <value>Strežniki Secure Core</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Strežniki Secure Core</value>
+    <value>Strežnikov Secure Core</value>
   </data>
   <data name="Connections_Server_Restricted">
     <value>Strežnik je na voljo z VPN Plus</value>
@@ -672,7 +666,7 @@ Koda napake: {0}</value>
     <value>Strežniki</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Strežniki</value>
+    <value>Strežnikov</value>
   </data>
   <data name="Connections_State">
     <value>Država</value>
@@ -716,7 +710,7 @@ Koda napake: {0}</value>
     <value>Strežnika Tor</value>
   </data>
   <data name="Connections_Tor_Servers_Few">
-    <value>Strežnikov Tor</value>
+    <value>Strežniki Tor</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
     <value>Strežnikov Tor</value>
@@ -1978,7 +1972,7 @@ Koda napake: {0}</value>
     <value>S tem boste prekinili povezavo z VPN. Vse aktivne internetne povezave bodo začasno nezaščitene.</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
-    <value>S tem boste prekinili povezavo z VPN in začasno onemogočili stikalo za odklop. Vse aktivne internetne povezave bodo začasno nezaščitene.</value>
+    <value>S tem boste prekinili povezavo z VPN in začasno onemogočili odklopno stikalo. Vse aktivne internetne povezave bodo začasno nezaščitene.</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Title_Install">
     <value>Namesti posodobitev?</value>
@@ -2014,16 +2008,16 @@ Koda napake: {0}</value>
     <value>Brskajte prosto od kjer koli</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
-    <value>Skrij svojo virtualno lokacijo in doživi internet iz katere koli od naših {0} razpoložljive države.</value>
+    <value>Skrij svojo virtualno lokacijo in doživi internet iz katere koli od naše {0} razpoložljive države.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Two">
-    <value>Skrij svojo virtualno lokacijo in doživi internet iz katere koli od naših {0} razpoložljive države.</value>
+    <value>Skrij svojo virtualno lokacijo in doživi internet iz katere koli od naših {0} razpoložljivih držav.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Few">
-    <value>Skrij svojo virtualno lokacijo in doživi internet iz katere koli od naših {0} razpoložljive države.</value>
+    <value>Skrij svojo virtualno lokacijo in doživi internet iz katere koli od naših {0} razpoložljivih držav.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
-    <value>Skrij svojo virtualno lokacijo in doživi internet iz katere koli od naših {0} razpoložljive države.</value>
+    <value>Skrij svojo virtualno lokacijo in doživi internet iz katere koli od naših {0} razpoložljivih držav.</value>
   </data>
   <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
     <value>Zaščitite 10 naprav hkrati</value>
@@ -2123,10 +2117,10 @@ Koda napake: {0}</value>
     <value>Vaš IP VPN zamaskira vaš pravi IP naslov. Zaradi tega je videti, kot da brskate z vaše lokacije VPN, tako da vaše spletne dejavnosti ni mogoče povezati z vašo napravo.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected1">
-    <value>To edinstveno kodo lahko spletna mesta in ponudniki internetnih storitev (ISP) uporabijo za povezavo vaše lokacije in zgodovine brskanja z vašo napravo.</value>
+    <value>To edinstveno kodo lahko spletna mesta in ponudniki internetnih storitev uporabijo za povezavo vaše lokacije in zgodovine brskanja z vašo napravo.</value>
   </data>
   <data name="Flyouts_IpAddress_Description_Disconnected2">
-    <value>VPN zakrije vaš IP-naslov, zaradi česar je vašo dejavnost težje izslediti do vas.</value>
+    <value>VPN zakrije vaš IP naslov, zaradi česar je vašo dejavnost težje izslediti do vas.</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
     <value>Kaj je IP naslov?</value>
@@ -2174,16 +2168,16 @@ Koda napake: {0}</value>
     <value>Vaš naslov IP je lahko izpostavljen, če vaša povezava VPN pade.</value>
   </data>
   <data name="Flyouts_KillSwitch_Info_Disconnected">
-    <value>Napredno stikalo za izklop onemogoči vaš internet, da zaščiti vaš IP-naslov, ko niste povezani s Proton VPN.</value>
+    <value>Napredno odklopno stikalo onemogoči vaš internet, da zaščiti vaš IP naslov, ko niste povezani s Proton VPN.</value>
   </data>
   <data name="Flyouts_KillSwitch_Standard_Success">
     <value>Če vaša povezava VPN pade, bo vaša povezava z internetom prekinjena, dokler se VPN ne vzpostavi.</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Connected">
-    <value>Napredno stikalo za odklop se uporabi, tudi če namerno prekinete povezavo z omrežjem VPN</value>
+    <value>Napredno odklopno stikalo se uporabi, tudi če namerno prekinete povezavo z omrežjem VPN</value>
   </data>
   <data name="Flyouts_KillSwitch_Warning_Disconnected">
-    <value>Če se želite vrniti na splet, se povežite z VPN ali onemogočite napredno stikalo za odklop</value>
+    <value>Če se želite vrniti na splet, se povežite z VPN ali onemogočite napredno odklopno stikalo</value>
   </data>
   <data name="Flyouts_NetShield_AdsMalwareTrackersAdultContent_Success">
     <value>Ste zaščiteni pred oglasi, sledilniki, zlonamernimi programi in vso vsebino za odrasle.</value>
@@ -2210,7 +2204,7 @@ Koda napake: {0}</value>
     <value>Ni mogoče pridobiti aktivne številke vrat. Znova vzpostavite povezavo in poskusite znova.</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Za boljšo zmogljivost vnesite aktivno številko vrat v svoj torrent odjemalec ali aplikacijo P2P.</value>
+    <value>Za boljšo zmogljivost vnesite aktivno številko vrat v svoj torent odjemalec ali aplikacijo P2P.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Izboljša hitrost prenosa med P2P</value>
@@ -2222,7 +2216,7 @@ Koda napake: {0}</value>
     <value>Izboljšajte hitrost P2P</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
-    <value>Povežite se s strežnikom P2P za izboljšanje hitrosti nalaganja torrentov</value>
+    <value>Povežite se s strežnikom P2P za izboljšanje hitrosti nalaganja torentov</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>Protokol VPN določa, kako se promet šifrira in prenaša prek VPN.</value>
@@ -2454,7 +2448,7 @@ Koda napake: {0}</value>
     <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
   </data>
   <data name="Format_Time_Hours_Ago_One">
-    <value>pred {0} urami</value>
+    <value>pred {0} uro</value>
   </data>
   <data name="Format_Time_Hours_Ago_Two">
     <value>pred {0} urama</value>
@@ -2680,6 +2674,12 @@ Koda napake: {0}</value>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Napačna koda. Poskusite znova.</value>
   </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>A file required for sign-in is missing from your installation. Please reinstall Proton VPN to fix this issue.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>Unable to sign in</value>
+  </data>
   <data name="Login_Error_SessionExpired">
     <value>Vaša seja se je iztekla. Ponovno se prijavite.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -2784,13 +2784,13 @@ Koda napake: {0}</value>
     <value>Kopiraj številko vrat</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Pojdite v svoj torrent odjemalec ali aplikacijo P2P in vnesite to številko.</value>
+    <value>Pojdite v svoj torent odjemalec ali aplikacijo P2P in vnesite to številko.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Dosegli ste največje število naprav. Če se želite znova povezati z VPN, prekinite povezavo z drugo napravo.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
-    <value>Vaš paket je bil podgrajen na Proton Free, zato vas ponovno povezujemo z najhitrejšim Free strežnikom.</value>
+    <value>Vaš paket je bil zmanjšan na Proton Free, zato vas ponovno povezujemo z najhitrejšim brezplačnim strežnikom.</value>
   </data>
   <data name="Notifications_UnsecureWifi_Description">
     <value>Javna omrežja Wi-Fi so bolj ranljiva za varnostne grožnje. Za varno brskanje se povežite z VPN.</value>
@@ -2799,7 +2799,7 @@ Koda napake: {0}</value>
     <value>Zaznana nezaščitena povezava Wi-Fi</value>
   </data>
   <data name="NpsSurvey_Title">
-    <value>Proton VPN - Anketa</value>
+    <value>Proton VPN – Anketa</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_Ipv6Disabled_Description">
@@ -2818,7 +2818,7 @@ Koda napake: {0}</value>
     <value>Posodobi zdaj</value>
   </data>
   <data name="Overlay_OutdatedClient_Message">
-    <value>Ta različica aplikacije je zastarela. Če želite še naprej uporabljati Proton VPN, morate posodobi aplikacijo.</value>
+    <value>Ta različica aplikacije je zastarela. Če želite še naprej uporabljati Proton VPN, morate posodobiti aplikacijo.</value>
   </data>
   <data name="Overlay_OutdatedClient_Title">
     <value>Posodobi Proton VPN za nadaljevanje</value>
@@ -3025,7 +3025,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Profili</value>
   </data>
   <data name="Search_InputBox_Placeholder">
-    <value>Prebrskaj iz ...</value>
+    <value>Brskaj iz ...</value>
   </data>
   <data name="Search_NoInput_CityOrState">
     <value>Mesto ali zvezna država ZDA</value>
@@ -3305,13 +3305,13 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>States</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
-    <value>Stikalo za izklop</value>
+    <value>Odklopno stikalo</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced">
     <value>Napredno</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
-    <value>Dovolite dostop do interneta samo, ko ste povezani s Proton VPN. Napredno stikalo za izklop bo ostalo aktivno tudi, ko znova zaženete napravo.</value>
+    <value>Dovolite dostop do interneta samo, ko ste povezani s Proton VPN. Napredno odklopno stikalo bo ostalo aktivno tudi, ko znova zaženete napravo.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>Ščiti vaš naslov IP tako, da prekine povezavo z internetom, če izgubite povezavo VPN.</value>
@@ -3326,10 +3326,10 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>NetShield</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
-    <value>Blokiranje oglasov, sledilnikov in zlonamerne programi</value>
+    <value>Blokiranje oglasov, sledilnikov in zlonamernih programov</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent">
-    <value>Blokirajte oglase, sledilnike, zlonamerno programsko opremo in vsebino za odrasle z VPN Plus</value>
+    <value>Blokiranje oglasov, sledilnikov, zlonamernih programov in vsebine za odrasle</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
     <value>Blokiraj samo zlonamerne programe</value>
@@ -3727,7 +3727,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Vnesite podrobnosti o Proton računu.</value>
   </data>
   <data name="SignIn_Form_DisableKillSwitch">
-    <value>Onemogoči stikalo za izklop</value>
+    <value>Onemogoči odklopno stikalo</value>
   </data>
   <data name="SignIn_Form_Email">
     <value>E-pošta</value>
@@ -3786,7 +3786,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
   </data>
   <data name="SignIn_KillSwitch_Disabled">
-    <value>Kill switch je onemogočen</value>
+    <value>Odklopno stikalo je onemogočeno</value>
   </data>
   <data name="State_Fastest">
     <value>Najhitrejša zvezna država</value>
@@ -3818,19 +3818,25 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
   <data name="SystemNotification_StreamingWarning_Title">
     <value>Blokirano spletno mesto?</value>
   </data>
-  <data name="Tray_Actions_ExitApplication">
-    <value>Izhod</value>
+  <data name="System_Tray_Actions_Connect">
+    <value>Connect</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Disconnect</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
+    <value>Exit</value>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
+    <value>Open {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
     <value>Izhod</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>Odpri {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
-  </data>
-  <data name="System_Tray_Actions_OpenApplication">
-    <value>Odpri {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
     <value>Odprite aplikacijo za prijavo</value>

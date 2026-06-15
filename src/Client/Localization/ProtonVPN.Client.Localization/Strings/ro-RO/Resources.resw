@@ -210,9 +210,6 @@
   <data name="Common_Actions_Connect">
     <value>Conectare</value>
   </data>
-  <data name="System_Tray_Actions_Connect">
-    <value>Conectare</value>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>Contactați-ne</value>
   </data>
@@ -220,9 +217,6 @@
     <value>Ștergere</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Deconectare</value>
-  </data>
-  <data name="System_Tray_Actions_Disconnect">
     <value>Deconectare</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -2584,6 +2578,12 @@ Cod eroare: {0}</value>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Cod incorect. Reîncercați.</value>
   </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>Un fișier necesar pentru conectare lipsește din instalare. Reinstalați Proton VPN pentru a remedia această problemă.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>Nu se poate conecta</value>
+  </data>
   <data name="Login_Error_SessionExpired">
     <value>Sesiunea a expirat. Reautentificați-vă.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -3722,19 +3722,25 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
   <data name="SystemNotification_StreamingWarning_Title">
     <value>Site web blocat?</value>
   </data>
-  <data name="Tray_Actions_ExitApplication">
-    <value>Ieșire</value>
+  <data name="System_Tray_Actions_Connect">
+    <value>Conectare</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Deconectare</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
     <value>Ieșire</value>
   </data>
-  <data name="Tray_Actions_OpenApplication">
-    <value>Deschidere {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
-  </data>
   <data name="System_Tray_Actions_OpenApplication">
     <value>Deschidere {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
+    <value>Ieșire</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication">
+    <value>Deschidere {0}</value>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
     <value>Deschideți aplicația pentru conectare</value>

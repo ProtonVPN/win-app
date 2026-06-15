@@ -210,9 +210,6 @@
   <data name="Common_Actions_Connect">
     <value>Kết nối</value>
   </data>
-  <data name="System_Tray_Actions_Connect">
-    <value>Kết nối</value>
-  </data>
   <data name="Common_Actions_ContactUs">
     <value>Liên hệ với chúng tôi</value>
   </data>
@@ -220,9 +217,6 @@
     <value>Xóa</value>
   </data>
   <data name="Common_Actions_Disconnect">
-    <value>Ngắt kết nối</value>
-  </data>
-  <data name="System_Tray_Actions_Disconnect">
     <value>Ngắt kết nối</value>
   </data>
   <data name="Common_Actions_Duplicate">
@@ -2392,6 +2386,12 @@ Mã lỗi: {0}</value>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Mã không đúng. Vui lòng thử lại.</value>
   </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>A file required for sign-in is missing from your installation. Please reinstall Proton VPN to fix this issue.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>Unable to sign in</value>
+  </data>
   <data name="Login_Error_SessionExpired">
     <value>Phiên đã hết hạn. Vui lòng đăng nhập lại.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -3530,19 +3530,25 @@ Tải máy chủ cao có thể làm chậm kết nối.</value>
   <data name="SystemNotification_StreamingWarning_Title">
     <value>Trang web bị chặn?</value>
   </data>
-  <data name="Tray_Actions_ExitApplication">
-    <value>Thoát</value>
+  <data name="System_Tray_Actions_Connect">
+    <value>Connect</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Disconnect</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
+    <value>Exit</value>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
+    <value>Open {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
     <value>Thoát</value>
   </data>
   <data name="Tray_Actions_OpenApplication">
     <value>Mở {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
-  </data>
-  <data name="System_Tray_Actions_OpenApplication">
-    <value>Mở {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
     <value>Mở ứng dụng để đăng nhập</value>
