@@ -155,6 +155,13 @@ public class ExcludedLocationsSmartDiscoveryPromptHandler : IHandler,
     private async void ShowExcludedLocationsSmartDiscoveryPromptAsync()
     {
         _settings.WasExcludedLocationsSmartDiscoveryPromptDisplayed = true;
+
+        if (_settings.ExcludedLocationsList.Any())
+        {
+            // If there are already excluded locations, the user is likely aware of the feature, so we skip showing the prompt.
+            return;
+        }
+
         _productPromptDisplayReporter.Report(PromptType.FeatureDiscovery, PromptContext.ConnectionPreferencesFirstConnection);
 
         ContentDialogResult result = await _mainWindowOverlayActivator.ShowExcludedLocationsSmartDiscoveryPromptAsync();
