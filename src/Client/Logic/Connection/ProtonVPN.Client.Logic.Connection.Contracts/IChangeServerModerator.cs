@@ -28,4 +28,6 @@ public interface IChangeServerModerator
     TimeSpan GetDelayUntilNextAttempt();
 
     TimeSpan GetRemainingDelayUntilNextAttempt();
+
+    bool HasTroubleConnecting();
 }
