@@ -181,6 +181,11 @@ public partial class ConnectionErrorViewModel : ViewModelBase,
 
     private void SetConflictingAdapterError(IReadOnlyList<NetworkInterfaceInfo> conflictingAdapters, ConnectionStatus connectionStatus)
     {
+        if (ConnectionError is TwoFactorRequiredConnectionError)
+        {
+            return; // Don't set the conflicting adapter error if the current error is 2FA required (even if the message is not being shown)
+        }
+
         IConflictingAdapterConnectionError conflictingAdapterConnectionError = _connectionErrorFactory.GetConflictingAdapterConnectionError();
         conflictingAdapterConnectionError.SetConflictingAdapters(conflictingAdapters);
         conflictingAdapterConnectionError.SetConnectionStatus(connectionStatus);
