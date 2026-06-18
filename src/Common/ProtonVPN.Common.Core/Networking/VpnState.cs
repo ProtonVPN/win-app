@@ -28,7 +28,7 @@ public class VpnState
     public VpnStatus Status { get; }
     public VpnError Error { get; }
     public string? LocalIp { get; }
-    public string RemoteIp { get; }
+    public string? RemoteIp { get; }
     public int EndpointPort { get; }
     public OpenVpnAdapter? OpenVpnAdapter { get; }
     public VpnProtocol VpnProtocol { get; }
@@ -46,7 +46,7 @@ public class VpnState
     {
     }
 
-    public VpnState(VpnStatus status, string remoteIp, int endpointPort, VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter = null, string label = "")
+    public VpnState(VpnStatus status, string? remoteIp, int endpointPort, VpnProtocol vpnProtocol, OpenVpnAdapter? openVpnAdapter = null, string label = "")
     {
         Status = status;
         RemoteIp = remoteIp;
@@ -56,7 +56,7 @@ public class VpnState
         Label = label;
     }
 
-    public VpnState(VpnStatus status, VpnError error, string localIp, string remoteIp, int endpointPort, VpnProtocol vpnProtocol,
+    public VpnState(VpnStatus status, VpnError error, string localIp, string? remoteIp, int endpointPort, VpnProtocol vpnProtocol,
         bool portForwarding = false, OpenVpnAdapter? openVpnAdapter = null, string label = "",
         ConnectionCertificate? connectionCertificate = null)
     {

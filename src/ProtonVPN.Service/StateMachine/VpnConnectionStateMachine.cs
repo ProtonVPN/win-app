@@ -776,14 +776,21 @@ internal sealed partial class VpnConnectionStateMachine : IVpnConnectionStateMac
     private VpnState CreateDecoratedState(VpnStatus status, VpnError error, ConnectionCertificate? connectionCertificate = null)
     {
         VpnHost? server = _selectedEndpoint?.Server ?? (_servers.Count > 0 ? _servers[0] : null);
+        VpnProtocol vpnProtocol = _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart;
+
+        string? remoteIp = server?.Ip;
+        if (string.IsNullOrEmpty(remoteIp) && server?.RelayIpByProtocol.ContainsKey(vpnProtocol) == true)
+        {
+            remoteIp = server?.RelayIpByProtocol[vpnProtocol];
+        }
 
         return new VpnState(
             status: status,
             error: error,
             localIp: _tunnelOrchestrator.VpnConnection?.LocalIpv4Address ?? string.Empty,
-            remoteIp: server?.Ip ?? string.Empty,
+            remoteIp: remoteIp,
             endpointPort: _selectedEndpoint?.Port ?? 0,
-            vpnProtocol: _vpnConfig?.VpnProtocol ?? VpnProtocol.Smart,
+            vpnProtocol: vpnProtocol,
             portForwarding: !_hasPortForwardingError && (_vpnConfig?.PortForwarding ?? false),
             openVpnAdapter: _vpnConfig?.VpnProtocol.IsOpenVpn() == true
                 ? _vpnConfig.OpenVpnAdapter
