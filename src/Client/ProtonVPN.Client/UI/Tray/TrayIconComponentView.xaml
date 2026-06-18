@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Copyright (c) 2024 Proton AG
+Copyright (c) 2026 Proton AG
 
 This file is part of ProtonVPN.
 
@@ -29,7 +29,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <tray:TaskbarIcon ContextMenuMode="PopupMenu"
+    <tray:TaskbarIcon x:Name="TrayIcon"
+                      ContextMenuMode="PopupMenu"
                       DoubleClickCommand="{x:Bind ViewModel.ShowApplicationCommand, Mode=OneTime}"
                       IconSource="{x:Bind ViewModel.IconSource}"
                       Id="{x:Bind ViewModel.TrayIconGuid, Mode=OneTime}"

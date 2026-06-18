@@ -98,6 +98,11 @@ public sealed partial class MainWindow : IFocusAware
         EventMessageSender.Send<WindowsSessionEndingMessage>();
     }
 
+    public void DisposeTrayIcon()
+    {
+        TrayIcon.DisposeTrayIcon();
+    }
+
     public void OnFocusChanged()
     {
         if (WindowContainer != null)
