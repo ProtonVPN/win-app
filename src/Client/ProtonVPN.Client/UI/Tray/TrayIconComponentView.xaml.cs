@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -30,6 +30,11 @@ public sealed partial class TrayIconComponentView : IContextAware
         ViewModel = App.GetService<TrayIconComponentViewModel>();
 
         InitializeComponent();
+    }
+
+    public void DisposeTrayIcon()
+    {
+        TrayIcon.Dispose();
     }
 
     public object GetContext()

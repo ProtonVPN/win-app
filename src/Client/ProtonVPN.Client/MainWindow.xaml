@@ -47,7 +47,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         </custom:WindowContentControl.TitleBarLeftContent>
 
         <Grid>
-            <tray:TrayIconComponentView />
+            <tray:TrayIconComponentView x:Name="TrayIcon" />
 
             <ui:MainWindowShellView x:Name="Shell" />
         </Grid>
