@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.IPv6.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -107,7 +108,7 @@ internal class IPv6Manager : IIPv6Manager
 
         if (_serviceSettings.IsIpv6Enabled)
         {
-            await HandleIPv6ChaosAsync(vpnStatus);
+            HandleIPv6ChaosAsync(vpnStatus).FireAndForget();
         }
     }
 
