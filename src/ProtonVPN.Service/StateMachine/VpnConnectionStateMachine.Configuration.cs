@@ -66,6 +66,7 @@ internal sealed partial class VpnConnectionStateMachine
             .OnEntryFromAsync(_localAgentConnectionRequestedTrigger, (ct, transition) => EstablishLocalAgentChannelAsync(transition, ct))
             .OnEntryFromAsync(_connectionCertificateChangedTrigger, (ct, transition) => EstablishLocalAgentChannelAsync(transition, ct))
             .Permit(Trigger.DisconnectRequested, State.Disconnected)
+            .Permit(Trigger.RequireCertificateUpdate, State.ActionRequired)
             .Permit(Trigger.ConnectRequested, State.AvailabilityCheck)
             .Permit(Trigger.TwoFactorRequested, State.ActionRequired)
             .Permit(Trigger.LocalAgentReceivedConnectedState, State.Connected);
