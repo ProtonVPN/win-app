@@ -2678,7 +2678,7 @@ Kód chyby: {0}</value>
     <value>A file required for sign-in is missing from your installation. Please reinstall Proton VPN to fix this issue.</value>
   </data>
   <data name="Login_Error_MissingSrpDll_Title">
-    <value>Unable to sign in</value>
+    <value>Nelze se přihlásit</value>
   </data>
   <data name="Login_Error_SessionExpired">
     <value>Vaše relace vypršela. Přihlaste se prosím znovu.</value>
@@ -3819,16 +3819,16 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
     <value>Blokovaná webová stránka?</value>
   </data>
   <data name="System_Tray_Actions_Connect">
-    <value>Connect</value>
+    <value>Připojit</value>
   </data>
   <data name="System_Tray_Actions_Disconnect">
-    <value>Disconnect</value>
+    <value>Odpojit</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
-    <value>Exit</value>
+    <value>Ukončit</value>
   </data>
   <data name="System_Tray_Actions_OpenApplication">
-    <value>Open {0}</value>
+    <value>Otevřít {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_ExitApplication">

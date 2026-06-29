@@ -2483,7 +2483,7 @@ Foutcode: {0}</value>
     <value>Onjuiste code. Probeer het opnieuw.</value>
   </data>
   <data name="Login_Error_MissingSrpDll_Message">
-    <value>Een noodzakelijk bestand om in te kunnen loggen ontbreekt. Installeer Proton VPN alstublieft opnieuw om dit probleem op te lossen.</value>
+    <value>Een noodzakelijk bestand om in te kunnen loggen ontbreekt. Installeer Proton VPN opnieuw om dit probleem op te lossen.</value>
   </data>
   <data name="Login_Error_MissingSrpDll_Title">
     <value>Aanmelden niet mogelijk</value>

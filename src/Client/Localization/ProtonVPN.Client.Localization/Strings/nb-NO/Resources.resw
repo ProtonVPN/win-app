@@ -2483,10 +2483,10 @@ Feilkode: {0}</value>
     <value>Feil kode. Prøv på nytt.</value>
   </data>
   <data name="Login_Error_MissingSrpDll_Message">
-    <value>A file required for sign-in is missing from your installation. Please reinstall Proton VPN to fix this issue.</value>
+    <value>En fil som kreves for pålogging mangler i installasjonen din. Installer Proton VPN på nytt for å fikse dette problemet.</value>
   </data>
   <data name="Login_Error_MissingSrpDll_Title">
-    <value>Unable to sign in</value>
+    <value>Kan ikke logge på</value>
   </data>
   <data name="Login_Error_SessionExpired">
     <value>Økten er utløpt. Logg på nytt.</value>
@@ -3627,16 +3627,16 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Blokkert nettsted?</value>
   </data>
   <data name="System_Tray_Actions_Connect">
-    <value>Connect</value>
+    <value>Koble til</value>
   </data>
   <data name="System_Tray_Actions_Disconnect">
-    <value>Disconnect</value>
+    <value>Koble fra</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
-    <value>Exit</value>
+    <value>Avslutt</value>
   </data>
   <data name="System_Tray_Actions_OpenApplication">
-    <value>Open {0}</value>
+    <value>Åpne {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_ExitApplication">

@@ -1738,7 +1738,7 @@ Error code: {0}</value>
     <comment>The name of WS country</comment>
   </data>
   <data name="Country_val_XK">
-    <value>Kosovo</value>
+    <value>Косово</value>
     <comment>The name of XK country</comment>
   </data>
   <data name="Country_val_YE">
@@ -2066,13 +2066,13 @@ Error code: {0}</value>
     <value>New system tray app</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations">
-    <value>Exclude locations</value>
+    <value>Исключить местоположения</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
     <value>If there are locations you don't want to be automatically connected to, you can exclude them from Fastest and Random country.</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
-    <value>Skip</value>
+    <value>Пропустить</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
     <value>Not the country you wanted?</value>
@@ -2189,10 +2189,10 @@ Error code: {0}</value>
     <value>Protect your browsing on websites and apps.</value>
   </data>
   <data name="Flyouts_NetShield_MalwareOnly_Success">
-    <value>You're protected from malware only.</value>
+    <value>Вы защищены только от вредоносных программ.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Description">
-    <value>Block ads, trackers, malware, and adult content with VPN Plus.</value>
+    <value>Блокируйте рекламу, трекеры, вредоносные программы и контент для взрослых с помощью VPN Plus.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
     <value>Просматривайте веб-страницы без рекламы</value>

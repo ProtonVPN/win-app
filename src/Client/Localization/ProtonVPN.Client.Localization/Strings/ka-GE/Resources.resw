@@ -2483,10 +2483,10 @@
     <value>კოდი არასწორია. თავიდან სცადეთ.</value>
   </data>
   <data name="Login_Error_MissingSrpDll_Message">
-    <value>A file required for sign-in is missing from your installation. Please reinstall Proton VPN to fix this issue.</value>
+    <value>პროგრამის თქვენს ვერსიას შესვლისთვის აუცილებელი ფაილი აკლია. პრობლემის მოსაგვარებლად დააყენეთ Proton VPN თავიდან.</value>
   </data>
   <data name="Login_Error_MissingSrpDll_Title">
-    <value>Unable to sign in</value>
+    <value>შესვლა შეუძლებელია</value>
   </data>
   <data name="Login_Error_SessionExpired">
     <value>თქვენს სესიას ვადა გაუვიდა. თავიდან შედით.</value>
@@ -3627,16 +3627,16 @@ VPN მიერთება</value>
     <value>დაბლოკილია ვებსაიტი?</value>
   </data>
   <data name="System_Tray_Actions_Connect">
-    <value>Connect</value>
+    <value>დაკავშირება</value>
   </data>
   <data name="System_Tray_Actions_Disconnect">
-    <value>Disconnect</value>
+    <value>გათიშვა</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
-    <value>Exit</value>
+    <value>გასვლა</value>
   </data>
   <data name="System_Tray_Actions_OpenApplication">
-    <value>Open {0}</value>
+    <value>{0}-ის გახსნა</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_ExitApplication">

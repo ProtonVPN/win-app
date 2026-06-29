@@ -2482,6 +2482,12 @@ Error code: {0}</value>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>ᜋᜎᜒᜅ᜔ code. ᜉᜃᜒᜐᜓᜊᜓᜃᜅ᜔ ᜋᜓᜎᜒ.</value>
   </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>A file required for sign-in is missing from your installation. Please reinstall Proton VPN to fix this issue.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>Unable to sign in</value>
+  </data>
   <data name="Login_Error_SessionExpired">
     <value>ᜈᜄ᜔-expire ᜈ ᜀᜅ᜔ session ᜋᜓ. ᜋᜅ᜔ᜌᜇᜒᜅ᜔ ᜋᜄ᜔-sign in ᜋᜓᜎᜒ.</value>
     <comment>The message displayed in Login window when expired session is detected</comment>
@@ -3620,6 +3626,19 @@ VPN connection</value>
   <data name="SystemNotification_StreamingWarning_Title">
     <value>ᜈᜃ-block ᜈ website?</value>
   </data>
+  <data name="System_Tray_Actions_Connect">
+    <value>Connect</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Disconnect</value>
+  </data>
+  <data name="System_Tray_Actions_ExitApplication">
+    <value>Exit</value>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
+    <value>Open {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
   <data name="Tray_Actions_ExitApplication">
     <value>ᜎᜓᜋᜊᜐ᜔</value>
   </data>
@@ -3629,19 +3648,6 @@ VPN connection</value>
   </data>
   <data name="Tray_Actions_OpenApplicationToSignIn">
     <value>ᜊᜓᜃ᜔ᜐᜈ᜔ ᜀᜅ᜔ app ᜂᜉᜅ᜔ ᜋᜄ᜔-sign in</value>
-  </data>
-  <data name="System_Tray_Actions_OpenApplication" xml:space="preserve">
-    <value>Open {0}</value>
-    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
-  </data>
-  <data name="System_Tray_Actions_ExitApplication" xml:space="preserve">
-    <value>Exit</value>
-  </data>
-  <data name="System_Tray_Actions_Connect" xml:space="preserve">
-    <value>Connect</value>
-  </data>
-  <data name="System_Tray_Actions_Disconnect" xml:space="preserve">
-    <value>Disconnect</value>
   </data>
   <data name="Unit_BytesPerSecond">
     <value>B/s</value>

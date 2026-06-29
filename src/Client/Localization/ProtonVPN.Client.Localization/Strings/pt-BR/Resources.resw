@@ -2179,7 +2179,7 @@ Código de erro: {0}</value>
     <value>Endereços IP protegidos ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Standard_Info">
-    <value>Apenas esses aplicativos e endereços IP se conectam por meio da VPN, o restante do tráfego fica desprotegido.</value>
+    <value>Esses aplicativos e endereços IP se conectam sem a proteção da VPN. Todo o restante do tráfego fica protegido.</value>
   </data>
   <data name="Flyouts_SplitTunneling_Upsell_Description">
     <value>Divida seu tráfego em túneis VPN e não VPN com o VPN Plus.</value>
@@ -3627,16 +3627,16 @@ Uma carga alta de servidor pode tornar sua conexão mais lenta.</value>
     <value>Site bloqueado?</value>
   </data>
   <data name="System_Tray_Actions_Connect">
-    <value>Connect</value>
+    <value>Conectar</value>
   </data>
   <data name="System_Tray_Actions_Disconnect">
-    <value>Disconnect</value>
+    <value>Desconectar</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
-    <value>Exit</value>
+    <value>Sair</value>
   </data>
   <data name="System_Tray_Actions_OpenApplication">
-    <value>Open {0}</value>
+    <value>Abrir {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_ExitApplication">

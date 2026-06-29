@@ -56,7 +56,6 @@ public static class Languages
         new("zh-TW", "繁體中文 - Chinese (Traditional)"),
         new("th-TH", "ไทย - Thai"),
         new("fil-PH", "Filipino - Filipino (Latin)"),
-        new("fil-Tglg", "ᜉᜒᜎᜒᜉᜒᜈᜓ - Filipino (Baybayin)"),
         new("hu-HU", "Magyar - Hungarian"),
         new("nb-NO", "Norsk (bokmål) - Norwegian (Bokmal)"),
         new("sk-SK", "Slovenčina - Slovak"),
@@ -67,5 +66,6 @@ public static class Languages
         new("ka-GE", "Ქართული - Georgian"),
         new("ar-SA", "عربي - Arabic", isRightToLeft: true),
         new("fa-IR", "فارسی - Persian", isRightToLeft: true),
+        new("fil-Tglg", "ᜉᜒᜎᜒᜉᜒᜈᜓ - Filipino (Baybayin)"),
     ];
 }

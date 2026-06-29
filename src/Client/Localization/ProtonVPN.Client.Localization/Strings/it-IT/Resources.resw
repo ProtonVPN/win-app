@@ -124,7 +124,7 @@
     <value>Pagina dei dettagli della connessione</value>
   </data>
   <data name="Automation_Properties_ConnectionPreferences_Page">
-    <value>Connection preferences page</value>
+    <value>Pagina delle preferenze di connessione</value>
   </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>Scheda di connessione</value>
@@ -280,7 +280,7 @@
     <value>Scopri di più</value>
   </data>
   <data name="Common_Message_AppNotFound">
-    <value>Application not found</value>
+    <value>Applicazione non trovata</value>
   </data>
   <data name="Common_States_Off">
     <value>Non attivo</value>
@@ -319,10 +319,10 @@
     <value>Posizioni escluse</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Description">
-    <value>To fix it, close or uninstall the app associated with:</value>
+    <value>Per risolvere il problema, chiudi o disinstalla l'app associata a:</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Title">
-    <value>Another app might be preventing Proton VPN from connecting</value>
+    <value>Un'altra app potrebbe impedire la connessione di Proton VPN</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>Modifica profilo</value>
@@ -385,7 +385,7 @@ Codice errore: {0}</value>
     <value>L'adattatore WireGuard del tuo dispositivo è in uso. Esegui la disconnessione da altre VPN attive sul tuo dispositivo e riprova.</value>
   </data>
   <data name="Connection_Feedback_Question">
-    <value>How is your connection?</value>
+    <value>Come è la tua connessione?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Selezionato automaticamente tra</value>
@@ -1909,7 +1909,7 @@ Codice errore: {0}</value>
     <value>Ti diamo il benvenuto in VPN Plus</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>You unlocked all premium Proton VPN, Mail, Calendar, Drive, and Pass features.</value>
+    <value>Hai sbloccato tutte le funzionalità premium di Proton VPN, Mail, Calendario, Drive e Pass.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
     <value>Ti diamo il benvenuto in {0}</value>
@@ -2054,19 +2054,19 @@ Codice errore: {0}</value>
     <value>Per tornare online, connettiti alla VPN o disattiva il kill switch avanzato</value>
   </data>
   <data name="Flyouts_NetShield_AdsMalwareTrackersAdultContent_Success">
-    <value>You're protected from ads, trackers, malware, and adult content.</value>
+    <value>Sei protetto da pubblicità, tracker, malware e contenuti per adulti.</value>
   </data>
   <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
-    <value>You're protected from ads, trackers, and malware.</value>
+    <value>Protezione da pubblicità, tracker e malware attivata.</value>
   </data>
   <data name="Flyouts_NetShield_Info">
-    <value>Protect your browsing on websites and apps.</value>
+    <value>Proteggi la tua navigazione su siti web e app.</value>
   </data>
   <data name="Flyouts_NetShield_MalwareOnly_Success">
-    <value>You're protected from malware only.</value>
+    <value>Protezione da malware attivata.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Description">
-    <value>Block ads, trackers, malware, and adult content with VPN Plus.</value>
+    <value>Blocca annunci pubblicitari, tracker, malware e contenuti per adulti con VPN Plus.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Title">
     <value>Goditi una navigazione senza annunci</value>
@@ -2483,10 +2483,10 @@ Codice errore: {0}</value>
     <value>Codice errato. Riprova.</value>
   </data>
   <data name="Login_Error_MissingSrpDll_Message">
-    <value>A file required for sign-in is missing from your installation. Please reinstall Proton VPN to fix this issue.</value>
+    <value>Nella tua installazione manca un file necessario per l'accesso. Reinstalla Proton VPN per risolvere il problema.</value>
   </data>
   <data name="Login_Error_MissingSrpDll_Title">
-    <value>Unable to sign in</value>
+    <value>Impossibile effettuare l'accesso</value>
   </data>
   <data name="Login_Error_SessionExpired">
     <value>La tua sessione è scaduta. Effettua nuovamente l'accesso.</value>
@@ -2583,7 +2583,7 @@ Codice errore: {0}</value>
     <value>Nessuna connessione VPN disponibile</value>
   </data>
   <data name="NoServers_UnderMaintenance_Tip">
-    <value>We couldn't load any servers. Click Refresh to update the server list.</value>
+    <value>Impossibile caricare alcun server. Fai clic su Aggiorna per aggiornare l'elenco dei server.</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Per proteggere il tuo indirizzo IP, il kill switch sta bloccando la connessione Internet.</value>
@@ -2611,7 +2611,7 @@ Codice errore: {0}</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_Ipv6Disabled_Description">
-    <value>To include IPv6 addresses, you need to allow IPv6 connections through the VPN tunnel.</value>
+    <value>Per includere gli indirizzi IPv6, è necessario consentire le connessioni IPv6 attraverso il tunnel VPN.</value>
   </data>
   <data name="Overlay_Ipv6Disabled_PrimaryButton">
     <value>Abilita IPv6</value>
@@ -2992,14 +2992,14 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Proveremo a connetterci a questi server in ordine. Se nessuno di loro funziona, verrà utilizzato il DNS predefinito di Proton VPN.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_FormattedHeader">
-    <value>DNS servers ({0})</value>
+    <value>Server DNS ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
-    <value>DNS servers</value>
+    <value>Server DNS</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Select">
-    <value>Select DNS servers</value>
+    <value>Seleziona server DNS</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>Supporto IPv6</value>
@@ -3056,7 +3056,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Traffico tra reti differenti. TUN può essere più veloce e più stabile di TAP.</value>
   </data>
   <data name="Settings_Connection_ConnectionPreferences">
-    <value>Connection preferences</value>
+    <value>Preferenze di connessione</value>
   </data>
   <data name="Settings_Connection_ConnectionPreferences_Description">
     <value>Le impostazioni delle connessioni e posizioni escluse</value>
@@ -3134,10 +3134,10 @@ Un carico elevato può rallentare la connessione.</value>
     <value>NetShield</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
-    <value>Block ads, trackers, and malware</value>
+    <value>Blocca annunci, tracker e malware</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent">
-    <value>Block ads, trackers, malware, and adult content</value>
+    <value>Blocca annunci pubblicitari, tracker, malware e contenuti per adulti</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
     <value>Blocca solo malware</value>
@@ -3152,7 +3152,7 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Vuoi abilitare NetShield?</value>
   </data>
   <data name="Settings_Connection_NetShield_Description">
-    <value>Protect your browsing on websites and apps.</value>
+    <value>Proteggi la tua navigazione su siti web e app.</value>
   </data>
   <data name="Settings_Connection_NetShield_Footer">
     <value>Alcuni siti web potrebbero non caricarsi correttamente quando gli annunci e i tracker vengono bloccati.</value>
@@ -3204,31 +3204,31 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Split tunneling</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Description">
-    <value>Select apps which will be excluded from the VPN connection</value>
+    <value>Seleziona le app che desideri escludere dalla connessione VPN</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Excluded_FormattedHeader">
-    <value>Excluded apps ({0})</value>
+    <value>App escluse ({0})</value>
     <comment>Header for the list of apps to exclude for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Excluded apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Header">
-    <value>Excluded apps</value>
+    <value>App escluse</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>File dell'app</value>
     <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Included_Description">
-    <value>Select apps which will be included in the VPN connection</value>
+    <value>Seleziona le app che desideri includere nella connessione VPN</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader">
-    <value>Included apps ({0})</value>
+    <value>App incluse ({0})</value>
     <comment>Header for the list of apps to include for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Included apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Included_Header">
-    <value>Included apps</value>
+    <value>App incluse</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Select">
-    <value>Select apps</value>
+    <value>Seleziona app</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
     <value>Personalizza la tua connessione decidendo quali app e indirizzi IP vengono protetti dalla VPN.</value>
@@ -3247,27 +3247,27 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Aggiungi nuovo indirizzo IPv4 o IPv6</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Description">
-    <value>Select IP addresses which will be excluded from the VPN connection</value>
+    <value>Seleziona gli indirizzi IP che verranno esclusi dalla connessione VPN</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_FormattedHeader">
-    <value>Excluded IP addresses ({0})</value>
+    <value>Indirizzi IP esclusi ({0})</value>
     <comment>Header for the list of IP addresses to exclude for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Excluded IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Header">
-    <value>Excluded IP addresses</value>
+    <value>Indirizzi IP esclusi</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Description">
-    <value>Select IP addresses which will be included in the VPN connection</value>
+    <value>Seleziona gli indirizzi IP che verranno inclusi nella connessione VPN</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_FormattedHeader">
-    <value>Included IP addresses ({0})</value>
+    <value>Indirizzi IP inclusi ({0})</value>
     <comment>Header for the list of IP addresses to include for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Included IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Header">
-    <value>Included IP addresses</value>
+    <value>Indirizzi IP inclusi</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Select">
-    <value>Select IP addresses</value>
+    <value>Seleziona indirizzi IP</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Standard">
     <value>Modalità di esclusione</value>
@@ -3390,28 +3390,28 @@ Un carico elevato può rallentare la connessione.</value>
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_ProTunTcp_Description">
-    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+    <value>Il nostro nuovo framework basato su WireGuard per una maggiore stabilità, funzionalità e resistenza alla censura.</value>
   </data>
   <data name="Settings_Protocols_ProTunTcp_Title">
     <value>Proton WireGuard</value>
   </data>
   <data name="Settings_Protocols_ProTunTls_Description">
-    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+    <value>Il nostro nuovo framework basato su WireGuard per una maggiore stabilità, funzionalità e resistenza alla censura.</value>
   </data>
   <data name="Settings_Protocols_ProTunTls_Title">
     <value>Proton Stealth</value>
   </data>
   <data name="Settings_Protocols_ProTunUdp_Description">
-    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+    <value>Il nostro nuovo framework basato su WireGuard per una maggiore stabilità, funzionalità e resistenza alla censura.</value>
   </data>
   <data name="Settings_Protocols_ProTunUdp_Title">
     <value>Proton WireGuard</value>
   </data>
   <data name="Settings_Protocols_ProtonProtocols_Description">
-    <value>Use Proton VPN's own implementation of WireGuard. This is an experimental feature, so you may experience some instability.</value>
+    <value>Usa l'implementazione WireGuard di Proton VPN. Questa è una funzionalità sperimentale, quindi potresti riscontrare qualche instabilità.</value>
   </data>
   <data name="Settings_Protocols_ProtonProtocols_Title">
-    <value>Proton protocols</value>
+    <value>Protocolli Proton</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Seleziona automaticamente il protocollo migliore per la tua connessione.</value>
@@ -3627,16 +3627,16 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Sito web bloccato?</value>
   </data>
   <data name="System_Tray_Actions_Connect">
-    <value>Connect</value>
+    <value>Connetti</value>
   </data>
   <data name="System_Tray_Actions_Disconnect">
-    <value>Disconnect</value>
+    <value>Disconnetti</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
-    <value>Exit</value>
+    <value>Esci</value>
   </data>
   <data name="System_Tray_Actions_OpenApplication">
-    <value>Open {0}</value>
+    <value>Apri {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_ExitApplication">
@@ -3878,19 +3878,19 @@ Un carico elevato può rallentare la connessione.</value>
     <value>Proton WireGuard (TCP)</value>
   </data>
   <data name="VpnProtocol_ProTun_Tcp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Protocollo all'avanguardia per sicurezza e prestazioni</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls">
     <value>Proton Stealth</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls_Description">
-    <value>Overcomes VPN blocks by hiding your connection from censors</value>
+    <value>Supera i blocchi VPN nascondendo la tua connessione ai censori</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp">
     <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Protocollo all'avanguardia per sicurezza e prestazioni</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
