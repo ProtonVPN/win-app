@@ -56,7 +56,7 @@ namespace ProtonVPN.Vpn.LocalAgent
             int keepAliveMaxCount);
 
         [DllImport(DllName, EntryPoint = "Ping", CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool Ping(GoString ip, int port, GoString serverKeyBase64, int timeoutInSeconds);
+        public static extern bool Ping(GoString ip, int port, GoString serverKeyBase64, int timeoutInMilliseconds);
 
         [DllImport(DllName, EntryPoint = "Close", CallingConvention = CallingConvention.Cdecl)]
         public static extern void Close();
