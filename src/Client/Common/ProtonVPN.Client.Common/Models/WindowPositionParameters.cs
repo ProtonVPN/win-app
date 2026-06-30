@@ -28,4 +28,8 @@ public struct WindowPositionParameters
     public double? XPosition { get; set; }
 
     public double? YPosition { get; set; }
+
+    /// <summary>When true, the position is only used to determine the target monitor, and the
+    /// window is centered on that monitor instead of being placed at the exact position.</summary>
+    public bool IsCentered { get; set; }
 }

@@ -19,15 +19,15 @@
 
 namespace ProtonVPN.Common.Core.Geographical;
 
-public struct DeviceLocation
+public readonly struct DeviceLocation
 {
     public static DeviceLocation Unknown => new();
 
-    public string IpAddress { get; init; }
-    public string CountryCode { get; init; }
-    public string Isp { get; init; }
-    public double? Latitude { get; init; }
-    public double? Longitude { get; init; }
+    public readonly string IpAddress { get; init; }
+    public readonly string CountryCode { get; init; }
+    public readonly string Isp { get; init; }
+    public readonly double? Latitude { get; init; }
+    public readonly double? Longitude { get; init; }
 
     public static bool operator ==(DeviceLocation? dl1, DeviceLocation? dl2)
     {

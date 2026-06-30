@@ -21,8 +21,8 @@ namespace ProtonVPN.Client.Logic.Auth.Contracts.Models;
 
 public readonly struct ConnectionCertificate
 {
-    public required string Pem { get; init; }
-    public required DateTimeOffset RequestUtcDate { get; init; }
-    public required DateTimeOffset RefreshUtcDate { get; init; }
-    public required DateTimeOffset ExpirationUtcDate { get; init; }
+    public readonly required string Pem { get; init; }
+    public readonly required DateTimeOffset RequestUtcDate { get; init; }
+    public readonly required DateTimeOffset RefreshUtcDate { get; init; }
+    public readonly required DateTimeOffset ExpirationUtcDate { get; init; }
 }

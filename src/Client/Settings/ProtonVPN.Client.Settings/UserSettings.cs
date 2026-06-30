@@ -63,36 +63,6 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetReferenceType(value, SettingEncryption.Unencrypted);
     }
 
-    public int WindowWidth
-    {
-        get => _userCache.GetValueType<int>(SettingEncryption.Unencrypted) ?? DefaultSettings.WindowWidth;
-        set => _userCache.SetValueType<int>(value, SettingEncryption.Unencrypted);
-    }
-
-    public int WindowHeight
-    {
-        get => _userCache.GetValueType<int>(SettingEncryption.Unencrypted) ?? DefaultSettings.WindowHeight;
-        set => _userCache.SetValueType<int>(value, SettingEncryption.Unencrypted);
-    }
-
-    public int? WindowXPosition
-    {
-        get => _userCache.GetValueType<int>(SettingEncryption.Unencrypted);
-        set => _userCache.SetValueType<int>(value, SettingEncryption.Unencrypted);
-    }
-
-    public int? WindowYPosition
-    {
-        get => _userCache.GetValueType<int>(SettingEncryption.Unencrypted);
-        set => _userCache.SetValueType<int>(value, SettingEncryption.Unencrypted);
-    }
-
-    public bool IsWindowMaximized
-    {
-        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsWindowMaximized;
-        set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
-    }
-
     public bool IsNavigationPaneOpened
     {
         get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsNavigationPaneOpened;

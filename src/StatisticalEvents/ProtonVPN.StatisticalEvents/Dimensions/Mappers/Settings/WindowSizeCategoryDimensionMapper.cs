@@ -40,8 +40,8 @@ public class WindowSizeCategoryDimensionMapper : DimensionMapperBase, IWindowSiz
             return FULLSCREEN;
         }
 
-        bool isWidthNarrow = windowWidth < (int)(DefaultSettings.WindowWidth * NARROW_WIDTH_THRESHOLD);
-        bool isHeightNarrow = windowHeight < (int)(DefaultSettings.WindowHeight * NARROW_HEIGHT_THRESHOLD);
+        bool isWidthNarrow = windowWidth < (int)(DefaultSettings.WindowLocation.WindowWidth * NARROW_WIDTH_THRESHOLD);
+        bool isHeightNarrow = windowHeight < (int)(DefaultSettings.WindowLocation.WindowHeight * NARROW_HEIGHT_THRESHOLD);
 
         if (isWidthNarrow && isHeightNarrow)
         {

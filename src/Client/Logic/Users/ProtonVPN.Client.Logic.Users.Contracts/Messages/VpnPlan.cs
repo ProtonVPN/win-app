@@ -23,11 +23,11 @@ public readonly struct VpnPlan
 {
     public static VpnPlan Default => new(string.Empty, string.Empty, 0, false);
 
-    public string Title { get; }
-    public string Name { get; }
-    public bool IsPaid { get; }
-    public sbyte MaxTier { get; }
-    public bool IsB2B { get; }
+    public readonly string Title { get; }
+    public readonly string Name { get; }
+    public readonly bool IsPaid { get; }
+    public readonly sbyte MaxTier { get; }
+    public readonly bool IsB2B { get; }
 
     public VpnPlan(string title, string name, sbyte maxTier, bool isB2B)
     {
