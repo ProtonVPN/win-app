@@ -19,13 +19,11 @@
 
 namespace ProtonVPN.Client.Settings.Contracts.Models;
 
-public struct FeatureFlag
+public readonly struct FeatureFlag
 {
     public static readonly FeatureFlag Default = new() { IsEnabled = false };
 
-    public string Name { get; set; }
-
-    public bool IsEnabled { get; set; }
-
-    public string Payload { get; set; }
+    public readonly string Name { get; init; }
+    public readonly bool IsEnabled { get; init; }
+    public readonly string Payload { get; init; }
 }

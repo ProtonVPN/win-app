@@ -29,14 +29,16 @@ namespace ProtonVPN.Client.Settings.Contracts;
 public static class DefaultSettings
 {
     public static string Theme = "Dark";
-    public static int WindowWidth = 1016;
-    public static int WindowHeight = 659;
+    public static WindowLocation WindowLocation = new()
+    {
+        WindowWidth = 1016,
+        WindowHeight = 659,
+    };
     public static string Language = "en-US";
     public static bool AreProtonProtocolsEnabled = true;
     public static VpnProtocol VpnProtocol = VpnProtocol.Smart;
     public static NatType NatType = NatType.Strict;
     public static bool IsVpnAcceleratorEnabled = true;
-    public static bool IsWindowMaximized = false;
     public static bool IsNavigationPaneOpened = true;
     public static int SidebarWidth = 280;
     public static bool IsRecentsPaneOpened = true;

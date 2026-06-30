@@ -21,14 +21,14 @@ using ProtonVPN.Client.Settings.Contracts.Enums;
 
 namespace ProtonVPN.Client.Settings.Contracts.Models;
 
-public struct DefaultConnection
+public readonly struct DefaultConnection
 {
     public static DefaultConnection Fastest => new(DefaultConnectionType.Fastest);
     public static DefaultConnection Random => new(DefaultConnectionType.Random);
     public static DefaultConnection Last => new(DefaultConnectionType.Last);
 
-    public DefaultConnectionType Type { get; init; }
-    public Guid RecentId { get; init; } = Guid.Empty;
+    public readonly DefaultConnectionType Type { get; init; }
+    public readonly Guid RecentId { get; init; } = Guid.Empty;
 
     public DefaultConnection(Guid recentId)
         : this(DefaultConnectionType.Recent)

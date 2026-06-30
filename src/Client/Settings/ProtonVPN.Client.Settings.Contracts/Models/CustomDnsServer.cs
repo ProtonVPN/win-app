@@ -21,11 +21,10 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ProtonVPN.Client.Settings.Contracts.Models;
 
-public struct CustomDnsServer : IEquatable<CustomDnsServer>
+public readonly struct CustomDnsServer : IEquatable<CustomDnsServer>
 {
-    public string IpAddress { get; set; }
-
-    public bool IsActive { get; set; }
+    public readonly string IpAddress { get; }
+    public readonly bool IsActive { get; }
 
     public CustomDnsServer(string ipAddress, bool isActive)
     {

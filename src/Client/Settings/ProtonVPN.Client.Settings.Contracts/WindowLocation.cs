@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
+/*
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,19 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Client.Common.Models;
+namespace ProtonVPN.Client.Settings.Contracts;
 
-public struct WindowPositionParameters
+public readonly struct WindowLocation
 {
-    public double Width { get; set; }
-
-    public double Height { get; set; }
-
-    public double? XPosition { get; set; }
-
-    public double? YPosition { get; set; }
-
-    /// <summary>When true, the position is only used to determine the target monitor, and the
-    /// window is centered on that monitor instead of being placed at the exact position.</summary>
-    public bool IsCentered { get; set; }
+    public int WindowWidth { get; init; }
+    public int WindowHeight { get; init; }
+    public int? WindowXPosition { get; init; }
+    public int? WindowYPosition { get; init; }
+    public bool IsWindowMaximized { get; init; }
 }

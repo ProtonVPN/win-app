@@ -67,6 +67,7 @@ public interface IGlobalSettings
     DateTimeOffset? LastProcessVersionMismatchRestartUtcDate { get; set; }
     TimeSpan WireGuardConnectionTimeout { get; set; }
     bool IsEfficiencyModeAllowed { get; set; }
+    WindowLocation WindowLocation { get; set; }
 
     Dictionary<string, Dictionary<string, string?>>? LegacySettingsByUsername { get; set; }
 }

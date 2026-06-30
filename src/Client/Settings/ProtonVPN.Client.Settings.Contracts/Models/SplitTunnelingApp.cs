@@ -21,13 +21,11 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ProtonVPN.Client.Settings.Contracts.Models;
 
-public struct SplitTunnelingApp : IEquatable<SplitTunnelingApp>
+public readonly struct SplitTunnelingApp : IEquatable<SplitTunnelingApp>
 {
-    public string AppFilePath { get; set; }
-
-    public List<string> AlternateAppFilePaths { get; set; }
-
-    public bool IsActive { get; set; }
+    public readonly string AppFilePath { get; }
+    public readonly List<string> AlternateAppFilePaths { get; }
+    public readonly bool IsActive { get; }
 
     public SplitTunnelingApp(string appFilePath, bool isActive)
         : this(appFilePath, [], isActive)
