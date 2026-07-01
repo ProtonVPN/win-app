@@ -322,8 +322,10 @@ push-results-to-testmo-full:
   needs:
     - job: ui-tests-group
       optional: false
+    - job: ui-tests-full-arm
+      optional: true
     - job: ui-tests-bti
-      optional: false
+      optional: true
   coverage: '/Automation coverage: (\d+\.?\d+)%/'
 
 push-results-to-testmo-smoke:
