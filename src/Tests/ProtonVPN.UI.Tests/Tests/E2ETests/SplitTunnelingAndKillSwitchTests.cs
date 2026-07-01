@@ -38,6 +38,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
     [SetUp]
     public void SetUp()
     {
+        WindowsUtils.RestoreChrome();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
         CompletePreconditionsKillSwitch();
     }
@@ -192,7 +193,15 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
         }
         finally
         {
-            CommonUiFlows.Logout();
+            try
+            {
+                CommonUiFlows.Logout();
+            }
+            catch
+            {
+                ConfirmationRobot.CancelAction();
+                CommonUiFlows.Logout();
+            }
 
             Thread.Sleep(TestConstants.OneSecondTimeout);
 

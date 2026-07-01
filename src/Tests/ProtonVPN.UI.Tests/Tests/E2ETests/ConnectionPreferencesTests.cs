@@ -91,8 +91,28 @@ public class ConnectionPreferencesTests : BaseTest
     }
 
     [Test, Order(2)]
+    [Property("TestCaseId", "867492")]
+    public void DefaultConnectionUpdatesConnectionCardTitle()
+    {
+        HomeRobot
+            .Verify.IsDisconnected();
+
+        ChooseDefaultConnectionFromSettingsAndVerifyConnectionCardTitle(VpnConnectionOption.Fastest, FAST_CONNECTION);
+        ChooseDefaultConnectionFromSettingsAndVerifyConnectionCardTitle(VpnConnectionOption.Random, RANDOM_COUNTRY);
+        ChooseDefaultConnectionFromSettingsAndVerifyConnectionCardTitle(VpnConnectionOption.Last, COUNTRY_TO_SEARCH);
+    }
+
+    [Test, Order(3)]
+    [Property("TestCaseId", "867493")]
+    public void ConnectToVpnFastestCountryAndRandomCountry()
+    {
+        ConnectToDefaultConnectionAndVerify(VpnConnectionOption.Fastest, FAST_CONNECTION);
+        ConnectToDefaultConnectionAndVerify(VpnConnectionOption.Random, RANDOM_COUNTRY);
+    }
+
+    [Test, Order(4)]
     [Property("TestCaseId", "867497")]
-    public void ExcludedLocationsSelector_AllowsSelectingAndSearching()
+    public void AllowSelectingAndSearchingTheExcludedLocationsSelector()
     {
         SettingRobot
             .OpenSettings()
@@ -111,29 +131,6 @@ public class ConnectionPreferencesTests : BaseTest
             .CloseSettings();
     }
 
-    [Test]
-    [Property("TestCaseId", "867492")]
-    public void DefaultConnection()
-    {
-        HomeRobot
-            .Verify.IsDisconnected();
-
-        SettingRobot
-            .OpenSettings()
-            .OpenConnectionPreferencesSettingsCard()
-            .SelectDefaultConnectionType(VpnConnectionOption.Fastest)
-            .SelectDefaultConnectionType(VpnConnectionOption.Random)
-            .SelectDefaultConnectionType(VpnConnectionOption.Last);
-    }
-
-    [Test]
-    [Property("TestCaseId", "867493")]
-    public void ConnectToVpnFastestCountryAndRandomCountry()
-    {
-        ConnectToDefaultConnectionAndVerify(VpnConnectionOption.Fastest, FAST_CONNECTION);
-        ConnectToDefaultConnectionAndVerify(VpnConnectionOption.Random, RANDOM_COUNTRY);
-    }
-
     private void ConnectToDefaultConnectionAndVerify(VpnConnectionOption vpnConnectionOption, string expectedConnectionCardTitle)
     {
         HomeRobot
@@ -143,6 +140,18 @@ public class ConnectionPreferencesTests : BaseTest
                    .IsConnected()
             .Disconnect()
             .Verify.IsDisconnected();
+    }
+
+    private void ChooseDefaultConnectionFromSettingsAndVerifyConnectionCardTitle(VpnConnectionOption vpnConnectionOption, string expectedConnectionCardTitle)
+    {
+        SettingRobot
+           .OpenSettings()
+           .OpenConnectionPreferencesSettingsCard()
+           .SelectDefaultConnectionType(vpnConnectionOption)
+           .ApplySettings()
+           .CloseSettings();
+        HomeRobot
+            .Verify.ConnectionCardTitleEquals(expectedConnectionCardTitle);
     }
 
     [OneTimeTearDown]

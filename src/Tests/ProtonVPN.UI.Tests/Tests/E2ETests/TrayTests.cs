@@ -46,7 +46,7 @@ public class TrayTests : BaseTest
         LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
         HomeRobot.MinimizeClientViaMinimizeButton();
-        TrayRobot.Verify.IsTrayIconDisplayed();
+        DesktopRobot.Verify.IsTrayIconDisplayed();
     }
 
     [Test, Order(0)]
@@ -335,8 +335,8 @@ public class TrayTests : BaseTest
 
         using (TrayApp)
         {
+            DesktopRobot.Verify.IsTrayIconDisplayed();
             TrayRobot
-                .Verify.IsTrayIconDisplayed()
                 .ClickTaskbar()
                 .Verify.IsLoginWindowFocused(false);
 

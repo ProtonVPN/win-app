@@ -232,6 +232,14 @@ public class LoginTests : FreshSessionSetUp
         }
         catch { }
 
+        try
+        {
+            HomeRobot
+                .Verify.IsUpsellModalDisplayed()
+                .DismissUpsellModal();
+        }
+        catch { }
+
         SettingRobot
             .OpenSettings()
             .Verify.IsCorrectAccountInfoDisplayed(userToCheck.User.Username, userToCheck.Plan)

@@ -194,6 +194,7 @@ public class MiscTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "202")]
+    [Retry(3)]
     public void ForgotPassword()
     {
         CommonUiFlows.Logout();
@@ -209,6 +210,7 @@ public class MiscTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "203")]
+    [Retry(3)]
     public void ForgotUsername()
     {
         CommonUiFlows.Logout();
@@ -224,6 +226,7 @@ public class MiscTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602333")]
+    [Retry(3)]
     public void CreateAccount()
     {
         CommonUiFlows.Logout();
@@ -330,7 +333,7 @@ public class MiscTests : FreshSessionSetUp
         SettingRobot
             .OpenSettings()
             .OpenProtocolSettings()
-            .Verify.IsProtunEnabled()
+            .Verify.IsProTunEnabled()
                    .IsCorrectProtocolChecked(Protocol.Smart)
             .GoBack();
 

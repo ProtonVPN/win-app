@@ -38,15 +38,13 @@ public class SplitTunnelingIncludeTests : BaseTest
     private const string APP_TO_INCLUDE = "Google Chrome";
     private const string OTHER_APP = "Edge";
 
-    private const string ORIGINAL_CHROME_FOLDER = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
-    private const string RENAMED_CHROME_FOLDER = @"C:\Program Files\Google\Chrome\Application\chrome_disabled.exe";
-
     private const string APP_NOT_FOUND_TEXT = "Application not found";
     private const string SPLIT_TUNNELING_MODE = "Included apps (1)";
 
     [OneTimeSetUp]
     public void SetUp()
     {
+        WindowsUtils.RestoreChrome();
         LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
         NetworkUtils.AssertInternetAvailability(true);
@@ -179,7 +177,7 @@ public class SplitTunnelingIncludeTests : BaseTest
             .ClickOnConnectionCardTitle();
 
         BrowserUtils.KillAllBrowsers();
-        RenameChrome();
+        WindowsUtils.RenameChrome();
         Thread.Sleep(TestConstants.OneSecondTimeout);
 
         FeaturesRobot
@@ -225,27 +223,11 @@ public class SplitTunnelingIncludeTests : BaseTest
             .CancelAction();
     }
 
-    private static void RenameChrome()
-    {
-        if (File.Exists(ORIGINAL_CHROME_FOLDER))
-        {
-            File.Move(ORIGINAL_CHROME_FOLDER, RENAMED_CHROME_FOLDER);
-        }
-    }
-
-    private static void RestoreChrome()
-    {
-        if (File.Exists(RENAMED_CHROME_FOLDER))
-        {
-            File.Move(RENAMED_CHROME_FOLDER, ORIGINAL_CHROME_FOLDER);
-        }
-    }
-
     [OneTimeTearDown]
     public void TearDown()
     {
         BrowserUtils.KillAllBrowsers();
-        RestoreChrome();
+        WindowsUtils.RestoreChrome();
         Cleanup();
     }
 }

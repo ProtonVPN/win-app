@@ -109,7 +109,7 @@ public class NetShieldTests : FreshSessionSetUp
         SettingRobot
             .OpenSettings()
             .OpenNetShieldSettings()
-            .SelectNetShieldMode(NetShieldMode.BlockMalwareOnly)
+            .SelectNetShieldMode(NetShieldMode.BlockAdsMalwareTrackersAdultContent)
             .ApplySettings()
             .CloseSettings();
 
@@ -117,7 +117,7 @@ public class NetShieldTests : FreshSessionSetUp
             .ConnectViaConnectionCard()
             .Verify.IsConnected();
         SettingRobot
-            .Verify.IsNetshieldBlocking(NetShieldMode.BlockMalwareOnly);
+            .Verify.IsNetshieldBlocking(NetShieldMode.BlockAdsMalwareTrackersAdultContent);
 
         CommonUiFlows.Logout();
 
@@ -126,7 +126,8 @@ public class NetShieldTests : FreshSessionSetUp
         HomeRobot.ConnectViaConnectionCard()
             .Verify.IsConnected();
 
-        SettingRobot.Verify.IsNetshieldNotBlocking()
+        SettingRobot
+            .Verify.IsFreeUserNetShieldState()
             .OpenSettings()
             .Verify.IsNetshieldDisabledStateDisplayed();
     }

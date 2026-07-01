@@ -85,9 +85,9 @@ public class AutoStartupTests : FreshSessionSetUp
 
         RestartApp();
 
+        DesktopRobot.Verify.IsTrayIconDisplayed();
         TrayRobot
-            .Verify.IsTrayIconDisplayed()
-                   .IsHomeFocused(true);
+            .Verify.IsHomeFocused(true);
     }
 
     [Test]
@@ -100,9 +100,9 @@ public class AutoStartupTests : FreshSessionSetUp
 
         RestartApp(shouldRefreshWindow: false);
 
+        DesktopRobot.Verify.IsTrayIconDisplayed();
         TrayRobot
-            .Verify.IsTrayIconDisplayed()
-                   .IsHomeFocused(false)
+            .Verify.IsHomeFocused(false)
             .DoubleClickTrayApp()
             .Verify.IsHomeFocused(true);
     }

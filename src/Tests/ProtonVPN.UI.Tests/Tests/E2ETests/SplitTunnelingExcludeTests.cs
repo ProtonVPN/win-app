@@ -46,6 +46,7 @@ public class SplitTunnelingExcludeTests : BaseTest
     [OneTimeSetUp]
     public void SetUp()
     {
+        WindowsUtils.RestoreChrome();
         LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
         NetworkUtils.AssertInternetAvailability(true);
