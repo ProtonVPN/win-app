@@ -38,6 +38,7 @@ public class HomeRobot
     protected Element ConnectingLabel = Element.ByName("Connecting");
     protected Element ProtectedLabel = Element.ByName("Protected");
     protected Element CancelConnectionButton = Element.ByName("Cancel");
+    protected Element GetDealButton = Element.ByName("Get the deal now");
     protected Element GetStartedButton = Element.ByName("Get started");
     protected Element ConnectionDetailsProtocol = Element.ByAutomationId("ShowProtocolFlyoutButton");
     protected Element ChangeProtocolButton = Element.ByAutomationId("ChangeProtocolFlyoutButton");
@@ -86,6 +87,14 @@ public class HomeRobot
     {
         Thread.Sleep(TestConstants.AnimationDelay);
         GetStartedButton.ClickUntilElementDisappears();
+        Thread.Sleep(TestConstants.AnimationDelay);
+        return this;
+    }
+
+    public HomeRobot DismissUpsellModal()
+    {
+        Thread.Sleep(TestConstants.AnimationDelay);
+        CloseClientButton.Click();
         Thread.Sleep(TestConstants.AnimationDelay);
         return this;
     }
@@ -255,6 +264,12 @@ public class HomeRobot
         public Verifications IsWelcomeModalDisplayed()
         {
             GetStartedButton.WaitUntilDisplayed(TestConstants.TwoMinutesTimeout);
+            return this;
+        }
+
+        public Verifications IsUpsellModalDisplayed()
+        {
+            GetDealButton.WaitUntilDisplayed(TestConstants.FiveSecondsTimeout);
             return this;
         }
 

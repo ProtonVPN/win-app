@@ -19,8 +19,12 @@
 
 using System;
 using System.Linq;
+using System.Text;
 using System.Threading;
+using System.Diagnostics;
+using System.Windows.Forms;
 using FlaUI.UIA3;
+using FlaUI.Core.Input;
 using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -29,7 +33,42 @@ namespace ProtonVPN.UI.Tests.Robots;
 
 public class DesktopRobot : IDisposable
 {
-    private readonly UIA3Automation _automation = new();
+    private static readonly UIA3Automation _automation = new();
+    private static AutomationElement Desktop => _automation.GetDesktop();
+    private static AutomationElement TaskBar => Desktop.FindFirstChild(cf => cf.ByName("Taskbar"))!;
+    private static AutomationElement? VpnIcon => TaskBar!.FindFirstDescendant(cf => cf.ByAutomationId("NotifyItemIcon").And(cf.ByName("Proton VPN")));
+    private static AutomationElement SettingsWindow => Desktop.FindFirstChild(cf => cf.ByName("Settings"))!;
+    private static AutomationElement OtherTrayIcons => SettingsWindow.FindFirstDescendant(cf => cf.ByName("Other system tray icons"))!;
+    private static AutomationElement ShowMoreButton => OtherTrayIcons?.FindFirstChild(cf => cf.ByName("Show more settings").Or(cf.ByName("Show all settings")))!;
+    private static AutomationElement VpnToggle => OtherTrayIcons.FindFirstDescendant(cf => cf.ByName("Proton VPN").And(cf.ByClassName("ToggleSwitch")))!;
+    private static AutomationElement NotificationsToggle => SettingsWindow.FindFirstDescendant(cf => cf.ByName("Notifications").And(cf.ByClassName("ToggleSwitch")))!;
+    private static AutomationElement DoNotDisturbToggle => SettingsWindow.FindFirstDescendant(cf => cf.ByName("Do not disturb").And(cf.ByClassName("ToggleSwitch")))!;
+    private static AutomationElement ProtonVpnNotificationToggle => SettingsWindow.FindFirstDescendant(cf => cf.ByName("Proton VPN").And(cf.ByClassName("ToggleSwitch")))!;
+
+    public static string ReadClipboardText()
+    {
+        StringBuilder? value = new();
+
+        Thread thread = new(() =>
+        {
+            try
+            {
+                value.Append(Clipboard.GetText().Trim());
+            }
+            catch
+            {
+                value = null;
+            }
+        });
+
+        thread.SetApartmentState(ApartmentState.STA);
+        thread.Start();
+        thread.Join();
+
+        return value is null
+            ? string.Empty
+            : value.ToString();
+    }
 
     public DesktopRobot DismissOldToastsIfVisible(TimeSpan? timeout = null)
     {
@@ -54,6 +93,21 @@ public class DesktopRobot : IDisposable
         return this;
     }
 
+    private static void NavigateToWindowsTraySettingsAndTurnOnProtonVpn()
+    {
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = "ms-settings:taskbar",
+            UseShellExecute = true
+        });
+        Thread.Sleep(TestConstants.TwoSecondsTimeout);
+        ShowMoreButton.Patterns.ExpandCollapse.Pattern.Expand();
+        Thread.Sleep(TestConstants.AnimationDelay);
+        VpnToggle!.AsToggleButton().Toggle();
+
+        SettingsWindow.AsWindow().Close();
+    }
+
     public class Verifications
     {
         private readonly UIA3Automation _automation;
@@ -61,6 +115,52 @@ public class DesktopRobot : IDisposable
         public Verifications(UIA3Automation automation)
         {
             _automation = automation;
+        }
+
+        public Verifications EnsureNotificationPrerequisitesAreMet()
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "ms-settings:notifications",
+                UseShellExecute = true
+            });
+
+            Thread.Sleep(TestConstants.FiveSecondsTimeout);
+
+            if (!(bool)NotificationsToggle.AsToggleButton().IsToggled!)
+            {
+                NotificationsToggle.AsToggleButton().Toggle();
+            }
+            if ((bool)DoNotDisturbToggle.AsToggleButton().IsToggled!)
+            {
+                DoNotDisturbToggle.AsToggleButton().Toggle();
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                Keyboard.Press(FlaUI.Core.WindowsAPI.VirtualKeyShort.DOWN);
+                Thread.Sleep(TestConstants.UserInputSimulationDelay);
+            }
+
+            if (!(bool)ProtonVpnNotificationToggle.AsToggleButton().IsToggled!)
+            {
+                ProtonVpnNotificationToggle.AsToggleButton().Toggle();
+            }
+
+            SettingsWindow.AsWindow().Close();
+
+            return this;
+        }
+
+        public Verifications IsTrayIconDisplayed()
+        {
+            if (VpnIcon == null)
+            {
+                NavigateToWindowsTraySettingsAndTurnOnProtonVpn();
+            }
+
+            Assert.That(VpnIcon, Is.Not.Null);
+            return this;
         }
 
         public Verifications IsWindowTitlePresent(string windowTitlePart)
@@ -106,6 +206,14 @@ public class DesktopRobot : IDisposable
             return this;
         }
 
+        public Verifications DoesToastContainConnectionState(string connectionState, TimeSpan? timeout = null)
+        {
+            timeout ??= TimeSpan.FromSeconds(6);
+            string toastText = ToastCapture.GetConnectionStateFromVisibleToast(_automation, timeout);
+            Assert.That(toastText, Does.Contain(connectionState));
+            return this;
+        }
+
         public Verifications DoesToastPortMatchUI(int uiPort, TimeSpan? timeout = null)
         {
             timeout ??= TimeSpan.FromSeconds(6);
@@ -129,5 +237,5 @@ public class DesktopRobot : IDisposable
         _automation.Dispose();
     }
 
-    public Verifications Verify => new(this._automation);
+    public Verifications Verify => new(_automation);
 }

@@ -19,10 +19,10 @@
 
 using System;
 using System.Threading;
-using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using FlaUI.UIA3;
 using FlaUI.Core.AutomationElements;
+using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.UiTools;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
@@ -114,6 +114,36 @@ public static partial class ToastCapture
         throw new TimeoutException("Dismiss button not found or not clickable.");
     }
 
+    public static string GetConnectionStateFromVisibleToast(UIA3Automation automation, TimeSpan? timeout = null)
+    {
+        AutomationElement desktop = automation.GetDesktop();
+        TimeSpan effectiveTimeout = timeout ?? TimeSpan.FromMilliseconds(TOAST_DEFAULT_TIMEOUT_MS);
+        DateTime end = DateTime.UtcNow + effectiveTimeout;
+
+        while (DateTime.UtcNow < end)
+        {
+            AutomationElement? scope = FindToastRoot(desktop);
+            if (scope != null)
+            {
+                string? fromMessage = TryGetTextFromMessage(scope);
+                if (!string.IsNullOrWhiteSpace(fromMessage))
+                {
+                    return fromMessage;
+                }
+
+                string? fromTitle = TryGetTextFromTitle(scope);
+                if (!string.IsNullOrWhiteSpace(fromTitle))
+                {
+                    return fromTitle;
+                }
+            }
+
+            Thread.Sleep(TOAST_POLL_INTERVAL_MS);
+        }
+
+        throw new TimeoutException("Toast text not found in time.");
+    }
+
     public static int GetPortFromVisibleToast(UIA3Automation automation, TimeSpan? timeout = null)
     {
         AutomationElement desktop = automation.GetDesktop();
@@ -179,6 +209,34 @@ public static partial class ToastCapture
         return root.FindFirstDescendant(cf => cf.ByAutomationId("ToastCenterScrollViewer"));
     }
 
+    private static string? TryGetTextFromMessage(AutomationElement scope)
+    {
+        AutomationElement? element = scope.FindFirstDescendant(_messageText2.Condition);
+        return ReadTextFromElement(element);
+    }
+
+    private static string? TryGetTextFromTitle(AutomationElement scope)
+    {
+        AutomationElement? element = scope.FindFirstDescendant(_title2.Condition);
+        return ReadTextFromElement(element);
+    }
+
+    private static string? ReadTextFromElement(AutomationElement? element)
+    {
+        if (element == null)
+        {
+            return null;
+        }
+
+        bool hasValue = element.Properties.Name.TryGetValue(out string? text);
+        if (!hasValue || string.IsNullOrWhiteSpace(text))
+        {
+            return null;
+        }
+
+        return text.Trim();
+    }
+
     private static int? TryResolveFromMessage(AutomationElement scope)
     {
         AutomationElement? element = scope.FindFirstDescendant(_messageText2.Condition);
@@ -219,7 +277,7 @@ public static partial class ToastCapture
                 }
             }
 
-            int? fromClipboard = ParsePortFromText(ReadClipboard());
+            int? fromClipboard = ParsePortFromText(DesktopRobot.ReadClipboardText());
             if (fromClipboard.HasValue)
             {
                 return fromClipboard.Value;
@@ -259,31 +317,5 @@ public static partial class ToastCapture
         }
 
         return null;
-    }
-
-    private static string ReadClipboard()
-    {
-        string? value = null;
-
-        Thread thread = new(() =>
-        {
-            try
-            {
-                string? text = Clipboard.GetText();
-                value = text?.Trim();
-            }
-            catch
-            {
-                value = null;
-            }
-        });
-
-        thread.SetApartmentState(ApartmentState.STA);
-        thread.Start();
-        thread.Join();
-
-        return value is null
-            ? string.Empty
-            : value;
     }
 }

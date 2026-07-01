@@ -52,13 +52,6 @@ public class NetworkUtils
         }
     }
 
-    private static bool IsInternetAvailable(bool shouldBeAvailable)
-    {
-        Thread.Sleep(TestConstants.TenSecondsTimeout);
-        JObject? connectionData = GetConnectionDataAsync(shouldBeAvailable).GetAwaiter().GetResult();
-        return connectionData?["status"]?.ToString() == "success";
-    }
-
     public static string GetIpAddressWithRetry()
     {
         RetryResult<string> retry = Retry.WhileEmpty(
@@ -171,29 +164,42 @@ public class NetworkUtils
     private static async Task<string?> GetIpAddressAsync()
     {
         JObject? response = await GetConnectionDataAsync();
-        return response?["query"]?.ToString();
+        return response?["query"]?.ToString()
+            ?? response?["ip"]?.ToString();
+    }
+
+    private static bool IsInternetAvailable(bool shouldBeAvailable)
+    {
+        Thread.Sleep(TestConstants.TenSecondsTimeout);
+        JObject? connectionData = GetConnectionDataAsync(shouldBeAvailable).GetAwaiter().GetResult();
+        return connectionData?["status"]?.ToString() == "success"
+            || connectionData?["success"]?.Value<bool>() == true;
     }
 
     private static async Task<JObject?> GetConnectionDataAsync(bool errorIsNotExpected = true)
     {
-        string endpoint = "http://ip-api.com/json/";
-        // Make sure that fresh socket is created when requesting connection data
-        using HttpClient client = new() { Timeout = TimeSpan.FromSeconds(10) };
+        string[] endpoints = { "http://ip-api.com/json/", "https://ipwho.is/" };
 
-        try
+        foreach (string endpoint in endpoints)
         {
-            string response = await client.GetStringAsync(endpoint);
-            JObject json = JObject.Parse(response);
-            return json;
-        }
-        catch (Exception e)
-        {
-            if (errorIsNotExpected)
+            // Make sure that fresh socket is created when requesting connection data
+            using HttpClient client = new() { Timeout = TimeSpan.FromSeconds(10) };
+
+            try
             {
-                TestContext.WriteLine($"GetIpAddressWithRetry failed. Result: {e.Message}");
+                string response = await client.GetStringAsync(endpoint);
+                JObject json = JObject.Parse(response);
+                return json;
             }
-            return null;
+            catch (Exception e)
+            {
+                if (errorIsNotExpected)
+                {
+                    TestContext.WriteLine($"GetConnectionDataAsync failed for {endpoint}. Result: {e.Message}");
+                }
+            }
         }
+        return null;
     }
 
     public static void AssertTorStatus(bool shouldBeAvailable, string? vpnIp = null)

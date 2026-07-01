@@ -18,10 +18,8 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Threading;
-using System.Windows.Forms;
+using System.Collections.Generic;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
@@ -159,6 +157,8 @@ public class PortForwardingTests : FreshSessionSetUp
     [Category("SMOKE_3")]
     public void VerifyP2PServerGeneratesPortNumber()
     {
+        DesktopRobot.DismissOldToastsIfVisible();
+
         SettingRobot
             .OpenSettings()
             .Verify.AreNotificationsEnabled()
@@ -270,18 +270,11 @@ public class PortForwardingTests : FreshSessionSetUp
 
     private static int GetForwardedPortFromClipboard()
     {
-        string portText = string.Empty;
-        Thread staThread = new(() =>
-        {
-            portText = Clipboard.GetText().Trim();
-        });
-        staThread.SetApartmentState(ApartmentState.STA);
-        staThread.Start();
-        staThread.Join();
+        string clipboardPortText = DesktopRobot.ReadClipboardText();
 
-        if (!int.TryParse(portText, out int port))
+        if (!int.TryParse(clipboardPortText, out int port))
         {
-            Assert.Fail($"Invalid port number copied: '{portText}'");
+            Assert.Fail($"Invalid port number copied: '{clipboardPortText}'");
         }
 
         return port;

@@ -31,6 +31,9 @@ public class WindowsUtils
     private const string REGISTRY_NAME = "Proton VPN";
     private const string REGISTRY_DATA = @"C:\Program Files\Proton\VPN\ProtonVPN.Launcher.exe ""----ms-protocol:ms-encodedlaunch:App?ContractId=Windows.StartupTask&TaskId=Proton%20VPN""";
 
+    private const string ORIGINAL_CHROME_FOLDER = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
+    private const string RENAMED_CHROME_FOLDER = @"C:\Program Files\Google\Chrome\Application\chrome_disabled.exe";
+
     public static void AssertLogFile(string filePath, string lineToLookFor, string? wordToLookFor = null)
     {
         if (!File.Exists(filePath))
@@ -93,6 +96,22 @@ public class WindowsUtils
         using RegistryKey? key = Registry.CurrentUser.OpenSubKey(REGISTRY_PATH);
         Assert.That(key, Is.Not.Null);
         string? value = key!.GetValue(REGISTRY_NAME) as string;
-        Assert.That(value, shouldRunOnStartup  ? Is.EqualTo(REGISTRY_DATA) : Is.Null);
+        Assert.That(value, shouldRunOnStartup ? Is.EqualTo(REGISTRY_DATA) : Is.Null);
+    }
+
+    public static void RenameChrome()
+    {
+        if (File.Exists(ORIGINAL_CHROME_FOLDER))
+        {
+            File.Move(ORIGINAL_CHROME_FOLDER, RENAMED_CHROME_FOLDER);
+        }
+    }
+
+    public static void RestoreChrome()
+    {
+        if (File.Exists(RENAMED_CHROME_FOLDER))
+        {
+            File.Move(RENAMED_CHROME_FOLDER, ORIGINAL_CHROME_FOLDER);
+        }
     }
 }

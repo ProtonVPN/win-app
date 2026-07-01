@@ -88,6 +88,10 @@ public class SettingRobot
     protected Element MainPage => Element.ByAutomationId("MainPage");
 
     protected Element NotificationsToggle = Element.ByAutomationId("NotificationsToggle");
+    protected Element SupportCenterSettingsCard = Element.ByAutomationId("SupportCenterSettingsCard");
+    protected Element DebugLogsSettingsCard = Element.ByAutomationId("DebugLogsSettingsCard");
+    protected Element ApplicationLogsSettingsCard = Element.ByAutomationId("ApplicationLogsSettingsCard");
+    protected Element ServiceLogsSettingsCard = Element.ByAutomationId("ServiceLogsSettingsCard");
 
     protected Element LanguageComboBox = Element.ByAutomationId("cbLanguage");
 
@@ -323,7 +327,7 @@ public class SettingRobot
 
     public SettingRobot SelectProtocol(Protocol protocol)
     {
-        ReturnProtocolRadioButton(protocol).Click();
+        GetProtocolRadioButton(protocol).Click();
         return this;
     }
 
@@ -513,6 +517,30 @@ public class SettingRobot
         return this;
     }
 
+    public SettingRobot ClickSupportCenterSettingsCard()
+    {
+        SupportCenterSettingsCard.ScrollIntoView().Click();
+        return this;
+    }
+
+    public SettingRobot ClickDebugLogsSettingsCard()
+    {
+        DebugLogsSettingsCard.ScrollIntoView().Click();
+        return this;
+    }
+
+    public SettingRobot ClickApplicationLogsSettingsCard()
+    {
+        ApplicationLogsSettingsCard.Click();
+        return this;
+    }
+
+    public SettingRobot ClickServiceLogsSettingsCard()
+    {
+        ServiceLogsSettingsCard.Click();
+        return this;
+    }
+
     public SettingRobot PressLearnMore()
     {
         LearnMoreButton.Click();
@@ -600,13 +628,13 @@ public class SettingRobot
             return this;
         }
 
-        public Verifications IsProtunEnabled()
+        public Verifications IsProTunEnabled()
         {
             Assert.That(ProtonProtocolsToggle.IsToggled(), Is.True);
             return this;
         }
 
-        public Verifications IsProtunDisabled()
+        public Verifications IsProTunDisabled()
         {
             Assert.That(ProtonProtocolsToggle.IsToggled(), Is.False);
             return this;
@@ -652,7 +680,7 @@ public class SettingRobot
 
         public Verifications IsCorrectProtocolChecked(Protocol protocol)
         {
-            Assert.That(ReturnProtocolRadioButton(protocol).IsChecked(), Is.True);
+            Assert.That(GetProtocolRadioButton(protocol).IsChecked(), Is.True);
             return this;
         }
 
@@ -674,9 +702,9 @@ public class SettingRobot
             return this;
         }
 
-        public Verifications IsSplitTunnelingEnabledStateDisplayed()
+        public Verifications IsSplitTunnelingEnabledStateDisplayed(SplitTunnelingMode splitTunnelingMode)
         {
-            SplitTunnelingSettingsCard.FindChild(Element.ByName("On")).WaitUntilDisplayed();
+            SplitTunnelingSettingsCard.FindChild(Element.ByName(splitTunnelingMode.ToString())).WaitUntilDisplayed();
             return this;
         }
 
@@ -720,11 +748,24 @@ public class SettingRobot
 
         public Verifications IsNetshieldNotBlocking()
         {
+            AssertCommonNetShieldDisabledState();
+            CommonAssertions.AssertDnsIsResolved(NETSHIELD_MALWARE_ENDPOINT);
+            return this;
+        }
+
+        public Verifications IsFreeUserNetShieldState()
+        {
+            AssertCommonNetShieldDisabledState();
+            CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_MALWARE_ENDPOINT);
+            return this;
+        }
+
+        private void AssertCommonNetShieldDisabledState()
+        {
             DnsHelper.FlushDns();
             CommonAssertions.AssertDnsIsResolved(NETSHIELD_NO_BLOCK);
-            CommonAssertions.AssertDnsIsResolved(NETSHIELD_MALWARE_ENDPOINT);
             CommonAssertions.AssertDnsIsResolved(NETSHIELD_ADS_ENDPOINT);
-            return this;
+            CommonAssertions.AssertAtLeastOneDomainResolved(_netShieldAdultContentDomains);
         }
 
         public Verifications IsSettingsPageDisplayed()
@@ -788,7 +829,7 @@ public class SettingRobot
         }
     }
 
-    private Element ReturnProtocolRadioButton(Protocol protocol)
+    private Element GetProtocolRadioButton(Protocol protocol)
     {
         switch (protocol)
         {

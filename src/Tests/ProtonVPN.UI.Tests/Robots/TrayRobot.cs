@@ -20,7 +20,6 @@
 using System;
 using System.Drawing;
 using System.Threading;
-using System.Diagnostics;
 using FlaUI.UIA3;
 using FlaUI.Core.Input;
 using FlaUI.Core.AutomationElements;
@@ -38,11 +37,6 @@ public class TrayRobot
     private static AutomationElement? VpnIcon => TaskBar!.FindFirstDescendant(cf => cf.ByAutomationId("NotifyItemIcon").And(cf.ByName("Proton VPN")));
     private static AutomationElement? TrayApp => Desktop.FindFirstChild(cf => cf.ByName("Proton VPN (tray)"));
     private static AutomationElement? AppHeader => Desktop.FindFirstDescendant(cf => cf.ByName("AppWindow Custom Title Bar"));
-
-    private static AutomationElement SettingsWindow => Desktop.FindFirstChild(cf => cf.ByName("Settings"))!;
-    private static AutomationElement OtherTrayIcons => SettingsWindow.FindFirstDescendant(cf => cf.ByName("Other system tray icons"))!;
-    private static AutomationElement ShowMoreButton => OtherTrayIcons?.FindFirstChild(cf => cf.ByName("Show more settings").Or(cf.ByName("Show all settings")))!;
-    private static AutomationElement VpnToggle => OtherTrayIcons.FindFirstDescendant(cf => cf.ByName("Proton VPN").And(cf.ByClassName("ToggleSwitch")))!;
 
     protected Element UsernameTextBox => Element.ByAutomationId("UsernameTextBox");
     protected Element ExitAppButton => Element.ByName("Exit").And(Element.ByClassName("Button"));
@@ -98,34 +92,8 @@ public class TrayRobot
         return this;
     }
 
-    private void NavigateToWindowsTraySettingsAndTurnOnProtonVpn()
-    {
-        Process.Start(new ProcessStartInfo
-        {
-            FileName = "ms-settings:taskbar",
-            UseShellExecute = true
-        });
-        Thread.Sleep(TestConstants.TwoSecondsTimeout);
-        ShowMoreButton.Patterns.ExpandCollapse.Pattern.Expand();
-        Thread.Sleep(TestConstants.AnimationDelay);
-        VpnToggle!.AsToggleButton().Toggle();
-
-        SettingsWindow.AsWindow().Close();
-    }
-
     public class Verifications : TrayRobot
     {
-        public Verifications IsTrayIconDisplayed()
-        {
-            if (VpnIcon == null)
-            {
-                NavigateToWindowsTraySettingsAndTurnOnProtonVpn();
-            }
-
-            Assert.That(VpnIcon, Is.Not.Null);
-            return this;
-        }
-
         public Verifications IsLoginWindowFocused(bool expected)
         {
             UsernameTextBox.AssertIsFocused(expected);
@@ -145,5 +113,5 @@ public class TrayRobot
         }
     }
 
-    public Verifications Verify => new Verifications();
+    public Verifications Verify => new();
 }

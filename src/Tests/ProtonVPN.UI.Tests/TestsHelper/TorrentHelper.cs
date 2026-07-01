@@ -37,6 +37,9 @@ public class TorrentHelper
     private static readonly string _qbittorrentFolder = @"C:\qBittorrent";
     private static readonly string _qbittorrentExePath = @"C:\Program Files\qBittorrent\qbittorrent.exe";
     private static readonly string _torrentsPath = $@"{_qbittorrentFolder}\torrents";
+    private static readonly string _profilePath = $@"{_qbittorrentFolder}\profile";
+    private static readonly string _cachedTorrentFile = Path.Combine(_qbittorrentFolder, "test.torrent");
+    private static readonly string _runTorrentFile = Path.Combine(_torrentsPath, "test.torrent");
 
     private static readonly string _qbittorrentRuleName = "ProtonVPN UI Tests - Allow qbittorrent";
     private static readonly string _qBittorrentFirewallScript = $@"
@@ -121,29 +124,33 @@ public class TorrentHelper
         {
             Directory.Delete(_torrentsPath, recursive: true);
         }
+
+        if (Directory.Exists(_profilePath))
+        {
+            Directory.Delete(_profilePath, recursive: true);
+        }
     }
 
     private static async Task<bool> StartTorrentOnPortAsync(int port)
     {
         Directory.CreateDirectory(_torrentsPath);
+        Directory.CreateDirectory(_profilePath);
 
-        string torrentFile = Path.Combine(_qbittorrentFolder, "test.torrent");
-
-        if (!File.Exists(torrentFile))
+        if (!File.Exists(_cachedTorrentFile))
         {
             using HttpClient client = new();
             byte[] data = await client.GetByteArrayAsync(TORRENT_URL);
-            File.WriteAllBytes(torrentFile, data);
+            File.WriteAllBytes(_cachedTorrentFile, data);
         }
+
+        File.Copy(_cachedTorrentFile, _runTorrentFile, overwrite: true);
 
         Process.Start(new ProcessStartInfo
         {
             FileName = _qbittorrentExePath,
-            Arguments = $"--confirm-legal-notice --skip-dialog=true --torrenting-port={port} --save-path={_torrentsPath} {torrentFile}",
+            Arguments = $"--confirm-legal-notice --skip-dialog=true --profile=\"{_profilePath}\" --torrenting-port={port}  --save-path=\"{_torrentsPath}\" \"{_runTorrentFile}\"",
             UseShellExecute = false,
-            CreateNoWindow = true,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true
+            CreateNoWindow = true
         });
 
         return true;
