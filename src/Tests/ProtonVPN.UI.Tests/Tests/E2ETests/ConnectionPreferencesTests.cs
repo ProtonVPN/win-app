@@ -21,6 +21,8 @@ using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.UI.Tests.Enums.Locations;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -28,15 +30,14 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("3")]
 public class ConnectionPreferencesTests : BaseTest
 {
-    private const string FAST_CONNECTION = "Fastest country";
-    private const string RANDOM_COUNTRY = "Random country";
+    private const Country COUNTRY_TO_SEARCH = Country.Australia;
+    private const Country EXCLUDED_LOCATION_AFGHANISTAN = Country.Afghanistan;
+    private const Country EXCLUDED_LOCATION_UNITED_STATES = Country.UnitedStates;
 
-    private const string COUNTRY_TO_SEARCH = "Australia";
-    private const string FASTEST_COUNTRY = "Fastest country";
+    private static readonly string _excludedLocationSearchQuery = Country.UnitedStates.GetName().FirstCharToUpper();
 
-    private const string EXCLUDED_LOCATION_AFGHANISTAN = "Afghanistan";
-    private const string EXCLUDED_LOCATION_SEARCH_QUERY = "U";
-    private const string EXCLUDED_LOCATION_UNITED_STATES = "United States";
+    private static readonly string _fastestCountry = LanguageHelper.GetTranslatedString("Country_Fastest");
+    private static readonly string _randomCountry = LanguageHelper.GetTranslatedString("Country_Random");
 
     [OneTimeSetUp]
     public void SetUp()
@@ -50,10 +51,10 @@ public class ConnectionPreferencesTests : BaseTest
     public void DefaultConnectionTitleIsFastest()
     {
         HomeRobot
-            .Verify.ConnectionCardTitleEquals(FASTEST_COUNTRY)
+            .Verify.ConnectionCardTitleEquals(_fastestCountry)
             .ConnectViaConnectionCard()
             .Verify.IsConnected()
-            .ConnectionCardTitleEquals(FASTEST_COUNTRY)
+            .ConnectionCardTitleEquals(_fastestCountry)
             .Disconnect()
             .Verify.IsDisconnected();
     }
@@ -63,17 +64,17 @@ public class ConnectionPreferencesTests : BaseTest
     public void DefaultLastConnectionConnectsToCorrectServer()
     {
         SidebarRobot
-            .SearchFor(COUNTRY_TO_SEARCH)
+            .SearchFor(COUNTRY_TO_SEARCH.GetName())
             .ConnectToCountry(COUNTRY_TO_SEARCH);
 
         HomeRobot
             .Verify.IsConnected()
-            .ConnectionCardTitleEquals(COUNTRY_TO_SEARCH);
+            .ConnectionCardTitleEquals(COUNTRY_TO_SEARCH.GetName());
         NetworkUtils.VerifyUserIsConnectedToExpectedCountry(COUNTRY_TO_SEARCH);
 
         HomeRobot.Disconnect()
             .Verify.IsDisconnected()
-            .ConnectionCardTitleEquals(FASTEST_COUNTRY);
+            .ConnectionCardTitleEquals(_fastestCountry);
 
         SettingRobot
             .OpenSettings()
@@ -83,7 +84,7 @@ public class ConnectionPreferencesTests : BaseTest
             .CloseSettings();
 
         HomeRobot
-            .Verify.ConnectionCardTitleEquals(COUNTRY_TO_SEARCH)
+            .Verify.ConnectionCardTitleEquals(COUNTRY_TO_SEARCH.GetName())
             .ConnectViaConnectionCard()
             .Verify.IsConnected()
             .Disconnect()
@@ -97,17 +98,17 @@ public class ConnectionPreferencesTests : BaseTest
         HomeRobot
             .Verify.IsDisconnected();
 
-        ChooseDefaultConnectionFromSettingsAndVerifyConnectionCardTitle(VpnConnectionOption.Fastest, FAST_CONNECTION);
-        ChooseDefaultConnectionFromSettingsAndVerifyConnectionCardTitle(VpnConnectionOption.Random, RANDOM_COUNTRY);
-        ChooseDefaultConnectionFromSettingsAndVerifyConnectionCardTitle(VpnConnectionOption.Last, COUNTRY_TO_SEARCH);
+        ChooseDefaultConnectionFromSettingsAndVerifyConnectionCardTitle(VpnConnectionOption.Fastest, _fastestCountry);
+        ChooseDefaultConnectionFromSettingsAndVerifyConnectionCardTitle(VpnConnectionOption.Random, _randomCountry);
+        ChooseDefaultConnectionFromSettingsAndVerifyConnectionCardTitle(VpnConnectionOption.Last, COUNTRY_TO_SEARCH.GetName());
     }
 
     [Test, Order(3)]
     [Property("TestCaseId", "867493")]
     public void ConnectToVpnFastestCountryAndRandomCountry()
     {
-        ConnectToDefaultConnectionAndVerify(VpnConnectionOption.Fastest, FAST_CONNECTION);
-        ConnectToDefaultConnectionAndVerify(VpnConnectionOption.Random, RANDOM_COUNTRY);
+        ConnectToDefaultConnectionAndVerify(VpnConnectionOption.Fastest, _fastestCountry);
+        ConnectToDefaultConnectionAndVerify(VpnConnectionOption.Random, _randomCountry);
     }
 
     [Test, Order(4)]
@@ -122,7 +123,7 @@ public class ConnectionPreferencesTests : BaseTest
             .Verify.IsRemoveExcludedLocationButtonDisplayed()
             .Verify.IsExcludedLocationDisplayed(EXCLUDED_LOCATION_AFGHANISTAN)
             .OpenExcludedLocationsSelector()
-            .SearchExcludedLocations(EXCLUDED_LOCATION_SEARCH_QUERY)
+            .SearchExcludedLocations(_excludedLocationSearchQuery)
             .SelectExcludedCountry(EXCLUDED_LOCATION_UNITED_STATES)
             .Verify.IsExcludedLocationDisplayed(EXCLUDED_LOCATION_UNITED_STATES)
             .RemoveFirstExcludedLocation()
@@ -147,7 +148,7 @@ public class ConnectionPreferencesTests : BaseTest
         SettingRobot
            .OpenSettings()
            .OpenConnectionPreferencesSettingsCard()
-           .SelectDefaultConnectionType(vpnConnectionOption)
+           .SelectDefaultConnectionOption(vpnConnectionOption)
            .ApplySettings()
            .CloseSettings();
         HomeRobot

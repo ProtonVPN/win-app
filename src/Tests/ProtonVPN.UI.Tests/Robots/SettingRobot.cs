@@ -26,6 +26,7 @@ using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.Enums.Locations;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
@@ -36,10 +37,26 @@ public class SettingRobot
     private const string NETSHIELD_ADS_ENDPOINT = "netshield-2.protonvpn.net";
     private static readonly string[] _netShieldAdultContentDomains = { "0-6babylee.cn", "0-900.com", "0-100c.cn", "0-24sexcams.com", "0-1du.com" };
 
+    private static readonly string _onStateTranslated = LanguageHelper.GetTranslatedString("Common_States_On");
+    private static readonly string _offStateTranslated = LanguageHelper.GetTranslatedString("Common_States_Off");
+
+    private static readonly string _reconnectButtonTranslated = LanguageHelper.GetTranslatedString("Common_Actions_Reconnect");
+    private static readonly string _changeLogLabelTranslated = LanguageHelper.GetTranslatedString("Settings_About_Changelog");
+    private static readonly string _learnMoreButtonTranslated = LanguageHelper.GetTranslatedString("Settings_About_LearnMore");
+    private static readonly string _signOutButtonTranslated = LanguageHelper.GetTranslatedString("Settings_Account_SignOut");
+    private static readonly string _exitTheAppButtonTranslated = LanguageHelper.GetTranslatedString("Settings_Account_Exit");
+    private static readonly string _exitProtonPopUpTranslated = LanguageHelper.GetTranslatedString("Exit_Confirmation_Title");
+
+    protected Element ReconnectButton = Element.ByName(_reconnectButtonTranslated);
+    protected Element ChangeLogLabel = Element.ByName(_changeLogLabelTranslated);
+    protected Element LearnMoreButton = Element.ByName(_learnMoreButtonTranslated);
+    protected Element SignOutButton = Element.ByName(_signOutButtonTranslated);
+    protected Element ExitTheAppButton = Element.ByName(_exitTheAppButtonTranslated);
+    protected Element ExitProtonPopUp = Element.ByName(_exitProtonPopUpTranslated);
+
     protected Element SettingsPage = Element.ByAutomationId("SettingsPage");
     protected Element ApplyButton = Element.ByAutomationId("ApplyButton");
     protected Element CloseSettingsButton = Element.ByAutomationId("CloseSettingsButton");
-    protected Element ReconnectButton = Element.ByName("Reconnect");
     protected Element SettingsButton = Element.ByAutomationId("SettingsButton");
 
     protected Element NetShieldSettingsCard = Element.ByAutomationId("NetShieldSettingsCard");
@@ -60,14 +77,10 @@ public class SettingRobot
     protected Element AboutSettingsCard = Element.ByAutomationId("AboutSettingsCard");
     protected Element GoBackButton = Element.ByAutomationId("GoBackButton");
     protected Element AccountButton = Element.ByAutomationId("AccountButton");
-    protected Element SignOutButton = Element.ByName("Sign out");
     protected Element PrimaryActionButton = Element.ByAutomationId("PrimaryButton");
     protected Element CancelButton = Element.ByAutomationId("CloseButton");
-    protected Element ExitTheAppButton = Element.ByName("Exit the app");
-    protected Element ExitButton = Element.ByName("Exit");
-    protected Element ChangeLogLabel = Element.ByName("Changelog");
+
     protected Element LicensingLabel = Element.ByAutomationId("LicensingTextBlock");
-    protected Element LearnMoreButton = Element.ByName("Learn more");
     protected Element CurrentVersionLabel = Element.ByAutomationId("CurrentVersionLabel");
     protected Element DefaultConnectionDropdown = Element.ByAutomationId("DefaultConnectionDropdown");
 
@@ -107,7 +120,6 @@ public class SettingRobot
     protected Element ProTunTcpProtocolRadioButton = Element.ByAutomationId("ProTunTcpProtocolRadioButton");
     protected Element ProTunTlsProtocolRadioButton = Element.ByAutomationId("ProTunTlsProtocolRadioButton");
     protected Element SmartProtocolRadioButton = Element.ByAutomationId("SmartProtocolRadioButton");
-    protected Element ExitProtonPopUp = Element.ByName("Exit Proton VPN?");
 
     public SettingRobot OpenSettings()
     {
@@ -186,9 +198,9 @@ public class SettingRobot
         return this;
     }
 
-    public SettingRobot SelectExcludedCountry(string countryName)
+    public SettingRobot SelectExcludedCountry(Country countryName)
     {
-        Element.ByName(countryName).Click();
+        Element.ByName(countryName.GetName()).Click();
         Thread.Sleep(TestConstants.AnimationDelay);
         RemoveExcludedLocationButton.WaitUntilDisplayed();
         return this;
@@ -303,7 +315,7 @@ public class SettingRobot
     {
         ExitTheAppButton.DoubleClick();
         ExitProtonPopUp.WaitUntilDisplayed();
-        ExitButton.Click();
+        PrimaryActionButton.Click();
         return this;
     }
 
@@ -549,15 +561,15 @@ public class SettingRobot
 
     public SettingRobot SelectLastConnectionOption()
     {
-        return SelectDefaultConnectionType(VpnConnectionOption.Last);
+        return SelectDefaultConnectionOption(VpnConnectionOption.Last);
     }
 
     public SettingRobot SelectFastestConnectionOption()
     {
-        return SelectDefaultConnectionType(VpnConnectionOption.Fastest);
+        return SelectDefaultConnectionOption(VpnConnectionOption.Fastest);
     }
 
-    public SettingRobot SelectDefaultConnectionType(VpnConnectionOption option)
+    public SettingRobot SelectDefaultConnectionOption(VpnConnectionOption option)
     {
         Element settingsDefaultConnectionComboBox = SettingsPage.FindDescendant(DefaultConnectionDropdown);
         settingsDefaultConnectionComboBox.Click();
@@ -565,9 +577,9 @@ public class SettingRobot
 
         string optionName = option switch
         {
-            VpnConnectionOption.Fastest => "Fastest country",
-            VpnConnectionOption.Random => "Random country",
-            VpnConnectionOption.Last => "Last connection",
+            VpnConnectionOption.Fastest => LanguageHelper.GetTranslatedString("Settings_Connection_Default_Fastest"),
+            VpnConnectionOption.Random => LanguageHelper.GetTranslatedString("Settings_Connection_Default_Random"),
+            VpnConnectionOption.Last => LanguageHelper.GetTranslatedString("Settings_Connection_Default_Last"),
             _ => throw new System.NotImplementedException($"VpnConnectionOption '{option}' is not supported in Settings."),
         };
 
@@ -585,11 +597,11 @@ public class SettingRobot
         return this;
     }
 
-    public SettingRobot SelectLanguage(string language)
+    public SettingRobot SelectLanguage(Language language)
     {
         LanguageComboBox
             .ScrollIntoView().Click()
-            .SelectDropdownItem(language);
+            .SelectDropdownItem(language.GetFullName());
         return this;
     }
 
@@ -686,49 +698,49 @@ public class SettingRobot
 
         public Verifications IsNetshieldDisabledStateDisplayed()
         {
-            NetShieldSettingsCard.FindChild(Element.ByName("Off")).WaitUntilDisplayed();
+            NetShieldSettingsCard.FindChild(Element.ByName(_offStateTranslated)).WaitUntilDisplayed();
             return this;
         }
 
         public Verifications IsNetshieldEnabledStateDisplayed()
         {
-            NetShieldSettingsCard.FindChild(Element.ByName("On")).WaitUntilDisplayed();
+            NetShieldSettingsCard.FindChild(Element.ByName(_onStateTranslated)).WaitUntilDisplayed();
             return this;
         }
 
         public Verifications IsSplitTunnelingDisabledStateDisplayed()
         {
-            SplitTunnelingSettingsCard.FindChild(Element.ByName("Off")).WaitUntilDisplayed();
+            SplitTunnelingSettingsCard.FindChild(Element.ByName(_offStateTranslated)).WaitUntilDisplayed();
             return this;
         }
 
         public Verifications IsSplitTunnelingEnabledStateDisplayed(SplitTunnelingMode splitTunnelingMode)
         {
-            SplitTunnelingSettingsCard.FindChild(Element.ByName(splitTunnelingMode.ToString())).WaitUntilDisplayed();
+            SplitTunnelingSettingsCard.FindChild(Element.ByName(splitTunnelingMode.GetEnumValue())).WaitUntilDisplayed();
             return this;
         }
 
         public Verifications IsPortForwardingDisabledStateDisplayed()
         {
-            PortForwardingSettingsCard.FindChild(Element.ByName("Off")).WaitUntilDisplayed();
+            PortForwardingSettingsCard.FindChild(Element.ByName(_offStateTranslated)).WaitUntilDisplayed();
             return this;
         }
 
         public Verifications IsPortForwardingEnabledStateDisplayed()
         {
-            PortForwardingSettingsCard.FindChild(Element.ByName("On")).WaitUntilDisplayed();
+            PortForwardingSettingsCard.FindChild(Element.ByName(_onStateTranslated)).WaitUntilDisplayed();
             return this;
         }
 
         public Verifications IsKillSwitchEnabledStateDisplayed(KillSwitchMode killSwitchMode)
         {
-            KillSwitchSettingsCard.FindChild(Element.ByName(killSwitchMode.ToString())).WaitUntilDisplayed();
+            KillSwitchSettingsCard.FindChild(Element.ByName(killSwitchMode.GetEnumValue())).WaitUntilDisplayed();
             return this;
         }
 
         public Verifications IsKillSwitchDisabledStateDisplayed()
         {
-            KillSwitchSettingsCard.FindChild(Element.ByName("Off")).WaitUntilDisplayed();
+            KillSwitchSettingsCard.FindChild(Element.ByName(_offStateTranslated)).WaitUntilDisplayed();
             return this;
         }
 
@@ -810,15 +822,15 @@ public class SettingRobot
             return this;
         }
 
-        public Verifications IsExcludedLocationDisplayed(string countryName)
+        public Verifications IsExcludedLocationDisplayed(Country countryName)
         {
-            SettingsPage.FindDescendant(Element.ByName(countryName)).WaitUntilExists();
+            SettingsPage.FindDescendant(Element.ByName(countryName.GetName())).WaitUntilExists();
             return this;
         }
 
-        public Verifications IsExcludedLocationNotDisplayed(string countryName)
+        public Verifications IsExcludedLocationNotDisplayed(Country countryName)
         {
-            SettingsPage.FindDescendant(Element.ByName(countryName)).DoesNotExist();
+            SettingsPage.FindDescendant(Element.ByName(countryName.GetName())).DoesNotExist();
             return this;
         }
 

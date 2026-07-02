@@ -23,6 +23,7 @@ using FlaUI.Core.Input;
 using FlaUI.Core.WindowsAPI;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
+using ProtonVPN.UI.Tests.Enums.Locations;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -35,17 +36,18 @@ public class GeneralSettingsTests : FreshSessionSetUp
 {
     private const string SUPPORT_CENTER_WINDOW = "Proton VPN Support";
 
-    private const string CONNECTED_TOAST_TEXT = "Connected";
-    private const string DISCONNECTED_TOAST_TEXT = "Disconnected";
-
     private const string IP_ADDRESS_TO_ADD = "208.95.112.1";
-    private const string EXCLUDED_LOCATION = "Albania";
+
+    private const Country EXCLUDED_LOCATION = Country.Albania;
 
     private const Protocol NON_DEFAULT_PROTOCOL = Protocol.OpenVpnUdp;
     private const KillSwitchMode NON_DEFAULT_KILL_SWITCH_MODE = KillSwitchMode.Standard;
     private const NatType NON_DEFAULT_NAT_TYPE = NatType.Moderate;
     private const OpenVpnAdapter NON_DEFAULT_OPENVPN_ADAPTER = OpenVpnAdapter.TAP;
     private const SplitTunnelingMode NON_DEFAULT_SPLIT_TUNNELING_MODE = SplitTunnelingMode.Include;
+
+    private static readonly string _connectedToastText = LanguageHelper.GetTranslatedString("SystemNotification_ConnectedTo").Replace(" {0}.", "");
+    private static readonly string _disconnectedToastText = LanguageHelper.GetTranslatedString("SystemNotification_Disconnected");
 
     private static string ApplicationLogsPath => Path.GetDirectoryName(TestConstants.ClientLogsPath)!;
     private static string ServiceLogsPath => Path.GetDirectoryName(TestEnvironment.GetServiceLogsPath())!;
@@ -54,10 +56,12 @@ public class GeneralSettingsTests : FreshSessionSetUp
     public void TestInitialize()
     {
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
+        LanguageHelper.CurrentLanguage = Language.English;
     }
 
     [Test]
     [Property("TestCaseId", "609952")]
+    [Ignore("JIRA - Excluded Location does not save after restart")]
     public void PreferencesDontTransferAfterAccountSwitch()
     {
         SetNonDefaultSettings();
@@ -89,7 +93,7 @@ public class GeneralSettingsTests : FreshSessionSetUp
         }
         DesktopRobot
             .Verify.IsToastDisplayed()
-                   .DoesToastContainConnectionState(CONNECTED_TOAST_TEXT);
+                   .DoesToastContainConnectionState(_connectedToastText);
         DesktopRobot.DismissOldToastsIfVisible();
 
         using (TrayApp)
@@ -98,7 +102,7 @@ public class GeneralSettingsTests : FreshSessionSetUp
         }
         DesktopRobot
             .Verify.IsToastDisplayed()
-                   .DoesToastContainConnectionState(DISCONNECTED_TOAST_TEXT);
+                   .DoesToastContainConnectionState(_disconnectedToastText);
 
         TrayRobot.DoubleClickTrayApp();
 
@@ -124,12 +128,14 @@ public class GeneralSettingsTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "610992")]
-    [Ignore("unskip when implementing VPNWIN-3205")]
-    public void Language()
+    [Ignore("unskip when implementing VPNWIN-3322")]
+    public void OtherLanguages()
     {
+        LanguageHelper.CurrentLanguage = Language.German;
+
         SettingRobot
             .OpenSettings()
-            //.SelectLanguage("Italiano - Italian")
+            .SelectLanguage(LanguageHelper.CurrentLanguage)
             .CloseSettings();
 
         /*TODO:
@@ -147,7 +153,7 @@ public class GeneralSettingsTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "611251")]
-    [Ignore("unskip when implementing VPNWIN-3285")]
+    [Ignore("unskip when implementing VPNWIN-3322")]
     public void LightTheme()
     {
         SettingRobot

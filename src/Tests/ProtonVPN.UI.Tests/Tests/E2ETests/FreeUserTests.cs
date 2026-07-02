@@ -22,6 +22,8 @@ using System.Collections.Generic;
 using System.Threading;
 using FlaUI.Core.Tools;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Enums;
+using ProtonVPN.UI.Tests.Enums.Locations;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -34,17 +36,16 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("SMOKE_4")]
 public class FreeUserTests : FreshSessionSetUp
 {
-    private const string BROWSER_APP = "Google Chrome";
+    private const Browser BROWSER_APP = Browser.GoogleChrome;
+    private const DefaultProfile PROFILE_NAME = DefaultProfile.MaxSecurity;
 
-    private const string PROFILE_NAME = "Max security";
+    private const Country COUNTRY = Country.Austria;
+    private const City CITY = City.Vienna;
+    private const Country VIA_COUNTRY = Country.Switzerland;
+    private const Country SERVER_COUNTRY = Country.Australia;
+    private const Country TOR_COUNTRY = Country.France;
 
-    private const string COUNTRY = "Austria";
-    private const string CITY = "Vienna";
-    private const string VIA_COUNTRY = "via Switzerland";
-    private const string SERVER_COUNTRY = "Australia";
-    private const string TOR_COUNTRY = "France";
-
-    private static readonly List<string> _freeCountries = ["Canada", "Japan", "Mexico", "Netherlands", "Norway", "Poland", "Romania", "Singapore", "Switzerland", "United States"];
+    private static readonly List<Country> _freeCountries = [Country.Canada, Country.Japan, Country.Mexico, Country.Netherlands, Country.Norway, Country.Poland, Country.Romania, Country.Singapore, Country.Switzerland, Country.UnitedStates];
 
     [SetUp]
     public void TestInitialize()
@@ -329,40 +330,40 @@ public class FreeUserTests : FreshSessionSetUp
 
     private void VerifyTabUpsells(
         Func<UpsellCarrouselRobot.Verifications> verifyAction,
-        string? country = null,
-        string? city = null,
-        string? serverCountry = null,
-        string? secureCoreCountry = null,
-        string? profileName = null)
+        Country? country = null,
+        City? city = null,
+        Country? serverCountry = null,
+        Country? secureCoreCountry = null,
+        DefaultProfile? profileName = null)
     {
         if (country != null)
         {
             VerifyUpsellAndClose(() =>
                 SidebarRobot
-                    .ConnectToCountry(country), verifyAction);
+                    .ConnectToCountry(country.Value), verifyAction);
         }
 
         if (country != null && city != null)
         {
             VerifyUpsellAndClose(() =>
                 SidebarRobot
-                    .ExpandCities(country)
-                    .ConnectToCity(city), verifyAction);
+                    .ExpandCities(country.Value)
+                    .ConnectToCity(city.Value), verifyAction);
         }
 
         if (country != null && secureCoreCountry != null)
         {
             VerifyUpsellAndClose(() =>
                 SidebarRobot
-                    .ExpandCities(country)
-                    .ConnectViaSecureCore(country, secureCoreCountry), verifyAction);
+                    .ExpandCities(country.Value)
+                    .ConnectViaSecureCore(country.Value, secureCoreCountry.Value), verifyAction);
         }
 
         if (serverCountry != null)
         {
             SidebarRobot customSidebarRobot = (city == null)
                 ? SidebarRobot
-                : SidebarRobot.ExpandCities(serverCountry);
+                : SidebarRobot.ExpandCities(serverCountry.Value);
 
             VerifyUpsellAndClose(() =>
                 customSidebarRobot
@@ -374,7 +375,7 @@ public class FreeUserTests : FreshSessionSetUp
         {
             VerifyUpsellAndClose(() =>
                 SidebarRobot
-                    .ConnectToProfile(profileName), verifyAction);
+                    .ConnectToProfile(profileName.Value.GetEnumValue()), verifyAction);
         }
     }
 

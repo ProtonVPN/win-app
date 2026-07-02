@@ -19,6 +19,8 @@
 
 using System.Threading;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Enums;
+using ProtonVPN.UI.Tests.Enums.Locations;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 
@@ -30,18 +32,20 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("SMOKE_3")]
 public class SplitTunnelingExcludeTests : BaseTest
 {
-    private const string COUNTRY_NAME = "Austria";
+    private const Country COUNTRY_NAME = Country.Austria;
+
+    private const Browser APP_TO_EXCLUDE = Browser.GoogleChrome;
+    private const Browser OTHER_APP = Browser.Edge;
 
     private string? _ipAddressNotConnected = null;
-    private const string INVALID_IP_ERROR = "Enter a valid IPv4 or IPv6 address";
 
-    private static readonly string[] _specialIPs = { "127.0.0.1", "192.168.0.1", "0.0.0.0", "255.255.255.255", "10.0.0.1", "172.17.135.1" };
     private const string INVALID_IP = "192.A.B.1";
     private const string IPV6_ADDRESS = "2001:db8:3333:4444:5555:6666:7777:8888";
     private const string IP_ADDRESS_TO_EXCLUDE = "208.95.112.1";
 
-    private const string APP_TO_EXCLUDE = "Google Chrome";
-    private const string OTHER_APP = "Edge";
+    private static readonly string _invalidIpError = LanguageHelper.GetTranslatedString("Settings_Common_IpAddresses_Invalid");
+
+    private static readonly string[] _specialIPs = { "127.0.0.1", "192.168.0.1", "0.0.0.0", "255.255.255.255", "10.0.0.1", "172.17.135.1" };
 
     [OneTimeSetUp]
     public void SetUp()
@@ -70,7 +74,7 @@ public class SplitTunnelingExcludeTests : BaseTest
             .Verify.IsIpSelectorOpened()
             .AddIpAddress(INVALID_IP)
             .Verify.WasIpNotAdded(INVALID_IP)
-                   .IsErrorMessageDisplayed(INVALID_IP_ERROR)
+                   .IsErrorMessageDisplayed(_invalidIpError)
             .ClearIpInput();
     }
 

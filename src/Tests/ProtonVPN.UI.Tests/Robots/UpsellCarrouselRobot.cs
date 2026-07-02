@@ -23,23 +23,39 @@ using ProtonVPN.UI.Tests.TestsHelper;
 namespace ProtonVPN.UI.Tests.Robots;
 public class UpsellCarrouselRobot
 {
-    protected Element UpgradeButton = Element.ByName("Upgrade");
+    private static readonly string _upgradeButtonTranslated = LanguageHelper.GetTranslatedString("Common_Actions_Upgrade");
+    private static readonly string _serversUpsellDescriptionTranslated = LanguageHelper.GetTranslatedString("Upsell_Carousel_WorldwideCoverage_Selection");
+    private static readonly string _speedUpsellTitleTranslated = LanguageHelper.GetTranslatedString("Upsell_Carousel_Speed");
+    private static readonly string _streamingUpsellTitleTranslated = LanguageHelper.GetTranslatedString("Upsell_Carousel_Streaming");
+    private static readonly string _netshieldUpsellTitleTranslated = LanguageHelper.GetTranslatedString("Upsell_Carousel_NetShield");
+    private static readonly string _secureCoreUpsellTitleTranslated = LanguageHelper.GetTranslatedString("Upsell_Carousel_SecureCore");
+    private static readonly string _p2pUpsellTitleTranslated = LanguageHelper.GetTranslatedString("Upsell_Carousel_P2P");
+    private static readonly string _p2pTorrentInProgressUpsellTitleTranslated = LanguageHelper.GetTranslatedString("Dialogs_P2PDetection_Title");
+    private static readonly string _streamingInProgressUpsellTitleTranslated = LanguageHelper.GetTranslatedString("Dialogs_StreamingWarning_Title");
+    private static readonly string _tenDevicesUpsellTitleTranslated = LanguageHelper.GetTranslatedString("Upsell_Carousel_MultipleDevices");
+    private static readonly string _torUpsellTitleTranslated = LanguageHelper.GetTranslatedString("Upsell_Carousel_Tor");
+    private static readonly string _splitTunnelingUpsellTitleTranslated = LanguageHelper.GetTranslatedString("Upsell_Carousel_SplitTunneling");
+    private static readonly string _profilesUpsellTitleTranslated = LanguageHelper.GetTranslatedString("Upsell_Carousel_Profiles");
+    private static readonly string _advancedSettingsUpsellTitleTranslated = LanguageHelper.GetTranslatedString("Upsell_Carousel_AdvancedSettings");
+
+    protected Element UpgradeButton = Element.ByName(_upgradeButtonTranslated);
+    protected Element ServersUpsellDescription = Element.ByName(_serversUpsellDescriptionTranslated);
+    protected Element SpeedUpsellTitle = Element.ByName(_speedUpsellTitleTranslated);
+    protected Element StreamingUpsellTitle = Element.ByName(_streamingUpsellTitleTranslated);
+    protected Element NetshieldUpsellTitle = Element.ByName(_netshieldUpsellTitleTranslated);
+    protected Element SecureCoreUpsellTitle = Element.ByName(_secureCoreUpsellTitleTranslated);
+    protected Element P2PUpsellTitle = Element.ByName(_p2pUpsellTitleTranslated);
+    protected Element P2PTorrentInProgressUpsellTitle = Element.ByName(_p2pTorrentInProgressUpsellTitleTranslated);
+    protected Element StreamingInProgressUpsellTitle = Element.ByName(_streamingInProgressUpsellTitleTranslated);
+    protected Element TenDevicesUpsellTitle = Element.ByName(_tenDevicesUpsellTitleTranslated);
+    protected Element TorUpsellTitle = Element.ByName(_torUpsellTitleTranslated);
+    protected Element SplitTunnelingUpsellTitle = Element.ByName(_splitTunnelingUpsellTitleTranslated);
+    protected Element ProfilesUpsellTitle = Element.ByName(_profilesUpsellTitleTranslated);
+    protected Element AdvancedSettingsUpsellTitle = Element.ByName(_advancedSettingsUpsellTitleTranslated);
+
     protected Element CloseButton = Element.ByAutomationId("Close");
     protected Element NextUpsellButton = Element.ByAutomationId("MoveToNextUpsellFeatureButton");
     protected Element BackUpsellButton = Element.ByAutomationId("MoveToPreviousUpsellFeatureButton");
-    protected Element ServersUpsellDescription = Element.ByName("Select any country from our worldwide network");
-    protected Element SpeedUpsellTitle = Element.ByName("Browse at even higher speeds");
-    protected Element StreamingUpsellTitle = Element.ByName("Stream your favorite movies and TV shows");
-    protected Element NetshieldUpsellTitle = Element.ByName("Enjoy ad-free browsing");
-    protected Element SecureCoreUpsellTitle = Element.ByName("Add another layer of protection to your connection");
-    protected Element P2PUpsellTitle = Element.ByName("Unlock peer-to-peer downloads and file sharing (P2P)");
-    protected Element P2PTorrentInProgressUpsellTitle = Element.ByName("P2P is not allowed on free VPN servers");
-    protected Element StreamingInProgressUpsellTitle = Element.ByName("Upgrade to bypass VPN blocks");
-    protected Element TenDevicesUpsellTitle = Element.ByName("Connect up to 10 devices at once");
-    protected Element TorUpsellTitle = Element.ByName("Access the Tor network for extra privacy");
-    protected Element SplitTunnelingUpsellTitle = Element.ByName("Get the best of both worlds");
-    protected Element ProfilesUpsellTitle = Element.ByName("Get quick access to frequent connections");
-    protected Element AdvancedSettingsUpsellTitle = Element.ByName("Unlock advanced VPN customization");
 
     public UpsellCarrouselRobot NextUpsell()
     {

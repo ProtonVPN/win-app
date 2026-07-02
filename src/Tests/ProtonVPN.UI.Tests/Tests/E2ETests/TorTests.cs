@@ -23,6 +23,7 @@ using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.Enums.Locations;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -30,7 +31,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("1")]
 public class TorTests : FreshSessionSetUp
 {
-    private const string BROWSER_APP = "Google Chrome";
+    private const Browser BROWSER_APP = Browser.GoogleChrome;
 
     [SetUp]
     public void TestInitialize()
@@ -93,7 +94,7 @@ public class TorTests : FreshSessionSetUp
     {
         StringBuilder failureMessages = new();
 
-        foreach (string country in TestConstants.AvailableCountries)
+        foreach (Country country in TestConstants.AvailableCountries)
         {
             try
             {

@@ -92,13 +92,15 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="0"
+                    <Button AutomationProperties.AutomationId="RefreshButton"
+                            Grid.Column="0"
                             HorizontalAlignment="Stretch"
                             Command="{x:Bind ViewModel.RefreshCommand, Mode=OneTime}"
                             Content="{x:Bind ViewModel.Localizer.Get('Common_Actions_Refresh')}"
                             Style="{ThemeResource LargePrimaryButtonStyle}"
                             Visibility="{x:Bind ViewModel.IsRefreshButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    <Button Grid.Column="1"
+                    <Button AutomationProperties.AutomationId="SignOutButton"
+                            Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             Command="{x:Bind ViewModel.SignOutCommand, Mode=OneTime}"
                             Content="{x:Bind ViewModel.Localizer.Get('NoServers_SignOut')}"

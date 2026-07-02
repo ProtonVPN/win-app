@@ -27,6 +27,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using FlaUI.Core.Tools;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Enums.Locations;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 
@@ -76,10 +77,10 @@ public class NetworkUtils
         return retry.Result ?? throw new HttpRequestException($"Failed to get country name. \n {retry.LastException?.Message} \n {retry.LastException?.StackTrace}");
     }
 
-    public static void VerifyUserIsConnectedToExpectedCountry(string countryNameToCompare)
+    public static void VerifyUserIsConnectedToExpectedCountry(Country countryNameToCompare)
     {
         string countryName = GetCountryNameWithRetry();
-        Assert.That(countryName.Equals(countryNameToCompare), Is.True, $"User was connected to unexpected country." +
+        Assert.That(countryName.Equals(countryNameToCompare.GetName()), Is.True, $"User was connected to unexpected country." +
             $"\n API returned: {countryName}" +
             $"\n Expected result: {countryNameToCompare}");
     }

@@ -20,6 +20,7 @@
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.Enums.Locations;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -29,13 +30,12 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("SMOKE_1")]
 public class SearchTests : FreshSessionSetUp
 {
-    private const string COUNTRY_TO_SEARCH = "United States";
-    private const string STATE = "Arizona";
-
-    private const string CITY = "Berlin";
+    private const Country COUNTRY_TO_SEARCH = Country.UnitedStates;
+    private const State STATE = State.Arizona;
+    private const City CITY = City.Berlin;
     private const string SERVER = "FR#223";
 
-    private const string TRY_SEARCHING_TEXT = "Try searching for...";
+    private static readonly string _trySearchingForText = LanguageHelper.GetTranslatedString("Search_NoInput_TrySearchingFor");
 
     [SetUp]
     public void SetUp()
@@ -48,7 +48,7 @@ public class SearchTests : FreshSessionSetUp
     public void SearchForCountryConnectAndDisconnect()
     {
         SidebarRobot
-            .SearchFor(COUNTRY_TO_SEARCH)
+            .SearchFor(COUNTRY_TO_SEARCH.GetName())
             .ConnectToCountry(COUNTRY_TO_SEARCH);
 
         HomeRobot
@@ -66,15 +66,15 @@ public class SearchTests : FreshSessionSetUp
     public void SearchForCountryAndConnectDisconnectToCity()
     {
         SidebarRobot
-            .SearchFor(COUNTRY_TO_SEARCH)
+            .SearchFor(COUNTRY_TO_SEARCH.GetName())
             .ExpandCities(COUNTRY_TO_SEARCH)
-            .ConnectToCity(STATE);
+            .ConnectToState(STATE);
 
         HomeRobot
             .Verify.IsConnected();
 
         SidebarRobot
-            .DisconnectViaCity(STATE);
+            .DisconnectViaState(STATE);
 
         HomeRobot
             .Verify.IsDisconnected();
@@ -85,7 +85,7 @@ public class SearchTests : FreshSessionSetUp
     public void SearchCountryAndConnectDisconnectToSpecificServer()
     {
         SidebarRobot
-            .SearchFor(COUNTRY_TO_SEARCH)
+            .SearchFor(COUNTRY_TO_SEARCH.GetName())
             .ExpandCities(COUNTRY_TO_SEARCH)
             .ExpandSpecificServerList()
             .ConnectToServer();
@@ -106,7 +106,7 @@ public class SearchTests : FreshSessionSetUp
     public void SearchForCityAndConnectDisconnect()
     {
         SidebarRobot
-            .SearchFor(CITY)
+            .SearchFor(CITY.GetEnumValue())
             .ConnectToCity(CITY);
 
         HomeRobot
@@ -144,21 +144,21 @@ public class SearchTests : FreshSessionSetUp
         SidebarRobot
             .ClickSearchBox()
             .Verify.IsSearchBoxFocused()
-                   .AssertSidebarSearchResults(TRY_SEARCHING_TEXT);
+                   .SidebarSearchResultContains(_trySearchingForText);
 
         HomeRobot
             .ClickOnConnectionCardTitle();
 
         SidebarRobot
             .Verify.IsSidebarConnectionsDisplayed()
-            .SearchFor(COUNTRY_TO_SEARCH)
-            .Verify.AssertSidebarSearchResults(COUNTRY_TO_SEARCH);
+            .SearchFor(COUNTRY_TO_SEARCH.GetName())
+            .Verify.SidebarSearchResultContains(COUNTRY_TO_SEARCH.GetName());
 
         HomeRobot
             .ClickOnConnectionCardTitle();
 
         SidebarRobot
-            .Verify.AssertSidebarSearchResults(COUNTRY_TO_SEARCH);
+            .Verify.SidebarSearchResultContains(COUNTRY_TO_SEARCH.GetName());
     }
 
     [Test]
@@ -166,11 +166,11 @@ public class SearchTests : FreshSessionSetUp
     public void SearchBehaviorAfterRemovingText()
     {
         SidebarRobot
-            .SearchFor(COUNTRY_TO_SEARCH)
+            .SearchFor(COUNTRY_TO_SEARCH.GetName())
             .Verify.IsBackButtonInSearchBoxDisplayed()
             .ClickXButtonInSearchBox()
-            .Verify.AssertSidebarSearchResults(TRY_SEARCHING_TEXT)
-            .SearchFor(CITY)
+            .Verify.SidebarSearchResultContains(_trySearchingForText)
+            .SearchFor(CITY.GetEnumValue())
             .Verify.IsBackButtonInSearchBoxDisplayed()
             .ClickBackButtonInSearchBox()
             .Verify.IsSidebarConnectionsDisplayed();

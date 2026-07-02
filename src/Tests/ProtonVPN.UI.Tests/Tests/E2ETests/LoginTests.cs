@@ -30,19 +30,20 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("ARM")]
 public class LoginTests : FreshSessionSetUp
 {
-    private const string INCORRECT_USER_ERROR = "This username does not exist. Please try again with a different username.";
-    private const string INCORRECT_PASS_ERROR = "The password is not correct. Please try again with a different password.";
-    private const string INCORRECT_CREDENTIALS_ERROR = "Incorrect login credentials. Please try again.";
-    private const string EMPTY_USERNAME_ERROR = "Enter your email or username";
-    private const string EMPTY_PASSWORD_ERROR = "Enter your password";
-    private const string INCORRECT_2FA_CODE_ERROR = "Incorrect code. Please try again.";
     private const string INCORRECT_2FA_CODE = "123456";
-    private const string INCORRECT_USERNAME_ERROR = "Invalid username";
-    private const string NO_SERVERS_ERROR = "To start your journey in Proton VPN please contact your organization administrator to assign VPN connections to your account.";
 
     private const string LINE_TO_LOOK_FOR_IN_CLIENT = "vpn/v2/logicals?";
     private const string WORD_TO_LOOK_FOR_IN_SERVER = "protonvpn.net";
     private const string LINE_TO_LOOK_FOR_IN_SERVER = "node-";
+
+    private static readonly string _incorrectUserError = ApiTranslationHelper.GetTranslatedString("Login_IncorrectUserError");
+    private static readonly string _incorrectPasswordError = ApiTranslationHelper.GetTranslatedString("Login_IncorrectPasswordError");
+    private static readonly string _incorrectCredentialsError = ApiTranslationHelper.GetTranslatedString("Login_IncorrectCredentialsError");
+    private static readonly string _incorrectUsernameError = ApiTranslationHelper.GetTranslatedString("Login_InvalidUsername");
+    private static readonly string _noServersError = ApiTranslationHelper.GetTranslatedString("Login_NoServersError");
+    private static readonly string _emptyUsernameError = LanguageHelper.GetTranslatedString("SignIn_Form_UsernameError");
+    private static readonly string _emptyPasswordError = LanguageHelper.GetTranslatedString("SignIn_Form_PasswordError");
+    private static readonly string _incorrectTwoFaCodeError = LanguageHelper.GetTranslatedString("Login_Error_IncorrectTwoFactorCode");
 
     private static string ClientLogsPath => TestConstants.ClientLogsPath;
     private static string? ServerStoragePath => TestConstants.ServerStoragePath;
@@ -84,7 +85,7 @@ public class LoginTests : FreshSessionSetUp
 
         LoginRobot
             .Login(TestUserData.IncorrectUserAndPass)
-            .Verify.IsErrorMessageDisplayed(INCORRECT_USER_ERROR);
+            .Verify.IsErrorMessageDisplayed(_incorrectUserError);
     }
 
     [Test]
@@ -110,7 +111,7 @@ public class LoginTests : FreshSessionSetUp
         LoginRobot
             .Login(TestUserData.TwoFactorUser)
             .EnterTwoFactorCode(INCORRECT_2FA_CODE)
-            .Verify.IsErrorMessageDisplayed(INCORRECT_2FA_CODE_ERROR);
+            .Verify.IsErrorMessageDisplayed(_incorrectTwoFaCodeError);
     }
 
     [Test]
@@ -122,7 +123,7 @@ public class LoginTests : FreshSessionSetUp
 
         LoginRobot
             .Login(TestUserData.IncorrectUserWithWhitespace)
-            .Verify.IsErrorMessageDisplayed(INCORRECT_USERNAME_ERROR);
+            .Verify.IsErrorMessageDisplayed(_incorrectUsernameError);
 
         LoginRobot
             .Login(TestUserData.CorrectUserWithWhitespace);
@@ -174,13 +175,13 @@ public class LoginTests : FreshSessionSetUp
 
         LoginRobot
             .ClickSignInButton()
-            .Verify.IsErrorMessageDisplayed(EMPTY_USERNAME_ERROR)
-                   .IsErrorMessageDisplayed(EMPTY_PASSWORD_ERROR);
+            .Verify.IsErrorMessageDisplayed(_emptyUsernameError)
+                   .IsErrorMessageDisplayed(_emptyPasswordError);
 
         LoginRobot
             .ClickSignInWithSso()
             .ClickSignInButton()
-            .Verify.IsErrorMessageDisplayed(EMPTY_USERNAME_ERROR);
+            .Verify.IsErrorMessageDisplayed(_emptyUsernameError);
     }
 
     [Test]
@@ -195,7 +196,7 @@ public class LoginTests : FreshSessionSetUp
 
         NavigationRobot
             .Verify.IsOnNoServersPage()
-                   .IsMessageDisplayed(NO_SERVERS_ERROR)
+                   .IsMessageDisplayed(_noServersError)
             .ClickRefreshButtonOnNoServersPage()
             .Verify.IsOnNoServersPage()
             .ClickSignOutButtonOnNoServersPage()
@@ -213,7 +214,7 @@ public class LoginTests : FreshSessionSetUp
 
             LoginRobot
                 .Login(TestUserData.IncorrectPass)
-                .Verify.IsErrorMessageDisplayed(INCORRECT_PASS_ERROR);
+                .Verify.IsErrorMessageDisplayed(_incorrectPasswordError);
         }
     }
 

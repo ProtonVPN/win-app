@@ -17,12 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.IO;
 using System.Threading;
-using System.Diagnostics;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.Enums;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -35,11 +34,11 @@ public class SplitTunnelingIncludeTests : BaseTest
     private string? _ipAddressNotConnected = null;
     private const string IP_ADDRESS_TO_INCLUDE = "208.95.112.1";
 
-    private const string APP_TO_INCLUDE = "Google Chrome";
-    private const string OTHER_APP = "Edge";
+    private const Browser APP_TO_INCLUDE = Browser.GoogleChrome;
+    private const Browser OTHER_APP = Browser.Edge;
 
-    private const string APP_NOT_FOUND_TEXT = "Application not found";
-    private const string SPLIT_TUNNELING_MODE = "Included apps (1)";
+    private static readonly string _appNotFoundText = LanguageHelper.GetTranslatedString("Common_Message_AppNotFound");
+    private static readonly string _splitTunnelingMode = LanguageHelper.GetTranslatedString("Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader").Replace("({0})", "(1)");
 
     [OneTimeSetUp]
     public void SetUp()
@@ -197,22 +196,22 @@ public class SplitTunnelingIncludeTests : BaseTest
             .EditSplitTunnelingApps();
         AppSelectorRobot
             .Verify.AssertAppAvailability(APP_TO_INCLUDE, shouldBeAvailable: false)
-                   .AssertAppAvailability(APP_NOT_FOUND_TEXT, shouldBeAvailable: true);
+                   .AssertAppAvailability(_appNotFoundText, shouldBeAvailable: true);
     }
 
     private static void VerifyIsSplitTunnelingAppInFlyoutMenu(bool isAppAvailable)
     {
-        string appName = isAppAvailable ? APP_TO_INCLUDE : APP_NOT_FOUND_TEXT;
+        string appName = isAppAvailable ? APP_TO_INCLUDE.GetEnumValue() : _appNotFoundText;
 
         if (isAppAvailable)
         {
             FeaturesRobot
-                .Verify.IsSplitTunnelingAppAvailableInFlyoutMenu(SPLIT_TUNNELING_MODE);
+                .Verify.IsSplitTunnelingAppAvailableInFlyoutMenu(_splitTunnelingMode);
         }
         else
         {
             FeaturesRobot
-                .Verify.IsSplitTunnelingAppUnavailableInFlyoutMenu(SPLIT_TUNNELING_MODE);
+                .Verify.IsSplitTunnelingAppUnavailableInFlyoutMenu(_splitTunnelingMode);
         }
 
         SplitTunnelingRobot

@@ -33,7 +33,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
 {
     private const string IP_ADDRESS_TO_ADD = "208.95.112.1";
 
-    private const string APP_TO_CHECK = "Google Chrome";
+    private const Browser APP_TO_CHECK = Browser.GoogleChrome;
 
     [SetUp]
     public void SetUp()

@@ -102,21 +102,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <custom:GhostButton.Flyout>
                             <MenuFlyout AutomationProperties.AutomationId="HelpFlyoutMenu"
                                         ShouldConstrainToRootBounds="True">
-                                <MenuFlyoutItem Command="{x:Bind ViewModel.ResetPasswordCommand, Mode=OneTime}"
+                                <MenuFlyoutItem AutomationProperties.AutomationId="ForgotPasswordMenuItem"
+                                                Command="{x:Bind ViewModel.ResetPasswordCommand, Mode=OneTime}"
                                                 Style="{StaticResource HyperlinkMenuFlyoutItemStyle}"
                                                 Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_ResetPassword')}">
                                     <MenuFlyoutItem.Icon>
                                         <pathIcons:Key />
                                     </MenuFlyoutItem.Icon>
                                 </MenuFlyoutItem>
-                                <MenuFlyoutItem Command="{x:Bind ViewModel.ForgotUsernameCommand, Mode=OneTime}"
+                                <MenuFlyoutItem AutomationProperties.AutomationId="ForgotUsernameMenuItem"
+                                                Command="{x:Bind ViewModel.ForgotUsernameCommand, Mode=OneTime}"
                                                 Style="{StaticResource HyperlinkMenuFlyoutItemStyle}"
                                                 Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_ForgotUsername')}">
                                     <MenuFlyoutItem.Icon>
                                         <pathIcons:User />
                                     </MenuFlyoutItem.Icon>
                                 </MenuFlyoutItem>
-                                <MenuFlyoutItem Command="{x:Bind ViewModel.TroubleSigningInCommand, Mode=OneTime}"
+                                <MenuFlyoutItem AutomationProperties.AutomationId="SupportCenterMenuItem"
+                                                Command="{x:Bind ViewModel.TroubleSigningInCommand, Mode=OneTime}"
                                                 Style="{StaticResource HyperlinkMenuFlyoutItemStyle}"
                                                 Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_TroubleSigningIn')}">
                                     <MenuFlyoutItem.Icon>

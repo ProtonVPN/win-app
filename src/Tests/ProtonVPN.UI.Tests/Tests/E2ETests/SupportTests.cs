@@ -28,9 +28,9 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("ARM")]
 public class SupportTests : FreshSessionSetUp
 {
-    private const string REPORT_ONE = "Connecting to VPN";
-    private const string REPORT_TWO = "Browsing speed";
-    private const string REPORT_THREE = "Weak or unstable connection";
+    private static readonly string _reportConnectingToVpn = ApiTranslationHelper.GetTranslatedString("ReportIssue_ConnectingToVpn");
+    private static readonly string _reportBrowsingSpeed = ApiTranslationHelper.GetTranslatedString("ReportIssue_BrowsingSpeed");
+    private static readonly string _reportWeakConnection = ApiTranslationHelper.GetTranslatedString("ReportIssue_WeakConnection");
 
     [Test]
     [Property("TestCaseId", "602385")]
@@ -40,7 +40,7 @@ public class SupportTests : FreshSessionSetUp
         LoginRobot
             .NavigateToBugReport();
         SupportRobot
-            .SelectBugType(REPORT_ONE)
+            .SelectBugType(_reportConnectingToVpn)
             .ClickContactUs()
             .FillBugReportForm()
             .TickIncludeLogsCheckbox()
@@ -60,7 +60,7 @@ public class SupportTests : FreshSessionSetUp
             .ExpandKebabMenuButton()
             .ClickOnHelpButton();
         SupportRobot
-            .SelectBugType(REPORT_TWO)
+            .SelectBugType(_reportBrowsingSpeed)
             .ClickContactUs()
             .FillBugReportForm()
             .SendBugReport()
@@ -79,7 +79,7 @@ public class SupportTests : FreshSessionSetUp
             .OpenSettings()
             .OpenBugReportSetting();
         SupportRobot
-            .SelectBugType(REPORT_THREE)
+            .SelectBugType(_reportWeakConnection)
             .ClickContactUs()
             .FillBugReportForm()
             .SendBugReport()

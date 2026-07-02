@@ -17,12 +17,12 @@
 * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.Enums.Locations;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -33,9 +33,9 @@ public class SecureCoreTests : FreshSessionSetUp
     private const string PROFILE_NAME = "Profile B";
 
     private string? _ipAddressNotConnected = null;
-    private readonly string _viaCountryIceland = "via Iceland";
-    private readonly string _viaCountrySweden = "via Sweden";
-    private static readonly string _countryName = "Australia";
+    private const Country VIA_COUNTRY_ICELAND = Country.Iceland;
+    private const Country VIA_COUNTRY_SWEDEN = Country.Sweden;
+    private const Country COUNTRY_NAME = Country.Australia;
 
     [SetUp]
     public void TestInitialize()
@@ -50,7 +50,7 @@ public class SecureCoreTests : FreshSessionSetUp
     {
         SidebarRobot
             .NavigateToSecureCoreCountriesTab()
-            .ConnectToCountry(_countryName);
+            .ConnectToCountry(COUNTRY_NAME);
         HomeRobot
             .Verify.IsConnected();
 
@@ -59,17 +59,17 @@ public class SecureCoreTests : FreshSessionSetUp
             .Verify.AssertVpnConnectionEstablished(_ipAddressNotConnected!, ipAfterConnection);
 
         SidebarRobot
-            .ExpandCities(_countryName)
-            .ConnectViaSecureCore(_countryName, _viaCountryIceland);
+            .ExpandCities(COUNTRY_NAME)
+            .ConnectViaSecureCore(COUNTRY_NAME, VIA_COUNTRY_ICELAND);
         HomeRobot
             .Verify.IsConnected();
-        NetworkUtils.VerifyUserIsConnectedToExpectedCountry(_countryName);
+        NetworkUtils.VerifyUserIsConnectedToExpectedCountry(COUNTRY_NAME);
 
         SidebarRobot
-            .ConnectViaSecureCore(_countryName, _viaCountrySweden);
+            .ConnectViaSecureCore(COUNTRY_NAME, VIA_COUNTRY_SWEDEN);
         HomeRobot
             .Verify.IsConnected();
-        NetworkUtils.VerifyUserIsConnectedToExpectedCountry(_countryName);
+        NetworkUtils.VerifyUserIsConnectedToExpectedCountry(COUNTRY_NAME);
     }
 
     [Test]
@@ -78,17 +78,17 @@ public class SecureCoreTests : FreshSessionSetUp
     {
         SidebarRobot
             .NavigateToSecureCoreCountriesTab()
-            .ExpandCities(_countryName);
-        ConnectToSecureCore(_viaCountrySweden);
+            .ExpandCities(COUNTRY_NAME);
+        ConnectToSecureCore(VIA_COUNTRY_SWEDEN);
         SidebarRobot
-            .DisconnectViaCountry(_countryName);
+            .DisconnectViaCountry(COUNTRY_NAME);
         HomeRobot
             .Verify.IsDisconnected();
         NetworkUtils.VerifyIpAddressMatchesWithRetry(_ipAddressNotConnected);
 
-        ConnectToSecureCore(_viaCountryIceland);
+        ConnectToSecureCore(VIA_COUNTRY_ICELAND);
         SidebarRobot
-            .DisconnectViaSecureCore(_countryName, _viaCountryIceland);
+            .DisconnectViaSecureCore(COUNTRY_NAME, VIA_COUNTRY_ICELAND);
         HomeRobot
             .Verify.IsDisconnected();
         NetworkUtils.VerifyIpAddressMatchesWithRetry(_ipAddressNotConnected);
@@ -103,7 +103,7 @@ public class SecureCoreTests : FreshSessionSetUp
         AddConnectionInRecents();
 
         HomeRobot
-            .SelectDefaultConnectionCountry(_countryName, _viaCountryIceland)
+            .SelectDefaultConnectionCountry(COUNTRY_NAME, TestConstants.ViaPrefix + VIA_COUNTRY_ICELAND.GetName())
             .ConnectViaConnectionCard()
             .Verify.IsConnected();
 
@@ -127,8 +127,8 @@ public class SecureCoreTests : FreshSessionSetUp
         HomeRobot
             .Verify.IsConnected()
                    .ConnectionCardTitleEquals(PROFILE_NAME)
-                   .ConnectionCardDescriptionContains($"{_countryName} {_viaCountrySweden}");
-        NetworkUtils.VerifyUserIsConnectedToExpectedCountry(_countryName);
+                   .ConnectionCardDescriptionContains($"{COUNTRY_NAME.GetName()} {TestConstants.ViaPrefix}{VIA_COUNTRY_SWEDEN.GetName()}");
+        NetworkUtils.VerifyUserIsConnectedToExpectedCountry(COUNTRY_NAME);
 
         SidebarRobot
             .Verify.IsDisconnectButtonOnHoverDisplayed(PROFILE_NAME)
@@ -148,17 +148,17 @@ public class SecureCoreTests : FreshSessionSetUp
 
         SidebarRobot
             .NavigateToRecents()
-            .ConnectViaSecureCore(_countryName, _viaCountryIceland);
+            .ConnectViaSecureCore(COUNTRY_NAME, VIA_COUNTRY_ICELAND);
         HomeRobot
             .Verify.IsConnected()
-                   .ConnectionCardTitleEquals(_countryName)
-                   .ConnectionCardDescriptionContains(_viaCountryIceland);
-        NetworkUtils.VerifyUserIsConnectedToExpectedCountry(_countryName);
+                   .ConnectionCardTitleEquals(COUNTRY_NAME.GetName())
+                   .ConnectionCardDescriptionContains(VIA_COUNTRY_ICELAND.GetName());
+        NetworkUtils.VerifyUserIsConnectedToExpectedCountry(COUNTRY_NAME);
 
         SidebarRobot
-            .Verify.IsDisconnectButtonOnHoverDisplayed(_countryName)
-                   .IsGreenDotDisplayed(_countryName)
-            .DisconnectViaSecureCore(_countryName, _viaCountryIceland);
+            .Verify.IsDisconnectButtonOnHoverDisplayed(COUNTRY_NAME.GetName())
+                   .IsGreenDotDisplayed(COUNTRY_NAME.GetName())
+            .DisconnectViaSecureCore(COUNTRY_NAME, VIA_COUNTRY_ICELAND);
         HomeRobot
             .Verify.IsDisconnected();
 
@@ -174,8 +174,8 @@ public class SecureCoreTests : FreshSessionSetUp
         ProfileRobot
             .SetProfileName(PROFILE_NAME)
             .SelectConnectionType(ConnectionType.SecureCore)
-            .SelectCountry(_countryName)
-            .SelectMiddleCountry(_viaCountrySweden)
+            .SelectCountry(COUNTRY_NAME)
+            .SelectMiddleCountry(VIA_COUNTRY_SWEDEN)
             .SaveProfile();
     }
 
@@ -183,18 +183,18 @@ public class SecureCoreTests : FreshSessionSetUp
     {
         SidebarRobot
             .NavigateToSecureCoreCountriesTab()
-            .ExpandCities(_countryName)
-            .ConnectViaSecureCore(_countryName, _viaCountryIceland);
+            .ExpandCities(COUNTRY_NAME)
+            .ConnectViaSecureCore(COUNTRY_NAME, VIA_COUNTRY_ICELAND);
         HomeRobot
             .Verify.IsConnected()
             .Disconnect()
             .Verify.IsDisconnected();
     }
 
-    private void ConnectToSecureCore(string viaCountry)
+    private void ConnectToSecureCore(Country viaCountry)
     {
         SidebarRobot
-            .ConnectViaSecureCore(_countryName, viaCountry);
+            .ConnectViaSecureCore(COUNTRY_NAME, viaCountry);
         HomeRobot
             .Verify.IsConnected();
     }
