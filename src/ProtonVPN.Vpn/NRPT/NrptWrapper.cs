@@ -62,14 +62,15 @@ public class NrptWrapper : INrptWrapper
     public bool CreateRule()
     {
         IDnsServersCreator dnsServersCreator = GetDnsServersCreator();
-        string nameServers = dnsServersCreator.GetDnsServers(_customDns, _isIpv6Supported);
+        IReadOnlyList<string> nameServers = dnsServersCreator.GetDnsServers(_customDns, _isIpv6Supported);
+        string nameServersString = string.Join(";", nameServers);
 
-        if (string.IsNullOrWhiteSpace(nameServers))
+        if (string.IsNullOrWhiteSpace(nameServersString))
         {
             return false;
         }
 
-        return _nrptInvoker.CreateRule(nameServers);
+        return _nrptInvoker.CreateRule(nameServersString);
     }
 
     private IDnsServersCreator GetDnsServersCreator()

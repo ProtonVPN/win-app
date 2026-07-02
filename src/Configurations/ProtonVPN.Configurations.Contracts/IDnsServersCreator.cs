@@ -21,5 +21,5 @@ namespace ProtonVPN.Configurations.Contracts;
 
 public interface IDnsServersCreator
 {
-    string GetDnsServers(IReadOnlyCollection<string> customDns, bool isIpv6Supported);
+    IReadOnlyList<string> GetDnsServers(IReadOnlyCollection<string> customDns, bool isIpv6Supported);
 }
