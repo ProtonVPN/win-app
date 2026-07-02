@@ -32,7 +32,7 @@ public class ProTunDnsServersCreator : IProTunDnsServersCreator
         _adapterDetailsCache = adapterDetailsCache;
     }
 
-    public string GetDnsServers(IReadOnlyCollection<string> customDns, bool isIpv6Supported)
+    public IReadOnlyList<string> GetDnsServers(IReadOnlyCollection<string> customDns, bool isIpv6Supported)
     {
         List<string> dnsAddresses = [];
 
@@ -56,6 +56,6 @@ public class ProTunDnsServersCreator : IProTunDnsServersCreator
             dnsAddresses.Add(_adapterDetailsCache.ServerGatewayIpv6Address);
         }
 
-        return string.Join(",", dnsAddresses);
+        return dnsAddresses;
     }
 }

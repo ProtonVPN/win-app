@@ -34,7 +34,7 @@ public class OpenVpnDnsServersCreator : IOpenVpnDnsServersCreator
         _dnsServerCache = dnsServerCache;
     }
 
-    public string GetDnsServers(IReadOnlyCollection<string> customDns, bool isIpv6Supported)
+    public IReadOnlyList<string> GetDnsServers(IReadOnlyCollection<string> customDns, bool isIpv6Supported)
     {
         List<string> dnsAddresses = [];
 
@@ -61,6 +61,6 @@ public class OpenVpnDnsServersCreator : IOpenVpnDnsServersCreator
             }
         }
 
-        return string.Join(",", dnsAddresses);
+        return dnsAddresses;
     }
 }

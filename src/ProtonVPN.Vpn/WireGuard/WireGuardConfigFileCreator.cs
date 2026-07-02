@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
 using System.IO;
 using System.Security.AccessControl;
 using System.Text;
@@ -73,13 +74,14 @@ public class WireGuardConfigFileCreator : IWireGuardConfigFileCreator
         string address = GetClientAddress(isIpv6Supported);
         string allowedIps = GetAllowedIpAddresses(isIpv6Supported);
         string privateKey = GetX25519SecretKey(credentials.ClientKeyPair.SecretKey).Base64;
-        string dns = _wireGuardDnsServersCreator.GetDnsServers(vpnConfig.CustomDns, isIpv6Supported);
+        IReadOnlyList<string> dnsServers = _wireGuardDnsServersCreator.GetDnsServers(vpnConfig.CustomDns, isIpv6Supported);
+        string dnsString = string.Join(",", dnsServers);
 
         StringBuilder sb = new StringBuilder()
             .AppendLine("[Interface]")
             .AppendLine($"PrivateKey = {privateKey}")
             .AppendLine($"Address = {address}")
-            .AppendLine($"DNS = {dns}")
+            .AppendLine($"DNS = {dnsString}")
             .AppendLine("[Peer]")
             .AppendLine($"PublicKey = {endpoint.Server.X25519PublicKey.Base64}")
             .AppendLine($"AllowedIPs = {allowedIps}")

@@ -32,7 +32,7 @@ public class WireGuardDnsServersCreator : IWireGuardDnsServersCreator
         _config = config;
     }
 
-    public string GetDnsServers(IReadOnlyCollection<string> customDns, bool isIpv6Supported)
+    public IReadOnlyList<string> GetDnsServers(IReadOnlyCollection<string> customDns, bool isIpv6Supported)
     {
         List<string> dnsAddresses = [];
 
@@ -56,6 +56,6 @@ public class WireGuardDnsServersCreator : IWireGuardDnsServersCreator
             dnsAddresses.Add(_config.WireGuard.DefaultServerGatewayIpv6Address);
         }
 
-        return string.Join(",", dnsAddresses);
+        return dnsAddresses;
     }
 }
