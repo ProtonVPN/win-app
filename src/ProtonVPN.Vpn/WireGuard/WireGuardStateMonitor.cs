@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -36,6 +36,7 @@ public class WireGuardStateMonitor : IWireGuardStateMonitor
     private const int MAX_SOCKET_ERRORS = 5;
     private const string NT_HANDSHAKE_SUCCESS_MESSAGE = "Receiving handshake response from peer";
     private const string WINTUN_HANDSHAKE_SUCCESS_MESSAGE = "Received handshake response";
+    private const string ADAPTER_IN_USE_MESSAGE = "Unable to configure adapter network settings: unable to set ips: The object already exists";
 
     private readonly ILogger _logger;
     private readonly RingLogger _ringLogger;
@@ -72,14 +73,9 @@ public class WireGuardStateMonitor : IWireGuardStateMonitor
             while (!cancellationToken.IsCancellationRequested)
             {
                 List<string> lines = _ringLogger.FollowFromCursor(ref cursor);
-                foreach (string line in lines)
+                foreach (VpnState state in CreateStates(lines))
                 {
-                    _logger.Info<WireGuardProtocolLog>(GetFormattedMessage(line));
-
-                    if (TryCreateState(line, out VpnState? vpnState) && vpnState is not null)
-                    {
-                        yield return vpnState;
-                    }
+                    yield return state;
                 }
 
                 if (!await timer.WaitForNextTickAsync(cancellationToken).ConfigureAwait(false))
@@ -92,6 +88,45 @@ public class WireGuardStateMonitor : IWireGuardStateMonitor
         {
             _ringLogger.Stop();
         }
+    }
+
+    private List<VpnState> CreateStates(List<string> lines)
+    {
+        bool isAdapterInUse = IsAdapterInUse(lines);
+        List<VpnState> states = [];
+
+        foreach (string line in lines)
+        {
+            _logger.Info<WireGuardProtocolLog>(GetFormattedMessage(line));
+
+            if (TryCreateState(line, out VpnState? vpnState) && vpnState is not null)
+            {
+                // When a native WireGuard client is connected, we receive "Startup complete" and then immediately fail with
+                // "unable to set ips: The object already exists" before shutting down with WireGuardAdapterInUseError.
+                // The interface never actually comes up, so we don't want to send AssigningIp state in this case.
+                if (isAdapterInUse && vpnState.Status == VpnStatus.AssigningIp)
+                {
+                    continue;
+                }
+
+                states.Add(vpnState);
+            }
+        }
+
+        return states;
+    }
+
+    private static bool IsAdapterInUse(List<string> lines)
+    {
+        foreach (string line in lines)
+        {
+            if (line.Contains(ADAPTER_IN_USE_MESSAGE))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private bool TryCreateState(string line, out VpnState? vpnState)
@@ -128,7 +163,7 @@ public class WireGuardStateMonitor : IWireGuardStateMonitor
             return false;
         }
 
-        if (line.Contains("Unable to configure adapter network settings: unable to set ips: The object already exists"))
+        if (line.Contains(ADAPTER_IN_USE_MESSAGE))
         {
             _lastError = VpnError.WireGuardAdapterInUseError;
             return false;
