@@ -30,8 +30,8 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("ARM")]
 public class LoginSsoTests : FreshSessionSetUp
 {
-    private const string SSO_LOGIN_ERROR = "Email domain associated to an existing organization. Please sign in with SSO";
-    private const string REGULAR_LOGIN_ERROR = "Email domain not found, please sign in with a password";
+    private static readonly string _ssoLoginError = ApiTranslationHelper.GetTranslatedString("LoginSso_SsoLoginError");
+    private static readonly string _regularLoginError = ApiTranslationHelper.GetTranslatedString("LoginSso_RegularLoginError");
 
     [Test]
     [Property("TestCaseId", "602334")]
@@ -56,7 +56,7 @@ public class LoginSsoTests : FreshSessionSetUp
 
         LoginRobot
             .Login(TestUserData.SsoUser)
-            .Verify.IsErrorMessageDisplayed(SSO_LOGIN_ERROR);
+            .Verify.IsErrorMessageDisplayed(_ssoLoginError);
     }
 
     [Test]
@@ -69,7 +69,7 @@ public class LoginSsoTests : FreshSessionSetUp
             .ClickSignInWithSso()
             .EnterEmail(TestUserData.FakePlusUserWithDomain)
             .ClickSignInButton()
-            .Verify.IsErrorMessageDisplayed(REGULAR_LOGIN_ERROR);
+            .Verify.IsErrorMessageDisplayed(_regularLoginError);
     }
 
     private void CompleteSsoLogin()

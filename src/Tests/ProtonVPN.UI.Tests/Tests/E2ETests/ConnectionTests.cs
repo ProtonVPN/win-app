@@ -24,6 +24,7 @@ using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.Enums.Locations;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -31,14 +32,14 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("1")]
 public class ConnectionTests : FreshSessionSetUp
 {
-    private const string FAST_CONNECTION = "Fastest country";
+    private const Country COUNTRY_NAME_ONE = Country.Angola;
+    private const Country COUNTRY_NAME_TWO = Country.Austria;
+    private const Country SLOW_TOR_COUNTRY = Country.UnitedStates;
+    private const City CITY_NAME_ONE = City.Vienna;
 
-    private const string COUNTRY_NAME_ONE = "Angola";
-    private const string COUNTRY_NAME_TWO = "Austria";
-    private const string CITY_NAME_ONE = "Vienna";
-    private const string SLOW_TOR_COUNTRY = "United States";
+    private const Browser APP_TO_CHECK = Browser.GoogleChrome;
 
-    private const string APP_TO_CHECK = "Google Chrome";
+    private static readonly string _fastestCountry = LanguageHelper.GetTranslatedString("Country_Fastest");
 
     [SetUp]
     public void TestInitialize()
@@ -62,10 +63,10 @@ public class ConnectionTests : FreshSessionSetUp
 
         HomeRobot
             .Verify.IsDisconnected()
-                   .ConnectionCardTitleEquals(FAST_CONNECTION)
+                   .ConnectionCardTitleEquals(_fastestCountry)
             .ConnectViaConnectionCard()
             .Verify.IsConnected()
-                   .ConnectionCardTitleEquals(FAST_CONNECTION);
+                   .ConnectionCardTitleEquals(_fastestCountry);
 
         string ipAddressConnected = NetworkUtils.GetIpAddressWithRetry();
 
@@ -398,7 +399,7 @@ public class ConnectionTests : FreshSessionSetUp
         }
     }
 
-    private void ConnectToCountryAndVerify(string countryName = COUNTRY_NAME_TWO)
+    private void ConnectToCountryAndVerify(Country countryName = COUNTRY_NAME_TWO)
     {
         SidebarRobot
             .ConnectToCountry(countryName);

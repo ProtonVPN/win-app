@@ -29,11 +29,20 @@ using FlaUI.Core.AutomationElements;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.Enums.Locations;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
 public class ProfileRobot
 {
+    private static readonly string _countryDropdownTranslated = LanguageHelper.GetTranslatedString("Connections_Country");
+    private static readonly string _middleCountryDropdownTranslated = LanguageHelper.GetTranslatedString("Connections_Country_Middle");
+    private static readonly string _cityDropdownTranslated = LanguageHelper.GetTranslatedString("Connections_City");
+
+    protected Element CountryDropdown = Element.ByName(_countryDropdownTranslated).And(Element.ByClassName("ComboBox"));
+    protected Element MiddleCountryDropdown = Element.ByName(_middleCountryDropdownTranslated).And(Element.ByClassName("ComboBox"));
+    protected Element CityDropdown = Element.ByName(_cityDropdownTranslated).And(Element.ByClassName("ComboBox"));
+
     protected Element ProfileNameTextBox = Element.ByAutomationId("ProfileNameTextBox");
 
     protected Element ApplyButton = Element.ByAutomationId("ApplyButton");
@@ -78,12 +87,6 @@ public class ProfileRobot
 
     protected Element ModerateNatMenuItem = Element.ByAutomationId("ModerateNatMenuItem");
 
-    protected Element CountryDropdown = Element.ByName("Country").And(Element.ByClassName("ComboBox"));
-
-    protected Element MiddleCountryDropdown = Element.ByName("Middle country").And(Element.ByClassName("ComboBox"));
-
-    protected Element CityDropdown = Element.ByName("City").And(Element.ByClassName("ComboBox"));
-
     protected Element ConnectionTypes = Element.ByClassName("ListBoxItem");
 
     protected Element ConnectAndGoDropDown = Element.ByAutomationId("ConnectAndGoDropDown");
@@ -125,13 +128,13 @@ public class ProfileRobot
         switch (connectionType)
         {
             case ConnectionType.Standard:
-                connectionTypeName = "Standard";
+                connectionTypeName = LanguageHelper.GetTranslatedString("Server_Feature_None");
                 break;
             case ConnectionType.SecureCore:
-                connectionTypeName = "Secure Core";
+                connectionTypeName = LanguageHelper.GetTranslatedString("Server_Feature_SecureCore");
                 break;
             case ConnectionType.P2P:
-                connectionTypeName = "P2P";
+                connectionTypeName = LanguageHelper.GetTranslatedString("Server_Feature_P2P");
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(connectionType), connectionType, "Unhandled connection type");
@@ -146,27 +149,27 @@ public class ProfileRobot
         return this;
     }
 
-    public ProfileRobot SelectCountry(string countryName)
+    public ProfileRobot SelectCountry(Country countryName)
     {
         CountryDropdown
             .Click()
-            .SelectDropdownItem(countryName);
+            .SelectDropdownItem(countryName.GetName());
         return this;
     }
 
-    public ProfileRobot SelectMiddleCountry(string middleCountryName)
+    public ProfileRobot SelectMiddleCountry(Country middleCountryName)
     {
         MiddleCountryDropdown
             .Click()
-            .SelectDropdownItem(middleCountryName);
+            .SelectDropdownItem(TestConstants.ViaPrefix + middleCountryName.GetName());
         return this;
     }
 
-    public ProfileRobot SelectCity(string cityName)
+    public ProfileRobot SelectCity(City cityName)
     {
         CityDropdown
             .Click()
-            .SelectDropdownItem(cityName);
+            .SelectDropdownItem(cityName.GetEnumValue());
         return this;
     }
 

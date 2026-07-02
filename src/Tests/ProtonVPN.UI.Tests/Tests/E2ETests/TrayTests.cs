@@ -24,6 +24,7 @@ using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.Enums.Locations;
 using static ProtonVPN.UI.Tests.Robots.TrayRobot;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
@@ -32,13 +33,13 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("4")]
 public class TrayTests : BaseTest
 {
-    private const string PROFILE_NAME = "Streaming US";
+    private const Country COUNTRY_NAME = Country.Belgium;
+    private const Country SECURE_CORE_COUNTRY_NAME = Country.Australia;
+    private const Country VIA_COUNTRY_ICELAND = Country.Iceland;
 
-    private const string RANDOM_COUNTRY = "Random country";
+    private const DefaultProfile PROFILE_NAME = DefaultProfile.StreamingUS;
 
-    private const string COUNTRY_NAME = "Belgium";
-    private const string SECURE_CORE_COUNTRY_NAME = "Australia";
-    private const string VIA_COUNTRY_ICELAND = "via Iceland";
+    private static readonly string _randomCountry = LanguageHelper.GetTranslatedString("Country_Random");
 
     [OneTimeSetUp]
     public void SetUp()
@@ -84,7 +85,7 @@ public class TrayTests : BaseTest
             HomeRobot
                 .Verify.AssertAllVpnConnectionOptions()
                 .SelectDefaultConnectionOption(VpnConnectionOption.Random)
-                .Verify.ConnectionCardTitleEquals(RANDOM_COUNTRY);
+                .Verify.ConnectionCardTitleEquals(_randomCountry);
         }
     }
 
@@ -98,12 +99,12 @@ public class TrayTests : BaseTest
             SidebarRobot
                 .Verify.IsNoRecentsLabelDisplayed();
             HomeRobot
-                .Verify.ConnectionCardTitleEquals(RANDOM_COUNTRY)
+                .Verify.ConnectionCardTitleEquals(_randomCountry)
                        .IsDisconnected()
                 .ConnectViaConnectionCard()
                 .Verify.IsConnecting()
                        .IsConnected()
-                       .ConnectionCardTitleEquals(RANDOM_COUNTRY);
+                       .ConnectionCardTitleEquals(_randomCountry);
         }
 
         //TODO: assert padlock color - handle in the future
@@ -228,9 +229,9 @@ public class TrayTests : BaseTest
         {
             SidebarRobot
                 .Verify.HasNoRecentsLabel()
-                       .IsConnectionOptionDisplayed(COUNTRY_NAME)
-                       .IsConnectionOptionDisplayed(SECURE_CORE_COUNTRY_NAME)
-                       .IsConnectionOptionDisplayed(PROFILE_NAME)
+                       .IsConnectionOptionDisplayed(COUNTRY_NAME.GetName())
+                       .IsConnectionOptionDisplayed(SECURE_CORE_COUNTRY_NAME.GetName())
+                       .IsConnectionOptionDisplayed(PROFILE_NAME.GetEnumValue())
                        .IsRecentsCountDisplayed(4);
         }
     }
@@ -243,17 +244,17 @@ public class TrayTests : BaseTest
         using (TrayApp)
         {
             SidebarRobot
-                .Verify.IsConnectionOptionDisplayed(COUNTRY_NAME)
-                .ExpandSecondaryActionsForRecents(COUNTRY_NAME)
+                .Verify.IsConnectionOptionDisplayed(COUNTRY_NAME.GetName())
+                .ExpandSecondaryActionsForRecents(COUNTRY_NAME.GetName())
                 .RemoveRecent()
-                .Verify.IsConnectionOptionMissing(COUNTRY_NAME);
+                .Verify.IsConnectionOptionMissing(COUNTRY_NAME.GetName());
             TrayRobot
                 .DoubleClickTrayApp();
         }
 
         SidebarRobot
            .NavigateToRecents()
-           .Verify.IsConnectionOptionMissing(COUNTRY_NAME);
+           .Verify.IsConnectionOptionMissing(COUNTRY_NAME.GetName());
 
         HomeRobot.MinimizeClientViaMinimizeButton();
     }
@@ -266,8 +267,8 @@ public class TrayTests : BaseTest
         using (TrayApp)
         {
             SidebarRobot
-                .Verify.IsConnectionOptionDisplayed(SECURE_CORE_COUNTRY_NAME)
-                .ExpandSecondaryActionsForRecents(SECURE_CORE_COUNTRY_NAME)
+                .Verify.IsConnectionOptionDisplayed(SECURE_CORE_COUNTRY_NAME.GetName())
+                .ExpandSecondaryActionsForRecents(SECURE_CORE_COUNTRY_NAME.GetName())
                 .PinRecent()
                 .Verify.IsPinnedCountDisplayed(1);
             TrayRobot
@@ -289,8 +290,8 @@ public class TrayTests : BaseTest
         using (TrayApp)
         {
             SidebarRobot
-                .Verify.IsConnectionOptionDisplayed(SECURE_CORE_COUNTRY_NAME)
-                .ExpandSecondaryActionsForRecents(SECURE_CORE_COUNTRY_NAME)
+                .Verify.IsConnectionOptionDisplayed(SECURE_CORE_COUNTRY_NAME.GetName())
+                .ExpandSecondaryActionsForRecents(SECURE_CORE_COUNTRY_NAME.GetName())
                 .UnpinRecent()
                 .Verify.IsPinnedCountMissing();
             TrayRobot
@@ -428,7 +429,7 @@ public class TrayTests : BaseTest
 
         SidebarRobot
             .NavigateToProfiles()
-            .ConnectToProfile(PROFILE_NAME);
+            .ConnectToProfile(PROFILE_NAME.GetEnumValue());
         VerifyIsConnectedThenDisconnect();
     }
 

@@ -29,6 +29,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using FlaUI.Core.Tools;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
@@ -78,7 +79,7 @@ public class BrowserUtils
         Thread.Sleep(TestConstants.FiveSecondsTimeout);
     }
 
-    public static void VerifyWebRtcNotLeaking(string browserApp, string vpnIp)
+    public static void VerifyWebRtcNotLeaking(Browser browserApp, string vpnIp)
     {
         string publicIp = GetBrowserWebRtcIpWithRetry(browserApp);
 
@@ -88,7 +89,7 @@ public class BrowserUtils
             $"\nExpected VPN IP: {vpnIp}");
     }
 
-    public static void VerifyBrowserIpWithRetry(string browserApp, bool hasVpn, string? ipAddressToCompare)
+    public static void VerifyBrowserIpWithRetry(Browser browserApp, bool hasVpn, string? ipAddressToCompare)
     {
         string? browserIp = null;
         RetryResult<string> retry = Retry.WhileEmpty(
@@ -108,7 +109,7 @@ public class BrowserUtils
         }
     }
 
-    public static void AssertBrowserInternetAvailability(string browserApp, bool shouldBeAvailable)
+    public static void AssertBrowserInternetAvailability(Browser browserApp, bool shouldBeAvailable)
     {
         string? browserIp = null;
         RetryResult<string> retry = Retry.WhileEmpty(
@@ -132,17 +133,17 @@ public class BrowserUtils
         }
     }
 
-    public static void AssertBrowserCanLoadDuckDuckGo(string browserApp)
+    public static void AssertBrowserCanLoadDuckDuckGo(Browser browserApp)
     {
         AssertBrowserLoadsUrl(browserApp, "https://duckduckgo.com/", "DuckDuckGo");
     }
 
-    public static void OpenStreamingWebsite(string browserApp)
+    public static void OpenStreamingWebsite(Browser browserApp)
     {
         AssertBrowserLoadsUrl(browserApp, "https://abc.com/watch-live", "ABC Live Stream");
     }
 
-    private static void AssertBrowserLoadsUrl(string browserApp, string url, string expectedTitle)
+    private static void AssertBrowserLoadsUrl(Browser browserApp, string url, string expectedTitle)
     {
         RetryResult<string> retry = Retry.WhileEmpty(
             () => GetBrowserPageTitleWithRetry(browserApp, url),
@@ -152,7 +153,7 @@ public class BrowserUtils
         Assert.That(retry.Result, Does.Contain(expectedTitle), $"Expected {expectedTitle} page title, got: {retry.Result}");
     }
 
-    private static string GetBrowserIpWithRetry(string browserApp)
+    private static string GetBrowserIpWithRetry(Browser browserApp)
     {
         // This method connects to the Browser via CDP and gets the IP that the Browser sees
         // It uses https://api.ipify.org instead of http://ip-api.com/json, because the Browser forces HTTPS via HSTS, and ip-api.com does not support HTTPS on the free tier
@@ -163,20 +164,20 @@ public class BrowserUtils
             port => ExecuteScriptInBrowserAsync(port, url, "document.body.innerText.trim()"));
     }
 
-    private static string GetBrowserWebRtcIpWithRetry(string browserApp)
+    private static string GetBrowserWebRtcIpWithRetry(Browser browserApp)
     {
         return ExecuteWithBrowserRetry(browserApp,
             port => ExecuteWebRtcScriptInBrowserAsync(port));
     }
 
-    private static string GetBrowserPageTitleWithRetry(string browserApp, string url)
+    private static string GetBrowserPageTitleWithRetry(Browser browserApp, string url)
     {
         return ExecuteWithBrowserRetry(browserApp,
             port => ExecuteScriptInBrowserAsync(port, url, "document.title"));
     }
 
     private static string ExecuteWithBrowserRetry(
-        string browserApp,
+        Browser browserApp,
         Func<int, Task<string>> operation)
     {
         (string Path, int DebugPort) browserConfig = GetBrowserConfig(browserApp);
@@ -192,13 +193,13 @@ public class BrowserUtils
         return retry.Result ?? "No internet";
     }
 
-    private static (string Path, int DebugPort) GetBrowserConfig(string browserApp)
+    private static (string Path, int DebugPort) GetBrowserConfig(Browser browserApp)
     {
         switch (browserApp)
         {
-            case "Google Chrome":
+            case Browser.GoogleChrome:
                 return (CHROME_PATH, CHROME_PORT);
-            case "Edge":
+            case Browser.Edge:
                 return (EDGE_PATH, EDGE_PORT);
             default:
                 throw new ArgumentException($"Unknown browser: {browserApp}");

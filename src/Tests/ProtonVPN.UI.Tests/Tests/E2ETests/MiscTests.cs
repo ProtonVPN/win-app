@@ -20,6 +20,7 @@
 using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
+using ProtonVPN.UI.Tests.Enums.Locations;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -30,51 +31,87 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("4")]
 public class MiscTests : FreshSessionSetUp
 {
-
     private const string IP_ADDRESS_TO_ADD = "208.95.112.1";
-    private const string EXCLUDED_LOCATION = "Albania";
-    private const string COUNTRY_NAME = "Austria";
+    private const Country EXCLUDED_LOCATION = Country.Albania;
+    private const Country COUNTRY_NAME = Country.Austria;
 
     private const string RESET_PASSWORD_WINDOW = "Reset your Proton Account password";
     private const string RESET_USERNAME_WINDOW = "Find your Proton Account username";
     private const string CREATE_ACCOUNT_WINDOW = "Proton VPN: Sign-up";
-
-    private const string RESTORE_DEFAULT_SETTINGS_TITLE = "Restore default settings?";
-    private const string RESTORE_DEFAULT_SETTINGS_PRIMARY_BUTTON = "Restore and reconnect";
-    private const string CANCEL_BUTTON = "Cancel";
-
-    private const string SPLIT_TUNNELING_MODE = "Included apps (1)";
 
     private const string VPN_ACCELERATOR_ON = "\"split-tcp\": true";
     private const string VPN_ACCELERATOR_OFF = "\"split-tcp\": false";
     private const string LINE_TO_LOOK_FOR = "split-tcp";
     private static readonly string _serviceLogsPath = TestEnvironment.GetServiceLogsPath();
 
+    private static readonly string _restoreDefaultSettingsTitle = LanguageHelper.GetTranslatedString("Settings_RestoreDefault_Confirmation_Title");
+    private static readonly string _restoreDefaultSettingsPrimaryButton = LanguageHelper.GetTranslatedString("Settings_RestoreDefaultAndReconnect_Confirmation_Action");
+    private static readonly string _cancelButton = LanguageHelper.GetTranslatedString("Common_Actions_Cancel");
+    private static readonly string _splitTunnelingMode = LanguageHelper.GetTranslatedString("Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader").Replace("({0})", "(1)");
+
     [SetUp]
     public void TestInitialize()
     {
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
+        LanguageHelper.CurrentLanguage = Language.English;
     }
 
     [Test]
     [Property("TestCaseId", "602426")]
-    [Ignore("unskip when implementing VPNWIN-3205")]
     public void HomeScreenLocalizationAfterLanguageChange()
     {
+        LanguageHelper.CurrentLanguage = Language.French;
+
+        string fastestCountryConnectionCardTitle = LanguageHelper.GetTranslatedString("Country_Fastest");
+        string fastestCountryConnectionCardDescription = LanguageHelper.GetTranslatedString("Settings_Connection_Default_Fastest_Description");
+        string connectionPreferecesDropdownOption = LanguageHelper.GetTranslatedString("Settings_Connection_Default_Random");
+        string connectButton = LanguageHelper.GetTranslatedString("Common_Actions_Connect");
+
+        string unprotectedStatus = LanguageHelper.GetTranslatedString("Home_ConnectionDetails_Unprotected");
+        string yourIpText = LanguageHelper.GetTranslatedString("Home_ConnectionDetails_YourIpAddress");
+        string yourCountryText = LanguageHelper.GetTranslatedString("Home_ConnectionDetails_Country");
+        string yourProviderText = LanguageHelper.GetTranslatedString("Home_ConnectionDetails_Isp");
+
+        string netShieldFeatureName = LanguageHelper.GetTranslatedString("Settings_Connection_NetShield");
+        string killSwitchFeatureName = LanguageHelper.GetTranslatedString("Settings_Connection_KillSwitch");
+        string portForwardingFeatureName = LanguageHelper.GetTranslatedString("Settings_Connection_PortForwarding");
+        string splitTunnelingFeatureName = LanguageHelper.GetTranslatedString("Settings_Connection_SplitTunneling");
+
+        Country countryNameOne = Country.Belgium;
+        string cityName = ApiTranslationHelper.GetTranslatedString("City_Brussels");
+        Country countryNameTwo = Country.UnitedStates;
+        string stateName = ApiTranslationHelper.GetTranslatedString("State_California");
+
         SettingRobot
             .OpenSettings()
-            .SelectLanguage("Italiano - Italian")
+            .SelectLanguage(LanguageHelper.CurrentLanguage)
             .CloseSettings();
 
-        /*TODO:
-        Elements to verify:
+        HomeRobot
+            .Verify.ConnectionCardTitleEquals(fastestCountryConnectionCardTitle)
+                   .ConnectionCardDescriptionContains(fastestCountryConnectionCardDescription)
+                   .ConnectionPreferecesDropdownContains(connectionPreferecesDropdownOption)
+                   .ConnectionCardConnectButtonEquals(connectButton)
+                   .ProtectionStatusEquals(unprotectedStatus)
+                   .LocationDetailsContains(yourIpText)
+                   .LocationDetailsContains(yourCountryText)
+                   .LocationDetailsContains(yourProviderText);
+        //TODO: Map pin tooltip assert: "Connect - [Country]"
 
-        connection card & the Connect button;
-        connection status, your IP address, country and IP provider labels;
-        country names;
-        Map pin tooltip with "Connect - [Country]"
-        Features' names;
-        */
+        FeaturesRobot
+            .Verify.NetShieldFeatureNameEquals(netShieldFeatureName)
+                   .KillSwitchFeatureNameEquals(killSwitchFeatureName)
+                   .PortForwardingFeatureNameEquals(portForwardingFeatureName)
+                   .SplitTunnelingFeatureNameEquals(splitTunnelingFeatureName);
+
+        SidebarRobot
+            .NavigateToAllCountriesTab()
+            .ExpandCities(countryNameOne)
+            .Verify.CountriesListContains(countryNameOne.GetName())
+                   .CountriesListContains(cityName)
+            .SearchFor(countryNameTwo.GetName())
+            .ExpandCities(countryNameTwo)
+            .Verify.SidebarSearchResultContains(stateName);
     }
 
     [Test]
@@ -140,7 +177,7 @@ public class MiscTests : FreshSessionSetUp
 
         FeaturesRobot
             .HoverOverSplitTunnelingWidget()
-            .Verify.IsSplitTunnelingAppUnavailableInFlyoutMenu(SPLIT_TUNNELING_MODE)
+            .Verify.IsSplitTunnelingAppUnavailableInFlyoutMenu(_splitTunnelingMode)
             .DisableFeature();
 
         HomeRobot.ClickOnConnectionCardTitle();
@@ -257,10 +294,10 @@ public class MiscTests : FreshSessionSetUp
 
         ConfirmationRobot
             .Verify.IsOverlayDisplayed()
-            .OverlayTextContains(RESTORE_DEFAULT_SETTINGS_TITLE)
+            .OverlayTextContains(_restoreDefaultSettingsTitle)
             .OverlayButtonsEquals(
-                primary: RESTORE_DEFAULT_SETTINGS_PRIMARY_BUTTON,
-                cancel: CANCEL_BUTTON)
+                primary: _restoreDefaultSettingsPrimaryButton,
+                cancel: _cancelButton)
             .PrimaryAction()
             .Verify.IsOverlayClosed();
 

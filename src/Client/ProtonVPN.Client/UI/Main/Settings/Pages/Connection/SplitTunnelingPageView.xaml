@@ -105,7 +105,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
                               Style="{StaticResource ToggleSwitchStyle}" />
                 <controls:SettingsExpander.Items>
                     <StackPanel Spacing="16">
-                        <RadioButton IsChecked="{x:Bind ViewModel.IsStandardSplitTunneling, Mode=TwoWay}"
+                        <RadioButton AutomationProperties.AutomationId="ExcludeModeRadioButton"
+                                     IsChecked="{x:Bind ViewModel.IsStandardSplitTunneling, Mode=TwoWay}"
                                      Style="{StaticResource SplitTunnelingRadioButtonStyle}">
                             <StackPanel>
                                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"
@@ -116,7 +117,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses />.-->
                                            TextWrapping="Wrap" />
                             </StackPanel>
                         </RadioButton>
-                        <RadioButton IsChecked="{x:Bind ViewModel.IsInverseSplitTunneling, Mode=TwoWay}"
+                        <RadioButton AutomationProperties.AutomationId="IncludeModeRadioButton"
+                                     IsChecked="{x:Bind ViewModel.IsInverseSplitTunneling, Mode=TwoWay}"
                                      Style="{StaticResource SplitTunnelingRadioButtonStyle}">
                             <StackPanel>
                                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"

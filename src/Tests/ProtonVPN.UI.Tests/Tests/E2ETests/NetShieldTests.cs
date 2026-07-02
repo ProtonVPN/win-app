@@ -31,9 +31,9 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("SMOKE_4")]
 public class NetShieldTests : FreshSessionSetUp
 {
-    private const string ENABLE_NET_SHIELD_TITLE = "Enable NetShield?";
-    private const string ENABLE_NET_SHIELD_DESCRIPTION = "You won't be able to connect with a custom DNS server when NetShield is enabled.";
-    private const string ENABLE_NET_SHIELD_BUTTON = "Enable";
+    private static readonly string _enableNetShieldTitle = LanguageHelper.GetTranslatedString("Settings_Connection_NetShield_Conflict_Title");
+    private static readonly string _enableNetShieldDescription = LanguageHelper.GetTranslatedString("Settings_Connection_NetShield_Conflict_Description");
+    private static readonly string _enableNetShieldButton = LanguageHelper.GetTranslatedString("Common_Actions_Enable");
 
     [SetUp]
     public void TestInitialize()
@@ -184,9 +184,9 @@ public class NetShieldTests : FreshSessionSetUp
             .EnableNetShieldToggle();
         ConfirmationRobot
             .Verify.IsOverlayDisplayed()
-                   .OverlayTextContains(ENABLE_NET_SHIELD_TITLE)
-                   .OverlayTextContains(ENABLE_NET_SHIELD_DESCRIPTION)
-                   .OverlayButtonsEquals(primary: ENABLE_NET_SHIELD_BUTTON);
+                   .OverlayTextContains(_enableNetShieldTitle)
+                   .OverlayTextContains(_enableNetShieldDescription)
+                   .OverlayButtonsEquals(primary: _enableNetShieldButton);
     }
 
     private void VerifyNetShieldIsEnabledAndCustomDnsIsDisabled()

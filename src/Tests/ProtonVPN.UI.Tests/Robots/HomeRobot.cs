@@ -25,29 +25,66 @@ using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.Enums.Locations;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
 public class HomeRobot
 {
-    protected Element EmptyIpAddress = Element.ByName("Your IP address").And(Element.ByName("-"));
-    protected Element EmptyCountry = Element.ByName("Country").And(Element.ByName("-"));
-    protected Element EmptyProvider = Element.ByName("Provider").And(Element.ByName("-"));
+    private static readonly string _yourIpAddressTranslated = LanguageHelper.GetTranslatedString("Home_ConnectionDetails_YourIpAddress");
+    private static readonly string _countryTranslated = LanguageHelper.GetTranslatedString("Home_ConnectionDetails_Country");
+    private static readonly string _providerTranslated = LanguageHelper.GetTranslatedString("Home_ConnectionDetails_Isp");
+    private static readonly string _protectedLabelTranslated = LanguageHelper.GetTranslatedString("Home_ConnectionDetails_Protected");
+    private static readonly string _unprotectedLabelTranslated = LanguageHelper.GetTranslatedString("Home_ConnectionDetails_Unprotected");
+    private static readonly string _connectingLabelTranslated = LanguageHelper.GetTranslatedString("Home_ConnectionDetails_Connecting");
+    private static readonly string _protectedLabelAdvancedKillSwitchTranslated = LanguageHelper.GetTranslatedString("Home_ConnectionDetails_AdvancedKillSwitchActivated");
+    private static readonly string _getStartedButtonTranslated = LanguageHelper.GetTranslatedString("Dialogs_Common_GetStarted");
+    private static readonly string _notTheCountryWantedLabelTranslated = LanguageHelper.GetTranslatedString("ExcludedLocations_SmartDiscovery_Prompt_Title");
+    private static readonly string _upgradeYourServerLabelTranslated = LanguageHelper.GetTranslatedString("UpsellBanner_WrongCountry_Description");
+    private static readonly string _serverChangesUpsellLabelTranslated = LanguageHelper.GetTranslatedString("Dialogs_ChangeServer_GetUnlimitedServerChanges");
+    private static readonly string _upgradeButtonTranslated = LanguageHelper.GetTranslatedString("Common_Actions_Upgrade");
+    private static readonly string _fastestCountryOptionTranslated = LanguageHelper.GetTranslatedString("Country_Fastest");
+    private static readonly string _randomCountryOptionTranslated = LanguageHelper.GetTranslatedString("Country_Random");
+    private static readonly string _lastConnectionOptionTranslated = LanguageHelper.GetTranslatedString("Settings_Connection_Default_Last");
+    private static readonly string _wireGuardConnectionErrorPanelTitleTranslated = LanguageHelper.GetTranslatedString("Connection_Error_ConflictingAdapter_Title");
+    private static readonly string _wireGuardConnectionErrorPanelDescriptionTranslated = LanguageHelper.GetTranslatedString("Connection_Error_ConflictingAdapter_Description");
 
-    protected Element UnprotectedLabel = Element.ByName("Unprotected");
-    protected Element ConnectingLabel = Element.ByName("Connecting");
-    protected Element ProtectedLabel = Element.ByName("Protected");
-    protected Element CancelConnectionButton = Element.ByName("Cancel");
-    protected Element GetDealButton = Element.ByName("Get the deal now");
-    protected Element GetStartedButton = Element.ByName("Get started");
+    protected Element EmptyIpAddress = Element.ByName(_yourIpAddressTranslated).And(Element.ByName("-"));
+    protected Element EmptyCountry = Element.ByName(_countryTranslated).And(Element.ByName("-"));
+    protected Element EmptyProvider = Element.ByName(_providerTranslated).And(Element.ByName("-"));
+
+    protected Element ProtectedLabel = Element.ByName(_protectedLabelTranslated);
+    protected Element UnprotectedLabel = Element.ByName(_unprotectedLabelTranslated);
+    protected Element ConnectingLabel = Element.ByName(_connectingLabelTranslated);
+    protected Element ProtectedLabelAdvancedKillSwitch = Element.ByName(_protectedLabelAdvancedKillSwitchTranslated);
+
+    protected Element GetStartedButton = Element.ByName(_getStartedButtonTranslated);
+    protected Element GetDealButton = Element.ByAutomationId("UpsellUpgradeButton");
+
+    protected Element NotTheCountryWantedLabel = Element.ByName(_notTheCountryWantedLabelTranslated);
+    protected Element UpgradeYourServerLabel = Element.ByName(_upgradeYourServerLabelTranslated);
+    protected Element ServerChangesUpsellLabel = Element.ByName(_serverChangesUpsellLabelTranslated);
+    protected Element UpgradeButton = Element.ByName(_upgradeButtonTranslated);
+
+    protected Element FastestCountryOption = Element.ByName(_fastestCountryOptionTranslated);
+    protected Element RandomCountryOption = Element.ByName(_randomCountryOptionTranslated);
+    protected Element LastConnectionOption = Element.ByName(_lastConnectionOptionTranslated);
+
+    protected Element ConnectionErrorPanel = Element.ByAutomationId("ConnectionErrorPanel");
+    protected Element WireGuardConnectionErrorPanelTitle => ConnectionErrorPanel.FindChild(Element.ByName(_wireGuardConnectionErrorPanelTitleTranslated));
+    protected Element WireGuardConnectionErrorPanelDescription => ConnectionErrorPanel.FindChild(Element.ByName(_wireGuardConnectionErrorPanelDescriptionTranslated));
+    protected Element ConnectionErrorPanelCloseButton => ConnectionErrorPanel.FindChild(Element.ByAutomationId("CloseButton"));
+
+    protected Element ProtectionTitle = Element.ByAutomationId("ProtectionTitle");
+    protected Element LocationDetails = Element.ByAutomationId("LocationDetailsPage");
     protected Element ConnectionDetailsProtocol = Element.ByAutomationId("ShowProtocolFlyoutButton");
     protected Element ChangeProtocolButton = Element.ByAutomationId("ChangeProtocolFlyoutButton");
     protected Element KebabMenuButton = Element.ByAutomationId("TitleBarMenuButton");
     protected Element HelpButton = Element.ByAutomationId("HelpMenu");
     protected Element KebabMenuSettingsItem = Element.ByAutomationId("KebabMenuSettingsItem");
     protected Element KebabMenuExitItem = Element.ByAutomationId("KebabMenuExitItem");
-    protected Element ExitButton = Element.ByName("Exit");
 
+    protected Element ExitButton = Element.ByAutomationId("PrimaryButton");
     protected Element MaximizeClientSizeButton = Element.ByAutomationId("Maximize");
     protected Element RestoreClientSizeButton = Element.ByAutomationId("Restore");
     protected Element CloseClientButton = Element.ByAutomationId("Close");
@@ -64,22 +101,9 @@ public class HomeRobot
     protected Element ConnectionCardChangeServerButton = Element.ByAutomationId("ConnectionCardChangeServerButton");
     protected Element ConnectionCardChangeServerTimeoutButton = Element.ByAutomationId("ConnectionCardChangeServerTimeoutButton");
     protected Element ConnectionCardUpsellBanner = Element.ByAutomationId("ConnectionCardUpsellBanner");
-    protected Element NotTheCountryWantedLabel = Element.ByName("Not the country you wanted?");
-    protected Element UpgradeYourServerLabel = Element.ByName("Upgrade to choose any server.");
-    protected Element ServerChangesUpsellLabel = Element.ByName("Get unlimited server changes with VPN Plus.");
-    protected Element UpgradeButton = Element.ByName("Upgrade");
+
     protected Element DefaultConnectionSelectorButton = Element.ByAutomationId("DefaultConnectionSelectorButton");
     protected Element DefaultConnectionDropdown = Element.ByAutomationId("DefaultConnectionDropdown");
-    protected Element FastestCountryOption = Element.ByName("Fastest country");
-    protected Element RandomCountryOption = Element.ByName("Random country");
-    protected Element LastConnectionOption = Element.ByName("Last connection");
-    protected Element ProtectedLabelAdvancedKillSwitch = Element.ByName("Advanced kill switch activated");
-
-    protected Element ConnectionErrorPanel = Element.ByAutomationId("ConnectionErrorPanel");
-    protected Element WireGuardConnectionErrorPanelTitle => ConnectionErrorPanel.FindChild(Element.ByName("Connection failed"));
-    protected Element WireGuardConnectionErrorPanelDescription => ConnectionErrorPanel.FindChild(Element.ByName("Your device's WireGuard adapter is in use. Disconnect from any other VPN running on your device, then try again."));
-    protected Element ConnectionErrorPanelTryAgainButton => ConnectionErrorPanel.FindChild(Element.ByName("Try again"));
-    protected Element ConnectionErrorPanelCloseButton => ConnectionErrorPanel.FindChild(Element.ByName("Close"));
 
     protected Element ShowIpFlyoutButton => Element.ByAutomationId("ShowIpFlyoutButton");
 
@@ -217,9 +241,9 @@ public class HomeRobot
 
         string optionName = option switch
         {
-            VpnConnectionOption.Fastest => "Fastest country",
-            VpnConnectionOption.Random => "Random country",
-            VpnConnectionOption.Last => "Last connection",
+            VpnConnectionOption.Fastest => LanguageHelper.GetTranslatedString("Settings_Connection_Default_Fastest"),
+            VpnConnectionOption.Random => LanguageHelper.GetTranslatedString("Settings_Connection_Default_Random"),
+            VpnConnectionOption.Last => LanguageHelper.GetTranslatedString("Settings_Connection_Default_Last"),
             _ => throw new NotImplementedException($"VpnConnectionOption '{option}' is not supported on the home page ComboBox."),
         };
 
@@ -229,11 +253,11 @@ public class HomeRobot
         return this;
     }
 
-    public HomeRobot SelectDefaultConnectionCountry(string countryName, string? specificInfo = null)
+    public HomeRobot SelectDefaultConnectionCountry(Country countryName, string? specificInfo = null)
     {
         DefaultConnectionSelectorButton.Click();
         Thread.Sleep(TestConstants.AnimationDelay);
-        DefaultConnectionDropdown.SelectDropdownItem(countryName, specificInfo);
+        DefaultConnectionDropdown.SelectDropdownItem(countryName.GetName(), specificInfo);
         return this;
     }
 
@@ -285,7 +309,6 @@ public class HomeRobot
         {
             WireGuardConnectionErrorPanelTitle.WaitUntilDisplayed(TestConstants.OneMinuteTimeout);
             WireGuardConnectionErrorPanelDescription.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
-            ConnectionErrorPanelTryAgainButton.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
             ConnectionErrorPanelCloseButton.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
             return this;
         }
@@ -381,7 +404,7 @@ public class HomeRobot
             return this;
         }
 
-        public Verifications ConnectionCardDescriptionContainsOneOf(List<string> countries)
+        public Verifications ConnectionCardDescriptionContainsOneOf(List<Country> countries)
         {
             ConnectionCardDescription.TextContainsOneOf(countries);
             return this;
@@ -390,6 +413,37 @@ public class HomeRobot
         public Verifications ConnectionCardDescriptionContains(string description)
         {
             ConnectionCardDescription.TextContains(description);
+            return this;
+        }
+
+        public Verifications ConnectionPreferecesDropdownContains(string optionName)
+        {
+            DefaultConnectionSelectorButton.Click();
+            Thread.Sleep(TestConstants.AnimationDelay);
+            Element.ByName(optionName).WaitUntilDisplayed();
+            Thread.Sleep(TestConstants.AnimationDelay);
+            ConnectionCardTitle.Click();
+
+            return this;
+        }
+
+        public Verifications ConnectionCardConnectButtonEquals(string buttonName)
+        {
+            ConnectionCardConnectButton.TextEquals(buttonName);
+            return this;
+        }
+
+        public Verifications LocationDetailsContains(string locationDetail)
+        {
+            LocationDetails.WaitUntilDisplayed();
+            List<string> allChildren = LocationDetails.GetAllChildrenNames();
+            Assert.That(allChildren, Does.Contain(locationDetail));
+            return this;
+        }
+
+        public Verifications ProtectionStatusEquals(string protectionStatus)
+        {
+            ProtectionTitle.TextEquals(protectionStatus);
             return this;
         }
 

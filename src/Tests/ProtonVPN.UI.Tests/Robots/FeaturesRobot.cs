@@ -22,27 +22,27 @@ using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
-using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
 public class FeaturesRobot
 {
-    private const string NET_SHIELD_ENABLED_FLYOUT_TEXT_1 = "Ads blocked";
-    private const string NET_SHIELD_ENABLED_FLYOUT_TEXT_2 = "Trackers stopped";
-    private const string NET_SHIELD_ENABLED_FLYOUT_TEXT_3 = "Data saved";
+    private static readonly string _connectedKillSwitchEnabledFlyoutTextOne = LanguageHelper.GetTranslatedString("Flyouts_KillSwitch_Advanced_Success");
+    private static readonly string _connectedKillSwitchEnabledFlyoutTextTwo = LanguageHelper.GetTranslatedString("Flyouts_KillSwitch_Warning_Connected");
 
-    private const string DISCONNECTED_KILL_SWITCH_ENABLED_FLYOUT_TEXT_1 = "Advanced kill switch disables your internet to protect your IP address while you're not connected to Proton VPN.";
-    private const string DISCONNECTED_KILL_SWITCH_ENABLED_FLYOUT_TEXT_2 = "To get back online, connect to VPN or disable advanced kill switch";
+    private static readonly string _disconnectedKillSwitchEnabledFlyoutTextOne = LanguageHelper.GetTranslatedString("Flyouts_KillSwitch_Info_Disconnected");
+    private static readonly string _disconnectedKillSwitchEnabledFlyoutTextTwo = LanguageHelper.GetTranslatedString("Flyouts_KillSwitch_Warning_Disconnected");
 
-    private const string CONNECTED_KILL_SWITCH_ENABLED_FLYOUT_TEXT_1 = "Blocks all internet access when you're not connected to Proton VPN";
-    private const string CONNECTED_KILL_SWITCH_ENABLED_FLYOUT_TEXT_2 = "Advanced kill switch applies even if you intentionally disconnect from VPN";
+    private static readonly string _netShieldEnabledFlyoutTextOne = LanguageHelper.GetTranslatedString("Home_NetShield_AdsBlocked_Other");
+    private static readonly string _netShieldEnabledFlyoutTextTwo = LanguageHelper.GetTranslatedString("Home_NetShield_TrackersStopped_Other");
+    private static readonly string _netShieldEnabledFlyoutTextThree = LanguageHelper.GetTranslatedString("Home_NetShield_DataSaved");
 
-    private const string SPLIT_TUNNELING_NO_APP_SELECTED_FLYOUT_TEXT = "Select apps";
+    private static readonly string _splitTunnelingNoAppSelectedFlyoutText = LanguageHelper.GetTranslatedString("Settings_Connection_SplitTunneling_Apps_Select");
 
-    private const string PORT_UNAVAILABLE_FLYOUT_TEXT_1 = "Connect to a P2P server to improve torrenting speeds";
-    private const string PORT_UNAVAILABLE_FLYOUT_TEXT_2 = "Unavailable";
+    private static readonly string _portUnavailableFlyoutTextOne = LanguageHelper.GetTranslatedString("Flyouts_PortForwarding_Warning");
+    private static readonly string _portUnavailableFlyoutTextTwo = LanguageHelper.GetTranslatedString("Settings_Connection_PortForwarding_Unavailable");
 
     protected Element NetShieldWidgetButton = Element.ByAutomationId("NetShieldWidgetButton");
     protected Element KillSwitchWidgetButton = Element.ByAutomationId("KillSwitchWidgetButton");
@@ -128,13 +128,13 @@ public class FeaturesRobot
         switch (netShieldMode)
         {
             case NetShieldMode.BlockMalwareOnly:
-                netshieldModeString = "Block malware only";
+                netshieldModeString = LanguageHelper.GetTranslatedString("Settings_Connection_NetShield_BlockMalwareOnly");
                 break;
             case NetShieldMode.BlockAdsMalwareTrackers:
-                netshieldModeString = "Block ads, trackers, and malware";
+                netshieldModeString = LanguageHelper.GetTranslatedString("Settings_Connection_NetShield_BlockAdsMalwareTrackers");
                 break;
             case NetShieldMode.BlockAdsMalwareTrackersAdultContent:
-                netshieldModeString = "Block ads, trackers, malware, and adult content";
+                netshieldModeString = LanguageHelper.GetTranslatedString("Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent");
                 break;
             default:
                 throw new ArgumentException($"Unknown mode: {netShieldMode}");
@@ -146,45 +146,77 @@ public class FeaturesRobot
 
     public FeaturesRobot EnableKillSwitch(KillSwitchMode killSwitchMode)
     {
-        ToggleFeature(killSwitchMode.ToString());
+        ToggleFeature(killSwitchMode.GetEnumValue());
         return this;
     }
 
     public FeaturesRobot EnableSplitTunneling(SplitTunnelingMode splitTunnelingMode)
     {
-        ToggleFeature(splitTunnelingMode.ToString());
+        ToggleFeature(splitTunnelingMode.GetEnumValue());
         return this;
     }
 
     public FeaturesRobot EnableFeature()
     {
-        ToggleFeature(SimpleToggle.On.ToString());
+        ToggleFeature(SimpleToggle.On.GetEnumValue());
         return this;
     }
 
     public FeaturesRobot DisableFeature()
     {
-        ToggleFeature(SimpleToggle.Off.ToString());
+        ToggleFeature(SimpleToggle.Off.GetEnumValue());
         return this;
     }
 
     public class Verifications : FeaturesRobot
     {
+        public Verifications NetShieldFeatureNameEquals(string netShieldText)
+        {
+            NetShieldWidgetButton.WaitUntilDisplayed();
+            List<string> allChildren = NetShieldWidgetButton.GetAllChildrenNames();
+            Assert.That(allChildren, Does.Contain(netShieldText));
+            return this;
+        }
+
+        public Verifications KillSwitchFeatureNameEquals(string killSwitchText)
+        {
+            KillSwitchWidgetButton.WaitUntilDisplayed();
+            List<string> allChildren = KillSwitchWidgetButton.GetAllChildrenNames();
+            Assert.That(allChildren, Does.Contain(killSwitchText));
+            return this;
+        }
+
+        public Verifications PortForwardingFeatureNameEquals(string portForwardingText)
+        {
+            PortForwardingWidgetButton.WaitUntilDisplayed();
+            List<string> allChildren = PortForwardingWidgetButton.GetAllChildrenNames();
+            Assert.That(allChildren, Does.Contain(portForwardingText));
+            return this;
+        }
+
+        public Verifications SplitTunnelingFeatureNameEquals(string splitTunnelingText)
+        {
+            SplitTunnelingWidgetButton.WaitUntilDisplayed();
+            List<string> allChildren = SplitTunnelingWidgetButton.GetAllChildrenNames();
+            Assert.That(allChildren, Does.Contain(splitTunnelingText));
+            return this;
+        }
+
         public Verifications IsNetShieldTextInFlyoutMenu()
         {
             List<string> allChildren = GetFlyoutChildren();
-            Assert.That(allChildren, Does.Contain(NET_SHIELD_ENABLED_FLYOUT_TEXT_1));
-            Assert.That(allChildren, Does.Contain(NET_SHIELD_ENABLED_FLYOUT_TEXT_2));
-            Assert.That(allChildren, Does.Contain(NET_SHIELD_ENABLED_FLYOUT_TEXT_3));
+            Assert.That(allChildren, Does.Contain(_netShieldEnabledFlyoutTextOne));
+            Assert.That(allChildren, Does.Contain(_netShieldEnabledFlyoutTextTwo));
+            Assert.That(allChildren, Does.Contain(_netShieldEnabledFlyoutTextThree));
             return this;
         }
 
         public Verifications IsAdvancedKillSwitchTextInFlyoutMenu(bool isConnected)
         {
             List<string> allChildren = GetFlyoutChildren();
-            Assert.That(allChildren, Does.Contain(KillSwitchMode.Advanced.ToString()));
-            Assert.That(allChildren, Does.Contain(isConnected ? CONNECTED_KILL_SWITCH_ENABLED_FLYOUT_TEXT_1 : DISCONNECTED_KILL_SWITCH_ENABLED_FLYOUT_TEXT_1));
-            Assert.That(allChildren, Does.Contain(isConnected ? CONNECTED_KILL_SWITCH_ENABLED_FLYOUT_TEXT_2 : DISCONNECTED_KILL_SWITCH_ENABLED_FLYOUT_TEXT_2));
+            Assert.That(allChildren, Does.Contain(KillSwitchMode.Advanced.GetEnumValue()));
+            Assert.That(allChildren, Does.Contain(isConnected ? _connectedKillSwitchEnabledFlyoutTextOne : _disconnectedKillSwitchEnabledFlyoutTextOne));
+            Assert.That(allChildren, Does.Contain(isConnected ? _connectedKillSwitchEnabledFlyoutTextTwo : _disconnectedKillSwitchEnabledFlyoutTextTwo));
             return this;
         }
 
@@ -192,7 +224,7 @@ public class FeaturesRobot
         {
             List<string> allChildren = GetFlyoutChildren();
             Assert.That(allChildren, Does.Contain(splitTunnelingMode));
-            Assert.That(allChildren, Does.Not.Contain(SPLIT_TUNNELING_NO_APP_SELECTED_FLYOUT_TEXT));
+            Assert.That(allChildren, Does.Not.Contain(_splitTunnelingNoAppSelectedFlyoutText));
             return this;
         }
 
@@ -200,7 +232,7 @@ public class FeaturesRobot
         {
             List<string> allChildren = GetFlyoutChildren();
             Assert.That(allChildren, Does.Contain(splitTunnelingMode.Replace("1", "0")));
-            Assert.That(allChildren, Does.Contain(SPLIT_TUNNELING_NO_APP_SELECTED_FLYOUT_TEXT));
+            Assert.That(allChildren, Does.Contain(_splitTunnelingNoAppSelectedFlyoutText));
             return this;
         }
 
@@ -220,8 +252,8 @@ public class FeaturesRobot
         public Verifications IsPortUnavailable()
         {
             List<string> allChildren = GetFlyoutChildren();
-            Assert.That(allChildren, Does.Contain(PORT_UNAVAILABLE_FLYOUT_TEXT_1));
-            Assert.That(allChildren, Does.Contain(PORT_UNAVAILABLE_FLYOUT_TEXT_2));
+            Assert.That(allChildren, Does.Contain(_portUnavailableFlyoutTextOne));
+            Assert.That(allChildren, Does.Contain(_portUnavailableFlyoutTextTwo));
             return this;
         }
     }

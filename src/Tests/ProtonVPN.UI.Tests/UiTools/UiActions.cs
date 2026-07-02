@@ -32,6 +32,7 @@ using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.Enums.Locations;
 
 namespace ProtonVPN.UI.Tests.UiTools;
 
@@ -389,11 +390,11 @@ public static class UiActions
         return desiredElement;
     }
 
-    public static Element TextContainsOneOf<T>(this T desiredElement, List<string> texts) where T : Element
+    public static Element TextContainsOneOf<T>(this T desiredElement, List<Country> texts) where T : Element
     {
         AutomationElement? element = WaitUntilExists(desiredElement);
         string? elementText = element?.AsLabel().Text;
-        Assert.That(texts.Any(oneOfText => elementText?.Contains(oneOfText) == true), Is.True, $"Expected string to contain at least one of: {string.Join(", ", texts)}, but was: {elementText}");
+        Assert.That(texts.Any(oneOfText => elementText?.Contains(oneOfText.GetName()) == true), Is.True, $"Expected string to contain at least one of: {string.Join(", ", texts)}, but was: {elementText}");
         return desiredElement;
     }
 

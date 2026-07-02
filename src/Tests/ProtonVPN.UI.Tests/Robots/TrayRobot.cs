@@ -39,8 +39,8 @@ public class TrayRobot
     private static AutomationElement? AppHeader => Desktop.FindFirstDescendant(cf => cf.ByName("AppWindow Custom Title Bar"));
 
     protected Element UsernameTextBox => Element.ByAutomationId("UsernameTextBox");
-    protected Element ExitAppButton => Element.ByName("Exit").And(Element.ByClassName("Button"));
-    protected Element OpenAppButton => Element.ByName("Open Proton VPN").And(Element.ByClassName("Button"));
+    protected Element ExitAppButton => Element.ByAutomationId("ExitAppFromTray");
+    protected Element OpenAppButton => Element.ByAutomationId("OpenAppFromTray");
 
     public class TrayAppWindow : IDisposable
     {

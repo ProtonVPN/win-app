@@ -30,15 +30,18 @@ public class SupportRobot
 {
     private readonly Func<Window?> _windowFunc;
 
-    protected Element ContactUsButton => Element.ByName("Contact us");
+    private static readonly string _connectionHelpHeaderTranslated = LanguageHelper.GetTranslatedString("Dialogs_Troubleshooting_Title");
+    private static readonly string _reportSentLabelTranslated = LanguageHelper.GetTranslatedString("Dialogs_ReportIssue_Result_Success");
+
+    protected Element ConnectionHelpHeader => Element.ByName(_connectionHelpHeaderTranslated);
+    protected Element ReportSentLabel => Element.ByName(_reportSentLabelTranslated);
+    protected Element ContactUsButton => Element.ByAutomationId("ContactUsButton");
     protected Element SendReportButton => Element.ByAutomationId("SendReportButton");
-    protected Element ReportSentLabel => Element.ByName("Report sent");
     protected Element NoLogsAttachedWarning => Element.ByAutomationId("Message");
     protected Element IncludeLogsCheckbox => Element.ByAutomationId("IncludeLogsCheckbox");
     protected Element EmailInputField => Element.ByAutomationId("EmailInputField");
-    protected Element DoneButton => Element.ByName("Done");
+    protected Element DoneButton => Element.ByAutomationId("ReportIssueCloseButton");
     protected Element CloseButton => Element.ByAutomationId("Close");
-    protected Element ConnectionHelpHeader => Element.ByName("Connection help");
 
     public SupportRobot(Func<Window?> windowFunc)
     {

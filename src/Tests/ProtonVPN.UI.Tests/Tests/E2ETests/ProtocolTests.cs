@@ -164,6 +164,6 @@ public class ProtocolTests : FreshSessionSetUp
             .Verify.IsConnected()
                    .IsProtocolDisplayed(protocol);
 
-        WindowsUtils.AssertLogFile(_serviceLogsPath, LINE_TO_LOOK_FOR, protocol.ToString());
+        WindowsUtils.AssertLogFile(_serviceLogsPath, LINE_TO_LOOK_FOR, protocol.GetEnumValue());
     }
 }

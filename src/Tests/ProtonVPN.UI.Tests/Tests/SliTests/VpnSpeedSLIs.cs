@@ -22,6 +22,7 @@ using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.Annotations;
+using ProtonVPN.UI.Tests.Enums.Locations;
 
 namespace ProtonVPN.UI.Tests.Tests.SliTests;
 
@@ -30,7 +31,7 @@ namespace ProtonVPN.UI.Tests.Tests.SliTests;
 [Workflow("main_measurements")]
 public class VpnSpeedSLIs : SliSetUp
 {
-    private const string COUNTRY_NAME = "Germany";
+    private const Country COUNTRY_NAME = Country.Germany;
 
     [SetUp]
     public void TestInitialize()
@@ -46,7 +47,7 @@ public class VpnSpeedSLIs : SliSetUp
         SliHelper.AddNetworkSpeedToMetrics("download_speed_disconnected", "upload_speed_disconnected");
 
         SidebarRobot
-            .SearchFor(COUNTRY_NAME)
+            .SearchFor(COUNTRY_NAME.GetName())
             .ConnectToCountry(COUNTRY_NAME);
 
         HomeRobot.Verify.IsConnected();

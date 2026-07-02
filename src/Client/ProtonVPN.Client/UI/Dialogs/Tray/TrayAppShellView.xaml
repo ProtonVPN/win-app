@@ -49,7 +49,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <custom:GhostButton Grid.Column="0"
+            <custom:GhostButton AutomationProperties.AutomationId="OpenAppFromTray"
+                                Grid.Column="0"
                                 HorizontalAlignment="Left"
                                 Command="{x:Bind ViewModel.ShowApplicationCommand, Mode=OneTime}"
                                 Content="{x:Bind ViewModel.OpenApplicationLabel}">
@@ -57,7 +58,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <pathicons:BrandProtonVpnFilled Size="Pixels16" />
                 </custom:GhostButton.LeftIcon>
             </custom:GhostButton>
-            <custom:GhostButton Grid.Column="1"
+            <custom:GhostButton AutomationProperties.AutomationId="ExitAppFromTray"
+                                Grid.Column="1"
                                 Command="{x:Bind ViewModel.ExitApplicationCommand, Mode=OneTime}"
                                 Content="{x:Bind ViewModel.Localizer.Get('Tray_Actions_ExitApplication')}">
                 <custom:GhostButton.RightIcon>

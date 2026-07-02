@@ -29,7 +29,7 @@ public class AdvancedSettingsRobot
 {
     protected Element CustomDnsSettingCard = Element.ByAutomationId("CustomDnsServersSettingsCard");
     protected Element CustomDnsToggle = Element.ByAutomationId("CustomDnsToggle");
-    protected Element EnableButton = Element.ByName("Enable");
+    protected Element EnableButton = Element.ByAutomationId("PrimaryButton");
     protected Element DnsServersSelectorSettingsCard = Element.ByAutomationId("DnsServersSelectorSettingsCard");
     protected Element NatTypeCard = Element.ByAutomationId("NatTypeSettingsCard");
     protected Element LanConnectionsSettingsCard = Element.ByAutomationId("LanConnectionsSettingsCard");

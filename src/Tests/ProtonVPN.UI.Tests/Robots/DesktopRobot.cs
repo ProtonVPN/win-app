@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -180,7 +181,7 @@ public class DesktopRobot : IDisposable
                 Thread.Sleep(TestConstants.FiveSecondsTimeout);
             }
 
-            var windowNames = desktopApps!.Where(e => e.Name != null && !string.IsNullOrWhiteSpace(e.Name)).Select(e => $"  • {e.Name}").ToList();
+            List<string> windowNames = desktopApps!.Where(e => e.Name != null && !string.IsNullOrWhiteSpace(e.Name)).Select(e => $"  • {e.Name}").ToList();
 
             string windowList = windowNames.Any() ? string.Join("\n", windowNames) : " (No windows found)";
 

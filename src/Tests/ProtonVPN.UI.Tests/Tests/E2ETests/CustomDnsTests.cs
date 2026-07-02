@@ -31,14 +31,6 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("ARM")]
 public class CustomDnsTests : BaseTest
 {
-    private const string ENABLE_CUSTOM_DNS_TITLE = "Enable custom DNS servers?";
-    private const string ENABLE_CUSTOM_DNS_DESCRIPTION = "You won't be able to use NetShield when connected with a custom DNS server.";
-    private const string ENABLE_CUSTOM_DNS_BUTTON = "Enable";
-
-    private const string UNSAVED_CHANGES_TITLE = "Discard unsaved changes?";
-    private const string UNSAVED_CHANGES_DISCARD_BUTTON = "Discard changes";
-    private const string UNSAVED_CHANGES_KEEP_EDITING_BUTTON = "Keep editing";
-
     private const string FIRST_CUSTOM_DNS_SERVER = "8.8.8.8";
     private const string SECOND_CUSTOM_DNS_SERVER = "1.1.1.1";
     private const string NEW_CUSTOM_DNS_SERVER = "22.33.0.5";
@@ -46,6 +38,14 @@ public class CustomDnsTests : BaseTest
     private const string QUAD9_DNS_SERVER = "9.9.9.9";
     private const string ALTERNATE_DNS_SERVER = "76.76.19.19";
     private const string OPENDNS_DNS_SERVER = "208.67.222.222";
+
+    private static readonly string _enableCustomDnsTitle = LanguageHelper.GetTranslatedString("Settings_Connection_Advanced_CustomDnsServers_Conflict_Title");
+    private static readonly string _enableCustomDnsDescription = LanguageHelper.GetTranslatedString("Settings_Connection_Advanced_CustomDnsServers_Conflict_Description");
+    private static readonly string _enableCustomDnsButton = LanguageHelper.GetTranslatedString("Common_Actions_Enable");
+
+    private static readonly string _unsavedChangesTitle = LanguageHelper.GetTranslatedString("Settings_DiscardChanges_Confirmation_Title");
+    private static readonly string _unsavedChangesDiscardButton = LanguageHelper.GetTranslatedString("Settings_DiscardChanges_Confirmation_Action");
+    private static readonly string _unsavedChangesKeepEditingButton = LanguageHelper.GetTranslatedString("Settings_DiscardChanges_Confirmation_Cancel");
 
     private static readonly (IpSelectorAction Action, string Ip)[] _scenarios =
         [
@@ -77,9 +77,9 @@ public class CustomDnsTests : BaseTest
 
         ConfirmationRobot
             .Verify.IsOverlayDisplayed()
-                   .OverlayTextContains(ENABLE_CUSTOM_DNS_TITLE)
-                   .OverlayTextContains(ENABLE_CUSTOM_DNS_DESCRIPTION)
-                   .OverlayButtonsEquals(primary: ENABLE_CUSTOM_DNS_BUTTON)
+                   .OverlayTextContains(_enableCustomDnsTitle)
+                   .OverlayTextContains(_enableCustomDnsDescription)
+                   .OverlayButtonsEquals(primary: _enableCustomDnsButton)
             .PrimaryAction()
             .Verify.IsOverlayClosed();
 
@@ -200,10 +200,10 @@ public class CustomDnsTests : BaseTest
 
             ConfirmationRobot
                 .Verify.IsOverlayDisplayed()
-                .OverlayTextContains(UNSAVED_CHANGES_TITLE)
+                .OverlayTextContains(_unsavedChangesTitle)
                 .OverlayButtonsEquals(
-                    primary: UNSAVED_CHANGES_DISCARD_BUTTON,
-                    cancel: UNSAVED_CHANGES_KEEP_EDITING_BUTTON)
+                    primary: _unsavedChangesDiscardButton,
+                    cancel: _unsavedChangesKeepEditingButton)
                 .PrimaryAction()
                 .Verify.IsOverlayClosed();
 
@@ -245,10 +245,10 @@ public class CustomDnsTests : BaseTest
 
         ConfirmationRobot
             .Verify.IsOverlayDisplayed()
-            .OverlayTextContains(UNSAVED_CHANGES_TITLE)
+            .OverlayTextContains(_unsavedChangesTitle)
             .OverlayButtonsEquals(
-                primary: UNSAVED_CHANGES_DISCARD_BUTTON,
-                cancel: UNSAVED_CHANGES_KEEP_EDITING_BUTTON)
+                primary: _unsavedChangesDiscardButton,
+                cancel: _unsavedChangesKeepEditingButton)
             .PrimaryAction()
             .Verify.IsOverlayClosed();
 

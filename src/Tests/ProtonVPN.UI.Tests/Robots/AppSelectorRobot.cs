@@ -19,6 +19,8 @@
 
 using System.Collections.Generic;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Enums;
+using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
 
 namespace ProtonVPN.UI.Tests.Robots;
@@ -27,19 +29,22 @@ public class AppSelectorRobot
 {
     protected Element AppCheckboxParent = Element.ByAutomationId("AppsListView");
 
-    public AppSelectorRobot AddSuggestedApp(string appName)
+    public AppSelectorRobot AddSuggestedApp(Browser appName)
     {
-        AppCheckboxParent.SelectCheckboxByText(appName);
+        AppCheckboxParent.SelectCheckboxByText(appName.GetEnumValue());
         return this;
     }
 
     public class Verifications : AppSelectorRobot
     {
-        public Verifications IsAppChecked(string appName)
+        public Verifications IsAppChecked(Browser appName)
         {
-            Assert.That(Element.ByName(appName).IsToggled(checkParent: true), Is.True);
+            Assert.That(Element.ByName(appName.GetEnumValue()).IsToggled(checkParent: true), Is.True);
             return this;
         }
+
+        public Verifications AssertAppAvailability(Browser appName, bool shouldBeAvailable)
+            => AssertAppAvailability(appName.GetEnumValue(), shouldBeAvailable);
 
         public Verifications AssertAppAvailability(string appName, bool shouldBeAvailable)
         {

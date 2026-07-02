@@ -26,8 +26,8 @@ public class SplitTunnelingRobot
     protected Element SplitTunnelingToggle = Element.ByAutomationId("SplitTunnelingSwitch");
     protected Element AppsSelectorSettingsCard = Element.ByAutomationId("AppsSelectorSettingsCard");
     protected Element IpAddressesSelectorSettingsCard = Element.ByAutomationId("IpAddressesSelectorSettingsCard");
-    protected Element ExcludeModeRadioButton = Element.ByName("Exclude mode");
-    protected Element IncludeModeRadioButton = Element.ByName("Include mode");
+    protected Element ExcludeModeRadioButton = Element.ByAutomationId("ExcludeModeRadioButton");
+    protected Element IncludeModeRadioButton = Element.ByAutomationId("IncludeModeRadioButton");
 
     public SplitTunnelingRobot EnableSplitTunnelingToggle()
     {

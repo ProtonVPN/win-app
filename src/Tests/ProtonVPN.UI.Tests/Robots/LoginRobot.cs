@@ -27,6 +27,11 @@ namespace ProtonVPN.UI.Tests.Robots;
 
 public class LoginRobot
 {
+    private static readonly string _killSwitchDisabledLabelTranslated = LanguageHelper.GetTranslatedString("SignIn_KillSwitch_Disabled");
+
+    protected Element KillSwitchDisabledLabel = Element.ByName(_killSwitchDisabledLabelTranslated);
+    protected Element DisableKillSwitchButton = Element.ByAutomationId("DisableKillSwitchButton");
+    protected Element DisableKillSwitchLabel = Element.ByAutomationId("AdvancedKillSwitchDescriptionText");
     protected Element UsernameTextBox = Element.ByAutomationId("UsernameTextBox");
     protected Element PasswordTextBox = Element.ByAutomationId("PasswordBox");
     protected Element TwoFactorFirstDigit = Element.ByAutomationId("FirstDigit");
@@ -39,17 +44,13 @@ public class LoginRobot
     protected Element SignInButton = Element.ByAutomationId("SignInButton");
     protected Element CreateAccountButton = Element.ByAutomationId("CreateAccountButton");
     protected Element SsoWindow = Element.ByAutomationId("ContentScrollViewer");
-    protected Element SignInWithSsoButton = Element.ByName("Sign in with SSO");
+    protected Element SignInWithSsoButton = Element.ByAutomationId("SwitchSignInButton");
     protected Element CancelSignInButton = Element.ByAutomationId("CancelSignInButton");
 
     protected Element HelpButton = Element.ByAutomationId("HelpButton");
     protected Element ReportIssueMenuItem = Element.ByAutomationId("ReportIssueMenuItem");
-    protected Element ForgotUsernameMenuItem = Element.ByName("Forgot username");
-    protected Element ForgotPasswordMenuItem = Element.ByName("Forgot password");
-
-    protected Element DisableKillSwitchButton = Element.ByAutomationId("DisableKillSwitchButton");
-    protected Element DisableKillSwitchLabel = Element.ByAutomationId("AdvancedKillSwitchDescriptionText");
-    protected Element KillSwitchDisabledLabel = Element.ByName("Kill switch is disabled");
+    protected Element ForgotUsernameMenuItem = Element.ByAutomationId("ForgotUsernameMenuItem");
+    protected Element ForgotPasswordMenuItem = Element.ByAutomationId("ForgotPasswordMenuItem");
 
     public LoginRobot Login(TestUserData user)
     {

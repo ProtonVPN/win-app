@@ -18,6 +18,8 @@
  */
 
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Enums;
+using ProtonVPN.UI.Tests.Enums.Locations;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -30,9 +32,9 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("SMOKE_3")]
 public class RecentsTests : BaseTest
 {
-    private const string CONNECTION_NAME = "Fastest country";
-    private const string COUNTRY_NAME = "Austria";
-    private const string PROFILE_NAME = "Gaming";
+    private const Country COUNTRY_NAME = Country.Austria;
+    private static readonly string _fastestCountry = LanguageHelper.GetTranslatedString("Country_Fastest");
+    private static readonly string _profileName = DefaultProfile.Gaming.GetEnumValue();
 
     [OneTimeSetUp]
     public void SetUp()
@@ -57,7 +59,7 @@ public class RecentsTests : BaseTest
 
         SidebarRobot
             .Verify.HasNoRecentsLabel()
-                   .IsConnectionOptionDisplayed(CONNECTION_NAME)
+                   .IsConnectionOptionDisplayed(_fastestCountry)
                    .IsRecentsCountDisplayed(1)
            .NavigateToAllCountriesTab()
            .ConnectToCountry(COUNTRY_NAME);
@@ -69,7 +71,7 @@ public class RecentsTests : BaseTest
 
         SidebarRobot
             .NavigateToRecents()
-            .Verify.IsConnectionOptionDisplayed(COUNTRY_NAME)
+            .Verify.IsConnectionOptionDisplayed(COUNTRY_NAME.GetName())
                    .IsRecentsCountDisplayed(2);
     }
 
@@ -79,7 +81,7 @@ public class RecentsTests : BaseTest
     {
         SidebarRobot
             .NavigateToProfiles()
-            .ConnectToProfile(PROFILE_NAME);
+            .ConnectToProfile(_profileName);
 
         HomeRobot
             .Verify.IsConnected()
@@ -88,7 +90,7 @@ public class RecentsTests : BaseTest
 
         SidebarRobot
             .NavigateToRecents()
-            .Verify.IsConnectionOptionDisplayed(PROFILE_NAME)
+            .Verify.IsConnectionOptionDisplayed(_profileName)
             .IsRecentsCountDisplayed(3);
     }
 
@@ -97,9 +99,9 @@ public class RecentsTests : BaseTest
     public void RemoveRecentFromList()
     {
         SidebarRobot
-            .ExpandSecondaryActionsForRecents(CONNECTION_NAME)
+            .ExpandSecondaryActionsForRecents(_fastestCountry)
             .RemoveRecent()
-            .Verify.IsConnectionOptionMissing(CONNECTION_NAME)
+            .Verify.IsConnectionOptionMissing(_fastestCountry)
                    .IsRecentsCountDisplayed(2);
     }
 
@@ -108,10 +110,10 @@ public class RecentsTests : BaseTest
     public void PinRecentFromList()
     {
         SidebarRobot
-            .Verify.IsConnectionOptionDisplayed(PROFILE_NAME)
+            .Verify.IsConnectionOptionDisplayed(_profileName)
                    .IsRecentsCountDisplayed(2)
                    .IsPinnedCountMissing()
-            .ExpandSecondaryActionsForRecents(PROFILE_NAME)
+            .ExpandSecondaryActionsForRecents(_profileName)
             .PinRecent()
             .Verify.IsPinnedCountDisplayed(1)
                    .IsRecentsCountDisplayed(1);
@@ -122,10 +124,10 @@ public class RecentsTests : BaseTest
     public void UnpinRecentFromList()
     {
         SidebarRobot
-            .Verify.IsConnectionOptionDisplayed(PROFILE_NAME)
+            .Verify.IsConnectionOptionDisplayed(_profileName)
                    .IsRecentsCountDisplayed(1)
                    .IsPinnedCountDisplayed(1)
-            .ExpandSecondaryActionsForRecents(PROFILE_NAME)
+            .ExpandSecondaryActionsForRecents(_profileName)
             .UnpinRecent()
             .Verify.IsPinnedCountMissing()
                    .IsRecentsCountDisplayed(2);

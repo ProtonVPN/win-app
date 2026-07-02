@@ -28,6 +28,7 @@ using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.Annotations;
 using ProtonVPN.UI.Tests.ApiClient.Prod;
+using ProtonVPN.UI.Tests.Enums.Locations;
 
 namespace ProtonVPN.UI.Tests.Tests.SliTests;
 
@@ -36,9 +37,9 @@ namespace ProtonVPN.UI.Tests.Tests.SliTests;
 [Workflow("main_measurements")]
 public class ConnectionSLIs : SliSetUp
 {
-    private const string SECURE_CORE_COUNTRY = "Australia";
-    private const string P2P_COUNTRY = "Algeria";
-    private const string TOR_COUNTRY = "France";
+    private const Country SECURE_CORE_COUNTRY = Country.Australia;
+    private const Country P2P_COUNTRY = Country.Algeria;
+    private const Country TOR_COUNTRY = Country.France;
 
     private ProdTestApiClient _prodTestApiClient = new();
 
@@ -87,7 +88,7 @@ public class ConnectionSLIs : SliSetUp
         SecureString password = new NetworkCredential("", TestUserData.PlusUser.Password).SecurePassword;
         string serverName = await _prodTestApiClient.GetRandomSpecificPaidServerAsync(TestUserData.PlusUser.Username, password);
 
-        ConnectAndDisconnect(CountryTab.All, serverName, isServer: true);
+        ConnectAndDisconnectServer(CountryTab.All, serverName);
     }
 
     [Test]
@@ -114,22 +115,14 @@ public class ConnectionSLIs : SliSetUp
         ConnectAndDisconnect(CountryTab.Tor, TOR_COUNTRY);
     }
 
-    private void ConnectAndDisconnect(CountryTab tab, string connection, bool isServer = false)
+    private void ConnectAndDisconnect(CountryTab tab, Country countryName)
     {
         // First connection is made to make sure that everything is setup
         SidebarRobot
-            .SearchFor(connection)
-            .NavigateToCountriesTabAfterSearch(tab);
-
-        if (isServer)
-        {
-            SidebarRobot.ConnectToServer();
-        }
-        else
-        {
-            SidebarRobot.ConnectToCountry(connection);
-        }
-
+            .SearchFor(countryName.GetName())
+            .NavigateToCountriesTabAfterSearch(tab)
+            .ConnectToCountry(countryName);
+        
         HomeRobot
             .Verify.IsConnected()
             .Disconnect();
@@ -138,17 +131,37 @@ public class ConnectionSLIs : SliSetUp
         Thread.Sleep(TestConstants.TenSecondsTimeout);
 
         SidebarRobot
-            .SearchFor(connection)
-            .NavigateToCountriesTabAfterSearch(tab);
+            .SearchFor(countryName.GetName())
+            .NavigateToCountriesTabAfterSearch(tab)
+            .ConnectToCountry(countryName);
 
-        if (isServer)
+        SliHelper.MeasureTime(() =>
         {
-            SidebarRobot.ConnectToServer();
-        }
-        else
-        {
-            SidebarRobot.ConnectToCountry(connection);
-        }
+            HomeRobot.Verify.IsConnected();
+        });
+
+        HomeRobot
+            .Disconnect()
+            .Verify.IsDisconnected();
+    }
+
+    private void ConnectAndDisconnectServer(CountryTab tab, string serverName)
+    {
+        SidebarRobot
+            .SearchFor(serverName)
+            .NavigateToCountriesTabAfterSearch(tab)
+            .ConnectToServer();
+
+        HomeRobot
+            .Verify.IsConnected()
+            .Disconnect();
+
+        Thread.Sleep(TestConstants.TenSecondsTimeout);
+
+        SidebarRobot
+            .SearchFor(serverName)
+            .NavigateToCountriesTabAfterSearch(tab)
+            .ConnectToServer();
 
         SliHelper.MeasureTime(() =>
         {

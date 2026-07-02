@@ -28,17 +28,17 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("ARM")]
 public class OnboardingTests : BaseTest
 {
-    private const string EXCLUDED_LOCATIONS_TIP_PROMPT = "Avoid unwanted locations";
-    private const string EXCLUDED_LOCATIONS_TIP_ACTION = "Exclude locations";
-    private const string EXCLUDED_LOCATIONS_TIP_CANCEL = "Maybe later";
+    private static readonly string _excludedLocationsTipPrompt = LanguageHelper.GetTranslatedString("ExcludedLocations_TeachingTip_Title");
+    private static readonly string _excludedLocationsTipAction = LanguageHelper.GetTranslatedString("ExcludedLocations_TeachingTip_ActionButton");
+    private static readonly string _excludedLocationsTipCancel = LanguageHelper.GetTranslatedString("ExcludedLocations_TeachingTip_CloseButton");
 
-    private const string EXCLUDED_LOCATIONS_DISCOVERY_PROMPT = "Not the country you wanted?";
-    private const string EXCLUDED_LOCATIONS_DISCOVERY_ACTION = "Exclude locations";
-    private const string EXCLUDED_LOCATIONS_DISCOVERY_CANCEL = "Skip";
+    private static readonly string _excludedLocationsDiscoveryPrompt = LanguageHelper.GetTranslatedString("ExcludedLocations_SmartDiscovery_Prompt_Title");
+    private static readonly string _excludedLocationsDiscoveryAction = LanguageHelper.GetTranslatedString("ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations");
+    private static readonly string _excludedLocationsDiscoveryCancel = LanguageHelper.GetTranslatedString("ExcludedLocations_SmartDiscovery_Prompt_Skip");
 
-    private const string P2P_INFO_BANNER_DESCRIPTION = "Download files over P2P";
-    private const string SECURE_CORE_INFO_BANNER_DESCRIPTION = "Add another layer of encryption";
-    private const string TOR_INFO_BANNER_DESCRIPTION = "Use the Tor network";
+    private static readonly string _p2pInfoBannerDesription = LanguageHelper.GetTranslatedString("Countries_P2P_Description");
+    private static readonly string _secureCoreInfoBannerDesription = LanguageHelper.GetTranslatedString("Countries_SecureCore_Description");
+    private static readonly string _torInfoBannerDesription = LanguageHelper.GetTranslatedString("Countries_Tor_Description");
 
     [OneTimeSetUp]
     public void SetUp()
@@ -67,11 +67,11 @@ public class OnboardingTests : BaseTest
 
         SidebarRobot
             .NavigateToP2PCountriesTab()
-            .Verify.IsCountryInfoBannerDisplayed(P2P_INFO_BANNER_DESCRIPTION)
+            .Verify.IsCountryInfoBannerDisplayed(_p2pInfoBannerDesription)
             .NavigateToSecureCoreCountriesTab()
-            .Verify.IsCountryInfoBannerDisplayed(SECURE_CORE_INFO_BANNER_DESCRIPTION)
+            .Verify.IsCountryInfoBannerDisplayed(_secureCoreInfoBannerDesription)
             .NavigateToTorCountriesTab()
-            .Verify.IsCountryInfoBannerDisplayed(TOR_INFO_BANNER_DESCRIPTION);
+            .Verify.IsCountryInfoBannerDisplayed(_torInfoBannerDesription);
     }
 
     [Test, Order(2)]
@@ -83,10 +83,10 @@ public class OnboardingTests : BaseTest
 
         TeachingTipRobot
             .Verify.IsTeachingTipDisplayed()
-                   .TeachingTipTextContains(EXCLUDED_LOCATIONS_TIP_PROMPT)
+                   .TeachingTipTextContains(_excludedLocationsTipPrompt)
                    .TeachingTipButtonEquals(
-                        primary: EXCLUDED_LOCATIONS_TIP_ACTION,
-                        close: EXCLUDED_LOCATIONS_TIP_CANCEL)
+                        primary: _excludedLocationsTipAction,
+                        close: _excludedLocationsTipCancel)
             .CloseAction();
 
         HomeRobot
@@ -99,10 +99,10 @@ public class OnboardingTests : BaseTest
 
         ConfirmationRobot
             .Verify.IsOverlayDisplayed()
-                   .OverlayTextContains(EXCLUDED_LOCATIONS_DISCOVERY_PROMPT)
+                   .OverlayTextContains(_excludedLocationsDiscoveryPrompt)
                    .OverlayButtonsEquals(
-                        primary: EXCLUDED_LOCATIONS_DISCOVERY_ACTION,
-                        cancel: EXCLUDED_LOCATIONS_DISCOVERY_CANCEL)
+                        primary: _excludedLocationsDiscoveryAction,
+                        cancel: _excludedLocationsDiscoveryCancel)
             .PrimaryAction();
 
         NavigationRobot

@@ -21,6 +21,7 @@ using System;
 using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
+using ProtonVPN.UI.Tests.Enums.Locations;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -37,9 +38,8 @@ public class ProfileTests : BaseTest
     private const string CUSTOM_SETTINGS_PROFILE_NAME = "Profile C";
     private const Protocol CUSTOM_SETTINGS_PROTOCOL = Protocol.WireGuardTcp;
 
-    private const string COUNTRY_NAME = "Australia";
-    private const string CITY_NAME = "Perth";
-    private const string CONNECTION_CARD_DESCRIPTION = $"{COUNTRY_NAME} - {CITY_NAME}";
+    private const Country COUNTRY_NAME = Country.Australia;
+    private const City CITY_NAME = City.Perth;
 
     private const string WEBSITE_PROFILE_NAME = "Open web Profile";
     private const string WEBSITE_TO_OPEN = "youtube.com";
@@ -49,13 +49,13 @@ public class ProfileTests : BaseTest
     private const string APP_TO_OPEN = "Google Chrome";
     private const string APP_TO_OPEN_PATH = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
 
-    private static readonly string[] _defaultProfiles = { "Streaming US", "Gaming", "P2P", "Max security", "Work/School" };
+    private readonly string _connectionCardDescription = $"{COUNTRY_NAME.GetName()} - {CITY_NAME.GetEnumValue()}";
 
-    private static readonly (string profileName, ConnectionType connectionType, string countryName, Protocol protocol)[] _profiles =
+    private static readonly (string profileName, ConnectionType connectionType, Country countryName, Protocol protocol)[] _profiles =
     {
-        (profileName: "Profile 1", connectionType: ConnectionType.Standard, countryName: "Argentina", protocol: Protocol.OpenVpnUdp),
-        (profileName: "Profile 2", connectionType: ConnectionType.P2P, countryName: "Belgium", protocol: Protocol.WireGuardTcp),
-        (profileName: "Profile 3", connectionType: ConnectionType.SecureCore, countryName: "Egypt", protocol: Protocol.WireGuardUdp)
+        (profileName: "Profile 1", connectionType: ConnectionType.Standard, countryName: Country.Argentina, protocol: Protocol.OpenVpnUdp),
+        (profileName: "Profile 2", connectionType: ConnectionType.P2P, countryName: Country.Belgium, protocol: Protocol.WireGuardTcp),
+        (profileName: "Profile 3", connectionType: ConnectionType.SecureCore, countryName: Country.Egypt, protocol: Protocol.WireGuardUdp)
     };
 
     [OneTimeSetUp]
@@ -74,10 +74,10 @@ public class ProfileTests : BaseTest
         SidebarRobot
             .NavigateToProfiles();
 
-        foreach (string profile in _defaultProfiles)
+        foreach (DefaultProfile profile in Enum.GetValues(typeof(DefaultProfile)))
         {
             SidebarRobot
-                .Verify.DoesConnectionItemExist(profile);
+                .Verify.DoesConnectionItemExist(profile.GetEnumValue());
         }
     }
 
@@ -301,7 +301,7 @@ public class ProfileTests : BaseTest
             .Verify.IsConnecting()
                    .IsConnected()
                    .ConnectionCardTitleEquals(CUSTOM_SETTINGS_PROFILE_NAME)
-                   .ConnectionCardDescriptionContains(CONNECTION_CARD_DESCRIPTION);
+                   .ConnectionCardDescriptionContains(_connectionCardDescription);
         FeaturesRobot
             .Verify.IsPortForwardingEnabled();
         HomeRobot
@@ -317,7 +317,7 @@ public class ProfileTests : BaseTest
     [Property("TestCaseId", "602437")]
     [Retry(3)]
     [TestCaseSource(nameof(_profiles))]
-    public void ConnectToDifferentProfilesWithDifferentConnectionTypesAndProtocols((string profileName, ConnectionType connectionType, string countryName, Protocol protocol) profile)
+    public void ConnectToDifferentProfilesWithDifferentConnectionTypesAndProtocols((string profileName, ConnectionType connectionType, Country countryName, Protocol protocol) profile)
     {
         CloseLeftoverProfilePage();
 
@@ -332,7 +332,7 @@ public class ProfileTests : BaseTest
         HomeRobot
             .Verify.IsConnected()
                    .ConnectionCardTitleEquals(profile.profileName)
-                   .ConnectionCardDescriptionContains(profile.countryName)
+                   .ConnectionCardDescriptionContains(profile.countryName.GetName())
                    .IsProtocolDisplayed(profile.protocol);
 
         if (profile.connectionType == ConnectionType.P2P)
@@ -344,13 +344,13 @@ public class ProfileTests : BaseTest
         if (profile.connectionType == ConnectionType.SecureCore)
         {
             HomeRobot.Verify
-                .ConnectionCardDescriptionContains(" via ");
+                .ConnectionCardDescriptionContains(TestConstants.ViaPrefix);
         }
 
         //TODO: The map highlights the country of the server;
     }
 
-    private void CreateProfile(string profileName, ConnectionType connectionType, string country, Protocol protocol)
+    private void CreateProfile(string profileName, ConnectionType connectionType, Country country, Protocol protocol)
     {
         SidebarRobot
             .ClickCreateProfile();

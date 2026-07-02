@@ -19,10 +19,12 @@
 
 using System;
 using System.IO;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Collections.Generic;
 using FlaUI.UIA3;
 using FlaUI.Core;
 using FlaUI.Core.Tools;
@@ -198,6 +200,11 @@ public class BaseTest
         if (parameters.IsFreshStart)
         {
             DeleteProtonData();
+
+            if (LanguageHelper.ForceLanguageChange)
+            {
+                SetLanguageInSettingsFile();
+            }
         }
 
         string installedClientPath = Path.Combine(
@@ -225,6 +232,19 @@ public class BaseTest
             RefreshWindow(TestConstants.OneMinuteTimeout);
             Window?.Focus();
         }
+    }
+
+    private static void SetLanguageInSettingsFile()
+    {
+        Dictionary<string, string> settings = new()
+        {
+            ["Language"] = LanguageHelper.CurrentLanguage.GetCode()
+        };
+
+        string json = JsonSerializer.Serialize(settings, new JsonSerializerOptions { WriteIndented = true });
+
+        Directory.CreateDirectory(TestConstants.StoragePath);
+        File.WriteAllText(TestConstants.GlobalSettingsPath, json);
     }
 
     protected static void RestartApp(bool shouldRefreshWindow = true)
