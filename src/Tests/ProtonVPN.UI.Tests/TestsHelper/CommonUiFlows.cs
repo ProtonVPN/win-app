@@ -58,11 +58,15 @@ public class CommonUiFlows : BaseTest
             .Verify.IsLoginWindowDisplayed();
     }
 
-    public static void EnsureUserIsDisconnected(bool shouldVerifyKillSwitch = false)
+    public static void EnsureUserIsDisconnected(bool shouldVerifyKillSwitch = false, bool shouldCancelConnection = false)
     {
         Action verifyDisconnectState = shouldVerifyKillSwitch
             ? () => HomeRobot.Verify.IsAdvancedKillSwitchActivated()
             : () => HomeRobot.Verify.IsDisconnected(TestConstants.TenSecondsTimeout);
+
+        Action InteruptConnection = shouldCancelConnection
+            ? () => HomeRobot.CancelConnection()
+            : () => HomeRobot.Disconnect();
 
         try
         {
@@ -70,8 +74,7 @@ public class CommonUiFlows : BaseTest
         }
         catch (TimeoutException)
         {
-            HomeRobot
-                .Disconnect();
+            InteruptConnection();
             verifyDisconnectState();
         }
     }

@@ -20,6 +20,7 @@
 using System;
 using System.IO;
 using System.Text;
+using System.Threading;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 
@@ -91,20 +92,24 @@ public static class ScriptHelper
 
     public static void ConnectToWireGuard()
     {
+        CreateWireGuardConfigFile();
         WindowsUtils.RunPowerShellScript(_connectWireGuardScript);
+        Thread.Sleep(TestConstants.TwoSecondsTimeout);
+        VerifyWireGuardIsConnected();
     }
 
     public static void DisconnectFromWireGuard()
     {
         WindowsUtils.RunPowerShellScript(_disconnectWireGuardScript);
+        RemoveWireGuardConfigFile();
     }
 
-    public static void VerifyWireGuardIsConnected()
+    private static void VerifyWireGuardIsConnected()
     {
-        WindowsUtils.RunPowerShellScript(_checkIsWireGuardConnectedScript, shouldEnableLogging: true, _stringToCheckInWG);
+        WindowsUtils.RunPowerShellScript(_checkIsWireGuardConnectedScript, shouldEnableLogging: false, _stringToCheckInWG);
     }
 
-    public static void CreateWireGuardConfigFile()
+    private static void CreateWireGuardConfigFile()
     {
         string decodedConfig = GetDecodedWireGuardConfig();
 
@@ -120,7 +125,7 @@ $config = @'
         WindowsUtils.RunPowerShellScript(createWireGuardConfigFileScript);
     }
 
-    public static void RemoveWireGuardConfigFile()
+    private static void RemoveWireGuardConfigFile()
     {
         WindowsUtils.RunPowerShellScript(_removeWireGuardConfigFileScript);
     }

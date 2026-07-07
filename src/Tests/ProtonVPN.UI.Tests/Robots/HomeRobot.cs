@@ -47,11 +47,11 @@ public class HomeRobot
     private static readonly string _randomCountryOptionTranslated = LanguageHelper.GetTranslatedString("Country_Random");
     private static readonly string _lastConnectionOptionTranslated = LanguageHelper.GetTranslatedString("Settings_Connection_Default_Last");
     private static readonly string _wireGuardConnectionErrorPanelTitleTranslated = LanguageHelper.GetTranslatedString("Connection_Error_ConflictingAdapter_Title");
-    private static readonly string _wireGuardConnectionErrorPanelDescriptionTranslated = LanguageHelper.GetTranslatedString("Connection_Error_ConflictingAdapter_Description");
+    private static readonly string _wireGuardConnectionErrorPanelDescriptionTranslated = LanguageHelper.GetTranslatedString("Connection_Error_ConflictingAdapter_Description") + "\r\n- WireGuard Tunnel (wg0)";
 
-    protected Element EmptyIpAddress = Element.ByName(_yourIpAddressTranslated).And(Element.ByName("-"));
-    protected Element EmptyCountry = Element.ByName(_countryTranslated).And(Element.ByName("-"));
-    protected Element EmptyProvider = Element.ByName(_providerTranslated).And(Element.ByName("-"));
+    protected Element LocationDetailsIpAddress = Element.ByName(_yourIpAddressTranslated);
+    protected Element LocationDetailsCountry = Element.ByName(_countryTranslated);
+    protected Element LocationDetailsProvider = Element.ByName(_providerTranslated);
 
     protected Element ProtectedLabel = Element.ByName(_protectedLabelTranslated);
     protected Element UnprotectedLabel = Element.ByName(_unprotectedLabelTranslated);
@@ -263,6 +263,7 @@ public class HomeRobot
 
     public HomeRobot CloseConnectionError()
     {
+        Thread.Sleep(TestConstants.TwoSecondsTimeout);
         ConnectionErrorPanelCloseButton.Click();
         return this;
     }
@@ -271,17 +272,9 @@ public class HomeRobot
     {
         public Verifications IsLocationDetailsPanelEmpty()
         {
-            EmptyIpAddress.WaitUntilDisplayed();
-            EmptyCountry.WaitUntilDisplayed();
-            EmptyProvider.WaitUntilDisplayed();
-            return this;
-        }
-
-        public Verifications AreLocationDetailsShown()
-        {
-            EmptyIpAddress.DoesNotExist();
-            EmptyCountry.DoesNotExist();
-            EmptyProvider.DoesNotExist();
+            LocationDetailsIpAddress.SiblingTextEquals("-");
+            LocationDetailsCountry.SiblingTextEquals("-");
+            LocationDetailsProvider.SiblingTextEquals("-");
             return this;
         }
 

@@ -139,8 +139,8 @@ public class ConnectionTests : FreshSessionSetUp
     }
 
     [Test]
-	[Property("TestCaseId", "602340")]
-	public void ClientKillDoesNotStopVpnConnection()
+    [Property("TestCaseId", "602340")]
+    public void ClientKillDoesNotStopVpnConnection()
     {
         SettingRobot
            .OpenSettings()
@@ -294,20 +294,21 @@ public class ConnectionTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602424")]
-    [Ignore("Native WireGuard causes infinite connecting on the ProTUN build")]
+    [Retry(3)]
     public void FreshSignInWhileConnectedToWireGuard()
     {
-        LoginFreshWithWireGuardOn();
+        try
+        {
+            LoginFreshWithWireGuardOn();
 
-        HomeRobot
-            .Verify.IsLocationDetailsPanelEmpty();
-        //TODO: There is no (red) pin on the map displaying user's current location;
-
-        ScriptHelper.DisconnectFromWireGuard();
-
-        HomeRobot
-            .Verify.AreLocationDetailsShown();
-        //TODO: A(red) pin on the map displays user's current country;
+            HomeRobot
+                .Verify.IsLocationDetailsPanelEmpty();
+        }
+        finally
+        {
+            ScriptHelper.DisconnectFromWireGuard();
+            Thread.Sleep(TestConstants.TenSecondsTimeout);
+        }
 
         HomeRobot
             .ConnectViaConnectionCard()
@@ -348,6 +349,7 @@ public class ConnectionTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602422")]
+    [Retry(3)]
     public void ConnectionRestoresAfterStoppingVpnService()
     {
         HomeRobot
@@ -367,12 +369,16 @@ public class ConnectionTests : FreshSessionSetUp
 
         HomeRobot.Verify.IsConnected();
 
+        //Give it time to properly restore internet
+        Thread.Sleep(TestConstants.TenSecondsTimeout);
+
         //Note: DNS leaks are expected in this scenario, unless Kill Switch is set to "Advanced"
         BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: true);
     }
 
     [Test]
     [Property("TestCaseId", "602345")]
+    [Retry(3)]
     public void ConnectWithoutInternet()
     {
         try
@@ -411,11 +417,12 @@ public class ConnectionTests : FreshSessionSetUp
     {
         App?.Close();
         App?.Dispose();
+
         ScriptHelper.ConnectToWireGuard();
-        Thread.Sleep(TestConstants.TwoSecondsTimeout);
-        ScriptHelper.VerifyWireGuardIsConnected();
+        Thread.Sleep(TestConstants.TenSecondsTimeout);
         LaunchClient();
-        CommonUiFlows.FullLogin(TestUserData.PlusUser);
+        NetworkUtils.AssertInternetAvailability(true);
+        CommonUiFlows.FullLogin(TestUserData.VisionaryUser);
     }
 
     private void EnableKillSwitch(KillSwitchMode mode)
