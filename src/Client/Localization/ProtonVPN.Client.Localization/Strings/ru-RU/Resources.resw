@@ -660,13 +660,13 @@ Error code: {0}</value>
     <value>Сервер</value>
   </data>
   <data name="Connections_Servers_Few">
-    <value>Серверы</value>
+    <value>Сервера</value>
   </data>
   <data name="Connections_Servers_Many">
-    <value>Серверы</value>
+    <value>Серверов</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Серверы</value>
+    <value>Серверов</value>
   </data>
   <data name="Connections_State">
     <value>Штат</value>
@@ -1853,7 +1853,7 @@ Error code: {0}</value>
     <value>How likely are you to recommend Proton VPN to a friend?</value>
   </data>
   <data name="Dialogs_NpsSurvey_TryAgain">
-    <value>Попробовать снова</value>
+    <value>Повторите попытку</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
     <value>Upgrade to unlock P2P (peer-to-peer) servers for fast online gaming and torrenting, or end your P2P activity to restore your connection.</value>
@@ -3326,10 +3326,10 @@ Error code: {0}</value>
     <value>NetShield</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
-    <value>Block ads, trackers, and malware</value>
+    <value>Блокируйте рекламу, трекеры и вредоносные программы</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent">
-    <value>Block ads, trackers, malware, and adult content</value>
+    <value>Блокируйте рекламу, трекеры, вредоносные программы и контент для взрослых</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockMalwareOnly">
     <value>Блокировать только вредоносные программы</value>
