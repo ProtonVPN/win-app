@@ -171,10 +171,24 @@ public class NetworkUtils
 
     private static bool IsInternetAvailable(bool shouldBeAvailable)
     {
-        Thread.Sleep(TestConstants.TenSecondsTimeout);
-        JObject? connectionData = GetConnectionDataAsync(shouldBeAvailable).GetAwaiter().GetResult();
-        return connectionData?["status"]?.ToString() == "success"
+        DateTime timeoutDate = DateTime.UtcNow + TestConstants.ThirtySecondsTimeout;
+        bool lastResult = !shouldBeAvailable;
+
+        while (DateTime.UtcNow < timeoutDate)
+        {
+            JObject? connectionData = GetConnectionDataAsync(shouldBeAvailable).GetAwaiter().GetResult();
+            lastResult = connectionData?["status"]?.ToString() == "success"
             || connectionData?["success"]?.Value<bool>() == true;
+
+            if (lastResult == shouldBeAvailable)
+            {
+                return lastResult;
+            }
+
+            Thread.Sleep(TestConstants.FiveSecondsTimeout);
+        }
+
+        return lastResult;
     }
 
     private static async Task<JObject?> GetConnectionDataAsync(bool errorIsNotExpected = true)

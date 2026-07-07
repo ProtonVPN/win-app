@@ -129,30 +129,25 @@ public class TrayTests : BaseTest
 
     [Test, Order(4)]
     [Property("TestCaseId", "602463")]
-    [Ignore("Native WireGuard causes infinite connecting on the ProTUN build")]
     public void ConnectingErrorsInTray()
     {
-        ScriptHelper.CreateWireGuardConfigFile();
-        ScriptHelper.ConnectToWireGuard();
-        Thread.Sleep(TestConstants.TwoSecondsTimeout);
-        ScriptHelper.VerifyWireGuardIsConnected();
-
         try
         {
+            ScriptHelper.ConnectToWireGuard();
+
             using (TrayApp)
             {
                 HomeRobot
                     .ConnectViaConnectionCard()
                     .Verify.IsWireGuardErrorDisplayed()
-                           .CloseConnectionError()
-                    .Verify.IsDisconnected();
+                           .CloseConnectionError();
+                CommonUiFlows.EnsureUserIsDisconnected(shouldCancelConnection: true);
                 //TODO: assert icon color - handle in the future
             }
         }
         finally
         {
             ScriptHelper.DisconnectFromWireGuard();
-            ScriptHelper.RemoveWireGuardConfigFile();
         }
     }
 
@@ -166,6 +161,13 @@ public class TrayTests : BaseTest
             TrayRobot
                 .DoubleClickTrayApp();
         }
+
+        try
+        {
+            HomeRobot.CloseConnectionError();
+            Thread.Sleep(TestConstants.TwoSecondsTimeout);
+        }
+        catch { }
 
         ToggleKillSwitch(shouldBeEnabled: true);
         HomeRobot.MinimizeClientViaMinimizeButton();

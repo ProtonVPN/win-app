@@ -40,6 +40,7 @@ public static class TestConstants
     public static TimeSpan ThirtySecondsTimeout => TimeSpan.FromSeconds(30);
     public static TimeSpan OneMinuteTimeout => TimeSpan.FromSeconds(60);
     public static TimeSpan TwoMinutesTimeout => TimeSpan.FromMinutes(2);
+    public static TimeSpan FourMinutesTimeout => TimeSpan.FromMinutes(4);
     public static TimeSpan MoreFrequentRetryInterval => TimeSpan.FromMilliseconds(50);
     public static TimeSpan RetryInterval => TimeSpan.FromMilliseconds(200);
     public static TimeSpan AnimationDelay => TimeSpan.FromMilliseconds(500);

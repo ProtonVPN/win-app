@@ -369,6 +369,34 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static T SiblingTextEquals<T>(this T desiredElement, string expectedSiblingText) where T : Element
+    {
+        List<string> siblingTexts = GetSiblingText(desiredElement);
+
+        Assert.That(siblingTexts.Contains(expectedSiblingText), Is.True,
+            $"Expected sibling text '{expectedSiblingText}' next to '{desiredElement.SelectorName}', but found: [{string.Join(", ", siblingTexts)}].");
+
+        return desiredElement;
+    }
+
+    public static void SiblingTextDoesNotEqual<T>(this T desiredElement, string unexpectedSiblingText) where T : Element
+    {
+        List<string> siblingTexts = GetSiblingText(desiredElement);
+
+        Assert.That(siblingTexts.Contains(unexpectedSiblingText), Is.False,
+            $"Sibling text '{unexpectedSiblingText}' next to '{desiredElement.SelectorName}' was found, but should not exist.");
+    }
+
+    private static List<string> GetSiblingText(Element desiredElement)
+    {
+        AutomationElement? anchor = WaitUntilExists(desiredElement);
+
+        return anchor?.Parent
+            ?.FindAllChildren(cf => cf.ByControlType(ControlType.Text))
+            .Select(t => t.Name)
+            .ToList() ?? [];
+    }
+
     public static Element TextEquals<T>(this T desiredElement, string text) where T : Element
     {
         AutomationElement? element = WaitUntilExists(desiredElement);
