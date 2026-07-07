@@ -2512,7 +2512,7 @@
     <value>Ταυτοποίηση δύο παραγόντων</value>
   </data>
   <data name="Login_TwoFactor_Authenticator">
-    <value>Εφαρμογή επαλήθευσης</value>
+    <value>Εφαρμογή ταυτοποίησης</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>Πρώτο ψηφίο</value>

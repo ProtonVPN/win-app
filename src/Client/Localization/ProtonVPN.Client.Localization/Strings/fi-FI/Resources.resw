@@ -316,7 +316,7 @@
     <value>Your preferences exclude all available servers. Adjust exclusions to connect.</value>
   </data>
   <data name="Connection_Error_AllServersExcluded_Action">
-    <value>Excluded locations</value>
+    <value>Poissuljetut sijainnit</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Description">
     <value>Korjaa ongelma sulkemalla tai poistamalla seuraava sovellus:</value>
@@ -1940,22 +1940,22 @@ Virhekoodi: {0}</value>
     <value>Uusi järjestelmäpalkkisovellus</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations">
-    <value>Exclude locations</value>
+    <value>Poissulje sijainnit</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
     <value>If there are locations you don't want to be automatically connected to, you can exclude them from Fastest and Random country.</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
-    <value>Skip</value>
+    <value>Ohita</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
     <value>Not the country you wanted?</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_ActionButton">
-    <value>Exclude locations</value>
+    <value>Poissulje sijainnit</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_CloseButton">
-    <value>Maybe later</value>
+    <value>Ehkä myöhemmin</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Subtitle">
     <value>You can now exclude countries or cities from Fastest and Random connections.</value>
@@ -3092,13 +3092,13 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Viimeisimmät</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations">
-    <value>Excluded locations</value>
+    <value>Poissuljetut sijainnit</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Cities">
-    <value>Cities</value>
+    <value>Kaupungit</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Countries">
-    <value>Countries</value>
+    <value>Maat</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Description">
     <value>The selected locations will never be used when you connect to Fastest or Random</value>
@@ -3107,10 +3107,10 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>No locations available</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Search">
-    <value>Select...</value>
+    <value>Valitse...</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_States">
-    <value>States</value>
+    <value>Osavaltiot</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Tappokytkin</value>
@@ -3411,7 +3411,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Use Proton VPN's own implementation of WireGuard. This is an experimental feature, so you may experience some instability.</value>
   </data>
   <data name="Settings_Protocols_ProtonProtocols_Title">
-    <value>Proton protocols</value>
+    <value>Proton-protokollat</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Valitsee automaattisesti yhteydellesi sopivimman protokollan.</value>
