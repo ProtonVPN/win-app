@@ -235,6 +235,8 @@ public class ConnectionTests : FreshSessionSetUp
             .Verify.IsConnected();
 
         NetworkUtils.VerifyUserIsConnectedToExpectedCountry(COUNTRY_NAME_TWO);
+
+        BrowserUtils.KillAllBrowsers();
     }
 
     [Test]
