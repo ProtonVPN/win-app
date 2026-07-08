@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -29,6 +29,7 @@ public class NamedPipesConnectionFactory : INamedPipesConnectionFactory
 {
     private readonly RegistryUri _registryUri = RegistryUri.CreateLocalMachineUri(
         NamedPipeConfiguration.REGISTRY_PATH, NamedPipeConfiguration.REGISTRY_KEY);
+    private readonly TimeSpan _connectionTimeout = TimeSpan.FromSeconds(5);
     private readonly TimeSpan _minConnectionRetryInterval = TimeSpan.FromSeconds(1);
     private readonly TimeSpan _maxConnectionRetryInterval = TimeSpan.FromSeconds(5);
     private readonly TimeSpan _minRegistryRetryInterval = TimeSpan.FromSeconds(1);
@@ -66,7 +67,13 @@ public class NamedPipesConnectionFactory : INamedPipesConnectionFactory
         try
         {
             _pipeName = pipeName;
-            await clientStream.ConnectAsync(cancellationToken).ConfigureAwait(false);
+
+            // Time-box the connect so a dead pipe fails fast instead of waiting forever,
+            // letting the caller retry (and eventually detect the stopped service).
+            using CancellationTokenSource connectTimeoutCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            connectTimeoutCts.CancelAfter(_connectionTimeout);
+
+            await clientStream.ConnectAsync(connectTimeoutCts.Token).ConfigureAwait(false);
 
             // No authorization checks are made because user processes without admin permissions such as this Client
             // cannot get the executable path of SYSTEM processes such as our Service
