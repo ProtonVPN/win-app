@@ -174,11 +174,17 @@ public class MiscTests : FreshSessionSetUp
             .EnableSplitTunneling(SplitTunnelingMode.Include);
 
         ConfirmationRobot.PrimaryAction();
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+        HomeRobot.Verify.IsConnected();
 
         FeaturesRobot
             .HoverOverSplitTunnelingWidget()
             .Verify.IsSplitTunnelingAppUnavailableInFlyoutMenu(_splitTunnelingMode)
             .DisableFeature();
+
+        ConfirmationRobot.PrimaryAction();
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+        HomeRobot.Verify.IsConnected();
 
         HomeRobot.ClickOnConnectionCardTitle();
     }

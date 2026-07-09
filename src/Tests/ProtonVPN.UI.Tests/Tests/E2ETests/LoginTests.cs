@@ -102,6 +102,14 @@ public class LoginTests : FreshSessionSetUp
 
         NavigationRobot
             .Verify.IsOnMainPage();
+
+        try
+        {
+            HomeRobot
+                .Verify.IsUpsellModalDisplayed()
+                .DismissUpsellModal();
+        }
+        catch { }
     }
 
     [Test]
@@ -310,6 +318,14 @@ public class LoginTests : FreshSessionSetUp
 
         NavigationRobot
             .Verify.IsOnMainPage();
+
+        try
+        {
+            HomeRobot
+                .Verify.IsUpsellModalDisplayed()
+                .DismissUpsellModal();
+        }
+        catch { }
     }
 
     [OneTimeTearDown]
