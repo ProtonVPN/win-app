@@ -10,6 +10,11 @@ set publishDirBTI=%currentDir%src\bin\win-%PLATFORM%\BTI\publish\
 set binDir=%currentDir%src\bin\
 set resourcesDir=%binDir%Resources\
 set mainDir=%binDir%
+set cppDependenciesHash=8ca7d36f
+set localAgentHash=3e8ad1b
+set ipv6chaosHash=c3baf3a
+set binaryStatusHash=c751e8c
+set srpHash=e5ac410
 
 if "%~1"=="publish" (
     set resourcesDir=%publishDir%Resources\
@@ -45,76 +50,33 @@ if "%~1"=="publish" (
     )
 )
 
-set buildParams=/p:PlatformToolset=v143 /p:Configuration=Release /p:OutDir=%resourcesDir% /clp:ErrorsOnly
-set x86buildParams=%buildParams% /p:Platform=Win32
-set x64buildParams=%buildParams% /p:Platform=%PLATFORM%
-
 if "%~2" NEQ "srponly" (
-    echo compiling ProtonVPN.IPFilter.dll %time%
-    msbuild src\ProtonVPN.IpFilter\ProtonVPN.IpFilter.vcxproj %x64buildParams% || exit /b %ERRORLEVEL%
-
-    echo compiling ProtonVPN.NetworkUtil.dll %time%
-    msbuild src\ProtonVPN.NetworkUtil\ProtonVPN.NetworkUtil.vcxproj %x64buildParams% || exit /b %ERRORLEVEL%
-
-    echo compiling ProtonVPN.InstallActions.x86.dll %time%
-    msbuild src\ProtonVPN.InstallActions\ProtonVPN.InstallActions.vcxproj %x86buildParams% || exit /b %ERRORLEVEL%
-
-    echo compiling ProtonVPN.InstallActions.dll %time%
-    msbuild src\ProtonVPN.InstallActions\ProtonVPN.InstallActions.vcxproj %x64buildParams% || exit /b %ERRORLEVEL%
-
-    echo compiling LocalAgent.dll %time%
-    
-    if "%PLATFORM%"=="x64" (
-        pushd %currentDir%src\ProtonVPN.LocalAgent\localAgentWin
-        set GO111MODULE=on
-        set CGO_CFLAGS=-O3 -Wall -Wno-unused-function -Wno-switch -std=gnu11 -DWINVER=0x0601
-
-        go build -buildmode c-shared -ldflags="-w -s" -trimpath -v -o %resourcesDir%LocalAgent.dll
-        if %ERRORLEVEL% equ 0 (
-            echo file saved %resourcesDir%LocalAgent.dll
-        )
-    )
-
-    if "%PLATFORM%"=="arm64" (
-        docker run --rm ^
-        -e GOARCH="arm64" ^
-        -e GOOS="windows" ^
-        -e GO111MODULE="on" ^
-        -v %currentDir%\src\ProtonVPN.LocalAgent:/go/work ^
-        -w /go/work/localAgentWin x1unix/go-mingw:1.23 ^
-        go build -buildmode c-shared -ldflags="-w -s" -trimpath -v -o LocalAgent.dll .
-        
-        xcopy %currentDir%src\ProtonVPN.LocalAgent\localAgentWin\LocalAgent.dll %resourcesDir% /y
-    )
+    call :FetchDependency ProtonVPN.IPFilter.dll            ip-filter/%cppDependenciesHash%          %PLATFORM% %resourcesDir% || exit /b 1
+    call :FetchDependency ProtonVPN.NetworkUtil.dll         network-util/%cppDependenciesHash%       %PLATFORM% %resourcesDir% || exit /b 1
+    call :FetchDependency ProtonVPN.InstallActions.x86.dll  install-actions/%cppDependenciesHash%    x86        %resourcesDir% || exit /b 1
+    call :FetchDependency ProtonVPN.InstallActions.dll      install-actions/%cppDependenciesHash%    %PLATFORM% %resourcesDir% || exit /b 1
+    call :FetchDependency LocalAgent.dll                    local-agent/%localAgentHash%             %PLATFORM% %resourcesDir% || exit /b 1
 )
 
-set ipv6chaosFileName=proton_vpn_ipv6chaos.dll
-
-echo Fetching %ipv6chaosFileName% %time%
-
-curl -o "%mainDir%%ipv6chaosFileName%" "%IPV6_CHAOS_DLL_PATH%/v0.0.0/%PLATFORM%/%ipv6chaosFileName%"
-if %ERRORLEVEL% equ 0 (
-  echo file saved %mainDir%%ipv6chaosFileName%
-)
-
-set srpFileName=proton_srp_cffi.dll
-
-echo Building %srpFileName% %time%
-
-pushd %currentDir%src\proton-rs-srp-cffi
-
-cargo build --release || exit /b %ERRORLEVEL%
-
-xcopy .\target\release\%srpFileName% %mainDir% /y
-
-set binaryStatusFileName=proton_vpn_binary_status.dll
-
-echo Building %binaryStatusFileName% %time%
-
-pushd %currentDir%src\proton-vpn-binary-status
-
-cargo build --release --features cffi || exit /b %ERRORLEVEL%
-
-xcopy .\target\release\%binaryStatusFileName% %mainDir% /y
+call :FetchDependency proton_vpn_ipv6chaos.dll     ipv6chaos-cffi/%ipv6chaosHash%        %PLATFORM% || exit /b 1
+call :FetchDependency proton_srp_cffi.dll          srp-cffi/%srpHash%                    %PLATFORM% || exit /b 1
+call :FetchDependency proton_vpn_binary_status.dll binary-status-cffi/%binaryStatusHash% %PLATFORM% || exit /b 1
 
 echo Dependencies done %time%
+exit /b 0
+
+:FetchDependency
+:: Args: %~1 file name, %~2 path prefix, %~3 platform folder, %~4 dest dir (optional)
+set destDir=%~4
+if not defined destDir set destDir=%mainDir%
+if not exist "%destDir%" mkdir "%destDir%"
+echo Fetching %~1 %time%
+
+echo "%DEPENDENCY_CACHE_URL%/%~2/%~3/%~1"
+
+curl --fail -o "%destDir%%~1" "%DEPENDENCY_CACHE_URL%/%~2/%~3/%~1" || (
+    echo ERROR: Failed to fetch %~1 from %DEPENDENCY_CACHE_URL%/%~2/%~3/%~1 1>&2
+    exit /b 1
+)
+echo file saved %destDir%%~1
+exit /b 0

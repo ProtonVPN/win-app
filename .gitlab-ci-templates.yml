@@ -54,8 +54,7 @@
   tags:
     - windows-dot-net
   script:
-    - echo "Building native dependencies..."
-    - nuget restore ProtonVPN.InstallActions.sln
+    - echo "Fetching dependencies..."
     - cmd.exe /c BuildDependencies.bat ${DEPENDENCIES}
     - echo "Downloading translations from crowdin..."
     - python ci\build-scripts\main.py add-commit-hash $env:CI_COMMIT_SHORT_SHA

@@ -98,7 +98,6 @@ stages:
   - mirror
 
 .unit_test_setup_script: &unit_test_setup_script
-  - nuget restore ProtonVPN.InstallActions.sln
   - cmd.exe /c BuildDependencies.bat bin srponly
   - dotnet build src\Builds\ProtonVPN.Builds.ConsoleJob\ProtonVPN.Builds.ConsoleJob.csproj
   - echo "Injecting CI variables"
