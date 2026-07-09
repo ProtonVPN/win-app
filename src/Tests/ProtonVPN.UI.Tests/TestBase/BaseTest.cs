@@ -249,8 +249,8 @@ public class BaseTest
 
     protected static void RestartApp(bool shouldRefreshWindow = true)
     {
-        App?.Close();
-        App?.Dispose();
+        Cleanup();
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
 
         ClientLaunchParams parameters = shouldRefreshWindow
             ? ClientLaunchParams.StartWithNoOnboarding

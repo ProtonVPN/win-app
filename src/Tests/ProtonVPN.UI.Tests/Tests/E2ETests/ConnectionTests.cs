@@ -235,8 +235,6 @@ public class ConnectionTests : FreshSessionSetUp
             .Verify.IsConnected();
 
         NetworkUtils.VerifyUserIsConnectedToExpectedCountry(COUNTRY_NAME_TWO);
-
-        BrowserUtils.KillAllBrowsers();
     }
 
     [Test]
@@ -376,6 +374,8 @@ public class ConnectionTests : FreshSessionSetUp
 
         //Note: DNS leaks are expected in this scenario, unless Kill Switch is set to "Advanced"
         BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: true);
+
+        BrowserUtils.KillAllBrowsers();
     }
 
     [Test]
@@ -417,8 +417,8 @@ public class ConnectionTests : FreshSessionSetUp
 
     private void LoginFreshWithWireGuardOn()
     {
-        App?.Close();
-        App?.Dispose();
+        Cleanup();
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
 
         ScriptHelper.ConnectToWireGuard();
         Thread.Sleep(TestConstants.TenSecondsTimeout);
