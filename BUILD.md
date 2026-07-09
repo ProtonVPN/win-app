@@ -19,10 +19,7 @@ Once all the [prerequisites](#prerequisites) have been installed
 1. Clone the [repository](https://github.com/ProtonVPN/win-app)
 2. Open a command prompt as an administrator
 3. Navigate to the repository folder
-4. Run: `git submodule update --init`
-5. Run: `BuildDependencies.bat`
-	- Check for error logs during the execution. It is possible that some nuget packages need to be restored. 
-	- Open the solution(s) that gave the error(s), restore the nuget packages and try again
+4. Run: `BuildDependencies.bat`
 
 ### Visual Studio
 
