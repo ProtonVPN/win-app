@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Threading;
 using FlaUI.Core.Input;
 using FlaUI.Core.WindowsAPI;
@@ -46,6 +47,9 @@ public class LoginRobot
     protected Element SsoWindow = Element.ByAutomationId("ContentScrollViewer");
     protected Element SignInWithSsoButton = Element.ByAutomationId("SwitchSignInButton");
     protected Element CancelSignInButton = Element.ByAutomationId("CancelSignInButton");
+
+    protected Element CaptchaWindow = Element.ByAutomationId("WebView2");
+    protected Element CloseCaptchaButton = Element.ByAutomationId("CloseContentDialogButton");
 
     protected Element HelpButton = Element.ByAutomationId("HelpButton");
     protected Element ReportIssueMenuItem = Element.ByAutomationId("ReportIssueMenuItem");
@@ -149,17 +153,31 @@ public class LoginRobot
         return this;
     }
 
+    public LoginRobot ClickCloseCaptchaButton()
+    {
+        CloseCaptchaButton.Click();
+        return this;
+    }
+
     public class Verifications : LoginRobot
     {
+        public Verifications IsCaptchaDisplayed()
+        {
+            CaptchaWindow.WaitUntilDisplayed();
+            Thread.Sleep(TestConstants.OneSecondTimeout);
+            return this;
+        }
+
         public Verifications IsErrorMessageDisplayed(string errorMessage)
         {
             Element.ByName(errorMessage).WaitUntilDisplayed();
             return this;
         }
 
-        public Verifications IsLoginWindowDisplayed()
+        public Verifications IsLoginWindowDisplayed(TimeSpan? timeout = null)
         {
-            UsernameTextBox.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
+            timeout ??= TestConstants.ThirtySecondsTimeout;
+            UsernameTextBox.WaitUntilDisplayed(timeout);
             PasswordTextBox.WaitUntilDisplayed();
             return this;
         }

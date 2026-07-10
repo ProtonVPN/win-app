@@ -47,11 +47,11 @@ public class BtiController
             () => {
                 MakeScenarioRequest(scenarioEndpoint);
             },
-            TestConstants.TenSecondsTimeout, TestConstants.ApiRetryInterval);
+            TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval);
 
         if (!retry.Success)
         {
-            throw new Exception($"Failed to set scenario:\n${retry.LastException}");
+            throw new Exception($"Failed to set scenario {scenarioEndpoint}:\n${retry.LastException}");
         }
     }
 

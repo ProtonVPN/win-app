@@ -45,6 +45,14 @@ public class ProtocolSLIs : SliSetUp
     {
         LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser, TestConstants.IsProTunVersion);
+
+        try
+        {
+            HomeRobot
+                .Verify.IsUpsellModalDisplayed()
+                .DismissUpsellModal();
+        }
+        catch { }
     }
 
     [Test]
@@ -90,7 +98,7 @@ public class ProtocolSLIs : SliSetUp
     private void PerformProtocolTest(Protocol protocol)
     {
         bool isProTunWireGuard = TestConstants.IsProTunVersion && SliHelper.SliName?.StartsWith("wireguard") == true;
-        
+
         string? protunPrefix = isProTunWireGuard ? "protun_" : null;
         SliHelper.SliName = protunPrefix + SliHelper.SliName;
 

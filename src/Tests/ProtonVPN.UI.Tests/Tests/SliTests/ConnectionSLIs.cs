@@ -48,6 +48,14 @@ public class ConnectionSLIs : SliSetUp
     {
         LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser, TestConstants.IsProTunVersion);
+
+        try
+        {
+            HomeRobot
+                .Verify.IsUpsellModalDisplayed()
+                .DismissUpsellModal();
+        }
+        catch { }
     }
 
     [Test]

@@ -296,6 +296,22 @@ ui-tests-smoke:
     matrix:
       - CATEGORY: ["SMOKE_1", "SMOKE_2", "SMOKE_3", "SMOKE_4"]
 
+ui-tests-bti:
+  stage: ui-test-full
+  extends: .ui_test_execution_script
+  tags:
+    - windows-vpn-bti-tests #BTI
+  rules:
+    - if: '$CI_COMMIT_BRANCH =~ /^release\/9\.9\.9.*$/'
+      when: never
+    - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
+      when: on_success
+    - if: '$CI_COMMIT_BRANCH =~ /^automation.*$/'
+      when: manual
+      allow_failure: true
+  variables:
+    CATEGORY: "BTI"
+
 push-results-to-testmo-full:
   stage: ui-test-full
   extends: .push_results_to_testmo
@@ -305,6 +321,8 @@ push-results-to-testmo-full:
     - /^automation.*$/
   needs:
     - job: ui-tests-group
+      optional: false
+    - job: ui-tests-bti
       optional: false
   coverage: '/Automation coverage: (\d+\.?\d+)%/'
 

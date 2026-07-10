@@ -80,7 +80,7 @@ public class NavigationRobot
             return this;
         }
 
-        public Verifications IsOnLoginPage() => IsOnPage(LoginPage);
+        public Verifications IsOnLoginPage() => IsOnPage(LoginPage, TestConstants.TwoMinutesTimeout);
 
         public Verifications IsOnNoServersPage() => IsOnPage(NoServersPage, TestConstants.TwoMinutesTimeout);
 

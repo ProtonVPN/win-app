@@ -320,7 +320,7 @@ public class SidebarRobot
     public SidebarRobot ExpandSpecificServerList()
     {
         SecondaryButton.Invoke();
-        Thread.Sleep(TestConstants.AnimationDelay);
+        Thread.Sleep(TestConstants.OneSecondTimeout);
         return this;
     }
 

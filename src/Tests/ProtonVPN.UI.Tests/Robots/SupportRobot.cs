@@ -120,9 +120,10 @@ public class SupportRobot
             return this;
         }
 
-        public Verifications IsConnectionHelpDisplayed()
+        public Verifications IsConnectionHelpDisplayed(TimeSpan? timeout = null)
         {
-            ConnectionHelpHeader.WaitUntilExists(TestConstants.TwoMinutesTimeout);
+            timeout ??= TestConstants.TwoMinutesTimeout;
+            ConnectionHelpHeader.WaitUntilExists(timeout);
             return this;
         }
 

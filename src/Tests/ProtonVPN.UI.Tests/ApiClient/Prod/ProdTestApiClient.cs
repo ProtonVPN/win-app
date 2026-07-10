@@ -27,6 +27,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using ProtonVPN.UI.Tests.ApiClient.Contracts;
+using ProtonVPN.UI.Tests.TestsHelper;
 
 namespace ProtonVPN.UI.Tests.ApiClient.Prod;
 
@@ -125,9 +126,9 @@ public class ProdTestApiClient
     {
         HttpRequestMessage request = new(method, requestUri);
         request.Headers.Add("x-pm-apiversion", "3");
-        request.Headers.Add("x-pm-appversion", "windows-vpn@2.4.3-dev");
+        request.Headers.Add("x-pm-appversion", $"windows-vpn@{TestEnvironment.GetAppVersion()}-dev");
         request.Headers.Add("x-pm-locale", "en");
-        request.Headers.Add("User-Agent", "ProtonVPN/2.4.3 (Microsoft Windows NT 10.0.19045.0)");
+        request.Headers.Add("User-Agent", $"ProtonVPN/{TestEnvironment.GetAppVersion()} (Microsoft Windows NT 10.0.19045.0)");
 
         return request;
     }

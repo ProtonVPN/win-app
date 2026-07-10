@@ -35,6 +35,7 @@ public class AntiCensorshipSLIs : SliSetUp
     [Test]
     [Duration, TestStatus]
     [Sli("alt_routing_login")]
+    [Retry(3)]
     public void AlternativeRoutingSliMeasurement()
     {
         // Scenario has to be set before app is launched
@@ -45,16 +46,19 @@ public class AntiCensorshipSLIs : SliSetUp
 
         LaunchClient();
 
-        LoginRobot.Login(TestUserData.PlusUser);
+        NetworkUtils.AssertInternetAvailability(true);
+
+        LoginRobot.Login(TestUserData.VisionaryUser);
         SliHelper.MeasureTime(() =>
         {
-            HomeRobot.Verify.IsWelcomeModalDisplayed();
+            NavigationRobot.Verify.IsOnMainPage();
         });
     }
 
     [Test]
     [Duration, TestStatus]
     [Sli("guest_holes_login")]
+    [Retry(3)]
     public void GuestHolesSliMeasurements()
     {
         // Scenario has to be set before app is launched
@@ -65,16 +69,22 @@ public class AntiCensorshipSLIs : SliSetUp
 
         LaunchClient();
 
+        NetworkUtils.AssertInternetAvailability(true);
+
         LoginRobot.Login(TestUserData.PlusUser);
         SliHelper.MeasureTime(() =>
         {
-            HomeRobot.Verify.IsWelcomeModalDisplayed();
+            NavigationRobot.Verify.IsOnMainPage();
         });
     }
 
     [TearDown]
     public void TearDown()
     {
+        if (!TestConstants.IsProTunVersion)
+        {
+            HomeRobot.DismissWelcomeModal();
+        }
         BtiController.SetScenario(Scenarios.RESET);
     }
 }

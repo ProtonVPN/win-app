@@ -61,6 +61,21 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static T ClickUntilAnotherElementAppears<T>(this T desiredElement, Element elementToAppear, TimeSpan? retryIntervalOverload = null) where T : Element
+    {
+        AutomationElement? elementToClick = WaitUntilExists(desiredElement, TestConstants.EighteenSecondsTimeout, retryIntervalOverload);
+        elementToClick?.WaitUntilClickable(TestConstants.EighteenSecondsTimeout);
+
+        DateTime timeoutDate = DateTime.UtcNow + TestConstants.FiveSecondsTimeout;
+        while (FindFirstDescendantUsingChildren(elementToAppear.Condition) == null && (DateTime.UtcNow < timeoutDate))
+        {
+            elementToClick?.Click();
+            Thread.Sleep(TestConstants.AnimationDelay);
+        }
+
+        return desiredElement;
+    }
+
     public static T DoubleClick<T>(this T desiredElement) where T : Element
     {
         AutomationElement? elementToClick = WaitUntilExists(desiredElement);
