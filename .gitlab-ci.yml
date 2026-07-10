@@ -92,6 +92,7 @@ stages:
   - publish
   - ui-test-full
   - ui-test-smoke
+  - push-to-testmo
   - generate
   - deploy
   - publish-to-slack
@@ -277,10 +278,13 @@ ui-tests-full-arm:
       optional: true
     - job: build-installer-release-arm64
       optional: true
-  except:
-    - /^debug.*$/
-    - /^release\/9\.9\.9.*$/
-    - master
+  rules:
+    - if: '$CI_COMMIT_BRANCH =~ /^release\/9\.9\.9.*$/'
+      when: never
+    - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
+      when: on_success
+    - when: manual
+      allow_failure: true
   variables:
     CATEGORY: "ARM"
 
@@ -306,14 +310,31 @@ ui-tests-bti:
       when: never
     - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
       when: on_success
-    - if: '$CI_COMMIT_BRANCH =~ /^automation.*$/'
-      when: manual
+    - when: manual
       allow_failure: true
   variables:
     CATEGORY: "BTI"
 
+push-results-to-testmo-full-arm:
+  stage: push-to-testmo
+  extends: .push_results_to_testmo
+  only:
+    - /^release.*$/
+  needs:
+    - job: ui-tests-full-arm
+      optional: false
+
+push-results-to-testmo-bti:
+  stage: push-to-testmo
+  extends: .push_results_to_testmo
+  only:
+    - /^release.*$/
+  needs:
+    - job: ui-tests-bti
+      optional: false
+
 push-results-to-testmo-full:
-  stage: ui-test-full
+  stage: push-to-testmo
   extends: .push_results_to_testmo
   only:
     - develop
@@ -322,14 +343,10 @@ push-results-to-testmo-full:
   needs:
     - job: ui-tests-group
       optional: false
-    - job: ui-tests-full-arm
-      optional: true
-    - job: ui-tests-bti
-      optional: true
   coverage: '/Automation coverage: (\d+\.?\d+)%/'
 
 push-results-to-testmo-smoke:
-  stage: ui-test-smoke
+  stage: push-to-testmo
   extends: .push_results_to_testmo
   only:
     - /^feat.*$/
