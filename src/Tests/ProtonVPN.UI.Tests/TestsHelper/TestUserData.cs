@@ -36,6 +36,7 @@ public class TestUserData
     public static TestUserData FreeUser => GetUser("FREE_USER");
     public static TestUserData PlusUser => GetUser("PLUS_USER");
     public static TestUserData PlusUserBti => new("vpnplus", "12341234");
+    public static TestUserData HumanVerificationUser => new("testashv", "IncorrectPass");
     public static TestUserData VisionaryUser => GetUser("VISIONARY_USER");
     public static TestUserData UnlimitedUser => new("testasunlimited", VisionaryUser.Password);
     public static TestUserData SpecialCharsUser => GetUser("SPECIAL_CHARS_USER");

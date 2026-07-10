@@ -167,9 +167,7 @@ public class HomeRobot
 
     public HomeRobot ExpandKebabMenuButton()
     {
-        KebabMenuButton.Click();
-        // Remove when VPNWIN-2599 is implemented.
-        Thread.Sleep(TestConstants.AnimationDelay);
+        KebabMenuButton.ClickUntilAnotherElementAppears(KebabMenuSettingsItem);
         return this;
     }
 

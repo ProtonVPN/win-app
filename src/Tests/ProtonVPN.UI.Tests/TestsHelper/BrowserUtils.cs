@@ -67,12 +67,12 @@ public class BrowserUtils
                 try
                 {
                     process.Kill();
-                    process.WaitForExit(TestConstants.FiveSecondsTimeout);
+                    process.WaitForExit(TestConstants.ThirtySecondsTimeout);
                 }
                 catch
                 {
-                    process.Kill(true);
-                    process.WaitForExit(TestConstants.FiveSecondsTimeout);
+                    process.Kill(entireProcessTree: true);
+                    process.WaitForExit(TestConstants.ThirtySecondsTimeout);
                 }
             }
         }

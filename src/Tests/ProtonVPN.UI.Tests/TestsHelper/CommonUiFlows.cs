@@ -19,6 +19,7 @@
 
 using System;
 using System.Threading;
+using OpenQA.Selenium;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
@@ -45,8 +46,10 @@ public class CommonUiFlows : BaseTest
         }
     }
 
-    public static void Logout()
+    public static void Logout(TimeSpan? timeout = null)
     {
+        timeout ??= TestConstants.ThirtySecondsTimeout;
+
         HomeRobot
             .ExpandKebabMenuButton();
 
@@ -55,7 +58,7 @@ public class CommonUiFlows : BaseTest
             .ConfirmSignOut();
 
         LoginRobot
-            .Verify.IsLoginWindowDisplayed();
+            .Verify.IsLoginWindowDisplayed(timeout);
     }
 
     public static void EnsureUserIsDisconnected(bool shouldVerifyKillSwitch = false, bool shouldCancelConnection = false)

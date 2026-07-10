@@ -36,6 +36,13 @@ public class WindowsUtils
 
     public static void AssertLogFile(string filePath, string lineToLookFor, string? wordToLookFor = null)
     {
+        string? lastLine = GetLastLogLine(filePath, lineToLookFor, wordToLookFor);
+        Assert.That(lastLine, Is.Not.Null, $"No line containing '{lineToLookFor}' found in {filePath}");
+        Assert.That(lastLine, Does.Contain(wordToLookFor ?? lineToLookFor));
+    }
+
+    public static string? GetLastLogLine(string filePath, string lineToLookFor, string? wordToLookFor = null)
+    {
         if (!File.Exists(filePath))
         {
             throw new FileNotFoundException($"File not found at path: {filePath}");
@@ -48,8 +55,7 @@ public class WindowsUtils
         {
             string[] allLines = File.ReadAllLines(tempFile);
             string? lastLine = allLines.Reverse().FirstOrDefault(l => l.Contains(lineToLookFor));
-            Assert.That(lastLine, Is.Not.Null, $"No line containing '{lineToLookFor}' found in {filePath}");
-            Assert.That(lastLine, Does.Contain(wordToLookFor ?? lineToLookFor));
+            return lastLine;
         }
         finally
         {
@@ -63,9 +69,9 @@ public class WindowsUtils
         {
             FileName = "powershell.exe",
             Arguments = $"-NoProfile -ExecutionPolicy Bypass -Command \"{psScript}\"",
-            UseShellExecute = !shouldEnableLogging,
-            RedirectStandardOutput = shouldEnableLogging,
-            RedirectStandardError = shouldEnableLogging,
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
             CreateNoWindow = true
         };
 
@@ -74,10 +80,11 @@ public class WindowsUtils
             process.StartInfo = psi;
             process.Start();
 
+            string psOutput = process.StandardOutput.ReadToEnd();
+            string psError = process.StandardError.ReadToEnd();
+
             if (shouldEnableLogging)
             {
-                string psOutput = process.StandardOutput.ReadToEnd();
-                string psError = process.StandardError.ReadToEnd();
                 TestContext.WriteLine($"PS OUTPUT: {psOutput}");
                 TestContext.WriteLine($"PS ERROR: {psError}");
 
@@ -87,7 +94,14 @@ public class WindowsUtils
                 }
             }
 
-            process.WaitForExit(TestConstants.TenSecondsTimeout);
+            bool exited = process.WaitForExit(TestConstants.ThirtySecondsTimeout);
+            if (!exited)
+            {
+                TestContext.WriteLine($"PowerShell script '{psScript}' did not exit within the timeout" +
+                    $"Exiting by force");
+                process.Kill(entireProcessTree: true);
+                process.WaitForExit(TestConstants.ThirtySecondsTimeout);
+            }
         }
     }
 

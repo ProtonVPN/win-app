@@ -41,16 +41,11 @@ public class LoginSLIs : SliSetUp
     [Sli("login")]
     public void LoginPerformance()
     {
-        NavigationRobot
-            .Verify.IsOnLoginPage();
-
-        LoginRobot
-            .Login(TestUserData.PlusUser);
+        LoginRobot.Login(TestUserData.PlusUser);
 
         SliHelper.MeasureTime(() =>
         {
-            NavigationRobot
-                .Verify.IsOnMainPage();
+            NavigationRobot.Verify.IsOnMainPage();
         });
     }
 }

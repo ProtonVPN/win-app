@@ -38,7 +38,7 @@ public static class TestConstants
     public static TimeSpan TenSecondsTimeout => TimeSpan.FromSeconds(10);
     public static TimeSpan EighteenSecondsTimeout => TimeSpan.FromSeconds(18);
     public static TimeSpan ThirtySecondsTimeout => TimeSpan.FromSeconds(30);
-    public static TimeSpan OneMinuteTimeout => TimeSpan.FromSeconds(60);
+    public static TimeSpan OneMinuteTimeout => TimeSpan.FromMinutes(1);
     public static TimeSpan TwoMinutesTimeout => TimeSpan.FromMinutes(2);
     public static TimeSpan FourMinutesTimeout => TimeSpan.FromMinutes(4);
     public static TimeSpan MoreFrequentRetryInterval => TimeSpan.FromMilliseconds(50);

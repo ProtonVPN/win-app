@@ -38,6 +38,14 @@ public class VpnSpeedSLIs : SliSetUp
     {
         LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser, TestConstants.IsProTunVersion);
+
+        try
+        {
+            HomeRobot
+                .Verify.IsUpsellModalDisplayed()
+                .DismissUpsellModal();
+        }
+        catch { }
     }
 
     [Test]

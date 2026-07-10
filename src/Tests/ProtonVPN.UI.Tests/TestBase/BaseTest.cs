@@ -186,7 +186,7 @@ public class BaseTest
         {
             try
             {
-                process.Kill(true);
+                process.Kill(entireProcessTree: true);
             }
             catch { }
         }

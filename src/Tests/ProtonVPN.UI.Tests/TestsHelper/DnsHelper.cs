@@ -163,7 +163,7 @@ public class DnsHelper
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
             process.Start();
-            process.WaitForExit(TestConstants.TenSecondsTimeout);
+            process.WaitForExit(TestConstants.ThirtySecondsTimeout);
         }
     }
 
