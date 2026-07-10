@@ -457,7 +457,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                                               IsUnderMaintenance="{x:Bind IsUnderMaintenance}"
                                               P2PLabel="{x:Bind Localizer.Get('Countries_P2P')}"
                                               ServerLoad="{x:Bind Load}"
-                                              SmartRoutingLabel="{x:Bind Localizer.Get('Countries_SmartRouting')}"
+                                              SmartRoutingLabel="{x:Bind SmartRoutingLabel}"
                                               SupportsP2P="{x:Bind SupportsP2P}"
                                               SupportsSmartRouting="{x:Bind IsVirtual}"
                                               SupportsTor="{x:Bind SupportsTor}"
