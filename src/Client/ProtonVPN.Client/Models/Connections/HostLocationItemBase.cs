@@ -39,7 +39,6 @@ public abstract partial class HostLocationItemBase<TLocation> : LocationItemBase
     protected readonly IConnectionGroupFactory ConnectionGroupFactory;
     protected readonly ILocationItemFactory LocationItemFactory;
 
-    private IEnumerable<Server> _lastKnownServers = [];
     private bool _lastKnownIsPaidUser = false;
     private ConnectionDetails? _lastKnownConnectionDetails = null;
 
@@ -124,11 +123,14 @@ public abstract partial class HostLocationItemBase<TLocation> : LocationItemBase
         InvalidateIsActiveConnection(_lastKnownConnectionDetails);
         InvalidateIsRestricted(_lastKnownIsPaidUser);
 
-        ServerLocationItemBase? virtualServer = SubItems.OfType<ServerLocationItemBase>().FirstOrDefault(s => s.IsVirtual);
+        List<ServerLocationItemBase> virtualServers = SubItems.OfType<ServerLocationItemBase>().Where(s => s.IsVirtual).ToList();
 
-        HasVirtualServers = virtualServer != null;
-        SmartRoutingDescription = virtualServer?.Server != null
-            ? Localizer.GetFormat("Overlay_SmartRouting_Header", Localizer.GetCountryName(virtualServer.Server.HostCountry), Localizer.GetCountryName(virtualServer.Server.ExitCountry))
+        HasVirtualServers = virtualServers.Count > 0;
+        SmartRoutingDescription = HasVirtualServers
+            ? Localizer.GetFormat("Overlay_SmartRouting_Header",
+                string.Join(", ", virtualServers.Select(s => s.Server.HostCountry)
+                                                .Distinct()
+                                                .Select(hostCountry => Localizer.GetCountryName(hostCountry))))
             : null;
     }
 

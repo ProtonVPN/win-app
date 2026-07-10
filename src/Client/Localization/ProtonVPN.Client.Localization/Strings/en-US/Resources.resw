@@ -2486,12 +2486,8 @@
     <value>What is Smart Routing?</value>
   </data>
   <data name="Overlay_SmartRouting_Header" xml:space="preserve">
-    <value>Servers are physically located in {0}, but you'll appear to be browsing from {1}</value>
-    <comment>
-    {0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
-    Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
-    Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})
-  </comment>
+    <value>Connects you to your destination country through servers physically located elsewhere: {0}.</value>
+    <comment>{0} is a placeholder for the countries where the physical servers are. Can be either one country or multiple countries separated with comma.</comment>
   </data>
   <data name="Overlay_SecureCore_Title" xml:space="preserve">
     <value>Secure Core</value>
@@ -2576,6 +2572,10 @@
   </data>
   <data name="Countries_SmartRouting" xml:space="preserve">
     <value>Smart routing</value>
+  </data>
+  <data name="Countries_SmartRouting_RoutedThrough" xml:space="preserve">
+    <value>Smart routed through {0}</value>
+    <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
   </data>
   <data name="Login_Error_SessionExpired" xml:space="preserve">
     <value>Your session has expired. Please sign in again.</value>
