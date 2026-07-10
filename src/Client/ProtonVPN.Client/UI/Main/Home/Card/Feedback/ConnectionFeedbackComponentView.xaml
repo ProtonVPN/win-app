@@ -113,7 +113,32 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                     <Storyboard>
                         <DoubleAnimation Storyboard.TargetName="RootGrid"
                                          Storyboard.TargetProperty="Opacity"
-                                         BeginTime="0:0:0.5"
+                                         BeginTime="0:0:0.8"
+                                         To="0"
+                                         Duration="0:0:0.5">
+                            <DoubleAnimation.EasingFunction>
+                                <CubicEase EasingMode="EaseOut" />
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="DismissingFeedback">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsDismissingFeedback}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ConnectionFeedbackText.Opacity" Value="1" />
+                        <Setter Target="ConnectionFeedbackTextTransform.Y" Value="0" />
+                        <Setter Target="ConnectionFeedbackThumbsDownButton.Opacity" Value="1" />
+                        <Setter Target="ConnectionFeedbackThumbsDownButtonTransform.Y" Value="0" />
+                        <Setter Target="ConnectionFeedbackThumbsUpButton.Opacity" Value="1" />
+                        <Setter Target="ConnectionFeedbackThumbsUpButtonTransform.Y" Value="0" />
+                    </VisualState.Setters>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="RootGrid"
+                                         Storyboard.TargetProperty="Opacity"
+                                         BeginTime="0:0:0.0"
                                          To="0"
                                          Duration="0:0:0.5">
                             <DoubleAnimation.EasingFunction>

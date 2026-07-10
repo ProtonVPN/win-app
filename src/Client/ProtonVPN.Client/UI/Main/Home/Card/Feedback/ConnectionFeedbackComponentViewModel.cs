@@ -19,6 +19,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
 using ProtonVPN.Client.EventMessaging.Contracts;
@@ -31,6 +32,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Observers;
 using ProtonVPN.Client.Settings.Contracts.Messages;
 using ProtonVPN.Client.UI.Main.Home.Upsell;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Main.Home.Card.Feedback;
 
@@ -42,12 +44,16 @@ public partial class ConnectionFeedbackComponentViewModel : ActivatableViewModel
     IEventMessageReceiver<SettingChangedMessage>
 {
     private const int SUBMIT_FEEDBACK_ANIMATION_DURATION_MS = 1000;
+    private const int PAUSE_ANIMATION_DURATION_MS = 300;
+    private const int DISMISS_ANIMATION_DURATION_MS = 500;
+    private const int DEFAULT_AUTO_DISMISS_DURATION_MS = 10000;
 
     private readonly IConnectionManager _connectionManager;
     private readonly IConnectionStatisticsFeedback _connectionStatisticsFeedback;
     private readonly ISettings _settings;
     private readonly IFeatureFlagsObserver _featureFlagsObserver;
     private readonly IConnectionCardUpsellBannerModerator _connectionCardUpsellBannerModerator;
+    private readonly IDispatcherTimer _autoDismissTimer;
 
     private bool _hasReceivedAppFocus;
 
@@ -62,13 +68,18 @@ public partial class ConnectionFeedbackComponentViewModel : ActivatableViewModel
     [NotifyCanExecuteChangedFor(nameof(ReportGoodConnectionCommand))]
     private bool _isSendingFeedback;
 
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(ReportPoorConnectionCommand))]
+    [NotifyCanExecuteChangedFor(nameof(ReportGoodConnectionCommand))]
+    private bool _isDismissingFeedback;
+
     public bool IsConnectionFeedbackVisible => !IsFeedbackSent
                                             && IsElligible
                                             && _connectionManager.IsConnected
                                             && _hasReceivedAppFocus;
 
     public bool IsElligible => _settings.IsShareStatisticsEnabled
-                            && _featureFlagsObserver.IsConnectionFeedbackEnabled;
+                            && _featureFlagsObserver.ConnectionFeedback.IsEnabled;
 
     public ConnectionFeedbackComponentViewModel(
         IConnectionManager connectionManager,
@@ -84,6 +95,9 @@ public partial class ConnectionFeedbackComponentViewModel : ActivatableViewModel
         _settings = settings;
         _featureFlagsObserver = featureFlagsObserver;
         _connectionCardUpsellBannerModerator = connectionCardUpsellBannerModerator;
+
+        _autoDismissTimer = UIThreadDispatcher.GetTimer(GetAutoDismissFeedbackDelay());
+        _autoDismissTimer.Tick += OnAutoDismissTimerTick;
     }
 
     [RelayCommand(CanExecute = nameof(CanReportConnection))]
@@ -91,11 +105,13 @@ public partial class ConnectionFeedbackComponentViewModel : ActivatableViewModel
     {
         try
         {
+            StopAutoDismissTimer();
+
             IsSendingFeedback = true;
 
             _connectionStatisticsFeedback.SubmitNegativeFeedback();
 
-            await Task.Delay(SUBMIT_FEEDBACK_ANIMATION_DURATION_MS);
+            await Task.Delay(SUBMIT_FEEDBACK_ANIMATION_DURATION_MS + PAUSE_ANIMATION_DURATION_MS);
         }
         finally
         {
@@ -109,11 +125,13 @@ public partial class ConnectionFeedbackComponentViewModel : ActivatableViewModel
     {
         try
         {
+            StopAutoDismissTimer();
+
             IsSendingFeedback = true;
 
             _connectionStatisticsFeedback.SubmitPositiveFeedback();
 
-            await Task.Delay(SUBMIT_FEEDBACK_ANIMATION_DURATION_MS);
+            await Task.Delay(SUBMIT_FEEDBACK_ANIMATION_DURATION_MS + PAUSE_ANIMATION_DURATION_MS);
         }
         finally
         {
@@ -125,6 +143,7 @@ public partial class ConnectionFeedbackComponentViewModel : ActivatableViewModel
     private bool CanReportConnection()
     {
         return !IsSendingFeedback
+            && !IsDismissingFeedback
             && IsConnectionFeedbackVisible;
     }
 
@@ -137,6 +156,7 @@ public partial class ConnectionFeedbackComponentViewModel : ActivatableViewModel
             {
                 _hasReceivedAppFocus = false;
                 IsFeedbackSent = false;
+                StopAutoDismissTimer();
             }
 
             NotifyFeedbackStateChanged();
@@ -155,9 +175,13 @@ public partial class ConnectionFeedbackComponentViewModel : ActivatableViewModel
 
     public void Receive(FeatureFlagsChangedMessage message)
     {
-        if (message.Changes.Any(f => f.Name == nameof(IFeatureFlagsObserver.IsConnectionFeedbackEnabled)))
+        if (message.Changes.Any(f => f.Name == nameof(IFeatureFlagsObserver.ConnectionFeedback)))
         {
-            ExecuteOnUIThread(NotifyFeedbackStateChanged);
+            ExecuteOnUIThread(() =>
+            {
+                NotifyFeedbackStateChanged();
+                _autoDismissTimer.Interval = GetAutoDismissFeedbackDelay();
+            });
         }
     }
 
@@ -183,6 +207,52 @@ public partial class ConnectionFeedbackComponentViewModel : ActivatableViewModel
             // Feedback component is now visible, initialize feedback state for the current connection session to 'ignore'.
             // This ensures that if the user doesn't provide feedback, the session will be categorized as 'ignore' in the statistics, instead of 'unknown'.
             _connectionStatisticsFeedback.InitializeFeedback();
+
+            // Start the auto-dismiss timer so the feedback is automatically dismissed
+            // if the user doesn't interact with it within the configured duration.
+            StartAutoDismissTimer();
+        }
+    }
+
+    private void StartAutoDismissTimer()
+    {
+        if (!_autoDismissTimer.IsEnabled)
+        {
+            _autoDismissTimer.Start();
+        }
+    }
+
+    private void StopAutoDismissTimer()
+    {
+        if (_autoDismissTimer.IsEnabled)
+        {
+            _autoDismissTimer.Stop();
+        }
+    }
+
+    private void OnAutoDismissTimerTick(object? sender, object e)
+    {
+        StopAutoDismissTimer();
+
+        if (CanReportConnection())
+        {
+            DismissFeedbackAsync().FireAndForget();
+        }
+    }
+
+    private async Task DismissFeedbackAsync()
+    {
+        try
+        {
+            // Auto-dismiss the feedback. The session will be registered as 'ignore'.
+            IsDismissingFeedback = true;
+
+            await Task.Delay(DISMISS_ANIMATION_DURATION_MS);
+        }
+        finally
+        {
+            IsFeedbackSent = true;
+            IsDismissingFeedback = false;
         }
     }
 
@@ -192,5 +262,14 @@ public partial class ConnectionFeedbackComponentViewModel : ActivatableViewModel
         OnPropertyChanged(nameof(IsConnectionFeedbackVisible));
         ReportPoorConnectionCommand.NotifyCanExecuteChanged();
         ReportGoodConnectionCommand.NotifyCanExecuteChanged();
+    }
+
+    private TimeSpan GetAutoDismissFeedbackDelay()
+    {
+        string autoDismissDelayPayload = _featureFlagsObserver.ConnectionFeedback.Payload;
+
+        return int.TryParse(autoDismissDelayPayload, out int autoDismissDelayInSeconds)
+            ? TimeSpan.FromSeconds(autoDismissDelayInSeconds)
+            : TimeSpan.FromMilliseconds(DEFAULT_AUTO_DISMISS_DURATION_MS);
     }
 }

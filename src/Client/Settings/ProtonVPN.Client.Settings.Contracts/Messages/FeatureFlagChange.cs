@@ -19,9 +19,17 @@
 
 namespace ProtonVPN.Client.Settings.Contracts.Messages;
 
-public class FeatureFlagChange
+public readonly struct FeatureFlagChange
 {
     public required string Name { get; init; }
     public required bool? OldValue { get; init; }
     public required bool? NewValue { get; init; }
+    public string? OldPayload { get; init; }
+    public string? NewPayload { get; init; }
+
+    public bool HasValueChanged => OldValue != NewValue;
+
+    public bool HasPayloadChanged => OldPayload != NewPayload;
+
+    public bool HasChanged => HasValueChanged || HasPayloadChanged;
 }
