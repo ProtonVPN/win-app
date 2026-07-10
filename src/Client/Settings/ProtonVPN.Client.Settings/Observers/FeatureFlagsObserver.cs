@@ -47,10 +47,10 @@ public class FeatureFlagsObserver : PollingObserverBase, IFeatureFlagsObserver
     public string U2FGatewayPortalUrl => GetPayload();
 
     [FeatureFlag("ProTunV1")]
-    public bool IsProTunEnabled => IsEnabled();    
-    
+    public bool IsProTunEnabled => IsEnabled();
+
     [FeatureFlag("IsConnectionFeedbackEnabled")]
-    public bool IsConnectionFeedbackEnabled => IsEnabled();  
+    public FeatureFlag ConnectionFeedback => GetFeatureFlag();
 
     protected override TimeSpan PollingInterval => _config.FeatureFlagsUpdateInterval;
 
@@ -156,19 +156,23 @@ public class FeatureFlagsObserver : PollingObserverBase, IFeatureFlagsObserver
                 continue;
             }
 
-            bool? oldValue = GetFeatureFlag(_settings.FeatureFlags, featureFlagName)?.IsEnabled;
-            bool? newValue = GetFeatureFlag(updatedFeatureFlags, featureFlagName)?.IsEnabled;
+            FeatureFlag? oldFlag = GetFeatureFlag(_settings.FeatureFlags, featureFlagName);
+            FeatureFlag? newFlag = GetFeatureFlag(updatedFeatureFlags, featureFlagName);
 
-            if (oldValue != newValue)
+            FeatureFlagChange featureFlagChange = new()
+            {                    
+                // Use property name instead of attribute name so that later we can compare
+                // using nameof(IFeatureFlagsObserver.FeatureFlag)
+                Name = featureFlagPropertyInfo.Name,
+                OldValue = oldFlag?.IsEnabled,
+                NewValue = newFlag?.IsEnabled,
+                OldPayload = oldFlag?.Payload,
+                NewPayload = newFlag?.Payload
+            };
+
+            if (featureFlagChange.HasChanged)
             {
-                changes.Add(new()
-                {
-                    // Use property name instead of attribute name so that later we can compare
-                    // using nameof(IFeatureFlagsObserver.FeatureFlag)
-                    Name = featureFlagPropertyInfo.Name,
-                    OldValue = oldValue,
-                    NewValue = newValue,
-                });
+                changes.Add(featureFlagChange);
             }
         }
 

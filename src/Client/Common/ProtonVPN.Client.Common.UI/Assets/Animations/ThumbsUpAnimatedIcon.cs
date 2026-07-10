@@ -55,14 +55,14 @@ using Windows.UI;
 namespace ProtonVPN.Client.Common.UI.Assets.Animations
 {
     // Frame rate:  60 fps
-    // Frame count: 60
-    // Duration:    1000.0 mS
+    // Frame count: 61
+    // Duration:    1016.7 mS
     public class ThumbsUpAnimatedIcon
         : IAnimatedVisualSource
         , IAnimatedVisualSource2
     {
-        // Animation duration: 1.000 seconds.
-        internal const long c_durationTicks = 10000000;
+        // Animation duration: 1.017 seconds.
+        internal const long c_durationTicks = 10166666;
 
         Color _foregroundColor = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
         Color _accentColor = Color.FromArgb(0xFF, 0xFF, 0xB8, 0x4D);
@@ -91,7 +91,7 @@ namespace ProtonVPN.Client.Common.UI.Assets.Animations
         /// <summary>
         /// Gets the number of frames in the animation.
         /// </summary>
-        public double FrameCount => 60d;
+        public double FrameCount => 61d;
 
         /// <summary>
         /// Gets the frame rate of the animation.
@@ -101,7 +101,7 @@ namespace ProtonVPN.Client.Common.UI.Assets.Animations
         /// <summary>
         /// Gets the duration of the animation.
         /// </summary>
-        public TimeSpan Duration => TimeSpan.FromTicks(10000000);
+        public TimeSpan Duration => TimeSpan.FromTicks(10166666);
 
         /// <summary>
         /// Converts a zero-based frame number to the corresponding progress value denoting the
@@ -109,7 +109,7 @@ namespace ProtonVPN.Client.Common.UI.Assets.Animations
         /// </summary>
         public double FrameToProgress(double frameNumber)
         {
-            return frameNumber / 60d;
+            return frameNumber / 61d;
         }
 
         /// <summary>
@@ -120,16 +120,17 @@ namespace ProtonVPN.Client.Common.UI.Assets.Animations
             {                   
                 // Play animation only when moving from PointerOver to Pressed
                 { "PointerOverToPressed_Start", 0.00 },
-                { "PointerOverToPressed_End", 1.00 },
+                { "PointerOverToPressed_End", 0.99 }, // frame 60/61, stop before loop-back
+                { "NormalToPressed_Start", 0.00 },
+                { "NormalToPressed_End", 0.99 }, // frame 60/61, stop before loop-back
+                // Hold frame 60 while pressed
+                { "PressedToPointerOver_Start", 0.99 },
+                { "PressedToPointerOver_End", 0.99 },
                 // No animation for other state transitions
-                { "PointerOverToNormal_Start", 0.00 },
-                { "PointerOverToNormal_End", 0.00 },
                 { "PressedToNormal_Start", 0.00 },
                 { "PressedToNormal_End", 0.00 },
-                { "PressedToPointerOver_Start", 0.00 },
-                { "PressedToPointerOver_End", 0.00 },
-                { "NormalToPressed_Start", 0.00 },
-                { "NormalToPressed_End", 0.00 },
+                { "PointerOverToNormal_Start", 0.00 },
+                { "PointerOverToNormal_End", 0.00 },
                 { "NormalToPointerOver_Start", 0.00 },
                 { "NormalToPointerOver_End", 0.00 },
             };
@@ -807,9 +808,13 @@ namespace ProtonVPN.Client.Common.UI.Assets.Animations
                 // Frame 0.
                 var result = CreateScalarKeyFrameAnimation(0F, 0F, HoldThenStepEasingFunction());
                 // Frame 19.2.
-                result.InsertKeyFrame(0.319999993F, 0F, HoldThenStepEasingFunction());
+                result.InsertKeyFrame(0.314754099F, 0F, HoldThenStepEasingFunction());
                 // Frame 25.2.
-                result.InsertKeyFrame(0.419999987F, 1F, CubicBezierEasingFunction_0());
+                result.InsertKeyFrame(0.413114756F, 1F, CubicBezierEasingFunction_0());
+                // Frame 60.
+                result.InsertKeyFrame(0.983606577F, 1F, HoldThenStepEasingFunction());
+                // Frame 61.
+                result.InsertKeyFrame(1F, 0F, HoldThenStepEasingFunction());
                 return result;
             }
 
@@ -820,9 +825,13 @@ namespace ProtonVPN.Client.Common.UI.Assets.Animations
                 // Frame 0.
                 var result = CreateScalarKeyFrameAnimation(0F, 0F, HoldThenStepEasingFunction());
                 // Frame 13.8.
-                result.InsertKeyFrame(0.230000004F, 0F, HoldThenStepEasingFunction());
+                result.InsertKeyFrame(0.226229504F, 0F, HoldThenStepEasingFunction());
                 // Frame 43.8.
-                result.InsertKeyFrame(0.730000019F, 1F, CubicBezierEasingFunction_0());
+                result.InsertKeyFrame(0.718032777F, 1F, CubicBezierEasingFunction_0());
+                // Frame 60.
+                result.InsertKeyFrame(0.983606577F, 1F, HoldThenStepEasingFunction());
+                // Frame 61.
+                result.InsertKeyFrame(1F, 0F, HoldThenStepEasingFunction());
                 return result;
             }
 
@@ -833,9 +842,13 @@ namespace ProtonVPN.Client.Common.UI.Assets.Animations
                 // Frame 0.
                 var result = CreateScalarKeyFrameAnimation(0F, 0F, HoldThenStepEasingFunction());
                 // Frame 24.
-                result.InsertKeyFrame(0.400000006F, 0F, HoldThenStepEasingFunction());
+                result.InsertKeyFrame(0.393442631F, 0F, HoldThenStepEasingFunction());
                 // Frame 48.
-                result.InsertKeyFrame(0.800000012F, 1F, CubicBezierEasingFunction_0());
+                result.InsertKeyFrame(0.786885262F, 1F, CubicBezierEasingFunction_0());
+                // Frame 60.
+                result.InsertKeyFrame(0.983606577F, 1F, HoldThenStepEasingFunction());
+                // Frame 61.
+                result.InsertKeyFrame(1F, 0F, HoldThenStepEasingFunction());
                 return result;
             }
 
@@ -846,9 +859,13 @@ namespace ProtonVPN.Client.Common.UI.Assets.Animations
                 // Frame 0.
                 var result = CreateScalarKeyFrameAnimation(0F, 1F, HoldThenStepEasingFunction());
                 // Frame 19.2.
-                result.InsertKeyFrame(0.319999993F, 1F, HoldThenStepEasingFunction());
+                result.InsertKeyFrame(0.314754099F, 1F, HoldThenStepEasingFunction());
                 // Frame 25.2.
-                result.InsertKeyFrame(0.419999987F, 0F, CubicBezierEasingFunction_0());
+                result.InsertKeyFrame(0.413114756F, 0F, CubicBezierEasingFunction_0());
+                // Frame 60.
+                result.InsertKeyFrame(0.983606577F, 0F, HoldThenStepEasingFunction());
+                // Frame 61.
+                result.InsertKeyFrame(1F, 1F, HoldThenStepEasingFunction());
                 return result;
             }
 
@@ -859,9 +876,13 @@ namespace ProtonVPN.Client.Common.UI.Assets.Animations
                 // Frame 0.
                 var result = CreateScalarKeyFrameAnimation(0F, 11.5F, HoldThenStepEasingFunction());
                 // Frame 24.
-                result.InsertKeyFrame(0.400000006F, 11.5F, CubicBezierEasingFunction_0());
+                result.InsertKeyFrame(0.393442631F, 11.5F, CubicBezierEasingFunction_0());
                 // Frame 48.
-                result.InsertKeyFrame(0.800000012F, 3.5F, CubicBezierEasingFunction_1());
+                result.InsertKeyFrame(0.786885262F, 3.5F, CubicBezierEasingFunction_1());
+                // Frame 60.
+                result.InsertKeyFrame(0.983606577F, 3.5F, CubicBezierEasingFunction_0());
+                // Frame 61.
+                result.InsertKeyFrame(1F, 11.5F, HoldThenStepEasingFunction());
                 return result;
             }
 
@@ -872,9 +893,13 @@ namespace ProtonVPN.Client.Common.UI.Assets.Animations
                 // Frame 0.
                 var result = CreateScalarKeyFrameAnimation(0F, 14.5F, HoldThenStepEasingFunction());
                 // Frame 13.8.
-                result.InsertKeyFrame(0.230000004F, 14.5F, CubicBezierEasingFunction_0());
+                result.InsertKeyFrame(0.226229504F, 14.5F, CubicBezierEasingFunction_0());
                 // Frame 43.8.
-                result.InsertKeyFrame(0.730000019F, 6.5F, CubicBezierEasingFunction_1());
+                result.InsertKeyFrame(0.718032777F, 6.5F, CubicBezierEasingFunction_1());
+                // Frame 60.
+                result.InsertKeyFrame(0.983606577F, 6.5F, CubicBezierEasingFunction_0());
+                // Frame 61.
+                result.InsertKeyFrame(1F, 14.5F, HoldThenStepEasingFunction());
                 return result;
             }
 
@@ -886,13 +911,13 @@ namespace ProtonVPN.Client.Common.UI.Assets.Animations
                 { return _rotationAngleInDegreesScalarAnimation_0_to_0; }
                 var result = _rotationAngleInDegreesScalarAnimation_0_to_0 = CreateScalarKeyFrameAnimation(0F, 0F, HoldThenStepEasingFunction());
                 // Frame 12.
-                result.InsertKeyFrame(0.200000003F, -25F, _c.CreateCubicBezierEasingFunction(new Vector2(0F, 0F), new Vector2(0F, 1F)));
+                result.InsertKeyFrame(0.196721315F, -25F, _c.CreateCubicBezierEasingFunction(new Vector2(0F, 0F), new Vector2(0F, 1F)));
                 // Frame 18.
-                result.InsertKeyFrame(0.300000012F, -25F, HoldThenStepEasingFunction());
+                result.InsertKeyFrame(0.295081973F, -25F, HoldThenStepEasingFunction());
                 // Frame 25.5.
-                result.InsertKeyFrame(0.425000012F, 5F, _c.CreateCubicBezierEasingFunction(new Vector2(0F, 0F), new Vector2(0.200000003F, 1F)));
+                result.InsertKeyFrame(0.418032795F, 5F, _c.CreateCubicBezierEasingFunction(new Vector2(0F, 0F), new Vector2(0.200000003F, 1F)));
                 // Frame 48.
-                result.InsertKeyFrame(0.800000012F, 0F, _c.CreateCubicBezierEasingFunction(new Vector2(0.200000003F, 0F), new Vector2(0.25F, 1F)));
+                result.InsertKeyFrame(0.786885262F, 0F, _c.CreateCubicBezierEasingFunction(new Vector2(0.200000003F, 0F), new Vector2(0.25F, 1F)));
                 return result;
             }
 
@@ -903,9 +928,13 @@ namespace ProtonVPN.Client.Common.UI.Assets.Animations
                 // Frame 0.
                 var result = CreateScalarKeyFrameAnimation(0F, 0F, HoldThenStepEasingFunction());
                 // Frame 24.
-                result.InsertKeyFrame(0.400000006F, 0F, HoldThenStepEasingFunction());
+                result.InsertKeyFrame(0.393442631F, 0F, HoldThenStepEasingFunction());
                 // Frame 48.
-                result.InsertKeyFrame(0.800000012F, 180F, CubicBezierEasingFunction_1());
+                result.InsertKeyFrame(0.786885262F, 180F, CubicBezierEasingFunction_1());
+                // Frame 60.
+                result.InsertKeyFrame(0.983606577F, 180F, HoldThenStepEasingFunction());
+                // Frame 61.
+                result.InsertKeyFrame(1F, 0F, HoldThenStepEasingFunction());
                 return result;
             }
 
@@ -916,9 +945,13 @@ namespace ProtonVPN.Client.Common.UI.Assets.Animations
                 // Frame 0.
                 var result = CreateScalarKeyFrameAnimation(0F, 0F, HoldThenStepEasingFunction());
                 // Frame 13.8.
-                result.InsertKeyFrame(0.230000004F, 0F, HoldThenStepEasingFunction());
+                result.InsertKeyFrame(0.226229504F, 0F, HoldThenStepEasingFunction());
                 // Frame 43.8.
-                result.InsertKeyFrame(0.730000019F, -180F, CubicBezierEasingFunction_1());
+                result.InsertKeyFrame(0.718032777F, -180F, CubicBezierEasingFunction_1());
+                // Frame 60.
+                result.InsertKeyFrame(0.983606577F, -180F, HoldThenStepEasingFunction());
+                // Frame 61.
+                result.InsertKeyFrame(1F, 0F, HoldThenStepEasingFunction());
                 return result;
             }
 
@@ -991,9 +1024,13 @@ namespace ProtonVPN.Client.Common.UI.Assets.Animations
                 // Frame 0.
                 var result = CreateVector3KeyFrameAnimation(0F, new Vector3(0F, 0F, 0F), HoldThenStepEasingFunction());
                 // Frame 13.8.
-                result.InsertKeyFrame(0.230000004F, new Vector3(0F, 0F, 0F), CubicBezierEasingFunction_0());
+                result.InsertKeyFrame(0.226229504F, new Vector3(0F, 0F, 0F), CubicBezierEasingFunction_0());
                 // Frame 43.8.
-                result.InsertKeyFrame(0.730000019F, new Vector3(1F, 1F, 0F), CubicBezierEasingFunction_1());
+                result.InsertKeyFrame(0.718032777F, new Vector3(1F, 1F, 0F), CubicBezierEasingFunction_1());
+                // Frame 60.
+                result.InsertKeyFrame(0.983606577F, new Vector3(1F, 1F, 0F), CubicBezierEasingFunction_0());
+                // Frame 61.
+                result.InsertKeyFrame(1F, new Vector3(0F, 0F, 0F), HoldThenStepEasingFunction());
                 return result;
             }
 
@@ -1004,9 +1041,13 @@ namespace ProtonVPN.Client.Common.UI.Assets.Animations
                 // Frame 0.
                 var result = CreateVector3KeyFrameAnimation(0F, new Vector3(0F, 0F, 0F), HoldThenStepEasingFunction());
                 // Frame 24.
-                result.InsertKeyFrame(0.400000006F, new Vector3(0F, 0F, 0F), CubicBezierEasingFunction_0());
+                result.InsertKeyFrame(0.393442631F, new Vector3(0F, 0F, 0F), CubicBezierEasingFunction_0());
                 // Frame 48.
-                result.InsertKeyFrame(0.800000012F, new Vector3(1F, 1F, 0F), CubicBezierEasingFunction_1());
+                result.InsertKeyFrame(0.786885262F, new Vector3(1F, 1F, 0F), CubicBezierEasingFunction_1());
+                // Frame 60.
+                result.InsertKeyFrame(0.983606577F, new Vector3(1F, 1F, 0F), CubicBezierEasingFunction_0());
+                // Frame 61.
+                result.InsertKeyFrame(1F, new Vector3(0F, 0F, 0F), HoldThenStepEasingFunction());
                 return result;
             }
 
