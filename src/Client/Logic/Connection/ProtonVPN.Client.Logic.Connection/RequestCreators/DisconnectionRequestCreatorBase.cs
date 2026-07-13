@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2026 Proton AG
+/*
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,36 +17,32 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
-using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 
-public abstract class RequestCreatorBase
+public abstract class DisconnectionRequestCreatorBase : RequestCreatorBase
 {
-    protected readonly ILogger Logger;
-    protected readonly ISettings Settings;
-    protected readonly IEntityMapper EntityMapper;
-    protected readonly IMainSettingsRequestCreator MainSettingsRequestCreator;
-
-    protected RequestCreatorBase(
+    protected DisconnectionRequestCreatorBase(
         ILogger logger,
         ISettings settings,
         IEntityMapper entityMapper,
         IMainSettingsRequestCreator mainSettingsRequestCreator)
-    {
-        Logger = logger;
-        Settings = settings;
-        EntityMapper = entityMapper;
-        MainSettingsRequestCreator = mainSettingsRequestCreator;
-    }
+        : base(logger, settings, entityMapper, mainSettingsRequestCreator)
+    { }
 
-    protected virtual MainSettingsIpcEntity GetSettings(IConnectionIntent? connectionIntent = null)
+    public DisconnectionRequestIpcEntity Create(VpnError vpnError)
     {
-        return MainSettingsRequestCreator.Create(connectionIntent);
+        return new DisconnectionRequestIpcEntity
+        {
+            RetryId = Guid.NewGuid(),
+            Settings = GetSettings(),
+            ErrorType = EntityMapper.Map<VpnError, VpnErrorTypeIpcEntity>(vpnError)
+        };
     }
 }

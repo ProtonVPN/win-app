@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -17,18 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading;
-using System.Threading.Channels;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
-namespace ProtonVPN.Vpn.LocalAgent;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 
-public interface ILocalAgentTlsCredentialsCache
+public class GuestHoleEntryPerProtocolContract
 {
-    Channel<LocalAgentTlsCredentialsUpdate> LocalAgentTlsCredentialsChannel { get; }
-    long CurrentVersion { get; }
+    [JsonProperty("OpenVPNUDP")]
+    public GuestHoleEntryPerProtocolEntryContract OpenVpnUdp { get; set; }
 
-    Task SetAsync(LocalAgentTlsCredentials credentials, CancellationToken cancellationToken);
-    Task<LocalAgentTlsCredentials?> GetAsync(CancellationToken cancellationToken);
-    Task ClearAsync(CancellationToken cancellationToken);
+    [JsonProperty("OpenVPNTCP")]
+    public GuestHoleEntryPerProtocolEntryContract OpenVpnTcp { get; set; }
+
+    [JsonProperty("WireGuardUDP")]
+    public GuestHoleEntryPerProtocolEntryContract WireGuardUdp { get; set; }
+
+    [JsonProperty("WireGuardTCP")]
+    public GuestHoleEntryPerProtocolEntryContract WireGuardTcp { get; set; }
+
+    [JsonProperty("WireGuardTLS")]
+    public GuestHoleEntryPerProtocolEntryContract WireGuardTls { get; set; }
 }

@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
+/*
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,20 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
-using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.EntityMapping.Contracts;
-using ProtonVPN.Logging.Contracts;
+using Newtonsoft.Json;
 
-namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 
-public class DisconnectionRequestCreator : DisconnectionRequestCreatorBase, IDisconnectionRequestCreator
+public class GuestHoleEntryPerProtocolEntryContract
 {
-    public DisconnectionRequestCreator(
-        ILogger logger,
-        ISettings settings,
-        IEntityMapper entityMapper,
-        IMainSettingsRequestCreator mainSettingsRequestCreator)
-        : base(logger, settings, entityMapper, mainSettingsRequestCreator)
-    { }
+    [JsonProperty("IPv4")]
+    public string Ipv4 { get; set; }
+
+    [JsonProperty("Ports")]
+    public List<int> Ports { get; set; }
 }

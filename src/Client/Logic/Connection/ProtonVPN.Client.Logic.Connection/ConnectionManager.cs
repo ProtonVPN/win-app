@@ -72,6 +72,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
     private readonly IFavoriteServersStorage _favoriteServersStorage;
     private readonly IGuestHoleServersFileStorage _guestHoleServersFileStorage;
     private readonly IGuestHoleConnectionRequestCreator _guestHoleConnectionRequestCreator;
+    private readonly IGuestHoleDisconnectionRequestCreator _guestHoleDisconnectionRequestCreator;
     private readonly IConnectionStatisticalEventsManager _statisticalEventManager;
     private readonly IConnectionKeyManager _connectionKeyManager;
 
@@ -112,6 +113,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         IFavoriteServersStorage favoriteServersStorage,
         IGuestHoleServersFileStorage guestHoleServersFileStorage,
         IGuestHoleConnectionRequestCreator guestHoleConnectionRequestCreator,
+        IGuestHoleDisconnectionRequestCreator guestHoleDisconnectionRequestCreator,
         IConnectionStatisticalEventsManager statisticalEventManager,
         IConnectionKeyManager connectionKeyManager)
     {
@@ -127,7 +129,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         _favoriteServersStorage = favoriteServersStorage;
         _guestHoleServersFileStorage = guestHoleServersFileStorage;
         _guestHoleConnectionRequestCreator = guestHoleConnectionRequestCreator;
-        _guestHoleConnectionRequestCreator = guestHoleConnectionRequestCreator;
+        _guestHoleDisconnectionRequestCreator = guestHoleDisconnectionRequestCreator;
         _statisticalEventManager = statisticalEventManager;
         _connectionKeyManager = connectionKeyManager;
     }
@@ -136,6 +138,11 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         VpnTriggerDimension connectionTrigger,
         IConnectionIntent? connectionIntent = null)
     {
+        if (_isGuestHoleActive)
+        {
+            await DisconnectFromGuestHoleAsync();
+        }
+
         _statisticalEventManager.SetConnectionAttempt(connectionTrigger, ConnectionStatus);
 
         connectionIntent ??= _settings.VpnPlan.IsPaid ? ConnectionIntent.Default : ConnectionIntent.FreeDefault;
@@ -158,6 +165,8 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
             throw new GuestHoleException("No guest hole servers provided.");
         }
 
+        CurrentConnectionIntent = null;
+
         ConnectionRequestIpcEntity request = await _guestHoleConnectionRequestCreator.CreateAsync(servers);
 
         _logger.Info<ConnectTriggerLog>("Guest hole connection requested.");
@@ -166,7 +175,9 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
     public async Task DisconnectFromGuestHoleAsync()
     {
-        DisconnectionRequestIpcEntity request = _disconnectionRequestCreator.Create(VpnError.NoneKeepEnabledKillSwitch);
+        CurrentConnectionIntent = null;
+
+        DisconnectionRequestIpcEntity request = _guestHoleDisconnectionRequestCreator.Create();
 
         await _vpnServiceCaller.DisconnectAsync(request);
     }
@@ -275,7 +286,11 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         _isConnectionStatusHandled = true;
         _isNetworkBlocked = message.NetworkBlocked;
 
-        if (!_isGuestHoleActive)
+        if (_isGuestHoleActive)
+        {
+            CurrentConnectionDetails = null;
+        }
+        else
         {
             if (message.Status is VpnStatusIpcEntity.Pinging or VpnStatusIpcEntity.Connected)
             {

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -26,27 +26,18 @@ using ProtonVPN.ProcessCommunication.Contracts.Entities.Settings;
 
 namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
 
-public abstract class RequestCreatorBase
+public class GuestHoleDisconnectionRequestCreator : DisconnectionRequestCreatorBase, IGuestHoleDisconnectionRequestCreator
 {
-    protected readonly ILogger Logger;
-    protected readonly ISettings Settings;
-    protected readonly IEntityMapper EntityMapper;
-    protected readonly IMainSettingsRequestCreator MainSettingsRequestCreator;
-
-    protected RequestCreatorBase(
+    public GuestHoleDisconnectionRequestCreator(
         ILogger logger,
         ISettings settings,
         IEntityMapper entityMapper,
         IMainSettingsRequestCreator mainSettingsRequestCreator)
-    {
-        Logger = logger;
-        Settings = settings;
-        EntityMapper = entityMapper;
-        MainSettingsRequestCreator = mainSettingsRequestCreator;
-    }
+        : base(logger, settings, entityMapper, mainSettingsRequestCreator)
+    { }
 
-    protected virtual MainSettingsIpcEntity GetSettings(IConnectionIntent? connectionIntent = null)
+    protected override MainSettingsIpcEntity GetSettings(IConnectionIntent? connectionIntent = null)
     {
-        return MainSettingsRequestCreator.Create(connectionIntent);
+        return MainSettingsRequestCreator.CreateForGuestHole();
     }
 }

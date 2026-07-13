@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
+/*
+ * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,20 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
-using ProtonVPN.Client.Settings.Contracts;
-using ProtonVPN.EntityMapping.Contracts;
-using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
-namespace ProtonVPN.Client.Logic.Connection.RequestCreators;
+namespace ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 
-public class DisconnectionRequestCreator : DisconnectionRequestCreatorBase, IDisconnectionRequestCreator
+public interface IGuestHoleDisconnectionRequestCreator
 {
-    public DisconnectionRequestCreator(
-        ILogger logger,
-        ISettings settings,
-        IEntityMapper entityMapper,
-        IMainSettingsRequestCreator mainSettingsRequestCreator)
-        : base(logger, settings, entityMapper, mainSettingsRequestCreator)
-    { }
+    DisconnectionRequestIpcEntity Create(VpnError vpnError = VpnError.NoneKeepEnabledKillSwitch);
 }

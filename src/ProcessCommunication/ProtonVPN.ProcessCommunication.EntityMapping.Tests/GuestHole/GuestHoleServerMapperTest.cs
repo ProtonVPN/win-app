@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -75,6 +75,52 @@ public class GuestHoleServerMapperTest
         Assert.AreEqual(entity.Label, result.Label);
         Assert.AreEqual(entity.Signature, result.Signature);
         Assert.AreEqual(result.X25519PublicKey.Pem, publicKey);
+        Assert.IsNotNull(result.RelayIpByProtocol);
+        Assert.AreEqual(0, result.RelayIpByProtocol.Count);
+    }
+
+    [TestMethod]
+    public void TestMapLeftToRight_WithEntryPerProtocol()
+    {
+        string publicKey = "rc7QnuukueJDqqKMx7Z3n0zmZ+alsj9BwhOwxZiUoCU=";
+        string wireGuardTcpIp = "141.94.127.20";
+        string wireGuardTlsIp = "141.94.127.21";
+
+        GuestHoleServerContract entity = new()
+        {
+            Host = "protonvpn.com",
+            Ip = null,
+            Label = "1",
+            Signature = "sdh2uS26AfSADioe5w6p6S5D2H5fkdY8p9Jfh1F1sdo2a5JfGHroGeunf6K9G4H1c1K/2u3G3oGKdso==",
+            X25519PublicKey = publicKey,
+            EntryPerProtocol = new()
+            {
+                WireGuardTcp = new() { Ipv4 = wireGuardTcpIp, Ports = [443] },
+                WireGuardTls = new() { Ipv4 = wireGuardTlsIp, Ports = [443] },
+            },
+        };
+
+        _entityMapper.Map<PublicKey, ServerPublicKeyIpcEntity>(Arg.Any<PublicKey>()).Returns(
+            new ServerPublicKeyIpcEntity()
+            {
+                Pem = publicKey,
+                Algorithm = KeyAlgorithmIpcEntity.X25519
+            });
+
+        VpnServerIpcEntity result = _mapper.Map(entity);
+
+        Assert.IsNotNull(result);          
+        Assert.AreEqual(entity.Host, result.Name);
+        Assert.IsNull(result.Ip);
+        Assert.AreEqual(entity.Label, result.Label);
+        Assert.AreEqual(entity.Signature, result.Signature);
+        Assert.AreEqual(result.X25519PublicKey.Pem, publicKey);
+        Assert.IsNotNull(result.RelayIpByProtocol);
+        Assert.AreEqual(4, result.RelayIpByProtocol.Count);
+        Assert.AreEqual(wireGuardTcpIp, result.RelayIpByProtocol[VpnProtocolIpcEntity.WireGuardTcp]);
+        Assert.AreEqual(wireGuardTcpIp, result.RelayIpByProtocol[VpnProtocolIpcEntity.ProTunTcp]);
+        Assert.AreEqual(wireGuardTlsIp, result.RelayIpByProtocol[VpnProtocolIpcEntity.WireGuardTls]);
+        Assert.AreEqual(wireGuardTlsIp, result.RelayIpByProtocol[VpnProtocolIpcEntity.ProTunTls]);
     }
 
     [TestMethod]

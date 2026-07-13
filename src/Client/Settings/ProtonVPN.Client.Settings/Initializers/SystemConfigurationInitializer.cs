@@ -27,8 +27,6 @@ namespace ProtonVPN.Client.Settings.Initializers;
 
 public class SystemConfigurationInitializer : ISystemConfigurationInitializer
 {
-    private const int PROLONGED_WIREGUARD_TIMEOUT_SECONDS = 15;
-
     private readonly IAntivirusProductsProvider _antivirusProductsProvider;
     private readonly ISettings _settings;
     private readonly ILogger _logger;
@@ -54,8 +52,8 @@ public class SystemConfigurationInitializer : ISystemConfigurationInitializer
         if (antivirusProducts.Count > 0)
         {
             _logger.Info<AppLog>($"Detected antivirus products: {string.Join(", ", antivirusProducts)}." +
-                $" Changing WireGuard timeout to {PROLONGED_WIREGUARD_TIMEOUT_SECONDS} seconds.");
-            _settings.WireGuardConnectionTimeout = TimeSpan.FromSeconds(PROLONGED_WIREGUARD_TIMEOUT_SECONDS);
+                $" Changing WireGuard timeout to {DefaultSettings.ProlongedWireGuardConnectionTimeout.TotalSeconds} seconds.");
+            _settings.WireGuardConnectionTimeout = DefaultSettings.ProlongedWireGuardConnectionTimeout;
         }
         else
         {

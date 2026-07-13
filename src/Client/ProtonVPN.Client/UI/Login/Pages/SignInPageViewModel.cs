@@ -38,8 +38,8 @@ using ProtonVPN.Client.UI.Login.Enums;
 using ProtonVPN.Client.UI.Login.Overlays;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Legacy.Abstract;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.Logging.Contracts.Events.UserLogs;
-using Windows.System;
 
 namespace ProtonVPN.Client.UI.Login.Pages;
 
@@ -282,15 +282,33 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
         try
         {
             IsToShowCreateAccountSpinner = true;
+
+            Result? result;
+
             bool isSignUpPageAccessible = await _apiAvailabilityVerifier.IsSignUpPageAccessibleAsync();
             if (isSignUpPageAccessible)
             {
-                await OpenCreateAccountPageAsync();
+                Logger.Info<AppLog>("Opening create account page.");
+                result = await OpenCreateAccountPageAsync();
             }
             else
             {
-                await _guestHoleManager.ExecuteAsync<Result>(OpenCreateAccountPageAsync);
+                Logger.Info<AppLog>("API is not accessible, opening create account page through guest hole.");
+                result = await _guestHoleManager.ExecuteAsync<Result>(OpenCreateAccountPageAsync);
             }
+
+            if (result?.Success == true)
+            {
+                Logger.Info<AppLog>("Create account page opened successfully.");
+            }
+            else
+            {
+                Logger.Error<AppLog>($"Failed to open create account page. Error: {result?.Error ?? "null"}");
+            }
+        }
+        catch (Exception e)
+        {
+            Logger.Error<AppLog>("Failed to open create account page.", e);
         }
         finally
         {
@@ -300,8 +318,17 @@ public partial class SignInPageViewModel : LoginPageViewModelBase
 
     private async Task<Result> OpenCreateAccountPageAsync()
     {
-        await Launcher.LaunchUriAsync(new Uri(_urlsBrowser.CreateAccount));
-        return Result.Ok();
+        try
+        {
+            _urlsBrowser.BrowseTo(_urlsBrowser.CreateAccount);
+            // Delay for page to load
+            await Task.Delay(3000); 
+            return Result.Ok();
+        }
+        catch (Exception e)
+        {
+            return Result.Fail(e.Message);
+        }
     }
 
     protected override void OnActivated()

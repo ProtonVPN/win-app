@@ -70,6 +70,21 @@ public class LocalAgentTlsCredentialsCache : ILocalAgentTlsCredentialsCache
         }
     }
 
+    public async Task ClearAsync(CancellationToken cancellationToken)
+    {
+        await _semaphore.WaitAsync(cancellationToken);
+
+        try
+        {
+            _credentials = null;
+            _logger.Info<LocalAgentTlsCredentialsLog>("Credentials cleared.");
+        }
+        finally
+        {
+            _semaphore.Release();
+        }
+    }
+
     private async Task SetCredentialsIfChangedAsync(LocalAgentTlsCredentials credentials, CancellationToken cancellationToken)
     {
         ConnectionCertificate certificate = credentials.ConnectionCertificate;
