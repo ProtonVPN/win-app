@@ -20,71 +20,26 @@
 using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 using System.Threading.Tasks;
-using ProtonVPN.Common.Core.Extensions;
-using ProtonVPN.Configurations.Contracts;
-using ProtonVPN.Vpn.OpenVpn;
 
 namespace ProtonVPN.Vpn.PortScanning;
 
 public class TcpPortScanner : ITcpPortScanner
 {
-    private readonly byte[] _staticKey;
-
-    public TcpPortScanner(IStaticConfiguration config)
+    public async Task<bool> IsAliveAsync(string ip, int port, CancellationToken cancellationToken)
     {
-        _staticKey = config.OpenVpn.StaticKey;
-    }
-
-    public async Task<bool> IsAliveAsync(string ip, int port, Task timeoutTask)
-    {
-        OpenVpnHandshake packet = new(_staticKey);
-        IPEndPoint endpoint = new(IPAddress.Parse(ip), port);
-        using Socket socket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
         try
         {
-            await SafeSocketActionAsync(socket.ConnectAsync(endpoint)).WithTimeout(timeoutTask);
+            IPEndPoint endpoint = new(IPAddress.Parse(ip), port);
+            using Socket socket = new(endpoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
-            byte[] bytes = packet.Bytes(true);
-            await SafeSocketActionAsync(socket.SendAsync(new ArraySegment<byte>(bytes), SocketFlags.None)).WithTimeout(timeoutTask);
-
-            byte[] answer = new byte[1024];
-            int received = await SafeSocketFuncAsync(socket.ReceiveAsync(new ArraySegment<byte>(answer), SocketFlags.None)).WithTimeout(timeoutTask);
-
-            return received > 0;
+            await socket.ConnectAsync(endpoint, cancellationToken).ConfigureAwait(false);
+            return socket.Connected;
         }
         catch (Exception)
         {
             return false;
         }
-        finally
-        {
-            socket.Close();
-        }
-    }
-
-    private static async Task SafeSocketActionAsync(Task task)
-    {
-        try
-        {
-            await task.ConfigureAwait(false);
-        }
-        catch (SocketException) { }           // swallowed
-        catch (ObjectDisposedException) { }   // swallowed
-        // Any other exception propagates naturally to the caller
-    }
-
-    private static async Task<TResult> SafeSocketFuncAsync<TResult>(Task<TResult> task)
-    {
-        try
-        {
-            return await task.ConfigureAwait(false);
-        }
-        catch (SocketException) { }           // swallowed
-        catch (ObjectDisposedException) { }   // swallowed
-        // Any other exception propagates naturally to the caller
-
-        return default!;
     }
 }

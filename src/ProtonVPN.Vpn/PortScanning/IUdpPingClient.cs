@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 
 namespace ProtonVPN.Vpn.PortScanning;
 
-public interface ITcpPortScanner
+public interface IUdpPingClient
 {
-    Task<bool> IsAliveAsync(string ip, int port, CancellationToken cancellationToken);
+    Task<bool> PingAsync(string ip, int port, string serverKeyBase64, CancellationToken cancellationToken);
 }
