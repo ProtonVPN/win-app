@@ -847,6 +847,10 @@
   <data name="Countries_SmartRouting">
     <value>توجيه ذكي</value>
   </data>
+  <data name="Countries_SmartRouting_RoutedThrough">
+    <value>Smart routed through {0}</value>
+    <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
+  </data>
   <data name="Countries_Tor">
     <value>Tor</value>
   </data>
@@ -3124,10 +3128,8 @@ VPN</value>
     <value>يستخدم Smart Routing عادةً للتحايل على القوانين المناهضة للخصوصية وأشكال الرقابة الأخرى.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>الخوادم موجودة فعليًا في {0}، ولكنك ستظهر وكأنك تتصفح من {1}</value>
-    <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
-    Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
-    Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
+    <value>Connects you to your destination country through servers physically located elsewhere: {0}.</value>
+    <comment>{0} is a placeholder for the countries where the physical servers are. Can be either one country or multiple countries separated with comma.</comment>
   </data>
   <data name="Overlay_SmartRouting_LearnMore">
     <value>ما هو Smart Routing؟</value>
@@ -3476,13 +3478,13 @@ VPN</value>
     <value>مؤخرًا</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations">
-    <value>Excluded locations</value>
+    <value>مواقع مستثناة</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Cities">
-    <value>Cities</value>
+    <value>مدن</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Countries">
-    <value>Countries</value>
+    <value>بلدان</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Description">
     <value>The selected locations will never be used when you connect to Fastest or Random</value>

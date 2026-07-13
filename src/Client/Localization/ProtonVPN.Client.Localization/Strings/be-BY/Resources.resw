@@ -739,6 +739,10 @@
   <data name="Countries_SmartRouting">
     <value>Smart Routing</value>
   </data>
+  <data name="Countries_SmartRouting_RoutedThrough">
+    <value>Разумная маршрутызацыя праз краіну {0}</value>
+    <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
+  </data>
   <data name="Countries_Tor">
     <value>Tor</value>
   </data>
@@ -2932,10 +2936,8 @@ Secure Core</value>
     <value>Smart Routing звычайна выкарыстоўваецца для абыходу законаў супраць прыватнасці, а таксама іншых форм цэнзуры.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>Фізічна серверы размяшчаюцца ў краіне {0}, але будзе выглядаць быццам вы праглядаеце сайты з краіны {1}</value>
-    <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
-    Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
-    Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
+    <value>Падключае вас да вашай краіны прызначэння праз серверы, якія фізічна знаходзяцца дзе-небудзь у іншым месцы: {0}.</value>
+    <comment>{0} is a placeholder for the countries where the physical servers are. Can be either one country or multiple countries separated with comma.</comment>
   </data>
   <data name="Overlay_SmartRouting_LearnMore">
     <value>Што такое Smart Routing?</value>

@@ -631,6 +631,10 @@ Fehlercode: {0}</value>
   <data name="Countries_SmartRouting">
     <value>Intelligentes Routing</value>
   </data>
+  <data name="Countries_SmartRouting_RoutedThrough">
+    <value>Intelligent weitergeleitet über {0}</value>
+    <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
+  </data>
   <data name="Countries_Tor">
     <value>Tor</value>
   </data>
@@ -2740,10 +2744,8 @@ Eine hohe Serverauslastung kann deine Verbindung verlangsamen.</value>
     <value>Smart Routing wird in der Regel eingesetzt, um Datenschutzgesetze und andere Formen der Zensur zu umgehen.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>Die Server befinden sich physisch in {0}, aber es wird so aussehen, als würdest du von {1} browsen</value>
-    <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
-    Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
-    Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
+    <value>Verbindet dich mit deinem Zielland über Server, die sich physisch an einem anderen Standort befinden: {0}.</value>
+    <comment>{0} is a placeholder for the countries where the physical servers are. Can be either one country or multiple countries separated with comma.</comment>
   </data>
   <data name="Overlay_SmartRouting_LearnMore">
     <value>Was ist Smart Routing?</value>

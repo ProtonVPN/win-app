@@ -631,6 +631,10 @@ Hata kodu: {0}</value>
   <data name="Countries_SmartRouting">
     <value>Smart Routing</value>
   </data>
+  <data name="Countries_SmartRouting_RoutedThrough">
+    <value>{0}, akıllı yönlendirme üzerinden yönlendirildi</value>
+    <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
+  </data>
   <data name="Countries_Tor">
     <value>Tor</value>
   </data>
@@ -2740,10 +2744,8 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçimlerini aşmak için kullanılır.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>Sunucular fiziksel olarak {0} konumunda bulunuyor ancak siz {1} konumundan geziniyor gibi görüneceksiniz</value>
-    <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
-    Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
-    Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
+    <value>Sizi fiziksel olarak başka bir yerde bulunan sunucular aracılığıyla hedef ülkenize bağlar: {0}.</value>
+    <comment>{0} is a placeholder for the countries where the physical servers are. Can be either one country or multiple countries separated with comma.</comment>
   </data>
   <data name="Overlay_SmartRouting_LearnMore">
     <value>Smart Routing nedir?</value>

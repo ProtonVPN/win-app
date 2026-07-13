@@ -577,6 +577,10 @@
   <data name="Countries_SmartRouting">
     <value>智能路由</value>
   </data>
+  <data name="Countries_SmartRouting_RoutedThrough">
+    <value>通过 {0} 智能路由</value>
+    <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
+  </data>
   <data name="Countries_Tor">
     <value>Tor</value>
   </data>
@@ -2644,10 +2648,8 @@ VPN 连接</value>
     <value>智能路由通常用于规避反隐私法和其他形式的审查。</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>服务器实际位于 {0}，但您似乎是从 {1} 浏览的</value>
-    <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
-    Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
-    Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
+    <value>通过实际位于其他位置的服务器将您连接到目标国家/地区：{0}。</value>
+    <comment>{0} is a placeholder for the countries where the physical servers are. Can be either one country or multiple countries separated with comma.</comment>
   </data>
   <data name="Overlay_SmartRouting_LearnMore">
     <value>什么是智能路由？</value>
