@@ -17,11 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Diagnostics;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProtonVPN.Client.Common.Models;
+using ProtonVPN.Client.Contracts.Services.Browsing;
 using ProtonVPN.Client.Contracts.Services.Lifecycle;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Core.Bases.ViewModels;
@@ -31,6 +33,7 @@ using ProtonVPN.Client.Core.Services.Activation.Bases;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Services.Contracts;
@@ -42,6 +45,7 @@ using ProtonVPN.Client.UI.Dialogs.DebugTools.Models;
 using ProtonVPN.Client.UI.Main.Map;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Geographical;
+using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Restrictions;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 using ProtonVPN.StatisticalEvents.Contracts;
@@ -64,6 +68,8 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
     private readonly ICoordinatesProvider _coordinatesProvider;
     private readonly IConnectionCertificateManager _connectionCertificateManager;
+    private readonly IUrlsBrowser _urlsBrowser;
+    private readonly IGuestHoleManager _guestHoleManager;
 
     [ObservableProperty]
     private Overlay _selectedOverlay;
@@ -117,7 +123,9 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         IEnumerable<IWindowActivator> windowActivators,
         IVpnPlanUpdater vpnPlanUpdater,
         ICoordinatesProvider coordinatesProvider,
-        IConnectionCertificateManager connectionCertificateManager)
+        IConnectionCertificateManager connectionCertificateManager,
+        IUrlsBrowser urlsBrowser,
+        IGuestHoleManager guestHoleManager)
         : base(windowActivator, viewModelHelper)
     {
         _serversUpdater = serversUpdater;
@@ -134,6 +142,8 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         _vpnPlanUpdater = vpnPlanUpdater;
         _coordinatesProvider = coordinatesProvider;
         _connectionCertificateManager = connectionCertificateManager;
+        _urlsBrowser = urlsBrowser;
+        _guestHoleManager = guestHoleManager;
 
         OverlaysList =
         [
@@ -403,6 +413,58 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     public Task TriggerConnectionCertificateUpdateAsync()
     {
         return _connectionCertificateManager.ForceRequestNewCertificateAsync();
+    }
+
+    [RelayCommand]
+    public async Task CreateAccountViaGuestHoleAsync()
+    {
+        try
+        {
+            Debug.WriteLine("BEGIN: Create Account via Guest Hole.");
+
+            Result? result = await _guestHoleManager.ExecuteAsync<Result>(OpenCreateAccountPageAsync);
+
+            if (result?.Success == true)
+            {
+                Debug.WriteLine("SUCCESS: Create account page opened successfully.");
+            }
+            else
+            {
+                Debug.WriteLine($"FAIL: Failed to open create account page. Error: {result?.Error ?? "null"}");
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine($"FAIL: Create Account via Guest Hole. Exception: {e.Message}");
+        }
+        finally
+        {
+            Debug.WriteLine("END: Create Account via Guest Hole.");
+        }
+    }
+
+    private async Task<Result> OpenCreateAccountPageAsync()
+    {
+        try
+        {
+            Debug.WriteLine("BEGIN: Open Create Account URL.");
+
+            _urlsBrowser.BrowseTo(_urlsBrowser.CreateAccount);
+
+            Debug.WriteLine("SUCCESS: Open Create Account URL.");
+
+            return Result.Ok();
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine("FAIL: Open Create Account URL. {0}", e.Message);
+
+            return Result.Fail(e.Message);
+        }
+        finally
+        { 
+            Debug.WriteLine("END: Open Create Account URL.");
+        }
     }
 
     [RelayCommand]

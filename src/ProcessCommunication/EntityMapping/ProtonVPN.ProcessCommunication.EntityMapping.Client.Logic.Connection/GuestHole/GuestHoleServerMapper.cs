@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -46,7 +46,39 @@ public class GuestHoleServerMapper : IMapper<GuestHoleServerContract, VpnServerI
                 Signature = leftEntity.Signature,
                 X25519PublicKey = _entityMapper.Map<PublicKey, ServerPublicKeyIpcEntity>(
                     new PublicKey(leftEntity.X25519PublicKey, KeyAlgorithm.X25519)),
+                RelayIpByProtocol = CreateRelayIpByProtocol(leftEntity.EntryPerProtocol),
             };
+    }
+
+    private Dictionary<VpnProtocolIpcEntity, string> CreateRelayIpByProtocol(GuestHoleEntryPerProtocolContract entryPerProtocol)
+    {
+        Dictionary<VpnProtocolIpcEntity, string> relayIpByProtocol = [];
+
+        if (!string.IsNullOrWhiteSpace(entryPerProtocol?.WireGuardUdp?.Ipv4))
+        {
+            relayIpByProtocol.Add(VpnProtocolIpcEntity.WireGuardUdp, entryPerProtocol.WireGuardUdp.Ipv4);
+            relayIpByProtocol.Add(VpnProtocolIpcEntity.ProTunUdp, entryPerProtocol.WireGuardUdp.Ipv4);
+        }
+        if (!string.IsNullOrWhiteSpace(entryPerProtocol?.WireGuardTcp?.Ipv4))
+        {
+            relayIpByProtocol.Add(VpnProtocolIpcEntity.WireGuardTcp, entryPerProtocol.WireGuardTcp.Ipv4);
+            relayIpByProtocol.Add(VpnProtocolIpcEntity.ProTunTcp, entryPerProtocol.WireGuardTcp.Ipv4);
+        }
+        if (!string.IsNullOrWhiteSpace(entryPerProtocol?.WireGuardTls?.Ipv4))
+        {
+            relayIpByProtocol.Add(VpnProtocolIpcEntity.WireGuardTls, entryPerProtocol.WireGuardTls.Ipv4);
+            relayIpByProtocol.Add(VpnProtocolIpcEntity.ProTunTls, entryPerProtocol.WireGuardTls.Ipv4);
+        }
+        if (!string.IsNullOrWhiteSpace(entryPerProtocol?.OpenVpnUdp?.Ipv4))
+        {
+            relayIpByProtocol.Add(VpnProtocolIpcEntity.OpenVpnUdp, entryPerProtocol.OpenVpnUdp.Ipv4);
+        }
+        if (!string.IsNullOrWhiteSpace(entryPerProtocol?.OpenVpnTcp?.Ipv4))
+        {
+            relayIpByProtocol.Add(VpnProtocolIpcEntity.OpenVpnTcp, entryPerProtocol.OpenVpnTcp.Ipv4);
+        }
+
+        return relayIpByProtocol;
     }
 
     public GuestHoleServerContract Map(VpnServerIpcEntity rightEntity)

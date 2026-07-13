@@ -25,4 +25,5 @@ namespace ProtonVPN.Client.Logic.Connection.Contracts.RequestCreators;
 public interface IMainSettingsRequestCreator
 {
     MainSettingsIpcEntity Create(IConnectionIntent? connectionIntent);
+    MainSettingsIpcEntity CreateForGuestHole();
 }

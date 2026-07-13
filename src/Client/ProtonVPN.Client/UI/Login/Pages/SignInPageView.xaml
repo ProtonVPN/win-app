@@ -106,10 +106,27 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             AutomationProperties.AutomationId="CreateAccountButton"
                             AutomationProperties.Name="{x:Bind ViewModel.Localizer.Get('SignIn_Form_CreateAccount')}"
                             Command="{x:Bind ViewModel.CreateAccountCommand, Mode=OneTime}"
-                            Content="{x:Bind ViewModel.Localizer.Get('SignIn_Form_CreateAccount')}"
                             Foreground="{ThemeResource TextNormColorBrush}"
                             Style="{StaticResource SecondaryButtonStyle}"
-                            Visibility="{x:Bind ViewModel.IsSrpFormType, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            Visibility="{x:Bind ViewModel.IsSrpFormType, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="16" />
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="16" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="1" 
+                                       HorizontalAlignment="Center"
+                                       TextTrimming="CharacterEllipsis"
+                                       Text="{x:Bind ViewModel.Localizer.Get('SignIn_Form_CreateAccount')}" />
+                            <ProgressRing x:Name="LoadingSpinner"
+                                          Width="16"
+                                          Height="16"
+                                          Grid.Column="2"
+                                          Foreground="{ThemeResource TextHintColorBrush}"
+                                          IsActive="{x:Bind ViewModel.IsToShowCreateAccountSpinner}" />
+                        </Grid>
+                    </Button>
 
                 </StackPanel>
 

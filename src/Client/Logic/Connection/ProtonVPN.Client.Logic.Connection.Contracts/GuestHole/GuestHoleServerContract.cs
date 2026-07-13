@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -37,4 +37,7 @@ public class GuestHoleServerContract
 
     [JsonProperty("publicKey")]
     public string X25519PublicKey { get; set; } = string.Empty;
+
+    [JsonProperty("entryPerProtocol")]
+    public GuestHoleEntryPerProtocolContract EntryPerProtocol { get; set; }
 }

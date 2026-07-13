@@ -30,10 +30,13 @@ namespace ProtonVPN.Client.Logic.Connection.GuestHole;
 public class GuestHoleManager : IGuestHoleManager, IEventMessageReceiver<ConnectionStatusChangedMessage>
 {
     private const int CONNECTED_FUNC_DELAY_IN_MS = 1000;
+    private static readonly TimeSpan _semaphoreTimeout = TimeSpan.FromSeconds(30);
 
     private readonly ILogger _logger;
     private readonly IEventMessageSender _eventMessageSender;
     private readonly IGuestHoleConnector _guestHoleConnector;
+
+    private readonly SemaphoreSlim _semaphore = new(1, 1);
 
     private bool _isActive;
     private bool _wasConnected;
@@ -55,40 +58,53 @@ public class GuestHoleManager : IGuestHoleManager, IEventMessageReceiver<Connect
 
     public async Task<T?> ExecuteAsync<T>(Func<Task<Result>> onConnectedFunc, CancellationToken cancellationToken) where T : Result
     {
-        _onConnectedFunc = onConnectedFunc;
-
-        // Run continuations asynchronously so TrySetResult completes the Task first, and the code awaiting it in
-        // ExecuteAsync resumes later instead of immediately inside Receive/HandleDisconnection.
-        _tcs = new(TaskCreationOptions.RunContinuationsAsynchronously);
-
-        SetStatus(true);
+        if (!await _semaphore.WaitAsync(_semaphoreTimeout, cancellationToken))
+        {
+            _logger.Warn<GuestHoleLog>("Guest hole is already in use. Timed out waiting for access.");
+            return null;
+        }
 
         try
         {
-            await _guestHoleConnector.ConnectToGuestHoleAsync();
+            _onConnectedFunc = onConnectedFunc;
 
-            Result? result = await _tcs.Task.WaitAsync(cancellationToken);
-            if (result is null)
+            // Run continuations asynchronously so TrySetResult completes the Task first, and the code awaiting it in
+            // ExecuteAsync resumes later instead of immediately inside Receive/HandleDisconnection.
+            _tcs = new(TaskCreationOptions.RunContinuationsAsynchronously);
+
+            SetStatus(true);
+
+            try
             {
-                await DisconnectAsync();
+                await _guestHoleConnector.ConnectToGuestHoleAsync();
+
+                Result? result = await _tcs.Task.WaitAsync(cancellationToken);
+                if (result is null)
+                {
+                    await DisconnectAsync();
+                }
+
+                return (T?)result;
             }
+            catch (GuestHoleException e)
+            {
+                _logger.Warn<GuestHoleLog>("Failed to connect to guest hole.", e);
 
-            return (T?)result;
+                HandleDisconnection();
+                return null;
+            }
+            catch (Exception) when (cancellationToken.IsCancellationRequested)
+            {
+                _logger.Info<GuestHoleLog>("Guest hole connection was cancelled.");
+
+                await DisconnectAsync();
+
+                throw;
+            }
         }
-        catch (GuestHoleException e)
+        finally
         {
-            _logger.Warn<GuestHoleLog>("Failed to connect to guest hole.", e);
-
-            HandleDisconnection();
-            return null;
-        }
-        catch (Exception) when (cancellationToken.IsCancellationRequested)
-        {
-            _logger.Info<GuestHoleLog>("Guest hole connection was cancelled.");
-
-            await DisconnectAsync();
-
-            throw;
+            _semaphore.Release();
         }
     }
 

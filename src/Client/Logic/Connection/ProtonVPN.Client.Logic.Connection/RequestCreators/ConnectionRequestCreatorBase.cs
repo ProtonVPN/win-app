@@ -70,7 +70,7 @@ public abstract class ConnectionRequestCreatorBase : RequestCreatorBase
             PreferredProtocols = GetPreferredProtocol(settings.VpnProtocol, connectionIntent),
             Ports = GetPorts(),
             CustomDns = GetCustomDns(isCustomDnsEnabled),
-            IsIpv6Enabled = Settings.IsIpv6Enabled,
+            IsIpv6Enabled = settings.IsIpv6Enabled,
             WireGuardConnectionTimeout = settings.WireGuardConnectionTimeout,
             DnsBlockMode = settings.DnsBlockMode,
             ShouldDisableWeakHostSetting = DefaultSettings.ShouldDisableWeakHostSetting,

@@ -288,6 +288,14 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                             Style="{StaticResource PrimaryButtonStyle}" />
                 </toolkit:SettingsCard>
 
+                <toolkit:SettingsCard Header="Guest hole operation"
+                                      IsTabStop="False"
+                                      Style="{StaticResource DefaultSettingsCardStyle}">
+                    <Button Command="{x:Bind ViewModel.CreateAccountViaGuestHoleCommand, Mode=OneTime}"
+                            Content="Create account"
+                            Style="{StaticResource PrimaryButtonStyle}" />
+                </toolkit:SettingsCard>
+
                 <toolkit:SettingsCard Header="Simulate Restrictions"
                                       IsTabStop="False"
                                       Style="{StaticResource DefaultSettingsCardStyle}">
@@ -302,6 +310,5 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
             </StackPanel>
         </ScrollViewer>
-
     </Grid>
 </UserControl>

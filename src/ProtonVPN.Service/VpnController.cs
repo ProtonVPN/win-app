@@ -113,9 +113,17 @@ public class VpnController : IVpnController
             return;
         }
 
-        await _localAgentTlsCredentialsCache.SetAsync(new LocalAgentTlsCredentials(
-            new ConnectionCertificate(credentials.ClientCertPem, credentials.ClientCertificateExpirationDateUtc),
-            credentials.ClientKeyPair), cancelToken);
+        if (string.IsNullOrEmpty(credentials.ClientCertPem))
+        {
+            await _localAgentTlsCredentialsCache.ClearAsync(cancelToken);
+        }
+        else
+        {
+            await _localAgentTlsCredentialsCache.SetAsync(new LocalAgentTlsCredentials(
+                new ConnectionCertificate(credentials.ClientCertPem, credentials.ClientCertificateExpirationDateUtc),
+                credentials.ClientKeyPair), cancelToken);
+        }
+
         _stateMachine.Connect(endpoints, config, credentials);
     }
 

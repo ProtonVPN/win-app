@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -54,15 +54,13 @@ public class GuestHoleConnectionRequestCreator : ConnectionRequestCreatorBase, I
     public async Task<ConnectionRequestIpcEntity> CreateAsync(IEnumerable<GuestHoleServerContract> servers)
     {
         MainSettingsIpcEntity settings = GetSettings();
-        settings.OpenVpnAdapter = OpenVpnAdapterIpcEntity.Tap;
-        settings.VpnProtocol = VpnProtocolIpcEntity.Smart;
 
         ConnectionRequestIpcEntity request = new()
         {
             RetryId = Guid.NewGuid(),
             Config = GetVpnConfig(settings),
             Credentials = await GetVpnCredentialsAsync(),
-            Protocol = VpnProtocolIpcEntity.Smart,
+            Protocol = settings.VpnProtocol,
             Servers = GetVpnServers(servers),
             Settings = settings,
         };
@@ -70,21 +68,38 @@ public class GuestHoleConnectionRequestCreator : ConnectionRequestCreatorBase, I
         return request;
     }
 
+    protected override MainSettingsIpcEntity GetSettings(IConnectionIntent? connectionIntent = null)
+    {
+        return MainSettingsRequestCreator.CreateForGuestHole();
+    }
+
     protected override VpnConfigIpcEntity GetVpnConfig(MainSettingsIpcEntity settings, IConnectionIntent? connectionIntent = null)
     {
         return new()
         {
             VpnProtocol = settings.VpnProtocol,
-            PreferredProtocols = [
+            SplitTunnelMode = settings.SplitTunnel.Mode,
+            SplitTunnelIPs = settings.SplitTunnel.Ips.ToList(),
+            ModerateNat = settings.ModerateNat,
+            NetShieldMode = settings.NetShieldMode,
+            PortForwarding = settings.PortForwarding,
+            SplitTcp = settings.SplitTcp,
+            PreferredProtocols = 
+            [
                 VpnProtocolIpcEntity.WireGuardTls,
                 VpnProtocolIpcEntity.OpenVpnTcp,
             ],
-            Ports = {
+            Ports = 
+            {
                 { VpnProtocolIpcEntity.WireGuardTls, Settings.WireGuardTlsPorts },
                 { VpnProtocolIpcEntity.OpenVpnTcp, Settings.OpenVpnTcpPorts },
             },
+            CustomDns = [],
+            IsIpv6Enabled = settings.IsIpv6Enabled,
+            WireGuardConnectionTimeout = settings.WireGuardConnectionTimeout,
+            DnsBlockMode = settings.DnsBlockMode,
+            ShouldDisableWeakHostSetting = DefaultSettings.ShouldDisableWeakHostSetting,
             IsWireGuardServerRouteEnabled = DefaultSettings.IsWireGuardServerRouteEnabled,
-            WireGuardConnectionTimeout = Settings.WireGuardConnectionTimeout,
         };
     }
 
@@ -107,7 +122,7 @@ public class GuestHoleConnectionRequestCreator : ConnectionRequestCreatorBase, I
     private VpnServerIpcEntity[] GetVpnServers(IEnumerable<GuestHoleServerContract> servers)
     {
         return servers
-            .Select(s => EntityMapper.Map<GuestHoleServerContract, VpnServerIpcEntity>(s))
+            .Select(EntityMapper.Map<GuestHoleServerContract, VpnServerIpcEntity>)
             .Where(s => s is not null)
             .ToArray();
     }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -31,8 +31,7 @@ public abstract class RequestCreatorBase
     protected readonly ILogger Logger;
     protected readonly ISettings Settings;
     protected readonly IEntityMapper EntityMapper;
-
-    private readonly IMainSettingsRequestCreator _mainSettingsRequestCreator;
+    protected readonly IMainSettingsRequestCreator MainSettingsRequestCreator;
 
     protected RequestCreatorBase(
         ILogger logger,
@@ -43,12 +42,11 @@ public abstract class RequestCreatorBase
         Logger = logger;
         Settings = settings;
         EntityMapper = entityMapper;
-
-        _mainSettingsRequestCreator = mainSettingsRequestCreator;
+        MainSettingsRequestCreator = mainSettingsRequestCreator;
     }
 
-    protected MainSettingsIpcEntity GetSettings(IConnectionIntent? connectionIntent = null)
+    protected virtual MainSettingsIpcEntity GetSettings(IConnectionIntent? connectionIntent = null)
     {
-        return _mainSettingsRequestCreator.Create(connectionIntent);
+        return MainSettingsRequestCreator.Create(connectionIntent);
     }
 }

@@ -56,6 +56,7 @@ public class ConnectionManagerTest
     private IFavoriteServersStorage? _favoriteServersStorage;
     private IGuestHoleServersFileStorage? _guestHoleServersFileStorage;
     private IGuestHoleConnectionRequestCreator? _guestHoleConnectionRequestCreator;
+    private IGuestHoleDisconnectionRequestCreator? _guestHoleDisconnectionRequestCreator;
     private IConnectionStatisticalEventsManager? _statisticalEventManager;
     private IConnectionKeyManager? _connectionKeyManager;
 
@@ -74,6 +75,7 @@ public class ConnectionManagerTest
         _favoriteServersStorage = Substitute.For<IFavoriteServersStorage>();
         _guestHoleServersFileStorage = Substitute.For<IGuestHoleServersFileStorage>();
         _guestHoleConnectionRequestCreator = Substitute.For<IGuestHoleConnectionRequestCreator>();
+        _guestHoleDisconnectionRequestCreator = Substitute.For<IGuestHoleDisconnectionRequestCreator>();
         _statisticalEventManager = Substitute.For<IConnectionStatisticalEventsManager>();
         _connectionKeyManager = Substitute.For<IConnectionKeyManager>();
 
@@ -96,6 +98,7 @@ public class ConnectionManagerTest
         _favoriteServersStorage = null;
         _guestHoleServersFileStorage = null;
         _guestHoleConnectionRequestCreator = null;
+        _guestHoleDisconnectionRequestCreator = null;
         _statisticalEventManager = null;
         _connectionKeyManager = null;
     }
@@ -197,6 +200,7 @@ public class ConnectionManagerTest
             _favoriteServersStorage!,
             _guestHoleServersFileStorage!,
             _guestHoleConnectionRequestCreator!,
+            _guestHoleDisconnectionRequestCreator!,
             _statisticalEventManager!,
             _connectionKeyManager!);
     }
