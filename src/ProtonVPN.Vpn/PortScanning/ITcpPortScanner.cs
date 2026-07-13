@@ -17,11 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ProtonVPN.Vpn.PortScanning;
 
 public interface ITcpPortScanner
 {
-    Task<bool> IsAliveAsync(string ip, int port, Task timeoutTask);
+    Task<bool> IsAliveAsync(string ip, int port, CancellationToken cancellationToken);
 }

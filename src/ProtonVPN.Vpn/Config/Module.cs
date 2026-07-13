@@ -50,7 +50,7 @@ public class Module
         builder.RegisterType<OpenVpnDnsServersCreator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<TcpPortScanner>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<SplitTunnelRouting>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<UdpPingClient>().SingleInstance();
+        builder.RegisterType<UdpPingClient>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<WintunAdapter>().SingleInstance();
         builder.RegisterType<TapAdapter>().SingleInstance();
         builder.RegisterType<VpnEndpointCandidates>().AsImplementedInterfaces().SingleInstance();
