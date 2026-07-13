@@ -283,7 +283,8 @@
     <value>Toepassing niet gevonden</value>
   </data>
   <data name="Common_States_Off">
-    <value>Uit</value>
+    <value>Uit
+</value>
   </data>
   <data name="Common_States_On">
     <value>Aan</value>
@@ -630,6 +631,10 @@ Foutcode: {0}</value>
   </data>
   <data name="Countries_SmartRouting">
     <value>Smart Routing</value>
+  </data>
+  <data name="Countries_SmartRouting_RoutedThrough">
+    <value>Slimme routering via {0}</value>
+    <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
   </data>
   <data name="Countries_Tor">
     <value>Tor</value>
@@ -2740,10 +2745,8 @@ VPN-verbinding</value>
     <value>Smart Routing wordt meestal gebruikt om antiprivacywetten en andere vormen van censuur te omzeilen.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>Servers bevinden zich fysiek in {0}, maar u lijkt te browsen vanuit {1}</value>
-    <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
-    Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
-    Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
+    <value>Verbindt u met uw bestemmingsland via servers die zich fysiek ergens anders bevinden: {0}</value>
+    <comment>{0} is a placeholder for the countries where the physical servers are. Can be either one country or multiple countries separated with comma.</comment>
   </data>
   <data name="Overlay_SmartRouting_LearnMore">
     <value>Wat is Smart Routing?</value>

@@ -631,6 +631,10 @@ Codi d'error: {0}</value>
   <data name="Countries_SmartRouting">
     <value>Smart Routing</value>
   </data>
+  <data name="Countries_SmartRouting_RoutedThrough">
+    <value>Smart ha encaminat a través de {0}</value>
+    <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
+  </data>
   <data name="Countries_Tor">
     <value>Tor</value>
   </data>
@@ -1773,7 +1777,8 @@ Codi d'error: {0}</value>
     <value>No ha funcionat?</value>
   </data>
   <data name="Dialogs_ReportIssue_QuickFixes_Header">
-    <value>Aquests consells podrien ajudar a resoldre el vostre problema més ràpid.</value>
+    <value>Aquests consells podrien ajudar a resoldre el vostre problema més ràpid.
+</value>
   </data>
   <data name="Dialogs_ReportIssue_Result_DoneAction">
     <value>Fet</value>
@@ -2740,10 +2745,8 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>La característica Smart Routing normalment s'utilitza per evitar les lleis contra la privadesa i altres formes de censura.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>Els servidors es troben físicament a {0} però semblarà que esteu navegant des de: {1}</value>
-    <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
-    Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
-    Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
+    <value>Us connecta al vostre país de destinació a través de servidors físicament ubicats en altres llocs: {0}.</value>
+    <comment>{0} is a placeholder for the countries where the physical servers are. Can be either one country or multiple countries separated with comma.</comment>
   </data>
   <data name="Overlay_SmartRouting_LearnMore">
     <value>Què és Smart Routing?</value>

@@ -124,7 +124,7 @@
     <value>Stran s podrobnostmi o povezavi</value>
   </data>
   <data name="Automation_Properties_ConnectionPreferences_Page">
-    <value>Connection preferences page</value>
+    <value>Stran za nastavitev povezave</value>
   </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>Priključna kartica</value>
@@ -738,6 +738,10 @@ Koda napake: {0}</value>
   </data>
   <data name="Countries_SmartRouting">
     <value>Pametno usmerjanje</value>
+  </data>
+  <data name="Countries_SmartRouting_RoutedThrough">
+    <value>Pametno usmerjanje prek {0}</value>
+    <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
   </data>
   <data name="Countries_Tor">
     <value>Tor</value>
@@ -2038,7 +2042,7 @@ Koda napake: {0}</value>
     <value>Odklenili ste vse premijske funkcije Proton VPN, Mail, Calendar, Drive in Pass.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
-    <value>Welcome to {0}</value>
+    <value>Dobrodošli v {0}</value>
     <comment>Title to welcome the user after an account upgrade. {0} is a placeholder for the name of the new plan (eg. Proton Unlimited, Proton Duo, Proton Family).</comment>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
@@ -2072,7 +2076,7 @@ Koda napake: {0}</value>
     <value>If there are locations you don't want to be automatically connected to, you can exclude them from Fastest and Random country.</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
-    <value>Skip</value>
+    <value>Preskoči</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
     <value>Not the country you wanted?</value>
@@ -2081,13 +2085,13 @@ Koda napake: {0}</value>
     <value>Exclude locations</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_CloseButton">
-    <value>Maybe later</value>
+    <value>Morda kasneje</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Subtitle">
-    <value>You can now exclude countries or cities from Fastest and Random connections.</value>
+    <value>Zdaj lahko države ali mesta izključite iz povezav Najhitrejša in Naključna.</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Title">
-    <value>Avoid unwanted locations</value>
+    <value>Izogni se neželenim lokacijam</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Zapuščate Proton VPN?</value>
@@ -2675,10 +2679,10 @@ Koda napake: {0}</value>
     <value>Napačna koda. Poskusite znova.</value>
   </data>
   <data name="Login_Error_MissingSrpDll_Message">
-    <value>A file required for sign-in is missing from your installation. Please reinstall Proton VPN to fix this issue.</value>
+    <value>V vaši namestitvi manjka datoteka, potrebna za prijavo. Če želite odpraviti to težavo, znova namestite Proton VPN.</value>
   </data>
   <data name="Login_Error_MissingSrpDll_Title">
-    <value>Unable to sign in</value>
+    <value>Prijava ni mogoča</value>
   </data>
   <data name="Login_Error_SessionExpired">
     <value>Vaša seja se je iztekla. Ponovno se prijavite.</value>
@@ -2932,10 +2936,8 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Smart Routing se običajno uporablja za izogibanje zakonom o zasebnosti in drugim oblikam cenzure.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>Strežniki se fizično nahajajo v {0}, vendar bo videti, kot da brskate iz {1}</value>
-    <comment>{0} is a placeholder for the physical server location country. {1} is a placeholder for the destination country
-    Warning: country names are inserted in the nominative case. For INFLECTED languages, use alternative wording as follows:
-    Connects you to your destination country ({1}) through servers that are physically located somewhere else ({0})</comment>
+    <value>Povezuje vas z vašo ciljno državo prek strežnikov, ki so fizično nameščeni drugje: {0}.</value>
+    <comment>{0} is a placeholder for the countries where the physical servers are. Can be either one country or multiple countries separated with comma.</comment>
   </data>
   <data name="Overlay_SmartRouting_LearnMore">
     <value>Kaj je Smart Routing?</value>
@@ -3242,13 +3244,13 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Omejuje podatke, ki vstopajo v vaše omrežje. Ta možnost je bolj varna, vendar lahko oteži povezave P2P pri igranju iger.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
-    <value>Bridges network traffic. Slower than TUN, but needed for some legacy or special network setups.</value>
+    <value>Premosti omrežni promet. Je počasnejši od TUN, vendar je potreben za nekatere starejše ali posebne omrežne konfiguracije.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
-    <value>Routes traffic between different networks. TUN can be faster and more stable than TAP.</value>
+    <value>Usmerja promet med različnimi omrežji. TUN je lahko hitrejši in stabilnejši od TAP.</value>
   </data>
   <data name="Settings_Connection_ConnectionPreferences">
-    <value>Connection preferences</value>
+    <value>Nastavitve povezave</value>
   </data>
   <data name="Settings_Connection_ConnectionPreferences_Description">
     <value>Default connection and excluded locations</value>
@@ -3819,16 +3821,16 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Blokirano spletno mesto?</value>
   </data>
   <data name="System_Tray_Actions_Connect">
-    <value>Connect</value>
+    <value>Poveži</value>
   </data>
   <data name="System_Tray_Actions_Disconnect">
-    <value>Disconnect</value>
+    <value>Prekini</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
-    <value>Exit</value>
+    <value>Izhod</value>
   </data>
   <data name="System_Tray_Actions_OpenApplication">
-    <value>Open {0}</value>
+    <value>Odpri {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_ExitApplication">
