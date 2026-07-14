@@ -17,15 +17,34 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Threading.Channels;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ProtocolLogs;
 using ProtonVPN.ProTun.Generated;
-using VpnState = ProtonVPN.Common.Core.Networking.VpnState;
 
 namespace ProtonVPN.ProTun.StateChanges;
 
-public interface IProTunStateChangeHandler : StateChangedCallback
+public class PersistentCacheHandler : IPersistentCacheHandler
 {
-    Channel<VpnState> StateChannel { get; }
+    private readonly ILogger _logger;
 
-    void SetCancellationToken(CancellationToken cancellationToken);
+    public PersistentCacheHandler(ILogger logger)
+    {
+        _logger = logger;
+    }
+
+    public void Clear()
+    {
+        _logger.Info<ProTunProtocolLog>("ProTUN persistent cache cleared");
+    }
+
+    public byte[]? Get(CacheKey key)
+    {
+        _logger.Debug<ProTunProtocolLog>($"Get '{nameof(key)}' from persistent cache");
+        return [];
+    }
+
+    public void Put(CacheKey key, byte[] bytes)
+    {
+        _logger.Debug<ProTunProtocolLog>($"Write '{nameof(key)}' to persistent cache");
+    }
 }

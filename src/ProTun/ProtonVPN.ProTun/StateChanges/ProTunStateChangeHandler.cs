@@ -19,28 +19,28 @@
 
 using System.Threading.Channels;
 using ProtonVPN.Common.Core.Networking;
-using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
 using ProtonVPN.Logging.Contracts.Events.ProtocolLogs;
 using ProtonVPN.ProTun.Generated;
-using static ProtonVPN.ProTun.Generated.State;
+using static ProtonVPN.ProTun.Generated.ConnectionState;
+using static ProtonVPN.ProTun.Generated.DisconnectReason;
+using ProTunVpnState = ProtonVPN.ProTun.Generated.VpnState;
+using VpnState = ProtonVPN.Common.Core.Networking.VpnState;
 
 namespace ProtonVPN.ProTun.StateChanges;
 
 public class ProTunStateChangeHandler : IProTunStateChangeHandler
 {
     private readonly ILogger _logger;
-    private readonly IIssueReporter _issueReporter;
 
     public Channel<VpnState> StateChannel { get; } = Channel.CreateUnbounded<VpnState>();
 
     private CancellationToken? _cancellationToken;
 
-    public ProTunStateChangeHandler(ILogger logger, IIssueReporter issueReporter)
+    public ProTunStateChangeHandler(ILogger logger)
     {
         _logger = logger;
-        _issueReporter = issueReporter;
     }
 
     public void SetCancellationToken(CancellationToken cancellationToken)
@@ -48,46 +48,65 @@ public class ProTunStateChangeHandler : IProTunStateChangeHandler
         _cancellationToken = cancellationToken;
     }
 
-    public async void OnStateChanged(State state)
+    public async void OnStateChanged(ProTunVpnState state)
     {
-        if (state is Disconnected disconnectedState)
+        ConnectionState connectionState = state.connectionState;
+
+        await (connectionState switch
         {
-            if (disconnectedState.error is null)
-            {
-                await InvokeStateAsync(new(VpnStatus.Disconnected, VpnProtocol.Smart));
-            }
-            else
-            {
-                _logger.Error<ConnectionErrorLog>($"ProTUN disconnected with error: {disconnectedState.error}");
-                await InvokeStateAsync(new(VpnStatus.Disconnected, VpnError.Unknown, VpnProtocol.Smart));
-            }
-        }
-        else if (state is Connected connectedState)
+            Disconnected disconnectedState => HandleDisconnectedStateAsync(disconnectedState),
+            Connecting connectingState => HandleConnectingStateAsync(connectingState),
+            ConnectingToLocalAgent connectingToLocalAgentState => HandleConnectingToLocalAgentAsync(connectingToLocalAgentState),
+            Connected connectedState => HandleConnectedStateAsync(connectedState),
+        });
+    }
+
+    private async Task HandleConnectedStateAsync(Connected connectedState)
+    {
+        await InvokeStateWithPeerAsync(VpnStatus.Connected, connectedState.peer);
+    }
+
+    private async Task HandleConnectingStateAsync(Connecting connectingState)
+    {
+        await InvokeStateAsync(new(VpnStatus.Waiting, VpnProtocol.Smart));
+
+        PeerConnectionInfo? peer = connectingState.peers.FirstOrDefault();
+        if (peer is null) // ProTUN sends connecting without peers on a change of peers, or network availability change
         {
-            await InvokeStateWithPeerAsync(VpnStatus.Connected, connectedState.peer);
-        }
-        else if (state is WaitingForAction)
-        {
-            await InvokeStateAsync(new(VpnStatus.Waiting, VpnProtocol.Smart));
-        }
-        else if (state is Connecting connectingState)
-        {
-            PeerConnectionInfo? peer = connectingState.peers.FirstOrDefault();
-            if (peer is null) // ProTUN sends connecting without peers on a change of peers, or network availability change
-            {
-                await InvokeStateAsync(new(VpnStatus.Connecting, VpnProtocol.Smart));
-            }
-            else
-            {
-                await InvokeStateWithPeerAsync(VpnStatus.Connecting, peer);
-            }
+            await InvokeStateAsync(new(VpnStatus.Connecting, VpnProtocol.Smart));
         }
         else
         {
-            string message = $"The ProTUN state '{state?.GetType().FullName}' is not implemented.";
-            _logger.Error<ProTunProtocolLog>(message);
-            _issueReporter.CaptureError(message);
+            await InvokeStateWithPeerAsync(VpnStatus.Connecting, peer);
         }
+    }
+
+    private Task HandleConnectingToLocalAgentAsync(ConnectingToLocalAgent connectingToLocalAgentState)
+    {
+        _logger.Error<ConnectionErrorLog>("ProTUN is connecting to Local Agent and it shouldn't.");
+        return Task.CompletedTask;
+    }
+
+    private async Task HandleDisconnectedStateAsync(Disconnected disconnectedState)
+    {
+        if (disconnectedState.error is null)
+        {
+            await InvokeStateAsync(new(VpnStatus.Disconnected, VpnProtocol.Smart));
+        }
+        else
+        {
+            string errorMessage = GetErrorMessage(disconnectedState.error);
+            _logger.Error<ConnectionErrorLog>($"ProTUN disconnected with error: {errorMessage}");
+            await InvokeStateAsync(new(VpnStatus.Disconnected, VpnError.Unknown, VpnProtocol.Smart));
+        }
+    }
+
+    private string GetErrorMessage(DisconnectReason error)
+    {
+        return error switch
+        {
+            TunEstablishError e => $"Tun error: {e.message}",
+        };
     }
 
     private async Task InvokeStateWithPeerAsync(VpnStatus vpnStatus, PeerConnectionInfo peer)

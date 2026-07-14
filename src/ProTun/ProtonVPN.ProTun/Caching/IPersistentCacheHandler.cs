@@ -17,16 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.ProTun.Contracts.ConnectionArguments;
+using ProtonVPN.ProTun.Generated;
 
-public class ConnectionPeer
+namespace ProtonVPN.ProTun.StateChanges;
+
+public interface IPersistentCacheHandler : PersistentCache
 {
-    public required string PeerId { get; init; }
-    public required string ServerIp { get; init; }
-    public required byte[] ServerPublicKey { get; init; }
-    public required ushort[] UdpPorts { get; init; }
-    public required ushort[] TcpPorts { get; init; }
-    public required ushort[] TlsPorts { get; init; }
-    public int Priority { get; init; } = 1;
-    public string? BouncingLabel { get; init; }
 }

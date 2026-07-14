@@ -701,6 +701,18 @@ static class _UniFFILib {
         ulong @uniffiHandle,RustBuffer @event,IntPtr @uniffiOutReturn,ref UniffiRustCallStatus _uniffi_out_err
     );
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void UniffiCallbackInterfacePersistentCacheMethod0(
+        ulong @uniffiHandle,RustBuffer @key,RustBuffer @bytes,IntPtr @uniffiOutReturn,ref UniffiRustCallStatus _uniffi_out_err
+    );
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void UniffiCallbackInterfacePersistentCacheMethod1(
+        ulong @uniffiHandle,RustBuffer @key,ref RustBuffer @uniffiOutReturn,ref UniffiRustCallStatus _uniffi_out_err
+    );
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void UniffiCallbackInterfacePersistentCacheMethod2(
+        ulong @uniffiHandle,IntPtr @uniffiOutReturn,ref UniffiRustCallStatus _uniffi_out_err
+    );
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate void UniffiCallbackInterfaceStateChangedCallbackMethod0(
         ulong @uniffiHandle,RustBuffer @state,IntPtr @uniffiOutReturn,ref UniffiRustCallStatus _uniffi_out_err
     );
@@ -714,6 +726,14 @@ static class _UniFFILib {
     public struct UniffiVTableCallbackInterfaceEventCallback
     {
         public IntPtr @onEvent;
+        public IntPtr @uniffiFree;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct UniffiVTableCallbackInterfacePersistentCache
+    {
+        public IntPtr @put;
+        public IntPtr @get;
+        public IntPtr @clear;
         public IntPtr @uniffiFree;
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -823,6 +843,16 @@ static class _UniFFILib {
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     static _UniFFILib() {
         _UniFFILib.uniffiCheckContractApiVersion();
@@ -830,6 +860,7 @@ static class _UniFFILib {
         
         UniffiCallbackInterfaceClientLogger.Register();
         UniffiCallbackInterfaceEventCallback.Register();
+        UniffiCallbackInterfacePersistentCache.Register();
         UniffiCallbackInterfaceStateChangedCallback.Register();
         }
 
@@ -850,11 +881,19 @@ static class _UniFFILib {
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
-    public static extern void uniffi_protun_fn_method_connection_get_stats(IntPtr @ptr,ref UniffiRustCallStatus _uniffi_out_err
+    public static extern void uniffi_protun_fn_method_connection_on_connectivity_change(IntPtr @ptr,RustBuffer @event,ref UniffiRustCallStatus _uniffi_out_err
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
-    public static extern void uniffi_protun_fn_method_connection_on_connectivity_change(IntPtr @ptr,RustBuffer @event,ref UniffiRustCallStatus _uniffi_out_err
+    public static extern void uniffi_protun_fn_method_connection_provide_api_fork_selector(IntPtr @ptr,RustBuffer @forkSelectorInfo,ref UniffiRustCallStatus _uniffi_out_err
+    );
+
+    [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void uniffi_protun_fn_method_connection_request_local_agent_stats(IntPtr @ptr,ref UniffiRustCallStatus _uniffi_out_err
+    );
+
+    [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void uniffi_protun_fn_method_connection_request_stats(IntPtr @ptr,ref UniffiRustCallStatus _uniffi_out_err
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
@@ -866,11 +905,15 @@ static class _UniFFILib {
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
-    public static extern void uniffi_protun_fn_method_connection_update_peers(IntPtr @ptr,RustBuffer @peers,ref UniffiRustCallStatus _uniffi_out_err
+    public static extern void uniffi_protun_fn_method_connection_update(IntPtr @ptr,RustBuffer @update,ref UniffiRustCallStatus _uniffi_out_err
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
-    public static extern void uniffi_protun_fn_method_connection_update_wg_private_key(IntPtr @ptr,RustBuffer @info,ref UniffiRustCallStatus _uniffi_out_err
+    public static extern void uniffi_protun_fn_method_connection_update_local_agent_settings(IntPtr @ptr,RustBuffer @settings,ref UniffiRustCallStatus _uniffi_out_err
+    );
+
+    [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void uniffi_protun_fn_method_connection_update_peers(IntPtr @ptr,RustBuffer @peers,ref UniffiRustCallStatus _uniffi_out_err
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
@@ -898,7 +941,7 @@ static class _UniFFILib {
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
-    public static extern IntPtr uniffi_protun_fn_constructor_windowsconnection_connect(RustBuffer @connectionConfig,RustBuffer @networkConfig,ulong @clientStateChangeCallback,ulong @eventCallback,ref UniffiRustCallStatus _uniffi_out_err
+    public static extern IntPtr uniffi_protun_fn_constructor_windowsconnection_connect(RustBuffer @connectionConfig,RustBuffer @networkConfig,ulong @clientStateChangeCallback,ulong @eventCallback,ulong @cache,ref UniffiRustCallStatus _uniffi_out_err
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
@@ -923,6 +966,10 @@ static class _UniFFILib {
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
     public static extern void uniffi_protun_fn_init_callback_vtable_eventcallback(ref _UniFFILib.UniffiVTableCallbackInterfaceEventCallback @vtable
+    );
+
+    [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void uniffi_protun_fn_init_callback_vtable_persistentcache(ref _UniFFILib.UniffiVTableCallbackInterfacePersistentCache @vtable
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
@@ -1170,11 +1217,19 @@ static class _UniFFILib {
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
-    public static extern ushort uniffi_protun_checksum_method_connection_get_stats(
+    public static extern ushort uniffi_protun_checksum_method_connection_on_connectivity_change(
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
-    public static extern ushort uniffi_protun_checksum_method_connection_on_connectivity_change(
+    public static extern ushort uniffi_protun_checksum_method_connection_provide_api_fork_selector(
+    );
+
+    [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
+    public static extern ushort uniffi_protun_checksum_method_connection_request_local_agent_stats(
+    );
+
+    [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
+    public static extern ushort uniffi_protun_checksum_method_connection_request_stats(
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
@@ -1186,11 +1241,15 @@ static class _UniFFILib {
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
-    public static extern ushort uniffi_protun_checksum_method_connection_update_peers(
+    public static extern ushort uniffi_protun_checksum_method_connection_update(
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
-    public static extern ushort uniffi_protun_checksum_method_connection_update_wg_private_key(
+    public static extern ushort uniffi_protun_checksum_method_connection_update_local_agent_settings(
+    );
+
+    [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
+    public static extern ushort uniffi_protun_checksum_method_connection_update_peers(
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
@@ -1230,6 +1289,18 @@ static class _UniFFILib {
     );
 
     [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
+    public static extern ushort uniffi_protun_checksum_method_persistentcache_put(
+    );
+
+    [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
+    public static extern ushort uniffi_protun_checksum_method_persistentcache_get(
+    );
+
+    [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
+    public static extern ushort uniffi_protun_checksum_method_persistentcache_clear(
+    );
+
+    [DllImport("protun", CallingConvention = CallingConvention.Cdecl)]
     public static extern ushort uniffi_protun_checksum_method_statechangedcallback_on_state_changed(
     );
 
@@ -1266,15 +1337,27 @@ static class _UniFFILib {
             }
         }
         {
-            var checksum = _UniFFILib.uniffi_protun_checksum_method_connection_get_stats();
-            if (checksum != 8320) {
-                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_connection_get_stats` checksum `8320`, library returned `{checksum}`");
-            }
-        }
-        {
             var checksum = _UniFFILib.uniffi_protun_checksum_method_connection_on_connectivity_change();
             if (checksum != 45238) {
                 throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_connection_on_connectivity_change` checksum `45238`, library returned `{checksum}`");
+            }
+        }
+        {
+            var checksum = _UniFFILib.uniffi_protun_checksum_method_connection_provide_api_fork_selector();
+            if (checksum != 49580) {
+                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_connection_provide_api_fork_selector` checksum `49580`, library returned `{checksum}`");
+            }
+        }
+        {
+            var checksum = _UniFFILib.uniffi_protun_checksum_method_connection_request_local_agent_stats();
+            if (checksum != 25827) {
+                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_connection_request_local_agent_stats` checksum `25827`, library returned `{checksum}`");
+            }
+        }
+        {
+            var checksum = _UniFFILib.uniffi_protun_checksum_method_connection_request_stats();
+            if (checksum != 15986) {
+                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_connection_request_stats` checksum `15986`, library returned `{checksum}`");
             }
         }
         {
@@ -1290,15 +1373,21 @@ static class _UniFFILib {
             }
         }
         {
-            var checksum = _UniFFILib.uniffi_protun_checksum_method_connection_update_peers();
-            if (checksum != 15424) {
-                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_connection_update_peers` checksum `15424`, library returned `{checksum}`");
+            var checksum = _UniFFILib.uniffi_protun_checksum_method_connection_update();
+            if (checksum != 6242) {
+                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_connection_update` checksum `6242`, library returned `{checksum}`");
             }
         }
         {
-            var checksum = _UniFFILib.uniffi_protun_checksum_method_connection_update_wg_private_key();
-            if (checksum != 45720) {
-                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_connection_update_wg_private_key` checksum `45720`, library returned `{checksum}`");
+            var checksum = _UniFFILib.uniffi_protun_checksum_method_connection_update_local_agent_settings();
+            if (checksum != 17094) {
+                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_connection_update_local_agent_settings` checksum `17094`, library returned `{checksum}`");
+            }
+        }
+        {
+            var checksum = _UniFFILib.uniffi_protun_checksum_method_connection_update_peers();
+            if (checksum != 15424) {
+                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_connection_update_peers` checksum `15424`, library returned `{checksum}`");
             }
         }
         {
@@ -1339,8 +1428,8 @@ static class _UniFFILib {
         }
         {
             var checksum = _UniFFILib.uniffi_protun_checksum_constructor_windowsconnection_connect();
-            if (checksum != 6810) {
-                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_constructor_windowsconnection_connect` checksum `6810`, library returned `{checksum}`");
+            if (checksum != 10694) {
+                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_constructor_windowsconnection_connect` checksum `10694`, library returned `{checksum}`");
             }
         }
         {
@@ -1356,9 +1445,27 @@ static class _UniFFILib {
             }
         }
         {
+            var checksum = _UniFFILib.uniffi_protun_checksum_method_persistentcache_put();
+            if (checksum != 59817) {
+                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_persistentcache_put` checksum `59817`, library returned `{checksum}`");
+            }
+        }
+        {
+            var checksum = _UniFFILib.uniffi_protun_checksum_method_persistentcache_get();
+            if (checksum != 28866) {
+                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_persistentcache_get` checksum `28866`, library returned `{checksum}`");
+            }
+        }
+        {
+            var checksum = _UniFFILib.uniffi_protun_checksum_method_persistentcache_clear();
+            if (checksum != 51853) {
+                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_persistentcache_clear` checksum `51853`, library returned `{checksum}`");
+            }
+        }
+        {
             var checksum = _UniFFILib.uniffi_protun_checksum_method_statechangedcallback_on_state_changed();
-            if (checksum != 30152) {
-                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_statechangedcallback_on_state_changed` checksum `30152`, library returned `{checksum}`");
+            if (checksum != 14466) {
+                throw new UniffiContractChecksumException($"ProtonVPN.ProTun.Generated: uniffi bindings expected function `uniffi_protun_checksum_method_statechangedcallback_on_state_changed` checksum `14466`, library returned `{checksum}`");
             }
         }
     }
@@ -1475,6 +1582,32 @@ class FfiConverterUInt64: FfiConverter<ulong, ulong> {
 
 
 
+class FfiConverterInt64: FfiConverter<long, long> {
+    public static FfiConverterInt64 INSTANCE = new FfiConverterInt64();
+
+    public override long Lift(long value) {
+        return value;
+    }
+
+    public override long Read(BigEndianStream stream) {
+        return stream.ReadLong();
+    }
+
+    public override long Lower(long value) {
+        return value;
+    }
+
+    public override int AllocationSize(long value) {
+        return 8;
+    }
+
+    public override void Write(long value, BigEndianStream stream) {
+        stream.WriteLong(value);
+    }
+}
+
+
+
 class FfiConverterFloat: FfiConverter<float, float> {
     public static FfiConverterFloat INSTANCE = new FfiConverterFloat();
 
@@ -1496,6 +1629,32 @@ class FfiConverterFloat: FfiConverter<float, float> {
 
     public override void Write(float value, BigEndianStream stream) {
         stream.WriteFloat(value);
+    }
+}
+
+
+
+class FfiConverterDouble: FfiConverter<double, double> {
+    public static FfiConverterDouble INSTANCE = new FfiConverterDouble();
+
+    public override double Lift(double value) {
+        return value;
+    }
+
+    public override double Read(BigEndianStream stream) {
+        return stream.ReadDouble();
+    }
+
+    public override double Lower(double value) {
+        return value;
+    }
+
+    public override int AllocationSize(double value) {
+        return 8;
+    }
+
+    public override void Write(double value, BigEndianStream stream) {
+        stream.WriteDouble(value);
     }
 }
 
@@ -1643,24 +1802,33 @@ public interface IConnection {
     /// Disconnects and waits for the connection to be fully closed.
     /// </summary>
     void DisconnectAndWait();
-    void GetStats();
     /// <summary>
     /// Call it when connectivity or underlying network adapter(s) change
     /// (e.g. network switched from wifi to mobile). Library will use that information
     /// to reset VPN connection sockets.
     /// </summary>
     void OnConnectivityChange(ConnectivityEvent @event);
+    void ProvideApiForkSelector(ForkSelectorInfo @forkSelectorInfo);
+    /// <summary>
+    /// One-off call to get local agent stats - they will be delivered via [Event::LocalAgentStats].
+    /// </summary>
+    void RequestLocalAgentStats();
+    /// <summary>
+    /// One-off call to get connection stats - they will be delivered via [Event::ConnectionStats].
+    /// </summary>
+    void RequestStats();
     void StartPacketCapture(PcapFileInfo @pcapFile);
     void StopPacketCapture();
+    /// <summary>
+    /// Atomic update for peers, local agent settings and TUN. Use None to skip given update.
+    /// </summary>
+    void Update(ConfigUpdate @update);
+    void UpdateLocalAgentSettings(LocalAgentSettings @settings);
     /// <summary>
     /// Updates candidate peers for connection.
     /// Method call might not necessarily result in new connection if suitable peer is already connected.
     /// </summary>
     void UpdatePeers(PeerInfo[] @peers);
-    /// <summary>
-    /// Updates WireGuard private key.
-    /// </summary>
-    void UpdateWgPrivateKey(PrivateKeyUpdateInfo @info);
 }
 /// <summary>
 /// Represents an active VPN connection.
@@ -1786,15 +1954,6 @@ public class Connection : IConnection, IDisposable {
     
     
     
-    public void GetStats() {
-        CallWithPointer(thisPtr =>
-    _UniffiHelpers.RustCall( (ref UniffiRustCallStatus _status) =>
-    _UniFFILib.uniffi_protun_fn_method_connection_get_stats(thisPtr,  ref _status)
-));
-    }
-    
-    
-    
     /// <summary>
     /// Call it when connectivity or underlying network adapter(s) change
     /// (e.g. network switched from wifi to mobile). Library will use that information
@@ -1804,6 +1963,39 @@ public class Connection : IConnection, IDisposable {
         CallWithPointer(thisPtr =>
     _UniffiHelpers.RustCall( (ref UniffiRustCallStatus _status) =>
     _UniFFILib.uniffi_protun_fn_method_connection_on_connectivity_change(thisPtr, FfiConverterTypeConnectivityEvent.INSTANCE.Lower(@event), ref _status)
+));
+    }
+    
+    
+    
+    public void ProvideApiForkSelector(ForkSelectorInfo @forkSelectorInfo) {
+        CallWithPointer(thisPtr =>
+    _UniffiHelpers.RustCall( (ref UniffiRustCallStatus _status) =>
+    _UniFFILib.uniffi_protun_fn_method_connection_provide_api_fork_selector(thisPtr, FfiConverterTypeForkSelectorInfo.INSTANCE.Lower(@forkSelectorInfo), ref _status)
+));
+    }
+    
+    
+    
+    /// <summary>
+    /// One-off call to get local agent stats - they will be delivered via [Event::LocalAgentStats].
+    /// </summary>
+    public void RequestLocalAgentStats() {
+        CallWithPointer(thisPtr =>
+    _UniffiHelpers.RustCall( (ref UniffiRustCallStatus _status) =>
+    _UniFFILib.uniffi_protun_fn_method_connection_request_local_agent_stats(thisPtr,  ref _status)
+));
+    }
+    
+    
+    
+    /// <summary>
+    /// One-off call to get connection stats - they will be delivered via [Event::ConnectionStats].
+    /// </summary>
+    public void RequestStats() {
+        CallWithPointer(thisPtr =>
+    _UniffiHelpers.RustCall( (ref UniffiRustCallStatus _status) =>
+    _UniFFILib.uniffi_protun_fn_method_connection_request_stats(thisPtr,  ref _status)
 ));
     }
     
@@ -1828,6 +2020,27 @@ public class Connection : IConnection, IDisposable {
     
     
     /// <summary>
+    /// Atomic update for peers, local agent settings and TUN. Use None to skip given update.
+    /// </summary>
+    public void Update(ConfigUpdate @update) {
+        CallWithPointer(thisPtr =>
+    _UniffiHelpers.RustCall( (ref UniffiRustCallStatus _status) =>
+    _UniFFILib.uniffi_protun_fn_method_connection_update(thisPtr, FfiConverterTypeConfigUpdate.INSTANCE.Lower(@update), ref _status)
+));
+    }
+    
+    
+    
+    public void UpdateLocalAgentSettings(LocalAgentSettings @settings) {
+        CallWithPointer(thisPtr =>
+    _UniffiHelpers.RustCall( (ref UniffiRustCallStatus _status) =>
+    _UniFFILib.uniffi_protun_fn_method_connection_update_local_agent_settings(thisPtr, FfiConverterTypeLocalAgentSettings.INSTANCE.Lower(@settings), ref _status)
+));
+    }
+    
+    
+    
+    /// <summary>
     /// Updates candidate peers for connection.
     /// Method call might not necessarily result in new connection if suitable peer is already connected.
     /// </summary>
@@ -1835,18 +2048,6 @@ public class Connection : IConnection, IDisposable {
         CallWithPointer(thisPtr =>
     _UniffiHelpers.RustCall( (ref UniffiRustCallStatus _status) =>
     _UniFFILib.uniffi_protun_fn_method_connection_update_peers(thisPtr, FfiConverterSequenceTypePeerInfo.INSTANCE.Lower(@peers), ref _status)
-));
-    }
-    
-    
-    
-    /// <summary>
-    /// Updates WireGuard private key.
-    /// </summary>
-    public void UpdateWgPrivateKey(PrivateKeyUpdateInfo @info) {
-        CallWithPointer(thisPtr =>
-    _UniffiHelpers.RustCall( (ref UniffiRustCallStatus _status) =>
-    _UniFFILib.uniffi_protun_fn_method_connection_update_wg_private_key(thisPtr, FfiConverterTypePrivateKeyUpdateInfo.INSTANCE.Lower(@info), ref _status)
 ));
     }
     
@@ -2156,10 +2357,10 @@ public class WindowsConnection : IWindowsConnection, IDisposable {
 
     
     /// <exception cref="ProTunFatalException"></exception>
-    public static WindowsConnection Connect(InitialConnectionConfig @connectionConfig, NetworkConfig @networkConfig, StateChangedCallback @clientStateChangeCallback, EventCallback @eventCallback) {
+    public static WindowsConnection Connect(InitialConnectionConfig @connectionConfig, NetworkConfig @networkConfig, StateChangedCallback @clientStateChangeCallback, EventCallback @eventCallback, PersistentCache @cache) {
         return new WindowsConnection(
     _UniffiHelpers.RustCallWithError(FfiConverterTypeProTunFatalError.INSTANCE, (ref UniffiRustCallStatus _status) =>
-    _UniFFILib.uniffi_protun_fn_constructor_windowsconnection_connect(FfiConverterTypeInitialConnectionConfig.INSTANCE.Lower(@connectionConfig), FfiConverterTypeNetworkConfig.INSTANCE.Lower(@networkConfig), FfiConverterTypeStateChangedCallback.INSTANCE.Lower(@clientStateChangeCallback), FfiConverterTypeEventCallback.INSTANCE.Lower(@eventCallback), ref _status)
+    _UniFFILib.uniffi_protun_fn_constructor_windowsconnection_connect(FfiConverterTypeInitialConnectionConfig.INSTANCE.Lower(@connectionConfig), FfiConverterTypeNetworkConfig.INSTANCE.Lower(@networkConfig), FfiConverterTypeStateChangedCallback.INSTANCE.Lower(@clientStateChangeCallback), FfiConverterTypeEventCallback.INSTANCE.Lower(@eventCallback), FfiConverterTypePersistentCache.INSTANCE.Lower(@cache), ref _status)
 ));
     }
     
@@ -2230,11 +2431,225 @@ class FfiConverterTypeAdapterConfig: FfiConverterRustBuffer<AdapterConfig> {
 
 
 
+/// <summary>
+/// Information available after successful connection to the local agent. None field values
+/// indicate that the server didn't provide the value at the moment.
+/// </summary>
+/// <param name="settings">
+/// Settings as applied by the server - may differ from the requested settings.
+/// </param>
+public record AgentConnectionInfo (
+    IpAddress? @serverExitV4, 
+    IpAddress? @serverExitV6, 
+    string? @userIspIp, 
+    string? @userIspCountryCode, 
+    string? @userIspName, 
+    Coordinates? @userIspCoordinates, 
+    Restriction[] @restrictions, 
+    string[] @groups, 
+    /// <summary>
+    /// Settings as applied by the server - may differ from the requested settings.
+    /// </summary>
+    LocalAgentSettings @settings
+) {
+}
+
+class FfiConverterTypeAgentConnectionInfo: FfiConverterRustBuffer<AgentConnectionInfo> {
+    public static FfiConverterTypeAgentConnectionInfo INSTANCE = new FfiConverterTypeAgentConnectionInfo();
+
+    public override AgentConnectionInfo Read(BigEndianStream stream) {
+        return new AgentConnectionInfo(
+            @serverExitV4: FfiConverterOptionalTypeIpAddress.INSTANCE.Read(stream),
+            @serverExitV6: FfiConverterOptionalTypeIpAddress.INSTANCE.Read(stream),
+            @userIspIp: FfiConverterOptionalString.INSTANCE.Read(stream),
+            @userIspCountryCode: FfiConverterOptionalString.INSTANCE.Read(stream),
+            @userIspName: FfiConverterOptionalString.INSTANCE.Read(stream),
+            @userIspCoordinates: FfiConverterOptionalTypeCoordinates.INSTANCE.Read(stream),
+            @restrictions: FfiConverterSequenceTypeRestriction.INSTANCE.Read(stream),
+            @groups: FfiConverterSequenceString.INSTANCE.Read(stream),
+            @settings: FfiConverterTypeLocalAgentSettings.INSTANCE.Read(stream)
+        );
+    }
+
+    public override int AllocationSize(AgentConnectionInfo value) {
+        return 0
+            + FfiConverterOptionalTypeIpAddress.INSTANCE.AllocationSize(value.@serverExitV4)
+            + FfiConverterOptionalTypeIpAddress.INSTANCE.AllocationSize(value.@serverExitV6)
+            + FfiConverterOptionalString.INSTANCE.AllocationSize(value.@userIspIp)
+            + FfiConverterOptionalString.INSTANCE.AllocationSize(value.@userIspCountryCode)
+            + FfiConverterOptionalString.INSTANCE.AllocationSize(value.@userIspName)
+            + FfiConverterOptionalTypeCoordinates.INSTANCE.AllocationSize(value.@userIspCoordinates)
+            + FfiConverterSequenceTypeRestriction.INSTANCE.AllocationSize(value.@restrictions)
+            + FfiConverterSequenceString.INSTANCE.AllocationSize(value.@groups)
+            + FfiConverterTypeLocalAgentSettings.INSTANCE.AllocationSize(value.@settings);
+    }
+
+    public override void Write(AgentConnectionInfo value, BigEndianStream stream) {
+            FfiConverterOptionalTypeIpAddress.INSTANCE.Write(value.@serverExitV4, stream);
+            FfiConverterOptionalTypeIpAddress.INSTANCE.Write(value.@serverExitV6, stream);
+            FfiConverterOptionalString.INSTANCE.Write(value.@userIspIp, stream);
+            FfiConverterOptionalString.INSTANCE.Write(value.@userIspCountryCode, stream);
+            FfiConverterOptionalString.INSTANCE.Write(value.@userIspName, stream);
+            FfiConverterOptionalTypeCoordinates.INSTANCE.Write(value.@userIspCoordinates, stream);
+            FfiConverterSequenceTypeRestriction.INSTANCE.Write(value.@restrictions, stream);
+            FfiConverterSequenceString.INSTANCE.Write(value.@groups, stream);
+            FfiConverterTypeLocalAgentSettings.INSTANCE.Write(value.@settings, stream);
+    }
+}
+
+
+
+public record ConfigUpdate (
+    PeerInfo[]? @peers, 
+    LocalAgentSettings? @settings
+) {
+}
+
+class FfiConverterTypeConfigUpdate: FfiConverterRustBuffer<ConfigUpdate> {
+    public static FfiConverterTypeConfigUpdate INSTANCE = new FfiConverterTypeConfigUpdate();
+
+    public override ConfigUpdate Read(BigEndianStream stream) {
+        return new ConfigUpdate(
+            @peers: FfiConverterOptionalSequenceTypePeerInfo.INSTANCE.Read(stream),
+            @settings: FfiConverterOptionalTypeLocalAgentSettings.INSTANCE.Read(stream)
+        );
+    }
+
+    public override int AllocationSize(ConfigUpdate value) {
+        return 0
+            + FfiConverterOptionalSequenceTypePeerInfo.INSTANCE.AllocationSize(value.@peers)
+            + FfiConverterOptionalTypeLocalAgentSettings.INSTANCE.AllocationSize(value.@settings);
+    }
+
+    public override void Write(ConfigUpdate value, BigEndianStream stream) {
+            FfiConverterOptionalSequenceTypePeerInfo.INSTANCE.Write(value.@peers, stream);
+            FfiConverterOptionalTypeLocalAgentSettings.INSTANCE.Write(value.@settings, stream);
+    }
+}
+
+
+
+public record Cookie (
+    string @name, 
+    string @value
+) {
+}
+
+class FfiConverterTypeCookie: FfiConverterRustBuffer<Cookie> {
+    public static FfiConverterTypeCookie INSTANCE = new FfiConverterTypeCookie();
+
+    public override Cookie Read(BigEndianStream stream) {
+        return new Cookie(
+            @name: FfiConverterString.INSTANCE.Read(stream),
+            @value: FfiConverterString.INSTANCE.Read(stream)
+        );
+    }
+
+    public override int AllocationSize(Cookie value) {
+        return 0
+            + FfiConverterString.INSTANCE.AllocationSize(value.@name)
+            + FfiConverterString.INSTANCE.AllocationSize(value.@value);
+    }
+
+    public override void Write(Cookie value, BigEndianStream stream) {
+            FfiConverterString.INSTANCE.Write(value.@name, stream);
+            FfiConverterString.INSTANCE.Write(value.@value, stream);
+    }
+}
+
+
+
+public record Cookies (
+    Cookie[] @cookies
+) {
+}
+
+class FfiConverterTypeCookies: FfiConverterRustBuffer<Cookies> {
+    public static FfiConverterTypeCookies INSTANCE = new FfiConverterTypeCookies();
+
+    public override Cookies Read(BigEndianStream stream) {
+        return new Cookies(
+            @cookies: FfiConverterSequenceTypeCookie.INSTANCE.Read(stream)
+        );
+    }
+
+    public override int AllocationSize(Cookies value) {
+        return 0
+            + FfiConverterSequenceTypeCookie.INSTANCE.AllocationSize(value.@cookies);
+    }
+
+    public override void Write(Cookies value, BigEndianStream stream) {
+            FfiConverterSequenceTypeCookie.INSTANCE.Write(value.@cookies, stream);
+    }
+}
+
+
+
+public record Coordinates (
+    double @latitude, 
+    double @longitude
+) {
+}
+
+class FfiConverterTypeCoordinates: FfiConverterRustBuffer<Coordinates> {
+    public static FfiConverterTypeCoordinates INSTANCE = new FfiConverterTypeCoordinates();
+
+    public override Coordinates Read(BigEndianStream stream) {
+        return new Coordinates(
+            @latitude: FfiConverterDouble.INSTANCE.Read(stream),
+            @longitude: FfiConverterDouble.INSTANCE.Read(stream)
+        );
+    }
+
+    public override int AllocationSize(Coordinates value) {
+        return 0
+            + FfiConverterDouble.INSTANCE.AllocationSize(value.@latitude)
+            + FfiConverterDouble.INSTANCE.AllocationSize(value.@longitude);
+    }
+
+    public override void Write(Coordinates value, BigEndianStream stream) {
+            FfiConverterDouble.INSTANCE.Write(value.@latitude, stream);
+            FfiConverterDouble.INSTANCE.Write(value.@longitude, stream);
+    }
+}
+
+
+
+public record ForkSelectorInfo (
+    string @selector, 
+    Cookies @cookies
+) {
+}
+
+class FfiConverterTypeForkSelectorInfo: FfiConverterRustBuffer<ForkSelectorInfo> {
+    public static FfiConverterTypeForkSelectorInfo INSTANCE = new FfiConverterTypeForkSelectorInfo();
+
+    public override ForkSelectorInfo Read(BigEndianStream stream) {
+        return new ForkSelectorInfo(
+            @selector: FfiConverterString.INSTANCE.Read(stream),
+            @cookies: FfiConverterTypeCookies.INSTANCE.Read(stream)
+        );
+    }
+
+    public override int AllocationSize(ForkSelectorInfo value) {
+        return 0
+            + FfiConverterString.INSTANCE.AllocationSize(value.@selector)
+            + FfiConverterTypeCookies.INSTANCE.AllocationSize(value.@cookies);
+    }
+
+    public override void Write(ForkSelectorInfo value, BigEndianStream stream) {
+            FfiConverterString.INSTANCE.Write(value.@selector, stream);
+            FfiConverterTypeCookies.INSTANCE.Write(value.@cookies, stream);
+    }
+}
+
+
+
 public record InitialConnectionConfig (
-    WgClientPrivateKey @wgPrivateKey, 
     PeerInfo[] @peers, 
     bool @networkAvailable, 
-    PcapFileInfo? @pcapFile
+    PcapFileInfo? @pcapFile, 
+    ConnectionMode @connectionMode
 ) {
 }
 
@@ -2243,26 +2658,76 @@ class FfiConverterTypeInitialConnectionConfig: FfiConverterRustBuffer<InitialCon
 
     public override InitialConnectionConfig Read(BigEndianStream stream) {
         return new InitialConnectionConfig(
-            @wgPrivateKey: FfiConverterTypeWgClientPrivateKey.INSTANCE.Read(stream),
             @peers: FfiConverterSequenceTypePeerInfo.INSTANCE.Read(stream),
             @networkAvailable: FfiConverterBoolean.INSTANCE.Read(stream),
-            @pcapFile: FfiConverterOptionalTypePcapFileInfo.INSTANCE.Read(stream)
+            @pcapFile: FfiConverterOptionalTypePcapFileInfo.INSTANCE.Read(stream),
+            @connectionMode: FfiConverterTypeConnectionMode.INSTANCE.Read(stream)
         );
     }
 
     public override int AllocationSize(InitialConnectionConfig value) {
         return 0
-            + FfiConverterTypeWgClientPrivateKey.INSTANCE.AllocationSize(value.@wgPrivateKey)
             + FfiConverterSequenceTypePeerInfo.INSTANCE.AllocationSize(value.@peers)
             + FfiConverterBoolean.INSTANCE.AllocationSize(value.@networkAvailable)
-            + FfiConverterOptionalTypePcapFileInfo.INSTANCE.AllocationSize(value.@pcapFile);
+            + FfiConverterOptionalTypePcapFileInfo.INSTANCE.AllocationSize(value.@pcapFile)
+            + FfiConverterTypeConnectionMode.INSTANCE.AllocationSize(value.@connectionMode);
     }
 
     public override void Write(InitialConnectionConfig value, BigEndianStream stream) {
-            FfiConverterTypeWgClientPrivateKey.INSTANCE.Write(value.@wgPrivateKey, stream);
             FfiConverterSequenceTypePeerInfo.INSTANCE.Write(value.@peers, stream);
             FfiConverterBoolean.INSTANCE.Write(value.@networkAvailable, stream);
             FfiConverterOptionalTypePcapFileInfo.INSTANCE.Write(value.@pcapFile, stream);
+            FfiConverterTypeConnectionMode.INSTANCE.Write(value.@connectionMode, stream);
+    }
+}
+
+
+
+/// <summary>
+/// Struct to enable/disable local agent features. When [None] is passed, the feature will use the
+/// default value.
+/// </summary>
+public record LocalAgentSettings (
+    bool? @splitTcp, 
+    NetshieldLevel? @netshieldLevel, 
+    bool? @softJail, 
+    bool? @portForwarding, 
+    bool? @randomNat, 
+    bool? @circumventionRouting
+) {
+}
+
+class FfiConverterTypeLocalAgentSettings: FfiConverterRustBuffer<LocalAgentSettings> {
+    public static FfiConverterTypeLocalAgentSettings INSTANCE = new FfiConverterTypeLocalAgentSettings();
+
+    public override LocalAgentSettings Read(BigEndianStream stream) {
+        return new LocalAgentSettings(
+            @splitTcp: FfiConverterOptionalBoolean.INSTANCE.Read(stream),
+            @netshieldLevel: FfiConverterOptionalTypeNetshieldLevel.INSTANCE.Read(stream),
+            @softJail: FfiConverterOptionalBoolean.INSTANCE.Read(stream),
+            @portForwarding: FfiConverterOptionalBoolean.INSTANCE.Read(stream),
+            @randomNat: FfiConverterOptionalBoolean.INSTANCE.Read(stream),
+            @circumventionRouting: FfiConverterOptionalBoolean.INSTANCE.Read(stream)
+        );
+    }
+
+    public override int AllocationSize(LocalAgentSettings value) {
+        return 0
+            + FfiConverterOptionalBoolean.INSTANCE.AllocationSize(value.@splitTcp)
+            + FfiConverterOptionalTypeNetshieldLevel.INSTANCE.AllocationSize(value.@netshieldLevel)
+            + FfiConverterOptionalBoolean.INSTANCE.AllocationSize(value.@softJail)
+            + FfiConverterOptionalBoolean.INSTANCE.AllocationSize(value.@portForwarding)
+            + FfiConverterOptionalBoolean.INSTANCE.AllocationSize(value.@randomNat)
+            + FfiConverterOptionalBoolean.INSTANCE.AllocationSize(value.@circumventionRouting);
+    }
+
+    public override void Write(LocalAgentSettings value, BigEndianStream stream) {
+            FfiConverterOptionalBoolean.INSTANCE.Write(value.@splitTcp, stream);
+            FfiConverterOptionalTypeNetshieldLevel.INSTANCE.Write(value.@netshieldLevel, stream);
+            FfiConverterOptionalBoolean.INSTANCE.Write(value.@softJail, stream);
+            FfiConverterOptionalBoolean.INSTANCE.Write(value.@portForwarding, stream);
+            FfiConverterOptionalBoolean.INSTANCE.Write(value.@randomNat, stream);
+            FfiConverterOptionalBoolean.INSTANCE.Write(value.@circumventionRouting, stream);
     }
 }
 
@@ -2336,7 +2801,7 @@ class FfiConverterTypePcapFileInfo: FfiConverterRustBuffer<PcapFileInfo> {
 
 public record PeerConnectionInfo (
     string @peerId, 
-    string @entryIp, 
+    IpAddress @entryIp, 
     Protocol @protocol, 
     ushort @port
 ) {
@@ -2348,7 +2813,7 @@ class FfiConverterTypePeerConnectionInfo: FfiConverterRustBuffer<PeerConnectionI
     public override PeerConnectionInfo Read(BigEndianStream stream) {
         return new PeerConnectionInfo(
             @peerId: FfiConverterString.INSTANCE.Read(stream),
-            @entryIp: FfiConverterString.INSTANCE.Read(stream),
+            @entryIp: FfiConverterTypeIpAddress.INSTANCE.Read(stream),
             @protocol: FfiConverterTypeProtocol.INSTANCE.Read(stream),
             @port: FfiConverterUInt16.INSTANCE.Read(stream)
         );
@@ -2357,14 +2822,14 @@ class FfiConverterTypePeerConnectionInfo: FfiConverterRustBuffer<PeerConnectionI
     public override int AllocationSize(PeerConnectionInfo value) {
         return 0
             + FfiConverterString.INSTANCE.AllocationSize(value.@peerId)
-            + FfiConverterString.INSTANCE.AllocationSize(value.@entryIp)
+            + FfiConverterTypeIpAddress.INSTANCE.AllocationSize(value.@entryIp)
             + FfiConverterTypeProtocol.INSTANCE.AllocationSize(value.@protocol)
             + FfiConverterUInt16.INSTANCE.AllocationSize(value.@port);
     }
 
     public override void Write(PeerConnectionInfo value, BigEndianStream stream) {
             FfiConverterString.INSTANCE.Write(value.@peerId, stream);
-            FfiConverterString.INSTANCE.Write(value.@entryIp, stream);
+            FfiConverterTypeIpAddress.INSTANCE.Write(value.@entryIp, stream);
             FfiConverterTypeProtocol.INSTANCE.Write(value.@protocol, stream);
             FfiConverterUInt16.INSTANCE.Write(value.@port, stream);
     }
@@ -2377,12 +2842,12 @@ class FfiConverterTypePeerConnectionInfo: FfiConverterRustBuffer<PeerConnectionI
 /// </summary>
 /// <param name="peer_id">
 /// Unique identifier of connected peer (as defined by client). This id will be available in
-/// connection states when given peer is connecting/connected (see peer_id in [State]).
+/// connection states when given peer is connecting/connected (see peer_id in [VpnState]).
 /// </param>
 public record PeerInfo (
     /// <summary>
     /// Unique identifier of connected peer (as defined by client). This id will be available in
-    /// connection states when given peer is connecting/connected (see peer_id in [State]).
+    /// connection states when given peer is connecting/connected (see peer_id in [VpnState]).
     /// </summary>
     string @peerId, 
     IpAddress @serverIp, 
@@ -2390,7 +2855,8 @@ public record PeerInfo (
     ushort[] @udpPorts, 
     ushort[] @tcpPorts, 
     ushort[] @tlsPorts, 
-    int @priority
+    int @priority, 
+    string? @exitLabel
 ) {
 }
 
@@ -2405,7 +2871,8 @@ class FfiConverterTypePeerInfo: FfiConverterRustBuffer<PeerInfo> {
             @udpPorts: FfiConverterSequenceUInt16.INSTANCE.Read(stream),
             @tcpPorts: FfiConverterSequenceUInt16.INSTANCE.Read(stream),
             @tlsPorts: FfiConverterSequenceUInt16.INSTANCE.Read(stream),
-            @priority: FfiConverterInt32.INSTANCE.Read(stream)
+            @priority: FfiConverterInt32.INSTANCE.Read(stream),
+            @exitLabel: FfiConverterOptionalString.INSTANCE.Read(stream)
         );
     }
 
@@ -2417,7 +2884,8 @@ class FfiConverterTypePeerInfo: FfiConverterRustBuffer<PeerInfo> {
             + FfiConverterSequenceUInt16.INSTANCE.AllocationSize(value.@udpPorts)
             + FfiConverterSequenceUInt16.INSTANCE.AllocationSize(value.@tcpPorts)
             + FfiConverterSequenceUInt16.INSTANCE.AllocationSize(value.@tlsPorts)
-            + FfiConverterInt32.INSTANCE.AllocationSize(value.@priority);
+            + FfiConverterInt32.INSTANCE.AllocationSize(value.@priority)
+            + FfiConverterOptionalString.INSTANCE.AllocationSize(value.@exitLabel);
     }
 
     public override void Write(PeerInfo value, BigEndianStream stream) {
@@ -2428,32 +2896,7 @@ class FfiConverterTypePeerInfo: FfiConverterRustBuffer<PeerInfo> {
             FfiConverterSequenceUInt16.INSTANCE.Write(value.@tcpPorts, stream);
             FfiConverterSequenceUInt16.INSTANCE.Write(value.@tlsPorts, stream);
             FfiConverterInt32.INSTANCE.Write(value.@priority, stream);
-    }
-}
-
-
-
-public record PrivateKeyUpdateInfo (
-    WgClientPrivateKey @wgPrivateKey
-) {
-}
-
-class FfiConverterTypePrivateKeyUpdateInfo: FfiConverterRustBuffer<PrivateKeyUpdateInfo> {
-    public static FfiConverterTypePrivateKeyUpdateInfo INSTANCE = new FfiConverterTypePrivateKeyUpdateInfo();
-
-    public override PrivateKeyUpdateInfo Read(BigEndianStream stream) {
-        return new PrivateKeyUpdateInfo(
-            @wgPrivateKey: FfiConverterTypeWgClientPrivateKey.INSTANCE.Read(stream)
-        );
-    }
-
-    public override int AllocationSize(PrivateKeyUpdateInfo value) {
-        return 0
-            + FfiConverterTypeWgClientPrivateKey.INSTANCE.AllocationSize(value.@wgPrivateKey);
-    }
-
-    public override void Write(PrivateKeyUpdateInfo value, BigEndianStream stream) {
-            FfiConverterTypeWgClientPrivateKey.INSTANCE.Write(value.@wgPrivateKey, stream);
+            FfiConverterOptionalString.INSTANCE.Write(value.@exitLabel, stream);
     }
 }
 
@@ -2528,6 +2971,137 @@ class FfiConverterTypeSocketConfig: FfiConverterRustBuffer<SocketConfig> {
             FfiConverterUInt32.INSTANCE.Write(value.@receiveBufferSizeBytes, stream);
     }
 }
+
+
+
+/// <summary>
+/// Combined state of the VPN connection and the TUN interface.
+/// </summary>
+public record VpnState (
+    InterfaceState @interfaceState, 
+    ConnectionState @connectionState
+) {
+}
+
+class FfiConverterTypeVpnState: FfiConverterRustBuffer<VpnState> {
+    public static FfiConverterTypeVpnState INSTANCE = new FfiConverterTypeVpnState();
+
+    public override VpnState Read(BigEndianStream stream) {
+        return new VpnState(
+            @interfaceState: FfiConverterTypeInterfaceState.INSTANCE.Read(stream),
+            @connectionState: FfiConverterTypeConnectionState.INSTANCE.Read(stream)
+        );
+    }
+
+    public override int AllocationSize(VpnState value) {
+        return 0
+            + FfiConverterTypeInterfaceState.INSTANCE.AllocationSize(value.@interfaceState)
+            + FfiConverterTypeConnectionState.INSTANCE.AllocationSize(value.@connectionState);
+    }
+
+    public override void Write(VpnState value, BigEndianStream stream) {
+            FfiConverterTypeInterfaceState.INSTANCE.Write(value.@interfaceState, stream);
+            FfiConverterTypeConnectionState.INSTANCE.Write(value.@connectionState, stream);
+    }
+}
+
+
+
+
+
+public record AgentConnectionWaitReason {
+    
+    public record SoftJailed: AgentConnectionWaitReason {}
+    
+    
+    public record HardJailed (
+        WaitJailReason[] @jails
+    ) : AgentConnectionWaitReason {}
+    
+
+    
+}
+
+class FfiConverterTypeAgentConnectionWaitReason : FfiConverterRustBuffer<AgentConnectionWaitReason>{
+    public static FfiConverterRustBuffer<AgentConnectionWaitReason> INSTANCE = new FfiConverterTypeAgentConnectionWaitReason();
+
+    public override AgentConnectionWaitReason Read(BigEndianStream stream) {
+        var value = stream.ReadInt();
+        switch (value) {
+            case 1:
+                return new AgentConnectionWaitReason.SoftJailed(
+                );
+            case 2:
+                return new AgentConnectionWaitReason.HardJailed(
+                    FfiConverterSequenceTypeWaitJailReason.INSTANCE.Read(stream)
+                );
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeAgentConnectionWaitReason.Read()", value));
+        }
+    }
+
+    public override int AllocationSize(AgentConnectionWaitReason value) {
+        switch (value) {
+            case AgentConnectionWaitReason.SoftJailed variant_value:
+                return 4;
+            case AgentConnectionWaitReason.HardJailed variant_value:
+                return 4
+                    + FfiConverterSequenceTypeWaitJailReason.INSTANCE.AllocationSize(variant_value.@jails);
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeAgentConnectionWaitReason.AllocationSize()", value));
+        }
+    }
+
+    public override void Write(AgentConnectionWaitReason value, BigEndianStream stream) {
+        switch (value) {
+            case AgentConnectionWaitReason.SoftJailed variant_value:
+                stream.WriteInt(1);
+                break;
+            case AgentConnectionWaitReason.HardJailed variant_value:
+                stream.WriteInt(2);
+                FfiConverterSequenceTypeWaitJailReason.INSTANCE.Write(variant_value.@jails, stream);
+                break;
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeAgentConnectionWaitReason.Write()", value));
+        }
+    }
+}
+
+
+
+
+
+
+
+public enum CacheKey: int {
+    
+    Certificate,
+    PrivateKey,
+    ApiSession
+}
+
+class FfiConverterTypeCacheKey: FfiConverterRustBuffer<CacheKey> {
+    public static FfiConverterTypeCacheKey INSTANCE = new FfiConverterTypeCacheKey();
+
+    public override CacheKey Read(BigEndianStream stream) {
+        var value = stream.ReadInt() - 1;
+        if (Enum.IsDefined(typeof(CacheKey), value)) {
+            return (CacheKey)value;
+        } else {
+            throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeCacheKey.Read()", value));
+        }
+    }
+
+    public override int AllocationSize(CacheKey value) {
+        return 4;
+    }
+
+    public override void Write(CacheKey value, BigEndianStream stream) {
+        stream.WriteInt((int)value + 1);
+    }
+}
+
+
 
 
 
@@ -2617,6 +3191,218 @@ class FfiConverterTypeCaptureStopReason : FfiConverterRustBuffer<CaptureStopReas
                 break;
             default:
                 throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeCaptureStopReason.Write()", value));
+        }
+    }
+}
+
+
+
+
+
+
+
+public record ConnectionMode {
+    
+    /// <summary>
+    /// Local agent connection will not be established, and [ConnectionState::Connected] state
+    /// will be emitted as soon as WG connection is ready.
+    /// </summary>
+    public record NoLocalAgent (
+        WgClientPrivateKey @wgPrivateKey
+    ) : ConnectionMode {}
+    
+    public record LocalAgent (
+        string @userAgent,
+        string @appVersion,
+        LocalAgentSettings @settings,
+        MuonEnv @muonEnv
+    ) : ConnectionMode {}
+    
+
+    
+}
+
+class FfiConverterTypeConnectionMode : FfiConverterRustBuffer<ConnectionMode>{
+    public static FfiConverterRustBuffer<ConnectionMode> INSTANCE = new FfiConverterTypeConnectionMode();
+
+    public override ConnectionMode Read(BigEndianStream stream) {
+        var value = stream.ReadInt();
+        switch (value) {
+            case 1:
+                return new ConnectionMode.NoLocalAgent(
+                    FfiConverterTypeWgClientPrivateKey.INSTANCE.Read(stream)
+                );
+            case 2:
+                return new ConnectionMode.LocalAgent(
+                    FfiConverterString.INSTANCE.Read(stream),
+                    FfiConverterString.INSTANCE.Read(stream),
+                    FfiConverterTypeLocalAgentSettings.INSTANCE.Read(stream),
+                    FfiConverterTypeMuonEnv.INSTANCE.Read(stream)
+                );
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeConnectionMode.Read()", value));
+        }
+    }
+
+    public override int AllocationSize(ConnectionMode value) {
+        switch (value) {
+            case ConnectionMode.NoLocalAgent variant_value:
+                return 4
+                    + FfiConverterTypeWgClientPrivateKey.INSTANCE.AllocationSize(variant_value.@wgPrivateKey);
+            case ConnectionMode.LocalAgent variant_value:
+                return 4
+                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@userAgent)
+                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@appVersion)
+                    + FfiConverterTypeLocalAgentSettings.INSTANCE.AllocationSize(variant_value.@settings)
+                    + FfiConverterTypeMuonEnv.INSTANCE.AllocationSize(variant_value.@muonEnv);
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeConnectionMode.AllocationSize()", value));
+        }
+    }
+
+    public override void Write(ConnectionMode value, BigEndianStream stream) {
+        switch (value) {
+            case ConnectionMode.NoLocalAgent variant_value:
+                stream.WriteInt(1);
+                FfiConverterTypeWgClientPrivateKey.INSTANCE.Write(variant_value.@wgPrivateKey, stream);
+                break;
+            case ConnectionMode.LocalAgent variant_value:
+                stream.WriteInt(2);
+                FfiConverterString.INSTANCE.Write(variant_value.@userAgent, stream);
+                FfiConverterString.INSTANCE.Write(variant_value.@appVersion, stream);
+                FfiConverterTypeLocalAgentSettings.INSTANCE.Write(variant_value.@settings, stream);
+                FfiConverterTypeMuonEnv.INSTANCE.Write(variant_value.@muonEnv, stream);
+                break;
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeConnectionMode.Write()", value));
+        }
+    }
+}
+
+
+
+
+
+
+
+/// <summary>
+/// State of the VPN connection.
+/// </summary>
+public record ConnectionState {
+    
+    /// <summary>
+    /// Disconnected. [error] will be set if disconnection happened due to an error.
+    /// </summary>
+    public record Disconnected (
+        DisconnectReason? @error
+    ) : ConnectionState {}
+    
+    /// <summary>
+    /// Library is attempting VPN connection to one or more candidate peers.
+    /// </summary>
+    public record Connecting (
+        PeerConnectionInfo[] @peers,
+        PeerConnectionWaitReason[] @waitReasons
+    ) : ConnectionState {}
+    
+    /// <summary>
+    /// In local-agent mode, library established VPN connection and is connecting to local agent.
+    /// </summary>
+    public record ConnectingToLocalAgent (
+        PeerConnectionInfo @peer,
+        AgentConnectionWaitReason? @waitReason
+    ) : ConnectionState {}
+    
+    /// <summary>
+    /// Connection to [peer] is established.
+    /// In non-local-agent mode: VPN connection is established.
+    /// In local-agent mode: VPN and local agent connections are established. [agent_info] will not
+    /// be None in this mode.
+    /// </summary>
+    public record Connected (
+        PeerConnectionInfo @peer,
+        AgentConnectionInfo? @agentInfo
+    ) : ConnectionState {}
+    
+
+    
+}
+
+class FfiConverterTypeConnectionState : FfiConverterRustBuffer<ConnectionState>{
+    public static FfiConverterRustBuffer<ConnectionState> INSTANCE = new FfiConverterTypeConnectionState();
+
+    public override ConnectionState Read(BigEndianStream stream) {
+        var value = stream.ReadInt();
+        switch (value) {
+            case 1:
+                return new ConnectionState.Disconnected(
+                    FfiConverterOptionalTypeDisconnectReason.INSTANCE.Read(stream)
+                );
+            case 2:
+                return new ConnectionState.Connecting(
+                    FfiConverterSequenceTypePeerConnectionInfo.INSTANCE.Read(stream),
+                    FfiConverterSequenceTypePeerConnectionWaitReason.INSTANCE.Read(stream)
+                );
+            case 3:
+                return new ConnectionState.ConnectingToLocalAgent(
+                    FfiConverterTypePeerConnectionInfo.INSTANCE.Read(stream),
+                    FfiConverterOptionalTypeAgentConnectionWaitReason.INSTANCE.Read(stream)
+                );
+            case 4:
+                return new ConnectionState.Connected(
+                    FfiConverterTypePeerConnectionInfo.INSTANCE.Read(stream),
+                    FfiConverterOptionalTypeAgentConnectionInfo.INSTANCE.Read(stream)
+                );
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeConnectionState.Read()", value));
+        }
+    }
+
+    public override int AllocationSize(ConnectionState value) {
+        switch (value) {
+            case ConnectionState.Disconnected variant_value:
+                return 4
+                    + FfiConverterOptionalTypeDisconnectReason.INSTANCE.AllocationSize(variant_value.@error);
+            case ConnectionState.Connecting variant_value:
+                return 4
+                    + FfiConverterSequenceTypePeerConnectionInfo.INSTANCE.AllocationSize(variant_value.@peers)
+                    + FfiConverterSequenceTypePeerConnectionWaitReason.INSTANCE.AllocationSize(variant_value.@waitReasons);
+            case ConnectionState.ConnectingToLocalAgent variant_value:
+                return 4
+                    + FfiConverterTypePeerConnectionInfo.INSTANCE.AllocationSize(variant_value.@peer)
+                    + FfiConverterOptionalTypeAgentConnectionWaitReason.INSTANCE.AllocationSize(variant_value.@waitReason);
+            case ConnectionState.Connected variant_value:
+                return 4
+                    + FfiConverterTypePeerConnectionInfo.INSTANCE.AllocationSize(variant_value.@peer)
+                    + FfiConverterOptionalTypeAgentConnectionInfo.INSTANCE.AllocationSize(variant_value.@agentInfo);
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeConnectionState.AllocationSize()", value));
+        }
+    }
+
+    public override void Write(ConnectionState value, BigEndianStream stream) {
+        switch (value) {
+            case ConnectionState.Disconnected variant_value:
+                stream.WriteInt(1);
+                FfiConverterOptionalTypeDisconnectReason.INSTANCE.Write(variant_value.@error, stream);
+                break;
+            case ConnectionState.Connecting variant_value:
+                stream.WriteInt(2);
+                FfiConverterSequenceTypePeerConnectionInfo.INSTANCE.Write(variant_value.@peers, stream);
+                FfiConverterSequenceTypePeerConnectionWaitReason.INSTANCE.Write(variant_value.@waitReasons, stream);
+                break;
+            case ConnectionState.ConnectingToLocalAgent variant_value:
+                stream.WriteInt(3);
+                FfiConverterTypePeerConnectionInfo.INSTANCE.Write(variant_value.@peer, stream);
+                FfiConverterOptionalTypeAgentConnectionWaitReason.INSTANCE.Write(variant_value.@waitReason, stream);
+                break;
+            case ConnectionState.Connected variant_value:
+                stream.WriteInt(4);
+                FfiConverterTypePeerConnectionInfo.INSTANCE.Write(variant_value.@peer, stream);
+                FfiConverterOptionalTypeAgentConnectionInfo.INSTANCE.Write(variant_value.@agentInfo, stream);
+                break;
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeConnectionState.Write()", value));
         }
     }
 }
@@ -2721,12 +3507,95 @@ class FfiConverterTypeDisconnectReason : FfiConverterRustBuffer<DisconnectReason
 
 
 
+public record ErrorEvent {
+    
+    /// <summary>
+    /// Client should provide a new fork selector. Care should be taken to not create a forking loop
+    /// where a forked session fails repeatedly.
+    /// </summary>
+    public record ApiSessionExpired: ErrorEvent {}
+    
+    
+    public record LocalAgentSettingPolicyRefused (
+        LocalAgentSettingType @setting
+    ) : ErrorEvent {}
+    
+    /// <summary>
+    /// Library was unable to refresh the certificate and gave up. Client should close the connection.
+    /// </summary>
+    public record CertificateRefreshFatalError: ErrorEvent {}
+    
+    
+
+    
+}
+
+class FfiConverterTypeErrorEvent : FfiConverterRustBuffer<ErrorEvent>{
+    public static FfiConverterRustBuffer<ErrorEvent> INSTANCE = new FfiConverterTypeErrorEvent();
+
+    public override ErrorEvent Read(BigEndianStream stream) {
+        var value = stream.ReadInt();
+        switch (value) {
+            case 1:
+                return new ErrorEvent.ApiSessionExpired(
+                );
+            case 2:
+                return new ErrorEvent.LocalAgentSettingPolicyRefused(
+                    FfiConverterTypeLocalAgentSettingType.INSTANCE.Read(stream)
+                );
+            case 3:
+                return new ErrorEvent.CertificateRefreshFatalError(
+                );
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeErrorEvent.Read()", value));
+        }
+    }
+
+    public override int AllocationSize(ErrorEvent value) {
+        switch (value) {
+            case ErrorEvent.ApiSessionExpired variant_value:
+                return 4;
+            case ErrorEvent.LocalAgentSettingPolicyRefused variant_value:
+                return 4
+                    + FfiConverterTypeLocalAgentSettingType.INSTANCE.AllocationSize(variant_value.@setting);
+            case ErrorEvent.CertificateRefreshFatalError variant_value:
+                return 4;
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeErrorEvent.AllocationSize()", value));
+        }
+    }
+
+    public override void Write(ErrorEvent value, BigEndianStream stream) {
+        switch (value) {
+            case ErrorEvent.ApiSessionExpired variant_value:
+                stream.WriteInt(1);
+                break;
+            case ErrorEvent.LocalAgentSettingPolicyRefused variant_value:
+                stream.WriteInt(2);
+                FfiConverterTypeLocalAgentSettingType.INSTANCE.Write(variant_value.@setting, stream);
+                break;
+            case ErrorEvent.CertificateRefreshFatalError variant_value:
+                stream.WriteInt(3);
+                break;
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeErrorEvent.Write()", value));
+        }
+    }
+}
+
+
+
+
+
+
+
 /// <summary>
 /// Connection events emitted by the library and delivered via [crate::api::connection::EventCallback]
 /// </summary>
 public record Event {
     
     public record ConnectionStats (
+        long @timestampMs,
         ulong @receivedBytes,
         ulong @sentBytes,
         TimeSpan @timeSinceLastHandshake,
@@ -2742,6 +3611,20 @@ public record Event {
         CaptureStopReason @reason
     ) : Event {}
     
+    public record LocalAgentStats (
+        ulong? @bytesReceived,
+        ulong? @bytesSent,
+        ulong? @maliciousBlocked,
+        ulong? @adsBlocked,
+        ulong? @trackersBlocked,
+        ulong? @adultContentBlocked,
+        ulong? @dataSaved
+    ) : Event {}
+    
+    public record Error (
+        ErrorEvent @error
+    ) : Event {}
+    
 
     
 }
@@ -2754,6 +3637,7 @@ class FfiConverterTypeEvent : FfiConverterRustBuffer<Event>{
         switch (value) {
             case 1:
                 return new Event.ConnectionStats(
+                    FfiConverterInt64.INSTANCE.Read(stream),
                     FfiConverterUInt64.INSTANCE.Read(stream),
                     FfiConverterUInt64.INSTANCE.Read(stream),
                     FfiConverterDuration.INSTANCE.Read(stream),
@@ -2768,6 +3652,20 @@ class FfiConverterTypeEvent : FfiConverterRustBuffer<Event>{
                 return new Event.PacketCaptureStopped(
                     FfiConverterTypeCaptureStopReason.INSTANCE.Read(stream)
                 );
+            case 4:
+                return new Event.LocalAgentStats(
+                    FfiConverterOptionalUInt64.INSTANCE.Read(stream),
+                    FfiConverterOptionalUInt64.INSTANCE.Read(stream),
+                    FfiConverterOptionalUInt64.INSTANCE.Read(stream),
+                    FfiConverterOptionalUInt64.INSTANCE.Read(stream),
+                    FfiConverterOptionalUInt64.INSTANCE.Read(stream),
+                    FfiConverterOptionalUInt64.INSTANCE.Read(stream),
+                    FfiConverterOptionalUInt64.INSTANCE.Read(stream)
+                );
+            case 5:
+                return new Event.Error(
+                    FfiConverterTypeErrorEvent.INSTANCE.Read(stream)
+                );
             default:
                 throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeEvent.Read()", value));
         }
@@ -2777,6 +3675,7 @@ class FfiConverterTypeEvent : FfiConverterRustBuffer<Event>{
         switch (value) {
             case Event.ConnectionStats variant_value:
                 return 4
+                    + FfiConverterInt64.INSTANCE.AllocationSize(variant_value.@timestampMs)
                     + FfiConverterUInt64.INSTANCE.AllocationSize(variant_value.@receivedBytes)
                     + FfiConverterUInt64.INSTANCE.AllocationSize(variant_value.@sentBytes)
                     + FfiConverterDuration.INSTANCE.AllocationSize(variant_value.@timeSinceLastHandshake)
@@ -2788,6 +3687,18 @@ class FfiConverterTypeEvent : FfiConverterRustBuffer<Event>{
             case Event.PacketCaptureStopped variant_value:
                 return 4
                     + FfiConverterTypeCaptureStopReason.INSTANCE.AllocationSize(variant_value.@reason);
+            case Event.LocalAgentStats variant_value:
+                return 4
+                    + FfiConverterOptionalUInt64.INSTANCE.AllocationSize(variant_value.@bytesReceived)
+                    + FfiConverterOptionalUInt64.INSTANCE.AllocationSize(variant_value.@bytesSent)
+                    + FfiConverterOptionalUInt64.INSTANCE.AllocationSize(variant_value.@maliciousBlocked)
+                    + FfiConverterOptionalUInt64.INSTANCE.AllocationSize(variant_value.@adsBlocked)
+                    + FfiConverterOptionalUInt64.INSTANCE.AllocationSize(variant_value.@trackersBlocked)
+                    + FfiConverterOptionalUInt64.INSTANCE.AllocationSize(variant_value.@adultContentBlocked)
+                    + FfiConverterOptionalUInt64.INSTANCE.AllocationSize(variant_value.@dataSaved);
+            case Event.Error variant_value:
+                return 4
+                    + FfiConverterTypeErrorEvent.INSTANCE.AllocationSize(variant_value.@error);
             default:
                 throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeEvent.AllocationSize()", value));
         }
@@ -2797,6 +3708,7 @@ class FfiConverterTypeEvent : FfiConverterRustBuffer<Event>{
         switch (value) {
             case Event.ConnectionStats variant_value:
                 stream.WriteInt(1);
+                FfiConverterInt64.INSTANCE.Write(variant_value.@timestampMs, stream);
                 FfiConverterUInt64.INSTANCE.Write(variant_value.@receivedBytes, stream);
                 FfiConverterUInt64.INSTANCE.Write(variant_value.@sentBytes, stream);
                 FfiConverterDuration.INSTANCE.Write(variant_value.@timeSinceLastHandshake, stream);
@@ -2810,6 +3722,20 @@ class FfiConverterTypeEvent : FfiConverterRustBuffer<Event>{
             case Event.PacketCaptureStopped variant_value:
                 stream.WriteInt(3);
                 FfiConverterTypeCaptureStopReason.INSTANCE.Write(variant_value.@reason, stream);
+                break;
+            case Event.LocalAgentStats variant_value:
+                stream.WriteInt(4);
+                FfiConverterOptionalUInt64.INSTANCE.Write(variant_value.@bytesReceived, stream);
+                FfiConverterOptionalUInt64.INSTANCE.Write(variant_value.@bytesSent, stream);
+                FfiConverterOptionalUInt64.INSTANCE.Write(variant_value.@maliciousBlocked, stream);
+                FfiConverterOptionalUInt64.INSTANCE.Write(variant_value.@adsBlocked, stream);
+                FfiConverterOptionalUInt64.INSTANCE.Write(variant_value.@trackersBlocked, stream);
+                FfiConverterOptionalUInt64.INSTANCE.Write(variant_value.@adultContentBlocked, stream);
+                FfiConverterOptionalUInt64.INSTANCE.Write(variant_value.@dataSaved, stream);
+                break;
+            case Event.Error variant_value:
+                stream.WriteInt(5);
+                FfiConverterTypeErrorEvent.INSTANCE.Write(variant_value.@error, stream);
                 break;
             default:
                 throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeEvent.Write()", value));
@@ -2856,6 +3782,171 @@ class FfiConverterTypeFileWriteMode: FfiConverterRustBuffer<FileWriteMode> {
 
 
 
+public record InterfaceError {
+    
+    /// <summary>
+    /// There is I/O problem with TUN interface. Calling code might need to wait, recreate TUN or
+    /// disconnect (when it was caused by connection by another VPN app).
+    /// </summary>
+    public record IoError (
+        string @error
+    ) : InterfaceError {}
+    
+
+    
+}
+
+class FfiConverterTypeInterfaceError : FfiConverterRustBuffer<InterfaceError>{
+    public static FfiConverterRustBuffer<InterfaceError> INSTANCE = new FfiConverterTypeInterfaceError();
+
+    public override InterfaceError Read(BigEndianStream stream) {
+        var value = stream.ReadInt();
+        switch (value) {
+            case 1:
+                return new InterfaceError.IoError(
+                    FfiConverterString.INSTANCE.Read(stream)
+                );
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeInterfaceError.Read()", value));
+        }
+    }
+
+    public override int AllocationSize(InterfaceError value) {
+        switch (value) {
+            case InterfaceError.IoError variant_value:
+                return 4
+                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@error);
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeInterfaceError.AllocationSize()", value));
+        }
+    }
+
+    public override void Write(InterfaceError value, BigEndianStream stream) {
+        switch (value) {
+            case InterfaceError.IoError variant_value:
+                stream.WriteInt(1);
+                FfiConverterString.INSTANCE.Write(variant_value.@error, stream);
+                break;
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeInterfaceError.Write()", value));
+        }
+    }
+}
+
+
+
+
+
+
+
+/// <summary>
+/// State of the TUN interface.
+/// </summary>
+public record InterfaceState {
+    
+    public record Up (
+        InterfaceError? @error
+    ) : InterfaceState {}
+    
+    public record Down (
+        InterfaceError? @lastError
+    ) : InterfaceState {}
+    
+
+    
+}
+
+class FfiConverterTypeInterfaceState : FfiConverterRustBuffer<InterfaceState>{
+    public static FfiConverterRustBuffer<InterfaceState> INSTANCE = new FfiConverterTypeInterfaceState();
+
+    public override InterfaceState Read(BigEndianStream stream) {
+        var value = stream.ReadInt();
+        switch (value) {
+            case 1:
+                return new InterfaceState.Up(
+                    FfiConverterOptionalTypeInterfaceError.INSTANCE.Read(stream)
+                );
+            case 2:
+                return new InterfaceState.Down(
+                    FfiConverterOptionalTypeInterfaceError.INSTANCE.Read(stream)
+                );
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeInterfaceState.Read()", value));
+        }
+    }
+
+    public override int AllocationSize(InterfaceState value) {
+        switch (value) {
+            case InterfaceState.Up variant_value:
+                return 4
+                    + FfiConverterOptionalTypeInterfaceError.INSTANCE.AllocationSize(variant_value.@error);
+            case InterfaceState.Down variant_value:
+                return 4
+                    + FfiConverterOptionalTypeInterfaceError.INSTANCE.AllocationSize(variant_value.@lastError);
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeInterfaceState.AllocationSize()", value));
+        }
+    }
+
+    public override void Write(InterfaceState value, BigEndianStream stream) {
+        switch (value) {
+            case InterfaceState.Up variant_value:
+                stream.WriteInt(1);
+                FfiConverterOptionalTypeInterfaceError.INSTANCE.Write(variant_value.@error, stream);
+                break;
+            case InterfaceState.Down variant_value:
+                stream.WriteInt(2);
+                FfiConverterOptionalTypeInterfaceError.INSTANCE.Write(variant_value.@lastError, stream);
+                break;
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeInterfaceState.Write()", value));
+        }
+    }
+}
+
+
+
+
+
+
+
+public enum LocalAgentSettingType: int {
+    
+    NetshieldLevel,
+    Bouncing,
+    PortForwarding,
+    SplitTcp,
+    SafeMode,
+    RandomNat
+}
+
+class FfiConverterTypeLocalAgentSettingType: FfiConverterRustBuffer<LocalAgentSettingType> {
+    public static FfiConverterTypeLocalAgentSettingType INSTANCE = new FfiConverterTypeLocalAgentSettingType();
+
+    public override LocalAgentSettingType Read(BigEndianStream stream) {
+        var value = stream.ReadInt() - 1;
+        if (Enum.IsDefined(typeof(LocalAgentSettingType), value)) {
+            return (LocalAgentSettingType)value;
+        } else {
+            throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeLocalAgentSettingType.Read()", value));
+        }
+    }
+
+    public override int AllocationSize(LocalAgentSettingType value) {
+        return 4;
+    }
+
+    public override void Write(LocalAgentSettingType value, BigEndianStream stream) {
+        stream.WriteInt((int)value + 1);
+    }
+}
+
+
+
+
+
+
+
 public enum LogLevel: int {
     
     Trace,
@@ -2882,6 +3973,144 @@ class FfiConverterTypeLogLevel: FfiConverterRustBuffer<LogLevel> {
     }
 
     public override void Write(LogLevel value, BigEndianStream stream) {
+        stream.WriteInt((int)value + 1);
+    }
+}
+
+
+
+
+
+
+
+public record MuonEnv {
+    
+    /// <summary>
+    /// Standard production environment.
+    /// </summary>
+    public record Prod: MuonEnv {}
+    
+    
+    /// <summary>
+    /// Atlas test environment.
+    /// </summary>
+    public record Atlas (
+        string? @scientist
+    ) : MuonEnv {}
+    
+    /// <summary>
+    /// Custom server URLs.
+    /// </summary>
+    public record CustomServers (
+        string[] @servers
+    ) : MuonEnv {}
+    
+
+    
+}
+
+class FfiConverterTypeMuonEnv : FfiConverterRustBuffer<MuonEnv>{
+    public static FfiConverterRustBuffer<MuonEnv> INSTANCE = new FfiConverterTypeMuonEnv();
+
+    public override MuonEnv Read(BigEndianStream stream) {
+        var value = stream.ReadInt();
+        switch (value) {
+            case 1:
+                return new MuonEnv.Prod(
+                );
+            case 2:
+                return new MuonEnv.Atlas(
+                    FfiConverterOptionalString.INSTANCE.Read(stream)
+                );
+            case 3:
+                return new MuonEnv.CustomServers(
+                    FfiConverterSequenceString.INSTANCE.Read(stream)
+                );
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeMuonEnv.Read()", value));
+        }
+    }
+
+    public override int AllocationSize(MuonEnv value) {
+        switch (value) {
+            case MuonEnv.Prod variant_value:
+                return 4;
+            case MuonEnv.Atlas variant_value:
+                return 4
+                    + FfiConverterOptionalString.INSTANCE.AllocationSize(variant_value.@scientist);
+            case MuonEnv.CustomServers variant_value:
+                return 4
+                    + FfiConverterSequenceString.INSTANCE.AllocationSize(variant_value.@servers);
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeMuonEnv.AllocationSize()", value));
+        }
+    }
+
+    public override void Write(MuonEnv value, BigEndianStream stream) {
+        switch (value) {
+            case MuonEnv.Prod variant_value:
+                stream.WriteInt(1);
+                break;
+            case MuonEnv.Atlas variant_value:
+                stream.WriteInt(2);
+                FfiConverterOptionalString.INSTANCE.Write(variant_value.@scientist, stream);
+                break;
+            case MuonEnv.CustomServers variant_value:
+                stream.WriteInt(3);
+                FfiConverterSequenceString.INSTANCE.Write(variant_value.@servers, stream);
+                break;
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeMuonEnv.Write()", value));
+        }
+    }
+}
+
+
+
+
+
+
+
+/// <summary>
+/// Netshield level
+/// </summary>
+public enum NetshieldLevel: int {
+    
+    /// <summary>
+    /// Netshield is disabled
+    /// </summary>
+    None,
+    /// <summary>
+    /// Netshield filters Malware
+    /// </summary>
+    MalwareFilter,
+    /// <summary>
+    /// Netshield filters Malware, Ads and Trackers
+    /// </summary>
+    AdsAndMalwareFilter,
+    /// <summary>
+    /// Netshield filters Malware, Ads, Trackers and Adult
+    /// </summary>
+    AdultAndAdsAndMalwareFilter
+}
+
+class FfiConverterTypeNetshieldLevel: FfiConverterRustBuffer<NetshieldLevel> {
+    public static FfiConverterTypeNetshieldLevel INSTANCE = new FfiConverterTypeNetshieldLevel();
+
+    public override NetshieldLevel Read(BigEndianStream stream) {
+        var value = stream.ReadInt() - 1;
+        if (Enum.IsDefined(typeof(NetshieldLevel), value)) {
+            return (NetshieldLevel)value;
+        } else {
+            throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeNetshieldLevel.Read()", value));
+        }
+    }
+
+    public override int AllocationSize(NetshieldLevel value) {
+        return 4;
+    }
+
+    public override void Write(NetshieldLevel value, BigEndianStream stream) {
         stream.WriteInt((int)value + 1);
     }
 }
@@ -2940,6 +4169,41 @@ class FfiConverterTypePcapFile : FfiConverterRustBuffer<PcapFile>{
             default:
                 throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypePcapFile.Write()", value));
         }
+    }
+}
+
+
+
+
+
+
+
+public enum PeerConnectionWaitReason: int {
+    
+    /// <summary>
+    /// Device currently has no network (airplane mode, no signal, etc.)
+    /// </summary>
+    WaitingForNetwork
+}
+
+class FfiConverterTypePeerConnectionWaitReason: FfiConverterRustBuffer<PeerConnectionWaitReason> {
+    public static FfiConverterTypePeerConnectionWaitReason INSTANCE = new FfiConverterTypePeerConnectionWaitReason();
+
+    public override PeerConnectionWaitReason Read(BigEndianStream stream) {
+        var value = stream.ReadInt() - 1;
+        if (Enum.IsDefined(typeof(PeerConnectionWaitReason), value)) {
+            return (PeerConnectionWaitReason)value;
+        } else {
+            throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypePeerConnectionWaitReason.Read()", value));
+        }
+    }
+
+    public override int AllocationSize(PeerConnectionWaitReason value) {
+        return 4;
+    }
+
+    public override void Write(PeerConnectionWaitReason value, BigEndianStream stream) {
+        stream.WriteInt((int)value + 1);
     }
 }
 
@@ -3248,180 +4512,271 @@ class FfiConverterTypeProtocol: FfiConverterRustBuffer<Protocol> {
 
 
 
-/// <summary>
-/// State of the VPN connection.
-/// </summary>
-public record State {
+public record Restriction {
     
-    /// <summary>
-    /// Disconnected. [error] will be set if disconnection happened due to an error.
-    /// </summary>
-    public record Disconnected (
-        DisconnectReason? @error
-    ) : State {}
+    public record Streaming (
+        string @reason
+    ) : Restriction {}
     
-    /// <summary>
-    /// Library is attempting VPN connection to one or more candidate peers.
-    /// </summary>
-    public record Connecting (
-        PeerConnectionInfo[] @peers
-    ) : State {}
+    public record Torrent (
+        string @reason
+    ) : Restriction {}
     
-    /// <summary>
-    /// Library connection attempt requires app, user or system action to proceed.
-    /// </summary>
-    public record WaitingForAction (
-        WaitReason @reason
-    ) : State {}
-    
-    /// <summary>
-    /// Connection to [peer] is established.
-    /// </summary>
-    public record Connected (
-        PeerConnectionInfo @peer
-    ) : State {}
+    public record Other (
+        string @name,
+        string @reason
+    ) : Restriction {}
     
 
     
 }
 
-class FfiConverterTypeState : FfiConverterRustBuffer<State>{
-    public static FfiConverterRustBuffer<State> INSTANCE = new FfiConverterTypeState();
+class FfiConverterTypeRestriction : FfiConverterRustBuffer<Restriction>{
+    public static FfiConverterRustBuffer<Restriction> INSTANCE = new FfiConverterTypeRestriction();
 
-    public override State Read(BigEndianStream stream) {
+    public override Restriction Read(BigEndianStream stream) {
         var value = stream.ReadInt();
         switch (value) {
             case 1:
-                return new State.Disconnected(
-                    FfiConverterOptionalTypeDisconnectReason.INSTANCE.Read(stream)
+                return new Restriction.Streaming(
+                    FfiConverterString.INSTANCE.Read(stream)
                 );
             case 2:
-                return new State.Connecting(
-                    FfiConverterSequenceTypePeerConnectionInfo.INSTANCE.Read(stream)
+                return new Restriction.Torrent(
+                    FfiConverterString.INSTANCE.Read(stream)
                 );
             case 3:
-                return new State.WaitingForAction(
-                    FfiConverterTypeWaitReason.INSTANCE.Read(stream)
-                );
-            case 4:
-                return new State.Connected(
-                    FfiConverterTypePeerConnectionInfo.INSTANCE.Read(stream)
-                );
-            default:
-                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeState.Read()", value));
-        }
-    }
-
-    public override int AllocationSize(State value) {
-        switch (value) {
-            case State.Disconnected variant_value:
-                return 4
-                    + FfiConverterOptionalTypeDisconnectReason.INSTANCE.AllocationSize(variant_value.@error);
-            case State.Connecting variant_value:
-                return 4
-                    + FfiConverterSequenceTypePeerConnectionInfo.INSTANCE.AllocationSize(variant_value.@peers);
-            case State.WaitingForAction variant_value:
-                return 4
-                    + FfiConverterTypeWaitReason.INSTANCE.AllocationSize(variant_value.@reason);
-            case State.Connected variant_value:
-                return 4
-                    + FfiConverterTypePeerConnectionInfo.INSTANCE.AllocationSize(variant_value.@peer);
-            default:
-                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeState.AllocationSize()", value));
-        }
-    }
-
-    public override void Write(State value, BigEndianStream stream) {
-        switch (value) {
-            case State.Disconnected variant_value:
-                stream.WriteInt(1);
-                FfiConverterOptionalTypeDisconnectReason.INSTANCE.Write(variant_value.@error, stream);
-                break;
-            case State.Connecting variant_value:
-                stream.WriteInt(2);
-                FfiConverterSequenceTypePeerConnectionInfo.INSTANCE.Write(variant_value.@peers, stream);
-                break;
-            case State.WaitingForAction variant_value:
-                stream.WriteInt(3);
-                FfiConverterTypeWaitReason.INSTANCE.Write(variant_value.@reason, stream);
-                break;
-            case State.Connected variant_value:
-                stream.WriteInt(4);
-                FfiConverterTypePeerConnectionInfo.INSTANCE.Write(variant_value.@peer, stream);
-                break;
-            default:
-                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeState.Write()", value));
-        }
-    }
-}
-
-
-
-
-
-
-
-public record WaitReason {
-    
-    /// <summary>
-    /// Device currently has no network (airplane mode, no signal, etc.)
-    /// </summary>
-    public record WaitingForNetwork: WaitReason {}
-    
-    
-    /// <summary>
-    /// There is I/O problem with TUN interface. Calling code might need to wait, recreate TUN or
-    /// disconnect (when it was caused by connection by another VPN app).
-    /// </summary>
-    public record TunIoError (
-        string @message
-    ) : WaitReason {}
-    
-
-    
-}
-
-class FfiConverterTypeWaitReason : FfiConverterRustBuffer<WaitReason>{
-    public static FfiConverterRustBuffer<WaitReason> INSTANCE = new FfiConverterTypeWaitReason();
-
-    public override WaitReason Read(BigEndianStream stream) {
-        var value = stream.ReadInt();
-        switch (value) {
-            case 1:
-                return new WaitReason.WaitingForNetwork(
-                );
-            case 2:
-                return new WaitReason.TunIoError(
+                return new Restriction.Other(
+                    FfiConverterString.INSTANCE.Read(stream),
                     FfiConverterString.INSTANCE.Read(stream)
                 );
             default:
-                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeWaitReason.Read()", value));
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeRestriction.Read()", value));
         }
     }
 
-    public override int AllocationSize(WaitReason value) {
+    public override int AllocationSize(Restriction value) {
         switch (value) {
-            case WaitReason.WaitingForNetwork variant_value:
-                return 4;
-            case WaitReason.TunIoError variant_value:
+            case Restriction.Streaming variant_value:
+                return 4
+                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@reason);
+            case Restriction.Torrent variant_value:
+                return 4
+                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@reason);
+            case Restriction.Other variant_value:
+                return 4
+                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@name)
+                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@reason);
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeRestriction.AllocationSize()", value));
+        }
+    }
+
+    public override void Write(Restriction value, BigEndianStream stream) {
+        switch (value) {
+            case Restriction.Streaming variant_value:
+                stream.WriteInt(1);
+                FfiConverterString.INSTANCE.Write(variant_value.@reason, stream);
+                break;
+            case Restriction.Torrent variant_value:
+                stream.WriteInt(2);
+                FfiConverterString.INSTANCE.Write(variant_value.@reason, stream);
+                break;
+            case Restriction.Other variant_value:
+                stream.WriteInt(3);
+                FfiConverterString.INSTANCE.Write(variant_value.@name, stream);
+                FfiConverterString.INSTANCE.Write(variant_value.@reason, stream);
+                break;
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeRestriction.Write()", value));
+        }
+    }
+}
+
+
+
+
+
+
+
+/// <summary>
+/// Local agent jails. Most require app/user action to be unjailed ([WaitJailReason::Internal] will
+/// be handled internally by the library). Messages are not localized and suitable only for
+/// logging/debugging.
+/// </summary>
+public record WaitJailReason {
+    
+    public record BadUserBehavior (
+        string @message
+    ) : WaitJailReason {}
+    
+    public record DisabledUser (
+        string @message
+    ) : WaitJailReason {}
+    
+    public record LowPlan (
+        string @message
+    ) : WaitJailReason {}
+    
+    public record Need2Fa (
+        string @message
+    ) : WaitJailReason {}
+    
+    public record PendingInvoice (
+        string @message
+    ) : WaitJailReason {}
+    
+    public record SessionOverLimit (
+        string @message
+    ) : WaitJailReason {}
+    
+    public record WaitingClientChallengeReply (
+        string @message
+    ) : WaitJailReason {}
+    
+    /// <summary>
+    /// Will be handled internally by the library - no action required by the app.
+    /// </summary>
+    public record Internal (
+        string @message
+    ) : WaitJailReason {}
+    
+    /// <summary>
+    /// Unknown error codes, not supported in this version.
+    /// </summary>
+    public record Other (
+        ulong @code,
+        string @message
+    ) : WaitJailReason {}
+    
+
+    
+}
+
+class FfiConverterTypeWaitJailReason : FfiConverterRustBuffer<WaitJailReason>{
+    public static FfiConverterRustBuffer<WaitJailReason> INSTANCE = new FfiConverterTypeWaitJailReason();
+
+    public override WaitJailReason Read(BigEndianStream stream) {
+        var value = stream.ReadInt();
+        switch (value) {
+            case 1:
+                return new WaitJailReason.BadUserBehavior(
+                    FfiConverterString.INSTANCE.Read(stream)
+                );
+            case 2:
+                return new WaitJailReason.DisabledUser(
+                    FfiConverterString.INSTANCE.Read(stream)
+                );
+            case 3:
+                return new WaitJailReason.LowPlan(
+                    FfiConverterString.INSTANCE.Read(stream)
+                );
+            case 4:
+                return new WaitJailReason.Need2Fa(
+                    FfiConverterString.INSTANCE.Read(stream)
+                );
+            case 5:
+                return new WaitJailReason.PendingInvoice(
+                    FfiConverterString.INSTANCE.Read(stream)
+                );
+            case 6:
+                return new WaitJailReason.SessionOverLimit(
+                    FfiConverterString.INSTANCE.Read(stream)
+                );
+            case 7:
+                return new WaitJailReason.WaitingClientChallengeReply(
+                    FfiConverterString.INSTANCE.Read(stream)
+                );
+            case 8:
+                return new WaitJailReason.Internal(
+                    FfiConverterString.INSTANCE.Read(stream)
+                );
+            case 9:
+                return new WaitJailReason.Other(
+                    FfiConverterUInt64.INSTANCE.Read(stream),
+                    FfiConverterString.INSTANCE.Read(stream)
+                );
+            default:
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeWaitJailReason.Read()", value));
+        }
+    }
+
+    public override int AllocationSize(WaitJailReason value) {
+        switch (value) {
+            case WaitJailReason.BadUserBehavior variant_value:
                 return 4
                     + FfiConverterString.INSTANCE.AllocationSize(variant_value.@message);
+            case WaitJailReason.DisabledUser variant_value:
+                return 4
+                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@message);
+            case WaitJailReason.LowPlan variant_value:
+                return 4
+                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@message);
+            case WaitJailReason.Need2Fa variant_value:
+                return 4
+                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@message);
+            case WaitJailReason.PendingInvoice variant_value:
+                return 4
+                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@message);
+            case WaitJailReason.SessionOverLimit variant_value:
+                return 4
+                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@message);
+            case WaitJailReason.WaitingClientChallengeReply variant_value:
+                return 4
+                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@message);
+            case WaitJailReason.Internal variant_value:
+                return 4
+                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@message);
+            case WaitJailReason.Other variant_value:
+                return 4
+                    + FfiConverterUInt64.INSTANCE.AllocationSize(variant_value.@code)
+                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@message);
             default:
-                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeWaitReason.AllocationSize()", value));
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeWaitJailReason.AllocationSize()", value));
         }
     }
 
-    public override void Write(WaitReason value, BigEndianStream stream) {
+    public override void Write(WaitJailReason value, BigEndianStream stream) {
         switch (value) {
-            case WaitReason.WaitingForNetwork variant_value:
+            case WaitJailReason.BadUserBehavior variant_value:
                 stream.WriteInt(1);
+                FfiConverterString.INSTANCE.Write(variant_value.@message, stream);
                 break;
-            case WaitReason.TunIoError variant_value:
+            case WaitJailReason.DisabledUser variant_value:
                 stream.WriteInt(2);
                 FfiConverterString.INSTANCE.Write(variant_value.@message, stream);
                 break;
+            case WaitJailReason.LowPlan variant_value:
+                stream.WriteInt(3);
+                FfiConverterString.INSTANCE.Write(variant_value.@message, stream);
+                break;
+            case WaitJailReason.Need2Fa variant_value:
+                stream.WriteInt(4);
+                FfiConverterString.INSTANCE.Write(variant_value.@message, stream);
+                break;
+            case WaitJailReason.PendingInvoice variant_value:
+                stream.WriteInt(5);
+                FfiConverterString.INSTANCE.Write(variant_value.@message, stream);
+                break;
+            case WaitJailReason.SessionOverLimit variant_value:
+                stream.WriteInt(6);
+                FfiConverterString.INSTANCE.Write(variant_value.@message, stream);
+                break;
+            case WaitJailReason.WaitingClientChallengeReply variant_value:
+                stream.WriteInt(7);
+                FfiConverterString.INSTANCE.Write(variant_value.@message, stream);
+                break;
+            case WaitJailReason.Internal variant_value:
+                stream.WriteInt(8);
+                FfiConverterString.INSTANCE.Write(variant_value.@message, stream);
+                break;
+            case WaitJailReason.Other variant_value:
+                stream.WriteInt(9);
+                FfiConverterUInt64.INSTANCE.Write(variant_value.@code, stream);
+                FfiConverterString.INSTANCE.Write(variant_value.@message, stream);
+                break;
             default:
-                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeWaitReason.Write()", value));
+                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeWaitJailReason.Write()", value));
         }
     }
 }
@@ -3621,11 +4976,109 @@ class FfiConverterTypeEventCallback: FfiConverter<EventCallback, ulong> {
 
 
 /// <summary>
+/// Persistent cache. Libpvpnclient will use it to store secrets (certificates, private keys, etc.).
+/// Data is sensitive and implementation should make sure it's stored securely. Note that all
+/// functions in this trait will be blocking the connection thread.
+/// </summary>
+public interface PersistentCache {
+    void Put(CacheKey @key, byte[] @bytes);
+    byte[]? Get(CacheKey @key);
+    void Clear();
+}
+
+class UniffiCallbackInterfacePersistentCache {
+    static void Put(ulong @uniffiHandle,RustBuffer @key,RustBuffer @bytes,IntPtr @uniffiOutReturn,ref UniffiRustCallStatus _uniffi_out_err) {
+        var handle = @uniffiHandle;
+        if (FfiConverterTypePersistentCache.INSTANCE.handleMap.TryGet(handle, out var uniffiObject)) {
+            uniffiObject.Put(
+                FfiConverterTypeCacheKey.INSTANCE.Lift(@key), 
+                FfiConverterByteArray.INSTANCE.Lift(@bytes));
+        } else {
+            throw new InternalException($"No callback in handlemap '{handle}'");
+        }
+    }
+    static void Get(ulong @uniffiHandle,RustBuffer @key,ref RustBuffer @uniffiOutReturn,ref UniffiRustCallStatus _uniffi_out_err) {
+        var handle = @uniffiHandle;
+        if (FfiConverterTypePersistentCache.INSTANCE.handleMap.TryGet(handle, out var uniffiObject)) {
+            var result =
+            uniffiObject.Get(
+                FfiConverterTypeCacheKey.INSTANCE.Lift(@key));
+            @uniffiOutReturn = FfiConverterOptionalByteArray.INSTANCE.Lower(result);
+        } else {
+            throw new InternalException($"No callback in handlemap '{handle}'");
+        }
+    }
+    static void Clear(ulong @uniffiHandle,IntPtr @uniffiOutReturn,ref UniffiRustCallStatus _uniffi_out_err) {
+        var handle = @uniffiHandle;
+        if (FfiConverterTypePersistentCache.INSTANCE.handleMap.TryGet(handle, out var uniffiObject)) {
+            uniffiObject.Clear();
+        } else {
+            throw new InternalException($"No callback in handlemap '{handle}'");
+        }
+    }
+
+    static void UniffiFree(ulong @handle) {
+        FfiConverterTypePersistentCache.INSTANCE.handleMap.Remove(@handle);
+    }
+    static _UniFFILib.UniffiCallbackInterfacePersistentCacheMethod0 _m0 = new _UniFFILib.UniffiCallbackInterfacePersistentCacheMethod0(Put);
+    static _UniFFILib.UniffiCallbackInterfacePersistentCacheMethod1 _m1 = new _UniFFILib.UniffiCallbackInterfacePersistentCacheMethod1(Get);
+    static _UniFFILib.UniffiCallbackInterfacePersistentCacheMethod2 _m2 = new _UniFFILib.UniffiCallbackInterfacePersistentCacheMethod2(Clear);
+    static _UniFFILib.UniffiCallbackInterfaceFree _callback_interface_free = new _UniFFILib.UniffiCallbackInterfaceFree(UniffiFree);
+
+    public static _UniFFILib.UniffiVTableCallbackInterfacePersistentCache _vtable = new _UniFFILib.UniffiVTableCallbackInterfacePersistentCache {
+        @put = Marshal.GetFunctionPointerForDelegate(_m0),
+        @get = Marshal.GetFunctionPointerForDelegate(_m1),
+        @clear = Marshal.GetFunctionPointerForDelegate(_m2),
+        @uniffiFree = Marshal.GetFunctionPointerForDelegate(_callback_interface_free)
+    };
+
+    public static void Register() {
+        _UniFFILib.uniffi_protun_fn_init_callback_vtable_persistentcache(ref UniffiCallbackInterfacePersistentCache._vtable);
+    }
+}
+
+
+
+
+// The ffiConverter which transforms the Callbacks in to Handles to pass to Rust.
+class FfiConverterTypePersistentCache: FfiConverter<PersistentCache, ulong> {
+    public static FfiConverterTypePersistentCache INSTANCE = new FfiConverterTypePersistentCache();
+
+    public ConcurrentHandleMap<PersistentCache> handleMap = new ConcurrentHandleMap<PersistentCache>();
+
+    public override ulong Lower(PersistentCache value) {
+        return handleMap.Insert(value);
+    }
+
+    public override PersistentCache Lift(ulong value) {
+        if (handleMap.TryGet(value, out var uniffiCallback)) {
+            return uniffiCallback;
+        } else {
+            throw new InternalException($"No callback in handlemap '{value}'");
+        }
+    }
+
+    public override PersistentCache Read(BigEndianStream stream) {
+        return Lift(stream.ReadULong());
+    }
+
+    public override int AllocationSize(PersistentCache value) {
+        return 8;
+    }
+
+    public override void Write(PersistentCache value, BigEndianStream stream) {
+        stream.WriteULong(Lower(value));
+    }
+}
+
+
+
+/// <summary>
 /// Callback interface for receiving connection state changes. Avoid doing heavy work in the
 /// callback to avoid blocking the connection thread.
 /// </summary>
 public interface StateChangedCallback {
-    void OnStateChanged(State @state);
+    void OnStateChanged(VpnState @state);
 }
 
 class UniffiCallbackInterfaceStateChangedCallback {
@@ -3633,7 +5086,7 @@ class UniffiCallbackInterfaceStateChangedCallback {
         var handle = @uniffiHandle;
         if (FfiConverterTypeStateChangedCallback.INSTANCE.handleMap.TryGet(handle, out var uniffiObject)) {
             uniffiObject.OnStateChanged(
-                FfiConverterTypeState.INSTANCE.Lift(@state));
+                FfiConverterTypeVpnState.INSTANCE.Lift(@state));
         } else {
             throw new InternalException($"No callback in handlemap '{handle}'");
         }
@@ -3723,6 +5176,192 @@ class FfiConverterOptionalUInt64: FfiConverterRustBuffer<ulong?> {
 
 
 
+class FfiConverterOptionalBoolean: FfiConverterRustBuffer<bool?> {
+    public static FfiConverterOptionalBoolean INSTANCE = new FfiConverterOptionalBoolean();
+
+    public override bool? Read(BigEndianStream stream) {
+        if (stream.ReadByte() == 0) {
+            return null;
+        }
+        return FfiConverterBoolean.INSTANCE.Read(stream);
+    }
+
+    public override int AllocationSize(bool? value) {
+        if (value == null) {
+            return 1;
+        } else {
+            return 1 + FfiConverterBoolean.INSTANCE.AllocationSize((bool)value);
+        }
+    }
+
+    public override void Write(bool? value, BigEndianStream stream) {
+        if (value == null) {
+            stream.WriteByte(0);
+        } else {
+            stream.WriteByte(1);
+            FfiConverterBoolean.INSTANCE.Write((bool)value, stream);
+        }
+    }
+}
+
+
+
+
+class FfiConverterOptionalString: FfiConverterRustBuffer<string?> {
+    public static FfiConverterOptionalString INSTANCE = new FfiConverterOptionalString();
+
+    public override string? Read(BigEndianStream stream) {
+        if (stream.ReadByte() == 0) {
+            return null;
+        }
+        return FfiConverterString.INSTANCE.Read(stream);
+    }
+
+    public override int AllocationSize(string? value) {
+        if (value == null) {
+            return 1;
+        } else {
+            return 1 + FfiConverterString.INSTANCE.AllocationSize((string)value);
+        }
+    }
+
+    public override void Write(string? value, BigEndianStream stream) {
+        if (value == null) {
+            stream.WriteByte(0);
+        } else {
+            stream.WriteByte(1);
+            FfiConverterString.INSTANCE.Write((string)value, stream);
+        }
+    }
+}
+
+
+
+
+class FfiConverterOptionalByteArray: FfiConverterRustBuffer<byte[]?> {
+    public static FfiConverterOptionalByteArray INSTANCE = new FfiConverterOptionalByteArray();
+
+    public override byte[]? Read(BigEndianStream stream) {
+        if (stream.ReadByte() == 0) {
+            return null;
+        }
+        return FfiConverterByteArray.INSTANCE.Read(stream);
+    }
+
+    public override int AllocationSize(byte[]? value) {
+        if (value == null) {
+            return 1;
+        } else {
+            return 1 + FfiConverterByteArray.INSTANCE.AllocationSize((byte[])value);
+        }
+    }
+
+    public override void Write(byte[]? value, BigEndianStream stream) {
+        if (value == null) {
+            stream.WriteByte(0);
+        } else {
+            stream.WriteByte(1);
+            FfiConverterByteArray.INSTANCE.Write((byte[])value, stream);
+        }
+    }
+}
+
+
+
+
+class FfiConverterOptionalTypeAgentConnectionInfo: FfiConverterRustBuffer<AgentConnectionInfo?> {
+    public static FfiConverterOptionalTypeAgentConnectionInfo INSTANCE = new FfiConverterOptionalTypeAgentConnectionInfo();
+
+    public override AgentConnectionInfo? Read(BigEndianStream stream) {
+        if (stream.ReadByte() == 0) {
+            return null;
+        }
+        return FfiConverterTypeAgentConnectionInfo.INSTANCE.Read(stream);
+    }
+
+    public override int AllocationSize(AgentConnectionInfo? value) {
+        if (value == null) {
+            return 1;
+        } else {
+            return 1 + FfiConverterTypeAgentConnectionInfo.INSTANCE.AllocationSize((AgentConnectionInfo)value);
+        }
+    }
+
+    public override void Write(AgentConnectionInfo? value, BigEndianStream stream) {
+        if (value == null) {
+            stream.WriteByte(0);
+        } else {
+            stream.WriteByte(1);
+            FfiConverterTypeAgentConnectionInfo.INSTANCE.Write((AgentConnectionInfo)value, stream);
+        }
+    }
+}
+
+
+
+
+class FfiConverterOptionalTypeCoordinates: FfiConverterRustBuffer<Coordinates?> {
+    public static FfiConverterOptionalTypeCoordinates INSTANCE = new FfiConverterOptionalTypeCoordinates();
+
+    public override Coordinates? Read(BigEndianStream stream) {
+        if (stream.ReadByte() == 0) {
+            return null;
+        }
+        return FfiConverterTypeCoordinates.INSTANCE.Read(stream);
+    }
+
+    public override int AllocationSize(Coordinates? value) {
+        if (value == null) {
+            return 1;
+        } else {
+            return 1 + FfiConverterTypeCoordinates.INSTANCE.AllocationSize((Coordinates)value);
+        }
+    }
+
+    public override void Write(Coordinates? value, BigEndianStream stream) {
+        if (value == null) {
+            stream.WriteByte(0);
+        } else {
+            stream.WriteByte(1);
+            FfiConverterTypeCoordinates.INSTANCE.Write((Coordinates)value, stream);
+        }
+    }
+}
+
+
+
+
+class FfiConverterOptionalTypeLocalAgentSettings: FfiConverterRustBuffer<LocalAgentSettings?> {
+    public static FfiConverterOptionalTypeLocalAgentSettings INSTANCE = new FfiConverterOptionalTypeLocalAgentSettings();
+
+    public override LocalAgentSettings? Read(BigEndianStream stream) {
+        if (stream.ReadByte() == 0) {
+            return null;
+        }
+        return FfiConverterTypeLocalAgentSettings.INSTANCE.Read(stream);
+    }
+
+    public override int AllocationSize(LocalAgentSettings? value) {
+        if (value == null) {
+            return 1;
+        } else {
+            return 1 + FfiConverterTypeLocalAgentSettings.INSTANCE.AllocationSize((LocalAgentSettings)value);
+        }
+    }
+
+    public override void Write(LocalAgentSettings? value, BigEndianStream stream) {
+        if (value == null) {
+            stream.WriteByte(0);
+        } else {
+            stream.WriteByte(1);
+            FfiConverterTypeLocalAgentSettings.INSTANCE.Write((LocalAgentSettings)value, stream);
+        }
+    }
+}
+
+
+
+
 class FfiConverterOptionalTypePcapFileInfo: FfiConverterRustBuffer<PcapFileInfo?> {
     public static FfiConverterOptionalTypePcapFileInfo INSTANCE = new FfiConverterOptionalTypePcapFileInfo();
 
@@ -3754,6 +5393,37 @@ class FfiConverterOptionalTypePcapFileInfo: FfiConverterRustBuffer<PcapFileInfo?
 
 
 
+class FfiConverterOptionalTypeAgentConnectionWaitReason: FfiConverterRustBuffer<AgentConnectionWaitReason?> {
+    public static FfiConverterOptionalTypeAgentConnectionWaitReason INSTANCE = new FfiConverterOptionalTypeAgentConnectionWaitReason();
+
+    public override AgentConnectionWaitReason? Read(BigEndianStream stream) {
+        if (stream.ReadByte() == 0) {
+            return null;
+        }
+        return FfiConverterTypeAgentConnectionWaitReason.INSTANCE.Read(stream);
+    }
+
+    public override int AllocationSize(AgentConnectionWaitReason? value) {
+        if (value == null) {
+            return 1;
+        } else {
+            return 1 + FfiConverterTypeAgentConnectionWaitReason.INSTANCE.AllocationSize((AgentConnectionWaitReason)value);
+        }
+    }
+
+    public override void Write(AgentConnectionWaitReason? value, BigEndianStream stream) {
+        if (value == null) {
+            stream.WriteByte(0);
+        } else {
+            stream.WriteByte(1);
+            FfiConverterTypeAgentConnectionWaitReason.INSTANCE.Write((AgentConnectionWaitReason)value, stream);
+        }
+    }
+}
+
+
+
+
 class FfiConverterOptionalTypeDisconnectReason: FfiConverterRustBuffer<DisconnectReason?> {
     public static FfiConverterOptionalTypeDisconnectReason INSTANCE = new FfiConverterOptionalTypeDisconnectReason();
 
@@ -3778,6 +5448,130 @@ class FfiConverterOptionalTypeDisconnectReason: FfiConverterRustBuffer<Disconnec
         } else {
             stream.WriteByte(1);
             FfiConverterTypeDisconnectReason.INSTANCE.Write((DisconnectReason)value, stream);
+        }
+    }
+}
+
+
+
+
+class FfiConverterOptionalTypeInterfaceError: FfiConverterRustBuffer<InterfaceError?> {
+    public static FfiConverterOptionalTypeInterfaceError INSTANCE = new FfiConverterOptionalTypeInterfaceError();
+
+    public override InterfaceError? Read(BigEndianStream stream) {
+        if (stream.ReadByte() == 0) {
+            return null;
+        }
+        return FfiConverterTypeInterfaceError.INSTANCE.Read(stream);
+    }
+
+    public override int AllocationSize(InterfaceError? value) {
+        if (value == null) {
+            return 1;
+        } else {
+            return 1 + FfiConverterTypeInterfaceError.INSTANCE.AllocationSize((InterfaceError)value);
+        }
+    }
+
+    public override void Write(InterfaceError? value, BigEndianStream stream) {
+        if (value == null) {
+            stream.WriteByte(0);
+        } else {
+            stream.WriteByte(1);
+            FfiConverterTypeInterfaceError.INSTANCE.Write((InterfaceError)value, stream);
+        }
+    }
+}
+
+
+
+
+class FfiConverterOptionalTypeNetshieldLevel: FfiConverterRustBuffer<NetshieldLevel?> {
+    public static FfiConverterOptionalTypeNetshieldLevel INSTANCE = new FfiConverterOptionalTypeNetshieldLevel();
+
+    public override NetshieldLevel? Read(BigEndianStream stream) {
+        if (stream.ReadByte() == 0) {
+            return null;
+        }
+        return FfiConverterTypeNetshieldLevel.INSTANCE.Read(stream);
+    }
+
+    public override int AllocationSize(NetshieldLevel? value) {
+        if (value == null) {
+            return 1;
+        } else {
+            return 1 + FfiConverterTypeNetshieldLevel.INSTANCE.AllocationSize((NetshieldLevel)value);
+        }
+    }
+
+    public override void Write(NetshieldLevel? value, BigEndianStream stream) {
+        if (value == null) {
+            stream.WriteByte(0);
+        } else {
+            stream.WriteByte(1);
+            FfiConverterTypeNetshieldLevel.INSTANCE.Write((NetshieldLevel)value, stream);
+        }
+    }
+}
+
+
+
+
+class FfiConverterOptionalSequenceTypePeerInfo: FfiConverterRustBuffer<PeerInfo[]?> {
+    public static FfiConverterOptionalSequenceTypePeerInfo INSTANCE = new FfiConverterOptionalSequenceTypePeerInfo();
+
+    public override PeerInfo[]? Read(BigEndianStream stream) {
+        if (stream.ReadByte() == 0) {
+            return null;
+        }
+        return FfiConverterSequenceTypePeerInfo.INSTANCE.Read(stream);
+    }
+
+    public override int AllocationSize(PeerInfo[]? value) {
+        if (value == null) {
+            return 1;
+        } else {
+            return 1 + FfiConverterSequenceTypePeerInfo.INSTANCE.AllocationSize((PeerInfo[])value);
+        }
+    }
+
+    public override void Write(PeerInfo[]? value, BigEndianStream stream) {
+        if (value == null) {
+            stream.WriteByte(0);
+        } else {
+            stream.WriteByte(1);
+            FfiConverterSequenceTypePeerInfo.INSTANCE.Write((PeerInfo[])value, stream);
+        }
+    }
+}
+
+
+
+
+class FfiConverterOptionalTypeIpAddress: FfiConverterRustBuffer<IpAddress?> {
+    public static FfiConverterOptionalTypeIpAddress INSTANCE = new FfiConverterOptionalTypeIpAddress();
+
+    public override IpAddress? Read(BigEndianStream stream) {
+        if (stream.ReadByte() == 0) {
+            return null;
+        }
+        return FfiConverterTypeIpAddress.INSTANCE.Read(stream);
+    }
+
+    public override int AllocationSize(IpAddress? value) {
+        if (value == null) {
+            return 1;
+        } else {
+            return 1 + FfiConverterTypeIpAddress.INSTANCE.AllocationSize((IpAddress)value);
+        }
+    }
+
+    public override void Write(IpAddress? value, BigEndianStream stream) {
+        if (value == null) {
+            stream.WriteByte(0);
+        } else {
+            stream.WriteByte(1);
+            FfiConverterTypeIpAddress.INSTANCE.Write((IpAddress)value, stream);
         }
     }
 }
@@ -3824,6 +5618,98 @@ class FfiConverterSequenceUInt16: FfiConverterRustBuffer<ushort[]> {
 
         stream.WriteInt(value.Length);
         var writerFn = FfiConverterUInt16.INSTANCE.Write;
+        value.ForEach(item => writerFn(item, stream));
+    }
+}
+
+
+
+
+class FfiConverterSequenceString: FfiConverterRustBuffer<string[]> {
+    public static FfiConverterSequenceString INSTANCE = new FfiConverterSequenceString();
+
+    public override string[]  Read(BigEndianStream stream) {
+        var length = stream.ReadInt();
+        if (length == 0) {
+            return [];
+        }
+
+        var result = new string[(length)];
+        var readFn = FfiConverterString.INSTANCE.Read;
+        for (int i = 0; i < length; i++) {
+            result[i] = readFn(stream);
+        }
+        return result;
+    }
+
+    public override int AllocationSize(string[]  value) {
+        var sizeForLength = 4;
+
+        // details/1-empty-list-as-default-method-parameter.md
+        if (value == null) {
+            return sizeForLength;
+        }
+
+        var allocationSizeFn = FfiConverterString.INSTANCE.AllocationSize;
+        var sizeForItems = value.Sum(item => allocationSizeFn(item));
+        return sizeForLength + sizeForItems;
+    }
+
+    public override void Write(string[] value, BigEndianStream stream) {
+        // details/1-empty-list-as-default-method-parameter.md
+        if (value == null) {
+            stream.WriteInt(0);
+            return;
+        }
+
+        stream.WriteInt(value.Length);
+        var writerFn = FfiConverterString.INSTANCE.Write;
+        value.ForEach(item => writerFn(item, stream));
+    }
+}
+
+
+
+
+class FfiConverterSequenceTypeCookie: FfiConverterRustBuffer<Cookie[]> {
+    public static FfiConverterSequenceTypeCookie INSTANCE = new FfiConverterSequenceTypeCookie();
+
+    public override Cookie[]  Read(BigEndianStream stream) {
+        var length = stream.ReadInt();
+        if (length == 0) {
+            return [];
+        }
+
+        var result = new Cookie[(length)];
+        var readFn = FfiConverterTypeCookie.INSTANCE.Read;
+        for (int i = 0; i < length; i++) {
+            result[i] = readFn(stream);
+        }
+        return result;
+    }
+
+    public override int AllocationSize(Cookie[]  value) {
+        var sizeForLength = 4;
+
+        // details/1-empty-list-as-default-method-parameter.md
+        if (value == null) {
+            return sizeForLength;
+        }
+
+        var allocationSizeFn = FfiConverterTypeCookie.INSTANCE.AllocationSize;
+        var sizeForItems = value.Sum(item => allocationSizeFn(item));
+        return sizeForLength + sizeForItems;
+    }
+
+    public override void Write(Cookie[] value, BigEndianStream stream) {
+        // details/1-empty-list-as-default-method-parameter.md
+        if (value == null) {
+            stream.WriteInt(0);
+            return;
+        }
+
+        stream.WriteInt(value.Length);
+        var writerFn = FfiConverterTypeCookie.INSTANCE.Write;
         value.ForEach(item => writerFn(item, stream));
     }
 }
@@ -3916,6 +5802,144 @@ class FfiConverterSequenceTypePeerInfo: FfiConverterRustBuffer<PeerInfo[]> {
 
         stream.WriteInt(value.Length);
         var writerFn = FfiConverterTypePeerInfo.INSTANCE.Write;
+        value.ForEach(item => writerFn(item, stream));
+    }
+}
+
+
+
+
+class FfiConverterSequenceTypePeerConnectionWaitReason: FfiConverterRustBuffer<PeerConnectionWaitReason[]> {
+    public static FfiConverterSequenceTypePeerConnectionWaitReason INSTANCE = new FfiConverterSequenceTypePeerConnectionWaitReason();
+
+    public override PeerConnectionWaitReason[]  Read(BigEndianStream stream) {
+        var length = stream.ReadInt();
+        if (length == 0) {
+            return [];
+        }
+
+        var result = new PeerConnectionWaitReason[(length)];
+        var readFn = FfiConverterTypePeerConnectionWaitReason.INSTANCE.Read;
+        for (int i = 0; i < length; i++) {
+            result[i] = readFn(stream);
+        }
+        return result;
+    }
+
+    public override int AllocationSize(PeerConnectionWaitReason[]  value) {
+        var sizeForLength = 4;
+
+        // details/1-empty-list-as-default-method-parameter.md
+        if (value == null) {
+            return sizeForLength;
+        }
+
+        var allocationSizeFn = FfiConverterTypePeerConnectionWaitReason.INSTANCE.AllocationSize;
+        var sizeForItems = value.Sum(item => allocationSizeFn(item));
+        return sizeForLength + sizeForItems;
+    }
+
+    public override void Write(PeerConnectionWaitReason[] value, BigEndianStream stream) {
+        // details/1-empty-list-as-default-method-parameter.md
+        if (value == null) {
+            stream.WriteInt(0);
+            return;
+        }
+
+        stream.WriteInt(value.Length);
+        var writerFn = FfiConverterTypePeerConnectionWaitReason.INSTANCE.Write;
+        value.ForEach(item => writerFn(item, stream));
+    }
+}
+
+
+
+
+class FfiConverterSequenceTypeRestriction: FfiConverterRustBuffer<Restriction[]> {
+    public static FfiConverterSequenceTypeRestriction INSTANCE = new FfiConverterSequenceTypeRestriction();
+
+    public override Restriction[]  Read(BigEndianStream stream) {
+        var length = stream.ReadInt();
+        if (length == 0) {
+            return [];
+        }
+
+        var result = new Restriction[(length)];
+        var readFn = FfiConverterTypeRestriction.INSTANCE.Read;
+        for (int i = 0; i < length; i++) {
+            result[i] = readFn(stream);
+        }
+        return result;
+    }
+
+    public override int AllocationSize(Restriction[]  value) {
+        var sizeForLength = 4;
+
+        // details/1-empty-list-as-default-method-parameter.md
+        if (value == null) {
+            return sizeForLength;
+        }
+
+        var allocationSizeFn = FfiConverterTypeRestriction.INSTANCE.AllocationSize;
+        var sizeForItems = value.Sum(item => allocationSizeFn(item));
+        return sizeForLength + sizeForItems;
+    }
+
+    public override void Write(Restriction[] value, BigEndianStream stream) {
+        // details/1-empty-list-as-default-method-parameter.md
+        if (value == null) {
+            stream.WriteInt(0);
+            return;
+        }
+
+        stream.WriteInt(value.Length);
+        var writerFn = FfiConverterTypeRestriction.INSTANCE.Write;
+        value.ForEach(item => writerFn(item, stream));
+    }
+}
+
+
+
+
+class FfiConverterSequenceTypeWaitJailReason: FfiConverterRustBuffer<WaitJailReason[]> {
+    public static FfiConverterSequenceTypeWaitJailReason INSTANCE = new FfiConverterSequenceTypeWaitJailReason();
+
+    public override WaitJailReason[]  Read(BigEndianStream stream) {
+        var length = stream.ReadInt();
+        if (length == 0) {
+            return [];
+        }
+
+        var result = new WaitJailReason[(length)];
+        var readFn = FfiConverterTypeWaitJailReason.INSTANCE.Read;
+        for (int i = 0; i < length; i++) {
+            result[i] = readFn(stream);
+        }
+        return result;
+    }
+
+    public override int AllocationSize(WaitJailReason[]  value) {
+        var sizeForLength = 4;
+
+        // details/1-empty-list-as-default-method-parameter.md
+        if (value == null) {
+            return sizeForLength;
+        }
+
+        var allocationSizeFn = FfiConverterTypeWaitJailReason.INSTANCE.AllocationSize;
+        var sizeForItems = value.Sum(item => allocationSizeFn(item));
+        return sizeForLength + sizeForItems;
+    }
+
+    public override void Write(WaitJailReason[] value, BigEndianStream stream) {
+        // details/1-empty-list-as-default-method-parameter.md
+        if (value == null) {
+            stream.WriteInt(0);
+            return;
+        }
+
+        stream.WriteInt(value.Length);
+        var writerFn = FfiConverterTypeWaitJailReason.INSTANCE.Write;
         value.ForEach(item => writerFn(item, stream));
     }
 }
