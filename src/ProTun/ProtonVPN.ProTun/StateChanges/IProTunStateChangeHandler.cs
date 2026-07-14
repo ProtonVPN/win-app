@@ -18,8 +18,8 @@
  */
 
 using System.Threading.Channels;
-using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.ProTun.Generated;
+using VpnState = ProtonVPN.Common.Core.Networking.VpnState;
 
 namespace ProtonVPN.ProTun.StateChanges;
 

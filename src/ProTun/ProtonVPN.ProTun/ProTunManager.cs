@@ -30,9 +30,11 @@ using ProtonVPN.ProTun.Generated;
 using ProtonVPN.ProTun.Logging;
 using ProtonVPN.ProTun.StateChanges;
 using ProtonVPN.ProTun.StatsResponses;
+using static ProtonVPN.ProTun.Generated.ConnectionMode;
 using ProTunApi = ProtonVPN.ProTun.Generated.ProTun;
 using ProTunConnection = ProtonVPN.ProTun.Generated.Connection;
 using ProTunWindowsConnection = ProtonVPN.ProTun.Generated.WindowsConnection;
+using VpnState = ProtonVPN.Common.Core.Networking.VpnState;
 
 namespace ProtonVPN.ProTun;
 
@@ -47,6 +49,7 @@ public class ProTunManager : IProTunManager
     private readonly IProTunLogger _proTunLogger;
     private readonly IProTunStateChangeHandler _proTunStateChangeHandler;
     private readonly IProTunEventsResponseHandler _proTunEventsResponseHandler;
+    private readonly IPersistentCacheHandler _persistentCacheHandler;
     private readonly IAdapterDetailsCache _adapterDetailsCache;
     private readonly ILogger _logger;
 
@@ -63,12 +66,14 @@ public class ProTunManager : IProTunManager
     public ProTunManager(IProTunLogger proTunLogger,
         IProTunStateChangeHandler proTunStateChangeHandler,
         IProTunEventsResponseHandler proTunEventsResponseHandler,
+        IPersistentCacheHandler persistentCacheHandler,
         IAdapterDetailsCache adapterDetailsCache,
         ILogger logger)
     {
         _proTunLogger = proTunLogger;
         _proTunStateChangeHandler = proTunStateChangeHandler;
         _proTunEventsResponseHandler = proTunEventsResponseHandler;
+        _persistentCacheHandler = persistentCacheHandler;
         _adapterDetailsCache = adapterDetailsCache;
         _logger = logger;
 
@@ -122,7 +127,7 @@ public class ProTunManager : IProTunManager
                 _proTunStateChangeHandler.SetCancellationToken(cancellationToken);
                 _proTunEventsResponseHandler.SetCancellationToken(cancellationToken);
                 _windowsConnection = ProTunWindowsConnection.Connect(initialConnectionConfig, networkConfig,
-                    _proTunStateChangeHandler, _proTunEventsResponseHandler);
+                    _proTunStateChangeHandler, _proTunEventsResponseHandler, _persistentCacheHandler);
                 AdapterDetails adapterDetails = _windowsConnection.GetAdapterDetails().Map();
                 _adapterDetailsCache.Set(adapterDetails);
                 _connection = _windowsConnection.GetConnection();
@@ -194,10 +199,10 @@ public class ProTunManager : IProTunManager
     private static InitialConnectionConfig CreateInitialConnectionConfig(ConnectionArgs args)
     {
         return new InitialConnectionConfig(
-            wgPrivateKey: args.WireGuardPrivateKey,
             peers: MapPeers(args.Peers).ToArray(),
             networkAvailable: true,
-            pcapFile: null
+            pcapFile: null,
+            connectionMode: new NoLocalAgent(wgPrivateKey: args.WireGuardPrivateKey)
         );
     }
 
@@ -221,7 +226,8 @@ public class ProTunManager : IProTunManager
             udpPorts: peer.UdpPorts,
             tcpPorts: peer.TcpPorts,
             tlsPorts: peer.TlsPorts,
-            priority: peer.Priority
+            priority: peer.Priority,
+            exitLabel: peer.BouncingLabel
         );
     }
 
@@ -266,7 +272,7 @@ public class ProTunManager : IProTunManager
         await _connectionSemaphore.WaitAsync();
         try
         {
-            _connection?.GetStats();
+            _connection?.RequestStats();
         }
         catch (Exception ex)
         {

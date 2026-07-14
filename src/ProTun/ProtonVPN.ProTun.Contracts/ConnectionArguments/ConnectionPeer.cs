@@ -28,4 +28,5 @@ public class ConnectionPeer
     public required ushort[] TcpPorts { get; init; }
     public required ushort[] TlsPorts { get; init; }
     public int Priority { get; init; } = 1;
+    public string? BouncingLabel { get; init; }
 }

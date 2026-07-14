@@ -225,7 +225,8 @@ public class ProTunConnection : IProTunConnection
             UdpPorts = GetPorts(config, endpoint, VpnProtocol.ProTunUdp),
             TcpPorts = GetPorts(config, endpoint, VpnProtocol.ProTunTcp),
             TlsPorts = GetPorts(config, endpoint, VpnProtocol.ProTunTls),
-            Priority = 1
+            Priority = 1,
+            BouncingLabel = endpoint.Server.Label
         }];
     }
 
