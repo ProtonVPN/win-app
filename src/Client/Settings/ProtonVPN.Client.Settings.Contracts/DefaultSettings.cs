@@ -31,8 +31,8 @@ public static class DefaultSettings
     public static string Theme = "Dark";
     public static WindowLocation WindowLocation = new()
     {
-        WindowWidth = 1016,
-        WindowHeight = 659,
+        Width = 1016,
+        Height = 659,
     };
     public static string Language = "en-US";
     public static bool AreProtonProtocolsEnabled = true;

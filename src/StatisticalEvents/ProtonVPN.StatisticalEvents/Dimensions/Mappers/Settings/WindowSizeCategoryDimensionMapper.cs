@@ -33,15 +33,15 @@ public class WindowSizeCategoryDimensionMapper : DimensionMapperBase, IWindowSiz
     private const double NARROW_WIDTH_THRESHOLD = 0.80;
     private const double NARROW_HEIGHT_THRESHOLD = 0.95;
 
-    public string Map(int windowWidth, int windowHeight, bool isMaximized)
+    public string Map(WindowLocation windowLocation)
     {
-        if (isMaximized)
+        if (windowLocation.IsMaximized)
         {
             return FULLSCREEN;
         }
 
-        bool isWidthNarrow = windowWidth < (int)(DefaultSettings.WindowLocation.WindowWidth * NARROW_WIDTH_THRESHOLD);
-        bool isHeightNarrow = windowHeight < (int)(DefaultSettings.WindowLocation.WindowHeight * NARROW_HEIGHT_THRESHOLD);
+        bool isWidthNarrow = windowLocation.Width < (int)(DefaultSettings.WindowLocation.Width * NARROW_WIDTH_THRESHOLD);
+        bool isHeightNarrow = windowLocation.Height < (int)(DefaultSettings.WindowLocation.Height * NARROW_HEIGHT_THRESHOLD);
 
         if (isWidthNarrow && isHeightNarrow)
         {

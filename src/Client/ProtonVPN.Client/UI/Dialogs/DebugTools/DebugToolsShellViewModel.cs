@@ -352,8 +352,9 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
             {
                 XPosition = null,
                 YPosition = null,
-                Width = DefaultSettings.WindowLocation.WindowWidth,
-                Height = DefaultSettings.WindowLocation.WindowHeight
+                Width = DefaultSettings.WindowLocation.Width,
+                Height = DefaultSettings.WindowLocation.Height,
+                IsCentered = true
             });
     }
 

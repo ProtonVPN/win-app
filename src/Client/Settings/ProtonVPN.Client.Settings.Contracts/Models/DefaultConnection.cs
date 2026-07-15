@@ -27,8 +27,8 @@ public readonly struct DefaultConnection
     public static DefaultConnection Random => new(DefaultConnectionType.Random);
     public static DefaultConnection Last => new(DefaultConnectionType.Last);
 
-    public readonly DefaultConnectionType Type { get; init; }
-    public readonly Guid RecentId { get; init; } = Guid.Empty;
+    public DefaultConnectionType Type { get; init; }
+    public Guid RecentId { get; init; } = Guid.Empty;
 
     public DefaultConnection(Guid recentId)
         : this(DefaultConnectionType.Recent)

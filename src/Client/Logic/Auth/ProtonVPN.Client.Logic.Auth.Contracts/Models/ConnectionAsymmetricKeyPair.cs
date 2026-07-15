@@ -21,6 +21,6 @@ namespace ProtonVPN.Client.Logic.Auth.Contracts.Models;
 
 public readonly struct ConnectionAsymmetricKeyPair
 {
-    public readonly required string PublicKey { get; init; }
-    public readonly required string SecretKey { get; init; }
+    public required string PublicKey { get; init; }
+    public required string SecretKey { get; init; }
 }

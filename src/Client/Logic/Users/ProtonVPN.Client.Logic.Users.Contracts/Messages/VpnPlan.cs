@@ -23,20 +23,20 @@ public readonly struct VpnPlan
 {
     public static VpnPlan Default => new(string.Empty, string.Empty, 0, false);
 
-    public readonly string Title { get; }
-    public readonly string Name { get; }
-    public readonly bool IsPaid { get; }
-    public readonly sbyte MaxTier { get; }
-    public readonly bool IsB2B { get; }
+    public string Title { get; }
+    public string Name { get; }
+    public sbyte MaxTier { get; }
+    public bool IsB2B { get; }
 
     public VpnPlan(string title, string name, sbyte maxTier, bool isB2B)
     {
         Title = title ?? string.Empty;
         Name = name ?? string.Empty;
-        IsPaid = maxTier > 0;
         MaxTier = maxTier;
         IsB2B = isB2B;
     }
+
+    public bool IsPaid => MaxTier > 0;
 
     public bool IsDefaultPlan => string.IsNullOrEmpty(Title) && string.IsNullOrEmpty(Name) && MaxTier == 0;
 

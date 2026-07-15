@@ -21,6 +21,6 @@ namespace ProtonVPN.Client.Settings.Contracts.Models;
 
 public readonly struct ChangeServerAttempts
 {
-    public readonly DateTimeOffset LastAttemptUtcDate { get; init; }
-    public readonly int AttemptsCount { get; init; }
+    public DateTimeOffset LastAttemptUtcDate { get; init; }
+    public int AttemptsCount { get; init; }
 }

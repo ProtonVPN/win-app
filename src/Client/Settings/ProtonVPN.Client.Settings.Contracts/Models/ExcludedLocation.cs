@@ -24,10 +24,10 @@ namespace ProtonVPN.Client.Settings.Contracts.Models;
 
 public readonly struct ExcludedLocation : IEquatable<ExcludedLocation>
 {
-    public readonly ExcludedLocationType Type { get; }
-    public readonly string CountryCode { get; }
-    public readonly string? StateName { get; }
-    public readonly string? CityName { get; }
+    public ExcludedLocationType Type { get; init; }
+    public string CountryCode { get; init; }
+    public string? StateName { get; init; }
+    public string? CityName { get; init; }
 
     public ExcludedLocation(string countryCode)
     {

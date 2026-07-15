@@ -173,17 +173,17 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
             _userAuthenticator.IsLoggedIn
                 ? new()
                 {
-                    Width = Settings.WindowLocation.WindowWidth,
-                    Height = Settings.WindowLocation.WindowHeight,
-                    XPosition = Settings.WindowLocation.WindowXPosition,
-                    YPosition = Settings.WindowLocation.WindowYPosition,
+                    Width = Settings.WindowLocation.Width,
+                    Height = Settings.WindowLocation.Height,
+                    XPosition = Settings.WindowLocation.XPosition,
+                    YPosition = Settings.WindowLocation.YPosition,
                 }
                 : new()
                 {
                     Width = LOGIN_WINDOW_WIDTH,
                     Height = LOGIN_WINDOW_HEIGHT,
-                    XPosition = Settings.WindowLocation.WindowXPosition,
-                    YPosition = Settings.WindowLocation.WindowYPosition,
+                    XPosition = Settings.WindowLocation.XPosition,
+                    YPosition = Settings.WindowLocation.YPosition,
                     IsCentered = true,
                 };
 
@@ -200,7 +200,7 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
             return;
         }
 
-        bool isToMaximize = _userAuthenticator.IsLoggedIn && Settings.WindowLocation.IsWindowMaximized;
+        bool isToMaximize = _userAuthenticator.IsLoggedIn && Settings.WindowLocation.IsMaximized;
 
         if (isToMaximize && (IsWindowVisible || Host.WindowState == WindowState.Minimized))
         {
@@ -315,7 +315,7 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
         {
             Settings.WindowLocation = Settings.WindowLocation with
             { 
-                IsWindowMaximized = CurrentWindowState == WindowState.Maximized
+                IsMaximized = CurrentWindowState == WindowState.Maximized
             };
         }
     }
@@ -326,35 +326,27 @@ public class MainWindowActivator : WindowActivatorBase<MainWindow>, IMainWindowA
         {
             if (IsUserInScope)
             {
+                WindowLocation currentWindowLocation = Settings.WindowLocation;
+
                 if (_lastKnownWindowPosition.HasValue)
                 {
-                    if (_lastKnownWindowSize.HasValue)
+                    currentWindowLocation = currentWindowLocation with
                     {
-                        Settings.WindowLocation = Settings.WindowLocation with
-                        {
-                            WindowXPosition = _lastKnownWindowPosition.Value.X,
-                            WindowYPosition = _lastKnownWindowPosition.Value.Y,
-                            WindowWidth = _lastKnownWindowSize.Value.Width,
-                            WindowHeight = _lastKnownWindowSize.Value.Height,
-                        };
-                    }
-                    else
-                    {
-                        Settings.WindowLocation = Settings.WindowLocation with
-                        {
-                            WindowXPosition = _lastKnownWindowPosition.Value.X,
-                            WindowYPosition = _lastKnownWindowPosition.Value.Y,
-                        };
-                    }
-                }
-                else if (_lastKnownWindowSize.HasValue)
-                {
-                    Settings.WindowLocation = Settings.WindowLocation with
-                    {
-                        WindowWidth = _lastKnownWindowSize.Value.Width,
-                        WindowHeight = _lastKnownWindowSize.Value.Height,
+                        XPosition = _lastKnownWindowPosition.Value.X,
+                        YPosition = _lastKnownWindowPosition.Value.Y,
                     };
                 }
+
+                if (_lastKnownWindowSize.HasValue)
+                {
+                    currentWindowLocation = currentWindowLocation with
+                    {
+                        Width = _lastKnownWindowSize.Value.Width,
+                        Height = _lastKnownWindowSize.Value.Height,
+                    };
+                }
+
+                Settings.WindowLocation = currentWindowLocation;
             }
         }
         catch (Exception ex)
