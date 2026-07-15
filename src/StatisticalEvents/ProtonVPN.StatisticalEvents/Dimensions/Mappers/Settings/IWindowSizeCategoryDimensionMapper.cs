@@ -17,11 +17,12 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.StatisticalEvents.Dimensions.Mappers.Bases;
 
 namespace ProtonVPN.StatisticalEvents.Dimensions.Mappers.Settings;
 
 public interface IWindowSizeCategoryDimensionMapper : IDimensionMapper
 {
-    string Map(int windowWidth, int windowHeight, bool isMaximized);
+    string Map(WindowLocation windowLocation);
 }

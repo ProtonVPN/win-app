@@ -21,9 +21,9 @@ namespace ProtonVPN.Client.Settings.Contracts;
 
 public readonly struct WindowLocation
 {
-    public int WindowWidth { get; init; }
-    public int WindowHeight { get; init; }
-    public int? WindowXPosition { get; init; }
-    public int? WindowYPosition { get; init; }
-    public bool IsWindowMaximized { get; init; }
+    public int Width { get; init; }
+    public int Height { get; init; }
+    public int? XPosition { get; init; }
+    public int? YPosition { get; init; }
+    public bool IsMaximized { get; init; }
 }

@@ -23,9 +23,9 @@ namespace ProtonVPN.Client.Settings.Contracts.Models;
 
 public readonly struct SplitTunnelingApp : IEquatable<SplitTunnelingApp>
 {
-    public readonly string AppFilePath { get; }
-    public readonly List<string> AlternateAppFilePaths { get; }
-    public readonly bool IsActive { get; }
+    public string AppFilePath { get; init; }
+    public List<string> AlternateAppFilePaths { get; init; }
+    public bool IsActive { get; init; }
 
     public SplitTunnelingApp(string appFilePath, bool isActive)
         : this(appFilePath, [], isActive)

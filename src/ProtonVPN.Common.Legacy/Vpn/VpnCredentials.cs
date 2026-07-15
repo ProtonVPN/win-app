@@ -25,6 +25,12 @@ namespace ProtonVPN.Common.Legacy.Vpn;
 
 public readonly struct VpnCredentials
 {
+    public string ClientCertPem { get; }
+    public DateTime? ClientCertificateExpirationDateUtc { get; }
+    public AsymmetricKeyPair ClientKeyPair { get; }
+    public string Username { get; }
+    public string Password { get; }
+
     public VpnCredentials(
         string clientCertPem,
         DateTime? clientCertificateExpirationDateUtc,
@@ -41,18 +47,11 @@ public readonly struct VpnCredentials
         Password = password;
     }
 
-    public VpnCredentials(AsymmetricKeyPair clientKeyPair) : this(string.Empty, null, clientKeyPair, string.Empty, string.Empty)
-    {
-    }
+    public VpnCredentials(AsymmetricKeyPair clientKeyPair) 
+        : this(string.Empty, null, clientKeyPair, string.Empty, string.Empty)
+    { }
 
-    public VpnCredentials(AsymmetricKeyPair clientKeyPair, string username, string password) : this(string.Empty, null, clientKeyPair, username, password)
-    {
-    }
-
-    public string Username { get; }
-    public string Password { get; }
-
-    public string ClientCertPem { get; }
-    public DateTime? ClientCertificateExpirationDateUtc { get; }
-    public AsymmetricKeyPair ClientKeyPair { get; }
+    public VpnCredentials(AsymmetricKeyPair clientKeyPair, string username, string password) 
+        : this(string.Empty, null, clientKeyPair, username, password)
+    { }
 }

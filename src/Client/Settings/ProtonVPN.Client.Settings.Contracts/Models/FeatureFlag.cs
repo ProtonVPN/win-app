@@ -23,7 +23,7 @@ public readonly struct FeatureFlag
 {
     public static readonly FeatureFlag Default = new() { IsEnabled = false };
 
-    public readonly string Name { get; init; }
-    public readonly bool IsEnabled { get; init; }
-    public readonly string Payload { get; init; }
+    public string Name { get; init; }
+    public bool IsEnabled { get; init; }
+    public string Payload { get; init; }
 }

@@ -21,16 +21,15 @@ namespace ProtonVPN.Common.Core.Networking;
 
 public readonly struct NetworkTraffic
 {
+    public static NetworkTraffic Zero { get; } = new(0, 0, DateTime.UtcNow);
+
     public ulong BytesDownloaded { get; }
     public ulong BytesUploaded { get; }
     public DateTime UtcDate { get; }
 
-    public static NetworkTraffic Zero { get; } = new(0, 0, DateTime.UtcNow);
-
     public NetworkTraffic(ulong bytesDownloaded, ulong bytesUploaded)
         : this(bytesDownloaded, bytesUploaded, DateTime.UtcNow)
-    {
-    }
+    { }
 
     public NetworkTraffic(ulong bytesDownloaded, ulong bytesUploaded, DateTime utcDate)
     {

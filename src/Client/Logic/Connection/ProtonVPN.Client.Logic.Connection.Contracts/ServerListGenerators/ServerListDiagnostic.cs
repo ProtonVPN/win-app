@@ -23,7 +23,7 @@ public readonly struct ServerListDiagnostic
 {
     public static ServerListDiagnostic Empty { get; } = new(false);
 
-    public bool AreAllCandidatesExcluded { get; }
+    public bool AreAllCandidatesExcluded { get; init; }
 
     public ServerListDiagnostic(bool areAllCandidatesExcluded)
     {

@@ -161,11 +161,11 @@ public class UserSettingsLog : LogBase
         yield return new(nameof(IUserSettings.IsNavigationPaneOpened), _settings.IsNavigationPaneOpened);
         yield return new(nameof(IUserSettings.IsConnectionDetailsPaneOpened), _settings.IsConnectionDetailsPaneOpened);
 
-        yield return new($"{nameof(IGlobalSettings.WindowLocation)}.{nameof(WindowLocation.WindowWidth)}", _settings.WindowLocation.WindowWidth);
-        yield return new($"{nameof(IGlobalSettings.WindowLocation)}.{nameof(WindowLocation.WindowHeight)}", _settings.WindowLocation.WindowHeight);
-        yield return new($"{nameof(IGlobalSettings.WindowLocation)}.{nameof(WindowLocation.WindowXPosition)}", _settings.WindowLocation.WindowXPosition);
-        yield return new($"{nameof(IGlobalSettings.WindowLocation)}.{nameof(WindowLocation.WindowYPosition)}", _settings.WindowLocation.WindowYPosition);
-        yield return new($"{nameof(IGlobalSettings.WindowLocation)}.{nameof(WindowLocation.IsWindowMaximized)}", _settings.WindowLocation.IsWindowMaximized);
+        yield return new($"{nameof(IGlobalSettings.WindowLocation)}.{nameof(WindowLocation.Width)}", _settings.WindowLocation.Width);
+        yield return new($"{nameof(IGlobalSettings.WindowLocation)}.{nameof(WindowLocation.Height)}", _settings.WindowLocation.Height);
+        yield return new($"{nameof(IGlobalSettings.WindowLocation)}.{nameof(WindowLocation.XPosition)}", _settings.WindowLocation.XPosition);
+        yield return new($"{nameof(IGlobalSettings.WindowLocation)}.{nameof(WindowLocation.YPosition)}", _settings.WindowLocation.YPosition);
+        yield return new($"{nameof(IGlobalSettings.WindowLocation)}.{nameof(WindowLocation.IsMaximized)}", _settings.WindowLocation.IsMaximized);
 
         yield return new(nameof(IUserSettings.WasWelcomeOverlayDisplayed), _settings.WasWelcomeOverlayDisplayed);
         yield return new(nameof(IUserSettings.WasWelcomePlusOverlayDisplayed), _settings.WasWelcomePlusOverlayDisplayed);

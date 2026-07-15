@@ -23,7 +23,6 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Enums;
 using ProtonVPN.Client.Settings.Contracts.Models;
 using ProtonVPN.Client.Settings.Repositories.Contracts;
-using ProtonVPN.Common.Core.Dns;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
 
@@ -166,26 +165,14 @@ public class UserSettings : GlobalSettings, IUserSettings
                 return _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsLocalAreaNetworkAccessAllowed(true);
             }
 
-            // Free users can't use this feature
-            return false;
+            return DefaultSettings.IsLocalAreaNetworkAccessAllowed(false);
         }
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
     public bool IsLocalDnsEnabled
-    {
-        // Get the value from cache if it exists, otherwise set it based on the DnsBlockMode. To be removed in future versions.
-        get
-        {
-            bool? isLocalDnsEnabled = _userCache.GetValueType<bool>(SettingEncryption.Unencrypted);
-            if (isLocalDnsEnabled is null)
-            {
-                isLocalDnsEnabled = DnsBlockMode == DnsBlockMode.Callout;
-                _userCache.SetValueType<bool>(isLocalDnsEnabled, SettingEncryption.Unencrypted);
-            }
-            return isLocalDnsEnabled.Value;
-        }        
-        // get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsLocalDnsEnabled;
+    {   
+        get => _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsLocalDnsEnabled;
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
@@ -477,16 +464,29 @@ public class UserSettings : GlobalSettings, IUserSettings
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
 
-    [Obsolete("Use IsLocalDnsEnabled instead. DnsBlockMode is maintained in order to migrate the value for existing users.")]
-    public DnsBlockMode DnsBlockMode
-    {
-        get => _userCache.GetValueType<DnsBlockMode>(SettingEncryption.Unencrypted) ?? DefaultSettings.DnsBlockMode;
-        set => _userCache.SetValueType<DnsBlockMode>(value, SettingEncryption.Unencrypted);
-    }
-
     public UserSettings(IGlobalSettingsCache globalSettingsCache, IUserSettingsCache userSettingsCache)
         : base(globalSettingsCache)
     {
         _userCache = userSettingsCache;
+    }
+
+    // TODO: Remove once fully rolled out to stable
+    protected override WindowLocation? GetWindowLocationFromUserSettings()
+    {
+        // No user logged in yet
+        if (UserId is null) 
+        {
+            return null;
+        }
+
+        // Get the window location from the legacy user settings values
+        return new()
+        {
+            Width = _userCache.GetValueType<int>(SettingEncryption.Unencrypted, "WindowWidth") ?? DefaultSettings.WindowLocation.Width,
+            Height = _userCache.GetValueType<int>(SettingEncryption.Unencrypted, "WindowHeight") ?? DefaultSettings.WindowLocation.Height,
+            XPosition = _userCache.GetValueType<int>(SettingEncryption.Unencrypted, "WindowXPosition") ?? DefaultSettings.WindowLocation.XPosition,
+            YPosition = _userCache.GetValueType<int>(SettingEncryption.Unencrypted, "WindowYPosition") ?? DefaultSettings.WindowLocation.YPosition,
+            IsMaximized = _userCache.GetValueType<bool>(SettingEncryption.Unencrypted, "IsWindowMaximized") ?? DefaultSettings.WindowLocation.IsMaximized,
+        };
     }
 }
