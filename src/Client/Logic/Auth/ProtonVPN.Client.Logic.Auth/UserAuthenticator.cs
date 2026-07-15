@@ -429,6 +429,10 @@ public class UserAuthenticator : IUserAuthenticator,
                     return AuthResult.Fail(usersResponse);
                 }
             }
+            else
+            {
+                usersResponseTask.FireAndForget();
+            }
 
             VpnPlanChangeResult vpnPlanChangeResult = await _vpnPlanUpdater.ForceUpdateAsync(_cts.Token);
 
