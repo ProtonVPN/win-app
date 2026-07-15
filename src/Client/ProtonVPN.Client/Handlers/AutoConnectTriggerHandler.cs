@@ -23,6 +23,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Recents.Contracts;
@@ -41,12 +42,14 @@ public class AutoConnectTriggerHandler : IHandler,
     IEventMessageReceiver<RecentConnectionsChangedMessage>,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<DeviceLocationChangedMessage>,
-    IEventMessageReceiver<ConnectionCertificateUpdatedMessage>
+    IEventMessageReceiver<ConnectionCertificateUpdatedMessage>,
+    IEventMessageReceiver<GuestHoleStatusChangedMessage>
 {
     private readonly IConnectionManager _connectionManager;
     private readonly IRecentConnectionsManager _recentConnectionsManager;
     private readonly ISettings _settings;
     private readonly IServersCache _serversCache;
+    private readonly IGuestHoleManager _guestHoleManager;
     private readonly IUserAuthenticator _userAuthenticator;
 
     private bool _isHandled;
@@ -61,12 +64,14 @@ public class AutoConnectTriggerHandler : IHandler,
         IRecentConnectionsManager recentConnectionsManager,
         ISettings settings,
         IServersCache serversCache,
+        IGuestHoleManager guestHoleManager,
         IUserAuthenticator userAuthenticator)
     {
         _connectionManager = connectionManager;
         _recentConnectionsManager = recentConnectionsManager;
         _settings = settings;
         _serversCache = serversCache;
+        _guestHoleManager = guestHoleManager;
         _userAuthenticator = userAuthenticator;
     }
 
@@ -114,9 +119,15 @@ public class AutoConnectTriggerHandler : IHandler,
         TryAutoConnectAsync();
     }
 
+    public void Receive(GuestHoleStatusChangedMessage message)
+    {
+        TryAutoConnectAsync();
+    }
+
     private async void TryAutoConnectAsync()
     {
         if (_isHandled ||
+            _guestHoleManager.IsActive ||
             _isDeviceLocationChanged ||
             !_isServersListReady ||
             !_isRecentsListReady ||
