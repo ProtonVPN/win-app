@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -40,7 +40,7 @@ using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.UI.Main.Map;
 
-public partial class MapComponentViewModel : ViewModelBase,
+public partial class MapComponentViewModel : ActivatableViewModelBase,
     IEventMessageReceiver<ConnectionStatusChangedMessage>,
     IEventMessageReceiver<SettingChangedMessage>,
     IEventMessageReceiver<MainWindowVisibilityChangedMessage>,
@@ -82,13 +82,19 @@ public partial class MapComponentViewModel : ViewModelBase,
         _coordinatesProvider = coordinatesProvider;
         _upsellCarouselWindowActivator = upsellCarouselWindowActivator;
         _mainWindowOverlayActivator = mainWindowOverlayActivator;
+    }
 
+    protected override void OnActivated()
+    {
+        base.OnActivated();
+
+        InvalidateCountries();
         InvalidateActiveCountry();
     }
 
     public void Receive(ConnectionStatusChangedMessage message)
     {
-        ExecuteOnUIThread(() =>
+        ExecuteOnUIThreadIfActive(() =>
         {
             InvalidateActiveCountry();
 
@@ -100,7 +106,7 @@ public partial class MapComponentViewModel : ViewModelBase,
 
     public void Receive(SettingChangedMessage message)
     {
-        ExecuteOnUIThread(() =>
+        ExecuteOnUIThreadIfActive(() =>
         {
             if (message.PropertyName == nameof(ISettings.DeviceLocation))
             {
@@ -116,7 +122,7 @@ public partial class MapComponentViewModel : ViewModelBase,
 
     public void Receive(ServerListChangedMessage message)
     {
-        ExecuteOnUIThread(() =>
+        ExecuteOnUIThreadIfActive(() =>
         {
             InvalidateCountries();
             InvalidateActiveCountry();
@@ -125,8 +131,10 @@ public partial class MapComponentViewModel : ViewModelBase,
 
     protected override void OnLanguageChanged()
     {
-        ExecuteOnUIThread(() =>
+        ExecuteOnUIThreadIfActive(() =>
         {
+            base.OnLanguageChanged();
+
             InvalidateCountries();
             InvalidateActiveCountry();
         });
