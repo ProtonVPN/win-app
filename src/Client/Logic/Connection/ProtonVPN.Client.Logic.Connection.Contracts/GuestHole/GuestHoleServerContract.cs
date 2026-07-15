@@ -27,7 +27,7 @@ public class GuestHoleServerContract
     public string Host { get; set; } = string.Empty;
 
     [JsonProperty("ip")]
-    public string Ip { get; set; } = string.Empty;
+    public string? Ip { get; set; }
 
     [JsonProperty("label")]
     public string Label { get; set; } = string.Empty;
@@ -39,5 +39,5 @@ public class GuestHoleServerContract
     public string X25519PublicKey { get; set; } = string.Empty;
 
     [JsonProperty("entryPerProtocol")]
-    public GuestHoleEntryPerProtocolContract EntryPerProtocol { get; set; }
+    public GuestHoleEntryPerProtocolContract? EntryPerProtocol { get; set; }
 }
