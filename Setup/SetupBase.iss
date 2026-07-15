@@ -289,6 +289,23 @@ begin
   ProductPassCheckBox.Checked := not ProductPassCheckBox.Checked;
 end;
 
+function IsAppxPackageInstalled(packageName: String): Boolean;
+var
+  Names: TArrayOfString;
+  i: Integer;
+begin
+  Result := False;
+  if RegGetSubkeyNames(HKEY_CURRENT_USER,
+      'Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\Repository\Packages',
+      Names) then
+    for i := 0 to GetArrayLength(Names) - 1 do
+      if Pos(Lowercase(packageName + '_'), Lowercase(Names[i])) = 1 then
+      begin
+        Result := True;
+        Exit;
+      end;
+end;
+
 procedure InitializeWizard;
 var
   // Proton product vars
@@ -318,7 +335,7 @@ begin
 
   IsProductMailInstalled := RegValueExists(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Uninstall\proton_mail', 'DisplayVersion');
   IsProductDriveInstalled := IsProductInstalled('{#ProtonDriveUpgradeCode}') <> 0;
-  IsProductPassInstalled := RegValueExists(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Uninstall\ProtonPass', 'DisplayVersion');
+  IsProductPassInstalled := IsAppxPackageInstalled('ProtonPass');
 
   SubHeaderLabel := TLabel.Create(WizardForm.SelectTasksPage);
   SubHeaderLabel.Parent := WizardForm.SelectTasksPage;

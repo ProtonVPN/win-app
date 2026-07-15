@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -34,7 +34,7 @@ public abstract class ProtonProductBase : IProtonProduct
 
     protected ProtonProductBase(HttpClient downloadHttpClient, HttpClient versionHttpClient, string feedUrl)
     {
-        _downloadHttpClient = versionHttpClient;
+        _downloadHttpClient = downloadHttpClient;
         VersionHttpClient = versionHttpClient;
         FeedUrl = feedUrl;
     }
@@ -71,12 +71,12 @@ public abstract class ProtonProductBase : IProtonProduct
 
     protected abstract string GetSourceArgument();
 
-    protected Version GetVersion(string releaseVersion)
+    protected static Version GetVersion(string releaseVersion)
     {
         return Version.TryParse(releaseVersion, out Version? version) ? version : new();
     }
 
-    private string GetPathToSave(ILatestRelease release)
+    private static string GetPathToSave(ILatestRelease release)
     {
         Uri fileUri = new(release.BinaryUrl);
         return Path.Combine(Path.GetTempPath(), Path.GetFileName(fileUri.AbsolutePath));
@@ -125,7 +125,7 @@ public abstract class ProtonProductBase : IProtonProduct
         }
     }
 
-    private string GetSha512(string filePath)
+    private static string GetSha512(string filePath)
     {
         using FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
         using SHA512 sha512 = SHA512.Create();
@@ -135,14 +135,16 @@ public abstract class ProtonProductBase : IProtonProduct
 
     private void StartProcess(string path, string arguments)
     {
-        ProcessStartInfo startInfo = new ProcessStartInfo
-        {
-            FileName = path,
-            Arguments = arguments,
-            UseShellExecute = false,
-        };
+        ProcessStartInfo startInfo = IsMsixPackage(path)
+            ? CreateMsixInstallStartInfo(path)
+            : new ProcessStartInfo
+            {
+                FileName = path,
+                Arguments = arguments,
+                UseShellExecute = false,
+            };
 
-        Process process = new Process
+        Process process = new()
         {
             StartInfo = startInfo
         };
@@ -153,6 +155,30 @@ public abstract class ProtonProductBase : IProtonProduct
         {
             process.Kill();
         }
+    }
+
+    private static bool IsMsixPackage(string path)
+    {
+        return Path.GetExtension(path).Equals(".msix", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static ProcessStartInfo CreateMsixInstallStartInfo(string path)
+    {
+        string escapedPath = path.Replace("'", "''");
+
+        return new ProcessStartInfo
+        {
+            FileName = "powershell.exe",
+            UseShellExecute = false,
+            CreateNoWindow = true,
+            ArgumentList =
+            {
+                "-NoProfile",
+                "-NonInteractive",
+                "-Command",
+                $"Add-AppxPackage -Path '{escapedPath}'",
+            },
+        };
     }
 
     private string GetCommandLineArguments(ILatestRelease release, bool isToCreateDesktopShortcut)
