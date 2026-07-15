@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -112,134 +112,6 @@ internal class IPv6Manager : IIPv6Manager
         }
     }
 
-    private async Task HandleIPv6InterfacesAsync(VpnStatus vpnStatus, VpnProtocol vpnProtocol)
-    {
-        if (vpnStatus == VpnStatus.Disconnected)
-        {
-            _wereInterfacesAdded = false;
-
-            if ((!_firewall.LeakProtectionEnabled || _serviceSettings.IsIpv6Enabled) && !_ipv6.IsEnabled)
-            {
-                await RunIpv6ActionAsync(() => _ipv6.EnableAsync(vpnProtocol));
-            }
-        }
-    }
-
-    private async Task HandleIPv6ChaosAsync(VpnStatus vpnStatus)
-    {
-        switch (vpnStatus)
-        {
-            case VpnStatus.Connected when _lastFakeIpv6Addresses.Count > 0:
-                INetworkInterface? tunnelInterface = GetTunnelInterface();
-                if (tunnelInterface is not null)
-                {
-                    await AddInterfaceIpv6AddressesAsync(_lastFakeIpv6Addresses, tunnelInterface.Index);
-                }
-                break;
-            case VpnStatus.Disconnected:
-                _lastFakeIpv6Addresses.Clear();
-                break;
-        }
-    }
-
-    private async Task RunIpv6ActionAsync(Func<Task> action)
-    {
-        await _ipv6Semaphore.WaitAsync().ConfigureAwait(false);
-
-        try
-        {
-            await action().ConfigureAwait(false);
-        }
-        finally
-        {
-            _ipv6Semaphore.Release();
-        }
-    }
-
-    private async Task HandleChaosAlgorithmAsync(VpnProtocol vpnProtocol)
-    {
-        if (!_ipv6.IsEnabled)
-        {
-            await RunIpv6ActionAsync(() => _ipv6.EnableAsync(vpnProtocol));
-        }
-
-        if (!_serviceSettings.Ipv6LeakProtection)
-        {
-            _lastFakeIpv6Addresses.Clear();
-            return;
-        }
-
-        HashSet<NetworkAddress> globalUnicastAddresses = GetGlobalUnicastAddresses();
-
-        if (globalUnicastAddresses.Count == 0)
-        {
-            _lastFakeIpv6Addresses.Clear();
-            return;
-        }
-
-        LogGuaAddresses(globalUnicastAddresses);
-
-        _lastGlobalUnicastAddresses = globalUnicastAddresses;
-
-        List<NetworkAddress> fakeIpv6Addresses = await _fakeIPv6AddressGenerator.GenerateAddressesAsync(
-            _serviceSettings.Ipv6Fragments,
-            globalUnicastAddresses.Select(a => a.ToString()).ToList(),
-            MAX_FAKE_IPV6_ADDRESSES);
-
-        if (fakeIpv6Addresses.Count == 0)
-        {
-            return;
-        }
-
-        _lastFakeIpv6Addresses = fakeIpv6Addresses;
-    }
-
-    private void LogGuaAddresses(HashSet<NetworkAddress> globalUnicastAddresses)
-    {
-        _logger.Debug<IPv6Log>($"GUA addresses detected: {string.Join(", ", globalUnicastAddresses)}");
-    }
-
-    private HashSet<NetworkAddress> GetGlobalUnicastAddresses()
-    {
-        INetworkInterface? tunnelInterface = GetTunnelInterface();
-        if (tunnelInterface is null)
-        {
-            return [];
-        }
-
-        return _networkInterfaces
-            .GetInterfaces()
-            .Where(i => !i.Equals(tunnelInterface))
-            .SelectMany(i => i.GetUnicastAddresses())
-            .Where(a => a.IsGlobalUnicastAddress())
-            .ToHashSet();
-    }
-
-    private INetworkInterface? GetTunnelInterface()
-    {
-        if (_vpnProtocol is null || _openVpnAdapter is null)
-        {
-            _logger.Error<IPv6Log>("Failed to get tunnel interface due to missing VPN protocol or OpenVPN adapter.");
-            return null;
-        }
-
-        return _networkInterfaceProvider.GetByVpnProtocol(_vpnProtocol.Value, _openVpnAdapter.Value);
-    }
-
-    private async Task DisableIpv6Async(VpnProtocol vpnProtocol)
-    {
-        await _ipv6.EnableOnVPNInterfaceAsync(vpnProtocol);
-
-        if (_ipv6.IsEnabled && _serviceSettings.Ipv6LeakProtection)
-        {
-            await RunIpv6ActionAsync(() => _ipv6.DisableAsync(vpnProtocol));
-        }
-        else if (!_ipv6.IsEnabled && !_serviceSettings.Ipv6LeakProtection)
-        {
-            await RunIpv6ActionAsync(() => _ipv6.EnableAsync(vpnProtocol));
-        }
-    }
-
     private async void OnNetworkInterfacesAddedAsync(object? sender, EventArgs e)
     {
         if (_wereInterfacesAdded || _vpnProtocol is null || _vpnStatus != VpnStatus.Connected)
@@ -251,15 +123,13 @@ internal class IPv6Manager : IIPv6Manager
 
         if (!_ipv6.IsEnabled)
         {
-            await RunIpv6ActionAsync(() => _ipv6.DisableAsync(_vpnProtocol.Value));
+            await RunExclusiveAsync(_ipv6Semaphore, () => _ipv6.DisableAsync(_vpnProtocol.Value));
         }
     }
 
     private async void OnNetworkAddressChangedAsync(object? sender, EventArgs e)
     {
-        await _networkSemaphore.WaitAsync();
-
-        try
+        await RunExclusiveAsync(_networkSemaphore, async () =>
         {
             if (_vpnStatus != VpnStatus.Connected)
             {
@@ -300,54 +170,176 @@ internal class IPv6Manager : IIPv6Manager
 
             await ApplyFakeIpv6AddressesAsync(tunnelInterface.Index);
             await DeleteInterfaceIpv6AddressesAsync(ipv6AddressesToRemove, tunnelInterface.Index);
-        }
-        finally
+        });
+    }
+
+    private async Task HandleIPv6InterfacesAsync(VpnStatus vpnStatus, VpnProtocol vpnProtocol)
+    {
+        if (vpnStatus == VpnStatus.Disconnected)
         {
-            _networkSemaphore.Release();
+            _wereInterfacesAdded = false;
+
+            if ((!_firewall.LeakProtectionEnabled || _serviceSettings.IsIpv6Enabled) && !_ipv6.IsEnabled)
+            {
+                await RunExclusiveAsync(_ipv6Semaphore, () => _ipv6.EnableAsync(vpnProtocol));
+            }
         }
+    }
+
+    private async Task DisableIpv6Async(VpnProtocol vpnProtocol)
+    {
+        await _ipv6.EnableOnVPNInterfaceAsync(vpnProtocol);
+
+        if (_ipv6.IsEnabled && _serviceSettings.Ipv6LeakProtection)
+        {
+            await RunExclusiveAsync(_ipv6Semaphore, () => _ipv6.DisableAsync(vpnProtocol));
+        }
+        else if (!_ipv6.IsEnabled && !_serviceSettings.Ipv6LeakProtection)
+        {
+            await RunExclusiveAsync(_ipv6Semaphore, () => _ipv6.EnableAsync(vpnProtocol));
+        }
+    }
+
+    private Task HandleChaosAlgorithmAsync(VpnProtocol vpnProtocol)
+    {
+        return RunExclusiveAsync(_networkSemaphore, async () =>
+        {
+            if (!_ipv6.IsEnabled)
+            {
+                await RunExclusiveAsync(_ipv6Semaphore, () => _ipv6.EnableAsync(vpnProtocol));
+            }
+
+            if (!_serviceSettings.Ipv6LeakProtection)
+            {
+                _lastFakeIpv6Addresses.Clear();
+                return;
+            }
+
+            HashSet<NetworkAddress> globalUnicastAddresses = GetGlobalUnicastAddresses();
+            if (globalUnicastAddresses.Count == 0)
+            {
+                _lastFakeIpv6Addresses.Clear();
+                return;
+            }
+
+            LogGuaAddresses(globalUnicastAddresses);
+            _lastGlobalUnicastAddresses = globalUnicastAddresses;
+
+            List<NetworkAddress> fakeIpv6Addresses = await GenerateFakeIpv6AddressesAsync(globalUnicastAddresses);
+            if (fakeIpv6Addresses.Count > 0)
+            {
+                _lastFakeIpv6Addresses = fakeIpv6Addresses;
+            }
+        });
+    }
+
+    private Task HandleIPv6ChaosAsync(VpnStatus vpnStatus)
+    {
+        return RunExclusiveAsync(_networkSemaphore, async () =>
+        {
+            switch (vpnStatus)
+            {
+                case VpnStatus.Connected when _lastFakeIpv6Addresses.Count > 0:
+                    INetworkInterface? tunnelInterface = GetTunnelInterface();
+                    if (tunnelInterface is not null)
+                    {
+                        await AddInterfaceIpv6AddressesAsync(_lastFakeIpv6Addresses.ToList(), tunnelInterface.Index);
+                    }
+                    break;
+                case VpnStatus.Disconnected:
+                    _lastFakeIpv6Addresses.Clear();
+                    break;
+            }
+        });
     }
 
     private async Task ApplyFakeIpv6AddressesAsync(uint tunnelInterfaceIndex)
     {
-        List<NetworkAddress> fakeIpv6Addresses = await _fakeIPv6AddressGenerator.GenerateAddressesAsync(
-            _serviceSettings.Ipv6Fragments,
-            _lastGlobalUnicastAddresses.Select(a => a.ToString()).ToList(),
-            MAX_FAKE_IPV6_ADDRESSES);
-
+        List<NetworkAddress> fakeIpv6Addresses = await GenerateFakeIpv6AddressesAsync(_lastGlobalUnicastAddresses);
         if (fakeIpv6Addresses.Count > 0)
         {
             await AddInterfaceIpv6AddressesAsync(fakeIpv6Addresses, tunnelInterfaceIndex);
-
             _lastFakeIpv6Addresses = fakeIpv6Addresses;
         }
     }
 
-    private async Task AddInterfaceIpv6AddressesAsync(List<NetworkAddress> addresses, uint interfaceIndex)
+    private Task<List<NetworkAddress>> GenerateFakeIpv6AddressesAsync(IEnumerable<NetworkAddress> globalUnicastAddresses)
     {
-        _logger.Info<IPv6Log>($"Adding {addresses.Count} fake IPv6 addresses to interface with index {interfaceIndex}.");
-
-        List<string> commands = addresses
-            .ToList()
-            .Select(address => $"netsh interface ipv6 add address {interfaceIndex} {address} skipassource=true")
-            .ToList();
-
-        await _commandLineCaller.ExecuteMultipleAsync(commands);
+        return _fakeIPv6AddressGenerator.GenerateAddressesAsync(
+            _serviceSettings.Ipv6Fragments,
+            globalUnicastAddresses.Select(a => a.ToString()).ToList(),
+            MAX_FAKE_IPV6_ADDRESSES);
     }
 
-    private async Task DeleteInterfaceIpv6AddressesAsync(List<NetworkAddress> addresses, uint interfaceIndex)
+    private HashSet<NetworkAddress> GetGlobalUnicastAddresses()
+    {
+        INetworkInterface? tunnelInterface = GetTunnelInterface();
+        if (tunnelInterface is null)
+        {
+            return [];
+        }
+
+        return _networkInterfaces
+            .GetInterfaces()
+            .Where(i => !i.Equals(tunnelInterface))
+            .SelectMany(i => i.GetUnicastAddresses())
+            .Where(a => a.IsGlobalUnicastAddress())
+            .ToHashSet();
+    }
+
+    private INetworkInterface? GetTunnelInterface()
+    {
+        if (_vpnProtocol is null || _openVpnAdapter is null)
+        {
+            _logger.Error<IPv6Log>("Failed to get tunnel interface due to missing VPN protocol or OpenVPN adapter.");
+            return null;
+        }
+
+        return _networkInterfaceProvider.GetByVpnProtocol(_vpnProtocol.Value, _openVpnAdapter.Value);
+    }
+
+    private void LogGuaAddresses(HashSet<NetworkAddress> globalUnicastAddresses)
+    {
+        _logger.Debug<IPv6Log>($"GUA addresses detected: {string.Join(", ", globalUnicastAddresses)}");
+    }
+
+    private Task AddInterfaceIpv6AddressesAsync(List<NetworkAddress> addresses, uint interfaceIndex)
+    {
+        _logger.Info<IPv6Log>($"Adding {addresses.Count} fake IPv6 addresses to interface with index {interfaceIndex}.");
+        return ExecuteNetshCommandsAsync(addresses, address => $"add address {interfaceIndex} {address} skipassource=true");
+    }
+
+    private Task DeleteInterfaceIpv6AddressesAsync(List<NetworkAddress> addresses, uint interfaceIndex)
     {
         if (addresses.Count == 0)
         {
-            return;
+            return Task.CompletedTask;
         }
 
         _logger.Info<IPv6Log>($"Deleting {addresses.Count} fake IPv6 addresses from interface with index {interfaceIndex}.");
+        return ExecuteNetshCommandsAsync(addresses, address => $"delete address {interfaceIndex} {address}");
+    }
 
+    private Task ExecuteNetshCommandsAsync(List<NetworkAddress> addresses, Func<NetworkAddress, string> commandBuilder)
+    {
         List<string> commands = addresses
-            .ToList()
-            .Select(address => $"netsh interface ipv6 delete address {interfaceIndex} {address}")
+            .Select(address => $"netsh interface ipv6 {commandBuilder(address)}")
             .ToList();
 
-        await _commandLineCaller.ExecuteMultipleAsync(commands);
+        return _commandLineCaller.ExecuteMultipleAsync(commands);
+    }
+
+    private static async Task RunExclusiveAsync(SemaphoreSlim semaphore, Func<Task> action)
+    {
+        await semaphore.WaitAsync().ConfigureAwait(false);
+
+        try
+        {
+            await action().ConfigureAwait(false);
+        }
+        finally
+        {
+            semaphore.Release();
+        }
     }
 }

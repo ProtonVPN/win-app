@@ -166,7 +166,16 @@ public class ProTunConnection : IProTunConnection
                         }
                     }
 
-                    await _stateChannel.Writer.WriteAsync(state, cancellationToken);
+                    if (state.Status != VpnStatus.Disconnected)
+                    {
+                        // Errors cause the State Machine to Disconnect, and we don't want to trigger a disconnection when Connecting or Waiting
+                        VpnState cleanState = CreateNewVpnStateWithoutError(state);
+                        await _stateChannel.Writer.WriteAsync(cleanState, cancellationToken);
+                    }
+                    else
+                    {
+                        await _stateChannel.Writer.WriteAsync(state, cancellationToken);
+                    }
                 }
             }
         }
@@ -176,8 +185,14 @@ public class ProTunConnection : IProTunConnection
         }
         catch (Exception ex)
         {
-            _logger.Error<WireGuardProtocolLog>("Status monitor failed.", ex);
+            _logger.Error<ProTunProtocolLog>("Status monitor failed.", ex);
         }
+    }
+
+    private static VpnState CreateNewVpnStateWithoutError(VpnState state)
+    {
+        return new(state.Status, VpnError.None, state.LocalIp, state.RemoteIp, state.EndpointPort, state.VpnProtocol,
+            state.PortForwarding, state.OpenVpnAdapter, state.Label, state.ConnectionCertificate);
     }
 
     private async IAsyncEnumerable<VpnState> WatchStatesAsync([EnumeratorCancellation] CancellationToken cancellationToken)
@@ -255,13 +270,13 @@ public class ProTunConnection : IProTunConnection
                 NetworkTraffic = traffic;
             }
         }
-        catch (OperationCanceledException)
+        catch (OperationCanceledException) // expected on cancellation
         {
-            // expected on cancellation
+            _logger.Info<ProTunProtocolLog>("ProTUN traffic monitor cancelled.");
         }
         catch (Exception ex)
         {
-            _logger.Error<WireGuardProtocolLog>("Traffic monitor failed.", ex);
+            _logger.Error<ProTunProtocolLog>("Traffic monitor failed.", ex);
         }
     }
 

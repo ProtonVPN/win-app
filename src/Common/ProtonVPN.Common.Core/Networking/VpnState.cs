@@ -56,7 +56,7 @@ public class VpnState
         Label = label;
     }
 
-    public VpnState(VpnStatus status, VpnError error, string localIp, string? remoteIp, int endpointPort, VpnProtocol vpnProtocol,
+    public VpnState(VpnStatus status, VpnError error, string? localIp, string? remoteIp, int endpointPort, VpnProtocol vpnProtocol,
         bool portForwarding = false, OpenVpnAdapter? openVpnAdapter = null, string label = "",
         ConnectionCertificate? connectionCertificate = null)
     {
