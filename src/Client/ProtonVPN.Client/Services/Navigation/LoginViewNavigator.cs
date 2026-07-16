@@ -80,6 +80,6 @@ public class LoginViewNavigator : ViewNavigatorBase, ILoginViewNavigator,
 
     public void Receive(AuthenticationStatusChanged message)
     {
-        UIThreadDispatcher.TryEnqueue(async () => await NavigateToDefaultAsync());
+        UIThreadDispatcher.TryEnqueue(NavigateToDefaultAsync);
     }
 }

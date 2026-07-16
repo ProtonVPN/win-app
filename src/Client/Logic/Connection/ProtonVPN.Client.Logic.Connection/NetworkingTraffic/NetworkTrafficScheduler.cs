@@ -47,7 +47,7 @@ public class NetworkTrafficScheduler : INetworkTrafficScheduler,
         _entityMapper = entityMapper;
 
         _timer = new(TimeSpan.FromSeconds(1));
-        _timer.Elapsed += OnTimerTickAsync;
+        _timer.Elapsed += OnTimerTick;
         _timer.AutoReset = true;
     }
 
@@ -56,7 +56,12 @@ public class NetworkTrafficScheduler : INetworkTrafficScheduler,
         _timer.Enabled = message.ConnectionStatus is ConnectionStatus.Connected;
     }
 
-    private async void OnTimerTickAsync(object? sender, ElapsedEventArgs e)
+    private void OnTimerTick(object? sender, ElapsedEventArgs e)
+    {
+        ProcessNetworkTrafficAsync().FireAndForget();
+    }
+
+    private async Task ProcessNetworkTrafficAsync()
     {
         Result<NetworkTrafficIpcEntity> result = await _vpnServiceCaller.GetNetworkTrafficAsync();
 

@@ -81,9 +81,6 @@ public class MainWindowViewNavigator : ViewNavigatorBase, IMainWindowViewNavigat
 
     public void Receive(AuthenticationStatusChanged message)
     {
-        UIThreadDispatcher.TryEnqueue(async () =>
-        {
-            await NavigateToDefaultAsync();
-        });
+        UIThreadDispatcher.TryEnqueue(NavigateToDefaultAsync);
     }
 }

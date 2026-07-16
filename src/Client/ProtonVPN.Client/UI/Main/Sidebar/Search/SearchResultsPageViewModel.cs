@@ -38,6 +38,7 @@ using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.UI.Main.Sidebar.Bases;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
 using ProtonVPN.Client.UI.Main.Sidebar.Search.Contracts;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Search;
 
@@ -96,12 +97,12 @@ public partial class SearchResultsPageViewModel : ConnectionListViewModelBase<IS
     {
         base.OnLanguageChanged();
         OnPropertyChanged(nameof(ExampleCountries));
-        SearchAsync().Wait();
+        SearchAsync().FireAndForget();
     }
 
     partial void OnSelectedCountriesComponentChanged(ICountriesComponent value)
     {
-        SearchAsync().Wait();
+        SearchAsync().FireAndForget();
     }
 
     public async Task SearchAsync(string input)
@@ -296,14 +297,11 @@ public partial class SearchResultsPageViewModel : ConnectionListViewModelBase<IS
             return;
         }
 
-        ExecuteOnUIThread(async () =>
-        {
-            await SetSearchResultsAsync(input);
-        });
+        ExecuteOnUIThread(() => SetSearchResultsAsync(input));
     }
 
     public void Receive(LocationNamesChangedMessage message)
     {
-        ExecuteOnUIThread(() => SearchAsync().Wait());
+        ExecuteOnUIThread(SearchAsync);
     }
 }

@@ -21,6 +21,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
 using ProtonVPN.Client.Logic.Connection.Contracts.GuestHole;
 using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.GuestHoleLogs;
@@ -114,7 +115,12 @@ public class GuestHoleManager : IGuestHoleManager, IEventMessageReceiver<Connect
         _eventMessageSender.Send(new GuestHoleStatusChangedMessage(isActive));
     }
 
-    public async void Receive(ConnectionStatusChangedMessage message)
+    public void Receive(ConnectionStatusChangedMessage message)
+    {
+        HandleConnectionStatusChangedAsync(message).FireAndForget();
+    }
+
+    private async Task HandleConnectionStatusChangedAsync(ConnectionStatusChangedMessage message)
     {
         if (!_isActive)
         {

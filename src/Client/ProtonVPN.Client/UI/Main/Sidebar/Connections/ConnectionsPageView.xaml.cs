@@ -22,6 +22,7 @@ using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Common.UI.Keyboards;
 using ProtonVPN.Client.Core.Bases;
 using ProtonVPN.Client.Services.Navigation;
+using ProtonVPN.Common.Core.Extensions;
 using Windows.System;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar.Connections;
@@ -66,44 +67,39 @@ public sealed partial class ConnectionsPageView : IContextAware
         ViewModel.Activate();
     }
 
-    private async void OnCtrl1Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    private void OnCtrl1Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        OnNavigationShortcutInvoked(args, Navigator.NavigateToRecentsViewAsync);
+    }
+
+    private void OnCtrl2Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        OnNavigationShortcutInvoked(args, Navigator.NavigateToCountriesViewAsync);
+    }
+
+    private void OnCtrl3Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        OnNavigationShortcutInvoked(args, Navigator.NavigateToProfilesViewAsync);
+    }
+
+    private void OnCtrl4Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        OnNavigationShortcutInvoked(args, Navigator.NavigateToGatewaysViewAsync);
+    }
+
+    private void OnNavigationShortcutInvoked(KeyboardAcceleratorInvokedEventArgs args, Func<Task> navigateAsync)
     {
         if (IsLoaded)
         {
             args.Handled = true;
-            await Navigator.NavigateToRecentsViewAsync();
-            SetFocusToListView();
+            NavigateToViewAsync(navigateAsync).FireAndForget();
         }
     }
 
-    private async void OnCtrl2Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    private async Task NavigateToViewAsync(Func<Task> navigateAsync)
     {
-        if (IsLoaded)
-        {
-            args.Handled = true;
-            await Navigator.NavigateToCountriesViewAsync();
-            SetFocusToListView();
-        }
-    }
-
-    private async void OnCtrl3Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
-    {
-        if (IsLoaded)
-        {
-            args.Handled = true;
-            await Navigator.NavigateToProfilesViewAsync();
-            SetFocusToListView();
-        }
-    }
-
-    private async void OnCtrl4Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
-    {
-        if (IsLoaded)
-        {
-            args.Handled = true;
-            await Navigator.NavigateToGatewaysViewAsync();
-            SetFocusToListView();
-        }
+        await navigateAsync();
+        SetFocusToListView();
     }
 
     private void SetFocusToListView()

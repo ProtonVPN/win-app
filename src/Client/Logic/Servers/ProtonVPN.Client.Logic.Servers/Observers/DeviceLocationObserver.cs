@@ -73,9 +73,9 @@ public class DeviceLocationObserver :
         _eventMessageSender = eventMessageSender;
         _userAuthenticator = userAuthenticator;
 
-        NetworkChange.NetworkAddressChanged += OnNetworkAddressChangedAsync;
+        NetworkChange.NetworkAddressChanged += OnNetworkAddressChanged;
 
-        InitializeAsync();
+        Initialize();
     }
 
     public void Receive(ConnectionDetailsChangedMessage message)
@@ -100,11 +100,11 @@ public class DeviceLocationObserver :
         UpdateDeviceLocation(ip, countryCode, isp);
     }
 
-    public async void Receive(ConnectionStatusChangedMessage message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         if (_connectionManager.IsDisconnected)
         {
-            await FetchDeviceLocationAsync(DISCONNECTING_FETCH_DELAY_IN_MS);
+            FetchDeviceLocationAsync(DISCONNECTING_FETCH_DELAY_IN_MS).FireAndForget();
         }
     }
 
@@ -138,14 +138,14 @@ public class DeviceLocationObserver :
         }
     }
 
-    private async void InitializeAsync()
+    private void Initialize()
     {
-        await FetchDeviceLocationAsync(APP_START_FETCH_DELAY_IN_MS);
+        FetchDeviceLocationAsync(APP_START_FETCH_DELAY_IN_MS).FireAndForget();
     }
 
-    private async void OnNetworkAddressChangedAsync(object? sender, EventArgs e)
+    private void OnNetworkAddressChanged(object? sender, EventArgs e)
     {
-        await FetchDeviceLocationAsync(NETWORK_CHANGED_FETCH_DELAY_IN_MS);
+        FetchDeviceLocationAsync(NETWORK_CHANGED_FETCH_DELAY_IN_MS).FireAndForget();
     }
 
     private async Task FetchDeviceLocationAsync(int delayInMs)

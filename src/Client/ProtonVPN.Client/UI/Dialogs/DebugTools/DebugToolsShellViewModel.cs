@@ -187,7 +187,7 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
     [RelayCommand]
     public void TriggerUiUnhandledException()
     {
-        throw new StackOverflowException("Intentional UI-thread crash test");
+        throw new StackOverflowException("Intentional UI-thread exception test");
     }
 
     [RelayCommand]
@@ -207,6 +207,12 @@ public partial class DebugToolsShellViewModel : ShellViewModelBase<IDebugToolsWi
         GC.Collect();
         GC.WaitForPendingFinalizers();
         GC.Collect();
+    }
+
+    [RelayCommand]
+    public void TriggerFireAndForgetTaskException()
+    {
+        Task.Run(() => throw new Exception("Intentional fire-and-forget task exception test")).FireAndForget();
     }
 
     [RelayCommand]

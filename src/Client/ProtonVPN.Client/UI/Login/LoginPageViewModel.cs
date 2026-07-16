@@ -100,10 +100,10 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
 
     public void Receive(LoginStateChangedMessage message)
     {
-        ActionButtonTitle = string.Empty;
-
         ExecuteOnUIThread(async () =>
         {
+            ActionButtonTitle = string.Empty;
+
             switch (message.Value)
             {
                 case LoginState.Authenticating:
@@ -153,7 +153,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
 
                 case LoginState.Error:
                     await ChildViewNavigator.NavigateToSignInViewAsync();
-                    HandleAuthErrorAsync(message);
+                    await HandleAuthErrorAsync(message);
                     break;
             }
         });
@@ -188,7 +188,7 @@ public partial class LoginPageViewModel : PageViewModelBase<IMainWindowViewNavig
         });
     }
 
-    private async void HandleAuthErrorAsync(LoginStateChangedMessage message)
+    private async Task HandleAuthErrorAsync(LoginStateChangedMessage message)
     {
         ActionButtonTitle = string.Empty;
 

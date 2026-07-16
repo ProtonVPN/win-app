@@ -31,6 +31,7 @@ using ProtonVPN.Client.Logic.Recents.Contracts.Messages;
 using ProtonVPN.Client.Logic.Servers.Cache;
 using ProtonVPN.Client.Logic.Servers.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.StatisticalEvents.Contracts.Dimensions;
 
 namespace ProtonVPN.Client.Handlers;
@@ -84,7 +85,7 @@ public class AutoConnectTriggerHandler : IHandler,
 
     public void Receive(LoggedInMessage message)
     {
-        TryAutoConnectAsync();
+        TryAutoConnectAsync().FireAndForget();
     }
 
     public void Receive(ServerListChangedMessage message)
@@ -92,21 +93,21 @@ public class AutoConnectTriggerHandler : IHandler,
         _isServersListReady = !_serversCache.IsEmpty();
         _isDeviceLocationChanged = false;
 
-        TryAutoConnectAsync();
+        TryAutoConnectAsync().FireAndForget();
     }
 
     public void Receive(RecentConnectionsChangedMessage message)
     {
         _isRecentsListReady = true;
 
-        TryAutoConnectAsync();
+        TryAutoConnectAsync().FireAndForget();
     }
 
     public void Receive(ConnectionStatusChangedMessage message)
     {
         _isConnectionStatusReady = true;
 
-        TryAutoConnectAsync();
+        TryAutoConnectAsync().FireAndForget();
     }
 
     public void Receive(DeviceLocationChangedMessage message)
@@ -116,15 +117,15 @@ public class AutoConnectTriggerHandler : IHandler,
 
     public void Receive(ConnectionCertificateUpdatedMessage message)
     {
-        TryAutoConnectAsync();
+        TryAutoConnectAsync().FireAndForget();
     }
 
     public void Receive(GuestHoleStatusChangedMessage message)
     {
-        TryAutoConnectAsync();
+        TryAutoConnectAsync().FireAndForget();
     }
 
-    private async void TryAutoConnectAsync()
+    private async Task TryAutoConnectAsync()
     {
         if (_isHandled ||
             _guestHoleManager.IsActive ||

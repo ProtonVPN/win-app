@@ -19,6 +19,7 @@
 
 using System;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace ProtonVPN.Client.Core.Bases.ViewModels;
 
@@ -65,10 +66,10 @@ public abstract partial class ActivatableViewModelBase : ViewModelBase, IActivat
     { }
 
     protected void ExecuteOnUIThreadIfActive(
-            Action callback,
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerMemberName] string sourceMemberName = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
+        Action callback,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0)
     {
         if (!IsActive)
         {
@@ -83,6 +84,28 @@ public abstract partial class ActivatableViewModelBase : ViewModelBase, IActivat
             }
 
             callback();
-        });
+        }, sourceFilePath, sourceMemberName, sourceLineNumber);
+    }
+
+    protected void ExecuteOnUIThreadIfActive(
+        Func<Task> callback,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0)
+    {
+        if (!IsActive)
+        {
+            return;
+        }
+
+        UIThreadDispatcher.TryEnqueue(async () =>
+        {
+            if (!IsActive)
+            {
+                return;
+            }
+
+            await callback();
+        }, sourceFilePath, sourceMemberName, sourceLineNumber);
     }
 }

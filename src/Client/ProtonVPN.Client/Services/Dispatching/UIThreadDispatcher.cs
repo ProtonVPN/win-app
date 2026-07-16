@@ -50,6 +50,14 @@ public class UIThreadDispatcher : IUIThreadDispatcher
         return _dispatcherQueue.TryEnqueue(() => ExecuteSafely(callback, sourceFilePath, sourceMemberName, sourceLineNumber));
     }
 
+    public void TryEnqueue(Func<Task> callback,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0)
+    {
+        _ = TryEnqueueAsync(callback, sourceFilePath, sourceMemberName, sourceLineNumber);
+    }
+
     public Task<bool> TryEnqueueAsync(Func<Task> callback,
         [CallerFilePath] string sourceFilePath = "",
         [CallerMemberName] string sourceMemberName = "",

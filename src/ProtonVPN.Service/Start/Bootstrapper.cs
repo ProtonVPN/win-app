@@ -23,7 +23,6 @@ using System.IO;
 using System.ServiceProcess;
 using Autofac;
 using ProtonVPN.Api.Installers;
-using ProtonVPN.Common.Core.Networking;
 using ProtonVPN.Common.Installers.Extensions;
 using ProtonVPN.Common.Legacy.OS.Processes;
 using ProtonVPN.Configurations.Contracts;
@@ -33,7 +32,6 @@ using ProtonVPN.IPv6.Installers;
 using ProtonVPN.IssueReporting.Static;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
-using ProtonVPN.Logging.Events;
 using ProtonVPN.Logging.Installers;
 using ProtonVPN.Native.PInvoke;
 using ProtonVPN.OperatingSystems.Network.Installers;
@@ -46,12 +44,16 @@ namespace ProtonVPN.Service.Start;
 
 internal class Bootstrapper
 {
+    private readonly ServiceGlobalExceptionHandler _globalExceptionHandler = new();
+
     private IContainer _container;
     private T Resolve<T>() => _container.Resolve<T>();
 
     public Bootstrapper()
     {
-        GlobalExceptionHandler.Initialize();
+        _globalExceptionHandler.Initialize();
+        _globalExceptionHandler.OnFatalException += OnFatalException;
+        
         IssueReportingInitializer.Run();
     }
 
@@ -76,7 +78,9 @@ internal class Bootstrapper
                .RegisterAssemblyModule<IPv6Module>()
                .RegisterAssemblyModule<UpdateModule>();
         _container = builder.Build();
-    } 
+
+        _globalExceptionHandler.SetLogger(Resolve<ILogger>());
+    }
 
     private void PrepareDirectories()
     {
@@ -88,8 +92,6 @@ internal class Bootstrapper
 
     private void Start()
     {
-        AppDomain.CurrentDomain.UnhandledException += OnUnhandledExceptionOccurredAsync;
-
         RegisterEvents();
 
         Resolve<ILogCleaner>().Clean(Resolve<IStaticConfiguration>().ServiceLogsFolder, 10);
@@ -115,13 +117,30 @@ internal class Bootstrapper
         };
     }
 
-    private async void OnUnhandledExceptionOccurredAsync(object sender, UnhandledExceptionEventArgs e)
+    private void OnFatalException(Exception exception)
     {
-        IStaticConfiguration config = Resolve<IStaticConfiguration>();
-        IOsProcesses processes = Resolve<IOsProcesses>();
-        Resolve<IVpnConnectionStateMachine>().Disconnect();
-        Resolve<IOpenVpnProcess>().Stop();
-        processes.KillProcesses(config.ClientName);
+        if (_container is null)
+        {
+            return; // Fatal exception occurred before DI was built; nothing to clean up.
+        }
+
+        TryCleanup<ILogger>(logger =>
+            logger.Info<AppServiceLog>("Fatal exception caught, attempting to clean up before crash"));
+        TryCleanup<IVpnConnectionStateMachine>(sm => sm.Disconnect());
+        TryCleanup<IOpenVpnProcess>(p => p.Stop());
+        TryCleanup<IOsProcesses>(p => p.KillProcesses(Resolve<IStaticConfiguration>().ClientName));
+    }
+
+    private void TryCleanup<T>(Action<T> action)
+    {
+        try
+        {
+            action(Resolve<T>());
+        }
+        catch
+        {
+            // Best-effort cleanup during a fatal crash; swallow so remaining steps still run.
+        }
     }
 
     private static void SetDllDirectories()

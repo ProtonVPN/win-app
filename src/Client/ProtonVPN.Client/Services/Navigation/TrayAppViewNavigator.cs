@@ -65,9 +65,6 @@ public class TrayAppViewNavigator : ViewNavigatorBase, ITrayAppViewNavigator,
 
     public void Receive(AuthenticationStatusChanged message)
     {
-        UIThreadDispatcher.TryEnqueue(async () =>
-        {
-            await NavigateToDefaultAsync();
-        });
+        UIThreadDispatcher.TryEnqueue(NavigateToDefaultAsync);
     }
 }

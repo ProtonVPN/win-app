@@ -20,6 +20,7 @@
 using ProtonVPN.Client.Common.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
@@ -51,7 +52,12 @@ public class VpnStateIpcEntityHandler : IEventMessageReceiver<VpnStateIpcEntity>
         _cancellationTokenSource.Cancel();
     }
 
-    public async void Receive(VpnStateIpcEntity message)
+    public void Receive(VpnStateIpcEntity message)
+    {
+        AcquireAndHandleAsync(message).FireAndForget();
+    }
+
+    private async Task AcquireAndHandleAsync(VpnStateIpcEntity message)
     {
         await _semaphore.WaitAsync();
         try

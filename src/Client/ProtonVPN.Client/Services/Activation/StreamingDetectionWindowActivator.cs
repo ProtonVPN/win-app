@@ -71,14 +71,14 @@ public class StreamingDetectionWindowActivator : DialogActivatorBase<StreamingDe
 
     public void Receive(LoggedOutMessage message)
     {
-        Hide();
+        UIThreadDispatcher.TryEnqueue(Hide);
     }
 
     public void Receive(VpnPlanChangedMessage message)
     {
         if (message.IsUpgrade())
         {
-            Hide();
+            UIThreadDispatcher.TryEnqueue(Hide);
         }
     }
 }

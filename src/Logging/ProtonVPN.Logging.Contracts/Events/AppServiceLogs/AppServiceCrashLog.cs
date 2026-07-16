@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2025 Proton AG
+/*
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,22 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Microsoft.UI.Xaml;
-using ProtonVPN.Logging.Events;
+using ProtonVPN.Logging.Contracts.Categories;
 
-namespace ProtonVPN.Client.Common.UI.Exceptions;
+namespace ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 
-public static class UiGlobalExceptionHandler
+public class AppServiceCrashLog : LogEventBase<AppServiceLogCategory>
 {
-    public static void Initialize(Application app)
-    {
-        GlobalExceptionHandler.Initialize();
-
-        app.UnhandledException += OnUiUnhandledException;
-    }
-
-    private static void OnUiUnhandledException(object? sender, UnhandledExceptionEventArgs ex)
-    {
-        GlobalExceptionHandler.TryWriteEventLog("UI unhandled exception", ex.Exception);
-    }
+    protected override string Event => "CRASH";
 }

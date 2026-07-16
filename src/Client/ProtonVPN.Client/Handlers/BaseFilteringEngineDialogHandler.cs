@@ -64,7 +64,7 @@ public class BaseFilteringEngineDialogHandler : IHandler,
     {
         if (message.VpnError.IsBaseFilteringEngineError())
         {
-            _uiThreadDispatcher.TryEnqueue(async () => await ShowOverlayAndExitAsync());
+            _uiThreadDispatcher.TryEnqueue(ShowOverlayAndExitAsync);
         }
     }
 

@@ -64,6 +64,6 @@ public class DetailsViewNavigator : ViewNavigatorBase, IDetailsViewNavigator,
 
     public void Receive(ConnectionStatusChangedMessage message)
     {
-        UIThreadDispatcher.TryEnqueue(async () => await NavigateToDefaultAsync());
+        UIThreadDispatcher.TryEnqueue(NavigateToDefaultAsync);
     }
 }

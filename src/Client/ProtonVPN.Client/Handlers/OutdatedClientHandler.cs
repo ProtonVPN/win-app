@@ -97,10 +97,7 @@ public class OutdatedClientHandler : IHandler, IOutdatedClientNotifier,
 
             _isClientNotified = true;
 
-            _uiThreadDispatcher.TryEnqueue(async () =>
-            {
-                await _mainWindowOverlayActivator.ShowOutdatedClientOverlayAsync();
-            });
+            _uiThreadDispatcher.TryEnqueue(_mainWindowOverlayActivator.ShowOutdatedClientOverlayAsync);
         }
     }
 }

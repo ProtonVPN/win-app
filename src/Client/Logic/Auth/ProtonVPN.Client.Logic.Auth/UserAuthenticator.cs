@@ -116,7 +116,7 @@ public class UserAuthenticator : IUserAuthenticator,
         _featureFlagsObserver = featureFlagsObserver;
         _clientConfigObserver = clientConfigObserver;
 
-        _tokenClient.RefreshTokenExpired += OnTokenExpiredAsync;
+        _tokenClient.RefreshTokenExpired += OnTokenExpired;
     }
 
     public async Task<AuthResult> LoginUserAsync(string username, SecureString password)
@@ -379,7 +379,12 @@ public class UserAuthenticator : IUserAuthenticator,
                !string.IsNullOrWhiteSpace(_settings.UniqueSessionId);
     }
 
-    private async void OnTokenExpiredAsync(object? sender, EventArgs e)
+    private void OnTokenExpired(object? sender, EventArgs e)
+    {
+        HandleTokenExpiredAsync().FireAndForget();
+    }
+
+    private async Task HandleTokenExpiredAsync()
     {
         if (AuthenticationStatus is AuthenticationStatus.LoggingOut)
         {
@@ -624,11 +629,11 @@ public class UserAuthenticator : IUserAuthenticator,
         }
     }
 
-    public async void Receive(ClientOutdatedMessage message)
+    public void Receive(ClientOutdatedMessage message)
     {
         if (IsLoggedIn)
         {
-            await LogoutAsync(LogoutReason.ClientOutdated);
+            LogoutAsync(LogoutReason.ClientOutdated).FireAndForget();
         }
     }
 

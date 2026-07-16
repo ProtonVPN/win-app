@@ -22,6 +22,7 @@ using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -48,11 +49,11 @@ public class VpnPlanChangedHandler : IEventMessageReceiver<VpnPlanChangedMessage
         _connectionCertificateManager = connectionCertificateManager;
     }
 
-    public async void Receive(VpnPlanChangedMessage message)
+    public void Receive(VpnPlanChangedMessage message)
     {
         if (_userAuthenticator.IsLoggedIn)
         {
-            await HandleVpnPlanChangeAsync(message.IsDowngrade());
+            HandleVpnPlanChangeAsync(message.IsDowngrade()).FireAndForget();
         }
     }
 

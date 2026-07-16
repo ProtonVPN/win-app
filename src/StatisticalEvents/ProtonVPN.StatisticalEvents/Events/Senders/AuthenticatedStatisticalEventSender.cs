@@ -25,6 +25,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.StatisticalEvents;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -73,32 +74,37 @@ public class AuthenticatedStatisticalEventSender : StatisticEventSenderBase, IAu
         });
     }
 
-    public async void Receive(LoggedInMessage message)
+    public void Receive(LoggedInMessage message)
     {
         _isLoggedIn = true;
-        await StartAsync();
+        StartAsync().FireAndForget();
     }
 
-    public async void Receive(LoggedOutMessage message)
+    public void Receive(LoggedOutMessage message)
     {
         _isLoggedIn = false;
-        await StopAsync();
+        StopAsync().FireAndForget();
     }
 
-    public async void Receive(SettingChangedMessage message)
+    public void Receive(SettingChangedMessage message)
     {
         if (message.PropertyName == nameof(ISettings.IsShareStatisticsEnabled) &&
             !IsShareStatisticsEnabled)
         {
-            await Semaphore.WaitAsync();
-            try
-            {
-                ClearEventsDueToDisabledTelemetry();
-            }
-            finally
-            {
-                Semaphore.Release();
-            }
+            ClearEventsDueToDisabledTelemetryAsync().FireAndForget();
+        }
+    }
+
+    private async Task ClearEventsDueToDisabledTelemetryAsync()
+    {
+        await Semaphore.WaitAsync();
+        try
+        {
+            ClearEventsDueToDisabledTelemetry();
+        }
+        finally
+        {
+            Semaphore.Release();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Proton AG
  *
  * This file is part of ProtonVPN.
@@ -19,13 +19,18 @@
 
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using ProtonVPN.Logging.Contracts;
 using TaskExtensions = ProtonVPN.Common.Core.Extensions.TaskExtensions;
 
 namespace ProtonVPN.Logging.Events;
 
-public static class GlobalExceptionHandler
+public abstract class GlobalExceptionHandlerBase
 {
-    public static void Initialize()
+    public event Action<Exception>? OnFatalException;
+
+    protected ILogger? Logger { get; private set; }
+
+    public void Initialize()
     {
         EventLogger.Initialize();
 
@@ -33,10 +38,15 @@ public static class GlobalExceptionHandler
         TaskScheduler.UnobservedTaskException += OnUnobservedTaskException;
 
         TaskExtensions.SetDefaultExceptionHandler(ex =>
-            TryWriteEventLog("Fire-and-forget task exception", ex));
+            TryLogException("Fire-and-forget task exception", ex, isFatal: false));
     }
 
-    private static void OnAppDomainUnhandledException(object? sender, UnhandledExceptionEventArgs eventArgs)
+    public void SetLogger(ILogger logger)
+    {
+        Logger = logger;
+    }
+
+    private void OnAppDomainUnhandledException(object? sender, UnhandledExceptionEventArgs eventArgs)
     {
         const string HANDLER = "AppDomain unhandled exception";
         string terminatingText = eventArgs.IsTerminating ? "(Terminating)" : string.Empty;
@@ -57,30 +67,54 @@ public static class GlobalExceptionHandler
             null => new Exception("Non-Exception object thrown: <null>")
         };
 
-        TryWriteEventLog($"{HANDLER} {terminatingText}", ex);
+        TryLogException($"{HANDLER} {terminatingText}", ex, isFatal: eventArgs.IsTerminating);
     }
 
-    private static void OnUnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs ex)
+    private void OnUnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs ex)
     {
-        TryWriteEventLog("Unobserved task exception", ex.Exception);
+        TryLogException("Unobserved task exception", ex.Exception, isFatal: false);
         ex.SetObserved();
     }
 
-    public static void TryWriteEventLog(string handler, Exception? ex)
+    protected void TryLogException(string handler, Exception? ex, bool isFatal)
+    {
+        if (ex is null)
+        {
+            return;
+        }
+
+        AggregateException? flattenedAggregate = ex is AggregateException agg ? agg.Flatten() : null;
+        Exception diagnosticEx = flattenedAggregate?.InnerExceptions.Count == 1
+            ? flattenedAggregate.InnerExceptions[0]
+            : ex;
+
+        TryWriteEventLog(handler, ex, diagnosticEx, flattenedAggregate);
+        TryWriteFileLog(handler, diagnosticEx, isFatal);
+
+        if (isFatal)
+        {
+            TryInvokeOnFatalException(diagnosticEx);
+        }
+    }
+
+    private void TryInvokeOnFatalException(Exception exception)
     {
         try
         {
-            if (ex is null)
-            {
-                return;
-            }
+            OnFatalException?.Invoke(exception);
+        }
+        catch (Exception ex)
+        {
+            TryLogException("OnFatalException subscriber threw", ex, isFatal: false);
+        }
+    }
 
-            Exception diagnosticEx = ex is AggregateException agg && agg.Flatten().InnerExceptions.Count == 1
-                ? agg.Flatten().InnerExceptions[0]
-                : ex;
-
-            string flattenedDetails = ex is AggregateException aggregate
-                ? FormatAggregateException(aggregate)
+    private void TryWriteEventLog(string handler, Exception ex, Exception diagnosticEx, AggregateException? flattenedAggregate)
+    {
+        try
+        {
+            string flattenedDetails = flattenedAggregate is not null
+                ? FormatAggregateException(flattenedAggregate)
                 : string.Empty;
 
             string message =
@@ -100,9 +134,28 @@ public static class GlobalExceptionHandler
         catch { }
     }
 
-    private static string FormatAggregateException(AggregateException aggregate)
+    private void TryWriteFileLog(string handler, Exception exception, bool isFatal)
     {
-        AggregateException flattened = aggregate.Flatten();
+        try
+        {
+            if (isFatal)
+            {
+                LogFatal(handler, exception);
+            }
+            else
+            {
+                LogError(handler, exception);
+            }
+        }
+        catch { }
+    }
+
+    protected abstract void LogFatal(string handler, Exception exception);
+
+    protected abstract void LogError(string handler, Exception exception);
+
+    private static string FormatAggregateException(AggregateException flattened)
+    {
         if (flattened.InnerExceptions.Count <= 1)
         {
             return string.Empty;

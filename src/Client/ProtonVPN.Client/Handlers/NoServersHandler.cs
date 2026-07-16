@@ -68,14 +68,14 @@ public class NoServersHandler : IHandler,
         _connectionManager = connectionManager;
     }
 
-    public async void Receive(ServerListChangedMessage message)
+    public void Receive(ServerListChangedMessage message)
     {
         if (!_userAuthenticator.IsLoggedIn)
         {
             return;
         }
 
-        await _uiThreadDispatcher.TryEnqueueAsync(async () =>
+        _uiThreadDispatcher.TryEnqueue(async () =>
         {
             if (_serversCache.HasNoServers())
             {
@@ -116,8 +116,8 @@ public class NoServersHandler : IHandler,
         _uiThreadDispatcher.TryEnqueue(HandleDefaultConnectionSetting);
     }
 
-    public async void Receive(NoVpnConnectionsAssignedMessage message)
+    public void Receive(NoVpnConnectionsAssignedMessage message)
     {
-        await _uiThreadDispatcher.TryEnqueueAsync(HandleNoServersAsync);
+        _uiThreadDispatcher.TryEnqueue(HandleNoServersAsync);
     }
 }

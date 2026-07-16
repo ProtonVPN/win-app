@@ -61,10 +61,10 @@ public class ServersObserver : PollingObserverBase, IServersObserver,
         StartTimer();
     }
 
-    public async void Receive(LoggedOutMessage message)
+    public void Receive(LoggedOutMessage message)
     {
         StopTimer();
-        await _serversUpdater.ClearCacheAsync();
+        _serversUpdater.ClearCacheAsync().FireAndForget();
     }
 
     public void Receive(DeviceLocationChangedMessage message)

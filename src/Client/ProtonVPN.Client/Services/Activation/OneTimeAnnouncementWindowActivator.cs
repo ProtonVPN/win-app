@@ -64,6 +64,6 @@ public class OneTimeAnnouncementWindowActivator : DialogActivatorBase<OneTimeAnn
 
     public void Receive(LoggedOutMessage message)
     {
-        Hide();
+        UIThreadDispatcher.TryEnqueue(Hide);
     }
 }

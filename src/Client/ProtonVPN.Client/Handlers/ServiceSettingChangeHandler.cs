@@ -22,6 +22,7 @@ using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Logic.Connection.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.Handlers;
 
@@ -52,11 +53,11 @@ public class ServiceSettingChangeHandler : IHandler, IEventMessageReceiver<Setti
         };
     }
 
-    public async void Receive(SettingChangedMessage message)
+    public void Receive(SettingChangedMessage message)
     {
         if (_settings.ContainsKey(message.PropertyName) && _settings[message.PropertyName]())
         {
-            await _vpnServiceSettingsUpdater.SendAsync();
+            _vpnServiceSettingsUpdater.SendAsync().FireAndForget();
         }
     }
 }

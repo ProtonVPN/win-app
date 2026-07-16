@@ -61,7 +61,7 @@ public class SystemProxyDetectionHandler : IHandler,
         {
             _isToShowWarningOverlay = false;
 
-            _uiThreadDispatcher.TryEnqueue(async () => await HandleAsync());
+            _uiThreadDispatcher.TryEnqueue(HandleAsync);
         }
 
         if (message.ConnectionStatus == ConnectionStatus.Disconnected)

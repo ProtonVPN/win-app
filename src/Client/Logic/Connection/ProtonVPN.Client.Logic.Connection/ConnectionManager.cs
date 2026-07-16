@@ -36,6 +36,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Servers.Contracts.Models;
 using ProtonVPN.Client.Logic.Services.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -413,13 +414,13 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         });
     }
 
-    public async void Receive(ConnectionCertificateUpdatedMessage message)
+    public void Receive(ConnectionCertificateUpdatedMessage message)
     {
         AsymmetricKeyPair? clientKeyPair = _connectionKeyManager.GetKeyPairOrNull();
 
         if (message.Certificate is not null && clientKeyPair is not null)
         {
-            await _vpnServiceCaller.UpdateLocalAgentTlsCredentialsAsync(new LocalAgentTlsCredentialsIpcEntity()
+            _vpnServiceCaller.UpdateLocalAgentTlsCredentialsAsync(new LocalAgentTlsCredentialsIpcEntity()
             {
                 ConnectionCertificate = new ConnectionCertificateIpcEntity()
                 {
@@ -427,7 +428,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
                     ExpirationDateUtc = message.Certificate.Value.ExpirationUtcDate.UtcDateTime,
                 },
                 ClientKeyPair = _entityMapper.Map<AsymmetricKeyPair, AsymmetricKeyPairIpcEntity>(clientKeyPair),
-            });
+            }).FireAndForget();
         }
     }
 

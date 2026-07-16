@@ -29,6 +29,7 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
 using ProtonVPN.Client.Mappers;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Bases;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
 
@@ -85,11 +86,11 @@ public partial class ReportIssueCategoryPageViewModel : ReportIssuePageViewModel
         }
     }
 
-    protected override async void OnLanguageChanged()
+    protected override void OnLanguageChanged()
     {
         base.OnLanguageChanged();
 
-        await InvalidateCategoryAsync();
+        InvalidateCategoryAsync().FireAndForget();
     }
 
     private async Task InvalidateCategoryAsync()
