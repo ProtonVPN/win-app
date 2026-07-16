@@ -32,6 +32,7 @@ using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Notifications.Contracts;
 using ProtonVPN.Client.Services.Upselling;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 using ProtonVPN.StatisticalEvents.Contracts;
@@ -79,7 +80,12 @@ public class VpnPlanChangedHandler : IHandler,
         _accountUpgradeUrlLauncher = accountUpgradeUrlLauncher;
     }
 
-    public async void Receive(VpnPlanChangedMessage message)
+    public void Receive(VpnPlanChangedMessage message)
+    {
+        HandleVpnPlanChangedAsync(message).FireAndForget();
+    }
+
+    private async Task HandleVpnPlanChangedAsync(VpnPlanChangedMessage message)
     {
         if (!_userAuthenticator.IsLoggedIn)
         {
@@ -98,12 +104,12 @@ public class VpnPlanChangedHandler : IHandler,
         }
     }
 
-    public async void Receive(ConnectionStatusChangedMessage message)
+    public void Receive(ConnectionStatusChangedMessage message)
     {
         if (_notifyOnNextConnection && message.ConnectionStatus == ConnectionStatus.Connected)
         {
             _notifyOnNextConnection = false;
-            await NotifyUserOfSubscriptionExpirationAsync();
+            NotifyUserOfSubscriptionExpirationAsync().FireAndForget();
         }
     }
 

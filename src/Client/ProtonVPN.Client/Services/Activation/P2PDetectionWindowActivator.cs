@@ -82,14 +82,14 @@ public class P2PDetectionWindowActivator : DialogActivatorBase<P2PDetectionWindo
 
     public void Receive(LoggedOutMessage message)
     {
-        Hide();
+        UIThreadDispatcher.TryEnqueue(Hide);
     }
 
     public void Receive(VpnPlanChangedMessage message)
     {
         if (message.IsUpgrade())
         {
-            Hide();
+            UIThreadDispatcher.TryEnqueue(Hide);
         }
     }
 }

@@ -28,6 +28,11 @@ public interface IUIThreadDispatcher
         [CallerMemberName] string sourceMemberName = "",
         [CallerLineNumber] int sourceLineNumber = 0);
 
+    void TryEnqueue(Func<Task> callback,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0);
+
     Task<bool> TryEnqueueAsync(Func<Task> callback,
         [CallerFilePath] string sourceFilePath = "",
         [CallerMemberName] string sourceMemberName = "",

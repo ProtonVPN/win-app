@@ -19,6 +19,7 @@
 
 using System;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ProtonVPN.Client.Common.Dispatching;
 using ProtonVPN.Client.Localization.Contracts;
@@ -71,6 +72,14 @@ public abstract partial class ViewModelBase : ObservableObject, ILanguageAware
         [CallerMemberName] string sourceMemberName = "",
         [CallerLineNumber] int sourceLineNumber = 0)
     {
-        UIThreadDispatcher.TryEnqueue(callback);
+        UIThreadDispatcher.TryEnqueue(callback, sourceFilePath, sourceMemberName, sourceLineNumber);
+    }
+
+    protected void ExecuteOnUIThread(Func<Task> callback,
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0)
+    {
+        UIThreadDispatcher.TryEnqueue(callback, sourceFilePath, sourceMemberName, sourceLineNumber);
     }
 }

@@ -123,7 +123,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                              GotFocus="OnGotFocus"
                              KeyDown="OnDigitBoxKeyDown"
                              MaxLength="1"
-                             Paste="OnPasteAsync"
+                             Paste="OnPaste"
                              Style="{StaticResource TwoFactorNumberBox}"
                              TextAlignment="Center"
                              TextChanged="OnDigitChanged" />
@@ -136,7 +136,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                              GotFocus="OnGotFocus"
                              KeyDown="OnDigitBoxKeyDown"
                              MaxLength="1"
-                             Paste="OnPasteAsync"
+                             Paste="OnPaste"
                              Style="{StaticResource TwoFactorNumberBox}"
                              TextAlignment="Center"
                              TextChanged="OnDigitChanged" />
@@ -149,7 +149,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                              GotFocus="OnGotFocus"
                              KeyDown="OnDigitBoxKeyDown"
                              MaxLength="1"
-                             Paste="OnPasteAsync"
+                             Paste="OnPaste"
                              Style="{StaticResource TwoFactorNumberBox}"
                              TextAlignment="Center"
                              TextChanged="OnDigitChanged" />
@@ -170,7 +170,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                              GotFocus="OnGotFocus"
                              KeyDown="OnDigitBoxKeyDown"
                              MaxLength="1"
-                             Paste="OnPasteAsync"
+                             Paste="OnPaste"
                              Style="{StaticResource TwoFactorNumberBox}"
                              TextAlignment="Center"
                              TextChanged="OnDigitChanged" />
@@ -183,7 +183,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                              GotFocus="OnGotFocus"
                              KeyDown="OnDigitBoxKeyDown"
                              MaxLength="1"
-                             Paste="OnPasteAsync"
+                             Paste="OnPaste"
                              Style="{StaticResource TwoFactorNumberBox}"
                              TextAlignment="Center"
                              TextChanged="OnDigitChanged" />
@@ -197,7 +197,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                              GotFocus="OnGotFocus"
                              KeyDown="OnDigitBoxKeyDown"
                              MaxLength="1"
-                             Paste="OnPasteAsync"
+                             Paste="OnPaste"
                              Style="{StaticResource TwoFactorNumberBox}"
                              TextAlignment="Center"
                              TextChanged="OnDigitChanged" />

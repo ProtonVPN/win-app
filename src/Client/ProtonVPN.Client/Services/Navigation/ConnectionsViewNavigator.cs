@@ -121,22 +121,22 @@ public class ConnectionsViewNavigator : ViewNavigatorBase, IConnectionsViewNavig
 
     public void Receive(VpnPlanChangedMessage message)
     {
-        UIThreadDispatcher.TryEnqueue(async () => await InvalidateCurrentPageAsync());
+        UIThreadDispatcher.TryEnqueue(InvalidateCurrentPageAsync);
     }
 
     public void Receive(ServerListChangedMessage message)
     {
-        UIThreadDispatcher.TryEnqueue(async () => await InvalidateCurrentPageAsync());
+        UIThreadDispatcher.TryEnqueue(InvalidateCurrentPageAsync);
     }
 
     public void Receive(RecentConnectionsChangedMessage message)
     {
-        UIThreadDispatcher.TryEnqueue(async () => await InvalidateCurrentPageAsync());
+        UIThreadDispatcher.TryEnqueue(InvalidateCurrentPageAsync);
     }
 
     public void Receive(LoggedInMessage message)
     {
-        UIThreadDispatcher.TryEnqueue(async () => await NavigateToDefaultAsync());
+        UIThreadDispatcher.TryEnqueue(NavigateToDefaultAsync);
     }
 
     private async Task InvalidateCurrentPageAsync()

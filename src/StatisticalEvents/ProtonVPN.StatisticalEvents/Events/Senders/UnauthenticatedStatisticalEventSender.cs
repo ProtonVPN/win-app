@@ -24,6 +24,7 @@ using ProtonVPN.Api.Contracts.Common;
 using ProtonVPN.Client.Common.Messages;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.StatisticalEvents;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -69,13 +70,13 @@ public class UnauthenticatedStatisticalEventSender : StatisticEventSenderBase, I
         });
     }
 
-    public async void Receive(ApplicationStartedMessage message)
+    public void Receive(ApplicationStartedMessage message)
     {
-        await StartAsync();
+        StartAsync().FireAndForget();
     }
 
-    public async void Receive(ApplicationStoppedMessage message)
+    public void Receive(ApplicationStoppedMessage message)
     {
-        await StopAsync();
+        StopAsync().FireAndForget();
     }
 }

@@ -36,6 +36,7 @@ using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Mappers;
 using ProtonVPN.Client.Services.SignoutHandling;
 using ProtonVPN.Client.Settings.Contracts;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Main.Components;
 
@@ -124,18 +125,18 @@ public partial class TitleBarMenuViewModel : ActivatableViewModelBase,
         ExecuteOnUIThread(() => OnPropertyChanged(nameof(IsUpdateAvailable)));
     }
 
-    protected override async void OnActivated()
+    protected override void OnActivated()
     {
         base.OnActivated();
 
-        await InvalidateReportIssueCategoriesAsync();
+        InvalidateReportIssueCategoriesAsync().FireAndForget();
     }
 
-    protected override async void OnLanguageChanged()
+    protected override void OnLanguageChanged()
     {
         base.OnLanguageChanged();
 
-        await InvalidateReportIssueCategoriesAsync();
+        InvalidateReportIssueCategoriesAsync().FireAndForget();
     }
 
     private async Task InvalidateReportIssueCategoriesAsync()

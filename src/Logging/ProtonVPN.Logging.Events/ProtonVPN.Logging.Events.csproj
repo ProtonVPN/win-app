@@ -16,6 +16,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\Common\ProtonVPN.Common.Core\ProtonVPN.Common.Core.csproj" />
+        <ProjectReference Include="..\ProtonVPN.Logging.Contracts\ProtonVPN.Logging.Contracts.csproj" />
     </ItemGroup>
 
     <ItemGroup>

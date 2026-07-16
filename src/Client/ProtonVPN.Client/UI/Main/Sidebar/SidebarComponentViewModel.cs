@@ -35,6 +35,7 @@ using ProtonVPN.Client.Logic.Servers.Contracts.Searches;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections;
 using ProtonVPN.Client.UI.Main.Sidebar.Connections.Bases.Contracts;
 using ProtonVPN.Client.UI.Main.Sidebar.Search.Contracts;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Main.Sidebar;
 
@@ -82,7 +83,7 @@ public partial class SidebarComponentViewModel : HostViewModelBase<ISidebarViewN
 
     partial void OnSearchTextChanged(string value)
     {
-        _searchInputReceiver.SearchAsync(value).Wait();
+        _searchInputReceiver.SearchAsync(value).FireAndForget();
     }
 
     public void ClearSearch()

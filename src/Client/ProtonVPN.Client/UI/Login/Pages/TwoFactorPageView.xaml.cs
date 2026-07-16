@@ -23,6 +23,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using ProtonVPN.Client.Contracts.Services.Edition;
 using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Common.Core.Extensions;
 using Windows.System;
 
 namespace ProtonVPN.Client.UI.Login.Pages;
@@ -207,7 +208,7 @@ public sealed partial class TwoFactorPageView : IContextAware
             : (keyInt - (int)VirtualKey.NumberPad0).ToString();
     }
 
-    private async void OnPasteAsync(object sender, TextControlPasteEventArgs e)
+    private void OnPaste(object sender, TextControlPasteEventArgs e)
     {
         if (sender is not TextBox)
         {
@@ -216,6 +217,11 @@ public sealed partial class TwoFactorPageView : IContextAware
 
         e.Handled = true;
 
+        HandlePasteAsync().FireAndForget();
+    }
+
+    private async Task HandlePasteAsync()
+    {
         string clipboardText = await _clipboardEditor.GetTextAsync();
         clipboardText = FilterNonDigits(clipboardText);
         clipboardText = clipboardText.Substring(0, Math.Min(clipboardText.Length, NUM_OF_DIGITS));

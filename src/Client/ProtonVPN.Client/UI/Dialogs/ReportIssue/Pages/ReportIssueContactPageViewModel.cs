@@ -29,6 +29,7 @@ using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
 using ProtonVPN.Client.Mappers;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Bases;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Legacy.Abstract;
 using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
@@ -121,11 +122,11 @@ public partial class ReportIssueContactPageViewModel : ReportIssuePageViewModelB
             && InputFields.All(f => !f.HasErrors);
     }
 
-    protected override async void OnLanguageChanged()
+    protected override void OnLanguageChanged()
     {
         base.OnLanguageChanged();
 
-        await InvalidateCategoryAsync();
+        InvalidateCategoryAsync().FireAndForget();
     }
 
     private void OnInputFieldsItemErrorsChanged(object? sender, DataErrorsChangedEventArgs e)

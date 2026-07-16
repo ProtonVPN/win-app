@@ -110,7 +110,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                         <Button HorizontalAlignment="Right"
                                 Command="{x:Bind ViewModel.TriggerUiUnhandledExceptionCommand, Mode=OneTime}"
-                                Content="UI unhandled exception CRASH"
+                                Content="UI unhandled exception"
                                 Style="{StaticResource PrimaryButtonStyle}" />
 
                         <Button HorizontalAlignment="Right"
@@ -121,6 +121,11 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <Button HorizontalAlignment="Right"
                                 Command="{x:Bind ViewModel.TriggerUnobservedTaskExceptionCommand, Mode=OneTime}"
                                 Content="Unobserved task exception"
+                                Style="{StaticResource PrimaryButtonStyle}" />
+
+                        <Button HorizontalAlignment="Right"
+                                Command="{x:Bind ViewModel.TriggerFireAndForgetTaskExceptionCommand, Mode=OneTime}"
+                                Content="Fire and forget task exception"
                                 Style="{StaticResource PrimaryButtonStyle}" />
                     </StackPanel>
                 </toolkit:SettingsExpander>

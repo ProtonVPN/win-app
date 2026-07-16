@@ -70,13 +70,13 @@ public class MainViewNavigator : ViewNavigatorBase, IMainViewNavigator,
         if (message.ConnectionStatus == ConnectionStatus.Connecting)
         {
             // Force navigation to automatically discard any unsaved changes
-            UIThreadDispatcher.TryEnqueue(async () => await NavigateToHomeViewAsync(forceNavigation: true));
+            UIThreadDispatcher.TryEnqueue(() => NavigateToHomeViewAsync(forceNavigation: true));
         }
     }
 
     public void Receive(LoggedOutMessage message)
     {
         // Force navigation to automatically discard any unsaved changes
-        UIThreadDispatcher.TryEnqueue(async () => await NavigateToHomeViewAsync(forceNavigation: true));
+        UIThreadDispatcher.TryEnqueue(() => NavigateToHomeViewAsync(forceNavigation: true));
     }
 }

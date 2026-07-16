@@ -19,6 +19,7 @@
 
 using ProtonVPN.Client.Contracts.Services.Lifecycle;
 using ProtonVPN.Client.Logic.Services.Contracts;
+using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.AppServiceLogs;
 using ProtonVPN.ProcessCommunication.Contracts;
@@ -43,12 +44,12 @@ public class ProcessCommunicationStarter : IProcessCommunicationStarter
         _clientControllerListener = clientControllerListener;
         _appExitInvoker = appExitInvoker;
 
-        _grpcClient.InvokingClientRestart += OnInvokingClientRestartAsync;
+        _grpcClient.InvokingClientRestart += OnInvokingClientRestart;
     }
 
-    private async void OnInvokingClientRestartAsync(object? sender, EventArgs e)
+    private void OnInvokingClientRestart(object? sender, EventArgs e)
     {
-        await _appExitInvoker.RestartAsync(isToOpenOnDesktop: false);
+        _appExitInvoker.RestartAsync(isToOpenOnDesktop: false).FireAndForget();
     }
 
     public void Start()

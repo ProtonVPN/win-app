@@ -152,7 +152,7 @@ public class ExcludedLocationsSmartDiscoveryPromptHandler : IHandler,
             && intent.IsSelectionEmpty;
     }
 
-    private async void ShowExcludedLocationsSmartDiscoveryPromptAsync()
+    private async Task ShowExcludedLocationsSmartDiscoveryPromptAsync()
     {
         _settings.WasExcludedLocationsSmartDiscoveryPromptDisplayed = true;
 

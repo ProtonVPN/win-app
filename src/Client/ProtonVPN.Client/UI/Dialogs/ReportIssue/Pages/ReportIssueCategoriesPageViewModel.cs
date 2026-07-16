@@ -26,6 +26,7 @@ using ProtonVPN.Client.Core.Services.Navigation;
 using ProtonVPN.Client.Logic.Feedback.Contracts;
 using ProtonVPN.Client.Mappers;
 using ProtonVPN.Client.UI.Dialogs.ReportIssue.Bases;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
 
@@ -48,11 +49,11 @@ public partial class ReportIssueCategoriesPageViewModel : ReportIssuePageViewMod
         Categories = [];
     }
 
-    public override async void OnNavigatedTo(object parameter, bool isBackNavigation)
+    public override void OnNavigatedTo(object parameter, bool isBackNavigation)
     {
         base.OnNavigatedTo(parameter, isBackNavigation);
 
-        await InvalidateCategoriesAsync();
+        InvalidateCategoriesAsync().FireAndForget();
     }
 
     [RelayCommand]
@@ -61,11 +62,11 @@ public partial class ReportIssueCategoriesPageViewModel : ReportIssuePageViewMod
         await ParentViewNavigator.NavigateToCategoryViewAsync(category);
     }
 
-    protected override async void OnLanguageChanged()
+    protected override void OnLanguageChanged()
     {
         base.OnLanguageChanged();
 
-        await InvalidateCategoriesAsync();
+        InvalidateCategoriesAsync().FireAndForget();
     }
 
     private async Task InvalidateCategoriesAsync()

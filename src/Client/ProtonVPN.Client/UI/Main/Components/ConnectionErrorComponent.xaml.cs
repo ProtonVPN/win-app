@@ -20,11 +20,12 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Extensions;
+using ProtonVPN.Common.Core.Extensions;
 
 namespace ProtonVPN.Client.UI.Main.Components;
 
 public sealed partial class ConnectionErrorComponent
-{    
+{
     // FadeInOutAnimationDuration is 800ms + 500ms delay
     private static readonly TimeSpan _animationDuration = TimeSpan.FromMilliseconds(1300);
 
@@ -35,10 +36,15 @@ public sealed partial class ConnectionErrorComponent
         ViewModel = App.GetService<ConnectionErrorViewModel>();
         InitializeComponent();
 
-        ActionInfoBar.RegisterPropertyChangedCallback(InfoBar.IsOpenProperty, OnInfoBarIsOpenChangedAsync);
+        ActionInfoBar.RegisterPropertyChangedCallback(InfoBar.IsOpenProperty, OnInfoBarIsOpenChanged);
     }
 
-    private async void OnInfoBarIsOpenChangedAsync(DependencyObject sender, DependencyProperty dp)
+    private void OnInfoBarIsOpenChanged(DependencyObject sender, DependencyProperty dp)
+    {
+        FocusInfoBarAsync().FireAndForget();
+    }
+
+    private async Task FocusInfoBarAsync()
     {
         if (ActionInfoBar.IsOpen && this.IsParentWindowFocused())
         {
