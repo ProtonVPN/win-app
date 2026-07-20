@@ -632,7 +632,7 @@ Hata kodu: {0}</value>
     <value>Smart Routing</value>
   </data>
   <data name="Countries_SmartRouting_RoutedThrough">
-    <value>{0}, akıllı yönlendirme üzerinden yönlendirildi</value>
+    <value>{0} üzerinden akıllı olarak yönlendirildi</value>
     <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
   </data>
   <data name="Countries_Tor">
@@ -2136,7 +2136,7 @@ Hata kodu: {0}</value>
     <value>Gerçek zamanlı olarak VPN tünelinden ne kadar veri geçtiğini görüntüler.</value>
   </data>
   <data name="Flyouts_Speed_Description2">
-    <value>Bu değer, aygıtınızın o anki etkinliğine bağlıdır. Çoğu durumda, en yüksek VPN hızını göstermez.</value>
+    <value>Bu değer, aygıtınızın şu andaki etkinliğine bağlıdır. Çoğu durumda, en yüksek VPN hızını göstermez.</value>
   </data>
   <data name="Flyouts_Speed_Download">
     <value>İndirme</value>
@@ -2744,7 +2744,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Smart Routing genellikle gizlilik karşıtı yasaları ve diğer sansür biçimlerini aşmak için kullanılır.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>Sizi fiziksel olarak başka bir yerde bulunan sunucular aracılığıyla hedef ülkenize bağlar: {0}.</value>
+    <value>Sizi fiziksel olarak başka bir yerde bulunan sunucular üzerinden hedef ülkenize bağlar: {0}</value>
     <comment>{0} is a placeholder for the countries where the physical servers are. Can be either one country or multiple countries separated with comma.</comment>
   </data>
   <data name="Overlay_SmartRouting_LearnMore">

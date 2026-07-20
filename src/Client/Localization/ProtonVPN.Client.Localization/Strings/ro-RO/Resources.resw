@@ -3329,7 +3329,7 @@ O solicitare mare a serverului vă poate încetini conexiunea.</value>
     <value>Selectați aplicații</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Description">
-    <value>Personalizați-vă conexiunea decizând ce aplicații și adrese IP sunt protejate de către VPN.</value>
+    <value>Personalizați-vă conexiunea decizând care aplicații și adrese IP sunt protejate de către VPN.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse">
     <value>Mod includere</value>

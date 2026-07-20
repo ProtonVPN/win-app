@@ -632,7 +632,7 @@ Fejlkode: {0}</value>
     <value>Smart routing</value>
   </data>
   <data name="Countries_SmartRouting_RoutedThrough">
-    <value>Smart routet gennem {0}</value>
+    <value>Smart-routet gennem {0}</value>
     <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
   </data>
   <data name="Countries_Tor">
