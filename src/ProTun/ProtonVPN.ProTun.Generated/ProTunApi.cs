@@ -3007,6 +3007,40 @@ class FfiConverterTypeVpnState: FfiConverterRustBuffer<VpnState> {
 
 
 
+public record WaitJail (
+    WaitJailReason @reason, 
+    ulong @code, 
+    string @message
+) {
+}
+
+class FfiConverterTypeWaitJail: FfiConverterRustBuffer<WaitJail> {
+    public static FfiConverterTypeWaitJail INSTANCE = new FfiConverterTypeWaitJail();
+
+    public override WaitJail Read(BigEndianStream stream) {
+        return new WaitJail(
+            @reason: FfiConverterTypeWaitJailReason.INSTANCE.Read(stream),
+            @code: FfiConverterUInt64.INSTANCE.Read(stream),
+            @message: FfiConverterString.INSTANCE.Read(stream)
+        );
+    }
+
+    public override int AllocationSize(WaitJail value) {
+        return 0
+            + FfiConverterTypeWaitJailReason.INSTANCE.AllocationSize(value.@reason)
+            + FfiConverterUInt64.INSTANCE.AllocationSize(value.@code)
+            + FfiConverterString.INSTANCE.AllocationSize(value.@message);
+    }
+
+    public override void Write(WaitJail value, BigEndianStream stream) {
+            FfiConverterTypeWaitJailReason.INSTANCE.Write(value.@reason, stream);
+            FfiConverterUInt64.INSTANCE.Write(value.@code, stream);
+            FfiConverterString.INSTANCE.Write(value.@message, stream);
+    }
+}
+
+
+
 
 
 public record AgentConnectionWaitReason {
@@ -3015,7 +3049,7 @@ public record AgentConnectionWaitReason {
     
     
     public record HardJailed (
-        WaitJailReason[] @jails
+        WaitJail[] @jails
     ) : AgentConnectionWaitReason {}
     
 
@@ -3033,7 +3067,7 @@ class FfiConverterTypeAgentConnectionWaitReason : FfiConverterRustBuffer<AgentCo
                 );
             case 2:
                 return new AgentConnectionWaitReason.HardJailed(
-                    FfiConverterSequenceTypeWaitJailReason.INSTANCE.Read(stream)
+                    FfiConverterSequenceTypeWaitJail.INSTANCE.Read(stream)
                 );
             default:
                 throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeAgentConnectionWaitReason.Read()", value));
@@ -3046,7 +3080,7 @@ class FfiConverterTypeAgentConnectionWaitReason : FfiConverterRustBuffer<AgentCo
                 return 4;
             case AgentConnectionWaitReason.HardJailed variant_value:
                 return 4
-                    + FfiConverterSequenceTypeWaitJailReason.INSTANCE.AllocationSize(variant_value.@jails);
+                    + FfiConverterSequenceTypeWaitJail.INSTANCE.AllocationSize(variant_value.@jails);
             default:
                 throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeAgentConnectionWaitReason.AllocationSize()", value));
         }
@@ -3059,11 +3093,44 @@ class FfiConverterTypeAgentConnectionWaitReason : FfiConverterRustBuffer<AgentCo
                 break;
             case AgentConnectionWaitReason.HardJailed variant_value:
                 stream.WriteInt(2);
-                FfiConverterSequenceTypeWaitJailReason.INSTANCE.Write(variant_value.@jails, stream);
+                FfiConverterSequenceTypeWaitJail.INSTANCE.Write(variant_value.@jails, stream);
                 break;
             default:
                 throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeAgentConnectionWaitReason.Write()", value));
         }
+    }
+}
+
+
+
+
+
+
+
+public enum ApiEndpoint: int {
+    
+    Auth,
+    CertificateRefresh
+}
+
+class FfiConverterTypeApiEndpoint: FfiConverterRustBuffer<ApiEndpoint> {
+    public static FfiConverterTypeApiEndpoint INSTANCE = new FfiConverterTypeApiEndpoint();
+
+    public override ApiEndpoint Read(BigEndianStream stream) {
+        var value = stream.ReadInt() - 1;
+        if (Enum.IsDefined(typeof(ApiEndpoint), value)) {
+            return (ApiEndpoint)value;
+        } else {
+            throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeApiEndpoint.Read()", value));
+        }
+    }
+
+    public override int AllocationSize(ApiEndpoint value) {
+        return 4;
+    }
+
+    public override void Write(ApiEndpoint value, BigEndianStream stream) {
+        stream.WriteInt((int)value + 1);
     }
 }
 
@@ -3513,8 +3580,19 @@ public record ErrorEvent {
     /// Client should provide a new fork selector. Care should be taken to not create a forking loop
     /// where a forked session fails repeatedly.
     /// </summary>
-    public record ApiSessionExpired: ErrorEvent {}
+    public record ForkSelectorNeeded: ErrorEvent {}
     
+    
+    /// <summary>
+    /// API request failure.
+    /// </summary>
+    public record ApiError (
+        ApiEndpoint @endpoint,
+        ushort? @httpCode,
+        long? @protonCode,
+        string? @message,
+        bool @refreshTokenInvalid
+    ) : ErrorEvent {}
     
     public record LocalAgentSettingPolicyRefused (
         LocalAgentSettingType @setting
@@ -3537,13 +3615,21 @@ class FfiConverterTypeErrorEvent : FfiConverterRustBuffer<ErrorEvent>{
         var value = stream.ReadInt();
         switch (value) {
             case 1:
-                return new ErrorEvent.ApiSessionExpired(
+                return new ErrorEvent.ForkSelectorNeeded(
                 );
             case 2:
+                return new ErrorEvent.ApiError(
+                    FfiConverterTypeApiEndpoint.INSTANCE.Read(stream),
+                    FfiConverterOptionalUInt16.INSTANCE.Read(stream),
+                    FfiConverterOptionalInt64.INSTANCE.Read(stream),
+                    FfiConverterOptionalString.INSTANCE.Read(stream),
+                    FfiConverterBoolean.INSTANCE.Read(stream)
+                );
+            case 3:
                 return new ErrorEvent.LocalAgentSettingPolicyRefused(
                     FfiConverterTypeLocalAgentSettingType.INSTANCE.Read(stream)
                 );
-            case 3:
+            case 4:
                 return new ErrorEvent.CertificateRefreshFatalError(
                 );
             default:
@@ -3553,8 +3639,15 @@ class FfiConverterTypeErrorEvent : FfiConverterRustBuffer<ErrorEvent>{
 
     public override int AllocationSize(ErrorEvent value) {
         switch (value) {
-            case ErrorEvent.ApiSessionExpired variant_value:
+            case ErrorEvent.ForkSelectorNeeded variant_value:
                 return 4;
+            case ErrorEvent.ApiError variant_value:
+                return 4
+                    + FfiConverterTypeApiEndpoint.INSTANCE.AllocationSize(variant_value.@endpoint)
+                    + FfiConverterOptionalUInt16.INSTANCE.AllocationSize(variant_value.@httpCode)
+                    + FfiConverterOptionalInt64.INSTANCE.AllocationSize(variant_value.@protonCode)
+                    + FfiConverterOptionalString.INSTANCE.AllocationSize(variant_value.@message)
+                    + FfiConverterBoolean.INSTANCE.AllocationSize(variant_value.@refreshTokenInvalid);
             case ErrorEvent.LocalAgentSettingPolicyRefused variant_value:
                 return 4
                     + FfiConverterTypeLocalAgentSettingType.INSTANCE.AllocationSize(variant_value.@setting);
@@ -3567,15 +3660,23 @@ class FfiConverterTypeErrorEvent : FfiConverterRustBuffer<ErrorEvent>{
 
     public override void Write(ErrorEvent value, BigEndianStream stream) {
         switch (value) {
-            case ErrorEvent.ApiSessionExpired variant_value:
+            case ErrorEvent.ForkSelectorNeeded variant_value:
                 stream.WriteInt(1);
                 break;
-            case ErrorEvent.LocalAgentSettingPolicyRefused variant_value:
+            case ErrorEvent.ApiError variant_value:
                 stream.WriteInt(2);
+                FfiConverterTypeApiEndpoint.INSTANCE.Write(variant_value.@endpoint, stream);
+                FfiConverterOptionalUInt16.INSTANCE.Write(variant_value.@httpCode, stream);
+                FfiConverterOptionalInt64.INSTANCE.Write(variant_value.@protonCode, stream);
+                FfiConverterOptionalString.INSTANCE.Write(variant_value.@message, stream);
+                FfiConverterBoolean.INSTANCE.Write(variant_value.@refreshTokenInvalid, stream);
+                break;
+            case ErrorEvent.LocalAgentSettingPolicyRefused variant_value:
+                stream.WriteInt(3);
                 FfiConverterTypeLocalAgentSettingType.INSTANCE.Write(variant_value.@setting, stream);
                 break;
             case ErrorEvent.CertificateRefreshFatalError variant_value:
-                stream.WriteInt(3);
+                stream.WriteInt(4);
                 break;
             default:
                 throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeErrorEvent.Write()", value));
@@ -4604,180 +4705,43 @@ class FfiConverterTypeRestriction : FfiConverterRustBuffer<Restriction>{
 /// be handled internally by the library). Messages are not localized and suitable only for
 /// logging/debugging.
 /// </summary>
-public record WaitJailReason {
+public enum WaitJailReason: int {
     
-    public record BadUserBehavior (
-        string @message
-    ) : WaitJailReason {}
-    
-    public record DisabledUser (
-        string @message
-    ) : WaitJailReason {}
-    
-    public record LowPlan (
-        string @message
-    ) : WaitJailReason {}
-    
-    public record Need2Fa (
-        string @message
-    ) : WaitJailReason {}
-    
-    public record PendingInvoice (
-        string @message
-    ) : WaitJailReason {}
-    
-    public record SessionOverLimit (
-        string @message
-    ) : WaitJailReason {}
-    
-    public record WaitingClientChallengeReply (
-        string @message
-    ) : WaitJailReason {}
-    
+    BadUserBehavior,
+    DisabledUser,
+    LowPlan,
+    Need2Fa,
+    PendingInvoice,
+    SessionOverLimit,
+    WaitingClientChallengeReply,
     /// <summary>
     /// Will be handled internally by the library - no action required by the app.
     /// </summary>
-    public record Internal (
-        string @message
-    ) : WaitJailReason {}
-    
+    Internal,
     /// <summary>
     /// Unknown error codes, not supported in this version.
     /// </summary>
-    public record Other (
-        ulong @code,
-        string @message
-    ) : WaitJailReason {}
-    
-
-    
+    Other
 }
 
-class FfiConverterTypeWaitJailReason : FfiConverterRustBuffer<WaitJailReason>{
-    public static FfiConverterRustBuffer<WaitJailReason> INSTANCE = new FfiConverterTypeWaitJailReason();
+class FfiConverterTypeWaitJailReason: FfiConverterRustBuffer<WaitJailReason> {
+    public static FfiConverterTypeWaitJailReason INSTANCE = new FfiConverterTypeWaitJailReason();
 
     public override WaitJailReason Read(BigEndianStream stream) {
-        var value = stream.ReadInt();
-        switch (value) {
-            case 1:
-                return new WaitJailReason.BadUserBehavior(
-                    FfiConverterString.INSTANCE.Read(stream)
-                );
-            case 2:
-                return new WaitJailReason.DisabledUser(
-                    FfiConverterString.INSTANCE.Read(stream)
-                );
-            case 3:
-                return new WaitJailReason.LowPlan(
-                    FfiConverterString.INSTANCE.Read(stream)
-                );
-            case 4:
-                return new WaitJailReason.Need2Fa(
-                    FfiConverterString.INSTANCE.Read(stream)
-                );
-            case 5:
-                return new WaitJailReason.PendingInvoice(
-                    FfiConverterString.INSTANCE.Read(stream)
-                );
-            case 6:
-                return new WaitJailReason.SessionOverLimit(
-                    FfiConverterString.INSTANCE.Read(stream)
-                );
-            case 7:
-                return new WaitJailReason.WaitingClientChallengeReply(
-                    FfiConverterString.INSTANCE.Read(stream)
-                );
-            case 8:
-                return new WaitJailReason.Internal(
-                    FfiConverterString.INSTANCE.Read(stream)
-                );
-            case 9:
-                return new WaitJailReason.Other(
-                    FfiConverterUInt64.INSTANCE.Read(stream),
-                    FfiConverterString.INSTANCE.Read(stream)
-                );
-            default:
-                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeWaitJailReason.Read()", value));
+        var value = stream.ReadInt() - 1;
+        if (Enum.IsDefined(typeof(WaitJailReason), value)) {
+            return (WaitJailReason)value;
+        } else {
+            throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeWaitJailReason.Read()", value));
         }
     }
 
     public override int AllocationSize(WaitJailReason value) {
-        switch (value) {
-            case WaitJailReason.BadUserBehavior variant_value:
-                return 4
-                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@message);
-            case WaitJailReason.DisabledUser variant_value:
-                return 4
-                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@message);
-            case WaitJailReason.LowPlan variant_value:
-                return 4
-                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@message);
-            case WaitJailReason.Need2Fa variant_value:
-                return 4
-                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@message);
-            case WaitJailReason.PendingInvoice variant_value:
-                return 4
-                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@message);
-            case WaitJailReason.SessionOverLimit variant_value:
-                return 4
-                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@message);
-            case WaitJailReason.WaitingClientChallengeReply variant_value:
-                return 4
-                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@message);
-            case WaitJailReason.Internal variant_value:
-                return 4
-                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@message);
-            case WaitJailReason.Other variant_value:
-                return 4
-                    + FfiConverterUInt64.INSTANCE.AllocationSize(variant_value.@code)
-                    + FfiConverterString.INSTANCE.AllocationSize(variant_value.@message);
-            default:
-                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeWaitJailReason.AllocationSize()", value));
-        }
+        return 4;
     }
 
     public override void Write(WaitJailReason value, BigEndianStream stream) {
-        switch (value) {
-            case WaitJailReason.BadUserBehavior variant_value:
-                stream.WriteInt(1);
-                FfiConverterString.INSTANCE.Write(variant_value.@message, stream);
-                break;
-            case WaitJailReason.DisabledUser variant_value:
-                stream.WriteInt(2);
-                FfiConverterString.INSTANCE.Write(variant_value.@message, stream);
-                break;
-            case WaitJailReason.LowPlan variant_value:
-                stream.WriteInt(3);
-                FfiConverterString.INSTANCE.Write(variant_value.@message, stream);
-                break;
-            case WaitJailReason.Need2Fa variant_value:
-                stream.WriteInt(4);
-                FfiConverterString.INSTANCE.Write(variant_value.@message, stream);
-                break;
-            case WaitJailReason.PendingInvoice variant_value:
-                stream.WriteInt(5);
-                FfiConverterString.INSTANCE.Write(variant_value.@message, stream);
-                break;
-            case WaitJailReason.SessionOverLimit variant_value:
-                stream.WriteInt(6);
-                FfiConverterString.INSTANCE.Write(variant_value.@message, stream);
-                break;
-            case WaitJailReason.WaitingClientChallengeReply variant_value:
-                stream.WriteInt(7);
-                FfiConverterString.INSTANCE.Write(variant_value.@message, stream);
-                break;
-            case WaitJailReason.Internal variant_value:
-                stream.WriteInt(8);
-                FfiConverterString.INSTANCE.Write(variant_value.@message, stream);
-                break;
-            case WaitJailReason.Other variant_value:
-                stream.WriteInt(9);
-                FfiConverterUInt64.INSTANCE.Write(variant_value.@code, stream);
-                FfiConverterString.INSTANCE.Write(variant_value.@message, stream);
-                break;
-            default:
-                throw new InternalException(String.Format("invalid enum value '{0}' in FfiConverterTypeWaitJailReason.Write()", value));
-        }
+        stream.WriteInt((int)value + 1);
     }
 }
 
@@ -5145,6 +5109,37 @@ class FfiConverterTypeStateChangedCallback: FfiConverter<StateChangedCallback, u
 
 
 
+class FfiConverterOptionalUInt16: FfiConverterRustBuffer<ushort?> {
+    public static FfiConverterOptionalUInt16 INSTANCE = new FfiConverterOptionalUInt16();
+
+    public override ushort? Read(BigEndianStream stream) {
+        if (stream.ReadByte() == 0) {
+            return null;
+        }
+        return FfiConverterUInt16.INSTANCE.Read(stream);
+    }
+
+    public override int AllocationSize(ushort? value) {
+        if (value == null) {
+            return 1;
+        } else {
+            return 1 + FfiConverterUInt16.INSTANCE.AllocationSize((ushort)value);
+        }
+    }
+
+    public override void Write(ushort? value, BigEndianStream stream) {
+        if (value == null) {
+            stream.WriteByte(0);
+        } else {
+            stream.WriteByte(1);
+            FfiConverterUInt16.INSTANCE.Write((ushort)value, stream);
+        }
+    }
+}
+
+
+
+
 class FfiConverterOptionalUInt64: FfiConverterRustBuffer<ulong?> {
     public static FfiConverterOptionalUInt64 INSTANCE = new FfiConverterOptionalUInt64();
 
@@ -5169,6 +5164,37 @@ class FfiConverterOptionalUInt64: FfiConverterRustBuffer<ulong?> {
         } else {
             stream.WriteByte(1);
             FfiConverterUInt64.INSTANCE.Write((ulong)value, stream);
+        }
+    }
+}
+
+
+
+
+class FfiConverterOptionalInt64: FfiConverterRustBuffer<long?> {
+    public static FfiConverterOptionalInt64 INSTANCE = new FfiConverterOptionalInt64();
+
+    public override long? Read(BigEndianStream stream) {
+        if (stream.ReadByte() == 0) {
+            return null;
+        }
+        return FfiConverterInt64.INSTANCE.Read(stream);
+    }
+
+    public override int AllocationSize(long? value) {
+        if (value == null) {
+            return 1;
+        } else {
+            return 1 + FfiConverterInt64.INSTANCE.AllocationSize((long)value);
+        }
+    }
+
+    public override void Write(long? value, BigEndianStream stream) {
+        if (value == null) {
+            stream.WriteByte(0);
+        } else {
+            stream.WriteByte(1);
+            FfiConverterInt64.INSTANCE.Write((long)value, stream);
         }
     }
 }
@@ -5809,6 +5835,52 @@ class FfiConverterSequenceTypePeerInfo: FfiConverterRustBuffer<PeerInfo[]> {
 
 
 
+class FfiConverterSequenceTypeWaitJail: FfiConverterRustBuffer<WaitJail[]> {
+    public static FfiConverterSequenceTypeWaitJail INSTANCE = new FfiConverterSequenceTypeWaitJail();
+
+    public override WaitJail[]  Read(BigEndianStream stream) {
+        var length = stream.ReadInt();
+        if (length == 0) {
+            return [];
+        }
+
+        var result = new WaitJail[(length)];
+        var readFn = FfiConverterTypeWaitJail.INSTANCE.Read;
+        for (int i = 0; i < length; i++) {
+            result[i] = readFn(stream);
+        }
+        return result;
+    }
+
+    public override int AllocationSize(WaitJail[]  value) {
+        var sizeForLength = 4;
+
+        // details/1-empty-list-as-default-method-parameter.md
+        if (value == null) {
+            return sizeForLength;
+        }
+
+        var allocationSizeFn = FfiConverterTypeWaitJail.INSTANCE.AllocationSize;
+        var sizeForItems = value.Sum(item => allocationSizeFn(item));
+        return sizeForLength + sizeForItems;
+    }
+
+    public override void Write(WaitJail[] value, BigEndianStream stream) {
+        // details/1-empty-list-as-default-method-parameter.md
+        if (value == null) {
+            stream.WriteInt(0);
+            return;
+        }
+
+        stream.WriteInt(value.Length);
+        var writerFn = FfiConverterTypeWaitJail.INSTANCE.Write;
+        value.ForEach(item => writerFn(item, stream));
+    }
+}
+
+
+
+
 class FfiConverterSequenceTypePeerConnectionWaitReason: FfiConverterRustBuffer<PeerConnectionWaitReason[]> {
     public static FfiConverterSequenceTypePeerConnectionWaitReason INSTANCE = new FfiConverterSequenceTypePeerConnectionWaitReason();
 
@@ -5894,52 +5966,6 @@ class FfiConverterSequenceTypeRestriction: FfiConverterRustBuffer<Restriction[]>
 
         stream.WriteInt(value.Length);
         var writerFn = FfiConverterTypeRestriction.INSTANCE.Write;
-        value.ForEach(item => writerFn(item, stream));
-    }
-}
-
-
-
-
-class FfiConverterSequenceTypeWaitJailReason: FfiConverterRustBuffer<WaitJailReason[]> {
-    public static FfiConverterSequenceTypeWaitJailReason INSTANCE = new FfiConverterSequenceTypeWaitJailReason();
-
-    public override WaitJailReason[]  Read(BigEndianStream stream) {
-        var length = stream.ReadInt();
-        if (length == 0) {
-            return [];
-        }
-
-        var result = new WaitJailReason[(length)];
-        var readFn = FfiConverterTypeWaitJailReason.INSTANCE.Read;
-        for (int i = 0; i < length; i++) {
-            result[i] = readFn(stream);
-        }
-        return result;
-    }
-
-    public override int AllocationSize(WaitJailReason[]  value) {
-        var sizeForLength = 4;
-
-        // details/1-empty-list-as-default-method-parameter.md
-        if (value == null) {
-            return sizeForLength;
-        }
-
-        var allocationSizeFn = FfiConverterTypeWaitJailReason.INSTANCE.AllocationSize;
-        var sizeForItems = value.Sum(item => allocationSizeFn(item));
-        return sizeForLength + sizeForItems;
-    }
-
-    public override void Write(WaitJailReason[] value, BigEndianStream stream) {
-        // details/1-empty-list-as-default-method-parameter.md
-        if (value == null) {
-            stream.WriteInt(0);
-            return;
-        }
-
-        stream.WriteInt(value.Length);
-        var writerFn = FfiConverterTypeWaitJailReason.INSTANCE.Write;
         value.ForEach(item => writerFn(item, stream));
     }
 }
