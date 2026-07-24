@@ -19,10 +19,11 @@
 
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
-using ProtonVPN.UI.Tests.Enums.Locations;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.Enums.Locations;
+using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -30,16 +31,15 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("3")]
 [Category("ARM")]
 [Category("SMOKE_3")]
-public class RecentsTests : BaseTest
+public class RecentsTests : FreshSessionSetUp
 {
     private const Country COUNTRY_NAME = Country.Austria;
     private static readonly string _fastestCountry = LanguageHelper.GetTranslatedString("Country_Fastest");
     private static readonly string _profileName = DefaultProfile.Gaming.GetEnumValue();
 
-    [OneTimeSetUp]
+    [SetUp]
     public void SetUp()
     {
-        LaunchClient();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
 
@@ -51,23 +51,14 @@ public class RecentsTests : BaseTest
             .NavigateToRecents()
             .Verify.IsNoRecentsLabelDisplayed();
 
-        HomeRobot
-            .ConnectViaConnectionCard()
-            .Verify.IsConnected()
-            .Disconnect()
-            .Verify.IsDisconnected();
+        RecentsFlow.PopulateRecentsListWithFastestConnection();
 
         SidebarRobot
             .Verify.HasNoRecentsLabel()
                    .IsConnectionOptionDisplayed(_fastestCountry)
-                   .IsRecentsCountDisplayed(1)
-           .NavigateToAllCountriesTab()
-           .ConnectToCountry(COUNTRY_NAME);
+                   .IsRecentsCountDisplayed(1);
 
-        HomeRobot
-            .Verify.IsConnected()
-            .Disconnect()
-            .Verify.IsDisconnected();
+        RecentsFlow.PopulateRecentsListWithCountry(COUNTRY_NAME);
 
         SidebarRobot
             .NavigateToRecents()
@@ -79,37 +70,38 @@ public class RecentsTests : BaseTest
     [Property("TestCaseId", "602425")]
     public void ProfilesAreAddedToRecentList()
     {
-        SidebarRobot
-            .NavigateToProfiles()
-            .ConnectToProfile(_profileName);
-
-        HomeRobot
-            .Verify.IsConnected()
-            .Disconnect()
-            .Verify.IsDisconnected();
+        RecentsFlow.PopulateRecentsListWithProfile(_profileName);
 
         SidebarRobot
             .NavigateToRecents()
             .Verify.IsConnectionOptionDisplayed(_profileName)
-            .IsRecentsCountDisplayed(3);
+            .IsRecentsCountDisplayed(1);
     }
 
     [Test, Order(2)]
     [Property("TestCaseId", "602419")]
     public void RemoveRecentFromList()
     {
+        RecentsFlow.PopulateRecentsListWithFastestConnection();
+        RecentsFlow.PopulateRecentsListWithCountry(COUNTRY_NAME);
+
         SidebarRobot
+            .NavigateToRecents()
             .ExpandSecondaryActionsForRecents(_fastestCountry)
             .RemoveRecent()
             .Verify.IsConnectionOptionMissing(_fastestCountry)
-                   .IsRecentsCountDisplayed(2);
+                   .IsRecentsCountDisplayed(1);
     }
 
     [Test, Order(3)]
     [Property("TestCaseId", "602420")]
     public void PinRecentFromList()
     {
+        RecentsFlow.PopulateRecentsListWithCountry(COUNTRY_NAME);
+        RecentsFlow.PopulateRecentsListWithProfile(_profileName);
+
         SidebarRobot
+            .NavigateToRecents()
             .Verify.IsConnectionOptionDisplayed(_profileName)
                    .IsRecentsCountDisplayed(2)
                    .IsPinnedCountMissing()
@@ -123,19 +115,19 @@ public class RecentsTests : BaseTest
     [Property("TestCaseId", "800922")]
     public void UnpinRecentFromList()
     {
+        RecentsFlow.PopulateRecentsListWithCountry(COUNTRY_NAME);
+        RecentsFlow.PopulateRecentsListWithProfile(_profileName);
+
         SidebarRobot
+            .NavigateToRecents()
             .Verify.IsConnectionOptionDisplayed(_profileName)
-                   .IsRecentsCountDisplayed(1)
+            .ExpandSecondaryActionsForRecents(_profileName)
+            .PinRecent()
+            .Verify.IsRecentsCountDisplayed(1)
                    .IsPinnedCountDisplayed(1)
             .ExpandSecondaryActionsForRecents(_profileName)
             .UnpinRecent()
             .Verify.IsPinnedCountMissing()
                    .IsRecentsCountDisplayed(2);
-    }
-
-    [OneTimeTearDown]
-    public void TearDown()
-    {
-        Cleanup();
     }
 }

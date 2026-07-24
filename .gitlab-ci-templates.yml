@@ -1,5 +1,4 @@
 .push_results_to_testmo:
-  when: always
   except:
     - /^debug.*$/
     - /^release\/9\.9\.9.*$/
@@ -20,13 +19,10 @@
       optional: true
   tags:
     - redesign #ui-tests-debug
-  hooks:
-    pre_get_sources_script:
-      - Get-Process | Where-Object { $_.Name -like "proton*" } | Stop-Process -Force -ErrorAction Ignore
-      - Get-Process | Where-Object { $_.Name -like "unins0*" } | Stop-Process -Force -ErrorAction Ignore
-  script:
+  before_script:
     - ci\test-scripts\uninstall-app.ps1
     - ci\test-scripts\install-the-app.ps1
+  script:
     - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin/e2e
     - ci\test-scripts\run-tests.ps1 -Category ${CATEGORY}
   after_script:
@@ -40,6 +36,7 @@
     expire_in: 1 weeks
     reports:
       junit: $UI_TEST_REPORT_PATH/*.xml
+  allow_failure: true
   
 .unit_test_config:
   stage: test

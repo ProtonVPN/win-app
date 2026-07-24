@@ -26,6 +26,7 @@ using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.Enums.Locations;
+using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -153,9 +154,9 @@ public class PortForwardingTests : FreshSessionSetUp
     }
 
     [Test]
-    [Retry(3)]
     [Property("TestCaseId", "602441")]
     [Category("SMOKE_3")]
+    [Retry(3)]
     public void VerifyP2PServerGeneratesPortNumber()
     {
         DesktopRobot.DismissOldToastsIfVisible();

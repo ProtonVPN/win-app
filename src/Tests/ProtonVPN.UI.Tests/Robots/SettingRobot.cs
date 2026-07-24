@@ -222,8 +222,7 @@ public class SettingRobot
 
     public SettingRobot SignOut()
     {
-        // Due to focus issues double click is required to trigger click event.
-        SignOutButton.DoubleClick();
+        SignOutButton.ClickUntilElementDisappears();
         return this;
     }
 
@@ -687,6 +686,13 @@ public class SettingRobot
                     break;
             }
 
+            return this;
+        }
+
+        public Verifications IsProfileTaglineDisplayed(string profileName)
+        {
+            string settingsOverriddenByProfileTagline = LanguageHelper.GetTranslatedString("Settings_OverriddenByProfile_Tagline").Replace("{0}", profileName);
+            Element.ByName(settingsOverriddenByProfileTagline).WaitUntilDisplayed();
             return this;
         }
 

@@ -18,14 +18,15 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Diagnostics;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using FlaUI.UIA3;
 using FlaUI.Core.Input;
+using FlaUI.Core.Definitions;
 using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestsHelper;
@@ -82,6 +83,9 @@ public class DesktopRobot : IDisposable
         {
             // Ignore
         }
+
+        //Wait to make sure its gone
+        Thread.Sleep(TestConstants.TwoSecondsTimeout);
         return this;
     }
 
@@ -104,7 +108,12 @@ public class DesktopRobot : IDisposable
         Thread.Sleep(TestConstants.TwoSecondsTimeout);
         ShowMoreButton.Patterns.ExpandCollapse.Pattern.Expand();
         Thread.Sleep(TestConstants.AnimationDelay);
-        VpnToggle!.AsToggleButton().Toggle();
+
+        ToggleButton vpnToggleButton = VpnToggle!.AsToggleButton();
+        if (vpnToggleButton.ToggleState == ToggleState.Off)
+        {
+            vpnToggleButton.Toggle();
+        }
 
         SettingsWindow.AsWindow().Close();
     }
@@ -174,10 +183,19 @@ public class DesktopRobot : IDisposable
                 AutomationElement desktop = _automation.GetDesktop();
                 desktopApps = desktop.FindAllChildren();
 
+                // Trying normal UIA title match first
                 if (desktopApps.Any(e => e.Name != null && e.Name.Contains(windowTitlePart)))
                 {
                     return this;
                 }
+
+                // Trying process-based detection as a fallback
+                bool browserRunning = Process.GetProcessesByName("msedge").Any() || Process.GetProcessesByName("chrome").Any();
+                if (browserRunning)
+                {
+                    return this;
+                }
+
                 Thread.Sleep(TestConstants.FiveSecondsTimeout);
             }
 

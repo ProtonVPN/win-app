@@ -185,14 +185,15 @@ public class HomeRobot
 
     public HomeRobot ExitViaKebabMenu()
     {
+        Thread.Sleep(TestConstants.AnimationDelay);
         KebabMenuExitItem.DoubleClick();
         return this;
     }
 
     public HomeRobot ExitViaKebabMenuWithConfirmation()
     {
-        KebabMenuExitItem.DoubleClick();
-        ExitButton.Click();
+        ExitViaKebabMenu();
+        ExitButton.ClickUntilElementDisappears();
         return this;
     }
 

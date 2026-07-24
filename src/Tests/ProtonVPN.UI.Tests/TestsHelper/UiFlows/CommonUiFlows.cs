@@ -19,15 +19,27 @@
 
 using System;
 using System.Threading;
-using OpenQA.Selenium;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 
-namespace ProtonVPN.UI.Tests.TestsHelper;
+namespace ProtonVPN.UI.Tests.TestsHelper.UiFlows;
 
 public class CommonUiFlows : BaseTest
 {
+    public static void CloseConnectionHelpModalIfDisaplyed(TimeSpan? timeout = null)
+    {
+        timeout ??= TestConstants.TenSecondsTimeout;
+
+        try
+        {
+            SupportRobot
+                .Verify.IsConnectionHelpDisplayed(timeout)
+                .CloseSupportWindow(); // sometimes there is no internet and the connection help modal shows
+        }
+        catch { }
+    }
+
     public static void FullLogin(TestUserData testUser, bool isProTunVersion = true)
     {
         LoginRobot
@@ -80,6 +92,14 @@ public class CommonUiFlows : BaseTest
             InteruptConnection();
             verifyDisconnectState();
         }
+    }
+
+    public static void VerifyIsConnectedThenDisconnect()
+    {
+        HomeRobot
+            .Verify.IsConnected()
+            .Disconnect()
+            .Verify.IsDisconnected();
     }
 
     public static void ChangeProtocol(Protocol protocol, bool shouldEnableProTun = false)

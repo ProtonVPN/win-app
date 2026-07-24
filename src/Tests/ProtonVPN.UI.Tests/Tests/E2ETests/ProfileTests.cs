@@ -19,12 +19,15 @@
 
 using System;
 using System.Threading;
+using FlaUI.Core.Input;
+using FlaUI.Core.WindowsAPI;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Enums.Locations;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -32,7 +35,7 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 [Category("2")]
 [Category("ARM")]
 [Category("SMOKE_4")]
-public class ProfileTests : BaseTest
+public class ProfileTests : FreshSessionSetUp
 {
     private const string PROFILE_NAME = "Profile A";
     private const string CUSTOM_SETTINGS_PROFILE_NAME = "Profile C";
@@ -58,22 +61,21 @@ public class ProfileTests : BaseTest
         (profileName: "Profile 3", connectionType: ConnectionType.SecureCore, countryName: Country.Egypt, protocol: Protocol.WireGuardUdp)
     };
 
-    [OneTimeSetUp]
+    [SetUp]
     public void SetUp()
     {
-        LaunchClient();
+        BrowserUtils.KillAllBrowsers();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
+        SidebarRobot
+            .NavigateToProfiles();
+        NavigationRobot
+            .Verify.IsOnProfilesPage();
     }
 
     [Test, Order(0)]
     [Property("TestCaseId", "247")]
     public void VerifyDefaultProfilesExist()
     {
-        NavigationRobot
-            .Verify.IsOnConnectionsPage();
-        SidebarRobot
-            .NavigateToProfiles();
-
         foreach (DefaultProfile profile in Enum.GetValues(typeof(DefaultProfile)))
         {
             SidebarRobot
@@ -85,9 +87,6 @@ public class ProfileTests : BaseTest
     [Property("TestCaseId", "602398")]
     public void EmptyProfileList()
     {
-        NavigationRobot
-            .Verify.IsOnProfilesPage();
-
         RemoveProfiles();
 
         SidebarRobot
@@ -115,6 +114,8 @@ public class ProfileTests : BaseTest
     [Property("TestCaseId", "602400")]
     public void ConnectToProfileAndDisconnect()
     {
+        QuickCreateProfile(PROFILE_NAME);
+
         SidebarRobot
             .ConnectToProfile(PROFILE_NAME);
 
@@ -137,11 +138,10 @@ public class ProfileTests : BaseTest
     [Property("TestCaseId", "602401")]
     public void EditProfile()
     {
-        SidebarRobot
-            .ScrollToProfile(PROFILE_NAME)
-            .Verify.DoesConnectionItemExist(PROFILE_NAME)
-            .ConnectToProfile(PROFILE_NAME);
+        QuickCreateProfile(PROFILE_NAME);
 
+        SidebarRobot
+            .ConnectToProfile(PROFILE_NAME);
         HomeRobot
             .Verify.IsConnected();
 
@@ -168,12 +168,8 @@ public class ProfileTests : BaseTest
     [Property("TestCaseId", "602402")]
     public void DeleteProfile()
     {
-        SidebarRobot
-            .ScrollToProfile(PROFILE_NAME)
-            .Verify.DoesConnectionItemExist(PROFILE_NAME)
-            .DisconnectViaProfile(PROFILE_NAME);
-        HomeRobot
-            .Verify.IsDisconnected();
+        QuickCreateProfile(PROFILE_NAME);
+
         SidebarRobot
             .ExpandSecondaryActionsForProfile(PROFILE_NAME)
             .DeleteProfile();
@@ -210,6 +206,7 @@ public class ProfileTests : BaseTest
 
     [Test, Order(7)]
     [Property("TestCaseId", "610978")]
+    [Category("5")]
     [Retry(3)]
     public void ConnectAndGoWebsite()
     {
@@ -240,6 +237,7 @@ public class ProfileTests : BaseTest
 
     [Test, Order(8)]
     [Property("TestCaseId", "760486")]
+    [Category("5")]
     [Retry(3)]
     public void ConnectAndGoApp()
     {
@@ -273,12 +271,7 @@ public class ProfileTests : BaseTest
     [Property("TestCaseId", "610977")]
     public void ConnectWithCustomSettings()
     {
-        BrowserUtils.KillAllBrowsers();
-
-        CloseLeftoverProfilePage();
-
         SidebarRobot
-            .NavigateToProfiles()
             .ClickCreateProfile();
         NavigationRobot
             .Verify.IsOnProfilePage();
@@ -308,7 +301,9 @@ public class ProfileTests : BaseTest
             .Verify.IsProtocolDisplayed(CUSTOM_SETTINGS_PROTOCOL);
 
         SettingRobot
-            .Verify.IsNetshieldBlocking(NetShieldMode.BlockAdsMalwareTrackersAdultContent);
+            .Verify.IsNetshieldBlocking(NetShieldMode.BlockAdsMalwareTrackersAdultContent)
+            .OpenSettings()
+            .Verify.IsProfileTaglineDisplayed(CUSTOM_SETTINGS_PROFILE_NAME);
 
         //TODO: The map highlights the country of the server;
     }
@@ -348,6 +343,17 @@ public class ProfileTests : BaseTest
         }
 
         //TODO: The map highlights the country of the server;
+    }
+
+    private void QuickCreateProfile(string profileName)
+    {
+        SidebarRobot
+            .ClickCreateProfile();
+        ProfileRobot
+            .SetProfileName(profileName);
+        SaveProfile();
+        SidebarRobot
+            .ScrollToProfile(PROFILE_NAME);
     }
 
     private void CreateProfile(string profileName, ConnectionType connectionType, Country country, Protocol protocol)
@@ -407,10 +413,17 @@ public class ProfileTests : BaseTest
         }
     }
 
-    [OneTimeTearDown]
+    [TearDown]
     public void TearDown()
     {
+        Keyboard.Press(VirtualKeyShort.ESCAPE);
+        try
+        {
+            ConfirmationRobot
+                .Verify.IsOverlayDisplayed()
+                .CancelAction();
+        }
+        catch { }
         BrowserUtils.KillAllBrowsers();
-        Cleanup();
     }
 }

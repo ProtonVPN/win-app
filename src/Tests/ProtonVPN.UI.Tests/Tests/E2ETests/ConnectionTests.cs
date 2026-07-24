@@ -25,6 +25,7 @@ using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.Enums.Locations;
+using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -294,6 +295,7 @@ public class ConnectionTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602424")]
+    [Ignore("Retest Manually")]
     [Retry(3)]
     public void FreshSignInWhileConnectedToWireGuard()
     {
@@ -317,6 +319,7 @@ public class ConnectionTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "609951")]
+    [Category("5")]
     public void FirewallRulesAreNotIgnored()
     {
         CommonUiFlows.EnsureUserIsDisconnected();

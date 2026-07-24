@@ -24,6 +24,7 @@ using ProtonVPN.UI.Tests.ApiClient.TestEnv;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -60,9 +61,12 @@ public class GuestHoleTests : BaseTest
     [Retry(3)]
     public void SignUpUsingGuestHoles()
     {
+        BrowserUtils.KillAllBrowsers();
+
         LoginRobot.ClickCreateAccountButton();
 
-        DesktopRobot.Verify.IsWindowTitlePresent(CREATE_ACCOUNT_WINDOW);
+        DesktopRobot
+            .Verify.IsWindowTitlePresent(CREATE_ACCOUNT_WINDOW);
         //TODO: https://account.protonvpn.com/signup?ref=windows 
         //Note: it's important that ?ref=windows is added at the end of the URL when performing the test from Windows client;
         BrowserUtils.KillAllBrowsers();
@@ -111,7 +115,7 @@ public class GuestHoleTests : BaseTest
 
             WaitForGuestHolesToKickIn();
 
-            CloseConnectionHelpModalIfDisaplyed(TestConstants.TwoMinutesTimeout);
+            CommonUiFlows.CloseConnectionHelpModalIfDisaplyed(TestConstants.TwoMinutesTimeout);
 
             LoginRobot.Verify.IsLoginWindowDisplayed(TestConstants.FourMinutesTimeout);
 
@@ -165,23 +169,9 @@ public class GuestHoleTests : BaseTest
         Assert.Fail($"Timed out waiting for Captcha to show after 3 minutes.");
     }
 
-    private void CloseConnectionHelpModalIfDisaplyed(TimeSpan? timeout = null)
-    {
-        timeout ??= TestConstants.TenSecondsTimeout;
-
-        try
-        {
-            SupportRobot
-                .Verify.IsConnectionHelpDisplayed(timeout)
-                .CloseSupportWindow(); // sometimes there is no internet and the connection help modal shows
-        }
-        catch { }
-    }
-
     [TearDown]
     public void TearDown()
     {
-        CloseConnectionHelpModalIfDisaplyed();
         Cleanup();
     }
 

@@ -262,7 +262,9 @@ public class SidebarRobot
 
     public SidebarRobot ClickCreateProfile()
     {
+        Thread.Sleep(TestConstants.NavigationDelay);
         CreateProfileButton.Click();
+        Thread.Sleep(TestConstants.NavigationDelay);
         return this;
     }
 
@@ -311,6 +313,7 @@ public class SidebarRobot
 
     public SidebarRobot ExpandCities(Country countryName)
     {
+        Thread.Sleep(TestConstants.OneSecondTimeout);
         Element.ByAutomationId($"Navigate_to_{countryName.GetCode()}").FindChild(CountryExpanderButton).ExpandItem();
         // Remove when VPNWIN-2599 is implemented. 
         Thread.Sleep(TestConstants.AnimationDelay);
@@ -433,6 +436,7 @@ public class SidebarRobot
     {
         NavigateToCountries();
         CountryTabs.ClickItem(index);
+        Thread.Sleep(TestConstants.NavigationDelay);
         return this;
     }
 

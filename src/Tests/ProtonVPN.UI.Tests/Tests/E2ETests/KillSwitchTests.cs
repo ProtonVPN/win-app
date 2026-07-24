@@ -22,11 +22,12 @@ using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
-[Category("2")]
+[Category("5")]
 [Category("ARM")]
 [Category("SMOKE_2")]
 public class KillSwitchTests : FreshSessionSetUp
@@ -253,5 +254,11 @@ public class KillSwitchTests : FreshSessionSetUp
 
         NavigationRobot
             .Verify.IsOnConnectionDetailsPage();
+    }
+
+    [OneTimeTearDown]
+    public void TearDown()
+    {
+        ScriptHelper.EnableInternet();
     }
 }

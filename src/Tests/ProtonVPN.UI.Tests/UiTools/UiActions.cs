@@ -52,9 +52,30 @@ public static class UiActions
         elementToClick?.WaitUntilClickable(TestConstants.EighteenSecondsTimeout);
 
         DateTime timeoutDate = DateTime.UtcNow + TestConstants.FiveSecondsTimeout;
-        while (FindFirstDescendantUsingChildren(desiredElement.Condition) != null && (DateTime.UtcNow < timeoutDate))
+
+        while (DateTime.UtcNow < timeoutDate)
         {
-            elementToClick?.Click();
+            AutomationElement? element;
+            try
+            {
+                element = FindFirstDescendantUsingChildren(desiredElement.Condition);
+            }
+            catch (COMException)
+            {
+                break;
+            }
+
+            if (element == null)
+            {
+                break;
+            }
+
+            try
+            {
+                elementToClick?.Click();
+            }
+            catch (COMException) { }
+
             Thread.Sleep(TestConstants.AnimationDelay);
         }
 
@@ -529,6 +550,7 @@ public static class UiActions
         TimeSpan retryInterval = retryIntervalOverload ?? TestConstants.RetryInterval;
 
         AutomationElement? elementToWaitFor = null;
+        AutomationElement? parentElement = null;
 
         RetryResult<bool> retry = Retry.WhileFalse(
             () =>
@@ -544,6 +566,7 @@ public static class UiActions
 
                     if (desiredElement.ChildElement != null && elementToWaitFor != null)
                     {
+                        parentElement = elementToWaitFor;
                         elementToWaitFor = desiredElement.ChildElement.UseDescendantSearch
                             ? elementToWaitFor.FindFirstDescendant(desiredElement.ChildElement.Condition)
                             : elementToWaitFor.FindFirstChild(desiredElement.ChildElement.Condition);
@@ -562,10 +585,31 @@ public static class UiActions
 
         if (!retry.Success)
         {
-            string errorMessage = customMessage ??
-                (desiredElement.ChildElement != null
-                    ? $"Failed to get child element {desiredElement.ChildElement.SelectorName} inside {desiredElement.SelectorName} element within {time?.TotalSeconds} seconds."
-                    : $"Failed to get {desiredElement.SelectorName} element within {time?.TotalSeconds} seconds.");
+            string errorMessage;
+
+            if (desiredElement.ChildElement != null)
+            {
+                string availableElements = parentElement != null
+                    ? AutomationElementExtensions.DescribeAvailableElements(parentElement)
+                    : "parent element itself was never found, so its descendants could not be listed.";
+
+                errorMessage = customMessage ??
+                    $"Failed to get child element {desiredElement.ChildElement.SelectorName} inside " +
+                    $"{desiredElement.SelectorName} element within {time?.TotalSeconds} seconds. " +
+                    $"Available descendants of parent: {availableElements}";
+            }
+            else
+            {
+                AutomationElement? searchRoot = Element.Root ?? BaseTest.Window;
+
+                string availableElements = searchRoot != null
+                    ? AutomationElementExtensions.DescribeAvailableElements(searchRoot)
+                    : "neither Element.Root nor BaseTest.Window was available, so descendants could not be listed.";
+
+                errorMessage = customMessage ??
+                    $"Failed to get {desiredElement.SelectorName} element within {time?.TotalSeconds} seconds. " +
+                    $"Available descendants at {(Element.Root != null ? "Element.Root" : "BaseTest.Window")}: {availableElements}";
+            }
 
             throw new TimeoutException(errorMessage);
         }

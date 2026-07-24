@@ -12,7 +12,7 @@ function Main {
 
     $subfolders, $folderMap = Get-Subfolders
 
-    $automatedCount, $manualCount, $testMoCasesMap = Get-TestCases $subfolders
+    $automatedCount, $semiAutomatedCount, $manualCount, $testMoCasesMap = Get-TestCases $subfolders
 
     $runId = Create-Run $isSmokeTest
 
@@ -126,8 +126,8 @@ function Main {
 
     $automatedCountInCode = $passedCount + $failedCount
     $manualCount = $manualCount - 9 #Precondition tests to exclude from manual count
-    $totalTestsInTestMo = $automatedCount + $manualCount
-    $automatedPercentage = if ($totalTestsInTestMo -gt 0) { [math]::Round(($automatedCount / $totalTestsInTestMo) * 100, 1) } else { 0 }
+    $totalTestsInTestMo = $automatedCount + $semiAutomatedCount + $manualCount
+    $automatedPercentage = if ($totalTestsInTestMo -gt 0) { [math]::Round((($automatedCount + $semiAutomatedCount) / $totalTestsInTestMo) * 100, 1) } else { 0 }
     $totalMinutes = [math]::Round($totalRunElapsed / 60000000, 1)
     $mergedTestCount = $mergedTestCases.Count
     
@@ -143,7 +143,7 @@ function Main {
     
     Complete-Run $runId $totalMinutes $skippedCountNoTestCase $automatedPercentage
 
-    Show-Summary $isSmokeTest $automatedCountInCode $automatedCount $manualCount $totalTestsInTestMo $automatedPercentage $passedCount $failedCount $skippedCountNoTestCase $skippedCountKnownIssue $skippedCountManualRetest $totalMinutes $skippedNoTc $skippedManualRetest $skippedKnownIssue $uploadedTestCount $mergedTestCount $mergedTestCases $totalTestsInCode $parameterizedUploadCount $allParameterizedVariants $totalParameterizedInstances $parameterizedTests $parameterizedDuplicates
+    Show-Summary $isSmokeTest $automatedCountInCode $automatedCount $semiAutomatedCount $manualCount $totalTestsInTestMo $automatedPercentage $passedCount $failedCount $skippedCountNoTestCase $skippedCountKnownIssue $skippedCountManualRetest $totalMinutes $skippedNoTc $skippedManualRetest $skippedKnownIssue $uploadedTestCount $mergedTestCount $mergedTestCases $totalTestsInCode $parameterizedUploadCount $allParameterizedVariants $totalParameterizedInstances $parameterizedTests $parameterizedDuplicates
 }
 
 function Get-TestStatus {
@@ -206,8 +206,10 @@ function Get-TestCases {
         $subfolders)
 
     $automationTagId = 43821
+    $semiAutomationTagId = 61722
 
     $automatedCount = 0
+    $semiAutomatedCount = 0
     $manualCount = 0
     $testMoCasesMap = @{}
 
@@ -225,7 +227,11 @@ function Get-TestCases {
             foreach ($case in $casesResponse.result) {
                 if ($case.tags -contains $automationTagId) {
                     $automatedCount++
-                } else {
+                }
+                elseif ($case.tags -contains $semiAutomationTagId) {
+                    $semiAutomatedCount++
+                }
+                else {
                     $manualCount++
                 }
 
@@ -237,7 +243,7 @@ function Get-TestCases {
         }
     }
 
-    return $automatedCount, $manualCount, $testMoCasesMap
+    return $automatedCount, $semiAutomatedCount, $manualCount, $testMoCasesMap
 }
 
 function Create-Run {
@@ -342,6 +348,7 @@ function Show-Summary {
         $isSmokeTest,
         $automatedCountInCode,
         $automatedCount, 
+        $semiAutomatedCount,
         $manualCount, 
         $totalTestsInTestMo, 
         $automatedPercentage, 
@@ -379,6 +386,7 @@ function Show-Summary {
     Write-Host "Upload Calculation: $uploadedFromExecuted = Executed($executedTests) - Missing tests from TestMo($skippedCountNoTestCase) - Parameterized duplicates($parameterizedDuplicates) + Additional TC from Merged tests($mergedTestCount)"
     Write-Host "Final Upload: $uploadedTestCount = Upload Calculation($uploadedFromExecuted) + Skipped($skippedCountKnownIssue) + Retest($skippedCountManualRetest)"
     Write-Host "Automated (TestMo): $($automatedCount)"
+    Write-Host "Semi Automated (TestMo): $($semiAutomatedCount)"
     Write-Host "Manual (TestMo): $manualCount"
     Write-Host "Total Tests (TestMo): $totalTestsInTestMo"
     Write-Host "Automation coverage: $automatedPercentage%"

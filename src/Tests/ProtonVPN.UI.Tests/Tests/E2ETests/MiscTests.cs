@@ -24,6 +24,7 @@ using ProtonVPN.UI.Tests.Enums.Locations;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -116,6 +117,7 @@ public class MiscTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602427")]
+    [Category("5")]
     public void ToggleFeaturesFromFlyout()
     {
         FeaturesRobot
@@ -147,6 +149,7 @@ public class MiscTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602428")]
+    [Category("5")]
     public void FlyoutDisplaysFeatureStatusWhileConnected()
     {
         HomeRobot
@@ -237,9 +240,12 @@ public class MiscTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "202")]
+    [Category("5")]
     [Retry(3)]
     public void ForgotPassword()
     {
+        BrowserUtils.KillAllBrowsers();
+
         CommonUiFlows.Logout();
 
         LoginRobot
@@ -253,9 +259,12 @@ public class MiscTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "203")]
+    [Category("5")]
     [Retry(3)]
     public void ForgotUsername()
     {
+        BrowserUtils.KillAllBrowsers();
+
         CommonUiFlows.Logout();
 
         LoginRobot
@@ -269,15 +278,19 @@ public class MiscTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602333")]
+    [Category("5")]
     [Retry(3)]
     public void CreateAccount()
     {
+        BrowserUtils.KillAllBrowsers();
+
         CommonUiFlows.Logout();
 
         LoginRobot
             .ClickCreateAccountButton();
 
-        DesktopRobot.Verify.IsWindowTitlePresent(CREATE_ACCOUNT_WINDOW);
+        DesktopRobot
+            .Verify.IsWindowTitlePresent(CREATE_ACCOUNT_WINDOW);
         //TODO: https://account.protonvpn.com/signup?ref=windows 
         //Note: it's important that ?ref=windows is added at the end of the URL when performing the test from Windows client;
         BrowserUtils.KillAllBrowsers();

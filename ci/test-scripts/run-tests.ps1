@@ -1,6 +1,7 @@
 param (
     [string]$Category
 )
+$env:CATEGORY = $Category
 
 New-Item -ItemType Directory -Force -Path $env:UI_TEST_REPORT_PATH | Out-Null
 
@@ -13,9 +14,14 @@ if ($Category -notin @("SLI", "SLI-BTI-PROD")) {
 
 $reportPath = "$env:UI_TEST_REPORT_PATH\results_$Category.xml"
 
+$filter = "Category=$Category"
+if ($Category -ne "5") {
+    $filter += "&Category!=5"
+}
+
 $keywords = @("BVI-", "BackdropLocal", "missing frame","worldTransform", "0.00, 0.00", "chunk", "decoding stream")
 
-& VSTest.Console.exe src\bin\e2e\ProtonVPN.UI.Tests.dll /Settings:.testsettings.xml /TestCaseFilter:"Category=$Category" /Logger:"junit;LogFilePath=$reportPath" |
+& VSTest.Console.exe src\bin\e2e\ProtonVPN.UI.Tests.dll /Settings:.testsettings.xml /TestCaseFilter:"$filter" /Logger:"junit;LogFilePath=$reportPath" |
 ForEach-Object {
     $line = $_
     $shouldDrop = $false

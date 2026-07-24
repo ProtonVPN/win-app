@@ -263,10 +263,9 @@ ui-tests-group:
     - if: '$CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH =~ /^release.*$/ || $CI_COMMIT_BRANCH =~ /^automation.*$/'
       when: on_success
     - when: manual
-      allow_failure: true
   parallel:
     matrix:
-      - CATEGORY: ["1", "2", "3", "4"]
+      - CATEGORY: ["1", "2", "3", "4", "5"]
 
 ui-tests-full-arm:
   stage: ui-test-full
@@ -284,7 +283,6 @@ ui-tests-full-arm:
     - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
       when: on_success
     - when: manual
-      allow_failure: true
   variables:
     CATEGORY: "ARM"
 
@@ -292,10 +290,11 @@ ui-tests-smoke:
   stage: ui-test-smoke
   extends: .ui_test_execution_script
   rules:
+    - if: '$CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH =~ /^release.*$/ || $CI_COMMIT_BRANCH =~ /^automation.*$/'
+      when: never
     - if: '$CI_COMMIT_BRANCH =~ /^feat.*$/ || $CI_COMMIT_BRANCH =~ /^feature.*$/ || $CI_COMMIT_BRANCH =~ /^fix.*$/'
       when: on_success
     - when: manual
-      allow_failure: true
   parallel:
     matrix:
       - CATEGORY: ["SMOKE_1", "SMOKE_2", "SMOKE_3", "SMOKE_4"]
@@ -311,7 +310,6 @@ ui-tests-bti:
     - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
       when: on_success
     - when: manual
-      allow_failure: true
   variables:
     CATEGORY: "BTI"
 

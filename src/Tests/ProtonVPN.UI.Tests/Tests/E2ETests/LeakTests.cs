@@ -24,6 +24,7 @@ using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.Enums.Locations;
 using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
+using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -85,6 +86,7 @@ public class LeakTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "609949")]
+    [Category("5")]
     public void DnsIsNotLeakingWithKillSwitchOn()
     {
         try
@@ -173,5 +175,11 @@ public class LeakTests : FreshSessionSetUp
             .DisableKillSwitchToggle()
             .ApplySettings()
             .CloseSettings();
+    }
+
+    [OneTimeTearDown]
+    public void TearDown()
+    {
+        ScriptHelper.EnableInternet();
     }
 }
