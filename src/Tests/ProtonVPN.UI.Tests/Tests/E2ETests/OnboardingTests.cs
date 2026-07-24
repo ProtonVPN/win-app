@@ -17,9 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -40,27 +42,28 @@ public class OnboardingTests : BaseTest
     private static readonly string _secureCoreInfoBannerDesription = LanguageHelper.GetTranslatedString("Countries_SecureCore_Description");
     private static readonly string _torInfoBannerDesription = LanguageHelper.GetTranslatedString("Countries_Tor_Description");
 
-    [OneTimeSetUp]
+    [SetUp]
     public void SetUp()
     {
         LaunchClient(ClientLaunchParams.FreshStartWithOnboarding);
+        CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
 
-    [Test, Order(0)]
+    [Test]
     [Property("TestCaseId", "867498")]
     public void ConfirmWelcomeModalIsDisplayed()
     {
-        CommonUiFlows.FullLogin(TestUserData.PlusUser);
-
         HomeRobot
             .Verify.IsWelcomeModalDisplayed()
             .DismissWelcomeModal();
     }
 
-    [Test, Order(1)]
+    [Test]
     [Property("TestCaseId", "867499")]
     public void ConfirmInfoBannersAreDisplayed()
     {
+        HomeRobot.DismissWelcomeModal();
+
         NavigationRobot
             .Verify.IsOnConnectionsPage()
                    .IsOnCountriesPage();
@@ -74,43 +77,61 @@ public class OnboardingTests : BaseTest
             .Verify.IsCountryInfoBannerDisplayed(_torInfoBannerDesription);
     }
 
-    [Test, Order(2)]
+    [Test]
     [Property("TestCaseId", "867755")]
     public void ConfirmExcludingLocationsTipsAreDisplayed()
     {
+        HomeRobot.DismissWelcomeModal();
+
         CommonUiFlows.Logout();
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
 
-        TeachingTipRobot
-            .Verify.IsTeachingTipDisplayed()
-                   .TeachingTipTextContains(_excludedLocationsTipPrompt)
-                   .TeachingTipButtonEquals(
-                        primary: _excludedLocationsTipAction,
-                        close: _excludedLocationsTipCancel)
-            .CloseAction();
+        try
+        {
+            Thread.Sleep(TestConstants.OneSecondTimeout);
 
-        HomeRobot
-            .Verify.IsDisconnected()
-            .ConnectViaConnectionCard()
-            .Verify.IsConnecting()
-                   .IsConnected()
-            .Disconnect()
-            .Verify.IsDisconnected();
+            TeachingTipRobot
+                .Verify.IsTeachingTipDisplayed()
+                       .TeachingTipTextContains(_excludedLocationsTipPrompt)
+                       .TeachingTipButtonEquals(
+                            primary: _excludedLocationsTipAction,
+                            close: _excludedLocationsTipCancel)
+                .CloseAction();
 
-        ConfirmationRobot
-            .Verify.IsOverlayDisplayed()
-                   .OverlayTextContains(_excludedLocationsDiscoveryPrompt)
-                   .OverlayButtonsEquals(
-                        primary: _excludedLocationsDiscoveryAction,
-                        cancel: _excludedLocationsDiscoveryCancel)
-            .PrimaryAction();
+            HomeRobot
+                .Verify.IsDisconnected()
+                .ConnectViaConnectionCard()
+                .Verify.IsConnecting()
+                       .IsConnected()
+                .Disconnect()
+                .Verify.IsDisconnected();
 
-        NavigationRobot
-            .Verify.IsOnSettingsPage()
-                   .IsOnConnectionPreferencesPage();
+            ConfirmationRobot
+                .Verify.IsOverlayDisplayed()
+                       .OverlayTextContains(_excludedLocationsDiscoveryPrompt)
+                       .OverlayButtonsEquals(
+                            primary: _excludedLocationsDiscoveryAction,
+                            cancel: _excludedLocationsDiscoveryCancel)
+                .PrimaryAction();
+
+            NavigationRobot
+                .Verify.IsOnSettingsPage()
+                       .IsOnConnectionPreferencesPage();
+        }
+        finally
+        {
+            Thread.Sleep(TestConstants.AnimationDelay);
+            try
+            {
+                ConfirmationRobot
+                    .Verify.IsOverlayDisplayed()
+                    .CancelAction();
+            }
+            catch { }
+        }
     }
 
-    [OneTimeTearDown]
+    [TearDown]
     public void TearDown()
     {
         Cleanup();

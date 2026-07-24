@@ -24,6 +24,7 @@ using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.ApiClient.TestEnv;
+using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -130,14 +131,6 @@ public class AlternativeRoutingTests : BaseTest
     [TearDown]
     public void TearDown()
     {
-        try
-        {
-            SupportRobot
-                .Verify.IsConnectionHelpDisplayed(TestConstants.TenSecondsTimeout)
-                .CloseSupportWindow(); // sometimes there is no internet and the connection help modal shows
-        }
-        catch { }
-
         Cleanup();
     }
 

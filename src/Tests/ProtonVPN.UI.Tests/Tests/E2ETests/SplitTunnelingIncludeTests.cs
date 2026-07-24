@@ -22,6 +22,7 @@ using NUnit.Framework;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.Enums;
+using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -40,7 +41,7 @@ public class SplitTunnelingIncludeTests : BaseTest
     private static readonly string _appNotFoundText = LanguageHelper.GetTranslatedString("Common_Message_AppNotFound");
     private static readonly string _splitTunnelingMode = LanguageHelper.GetTranslatedString("Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader").Replace("({0})", "(1)");
 
-    [OneTimeSetUp]
+    [SetUp]
     public void SetUp()
     {
         WindowsUtils.RestoreChrome();
@@ -48,6 +49,13 @@ public class SplitTunnelingIncludeTests : BaseTest
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
         NetworkUtils.AssertInternetAvailability(true);
         _ipAddressNotConnected = NetworkUtils.GetIpAddressWithRetry();
+
+        SettingRobot
+            .OpenSettings()
+            .OpenSplitTunnelingSettings();
+        SplitTunnelingRobot
+            .EnableSplitTunnelingToggle()
+            .SelectIncludeMode();
     }
 
     [Test, Order(0)]
@@ -55,13 +63,7 @@ public class SplitTunnelingIncludeTests : BaseTest
     [Retry(3)]
     public void SplitTunnelingIncludeIpAddress()
     {
-        SettingRobot
-            .OpenSettings()
-            .OpenSplitTunnelingSettings();
-
         SplitTunnelingRobot
-            .EnableSplitTunnelingToggle()
-            .SelectIncludeMode()
             .EditSplitTunnelingIps();
 
         IpSelectorRobot
@@ -88,23 +90,21 @@ public class SplitTunnelingIncludeTests : BaseTest
     [Retry(3)]
     public void SplitTunnelingDisableIpAddress()
     {
-        SettingRobot
-            .OpenSettings()
-            .OpenSplitTunnelingSettings();
-
         SplitTunnelingRobot
             .EditSplitTunnelingIps();
         IpSelectorRobot
-            .Verify.IsIpSelectorOpened()
+            .AddIpAddress(IP_ADDRESS_TO_INCLUDE)
             .TickIpAddressCheckBox(IP_ADDRESS_TO_INCLUDE);
         ConfirmationRobot
             .PrimaryAction()
             .Verify.IsOverlayClosed();
 
         SettingRobot
-            .Reconnect();
+            .ApplySettings()
+            .CloseSettings();
 
         HomeRobot
+            .ConnectViaConnectionCard()
             .Verify.IsConnected();
 
         NetworkUtils.VerifyIpAddressMatchesWithRetry(_ipAddressNotConnected);
@@ -115,10 +115,6 @@ public class SplitTunnelingIncludeTests : BaseTest
     [Retry(3)]
     public void SplitTunnelingIncludeModeApp()
     {
-        SettingRobot
-            .OpenSettings()
-            .OpenSplitTunnelingSettings();
-
         SplitTunnelingRobot
             .EditSplitTunnelingApps();
         AppSelectorRobot
@@ -130,21 +126,24 @@ public class SplitTunnelingIncludeTests : BaseTest
             .Verify.IsOverlayClosed();
 
         SettingRobot
-            .Reconnect();
+            .ApplySettings()
+            .CloseSettings();
 
         HomeRobot
+            .ConnectViaConnectionCard()
             .Verify.IsConnected();
 
         string? ipAddressToCompare = HomeRobot.GetVpnServerIp();
 
+        BrowserUtils.KillAllBrowsers();
         BrowserUtils.VerifyBrowserIpWithRetry(APP_TO_INCLUDE, hasVpn: true, ipAddressToCompare);
         BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, hasVpn: false, ipAddressToCompare);
-        BrowserUtils.KillAllBrowsers();
 
         HomeRobot
             .Disconnect()
             .Verify.IsDisconnected();
 
+        BrowserUtils.KillAllBrowsers();
         BrowserUtils.VerifyBrowserIpWithRetry(APP_TO_INCLUDE, hasVpn: false, ipAddressToCompare);
         BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, hasVpn: false, ipAddressToCompare);
     }
@@ -154,19 +153,18 @@ public class SplitTunnelingIncludeTests : BaseTest
     [Retry(3)]
     public void SplitTunnelingWithUninstalledApp()
     {
-        SettingRobot
-            .OpenSettings()
-            .OpenSplitTunnelingSettings();
-
         SplitTunnelingRobot
             .EditSplitTunnelingApps();
         AppSelectorRobot
+            .AddSuggestedApp(APP_TO_INCLUDE)
             .Verify.IsAppChecked(APP_TO_INCLUDE)
                    .AssertAppAvailability(APP_TO_INCLUDE, shouldBeAvailable: true);
         ConfirmationRobot
-            .CancelAction();
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
 
         SettingRobot
+            .ApplySettings()
             .CloseSettings();
 
         HomeRobot
@@ -201,6 +199,10 @@ public class SplitTunnelingIncludeTests : BaseTest
         AppSelectorRobot
             .Verify.AssertAppAvailability(APP_TO_INCLUDE, shouldBeAvailable: false)
                    .AssertAppAvailability(_appNotFoundText, shouldBeAvailable: true);
+
+        ConfirmationRobot
+            .CancelAction()
+            .Verify.IsOverlayClosed();
     }
 
     private static void VerifyIsSplitTunnelingAppInFlyoutMenu(bool isAppAvailable)
@@ -226,7 +228,7 @@ public class SplitTunnelingIncludeTests : BaseTest
             .CancelAction();
     }
 
-    [OneTimeTearDown]
+    [TearDown]
     public void TearDown()
     {
         BrowserUtils.KillAllBrowsers();

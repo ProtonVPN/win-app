@@ -74,9 +74,16 @@ public class TrayRobot
 
     public TrayRobot DoubleClickTrayApp()
     {
-        Thread.Sleep(TestConstants.TwoSecondsTimeout);
-        VpnIcon!.DoubleClick();
-        Thread.Sleep(TestConstants.TwoSecondsTimeout);
+        try
+        {
+            Thread.Sleep(TestConstants.TwoSecondsTimeout);
+            VpnIcon!.DoubleClick();
+            Thread.Sleep(TestConstants.TwoSecondsTimeout);
+        }
+        catch
+        {
+            ClickOpenAppButton();
+        }
         return this;
     }
 

@@ -24,6 +24,7 @@ using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.Enums.Locations;
+using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -57,6 +58,7 @@ public class TorTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "760479")]
+    [Category("5")]
     [Retry(4)]
     public void ConnectToATorServerWithKillSwitchEnabled()
     {
@@ -115,5 +117,11 @@ public class TorTests : FreshSessionSetUp
         }
 
         Assert.Fail(failureMessages.ToString());
+    }
+
+    [OneTimeTearDown]
+    public void TearDown()
+    {
+        ScriptHelper.EnableInternet();
     }
 }

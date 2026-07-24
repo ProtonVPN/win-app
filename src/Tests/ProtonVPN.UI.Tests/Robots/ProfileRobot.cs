@@ -274,7 +274,9 @@ public class ProfileRobot
 
     public ProfileRobot SelectConnectAndGoApp(string appPath)
     {
+        Thread.Sleep(TestConstants.NavigationDelay);
         ConnectAndGoAppSelector.Click();
+        Thread.Sleep(TestConstants.NavigationDelay);
         HandleExplorer(appPath);
         return this;
     }

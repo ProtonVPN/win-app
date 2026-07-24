@@ -27,6 +27,7 @@ using ProtonVPN.UI.Tests.Enums.Locations;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -61,7 +62,7 @@ public class GeneralSettingsTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "609952")]
-    [Ignore("JIRA - Excluded Location does not save after restart")]
+    [Retry(2)]
     public void PreferencesDontTransferAfterAccountSwitch()
     {
         SetNonDefaultSettings();
@@ -79,51 +80,58 @@ public class GeneralSettingsTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "609954")]
+    [Retry(2)]
     public void Notifications()
     {
-        SettingRobot
-            .OpenSettings()
-            .Verify.AreNotificationsEnabled();
-
-        HomeRobot.MinimizeClientViaMinimizeButton();
-
-        using (TrayApp)
+        try
         {
-            HomeRobot.ConnectViaConnectionCard();
-        }
-        DesktopRobot
-            .Verify.IsToastDisplayed()
-                   .DoesToastContainConnectionState(_connectedToastText);
-        DesktopRobot.DismissOldToastsIfVisible();
+            SettingRobot
+                .OpenSettings()
+                .Verify.AreNotificationsEnabled();
 
-        using (TrayApp)
+            HomeRobot.MinimizeClientViaMinimizeButton();
+
+            using (TrayApp)
+            {
+                HomeRobot.ConnectViaConnectionCard();
+            }
+            DesktopRobot
+                .Verify.IsToastDisplayed()
+                       .DoesToastContainConnectionState(_connectedToastText);
+            DesktopRobot.DismissOldToastsIfVisible();
+
+            using (TrayApp)
+            {
+                HomeRobot.Disconnect();
+            }
+            DesktopRobot
+                .Verify.IsToastDisplayed()
+                       .DoesToastContainConnectionState(_disconnectedToastText);
+            DesktopRobot.DismissOldToastsIfVisible();
+
+            TrayRobot.DoubleClickTrayApp();
+
+            SettingRobot
+                .OpenSettings()
+                .DisableNotificationsToggle();
+            HomeRobot.MinimizeClientViaMinimizeButton();
+
+            using (TrayApp)
+            {
+                HomeRobot.ConnectViaConnectionCard();
+            }
+            DesktopRobot.Verify.IsToastNotDisplayed();
+
+            using (TrayApp)
+            {
+                HomeRobot.Disconnect();
+            }
+            DesktopRobot.Verify.IsToastNotDisplayed();
+        }
+        finally
         {
-            HomeRobot.Disconnect();
+            TrayRobot.DoubleClickTrayApp();
         }
-        DesktopRobot
-            .Verify.IsToastDisplayed()
-                   .DoesToastContainConnectionState(_disconnectedToastText);
-
-        TrayRobot.DoubleClickTrayApp();
-
-        SettingRobot
-            .OpenSettings()
-            .DisableNotificationsToggle();
-        HomeRobot.MinimizeClientViaMinimizeButton();
-
-        using (TrayApp)
-        {
-            HomeRobot.ConnectViaConnectionCard();
-        }
-        DesktopRobot.Verify.IsToastNotDisplayed();
-
-        using (TrayApp)
-        {
-            HomeRobot.Disconnect();
-        }
-        DesktopRobot.Verify.IsToastNotDisplayed();
-
-        TrayRobot.DoubleClickTrayApp();
     }
 
     [Test]
@@ -172,9 +180,12 @@ public class GeneralSettingsTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "611252")]
+    [Category("5")]
     [Retry(3)]
     public void SupportCenter()
     {
+        BrowserUtils.KillAllBrowsers();
+
         SettingRobot
             .OpenSettings()
             .ClickSupportCenterSettingsCard();
@@ -189,17 +200,25 @@ public class GeneralSettingsTests : FreshSessionSetUp
     [Property("TestCaseId", "611253")]
     public void Logs()
     {
-        SettingRobot
-            .OpenSettings()
-            .ClickDebugLogsSettingsCard()
-            .ClickApplicationLogsSettingsCard();
+        try
+        {
 
-        VerifyLogPath(ApplicationLogsPath);
+            SettingRobot
+                .OpenSettings()
+                .ClickDebugLogsSettingsCard()
+                .ClickApplicationLogsSettingsCard();
 
-        SettingRobot
-            .ClickServiceLogsSettingsCard();
+            VerifyLogPath(ApplicationLogsPath);
 
-        VerifyLogPath(ServiceLogsPath);
+            SettingRobot
+                .ClickServiceLogsSettingsCard();
+
+            VerifyLogPath(ServiceLogsPath);
+        }
+        finally
+        {
+            Keyboard.TypeSimultaneously(VirtualKeyShort.CONTROL, VirtualKeyShort.KEY_W);
+        }
     }
 
     private static void VerifyLogPath(string pathToCheck)

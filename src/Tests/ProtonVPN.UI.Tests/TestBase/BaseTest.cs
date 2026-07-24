@@ -34,6 +34,7 @@ using NUnit.Framework.Interfaces;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.UiTools;
+using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
 using static ProtonVPN.UI.Tests.Robots.TrayRobot;
 using TimeoutException = System.TimeoutException;
 
@@ -148,6 +149,8 @@ public class BaseTest
             AutomationElement? KebabMenu = Element.ByAutomationId("TitleBarMenuButton").TryGetElement();
             if (KebabMenu == null)
             {
+                CommonUiFlows.CloseConnectionHelpModalIfDisaplyed();
+
                 HomeRobot.CloseClientViaCloseButton();
             }
             else
@@ -195,6 +198,9 @@ public class BaseTest
 
     protected static void LaunchClient(ClientLaunchParams? parameters = null)
     {
+        //temp
+        ScriptHelper.DisconnectFromWireGuard();
+
         parameters ??= ClientLaunchParams.FreshStartWithNoOnboarding;
 
         if (parameters.IsFreshStart)

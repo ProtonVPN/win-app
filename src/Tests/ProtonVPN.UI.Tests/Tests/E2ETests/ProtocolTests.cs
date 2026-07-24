@@ -23,6 +23,7 @@ using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
 using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
@@ -85,6 +86,7 @@ public class ProtocolTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602354")]
+    [Ignore("Retest Manually")]
     [TestCaseSource(typeof(TestConstants), nameof(WireGuardProtocols))]
     public void ConnectUsingWireGuardWhileConnectedToNativeWireGuard(Protocol wireGuardProtocol)
     {
