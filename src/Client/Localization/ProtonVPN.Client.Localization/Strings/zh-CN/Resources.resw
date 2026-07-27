@@ -271,7 +271,7 @@
     <value>高级终止开关已启用。若要使用非 VPN 的互联网，请禁用高级终止开关。</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
-    <value>高级终止开关已启用。如果继续，您将断开互联网连接。</value>
+    <value>高级终止开关已启用。如果继续，您将断开网络连接。</value>
   </data>
   <data name="Common_Confirmation_YouWillBeDisconnected_Message">
     <value>您将断开与 VPN 的连接！</value>
@@ -1793,10 +1793,10 @@
     <value>连接帮助</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
-    <value>这将断开您的 VPN 连接。任何活动的互联网连接都将暂时不受保护。</value>
+    <value>这将断开您的 VPN 连接。任何活动的网络连接都将暂时不受保护。</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
-    <value>此操作将使您断开 VPN 连接并暂时禁用终止开关，任何活动的互联网连接将暂时不受保护。</value>
+    <value>此操作将使您断开 VPN 连接并暂时禁用终止开关，任何活动的网络连接将暂时不受保护。</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Title_Install">
     <value>安装更新？</value>
@@ -2494,7 +2494,7 @@
     <value>我们无法加载任何服务器，请点击刷新以更新服务器列表。</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
-    <value>为保护您的 IP 地址，终止开关正在阻断您的互联网连接</value>
+    <value>为保护您的 IP 地址，终止开关正在阻断您的网络连接</value>
   </data>
   <data name="Notifications_PortForwarding_CopyPortNumber">
     <value>复制端口号</value>
@@ -3429,7 +3429,7 @@ Stealth 具有抗 DPI（深度数据包检查）能力，但速度可能不如�
     <value>利用性能增强技术，连接速度提高达 400%。</value>
   </data>
   <data name="SignIn_Form_AdvancedKillSwitchDescription">
-    <value>高级终止开关正在阻断您的互联网连接。</value>
+    <value>高级终止开关正在阻断您的网络连接。</value>
   </data>
   <data name="SignIn_Form_BestSecureVpnForSpeed">
     <value>速度最佳的安全 VPN</value>

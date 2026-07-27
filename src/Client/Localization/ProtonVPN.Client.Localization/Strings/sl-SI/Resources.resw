@@ -313,16 +313,16 @@
     <value>Posodobi Proton VPN</value>
   </data>
   <data name="Connection_Error_AllServersExcluded">
-    <value>Your preferences exclude all available servers. Adjust exclusions to connect.</value>
+    <value>Vaše nastavitve izključujejo vse razpoložljive strežnike. Prilagodite izključitve, da se boste lahko povezali.</value>
   </data>
   <data name="Connection_Error_AllServersExcluded_Action">
-    <value>Excluded locations</value>
+    <value>Izključene lokacije</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Description">
-    <value>To fix it, close or uninstall the app associated with:</value>
+    <value>Da bi to odpravili, zaprite ali odstranite aplikacijo, povezano z:</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Title">
-    <value>Another app might be preventing Proton VPN from connecting</value>
+    <value>Neka druga aplikacija morda preprečuje Proton VPN povezovanje</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>Urejanje profila</value>
@@ -385,7 +385,7 @@ Koda napake: {0}</value>
     <value>Adapter WireGuard vaše naprave je v uporabi. Prekinite povezavo z vsemi drugimi VPN-ji, ki se izvajajo v vaši napravi, in poskusite znova.</value>
   </data>
   <data name="Connection_Feedback_Question">
-    <value>How is your connection?</value>
+    <value>Kakšna je vaša povezava?</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>Samodejno izbrano iz</value>
@@ -2070,19 +2070,19 @@ Koda napake: {0}</value>
     <value>Nova aplikacija v sistemski vrstici</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations">
-    <value>Exclude locations</value>
+    <value>Izključi lokacije</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
-    <value>If there are locations you don't want to be automatically connected to, you can exclude them from Fastest and Random country.</value>
+    <value>Če obstajajo lokacije, s katerimi se ne želite samodejno povezati, jih lahko izključite iz nastavitev "Najhitrejša država" in "Naključna država".</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
     <value>Preskoči</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
-    <value>Not the country you wanted?</value>
+    <value>Ni država, ki ste jo želeli?</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_ActionButton">
-    <value>Exclude locations</value>
+    <value>Izključi lokacije</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_CloseButton">
     <value>Morda kasneje</value>
@@ -3253,7 +3253,7 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Nastavitve povezave</value>
   </data>
   <data name="Settings_Connection_ConnectionPreferences_Description">
-    <value>Default connection and excluded locations</value>
+    <value>Privzeta povezava in izključene lokacije</value>
   </data>
   <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
     <value>DNS-ja po meri ni mogoče vklopiti, ker ste povezani s profilom, v katerem je omogočen NetShield.</value>
@@ -3286,25 +3286,25 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Nedavne</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations">
-    <value>Excluded locations</value>
+    <value>Izključene lokacije</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Cities">
-    <value>Cities</value>
+    <value>Mesta</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Countries">
-    <value>Countries</value>
+    <value>Države</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Description">
-    <value>The selected locations will never be used when you connect to Fastest or Random</value>
+    <value>Izbrane lokacije se nikoli ne bodo uporabljale, ko se povežete z "Najhitrejša država" ali "Naključna država"</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_NoLocations">
-    <value>No locations available</value>
+    <value>Na voljo ni lokacij</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Search">
-    <value>Select...</value>
+    <value>Izberi ...</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_States">
-    <value>States</value>
+    <value>Države</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Odklopno stikalo</value>
@@ -3584,28 +3584,28 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_ProTunTcp_Description">
-    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+    <value>Naša nova tehnologija na osnovi WireGuarda zagotavlja večjo stabilnost, izboljšano funkcionalnost in večjo odpornost proti cenzuri.</value>
   </data>
   <data name="Settings_Protocols_ProTunTcp_Title">
     <value>Proton WireGuard</value>
   </data>
   <data name="Settings_Protocols_ProTunTls_Description">
-    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+    <value>Naša nova tehnologija na osnovi WireGuarda zagotavlja večjo stabilnost, izboljšano funkcionalnost in večjo odpornost proti cenzuri.</value>
   </data>
   <data name="Settings_Protocols_ProTunTls_Title">
     <value>Proton Stealth</value>
   </data>
   <data name="Settings_Protocols_ProTunUdp_Description">
-    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+    <value>Naša nova tehnologija na osnovi WireGuarda zagotavlja večjo stabilnost, izboljšano funkcionalnost in večjo odpornost proti cenzuri.</value>
   </data>
   <data name="Settings_Protocols_ProTunUdp_Title">
     <value>Proton WireGuard</value>
   </data>
   <data name="Settings_Protocols_ProtonProtocols_Description">
-    <value>Use Proton VPN's own implementation of WireGuard. This is an experimental feature, so you may experience some instability.</value>
+    <value>Uporabite lastno Proton VPN implementacijo WireGuarda. To je eksperimentalna funkcija, zato boste morda izkusili nekaj nestabilnosti.</value>
   </data>
   <data name="Settings_Protocols_ProtonProtocols_Title">
-    <value>Proton protocols</value>
+    <value>Proton protokoli</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Samodejno izbere najboljši protokol za vašo povezavo.</value>
@@ -4084,19 +4084,19 @@ Velika obremenitev strežnika lahko upočasni vašo povezavo.</value>
     <value>Proton WireGuard (TCP)</value>
   </data>
   <data name="VpnProtocol_ProTun_Tcp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Najsodobnejši protokol za varnost in zmogljivost</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls">
     <value>Proton Stealth</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls_Description">
-    <value>Overcomes VPN blocks by hiding your connection from censors</value>
+    <value>Premaga blokade VPN tako, da prikrije vašo povezavo pred cenzorji</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp">
     <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Najsodobnejši protokol za varnost in zmogljivost</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
