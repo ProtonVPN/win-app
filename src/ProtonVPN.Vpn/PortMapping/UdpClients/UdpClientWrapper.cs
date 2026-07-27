@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,8 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ProtonVPN.Vpn.PortMapping.UdpClients;
 
@@ -38,10 +41,24 @@ public class UdpClientWrapper : IUdpClientWrapper
         _udpClient?.Send(data, data.Length, _endpoint);
     }
 
-    public byte[] Receive()
+    public async Task<byte[]> ReceiveAsync(CancellationToken cancellationToken)
     {
-        IPEndPoint? remoteEndpoint = _endpoint;
-        return _udpClient?.Receive(ref remoteEndpoint) ?? [];
+        UdpClient? udpClient = _udpClient;
+        if (udpClient is null)
+        {
+            return [];
+        }
+
+        try
+        {
+            UdpReceiveResult result = await udpClient.ReceiveAsync(cancellationToken);
+            return result.Buffer;
+        }
+        catch (ObjectDisposedException) when (cancellationToken.IsCancellationRequested)
+        {
+            // Socket disposed while the receive was ongoing, but a cancel had already been requested
+            throw new OperationCanceledException(cancellationToken);
+        }
     }
 
     public void Stop()
