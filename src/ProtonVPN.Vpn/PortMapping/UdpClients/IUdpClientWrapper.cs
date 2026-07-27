@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -19,15 +19,16 @@
 
 using System;
 using System.Net;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace ProtonVPN.Vpn.PortMapping.UdpClients
+namespace ProtonVPN.Vpn.PortMapping.UdpClients;
+
+public interface IUdpClientWrapper : IDisposable
 {
-    public interface IUdpClientWrapper : IDisposable
-    {
-        void Start(IPEndPoint endpoint);
-        void Send(byte[] data);
-        byte[] Receive();
-        void Stop();
-        void Reset();
-    }
+    void Start(IPEndPoint endpoint);
+    void Send(byte[] data);
+    Task<byte[]> ReceiveAsync(CancellationToken cancellationToken);
+    void Stop();
+    void Reset();
 }
