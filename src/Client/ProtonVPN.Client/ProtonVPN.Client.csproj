@@ -152,6 +152,7 @@
 
   <ItemGroup>
     <Compile Include="..\..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
+    <Compile Include="..\..\AppInstanceConstants.cs" Link="Properties\AppInstanceConstants.cs" />
   </ItemGroup>
 
   <ItemGroup>

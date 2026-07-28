@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2025 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -27,7 +27,6 @@ namespace ProtonVPN.Client;
 
 public class Program
 {
-    private const string SINGLE_INSTANCE_APP_MUTEX_NAME = "{588dc704-8eac-4a43-9345-ec7186b23f05}";
     private const string APP_USER_MODEL_ID = "Proton.VPN";
 
     private static Mutex? _mutex; // The variable is kept to hold the Mutex lock
@@ -64,7 +63,7 @@ public class Program
 
     private static bool IsFirstInstance()
     {
-        _mutex = new Mutex(true, SINGLE_INSTANCE_APP_MUTEX_NAME, out bool isFirstInstance);
+        _mutex = new Mutex(true, AppInstanceConstants.SINGLE_INSTANCE_MUTEX_NAME, out bool isFirstInstance);
         return isFirstInstance;
     }
 
