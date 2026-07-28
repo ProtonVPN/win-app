@@ -60,6 +60,8 @@ public static class AppInstanceHelper
 
             RedirectActivationTo(instance, args);
         }
+
+        BringToForeground();
     }
 
     private static void RedirectActivationTo(AppInstance keyInstance, AppActivationArguments args)
@@ -76,9 +78,6 @@ public static class AppInstanceHelper
         _ = CoWaitForMultipleObjects(
            CWMO_DEFAULT, INFINITE, 1,
            [_redirectEventHandle], out uint handleIndex);
-
-        // Bring the window to the foreground
-        BringToForeground();
     }
 
     private static void BringToForeground()

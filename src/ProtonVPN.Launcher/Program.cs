@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
+/*
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -20,31 +20,83 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 
-namespace ProtonVPN.Launcher
+namespace ProtonVPN.Launcher;
+
+internal class Program
 {
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            string[] folders = Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory, "v*", SearchOption.TopDirectoryOnly);
-            Version latestVersion = new(0, 0, 0);
-            foreach (string path in folders)
-            {
-                string versionString = new DirectoryInfo(path).Name.Replace("v", string.Empty);
-                if (Version.TryParse(versionString, out Version version))
-                {
-                    if (version > latestVersion)
-                    {
-                        latestVersion = version;
-                    }
-                }
-            }
+    private const string CLIENT_PROCESS_NAME = "ProtonVPN.Client";
+    private const string CLIENT_EXE_NAME = "ProtonVPN.Client.exe";
 
-            if (latestVersion > new Version(0, 0, 0))
+    static void Main(string[] args)
+    {
+        string? clientExePath = IsClientInstanceAlive()
+            ? GetRunningClientExePath() ?? GetLatestClientExePath()
+            : GetLatestClientExePath();
+
+        if (!string.IsNullOrEmpty(clientExePath))
+        {
+            Process.Start(clientExePath, args);
+        }
+    }
+
+    private static bool IsClientInstanceAlive()
+    {
+        Mutex? mutex = null;
+        try
+        {
+            return Mutex.TryOpenExisting(AppInstanceConstants.SINGLE_INSTANCE_MUTEX_NAME, out mutex);
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+        finally
+        {
+            mutex?.Dispose();
+        }
+    }
+
+    private static string? GetRunningClientExePath()
+    {
+        foreach (Process process in Process.GetProcessesByName(CLIENT_PROCESS_NAME))
+        {
+            try
             {
-                Process.Start($"v{latestVersion}\\ProtonVPN.Client.exe", args);
+                return process.MainModule?.FileName;
+            }
+            catch
+            {
+            }
+            finally
+            {
+                process.Dispose();
             }
         }
+
+        return null;
+    }
+
+    private static string? GetLatestClientExePath()
+    {
+        string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        string[] folders = Directory.GetDirectories(baseDirectory, "v*", SearchOption.TopDirectoryOnly);
+        Version latestVersion = new(0, 0, 0);
+        foreach (string path in folders)
+        {
+            string versionString = new DirectoryInfo(path).Name.Replace("v", string.Empty);
+            if (Version.TryParse(versionString, out Version? version))
+            {
+                if (version > latestVersion)
+                {
+                    latestVersion = version;
+                }
+            }
+        }
+
+        return latestVersion > new Version(0, 0, 0)
+            ? Path.Combine(baseDirectory, $"v{latestVersion}", CLIENT_EXE_NAME)
+            : null;
     }
 }
