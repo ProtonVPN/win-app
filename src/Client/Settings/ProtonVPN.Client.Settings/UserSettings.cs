@@ -162,10 +162,10 @@ public class UserSettings : GlobalSettings, IUserSettings
         {
             if (VpnPlan.IsPaid)
             {
-                return _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsLocalAreaNetworkAccessAllowed(true);
+                return _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsLocalAreaNetworkAccessAllowed(isPaidUser: true);
             }
 
-            return DefaultSettings.IsLocalAreaNetworkAccessAllowed(false);
+            return DefaultSettings.IsLocalAreaNetworkAccessAllowed(isPaidUser: false);
         }
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
@@ -232,10 +232,10 @@ public class UserSettings : GlobalSettings, IUserSettings
         {
             if (VpnPlan.IsPaid)
             {
-                return _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsNetShieldEnabled(true);
+                return _userCache.GetValueType<bool>(SettingEncryption.Unencrypted) ?? DefaultSettings.IsNetShieldEnabled(isPaidUser: true);
             }
 
-            return DefaultSettings.IsNetShieldEnabled(false);
+            return DefaultSettings.IsNetShieldEnabled(isPaidUser: false);
         }
         set => _userCache.SetValueType<bool>(value, SettingEncryption.Unencrypted);
     }
