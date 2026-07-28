@@ -470,19 +470,52 @@ public class ServersCache : IServersCache
             .Where(s => !string.IsNullOrWhiteSpace(s.ExitCountry)
                      && !string.IsNullOrWhiteSpace(s.City)
                      && s.IsPaidNonB2B())
-            .GroupBy(s => new { Country = s.ExitCountry, s.State, s.City })
-            .Select(g => new City()
+            .GroupBy(s => new { Country = s.ExitCountry, s.City })
+            .SelectMany(cityGroup =>
             {
-                CountryCode = g.Key.Country,
-                StateName = g.Key.State,
-                Name = g.Key.City,
-                Features = AggregateFeatures(g),
-                IsStandardUnderMaintenance = IsUnderMaintenance(g, s => s.Features.IsStandard()),
-                IsP2PUnderMaintenance = IsUnderMaintenance(g, s => s.Features.IsSupported(ServerFeatures.P2P)),
-                IsSecureCoreUnderMaintenance = IsUnderMaintenance(g, s => s.Features.IsSupported(ServerFeatures.SecureCore)),
-                IsTorUnderMaintenance = IsUnderMaintenance(g, s => s.Features.IsSupported(ServerFeatures.Tor))
+                List<string> distinctStates = cityGroup
+                    .Select(s => s.State)
+                    .Where(state => !string.IsNullOrWhiteSpace(state))
+                    .Distinct()
+                    .ToList();
+
+                // 0 or 1 distinct non-null states => merge everything into one state
+                if (distinctStates.Count <= 1)
+                {
+                    return
+                    [
+                        CreateCity(countryCode: cityGroup.Key.Country,
+                                   stateName: distinctStates.FirstOrDefault(),
+                                   cityName: cityGroup.Key.City,
+                                   servers: cityGroup)
+                    ];
+                }
+
+                // 2+ distinct states => keep them all separate including null states
+                return cityGroup
+                    .GroupBy(s => string.IsNullOrWhiteSpace(s.State) ? null : s.State)
+                    .Select(stateGroup => CreateCity(
+                        countryCode: cityGroup.Key.Country,
+                        stateName: stateGroup.Key,
+                        cityName: cityGroup.Key.City,
+                        servers: stateGroup));
             })
             .ToList();
+    }
+
+    private City CreateCity<T>(string countryCode, string? stateName, string cityName, IGrouping<T, Server> servers)
+    {
+        return new City
+        {
+            CountryCode = countryCode,
+            StateName = stateName,
+            Name = cityName,
+            Features = AggregateFeatures(servers),
+            IsStandardUnderMaintenance = IsUnderMaintenance(servers, s => s.Features.IsStandard()),
+            IsP2PUnderMaintenance = IsUnderMaintenance(servers, s => s.Features.IsSupported(ServerFeatures.P2P)),
+            IsSecureCoreUnderMaintenance = IsUnderMaintenance(servers, s => s.Features.IsSupported(ServerFeatures.SecureCore)),
+            IsTorUnderMaintenance = IsUnderMaintenance(servers, s => s.Features.IsSupported(ServerFeatures.Tor))
+        };
     }
 
     private IReadOnlyList<Gateway> GetGateways(IReadOnlyList<Server> servers)
