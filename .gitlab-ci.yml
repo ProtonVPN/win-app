@@ -35,17 +35,23 @@ include:
       cli-args: "-c .grype.yaml"
       allowed-to-fail: true
       output-filename: grype-$BUILD_TYPE
+    rules:
+      - if: '$CI_PIPELINE_SOURCE != "schedule"'
 
   - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/gitleaks/scan-repository@~latest
     inputs:
       stage: security
       cli-args: "--no-git"
       allowed-to-fail: false
+    rules:
+      - if: '$CI_PIPELINE_SOURCE != "schedule"'
 
   - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/gitleaks/create-baseline@~latest
     inputs:
       stage: security
       cli-args: ""
+    rules:
+      - if: '$CI_PIPELINE_SOURCE != "schedule"'
 
   - component: $CI_SERVER_HOST/proton/devops/cicd-components/community/test-image-asset/generate-image-assets@0.0.4
     inputs:
@@ -53,6 +59,8 @@ include:
       output_path: ./Setup
       stage: guest-holes
       allowed-to-fail: false
+    rules:
+      - if: '$CI_PIPELINE_SOURCE != "schedule"'
 
 # Commented because the validator fails since we allow self-approvals even though we require 2 approvers
 #  - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/project-settings-validator/scan-project@~latest
@@ -146,6 +154,8 @@ build-release-arm64:
 
 build-bti-x64:
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
     - if: '$CI_COMMIT_BRANCH == "master"'
       when: never
     - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
@@ -172,9 +182,9 @@ build-bti-x64:
 build-debug-x64:
   extends: .build-script
   except:
+    - schedules
     - master
     - /^release.*$/
-    - schedules
   variables:
     TYPE: Debug
     PLATFORM: x64
@@ -189,9 +199,9 @@ build-debug-arm64:
   extends: .build-script
   when: manual
   except:
+    - schedules
     - master
     - /^release.*$/
-    - schedules
   tags:
     - windows-arm64
   variables:
@@ -206,14 +216,24 @@ build-debug-arm64:
 
 gitleaks-scan-repository:
   needs: []
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
+    - when: on_success
+  script: 
+    - echo "skipped"
 
 gitleaks-create-baseline:
   needs: []
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
     - if: $CI_COMMIT_REF_PROTECTED == "false"
       when: manual
     - when: never
   allow_failure: true
+  script: 
+    - echo "skipped"
 
 #project-settings-validator-scan-project:
 #  needs: []
@@ -221,6 +241,8 @@ gitleaks-create-baseline:
 grype-scan-code-dependencies:
   rules:
   - when: never
+  script:
+    - echo "skipped"
 
 grype-scan-debug-x64:
   needs:
@@ -258,6 +280,8 @@ ui-tests-group:
   stage: ui-test-full
   extends: .ui_test_execution_script
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
     - if: '$CI_COMMIT_BRANCH =~ /^release\/9\.9\.9.*$/'
       when: never
     - if: '$CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH =~ /^release.*$/ || $CI_COMMIT_BRANCH =~ /^automation.*$/'
@@ -278,6 +302,8 @@ ui-tests-full-arm:
     - job: build-installer-release-arm64
       optional: true
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
     - if: '$CI_COMMIT_BRANCH =~ /^release\/9\.9\.9.*$/'
       when: never
     - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
@@ -290,6 +316,8 @@ ui-tests-smoke:
   stage: ui-test-smoke
   extends: .ui_test_execution_script
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
     - if: '$CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH =~ /^release.*$/ || $CI_COMMIT_BRANCH =~ /^automation.*$/'
       when: never
     - if: '$CI_COMMIT_BRANCH =~ /^feat.*$/ || $CI_COMMIT_BRANCH =~ /^feature.*$/ || $CI_COMMIT_BRANCH =~ /^fix.*$/'
@@ -305,6 +333,8 @@ ui-tests-bti:
   tags:
     - windows-vpn-bti-tests #BTI
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
     - if: '$CI_COMMIT_BRANCH =~ /^release\/9\.9\.9.*$/'
       when: never
     - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
@@ -359,6 +389,8 @@ unit-tests:
   extends:
     - .unit_test_config
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
     - if: $CI_COMMIT_REF_PROTECTED != "true" && $CI_PIPELINE_SOURCE != "merge_request_event"
   script:
     - *unit_test_setup_script
@@ -368,6 +400,8 @@ unit-tests-with-coverage:
   extends:
     - .unit_test_config
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
     - if: $CI_COMMIT_REF_PROTECTED == "true" && $CI_PIPELINE_SOURCE != "merge_request_event"
   script:
     - *unit_test_setup_script
@@ -382,9 +416,12 @@ unit-tests-with-coverage:
   coverage: '/Total.*?([0-9]{1,3}.[0-9]{1,3})%/'
 
 build-installer-release-x64:
+  except:
+    - schedules
   needs:
     - *default_installer_needs
-    - generate-guest-holes
+    - job: generate-guest-holes
+      optional: true
     - build-release-x64
   extends:
     - .build-installer
@@ -396,39 +433,44 @@ build-installer-release-x64:
     PLATFORM: x64
 
 build-installer-debug-x64:
+  except:
+    - schedules
+    - master
+    - /^release.*$/
   needs:
     - *default_installer_needs
-    - generate-guest-holes
+    - job: generate-guest-holes
+      optional: true
     - build-debug-x64
   extends:
     - .build-installer
-  except:
-    - master
-    - /^release.*$/
-    - schedules
   variables:
     BUILD_PATH: src/bin/win-x64/publish
     PLATFORM: x64
 
 build-installer-debug-arm64:
+  except:
+    - schedules
+    - master
+    - /^release.*$/
   needs:
     - *default_installer_needs
-    - generate-guest-holes
+    - job: generate-guest-holes
+      optional: true
     - build-debug-arm64
   extends:
     - .build-installer
-  except:
-    - master
-    - /^release.*$/
-    - schedules
   variables:
     BUILD_PATH: src/bin/win-arm64/publish
     PLATFORM: arm64
 
 build-installer-release-arm64:
+  except:
+    - schedules
   needs:
     - *default_installer_needs
-    - generate-guest-holes
+    - job: generate-guest-holes
+      optional: true
     - build-release-arm64
   extends:
     - .build-installer
@@ -444,6 +486,7 @@ build-BTI-installer-x64:
     - *default_installer_needs
     - build-bti-x64
   except:
+    - schedules
     - master
     - /^release.*$/
   extends:
@@ -511,6 +554,8 @@ mirror:
     - git push public "$(git describe --abbrev=0)"
 
 create-release:
+  except:
+    - schedules
   image: $HARBOR_URL/docker.io/library/python:latest
   stage: release
   tags:

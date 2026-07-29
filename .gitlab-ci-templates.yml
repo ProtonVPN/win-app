@@ -76,6 +76,8 @@
     GIT_SUBMODULE_STRATEGY: normal
 
 .build-installer:
+  except:
+    - schedules
   stage: build-installer
   tags:
     - windows-vpn-signer-v1
