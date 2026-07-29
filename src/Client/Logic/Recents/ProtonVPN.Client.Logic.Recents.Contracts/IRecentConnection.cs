@@ -29,7 +29,7 @@ public interface IRecentConnection
 
     bool IsPinned { get; set; }
 
-    DateTime? PinTime { get; set; }
+    DateTime? PinTimeUtc { get; set; }
 
-    DateTime? LastConnectionTimeUtc { get; set; }
+    DateTime LastConnectionTimeUtc { get; set; }
 }

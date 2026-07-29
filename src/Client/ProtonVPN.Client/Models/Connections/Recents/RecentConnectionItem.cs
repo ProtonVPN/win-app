@@ -67,7 +67,7 @@ public partial class RecentConnectionItem : ConnectionItemBase
 
     public override object FirstSortProperty => RecentConnection.IsPinned;
 
-    public override object SecondSortProperty => RecentConnection.PinTime ?? DateTime.MaxValue;
+    public override object SecondSortProperty => RecentConnection.PinTimeUtc ?? DateTime.MaxValue;
 
     public override VpnTriggerDimension VpnTriggerDimension { get; } = VpnTriggerDimension.Recent;
 
