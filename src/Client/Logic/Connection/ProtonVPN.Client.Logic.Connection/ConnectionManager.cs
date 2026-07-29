@@ -89,6 +89,8 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
     private VpnStatusIpcEntity? _currentStatus = VpnStatusIpcEntity.Disconnected;
     private VpnErrorTypeIpcEntity? _currentError = VpnErrorTypeIpcEntity.None;
 
+    private IConnectionIntent? _lastBroadcastConnectionIntent;
+
     public ConnectionStatus ConnectionStatus { get; private set; }
     public IConnectionIntent? CurrentConnectionIntent { get; private set; }
     public ConnectionDetails? CurrentConnectionDetails { get; private set; }
@@ -376,6 +378,11 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
             return;
         }
 
+        ConnectionStatus previousConnectionStatus = ConnectionStatus;
+        VpnStatusIpcEntity? previousStatus = _currentStatus;
+        VpnErrorTypeIpcEntity? previousError = _currentError;
+        IConnectionIntent? previousBroadcastConnectionIntent = _lastBroadcastConnectionIntent;
+
         _currentStatus = status;
         _currentError = error;
 
@@ -383,7 +390,18 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
 
         ConnectionStatus = MapConnectionStatus(status, error);
 
-        _eventMessageSender.Send(new ConnectionStatusChangedMessage(ConnectionStatus));
+        bool hasConnectionStatusChanged = forceSendStatusUpdate || previousConnectionStatus != ConnectionStatus;
+        bool hasInnerStatusOrErrorChanged = forceSendStatusUpdate || previousStatus != status || previousError != error;
+        bool hasConnectionIntentChanged = forceSendStatusUpdate ||
+            !(CurrentConnectionIntent?.IsSameAs(previousBroadcastConnectionIntent) ?? previousBroadcastConnectionIntent is null);
+
+        _lastBroadcastConnectionIntent = CurrentConnectionIntent;
+
+        _eventMessageSender.Send(new ConnectionStatusChangedMessage(
+            ConnectionStatus,
+            hasConnectionStatusChanged,
+            hasInnerStatusOrErrorChanged,
+            hasConnectionIntentChanged));
 
         _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Status updated to {ConnectionStatus}" +
             $"{(_isGuestHoleActive ? " (Guest hole)" : string.Empty)}." +

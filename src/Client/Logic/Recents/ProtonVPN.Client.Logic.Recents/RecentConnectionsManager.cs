@@ -102,7 +102,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
     public IOrderedEnumerable<IRecentConnection> GetRecentConnections()
     {
         return _recentConnections.OrderByDescending(c => c.IsPinned)
-                                 .ThenBy(c => c.PinTime)
+                                 .ThenBy(c => c.PinTimeUtc)
                                  .ThenByDescending(c => c.LastConnectionTimeUtc);
     }
 
@@ -223,13 +223,16 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
 
     public void Receive(ConnectionStatusChangedMessage message)
     {
-        if (_areRecentsLoaded && !_guestHoleManager.IsActive && (message?.ConnectionStatus) == ConnectionStatus.Connecting)
+        if (_areRecentsLoaded 
+            && !_guestHoleManager.IsActive 
+            && message?.ConnectionStatus == ConnectionStatus.Connecting
+            && message.HasConnectionIntentChanged)
         {
             lock (_lock)
             {
                 IConnectionIntent? connectionIntent = _connectionManager.CurrentConnectionIntent;
 
-                if (TryInsertRecentConnection(connectionIntent, DateTime.UtcNow))
+                if (TryInsertRecentConnection(connectionIntent))
                 {
                     TrimRecentConnections();
                     SaveAndBroadcastRecentConnectionsChanges();
@@ -278,7 +281,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         _connectionManager.InitializeAsync(recentConnection?.ConnectionIntent);
     }
 
-    private bool TryInsertRecentConnection(IConnectionIntent? recentIntent, DateTime? connectionTime = null)
+    private bool TryInsertRecentConnection(IConnectionIntent? recentIntent)
     {
         if (recentIntent == null || recentIntent.Location is FreeServerLocationIntent)
         {
@@ -293,7 +296,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         }
 
         IRecentConnection recentConnection = duplicates.FirstOrDefault() ?? new RecentConnection(Guid.NewGuid(), recentIntent);
-        recentConnection.LastConnectionTimeUtc = connectionTime;
+        recentConnection.LastConnectionTimeUtc = DateTime.UtcNow;
 
         _recentConnections.Add(recentConnection);
 
@@ -326,7 +329,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         }
 
         recentConnection.IsPinned = true;
-        recentConnection.PinTime = DateTime.UtcNow;
+        recentConnection.PinTimeUtc = DateTime.UtcNow;
 
         return true;
     }
@@ -339,7 +342,7 @@ public class RecentConnectionsManager : IRecentConnectionsManager,
         }
 
         recentConnection.IsPinned = false;
-        recentConnection.PinTime = null;
+        recentConnection.PinTimeUtc = null;
 
         return true;
     }

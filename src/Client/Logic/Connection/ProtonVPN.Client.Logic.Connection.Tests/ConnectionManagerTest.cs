@@ -20,6 +20,8 @@
 using NSubstitute;
 using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts;
+using ProtonVPN.Client.Logic.Connection.Contracts.Enums;
+using ProtonVPN.Client.Logic.Connection.Contracts.Messages;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Features;
 using ProtonVPN.Client.Logic.Connection.Contracts.Models.Intents.Locations.Countries;
@@ -162,6 +164,93 @@ public class ConnectionManagerTest
 
         // Assert
         Assert.IsTrue(connectionManager.CurrentConnectionIntent?.IsSameAs(connectionIntent));
+    }
+
+    [TestMethod]
+    public async Task HandleAsync_ShouldSendMessageWithInnerChangeButNoStatusChange_WhenInnerStatusesMapToSameConnectionStatusAsync()
+    {
+        // Arrange
+        SetupStatusMapping();
+        ConnectionManager connectionManager = GetConnectionManager();
+
+        // Act
+        await connectionManager.HandleAsync(GetVpnStateIpcEntity(VpnStatusIpcEntity.Connecting));
+        await connectionManager.HandleAsync(GetVpnStateIpcEntity(VpnStatusIpcEntity.Authenticating));
+        await connectionManager.HandleAsync(GetVpnStateIpcEntity(VpnStatusIpcEntity.AssigningIp));
+
+        // Assert
+        _eventMessageSender!.Received(3).Send(Arg.Any<ConnectionStatusChangedMessage>());
+        _eventMessageSender!.Received(2).Send(Arg.Is<ConnectionStatusChangedMessage>(
+            m => m.ConnectionStatus == ConnectionStatus.Connecting && !m.HasConnectionStatusChanged && m.HasInnerStatusOrErrorChanged));
+    }
+
+    [TestMethod]
+    public async Task HandleAsync_ShouldSendMessageWithInnerChange_WhenErrorChangesForSameConnectionStatusAsync()
+    {
+        // Arrange
+        SetupStatusMapping();
+        ConnectionManager connectionManager = GetConnectionManager();
+
+        // Act
+        await connectionManager.HandleAsync(GetVpnStateIpcEntity(VpnStatusIpcEntity.Connecting, VpnErrorTypeIpcEntity.None));
+        await connectionManager.HandleAsync(GetVpnStateIpcEntity(VpnStatusIpcEntity.Connecting, VpnErrorTypeIpcEntity.Unpaid));
+
+        // Assert
+        _eventMessageSender!.Received(1).Send(Arg.Is<ConnectionStatusChangedMessage>(
+            m => m.ConnectionStatus == ConnectionStatus.Connecting && !m.HasConnectionStatusChanged && m.HasInnerStatusOrErrorChanged));
+    }
+
+    [TestMethod]
+    public async Task HandleAsync_ShouldSendMessageWithConnectionIntentChanged_WhenConnectingToDifferentIntentAsync()
+    {
+        // Arrange
+        _settings!.VpnPlan.Returns(new VpnPlan(string.Empty, string.Empty, PAID_PLAN_TIER, false));
+        SetupStatusMapping();
+        ConnectionManager connectionManager = GetConnectionManager();
+        IConnectionIntent firstIntent = GetConnectionIntent(GetFeatureIntent(typeof(TorFeatureIntent)));
+        IConnectionIntent secondIntent = GetConnectionIntent(GetFeatureIntent(typeof(SecureCoreFeatureIntent)));
+
+        // The very first status update is always force-sent (and thus reports every flag as changed),
+        // so it is consumed here to observe the steady-state behavior below.
+        await connectionManager.ConnectAsync(VpnTriggerDimension.Auto, firstIntent);
+        await connectionManager.HandleAsync(GetVpnStateIpcEntity(VpnStatusIpcEntity.Connecting));
+        _eventMessageSender!.ClearReceivedCalls();
+
+        // Act
+        await connectionManager.HandleAsync(GetVpnStateIpcEntity(VpnStatusIpcEntity.Authenticating));
+        await connectionManager.ConnectAsync(VpnTriggerDimension.Auto, secondIntent);
+        await connectionManager.HandleAsync(GetVpnStateIpcEntity(VpnStatusIpcEntity.Connecting));
+
+        // Assert
+        _eventMessageSender!.Received(1).Send(Arg.Is<ConnectionStatusChangedMessage>(
+            m => m.ConnectionStatus == ConnectionStatus.Connecting && !m.HasConnectionIntentChanged));
+        _eventMessageSender!.Received(1).Send(Arg.Is<ConnectionStatusChangedMessage>(
+            m => m.ConnectionStatus == ConnectionStatus.Connecting && m.HasConnectionIntentChanged));
+    }
+
+    private void SetupStatusMapping()
+    {
+        _entityMapper!.Map<VpnStatusIpcEntity, ConnectionStatus>(Arg.Any<VpnStatusIpcEntity>())
+            .Returns(callInfo => callInfo.Arg<VpnStatusIpcEntity>() switch
+            {
+                VpnStatusIpcEntity.Disconnected or VpnStatusIpcEntity.Disconnecting => ConnectionStatus.Disconnected,
+                VpnStatusIpcEntity.Connected => ConnectionStatus.Connected,
+                _ => ConnectionStatus.Connecting
+            });
+    }
+
+    private VpnStateIpcEntity GetVpnStateIpcEntity(
+        VpnStatusIpcEntity status,
+        VpnErrorTypeIpcEntity error = VpnErrorTypeIpcEntity.None)
+    {
+        return new VpnStateIpcEntity
+        {
+            Status = status,
+            Error = error,
+            EndpointIp = string.Empty,
+            Label = string.Empty,
+            ConnectionCertificatePem = string.Empty,
+        };
     }
 
     private ConnectionRequestIpcEntity GetConnectionRequestIpcEntity()

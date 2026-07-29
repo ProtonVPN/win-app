@@ -30,9 +30,9 @@ public class RecentConnection : IRecentConnection
 
     public bool IsPinned { get; set; }
 
-    public DateTime? PinTime { get; set; }
+    public DateTime? PinTimeUtc { get; set; }
 
-    public DateTime? LastConnectionTimeUtc { get; set; }
+    public DateTime LastConnectionTimeUtc { get; set; }
 
     public RecentConnection(Guid id, IConnectionIntent connectionIntent)
     {

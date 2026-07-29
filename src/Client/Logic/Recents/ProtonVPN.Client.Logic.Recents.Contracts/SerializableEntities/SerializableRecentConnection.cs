@@ -27,5 +27,6 @@ public class SerializableRecentConnection
     public SerializableConnectionIntent? ConnectionIntent { get; set; }
     public bool IsPinned { get; set; }
     public DateTime? PinTime { get; set; }
+    public DateTime? LastConnectionTime { get; set; }
     public Guid? ProfileId { get; set; }
 }
