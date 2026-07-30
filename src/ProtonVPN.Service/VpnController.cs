@@ -142,7 +142,13 @@ public class VpnController : IVpnController
 
     public async Task UpdateLocalAgentTlsCredentialsAsync(LocalAgentTlsCredentialsIpcEntity credentialsIpcEntity, CancellationToken cancelToken)
     {
-        LocalAgentTlsCredentials credentials = _entityMapper.Map<LocalAgentTlsCredentialsIpcEntity, LocalAgentTlsCredentials>(credentialsIpcEntity);
+        LocalAgentTlsCredentials? credentials = _entityMapper.Map<LocalAgentTlsCredentialsIpcEntity, LocalAgentTlsCredentials>(credentialsIpcEntity);
+        if (string.IsNullOrEmpty(credentials?.ConnectionCertificate?.Pem))
+        {
+            _logger.Error<ConnectLog>("Connection certificate is missing, aborting credentials update.");
+            return;
+        }
+
         await _localAgentTlsCredentialsCache.SetAsync(credentials, cancelToken);
     }
 

@@ -17,27 +17,22 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Security.Cryptography.X509Certificates;
+using ProtonVPN.Common.Core.LocalAgent;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Crypto.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
-using ProtonVPN.Logging.Contracts;
-using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Crypto;
+using ProtonVPN.ProcessCommunication.Contracts.Entities.LocalAgent;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.Vpn;
 
 namespace ProtonVPN.ProcessCommunication.EntityMapping.Common.Legacy.Vpn;
 
 public class VpnCredentialsMapper : IMapper<VpnCredentials, VpnCredentialsIpcEntity>
 {
-    private readonly ILogger _logger;
     private readonly IEntityMapper _entityMapper;
 
-    public VpnCredentialsMapper(
-        ILogger logger,
-        IEntityMapper entityMapper)
+    public VpnCredentialsMapper(IEntityMapper entityMapper)
     {
-        _logger = logger;
         _entityMapper = entityMapper;
     }
 
@@ -58,23 +53,11 @@ public class VpnCredentialsMapper : IMapper<VpnCredentials, VpnCredentialsIpcEnt
 
     public VpnCredentials Map(VpnCredentialsIpcEntity rightEntity)
     {
-        string pem = rightEntity.Certificate.Pem;
-        if (!string.IsNullOrEmpty(pem))
-        {
-            try
-            {
-                using X509Certificate2 cert = X509Certificate2.CreateFromPem(pem);
-                pem = cert.ExportCertificatePem();
-            }
-            catch (Exception e)
-            {
-                pem = string.Empty;
-                _logger.Error<ConnectionLog>($"Failed to parse connection certificate.", e);
-            }
-        }
+        ConnectionCertificate certificate = _entityMapper.Map<ConnectionCertificateIpcEntity, ConnectionCertificate>(rightEntity.Certificate);
 
-        return new(pem,
-            rightEntity.Certificate.ExpirationDateUtc,
+        return new(
+            certificate?.Pem ?? string.Empty,
+            certificate?.ExpirationDateUtc,
             _entityMapper.Map<AsymmetricKeyPairIpcEntity, AsymmetricKeyPair>(rightEntity.ClientKeyPair),
             rightEntity.Username,
             rightEntity.Password);

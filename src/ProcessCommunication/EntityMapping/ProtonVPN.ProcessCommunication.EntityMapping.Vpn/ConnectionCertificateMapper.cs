@@ -17,14 +17,24 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Security.Cryptography.X509Certificates;
 using ProtonVPN.Common.Core.LocalAgent;
 using ProtonVPN.EntityMapping.Contracts;
+using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.ConnectionLogs;
 using ProtonVPN.ProcessCommunication.Contracts.Entities.LocalAgent;
 
-namespace ProtonVPN.ProcessCommunication.EntityMapping.Common.Core.LocalAgent;
+namespace ProtonVPN.ProcessCommunication.EntityMapping.Vpn;
 
 public class ConnectionCertificateMapper : IMapper<ConnectionCertificate, ConnectionCertificateIpcEntity>
 {
+    private readonly ILogger _logger;
+
+    public ConnectionCertificateMapper(ILogger logger)
+    {
+        _logger = logger;
+    }
+
     public ConnectionCertificateIpcEntity Map(ConnectionCertificate leftEntity)
     {
         return leftEntity is null
@@ -38,8 +48,26 @@ public class ConnectionCertificateMapper : IMapper<ConnectionCertificate, Connec
 
     public ConnectionCertificate Map(ConnectionCertificateIpcEntity rightEntity)
     {
-        return rightEntity is null
-            ? null
-            : new ConnectionCertificate(rightEntity.Pem, rightEntity.ExpirationDateUtc);
+        if (rightEntity is null)
+        {
+            return null;
+        }
+
+        string pem = rightEntity.Pem;
+        if (!string.IsNullOrEmpty(pem))
+        {
+            try
+            {
+                using X509Certificate2 cert = X509Certificate2.CreateFromPem(pem);
+                pem = cert.ExportCertificatePem();
+            }
+            catch (Exception e)
+            {
+                pem = string.Empty;
+                _logger.Error<ConnectionLog>($"Failed to parse connection certificate.", e);
+            }
+        }
+
+        return new ConnectionCertificate(pem, rightEntity.ExpirationDateUtc);
     }
 }
