@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Linq;
 using System.Threading;
 using System.Collections.Generic;
 using FlaUI.Core.Input;
@@ -102,8 +103,9 @@ public class HomeRobot
     protected Element ConnectionCardChangeServerTimeoutButton = Element.ByAutomationId("ConnectionCardChangeServerTimeoutButton");
     protected Element ConnectionCardUpsellBanner = Element.ByAutomationId("ConnectionCardUpsellBanner");
 
-    protected Element DefaultConnectionSelectorButton = Element.ByAutomationId("DefaultConnectionSelectorButton");
-    protected Element DefaultConnectionDropdown = Element.ByAutomationId("DefaultConnectionDropdown");
+    protected Element ConnectionPreferencesPage => Element.ByAutomationId("ConnectionPreferencesPage");
+    protected Element DefaultConnectionSelectorButton => Element.ByAutomationId("DefaultConnectionSelectorButton");
+    protected Element DefaultConnectionDropdown => Element.ByAutomationId("DefaultConnectionDropdown");
 
     protected Element ShowIpFlyoutButton => Element.ByAutomationId("ShowIpFlyoutButton");
 
@@ -396,9 +398,15 @@ public class HomeRobot
             return this;
         }
 
-        public Verifications ConnectionCardDescriptionContainsOneOf(List<Country> countries)
+        public Verifications ConnectionCardDescriptionContainsOneOf(Country[] countries)
         {
             ConnectionCardDescription.TextContainsOneOf(countries);
+            return this;
+        }
+
+        public Verifications ConnectionCardDescriptionDoesNotContainOneOf(Country[] countries)
+        {
+            ConnectionCardDescription.TextDoesNotContainOneOf(countries);
             return this;
         }
 
@@ -408,14 +416,15 @@ public class HomeRobot
             return this;
         }
 
-        public Verifications ConnectionPreferecesDropdownContains(string optionName)
+        public Verifications ConnectionPreferencesDropdownContains(string[] options, bool isOnConnectionPreferencesPage = false)
         {
-            DefaultConnectionSelectorButton.Click();
-            Thread.Sleep(TestConstants.AnimationDelay);
-            Element.ByName(optionName).WaitUntilDisplayed();
-            Thread.Sleep(TestConstants.AnimationDelay);
-            ConnectionCardTitle.Click();
+            VerifyDropdownOptions(options, shouldContain: true, isOnConnectionPreferencesPage);
+            return this;
+        }
 
+        public Verifications ConnectionPreferencesDropdownDoesNotContain(string[] options, bool isOnConnectionPreferencesPage = false)
+        {
+            VerifyDropdownOptions(options, shouldContain: false, isOnConnectionPreferencesPage);
             return this;
         }
 
@@ -502,6 +511,38 @@ public class HomeRobot
                 $"IP Address before client was killed: {ipAddressBeforeKill}. " +
                 $"IP Address after client was restored: {ipAddressAfterRestore}");
             return this;
+        }
+
+        private List<string> OpenDropdownAndGetTexts(bool isOnConnectionPreferencesPage)
+        {
+            if (isOnConnectionPreferencesPage)
+            {
+                ConnectionPreferencesPage.FindDescendant(DefaultConnectionSelectorButton).BoundingRectangleMouseClick();
+            }
+            else
+            {
+                DefaultConnectionSelectorButton.Click();
+            }
+
+            Thread.Sleep(TestConstants.AnimationDelay);
+
+            return DefaultConnectionDropdown.GetAllChildrenNames();
+        }
+
+        private void VerifyDropdownOptions(string[] options, bool shouldContain, bool isOnConnectionPreferencesPage)
+        {
+            List<string> dropdownTexts = OpenDropdownAndGetTexts(isOnConnectionPreferencesPage);
+
+            foreach (string optionName in options)
+            {
+                bool actuallyContains = dropdownTexts.Any(actualText => actualText.Contains(optionName));
+                Assert.That(actuallyContains, Is.EqualTo(shouldContain),
+                    $"Expected dropdown {(shouldContain ? "to contain" : "to not contain")} text '{optionName}', " +
+                    $"but available texts were: [{string.Join(", ", dropdownTexts)}]");
+            }
+
+            Thread.Sleep(TestConstants.AnimationDelay);
+            ConnectionCardTitle.Click();
         }
     }
 

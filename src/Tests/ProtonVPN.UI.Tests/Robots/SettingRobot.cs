@@ -47,6 +47,8 @@ public class SettingRobot
     private static readonly string _exitTheAppButtonTranslated = LanguageHelper.GetTranslatedString("Settings_Account_Exit");
     private static readonly string _exitProtonPopUpTranslated = LanguageHelper.GetTranslatedString("Exit_Confirmation_Title");
 
+    private static readonly string _noLocationsAvailableTranslated = LanguageHelper.GetTranslatedString("Settings_Connection_ExcludedLocations_NoLocations");
+
     protected Element ReconnectButton = Element.ByName(_reconnectButtonTranslated);
     protected Element ChangeLogLabel = Element.ByName(_changeLogLabelTranslated);
     protected Element LearnMoreButton = Element.ByName(_learnMoreButtonTranslated);
@@ -67,10 +69,15 @@ public class SettingRobot
     protected Element SplitTunnelingSettingsCard = Element.ByAutomationId("SplitTunnelingSettingsCard");
     protected Element VpnAcceleratorSettingsCard = Element.ByAutomationId("VpnAcceleratorSettingsCard");
     protected Element ConnectionPreferencesSettingsCard = Element.ByAutomationId("ConnectionPreferencesSettingsCard");
-    protected Element ExcludedLocationSelectorButton = Element.ByAutomationId("SelectorButton");
-    protected Element RemoveExcludedLocationButton = Element.ByAutomationId("RemoveExcludedLocationButton");
     protected Element PortForwardingToggle = Element.ByAutomationId("PortForwardingToggle");
     protected Element CopyPortNumberButton = Element.ByAutomationId("CopyPortNumberCompactButton");
+
+    protected Element ExcludedLocationSelectorButton = Element.ByAutomationId("SelectorButton");
+    protected Element ExcludedLocationSearchTextBox = Element.ByAutomationId("ExcludedLocationSearchTextBox");
+    protected Element RemoveExcludedLocationButton = Element.ByAutomationId("RemoveExcludedLocationButton");
+
+    public Element ExcludedLocationFlyout => Element.ByAutomationId("ExcludedLocationFlyout");
+    protected Element NoLocationsAvailable => ExcludedLocationFlyout.FindChild(Element.ByName(_noLocationsAvailableTranslated));
 
     protected Element AutoStartupSettingsCard = Element.ByAutomationId("AutoStartupSettingsCard");
     protected Element ReportIssueSettingsCard = Element.ByAutomationId("ReportIssueSettingsCard");
@@ -206,10 +213,18 @@ public class SettingRobot
         return this;
     }
 
-    public SettingRobot SearchExcludedLocations(string searchText)
+    public SettingRobot SearchExcludedLocations(string searchText, bool useKeyboard = true)
     {
-        Keyboard.Type(searchText);
-        Thread.Sleep(TestConstants.AnimationDelay);
+        if (useKeyboard)
+        {
+            Keyboard.Type(searchText);
+        }
+        else
+        {
+            ExcludedLocationSearchTextBox.SetText(searchText);
+        }
+
+        Thread.Sleep(TestConstants.OneSecondTimeout);
         return this;
     }
 
@@ -843,6 +858,12 @@ public class SettingRobot
         public Verifications IsRemoveExcludedLocationButtonDisplayed()
         {
             RemoveExcludedLocationButton.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsNoLocationsAvailableDisplayed()
+        {
+            NoLocationsAvailable.WaitUntilDisplayed();
             return this;
         }
     }

@@ -38,6 +38,19 @@ namespace ProtonVPN.UI.Tests.UiTools;
 
 public static class UiActions
 {
+    public static T BoundingRectangleMouseClick<T>(this T desiredElement, TimeSpan? retryIntervalOverload = null) where T : Element
+    {
+        AutomationElement? element = WaitUntilExists(desiredElement);
+
+        Rectangle rect = element!.BoundingRectangle;
+        int x = rect.Left + (rect.Width / 2);
+        int y = rect.Top + (rect.Height / 2);
+
+        Mouse.Click(new Point(x, y));
+
+        return desiredElement;
+    }
+
     public static T Click<T>(this T desiredElement, TimeSpan? retryIntervalOverload = null) where T : Element
     {
         AutomationElement? elementToClick = WaitUntilExists(desiredElement, TestConstants.EighteenSecondsTimeout, retryIntervalOverload);
@@ -353,6 +366,20 @@ public static class UiActions
         return (windowPosition, windowSize);
     }
 
+    public static (Point Position, Size Size) GetElementSizeAndPosition<T>(T desiredElement) where T : Element
+    {
+        //give it time to stabilize the position
+        Thread.Sleep(TestConstants.TwoSecondsTimeout);
+
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        Rectangle elementBoundingRectangle = element!.BoundingRectangle;
+
+        Point elementPosition = new(elementBoundingRectangle.X, elementBoundingRectangle.Y);
+        Size elementSize = new(elementBoundingRectangle.Width, elementBoundingRectangle.Height);
+
+        return (elementPosition, elementSize);
+    }
+
     public static T ClearInput<T>(this T desiredElement) where T : Element
     {
         AutomationElement? element = WaitUntilExists(desiredElement);
@@ -454,11 +481,19 @@ public static class UiActions
         return desiredElement;
     }
 
-    public static Element TextContainsOneOf<T>(this T desiredElement, List<Country> texts) where T : Element
+    public static Element TextContainsOneOf<T>(this T desiredElement, Country[] texts) where T : Element
     {
         AutomationElement? element = WaitUntilExists(desiredElement);
         string? elementText = element?.AsLabel().Text;
         Assert.That(texts.Any(oneOfText => elementText?.Contains(oneOfText.GetName()) == true), Is.True, $"Expected string to contain at least one of: {string.Join(", ", texts)}, but was: {elementText}");
+        return desiredElement;
+    }
+
+    public static Element TextDoesNotContainOneOf<T>(this T desiredElement, Country[] texts) where T : Element
+    {
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        string? elementText = element?.AsLabel().Text;
+        Assert.That(texts.Any(oneOfText => elementText?.Contains(oneOfText.GetName()) == true), Is.False, $"Expected string to not contain any of: {string.Join(", ", texts)}, but was: {elementText}");
         return desiredElement;
     }
 

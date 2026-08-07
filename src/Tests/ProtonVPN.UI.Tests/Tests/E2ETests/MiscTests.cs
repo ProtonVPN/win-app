@@ -91,7 +91,7 @@ public class MiscTests : FreshSessionSetUp
         HomeRobot
             .Verify.ConnectionCardTitleEquals(fastestCountryConnectionCardTitle)
                    .ConnectionCardDescriptionContains(fastestCountryConnectionCardDescription)
-                   .ConnectionPreferecesDropdownContains(connectionPreferecesDropdownOption)
+                   .ConnectionPreferencesDropdownContains([connectionPreferecesDropdownOption])
                    .ConnectionCardConnectButtonEquals(connectButton)
                    .ProtectionStatusEquals(unprotectedStatus)
                    .LocationDetailsContains(yourIpText)

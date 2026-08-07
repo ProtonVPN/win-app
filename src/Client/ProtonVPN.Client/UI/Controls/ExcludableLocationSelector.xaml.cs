@@ -150,7 +150,7 @@ public sealed partial class ExcludableLocationSelector : UserControl
             }
             else
             {
-                selector.LocationFlyout.Hide();
+                selector.ExcludedLocationFlyout.Hide();
             }
         }
     }
