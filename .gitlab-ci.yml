@@ -280,8 +280,6 @@ ui-tests-group:
   stage: ui-test-full
   extends: .ui_test_execution_script
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule"'
-      when: never
     - if: '$CI_COMMIT_BRANCH =~ /^release\/9\.9\.9.*$/'
       when: never
     - if: '$CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH =~ /^release.*$/ || $CI_COMMIT_BRANCH =~ /^automation.*$/'
@@ -302,8 +300,6 @@ ui-tests-full-arm:
     - job: build-installer-release-arm64
       optional: true
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule"'
-      when: never
     - if: '$CI_COMMIT_BRANCH =~ /^release\/9\.9\.9.*$/'
       when: never
     - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
@@ -316,8 +312,6 @@ ui-tests-smoke:
   stage: ui-test-smoke
   extends: .ui_test_execution_script
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule"'
-      when: never
     - if: '$CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH =~ /^release.*$/ || $CI_COMMIT_BRANCH =~ /^automation.*$/'
       when: never
     - if: '$CI_COMMIT_BRANCH =~ /^feat.*$/ || $CI_COMMIT_BRANCH =~ /^feature.*$/ || $CI_COMMIT_BRANCH =~ /^fix.*$/'
@@ -333,8 +327,6 @@ ui-tests-bti:
   tags:
     - windows-vpn-bti-tests #BTI
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule"'
-      when: never
     - if: '$CI_COMMIT_BRANCH =~ /^release\/9\.9\.9.*$/'
       when: never
     - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
@@ -352,25 +344,30 @@ push-results-to-testmo-full-arm:
     - job: ui-tests-full-arm
       optional: false
 
-push-results-to-testmo-bti:
-  stage: push-to-testmo
-  extends: .push_results_to_testmo
-  only:
-    - /^release.*$/
-  needs:
-    - job: ui-tests-bti
-      optional: false
-
 push-results-to-testmo-full:
   stage: push-to-testmo
   extends: .push_results_to_testmo
   only:
     - develop
-    - /^release.*$/
     - /^automation.*$/
   needs:
     - job: ui-tests-group
       optional: false
+  coverage: '/Automation coverage: (\d+\.?\d+)%/'
+
+push-results-to-testmo-release:
+  stage: push-to-testmo
+  extends: .push_results_to_testmo
+  only:
+    - /^release.*$/
+  needs:
+    - job: ui-tests-group
+      optional: false
+    - job: ui-tests-bti
+      optional: false
+    #uncomment when the installer tests get merged
+    #- job: ui-tests-installer 
+    #  optional: false
   coverage: '/Automation coverage: (\d+\.?\d+)%/'
 
 push-results-to-testmo-smoke:

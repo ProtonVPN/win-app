@@ -9,9 +9,12 @@
   script:
     - if (!(Test-Path $UI_TEST_REPORT_PATH)) { Write-Host "No results found"; exit 1 }
     - ci\test-scripts\push-results-to-testmo.ps1
-  allow_failure: false
+  allow_failure: true
 
 .ui_test_execution_script:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
   needs:
     - job: build-installer-debug-x64
       optional: true

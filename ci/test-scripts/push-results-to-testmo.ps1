@@ -9,12 +9,13 @@ function Main {
 
     $xmlFiles = @(Get-ChildItem -Path $env:UI_TEST_REPORT_PATH -Filter "*.xml" -Recurse)
     $isSmokeTest = $xmlFiles.Count -gt 0 -and $xmlFiles[0].Name -match "SMOKE"
+    $isArmTest = $xmlFiles.Count -gt 0 -and $xmlFiles[0].Name -match "ARM"
 
-    $subfolders, $folderMap = Get-Subfolders
+    $subfolders, $folderMap = Get-Subfolders $projectId
 
-    $automatedCount, $semiAutomatedCount, $manualCount, $testMoCasesMap = Get-TestCases $subfolders
+    $automatedCount, $semiAutomatedCount, $manualCount, $testMoCasesMap = Get-TestCases $projectId $subfolders
 
-    $runId = Create-Run $isSmokeTest
+    $runId = New-Run $isSmokeTest $isArmTest
 
     $passedCount = 0
     $failedCount = 0
@@ -58,7 +59,7 @@ function Main {
             $status = Get-TestStatus $testcase $testCaseIdRaw
 
             switch ($status) {
-                "failed" { $failedCount++;}
+                "failed" { $failedCount++; }
                 "passed" { $passedCount++; }
                 "skipped" { $skippedCountKnownIssue++; $skippedKnownIssue += $testcase.name }
                 "retest" { $skippedCountManualRetest++; $skippedManualRetest += $testcase.name }
@@ -109,10 +110,10 @@ function Main {
                 )
 
                 $testResults += @{
-                    key = $testCaseId
-                    folder = $folderName
-                    name = if ($testMoCase) { $testMoCase.name } else { $testcase.name }
-                    status = $status
+                    key     = $testCaseId
+                    folder  = $folderName
+                    name    = if ($testMoCase) { $testMoCase.name } else { $testcase.name }
+                    status  = $status
                     elapsed = [long]([double]$testcase.time * 1000000)
                     fields  = $testFields
                 }
@@ -121,7 +122,7 @@ function Main {
         $threadElapsed = [long](($testResults | ForEach-Object { $_.elapsed } | Measure-Object -Sum).Sum)
         $totalRunElapsed += $threadElapsed
 
-        Create-Thread $xmlFile $runId $testResults $threadElapsed
+        New-Thread $xmlFile $runId $testResults $threadElapsed
     }
 
     $automatedCountInCode = $passedCount + $failedCount
@@ -139,7 +140,6 @@ function Main {
     }
     
     $parameterizedDuplicates = $totalParameterizedInstances - $($allParameterizedVariants.Count)
-    $mergedCountSinceEachTestCounts = $mergedTestCount 
     
     Complete-Run $runId $totalMinutes $skippedCountNoTestCase $automatedPercentage
 
@@ -166,7 +166,8 @@ function Get-TestStatus {
         }
     }
     else {
-        if ($testCaseIdRaw -eq "602439" -or $testCaseIdRaw -eq "602438") { # Case ID of the flaky Port Forwarding tests
+        # Case ID of the flaky Port Forwarding tests
+        if ($testCaseIdRaw -eq "602439" -or $testCaseIdRaw -eq "602438") {
             $systemOut = $testcase."system-out"
             if ($systemOut -match "SUCCESS") {
                 $status = "passed"
@@ -174,7 +175,8 @@ function Get-TestStatus {
             else {
                 $status = "retest"
             }
-        } else {
+        }
+        else {
             $status = "passed"
         }
     }
@@ -183,6 +185,9 @@ function Get-TestStatus {
 }
 
 function Get-Subfolders {
+    param(
+        $projectId)
+
     $mainFolderId = 91214
 
     $subfolders = @()
@@ -203,6 +208,7 @@ function Get-Subfolders {
 
 function Get-TestCases {
     param(
+        $projectId,
         $subfolders)
 
     $automationTagId = 43821
@@ -246,19 +252,21 @@ function Get-TestCases {
     return $automatedCount, $semiAutomatedCount, $manualCount, $testMoCasesMap
 }
 
-function Create-Run {
+function New-Run {
     param(
-        $isSmokeTest)
+        $isSmokeTest,
+        $isArmTest)
 
     $runType = if ($isSmokeTest) { "Smoke" } else { "Full regression" }
-    $runName = "$runType $version - Automation"
+    $architectures = if ($isArmTest) { "arm64" } else { "x64" }
+    $runName = "$runType $version - $architectures"
     $source = if ($env:CI_COMMIT_REF_NAME -like "release/*") { "Release" } elseif ($env:CI_COMMIT_REF_NAME -eq "develop") { "Develop" } else { "Automation" }
-    $tag = $env:CI_COMMIT_REF_NAME.Replace("/","-").Replace(".","-") -replace "VPNWIN-\d+-", ""
+    $tag = $env:CI_COMMIT_REF_NAME.Replace("/", "-").Replace(".", "-") -replace "VPNWIN-\d+-", ""
 
     $runPayload = @{
-        name = $runName
+        name   = $runName
         source = $source
-        tags = @($tag)
+        tags   = @($tag)
     } | ConvertTo-Json
 
     $runResponse = Invoke-ApiCall `
@@ -270,7 +278,7 @@ function Create-Run {
     return $runResponse.id
 }
 
-function Create-Thread {
+function New-Thread {
     param(
         $xmlFile,
         $runId, 
@@ -278,7 +286,7 @@ function Create-Thread {
         $threadElapsed)
 
     # Create thread
-    $category = $xmlFile.Name.Replace("results_","").Replace(".xml","")
+    $category = $xmlFile.Name.Replace("results_", "").Replace(".xml", "")
 
     $threadPayload = @{ elapsed_observed = $threadElapsed } | ConvertTo-Json
 
@@ -396,14 +404,15 @@ function Show-Summary {
     Write-Host "Total elapsed: $totalMinutes min"
     Write-Host "========================================"
 
-    foreach ($name in $mergedTestCases.Keys) {$tcIds = $mergedTestCases[$name] -join ", ";Write-Host "Merged: $name > TC IDs: $tcIds"}
+    foreach ($name in $mergedTestCases.Keys) { $tcIds = $mergedTestCases[$name] -join ", "; Write-Host "Merged: $name > TC IDs: $tcIds" }
     Write-Host "-------------"
     foreach ($baseName in $allParameterizedVariants.Keys) { 
         $allVariants = $allParameterizedVariants[$baseName]
         $uploadedVariants = if ($parameterizedTests.ContainsKey($baseName)) { $parameterizedTests[$baseName] } else { 0 }
         if ($uploadedVariants -eq 0) {
             Write-Host "Parameterized: $baseName - has $allVariants scenarios (ALL SKIPPED - No TC ID)"
-        } else {
+        }
+        else {
             Write-Host "Parameterized: $baseName - has $allVariants scenarios (uploaded: $uploadedVariants)"
         }
     }
@@ -425,8 +434,8 @@ function Invoke-ApiCall {
     
     try {
         $params = @{
-            Uri    = $Uri
-            Method = $Method
+            Uri     = $Uri
+            Method  = $Method
             Headers = @{ Authorization = "Bearer $env:TESTMO_TOKEN" }
         }
 
