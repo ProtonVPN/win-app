@@ -40,6 +40,25 @@ public class RecentsFlow : BaseTest
         CommonUiFlows.VerifyIsConnectedThenDisconnect();
     }
 
+    public static void PopulateRecentsListWithCity(Country country, City city)
+    {
+        SidebarRobot
+            .NavigateToAllCountriesTab()
+            .ExpandCities(country)
+            .ConnectToCity(city);
+        CommonUiFlows.VerifyIsConnectedThenDisconnect();
+    }
+
+    public static void PopulateRecentsListWithServer(Country country)
+    {
+        SidebarRobot
+            .NavigateToAllCountriesTab()
+            .ExpandCities(country)
+            .ExpandSpecificServerList()
+            .ConnectToServer();
+        CommonUiFlows.VerifyIsConnectedThenDisconnect();
+    }
+
     public static void PopulateRecentsListWithSecureCore(Country secureCoreCountry, Country viaCountry)
     {
         SidebarRobot

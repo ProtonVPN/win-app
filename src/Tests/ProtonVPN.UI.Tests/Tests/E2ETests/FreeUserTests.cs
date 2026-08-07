@@ -46,7 +46,7 @@ public class FreeUserTests : FreshSessionSetUp
     private const Country SERVER_COUNTRY = Country.Australia;
     private const Country TOR_COUNTRY = Country.France;
 
-    private static readonly List<Country> _freeCountries = [Country.Canada, Country.Japan, Country.Mexico, Country.Netherlands, Country.Norway, Country.Poland, Country.Romania, Country.Singapore, Country.Switzerland, Country.UnitedStates];
+    private static readonly Country[] _freeCountries = [Country.Canada, Country.Japan, Country.Mexico, Country.Netherlands, Country.Norway, Country.Poland, Country.Romania, Country.Singapore, Country.Switzerland, Country.UnitedStates];
 
     [SetUp]
     public void TestInitialize()

@@ -17,12 +17,20 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Drawing;
+using System.Threading;
+using FlaUI.Core.Input;
+using FlaUI.Core.WindowsAPI;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
+using ProtonVPN.UI.Tests.Robots;
+using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.UI.Tests.Enums.Locations;
+using ProtonVPN.UI.Tests.TestsHelper.TestData;
 using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
@@ -35,6 +43,22 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
     private const Country EXCLUDED_LOCATION_AFGHANISTAN = Country.Afghanistan;
     private const Country EXCLUDED_LOCATION_UNITED_STATES = Country.UnitedStates;
 
+    private const Country COUNTRY_NAME = Country.Belgium;
+
+    private const Country COUNTRY_NAME_WITH_CITY = Country.Austria;
+    private const City CITY_NAME = City.Vienna;
+
+    private const Country COUNTRY_NAME_WITH_SERVER = Country.Australia;
+
+    private const Country SECURE_CORE_COUNTRY_NAME = Country.Argentina;
+    private const Country VIA_COUNTRY_SWITZERLAND = Country.Switzerland;
+
+    private const DefaultProfile PROFILE_NAME = DefaultProfile.StreamingUS;
+
+    private static readonly Country[] _balkanCountries = [Country.Macedonia, Country.Greece, Country.Albania, Country.Bulgaria, Country.Serbia, Country.Kosovo, Country.Montenegro];
+    private static readonly Country[] _euCountries = [Country.Austria, Country.Germany, Country.Hungary, Country.Lithuania, Country.France, Country.Poland];
+    private static readonly Country[] _neighbouringCountries = TestEnvironment.AreTestsRunningLocally() ? _balkanCountries : _euCountries;
+
     private static readonly string _excludedLocationSearchQuery = Country.UnitedStates.GetName().FirstCharToUpper();
 
     private static readonly string _fastestCountry = LanguageHelper.GetTranslatedString("Country_Fastest");
@@ -46,7 +70,7 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
         CommonUiFlows.FullLogin(TestUserData.PlusUser);
     }
 
-    [Test, Order(0)]
+    [Test]
     [Property("TestCaseId", "867494")]
     [Retry(3)]
     public void DefaultConnectionTitleIsFastest()
@@ -60,7 +84,7 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
             .Verify.IsDisconnected();
     }
 
-    [Test, Order(1)]
+    [Test]
     [Property("TestCaseId", "867496")]
     public void DefaultLastConnectionConnectsToCorrectServer()
     {
@@ -92,7 +116,7 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
             .Verify.IsDisconnected();
     }
 
-    [Test, Order(2)]
+    [Test]
     [Property("TestCaseId", "867492")]
     public void DefaultConnectionUpdatesConnectionCardTitle()
     {
@@ -109,7 +133,7 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
         ChooseDefaultConnectionFromSettingsAndVerifyConnectionCardTitle(VpnConnectionOption.Fastest, _fastestCountry);
     }
 
-    [Test, Order(3)]
+    [Test]
     [Property("TestCaseId", "867493")]
     public void ConnectToVpnFastestCountryAndRandomCountry()
     {
@@ -117,8 +141,9 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
         ConnectToDefaultConnectionAndVerify(VpnConnectionOption.Random, _randomCountry);
     }
 
-    [Test, Order(4)]
+    [Test]
     [Property("TestCaseId", "867497")]
+    [Retry(3)]
     public void AllowSelectingAndSearchingTheExcludedLocationsSelector()
     {
         SettingRobot
@@ -138,7 +163,193 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
             .CloseSettings();
     }
 
-    private void ConnectToDefaultConnectionAndVerify(VpnConnectionOption vpnConnectionOption, string expectedConnectionCardTitle)
+    [Test]
+    [Property("TestCaseId", "890307")]
+    public void ConnectionPreferencesListUpdatesHome()
+    {
+        PopulateRecents();
+
+        HomeRobot
+            .Verify.ConnectionPreferencesDropdownContains([
+                COUNTRY_NAME.GetName(),
+                CITY_NAME.GetEnumValue(),
+                COUNTRY_NAME_WITH_SERVER.GetCode(),
+                SECURE_CORE_COUNTRY_NAME.GetName(),
+                VIA_COUNTRY_SWITZERLAND.GetName(),
+                PROFILE_NAME.GetEnumValue()]);
+
+        SidebarRobot
+            .NavigateToRecents()
+            .ExpandSecondaryActionsForRecents(COUNTRY_NAME.GetName())
+            .RemoveRecent();
+        Thread.Sleep(TestConstants.UserInputSimulationDelay);
+        SidebarRobot
+            .ExpandSecondaryActionsForRecents(SECURE_CORE_COUNTRY_NAME.GetName())
+            .RemoveRecent();
+
+        HomeRobot
+            .Verify.ConnectionPreferencesDropdownContains([
+                CITY_NAME.GetEnumValue(),
+                COUNTRY_NAME_WITH_SERVER.GetCode(),
+                PROFILE_NAME.GetEnumValue()])
+            .Verify.ConnectionPreferencesDropdownDoesNotContain([
+                COUNTRY_NAME.GetName(),
+                SECURE_CORE_COUNTRY_NAME.GetName(),
+                VIA_COUNTRY_SWITZERLAND.GetName()]);
+    }
+
+    [Test]
+    [Property("TestCaseId", "890306")]
+    public void ConnectionPreferencesListUpdatesSettings()
+    {
+        PopulateRecents();
+
+        SettingRobot
+            .OpenSettings()
+            .OpenConnectionPreferencesSettingsCard();
+        HomeRobot
+            .Verify.ConnectionPreferencesDropdownContains([
+                COUNTRY_NAME.GetName(),
+                CITY_NAME.GetEnumValue(),
+                COUNTRY_NAME_WITH_SERVER.GetCode(),
+                SECURE_CORE_COUNTRY_NAME.GetName(),
+                VIA_COUNTRY_SWITZERLAND.GetName(),
+                PROFILE_NAME.GetEnumValue()], isOnConnectionPreferencesPage: true);
+        SettingRobot
+            .CloseSettings();
+        SidebarRobot
+            .NavigateToRecents()
+            .ExpandSecondaryActionsForRecents(PROFILE_NAME.GetEnumValue())
+            .RemoveRecent();
+        Thread.Sleep(TestConstants.UserInputSimulationDelay);
+        SidebarRobot
+            .ExpandSecondaryActionsForRecents(COUNTRY_NAME_WITH_CITY.GetEnumValue())
+            .RemoveRecent();
+
+        SettingRobot
+            .OpenSettings()
+            .OpenConnectionPreferencesSettingsCard();
+        HomeRobot
+            .Verify.ConnectionPreferencesDropdownContains([
+                COUNTRY_NAME.GetName(),
+                COUNTRY_NAME_WITH_SERVER.GetCode(),
+                SECURE_CORE_COUNTRY_NAME.GetName(),
+                VIA_COUNTRY_SWITZERLAND.GetName()], isOnConnectionPreferencesPage: true)
+            .Verify.ConnectionPreferencesDropdownDoesNotContain([
+                CITY_NAME.GetEnumValue(),
+                PROFILE_NAME.GetEnumValue()], isOnConnectionPreferencesPage: true);
+    }
+
+    [Test]
+    [Property("TestCaseId", "890305")]
+    public void ExcludedCountriesAreRespected()
+    {
+        SettingRobot
+            .OpenSettings()
+            .OpenConnectionPreferencesSettingsCard();
+
+        foreach (Country country in _neighbouringCountries)
+        {
+            SettingRobot
+                .OpenExcludedLocationsSelector()
+                .SearchExcludedLocations(country.GetName())
+                .SelectExcludedCountry(country)
+                .Verify.IsExcludedLocationDisplayed(country);
+        }
+
+        SettingRobot
+            .ApplySettings()
+            .CloseSettings();
+
+        for (int i = 0; i < 5; i++)
+        {
+            HomeRobot
+                .ConnectViaConnectionCard()
+                .Verify.IsConnected()
+                .ConnectionCardDescriptionDoesNotContainOneOf(_neighbouringCountries)
+                .Disconnect()
+                .Verify.IsDisconnected();
+            Thread.Sleep(TestConstants.UserInputSimulationDelay);
+        }
+    }
+
+    [Test]
+    [Property("TestCaseId", "890304")]
+    public void SearchingExcludedLocationsWithSpecialChars()
+    {
+        SettingRobot
+            .OpenSettings()
+            .OpenConnectionPreferencesSettingsCard()
+            .OpenExcludedLocationsSelector()
+            .SearchExcludedLocations("------", useKeyboard: false);
+
+        (Point Position, Size Size) beforeTyping = UiActions.GetElementSizeAndPosition(SettingRobot.ExcludedLocationFlyout);
+
+        foreach (string specialChar in InputTestData.SpecialInputs)
+        {
+            VerifyElementSizeAndPosition(beforeTyping, () =>
+            SettingRobot
+                .SearchExcludedLocations(specialChar, useKeyboard: false)
+            );
+            SettingRobot.Verify.IsNoLocationsAvailableDisplayed();
+            ClearSearchInput();
+        }
+    }
+
+    [Test]
+    [Property("TestCaseId", "890304")]
+    [Ignore("JIRA - VPNWIN-3343")]
+    public void SearchingExcludedLocationsWithMaxChars()
+    {
+        SettingRobot
+            .OpenSettings()
+            .OpenConnectionPreferencesSettingsCard()
+            .OpenExcludedLocationsSelector()
+            .SearchExcludedLocations("------", useKeyboard: false);
+
+        (Point Position, Size Size) beforeTyping = UiActions.GetElementSizeAndPosition(SettingRobot.ExcludedLocationFlyout);
+
+        VerifyElementSizeAndPosition(beforeTyping, () =>
+            SettingRobot
+                .SearchExcludedLocations(InputTestData.LongInput, useKeyboard: false)
+        );
+        SettingRobot.Verify.IsNoLocationsAvailableDisplayed();
+        ClearSearchInput();
+    }
+
+    private static void VerifyElementSizeAndPosition((Point Position, Size Size) beforeTyping, Action typeAction)
+    {
+        typeAction();
+
+        (Point Position, Size Size) afterTyping = UiActions.GetElementSizeAndPosition(SettingRobot.ExcludedLocationFlyout);
+
+        bool hasSamePosition = beforeTyping.Position.X == afterTyping.Position.X && beforeTyping.Position.Y == afterTyping.Position.Y;
+        bool hasSameSize = beforeTyping.Size.Width == afterTyping.Size.Width && beforeTyping.Size.Height == afterTyping.Size.Height;
+
+        Assert.That(hasSamePosition, Is.True, "Element position changed." +
+            $"Before: X: {beforeTyping.Position.X}, Y: {beforeTyping.Position.Y}" +
+            $"After: X: {afterTyping.Position.X}, Y: {afterTyping.Position.Y}");
+
+        Assert.That(hasSameSize, Is.True, "Element size changed." +
+              $"Before: Width: {beforeTyping.Size.Width}, Height: {beforeTyping.Size.Height}" +
+              $"After: Width: {afterTyping.Size.Width}, Height: {afterTyping.Size.Height}");
+    }
+
+    private static void PopulateRecents()
+    {
+        RecentsFlow.PopulateRecentsListWithCountry(COUNTRY_NAME);
+        RecentsFlow.PopulateRecentsListWithCity(COUNTRY_NAME_WITH_CITY, CITY_NAME);
+        RecentsFlow.PopulateRecentsListWithServer(COUNTRY_NAME_WITH_SERVER);
+        RecentsFlow.PopulateRecentsListWithSecureCore(SECURE_CORE_COUNTRY_NAME, VIA_COUNTRY_SWITZERLAND);
+        RecentsFlow.PopulateRecentsListWithProfile(PROFILE_NAME.GetEnumValue());
+    }
+
+    private static void ClearSearchInput()
+    {
+        Keyboard.TypeSimultaneously(VirtualKeyShort.CONTROL, VirtualKeyShort.KEY_A, VirtualKeyShort.DELETE);
+    }
+
+    private static void ConnectToDefaultConnectionAndVerify(VpnConnectionOption vpnConnectionOption, string expectedConnectionCardTitle)
     {
         HomeRobot
             .SelectDefaultConnectionOption(vpnConnectionOption)
@@ -149,7 +360,7 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
             .Verify.IsDisconnected();
     }
 
-    private void ChooseDefaultConnectionFromSettingsAndVerifyConnectionCardTitle(VpnConnectionOption vpnConnectionOption, string expectedConnectionCardTitle)
+    private static void ChooseDefaultConnectionFromSettingsAndVerifyConnectionCardTitle(VpnConnectionOption vpnConnectionOption, string expectedConnectionCardTitle)
     {
         SettingRobot
            .OpenSettings()

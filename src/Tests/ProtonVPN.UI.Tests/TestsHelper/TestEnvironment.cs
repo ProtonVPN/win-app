@@ -43,7 +43,7 @@ public class TestEnvironment : BaseTest
     public static bool AreTestsRunningLocally()
     {
         bool isLocalEnvironment = false;
-        string ciCommitHash = Environment.GetEnvironmentVariable("CI_COMMIT_SHA") ?? throw new Exception("Missing CI_COMMIT_SHA env var.");
+        string? ciCommitHash = Environment.GetEnvironmentVariable("CI_COMMIT_SHA");
         if (string.IsNullOrEmpty(ciCommitHash))
         {
             isLocalEnvironment = true;

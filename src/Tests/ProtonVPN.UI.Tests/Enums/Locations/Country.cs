@@ -268,6 +268,7 @@ public enum Country
     [Display(ShortName = "Country_val_VU")] Vanuatu,
     [Display(ShortName = "Country_val_WF")] WallisAndFutuna,
     [Display(ShortName = "Country_val_WS")] Samoa,
+    [Display(ShortName = "Country_val_XK")] Kosovo,
     [Display(ShortName = "Country_val_YE")] Yemen,
     [Display(ShortName = "Country_val_YT")] Mayotte,
     [Display(ShortName = "Country_val_ZA")] SouthAfrica,
