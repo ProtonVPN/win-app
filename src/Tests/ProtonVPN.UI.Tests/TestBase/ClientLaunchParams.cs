@@ -23,11 +23,13 @@ namespace ProtonVPN.UI.Tests.TestBase;
 
 public class ClientLaunchParams
 {
+    public static ClientLaunchParams StartWithoutDisconnectingFromWireGuard => new(shouldDisconnectFromWireGuard: false);
     public static ClientLaunchParams FreshStartWithNoOnboarding => new();
     public static ClientLaunchParams FreshStartWithOnboarding => new(shouldSkipOnboarding: false);
     public static ClientLaunchParams StartWithNoOnboarding => new(isFreshStart: false);
     public static ClientLaunchParams StartWithNoOnboardingNoRefresh => new(isFreshStart: false, shouldRefreshWindow: false);
 
+    public bool ShouldDisconnectFromWireGuard { get; }
     public bool IsFreshStart { get; }
     public bool ShouldSkipOnboarding { get; }
     public bool ShouldRefreshWindow { get; }
@@ -35,12 +37,14 @@ public class ClientLaunchParams
     public bool ShouldDisableAutoUpdate { get; }
 
     private ClientLaunchParams(
+        bool shouldDisconnectFromWireGuard = true,
         bool isFreshStart = true,
         bool shouldRefreshWindow = true,
         bool shouldSkipOnboarding = true,
         bool shouldExitAppOnClose = false,
         bool shouldDisableAutoUpdate = true)
     {
+        ShouldDisconnectFromWireGuard = shouldDisconnectFromWireGuard;
         IsFreshStart = isFreshStart;
         ShouldRefreshWindow = shouldRefreshWindow;
         ShouldSkipOnboarding = shouldSkipOnboarding;

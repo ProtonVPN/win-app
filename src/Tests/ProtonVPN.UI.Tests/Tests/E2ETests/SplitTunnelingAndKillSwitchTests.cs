@@ -119,7 +119,6 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
 
     [Test, Order(4)]
     [Property("TestCaseId", "787614")]
-    [Ignore("Flaky test")]
     [Retry(3)]
     public void IncludedAppLossesInternetWhileInConnectingState()
     {

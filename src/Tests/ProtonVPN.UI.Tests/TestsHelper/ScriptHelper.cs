@@ -35,8 +35,9 @@ public static class ScriptHelper
     Remove-NetFirewallRule -DisplayName 'Block Chrome Inbound'
     ";
 
-    private const string DISABLE_INTERNET_SCRIPT = @"Disable-NetAdapter -Name ""Ethernet"" -Confirm:$false"; //Wi-Fi - local, Ethernet - ci
-    private const string ENABLE_INTERNET_SCRIPT = @"Enable-NetAdapter -Name ""Ethernet"" -Confirm:$false";
+    private static readonly string _netAdapter = TestEnvironment.AreTestsRunningLocally() ? "Wi-Fi" : "Ethernet";
+    private static readonly string _disableInternetScript = $@"Disable-NetAdapter -Name ""{_netAdapter}"" -Confirm:$false";
+    private static readonly string _enableInternetScript = $@"Enable-NetAdapter -Name ""{_netAdapter}"" -Confirm:$false";
 
     private const string VPN_QOS_POLICY_NAME = "LimitProtonVPN";
     private static readonly string _installedServicePath = Path.Combine(TestEnvironment.GetProtonClientFolder(), "ProtonVPNService.exe");
@@ -62,12 +63,12 @@ public static class ScriptHelper
 
     public static void EnableInternet()
     {
-        WindowsUtils.RunPowerShellScript(ENABLE_INTERNET_SCRIPT);
+        WindowsUtils.RunPowerShellScript(_enableInternetScript);
     }
 
     public static void DisableInternet()
     {
-        WindowsUtils.RunPowerShellScript(DISABLE_INTERNET_SCRIPT);
+        WindowsUtils.RunPowerShellScript(_disableInternetScript);
     }
 
     public static void AddChromeFirewallRule()

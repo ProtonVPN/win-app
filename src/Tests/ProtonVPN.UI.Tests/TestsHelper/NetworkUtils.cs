@@ -142,7 +142,8 @@ public class NetworkUtils
         NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
         NetworkInterface? matchingAdapter = adapters.FirstOrDefault(a => a.Description.Contains(adapterName));
 
-        Assert.That(matchingAdapter, Is.Not.Null, $"No network adapter found with description containing '{adapterName}'");
+        Assert.That(matchingAdapter, Is.Not.Null, $"No network adapter found with description containing '{adapterName}'" +
+            $"\nAvailable adapters: {string.Join(", ", adapters.Select(a => a.Description))}");
         Assert.That(matchingAdapter!.OperationalStatus, Is.EqualTo(OperationalStatus.Up), $"Adapter '{matchingAdapter.Description}' is not up");
     }
 

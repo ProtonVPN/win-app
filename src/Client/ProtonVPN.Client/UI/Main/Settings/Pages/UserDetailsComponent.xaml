@@ -62,21 +62,24 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
             <MenuFlyout AutomationProperties.AutomationId="AccountFlyoutMenu"
                         Placement="BottomEdgeAlignedRight"
                         ShouldConstrainToRootBounds="True">
-                <MenuFlyoutItem Command="{x:Bind ViewModel.OpenMyAccountUrlCommand, Mode=OneTime}"
-                                        Style="{StaticResource HyperlinkMenuFlyoutItemStyle}"
-                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Account_Account')}">
+                <MenuFlyoutItem AutomationProperties.AutomationId="AccountMenuItem"
+                                Command="{x:Bind ViewModel.OpenMyAccountUrlCommand, Mode=OneTime}"
+                                Style="{StaticResource HyperlinkMenuFlyoutItemStyle}"
+                                Text="{x:Bind ViewModel.Localizer.Get('Settings_Account_Account')}">
                     <MenuFlyoutItem.Icon>
                         <pathicons:User />
                     </MenuFlyoutItem.Icon>
                 </MenuFlyoutItem>
-                <MenuFlyoutItem Command="{x:Bind ViewModel.SignOutCommand, Mode=OneTime}"
-                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Account_SignOut')}">
+                <MenuFlyoutItem AutomationProperties.AutomationId="SignOutMenuItem"
+                                Command="{x:Bind ViewModel.SignOutCommand, Mode=OneTime}"
+                                Text="{x:Bind ViewModel.Localizer.Get('Settings_Account_SignOut')}">
                     <MenuFlyoutItem.Icon>
                         <pathicons:ArrowOutFromRectangle />
                     </MenuFlyoutItem.Icon>
                 </MenuFlyoutItem>
-                <MenuFlyoutItem Command="{x:Bind ViewModel.ExitApplicationCommand, Mode=OneTime}"
-                                        Text="{x:Bind ViewModel.Localizer.Get('Settings_Account_Exit')}">
+                <MenuFlyoutItem AutomationProperties.AutomationId="ExitMenuItem"
+                                Command="{x:Bind ViewModel.ExitApplicationCommand, Mode=OneTime}"
+                                Text="{x:Bind ViewModel.Localizer.Get('Settings_Account_Exit')}">
                     <MenuFlyoutItem.Icon>
                         <pathicons:CrossBig />
                     </MenuFlyoutItem.Icon>

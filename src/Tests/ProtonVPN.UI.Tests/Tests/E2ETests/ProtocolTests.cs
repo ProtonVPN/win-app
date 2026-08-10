@@ -86,7 +86,6 @@ public class ProtocolTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602354")]
-    [Ignore("Retest Manually")]
     [TestCaseSource(typeof(TestConstants), nameof(WireGuardProtocols))]
     public void ConnectUsingWireGuardWhileConnectedToNativeWireGuard(Protocol wireGuardProtocol)
     {
@@ -116,6 +115,8 @@ public class ProtocolTests : FreshSessionSetUp
             OpenVpnAdapter.TAP,
             OPENVPN_TAP_ADAPTER_LOG_LINE,
             OPENVPN_TAP_ADAPTER_FULL_NAME);
+
+        CommonUiFlows.EnsureUserIsDisconnected();
     }
 
     [Test]
@@ -126,6 +127,8 @@ public class ProtocolTests : FreshSessionSetUp
             OpenVpnAdapter.TUN,
             OPENVPN_TUN_ADAPTER_LOG_LINE,
             OPENVPN_TUN_ADAPTER_FULL_NAME);
+
+        CommonUiFlows.EnsureUserIsDisconnected();
     }
 
     private void VerifyOpenVpnAdapter(

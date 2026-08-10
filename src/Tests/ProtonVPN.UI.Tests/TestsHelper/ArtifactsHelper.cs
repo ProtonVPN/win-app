@@ -25,13 +25,15 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Diagnostics.Eventing.Reader;
 using FlaUI.Core.Capturing;
-using NUnit.Framework;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 
 public class ArtifactsHelper
 {
     public static VideoRecorder? Recorder;
+    private static System.Timers.Timer? _videoTimer;
+    private static readonly object _recorderLock = new();
+
     private static string ArtifactsDirectory { get; set; } = string.Empty;
     private static EventLog? _eventViewerLogs = EventLog.GetEventLogs().Where(logs => logs.Log == "Application").FirstOrDefault();
 
@@ -46,16 +48,40 @@ public class ArtifactsHelper
         }
 
         string pathToVideo = Path.Combine(ArtifactsDirectory, testName, $"{testName}-recording.mp4");
-        Recorder = new VideoRecorder(new VideoRecorderSettings { VideoQuality = 18, FrameRate = 10u,ffmpegPath = recorderFullPath, TargetVideoPath = pathToVideo }, recorder =>
+        Recorder = new VideoRecorder(new VideoRecorderSettings { VideoQuality = 18, FrameRate = 10u, ffmpegPath = recorderFullPath, TargetVideoPath = pathToVideo }, recorder =>
         {
-            string testName = TestContext.CurrentContext.Test.MethodName ?? throw new Exception("Test method name is null.");
             CaptureImage img = Capture.Screen(1);
-            img.ApplyOverlays(new InfoOverlay(img) { 
-                RecordTimeSpan = recorder.RecordTimeSpan, 
-                OverlayStringFormat = @"{rt:hh\:mm\:ss\.fff} / {name} / CPU: {cpu} / RAM: {mem.p.used}/{mem.p.tot} ({mem.p.used.perc})" }, 
-                new MouseOverlay(img));
+            img.ApplyOverlays(new InfoOverlay(img)
+            {
+                RecordTimeSpan = recorder.RecordTimeSpan,
+                OverlayStringFormat = @"{rt:hh\:mm\:ss\.fff} / {name} / CPU: {cpu} / RAM: {mem.p.used}/{mem.p.tot} ({mem.p.used.perc})"
+            }, new MouseOverlay(img));
             return img;
         });
+
+        // Safety cap: force-finalize the video after 5 min even if the test hangs.
+        _videoTimer?.Stop();
+        _videoTimer?.Dispose();
+        _videoTimer = new System.Timers.Timer(5 * 60 * 1000) { AutoReset = false };
+        _videoTimer.Elapsed += (_, _) => StopRecorderSafely();
+        _videoTimer.Start();
+    }
+
+    public static void StopRecorderSafely()
+    {
+        lock (_recorderLock)
+        {
+            try
+            { Recorder?.Stop(); }
+            catch { }
+            try
+            { Recorder?.Dispose(); }
+            catch { }
+            Recorder = null;
+        }
+        try
+        { _videoTimer?.Stop(); }
+        catch { }
     }
 
     public static void SaveScreenshotAndLogs(string testName, string serviceLogsPath)
@@ -76,7 +102,7 @@ public class ArtifactsHelper
     public static void SaveEventViewerLogs(string testName)
     {
         string filePath = Path.Combine(ArtifactsDirectory, testName, "EventViewerLogs.evtx");
-        
+
         using (EventLogSession session = new())
         {
             session.ExportLog(_eventViewerLogs?.Log, PathType.LogName, "*", filePath, true);
@@ -101,7 +127,7 @@ public class ArtifactsHelper
     {
         Assembly asm = Assembly.GetExecutingAssembly();
         ArtifactsDirectory = Path.Combine(Path.GetDirectoryName(asm.Location) ?? string.Empty, "TestFailureData");
-        if(!Directory.Exists(ArtifactsDirectory))
+        if (!Directory.Exists(ArtifactsDirectory))
         {
             Directory.CreateDirectory(ArtifactsDirectory);
         }

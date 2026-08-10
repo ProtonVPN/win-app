@@ -27,7 +27,7 @@ using NUnit.Framework.Interfaces;
 
 public sealed class CircuitBreakerAttribute : Attribute, ITestAction
 {
-    private static readonly int _failureLimit = int.TryParse(Environment.GetEnvironmentVariable("FAILURE_LIMIT"), out int value) ? value : 5;
+    private static readonly int _failureLimit = int.TryParse(Environment.GetEnvironmentVariable("FAILURE_LIMIT"), out int value) ? value : 7;
     private static readonly object _lock = new();
 
     private static int _consecutiveFailures;

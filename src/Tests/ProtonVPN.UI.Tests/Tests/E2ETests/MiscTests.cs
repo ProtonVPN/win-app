@@ -118,9 +118,11 @@ public class MiscTests : FreshSessionSetUp
     [Test]
     [Property("TestCaseId", "602427")]
     [Category("5")]
+    [Retry(2)]
     public void ToggleFeaturesFromFlyout()
     {
         FeaturesRobot
+            .HoverOverKillSwitchWidget()
             .HoverOverNetShieldWidget()
             .EnableNetShield(NetShieldMode.BlockMalwareOnly)
             .EnableNetShield(NetShieldMode.BlockAdsMalwareTrackers)

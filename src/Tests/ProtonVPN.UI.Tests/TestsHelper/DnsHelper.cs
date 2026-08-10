@@ -41,7 +41,7 @@ public class DnsHelper
 
     [DllImport("dnsapi.dll", EntryPoint = "DnsFlushResolverCache")]
 
-    public static extern uint DnsFlushResolverCache();
+    private static extern uint DnsFlushResolverCache();
 
     public static List<string> GetDnsAddresses(string adapterName)
     {
@@ -57,59 +57,61 @@ public class DnsHelper
 
     public static void FlushDns()
     {
-        DnsFlushResolverCache();
+        _ = DnsFlushResolverCache();
     }
 
     public static void IsCustomDnsAddressSet(string dnsAddress, int order = 0)
     {
+        string? wg = null;
+        string? ovpn = null;
+        string? protun = null;
+
         RetryResult<bool> retry = Retry.WhileFalse(
             () =>
             {
-                return ContainsDnsAddress(dnsAddress, order);
+                wg = WireGuardDnsAddress.ElementAtOrDefault(order);
+                ovpn = OpenVpnDnsAddress.ElementAtOrDefault(order);
+                protun = ProTunDnsAddress.ElementAtOrDefault(order);
+                return wg == dnsAddress || ovpn == dnsAddress || protun == dnsAddress;
             },
             TestConstants.FiveSecondsTimeout, TestConstants.RetryInterval);
 
         if (!retry.Success)
         {
-            throw new Exception(DnsAdressErrorMessage(dnsAddress));
+            throw new Exception(
+                $"WireGuard dns address: {wg}. " +
+                $"OpenVPN dns address: {ovpn}. " +
+                $"ProTUN dns address: {protun}. " +
+                $"Expected dns value: {dnsAddress} (order {order})");
         }
     }
 
     public static void IsCustomDnsAddressNotSet(string dnsAddress)
     {
+        List<string> wg = [];
+        List<string> ovpn = [];
+        List<string> protun = [];
+
         RetryResult<bool> retry = Retry.WhileTrue(
             () =>
             {
-                return ContainsDnsAddressAnywhere(dnsAddress);
+                wg = WireGuardDnsAddress;
+                ovpn = OpenVpnDnsAddress;
+                protun = ProTunDnsAddress;
+                return wg.Contains(dnsAddress) || ovpn.Contains(dnsAddress) || protun.Contains(dnsAddress);
             },
             TestConstants.FiveSecondsTimeout, TestConstants.RetryInterval);
 
         if (!retry.Success)
         {
-            throw new Exception(DnsAdressErrorMessage(dnsAddress));
+            static string Fmt(List<string> list) => $"[{string.Join(", ", list)}]";
+
+            throw new Exception(
+                $"WireGuard dns addresses: {Fmt(wg)}. " +
+                $"OpenVPN dns addresses: {Fmt(ovpn)}. " +
+                $"ProTUN dns addresses: {Fmt(protun)}. " +
+                $"Expected dns value: {dnsAddress} to be absent.");
         }
-    }
-
-    private static string DnsAdressErrorMessage(string expectedDnsAddress)
-    {
-        return $"WireGuard dns address: {WireGuardDnsAddress.FirstOrDefault()}." +
-            $" OpenVPN dns address: {OpenVpnDnsAddress.FirstOrDefault()}." +
-            $" ProTUN dns address: {ProTunDnsAddress.FirstOrDefault()}." +
-            $" Expected dns value: {expectedDnsAddress}";
-    }
-
-    private static bool ContainsDnsAddressAnywhere(string expectedDnsAddress)
-    {
-        return WireGuardDnsAddress.Contains(expectedDnsAddress) ||
-               OpenVpnDnsAddress.Contains(expectedDnsAddress) ||
-               ProTunDnsAddress.Contains(expectedDnsAddress);
-    }
-
-    private static bool ContainsDnsAddress(string expectedDnsAddress, int order)
-    {
-        return WireGuardDnsAddress.ElementAtOrDefault(order) == expectedDnsAddress ||
-            OpenVpnDnsAddress.ElementAtOrDefault(order) == expectedDnsAddress ||
-            ProTunDnsAddress.ElementAtOrDefault(order) == expectedDnsAddress;
     }
 
     public static void VerifyDnsIsNotLeaking(List<string> dnsListNotConnected)

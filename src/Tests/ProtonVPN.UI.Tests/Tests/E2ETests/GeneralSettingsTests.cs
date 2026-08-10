@@ -136,7 +136,7 @@ public class GeneralSettingsTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "610992")]
-    [Ignore("unskip when implementing VPNWIN-3322")]
+    [Ignore("unskip when implementing VPNWIN-3331")]
     public void OtherLanguages()
     {
         LanguageHelper.CurrentLanguage = Language.German;

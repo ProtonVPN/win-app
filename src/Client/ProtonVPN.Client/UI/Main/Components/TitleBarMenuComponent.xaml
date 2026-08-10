@@ -96,7 +96,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                 <MenuFlyoutItem Command="{x:Bind ViewModel.SignoutCommand, Mode=OneTime}"
                                 Style="{StaticResource TitleBarMenuFlyoutItemStyle}"
                                 Text="{x:Bind ViewModel.Localizer.Get('Home_TitleBar_Menu_Signout')}"
-                                AutomationProperties.AutomationId="KebabMenuSignOutItem">
+                                AutomationProperties.AutomationId="SignOutMenuItem">
                     <MenuFlyoutItem.Icon>
                         <pathicons:ArrowOutFromRectangle Size="Pixels16" />
                     </MenuFlyoutItem.Icon>

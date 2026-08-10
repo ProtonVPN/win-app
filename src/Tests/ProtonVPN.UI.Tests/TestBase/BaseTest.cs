@@ -84,8 +84,7 @@ public class BaseTest
     {
         string testName = TestContext.CurrentContext.Test.MethodName ?? throw new Exception("Test method name is null.");
 
-        ArtifactsHelper.Recorder?.Stop();
-        ArtifactsHelper.Recorder?.Dispose();
+        ArtifactsHelper.StopRecorderSafely();
         ArtifactsHelper.SaveEventViewerLogs(testName);
         if (TestContext.CurrentContext.Result.Outcome.Status != TestStatus.Failed)
         {
@@ -198,10 +197,12 @@ public class BaseTest
 
     protected static void LaunchClient(ClientLaunchParams? parameters = null)
     {
-        //temp
-        ScriptHelper.DisconnectFromWireGuard();
-
         parameters ??= ClientLaunchParams.FreshStartWithNoOnboarding;
+
+        if (parameters.ShouldDisconnectFromWireGuard)
+        {
+            ScriptHelper.DisconnectFromWireGuard();
+        }
 
         if (parameters.IsFreshStart)
         {
