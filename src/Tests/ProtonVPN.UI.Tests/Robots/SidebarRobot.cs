@@ -160,6 +160,8 @@ public class SidebarRobot
     {
         Element countryButton = Element.ByAutomationId($"Connect_to_{connectionValue}");
         countryButton.ScrollIntoView();
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+        countryButton.ScrollIntoView();
         countryButton.FindChild(Element.ByAutomationId("ConnectionRowHeader")).Click();
         return this;
     }

@@ -128,7 +128,6 @@ public class TrayTests : BaseTest
 
     [Test, Order(4)]
     [Property("TestCaseId", "602463")]
-    [Ignore("Retest Manually")]
     public void ConnectingErrorsInTray()
     {
         try
@@ -346,10 +345,10 @@ public class TrayTests : BaseTest
     {
         ReLaunchApp();
         LoginRobot.Verify.IsLoginWindowDisplayed();
+        DesktopRobot.Verify.IsTrayIconDisplayed();
 
         using (TrayApp)
         {
-            DesktopRobot.Verify.IsTrayIconDisplayed();
             TrayRobot
                 .ClickTaskbar()
                 .Verify.IsLoginWindowFocused(false);

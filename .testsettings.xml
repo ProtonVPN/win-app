@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RunSettings>
   <RunConfiguration>
-     <!-- Specify timeout in milliseconds. A valid value should be greater than 0 -->
-     <TestSessionTimeout>3600000</TestSessionTimeout>
+    <!-- Whole-session backstop: 50 min -->
+    <ResultsDirectory>src\bin\e2e\TestResults</ResultsDirectory>
+    <TestSessionTimeout>3000000</TestSessionTimeout>
   </RunConfiguration>
+
+  <!-- Blame hang detection: if no test activity for 7 min, dump + name the hung test, then terminate -->
+  <LoggerRunSettings>
+    <Loggers>
+      <Logger friendlyName="blame" enabled="True" />
+    </Loggers>
+  </LoggerRunSettings>
+
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="blame" enabled="True">
+        <Configuration>
+          <!-- 7 min of no progress => considered hung -->
+          <CollectDumpOnTestSessionHang TestTimeout="420000" HangDumpType="None" />
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
 </RunSettings>

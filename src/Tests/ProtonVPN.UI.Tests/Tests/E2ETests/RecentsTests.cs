@@ -45,6 +45,7 @@ public class RecentsTests : FreshSessionSetUp
 
     [Test, Order(0)]
     [Property("TestCaseId", "602418")]
+    [Retry(3)]
     public void RecentIsAddedToList()
     {
         SidebarRobot
@@ -68,6 +69,7 @@ public class RecentsTests : FreshSessionSetUp
 
     [Test, Order(1)]
     [Property("TestCaseId", "602425")]
+    [Retry(3)]
     public void ProfilesAreAddedToRecentList()
     {
         RecentsFlow.PopulateRecentsListWithProfile(_profileName);

@@ -42,9 +42,9 @@ public class TorTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602368")]
-    [Retry(3)]
     [Category("ARM")]
     [Category("SMOKE_1")]
+    [Retry(3)]
     public void ConnectToATorServer()
     {
         NetworkUtils.AssertTorStatus(shouldBeAvailable: false);
@@ -113,6 +113,10 @@ public class TorTests : FreshSessionSetUp
             catch (AssertionException e)
             {
                 failureMessages.AppendLine($"Failed to connect to {country}: {e.Message}");
+            }
+            catch (System.Exception e)
+            {
+                failureMessages.AppendLine($"Failed to connect to {country}: {e.GetType().Name}: {e.Message}");
             }
         }
 

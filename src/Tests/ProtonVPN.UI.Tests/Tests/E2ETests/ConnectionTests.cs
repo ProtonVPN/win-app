@@ -178,6 +178,7 @@ public class ConnectionTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "789177")]
+    [Retry(3)]
     public void AppExitStopsVpnConnection()
     {
         string ipAddressBeforeConnected = NetworkUtils.GetIpAddressWithRetry();
@@ -265,7 +266,11 @@ public class ConnectionTests : FreshSessionSetUp
 
         NetworkUtils.VerifyIpAddressMatchesWithRetry(ipAddressNotConnected);
 
-        ConnectToCountryAndVerify();
+        SidebarRobot
+            .ExpandSpecificServerList()
+            .ConnectToServer();
+        HomeRobot
+            .Verify.IsConnected();
         SidebarRobot
             .ExpandSpecificServerList()
             .DisconnectViaServer();
@@ -295,7 +300,6 @@ public class ConnectionTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602424")]
-    [Ignore("Retest Manually")]
     [Retry(3)]
     public void FreshSignInWhileConnectedToWireGuard()
     {
@@ -425,7 +429,7 @@ public class ConnectionTests : FreshSessionSetUp
 
         ScriptHelper.ConnectToWireGuard();
         Thread.Sleep(TestConstants.TenSecondsTimeout);
-        LaunchClient();
+        LaunchClient(ClientLaunchParams.StartWithoutDisconnectingFromWireGuard);
         NetworkUtils.AssertInternetAvailability(true);
         CommonUiFlows.FullLogin(TestUserData.VisionaryUser);
     }

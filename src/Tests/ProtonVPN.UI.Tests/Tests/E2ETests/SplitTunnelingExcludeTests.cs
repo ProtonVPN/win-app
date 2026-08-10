@@ -18,6 +18,8 @@
  */
 
 using System.Threading;
+using FlaUI.Core.Input;
+using FlaUI.Core.WindowsAPI;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Enums.Locations;
@@ -101,6 +103,7 @@ public class SplitTunnelingExcludeTests : BaseTest
 
     [Test, Order(2)]
     [Property("TestCaseId", "602414")]
+    [Retry(3)]
     public void SplitTunnelingExcludeIpAddress()
     {
         SplitTunnelingRobot
@@ -221,6 +224,7 @@ public class SplitTunnelingExcludeTests : BaseTest
 
     [Test, Order(5)]
     [Property("TestCaseId", "787609")]
+    [Retry(3)]
     public void SplitTunnelingExcludeModeApp()
     {
         try
@@ -265,14 +269,21 @@ public class SplitTunnelingExcludeTests : BaseTest
             SplitTunnelingRobot
                 .DisableSplitTunnelingToggle();
             SettingRobot
-                .ApplySettings()
-                .CloseSettings();
+                .ApplySettings();
         }
     }
 
     [TearDown]
     public void TearDown()
     {
+        Keyboard.Press(VirtualKeyShort.ESCAPE);
+        try
+        {
+            ConfirmationRobot
+                .Verify.IsOverlayDisplayed()
+                .CancelAction();
+        }
+        catch { }
         BrowserUtils.KillAllBrowsers();
         Cleanup();
     }

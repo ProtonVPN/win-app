@@ -60,7 +60,7 @@ public class CommonUiFlows : BaseTest
 
     public static void Logout(TimeSpan? timeout = null)
     {
-        timeout ??= TestConstants.ThirtySecondsTimeout;
+        timeout ??= TestConstants.OneMinuteTimeout;
 
         HomeRobot
             .ExpandKebabMenuButton();

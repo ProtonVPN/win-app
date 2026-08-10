@@ -21,6 +21,7 @@ using System;
 using System.Linq;
 using System.Drawing;
 using System.Threading;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using FlaUI.Core.Input;
@@ -51,23 +52,30 @@ public static class UiActions
         return desiredElement;
     }
 
-    public static T Click<T>(this T desiredElement, TimeSpan? retryIntervalOverload = null) where T : Element
+    public static T Click<T>(this T desiredElement, TimeSpan? clickableTimeout = null) where T : Element
     {
-        AutomationElement? elementToClick = WaitUntilExists(desiredElement, TestConstants.EighteenSecondsTimeout, retryIntervalOverload);
-        elementToClick?.WaitUntilClickable(TestConstants.EighteenSecondsTimeout);
+        clickableTimeout ??= TestConstants.EighteenSecondsTimeout;
+        AutomationElement? elementToClick = WaitUntilExists(desiredElement, clickableTimeout);
+        elementToClick?.WaitUntilClickable(clickableTimeout);
         elementToClick?.Click();
         return desiredElement;
     }
 
     public static T ClickUntilElementDisappears<T>(this T desiredElement, TimeSpan? retryIntervalOverload = null) where T : Element
     {
-        AutomationElement? elementToClick = WaitUntilExists(desiredElement, TestConstants.EighteenSecondsTimeout, retryIntervalOverload);
-        elementToClick?.WaitUntilClickable(TestConstants.EighteenSecondsTimeout);
+        AutomationElement elementToClick = WaitUntilExists(desiredElement, TestConstants.EighteenSecondsTimeout, retryIntervalOverload)!;
+        elementToClick.WaitUntilClickable(TestConstants.EighteenSecondsTimeout);
+        elementToClick.Click();
 
         DateTime timeoutDate = DateTime.UtcNow + TestConstants.FiveSecondsTimeout;
 
         while (DateTime.UtcNow < timeoutDate)
         {
+            Thread.Sleep(TestConstants.UserInputSimulationDelay);
+
+            BaseTest.RefreshWindow();
+            BaseTest.App?.WaitWhileBusy();
+
             AutomationElement? element;
             try
             {
@@ -75,39 +83,137 @@ public static class UiActions
             }
             catch (COMException)
             {
-                break;
+                return desiredElement;
             }
 
             if (element == null)
             {
-                break;
+                return desiredElement;
             }
+
+            if (element.IsEnabled && !element.IsOffscreen)
+            {
+                try
+                {
+                    element.Click();
+                }
+                catch (COMException) { }
+            }
+        }
+
+        throw new TimeoutException($"'{desiredElement.SelectorName}' did not disappear within {TestConstants.FiveSecondsTimeout.TotalSeconds} seconds after clicking.");
+    }
+
+    public static T ClickUntilElementExits<T>(this T desiredElement, TimeSpan? retryIntervalOverload = null) where T : Element
+    {
+        AutomationElement elementToClick = WaitUntilExists(desiredElement, TestConstants.EighteenSecondsTimeout, retryIntervalOverload)!;
+        elementToClick.WaitUntilClickable(TestConstants.EighteenSecondsTimeout);
+
+        int processId = BaseTest.App!.ProcessId!;
+
+        elementToClick.Click();
+
+        DateTime timeoutDate = DateTime.UtcNow + TestConstants.TenSecondsTimeout;
+
+        while (DateTime.UtcNow < timeoutDate)
+        {
+            Thread.Sleep(TestConstants.TwoSecondsTimeout);
 
             try
             {
-                elementToClick?.Click();
+                Process process = Process.GetProcessById(processId);
+                if (process.HasExited)
+                {
+                    return desiredElement;
+                }
             }
-            catch (COMException) { }
+            catch (ArgumentException)
+            {
+                return desiredElement;
+            }
 
-            Thread.Sleep(TestConstants.AnimationDelay);
+            BaseTest.RefreshWindow();
+            BaseTest.App?.WaitWhileBusy();
+
+            AutomationElement? element;
+            try
+            {
+                element = FindFirstDescendantUsingChildren(desiredElement.Condition);
+            }
+            catch (COMException)
+            {
+                return desiredElement;
+            }
+
+            if (element == null)
+            {
+                return desiredElement;
+            }
+
+            if (element.IsEnabled && !element.IsOffscreen)
+            {
+                try
+                {
+                    element.Click();
+                }
+                catch (COMException) { }
+            }
         }
 
-        return desiredElement;
+        throw new TimeoutException($"'{desiredElement.SelectorName}' did not disappear within {TestConstants.FiveSecondsTimeout.TotalSeconds} seconds after clicking.");
     }
 
     public static T ClickUntilAnotherElementAppears<T>(this T desiredElement, Element elementToAppear, TimeSpan? retryIntervalOverload = null) where T : Element
     {
-        AutomationElement? elementToClick = WaitUntilExists(desiredElement, TestConstants.EighteenSecondsTimeout, retryIntervalOverload);
-        elementToClick?.WaitUntilClickable(TestConstants.EighteenSecondsTimeout);
+        AutomationElement elementToClick = WaitUntilExists(desiredElement, TestConstants.EighteenSecondsTimeout, retryIntervalOverload)!;
+        elementToClick.WaitUntilClickable(TestConstants.EighteenSecondsTimeout);
+        elementToClick.Click();
 
         DateTime timeoutDate = DateTime.UtcNow + TestConstants.FiveSecondsTimeout;
-        while (FindFirstDescendantUsingChildren(elementToAppear.Condition) == null && (DateTime.UtcNow < timeoutDate))
+        while (DateTime.UtcNow < timeoutDate)
         {
-            elementToClick?.Click();
-            Thread.Sleep(TestConstants.AnimationDelay);
+            BaseTest.RefreshWindow();
+            BaseTest.App?.WaitWhileBusy();
+
+            AutomationElement? appeared;
+            try
+            {
+                appeared = FindFirstDescendantUsingChildren(elementToAppear.Condition);
+            }
+            catch (COMException)
+            {
+                appeared = null;
+            }
+
+            if (appeared != null)
+            {
+                return desiredElement;
+            }
+
+            Thread.Sleep(TestConstants.UserInputSimulationDelay);
+
+            AutomationElement? freshTarget;
+            try
+            {
+                freshTarget = FindFirstDescendantUsingChildren(desiredElement.Condition);
+            }
+            catch (COMException)
+            {
+                continue;
+            }
+
+            if (freshTarget != null && freshTarget.IsEnabled && !freshTarget.IsOffscreen)
+            {
+                try
+                {
+                    freshTarget.Click();
+                }
+                catch (COMException) { }
+            }
         }
 
-        return desiredElement;
+        throw new TimeoutException($"'{elementToAppear.SelectorName}' did not appear within {TestConstants.FiveSecondsTimeout.TotalSeconds} seconds " +
+            $"after repeatedly clicking '{desiredElement.SelectorName}'.");
     }
 
     public static T DoubleClick<T>(this T desiredElement) where T : Element

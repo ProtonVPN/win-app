@@ -43,7 +43,6 @@ public class SettingRobot
     private static readonly string _reconnectButtonTranslated = LanguageHelper.GetTranslatedString("Common_Actions_Reconnect");
     private static readonly string _changeLogLabelTranslated = LanguageHelper.GetTranslatedString("Settings_About_Changelog");
     private static readonly string _learnMoreButtonTranslated = LanguageHelper.GetTranslatedString("Settings_About_LearnMore");
-    private static readonly string _signOutButtonTranslated = LanguageHelper.GetTranslatedString("Settings_Account_SignOut");
     private static readonly string _exitTheAppButtonTranslated = LanguageHelper.GetTranslatedString("Settings_Account_Exit");
     private static readonly string _exitProtonPopUpTranslated = LanguageHelper.GetTranslatedString("Exit_Confirmation_Title");
 
@@ -52,10 +51,10 @@ public class SettingRobot
     protected Element ReconnectButton = Element.ByName(_reconnectButtonTranslated);
     protected Element ChangeLogLabel = Element.ByName(_changeLogLabelTranslated);
     protected Element LearnMoreButton = Element.ByName(_learnMoreButtonTranslated);
-    protected Element SignOutButton = Element.ByName(_signOutButtonTranslated);
     protected Element ExitTheAppButton = Element.ByName(_exitTheAppButtonTranslated);
     protected Element ExitProtonPopUp = Element.ByName(_exitProtonPopUpTranslated);
 
+    protected Element SignOutButton = Element.ByAutomationId("SignOutMenuItem");
     protected Element SettingsPage = Element.ByAutomationId("SettingsPage");
     protected Element ApplyButton = Element.ByAutomationId("ApplyButton");
     protected Element CloseSettingsButton = Element.ByAutomationId("CloseSettingsButton");
@@ -207,6 +206,7 @@ public class SettingRobot
 
     public SettingRobot SelectExcludedCountry(Country countryName)
     {
+        Thread.Sleep(TestConstants.AnimationDelay);
         Element.ByName(countryName.GetName()).Click();
         Thread.Sleep(TestConstants.AnimationDelay);
         RemoveExcludedLocationButton.WaitUntilDisplayed();
@@ -232,12 +232,6 @@ public class SettingRobot
     {
         RemoveExcludedLocationButton.Click();
         Thread.Sleep(TestConstants.AnimationDelay);
-        return this;
-    }
-
-    public SettingRobot SignOut()
-    {
-        SignOutButton.ClickUntilElementDisappears();
         return this;
     }
 
@@ -307,9 +301,30 @@ public class SettingRobot
         return this;
     }
 
+    public SettingRobot SignOut()
+    {
+        SignOutButton.ClickUntilElementDisappears();
+        return this;
+    }
+
     public SettingRobot ConfirmSignOut()
     {
-        PrimaryActionButton.Click();
+        PrimaryActionButton.Click(TestConstants.TwoSecondsTimeout);
+        Thread.Sleep(TestConstants.UserInputSimulationDelay);
+        Keyboard.Press(VirtualKeyShort.ENTER);
+
+        try
+        {
+            PrimaryActionButton.Invoke(TestConstants.TwoSecondsTimeout);
+        }
+        catch { }
+
+        try
+        {
+            PrimaryActionButton.Click(TestConstants.TwoSecondsTimeout);
+        }
+        catch { }
+
         return this;
     }
 

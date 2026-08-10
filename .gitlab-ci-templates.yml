@@ -15,6 +15,8 @@
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
       when: never
+    - if: '$CI_COMMIT_BRANCH =~ /^release\/9\.9\.9.*$/'
+      when: never
   needs:
     - job: build-installer-debug-x64
       optional: true

@@ -280,8 +280,7 @@ ui-tests-group:
   stage: ui-test-full
   extends: .ui_test_execution_script
   rules:
-    - if: '$CI_COMMIT_BRANCH =~ /^release\/9\.9\.9.*$/'
-      when: never
+    - !reference [.ui_test_execution_script, rules]
     - if: '$CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH =~ /^release.*$/ || $CI_COMMIT_BRANCH =~ /^automation.*$/'
       when: on_success
     - when: manual
@@ -300,8 +299,7 @@ ui-tests-full-arm:
     - job: build-installer-release-arm64
       optional: true
   rules:
-    - if: '$CI_COMMIT_BRANCH =~ /^release\/9\.9\.9.*$/'
-      when: never
+    - !reference [.ui_test_execution_script, rules]
     - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
       when: on_success
     - when: manual
@@ -312,6 +310,7 @@ ui-tests-smoke:
   stage: ui-test-smoke
   extends: .ui_test_execution_script
   rules:
+    - !reference [.ui_test_execution_script, rules]
     - if: '$CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH =~ /^release.*$/ || $CI_COMMIT_BRANCH =~ /^automation.*$/'
       when: never
     - if: '$CI_COMMIT_BRANCH =~ /^feat.*$/ || $CI_COMMIT_BRANCH =~ /^feature.*$/ || $CI_COMMIT_BRANCH =~ /^fix.*$/'
@@ -327,8 +326,7 @@ ui-tests-bti:
   tags:
     - windows-vpn-bti-tests #BTI
   rules:
-    - if: '$CI_COMMIT_BRANCH =~ /^release\/9\.9\.9.*$/'
-      when: never
+    - !reference [.ui_test_execution_script, rules]
     - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
       when: on_success
     - when: manual

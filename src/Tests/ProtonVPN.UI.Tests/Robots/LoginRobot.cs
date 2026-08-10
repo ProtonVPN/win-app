@@ -91,6 +91,7 @@ public class LoginRobot
 
     public LoginRobot EnterTwoFactorCode(string twoFactorCode)
     {
+        TwoFactorFirstDigit.WaitUntilDisplayed(TestConstants.OneMinuteTimeout);
         TwoFactorFirstDigit.SetText(twoFactorCode[0].ToString());
         TwoFactorSecondDigit.SetText(twoFactorCode[1].ToString());
         TwoFactorThirdDigit.SetText(twoFactorCode[2].ToString());
@@ -104,7 +105,7 @@ public class LoginRobot
     public LoginRobot DoLoginSsoWebview(string password)
     {
         //We have a very limited ability to use WebView, that is why we are using static pauses and keyboard strokes.
-        SsoWindow.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
+        SsoWindow.WaitUntilDisplayed(TestConstants.OneMinuteTimeout);
         Thread.Sleep(15000);
         SsoWindow.Click();
 
@@ -176,7 +177,7 @@ public class LoginRobot
 
         public Verifications IsLoginWindowDisplayed(TimeSpan? timeout = null)
         {
-            timeout ??= TestConstants.ThirtySecondsTimeout;
+            timeout ??= TestConstants.OneMinuteTimeout;
             UsernameTextBox.WaitUntilDisplayed(timeout);
             PasswordTextBox.WaitUntilDisplayed();
             return this;

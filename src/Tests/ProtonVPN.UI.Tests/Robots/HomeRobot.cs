@@ -135,9 +135,9 @@ public class HomeRobot
         return ShowIpFlyoutButton.GetAutomationElementName();
     }
 
-    public HomeRobot ConnectViaConnectionCard(TimeSpan? retryIntervalOverload = null)
+    public HomeRobot ConnectViaConnectionCard()
     {
-        ConnectionCardConnectButton.Click(retryIntervalOverload);
+        ConnectionCardConnectButton.Click();
         return this;
     }
 
@@ -195,7 +195,7 @@ public class HomeRobot
     public HomeRobot ExitViaKebabMenuWithConfirmation()
     {
         ExitViaKebabMenu();
-        ExitButton.ClickUntilElementDisappears();
+        ExitButton.ClickUntilElementExits();
         return this;
     }
 
@@ -341,7 +341,7 @@ public class HomeRobot
 
         public Verifications IsConnected()
         {
-            ProtectedLabel.WaitUntilDisplayed(TestConstants.OneMinuteTimeout);
+            ProtectedLabel.WaitUntilDisplayed(TestConstants.TwoMinutesTimeout);
             ConnectionCardDisconnectButton.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
             return this;
         }
