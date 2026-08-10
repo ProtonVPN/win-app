@@ -34,6 +34,11 @@ public sealed partial class TrayIconComponentView : IContextAware
 
     public void DisposeTrayIcon()
     {
+        // Messages received while the app is shutting down keep invalidating the icon source.
+        // H.NotifyIcon applies those updates asynchronously (async void), so a late update would
+        // throw ObjectDisposedException on the dispatcher. Detach the bindings before disposing.
+        Bindings.StopTracking();
+
         TrayIcon.Dispose();
     }
 
