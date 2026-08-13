@@ -27,6 +27,7 @@ using System.Runtime.InteropServices;
 using FlaUI.Core.Input;
 using FlaUI.Core.Tools;
 using FlaUI.Core.Patterns;
+using FlaUI.Core.WindowsAPI;
 using FlaUI.Core.Conditions;
 using FlaUI.Core.Definitions;
 using FlaUI.Core.AutomationElements;
@@ -468,6 +469,29 @@ public static class UiActions
         Size elementSize = new(elementBoundingRectangle.Width, elementBoundingRectangle.Height);
 
         return (elementPosition, elementSize);
+    }
+
+    public static void VerifyElementSizeAndPosition(Element elementToVerify, (Point Position, Size Size) elementBeforeTyping, Action typeAction)
+    {
+        typeAction();
+
+        (Point Position, Size Size) elementAfterTyping = GetElementSizeAndPosition(elementToVerify);
+
+        bool hasSamePosition = elementBeforeTyping.Position.X == elementAfterTyping.Position.X && elementBeforeTyping.Position.Y == elementAfterTyping.Position.Y;
+        bool hasSameSize = elementBeforeTyping.Size.Width == elementAfterTyping.Size.Width && elementBeforeTyping.Size.Height == elementAfterTyping.Size.Height;
+
+        Assert.That(hasSamePosition, Is.True, "Element position changed." +
+            $"Before: X: {elementBeforeTyping.Position.X}, Y: {elementBeforeTyping.Position.Y}" +
+            $"After: X: {elementAfterTyping.Position.X}, Y: {elementAfterTyping.Position.Y}");
+
+        Assert.That(hasSameSize, Is.True, "Element size changed." +
+              $"Before: Width: {elementBeforeTyping.Size.Width}, Height: {elementBeforeTyping.Size.Height}" +
+              $"After: Width: {elementAfterTyping.Size.Width}, Height: {elementAfterTyping.Size.Height}");
+    }
+
+    public static void ClearInputWithKeyboard()
+    {
+        Keyboard.TypeSimultaneously(VirtualKeyShort.CONTROL, VirtualKeyShort.KEY_A, VirtualKeyShort.DELETE);
     }
 
     public static T ClearInput<T>(this T desiredElement) where T : Element

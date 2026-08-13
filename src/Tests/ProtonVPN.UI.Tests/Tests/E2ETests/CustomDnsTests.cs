@@ -18,12 +18,15 @@
  */
 
 using System.Collections.Generic;
+using System.Drawing;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.TestsHelper.TestData;
 using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
+using ProtonVPN.UI.Tests.UiTools;
 using static ProtonVPN.UI.Tests.TestsHelper.TestConstants;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
@@ -48,6 +51,9 @@ public class CustomDnsTests : FreshSessionSetUp
     private static readonly string _unsavedChangesTitle = LanguageHelper.GetTranslatedString("Settings_DiscardChanges_Confirmation_Title");
     private static readonly string _unsavedChangesDiscardButton = LanguageHelper.GetTranslatedString("Settings_DiscardChanges_Confirmation_Action");
     private static readonly string _unsavedChangesKeepEditingButton = LanguageHelper.GetTranslatedString("Settings_DiscardChanges_Confirmation_Cancel");
+
+    private static readonly string _ipAlreadyExistsError = LanguageHelper.GetTranslatedString("Settings_Common_IpAddresses_AlreadyExists");
+    private static readonly string _invalidIpError = LanguageHelper.GetTranslatedString("Settings_Common_IpAddresses_Invalid");
 
     private static readonly (IpSelectorAction Action, string Ip)[] _scenarios =
         [
@@ -355,6 +361,52 @@ public class CustomDnsTests : FreshSessionSetUp
         DnsHelper.IsCustomDnsAddressNotSet(QUAD9_DNS_SERVER);
 
         CommonUiFlows.EnsureUserIsDisconnected();
+    }
+
+    [Test]
+    [Property("TestCaseId", "890302")]
+    public void CustomDnsShowsErrorOnSameIp()
+    {
+        TurnOnDns();
+
+        AdvancedSettingsRobot
+            .EditCustomDnsServers();
+        IpSelectorRobot
+            .AddIpAddress(FIRST_CUSTOM_DNS_SERVER)
+            .AddIpAddress(FIRST_CUSTOM_DNS_SERVER)
+            .Verify.IsErrorMessageDisplayed(_ipAlreadyExistsError);
+        ConfirmationRobot
+            .CancelAction()
+            .Verify.IsOverlayClosed();
+    }
+
+    [Test]
+    [Property("TestCaseId", "890834")]
+    [Ignore("JIRA - VPNWIN-3343")]
+    public void CustomDnsWithMaxChars()
+    {
+        TurnOnDns();
+
+        AdvancedSettingsRobot
+            .EditCustomDnsServers();
+
+        try
+        {
+
+            (Point Position, Size Size) elementBeforeTyping = UiActions.GetElementSizeAndPosition(IpSelectorRobot.IpAddressTextBox);
+
+            UiActions.VerifyElementSizeAndPosition(IpSelectorRobot.IpAddressTextBox, elementBeforeTyping, () =>
+                IpSelectorRobot
+                    .AddIpAddress(InputTestData.LongInput)
+            );
+            IpSelectorRobot.Verify.IsErrorMessageDisplayed(_invalidIpError);
+        }
+        finally
+        {
+            ConfirmationRobot
+                .CancelAction()
+                .Verify.IsOverlayClosed();
+        }
     }
 
     private static void PerformProtocolTest(Protocol protocol, bool shouldEnableProTun = false)

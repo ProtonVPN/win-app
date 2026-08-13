@@ -17,11 +17,8 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Drawing;
 using System.Threading;
-using FlaUI.Core.Input;
-using FlaUI.Core.WindowsAPI;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Robots;
@@ -284,16 +281,16 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
             .OpenExcludedLocationsSelector()
             .SearchExcludedLocations("------", useKeyboard: false);
 
-        (Point Position, Size Size) beforeTyping = UiActions.GetElementSizeAndPosition(SettingRobot.ExcludedLocationFlyout);
+        (Point Position, Size Size) elementBeforeTyping = UiActions.GetElementSizeAndPosition(SettingRobot.ExcludedLocationFlyout);
 
         foreach (string specialChar in InputTestData.SpecialInputs)
         {
-            VerifyElementSizeAndPosition(beforeTyping, () =>
+            UiActions.VerifyElementSizeAndPosition(SettingRobot.ExcludedLocationFlyout, elementBeforeTyping, () =>
             SettingRobot
                 .SearchExcludedLocations(specialChar, useKeyboard: false)
             );
             SettingRobot.Verify.IsNoLocationsAvailableDisplayed();
-            ClearSearchInput();
+            UiActions.ClearInputWithKeyboard();
         }
     }
 
@@ -308,32 +305,14 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
             .OpenExcludedLocationsSelector()
             .SearchExcludedLocations("------", useKeyboard: false);
 
-        (Point Position, Size Size) beforeTyping = UiActions.GetElementSizeAndPosition(SettingRobot.ExcludedLocationFlyout);
+        (Point Position, Size Size) elementBeforeTyping = UiActions.GetElementSizeAndPosition(SettingRobot.ExcludedLocationFlyout);
 
-        VerifyElementSizeAndPosition(beforeTyping, () =>
+        UiActions.VerifyElementSizeAndPosition(SettingRobot.ExcludedLocationFlyout, elementBeforeTyping, () =>
             SettingRobot
                 .SearchExcludedLocations(InputTestData.LongInput, useKeyboard: false)
         );
         SettingRobot.Verify.IsNoLocationsAvailableDisplayed();
-        ClearSearchInput();
-    }
-
-    private static void VerifyElementSizeAndPosition((Point Position, Size Size) beforeTyping, Action typeAction)
-    {
-        typeAction();
-
-        (Point Position, Size Size) afterTyping = UiActions.GetElementSizeAndPosition(SettingRobot.ExcludedLocationFlyout);
-
-        bool hasSamePosition = beforeTyping.Position.X == afterTyping.Position.X && beforeTyping.Position.Y == afterTyping.Position.Y;
-        bool hasSameSize = beforeTyping.Size.Width == afterTyping.Size.Width && beforeTyping.Size.Height == afterTyping.Size.Height;
-
-        Assert.That(hasSamePosition, Is.True, "Element position changed." +
-            $"Before: X: {beforeTyping.Position.X}, Y: {beforeTyping.Position.Y}" +
-            $"After: X: {afterTyping.Position.X}, Y: {afterTyping.Position.Y}");
-
-        Assert.That(hasSameSize, Is.True, "Element size changed." +
-              $"Before: Width: {beforeTyping.Size.Width}, Height: {beforeTyping.Size.Height}" +
-              $"After: Width: {afterTyping.Size.Width}, Height: {afterTyping.Size.Height}");
+        UiActions.ClearInputWithKeyboard();
     }
 
     private static void PopulateRecents()
@@ -343,11 +322,6 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
         RecentsFlow.PopulateRecentsListWithServer(COUNTRY_NAME_WITH_SERVER);
         RecentsFlow.PopulateRecentsListWithSecureCore(SECURE_CORE_COUNTRY_NAME, VIA_COUNTRY_SWITZERLAND);
         RecentsFlow.PopulateRecentsListWithProfile(PROFILE_NAME.GetEnumValue());
-    }
-
-    private static void ClearSearchInput()
-    {
-        Keyboard.TypeSimultaneously(VirtualKeyShort.CONTROL, VirtualKeyShort.KEY_A, VirtualKeyShort.DELETE);
     }
 
     private static void ConnectToDefaultConnectionAndVerify(VpnConnectionOption vpnConnectionOption, string expectedConnectionCardTitle)

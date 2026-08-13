@@ -25,8 +25,8 @@ namespace ProtonVPN.UI.Tests.Robots;
 
 public class IpSelectorRobot
 {
+    public Element IpAddressTextBox => Element.ByAutomationId("IpAddressTextBox");
     protected Element IpSelectorOverlay = Element.ByAutomationId("IpSelectorOverlay");
-    protected Element IpAddressTextBox = Element.ByAutomationId("IpAddressTextBox");
     protected Element IpAddressCheckBox = Element.ByAutomationId("AddressItemToggle");
     protected Element AddIpAddressButton = Element.ByAutomationId("AddButton");
     protected Element RemoveIpAddressButton = Element.ByAutomationId("TrashIcon");
