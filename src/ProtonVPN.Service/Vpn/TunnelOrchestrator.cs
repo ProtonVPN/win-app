@@ -28,6 +28,7 @@ using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.ConnectLogs;
 using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.NRPT;
+using ProtonVPN.Vpn.ServerValidation;
 
 namespace ProtonVPN.Service.Vpn;
 
@@ -38,6 +39,7 @@ internal class TunnelOrchestrator : ITunnelOrchestrator
     private readonly IProTunConnection _proTunConnection;
     private readonly IWireGuardConnection _wireGuardConnection;
     private readonly IOpenVpnConnection _openVpnConnection;
+    private readonly IServerValidator _serverValidator;
     private readonly INrptWrapper _nrptWrapper;
 
     private VpnProtocol? _protocol;
@@ -60,6 +62,7 @@ internal class TunnelOrchestrator : ITunnelOrchestrator
         IIPv6Manager ipv6Manager,
         IProTunConnection proTunConnection,
         IWireGuardConnection wireGuardConnection,
+        IServerValidator serverValidator,
         IOpenVpnConnection openVpnConnection,
         INrptWrapper nrptWrapper)
     {
@@ -67,12 +70,19 @@ internal class TunnelOrchestrator : ITunnelOrchestrator
         _ipv6Manager = ipv6Manager;
         _proTunConnection = proTunConnection;
         _wireGuardConnection = wireGuardConnection;
+        _serverValidator = serverValidator;
         _openVpnConnection = openVpnConnection;
         _nrptWrapper = nrptWrapper;
     }
 
     public async Task<VpnError> ConnectAsync(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig vpnConfig, CancellationToken cancellationToken)
     {
+        VpnError validationError = _serverValidator.Validate(endpoint.Server);
+        if (validationError != VpnError.None)
+        {
+            return validationError;
+        }
+
         _protocol = vpnConfig.VpnProtocol;
 
         IVpnConnection? connection = VpnConnection;

@@ -34,6 +34,7 @@ public static class VpnErrorExtensions
         VpnError.MissingConnectionCertificate,
         VpnError.WireGuardAdapterInUseError,
         VpnError.InterfaceHasForwardingEnabled,
+        VpnError.ServerValidationError,
     ];
 
     private static readonly List<VpnError> _sessionLimitErrors =
