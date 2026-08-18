@@ -85,6 +85,11 @@ public class RestrictionsHandler : IHandler,
         Action<DateTimeOffset> updateLastNotificationDate,
         Action handleNotification)
     {
+        if (!_settings.VpnPlan.IsFreePlan)
+        {
+            return;
+        }
+
         DateTimeOffset utcNow = DateTimeOffset.UtcNow;
         if ((utcNow - lastNotificationDate).TotalHours < NOTIFICATION_COOLDOWN_IN_HOURS)
         {
