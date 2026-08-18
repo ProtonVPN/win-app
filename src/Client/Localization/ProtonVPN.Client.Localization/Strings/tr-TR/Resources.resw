@@ -2838,7 +2838,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Şuradan gezinin...</value>
   </data>
   <data name="Search_NoInput_CityOrState">
-    <value>İl ya da ABD eyaleti</value>
+    <value>İl ya da Birleşik Devletler eyaleti</value>
     <comment>The word used for one single city and one single United States state</comment>
   </data>
   <data name="Search_NoInput_Country">

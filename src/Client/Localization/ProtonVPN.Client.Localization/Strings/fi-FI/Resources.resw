@@ -124,7 +124,7 @@
     <value>Yhteyden tiedot -sivu</value>
   </data>
   <data name="Automation_Properties_ConnectionPreferences_Page">
-    <value>Connection preferences page</value>
+    <value>Yhteysasetussivu</value>
   </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>Yhteyskortti</value>
@@ -313,7 +313,7 @@
     <value>Päivitä Proton VPN</value>
   </data>
   <data name="Connection_Error_AllServersExcluded">
-    <value>Your preferences exclude all available servers. Adjust exclusions to connect.</value>
+    <value>Valintasi sulkevat pois kaikki käytettävissä olevat palvelimet. Muokkaa valintojasi muodostaaksesi yhteyden.</value>
   </data>
   <data name="Connection_Error_AllServersExcluded_Action">
     <value>Poissuljetut sijainnit</value>
@@ -1947,13 +1947,13 @@ Virhekoodi: {0}</value>
     <value>Poissulje sijainnit</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
-    <value>If there are locations you don't want to be automatically connected to, you can exclude them from Fastest and Random country.</value>
+    <value>Voit poistaa sijainnit, joihin et halua muodostaa yhteyttä automaattisesti, Nopein- ja Satunnainen maa -yhteyksistä.</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
     <value>Ohita</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
-    <value>Not the country you wanted?</value>
+    <value>Eikö tämä ole haluamasi maa?</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_ActionButton">
     <value>Poissulje sijainnit</value>
@@ -1962,10 +1962,10 @@ Virhekoodi: {0}</value>
     <value>Ehkä myöhemmin</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Subtitle">
-    <value>You can now exclude countries or cities from Fastest and Random connections.</value>
+    <value>Voit nyt poistaa maita tai kaupunkeja Nopein- ja Satunnainen-yhteyksistä.</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Title">
-    <value>Avoid unwanted locations</value>
+    <value>Vältä ei-toivottuja sijainteja</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Suljetaanko Proton VPN?</value>
@@ -2487,10 +2487,10 @@ Virhekoodi: {0}</value>
     <value>Virheellinen koodi. Yritä uudelleen.</value>
   </data>
   <data name="Login_Error_MissingSrpDll_Message">
-    <value>A file required for sign-in is missing from your installation. Please reinstall Proton VPN to fix this issue.</value>
+    <value>Asennuksestasi puuttuu kirjautumiseen vaadittava tiedosto. Korjaa ongelma asentamalla Proton VPN uudelleen.</value>
   </data>
   <data name="Login_Error_MissingSrpDll_Title">
-    <value>Unable to sign in</value>
+    <value>Kirjautuminen epäonnistui</value>
   </data>
   <data name="Login_Error_SessionExpired">
     <value>Istuntosi on erääntynyt. Kirjaudu uudelleen.</value>
@@ -2503,7 +2503,7 @@ Virhekoodi: {0}</value>
     <value>Kaksivaiheinen tunnistautuminen epäonnistui. Kirjaudu uudelleen.</value>
   </data>
   <data name="Login_Error_WebAuthnNotSupported">
-    <value>Security key authentication is not available for your device or remote desktop connection.</value>
+    <value>Suojausavaintodennus ei ole käytettävissä laitteellasi tai etätyöpöytäyhteydellä.</value>
   </data>
   <data name="Login_TwoFactorForm_Authenticate">
     <value>Tunnistaudu</value>
@@ -2599,7 +2599,7 @@ Virhekoodi: {0}</value>
     <value>Syötä tämä numero torrent-ohjelmaasi tai P2P-sovellukseesi.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
-    <value>You've reached your maximum device limit. To reconnect to VPN, please disconnect from another device.</value>
+    <value>Olet saavuttanut laitteiden enimmäismäärän. Jos haluat muodostaa VPN-yhteyden, katkaise ensin yhteys joltakin toiselta laitteelta.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
     <value>Tilauksesi on alennettu Proton Free -tasolle, joten yhteytesi siirretään nopeimmalle ilmaispalvelimelle.</value>
@@ -2615,7 +2615,7 @@ Virhekoodi: {0}</value>
     <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
   </data>
   <data name="Overlay_Ipv6Disabled_Description">
-    <value>To include IPv6 addresses, you need to allow IPv6 connections through the VPN tunnel.</value>
+    <value>IPv6-osoitteiden sisällyttämiseksi sinun tulee sallia IPv6-yhteydet VPN-tunnelin kautta.</value>
   </data>
   <data name="Overlay_Ipv6Disabled_PrimaryButton">
     <value>Ota IPv6 käyttöön</value>
@@ -3055,13 +3055,13 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Bridges network traffic. Slower than TUN, but needed for some legacy or special network setups.</value>
   </data>
   <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
-    <value>Routes traffic between different networks. TUN can be faster and more stable than TAP.</value>
+    <value>Ohjaa verkkoliikenteen eri verkkojen välillä. TUN voi olla nopeampi ja vakaampi kuin TAP.</value>
   </data>
   <data name="Settings_Connection_ConnectionPreferences">
     <value>Yhteysasetukset</value>
   </data>
   <data name="Settings_Connection_ConnectionPreferences_Description">
-    <value>Default connection and excluded locations</value>
+    <value>Oletusyhteys ja poissuljetut sijainnit</value>
   </data>
   <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
     <value>Mukautettua DNS:ää ei voi ottaa käyttöön, koska olet yhteydessä profiiliin, jossa NetShield on käytössä.</value>
@@ -3103,10 +3103,10 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Maat</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Description">
-    <value>The selected locations will never be used when you connect to Fastest or Random</value>
+    <value>Valittuja sijainteja ei koskaan käytetä, kun muodostat Nopein- tai Satunnainen-yhteyden</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_NoLocations">
-    <value>No locations available</value>
+    <value>Sijainteja ei ole saatavilla</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Search">
     <value>Valitse...</value>
@@ -3410,7 +3410,7 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Proton WireGuard</value>
   </data>
   <data name="Settings_Protocols_ProtonProtocols_Description">
-    <value>Use Proton VPN's own implementation of WireGuard. This is an experimental feature, so you may experience some instability.</value>
+    <value>Käytä Proton VPN:n omaa WireGuard-toteutusta. Tämä on kokeellinen ominaisuus, joten saatat kokea jonkin verran epävakautta.</value>
   </data>
   <data name="Settings_Protocols_ProtonProtocols_Title">
     <value>Proton-protokollat</value>
@@ -3880,19 +3880,19 @@ Korkea kuormitus voi hidastaa yhteyttäsi.</value>
     <value>Proton WireGuard (TCP)</value>
   </data>
   <data name="VpnProtocol_ProTun_Tcp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Huipputason suojaus- ja suorituskykyprotokolla</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls">
     <value>Proton Stealth</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls_Description">
-    <value>Overcomes VPN blocks by hiding your connection from censors</value>
+    <value>Kiertää VPN-estot piilottamalla yhteytesi sensuureilta</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp">
     <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Huipputason suojaus- ja suorituskykyprotokolla</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

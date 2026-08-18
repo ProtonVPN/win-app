@@ -632,7 +632,7 @@ Código de error: {0}</value>
     <value>Smart Routing</value>
   </data>
   <data name="Countries_SmartRouting_RoutedThrough">
-    <value>Smart routed through {0}</value>
+    <value>Enrutado inteligente a través de {0}</value>
     <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
   </data>
   <data name="Countries_Tor">
@@ -2744,7 +2744,7 @@ Una carga del servidor alta puede ralentizar tu conexión.</value>
     <value>Smart Routing se usa normalmente para eludir leyes contra la privacidad y otras formas de censura.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>Connects you to your destination country through servers physically located elsewhere: {0}.</value>
+    <value>Te conecta al país de destino a través de servidores ubicados físicamente en otro lugar: {0}.</value>
     <comment>{0} is a placeholder for the countries where the physical servers are. Can be either one country or multiple countries separated with comma.</comment>
   </data>
   <data name="Overlay_SmartRouting_LearnMore">
