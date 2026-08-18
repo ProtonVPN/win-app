@@ -56,6 +56,7 @@ public class ConnectionErrorFactoryTest
         { VpnError.SessionLimitReachedVisionary, typeof(SessionLimitReachedConnectionError) },
         { VpnError.SessionLimitReachedUnknown, typeof(SessionLimitReachedConnectionError) },
         { VpnError.InterfaceHasForwardingEnabled, typeof(MobileHotspotConnectionError) },
+        { VpnError.ServerValidationError, typeof(ServerValidationConnectionError) },
     };
 
     private ISettings? _settings;
@@ -138,6 +139,7 @@ public class ConnectionErrorFactoryTest
             new TlsCertificateConnectionError(_localizer!, _clientWindowsActivator!),
             new SessionLimitReachedConnectionError(_localizer!, _settings!, _clientWindowsActivator!),
             new MobileHotspotConnectionError(_localizer!, _clientWindowsActivator!),
+            new ServerValidationConnectionError(_localizer!, _clientWindowsActivator!),
         ]);
     }
 

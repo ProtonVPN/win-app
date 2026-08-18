@@ -2870,6 +2870,9 @@
   <data name="Connection_Error_MobileHotspotEnabled" xml:space="preserve">
     <value>The connection was blocked by network settings on your device. This may be caused by a mobile hotspot, another VPN application, or virtual machine software. Please review your network configuration or contact support for assistance.</value>
   </data>
+  <data name="Connection_Error_ServerValidation" xml:space="preserve">
+    <value>The server details couldn't be verified. Try another server, or report the issue to our Customer Support team.</value>
+  </data>
   <data name="Connection_Intent_AutoSelected" xml:space="preserve">
     <value>Auto-selected from</value>
     <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
