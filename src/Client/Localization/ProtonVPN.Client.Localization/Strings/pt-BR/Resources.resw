@@ -1947,7 +1947,7 @@ Código de erro: {0}</value>
     <value>Excluir localizações</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
-    <value>If there are locations you don't want to be automatically connected to, you can exclude them from Fastest and Random country.</value>
+    <value>Se houver locais aos quais você não deseja ser conectado automaticamente, é possível excluí-los da opção País mais rápido e Aleatório.</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
     <value>Pular</value>

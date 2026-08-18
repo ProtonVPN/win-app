@@ -740,7 +740,7 @@ Kód chyby: {0}</value>
     <value>Chytré směrování</value>
   </data>
   <data name="Countries_SmartRouting_RoutedThrough">
-    <value>Smart routed through {0}</value>
+    <value>Smart Routing přes {0}</value>
     <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
   </data>
   <data name="Countries_Tor">
@@ -2936,7 +2936,7 @@ Vysoké vytížení serveru může zpomalit vaše připojení.</value>
     <value>Smart Routing se obvykle používá k obcházení zákonů proti ochraně osobních údajů a jiných forem cenzury.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>Connects you to your destination country through servers physically located elsewhere: {0}.</value>
+    <value>Připojí vás k cílové zemi skrze servery, které jsou fyzicky umístěné jinde: {0}.</value>
     <comment>{0} is a placeholder for the countries where the physical servers are. Can be either one country or multiple countries separated with comma.</comment>
   </data>
   <data name="Overlay_SmartRouting_LearnMore">
