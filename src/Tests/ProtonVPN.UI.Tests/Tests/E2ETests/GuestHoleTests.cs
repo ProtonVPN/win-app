@@ -53,7 +53,7 @@ public class GuestHoleTests : BaseTest
     [SetUp]
     public void SetUp()
     {
-        LaunchClient();
+        LaunchClient(ClientLaunchParams.StartWithoutDisconnectingFromWireGuard);
     }
 
     [Test, Order(0)]
@@ -79,7 +79,7 @@ public class GuestHoleTests : BaseTest
     {
         NetworkUtils.AssertInternetAvailability(true);
 
-        CommonUiFlows.FullLogin(TestUserData.PlusUser, TestConstants.IsProTunVersion);
+        CommonUiFlows.FullLogin(TestUserData.VisionaryUser, TestConstants.IsProTunVersion);
 
         WindowsUtils.AssertLogFile(ClientLogsPath, GH_CONNECTION_REQUESTED_LINE_TO_LOOK_FOR);
         WindowsUtils.AssertLogFile(ClientLogsPath, GH_CONNECTED_LINE_TO_LOOK_FOR);

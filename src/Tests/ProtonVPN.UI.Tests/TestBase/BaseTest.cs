@@ -287,7 +287,7 @@ public class BaseTest
             () =>
             {
                 Process[] pname = Process.GetProcessesByName("ProtonVPN.Client");
-                return pname.Length > 0;
+                return pname.Length > 0 && pname[0].Responding;
             },
             TimeSpan.FromSeconds(30), TestConstants.RetryInterval);
 

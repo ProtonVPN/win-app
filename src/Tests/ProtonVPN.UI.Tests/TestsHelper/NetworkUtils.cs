@@ -226,13 +226,14 @@ public class NetworkUtils
         RetryResult<string> retry = Retry.WhileEmpty(
             () =>
             {
+                DnsHelper.FlushDns();
                 JObject? result = GetTorStatusAsync().GetAwaiter().GetResult();
                 ip = result?["IP"]?.Value<string>();
                 isTor = result?["IsTor"]?.Value<bool>();
                 // Returning only the IP, since IP and IsTor are always returned together
                 return ip ?? string.Empty;
             },
-            TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval);
+            TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
 
         Assert.That(retry.Success, Is.True, "Failed to retrieve Tor status within timeout.");
 

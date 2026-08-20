@@ -44,7 +44,7 @@ public class AntiCensorshipSLIs : SliSetUp
         // Allow some time for network to settle down
         Thread.Sleep(TestConstants.FiveSecondsTimeout);
 
-        LaunchClient();
+        LaunchClient(ClientLaunchParams.StartWithoutDisconnectingFromWireGuard);
 
         NetworkUtils.AssertInternetAvailability(true);
 
@@ -67,11 +67,11 @@ public class AntiCensorshipSLIs : SliSetUp
         // Allow some time for network to settle down
         Thread.Sleep(TestConstants.FiveSecondsTimeout);
 
-        LaunchClient();
+        LaunchClient(ClientLaunchParams.StartWithoutDisconnectingFromWireGuard);
 
         NetworkUtils.AssertInternetAvailability(true);
 
-        LoginRobot.Login(TestUserData.PlusUser);
+        LoginRobot.Login(TestUserData.VisionaryUser);
         SliHelper.MeasureTime(() =>
         {
             NavigationRobot.Verify.IsOnMainPage();

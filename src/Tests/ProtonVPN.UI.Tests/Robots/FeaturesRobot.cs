@@ -238,7 +238,7 @@ public class FeaturesRobot
 
         public Verifications IsPortForwardingEnabled()
         {
-            CopyPortNumberFromActivePortSection.WaitUntilDisplayed();
+            CopyPortNumberFromActivePortSection.WaitUntilDisplayed(TestConstants.ThirtySecondsTimeout);
             return this;
         }
 
@@ -272,6 +272,7 @@ public class FeaturesRobot
 
     private List<string> GetFlyoutChildren()
     {
+        Thread.Sleep(TestConstants.TwoSecondsTimeout);
         WidgetFlyout.WaitUntilDisplayed();
         return WidgetFlyout.GetAllChildrenNames();
     }

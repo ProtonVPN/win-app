@@ -50,7 +50,7 @@ public class CommonUiFlows : BaseTest
                    .IsOnHomePage();
 
         // Remove when VPNWIN-2599 is implemented. 
-        Thread.Sleep(TestConstants.AnimationDelay);
+        Thread.Sleep(TestConstants.OneSecondTimeout);
 
         if (!isProTunVersion)
         {

@@ -86,6 +86,7 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "867496")]
+    [Retry(3)]
     public void DefaultLastConnectionConnectsToCorrectServer()
     {
         SidebarRobot

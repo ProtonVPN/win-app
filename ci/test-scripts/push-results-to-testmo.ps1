@@ -7,7 +7,7 @@ function Main {
     $projectId = 1
     $testmoUrl = $env:TESTMO_URL.Replace('/api/v1', '')
 
-    $xmlFiles = @(Get-ChildItem -Path $env:UI_TEST_REPORT_PATH -Filter "*.xml" -Recurse)
+    $xmlFiles = @(Get-ChildItem -Path $env:UI_TEST_REPORT_PATH -Filter "results_*.xml" -Recurse)
     $isSmokeTest = $xmlFiles.Count -gt 0 -and $xmlFiles[0].Name -match "SMOKE"
     $isArmTest = $xmlFiles.Count -gt 0 -and $xmlFiles[0].Name -match "ARM"
 

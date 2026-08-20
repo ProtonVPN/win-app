@@ -35,9 +35,9 @@ public class DnsHelper
 {
     private const string DNS_LEAK_TEST_URL = "https://bash.ws/";
     private static readonly HttpClient _httpClient = new();
-    private static List<string> WireGuardDnsAddress => GetDnsAddresses("ProtonVPN");
-    private static List<string> ProTunDnsAddress => GetDnsAddresses(TestConstants.IsProTunVersion ? "ProTUN" : "ProtonVPN");
-    private static List<string> OpenVpnDnsAddress => GetDnsAddresses("ProtonVPN TUN");
+    private static List<string> WireGuardDnsAddress => GetDnsAddressesForAdapterByName("ProtonVPN");
+    private static List<string> ProTunDnsAddress => GetDnsAddressesForAdapterByName(TestConstants.IsProTunVersion ? "ProTUN" : "ProtonVPN");
+    private static List<string> OpenVpnDnsAddress => GetDnsAddressesForAdapterByName("ProtonVPN TUN");
 
     [DllImport("dnsapi.dll", EntryPoint = "DnsFlushResolverCache")]
 
@@ -156,16 +156,20 @@ public class DnsHelper
 
     private static void PingDomain(string domain)
     {
-        using (Process process = new())
+        using Process process = new();
+        process.StartInfo.FileName = "ping";
+        process.StartInfo.Arguments = $"-n 1 {domain}";
+        process.StartInfo.RedirectStandardOutput = true;
+        process.StartInfo.RedirectStandardError = true;
+        process.StartInfo.UseShellExecute = false;
+        process.StartInfo.CreateNoWindow = true;
+        process.Start();
+
+        if (!process.WaitForExit(TestConstants.ThirtySecondsTimeout))
         {
-            process.StartInfo.FileName = "ping";
-            process.StartInfo.Arguments = $"-n 1 {domain}";
-            process.StartInfo.RedirectStandardOutput = true;
-            process.StartInfo.RedirectStandardError = true;
-            process.StartInfo.UseShellExecute = false;
-            process.StartInfo.CreateNoWindow = true;
-            process.Start();
-            process.WaitForExit(TestConstants.ThirtySecondsTimeout);
+            try
+            { process.Kill(); }
+            catch { }
         }
     }
 

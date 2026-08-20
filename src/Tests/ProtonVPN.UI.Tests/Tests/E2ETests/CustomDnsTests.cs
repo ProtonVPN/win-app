@@ -380,7 +380,8 @@ public class CustomDnsTests : FreshSessionSetUp
         AdvancedSettingsRobot
             .EnableCustomDnsToggle();
         ConfirmationRobot
-            .PrimaryAction();
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
     }
 
     private static void AddCustomDnsServers(List<string> dnsAddresses)

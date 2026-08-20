@@ -31,8 +31,12 @@ public static class ScriptHelper
     New-NetFirewallRule -DisplayName 'Block Chrome Inbound' -Direction Inbound -Program 'C:\Program Files\Google\Chrome\Application\chrome.exe' -Action Block
     ";
     private const string REMOVE_FIREWALL_RULES_SCRIPT = @"
-    Remove-NetFirewallRule -DisplayName 'Block Chrome Outbound'
-    Remove-NetFirewallRule -DisplayName 'Block Chrome Inbound'
+    if (Get-NetFirewallRule -DisplayName 'Block Chrome Outbound' -ErrorAction SilentlyContinue) {
+        Remove-NetFirewallRule -DisplayName 'Block Chrome Outbound'
+    }
+    if (Get-NetFirewallRule -DisplayName 'Block Chrome Inbound' -ErrorAction SilentlyContinue) {
+        Remove-NetFirewallRule -DisplayName 'Block Chrome Inbound'
+    }
     ";
 
     private static readonly string _netAdapter = TestEnvironment.AreTestsRunningLocally() ? "Wi-Fi" : "Ethernet";
@@ -43,7 +47,18 @@ public static class ScriptHelper
     private static readonly string _installedServicePath = Path.Combine(TestEnvironment.GetProtonClientFolder(), "ProtonVPNService.exe");
     private static readonly string _restoreInternetExe = Path.Combine(TestEnvironment.GetProtonClientFolder(), "ProtonVPN.RestoreInternet.exe");
     private static readonly string _setVpnLimitScript = $"New-NetQosPolicy -Name '{VPN_QOS_POLICY_NAME}' -AppPathNameMatchCondition '{_installedServicePath}' -ThrottleRateActionBitsPerSecond 512";
-    private static readonly string _removeVpnLimitScript = $"Remove-NetQosPolicy -Name '{VPN_QOS_POLICY_NAME}' -Confirm:$false";
+    private static readonly string _removeVpnLimitScript = $@"
+Remove-NetQosPolicy -Name '{VPN_QOS_POLICY_NAME}' -Confirm:$false -ErrorAction SilentlyContinue
+    Start-Sleep -Seconds 1
+gpupdate /force | Out-Null
+$LASTEXITCODE = 0
+Start-Sleep -Seconds 10
+$stillExists = Get-NetQosPolicy -Name '{VPN_QOS_POLICY_NAME}' -ErrorAction SilentlyContinue
+if ($stillExists) {{
+    throw ""QoS policy '{VPN_QOS_POLICY_NAME}' is still present after removal and gpupdate /force - VPN traffic may still be throttled to 512 bits/sec.""
+}}
+exit 0
+";
 
     private static readonly string _windowsUsername = Environment.UserName;
     private static readonly string _configName = "wg0";
@@ -52,13 +67,21 @@ public static class ScriptHelper
     private static readonly string _connectWireGuardScript = $@"& 'C:\Program Files\WireGuard\wireguard.exe' /installtunnelservice '{_configPath}'";
     private static readonly string _checkIsWireGuardConnectedScript = "wg show";
     private static readonly string _stringToCheckInWG = "endpoint:";
-    private static readonly string _disconnectWireGuardScript = $@"& 'C:\Program Files\WireGuard\wireguard.exe' /uninstalltunnelservice {_configName}";
-
-    private static readonly string _removeWireGuardConfigFileScript = $@"Remove-Item -Path '{_configPath}' -Force";
+    private static readonly string _disconnectWireGuardScript = $@"
+$tunnelService = Get-Service -Name ""*{_configName}*"" -ErrorAction SilentlyContinue
+if ($tunnelService) {{
+    & 'C:\Program Files\WireGuard\wireguard.exe' /uninstalltunnelservice {_configName}
+}}
+";
+    private static readonly string _removeWireGuardConfigFileScript = $@"
+if (Test-Path '{_configPath}') {{
+    Remove-Item -Path '{_configPath}' -Force
+}}
+";
 
     public static void RestoreInternet()
     {
-        WindowsUtils.RunPowerShellScript(_restoreInternetExe);
+        WindowsUtils.RunPowerShellScript($"& '{_restoreInternetExe}'");
     }
 
     public static void EnableInternet()
