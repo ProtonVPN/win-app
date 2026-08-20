@@ -106,15 +106,14 @@ public static class UiActions
 
     public static T ClickUntilElementExits<T>(this T desiredElement, TimeSpan? retryIntervalOverload = null) where T : Element
     {
+        int processId = BaseTest.App!.ProcessId;
+
         AutomationElement elementToClick = WaitUntilExists(desiredElement, TestConstants.EighteenSecondsTimeout, retryIntervalOverload)!;
         elementToClick.WaitUntilClickable(TestConstants.EighteenSecondsTimeout);
-
-        int processId = BaseTest.App!.ProcessId!;
-
         elementToClick.Click();
 
+        bool retriedClick = false;
         DateTime timeoutDate = DateTime.UtcNow + TestConstants.TenSecondsTimeout;
-
         while (DateTime.UtcNow < timeoutDate)
         {
             Thread.Sleep(TestConstants.TwoSecondsTimeout);
@@ -132,35 +131,21 @@ public static class UiActions
                 return desiredElement;
             }
 
-            BaseTest.RefreshWindow();
-            BaseTest.App?.WaitWhileBusy();
-
-            AutomationElement? element;
-            try
-            {
-                element = FindFirstDescendantUsingChildren(desiredElement.Condition);
-            }
-            catch (COMException)
-            {
-                return desiredElement;
-            }
-
-            if (element == null)
-            {
-                return desiredElement;
-            }
-
-            if (element.IsEnabled && !element.IsOffscreen)
+            if (!retriedClick)
             {
                 try
                 {
-                    element.Click();
+                    elementToClick.Click();
+                    retriedClick = true;
                 }
-                catch (COMException) { }
+                catch
+                {
+                    return desiredElement;
+                }
             }
         }
 
-        throw new TimeoutException($"'{desiredElement.SelectorName}' did not disappear within {TestConstants.FiveSecondsTimeout.TotalSeconds} seconds after clicking.");
+        throw new TimeoutException($"Process (id {processId}) did not exit within {TestConstants.TenSecondsTimeout} seconds after clicking '{desiredElement.SelectorName}'.");
     }
 
     public static T ClickUntilAnotherElementAppears<T>(this T desiredElement, Element elementToAppear, TimeSpan? retryIntervalOverload = null) where T : Element
@@ -364,8 +349,7 @@ public static class UiActions
         DateTime timeoutDate = DateTime.UtcNow + TestConstants.TenSecondsTimeout;
         while (DateTime.UtcNow < timeoutDate)
         {
-            Keyboard.Type(FlaUI.Core.WindowsAPI.VirtualKeyShort.NEXT);
-            Thread.Sleep(TestConstants.NavigationDelay);
+            Thread.Sleep(TestConstants.OneSecondTimeout);
 
             ComboBoxItem[]? items = comboBox.Items;
 

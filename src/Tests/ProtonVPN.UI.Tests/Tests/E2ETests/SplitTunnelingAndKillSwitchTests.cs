@@ -154,6 +154,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
         finally
         {
             ScriptHelper.RemoveVpnSpeedLimit();
+            NetworkUtils.AssertInternetAvailability(true);
         }
     }
 

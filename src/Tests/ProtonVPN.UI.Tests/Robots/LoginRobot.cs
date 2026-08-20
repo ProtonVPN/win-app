@@ -106,7 +106,7 @@ public class LoginRobot
     {
         //We have a very limited ability to use WebView, that is why we are using static pauses and keyboard strokes.
         SsoWindow.WaitUntilDisplayed(TestConstants.OneMinuteTimeout);
-        Thread.Sleep(15000);
+        Thread.Sleep(TestConstants.ThirtySecondsTimeout);
         SsoWindow.Click();
 
         Keyboard.Type(VirtualKeyShort.TAB);

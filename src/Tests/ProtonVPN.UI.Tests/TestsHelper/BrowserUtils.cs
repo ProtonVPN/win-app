@@ -66,13 +66,13 @@ public class BrowserUtils
             {
                 try
                 {
-                    process.Kill();
-                    process.WaitForExit(TestConstants.ThirtySecondsTimeout);
-                }
-                catch
-                {
                     process.Kill(entireProcessTree: true);
                     process.WaitForExit(TestConstants.ThirtySecondsTimeout);
+                }
+                catch { }
+                finally
+                {
+                    process.Dispose();
                 }
             }
         }
@@ -91,45 +91,25 @@ public class BrowserUtils
 
     public static void VerifyBrowserIpWithRetry(Browser browserApp, bool hasVpn, string? ipAddressToCompare)
     {
-        string? browserIp = null;
-        RetryResult<string> retry = Retry.WhileEmpty(
-            () =>
-            {
-                browserIp = GetBrowserIpWithRetry(browserApp);
-                return browserIp;
-            },
-            TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval);
+        string browserIp = GetBrowserIpWithRetry(browserApp);
 
-        if (retry.Success)
-        {
-            Assert.That((browserIp == ipAddressToCompare) == hasVpn,
+        Assert.That((browserIp == ipAddressToCompare) == hasVpn,
             $"Expected {browserApp} to have VPN {hasVpn.ToOnOffString()}" +
             $"\n{browserApp} has IP: {browserIp}" +
             $"\nVPN App has IP: {ipAddressToCompare}");
-        }
     }
 
     public static void AssertBrowserInternetAvailability(Browser browserApp, bool shouldBeAvailable)
     {
-        string? browserIp = null;
-        RetryResult<string> retry = Retry.WhileEmpty(
-            () =>
-            {
-                browserIp = GetBrowserIpWithRetry(browserApp);
-                return browserIp;
-            },
-            TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval);
+        string browserIp = GetBrowserIpWithRetry(browserApp);
 
-        if (retry.Success)
+        if (shouldBeAvailable)
         {
-            if (shouldBeAvailable)
-            {
-                Assert.That(browserIp, Does.Match(@"\b\d{1,3}(\.\d{1,3}){3}\b"), "Expected internet to be available.");
-            }
-            else
-            {
-                Assert.That(browserIp, Does.Contain("No internet").Or.Contain("Your Internet access is blocked").Or.Contain("This site can’t be reached").Or.Contain("Press space to play"), "Expected internet to not be available.");
-            }
+            Assert.That(browserIp, Does.Match(@"\b\d{1,3}(\.\d{1,3}){3}\b"), "Expected internet to be available.");
+        }
+        else
+        {
+            Assert.That(browserIp, Does.Contain("No internet").Or.Contain("Your Internet access is blocked").Or.Contain("This site can’t be reached").Or.Contain("Press space to play"), "Expected internet to not be available.");
         }
     }
 
@@ -145,12 +125,9 @@ public class BrowserUtils
 
     private static void AssertBrowserLoadsUrl(Browser browserApp, string url, string expectedTitle)
     {
-        RetryResult<string> retry = Retry.WhileEmpty(
-            () => GetBrowserPageTitleWithRetry(browserApp, url),
-            TestConstants.OneMinuteTimeout, TestConstants.ApiRetryInterval);
+        string result = GetBrowserPageTitleWithRetry(browserApp, url);
 
-        Assert.That(retry.Success, Is.True, $"{expectedTitle} did not load within timeout.");
-        Assert.That(retry.Result, Does.Contain(expectedTitle), $"Expected {expectedTitle} page title, got: {retry.Result}");
+        Assert.That(result, Does.Contain(expectedTitle), $"{expectedTitle} did not load within timeout. Got: {result}");
     }
 
     private static string GetBrowserIpWithRetry(Browser browserApp)
@@ -176,18 +153,14 @@ public class BrowserUtils
             port => ExecuteScriptInBrowserAsync(port, url, "document.title"));
     }
 
-    private static string ExecuteWithBrowserRetry(
-        Browser browserApp,
-        Func<int, Task<string>> operation)
+    private static string ExecuteWithBrowserRetry(Browser browserApp, Func<int, Task<string>> operation)
     {
         (string Path, int DebugPort) browserConfig = GetBrowserConfig(browserApp);
 
+        StartBrowserWithCDP(browserConfig.Path, browserConfig.DebugPort);
+
         RetryResult<string> retry = Retry.WhileEmpty(
-            () =>
-            {
-                StartBrowserWithCDP(browserConfig.Path, browserConfig.DebugPort);
-                return operation(browserConfig.DebugPort).Result ?? string.Empty;
-            },
+            () => operation(browserConfig.DebugPort).Result ?? string.Empty,
             TestConstants.OneMinuteTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
 
         return retry.Result ?? "No internet";
@@ -208,11 +181,11 @@ public class BrowserUtils
 
     private static void StartBrowserWithCDP(string browserPath, int debugPort)
     {
-        Process.Start(new ProcessStartInfo
+        using Process process = Process.Start(new ProcessStartInfo
         {
             FileName = browserPath,
             Arguments = $"--remote-debugging-port={debugPort} --headless about:blank"
-        });
+        })!;
     }
 
     private static async Task<string> ExecuteScriptInBrowserAsync(int debugPort, string url, string expression)
@@ -237,14 +210,16 @@ public class BrowserUtils
 
     private static async Task<ClientWebSocket> ConnectToBrowserAsync(int debugPort)
     {
+        using CancellationTokenSource cts = new(TestConstants.TenSecondsTimeout);
+
         using HttpClient http = new HttpClient();
-        string json = await http.GetStringAsync($"http://localhost:{debugPort}/json");
+        string json = await http.GetStringAsync($"http://localhost:{debugPort}/json", cts.Token);
         JsonElement tabs = JsonSerializer.Deserialize<JsonElement>(json);
 
         string wsUrl = FindPageWebSocketUrl(tabs);
 
         ClientWebSocket ws = new ClientWebSocket();
-        await ws.ConnectAsync(new Uri(wsUrl), CancellationToken.None);
+        await ws.ConnectAsync(new Uri(wsUrl), cts.Token);
         return ws;
     }
 
@@ -263,15 +238,17 @@ public class BrowserUtils
 
     private static async Task<JsonElement> SendCommandAsync(ClientWebSocket ws, object command)
     {
+        using CancellationTokenSource cts = new(TestConstants.ThirtySecondsTimeout);
+
         string msg = JsonSerializer.Serialize(command);
         await ws.SendAsync(
             Encoding.UTF8.GetBytes(msg),
             WebSocketMessageType.Text,
             true,
-            CancellationToken.None);
+            cts.Token);
 
         byte[] buffer = new byte[4096];
-        WebSocketReceiveResult result = await ws.ReceiveAsync(buffer, CancellationToken.None);
+        WebSocketReceiveResult result = await ws.ReceiveAsync(buffer, cts.Token);
         return JsonSerializer.Deserialize<JsonElement>(Encoding.UTF8.GetString(buffer, 0, result.Count));
     }
 

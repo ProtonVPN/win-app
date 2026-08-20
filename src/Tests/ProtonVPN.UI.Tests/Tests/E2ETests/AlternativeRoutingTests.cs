@@ -51,7 +51,7 @@ public class AlternativeRoutingTests : BaseTest
     [SetUp]
     public void SetUp()
     {
-        LaunchClient();
+        LaunchClient(ClientLaunchParams.StartWithoutDisconnectingFromWireGuard);
     }
 
     [Test, Order(0)]

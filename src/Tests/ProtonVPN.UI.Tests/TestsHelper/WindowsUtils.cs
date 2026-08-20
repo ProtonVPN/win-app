@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.IO;
 using System.Linq;
 using System.Diagnostics;
@@ -75,33 +76,43 @@ public class WindowsUtils
             CreateNoWindow = true
         };
 
-        using (Process process = new())
+        using Process process = new();
+        process.StartInfo = psi;
+        process.Start();
+
+        string psOutput = process.StandardOutput.ReadToEnd();
+        string psError = process.StandardError.ReadToEnd();
+
+        if (shouldEnableLogging)
         {
-            process.StartInfo = psi;
-            process.Start();
+            TestContext.WriteLine($"PS OUTPUT: {psOutput}");
+            TestContext.WriteLine($"PS ERROR: {psError}");
 
-            string psOutput = process.StandardOutput.ReadToEnd();
-            string psError = process.StandardError.ReadToEnd();
-
-            if (shouldEnableLogging)
+            if (!string.IsNullOrEmpty(stringToAssert))
             {
-                TestContext.WriteLine($"PS OUTPUT: {psOutput}");
-                TestContext.WriteLine($"PS ERROR: {psError}");
-
-                if (!string.IsNullOrEmpty(stringToAssert))
-                {
-                    Assert.That(psOutput, Does.Contain(stringToAssert));
-                }
+                Assert.That(psOutput, Does.Contain(stringToAssert));
             }
+        }
 
-            bool exited = process.WaitForExit(TestConstants.ThirtySecondsTimeout);
-            if (!exited)
+        bool exited = process.WaitForExit(TestConstants.ThirtySecondsTimeout);
+        if (!exited)
+        {
+            TestContext.WriteLine($"PowerShell script '{psScript}' did not exit within the timeout. Exiting by force");
+            try
             {
-                TestContext.WriteLine($"PowerShell script '{psScript}' did not exit within the timeout" +
-                    $"Exiting by force");
                 process.Kill(entireProcessTree: true);
-                process.WaitForExit(TestConstants.ThirtySecondsTimeout);
             }
+            catch { }
+            process.WaitForExit(TestConstants.ThirtySecondsTimeout);
+
+            throw new TimeoutException($"PowerShell script did not complete within {TestConstants.ThirtySecondsTimeout}s and was force-killed.\n" +
+                $"Script: {psScript}\nPS OUTPUT: {psOutput}\nPS ERROR: {psError}");
+        }
+
+        if (process.ExitCode != 0)
+        {
+            throw new InvalidOperationException($"PowerShell script exited with code {process.ExitCode}.\n" +
+                $"Script: {psScript}\nPS OUTPUT: {psOutput}\nPS ERROR: {psError}");
         }
     }
 

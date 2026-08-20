@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RunSettings>
   <RunConfiguration>
-    <!-- Whole-session backstop: 50 min -->
+    <!-- Whole-session backstop: 43 min -->
     <ResultsDirectory>src\bin\e2e\TestResults</ResultsDirectory>
-    <TestSessionTimeout>3000000</TestSessionTimeout>
+    <TestSessionTimeout>2580000</TestSessionTimeout>
   </RunConfiguration>
 
   <!-- Blame hang detection: if no test activity for 7 min, dump + name the hung test, then terminate -->
