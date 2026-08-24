@@ -94,7 +94,11 @@ public class SplitTunnelRouting : ISplitTunnelRouting
         }
 
         NetworkAddress.TryParse("0.0.0.0/0", out NetworkAddress defaultIpv4NetworkAddress);
+        NetworkAddress.TryParse("0.0.0.0/1", out NetworkAddress firstSplitDefaultIpv4NetworkAddress);
+        NetworkAddress.TryParse("128.0.0.0/1", out NetworkAddress secondSplitDefaultIpv4NetworkAddress);
         NetworkAddress.TryParse("::/0", out NetworkAddress defaultIpv6NetworkAddress);
+        NetworkAddress.TryParse("::/1", out NetworkAddress firstSplitDefaultIpv6NetworkAddress);
+        NetworkAddress.TryParse("8000::/1", out NetworkAddress secondSplitDefaultIpv6NetworkAddress);
         NetworkAddress.TryParse(localIpv4Address, out NetworkAddress localNetworkIpv4Address);
         NetworkAddress serverGatewayIpv4Address = new(gatewayAddress);
 
@@ -110,6 +114,20 @@ public class SplitTunnelRouting : ISplitTunnelRouting
             InterfaceIndex = tunnelInterface.Index,
             IsIpv6 = false,
         });
+        _routingTableHelper.DeleteRoute(new()
+        {
+            Destination = firstSplitDefaultIpv4NetworkAddress,
+            Gateway = localNetworkIpv4Address,
+            InterfaceIndex = tunnelInterface.Index,
+            IsIpv6 = false,
+        });
+        _routingTableHelper.DeleteRoute(new()
+        {
+            Destination = secondSplitDefaultIpv4NetworkAddress,
+            Gateway = localNetworkIpv4Address,
+            InterfaceIndex = tunnelInterface.Index,
+            IsIpv6 = false,
+        });
 
         _routingTableHelper.CreateRoute(new()
         {
@@ -119,6 +137,8 @@ public class SplitTunnelRouting : ISplitTunnelRouting
             Metric = PERMIT_ROUTE_METRIC,
             IsIpv6 = false,
         });
+        // The split default routes are not recreated on purpose, because they would prevent Split Tunneling to work as
+        // intended by routing the traffic inside the tunnel when the default in Permit mode should be to go outside
 
         _routingTableHelper.CreateRoute(new()
         {
@@ -138,6 +158,20 @@ public class SplitTunnelRouting : ISplitTunnelRouting
                 InterfaceIndex = tunnelInterface.Index,
                 IsIpv6 = true,
             });
+            _routingTableHelper.DeleteRoute(new()
+            {
+                Destination = firstSplitDefaultIpv6NetworkAddress,
+                Gateway = defaultIpv6NetworkAddress,
+                InterfaceIndex = tunnelInterface.Index,
+                IsIpv6 = true,
+            });
+            _routingTableHelper.DeleteRoute(new()
+            {
+                Destination = secondSplitDefaultIpv6NetworkAddress,
+                Gateway = defaultIpv6NetworkAddress,
+                InterfaceIndex = tunnelInterface.Index,
+                IsIpv6 = true,
+            });
 
             _routingTableHelper.CreateRoute(new()
             {
@@ -147,6 +181,8 @@ public class SplitTunnelRouting : ISplitTunnelRouting
                 Metric = PERMIT_ROUTE_METRIC,
                 IsIpv6 = true,
             });
+            // The split default routes are not recreated on purpose, because they would prevent Split Tunneling to work as
+            // intended by routing the traffic inside the tunnel when the default in Permit mode should be to go outside
 
             NetworkAddress? ipv6GatewayAddress = _networkUtilities.GetDefaultIpv6Gateway(tunnelInterface, networkInterfaces);
             if (ipv6GatewayAddress is null)
