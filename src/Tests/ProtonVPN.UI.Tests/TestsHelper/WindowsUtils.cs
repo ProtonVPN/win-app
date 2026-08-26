@@ -87,11 +87,11 @@ public class WindowsUtils
         {
             TestContext.WriteLine($"PS OUTPUT: {psOutput}");
             TestContext.WriteLine($"PS ERROR: {psError}");
+        }
 
-            if (!string.IsNullOrEmpty(stringToAssert))
-            {
-                Assert.That(psOutput, Does.Contain(stringToAssert));
-            }
+        if (!string.IsNullOrEmpty(stringToAssert))
+        {
+            Assert.That(psOutput, Does.Contain(stringToAssert));
         }
 
         bool exited = process.WaitForExit(TestConstants.ThirtySecondsTimeout);

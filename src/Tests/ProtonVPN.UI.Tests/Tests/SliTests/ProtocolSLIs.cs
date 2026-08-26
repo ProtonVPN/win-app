@@ -17,7 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
+using System;
 using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Annotations;
@@ -34,13 +34,6 @@ namespace ProtonVPN.UI.Tests.Tests.SliTests;
 [Workflow("protocol_performance")]
 public class ProtocolSLIs : SliSetUp
 {
-    private static readonly Dictionary<Protocol, Protocol> _proTunProtocolMapping = new()
-    {
-        { Protocol.WireGuardUdp, Protocol.ProTunUdp },
-        { Protocol.WireGuardTcp, Protocol.ProTunTcp },
-        { Protocol.WireGuardTls, Protocol.ProTunTls },
-    };
-
     [SetUp]
     public void TestInitialize()
     {
@@ -58,56 +51,52 @@ public class ProtocolSLIs : SliSetUp
 
     [Test]
     [Duration, TestStatus]
-    [Sli("wireguard_udp")]
-    public void WireGuardUdpConnectionSpeed()
+    [TestCaseSource(typeof(TestConstants), nameof(TestConstants.AllNonProTunProtocols))]
+    public void AllNonProTunProtocolsConnectionTime(Protocol protocol)
     {
-        PerformProtocolTest(Protocol.WireGuardUdp);
+        string sliName = protocol switch
+        {
+            Protocol.WireGuardUdp => "wireguard_udp",
+            Protocol.WireGuardTcp => "wireguard_tcp",
+            Protocol.WireGuardTls => "wireguard_tls",
+            Protocol.OpenVpnUdp => "openvpn_udp",
+            Protocol.OpenVpnTcp => "openvpn_tcp",
+            _ => throw new ArgumentOutOfRangeException(nameof(protocol), protocol, "Unmapped protocol for SLI naming.")
+        };
+
+        SliHelper.StartCustomRun(sliName);
+
+        PerformProtocolTest(protocol);
     }
 
     [Test]
     [Duration, TestStatus]
-    [Sli("openvpn_udp")]
-    public void OpenVpnUdpConnectionSpeed()
+    [TestCaseSource(typeof(TestConstants), nameof(TestConstants.ProTunProtocols))]
+    public void ProTunConnectionTime(Protocol protocol)
     {
-        PerformProtocolTest(Protocol.OpenVpnUdp);
+        if (TestConstants.IsProTunVersion)
+        {
+            string sliName = protocol switch
+            {
+                Protocol.ProTunUdp => "protun_udp",
+                Protocol.ProTunTcp => "protun_tcp",
+                Protocol.ProTunTls => "protun_tls",
+                _ => throw new ArgumentOutOfRangeException(nameof(protocol), protocol, "Unmapped ProTun protocol for SLI naming.")
+            };
+
+            SliHelper.StartCustomRun(sliName);
+
+            PerformProtocolTest(protocol, shouldEnableProTun: true);
+        }
+        else
+        {
+            Assert.Ignore("ProTUN is not available on v4");
+        }
     }
 
-    [Test]
-    [Duration, TestStatus]
-    [Sli("wireguard_tcp")]
-    public void WireGuardTcpConnectionSpeed()
+    private void PerformProtocolTest(Protocol protocol, bool shouldEnableProTun = false)
     {
-        PerformProtocolTest(Protocol.WireGuardTcp);
-    }
-
-    [Test]
-    [Duration, TestStatus]
-    [Sli("openvpn_tcp")]
-    public void OpenVpnTcpConnectionSpeed()
-    {
-        PerformProtocolTest(Protocol.OpenVpnTcp);
-    }
-
-    [Test]
-    [Duration, TestStatus]
-    [Sli("wireguard_tls")]
-    public void WireGuardTlsConnectionSpeed()
-    {
-        PerformProtocolTest(Protocol.WireGuardTls);
-    }
-
-    private void PerformProtocolTest(Protocol protocol)
-    {
-        bool isProTunWireGuard = TestConstants.IsProTunVersion && SliHelper.SliName?.StartsWith("wireguard") == true;
-
-        string? protunPrefix = isProTunWireGuard ? "protun_" : null;
-        SliHelper.SliName = protunPrefix + SliHelper.SliName;
-
-        protocol = isProTunWireGuard && _proTunProtocolMapping.TryGetValue(protocol, out Protocol proTunValue)
-             ? proTunValue
-             : protocol;
-
-        CommonUiFlows.ChangeProtocol(protocol, isProTunWireGuard);
+        CommonUiFlows.ChangeProtocol(protocol, shouldEnableProTun);
 
         // Two time connection is needed to test real conditions, when everything was setup.
         HomeRobot
@@ -117,8 +106,7 @@ public class ProtocolSLIs : SliSetUp
 
         if (!TestConstants.IsProTunVersion)
         {
-            ConfirmationRobot
-                .CancelAction();
+            ConfirmationRobot.CancelAction();
         }
 
         // Imitate users delay
