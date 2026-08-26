@@ -18,10 +18,11 @@
  */
 
 using System;
-using System.Diagnostics;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using FlaUI.Core.Tools;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 
@@ -72,6 +73,12 @@ public class SliHelper
         }
     }
 
+    public static void StartCustomRun(string sliName)
+    {
+        RunId = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+        SliName = sliName;
+    }
+
     public static void AddTestStatusMetric()
     {
         TestStatus status = TestContext.CurrentContext.Result.Outcome.Status;
@@ -87,6 +94,20 @@ public class SliHelper
 
     public static void AddNetworkSpeedToMetrics(string downloadSpeedLabel, string uploadSpeedLabel)
     {
+        foreach (Process process in Process.GetProcessesByName("speedtest"))
+        {
+            try
+            {
+                process.Kill(entireProcessTree: true);
+                process.WaitForExit(TestConstants.FiveSecondsTimeout);
+            }
+            catch { }
+            finally
+            {
+                process.Dispose();
+            }
+        }
+
         DnsHelper.FlushDns();
         Dictionary<string, double>? networkSpeedConnected = null;
         RetryResult<bool> retry = Retry.WhileException(
@@ -94,7 +115,7 @@ public class SliHelper
             {
                 networkSpeedConnected = GetNetworkSpeed();
             },
-            TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval);
+            TestConstants.OneMinuteTimeout, TestConstants.TenSecondsTimeout);
 
         if (!retry.Success)
         {
@@ -111,47 +132,45 @@ public class SliHelper
         string speedTestPath = "speedtest.exe";
 
         // Arguments for speedtest.exe to output in JSON format
-        string arguments = "--accept-gdpr --accept-license -f json ";
+        string arguments = "--accept-gdpr --accept-license -f json";
 
-        // Start the process
-        ProcessStartInfo startInfo = new ProcessStartInfo
+        ProcessStartInfo startInfo = new()
         {
             FileName = speedTestPath,
             Arguments = arguments,
             RedirectStandardOutput = true,
+            RedirectStandardError = true,
             UseShellExecute = false,
             CreateNoWindow = true
         };
 
-        using (Process? process = Process.Start(startInfo))
+        using Process process = new();
+        process.StartInfo = startInfo;
+        process.Start();
+
+        Task<string> errorTask = process.StandardError.ReadToEndAsync();
+        string output = process.StandardOutput.ReadToEnd();
+        string error = errorTask.GetAwaiter().GetResult();
+
+        process.WaitForExit(TestConstants.ThirtySecondsTimeout);
+        JObject result = JObject.Parse(output);
+
+        JToken? downloadToken = result["download"]?["bandwidth"];
+        JToken? uploadToken = result["upload"]?["bandwidth"];
+
+        if (downloadToken is null || uploadToken is null)
         {
-            if (process != null)
-            {
-                string output = process.StandardOutput.ReadToEnd();
-                process.WaitForExit(TestConstants.ThirtySecondsTimeout);
-                JObject result = JObject.Parse(output);
-
-                JToken? downloadToken = result["download"]?["bandwidth"];
-                JToken? uploadToken = result["upload"]?["bandwidth"];
-
-                if (downloadToken is null || uploadToken is null)
-                {
-                    throw new InvalidOperationException("Speedtest output missing required bandwidth fields.");
-                }
-
-                double downloadSpeedInBytes = (double)downloadToken;
-                double downloadSpeedInMbps = ConvertBytesToMbps(downloadSpeedInBytes);
-                double uploadSpeedInBytes = (double)uploadToken;
-                double uploadSpeedInMbps = ConvertBytesToMbps(uploadSpeedInBytes);
-
-                networkStats.Add("downloadSpeed", downloadSpeedInMbps);
-                networkStats.Add("uploadSpeed", uploadSpeedInMbps);
-            }
-            else
-            {
-                Console.WriteLine("Failed to start speedtest.exe process.");
-            }
+            throw new InvalidOperationException($"Speedtest output missing required bandwidth fields. " +
+                $"Output: {output}" +
+                $"Error: {error}");
         }
+
+        double downloadSpeedInMbps = ConvertBytesToMbps((double)downloadToken);
+        double uploadSpeedInMbps = ConvertBytesToMbps((double)uploadToken);
+
+        networkStats.Add("downloadSpeed", downloadSpeedInMbps);
+        networkStats.Add("uploadSpeed", uploadSpeedInMbps);
+
         return networkStats;
     }
 
