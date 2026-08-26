@@ -82,7 +82,7 @@ public class NavigationTests : FreshSessionSetUp
         // Allow some delay after exiting the app
         Thread.Sleep(TestConstants.FiveSecondsTimeout);
 
-        Assert.That(AreNoProtonVPNProcessesRunning, Is.True, "ProtonVPN process was still running after app was exited.");
+        CommonAssertions.VerifyAppIsNotRunning();
     }
 
     [Test]
@@ -97,7 +97,7 @@ public class NavigationTests : FreshSessionSetUp
         // Allow some delay after exiting the app
         Thread.Sleep(TestConstants.FiveSecondsTimeout);
 
-        Assert.That(AreNoProtonVPNProcessesRunning, Is.True, "ProtonVPN process was still running after app was exited.");
+        CommonAssertions.VerifyAppIsNotRunning();
     }
 
     [Test]
@@ -169,7 +169,4 @@ public class NavigationTests : FreshSessionSetUp
             .PressLearnMore()
             .Verify.IsLicensingDisplayed();
     }
-
-    public static bool AreNoProtonVPNProcessesRunning() =>
-        !Process.GetProcesses().Any(p => new[] { "ProtonVPN", "ProtonVPNService" }.Contains(p.ProcessName, StringComparer.OrdinalIgnoreCase));
 }

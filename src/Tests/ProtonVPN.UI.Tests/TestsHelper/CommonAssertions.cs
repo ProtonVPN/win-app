@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Linq;
 using System.Diagnostics;
 using System.Net.Sockets;
 using FlaUI.Core.Tools;
@@ -105,6 +106,6 @@ public static class CommonAssertions
     public static void VerifyAppIsNotRunning()
     {
         Process[] processes = Process.GetProcessesByName("ProtonVPN.Client");
-        Assert.That(processes.Length == 0, Is.True);
+        Assert.That(processes.Length == 0, Is.True, $"ProtonVPN.Client is still running (PIDs: {string.Join(", ", processes.Select(p => p.Id))})");
     }
 }
