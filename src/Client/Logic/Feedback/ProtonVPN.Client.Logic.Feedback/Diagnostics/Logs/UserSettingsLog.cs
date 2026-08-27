@@ -108,6 +108,7 @@ public class UserSettingsLog : LogBase
     {
         yield return new(nameof(IUserSettings.Theme), _settings.Theme);
         yield return new(nameof(IUserSettings.VpnProtocol), _settings.VpnProtocol);
+        yield return new(nameof(IUserSettings.AreProtonProtocolsEnabled), _settings.AreProtonProtocolsEnabled);
         yield return new(nameof(IUserSettings.Username), _settings.Username);
         yield return new($"{nameof(IUserSettings.VpnPlan)}.{nameof(VpnPlan.IsPaid)}", _settings.VpnPlan.IsPaid);
         yield return new($"{nameof(IUserSettings.VpnPlan)}.{nameof(VpnPlan.Title)}", _settings.VpnPlan.Title);

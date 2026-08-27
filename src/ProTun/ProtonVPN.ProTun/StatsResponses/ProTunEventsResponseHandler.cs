@@ -61,7 +61,7 @@ public class ProTunEventsResponseHandler : IProTunEventsResponseHandler
 
     private async Task OnConnectionStatsEventAsync(ConnectionStats connectionStatsEvent)
     {
-        NetworkTraffic traffic = new(connectionStatsEvent.receivedBytes, connectionStatsEvent.sentBytes);
+        NetworkTraffic traffic = new(connectionStatsEvent.ReceivedBytes, connectionStatsEvent.SentBytes);
         await InvokeTrafficUpdateAsync(traffic);
     }
 

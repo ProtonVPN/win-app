@@ -199,10 +199,11 @@ public class ProTunManager : IProTunManager
     private static InitialConnectionConfig CreateInitialConnectionConfig(ConnectionArgs args)
     {
         return new InitialConnectionConfig(
-            peers: MapPeers(args.Peers).ToArray(),
-            networkAvailable: true,
-            pcapFile: null,
-            connectionMode: new NoLocalAgent(wgPrivateKey: args.WireGuardPrivateKey)
+            Peers: MapPeers(args.Peers).ToArray(),
+            NetworkAvailable: true,
+            PcapFile: null,
+            ConnectionMode: new NoLocalAgent(WgPrivateKey: args.WireGuardPrivateKey),
+            SniStrategy: SniStrategy.Random
         );
     }
 
@@ -220,14 +221,14 @@ public class ProTunManager : IProTunManager
     private static PeerInfo MapPeer(ConnectionPeer peer)
     {
         return new(
-            peerId: peer.PeerId,
-            serverIp: peer.ServerIp,
-            serverPublicKey: peer.ServerPublicKey,
-            udpPorts: peer.UdpPorts,
-            tcpPorts: peer.TcpPorts,
-            tlsPorts: peer.TlsPorts,
-            priority: peer.Priority,
-            exitLabel: peer.BouncingLabel
+            PeerId: peer.PeerId,
+            ServerIp: peer.ServerIp,
+            ServerPublicKey: peer.ServerPublicKey,
+            UdpPorts: peer.UdpPorts,
+            TcpPorts: peer.TcpPorts,
+            TlsPorts: peer.TlsPorts,
+            Priority: peer.Priority,
+            ExitLabel: peer.BouncingLabel
         );
     }
 
@@ -239,18 +240,18 @@ public class ProTunManager : IProTunManager
     private static AdapterConfig CreateAdapterConfig(ConnectionArgs args)
     {
         return new AdapterConfig(
-            customDnsServerIps: args.CustomDnsServers.ToArray(),
-            isIpv6Enabled: args.IsIpv6Enabled,
-            mtu: MTU,
-            bufferSizeBytes: WINTUN_BUFFER_SIZE
+            CustomDnsServerIps: args.CustomDnsServers.ToArray(),
+            IsIpv6Enabled: args.IsIpv6Enabled,
+            Mtu: MTU,
+            BufferSizeBytes: WINTUN_BUFFER_SIZE
         );
     }
 
     private static SocketConfig CreateUdpSocketConfig()
     {
         return new SocketConfig(
-            sendBufferSizeBytes: UDP_SEND_BUFFER_SIZE,
-            receiveBufferSizeBytes: UDP_RECEIVE_BUFFER_SIZE
+            SendBufferSizeBytes: UDP_SEND_BUFFER_SIZE,
+            ReceiveBufferSizeBytes: UDP_RECEIVE_BUFFER_SIZE
         );
     }
 
