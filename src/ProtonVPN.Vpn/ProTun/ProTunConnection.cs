@@ -216,11 +216,20 @@ public class ProTunConnection : IProTunConnection
         VpnConfig? config = _vpnConfig;
         VpnEndpoint? endpoint = _endpoint;
 
-        return config == null || endpoint is null ? null: new()
+        if (config is null || endpoint is null)
+        {
+            return null;
+        }
+
+        bool isIpv6Enabled = config.IsIpv6Enabled && endpoint.Server.IsIpv6Supported;
+        _logger.Info<ProTunProtocolLog>($"Requesting connection with IPv6 {isIpv6Enabled.ToOnOffString()}. The IPv6 Setting is " +
+            $"{config.IsIpv6Enabled.ToOnOffString()} and the Server IPv6 is {endpoint.Server.IsIpv6Supported.ToOnOffString()}.");
+
+        return new()
         {
             WireGuardPrivateKey = GetX25519SecretKey().Bytes,
             Peers = CreatePeers(config, endpoint),
-            IsIpv6Enabled = config.IsIpv6Enabled,
+            IsIpv6Enabled = isIpv6Enabled,
             CustomDnsServers = config.CustomDns
         };
     }

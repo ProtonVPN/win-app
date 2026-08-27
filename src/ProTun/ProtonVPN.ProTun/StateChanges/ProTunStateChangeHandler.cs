@@ -50,7 +50,7 @@ public class ProTunStateChangeHandler : IProTunStateChangeHandler
 
     public async void OnStateChanged(ProTunVpnState state)
     {
-        ConnectionState connectionState = state.connectionState;
+        ConnectionState connectionState = state.ConnectionState;
 
         await (connectionState switch
         {
@@ -63,14 +63,14 @@ public class ProTunStateChangeHandler : IProTunStateChangeHandler
 
     private async Task HandleConnectedStateAsync(Connected connectedState)
     {
-        await InvokeStateWithPeerAsync(VpnStatus.Connected, connectedState.peer);
+        await InvokeStateWithPeerAsync(VpnStatus.Connected, connectedState.Peer);
     }
 
     private async Task HandleConnectingStateAsync(Connecting connectingState)
     {
         await InvokeStateAsync(new(VpnStatus.Waiting, VpnProtocol.Smart));
 
-        PeerConnectionInfo? peer = connectingState.peers.FirstOrDefault();
+        PeerConnectionInfo? peer = connectingState.Peers.FirstOrDefault();
         if (peer is null) // ProTUN sends connecting without peers on a change of peers, or network availability change
         {
             await InvokeStateAsync(new(VpnStatus.Connecting, VpnProtocol.Smart));
@@ -89,13 +89,13 @@ public class ProTunStateChangeHandler : IProTunStateChangeHandler
 
     private async Task HandleDisconnectedStateAsync(Disconnected disconnectedState)
     {
-        if (disconnectedState.error is null)
+        if (disconnectedState.Error is null)
         {
             await InvokeStateAsync(new(VpnStatus.Disconnected, VpnProtocol.Smart));
         }
         else
         {
-            string errorMessage = GetErrorMessage(disconnectedState.error);
+            string errorMessage = GetErrorMessage(disconnectedState.Error);
             _logger.Error<ConnectionErrorLog>($"ProTUN disconnected with error: {errorMessage}");
             await InvokeStateAsync(new(VpnStatus.Disconnected, VpnError.Unknown, VpnProtocol.Smart));
         }
@@ -105,18 +105,18 @@ public class ProTunStateChangeHandler : IProTunStateChangeHandler
     {
         return error switch
         {
-            TunEstablishError e => $"Tun error: {e.message}",
+            TunEstablishError e => $"Tun error: {e.Message}",
         };
     }
 
     private async Task InvokeStateWithPeerAsync(VpnStatus vpnStatus, PeerConnectionInfo peer)
     {
         await InvokeStateAsync(new(vpnStatus,
-            remoteIp: peer.entryIp,
-            endpointPort: peer.port,
-            vpnProtocol: MapProtocol(peer.protocol),
+            remoteIp: peer.EntryIp,
+            endpointPort: peer.Port,
+            vpnProtocol: MapProtocol(peer.Protocol),
             openVpnAdapter: null,
-            label: GetLabelFromId(peer.peerId)));
+            label: GetLabelFromId(peer.PeerId)));
     }
 
     private VpnProtocol MapProtocol(Protocol protocol)

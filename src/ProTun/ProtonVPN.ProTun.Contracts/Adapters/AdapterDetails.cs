@@ -21,6 +21,7 @@ namespace ProtonVPN.ProTun.Contracts.Adapters;
 
 public class AdapterDetails
 {
+    public required ulong InterfaceLuid { get; init; }
     public required uint InterfaceIndex { get; init; }
 
     public required string ClientIpv4Addr { get; init; }

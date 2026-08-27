@@ -32,19 +32,24 @@ public class PersistentCacheHandler : IPersistentCacheHandler
         _logger = logger;
     }
 
-    public void Clear()
+    public void ClearAll()
     {
         _logger.Info<ProTunProtocolLog>("ProTUN persistent cache cleared");
     }
 
     public byte[]? Get(CacheKey key)
     {
-        _logger.Debug<ProTunProtocolLog>($"Get '{nameof(key)}' from persistent cache");
+        _logger.Debug<ProTunProtocolLog>($"Get '{key}' from persistent cache");
         return [];
     }
 
     public void Put(CacheKey key, byte[] bytes)
     {
-        _logger.Debug<ProTunProtocolLog>($"Write '{nameof(key)}' to persistent cache");
+        _logger.Debug<ProTunProtocolLog>($"Write '{key}' to persistent cache");
+    }
+
+    public void Remove(CacheKey key)
+    {
+        _logger.Debug<ProTunProtocolLog>($"Delete '{key}' from persistent cache");
     }
 }

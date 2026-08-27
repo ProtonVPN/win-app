@@ -28,11 +28,12 @@ public static class ProTunAdapterDetailsExtensions
     {
         return new()
         {
-            InterfaceIndex = arg.interfaceIndex,
-            ClientIpv4Addr = arg.clientIpv4Addr,
-            ServerIpv4Addr = arg.serverIpv4Addr,
-            ClientIpv6Addr = arg.clientIpv6Addr,
-            ServerIpv6Addr = arg.serverIpv6Addr,
+            InterfaceLuid = arg.InterfaceLuid,
+            InterfaceIndex = arg.InterfaceIndex,
+            ClientIpv4Addr = arg.ClientIpv4Addr,
+            ServerIpv4Addr = arg.ServerIpv4Addr,
+            ClientIpv6Addr = arg.ClientIpv6Addr,
+            ServerIpv6Addr = arg.ServerIpv6Addr,
         };
     }
 }
