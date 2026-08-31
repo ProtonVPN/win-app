@@ -171,7 +171,7 @@ public class Log4NetLogger : Log4NetLoggerInitializer, ILogger
     {
         IDictionary<string, object> metadataDictionary = new Dictionary<string, object>();
         
-        string callerInfo = $"{callerProfile.SourceClassName}.{callerProfile.SourceMemberName}:{callerProfile.SourceLineNumber}";
+        string callerInfo = $"{callerProfile}";
         
         if (stackTraceDepth > 0)
         {

@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Runtime.CompilerServices;
 
 namespace ProtonVPN.Client.Core.Services.Activation.Bases;
 
@@ -31,7 +32,10 @@ public interface IWindowActivator
 
     event EventHandler? HostSizeChanged;
 
-    void Activate();
+    void Activate(
+        [CallerFilePath] string sourceFilePath = "",
+        [CallerMemberName] string sourceMemberName = "",
+        [CallerLineNumber] int sourceLineNumber = 0);
 
     void Hide();
 
