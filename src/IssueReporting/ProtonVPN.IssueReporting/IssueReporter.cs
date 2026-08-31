@@ -59,7 +59,7 @@ public class IssueReporter : IIssueReporter
             SentrySdk.ConfigureScope(scope =>
             {
                 scope.Level = level;
-                scope.SetTag("captured_in", $"{callerProfile.SourceClassName}.{callerProfile.SourceMemberName}:{callerProfile.SourceLineNumber}");
+                scope.SetTag("captured_in", $"{callerProfile}");
                 scope.SetFingerprint(fingerprint);
                 SentrySdk.CaptureException(e);
             });
