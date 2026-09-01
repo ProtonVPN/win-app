@@ -22,10 +22,12 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Diagnostics;
-using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Collections.Generic;
 using FlaUI.UIA3;
+using FlaUI.Core.Tools;
 using FlaUI.Core.Input;
+using FlaUI.Core.WindowsAPI;
 using FlaUI.Core.Definitions;
 using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
@@ -37,8 +39,14 @@ public class DesktopRobot : IDisposable
 {
     private static readonly UIA3Automation _automation = new();
     private static AutomationElement Desktop => _automation.GetDesktop();
-    private static AutomationElement TaskBar => Desktop.FindFirstChild(cf => cf.ByName("Taskbar"))!;
-    private static AutomationElement? VpnIcon => TaskBar!.FindFirstDescendant(cf => cf.ByAutomationId("NotifyItemIcon").And(cf.ByName("Proton VPN")));
+    private static AutomationElement DesktopApps => Desktop.FindFirstChild(cf => cf.ByName("Program Manager"))!;
+    private static AutomationElement? ProtonVpnDesktopApp => DesktopApps.FindFirstDescendant(cf => cf.ByName("Proton VPN"))!;
+    private static AutomationElement ShowMoreOptions => Desktop.FindFirstDescendant(cf => cf.ByName("Show more options"))!;
+    private static AutomationElement PinToTaskbar => Desktop.FindFirstDescendant(cf => cf.ByName("Pin to taskbar"))!;
+    private static AutomationElement Taskbar => Desktop.FindFirstChild(cf => cf.ByName("Taskbar"))!;
+    private static AutomationElement PinnedTaskbarApps => Taskbar.FindFirstDescendant(cf => cf.ByAutomationId("TaskbarFrame"))!;
+    private static AutomationElement? ProtonVpnPinned => PinnedTaskbarApps.FindFirstDescendant(cf => cf.ByAutomationId("Appid: Proton.VPN"));
+    private static AutomationElement? VpnIcon => Taskbar!.FindFirstDescendant(cf => cf.ByAutomationId("NotifyItemIcon").And(cf.ByName("Proton VPN")));
     private static AutomationElement SettingsWindow => Desktop.FindFirstChild(cf => cf.ByName("Settings"))!;
     private static AutomationElement OtherTrayIcons => SettingsWindow.FindFirstDescendant(cf => cf.ByName("Other system tray icons"))!;
     private static AutomationElement ShowMoreButton => OtherTrayIcons?.FindFirstChild(cf => cf.ByName("Show more settings").Or(cf.ByName("Show all settings")))!;
@@ -98,6 +106,67 @@ public class DesktopRobot : IDisposable
         return this;
     }
 
+    public DesktopRobot LaunchAppFromTaskbar()
+    {
+        Assert.That(ProtonVpnPinned, Is.Not.Null);
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+        ProtonVpnPinned!.Click();
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
+        return this;
+    }
+
+    public DesktopRobot PinAppToTaskbar()
+    {
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
+        Assert.That(ProtonVpnDesktopApp, Is.Not.Null);
+
+        AutomationElement? showMoreOptions = RightClickUntilMenuAppears(
+            () => ProtonVpnDesktopApp!,
+            () => ShowMoreOptions,
+            maxAttempts: 3);
+
+        showMoreOptions!.AsMenuItem().Invoke();
+        Thread.Sleep(TestConstants.TwoSecondsTimeout);
+
+        try
+        {
+            PinToTaskbar.AsMenuItem().Invoke();
+        }
+        catch
+        {
+            Keyboard.Press(VirtualKeyShort.ESCAPE);
+        }
+
+        Thread.Sleep(TestConstants.TwoSecondsTimeout);
+        return this;
+    }
+
+    private AutomationElement? RightClickUntilMenuAppears(
+        Func<AutomationElement> targetElementFactory,
+        Func<AutomationElement?> menuItemLookup,
+        int maxAttempts)
+    {
+        for (int attempt = 1; attempt <= maxAttempts; attempt++)
+        {
+            targetElementFactory().RightClick();
+
+            AutomationElement? found = Retry.WhileNull(
+                menuItemLookup,
+                timeout: TimeSpan.FromSeconds(3),
+                interval: TimeSpan.FromMilliseconds(250)).Result;
+
+            if (found is not null)
+            {
+                return found;
+            }
+
+            Keyboard.Press(VirtualKeyShort.ESCAPE);
+            Thread.Sleep(TestConstants.TwoSecondsTimeout);
+        }
+
+        return null;
+    }
+
     private static void NavigateToWindowsTraySettingsAndTurnOnProtonVpn()
     {
         Process.Start(new ProcessStartInfo
@@ -127,6 +196,18 @@ public class DesktopRobot : IDisposable
             _automation = automation;
         }
 
+        public Verifications IsAppNotPinnedToTaskbar()
+        {
+            Assert.That(ProtonVpnPinned, Is.Null);
+            return this;
+        }
+
+        public Verifications IsAppPinnedToTaskbar()
+        {
+            Assert.That(ProtonVpnPinned, Is.Not.Null);
+            return this;
+        }
+
         public Verifications EnsureNotificationPrerequisitesAreMet()
         {
             Process.Start(new ProcessStartInfo
@@ -148,7 +229,7 @@ public class DesktopRobot : IDisposable
 
             for (int i = 0; i < 3; i++)
             {
-                Keyboard.Press(FlaUI.Core.WindowsAPI.VirtualKeyShort.DOWN);
+                Keyboard.Press(VirtualKeyShort.DOWN);
                 Thread.Sleep(TestConstants.UserInputSimulationDelay);
             }
 
@@ -159,6 +240,12 @@ public class DesktopRobot : IDisposable
 
             SettingsWindow.AsWindow().Close();
 
+            return this;
+        }
+
+        public Verifications IsTrayIconNotDisplayed()
+        {
+            Assert.That(VpnIcon, Is.Null);
             return this;
         }
 

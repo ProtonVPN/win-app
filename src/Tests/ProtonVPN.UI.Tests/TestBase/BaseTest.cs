@@ -56,6 +56,7 @@ public class BaseTest
     protected static DesktopRobot DesktopRobot { get; } = new();
     protected static TrayRobot TrayRobot { get; } = new();
     protected static TrayAppWindow TrayApp => new();
+    protected static InstallerRobot InstallerRobot => new();
     protected static SupportRobot SupportRobot { get; } = new(() => Window);
     protected static AdvancedSettingsRobot AdvancedSettingsRobot { get; } = new();
     protected static UpsellCarrouselRobot UpsellCarrouselRobot { get; } = new();
@@ -116,7 +117,7 @@ public class BaseTest
 
         if (!retry.Success)
         {
-            Assert.Fail($"Failed to refresh window in {refreshTimeout.TotalSeconds:0} seconds.");
+            throw new TimeoutException($"Failed to refresh window in {refreshTimeout.TotalSeconds:0} seconds.");
         }
     }
 

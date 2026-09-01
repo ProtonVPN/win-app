@@ -729,6 +729,11 @@ public static class UiActions
                     // Ignoring it, does not introduce side effects and increases stability.
                     return false;
                 }
+                catch (TimeoutException e)
+                {
+                    TestContext.WriteLine($"Window refresh failed while waiting for {desiredElement.SelectorName}, retrying: {e.Message}");
+                    return false;
+                }
             },
             time, retryInterval);
 

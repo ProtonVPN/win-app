@@ -12,6 +12,9 @@
   allow_failure: true
 
 .ui_test_execution_script:
+  timeout: 1h30m
+  variables:
+    RUNNER_AFTER_SCRIPT_TIMEOUT: 10m
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
       when: never
@@ -26,7 +29,7 @@
     - redesign #ui-tests-debug
   before_script:
     - ci\test-scripts\uninstall-app.ps1
-    - ci\test-scripts\install-the-app.ps1
+    - ci\test-scripts\install-app.ps1
   script:
     - dotnet build src/Tests/ProtonVPN.UI.Tests/ProtonVPN.UI.Tests.csproj --arch x64 -o src/bin/e2e
     - ci\test-scripts\run-tests.ps1 -Category ${CATEGORY}

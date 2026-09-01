@@ -1,21 +1,22 @@
 $protonFolder = "C:\Program Files\Proton\VPN"
-$protonUninstallExe = $protonFolder + "\unins000.exe"
+$protonUninstallExe = Join-Path $protonFolder "unins000.exe"
+$uninstallTimeoutSeconds = 120
 
 function Main
 {
-    # Sometimes the callout driver is stuck running
+    Stop-ProtonClientProcesses
     Stop-VpnCalloutService
 
     if (Test-Path -Path $protonFolder) {
         if (Test-Path -Path "$protonFolder\unins000.msg") {
-            Start-Process -FilePath $protonUninstallExe -ArgumentList "/verysilent" -Wait -ErrorAction Ignore
+            Invoke-BoundedUninstall
             Stop-VpnCalloutService
         } else {
             Write-Warning "unins000.msg missing - installer/uninstaller left an inconsistent state, skipping uninstaller and forcing cleanup"
         }
     }
 
-    Get-Process | Where-Object { $_.Name -like "proton*" -or $_.Name -like "unins0*" } | Stop-Process -Force -ErrorAction Ignore
+    Stop-ProtonClientProcesses
     Start-Sleep -Seconds 1
     Remove-Item $protonFolder -Recurse -Force -ErrorAction Ignore
 
@@ -23,6 +24,38 @@ function Main
     $uninstallKey = "HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\Proton VPN_is1"
     if (Test-Path $uninstallKey) {
         Remove-Item $uninstallKey -Recurse -Force -ErrorAction Ignore
+    }
+}
+
+function Invoke-BoundedUninstall {
+    $p = Start-Process -FilePath $protonUninstallExe `
+        -ArgumentList @("/VERYSILENT", "/SUPPRESSMSGBOXES") -PassThru
+
+    if (-not $p.WaitForExit($uninstallTimeoutSeconds * 1000)) {
+        Write-Warning "Uninstaller did not exit within ${uninstallTimeoutSeconds}s - killing it and forcing cleanup."
+        & taskkill.exe /PID $p.Id /T /F 2>&1 | Out-Null
+    }
+
+    $deadline = (Get-Date).AddSeconds($uninstallTimeoutSeconds)
+    while ((Get-Date) -lt $deadline) {
+        $helpers = Get-Process -ErrorAction SilentlyContinue |
+            Where-Object { $_.Name -like "_iu*" -or $_.Name -like "*unins*" }
+        if (-not $helpers) { return }
+        Start-Sleep -Seconds 2
+    }
+
+    Write-Warning "Inno uninstall helper still running after ${uninstallTimeoutSeconds}s - killing it."
+    Stop-ProtonClientProcesses
+}
+
+function Stop-ProtonClientProcesses {
+    Get-Process -ErrorAction SilentlyContinue | Where-Object {
+        $_.Name -like "ProtonVPN*" -or
+        $_.Name -like "*unins*" -or
+        $_.Name -like "_iu*"
+    } | ForEach-Object {
+        Write-Host "Killing leftover process $($_.Name) (PID $($_.Id))"
+        & taskkill.exe /PID $_.Id /T /F 2>&1 | Out-Null
     }
 }
 

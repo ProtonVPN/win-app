@@ -333,6 +333,17 @@ ui-tests-bti:
   variables:
     CATEGORY: "BTI"
 
+ui-tests-installer:
+  stage: ui-test-full
+  extends: .ui_test_execution_script
+  rules:
+    - !reference [.ui_test_execution_script, rules]
+    - if: '$CI_COMMIT_BRANCH =~ /^release.*$/'
+      when: on_success
+    - when: manual
+  variables:
+    CATEGORY: "INSTALLER"
+
 push-results-to-testmo-full-arm:
   stage: push-to-testmo
   extends: .push_results_to_testmo
@@ -363,9 +374,8 @@ push-results-to-testmo-release:
       optional: false
     - job: ui-tests-bti
       optional: false
-    #uncomment when the installer tests get merged
-    #- job: ui-tests-installer 
-    #  optional: false
+    - job: ui-tests-installer
+      optional: false
   coverage: '/Automation coverage: (\d+\.?\d+)%/'
 
 push-results-to-testmo-smoke:
