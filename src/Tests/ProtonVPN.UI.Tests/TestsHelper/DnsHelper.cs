@@ -159,8 +159,6 @@ public class DnsHelper
         using Process process = new();
         process.StartInfo.FileName = "ping";
         process.StartInfo.Arguments = $"-n 1 {domain}";
-        process.StartInfo.RedirectStandardOutput = true;
-        process.StartInfo.RedirectStandardError = true;
         process.StartInfo.UseShellExecute = false;
         process.StartInfo.CreateNoWindow = true;
         process.Start();
