@@ -65,7 +65,7 @@ public class AuthenticatedUserTests : TestBase
 
     private void SetAuthInfoResponse()
     {
-        MessageHandler!.When(HttpMethod.Post, "/auth/info").Respond(_ => new HttpResponseMessage
+        MessageHandler!.When(HttpMethod.Post, "/auth/v4/info").Respond(_ => new HttpResponseMessage
         {
             StatusCode = HttpStatusCode.OK,
             Content = new StringContent(GetJsonMock("AuthInfoResponseMock"))
@@ -77,7 +77,7 @@ public class AuthenticatedUserTests : TestBase
         string responseBody = GetJsonMock("AuthResponseMock");
         SetExpectedServerProof(CORRECT_PASSWORD, responseBody);
 
-        MessageHandler!.When(HttpMethod.Post, "/auth").Respond(_ => new HttpResponseMessage
+        MessageHandler!.When(HttpMethod.Post, "/auth/v4").Respond(_ => new HttpResponseMessage
         {
             StatusCode = HttpStatusCode.OK,
             Content = new StringContent(responseBody)
@@ -89,7 +89,7 @@ public class AuthenticatedUserTests : TestBase
         string responseBody = GetJsonMock("AuthResponseWithTwoFactorEnabledMock");
         SetExpectedServerProof(CORRECT_PASSWORD, responseBody);
 
-        MessageHandler!.When(HttpMethod.Post, "/auth").Respond(_ => new HttpResponseMessage
+        MessageHandler!.When(HttpMethod.Post, "/auth/v4").Respond(_ => new HttpResponseMessage
         {
             StatusCode = HttpStatusCode.OK,
             Content = new StringContent(responseBody)
