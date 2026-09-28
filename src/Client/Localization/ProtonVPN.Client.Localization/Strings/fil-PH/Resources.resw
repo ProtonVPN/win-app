@@ -349,6 +349,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Hindi makakonekta ang Proton VPN dahil hindi available ang RPC server sa system mo.</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>The server details couldn't be verified. Try another server, or report the issue to our Customer Support team.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>Naabot mo na ang maximum na limitasyon ng device mo. Mangyaring mag-disconnect ng ibang device upang maikonekta ito o mag-upgrade sa Plus upang makakonekta ng hanggang 10 device nang sabay-sabay.</value>
   </data>

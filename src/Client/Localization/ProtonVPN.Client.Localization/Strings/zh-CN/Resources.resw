@@ -349,6 +349,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Proton VPN 无法连接，因为 RPC 服务器在您的系统上不可用。</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>The server details couldn't be verified. Try another server, or report the issue to our Customer Support team.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>您已达到最大设备限制。请断开另一台设备以连接这台设备，或升级到 PLUS 以同时连接多达 10 台设备。</value>
   </data>

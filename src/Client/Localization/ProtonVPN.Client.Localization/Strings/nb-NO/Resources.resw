@@ -349,6 +349,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Proton VPN kan ikke koble til fordi RPC-tjeneren ikke er tilgjengelig på systemet ditt.</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>Serverdetaljene kunne ikke bekreftes. Prøv en annen server, eller rapporter problemet til kundestøtte.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>Du har nådd din maksimale enhetsgrense. Koble fra en annen enhet for å koble til denne, eller oppgrader til PLUS for å koble til opptil 10 enheter samtidig.</value>
   </data>
