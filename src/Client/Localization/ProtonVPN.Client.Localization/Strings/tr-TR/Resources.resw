@@ -349,6 +349,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Sisteminizde RPC sunucusu bulunmadığından Proton VPN bağlantı kuramıyor.</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>Sunucu bilgileri doğrulanamadı. Başka bir sunucu deneyin veya sorunu müşteri destek ekibimize bildirin.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>En fazla aygıt sayısı sınırına ulaştınız. Lütfen bu aygıtı bağlamak için başka bir aygıtın bağlantısını kesin ya da aynı anda 10 aygıtı bağlamak için Plus tarifesine yükseltin.</value>
   </data>
@@ -1853,10 +1856,10 @@ Hata kodu: {0}</value>
     <value>Bağlantı yardımı</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
-    <value>Bu işlem VPN bağlantınızı kesecek. Etkin tüm internet bağlantıları geçici olarak korumasız kalacak.</value>
+    <value>Bu işlem VPN bağlantınızı kesecek. Kullanılan tüm internet bağlantıları geçici olarak korumasız kalacak.</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
-    <value>Bu işlem VPN bağlantınızı kesecek ve bağlantı kesiciyi geçici olarak kapatacak. Etkin tüm internet bağlantıları geçici olarak korumasız kalacak.</value>
+    <value>Bu işlem VPN bağlantınızı kesecek ve bağlantı kesiciyi geçici olarak kapatacak. Kullanılan tüm internet bağlantıları geçici olarak korumasız kalacak.</value>
   </data>
   <data name="Dialogs_UpdateConfirmation_Title_Install">
     <value>Güncelleme kurulsun mu?</value>
@@ -1926,10 +1929,10 @@ Hata kodu: {0}</value>
     <value>Yerel ağ bağlantıları</value>
   </data>
   <data name="Dialogs_WhatsNew_PortNumber_Description">
-    <value>Bağlantı noktası yönlendirmeyi kullandığınızda, etkin bağlantı noktası numaranızı ana ekranda görebilirsiniz.</value>
+    <value>Bağlantı noktası yönlendirmeyi kullandığınızda, kullanılan bağlantı noktası numaranızı ana ekranda görebilirsiniz.</value>
   </data>
   <data name="Dialogs_WhatsNew_PortNumber_Title">
-    <value>Etkin bağlantı noktası</value>
+    <value>Kullanılan bağlantı noktası</value>
   </data>
   <data name="Dialogs_WhatsNew_TakeALook">
     <value>Göz atın</value>
@@ -2076,13 +2079,13 @@ Hata kodu: {0}</value>
     <value>Reklamsız gezinmenin tadını çıkarın</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort">
-    <value>Etkin bağlantı noktası</value>
+    <value>Kullanılan bağlantı noktası</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Error">
-    <value>Etkin bağlantı noktası numarası bulunamadı. Bağlantınızı yeniden başlatıp yeniden deneyin.</value>
+    <value>Kullanılan bağlantı noktası numarası bulunamadı. Bağlantınızı yeniden başlatıp yeniden deneyin.</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
-    <value>Başarımı artırmak için etkin bağlantı noktası numarasını torrent istemcinize veya P2P uygulamanıza yazın.</value>
+    <value>Başarımı artırmak için kullanılan bağlantı noktası numarasını torrent istemcinize veya P2P uygulamanıza yazın.</value>
   </data>
   <data name="Flyouts_PortForwarding_Info">
     <value>Eşler arası indirme hızlarını iyileştirir</value>
@@ -3121,7 +3124,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Gelişmiş</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Advanced_Description">
-    <value>Yalnızca Proton VPN bağlantısı kurulduğunda internet erişimine izin verilir. Gelişmiş bağlantı kesici özelliği, aygıtınızı yeniden başlattığınızda bile etkin kalır.</value>
+    <value>Yalnızca Proton VPN bağlantısı kurulduğunda internet erişimine izin verilir. Gelişmiş bağlantı kesici özelliği, aygıtınızı yeniden başlattığınızda bile açık kalır.</value>
   </data>
   <data name="Settings_Connection_KillSwitch_Description">
     <value>VPN bağlantınız kesilirse internet bağlantınızı keserek IP adresinizin açığa çıkmasını engeller.</value>
@@ -3166,7 +3169,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Bağlantı noktası yönlendirme</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Etkin bağlantı noktası:</value>
+    <value>Kullanılan bağlantı noktası:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Bağlantı noktası numarasını kopyala</value>
@@ -3194,7 +3197,7 @@ Yükü yüksek olan sunucular bağlantınızı yavaşlatabilir.</value>
     <value>Bildirimler</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Etkin bağlantı noktası numaranız değiştiğinde bildirim alın.</value>
+    <value>Kullanılan bağlantı noktası numaranız değiştiğinde bildirim alın.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Unavailable">
     <value>Kullanılamıyor</value>

@@ -349,6 +349,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Proton VPN-ს მიერთება არ შეუძლია, რადგან თქვენს სისტემაზე RPC სერვერი ხელმიუწვდომელია.</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>სერვერის დეტალების გადამოწმება შეუძლებელია. სცადეთ სხვა სერვერი, ან მიწერეთ ამ პრობლემის შესახებ ჩვენი დახმარების გუნდს.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>მიაღწიეთ მოწყობლობების მაქსიმალურ დასაშვებ რაოდენობას. გათიშეთ სხვა მოწყობილობა, რომ ეს მიაერთოთ ან, 10 მოწყობილობის ერთდროულად მისაერთებლად, PLUS ტარიფამდე განახლდით.</value>
   </data>

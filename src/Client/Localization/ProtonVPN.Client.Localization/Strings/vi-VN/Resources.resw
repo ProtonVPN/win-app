@@ -349,6 +349,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Proton VPN không thể kết nối do máy chủ RPC không khả dụng cho hệ thống của bạn.</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>The server details couldn't be verified. Try another server, or report the issue to our Customer Support team.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>Đã đạt giới hạn thiết bị tối đa của bạn. Vui lòng ngắt kết nối thiết bị khác để kết nối hoặc nâng cấp lên PLUS để kết nối lên đến 10 thiết bị cùng một lúc.</value>
   </data>

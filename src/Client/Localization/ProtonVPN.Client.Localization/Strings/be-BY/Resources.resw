@@ -259,7 +259,7 @@
     <value>Захаваць</value>
   </data>
   <data name="Common_Actions_TryAgain">
-    <value>Паспрабаваць яшчэ раз</value>
+    <value>Паўтарыце спробу</value>
   </data>
   <data name="Common_Actions_Update">
     <value>Абнавіць</value>
@@ -334,10 +334,10 @@
     <value>Падключэнне было заблакіравана наладамі сеткі на вашай прыладзе. Прычынай гэтага можа быць мабільны пункт доступу, іншая праграма VPN або праграмнае забеспячэнне віртуальнай машыны. Паглядзіце канфігурацыю сваёй сеткі або звярніцеся ў службу падтрымкі, каб атрымаць дадатковыя звесткі.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>Усе выбраныя вамі серверы недаступны. Пашырце выбар або паспрабуйце пазней.</value>
+    <value>Усе выбраныя вамі серверы недаступны. Пашырце выбар або паўтарыце спробу пазней.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
-    <value>Выбраны вамі сервер для '{0}' у цяперашні час недаступны. Выберыце іншы сервер або паспрабуйце яшчэ раз пазней.</value>
+    <value>Выбраны вамі сервер для '{0}' у цяперашні час недаступны. Выберыце іншы сервер або паўтарыце спробу пазней.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
@@ -348,6 +348,9 @@
   </data>
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Proton VPN не можа падключыцца, бо сервер RPC недаступны ў вашай сістэме.</value>
+  </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>Немагчыма спраўдзіць падрабязнасці сервера. Паспрабуйце іншы сервер або паведаміце аб праблеме ў нашу каманду падтрымкі кліентаў.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>Вы дасягнулі максімальнай колькасці прылад. Адключыце адну з прылад, каб падключыць гэту. Вы таксама можаце палепшыць свой тарыфны план да PLUS для падключэння да 10 прылад адначасова.</value>
@@ -374,7 +377,7 @@
     <value>Патрабуецца двухфактарная аўтэнтыфікацыя (2ФА)</value>
   </data>
   <data name="Connection_Error_Unknown">
-    <value>Праверце падключэнне да інтэрнэту і паспрабуйце яшчэ раз. Калі гэта не дапаможа, звярніцеся ў нашу службу падтрымкі кліентаў.
+    <value>Праверце падключэнне да інтэрнэту і паўтарыце спробу. Калі гэта не дапаможа, звярніцеся ў нашу службу падтрымкі кліентаў.
 
 Код памылкі: {0}</value>
   </data>
@@ -382,7 +385,7 @@
     <value>Паглядзець выпраўленні</value>
   </data>
   <data name="Connection_Error_WireGuardAdapterInUse">
-    <value>Адаптар прылады WireGuard у цяперашні час выкарыстоўваецца. Адключыце любы іншы VPN, які запушчаны на вашай прыладзе і паспрабуйце яшчэ раз.</value>
+    <value>Адаптар прылады WireGuard у цяперашні час выкарыстоўваецца. Адключыце любы іншы VPN, які запушчаны на вашай прыладзе і паўтарыце спробу.</value>
   </data>
   <data name="Connection_Feedback_Question">
     <value>Як вы ацэньваеце сваё падключэнне?</value>
@@ -1857,7 +1860,7 @@
     <value>З якой верагоднасцю вы парэкамендуеце Proton VPN сябру?</value>
   </data>
   <data name="Dialogs_NpsSurvey_TryAgain">
-    <value>Паспрабаваць яшчэ раз</value>
+    <value>Паўтарыце спробу</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
     <value>Палепшыце, каб разблакіраваць аднарангавыя серверы (P2P) для дынамічных гульняў у інтэрнэце і спампоўвання торэнтаў або спыніце сваю актыўнасць P2P для аднаўлення падключэння.</value>
@@ -2205,7 +2208,7 @@
     <value>Нумар актыўнага парта</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Error">
-    <value>Немагчыма атрымаць нумар актыўнага парта. Перазапусціце ваша падключэнне і паспрабуйце яшчэ раз.</value>
+    <value>Немагчыма атрымаць нумар актыўнага парта. Перазапусціце ваша падключэнне і паўтарыце спробу.</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
     <value>Увядзіце нумар актыўнага парта ў свой кліент торэнт або праграму P2P для паляпшэння прадукцыйнасці.</value>
@@ -2670,13 +2673,13 @@
     <value>Лепшы свет пачынаецца з прыватнасці і лічбавай свабоды.</value>
   </data>
   <data name="Login_Error_GetSessionDetailsFailed">
-    <value>Адбылася праблема пры атрыманні падрабязнасцяў сеанса. Паспрабуйце яшчэ раз.</value>
+    <value>Адбылася праблема пры атрыманні падрабязнасцяў сеанса. Паўтарыце спробу.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
     <value>Немагчыма ўвайсці з-за налад сеткі на вашай прыладзе. Прычынай гэтага можа быць мабільны пункт доступу, іншая праграма VPN або праграмнае забеспячэнне віртуальнай машыны. Паглядзіце канфігурацыю сваёй сеткі або звярніцеся ў службу падтрымкі, каб атрымаць дадатковыя звесткі.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
-    <value>Няправільны код. Паспрабуйце яшчэ раз.</value>
+    <value>Няправільны код. Паўтарыце спробу.</value>
   </data>
   <data name="Login_Error_MissingSrpDll_Message">
     <value>У вашым усталёвачным пакеце адсутнічае файл, які неабходны для ўваходу. Пераўсталюйце Proton VPN, каб выправіць гэту праблему.</value>
@@ -2689,7 +2692,7 @@
     <comment>The message displayed in Login window when expired session is detected</comment>
   </data>
   <data name="Login_Error_SsoAuthFailed">
-    <value>Збой аўтэнтыфікацыі SSO. Паспрабуйце яшчэ раз.</value>
+    <value>Збой аўтэнтыфікацыі SSO. Паўтарыце спробу.</value>
   </data>
   <data name="Login_Error_TwoFactorFailed">
     <value>Збой двухфактарнай аўтэнтыфікацыі. Увайдзіце яшчэ раз.</value>

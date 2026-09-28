@@ -349,6 +349,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Proton VPN не може під'єднатися, оскільки сервер RPC недоступний у вашій системі.</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>Не вдається перевірити відомості про сервер. Спробуйте під'єднатися до іншого сервера або повідомте про цю проблему нашу команду підтримки клієнтів.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>Ви досягли максимальної кількості пристроїв. Щоб під'єднати цей пристрій, спочатку від'єднайте інший, або передплатіть тарифний план PLUS для одночасного під'єднання до 10 пристроїв.</value>
   </data>

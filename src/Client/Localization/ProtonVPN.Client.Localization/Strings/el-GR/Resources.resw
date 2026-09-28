@@ -349,6 +349,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Το Proton VPN δεν μπορεί να συνδεθεί επειδή ο διακομιστής RPC δεν είναι διαθέσιμος στο σύστημά σας.</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>Δεν ήταν δυνατή η επαλήθευση των στοιχείων του διακομιστή. Δοκιμάστε έναν άλλο διακομιστή ή αναφέρετε το πρόβλημα στην ομάδα Υποστήριξης Πελατών μας.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>Έχετε συμπληρώσει το μέγιστο όριο συσκευών. Παρακαλούμε αποσυνδέστε μια άλλη συσκευή για να τη συνδέσετε ή αναβαθμίστε σε PLUS για να συνδέσετε έως και 10 συσκευές ταυτόχρονα.</value>
   </data>

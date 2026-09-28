@@ -349,6 +349,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Proton VPN nu se poate conecta, deoarece serverul RPC nu este disponibil în sistemul de operare.</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>Detaliile serverului nu au putut fi verificate. Încercați un alt server sau raportați problema echipei noastre de asistență pentru clienți.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>Ați atins limita maximă de dispozitive. Deconectați alt dispozitiv pentru a-l conecta pe acesta sau treceți la planul PLUS pentru a putea conecta până la 10 dispozitive simultan.</value>
   </data>
@@ -2469,7 +2472,7 @@ Cod eroare: {0}</value>
     <value>Furnizor</value>
   </data>
   <data name="Home_ConnectionDetails_Protected">
-    <value>Protejată</value>
+    <value>Conexiune protejată</value>
   </data>
   <data name="Home_ConnectionDetails_Protocol">
     <value>Protocol</value>

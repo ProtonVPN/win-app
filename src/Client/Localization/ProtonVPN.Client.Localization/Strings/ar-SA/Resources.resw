@@ -313,10 +313,10 @@
     <value>تحديث Proton VPN</value>
   </data>
   <data name="Connection_Error_AllServersExcluded">
-    <value>Your preferences exclude all available servers. Adjust exclusions to connect.</value>
+    <value>جميع الخوادم المتاحة مستبعدة بناءً على تفضيلاتك. عدل قائمة الاستبعاد لإتمام الاتصال</value>
   </data>
   <data name="Connection_Error_AllServersExcluded_Action">
-    <value>Excluded locations</value>
+    <value>المواقع المستبعدة</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Description">
     <value>لإصلاح ذلك، أغلق التطبيق المرتبط بـ أو قم بإلغاء تثبيته:</value>
@@ -348,6 +348,9 @@
   </data>
   <data name="Connection_Error_RpcServerUnavailable">
     <value>لا يستطيع Proton VPN الاتصال لأن خادم RPC غير متوفر على النظام الخاص بك.</value>
+  </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>تعذر التحقق من الخادم. يُرجى اختيار خادم آخر، أو التواصل مع الدعم.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>لقد وصلت إلى الحد الأقصى من عدد الأجهزة. رجاءً قم بتسجيل الخروج من احد الاجهزة، أو قم بالترقية إلى PLUS لتستطيع توصيل حتى عشرة أجهزة في الوقت نفسه.</value>
@@ -848,7 +851,7 @@
     <value>توجيه ذكي</value>
   </data>
   <data name="Countries_SmartRouting_RoutedThrough">
-    <value>Smart routed through {0}</value>
+    <value>توجيه ذكي عبر {0}</value>
     <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
   </data>
   <data name="Countries_Tor">
@@ -2196,10 +2199,10 @@
     <value>تطبيق علبة النظام الجديد</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations">
-    <value>Exclude locations</value>
+    <value>المواقع المستبعدة</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
-    <value>If there are locations you don't want to be automatically connected to, you can exclude them from Fastest and Random country.</value>
+    <value>يمكنك استبعاد المواقع التي تفضل عدم الاتصال بها بشكل تلقائي عند استخدام الخادم الأسرع ودولة عشوائية.</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
     <value>Skip</value>

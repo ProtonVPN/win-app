@@ -349,6 +349,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>ᜑᜒᜈ᜔ᜇᜒ ᜋᜃᜃᜓᜈᜒᜃ᜔ᜆ ᜀᜅ᜔ Proton VPN ᜇᜑᜒᜎ᜔ ᜑᜒᜈ᜔ᜇᜒ available ᜀᜅ᜔ RPC server ᜐ system ᜋᜓ.</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>The server details couldn't be verified. Try another server, or report the issue to our Customer Support team.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>ᜈᜀᜊᜓᜆ᜔ ᜋᜓ ᜈ ᜀᜅ᜔ maximum ᜈ ᜎᜒᜋᜒᜆᜐ᜔ᜌᜓᜈ᜔ ᜈᜅ᜔ device ᜋᜓ. ᜋᜅ᜔ᜌᜇᜒᜅ᜔ ᜋᜄ᜔-disconnect ᜈᜅ᜔ ᜁᜊᜅ᜔ device ᜂᜉᜅ᜔ ᜋᜁᜃᜓᜈᜒᜃ᜔ᜆ ᜁᜆᜓ ᜂ ᜋᜄ᜔-upgrade ᜐ Plus ᜂᜉᜅ᜔ ᜋᜃᜃᜓᜈᜒᜃ᜔ᜆ ᜈᜅ᜔ ᜑᜅ᜔ᜄᜅ᜔ 10 device ᜈᜅ᜔ ᜐᜊᜌ᜔-ᜐᜊᜌ᜔.</value>
   </data>

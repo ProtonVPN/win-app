@@ -349,6 +349,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Proton VPN قادر به اتصال نیست چون سرور RPC در سیستمتان در دسترس نیست.</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>The server details couldn't be verified. Try another server, or report the issue to our Customer Support team.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>شما به حداکثر محدودیت دستگاه‌هایتان رسیده‌اید. لطفاً برای اتصال این دستگاه، دستگاهی دیگر یا قطع کنید یا به طرح PLUS برای اتصال هم‌زمان تا ۱۰ دستگاه ارتقا دهید.</value>
   </data>
@@ -1634,7 +1637,7 @@ Error code: {0}</value>
     <comment>The name of WS country</comment>
   </data>
   <data name="Country_val_XK">
-    <value>Kosovo</value>
+    <value>کوزوو</value>
     <comment>The name of XK country</comment>
   </data>
   <data name="Country_val_YE">
