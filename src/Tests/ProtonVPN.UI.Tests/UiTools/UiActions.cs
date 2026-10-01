@@ -496,11 +496,6 @@ public static class UiActions
               $"After: Width: {elementAfterTyping.Size.Width}, Height: {elementAfterTyping.Size.Height}");
     }
 
-    public static void ClearInputWithKeyboard()
-    {
-        Keyboard.TypeSimultaneously(VirtualKeyShort.CONTROL, VirtualKeyShort.KEY_A, VirtualKeyShort.DELETE);
-    }
-
     public static T ClearInput<T>(this T desiredElement) where T : Element
     {
         AutomationElement? element = WaitUntilExists(desiredElement);
