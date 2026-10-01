@@ -25,4 +25,5 @@ public enum Browser
 {
     [Display(Name = "Google Chrome")] GoogleChrome,
     [Display(Name = "Edge")] Edge,
+    [Display(Name = "Brave")] Brave,
 }

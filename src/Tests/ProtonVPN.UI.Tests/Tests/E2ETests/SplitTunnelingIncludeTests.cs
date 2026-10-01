@@ -39,6 +39,7 @@ public class SplitTunnelingIncludeTests : BaseTest
 
     private const Browser APP_TO_INCLUDE = Browser.GoogleChrome;
     private const Browser OTHER_APP = Browser.Edge;
+    private const Browser MICROSOFT_APP_TO_INCLUDE = Browser.Brave;
 
     private static readonly string _appNotFoundText = LanguageHelper.GetTranslatedString("Common_Message_AppNotFound");
     private static readonly string _splitTunnelingMode = LanguageHelper.GetTranslatedString("Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader").Replace("({0})", "(1)");
@@ -131,6 +132,8 @@ public class SplitTunnelingIncludeTests : BaseTest
             .ApplySettings()
             .CloseSettings();
 
+        CommonUiFlows.ChangeProtocol(Protocol.WireGuardTcp, shouldEnableProTun: false);
+
         HomeRobot
             .ConnectViaConnectionCard()
             .Verify.IsConnected();
@@ -205,6 +208,89 @@ public class SplitTunnelingIncludeTests : BaseTest
         ConfirmationRobot
             .CancelAction()
             .Verify.IsOverlayClosed();
+    }
+
+    [Test, Order(4)]
+    [Property("TestCaseId", "912749")]
+    [Retry(3)]
+    public void SplitTunnelingIncludeModeAppWithProTun()
+    {
+        SplitTunnelingRobot
+            .EditSplitTunnelingApps();
+        AppSelectorRobot
+            .Verify.AssertAppAvailability(APP_TO_INCLUDE, shouldBeAvailable: true)
+            .AddSuggestedApp(APP_TO_INCLUDE)
+            .Verify.IsAppChecked(APP_TO_INCLUDE);
+        ConfirmationRobot
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
+
+        SettingRobot
+            .ApplySettings()
+            .CloseSettings();
+
+        CommonUiFlows.ChangeProtocol(Protocol.ProTunTcp, shouldEnableProTun: true);
+
+        HomeRobot
+            .ConnectViaConnectionCard()
+            .Verify.IsConnected();
+
+        string? ipAddressToCompare = HomeRobot.GetVpnServerIp();
+
+        BrowserUtils.KillAllBrowsers();
+        BrowserUtils.VerifyBrowserIpWithRetry(APP_TO_INCLUDE, hasVpn: true, ipAddressToCompare);
+        BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, hasVpn: false, ipAddressToCompare);
+
+        HomeRobot
+            .Disconnect()
+            .Verify.IsDisconnected();
+
+        BrowserUtils.KillAllBrowsers();
+        BrowserUtils.VerifyBrowserIpWithRetry(APP_TO_INCLUDE, hasVpn: false, ipAddressToCompare);
+        BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, hasVpn: false, ipAddressToCompare);
+    }
+
+    [Test, Order(5)]
+    [Property("TestCaseId", "916358")]
+    [Ignore("Waiting for MR/2284 to be merged")]
+    [TestCaseSource(typeof(TestConstants), nameof(TestConstants.SomeProtocols))]
+    [Retry(3)]
+    public void SplitTunnelingIncludeMicrosoftApp(Protocol protocol)
+    {
+        bool shouldEnableProTun = TestConstants.IsProTunProtocol(protocol);
+
+        SplitTunnelingRobot
+            .EditSplitTunnelingApps();
+        AppSelectorRobot
+            .AddSuggestedMicrosoftApp(MICROSOFT_APP_TO_INCLUDE)
+            .Verify.IsAppChecked(MICROSOFT_APP_TO_INCLUDE);
+        ConfirmationRobot
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
+
+        SettingRobot
+            .ApplySettings()
+            .CloseSettings();
+
+        CommonUiFlows.ChangeProtocol(protocol, shouldEnableProTun);
+
+        HomeRobot
+            .ConnectViaConnectionCard()
+            .Verify.IsConnected();
+
+        string? ipAddressToCompare = HomeRobot.GetVpnServerIp();
+
+        BrowserUtils.KillAllBrowsers();
+        BrowserUtils.VerifyBrowserIpWithRetry(MICROSOFT_APP_TO_INCLUDE, hasVpn: true, ipAddressToCompare);
+        BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, hasVpn: false, ipAddressToCompare);
+
+        HomeRobot
+            .Disconnect()
+            .Verify.IsDisconnected();
+
+        BrowserUtils.KillAllBrowsers();
+        BrowserUtils.VerifyBrowserIpWithRetry(MICROSOFT_APP_TO_INCLUDE, hasVpn: false, ipAddressToCompare);
+        BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, hasVpn: false, ipAddressToCompare);
     }
 
     private static void VerifyIsSplitTunnelingAppInFlyoutMenu(bool isAppAvailable)

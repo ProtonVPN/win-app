@@ -28,6 +28,14 @@ namespace ProtonVPN.UI.Tests.Robots;
 public class AppSelectorRobot
 {
     protected Element AppCheckboxParent = Element.ByAutomationId("AppsListView");
+    protected Element SelectMicrosoftApp = Element.ByAutomationId("SelectMicrosoftApp");
+
+    public AppSelectorRobot AddSuggestedMicrosoftApp(Browser appName)
+    {
+        SelectMicrosoftApp.Click();
+        AppCheckboxParent.SelectCheckboxByText(appName.GetEnumValue());
+        return this;
+    }
 
     public AppSelectorRobot AddSuggestedApp(Browser appName)
     {

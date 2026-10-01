@@ -40,6 +40,7 @@ public class SplitTunnelingExcludeTests : BaseTest
 
     private const Browser APP_TO_EXCLUDE = Browser.GoogleChrome;
     private const Browser OTHER_APP = Browser.Edge;
+    private const Browser MICROSOFT_APP_TO_EXCLUDE = Browser.Brave;
 
     private string? _ipAddressNotConnected = null;
 
@@ -118,6 +119,8 @@ public class SplitTunnelingExcludeTests : BaseTest
         SettingRobot
             .ApplySettings()
             .CloseSettings();
+
+        CommonUiFlows.ChangeProtocol(Protocol.WireGuardUdp, shouldEnableProTun: false);
 
         HomeRobot
             .ConnectViaConnectionCard()
@@ -203,7 +206,7 @@ public class SplitTunnelingExcludeTests : BaseTest
         SettingRobot
             .OpenSettings()
             .OpenSplitTunnelingSettings();
-        
+
         SplitTunnelingRobot
             .EditSplitTunnelingIps();
         IpSelectorRobot
@@ -223,6 +226,76 @@ public class SplitTunnelingExcludeTests : BaseTest
     }
 
     [Test, Order(5)]
+    [Property("TestCaseId", "912750")]
+    [Retry(3)]
+    public void SplitTunnelingExcludeIpAddressWithProTun()
+    {
+        SplitTunnelingRobot
+            .EditSplitTunnelingIps();
+        IpSelectorRobot
+            .AddIpAddress(IP_ADDRESS_TO_EXCLUDE)
+            .Verify.WasIpAdded(IP_ADDRESS_TO_EXCLUDE);
+        ConfirmationRobot
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
+
+        SettingRobot
+            .ApplySettings()
+            .CloseSettings();
+
+        CommonUiFlows.ChangeProtocol(Protocol.ProTunUdp, shouldEnableProTun: true);
+
+        HomeRobot
+            .ConnectViaConnectionCard()
+            .Verify.IsConnected();
+
+        NetworkUtils.VerifyIpAddressMatchesWithRetry(_ipAddressNotConnected);
+    }
+
+    [Test, Order(6)]
+    [Property("TestCaseId", "916359")]
+    [Ignore("Waiting for MR/2284 to be merged")]
+    [TestCaseSource(typeof(TestConstants), nameof(TestConstants.SomeProtocols))]
+    [Retry(3)]
+    public void SplitTunnelingExcludeMicrosoftApp(Protocol protocol)
+    {
+        bool shouldEnableProTun = TestConstants.IsProTunProtocol(protocol);
+
+        SplitTunnelingRobot
+            .EditSplitTunnelingApps();
+        AppSelectorRobot
+            .AddSuggestedMicrosoftApp(MICROSOFT_APP_TO_EXCLUDE)
+            .Verify.IsAppChecked(MICROSOFT_APP_TO_EXCLUDE);
+        ConfirmationRobot
+            .PrimaryAction()
+            .Verify.IsOverlayClosed();
+
+        SettingRobot
+            .ApplySettings()
+            .CloseSettings();
+
+        CommonUiFlows.ChangeProtocol(protocol, shouldEnableProTun);
+
+        HomeRobot
+            .ConnectViaConnectionCard()
+            .Verify.IsConnected();
+
+        string? ipAddressToCompare = HomeRobot.GetVpnServerIp();
+
+        BrowserUtils.KillAllBrowsers();
+        BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, hasVpn: true, ipAddressToCompare);
+        BrowserUtils.VerifyBrowserIpWithRetry(MICROSOFT_APP_TO_EXCLUDE, hasVpn: false, ipAddressToCompare);
+
+        HomeRobot
+            .Disconnect()
+            .Verify.IsDisconnected();
+
+        BrowserUtils.KillAllBrowsers();
+        BrowserUtils.VerifyBrowserIpWithRetry(OTHER_APP, hasVpn: false, ipAddressToCompare);
+        BrowserUtils.VerifyBrowserIpWithRetry(MICROSOFT_APP_TO_EXCLUDE, hasVpn: false, ipAddressToCompare);
+    }
+
+    [Test, Order(7)]
     [Property("TestCaseId", "787609")]
     [Retry(3)]
     public void SplitTunnelingExcludeModeApp()
