@@ -17,12 +17,15 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Drawing;
 using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
+using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
+using ProtonVPN.UI.Tests.TestsHelper.TestData;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -67,7 +70,52 @@ public class LoginTests : FreshSessionSetUp
     [Property("TestCaseId", "602337")]
     public void LoginWithSpecialCharsUser()
     {
+        NavigationRobot
+            .Verify.IsOnLoginPage();
+
+        (Point Position, Size Size) usernameElementBeforeTyping = UiActions.GetElementSizeAndPosition(LoginRobot.UsernameTextBox);
+        (Point Position, Size Size) passwordElementBeforeTyping = UiActions.GetElementSizeAndPosition(LoginRobot.PasswordTextBox);
+
+        foreach (string specialChar in InputTestData.SpecialInputs)
+        {
+            UiActions.VerifyElementSizeAndPosition(LoginRobot.UsernameTextBox, usernameElementBeforeTyping, () =>
+                LoginRobot
+                    .EnterEmail(specialChar)
+            );
+            LoginRobot.Verify.IsSignInButtonDisplayed();
+
+            UiActions.VerifyElementSizeAndPosition(LoginRobot.PasswordTextBox, passwordElementBeforeTyping, () =>
+                LoginRobot
+                    .EnterPassword(specialChar)
+            );
+            LoginRobot.Verify.IsSignInButtonDisplayed();
+        }
+
         LoginWithUser(TestUserData.SpecialCharsUser);
+    }
+
+    [Test]
+    [Property("TestCaseId", "890291")]
+    [Ignore("JIRA - VPNWIN-3343")]
+    public void LoginWithMaxChars()
+    {
+        NavigationRobot
+            .Verify.IsOnLoginPage();
+
+        (Point Position, Size Size) usernameElementBeforeTyping = UiActions.GetElementSizeAndPosition(LoginRobot.UsernameTextBox);
+        (Point Position, Size Size) passwordElementBeforeTyping = UiActions.GetElementSizeAndPosition(LoginRobot.PasswordTextBox);
+
+        UiActions.VerifyElementSizeAndPosition(LoginRobot.UsernameTextBox, usernameElementBeforeTyping, () =>
+            LoginRobot
+                .EnterEmail(InputTestData.LongInput)
+        );
+        LoginRobot.Verify.IsSignInButtonDisplayed();
+
+        UiActions.VerifyElementSizeAndPosition(LoginRobot.PasswordTextBox, passwordElementBeforeTyping, () =>
+            LoginRobot
+                .EnterPassword(InputTestData.LongInput)
+        );
+        LoginRobot.Verify.IsSignInButtonDisplayed();
     }
 
     [Test]
@@ -307,6 +355,26 @@ public class LoginTests : FreshSessionSetUp
             ScriptHelper.EnableInternet();
             NetworkUtils.AssertInternetAvailability(true);
         }
+    }
+
+    [Test]
+    [Property("TestCaseId", "888933")]
+    public void HumanVerificationShowsAfterMultipleFailedLoginAttempts()
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            LoginRobot.Login(TestUserData.IncorrectUserAndPass);
+
+            try
+            {
+                LoginRobot
+                    .Verify.IsCaptchaDisplayed(TestConstants.FiveSecondsTimeout)
+                    .ClickCloseCaptchaButton();
+                return;
+            }
+            catch { }
+        }
+        Assert.Fail("Captcha was not displayed after 30 failed login attempts.");
     }
 
     private void LoginWithUser(TestUserData user)

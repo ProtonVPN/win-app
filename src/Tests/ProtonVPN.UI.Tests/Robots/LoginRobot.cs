@@ -33,8 +33,8 @@ public class LoginRobot
     protected Element KillSwitchDisabledLabel = Element.ByName(_killSwitchDisabledLabelTranslated);
     protected Element DisableKillSwitchButton = Element.ByAutomationId("DisableKillSwitchButton");
     protected Element DisableKillSwitchLabel = Element.ByAutomationId("AdvancedKillSwitchDescriptionText");
-    protected Element UsernameTextBox = Element.ByAutomationId("UsernameTextBox");
-    protected Element PasswordTextBox = Element.ByAutomationId("PasswordBox");
+    public Element UsernameTextBox => Element.ByAutomationId("UsernameTextBox");
+    public Element PasswordTextBox => Element.ByAutomationId("PasswordBox");
     protected Element TwoFactorFirstDigit = Element.ByAutomationId("FirstDigit");
     protected Element TwoFactorSecondDigit = Element.ByAutomationId("SecondDigit");
     protected Element TwoFactorThirdDigit = Element.ByAutomationId("ThirdDigit");
@@ -68,6 +68,18 @@ public class LoginRobot
     public LoginRobot EnterEmail(TestUserData user)
     {
         UsernameTextBox.SetText(user.Username);
+        return this;
+    }
+
+    public LoginRobot EnterEmail(string user)
+    {
+        UsernameTextBox.SetText(user);
+        return this;
+    }
+
+    public LoginRobot EnterPassword(string password)
+    {
+        PasswordTextBox.SetText(password);
         return this;
     }
 
@@ -162,9 +174,10 @@ public class LoginRobot
 
     public class Verifications : LoginRobot
     {
-        public Verifications IsCaptchaDisplayed()
+        public Verifications IsCaptchaDisplayed(TimeSpan? timeout = null)
         {
-            CaptchaWindow.WaitUntilDisplayed();
+            timeout ??= TestConstants.TenSecondsTimeout;
+            CaptchaWindow.WaitUntilDisplayed(timeout);
             Thread.Sleep(TestConstants.OneSecondTimeout);
             return this;
         }
@@ -172,6 +185,12 @@ public class LoginRobot
         public Verifications IsErrorMessageDisplayed(string errorMessage)
         {
             Element.ByName(errorMessage).WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsSignInButtonDisplayed()
+        {
+            SignInButton.WaitUntilDisplayed();
             return this;
         }
 

@@ -290,7 +290,6 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
                 .SearchExcludedLocations(specialChar, useKeyboard: false)
             );
             SettingRobot.Verify.IsNoLocationsAvailableDisplayed();
-            UiActions.ClearInputWithKeyboard();
         }
     }
 
@@ -312,7 +311,6 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
                 .SearchExcludedLocations(InputTestData.LongInput, useKeyboard: false)
         );
         SettingRobot.Verify.IsNoLocationsAvailableDisplayed();
-        UiActions.ClearInputWithKeyboard();
     }
 
     private static void PopulateRecents()
