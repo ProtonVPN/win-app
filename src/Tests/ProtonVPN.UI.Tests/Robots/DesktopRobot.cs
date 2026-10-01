@@ -296,6 +296,19 @@ public class DesktopRobot : IDisposable
             return this;
         }
 
+        public Verifications HoverTextContains(string expectedText)
+        {
+            AutomationElement? tooltip = Retry.WhileNull(
+                () => Desktop.FindFirstDescendant(cf => cf.ByControlType(ControlType.ToolTip)) is { } t
+                && t.Name?.Contains(expectedText) == true ? t : null,
+                TestConstants.FiveSecondsTimeout,
+                TestConstants.RetryInterval).Result;
+
+            Assert.That(tooltip, Is.Not.Null, "Tooltip did not appear after hovering.");
+            Assert.That(tooltip!.Name, Does.Contain(expectedText), $"Expected tooltip text '{expectedText}' but was '{tooltip.Name}'.");
+            return this;
+        }
+
         public Verifications IsToastDisplayed(TimeSpan? timeout = null)
         {
             timeout ??= TimeSpan.FromSeconds(8);

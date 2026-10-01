@@ -403,6 +403,13 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static T HoverOverElementAtOffset<T>(this T desiredElement, int offsetX, int offsetY) where T : Element
+    {
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        element!.HoverSmart(offsetX, offsetY);
+        return desiredElement;
+    }
+
     public static T FindChild<T>(this T desiredElement, Element childSelector) where T : Element
     {
         desiredElement.ChildElement = childSelector;

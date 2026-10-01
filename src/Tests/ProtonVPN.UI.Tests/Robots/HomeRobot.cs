@@ -95,6 +95,7 @@ public class HomeRobot
     protected Element ConnectionCardDescription = Element.ByAutomationId("ConnectionCardDescription");
     protected Element ConnectionCardP2PTag = Element.ByAutomationId("ConnectionCardP2PTag");
     protected Element ConnectionCardTorTag = Element.ByAutomationId("ConnectionCardTorTag");
+    protected Element ConnectionCardSmartRoutingTag = Element.ByAutomationId("ConnectionCardSmartRoutingTag");
     protected Element ConnectionCardFreeConnectionsTagline = Element.ByAutomationId("ConnectionCardFreeConnectionsTagline");
     protected Element ConnectionCardConnectButton = Element.ByAutomationId("ConnectionCardConnectButton");
     protected Element ConnectionCardCancelButton = Element.ByAutomationId("ConnectionCardCancelButton");
@@ -150,6 +151,19 @@ public class HomeRobot
     public HomeRobot Disconnect()
     {
         ConnectionCardDisconnectButton.Click();
+        return this;
+    }
+
+    public HomeRobot HoverOverSmartRoutingTag()
+    {
+        ConnectionCardSmartRoutingTag.Hover();
+        Thread.Sleep(TestConstants.AnimationDelay);
+        return this;
+    }
+
+    public HomeRobot ClickSmartRoutingTag()
+    {
+        ConnectionCardSmartRoutingTag.Click();
         return this;
     }
 
@@ -389,6 +403,12 @@ public class HomeRobot
         public Verifications IsTorConnection()
         {
             ConnectionCardTorTag.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsSmartRoutingConnection()
+        {
+            ConnectionCardSmartRoutingTag.WaitUntilDisplayed();
             return this;
         }
 
