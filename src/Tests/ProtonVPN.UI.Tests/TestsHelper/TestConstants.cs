@@ -66,6 +66,7 @@ public static class TestConstants
 
     private const string PROTUN_PROTOCOL_PREFIX = "ProTun";
     private const string WIREGUARD_PROTOCOL_PREFIX = "WireGuard";
+    public static bool IsProTunProtocol(Protocol protocol) => protocol.ToString().StartsWith(PROTUN_PROTOCOL_PREFIX);
 
     public static IEnumerable<Protocol> AllNonProTunProtocols()
     {
@@ -80,5 +81,10 @@ public static class TestConstants
     public static IEnumerable<Protocol> ProTunProtocols()
     {
         return Enum.GetValues<Protocol>().Where(p => p.ToString().StartsWith(PROTUN_PROTOCOL_PREFIX));
+    }
+
+    public static IEnumerable<Protocol> SomeProtocols()
+    {
+        return [Protocol.ProTunUdp, Protocol.WireGuardTcp, Protocol.OpenVpnUdp];
     }
 }

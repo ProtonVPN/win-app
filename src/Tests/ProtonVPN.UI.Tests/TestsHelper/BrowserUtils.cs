@@ -39,8 +39,10 @@ public class BrowserUtils
 {
     private const int CHROME_PORT = 9222;
     private const int EDGE_PORT = 9223;
+    private const int BRAVE_PORT = 9224;
     private const string CHROME_PATH = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
     private const string EDGE_PATH = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe";
+    private static readonly string _bravePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"BraveSoftware\Brave-Browser\Application\brave.exe");
 
     private const string WEB_RTC_SCRIPT = """
         new Promise((resolve) => {
@@ -61,7 +63,7 @@ public class BrowserUtils
     public static void KillAllBrowsers()
     {
         Thread.Sleep(TestConstants.OneSecondTimeout);
-        foreach (string name in new[] { "chrome", "msedge" })
+        foreach (string name in new[] { "chrome", "msedge", "brave" })
         {
             foreach (Process process in Process.GetProcessesByName(name))
             {
@@ -173,7 +175,7 @@ public class BrowserUtils
             {
                 Task<string> task = Task.Run(() => operation(browserConfig.DebugPort));
                 return task.Wait(TestConstants.OneMinuteTimeout) ? task.Result ?? string.Empty : string.Empty;
-            }, 
+            },
             TestConstants.OneMinuteTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
 
         return retry.Result ?? "No internet";
@@ -187,6 +189,8 @@ public class BrowserUtils
                 return (CHROME_PATH, CHROME_PORT);
             case Browser.Edge:
                 return (EDGE_PATH, EDGE_PORT);
+            case Browser.Brave:
+                return (_bravePath, BRAVE_PORT);
             default:
                 throw new ArgumentException($"Unknown browser: {browserApp}");
         }
