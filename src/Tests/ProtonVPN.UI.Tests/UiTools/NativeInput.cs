@@ -79,15 +79,18 @@ public static class NativeInput
         User32.SendInput(1, inputs, cbSize);
     }
 
-    public static void HoverAbsolute(AutomationElement element, int hoverDurationMs = TestConstants.DEFAULT_HOVER_DURATION_MS)
+    public static void HoverAbsolute(AutomationElement element, int offsetX = 0, int offsetY = 0, int hoverDurationMs = TestConstants.DEFAULT_HOVER_DURATION_MS)
     {
         Rectangle r = element.BoundingRectangle;
         Rectangle virtualScreen = SystemInformation.VirtualScreen;
 
+        int targetX = (int)(r.Left + r.Width / CENTER_DIVISOR) + offsetX;
+        int targetY = (int)(r.Top + r.Height / CENTER_DIVISOR) + offsetY;
+
         int cx = Math.Max(virtualScreen.Left + SCREEN_EDGE_PADDING_PX,
-            Math.Min(virtualScreen.Right - SCREEN_EDGE_PADDING_PX, (int)(r.Left + r.Width / CENTER_DIVISOR)));
+            Math.Min(virtualScreen.Right - SCREEN_EDGE_PADDING_PX, targetX));
         int cy = Math.Max(virtualScreen.Top + SCREEN_EDGE_PADDING_PX,
-            Math.Min(virtualScreen.Bottom - SCREEN_EDGE_PADDING_PX, (int)(r.Top + r.Height / CENTER_DIVISOR)));
+            Math.Min(virtualScreen.Bottom - SCREEN_EDGE_PADDING_PX, targetY));
 
         SendMouseAbsolute(cx - (int)r.Width, cy - (int)r.Height);
         SendMouseAbsolute(cx - HOVER_RAMP_STEP_PX, cy - HOVER_RAMP_STEP_PX);

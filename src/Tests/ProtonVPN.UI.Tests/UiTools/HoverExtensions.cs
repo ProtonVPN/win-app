@@ -24,9 +24,9 @@ namespace ProtonVPN.UI.Tests.UiTools;
 
 public static class HoverExtensions
 {
-    public static T HoverSmart<T>(this T element, int hoverDurationMs = TestConstants.DEFAULT_HOVER_DURATION_MS) where T : AutomationElement
+    public static T HoverSmart<T>(this T element, int offsetX = 0, int offsetY = 0, int hoverDurationMs = TestConstants.DEFAULT_HOVER_DURATION_MS) where T : AutomationElement
     {
-        NativeInput.HoverAbsolute(element, hoverDurationMs);
+        NativeInput.HoverAbsolute(element, offsetX, offsetY, hoverDurationMs);
         return element;
     }
 }
