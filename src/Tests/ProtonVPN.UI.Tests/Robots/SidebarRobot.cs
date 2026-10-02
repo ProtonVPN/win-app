@@ -626,6 +626,20 @@ public class SidebarRobot
             return this;
         }
 
+        public Verifications IsCountryAtRecentsPosition(Country country, int position)
+        {
+            CountriesListGroup.WaitUntilDisplayed();
+            List<string> items = CountriesListGroup.GetAllChildrenNames();
+
+            //Need the `+ 1` because the `GetAllChildrenNames()` gets the "Recents (n)" header as well
+            string? actualName = items[position + 1]; 
+            string expectedName = country.GetName();
+
+            Assert.That(actualName, Is.EqualTo(expectedName), $"Expected '{expectedName}' at Recents position {position}, but found '{actualName}'.");
+
+            return this;
+        }
+
         public Verifications IsRecentsCountDisplayed(int count)
         {
             string selectorSingle = LanguageHelper.GetTranslatedString("Connections_Recents_One").Replace("({0})", $"({count})");

@@ -27,8 +27,8 @@ using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.UI.Tests.Enums.Locations;
-using ProtonVPN.UI.Tests.TestsHelper.TestData;
 using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
+using ProtonVPN.UI.Tests.TestsHelper.TestData;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -54,6 +54,7 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
 
     private static readonly Country[] _balkanCountries = [Country.Macedonia, Country.Greece, Country.Albania, Country.Bulgaria, Country.Serbia, Country.Kosovo, Country.Montenegro];
     private static readonly Country[] _euCountries = [Country.Austria, Country.Germany, Country.Hungary, Country.Lithuania, Country.France, Country.Poland];
+    private static readonly Country[] _lastConnectionCountries = [Country.Sweden, Country.Greece, Country.Switzerland, Country.Finland, Country.Belgium];
     private static readonly Country[] _neighbouringCountries = TestEnvironment.AreTestsRunningLocally() ? _balkanCountries : _euCountries;
 
     private static readonly string _excludedLocationSearchQuery = Country.UnitedStates.GetName().FirstCharToUpper();
@@ -311,6 +312,56 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
                 .SearchExcludedLocations(InputTestData.LongInput, useKeyboard: false)
         );
         SettingRobot.Verify.IsNoLocationsAvailableDisplayed();
+    }
+
+    [Test]
+    [Property("TestCaseId", "912748")]
+    public void DefaultLastConnectionDoesntResetAfterAppRestart()
+    {
+        SettingRobot
+            .OpenSettings()
+            .OpenAutoStartupSettings()
+            .SelectAutoLaunchSetting(AutoLaunchOption.OpenOnDesktop)
+            .ApplySettings()
+            .CloseSettings();
+
+        foreach (Country country in _lastConnectionCountries)
+        {
+            SidebarRobot
+                .SearchFor(country.GetName())
+                .ConnectToCountry(country);
+            CommonUiFlows.VerifyIsConnectedThenDisconnect();
+        }
+
+        SidebarRobot
+            .ClickBackButtonInSearchBox()
+            .NavigateToRecents()
+            .Verify.IsCountryAtRecentsPosition(_lastConnectionCountries[4], position: 0)
+            .Verify.IsCountryAtRecentsPosition(_lastConnectionCountries[2], position: 2)
+            .Verify.IsCountryAtRecentsPosition(_lastConnectionCountries[0], position: 4)
+            .ConnectViaServerList(_lastConnectionCountries[2].GetName());
+        HomeRobot
+            .Verify.IsConnected();
+        SidebarRobot
+            .Verify.IsCountryAtRecentsPosition(_lastConnectionCountries[2], position: 0)
+            .Verify.IsCountryAtRecentsPosition(_lastConnectionCountries[4], position: 1)
+            .Verify.IsCountryAtRecentsPosition(_lastConnectionCountries[0], position: 4);
+
+        HomeRobot
+            .SelectDefaultConnectionOption(VpnConnectionOption.Last)
+            .Verify.ConnectionCardTitleEquals(_lastConnectionCountries[2].GetName());
+
+        RestartApp();
+
+        HomeRobot
+            .Verify.IsConnected()
+            .ConnectionCardTitleEquals(_lastConnectionCountries[2].GetName());
+
+        SidebarRobot
+            .NavigateToRecents()
+            .Verify.IsCountryAtRecentsPosition(_lastConnectionCountries[2], position: 0)
+            .Verify.IsCountryAtRecentsPosition(_lastConnectionCountries[4], position: 1)
+            .Verify.IsCountryAtRecentsPosition(_lastConnectionCountries[0], position: 4);
     }
 
     private static void PopulateRecents()
