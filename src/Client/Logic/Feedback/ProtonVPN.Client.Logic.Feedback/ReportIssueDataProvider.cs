@@ -41,7 +41,14 @@ public class ReportIssueDataProvider : IReportIssueDataProvider, IEventMessageRe
     {
         if (!_categories.Any())
         {
-            await FetchDataAsync();
+            List<IssueCategoryResponse>? categories = await FetchDataAsync();
+            if (categories is null)
+            {
+                // Fallback is not cached so the API is tried again next time
+                return ReportIssueDefaultDataProvider.GetCategories();
+            }
+
+            _categories = categories;
         }
 
         return _categories.ToList();
@@ -53,7 +60,7 @@ public class ReportIssueDataProvider : IReportIssueDataProvider, IEventMessageRe
         _categories.Clear();
     }
 
-    private async Task FetchDataAsync()
+    private async Task<List<IssueCategoryResponse>?> FetchDataAsync()
     {
         try
         {
@@ -69,11 +76,11 @@ public class ReportIssueDataProvider : IReportIssueDataProvider, IEventMessageRe
                 throw new InvalidDataException("Invalid data received from the API for Report an issue form data ");
             }
 
-            _categories = response.Value.Categories;
+            return response.Value.Categories;
         }
         catch
         {
-            _categories = ReportIssueDefaultDataProvider.GetCategories();
+            return null;
         }
     }
 
@@ -86,6 +93,20 @@ public class ReportIssueDataProvider : IReportIssueDataProvider, IEventMessageRe
             !category.InputFields.Any(
                 input => string.IsNullOrEmpty(input.Label) ||
                          string.IsNullOrEmpty(input.SubmitLabel) ||
-                         !_validInputTypes.Contains(input.Type)));
+                         !_validInputTypes.Contains(input.Type) ||
+                         !AreConstraintsValid(input.Constraints)));
+    }
+
+    private static bool AreConstraintsValid(IssueInputConstraintsResponse constraints)
+    {
+        if (constraints == null)
+        {
+            return true;
+        }
+
+        return (constraints.MinimumLength is null || constraints.MinimumLength >= 0) &&
+               (constraints.MaximumLength is null || constraints.MaximumLength > 0) &&
+               (constraints.MinimumLength is null || constraints.MaximumLength is null ||
+                constraints.MinimumLength <= constraints.MaximumLength);
     }
 }

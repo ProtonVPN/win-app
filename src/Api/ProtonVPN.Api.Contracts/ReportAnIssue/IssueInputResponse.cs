@@ -17,9 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.ComponentModel;
-using Newtonsoft.Json;
-
 namespace ProtonVPN.Api.Contracts.ReportAnIssue
 {
     public class IssueInputResponse
@@ -29,8 +26,6 @@ namespace ProtonVPN.Api.Contracts.ReportAnIssue
         public string Type { get; set; }
         public string Placeholder { get; set; }
 
-        [DefaultValue(true)]
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
-        public bool IsMandatory { get; set; }
+        public IssueInputConstraintsResponse Constraints { get; set; }
     }
 }
