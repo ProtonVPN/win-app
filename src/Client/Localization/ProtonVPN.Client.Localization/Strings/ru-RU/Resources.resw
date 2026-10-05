@@ -1839,10 +1839,10 @@ Error code: {0}</value>
     <value>Что-то пошло не так</value>
   </data>
   <data name="Dialogs_NpsSurvey_HighRateDescription">
-    <value>10 довольно вероятно</value>
+    <value>10 очень вероятно</value>
   </data>
   <data name="Dialogs_NpsSurvey_LowRateDescription">
-    <value>0 очень маловероятно</value>
+    <value>0 крайне маловероятно</value>
   </data>
   <data name="Dialogs_NpsSurvey_Optional">
     <value>Необязательно</value>
