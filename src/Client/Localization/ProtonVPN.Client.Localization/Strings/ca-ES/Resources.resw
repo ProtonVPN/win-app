@@ -3636,7 +3636,7 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Connecteu-vos</value>
   </data>
   <data name="System_Tray_Actions_Disconnect">
-    <value>Desconnecteu-vos</value>
+    <value>Desconnecta</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
     <value>Surt</value>
