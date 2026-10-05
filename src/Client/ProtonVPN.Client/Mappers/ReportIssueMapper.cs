@@ -27,6 +27,7 @@ namespace ProtonVPN.Client.Mappers;
 
 public static class ReportIssueMapper
 {
+    public const string PAYMENT_ISSUES_CATEGORY = "Payment issues";
     public const string BROWSING_SPEED_CATEGORY = "Browsing speed";
     public const string CONNECTING_TO_VPN_CATEGORY = "Connecting to VPN";
     public const string WEAK_CONNECTION_CATEGORY = "Weak or unstable connection";
@@ -66,8 +67,8 @@ public static class ReportIssueMapper
     {
         IssueInputField input = inputField.Type switch
         {
-            TEXT_FIELD_TYPE => new SingleLineTextInputField(inputField.IsMandatory),
-            MULTI_TEXT_FIELD_TYPE => new MultiLineTextInputField(inputField.IsMandatory),
+            TEXT_FIELD_TYPE => new SingleLineTextInputField(),
+            MULTI_TEXT_FIELD_TYPE => new MultiLineTextInputField(),
             _ => throw new InvalidOperationException($"Unknown input type for Report an issue contact form ('{inputField.Type}')")
         };
 
@@ -76,6 +77,12 @@ public static class ReportIssueMapper
         input.Placeholder = inputField.Placeholder;
         input.Type = inputField.Type;
 
+        if (input is TextInputFieldBase textInput)
+        {
+            textInput.MinimumLength = inputField.Constraints?.MinimumLength;
+            textInput.MaximumLength = inputField.Constraints?.MaximumLength;
+        }
+
         return input;
     }
 
@@ -83,6 +90,7 @@ public static class ReportIssueMapper
     {
         return categoryKey switch
         {
+            PAYMENT_ISSUES_CATEGORY => new MoneyBills(),
             BROWSING_SPEED_CATEGORY => new Bolt(),
             CONNECTING_TO_VPN_CATEGORY => new PowerOff(),
             WEAK_CONNECTION_CATEGORY => new ExclamationCircle(),

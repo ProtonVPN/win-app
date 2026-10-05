@@ -33,4 +33,7 @@ public static class InputTestData
     ];
 
     public static readonly string LongInput = new('A', 20_000);
+
+    // Must be longer than the minimum length (100 characters) some report an issue fields require
+    public const string BugReportFieldInput = "This is an automated UI test report. Please ignore it, no action is needed from customer support. Testing only.";
 }

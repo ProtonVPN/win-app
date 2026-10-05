@@ -21,7 +21,5 @@ namespace ProtonVPN.Client.Core.Models.ReportIssue.Fields;
 
 public class MultiLineTextInputField : TextInputFieldBase
 {
-    public MultiLineTextInputField(bool isFieldMandatory)
-        : base(isFieldMandatory)
-    { }
+    protected override int DefaultMaximumLength => 4000;
 }

@@ -102,7 +102,12 @@ public partial class ReportIssueCategoryPageViewModel : ReportIssuePageViewModel
 
         List<IssueCategoryResponse> categories = await _dataProvider.GetCategoriesAsync();
 
-        Category = ReportIssueMapper.Map(categories.First(c => c.SubmitLabel == Category.Key));
+        // The category may be missing if the list switched between the API and the fallback form
+        IssueCategoryResponse? category = categories.FirstOrDefault(c => c.SubmitLabel == Category.Key);
+        if (category != null)
+        {
+            Category = ReportIssueMapper.Map(category);
+        }
     }
 
     partial void OnCategoryChanged(IssueCategory? value)

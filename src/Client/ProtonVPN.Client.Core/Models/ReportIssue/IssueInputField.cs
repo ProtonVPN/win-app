@@ -17,16 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using CommunityToolkit.Mvvm.ComponentModel;
-using ProtonVPN.Client.Common.Attributes;
 
 namespace ProtonVPN.Client.Core.Models.ReportIssue;
 
 public abstract class IssueInputField : ObservableValidator
 {
-    public bool IsMandatory { get; }
-
     public string Name { get; set; } = string.Empty;
 
     public string Key { get; set; } = string.Empty;
@@ -37,9 +35,38 @@ public abstract class IssueInputField : ObservableValidator
 
     public bool HasPlaceholder => !string.IsNullOrEmpty(Placeholder);
 
-    protected IssueInputField(bool isFieldMandatory)
+    public bool IsTouched { get; private set; }
+
+    // Only surface validation errors once the user has interacted with the field.
+    public bool ShouldShowAsInvalid => IsTouched && HasErrors;
+
+    protected IssueInputField()
     {
-        IsMandatory = isFieldMandatory;
+        ErrorsChanged += OnInputFieldErrorsChanged;
+    }
+
+    private void OnInputFieldErrorsChanged(object? sender, DataErrorsChangedEventArgs e)
+    {
+        OnPropertyChanged(nameof(ShouldShowAsInvalid));
+    }
+
+    public void MarkAsTouched()
+    {
+        if (IsTouched)
+        {
+            return;
+        }
+
+        IsTouched = true;
+
+        OnPropertyChanged(nameof(ShouldShowAsInvalid));
+    }
+
+    public virtual void Reset()
+    {
+        IsTouched = false;
+
+        OnPropertyChanged(nameof(ShouldShowAsInvalid));
     }
 
     public static ValidationResult? ValidateFieldValue(object? value, ValidationContext context)
@@ -65,14 +92,27 @@ public abstract partial class IssueInputField<TValue> : IssueInputField
 {
     [ObservableProperty]
     [NotifyDataErrorInfo]
-    [RequiredIf(nameof(IsMandatory))]
     [CustomValidation(typeof(IssueInputField), nameof(ValidateFieldValue))]
     private TValue? _value;
 
-    public IssueInputField(bool isFieldMandatory)
-        : base(isFieldMandatory)
+    public IssueInputField()
     {
         ValidateProperty(Value, nameof(Value));
+    }
+
+    partial void OnValueChanged(TValue? value)
+    {
+        OnValueChanged();
+    }
+
+    protected virtual void OnValueChanged()
+    { }
+
+    public override void Reset()
+    {
+        base.Reset();
+
+        Value = default;
     }
 
     protected override bool IsValid()
