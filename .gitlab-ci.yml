@@ -29,30 +29,6 @@ include:
       artifact_metadata_path: ""
       artifact_metadata_list: ""
 
-  - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/grype/scan-code@~latest
-    inputs:
-      stage: security
-      cli-args: "-c .grype.yaml"
-      allowed-to-fail: true
-      output-filename: grype-$BUILD_TYPE
-    rules:
-      - if: '$CI_PIPELINE_SOURCE != "schedule"'
-
-  - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/gitleaks/scan-repository@~latest
-    inputs:
-      stage: security
-      cli-args: "--no-git"
-      allowed-to-fail: false
-    rules:
-      - if: '$CI_PIPELINE_SOURCE != "schedule"'
-
-  - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/gitleaks/create-baseline@~latest
-    inputs:
-      stage: security
-      cli-args: ""
-    rules:
-      - if: '$CI_PIPELINE_SOURCE != "schedule"'
-
   - component: $CI_SERVER_HOST/proton/devops/cicd-components/community/test-image-asset/generate-image-assets@0.0.4
     inputs:
       product: windows_vpn
@@ -61,13 +37,6 @@ include:
       allowed-to-fail: false
     rules:
       - if: '$CI_PIPELINE_SOURCE != "schedule"'
-
-# Commented because the validator fails since we allow self-approvals even though we require 2 approvers
-#  - component: $CI_SERVER_HOST/proton/devops/cicd-components/devsecops/project-settings-validator/scan-project@~latest
-#    inputs:
-#      stage: security
-#      cli-args: ""
-#      allowed-to-fail: false
 
 variables:
   PUBLIC_REPO_URL: git@github.com:ProtonVPN/win-app.git
@@ -94,7 +63,6 @@ stages:
   - bot # comes from translations/generator job
   - guest-holes
   - build
-  - security
   - test
   - build-installer
   - publish
@@ -213,68 +181,6 @@ build-debug-arm64:
     paths:
       - '**/*.deps.json'
       - 'src/bin/win-arm64/publish/**'
-
-gitleaks-scan-repository:
-  needs: []
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule"'
-      when: never
-    - when: on_success
-  script: 
-    - echo "skipped"
-
-gitleaks-create-baseline:
-  needs: []
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule"'
-      when: never
-    - if: $CI_COMMIT_REF_PROTECTED == "false"
-      when: manual
-    - when: never
-  allow_failure: true
-  script: 
-    - echo "skipped"
-
-#project-settings-validator-scan-project:
-#  needs: []
-
-grype-scan-code-dependencies:
-  rules:
-  - when: never
-  script:
-    - echo "skipped"
-
-grype-scan-debug-x64:
-  needs:
-    - build-debug-x64
-  extends: grype-scan-code-dependencies
-  rules:
-    - if: '$CI_PIPELINE_SOURCE != "schedule" && $CI_COMMIT_BRANCH != "master" && $CI_COMMIT_BRANCH !~ /^release.*$/'
-      when: on_success
-
-grype-scan-debug-arm64:
-  needs:
-    - build-debug-arm64
-  extends: grype-scan-code-dependencies
-  rules:
-    - if: '$CI_PIPELINE_SOURCE != "schedule" && $CI_COMMIT_BRANCH != "master" && $CI_COMMIT_BRANCH !~ /^release.*$/'
-      when: on_success
-
-grype-scan-release-x64:
-  needs:
-    - build-release-x64
-  extends: grype-scan-code-dependencies
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH =~ /^release.*$/'
-      when: on_success
-
-grype-scan-release-arm64:
-  needs:
-    - build-release-arm64
-  extends: grype-scan-code-dependencies
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH =~ /^release.*$/'
-      when: on_success
 
 ui-tests-group:
   stage: ui-test-full
