@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -232,10 +232,13 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
 
         try
         {
-            string openOnDesktopArg = isToOpenOnDesktop ? " /OPENONDESKTOP" : "";
-            string fileArguments = $"{_lastUpdateState.FileArguments}{openOnDesktopArg}";
+            List<string> fileArguments = CommandLineArgumentsParser.Parse(_lastUpdateState.FileArguments).ToList();
+            if (isToOpenOnDesktop)
+            {
+                fileArguments.Add("/OPENONDESKTOP");
+            }
 
-            _osProcesses.ElevatedProcess(_lastUpdateState.FilePath, fileArguments).Start();
+            _osProcesses.BuildElevatedProcess(_lastUpdateState.FilePath, fileArguments).Start();
             await _appExitInvoker.ForceExitAsync();
         }
         catch (System.ComponentModel.Win32Exception)

@@ -39,7 +39,7 @@ public class RoutingTableLogTest : LogBaseTest
         IOsProcess commandLineProcess = Substitute.For<IOsProcess>();
         commandLineProcess.StandardOutput.Returns(StreamReader.Null);
 
-        _osProcesses.CommandLineProcess().ReturnsForAnyArgs(commandLineProcess);
+        _osProcesses.BuildCommandLineProcess().ReturnsForAnyArgs(commandLineProcess);
     }
 
     [TestCleanup]

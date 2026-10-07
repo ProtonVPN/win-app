@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,20 +17,21 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
+
 namespace ProtonVPN.Common.Legacy.OS.Processes;
 
 public interface IOsProcesses
 {
-    IOsProcess Process(string filename, string arguments = null);
+    IOsProcess BuildProcess(string filename, IEnumerable<string> arguments = null);
 
-    IOsProcess ElevatedProcess(string filename, string arguments = null);
+    IOsProcess BuildElevatedProcess(string filename, IEnumerable<string> arguments = null);
 
-    IOsProcess CommandLineProcess(string arguments = null);
-    IOsProcess ElevatedCommandLineProcess(string arguments = null);
+    IOsProcess BuildCommandLineProcess(IEnumerable<string> arguments = null);
 
-    IOsProcess[] ProcessesByName(string filename);
+    IOsProcess[] GetProcessesByName(string filename);
 
-    IOsProcess[] ProcessesByPath(string path);
+    IOsProcess[] GetProcessesByPath(string path);
 
     void Open(string filename);
 }

@@ -48,7 +48,7 @@ public class ManagementArgumentsTest
         List<string> result = subject.ToList();
 
         // Assert
-        result.Should().HaveCount(3);
+        result.Should().HaveCount(6);
     }
 
     [TestMethod]
@@ -64,7 +64,7 @@ public class ManagementArgumentsTest
         List<string> result = subject.ToList();
 
         // Assert
-        result.Should().Contain($"--management {_openVpnConfig.ManagementHost} {managementPort} stdin");
+        result.Should().ContainInOrder("--management", _openVpnConfig.ManagementHost, $"{managementPort}", "stdin");
     }
 
     [TestMethod]

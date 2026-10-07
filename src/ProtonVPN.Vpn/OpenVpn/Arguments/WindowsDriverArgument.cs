@@ -33,7 +33,8 @@ public class WindowsDriverArgument : IEnumerable<string>
 
     public IEnumerator<string> GetEnumerator()
     {
-        yield return $"--windows-driver {_driver}";
+        yield return "--windows-driver";
+        yield return _driver;
     }
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

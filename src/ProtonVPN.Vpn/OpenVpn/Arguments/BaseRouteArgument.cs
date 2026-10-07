@@ -37,8 +37,15 @@ namespace ProtonVPN.Vpn.OpenVpn.Arguments
             switch (_splitTunnelMode)
             {
                 case SplitTunnelMode.Permit:
-                    yield return "--pull-filter ignore \"redirect-gateway\"";
-                    yield return "--route 0.0.0.0 0.0.0.0 vpn_gateway 32000";
+                    yield return "--pull-filter";
+                    yield return "ignore";
+                    yield return "redirect-gateway";
+
+                    yield return "--route";
+                    yield return "0.0.0.0";
+                    yield return "0.0.0.0";
+                    yield return "vpn_gateway";
+                    yield return "32000";
                     break;
             }
         }
