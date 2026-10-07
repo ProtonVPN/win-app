@@ -58,6 +58,7 @@ internal class OpenVpnConnection : IOpenVpnConnection
     private readonly ITapAdapter _tapAdapter;
     private readonly INetworkUtilities _networkUtilities;
     private readonly IWintunRegistryFixer _wintunRegistryFixer;
+    private readonly ISecureConfigFileWriter _secureConfigFileWriter;
 
     private readonly OpenVpnManagementPorts _managementPorts;
     private readonly IRandomStringGenerator _randomStringGenerator;
@@ -87,7 +88,8 @@ internal class OpenVpnConnection : IOpenVpnConnection
         IWintunAdapter winTunAdapter,
         ITapAdapter tapAdapter,
         INetworkUtilities networkUtilities,
-        IWintunRegistryFixer wintunRegistryFixer)
+        IWintunRegistryFixer wintunRegistryFixer,
+        ISecureConfigFileWriter secureConfigFileWriter)
     {
         _logger = logger;
         _config = config;
@@ -98,6 +100,7 @@ internal class OpenVpnConnection : IOpenVpnConnection
         _winTunAdapter = winTunAdapter;
         _tapAdapter = tapAdapter;
         _wintunRegistryFixer = wintunRegistryFixer;
+        _secureConfigFileWriter = secureConfigFileWriter;
 
         _managementPorts = new OpenVpnManagementPorts();
         _networkUtilities = networkUtilities;
@@ -441,7 +444,7 @@ internal class OpenVpnConnection : IOpenVpnConnection
             bool isIpv6Enabled = _vpnConfig?.IsIpv6Enabled == true && _endpoint?.Server.IsIpv6Supported == true;
             ConfigTemplate template = new();
             string content = template.GetConfig(_credentials, isIpv6Enabled);
-            File.WriteAllText(_config.OpenVpn.ConfigPath, content);
+            _secureConfigFileWriter.Write(_config.OpenVpn.ConfigPath, content);
             return true;
         }
         catch (Exception e)
