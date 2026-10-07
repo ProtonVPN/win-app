@@ -34,9 +34,14 @@ public class BasicArguments : IEnumerable<string>
 
     public IEnumerator<string> GetEnumerator()
     {
-        yield return $"--config \"{_openVpnConfig.ConfigPath}\"";
+        yield return "--config";
+        yield return _openVpnConfig.ConfigPath;
+
         yield return "--suppress-timestamps";
-        yield return $"--service {_openVpnConfig.ExitEventName} 0";
+
+        yield return "--service";
+        yield return _openVpnConfig.ExitEventName;
+        yield return "0";
     }
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

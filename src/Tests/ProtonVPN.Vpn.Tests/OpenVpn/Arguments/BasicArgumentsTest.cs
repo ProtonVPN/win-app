@@ -48,7 +48,7 @@ public class BasicArgumentsTest
         List<string> result = subject.ToList();
 
         // Assert
-        result.Should().HaveCount(3);
+        result.Should().HaveCount(6);
     }
 
     [TestMethod]
@@ -64,7 +64,7 @@ public class BasicArgumentsTest
         List<string> result = subject.ToList();
 
         // Assert
-        result.Should().Contain($"--config \"{configPath}\"");
+        result.Should().ContainInOrder("--config", configPath);
     }
 
     [TestMethod]
@@ -93,6 +93,6 @@ public class BasicArgumentsTest
         List<string> result = subject.ToList();
 
         // Assert
-        result.Should().Contain($"--service {exitEventName} 0");
+        result.Should().ContainInOrder("--service", exitEventName, "0");
     }
 }

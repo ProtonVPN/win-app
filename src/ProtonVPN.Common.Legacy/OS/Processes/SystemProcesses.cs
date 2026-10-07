@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -36,47 +36,39 @@ public class SystemProcesses : IOsProcesses
         _logger = logger;
     }
 
-    public IOsProcess Process(string filename, string arguments)
+    public IOsProcess BuildProcess(string filename, IEnumerable<string> arguments)
     {
-        var process = CreateProcess(filename, arguments);
+        Process process = CreateProcess(filename, arguments);
         return new SystemProcess(_logger, process);
     }
 
-    public IOsProcess ElevatedProcess(string filename, string arguments)
+    public IOsProcess BuildElevatedProcess(string filename, IEnumerable<string> arguments)
     {
-        var process = CreateElevatedProcess(filename, arguments);
+        Process process = CreateElevatedProcess(filename, arguments);
         return new SystemProcess(_logger, process);
     }
 
-    public IOsProcess CommandLineProcess(string arguments)
+    public IOsProcess BuildCommandLineProcess(IEnumerable<string> arguments)
     {
         return new CmdOutputProcess(_logger, new Process
         {
-            StartInfo = new ProcessStartInfo("cmd.exe", arguments).NoRedirectInfo()
+            StartInfo = new ProcessStartInfo("cmd.exe", arguments ?? []).NoRedirectInfo()
         });
     }
 
-    public IOsProcess ElevatedCommandLineProcess(string arguments)
+    public IOsProcess[] GetProcessesByName(string filename)
     {
-        return new CmdOutputProcess(_logger, new Process
-        {
-            StartInfo = new ProcessStartInfo("cmd.exe", arguments).ElevatedInfo()
-        });
+        string name = GetProcessName(filename);
+        return GetProcessesByNameInner(name).Select(p => (IOsProcess)new SystemProcess(_logger, p)).ToArray();
     }
 
-    public IOsProcess[] ProcessesByName(string filename)
+    public IOsProcess[] GetProcessesByPath(string path)
     {
-        var name = GetProcessName(filename);
-        return GetProcessesByName(name).Select(p => (IOsProcess)new SystemProcess(_logger, p)).ToArray();
-    }
+        string filename = Path.GetFileNameWithoutExtension(path) ?? string.Empty;
+        Process[] list = Process.GetProcessesByName(filename);
+        List<IOsProcess> result = [];
 
-    public IOsProcess[] ProcessesByPath(string path)
-    {
-        var filename = Path.GetFileNameWithoutExtension(path) ?? string.Empty;
-        var list = System.Diagnostics.Process.GetProcessesByName(filename);
-        var result = new List<IOsProcess>();
-
-        foreach (var p in list)
+        foreach (Process p in list)
         {
             try
             {
@@ -102,7 +94,7 @@ public class SystemProcesses : IOsProcesses
     {
         try
         {
-            System.Diagnostics.Process.Start(new ProcessStartInfo
+            Process.Start(new ProcessStartInfo
             {
                 FileName = filename,
                 UseShellExecute = true
@@ -113,38 +105,51 @@ public class SystemProcesses : IOsProcesses
         }
     }
 
-    private Process CreateProcess(string filename, string arguments)
+    private static Process CreateProcess(string filename, IEnumerable<string> arguments)
     {
+        ProcessStartInfo startInfo = new ProcessStartInfo(filename).StandardInfo();
+
+        foreach (string argument in arguments ?? [])
+        {
+            startInfo.ArgumentList.Add(argument);
+        }
+
         return new Process
         {
-            StartInfo = new ProcessStartInfo(filename, arguments).StandardInfo(),
+            StartInfo = startInfo,
             EnableRaisingEvents = true
         };
     }
 
-    private Process CreateElevatedProcess(string filename, string arguments)
+    private static Process CreateElevatedProcess(string filename, IEnumerable<string> arguments)
     {
+        ProcessStartInfo startInfo = new()
+        {
+            FileName = filename,
+            CreateNoWindow = true,
+            UseShellExecute = true,
+            Verb = "runas",
+            WorkingDirectory = Environment.CurrentDirectory,
+        };
+
+        foreach (string argument in arguments ?? [])
+        {
+            startInfo.ArgumentList.Add(argument);
+        }
+
         return new Process
         {
-            StartInfo =
-            {
-                FileName = filename,
-                Arguments = arguments,
-                CreateNoWindow = true,
-                UseShellExecute = true,
-                Verb = "runas",
-                WorkingDirectory = Environment.CurrentDirectory
-            },
+            StartInfo = startInfo,
             EnableRaisingEvents = true
         };
     }
 
-    private Process[] GetProcessesByName(string name)
+    private static Process[] GetProcessesByNameInner(string name)
     {
-        return System.Diagnostics.Process.GetProcessesByName(name);
+        return Process.GetProcessesByName(name);
     }
 
-    private string GetProcessName(string filename)
+    private static string GetProcessName(string filename)
     {
         return Path.GetFileNameWithoutExtension(filename);
     }

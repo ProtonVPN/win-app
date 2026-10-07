@@ -22,6 +22,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProtonVPN.Common.Legacy.Helpers;
 using ProtonVPN.Common.Legacy.OS.DeviceIds;
+using ProtonVPN.Common.Legacy.OS.Processes;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Update.Config;
@@ -106,7 +107,7 @@ namespace ProtonVPN.Update.Updates
 
         internal Task StartUpdate(Release release)
         {
-            _launchable.Launch(FilePath(release), release.File.Args);
+            _launchable.Launch(FilePath(release), CommandLineArgumentsParser.Parse(release.File.Args));
             return Task.CompletedTask;
         }
 

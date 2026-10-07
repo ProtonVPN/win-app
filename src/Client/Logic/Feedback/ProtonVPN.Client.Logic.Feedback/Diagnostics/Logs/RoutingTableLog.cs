@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -30,7 +30,7 @@ public class RoutingTableLog : LogBase
     {
         get
         {
-            using IOsProcess process = _osProcesses.CommandLineProcess("/c route print");
+            using IOsProcess process = _osProcesses.BuildCommandLineProcess(["/c", "route", "print"]);
             process.Start();
             return process.StandardOutput.ReadToEnd();
         }

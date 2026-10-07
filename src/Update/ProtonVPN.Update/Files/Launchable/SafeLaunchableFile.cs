@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,32 +18,32 @@
  */
 
 using System;
+using System.Collections.Generic;
 using ProtonVPN.Update.Helpers;
 
-namespace ProtonVPN.Update.Files.Launchable
+namespace ProtonVPN.Update.Files.Launchable;
+
+/// <summary>
+/// Wraps expected exceptions of <see cref="LaunchableFile"/> into <see cref="AppUpdateException"/>.
+/// </summary>
+public class SafeLaunchableFile : ILaunchableFile
 {
-    /// <summary>
-    /// Wraps expected exceptions of <see cref="LaunchableFile"/> into <see cref="AppUpdateException"/>.
-    /// </summary>
-    public class SafeLaunchableFile : ILaunchableFile
+    private readonly ILaunchableFile _origin;
+
+    public SafeLaunchableFile(ILaunchableFile origin)
     {
-        private readonly ILaunchableFile _origin;
+        _origin = origin;
+    }
 
-        public SafeLaunchableFile(ILaunchableFile origin)
+    public void Launch(string filename, IEnumerable<string> arguments)
+    {
+        try
         {
-            _origin = origin;
+            _origin.Launch(filename, arguments);
         }
-
-        public void Launch(string filename, string arguments)
+        catch (Exception e) when (e.IsProcessException())
         {
-            try
-            {
-                _origin.Launch(filename, arguments);
-            }
-            catch (Exception e) when (e.IsProcessException())
-            {
-                throw new AppUpdateException("Failed to launch update installer", e);
-            }
+            throw new AppUpdateException("Failed to launch update installer", e);
         }
     }
 }

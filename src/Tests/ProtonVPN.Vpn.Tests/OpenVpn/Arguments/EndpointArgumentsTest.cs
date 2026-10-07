@@ -44,7 +44,7 @@ public class EndpointArgumentsTest
             relayIpByProtocol: null);
 
     [TestMethod]
-    public void Enumerable_ShouldContain_ExpectedNumberOfOptions()
+    public void Enumerable_ShouldContain_ExpectedNumberOfArguments()
     {
         // Arrange
         VpnEndpoint endpoint = new(_vpnHost, VpnProtocol.OpenVpnUdp, 48965);
@@ -54,7 +54,7 @@ public class EndpointArgumentsTest
         List<string> result = subject.ToList();
 
         // Assert
-        result.Should().HaveCount(1);
+        result.Should().HaveCount(4);
     }
 
     [TestMethod]
@@ -68,7 +68,7 @@ public class EndpointArgumentsTest
         List<string> result = subject.ToList();
 
         // Assert
-        result.First().Should().StartWith($"--remote {endpoint.Server.Ip} {endpoint.Port}");
+        result.Should().ContainInOrder("--remote", endpoint.Server.Ip, $"{endpoint.Port}");
     }
 
     [TestMethod]
@@ -84,7 +84,7 @@ public class EndpointArgumentsTest
         List<string> result = subject.ToList();
 
         // Assert
-        result.Should().Contain($"--remote {endpoint.Server.Ip} {endpoint.Port} {expected}");
+        result.Should().Equal("--remote", endpoint.Server.Ip, $"{endpoint.Port}", expected);
     }
 
     [TestMethod]

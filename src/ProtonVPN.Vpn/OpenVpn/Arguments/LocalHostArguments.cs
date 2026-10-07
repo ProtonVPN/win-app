@@ -33,8 +33,11 @@ namespace ProtonVPN.Vpn.OpenVpn.Arguments
 
         public IEnumerator<string> GetEnumerator()
         {
-            yield return $"--local {_localIp}";
-            yield return "--lport 0";
+            yield return "--local";
+            yield return _localIp;
+
+            yield return "--lport";
+            yield return "0";
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

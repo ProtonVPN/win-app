@@ -25,7 +25,7 @@ public static class OsProcessesExtensions
 {
     public static void KillProcesses(this IOsProcesses osProcesses, string filename)
     {
-        var processes = osProcesses.ProcessesByName(filename);
+        var processes = osProcesses.GetProcessesByName(filename);
         try
         {
             foreach (var process in processes)
