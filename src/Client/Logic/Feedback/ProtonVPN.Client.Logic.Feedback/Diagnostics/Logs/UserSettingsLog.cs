@@ -22,6 +22,7 @@ using System.Text;
 using Newtonsoft.Json;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Auth.Contracts.Models;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts.Messages;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Models;
@@ -34,12 +35,14 @@ public class UserSettingsLog : LogBase
 {
     private readonly ISettings _settings;
     private readonly IUserAuthenticator _userAuthenticator;
+    private readonly IServersLoader _serversLoader;
 
-    public UserSettingsLog(IStaticConfiguration config, ISettings settings, IUserAuthenticator userAuthenticator)
+    public UserSettingsLog(IStaticConfiguration config, ISettings settings, IUserAuthenticator userAuthenticator, IServersLoader serversLoader)
         : base(config.DiagnosticLogsFolder, "Settings.txt")
     {
         _settings = settings;
         _userAuthenticator = userAuthenticator;
+        _serversLoader = serversLoader;
     }
 
     public override void Write()
@@ -75,6 +78,16 @@ public class UserSettingsLog : LogBase
         else
         {
             stringBuilder.AppendLine("The user is not logged in.");
+        }
+
+        stringBuilder
+            .AppendLine()
+            .AppendLine("Servers")
+            .AppendLine();
+
+        foreach (KeyValuePair<string, dynamic?> property in GetServers())
+        {
+            stringBuilder.AppendLine($"{property.Key}: {Serialize(property.Value)}");
         }
 
         return stringBuilder.ToString();
@@ -181,6 +194,11 @@ public class UserSettingsLog : LogBase
         yield return new(nameof(IUserSettings.IsGatewayInfoBannerDismissed), _settings.IsGatewayInfoBannerDismissed);
 
         yield return new(nameof(IUserSettings.LastSeenWhatsNewOverlayVersion), _settings.LastSeenWhatsNewOverlayVersion);
+    }
+
+    private IEnumerable<KeyValuePair<string, dynamic?>> GetServers()
+    {
+        return _serversLoader.GetStats();
     }
 
     private string Serialize(dynamic? value)

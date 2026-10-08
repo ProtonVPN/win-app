@@ -48,4 +48,6 @@ public interface IServersCache
     Task UpdateAsync(CancellationToken cancellationToken);
     Task UpdateLoadsAsync(CancellationToken cancellationToken);
     Task<ApiResponseResult<LookupServerResponse>?> LookupAsync(string input);
+
+    IEnumerable<KeyValuePair<string, dynamic?>> GetStats();
 }
