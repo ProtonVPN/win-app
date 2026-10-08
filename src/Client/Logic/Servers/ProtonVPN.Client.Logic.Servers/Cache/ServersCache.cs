@@ -233,9 +233,9 @@ public class ServersCache : IServersCache
                 }
                 else
                 {
-                    _logger.Info<ApiLog>("API: Get servers response was modified since last call, updating cached data.");
-
                     List<Server> servers = _entityMapper.Map<LogicalServerResponse, Server>(response.Value.Servers);
+                    _logger.Info<ApiLog>($"API: Get servers response was modified since last call, " +
+                        $"updating cached data. Number of servers received: {servers.Count}");
 
                     // Handle race condition when new favorite servers are added between API request and response
                     if (response.Value.ResponseMetadata is not null && response.Value.ResponseMetadata.ListIsTruncated && favoriteServerIds.Any())
@@ -623,5 +623,60 @@ public class ServersCache : IServersCache
         }
 
         return null;
+    }
+
+    public IEnumerable<KeyValuePair<string, dynamic?>> GetStats()
+    {
+        IReadOnlyList<Server> servers;
+        IReadOnlyList<Server> filteredServers;
+        IReadOnlyList<Country> countries;
+        IReadOnlyList<FreeCountry> freeCountries;
+        IReadOnlyList<State> states;
+        IReadOnlyList<City> cities;
+        IReadOnlyList<Gateway> gateways;
+        IReadOnlyList<SecureCoreCountryPair> secureCoreCountryPairs;
+
+        _lock.EnterReadLock();
+        try
+        {
+            servers = _originalServers;
+            filteredServers = _filteredServers;
+            countries = _countries;
+            freeCountries = _freeCountries;
+            states = _states;
+            cities = _cities;
+            gateways = _gateways;
+            secureCoreCountryPairs = _secureCoreCountryPairs;
+        }
+        finally
+        {
+            _lock.ExitReadLock();
+        }
+
+        List<PhysicalServer> physicalServers = servers.SelectMany(s => s.Servers).ToList();
+
+        yield return new("Logical servers", servers.Count);
+        yield return new("Logical servers under maintenance", servers.Count(s => s.IsUnderMaintenance()));
+        yield return new("Logical servers visible", servers.Count(s => s.IsVisible));
+        yield return new("Logical servers auto connectable", servers.Count(s => s.IsAutoconnectable));
+        yield return new("Logical servers filtered", filteredServers.Count);
+
+        yield return new("Free logical servers", servers.Count(s => s.IsFree()));
+        yield return new("Paid logical servers", servers.Count(s => s.IsPaid()));
+
+        yield return new("B2B logical servers", servers.Count(s => s.IsB2B()));
+
+        yield return new("Physical servers", physicalServers.Count);
+        yield return new("Physical servers under maintenance", physicalServers.Count(ps => ps.IsUnderMaintenance()));
+
+        yield return new("Physical servers with relays", physicalServers.Count(ps => ps.RelayIpByProtocol.Count > 0));
+
+        yield return new("Countries", countries.Count);
+        yield return new("Free countries", freeCountries.Count);
+
+        yield return new("States", states.Count);
+        yield return new("Cities", cities.Count);
+        yield return new("Gateways", gateways.Count);
+        yield return new("Secure core country pairs", secureCoreCountryPairs.Count);
     }
 }

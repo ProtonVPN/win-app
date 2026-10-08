@@ -64,4 +64,6 @@ public interface IServersLoader
     IEnumerable<Gateway> GetGateways();
     IEnumerable<Server> GetServersByGatewayName(string gatewayName);
     bool HasAnyGateways();
+
+    IEnumerable<KeyValuePair<string, dynamic?>> GetStats();
 }
