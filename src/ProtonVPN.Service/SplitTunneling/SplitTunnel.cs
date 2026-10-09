@@ -19,9 +19,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Common.Core.Networking;
+using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Logging.Contracts;
 using ProtonVPN.Logging.Contracts.Events.SplitTunnelLogs;
@@ -41,6 +43,11 @@ public class SplitTunnel : ISplitTunnel
     private bool _reverseEnabled;
     private bool _enabled;
     private SplitTunnelContext? _context;
+    // Config that the split tunnel routes currently in the routing table were created from
+    private VpnConfig? _appliedConfig;
+    private string[] _redirectedAppPaths = [];
+    private IPAddress? _redirectedLocalIpv4Address;
+    private IPAddress? _redirectedLocalIpv6Address;
 
     private readonly ILogger _logger;
     private readonly ISplitTunnelRouting _splitTunnelRouting;
@@ -108,6 +115,15 @@ public class SplitTunnel : ISplitTunnel
     public void OnVpnConnecting(VpnState vpnState)
     {
         DisableReversed();
+
+        if (_serviceSettings.SplitTunnelSettings.Mode == SplitTunnelModeIpcEntity.Block)
+        {
+            // Leak protection blocks all traffic from this point on, so excluded apps and IPs
+            // must be permitted now. Otherwise their connections drop until the VPN is connected.
+            EnableExcludeMode(vpnState);
+            return;
+        }
+
         Disable();
 
         _appFilter.RemoveAll();
@@ -139,7 +155,7 @@ public class SplitTunnel : ISplitTunnel
         {
             case SplitTunnelModeIpcEntity.Block:
                 DisableReversed();
-                Enable(state);
+                EnableExcludeMode(state);
                 break;
             case SplitTunnelModeIpcEntity.Permit:
                 _appFilter.RemoveAll();
@@ -169,13 +185,34 @@ public class SplitTunnel : ISplitTunnel
         }
         else
         {
+            // Routes can be kept from the previous connection while reconnecting.
+            // They only need to be removed if the new connection uses different ones.
+            if (_appliedConfig is not null && !HasSameRoutes(_appliedConfig, _context.Config))
+            {
+                _splitTunnelRouting.DeleteRoutes(_appliedConfig);
+            }
+
             bool isIpv6Supported = _context.Config.IsIpv6Enabled && _context.Endpoint.Server.IsIpv6Supported;
             _splitTunnelRouting.SetUpRoutingTable(_context.Config, localIpv4Address, isIpv6Supported);
+            _appliedConfig = _context.Config;
         }
     }
 
-    public void OnVpnDisconnected(VpnState state)
+    private static bool HasSameRoutes(VpnConfig previousConfig, VpnConfig newConfig)
     {
+        return previousConfig.SplitTunnelMode == newConfig.SplitTunnelMode &&
+               previousConfig.SplitTunnelIPs.SequenceEqual(newConfig.SplitTunnelIPs);
+    }
+
+    public void OnVpnDisconnected(VpnState state, bool isReconnecting)
+    {
+        if (isReconnecting && _enabled && _serviceSettings.SplitTunnelSettings.Mode == SplitTunnelModeIpcEntity.Block)
+        {
+            // Leak protection stays on while reconnecting, so excluded apps and IPs keep their filters
+            // and routes. Otherwise their connections drop until the new connection is established.
+            return;
+        }
+
         if (state.Error == VpnError.None)
         {
             DisableSplitTunnel();
@@ -189,17 +226,20 @@ public class SplitTunnel : ISplitTunnel
         Disable();
         DisableReversed();
 
-        if (_context is null)
+        VpnConfig? config = _appliedConfig ?? _context?.Config;
+        if (config is null)
         {
             _logger.Warn<SplitTunnelLog>("Split tunnel context is missing, routes won't be removed.");
         }
         else
         {
-            _splitTunnelRouting.DeleteRoutes(_context.Config);
+            _splitTunnelRouting.DeleteRoutes(config);
         }
+
+        _appliedConfig = null;
     }
 
-    private void Enable(VpnState state)
+    private void EnableExcludeMode(VpnState state)
     {
         string excludedHardwareId = _config.GetHardwareId(state.VpnProtocol, _serviceSettings.OpenVpnAdapter);
         IPAddress localIpv4Address = _networkUtilities.GetBestInterfaceIPv4Address(excludedHardwareId);
@@ -212,25 +252,45 @@ public class SplitTunnel : ISplitTunnel
         }
 
         string[] appPaths = _serviceSettings.SplitTunnelSettings.AppPaths ?? [];
+        string[] ips = _serviceSettings.SplitTunnelSettings.Ips ?? [];
 
-        _splitTunnelClient.EnableExcludeMode(appPaths, localIpv4Address, localIpv6Address);
-
-        if (appPaths.Length > 0)
+        if (!_enabled)
         {
-            List<Tuple<Layer, Action>> appFilters = [
-                Tuple.Create(Layer.AppAuthConnectV4, Action.HardPermit),
-                Tuple.Create(Layer.AppAuthConnectV6, localIpv6Address is null ? Action.HardBlock : Action.HardPermit),
-            ];
-
-            _appFilter.Add(appPaths, [.. appFilters]);
+            // Removes filters left from include mode
+            _appFilter.RemoveAll();
+            _permittedRemoteAddress.RemoveAll();
         }
 
-        if (_serviceSettings.SplitTunnelSettings.Ips.Length > 0)
+        // Recreating the redirect filters leaves a short moment without them, so it is only done when they change
+        if (!_enabled || !IsSameRedirect(appPaths, localIpv4Address, localIpv6Address))
         {
-            _permittedRemoteAddress.Add(_serviceSettings.SplitTunnelSettings.Ips, Action.HardPermit);
+            if (_enabled)
+            {
+                _splitTunnelClient.Disable();
+            }
+
+            _splitTunnelClient.EnableExcludeMode(appPaths, localIpv4Address, localIpv6Address);
+            _redirectedAppPaths = appPaths;
+            _redirectedLocalIpv4Address = localIpv4Address;
+            _redirectedLocalIpv6Address = localIpv6Address;
         }
+
+        // Permit filters are replaced every time, because leak protection removes them when it gets disabled
+        List<Tuple<Layer, Action>> appFilters = [
+            Tuple.Create(Layer.AppAuthConnectV4, Action.HardPermit),
+            Tuple.Create(Layer.AppAuthConnectV6, localIpv6Address is null ? Action.HardBlock : Action.HardPermit),
+        ];
+        _appFilter.Replace(appPaths, [.. appFilters]);
+        _permittedRemoteAddress.Replace(ips, Action.HardPermit);
 
         _enabled = true;
+    }
+
+    private bool IsSameRedirect(string[] appPaths, IPAddress localIpv4Address, IPAddress? localIpv6Address)
+    {
+        return _redirectedAppPaths.SequenceEqual(appPaths) &&
+               Equals(_redirectedLocalIpv4Address, localIpv4Address) &&
+               Equals(_redirectedLocalIpv6Address, localIpv6Address);
     }
 
     private void Disable()
