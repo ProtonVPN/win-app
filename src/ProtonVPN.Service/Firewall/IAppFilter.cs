@@ -25,4 +25,10 @@ namespace ProtonVPN.Service.Firewall;
 public interface IAppFilter : IFilterCollection
 {
     void Add(string[] paths, Tuple<Layer, NetworkFilter.Action>[] filters);
+
+    /// <summary>
+    /// Replaces all current filters with new ones. The new filters are added before the old ones
+    /// are removed, so the apps are never left without filters in between.
+    /// </summary>
+    void Replace(string[] paths, Tuple<Layer, NetworkFilter.Action>[] filters);
 }

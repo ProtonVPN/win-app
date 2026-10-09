@@ -116,6 +116,24 @@ public class PermittedRemoteAddress : IPermittedRemoteAddress
         _list.Remove(address);
     }
 
+    public void Replace(string[] addresses, Action action)
+    {
+        List<Guid> previousGuids = _list.Values.SelectMany(guids => guids).ToList();
+        _list.Clear();
+
+        try
+        {
+            Add(addresses, action);
+        }
+        finally
+        {
+            foreach (Guid guid in previousGuids)
+            {
+                _ipFilter.DynamicSublayer.DestroyFilter(guid);
+            }
+        }
+    }
+
     public void RemoveAll()
     {
         if (_list.Count == 0)

@@ -83,6 +83,24 @@ public class AppFilter : IAppFilter
         }
     }
 
+    public void Replace(string[] paths, Tuple<Layer, Action>[] filters)
+    {
+        List<Guid> previousGuids = _list.Values.SelectMany(guids => guids).ToList();
+        _list.Clear();
+
+        try
+        {
+            Add(paths, filters);
+        }
+        finally
+        {
+            foreach (Guid guid in previousGuids)
+            {
+                _ipFilter.DynamicSublayer.DestroyFilter(guid);
+            }
+        }
+    }
+
     public void Remove(string path)
     {
         if (!_list.TryGetValue(path, out List<Guid> guids))

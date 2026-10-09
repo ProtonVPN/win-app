@@ -24,4 +24,10 @@ namespace ProtonVPN.Service.Firewall;
 public interface IPermittedRemoteAddress : IFilterCollection
 {
     void Add(string[] addresses, Action action);
+
+    /// <summary>
+    /// Replaces all current filters with new ones. The new filters are added before the old ones
+    /// are removed, so the addresses are never left without filters in between.
+    /// </summary>
+    void Replace(string[] addresses, Action action);
 }
