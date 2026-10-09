@@ -117,16 +117,6 @@ public class ClientConfigObserver :
         _settings.OpenVpnTcpPorts = value.DefaultPorts.OpenVpn.Tcp;
         _settings.OpenVpnUdpPorts = value.DefaultPorts.OpenVpn.Udp;
 
-        if (value.FeatureFlags.ServerRefresh.HasValue)
-        {
-            _settings.IsFeatureConnectedServerCheckEnabled = value.FeatureFlags.ServerRefresh.Value;
-        }
-
-        if (value.ServerRefreshInterval.HasValue)
-        {
-            _settings.ConnectedServerCheckInterval = TimeSpan.FromMinutes(value.ServerRefreshInterval.Value);
-        }
-
         _settings.ChangeServerSettings = new()
         {
             AttemptsLimit = value.ChangeServerAttemptLimit,

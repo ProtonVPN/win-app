@@ -194,18 +194,6 @@ public class GlobalSettings : TransientSettings, IGlobalSettings
         set => _globalCache.SetListValueType(value, SettingEncryption.Encrypted);
     }
 
-    public bool IsFeatureConnectedServerCheckEnabled
-    {
-        get => _globalCache.GetValueType<bool>(SettingEncryption.Encrypted) ?? DefaultSettings.IsFeatureConnectedServerCheckEnabled;
-        set => _globalCache.SetValueType<bool>(value, SettingEncryption.Encrypted);
-    }
-
-    public TimeSpan ConnectedServerCheckInterval
-    {
-        get => _globalCache.GetValueType<TimeSpan>(SettingEncryption.Encrypted) ?? DefaultSettings.ConnectedServerCheckInterval;
-        set => _globalCache.SetValueType<TimeSpan>(value, SettingEncryption.Encrypted);
-    }
-
     public ChangeServerSettings ChangeServerSettings
     {
         get => _globalCache.GetValueType<ChangeServerSettings>(SettingEncryption.Encrypted) ?? DefaultSettings.ChangeServerSettings;

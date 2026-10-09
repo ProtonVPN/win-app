@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2024 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,8 +17,6 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using ProtonVPN.Common.Core.Geographical;
-
 namespace ProtonVPN.Client.Logic.Servers.Contracts.Models;
 
 public class ServersFile
@@ -28,4 +26,6 @@ public class ServersFile
     public sbyte? UserMaxTier { get; init; }
 
     public List<Server> Servers { get; init; } = [];
+
+    public string? DeviceIpAddress { get; init; }
 }

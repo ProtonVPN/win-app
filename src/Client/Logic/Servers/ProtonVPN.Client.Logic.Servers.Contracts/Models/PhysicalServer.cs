@@ -29,6 +29,8 @@ public class PhysicalServer : ILocation
     public required string ExitIp { get; init; }
     public required string Domain { get; init; }
     public required string Label { get; init; }
+
+    // Informational only, it must not gate connectability. See IsAvailable below.
     public required sbyte Status { get; set; }
     public required string X25519PublicKey { get; init; }
     public required string Signature { get; init; }
@@ -37,9 +39,10 @@ public class PhysicalServer : ILocation
 
     public bool IsUnderMaintenance() => Status == 0;
 
+    // The node's own status is deliberately excluded, the logical status decides availability.
     public bool IsAvailable(IList<VpnProtocol> preferredProtocols)
     {
-        return !IsUnderMaintenance() && HasEntryIp(preferredProtocols);
+        return HasEntryIp(preferredProtocols);
     }
 
     private bool HasEntryIp(IList<VpnProtocol> preferredProtocols)

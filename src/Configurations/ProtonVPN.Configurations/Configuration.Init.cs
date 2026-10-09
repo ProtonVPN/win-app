@@ -17,6 +17,7 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Concurrent;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using ProtonVPN.Common.Core.Extensions;
@@ -33,6 +34,7 @@ public partial class Configuration
 
     private readonly IConfigurationRepository _repository;
     private readonly IDictionary<string, Lazy<object?>> _values;
+    private readonly ConcurrentDictionary<string, TimeSpan> _stableDeviationValues = new();
 
     public Configuration(IConfigurationRepository repository)
     {
@@ -88,5 +90,11 @@ public partial class Configuration
         }
 
         return interval.AddJitter(deviation);
+    }
+
+    // Drawn once per app instance, unlike GetWithRandomizedDeviation which draws on every read. 
+    private TimeSpan GetWithStableDeviation([CallerMemberName] string propertyName = "", double deviation = RANDOMIZED_INTERVAL_DEVIATION)
+    {
+        return _stableDeviationValues.GetOrAdd(propertyName, _ => GetWithRandomizedDeviation(propertyName, deviation));
     }
 }

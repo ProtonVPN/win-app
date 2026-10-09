@@ -184,17 +184,7 @@ public class ServerLoadsCalculator : IServerLoadsCalculator
             server.IsVisible = load.IsVisible;
             server.IsAutoconnectable = load.IsAutoconnectable;
 
-            // If the logical server only has one physical server, then the status of the logical and physical server are tied
-            // If the status for the logical is down, it means that all physical servers for this logical are down
-            // If the status for the logical is up, it means that at least one physical server is up, but we can't know which one(s)
-            // -> in that case, we need to wait the update servers call to update the status properly
-            if (server.Status == 0 || server.Servers.Count <= 1)
-            {
-                foreach (PhysicalServer physicalServer in server.Servers)
-                {
-                    physicalServer.Status = server.Status;
-                }
-            }
+            // Physical statuses are left alone, they no longer gate availability.
         }
 
         return true;

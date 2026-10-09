@@ -34,7 +34,7 @@ namespace ProtonVPN.Common.Tests.Extensions
         private static readonly TimeSpan TestTimeout = TimeSpan.FromSeconds(5);
 
         [TestMethod]
-        public async Task TimeoutAfter_ShouldSucceed_WhenActionSucceeds()
+        public async Task WaitOrCancelAsync_ShouldSucceed_WhenActionSucceeds()
         {
             // Arrange
             Task Action(CancellationToken ct)
@@ -44,14 +44,14 @@ namespace ProtonVPN.Common.Tests.Extensions
             }
 
             // Act
-            Func<Task> action = async () => await TaskExtensions.TimeoutAfter(Action, TimeSpan.FromSeconds(10), CancellationToken.None);
+            Func<Task> action = async () => await TaskExtensions.WaitOrCancelAsync(Action, TimeSpan.FromSeconds(10), CancellationToken.None);
 
             // Assert
             await action.Should().NotThrowAsync();
         }
 
         [TestMethod]
-        public async Task TimeoutAfter_ShouldThrow_TaskCanceledException_WhenActionCancelled()
+        public async Task WaitOrCancelAsync_ShouldThrow_TaskCanceledException_WhenActionCancelled()
         {
             // Arrange
             Breakpoint breakpoint = new();
@@ -63,19 +63,19 @@ namespace ProtonVPN.Common.Tests.Extensions
             }
 
             // Act
-            Task task = TaskExtensions.TimeoutAfter(Action, TimeSpan.Zero, cancellationSource.Token);
-            BreakpointHit hit = await breakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+            Task task = TaskExtensions.WaitOrCancelAsync(Action, TimeSpan.Zero, cancellationSource.Token);
+            BreakpointHit hit = await breakpoint.WaitForHit().WaitAsync(TestTimeout);
 
             cancellationSource.Cancel();
             hit.Continue();
-            Func<Task> action = async () => await task.TimeoutAfter(TestTimeout);
+            Func<Task> action = async () => await task.WaitAsync(TestTimeout);
 
             // Assert
             await action.Should().ThrowAsync<OperationCanceledException>();
         }
 
         [TestMethod]
-        public async Task TimeoutAfter_ShouldThrow_TimeoutException_WhenActionTimedOut()
+        public async Task WaitOrCancelAsync_ShouldThrow_TimeoutException_WhenActionTimedOut()
         {
             // Arrange
             Breakpoint breakpoint = new();
@@ -86,8 +86,8 @@ namespace ProtonVPN.Common.Tests.Extensions
             }
 
             // Act
-            Task task = TaskExtensions.TimeoutAfter(Action, TimeSpan.Zero, CancellationToken.None);
-            BreakpointHit hit = await breakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+            Task task = TaskExtensions.WaitOrCancelAsync(Action, TimeSpan.Zero, CancellationToken.None);
+            BreakpointHit hit = await breakpoint.WaitForHit().WaitAsync(TestTimeout);
 
             await Task.Delay(TimeSpan.FromMilliseconds(100));
             hit.Continue();
@@ -99,7 +99,7 @@ namespace ProtonVPN.Common.Tests.Extensions
         }
 
         [TestMethod]
-        public async Task TimeoutAfter_ShouldThrow_WhenActionThrows()
+        public async Task WaitOrCancelAsync_ShouldThrow_WhenActionThrows()
         {
             // Arrange
             Task Action(CancellationToken ct)
@@ -108,7 +108,7 @@ namespace ProtonVPN.Common.Tests.Extensions
             }
 
             // Act
-            Func<Task> action = async () => await TaskExtensions.TimeoutAfter(Action, TimeSpan.FromSeconds(10), CancellationToken.None);
+            Func<Task> action = async () => await TaskExtensions.WaitOrCancelAsync(Action, TimeSpan.FromSeconds(10), CancellationToken.None);
 
             // Assert
             await action.Should().ThrowAsync<Exception>();

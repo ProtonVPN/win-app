@@ -22,7 +22,10 @@ using ProtonVPN.Client.EventMessaging.Contracts;
 using ProtonVPN.Client.Handlers.Bases;
 using ProtonVPN.Client.Logic.Auth.Contracts;
 using ProtonVPN.Client.Logic.Connection.Contracts;
+using ProtonVPN.Client.Logic.Servers.Contracts;
 using ProtonVPN.Client.Logic.Services.Contracts;
+using ProtonVPN.Common.Core.Extensions;
+using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.Client.Logic.Users.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Logging.Contracts;
@@ -42,6 +45,8 @@ public class PowerModeAndWindowActivationHandler : IHandler,
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IConnectionManager _connectionManager;
     private readonly IVpnPlanUpdater _vpnPlanUpdater;
+    private readonly IServersUpdater _serversUpdater;
+    private readonly IConfiguration _config;
 
     public PowerModeAndWindowActivationHandler(ILogger logger,
         ISettings settings,
@@ -50,7 +55,9 @@ public class PowerModeAndWindowActivationHandler : IHandler,
         IUserAuthenticator userAuthenticator,
         IPowerEventNotifier powerEventNotifier,
         IConnectionManager connectionManager,
-        IVpnPlanUpdater vpnPlanUpdater)
+        IVpnPlanUpdater vpnPlanUpdater,
+        IServersUpdater serversUpdater,
+        IConfiguration config)
     {
         _logger = logger;
         _settings = settings;
@@ -59,52 +66,105 @@ public class PowerModeAndWindowActivationHandler : IHandler,
         _userAuthenticator = userAuthenticator;
         _connectionManager = connectionManager;
         _vpnPlanUpdater = vpnPlanUpdater;
+        _serversUpdater = serversUpdater;
+        _config = config;
 
         powerEventNotifier.OnResume += OnResume;
     }
 
     public void Receive(MainWindowVisibilityChangedMessage message)
     {
-        if (!_userAuthenticator.IsLoggedIn)
+        if (!_userAuthenticator.IsLoggedIn || !message.IsMainWindowVisible)
         {
             return;
         }
 
-        if (message.IsMainWindowVisible)
-        {
-            _logger.Debug<AppLog>("Main window activated while logged in");
-            OnResumeOrWindowActivation();
-        }
+        _logger.Debug<AppLog>("Main window activated while logged in");
+
+        OnWindowActivationAsync().FireAndForget();
     }
 
     private void OnResume(object? sender, EventArgs e)
     {
-        if (_userAuthenticator.IsLoggedIn)
-        {
-            _logger.Info<AppLog>("Resuming from sleep while logged in");
-
-            if (_connectionManager.IsConnected)
-            {
-                _connectionManager.ReconnectAsync(VpnTriggerDimension.Auto);
-            }
-
-            OnResumeOrWindowActivation();
-        }
-        else
+        if (!_userAuthenticator.IsLoggedIn)
         {
             _logger.Info<AppLog>("Resuming from sleep while logged out");
+            return;
+        }
+
+        _logger.Info<AppLog>("Resuming from sleep while logged in");
+
+        OnResumeAsync().FireAndForget();
+    }
+
+    private async Task OnWindowActivationAsync()
+    {
+        await RepeatServiceStateAsync();
+        await RefreshPlanAndCertificateAsync();
+    }
+
+    private async Task OnResumeAsync()
+    {
+        // The service state is from before the sleep, and the reconnection decision below reads it.
+        await RepeatServiceStateAsync();
+
+        // Before reconnecting, the connect path never refreshes the plan and only renews an expired certificate.
+        // The servers are refreshed too, so the reconnection does not pick a server that went down during the sleep.
+        await RefreshWithinTimeoutAsync();
+
+        if (_connectionManager.IsConnected)
+        {
+            await ReconnectAsync();
         }
     }
 
-    private void OnResumeOrWindowActivation()
+    private async Task ReconnectAsync()
     {
-        _vpnServiceCaller.RepeatStateAsync();
+        try
+        {
+            await _connectionManager.ReconnectAsync(VpnTriggerDimension.Auto);
+        }
+        catch (Exception e)
+        {
+            _logger.Error<AppLog>("Failed to reconnect after resuming from sleep.", e);
+        }
+    }
+
+    private async Task RepeatServiceStateAsync()
+    {
+        await _vpnServiceCaller.RepeatStateAsync();
+
         if (_settings.IsPortForwardingEnabled)
         {
-            _vpnServiceCaller.RepeatPortForwardingStateAsync();
+            await _vpnServiceCaller.RepeatPortForwardingStateAsync();
         }
+    }
 
-        _connectionCertificateManager.RequestNewCertificateAsync();
-        _vpnPlanUpdater.UpdateAsync();
+    // Best effort. Neither a slow nor a failing refresh may hold the tunnel down, the connection error
+    // handler recovers from a stale certificate or plan on its own.
+    private async Task RefreshWithinTimeoutAsync()
+    {
+        try
+        {
+            Task refreshTask = Task.WhenAll(
+                RefreshPlanAndCertificateAsync(),
+                _serversUpdater.UpdateAsync());
+
+            if (!await refreshTask.WaitOrFireAndForgetAsync(_config.ResumeRefreshTimeout))
+            {
+                _logger.Warn<AppLog>("The plan, the certificate and the servers were not refreshed in time, reconnecting with the cached ones.");
+            }
+        }
+        catch (Exception e)
+        {
+            _logger.Error<AppLog>("Failed to refresh the plan, the certificate and the servers after resuming from sleep.", e);
+        }
+    }
+
+    private async Task RefreshPlanAndCertificateAsync()
+    {
+        await Task.WhenAll(
+            _vpnPlanUpdater.UpdateAsync(),
+            _connectionCertificateManager.RequestNewCertificateAsync());
     }
 }
