@@ -66,7 +66,7 @@ namespace ProtonVPN.Common.Tests.Threading
 
                 // Act
                 Task<int> task1 = queue.Enqueue(() => TestAction(expected), expected);
-                BreakpointHit hit1 = await breakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+                BreakpointHit hit1 = await breakpoint.WaitForHit().WaitAsync(TestTimeout);
 
                 Task<int> task2 = queue.Enqueue(() => TestAction(328), 328);
 
@@ -98,8 +98,8 @@ namespace ProtonVPN.Common.Tests.Threading
                 // Act
                 Task<int> task1 = queue.Enqueue(() => TestAction(expected1), expected1);
                 Task<int> task2 = queue.Enqueue(() => TestAction(expected2), expected2);
-                await breakpoint.WaitForHitAndContinue().TimeoutAfter(TestTimeout);
-                await breakpoint.WaitForHitAndContinue().TimeoutAfter(TestTimeout);
+                await breakpoint.WaitForHitAndContinue().WaitAsync(TestTimeout);
+                await breakpoint.WaitForHitAndContinue().WaitAsync(TestTimeout);
 
                 // Assert
                 task1.Result.Should().Be(expected1);
@@ -128,13 +128,13 @@ namespace ProtonVPN.Common.Tests.Threading
 
                 // Act
                 Task<int> task1 = queue.Enqueue(ct => TestAction(expected1, ct), expected1);
-                BreakpointHit hit1 = await breakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+                BreakpointHit hit1 = await breakpoint.WaitForHit().WaitAsync(TestTimeout);
                 Task<int> task2 = queue.Enqueue(ct => TestAction(expected2, ct), expected2);
 
                 Task<int> task3 = queue.Enqueue(ct => TestAction(-15, ct), -15);
 
                 hit1.Continue();
-                await breakpoint.WaitForHitAndContinue().TimeoutAfter(TestTimeout);
+                await breakpoint.WaitForHitAndContinue().WaitAsync(TestTimeout);
 
                 // Assert
                 task1.Result.Should().Be(expected1);
@@ -163,10 +163,10 @@ namespace ProtonVPN.Common.Tests.Threading
 
                 // Act
                 Task<int> task1 = queue.Enqueue(ct => TestAction(101, ct), 101);
-                BreakpointHit hit1 = await breakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+                BreakpointHit hit1 = await breakpoint.WaitForHit().WaitAsync(TestTimeout);
                 Task<int> task2 = queue.Enqueue(ct => TestAction(expected2, ct), expected2);
                 hit1.Continue();
-                await breakpoint.WaitForHitAndContinue().TimeoutAfter(TestTimeout);
+                await breakpoint.WaitForHitAndContinue().WaitAsync(TestTimeout);
 
                 // Assert
                 task1.IsCanceled.Should().BeTrue();
@@ -194,11 +194,11 @@ namespace ProtonVPN.Common.Tests.Threading
 
                 // Act
                 Task<int> task1 = queue.Enqueue(ct => TestAction(expected1, ct), expected1);
-                BreakpointHit hit1 = await breakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+                BreakpointHit hit1 = await breakpoint.WaitForHit().WaitAsync(TestTimeout);
                 Task<int> task2 = queue.Enqueue(ct => TestAction(101, ct), 101);
                 Task<int> task3 = queue.Enqueue(ct => TestAction(expected3, ct), expected3);
                 hit1.Continue();
-                await breakpoint.WaitForHitAndContinue().TimeoutAfter(TestTimeout);
+                await breakpoint.WaitForHitAndContinue().WaitAsync(TestTimeout);
 
                 // Assert
                 task1.Result.Should().Be(expected1);
@@ -227,11 +227,11 @@ namespace ProtonVPN.Common.Tests.Threading
 
                 // Act
                 Task<int> task1 = queue.Enqueue(ct => TestAction(202, ct), 202);
-                BreakpointHit hit1 = await breakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+                BreakpointHit hit1 = await breakpoint.WaitForHit().WaitAsync(TestTimeout);
                 Task<int> task2 = queue.Enqueue(ct => TestAction(303, ct), 303);
                 Task<int> task3 = queue.Enqueue(ct => TestAction(expected3, ct), expected3);
                 hit1.Continue();
-                await breakpoint.WaitForHitAndContinue().TimeoutAfter(TestTimeout);
+                await breakpoint.WaitForHitAndContinue().WaitAsync(TestTimeout);
 
                 // Assert
                 task1.IsCanceled.Should().BeTrue();
@@ -260,11 +260,11 @@ namespace ProtonVPN.Common.Tests.Threading
 
                 // Act
                 _ = queue.Enqueue(ct => TestAction(1981, ct), 1981);
-                BreakpointHit hit1 = await breakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+                BreakpointHit hit1 = await breakpoint.WaitForHit().WaitAsync(TestTimeout);
                 queue.Cancel();
                 Task<int> task2 = queue.Enqueue(ct => TestAction(expected, ct), expected);
                 hit1.Continue();
-                await breakpoint.WaitForHitAndContinue().TimeoutAfter(TestTimeout);
+                await breakpoint.WaitForHitAndContinue().WaitAsync(TestTimeout);
 
                 // Assert
                 task2.Result.Should().Be(expected);
@@ -304,7 +304,7 @@ namespace ProtonVPN.Common.Tests.Threading
 
                 // Act
                 Task<int> task = queue.Enqueue(ct => TestAction(9874, ct), 9874);
-                BreakpointHit hit = await breakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+                BreakpointHit hit = await breakpoint.WaitForHit().WaitAsync(TestTimeout);
                 queue.Cancel();
                 hit.Continue();
                 await Task.WhenAny(task);
@@ -333,7 +333,7 @@ namespace ProtonVPN.Common.Tests.Threading
 
                 // Act
                 Task<int> task1 = queue.Enqueue(ct => TestAction(6517, ct), 6517);
-                BreakpointHit hit1 = await breakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+                BreakpointHit hit1 = await breakpoint.WaitForHit().WaitAsync(TestTimeout);
                 Task<int> task2 = queue.Enqueue(ct => TestAction(101, ct), 101);
 
                 queue.Cancel();
@@ -366,7 +366,7 @@ namespace ProtonVPN.Common.Tests.Threading
 
                 // Act
                 Task<int> task1 = queue.Enqueue(ct => TestAction(6517, ct), 6517);
-                BreakpointHit hit1 = await breakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+                BreakpointHit hit1 = await breakpoint.WaitForHit().WaitAsync(TestTimeout);
                 Task<int> task2 = queue.Enqueue(ct => TestAction(101, ct), 101);
 
                 Task[] cancelTasks = Enumerable.Range(1, 10)

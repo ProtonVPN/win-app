@@ -138,13 +138,22 @@ public partial class NoServersPageViewModel : PageViewModelBase<IMainWindowViewN
         {
             IsRefreshing = true;
 
+            bool isServersUpdateAttempted = AuthResponseDetails is null;
+
             // Add some fake waiting time in case the response is fast,
             // so we prevent the user from refreshing too often
             await Task.WhenAll(
-                AuthResponseDetails is null
+                isServersUpdateAttempted
                     ? _serversUpdater.ForceUpdateAsync()
                     : AutoLoginWithoutWindowRepositionAsync(),
                 Task.Delay(MIN_LOAD_TIME_IN_MS));
+
+            // Only meaningful if this refresh attempted it, the flag is otherwise left over from an
+            // earlier one. The logicals request may have failed while the status endpoint is healthy.
+            if (isServersUpdateAttempted && _serversUpdater.HasServersRequestFailed())
+            {
+                await _serversUpdater.ForceUpdateLoadsAsync();
+            }
         }
         finally
         {

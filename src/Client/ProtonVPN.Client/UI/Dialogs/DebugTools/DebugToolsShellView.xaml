@@ -146,12 +146,19 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 </toolkit:SettingsCard>
 
-                <toolkit:SettingsCard Header="Refresh logicals"
+                <toolkit:SettingsCard Header="Servers"
                                       IsTabStop="False"
                                       Style="{StaticResource DefaultSettingsCardStyle}">
-                    <Button Command="{x:Bind ViewModel.TriggerLogicalsRefreshCommand, Mode=OneTime}"
-                            Content="Trigger refresh"
-                            Style="{StaticResource PrimaryButtonStyle}" />
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="8">
+                        <Button Command="{x:Bind ViewModel.ForceUpdateLoadsCommand, Mode=OneTime}"
+                                Content="Force Loads" />
+                        <Button Command="{x:Bind ViewModel.ForceUpdateLogicalsCommand, Mode=OneTime}"
+                                Content="Force Logicals" />
+                        <Button Command="{x:Bind ViewModel.UpdateLogicalsCommand, Mode=OneTime}"
+                                Content="Update"
+                                Style="{StaticResource PrimaryButtonStyle}" />
+                    </StackPanel>
                 </toolkit:SettingsCard>
 
                 <toolkit:SettingsCard Header="Logout user with client outdated reason"

@@ -44,7 +44,6 @@ public class ConnectionLogicModule : Module
         builder.RegisterType<VpnStateIpcEntityHandler>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<ConnectionErrorHandler>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<VpnServiceSettingsUpdater>().AsImplementedInterfaces().SingleInstance();
-        builder.RegisterType<ConnectedServerChecker>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<VpnStatePollingObserver>().AsImplementedInterfaces().AutoActivate().SingleInstance();
         builder.RegisterType<ChangeServerModerator>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<NetShieldStatsObserver>().AsImplementedInterfaces().SingleInstance().AutoActivate();

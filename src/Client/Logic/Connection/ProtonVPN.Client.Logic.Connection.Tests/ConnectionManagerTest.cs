@@ -61,6 +61,7 @@ public class ConnectionManagerTest
     private IGuestHoleDisconnectionRequestCreator? _guestHoleDisconnectionRequestCreator;
     private IConnectionStatisticalEventsManager? _statisticalEventManager;
     private IConnectionKeyManager? _connectionKeyManager;
+    private IServersUpdater? _serversUpdater;
 
     [TestInitialize]
     public void Initialize()
@@ -80,6 +81,7 @@ public class ConnectionManagerTest
         _guestHoleDisconnectionRequestCreator = Substitute.For<IGuestHoleDisconnectionRequestCreator>();
         _statisticalEventManager = Substitute.For<IConnectionStatisticalEventsManager>();
         _connectionKeyManager = Substitute.For<IConnectionKeyManager>();
+        _serversUpdater = Substitute.For<IServersUpdater>();
 
         _connectionRequestCreator!.CreateAsync(Arg.Any<IConnectionIntent>()).Returns(GetConnectionRequestIpcEntity());
         _reconnectionRequestCreator!.CreateAsync(Arg.Any<IConnectionIntent>()).Returns(GetConnectionRequestIpcEntity());
@@ -103,6 +105,40 @@ public class ConnectionManagerTest
         _guestHoleDisconnectionRequestCreator = null;
         _statisticalEventManager = null;
         _connectionKeyManager = null;
+        _serversUpdater = null;
+    }
+
+    [TestMethod]
+    public async Task ConnectAsync_UpdatesOverdueLoads_BeforeCreatingTheRequest()
+    {
+        // Act
+        await GetConnectionManager().ConnectAsync(VpnTriggerDimension.Auto, GetConnectionIntent(new TorFeatureIntent()));
+
+        // Assert
+        Received.InOrder(() =>
+        {
+            _serversUpdater!.UpdateOverdueLoadsAsync();
+            _connectionRequestCreator!.CreateAsync(Arg.Any<IConnectionIntent>());
+        });
+    }
+
+    [TestMethod]
+    public async Task ReconnectAsync_UpdatesOverdueLoads_BeforeCreatingTheRequest()
+    {
+        // Arrange
+        ConnectionManager connectionManager = GetConnectionManager();
+        await connectionManager.ConnectAsync(VpnTriggerDimension.Auto, GetConnectionIntent(new TorFeatureIntent()));
+        _serversUpdater!.ClearReceivedCalls();
+
+        // Act
+        await connectionManager.ReconnectAsync(VpnTriggerDimension.Auto);
+
+        // Assert
+        Received.InOrder(() =>
+        {
+            _serversUpdater!.UpdateOverdueLoadsAsync();
+            _reconnectionRequestCreator!.CreateAsync(Arg.Any<IConnectionIntent>());
+        });
     }
 
     [TestMethod]
@@ -291,7 +327,8 @@ public class ConnectionManagerTest
             _guestHoleConnectionRequestCreator!,
             _guestHoleDisconnectionRequestCreator!,
             _statisticalEventManager!,
-            _connectionKeyManager!);
+            _connectionKeyManager!,
+            _serversUpdater!);
     }
 
     private IConnectionIntent GetConnectionIntent(IFeatureIntent featureIntent)

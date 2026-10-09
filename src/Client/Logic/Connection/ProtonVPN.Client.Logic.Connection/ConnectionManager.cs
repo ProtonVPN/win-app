@@ -76,6 +76,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
     private readonly IGuestHoleDisconnectionRequestCreator _guestHoleDisconnectionRequestCreator;
     private readonly IConnectionStatisticalEventsManager _statisticalEventManager;
     private readonly IConnectionKeyManager _connectionKeyManager;
+    private readonly IServersUpdater _serversUpdater;
 
     private DateTime _minReconnectionDateUtc = DateTime.MinValue;
 
@@ -118,7 +119,8 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         IGuestHoleConnectionRequestCreator guestHoleConnectionRequestCreator,
         IGuestHoleDisconnectionRequestCreator guestHoleDisconnectionRequestCreator,
         IConnectionStatisticalEventsManager statisticalEventManager,
-        IConnectionKeyManager connectionKeyManager)
+        IConnectionKeyManager connectionKeyManager,
+        IServersUpdater serversUpdater)
     {
         _logger = logger;
         _settings = settings;
@@ -135,6 +137,7 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         _guestHoleDisconnectionRequestCreator = guestHoleDisconnectionRequestCreator;
         _statisticalEventManager = statisticalEventManager;
         _connectionKeyManager = connectionKeyManager;
+        _serversUpdater = serversUpdater;
     }
 
     public async Task ConnectAsync(
@@ -154,6 +157,8 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         CurrentConnectionIntent = connectionIntent;
 
         _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Connection attempt to: {connectionIntent}. Triggered by {connectionTrigger}.", stackTraceDepth: 2);
+
+        await _serversUpdater.UpdateOverdueLoadsAsync();
 
         ConnectionRequestIpcEntity request = await _connectionRequestCreator.CreateAsync(connectionIntent);
 
@@ -260,6 +265,8 @@ public class ConnectionManager : IInternalConnectionManager, IGuestHoleConnector
         CurrentConnectionIntent = connectionIntent;
 
         _logger.Info<ConnectTriggerLog>($"[CONNECTION_PROCESS] Reconnection attempt to: {connectionIntent}. Triggered by {reconnectionTrigger}.", stackTraceDepth: 1);
+
+        await _serversUpdater.UpdateOverdueLoadsAsync();
 
         ConnectionRequestIpcEntity request = await _reconnectionRequestCreator.CreateAsync(connectionIntent);
 
