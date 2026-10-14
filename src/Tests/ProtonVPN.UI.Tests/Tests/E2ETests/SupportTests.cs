@@ -113,12 +113,12 @@ public class SupportTests : FreshSessionSetUp
 
         List<(Point Position, Size Size)> otherFieldsBefore = GetElementsSizeAndPosition(SupportRobot.GetOtherFieldsElements);
 
-        UiActions.VerifyElementSizeAndPosition(SupportRobot.EmailInputField, emailBefore, () =>
+        UiActions.VerifyElementSizeAndPosition(InputTestData.LongInput, SupportRobot.EmailInputField, emailBefore, () =>
             SupportRobot
                 .FillEmailInBugReportForm(InputTestData.LongInput)
         );
 
-        VerifyElementsSizeAndPosition(SupportRobot.GetOtherFieldsElements, otherFieldsBefore, () =>
+        VerifyElementsSizeAndPosition(InputTestData.LongInput, SupportRobot.GetOtherFieldsElements, otherFieldsBefore, () =>
             SupportRobot
                 .FillOtherFieldsInBugReportForm(InputTestData.LongInput)
         );
@@ -148,6 +148,7 @@ public class SupportTests : FreshSessionSetUp
     }
 
     public static void VerifyElementsSizeAndPosition(
+        string input,
         Func<AutomationElement[]> elementsFunc,
         List<(Point Position, Size Size)> elementsBeforeTyping,
         Action typeAction,
@@ -169,11 +170,13 @@ public class SupportTests : FreshSessionSetUp
             bool hasSamePosition = Math.Abs(elementsBeforeTyping[i].Position.X - positionAfter.X) <= positionTolerancePx && Math.Abs(elementsBeforeTyping[i].Position.Y - positionAfter.Y) <= positionTolerancePx;
             bool hasSameSize = Math.Abs(elementsBeforeTyping[i].Size.Width - sizeAfter.Width) <= sizeTolerancePx && Math.Abs(elementsBeforeTyping[i].Size.Height - sizeAfter.Height) <= sizeTolerancePx;
 
-            Assert.That(hasSamePosition, Is.True, $"Element[{i}] position changed beyond tolerance ({positionTolerancePx}px)." +
+            string inputDescription = input.Length > 20 ? $"input with {input.Length} chars" : $"{input}";
+
+            Assert.That(hasSamePosition, Is.True, $"Element[{i}] position changed beyond tolerance ({positionTolerancePx}px) when typing: {inputDescription}" +
                 $"Before: X: {elementsBeforeTyping[i].Position.X}, Y: {elementsBeforeTyping[i].Position.Y}" +
                 $"After: X: {positionAfter.X}, Y: {positionAfter.Y}");
 
-            Assert.That(hasSameSize, Is.True, $"Element[{i}] size changed beyond tolerance ({sizeTolerancePx}px)." +
+            Assert.That(hasSameSize, Is.True, $"Element[{i}] size changed beyond tolerance ({sizeTolerancePx}px) when typing: {inputDescription}" +
                 $"Before: Width: {elementsBeforeTyping[i].Size.Width}, Height: {elementsBeforeTyping[i].Size.Height}" +
                 $"After: Width: {sizeAfter.Width}, Height: {sizeAfter.Height}");
         }

@@ -92,7 +92,7 @@ public class SidebarRobot
 
     protected Element CreateProfileButton = Element.ByAutomationId("CreateProfileButton");
 
-    protected Element SearchTextBox = Element.ByAutomationId("SearchTextBox");
+    public Element SearchTextBox => Element.ByAutomationId("SearchTextBox");
     protected Element SearchBackButton = Element.ByAutomationId("SearchBackButton");
     protected Element CountryExpanderButton = Element.ByAutomationId("ExpanderButton");
     protected Element SecondaryButton = Element.ByAutomationId("SecondaryButton");

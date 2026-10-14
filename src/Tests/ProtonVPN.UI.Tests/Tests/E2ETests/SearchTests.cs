@@ -17,10 +17,13 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Drawing;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.Enums.Locations;
+using ProtonVPN.UI.Tests.TestsHelper.TestData;
 using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
@@ -37,6 +40,7 @@ public class SearchTests : FreshSessionSetUp
     private const string SERVER = "FR#223";
 
     private static readonly string _trySearchingForText = LanguageHelper.GetTranslatedString("Search_NoInput_TrySearchingFor");
+    private static readonly string _noResultsText = LanguageHelper.GetTranslatedString("Search_NoResults_Title");
 
     [SetUp]
     public void SetUp()
@@ -175,5 +179,41 @@ public class SearchTests : FreshSessionSetUp
             .Verify.IsBackButtonInSearchBoxDisplayed()
             .ClickBackButtonInSearchBox()
             .Verify.IsSidebarConnectionsDisplayed();
+    }
+
+    [Test]
+    [Property("TestCaseId", "890297")]
+    public void SearchingWithSpecialChars()
+    {
+        SidebarRobot
+            .ClickSearchBox();
+
+        (Point Position, Size Size) elementBeforeTyping = UiActions.GetElementSizeAndPosition(SidebarRobot.SearchTextBox);
+
+        foreach (string specialChar in InputTestData.SpecialInputs)
+        {
+            UiActions.VerifyElementSizeAndPosition(specialChar, SidebarRobot.SearchTextBox, elementBeforeTyping, () =>
+                SidebarRobot
+                    .SearchFor(specialChar)
+            );
+            SidebarRobot.Verify.SidebarSearchResultContains(_noResultsText);
+        }
+    }
+
+    [Test]
+    [Property("TestCaseId", "890296")]
+    [Ignore("JIRA - VPNWIN-3343")]
+    public void SearchingWithMaxChars()
+    {
+        SidebarRobot
+            .ClickSearchBox();
+
+        (Point Position, Size Size) elementBeforeTyping = UiActions.GetElementSizeAndPosition(SidebarRobot.SearchTextBox);
+
+        UiActions.VerifyElementSizeAndPosition(InputTestData.LongInput, SidebarRobot.SearchTextBox, elementBeforeTyping, () =>
+            SidebarRobot
+                .SearchFor(InputTestData.LongInput)
+        );
+        SidebarRobot.Verify.SidebarSearchResultContains(_noResultsText);
     }
 }

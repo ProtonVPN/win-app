@@ -87,7 +87,7 @@ public class LoginSsoTests : FreshSessionSetUp
 
         (Point Position, Size Size) elementBeforeTyping = UiActions.GetElementSizeAndPosition(LoginRobot.UsernameTextBox);
 
-        UiActions.VerifyElementSizeAndPosition(LoginRobot.UsernameTextBox, elementBeforeTyping, () =>
+        UiActions.VerifyElementSizeAndPosition(InputTestData.LongInput, LoginRobot.UsernameTextBox, elementBeforeTyping, () =>
             LoginRobot
                 .EnterEmail(InputTestData.LongInput)
         );

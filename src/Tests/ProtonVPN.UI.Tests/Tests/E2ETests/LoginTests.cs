@@ -78,13 +78,13 @@ public class LoginTests : FreshSessionSetUp
 
         foreach (string specialChar in InputTestData.SpecialInputs)
         {
-            UiActions.VerifyElementSizeAndPosition(LoginRobot.UsernameTextBox, usernameElementBeforeTyping, () =>
+            UiActions.VerifyElementSizeAndPosition(specialChar, LoginRobot.UsernameTextBox, usernameElementBeforeTyping, () =>
                 LoginRobot
                     .EnterEmail(specialChar)
             );
             LoginRobot.Verify.IsSignInButtonDisplayed();
 
-            UiActions.VerifyElementSizeAndPosition(LoginRobot.PasswordTextBox, passwordElementBeforeTyping, () =>
+            UiActions.VerifyElementSizeAndPosition(specialChar, LoginRobot.PasswordTextBox, passwordElementBeforeTyping, () =>
                 LoginRobot
                     .EnterPassword(specialChar)
             );
@@ -105,13 +105,13 @@ public class LoginTests : FreshSessionSetUp
         (Point Position, Size Size) usernameElementBeforeTyping = UiActions.GetElementSizeAndPosition(LoginRobot.UsernameTextBox);
         (Point Position, Size Size) passwordElementBeforeTyping = UiActions.GetElementSizeAndPosition(LoginRobot.PasswordTextBox);
 
-        UiActions.VerifyElementSizeAndPosition(LoginRobot.UsernameTextBox, usernameElementBeforeTyping, () =>
+        UiActions.VerifyElementSizeAndPosition(InputTestData.LongInput, LoginRobot.UsernameTextBox, usernameElementBeforeTyping, () =>
             LoginRobot
                 .EnterEmail(InputTestData.LongInput)
         );
         LoginRobot.Verify.IsSignInButtonDisplayed();
 
-        UiActions.VerifyElementSizeAndPosition(LoginRobot.PasswordTextBox, passwordElementBeforeTyping, () =>
+        UiActions.VerifyElementSizeAndPosition(InputTestData.LongInput, LoginRobot.PasswordTextBox, passwordElementBeforeTyping, () =>
             LoginRobot
                 .EnterPassword(InputTestData.LongInput)
         );

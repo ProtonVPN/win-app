@@ -478,7 +478,11 @@ public static class UiActions
         return (elementPosition, elementSize);
     }
 
-    public static void VerifyElementSizeAndPosition(Element elementToVerify, (Point Position, Size Size) elementBeforeTyping, Action typeAction)
+    public static void VerifyElementSizeAndPosition(
+        string input,
+        Element elementToVerify,
+        (Point Position, Size Size) elementBeforeTyping,
+        Action typeAction)
     {
         typeAction();
 
@@ -487,13 +491,15 @@ public static class UiActions
         bool hasSamePosition = elementBeforeTyping.Position.X == elementAfterTyping.Position.X && elementBeforeTyping.Position.Y == elementAfterTyping.Position.Y;
         bool hasSameSize = elementBeforeTyping.Size.Width == elementAfterTyping.Size.Width && elementBeforeTyping.Size.Height == elementAfterTyping.Size.Height;
 
-        Assert.That(hasSamePosition, Is.True, "Element position changed." +
-            $"Before: X: {elementBeforeTyping.Position.X}, Y: {elementBeforeTyping.Position.Y}" +
-            $"After: X: {elementAfterTyping.Position.X}, Y: {elementAfterTyping.Position.Y}");
+        string inputDescription = input.Length > 20 ? $"input with {input.Length} chars" : $"{input}";
 
-        Assert.That(hasSameSize, Is.True, "Element size changed." +
-              $"Before: Width: {elementBeforeTyping.Size.Width}, Height: {elementBeforeTyping.Size.Height}" +
-              $"After: Width: {elementAfterTyping.Size.Width}, Height: {elementAfterTyping.Size.Height}");
+        Assert.That(hasSamePosition, Is.True, $"Element position changed when typing: {inputDescription}" +
+            $"\nBefore: X: {elementBeforeTyping.Position.X}, Y: {elementBeforeTyping.Position.Y}" +
+            $"\nAfter: X: {elementAfterTyping.Position.X}, Y: {elementAfterTyping.Position.Y}");
+
+        Assert.That(hasSameSize, Is.True, $"Element size changed when typing: {inputDescription}" +
+            $"\nBefore: Width: {elementBeforeTyping.Size.Width}, Height: {elementBeforeTyping.Size.Height}" +
+            $"\nAfter: Width: {elementAfterTyping.Size.Width}, Height: {elementAfterTyping.Size.Height}");
     }
 
     public static T ClearInput<T>(this T desiredElement) where T : Element

@@ -286,7 +286,7 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
 
         foreach (string specialChar in InputTestData.SpecialInputs)
         {
-            UiActions.VerifyElementSizeAndPosition(SettingRobot.ExcludedLocationFlyout, elementBeforeTyping, () =>
+            UiActions.VerifyElementSizeAndPosition(specialChar, SettingRobot.ExcludedLocationFlyout, elementBeforeTyping, () =>
             SettingRobot
                 .SearchExcludedLocations(specialChar, useKeyboard: false)
             );
@@ -307,7 +307,7 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
 
         (Point Position, Size Size) elementBeforeTyping = UiActions.GetElementSizeAndPosition(SettingRobot.ExcludedLocationFlyout);
 
-        UiActions.VerifyElementSizeAndPosition(SettingRobot.ExcludedLocationFlyout, elementBeforeTyping, () =>
+        UiActions.VerifyElementSizeAndPosition(InputTestData.LongInput, SettingRobot.ExcludedLocationFlyout, elementBeforeTyping, () =>
             SettingRobot
                 .SearchExcludedLocations(InputTestData.LongInput, useKeyboard: false)
         );
