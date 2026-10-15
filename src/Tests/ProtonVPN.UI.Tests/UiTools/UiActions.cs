@@ -32,6 +32,7 @@ using FlaUI.Core.Conditions;
 using FlaUI.Core.Definitions;
 using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.Enums.Locations;
@@ -278,6 +279,9 @@ public static class UiActions
         return element?.Name;
     }
 
+    public static string? GetTextBoxText<T>(this T desiredElement) where T : Element
+        => WaitUntilExists(desiredElement)?.AsTextBox().Text;
+
     public static T SetText<T>(this T desiredElement, string input) where T : Element
     {
         AutomationElement? elementToClick = WaitUntilExists(desiredElement);
@@ -285,6 +289,19 @@ public static class UiActions
         {
             elementToClick.AsTextBox().Text = input;
         }
+
+        return desiredElement;
+    }
+
+    public static T PasteText<T>(this T desiredElement, string input) where T : Element
+    {
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        element?.WaitUntilClickable(TestConstants.TenSecondsTimeout);
+        element?.Click();
+
+        DesktopRobot.SetClipboardText(input);
+        Thread.Sleep(TestConstants.UserInputSimulationDelay);
+        Keyboard.TypeSimultaneously(VirtualKeyShort.CONTROL, VirtualKeyShort.KEY_V);
 
         return desiredElement;
     }

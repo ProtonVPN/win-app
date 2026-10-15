@@ -159,14 +159,6 @@ public class InstallerTests : BaseTest
     [Property("TestCaseId", "602375")]
     public void InstalledProtonAppsAreNotDisplayedInUniversalInstaller()
     {
-        //temp
-        string protonMailPath = Path.Combine(TestConstants.LocalAppData, @"proton_mail");
-        if (Directory.Exists(protonMailPath))
-        {
-            Directory.Delete(protonMailPath, recursive: true);
-        }
-        //
-
         InstallerRobot
             .StartInstaller()
             .SelectLanguage()
@@ -179,19 +171,9 @@ public class InstallerTests : BaseTest
         //Allow it some time
         //Thread.Sleep(TestConstants.OneMinuteTimeout);
 
-        //temp
-        Thread.Sleep(TestConstants.OneMinuteTimeout);
-        Thread.Sleep(TestConstants.TwoMinutesTimeout);
-        TestContext.WriteLine($"Contents of '{protonMailPath}':");
-        foreach (string entry in Directory.GetFileSystemEntries(protonMailPath))
-        {
-            TestContext.WriteLine($"  {entry}");
-        }
-        //
-
         InstallerRobot
             .Verify.IsAppInstalled(ProtonApp.Vpn)
-            //.Verify.IsAppInstalled(ProtonApp.Mail) //temp
+            .Verify.IsAppInstalled(ProtonApp.Mail)
             .Verify.IsAppInstalled(ProtonApp.Drive)
             .Verify.IsAppInstalled(ProtonApp.Pass);
 

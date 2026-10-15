@@ -55,6 +55,47 @@ public class DesktopRobot : IDisposable
     private static AutomationElement DoNotDisturbToggle => SettingsWindow.FindFirstDescendant(cf => cf.ByName("Do not disturb").And(cf.ByClassName("ToggleSwitch")))!;
     private static AutomationElement ProtonVpnNotificationToggle => SettingsWindow.FindFirstDescendant(cf => cf.ByName("Proton VPN").And(cf.ByClassName("ToggleSwitch")))!;
 
+    public static void SetClipboardText(string text)
+    {
+        const int maxAttempts = 5;
+        Exception? exception = null;
+
+        Thread thread = new(() =>
+        {
+            for (int attempt = 1; attempt <= maxAttempts; attempt++)
+            {
+                try
+                {
+                    if (string.IsNullOrEmpty(text))
+                    {
+                        Clipboard.Clear();
+                    }
+                    else
+                    {
+                        Clipboard.SetText(text);
+                    }
+
+                    exception = null;
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    exception = ex;
+                    Thread.Sleep(TestConstants.RetryInterval);
+                }
+            }
+        });
+
+        thread.SetApartmentState(ApartmentState.STA);
+        thread.Start();
+        thread.Join();
+
+        if (exception is not null)
+        {
+            throw new InvalidOperationException($"Failed to set clipboard text after {maxAttempts} attempts.", exception);
+        }
+    }
+
     public static string ReadClipboardText()
     {
         StringBuilder? value = new();

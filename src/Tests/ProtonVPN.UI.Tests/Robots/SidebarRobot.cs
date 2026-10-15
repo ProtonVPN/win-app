@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Linq;
 using System.Threading;
 using System.Collections.Generic;
 using FlaUI.Core.Input;
@@ -682,6 +683,18 @@ public class SidebarRobot
         public Verifications DoesConnectionItemExist(string connectionItemName)
         {
             Element.ByName(connectionItemName).WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications DuplicateProfiles(string profileName, int expectedCount = 2)
+        {
+            List<string> allChildren = CountriesListGroup.GetAllChildrenNames();
+            int actualCount = allChildren.Count(n => n == profileName);
+
+            Assert.That(actualCount, Is.EqualTo(expectedCount),
+                $"Expected {expectedCount} children named '{profileName}' inside '{CountriesListGroup.SelectorName}', " +
+                $"but found {actualCount}. All children: [{string.Join(", ", allChildren)}].");
+
             return this;
         }
 

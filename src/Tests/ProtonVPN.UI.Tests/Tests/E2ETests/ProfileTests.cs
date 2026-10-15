@@ -18,16 +18,19 @@
  */
 
 using System;
+using System.Drawing;
 using System.Threading;
 using FlaUI.Core.Input;
 using FlaUI.Core.WindowsAPI;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.Enums.Locations;
+using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
+using ProtonVPN.UI.Tests.TestsHelper.TestData;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -51,6 +54,8 @@ public class ProfileTests : FreshSessionSetUp
     private const string APP_PROFILE_NAME = "Open app Profile";
     private const string APP_TO_OPEN = "Google Chrome";
     private const string APP_TO_OPEN_PATH = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
+
+    private const string MICROSOFT_APP_TO_OPEN = "Brave";
 
     private readonly string _connectionCardDescription = $"{COUNTRY_NAME.GetName()} - {CITY_NAME.GetEnumValue()}";
 
@@ -343,6 +348,100 @@ public class ProfileTests : FreshSessionSetUp
         }
 
         //TODO: The map highlights the country of the server;
+    }
+
+    [Test]
+    [Property("TestCaseId", "916360")]
+    [Ignore("Waiting for MR/2284 to be merged")]
+    [Category("5")]
+    [Retry(3)]
+    public void ConnectAndGoMicrosoftApp()
+    {
+        BrowserUtils.KillAllBrowsers();
+
+        SidebarRobot
+            .ClickCreateProfile();
+        NavigationRobot
+            .Verify.IsOnProfilePage();
+        ProfileRobot
+            .SetProfileName(APP_PROFILE_NAME)
+            .SelectConnectAndGoOption(ConnectAndGoOption.OpenApp)
+            .SelectConnectAndGoMicrosoftApp(MICROSOFT_APP_TO_OPEN)
+            .Verify.IsAppSelected(MICROSOFT_APP_TO_OPEN);
+        SaveProfile();
+
+        SidebarRobot
+            .ConnectToProfile(APP_PROFILE_NAME);
+
+        HomeRobot
+            .Verify.IsConnected()
+                   .ConnectionCardTitleEquals(APP_PROFILE_NAME);
+
+        DesktopRobot
+            .Verify.IsWindowTitlePresent(MICROSOFT_APP_TO_OPEN);
+
+        BrowserUtils.KillAllBrowsers();
+    }
+
+    [Test]
+    [Property("TestCaseId", "890300")]
+    public void CreateSameNameProfile()
+    {
+        QuickCreateProfile(PROFILE_NAME);
+        QuickCreateProfile(PROFILE_NAME);
+
+        SidebarRobot
+            .Verify.DuplicateProfiles(PROFILE_NAME);
+    }
+
+    [Test]
+    [Property("TestCaseId", "890299")]
+    public void CreateProfileWithSpecialChars()
+    {
+        foreach (string specialChar in InputTestData.SpecialInputs)
+        {
+            SidebarRobot
+                .ClickCreateProfile();
+
+            (Point Position, Size Size) elementBeforeTyping = UiActions.GetElementSizeAndPosition(ProfileRobot.ProfileNameTextBox);
+
+            UiActions.VerifyElementSizeAndPosition(specialChar, ProfileRobot.ProfileNameTextBox, elementBeforeTyping, () =>
+                ProfileRobot
+                    .SetProfileName(specialChar, pasteText: true)
+            );
+
+            VerifyProfileIsTruncated(specialChar);
+        }
+    }
+
+    [Test]
+    [Property("TestCaseId", "890298")]
+    public void CreateProfileWithMaxChars()
+    {
+        SidebarRobot
+            .ClickCreateProfile();
+
+        (Point Position, Size Size) elementBeforeTyping = UiActions.GetElementSizeAndPosition(ProfileRobot.ProfileNameTextBox);
+
+        UiActions.VerifyElementSizeAndPosition(InputTestData.LongInput, ProfileRobot.ProfileNameTextBox, elementBeforeTyping, () =>
+            ProfileRobot
+                .SetProfileName(InputTestData.LongInput, pasteText: true)
+        );
+
+        VerifyProfileIsTruncated(InputTestData.LongInput);
+    }
+
+    private void VerifyProfileIsTruncated(string profileName)
+    {
+        string truncatedName = profileName[..Math.Min(ProfileRobot.MAX_PROFILE_NAME_LENGTH, profileName.Length)];
+
+        ProfileRobot
+            .Verify.ProfileNameIsTruncatedTo(truncatedName)
+            .SaveProfile();
+
+        SidebarRobot
+            .ScrollToProfile(truncatedName)
+            .Verify.DoesConnectionItemExist(truncatedName);
     }
 
     private void QuickCreateProfile(string profileName)

@@ -100,7 +100,6 @@ public class SupportTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "890321")]
-    [Ignore("JIRA - VPNWIN-3344")]
     public void BugReportWithMaxChars()
     {
         LoginRobot
