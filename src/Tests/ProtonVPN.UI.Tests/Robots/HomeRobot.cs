@@ -22,6 +22,7 @@ using System.Linq;
 using System.Threading;
 using System.Collections.Generic;
 using FlaUI.Core.Input;
+using FlaUI.Core.WindowsAPI;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
 using ProtonVPN.UI.Tests.UiTools;
@@ -109,6 +110,48 @@ public class HomeRobot
     protected Element DefaultConnectionDropdown => Element.ByAutomationId("DefaultConnectionDropdown");
 
     protected Element ShowIpFlyoutButton => Element.ByAutomationId("ShowIpFlyoutButton");
+
+    protected Element ConnectionFeedbackText => Element.ByAutomationId("ConnectionFeedbackText");
+    protected Element ConnectionFeedbackThumbsUpButton => Element.ByAutomationId("ConnectionFeedbackThumbsUpButton");
+    protected Element ConnectionFeedbackThumbsDownButton => Element.ByAutomationId("ConnectionFeedbackThumbsDownButton");
+
+    public HomeRobot PressThumbsUpInTheConnectionFeedback(bool useKeyboard = false, bool isTray = false)
+    {
+        if (useKeyboard)
+        {
+            int tabClicks = isTray ? 5 : 4;
+            for (int i = 0; i < tabClicks; i++)
+            {
+                Keyboard.Type(VirtualKeyShort.TAB);
+                Thread.Sleep(TestConstants.UserInputSimulationDelay);
+            }
+            Keyboard.Type(VirtualKeyShort.SPACE);
+        }
+        else
+        {
+            ConnectionFeedbackThumbsUpButton.Click();
+        }
+        return this;
+    }
+
+    public HomeRobot PressThumbsDownInTheConnectionFeedback(bool useKeyboard = false, bool isTray = false)
+    {
+        if (useKeyboard)
+        {
+            int tabClicks = isTray ? 4 : 3;
+            for (int i = 0; i < tabClicks; i++)
+            {
+                Keyboard.Type(VirtualKeyShort.TAB);
+                Thread.Sleep(TestConstants.UserInputSimulationDelay);
+            }
+            Keyboard.Type(VirtualKeyShort.SPACE);
+        }
+        else
+        {
+            ConnectionFeedbackThumbsDownButton.Click();
+        }
+        return this;
+    }
 
     public HomeRobot DismissWelcomeModal()
     {
@@ -285,6 +328,25 @@ public class HomeRobot
 
     public class Verifications : HomeRobot
     {
+        public Verifications IsConnectionFeedbackDisplayed()
+        {
+            ConnectionFeedbackText.WaitUntilDisplayed();
+            ConnectionFeedbackThumbsUpButton.WaitUntilDisplayed();
+            ConnectionFeedbackThumbsDownButton.WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications IsConnectionFeedbackMissing()
+        {
+            //time for the animation to disappear
+            Thread.Sleep(TestConstants.TwoSecondsTimeout);
+
+            ConnectionFeedbackText.DoesNotExist();
+            ConnectionFeedbackThumbsUpButton.DoesNotExist();
+            ConnectionFeedbackThumbsDownButton.DoesNotExist();
+            return this;
+        }
+
         public Verifications IsLocationDetailsPanelEmpty()
         {
             LocationDetailsIpAddress.SiblingTextEquals("-");

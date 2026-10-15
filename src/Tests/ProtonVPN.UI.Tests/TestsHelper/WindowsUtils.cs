@@ -43,6 +43,26 @@ public class WindowsUtils
         Assert.That(lastLine, Does.Contain(wordToLookFor ?? lineToLookFor));
     }
 
+    public static int CountLogLines(string filePath, string lineToLookFor)
+    {
+        if (!File.Exists(filePath))
+        {
+            throw new FileNotFoundException($"File not found at path: {filePath}");
+        }
+
+        string tempFile = Path.GetTempFileName();
+        File.Copy(filePath, tempFile, true);
+
+        try
+        {
+            return File.ReadAllLines(tempFile).Count(l => l.Contains(lineToLookFor));
+        }
+        finally
+        {
+            File.Delete(tempFile);
+        }
+    }
+
     public static string? GetLastLogLine(string filePath, string lineToLookFor, string? wordToLookFor = null)
     {
         if (!File.Exists(filePath))

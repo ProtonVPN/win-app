@@ -172,12 +172,12 @@ public class SupportTests : FreshSessionSetUp
             string inputDescription = input.Length > 20 ? $"input with {input.Length} chars" : $"{input}";
 
             Assert.That(hasSamePosition, Is.True, $"Element[{i}] position changed beyond tolerance ({positionTolerancePx}px) when typing: {inputDescription}" +
-                $"Before: X: {elementsBeforeTyping[i].Position.X}, Y: {elementsBeforeTyping[i].Position.Y}" +
-                $"After: X: {positionAfter.X}, Y: {positionAfter.Y}");
+                $"\nBefore: X: {elementsBeforeTyping[i].Position.X}, Y: {elementsBeforeTyping[i].Position.Y}" +
+                $"\nAfter: X: {positionAfter.X}, Y: {positionAfter.Y}");
 
             Assert.That(hasSameSize, Is.True, $"Element[{i}] size changed beyond tolerance ({sizeTolerancePx}px) when typing: {inputDescription}" +
-                $"Before: Width: {elementsBeforeTyping[i].Size.Width}, Height: {elementsBeforeTyping[i].Size.Height}" +
-                $"After: Width: {sizeAfter.Width}, Height: {sizeAfter.Height}");
+                $"\nBefore: Width: {elementsBeforeTyping[i].Size.Width}, Height: {elementsBeforeTyping[i].Size.Height}" +
+                $"\nAfter: Width: {sizeAfter.Width}, Height: {sizeAfter.Height}");
         }
     }
 

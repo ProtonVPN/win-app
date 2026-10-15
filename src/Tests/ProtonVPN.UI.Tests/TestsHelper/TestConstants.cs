@@ -58,6 +58,7 @@ public static class TestConstants
     public static string GlobalSettingsPath => Path.Combine(StoragePath, "GlobalSettings.json");
 
     public static bool IsProTunVersion = Version.TryParse(TestEnvironment.GetAppVersion(), out Version? v) && v.Major >= 5;
+    public static bool IsDebugVersion = File.Exists(Path.Combine(TestEnvironment.GetProtonClientFolder(), "_configuration.json"));
     public static readonly string ViaPrefix = LanguageHelper.GetTranslatedString("Connection_Via_SecureCore").Replace("{0}", "");
 
     // These 4 countries are all available options in the All, Secure Core, P2P, and Tor tabs.

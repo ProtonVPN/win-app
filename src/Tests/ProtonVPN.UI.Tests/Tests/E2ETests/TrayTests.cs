@@ -47,10 +47,15 @@ public class TrayTests : BaseTest
     [SetUp]
     public void SetUp()
     {
+        bool isCheckLoginTest = TestContext.CurrentContext.Test.MethodName == nameof(CheckTrayOnLogin);
+        bool isFreeUserTest = TestContext.CurrentContext.Test.MethodName == nameof(ChangeServerFromTray);
         LaunchClient();
-        CommonUiFlows.FullLogin(TestUserData.PlusUser);
-        HomeRobot.MinimizeClientViaMinimizeButton();
-        DesktopRobot.Verify.IsTrayIconDisplayed();
+        if (!isCheckLoginTest)
+        {
+            CommonUiFlows.FullLogin(isFreeUserTest ? TestUserData.FreeUser : TestUserData.PlusUser);
+            HomeRobot.MinimizeClientViaMinimizeButton();
+            DesktopRobot.Verify.IsTrayIconDisplayed();
+        }
     }
 
     [Test, Order(0)]
@@ -319,10 +324,6 @@ public class TrayTests : BaseTest
     [Retry(3)]
     public void ChangeServerFromTray()
     {
-        ReLaunchApp();
-        CommonUiFlows.FullLogin(TestUserData.FreeUser);
-        HomeRobot.MinimizeClientViaMinimizeButton();
-
         using (TrayApp)
         {
             HomeRobot
@@ -343,7 +344,6 @@ public class TrayTests : BaseTest
     [Retry(3)]
     public void CheckTrayOnLogin()
     {
-        ReLaunchApp();
         LoginRobot.Verify.IsLoginWindowDisplayed();
         DesktopRobot.Verify.IsTrayIconDisplayed();
 
@@ -382,14 +382,6 @@ public class TrayTests : BaseTest
         Thread.Sleep(TestConstants.FiveSecondsTimeout);
 
         CommonAssertions.VerifyAppIsNotRunning();
-    }
-
-    private void ReLaunchApp()
-    {
-        OpenMainWindow();
-        Cleanup();
-        Thread.Sleep(TestConstants.FiveSecondsTimeout);
-        LaunchClient();
     }
 
     private void ToggleKillSwitch(bool shouldBeEnabled)
