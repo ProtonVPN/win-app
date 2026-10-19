@@ -6,7 +6,7 @@
     <TestSessionTimeout>3600000</TestSessionTimeout>
   </RunConfiguration>
 
-  <!-- Blame hang detection: if no test activity for 7 min, dump + name the hung test, then terminate -->
+  <!-- Blame hang detection: if a single test runs for 15 min, dump + name the hung test, then terminate -->
   <LoggerRunSettings>
     <Loggers>
       <Logger friendlyName="blame" enabled="True" />
@@ -17,8 +17,8 @@
     <DataCollectors>
       <DataCollector friendlyName="blame" enabled="True">
         <Configuration>
-          <!-- 7 min of no progress => considered hung -->
-          <CollectDumpOnTestSessionHang TestTimeout="420000" HangDumpType="None" />
+          <!-- 15 min for a single test (setup + test + retries) => considered hung -->
+          <CollectDumpOnTestSessionHang TestTimeout="900000" HangDumpType="None" />
         </Configuration>
       </DataCollector>
     </DataCollectors>

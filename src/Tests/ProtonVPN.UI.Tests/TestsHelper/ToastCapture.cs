@@ -36,10 +36,24 @@ public static partial class ToastCapture
     private static partial Regex PortRegex();
     private static readonly Regex _portRegex = PortRegex();
 
-    private static readonly Element _title2 = Element.ByAutomationId("Title2");
-    private static readonly Element _messageText2 = Element.ByAutomationId("MessageText2");
+    private static readonly string[] _titleIds = ["Title", "Title2"];
+    private static readonly string[] _messageIds = ["MessageText", "MessageText2"];
     private static readonly Element _verbButton = Element.ByAutomationId("VerbButton");
     private static readonly Element _dismissButton = Element.ByAutomationId("DismissButton");
+
+    private static AutomationElement? FindByAnyId(AutomationElement scope, string[] automationIds)
+    {
+        foreach (string automationId in automationIds)
+        {
+            AutomationElement? element = scope.FindFirstDescendant(cf => cf.ByAutomationId(automationId));
+            if (element != null)
+            {
+                return element;
+            }
+        }
+
+        return null;
+    }
 
     public static bool WaitForToastVisible(UIA3Automation automation, TimeSpan timeout)
     {
@@ -51,8 +65,8 @@ public static partial class ToastCapture
             AutomationElement? scope = FindToastRoot(desktop);
             if (scope != null)
             {
-                AutomationElement? title = scope.FindFirstDescendant(_title2.Condition);
-                AutomationElement? message = scope.FindFirstDescendant(_messageText2.Condition);
+                AutomationElement? title = FindByAnyId(scope, _titleIds);
+                AutomationElement? message = FindByAnyId(scope, _messageIds);
 
                 bool titleVisible = title != null && !title.Properties.IsOffscreen.ValueOrDefault;
                 bool messageVisible = message != null && !message.Properties.IsOffscreen.ValueOrDefault;
@@ -211,13 +225,13 @@ public static partial class ToastCapture
 
     private static string? TryGetTextFromMessage(AutomationElement scope)
     {
-        AutomationElement? element = scope.FindFirstDescendant(_messageText2.Condition);
+        AutomationElement? element = FindByAnyId(scope, _messageIds);
         return ReadTextFromElement(element);
     }
 
     private static string? TryGetTextFromTitle(AutomationElement scope)
     {
-        AutomationElement? element = scope.FindFirstDescendant(_title2.Condition);
+        AutomationElement? element = FindByAnyId(scope, _titleIds);
         return ReadTextFromElement(element);
     }
 
@@ -239,13 +253,13 @@ public static partial class ToastCapture
 
     private static int? TryResolveFromMessage(AutomationElement scope)
     {
-        AutomationElement? element = scope.FindFirstDescendant(_messageText2.Condition);
+        AutomationElement? element = FindByAnyId(scope, _messageIds);
         return ParsePortFromElement(element);
     }
 
     private static int? TryResolveFromTitle(AutomationElement scope)
     {
-        AutomationElement? element = scope.FindFirstDescendant(_title2.Condition);
+        AutomationElement? element = FindByAnyId(scope, _titleIds);
         return ParsePortFromElement(element);
     }
 

@@ -341,15 +341,14 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
             .Verify.IsCountryAtRecentsPosition(_lastConnectionCountries[0], position: 4)
             .ConnectViaServerList(_lastConnectionCountries[2].GetName());
         HomeRobot
-            .Verify.IsConnected();
+            .Verify.IsConnected()
+            .ClickOnConnectionCardTitle();
         SidebarRobot
             .Verify.IsCountryAtRecentsPosition(_lastConnectionCountries[2], position: 0)
             .Verify.IsCountryAtRecentsPosition(_lastConnectionCountries[4], position: 1)
             .Verify.IsCountryAtRecentsPosition(_lastConnectionCountries[0], position: 4);
 
-        HomeRobot
-            .SelectDefaultConnectionOption(VpnConnectionOption.Last)
-            .Verify.ConnectionCardTitleEquals(_lastConnectionCountries[2].GetName());
+        ChooseDefaultConnectionFromSettingsAndVerifyConnectionCardTitle(VpnConnectionOption.Last, _lastConnectionCountries[2].GetName());
 
         RestartApp();
 

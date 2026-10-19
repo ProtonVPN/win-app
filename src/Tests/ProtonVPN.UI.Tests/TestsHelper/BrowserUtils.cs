@@ -43,6 +43,11 @@ public class BrowserUtils
     private const string CHROME_PATH = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
     private const string EDGE_PATH = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe";
     private static readonly string _bravePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"BraveSoftware\Brave-Browser\Application\brave.exe");
+    public static readonly string[] StreamingWebsites =
+    [
+            "https://pluto.tv/",
+            "https://abc.com/watch-live"
+    ];
 
     private const string WEB_RTC_SCRIPT = """
         new Promise((resolve) => {
@@ -129,9 +134,13 @@ public class BrowserUtils
         AssertBrowserLoadsUrl(browserApp, "https://duckduckgo.com/", "DuckDuckGo");
     }
 
-    public static void OpenStreamingWebsite(Browser browserApp)
+    public static void OpenStreamingWebsite(Browser browserApp, string url)
     {
-        AssertBrowserLoadsUrl(browserApp, "https://abc.com/watch-live", "ABC Live Stream");
+        KillAllBrowsers();
+
+        ExecuteWithBrowserRetry(browserApp,
+            port => ExecuteScriptInBrowserAsync(port, url, "document.title || 'loaded'"),
+            headless: false);
     }
 
     private static void AssertBrowserLoadsUrl(Browser browserApp, string url, string expectedTitle)
@@ -164,11 +173,14 @@ public class BrowserUtils
             port => ExecuteScriptInBrowserAsync(port, url, "document.title"));
     }
 
-    private static string ExecuteWithBrowserRetry(Browser browserApp, Func<int, Task<string>> operation)
+    private static string ExecuteWithBrowserRetry(
+        Browser browserApp,
+        Func<int, Task<string>> operation,
+        bool headless = true)
     {
         (string Path, int DebugPort) browserConfig = GetBrowserConfig(browserApp);
 
-        StartBrowserWithCDP(browserConfig.Path, browserConfig.DebugPort);
+        StartBrowserWithCDP(browserConfig.Path, browserConfig.DebugPort, headless);
 
         RetryResult<string> retry = Retry.WhileEmpty(
             () =>
@@ -196,14 +208,14 @@ public class BrowserUtils
         }
     }
 
-    private static void StartBrowserWithCDP(string browserPath, int debugPort)
+    private static void StartBrowserWithCDP(string browserPath, int debugPort, bool headless = true)
     {
         string userDataDir = Path.Combine(Path.GetTempPath(), $"cdp-profile-{debugPort}");
 
         ProcessStartInfo startInfo = new()
         {
             FileName = browserPath,
-            Arguments = $"--remote-debugging-port={debugPort} --headless " +
+            Arguments = $"--remote-debugging-port={debugPort} {(headless ? "--headless " : "")}" +
                         $"--user-data-dir=\"{userDataDir}\" " +
                         "--no-first-run --no-default-browser-check --disable-gpu about:blank",
             UseShellExecute = false,

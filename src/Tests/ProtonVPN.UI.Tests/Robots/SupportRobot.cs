@@ -53,7 +53,7 @@ public class SupportRobot
     public SupportRobot FillEmailInBugReportForm(string emailField = "testing@email.com")
     {
         EmailInputField.WaitUntilDisplayed();
-        EmailInputField.SetText(emailField);
+        EmailInputField.ClearInput().PasteText(emailField);
         return this;
     }
 
@@ -62,11 +62,8 @@ public class SupportRobot
         foreach (AutomationElement field in GetOtherFieldsElements())
         {
             field.Patterns.ScrollItem.Pattern.ScrollIntoView();
-            TextBox textBox = field.AsTextBox();
-            if (textBox is not null)
-            {
-                textBox.Text = otherFields;
-            }
+            Element fieldElement = new(cf => cf.ByAutomationId(field.AutomationId).And(cf.ByName(field.Name)), field.Name);
+            fieldElement.PasteText(otherFields);
         }
         return this;
     }

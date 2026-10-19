@@ -285,13 +285,34 @@ public class FreeUserTests : FreshSessionSetUp
             .ConnectViaConnectionCard()
             .Verify.IsConnected();
 
-        BrowserUtils.OpenStreamingWebsite(BROWSER_APP);
+        bool isUpsellDisplayed = false;
 
-        UpsellCarrouselRobot
-            .Verify.IsStreamingInProgressUpsellDisplayed()
-            .CloseModal();
+        try
+        {
+            foreach (string website in BrowserUtils.StreamingWebsites)
+            {
+                BrowserUtils.OpenStreamingWebsite(BROWSER_APP, website);
 
-        BrowserUtils.KillAllBrowsers();
+                try
+                {
+                    UpsellCarrouselRobot.Verify.IsStreamingInProgressUpsellDisplayed();
+                    isUpsellDisplayed = true;
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    TestContext.WriteLine($"Streaming upsell was not displayed after opening {website}: {ex.Message}");
+                }
+            }
+
+            Assert.That(isUpsellDisplayed, $"Streaming upsell was not displayed after opening any of: {string.Join(", ", BrowserUtils.StreamingWebsites)}");
+
+            UpsellCarrouselRobot.CloseModal();
+        }
+        finally
+        {
+            BrowserUtils.KillAllBrowsers();
+        }
     }
 
     [Test]

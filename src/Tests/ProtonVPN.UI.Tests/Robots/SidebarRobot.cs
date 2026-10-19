@@ -580,6 +580,7 @@ public class SidebarRobot
 
         public Verifications SidebarSearchResultContains(string textToLookFor)
         {
+            Thread.Sleep(TestConstants.OneSecondTimeout);
             List<string> allChildren = SearchResultsPage.GetAllChildrenNames();
             Assert.That(allChildren, Does.Contain(textToLookFor));
             return this;

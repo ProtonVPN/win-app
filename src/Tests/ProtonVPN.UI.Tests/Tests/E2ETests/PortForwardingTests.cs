@@ -182,6 +182,8 @@ public class PortForwardingTests : FreshSessionSetUp
         Assert.That(widgetMenuPort == flyoutHoverPort && flyoutHoverPort == settingsPort,
             $"Port in Flyout menu ({flyoutHoverPort}) does not match port in UI ({widgetMenuPort}) or settings ({settingsPort}).");
 
+        SettingRobot.CloseSettings();
+
         VerifyPortUnavailableForServerWithoutP2PSupport();
 
         CommonUiFlows.EnsureUserIsDisconnected();
@@ -213,6 +215,8 @@ public class PortForwardingTests : FreshSessionSetUp
         FeaturesRobot
             .HoverOverPortForwardingWidget()
             .Verify.IsPortUnavailable();
+
+        HomeRobot.ClickOnConnectionCardTitle();
     }
 
     private static void ConnectToServerWithoutP2PSupport()

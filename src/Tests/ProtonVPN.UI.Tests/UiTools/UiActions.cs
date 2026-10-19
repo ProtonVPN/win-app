@@ -534,7 +534,7 @@ public static class UiActions
     {
         AutomationElement? element = WaitUntilExists(desiredElement);
 
-        Rectangle rect = element!.Parent.BoundingRectangle;
+        Rectangle rect = element!.BoundingRectangle;
         int x = rect.Right - (rect.Height / 2);
         int y = rect.Top + rect.Height / 2;
 

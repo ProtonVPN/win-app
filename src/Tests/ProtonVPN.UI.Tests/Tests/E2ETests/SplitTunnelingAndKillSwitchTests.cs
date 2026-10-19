@@ -119,7 +119,7 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
 
     [Test, Order(4)]
     [Property("TestCaseId", "787614")]
-    [Retry(3)]
+    [Retry(2)]
     public void IncludedAppLossesInternetWhileInConnectingState()
     {
         CompletePreconditionsSplitTunnelingApp(SplitTunnelingMode.Include);
@@ -142,9 +142,6 @@ public class SplitTunnelingAndKillSwitchTests : FreshSessionSetUp
             BrowserUtils.AssertBrowserInternetAvailability(APP_TO_CHECK, shouldBeAvailable: false);
 
             ScriptHelper.RemoveVpnSpeedLimit();
-            Thread.Sleep(TestConstants.TenSecondsTimeout);
-            ScriptHelper.RemoveVpnSpeedLimit();
-            Thread.Sleep(TestConstants.OneMinuteTimeout);
 
             HomeRobot
                 .Verify.IsConnected();

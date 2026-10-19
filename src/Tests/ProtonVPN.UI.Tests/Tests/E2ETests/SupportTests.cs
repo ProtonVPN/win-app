@@ -118,12 +118,18 @@ public class SupportTests : FreshSessionSetUp
         );
 
         VerifyElementsSizeAndPosition(InputTestData.LongInput, SupportRobot.GetOtherFieldsElements, otherFieldsBefore, () =>
+        {
             SupportRobot
                 .FillOtherFieldsInBugReportForm(InputTestData.LongInput)
-        );
+                .ScrollUpAndDown();
+        });
+
+        foreach (AutomationElement field in SupportRobot.GetOtherFieldsElements().Append(SupportRobot.EmailInputField.WaitUntilExists()!))
+        {
+            Assert.That(field.AsTextBox().Text.Length, Is.GreaterThan(0).And.LessThan(InputTestData.LongInput.Length), $"Field '{field.Properties.AutomationId.ValueOrDefault}' was not truncated to its max length.");
+        }
 
         SupportRobot
-            .ScrollUpAndDown()
             .FillEmailInBugReportForm()
             .TickIncludeLogsCheckbox()
             .Verify.IsNoLogsAttachedWarningDisplayed()
