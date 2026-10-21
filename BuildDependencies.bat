@@ -74,7 +74,7 @@ echo Fetching %~1 %time%
 
 echo "%DEPENDENCY_CACHE_URL%/%~2/%~3/%~1"
 
-curl --fail -o "%destDir%%~1" "%DEPENDENCY_CACHE_URL%/%~2/%~3/%~1" || (
+curl --fail --connect-timeout 10 --speed-limit 10000 --speed-time 60 -o "%destDir%%~1" "%DEPENDENCY_CACHE_URL%/%~2/%~3/%~1" || (
     echo ERROR: Failed to fetch %~1 from %DEPENDENCY_CACHE_URL%/%~2/%~3/%~1 1>&2
     exit /b 1
 )
