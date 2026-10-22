@@ -132,14 +132,12 @@ public class AutoStartupTests : FreshSessionSetUp
         SettingRobot.ApplySettings();
 
         HomeRobot.MaximizeClientSizeViaMaximizeButton();
-        TestContext.WriteLine("Checking with Maximize");
-        VerifyAppSizeAndPosition(ExitMethod.ReLogin);
+        VerifyAppSizeAndPosition(ExitMethod.ReLogin, "maximized window");
 
         HomeRobot.RestoreClientSizeViaRestoreButton();
 
         UiActions.ResizeAndRepositionWindow();
-        TestContext.WriteLine("Checking with Custom Position");
-        VerifyAppSizeAndPosition(ExitMethod.ReLogin);
+        VerifyAppSizeAndPosition(ExitMethod.ReLogin, "custom position");
     }
 
     [Test]
@@ -150,17 +148,15 @@ public class AutoStartupTests : FreshSessionSetUp
         SettingRobot.ApplySettings();
 
         HomeRobot.MaximizeClientSizeViaMaximizeButton();
-        TestContext.WriteLine("Checking with Maximize");
-        VerifyAppSizeAndPosition(ExitMethod.Restart);
+        VerifyAppSizeAndPosition(ExitMethod.Restart, "maximized window");
 
         HomeRobot.RestoreClientSizeViaRestoreButton();
 
         UiActions.ResizeAndRepositionWindow();
-        TestContext.WriteLine("Checking with custom position");
-        VerifyAppSizeAndPosition(ExitMethod.Restart);
+        VerifyAppSizeAndPosition(ExitMethod.Restart, "custom position");
     }
 
-    private static void VerifyAppSizeAndPosition(ExitMethod exitMethod)
+    private static void VerifyAppSizeAndPosition(ExitMethod exitMethod, string scenario)
     {
         (Point Position, Size Size) beforeRestart = UiActions.GetWindowSizeAndPosition();
 
@@ -182,12 +178,12 @@ public class AutoStartupTests : FreshSessionSetUp
         bool hasSamePosition = beforeRestart.Position.X == afterRestart.Position.X && beforeRestart.Position.Y == afterRestart.Position.Y;
         bool hasSameSize = beforeRestart.Size.Width == afterRestart.Size.Width && beforeRestart.Size.Height == afterRestart.Size.Height;
 
-        Assert.That(hasSamePosition, Is.True, "Window position changed." +
-            $"Before with {exitMethod}: X: {beforeRestart.Position.X}, Y: {beforeRestart.Position.Y}" +
+        Assert.That(hasSamePosition, Is.True, $"Window position changed with {scenario}. " +
+            $"Before with {exitMethod}: X: {beforeRestart.Position.X}, Y: {beforeRestart.Position.Y}. " +
             $"After with {exitMethod}: X: {afterRestart.Position.X}, Y: {afterRestart.Position.Y}");
 
-        Assert.That(hasSameSize, Is.True, "Window size changed." +
-              $"Before with {exitMethod}: Width: {beforeRestart.Size.Width}, Height: {beforeRestart.Size.Height}" +
+        Assert.That(hasSameSize, Is.True, $"Window size changed with {scenario}. " +
+              $"Before with {exitMethod}: Width: {beforeRestart.Size.Width}, Height: {beforeRestart.Size.Height}. " +
               $"After with {exitMethod}: Width: {afterRestart.Size.Width}, Height: {afterRestart.Size.Height}");
     }
 

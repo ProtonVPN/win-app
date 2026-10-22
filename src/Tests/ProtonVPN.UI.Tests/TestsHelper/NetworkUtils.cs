@@ -211,7 +211,7 @@ public class NetworkUtils
             {
                 if (errorIsNotExpected)
                 {
-                    TestContext.WriteLine($"GetConnectionDataAsync failed for {endpoint}. Result: {e.Message}");
+                    DeferredLog.Add($"GetConnectionDataAsync failed for {endpoint}. Result: {e.Message}");
                 }
             }
         }

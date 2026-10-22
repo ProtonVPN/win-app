@@ -423,6 +423,93 @@ public class ConnectionTests : FreshSessionSetUp
             .Verify.IsConnected();
     }
 
+    [Test]
+    [Property("TestCaseId", "945422")]
+    [Retry(3)]
+    public void StreamingInProgressUpsellNotDisplayedForPlusUser()
+    {
+        CommonUiFlows.EnsureUserIsDisconnected();
+
+        HomeRobot
+            .ConnectViaConnectionCard()
+            .Verify.IsConnected();
+
+        try
+        {
+            foreach (string website in BrowserUtils.StreamingWebsites)
+            {
+                BrowserUtils.OpenStreamingWebsite(APP_TO_CHECK, website);
+
+                // Free users get the upsell within 30 seconds (see FreeUserTests), so give it a fair chance to (wrongly) show up
+                Thread.Sleep(TestConstants.ThirtySecondsTimeout);
+
+                UpsellCarrouselRobot.Verify.IsStreamingInProgressUpsellNotDisplayed();
+            }
+        }
+        finally
+        {
+            BrowserUtils.KillAllBrowsers();
+        }
+    }
+
+    [Test]
+    [Property("TestCaseId", "889724")]
+    [Ignore("JIRA - VPNWIN-3039")]
+    public void WeakHostSettingIsDisabledWhenConnected()
+    {
+        const string getMainInterfaceIndex = "(Get-NetRoute -DestinationPrefix 0.0.0.0/0 | Sort-Object RouteMetric | Select-Object -First 1).InterfaceIndex";
+        const string weakHostState = "$i = Get-NetIPInterface -InterfaceIndex {0} -AddressFamily IPv4; $i.WeakHostSend.ToString() + '|' + $i.WeakHostReceive.ToString()";
+
+        CommonUiFlows.EnsureUserIsDisconnected();
+
+        string interfaceIndex = WindowsUtils.RunPowerShellScript(getMainInterfaceIndex);
+
+        // Remember the runner's own values so they can be put back, whatever happens in the test
+        string[] originalState = WindowsUtils.RunPowerShellScript(string.Format(weakHostState, interfaceIndex)).Split('|');
+        string originalWeakHostSend = originalState[0];
+        string originalWeakHostReceive = originalState[1];
+
+        try
+        {
+            WindowsUtils.RunPowerShellScript($"Set-NetIPInterface -InterfaceIndex {interfaceIndex} -AddressFamily IPv4 -WeakHostSend Enabled -WeakHostReceive Enabled");
+
+            Assert.That(
+                WindowsUtils.RunPowerShellScript(string.Format(weakHostState, interfaceIndex)),
+                Is.EqualTo("Enabled|Enabled"),
+                "WeakHostSend and WeakHostReceive should be enabled on the main interface before connecting.");
+
+            HomeRobot
+                .ConnectViaConnectionCard()
+                .Verify.IsConnected();
+
+            Assert.That(
+                WindowsUtils.RunPowerShellScript(string.Format(weakHostState, interfaceIndex)),
+                Is.EqualTo("Disabled|Disabled"),
+                "WeakHostSend and WeakHostReceive should be disabled on the main interface while connected.");
+        }
+        finally
+        {
+            try
+            {
+                CommonUiFlows.EnsureUserIsDisconnected();
+            }
+            catch (Exception ex)
+            {
+                TestContext.WriteLine($"Could not disconnect before restoring the WeakHost settings: {ex.Message}");
+            }
+
+            // Restoring must not hide the real test failure, so a restore error is only logged
+            try
+            {
+                WindowsUtils.RunPowerShellScript($"Set-NetIPInterface -InterfaceIndex {interfaceIndex} -AddressFamily IPv4 -WeakHostSend {originalWeakHostSend} -WeakHostReceive {originalWeakHostReceive}");
+            }
+            catch (Exception ex)
+            {
+                TestContext.WriteLine($"WARNING: Could not restore WeakHostSend={originalWeakHostSend}, WeakHostReceive={originalWeakHostReceive} on interface {interfaceIndex}: {ex.Message}");
+            }
+        }
+    }
+
     private void LoginFreshWithWireGuardOn()
     {
         Cleanup();

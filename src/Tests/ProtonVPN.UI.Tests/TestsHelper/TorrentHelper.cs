@@ -74,11 +74,7 @@ public class TorrentHelper
             () => IsPortOpenAsync(ip, port).GetAwaiter().GetResult(),
             TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval);
 
-        if (retry.Result)
-        {
-            TestContext.WriteLine($"SUCCESS: Port {port} is open on {ip}");
-        }
-        else
+        if (!retry.Result)
         {
             TestContext.WriteLine($"WARNING: Port {port} was not reported as open on {ip} within timeout");
         }
@@ -90,11 +86,7 @@ public class TorrentHelper
             () => IsPortOpenAsync(ip, port).GetAwaiter().GetResult(),
             TestConstants.ThirtySecondsTimeout, TestConstants.ApiRetryInterval);
 
-        if (retry.Result)
-        {
-            TestContext.WriteLine($"SUCCESS: Port {port} is not opened on {ip}");
-        }
-        else
+        if (!retry.Result)
         {
             TestContext.WriteLine($"WARNING: Port {port} is still reported as open on {ip} within timeout");
         }
@@ -166,12 +158,12 @@ public class TorrentHelper
             HttpResponseMessage response = await client.GetAsync(url);
             string result = await response.Content.ReadAsStringAsync();
 
-            TestContext.WriteLine($"DEBUG: {result}");
+            DeferredLog.Add($"DEBUG: Port check for {ip}:{port} returned: {result}");
             return result.Trim().Equals("true", StringComparison.OrdinalIgnoreCase);
         }
         catch (Exception ex)
         {
-            TestContext.WriteLine($"WARNING: Port check request failed: {ex.Message}");
+            DeferredLog.Add($"WARNING: Port check request failed: {ex.Message}");
             return false;
         }
     }

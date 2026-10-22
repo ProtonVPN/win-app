@@ -22,6 +22,7 @@ using System.Linq;
 using System.Threading;
 using FlaUI.Core.Definitions;
 using FlaUI.Core.AutomationElements;
+using NUnit.Framework;
 using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.TestsHelper.TestData;
@@ -61,9 +62,18 @@ public class SupportRobot
     {
         foreach (AutomationElement field in GetOtherFieldsElements())
         {
-            field.Patterns.ScrollItem.Pattern.ScrollIntoView();
             Element fieldElement = new(cf => cf.ByAutomationId(field.AutomationId).And(cf.ByName(field.Name)), field.Name);
-            fieldElement.PasteText(otherFields);
+
+            // The click can miss the field while the form is still scrolling or resizing after the previous paste, so retry until it has text
+            for (int attempt = 0; attempt < 3 && string.IsNullOrEmpty(field.AsTextBox().Text); attempt++)
+            {
+                field.Patterns.ScrollItem.Pattern.ScrollIntoView();
+                Thread.Sleep(TestConstants.OneSecondTimeout);
+                fieldElement.PasteText(otherFields);
+                Thread.Sleep(TestConstants.OneSecondTimeout);
+            }
+
+            Assert.That(field.AsTextBox().Text, Is.Not.Empty, $"Could not fill the bug report field '{field.Name}'.");
         }
         return this;
     }

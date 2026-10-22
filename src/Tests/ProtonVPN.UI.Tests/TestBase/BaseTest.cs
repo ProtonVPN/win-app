@@ -74,6 +74,7 @@ public class BaseTest
     [SetUp]
     public async Task GlobalSetUpAsync()
     {
+        DeferredLog.Clear();
         string testName = TestContext.CurrentContext.Test.MethodName ?? throw new Exception("Test method name is null.");
         ArtifactsHelper.ClearEventViewerLogs();
         ArtifactsHelper.DeleteArtifactFolder(testName);
@@ -83,6 +84,7 @@ public class BaseTest
     [TearDown]
     public void GlobalTeardown()
     {
+        DeferredLog.FlushIfTestFailed();
         string testName = TestContext.CurrentContext.Test.MethodName ?? throw new Exception("Test method name is null.");
 
         ArtifactsHelper.StopRecorderSafely();

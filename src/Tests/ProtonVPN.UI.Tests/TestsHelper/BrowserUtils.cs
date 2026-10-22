@@ -222,10 +222,8 @@ public class BrowserUtils
             CreateNoWindow = true
         };
 
-        Process? process = Process.Start(startInfo) ?? throw new InvalidOperationException(
+        _ = Process.Start(startInfo) ?? throw new InvalidOperationException(
                 $"'{browserPath}' handed off to an existing instance instead of starting; CDP port {debugPort} will not be available.");
-
-        TestContext.WriteLine($"Started {Path.GetFileName(browserPath)} (PID {process.Id}) with CDP on port {debugPort}.");
     }
 
     private static async Task<string> ExecuteScriptInBrowserAsync(int debugPort, string url, string expression)

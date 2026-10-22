@@ -21,6 +21,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading;
+using NUnit.Framework;
 
 namespace ProtonVPN.UI.Tests.TestsHelper;
 
@@ -61,6 +62,7 @@ exit 0
 ";
 
     private static readonly string _windowsUsername = Environment.UserName;
+    private const int DISCONNECT_WIRE_GUARD_ATTEMPTS = 2;
     private static readonly string _configName = "wg0";
     private static readonly string _configPath = $@"C:\Users\{_windowsUsername}\Downloads\{_configName}.conf";
 
@@ -70,8 +72,14 @@ exit 0
     private static readonly string _disconnectWireGuardScript = $@"
 $tunnelService = Get-Service -Name ""*{_configName}*"" -ErrorAction SilentlyContinue
 if ($tunnelService) {{
+    'WireGuard tunnel service found, status: ' + $tunnelService.Status
+    $handshake = (wg show {_configName} latest-handshakes) -split '\s+' | Select-Object -Last 1
+    'WireGuard latest handshake (unix time, 0 = never): ' + $handshake
     & 'C:\Program Files\WireGuard\wireguard.exe' /uninstalltunnelservice {_configName}
 }}
+";
+    private static readonly string _checkWireGuardTunnelRemovedScript = $@"
+if (Get-Service -Name '*{_configName}*' -ErrorAction SilentlyContinue) {{ 'present' }} else {{ 'absent' }}
 ";
     private static readonly string _removeWireGuardConfigFileScript = $@"
 if (Test-Path '{_configPath}') {{
@@ -124,7 +132,36 @@ if (Test-Path '{_configPath}') {{
 
     public static void DisconnectFromWireGuard()
     {
-        WindowsUtils.RunPowerShellScript(_disconnectWireGuardScript);
+        // The script only prints something when it finds a tunnel service, so no output means there was nothing to remove.
+        // Uninstalling the tunnel service can take longer than the timeout and a forced kill may leave it half-removed,
+        // so retry once and then fail only if the tunnel service is really still there.
+        string scriptOutput = string.Empty;
+        bool timedOut = false;
+        for (int attempt = 1; attempt <= DISCONNECT_WIRE_GUARD_ATTEMPTS; attempt++)
+        {
+            try
+            {
+                scriptOutput = WindowsUtils.RunPowerShellScript(_disconnectWireGuardScript, timeout: TestConstants.TwoMinutesTimeout);
+                break;
+            }
+            catch (TimeoutException ex)
+            {
+                timedOut = true;
+                TestContext.WriteLine($"WireGuard disconnect attempt {attempt}/{DISCONNECT_WIRE_GUARD_ATTEMPTS} timed out: {ex.Message}");
+            }
+        }
+
+        if (!string.IsNullOrWhiteSpace(scriptOutput) || timedOut)
+        {
+            TestContext.WriteLine(scriptOutput);
+            Thread.Sleep(TestConstants.TwoSecondsTimeout);
+            string tunnelState = WindowsUtils.RunPowerShellScript(_checkWireGuardTunnelRemovedScript);
+            if (!tunnelState.Contains("absent"))
+            {
+                throw new InvalidOperationException($"The WireGuard tunnel service '{_configName}' is still present after {DISCONNECT_WIRE_GUARD_ATTEMPTS} disconnect attempts.\n{scriptOutput}");
+            }
+        }
+
         RemoveWireGuardConfigFile();
     }
 
