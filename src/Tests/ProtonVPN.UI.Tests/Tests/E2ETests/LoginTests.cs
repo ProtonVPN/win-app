@@ -31,7 +31,6 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
-[Category("ARM")]
 public class LoginTests : FreshSessionSetUp
 {
     private const string INCORRECT_2FA_CODE = "123456";
@@ -127,6 +126,7 @@ public class LoginTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602321")]
+    [Category("ARM")]
     public void LoginWithIncorrectCredentials()
     {
         NavigationRobot
@@ -139,6 +139,7 @@ public class LoginTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602322")]
+    [Category("ARM")]
     [Retry(3)]
     public void LoginWithTwoFactor()
     {
@@ -163,6 +164,7 @@ public class LoginTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602324")]
+    [Category("ARM")]
     public void LoginWithIncorrectTwoFactorCode()
     {
         LoginRobot
@@ -190,6 +192,7 @@ public class LoginTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "760480")]
+    [Category("ARM")]
     public void CancelLogin()
     {
         NavigationRobot
@@ -278,6 +281,7 @@ public class LoginTests : FreshSessionSetUp
     [Test]
     [Property("TestCaseId", "602320")]
     [Category("SMOKE_1")]
+    [Category("ARM")]
     [Retry(3)]
     [TestCaseSource(nameof(_validCredentialUsersToCheck))]
     public void LoginWithValidCredentials((string Plan, TestUserData User) userToCheck)
@@ -308,6 +312,7 @@ public class LoginTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602329")]
+    [Category("ARM")]
     [TestCaseSource(nameof(_serverListUsersToCheck))]
     public void ServerListFullyLoadedAfterLogin((string Plan, TestUserData User) userToCheck)
     {

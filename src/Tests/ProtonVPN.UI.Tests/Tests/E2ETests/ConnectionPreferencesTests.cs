@@ -134,6 +134,7 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "867493")]
+    [Category("ARM")]
     public void ConnectToVpnFastestCountryAndRandomCountry()
     {
         ConnectToDefaultConnectionAndVerify(VpnConnectionOption.Fastest, _fastestCountry);

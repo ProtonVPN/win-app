@@ -33,7 +33,6 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("3")]
-[Category("ARM")]
 public class CustomDnsTests : FreshSessionSetUp
 {
     private const string FIRST_CUSTOM_DNS_SERVER = "8.8.8.8";
@@ -70,7 +69,6 @@ public class CustomDnsTests : FreshSessionSetUp
 
     [Test, Order(0)]
     [Property("TestCaseId", "602403")]
-    [Category("SMOKE_3")]
     public void NetshieldIsDisabledWhenCustomDnsIsEnabled()
     {
         SettingRobot
@@ -99,6 +97,7 @@ public class CustomDnsTests : FreshSessionSetUp
     [Test, Order(1)]
     [Property("TestCaseId", "602404")]
     [Category("SMOKE_3")]
+    [Category("ARM")]
     public void CustomDnsIsSet()
     {
         TurnOnDns();

@@ -80,6 +80,7 @@ public class GeneralSettingsTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "609954")]
+    [Category("ARM")]
     [Retry(2)]
     public void Notifications()
     {

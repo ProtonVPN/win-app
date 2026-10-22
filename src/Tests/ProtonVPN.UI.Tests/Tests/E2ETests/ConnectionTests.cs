@@ -106,6 +106,7 @@ public class ConnectionTests : FreshSessionSetUp
 
     [Test]
     [Property("TestCaseId", "602363")]
+    [Category("ARM")]
     [Category("SMOKE_1")]
     public void LocalNetworkingIsReachableWhileConnected()
     {

@@ -118,6 +118,7 @@ public class MiscTests : FreshSessionSetUp
     [Test]
     [Property("TestCaseId", "602427")]
     [Category("5")]
+    [Category("ARM")]
     [Retry(2)]
     public void ToggleFeaturesFromFlyout()
     {

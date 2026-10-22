@@ -34,7 +34,6 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("1")]
-[Category("ARM")]
 public class SupportTests : FreshSessionSetUp
 {
     private static readonly string _reportConnectingToVpn = ApiTranslationHelper.GetTranslatedString("ReportIssue_ConnectingToVpn");
@@ -82,6 +81,7 @@ public class SupportTests : FreshSessionSetUp
     [Property("TestCaseId", "602386")]
     [Retry(3)]
     [Category("SMOKE_1")]
+    [Category("ARM")]
     public void SendBugReportViaSettings()
     {
         CommonUiFlows.FullLogin(TestUserData.PlusUser);

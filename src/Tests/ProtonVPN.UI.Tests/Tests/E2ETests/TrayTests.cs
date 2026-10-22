@@ -97,6 +97,7 @@ public class TrayTests : BaseTest
 
     [Test, Order(2)]
     [Property("TestCaseId", "602461")]
+    [Category("ARM")]
     [Retry(3)]
     public void ConnectToAServerFromTray()
     {

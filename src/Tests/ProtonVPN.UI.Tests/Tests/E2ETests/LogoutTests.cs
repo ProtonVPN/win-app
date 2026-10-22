@@ -28,7 +28,6 @@ namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
 [TestFixture]
 [Category("2")]
-[Category("ARM")]
 public class LogoutTests : FreshSessionSetUp
 {
     [SetUp]
@@ -79,6 +78,7 @@ public class LogoutTests : FreshSessionSetUp
     [Test]
     [Property("TestCaseId", "602391")]
     [Category("SMOKE_1")]
+    [Category("ARM")]
     public void LogoutViaKebabMenu()
     {
         CommonUiFlows.Logout();
