@@ -313,16 +313,16 @@
     <value>Atualizar Proton VPN</value>
   </data>
   <data name="Connection_Error_AllServersExcluded">
-    <value>Your preferences exclude all available servers. Adjust exclusions to connect.</value>
+    <value>Suas preferências excluem todos os servidores disponíveis. Ajuste as exclusões para se conectar.</value>
   </data>
   <data name="Connection_Error_AllServersExcluded_Action">
     <value>Localizações excluídas</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Description">
-    <value>To fix it, close or uninstall the app associated with:</value>
+    <value>Para corrigi-lo, feche ou desinstale o aplicativo associado a:</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Title">
-    <value>Another app might be preventing Proton VPN from connecting</value>
+    <value>Outro aplicativo pode estar impedindo a conexão do Proton VPN</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>Editar perfil</value>
@@ -331,7 +331,7 @@
     <value>Não foi possível para o Proton VPN buscar o certificado de autenticação devido a um problema de rede.</value>
   </data>
   <data name="Connection_Error_MobileHotspotEnabled">
-    <value>The connection was blocked by network settings on your device. This may be caused by a mobile hotspot, another VPN application, or virtual machine software. Please review your network configuration or contact support for assistance.</value>
+    <value>A conexão foi bloqueada por configurações de rede no seu dispositivo. Isso pode ser causado por um hotspot móvel, outro aplicativo VPN ou software de máquina virtual. Por favor, reveja a sua configuração de rede ou entre em contato com o suporte para obter assistência.</value>
   </data>
   <data name="Connection_Error_NoServers">
     <value>Todos os serviços da sua seleção estão indisponíveis. Expanda a seleção ou tente novamente.</value>
@@ -350,7 +350,7 @@
     <value>O Proton VPN não consegue se conectar porque o servidor RPC não está disponível em seu sistema.</value>
   </data>
   <data name="Connection_Error_ServerValidation">
-    <value>The server details couldn't be verified. Try another server, or report the issue to our Customer Support team.</value>
+    <value>Os detalhes do servidor não puderam ser verificados. Tente outro servidor ou relate o problema à nossa equipe de Suporte ao Cliente.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>Você atingiu seu limite máximo de dispositivos. Desconecte outro dispositivo para conectar este ou atualize para PLUS para conectar até 10 dispositivos ao mesmo tempo.</value>
@@ -635,7 +635,7 @@ Código de erro: {0}</value>
     <value>Smart routing</value>
   </data>
   <data name="Countries_SmartRouting_RoutedThrough">
-    <value>Smart routed through {0}</value>
+    <value>Smart encaminhado através de {0}</value>
     <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
   </data>
   <data name="Countries_Tor">
@@ -2488,13 +2488,13 @@ Código de erro: {0}</value>
     <value>Ocorreu um erro ao recuperar os detalhes da sessão. Tente novamente.</value>
   </data>
   <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
-    <value>Unable to sign in due to network settings on your device. This may be caused by a mobile hotspot, another VPN application, or virtual machine software. Please review your network configuration or contact support for assistance.</value>
+    <value>Não é possível entrar devido às configurações de rede no dispositivo. Isso pode ser causado por um hotspot móvel, outro aplicativo VPN ou software de máquina virtual. Por favor, reveja a sua configuração de rede ou entre em contato com o suporte para obter assistência.</value>
   </data>
   <data name="Login_Error_IncorrectTwoFactorCode">
     <value>Código incorreto. Tente novamente.</value>
   </data>
   <data name="Login_Error_MissingSrpDll_Message">
-    <value>A file required for sign-in is missing from your installation. Please reinstall Proton VPN to fix this issue.</value>
+    <value>Um arquivo necessário para a entrada está faltando na sua instalação. Por favor, reinstale o Proton VPN para corrigir esse problema.</value>
   </data>
   <data name="Login_Error_MissingSrpDll_Title">
     <value>Não foi possível iniciar sessão</value>
@@ -2594,7 +2594,7 @@ Código de erro: {0}</value>
     <value>Nenhuma conexão VPN disponível</value>
   </data>
   <data name="NoServers_UnderMaintenance_Tip">
-    <value>We couldn't load any servers. Click Refresh to update the server list.</value>
+    <value>Não conseguimos carregar servidores. Clique em Atualizar para atualizar a lista de servidores.</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>Para proteger seu endereço IP, o kill switch está bloqueando sua conexão com a Internet.</value>
@@ -2751,7 +2751,7 @@ Uma carga alta de servidor pode tornar sua conexão mais lenta.</value>
     <value>O Smart Routing é geralmente utilizado para evitar leis anti privacidade e outras formas de censura.</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>Connects you to your destination country through servers physically located elsewhere: {0}.</value>
+    <value>Conecta você ao seu país de destino através de servidores fisicamente localizados em outros lugares: {0}.</value>
     <comment>{0} is a placeholder for the countries where the physical servers are. Can be either one country or multiple countries separated with comma.</comment>
   </data>
   <data name="Overlay_SmartRouting_LearnMore">
