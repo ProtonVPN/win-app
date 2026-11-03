@@ -30,6 +30,7 @@ using ProtonVPN.Client.Logic.Updates.Contracts;
 using ProtonVPN.Client.Settings.Contracts;
 using ProtonVPN.Client.Settings.Contracts.Extensions;
 using ProtonVPN.Client.Settings.Contracts.Messages;
+using ProtonVPN.Common.Core.Helpers;
 using ProtonVPN.Common.Legacy.OS.Processes;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.EntityMapping.Contracts;
@@ -255,7 +256,7 @@ public class UpdatesManager : PollingObserverBase, IUpdatesManager,
     {
         string fileName = GetUpdateFileName();
         string message = $"Closing the app and starting installer '{fileName}'. " +
-                         $"Current app version: {_config.ClientVersion}, OS: {Environment.OSVersion.VersionString}";
+                         $"Current app version: {_config.ClientVersion}, OS: {OSVersion.GetPlatformString()}";
 
         Logger.Info<AppUpdateStartLog>(message);
     }

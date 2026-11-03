@@ -56,7 +56,7 @@ public class ApiAppVersion : IApiAppVersion
 
     public string CalculateUserAgent()
     {
-        return $"{_config.UserAgent}/{GetVersion()} ({Environment.OSVersion}; {OSArchitecture.StringValue})";
+        return $"{_config.UserAgent}/{GetVersion()} ({OSVersion.GetPlatformString()}; {OSArchitecture.StringValue})";
     }
 
     private string GetVersion()

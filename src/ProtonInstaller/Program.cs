@@ -18,6 +18,7 @@
  */
 
 using System.Reflection;
+using ProtonVPN.Common.Core.Helpers;
 
 namespace ProtonInstaller;
 
@@ -63,7 +64,7 @@ public class Program
         string? version = Assembly.GetExecutingAssembly().GetName().Version?.ToString(3);
 
         HttpClient httpClient = new(new CertificateHandler());
-        httpClient.DefaultRequestHeaders.UserAgent.ParseAdd($"ProtonVPNInstaller/{version} ({Environment.OSVersion})");
+        httpClient.DefaultRequestHeaders.UserAgent.ParseAdd($"ProtonVPNInstaller/{version} ({OSVersion.GetPlatformString()})");
         return httpClient;
     }
 }

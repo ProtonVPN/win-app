@@ -17,10 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Microsoft.Win32;
+
 namespace ProtonVPN.Common.Core.Helpers;
 
 public static class OSVersion
 {
+    private const string CURRENT_VERSION_REGISTRY_PATH = @"SOFTWARE\Microsoft\Windows NT\CurrentVersion";
+
     private static readonly Lazy<Version> _version = new(CreateVersion);
     private static readonly Lazy<string> _versionString = new(_version.Value.ToString);
     private static readonly Lazy<string> _platformVersionString = new(CreatePlatformVersionString);
@@ -31,12 +35,35 @@ public static class OSVersion
 
     private static Version CreateVersion()
     {
-        return Environment.OSVersion.Version;
+        // Environment.OSVersion is affected by compatibility mode (e.g. reports Windows Vista when the app
+        // is set to run in Vista compatibility mode), while the registry values used here are not.
+        return GetVersionFromRegistry() ?? Environment.OSVersion.Version;
+    }
+
+    private static Version? GetVersionFromRegistry()
+    {
+        try
+        {
+            using RegistryKey baseKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+            using RegistryKey? key = baseKey.OpenSubKey(CURRENT_VERSION_REGISTRY_PATH);
+            if (key?.GetValue("CurrentMajorVersionNumber") is int major &&
+                key.GetValue("CurrentMinorVersionNumber") is int minor &&
+                // CurrentBuildNumber is not used because compatibility mode also changes it (e.g. 6002 for Vista SP2)
+                int.TryParse(key.GetValue("CurrentBuild") as string, out int build))
+            {
+                return new Version(major, minor, build, 0);
+            }
+        }
+        catch
+        {
+        }
+
+        return null;
     }
 
     private static string CreatePlatformVersionString()
     {
-        return Environment.OSVersion.VersionString;
+        return $"Microsoft Windows NT {_version.Value}";
     }
 
     /// <summary>Returns the OS version in the format: 10.0.19045.0</summary>
@@ -64,6 +91,6 @@ public static class OSVersion
 
     public static bool IsOrHigherThan(Version version)
     {
-        return Environment.OSVersion.Version >= version;
+        return _version.Value >= version;
     }
 }
