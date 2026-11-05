@@ -203,7 +203,9 @@ internal class Firewall : IFirewall, IStartable
         }
 
         bool wasDnsBlockModeRecreated = false;
-        if (firewallParams.DnsBlockMode != _lastParams.DnsBlockMode || firewallParams.ForceRecreateDnsBlock)
+        if (firewallParams.DnsBlockMode != _lastParams.DnsBlockMode ||
+            firewallParams.ForceRecreateDnsBlock ||
+            IsDnsCalloutFilterMissingOrOutdated(firewallParams))
         {
             List<Guid> previousGuids = GetFirewallGuidsByTypes(FirewallItemType.DnsCalloutFilter, FirewallItemType.DnsFilter);
             _dnsCalloutFiltersAdded = false;
@@ -278,6 +280,13 @@ internal class Firewall : IFirewall, IStartable
         }
 
         SetLastParams(firewallParams);
+    }
+
+    private bool IsDnsCalloutFilterMissingOrOutdated(FirewallParams firewallParams)
+    {
+        return firewallParams.DnsBlockMode == DnsBlockMode.Callout &&
+               firewallParams.AddInterfaceFilters &&
+               (!_dnsCalloutFiltersAdded || firewallParams.InterfaceIndex != _lastParams.InterfaceIndex);
     }
 
     private void SetLastParams(FirewallParams firewallParams)
@@ -439,7 +448,6 @@ internal class Firewall : IFirewall, IStartable
                 _isNrptRuleCreated = _nrptWrapper.CreateRule();
                 break;
             case DnsBlockMode.Callout:
-                _logger.Info<FirewallLog>("DNS block mode is Callout. Creating DNS callout filter.");
                 CreateDnsCalloutFilter(firewallParams);
                 break;
             case DnsBlockMode.Disabled:
@@ -450,10 +458,18 @@ internal class Firewall : IFirewall, IStartable
 
     private void CreateDnsCalloutFilter(FirewallParams firewallParams)
     {
-        if (_dnsCalloutFiltersAdded || !firewallParams.AddInterfaceFilters)
+        if (_dnsCalloutFiltersAdded)
         {
             return;
         }
+
+        if (!firewallParams.AddInterfaceFilters)
+        {
+            _logger.Info<FirewallLog>("DNS block mode is Callout. Skipping DNS callout filter because the VPN interface is not known yet.");
+            return;
+        }
+
+        _logger.Info<FirewallLog>("DNS block mode is Callout. Creating DNS callout filter.");
 
         const uint weight = 4;
 
