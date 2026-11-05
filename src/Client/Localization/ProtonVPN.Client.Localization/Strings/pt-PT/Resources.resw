@@ -247,7 +247,7 @@
     <value>Voltar a ligar</value>
   </data>
   <data name="Common_Actions_Refresh">
-    <value>Refresh</value>
+    <value>Atualizar</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Remover</value>
@@ -297,7 +297,7 @@
     <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Common_Tags_Recommended">
-    <value>Recommended</value>
+    <value>Recomendado</value>
     <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
@@ -438,10 +438,10 @@ Error code: {0}</value>
     <value>O mais rápido</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Free server</value>
+    <value>Servidor gratuito</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Free servers</value>
+    <value>Servidores gratuitos</value>
   </data>
   <data name="Connections_Gateway">
     <value>Porta de entrada</value>
@@ -483,7 +483,7 @@ Error code: {0}</value>
     <value>P2P server</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P servers</value>
+    <value>Servidores P2P</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>Estado P2P ({0})</value>
@@ -567,7 +567,7 @@ Error code: {0}</value>
     <value>Secure Core server</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Secure Core servers</value>
+    <value>Servidores Secure Core</value>
   </data>
   <data name="Connections_Server_Restricted">
     <value>Servidor disponível com o VPN Plus</value>
@@ -576,10 +576,10 @@ Error code: {0}</value>
     <value>Este servidor está em manutenção.</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Server</value>
+    <value>Servidor</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Servers</value>
+    <value>Servidores</value>
   </data>
   <data name="Connections_State">
     <value>Estado</value>
@@ -1749,7 +1749,7 @@ Error code: {0}</value>
     <value>P2P is not allowed on free VPN servers</value>
   </data>
   <data name="Dialogs_P2PDetection_WindowTitle">
-    <value>Discover VPN Plus</value>
+    <value>Descubra VPN Plus</value>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email">
     <value>E-mail</value>
@@ -1812,7 +1812,7 @@ Error code: {0}</value>
     <value>Reportar um problema</value>
   </data>
   <data name="Dialogs_StreamingDetection_WindowTitle">
-    <value>Discover VPN Plus</value>
+    <value>Descubra VPN Plus</value>
   </data>
   <data name="Dialogs_StreamingWarning_Description">
     <value>VPN Plus servers let you enjoy your favorite movies and TV shows from around the world.</value>
@@ -1957,16 +1957,16 @@ Error code: {0}</value>
     <value>If there are locations you don't want to be automatically connected to, you can exclude them from Fastest and Random country.</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
-    <value>Skip</value>
+    <value>Saltar</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
-    <value>Not the country you wanted?</value>
+    <value>Não é o país que pretendia?</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_ActionButton">
     <value>Exclude locations</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_CloseButton">
-    <value>Maybe later</value>
+    <value>Talvez mais tarde</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Subtitle">
     <value>You can now exclude countries or cities from Fastest and Random connections.</value>
@@ -2068,13 +2068,13 @@ Error code: {0}</value>
     <value>You're protected from ads, trackers, malware, and adult content.</value>
   </data>
   <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
-    <value>You're protected from ads, trackers, and malware.</value>
+    <value>Está protegido contra anúncios, rastreadores e malware.</value>
   </data>
   <data name="Flyouts_NetShield_Info">
     <value>Protect your browsing on websites and apps.</value>
   </data>
   <data name="Flyouts_NetShield_MalwareOnly_Success">
-    <value>You're protected from malware only.</value>
+    <value>Está protegido apenas contra malware.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Description">
     <value>Block ads, trackers, malware, and adult content with VPN Plus.</value>
@@ -2523,7 +2523,7 @@ Error code: {0}</value>
     <value>Autenticação de dois fatores</value>
   </data>
   <data name="Login_TwoFactor_Authenticator">
-    <value>Authenticator app</value>
+    <value>Aplicação de autenticação</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>Primeiro dígito</value>
@@ -2550,7 +2550,7 @@ Error code: {0}</value>
     <value>No known two-factor authentication methods found.</value>
   </data>
   <data name="Login_TwoFactor_SecurityKey">
-    <value>Security key</value>
+    <value>Chave de segurança</value>
   </data>
   <data name="Login_TwoFactor_SecurityKey_Description">
     <value>Insert the U2F or FIDO key linked to your Proton Account.</value>
@@ -2576,16 +2576,16 @@ Error code: {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
   </data>
   <data name="NoServers_ContactUs">
-    <value>Contact us</value>
+    <value>Contacte-nos</value>
   </data>
   <data name="NoServers_FailedToLoad">
     <value>We couldn't load the server list.</value>
   </data>
   <data name="NoServers_NeedHelp">
-    <value>Need help?</value>
+    <value>Precisa de ajuda?</value>
   </data>
   <data name="NoServers_SignOut">
-    <value>Sign out</value>
+    <value>Terminar sessão</value>
   </data>
   <data name="NoServers_Tip">
     <value>Ask your administrator to enable VPN access for your account.</value>
@@ -2625,13 +2625,13 @@ Error code: {0}</value>
     <value>To include IPv6 addresses, you need to allow IPv6 connections through the VPN tunnel.</value>
   </data>
   <data name="Overlay_Ipv6Disabled_PrimaryButton">
-    <value>Enable IPv6</value>
+    <value>Ativar IPv6</value>
   </data>
   <data name="Overlay_Ipv6Disabled_SecondaryButton">
-    <value>Not now</value>
+    <value>Agora não</value>
   </data>
   <data name="Overlay_Ipv6Disabled_Title">
-    <value>IPv6 is disabled</value>
+    <value>IPv6 está desativado</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>Atualizar agora</value>
@@ -2788,7 +2788,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Isto desativará o DNS personalizado para este perfil.</value>
   </data>
   <data name="Profile_Options_Application">
-    <value>App</value>
+    <value>Aplicação</value>
   </data>
   <data name="Profile_Options_Application_Select">
     <value>Select an app</value>
@@ -2836,7 +2836,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Trabalho/Escola</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Configure your own VPN settings and connect in one click</value>
+    <value>Configure a sua própria configuração de VPN e conecte-se com um clique</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>Perfis</value>
@@ -2869,7 +2869,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Servidor</value>
   </data>
   <data name="Server_Fastest">
-    <value>Fastest server</value>
+    <value>Servidor mais rápido</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>Servidor gratuito mais rápido</value>
@@ -2960,10 +2960,10 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Common_IpAddresses_AlreadyExists">
-    <value>Address already added</value>
+    <value>O endereço já foi adicionado.</value>
   </data>
   <data name="Settings_Common_IpAddresses_Invalid">
-    <value>Enter a valid IPv4 or IPv6 address</value>
+    <value>Introduza um endereço IPv4 ou IPv6 válido.</value>
   </data>
   <data name="Settings_Common_IpAddresses_Watermark">
     <value>192.0.2.0</value>
@@ -2985,7 +2985,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Servidores DNS personalizados</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
-    <value>Add new DNS server</value>
+    <value>Adicionar um servidor DNS</value>
     <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
@@ -3001,7 +3001,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>We'll try to connect to these servers in order. If none of them work, the default Proton VPN DNS will be used.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_FormattedHeader">
-    <value>DNS servers ({0})</value>
+    <value>Servidores DNS ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
@@ -3014,7 +3014,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>IPv6 support</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>IPv6 leak protection</value>
+    <value>Proteção contra fugas IPv6</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
     <value>Prevents data leaks by blocking IPv6 traffic that doesn't pass through the VPN tunnel.</value>
@@ -3104,10 +3104,10 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Excluded locations</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Cities">
-    <value>Cities</value>
+    <value>Cidades</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Countries">
-    <value>Countries</value>
+    <value>Países</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Description">
     <value>The selected locations will never be used when you connect to Fastest or Random</value>
@@ -3119,7 +3119,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Select...</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_States">
-    <value>States</value>
+    <value>Estados</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill switch</value>
@@ -3143,7 +3143,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>NetShield</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
-    <value>Block ads, trackers, and malware</value>
+    <value>Bloqueie anúncios, rastreadores e malware</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent">
     <value>Block ads, trackers, malware, and adult content</value>
@@ -3173,7 +3173,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Encaminhamento de portas</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Active port number:</value>
+    <value>Número de porta ativo:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Copiar o número de porta</value>
@@ -3204,7 +3204,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Get notified when your active port number changes.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Unavailable">
-    <value>Unavailable</value>
+    <value>Indisponível</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protocolo</value>
@@ -3216,11 +3216,11 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Select apps which will be excluded from the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Excluded_FormattedHeader">
-    <value>Excluded apps ({0})</value>
+    <value>Aplicações excluídas ({0})</value>
     <comment>Header for the list of apps to exclude for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Excluded apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Header">
-    <value>Excluded apps</value>
+    <value>Aplicações excluídas</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>Ficheiros da aplicação</value>
@@ -3230,11 +3230,11 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Select apps which will be included in the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader">
-    <value>Included apps ({0})</value>
+    <value>Aplicações incluídas ({0})</value>
     <comment>Header for the list of apps to include for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Included apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Included_Header">
-    <value>Included apps</value>
+    <value>Aplicações incluídas</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Select">
     <value>Select apps</value>
@@ -3246,7 +3246,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Modo de inclusão</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Only selected apps and IP addresses connect through VPN, all other traffic is unprotected.</value>
+    <value>Apenas as aplicações e os endereços IP selecionados conectam-se através da VPN, todo o outro tráfego não é protegido.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
     <value>Incluir</value>
@@ -3259,21 +3259,21 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Select IP addresses which will be excluded from the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_FormattedHeader">
-    <value>Excluded IP addresses ({0})</value>
+    <value>Endereços IP excluídos ({0})</value>
     <comment>Header for the list of IP addresses to exclude for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Excluded IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Header">
-    <value>Excluded IP addresses</value>
+    <value>Endereços IP excluídos</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Description">
     <value>Select IP addresses which will be included in the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_FormattedHeader">
-    <value>Included IP addresses ({0})</value>
+    <value>Endereços IP incluídos ({0})</value>
     <comment>Header for the list of IP addresses to include for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Included IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Header">
-    <value>Included IP addresses</value>
+    <value>Endereços IP incluídos</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Select">
     <value>Select IP addresses</value>
@@ -3307,7 +3307,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Início automático</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>Auto-connect</value>
+    <value>Ligação automática</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>Liga-se automaticamente à sua ligação predefinida ao abrir o Proton VPN.</value>
@@ -3334,7 +3334,7 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Atualizações automáticas</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Automatically check and install Proton VPN updates.</value>
+    <value>Verificar e instalar automaticamente as atualizações do Proton VPN.</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>Acesso Beta</value>
@@ -3636,16 +3636,16 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Blocked website?</value>
   </data>
   <data name="System_Tray_Actions_Connect">
-    <value>Connect</value>
+    <value>Conectar</value>
   </data>
   <data name="System_Tray_Actions_Disconnect">
-    <value>Disconnect</value>
+    <value>Desconectar</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
-    <value>Exit</value>
+    <value>Sair</value>
   </data>
   <data name="System_Tray_Actions_OpenApplication">
-    <value>Open {0}</value>
+    <value>Abrir {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_ExitApplication">
@@ -3687,10 +3687,10 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <comment>Unit for Terabytes per second</comment>
   </data>
   <data name="UpsellBanner_P2P_Description">
-    <value>Download files through BitTorrent and other file sharing protocols.</value>
+    <value>Transfere ficheiros via BitTorrent e de outros protocolos de partilha de ficheiros.</value>
   </data>
   <data name="UpsellBanner_P2P_Title">
-    <value>P2P support</value>
+    <value>Suporte a P2P</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>Melhore para escolher qualquer servidor.</value>
@@ -3887,19 +3887,19 @@ Uma carga elevada do servidor pode diminuir a sua conexão.</value>
     <value>Proton WireGuard (TCP)</value>
   </data>
   <data name="VpnProtocol_ProTun_Tcp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Protocolo de última geração em segurança e desempenho</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls">
     <value>Proton Stealth</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls_Description">
-    <value>Overcomes VPN blocks by hiding your connection from censors</value>
+    <value>Supera os bloqueios de VPN ao ocultar a sua conexão da censura.</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp">
     <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Protocolo de última geração em segurança e desempenho</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

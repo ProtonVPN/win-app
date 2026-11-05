@@ -1,0 +1,3925 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account_VpnPlan_Free">
+    <value>Proton VPN Free</value>
+  </data>
+  <data name="Automation_Properties_ConnectionDetails_Page">
+    <value>Ukurasa wa maelezo ya muunganisho</value>
+  </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page">
+    <value>Ukurasa wa mapendeleo ya muunganisho</value>
+  </data>
+  <data name="Automation_Properties_Connection_Card_Component">
+    <value>Kadi ya muunganisho</value>
+  </data>
+  <data name="Automation_Properties_KillSwitch_Page">
+    <value>Ukurasa wa kizima cha dharura</value>
+  </data>
+  <data name="Automation_Properties_LocationDetails_Page">
+    <value>Ukurasa wa maelezo ya eneo</value>
+  </data>
+  <data name="Automation_Properties_Login_Page">
+    <value>Ukurasa wa uingiaji</value>
+  </data>
+  <data name="Automation_Properties_Main_Page">
+    <value>Ukurasa mkuu</value>
+  </data>
+  <data name="Automation_Properties_NetShield_Page">
+    <value>Ukurasa wa NetShield</value>
+  </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>Ukurasa usio na seva</value>
+  </data>
+  <data name="Automation_Properties_PortForwarding_Page">
+    <value>Ukurasa wa usambazaji wa mlango</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page">
+    <value>Ukurasa wa wasifu</value>
+  </data>
+  <data name="Automation_Properties_Settings_Advanced_Page">
+    <value>Ukurasa wa mipangilio ya hali ya juu</value>
+  </data>
+  <data name="Automation_Properties_Settings_Common_Page">
+    <value>Ukurasa wa mipangilio ya kawaida</value>
+  </data>
+  <data name="Automation_Properties_Settings_Page">
+    <value>Ukurasa wa mipangilio</value>
+  </data>
+  <data name="Automation_Properties_Sidebar">
+    <value>Upau wa pembeni</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Countries_Page">
+    <value>Ukurasa wa nchi</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
+    <value>Ukurasa wa malango</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Page">
+    <value>Ukurasa wa miunganisho</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Profiles_Page">
+    <value>Ukurasa wa wasifu</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Recents_Page">
+    <value>Ukurasa wa hivi karibuni</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Search_Results_Page">
+    <value>Matokeo ya utafutaji</value>
+  </data>
+  <data name="Automation_Properties_SplitTunneling_Page">
+    <value>Ukurasa wa mgawanyo wa trafiki</value>
+  </data>
+  <data name="City_Fastest">
+    <value>Mji wa haraka zaidi</value>
+  </data>
+  <data name="City_Random">
+    <value>Mji wa nasibu</value>
+  </data>
+  <data name="Common_Actions_Add">
+    <value>Ongeza</value>
+  </data>
+  <data name="Common_Actions_Back">
+    <value>Rudi</value>
+  </data>
+  <data name="Common_Actions_Cancel">
+    <value>Ghairi</value>
+  </data>
+  <data name="Common_Actions_Change">
+    <value>Badilisha</value>
+  </data>
+  <data name="Common_Actions_Close">
+    <value>Funga</value>
+  </data>
+  <data name="Common_Actions_Connect">
+    <value>Unganisha</value>
+  </data>
+  <data name="Common_Actions_ContactUs">
+    <value>Wasiliana nasi</value>
+  </data>
+  <data name="Common_Actions_Delete">
+    <value>Futa</value>
+  </data>
+  <data name="Common_Actions_Disconnect">
+    <value>Tenganisha</value>
+  </data>
+  <data name="Common_Actions_Duplicate">
+    <value>Nakili</value>
+  </data>
+  <data name="Common_Actions_Edit">
+    <value>Hariri</value>
+  </data>
+  <data name="Common_Actions_Enable">
+    <value>Washa</value>
+  </data>
+  <data name="Common_Actions_Exit_ProtonVPN">
+    <value>Toka kwenye Proton VPN</value>
+  </data>
+  <data name="Common_Actions_GotIt">
+    <value>Nimeelewa</value>
+  </data>
+  <data name="Common_Actions_Install">
+    <value>Sakinisha</value>
+  </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Sogeza chini</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Sogeza juu</value>
+  </data>
+  <data name="Common_Actions_Reconnect">
+    <value>Unganisha tena</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Onyesha upya</value>
+  </data>
+  <data name="Common_Actions_Remove">
+    <value>Ondoa</value>
+  </data>
+  <data name="Common_Actions_Restart">
+    <value>Anzisha upya</value>
+  </data>
+  <data name="Common_Actions_Save">
+    <value>Hifadhi</value>
+  </data>
+  <data name="Common_Actions_TryAgain">
+    <value>Jaribu tena</value>
+  </data>
+  <data name="Common_Actions_Update">
+    <value>Sasisha</value>
+  </data>
+  <data name="Common_Actions_Upgrade">
+    <value>Pandisha daraja</value>
+  </data>
+  <data name="Common_Confirmation_KillSwitch_Message">
+    <value>Kizima cha dharura cha hali ya juu kimewashwa. Ili kutumia intaneti bila VPN, zima kizima cha dharura cha hali ya juu.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
+    <value>Kizima cha dharura cha hali ya juu kimewashwa. Ukiendelea, utatenganishwa na intaneti.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnected_Message">
+    <value>Utatenganishwa na VPN.</value>
+  </data>
+  <data name="Common_Links_LearnMore">
+    <value>Pata maelezo zaidi</value>
+  </data>
+  <data name="Common_Message_AppNotFound">
+    <value>Programu tumizi haikupatikana.</value>
+  </data>
+  <data name="Common_States_Off">
+    <value>Imezimwa</value>
+  </data>
+  <data name="Common_States_On">
+    <value>Imewashwa</value>
+  </data>
+  <data name="Common_Tags_Beta">
+    <value>BETA</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
+  <data name="Common_Tags_New">
+    <value>MPYA</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
+  </data>
+  <data name="Common_Tags_Recommended">
+    <value>Inapendekezwa</value>
+    <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
+  </data>
+  <data name="Components_Update_GetMostFromYourVpn">
+    <value>Pata manufaa zaidi kutoka kwa VPN yako kwa kusasisha programu hadi toleo jipya zaidi.</value>
+  </data>
+  <data name="Components_Update_MoreLikelyIssues">
+    <value>Kuna uwezekano mkubwa wa kukumbana na matatizo kwenye matoleo ya zamani ya Proton VPN.</value>
+  </data>
+  <data name="Components_Update_UpdateAvailable">
+    <value>Sasisho lipo</value>
+  </data>
+  <data name="Components_Update_UpdateProtonVpn">
+    <value>Sasisha Proton VPN</value>
+  </data>
+  <data name="Connection_Error_AllServersExcluded">
+    <value>Mapendeleo yako yanatenga seva zote zinazopatikana. Rekebisha yaliyotengwa ili uweze kuunganisha.</value>
+  </data>
+  <data name="Connection_Error_AllServersExcluded_Action">
+    <value>Maeneo yaliyotengwa</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>Ili kutatua tatizo hili, funga au ondoa usakinishaji wa programu inayohusiana na:</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>Programu nyingine inaweza kuzuia Proton VPN kuunganisha</value>
+  </data>
+  <data name="Connection_Error_EditProfile">
+    <value>Hariri wasifu</value>
+  </data>
+  <data name="Connection_Error_MissingConnectionCertificate">
+    <value>Proton VPN haikuweza kuleta cheti cha uthibitishaji kutokana na tatizo la mtandao.</value>
+  </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>Muunganisho umezuiwa na mipangilio ya mtandao kwenye kifaa chako. Hii inaweza kusababishwa na mobile hotspot, programu tumizi nyingine ya VPN, au programu ya mashine ya pepe. Tafadhali kagua mpangilio wako wa mtandao au wasiliana na msaada kwa usaidizi.</value>
+  </data>
+  <data name="Connection_Error_NoServers">
+    <value>Seva zote ulizochagua hazipatikani. Tafadhali ongeza chaguo lako au ujaribu tena baadaye.</value>
+  </data>
+  <data name="Connection_Error_NoServers_Profile">
+    <value>Uchaguzi wako wa seva kwa '{0}' haupatikani. Teua seva nyingine au ujaribu tena baadaye.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Connection_Error_NoTapAdapters">
+    <value>Adapta ya mtandao haipatikani.</value>
+  </data>
+  <data name="Connection_Error_ReportAnIssue">
+    <value>Ripoti tatizo</value>
+  </data>
+  <data name="Connection_Error_RpcServerUnavailable">
+    <value>Proton VPN haiwezi kuunganishwa kwa sababu seva ya RPC haipatikani kwenye mfumo wako.</value>
+  </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>Maelezo ya seva hayakuweza kuthibitishwa. Jaribu seva nyingine, au ripoti tatizo hili kwa timu yetu ya huduma kwa wateja.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedFreeUser">
+    <value>Umefikia kikomo cha idadi ya vifaa vyako. Tafadhali tenganisha kifaa kingine ili uweze kuunganisha hiki, au pandisha daraja hadi PLUS ili upate kuunganisha hadi vifaa 10 kwa wakati mmoja.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedPaidUser">
+    <value>Umefikia kikomo cha idadi ya vifaa vyako. Tafadhali tenganisha kifaa kingine ili uweze kuunganisha hiki.</value>
+  </data>
+  <data name="Connection_Error_TapAdapterInUse">
+    <value>Adapta yako ya mtandao ipo katika matumizi kwa sasa.</value>
+  </data>
+  <data name="Connection_Error_TapRequiresUpdate">
+    <value>Toleo la adapta ya mtandao ni la zamani.</value>
+  </data>
+  <data name="Connection_Error_Title">
+    <value>Muunganisho haukufanyika</value>
+  </data>
+  <data name="Connection_Error_TlsCertificate">
+    <value>Kuna tatizo katika kuthibitisha cheti cha seva ya VPN, ambacho kinaweza kuonyesha kuwa muunganisho wa mtandao umeingiliwa au seva unayojaribu kuunganisha nayo ina tatizo la mpangilio. Pata usaidizi kutoka kwa huduma kwa wateja kwa kutuma Ripoti ya Tatizo.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>Ili kuunganisha na VPN, nenda kwenye portal ya Uthibitishaji wa Hatua Mbili ya shirika lako kisha uguse ufunguo wako wa usalama.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>Uthibitishaji wa vipengele viwili (Uthibitishaji wa Hatua Mbili) unahitajika</value>
+  </data>
+  <data name="Connection_Error_Unknown">
+    <value>Angalia muunganisho wako wa intaneti na ujaribu tena. Ikiwa haitafanya kazi, wasiliana na timu yetu ya huduma kwa wateja.
+
+Msimbo wa hitilafu: {0}</value>
+  </data>
+  <data name="Connection_Error_ViewPossibleSolutions">
+    <value>Angalia marekebisho</value>
+  </data>
+  <data name="Connection_Error_WireGuardAdapterInUse">
+    <value>Adapta ya WireGuard ya kifaa chako ipo katika matumizi. Tenganisha VPN nyingine yoyote inayotumika kwenye kifaa chako, kisha ujaribu tena.</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>Muunganisho wako ukoje?</value>
+  </data>
+  <data name="Connection_Intent_AutoSelected">
+    <value>Imechaguliwa kiotomatiki kutoka</value>
+    <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
+  </data>
+  <data name="Connection_Via_SecureCore">
+    <value>kupitia {0}</value>
+    <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
+  </data>
+  <data name="Connections_Cities_One">
+    <value>Mji ({0})</value>
+  </data>
+  <data name="Connections_Cities_Other">
+    <value>Miji ({0})</value>
+  </data>
+  <data name="Connections_City">
+    <value>Mji</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>Seva katika mji huu zinapatikana kwa VPN Plus.</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>Seva zote katika mji huu ziko katika matengenezo.</value>
+  </data>
+  <data name="Connections_Countries_One">
+    <value>Nchi ({0})</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>Nchi ({0})</value>
+  </data>
+  <data name="Connections_Country">
+    <value>Nchi</value>
+  </data>
+  <data name="Connections_Country_Middle">
+    <value>Nchi ya katikati</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>Seva katika nchi hii zinapatikana kwa VPN Plus.</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>Seva zote katika nchi hii ziko katika matengenezo.</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Imeshindikana kuunganisha</value>
+  </data>
+  <data name="Connections_Fastest">
+    <value>Haraka zaidi</value>
+  </data>
+  <data name="Connections_Free_Servers_One">
+    <value>Seva ya bure</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>Seva za bure</value>
+  </data>
+  <data name="Connections_Gateway">
+    <value>Lango</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>Seva katika lango hili zinapatikana kwa VPN Plus.</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>Seva zote katika lango hili ziko katika matengenezo.</value>
+  </data>
+  <data name="Connections_Gateways_One">
+    <value>Lango ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>Malango ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Server">
+    <value>Seva maalum</value>
+  </data>
+  <data name="Connections_Gateways_Servers_One">
+    <value>Seva maalum ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>Seva maalum ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_One">
+    <value>Mji wa P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>Miji ya P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_One">
+    <value>Nchi ya P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>Nchi za P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_One">
+    <value>Seva za P2P</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>Seva za P2P</value>
+  </data>
+  <data name="Connections_P2P_States_One">
+    <value>Jimbo la P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>Majimbo ya P2P ({0})</value>
+  </data>
+  <data name="Connections_Profiles_One">
+    <value>Wasifu ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Other">
+    <value>Wasifu ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Create">
+    <value>Tengeneza wasifu</value>
+    <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
+  </data>
+  <data name="Connections_Profiles_Delete">
+    <value>Futa wasifu</value>
+  </data>
+  <data name="Connections_Profiles_Delete_Message">
+    <value>'{0}' itaondolewa kabisa.</value>
+    <comment>{0} is a placeholder for the name of the profile.</comment>
+  </data>
+  <data name="Connections_Profiles_Delete_Title">
+    <value>Ufute wasifu?</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Description">
+    <value>Wasifu ni miunganisho iliyohifadhiwa yenye eneo, seva na itifaki unazochagua.</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Title">
+    <value>Tengeneza wasifu wako wa kwanza</value>
+  </data>
+  <data name="Connections_Profiles_Location_Header">
+    <value>Teua aina ya muunganisho na eneo</value>
+  </data>
+  <data name="Connections_Profiles_Name">
+    <value>Kipa wasifu wako jina</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default">
+    <value>Bila jina</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate">
+    <value>Nakala ya {0}</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
+  </data>
+  <data name="Connections_Profiles_New">
+    <value>Wasifu mpya</value>
+    <comment>"New profile" is more appropriate when you already have a profile</comment>
+  </data>
+  <data name="Connections_Profiles_NotAvailable_Tooltip">
+    <value>Wasifu wanapatikana na VPN Plus</value>
+    <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
+  </data>
+  <data name="Connections_Recents_One">
+    <value>Hivi karibuni ({0})</value>
+  </data>
+  <data name="Connections_Recents_Other">
+    <value>Hivi karibuni ({0})</value>
+  </data>
+  <data name="Connections_Recents_Empty_Description">
+    <value>Angalia historia yako ya miunganisho hapa.</value>
+  </data>
+  <data name="Connections_Recents_Empty_Title">
+    <value>Bado hakuna miunganisho ya hivi karibuni.</value>
+  </data>
+  <data name="Connections_Recents_Pinned_One">
+    <value>Zilizobanwa ({0})</value>
+  </data>
+  <data name="Connections_Recents_Pinned_Other">
+    <value>Iliyogandishwa ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_One">
+    <value>Nchi ya Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>Nchi za Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_One">
+    <value>Seva ya Secure Core</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>Seva za Secure Core</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>Seva inapatikana na VPN Plus.</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>Seva hii ipo katika matengenezo.</value>
+  </data>
+  <data name="Connections_Servers_One">
+    <value>Seva</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>Seva</value>
+  </data>
+  <data name="Connections_State">
+    <value>Jimbo</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Seva zilizo katika jimbo hili zinapatikana na VPN Plus.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>Seva zote katika jimbo hili zipo katika matengenezo.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_One">
+    <value>Jimbo ({0})</value>
+  </data>
+  <data name="Connections_States_Other">
+    <value>Majimbo ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_One">
+    <value>Nchi ya Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>Nchi za Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_One">
+    <value>Seva ya Tor</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>Seva za Tor</value>
+  </data>
+  <data name="Countries">
+    <value>Nchi</value>
+  </data>
+  <data name="Countries_All">
+    <value>Zote</value>
+  </data>
+  <data name="Countries_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Countries_P2P_Description">
+    <value>Pakua faili kupitia mitandao ya P2P (peer-to-peer) na boresha uzoefu wako wa michezo ya mtandaoni na miito ya video.</value>
+  </data>
+  <data name="Countries_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>Ongeza tabaka lingine la usimbaji fiche kwenye muunganisho wako wa VPN.</value>
+  </data>
+  <data name="Countries_ServerLoad">
+    <value>Mzigo wa seva</value>
+  </data>
+  <data name="Countries_SmartRouting">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Countries_SmartRouting_RoutedThrough">
+    <value>Uelekezaji wa Smart Routing kupitia {0}</value>
+    <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
+  </data>
+  <data name="Countries_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>Tumia mtandao wa Tor kupitia muunganisho wako wa VPN kwa faragha zaidi.</value>
+  </data>
+  <data name="Country_Fastest">
+    <value>Nchi yenye kasi zaidi</value>
+  </data>
+  <data name="Country_Fastest_ExcludingMyCountry">
+    <value>Yenye kasi zaidi (isipokuwa nchi yangu)</value>
+  </data>
+  <data name="Country_Random">
+    <value>Nchi nasibu</value>
+  </data>
+  <data name="Country_Random_ExcludingMyCountry">
+    <value>Nasibu (isipokuwa nchi yangu)</value>
+  </data>
+  <data name="Country_val_AD">
+    <value>Andora</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE">
+    <value>Falme za Kiarabu Zilizoungana</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF">
+    <value>Afghanistan</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG">
+    <value>Antigua na Barbuda</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI">
+    <value>Anguilla</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL">
+    <value>Albania</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM">
+    <value>Armenia</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO">
+    <value>Angola</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ">
+    <value>Antaktiki</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR">
+    <value>Argentina</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS">
+    <value>Samoa ya Marekani</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT">
+    <value>Austria</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU">
+    <value>Australia</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW">
+    <value>Aruba</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX">
+    <value>Visiwa vya Aland</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ">
+    <value>Azerbaijan</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA">
+    <value>Bosnia na Herzegovina</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB">
+    <value>Barbados</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD">
+    <value>Bangladishi</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE">
+    <value>Ubelgiji</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF">
+    <value>Bukina Faso</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG">
+    <value>Bulgaria</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH">
+    <value>Bahrain</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI">
+    <value>Burundi</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ">
+    <value>Benini</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL">
+    <value>Saint Barthelemy</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM">
+    <value>Bermuda</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN">
+    <value>Brunei Darussalam</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO">
+    <value>Bolivia</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ">
+    <value>Bonaire, Sint Eustatius na Saba</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR">
+    <value>Brazil</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS">
+    <value>Bahamas</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT">
+    <value>Bhutan</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV">
+    <value>Kisiwa cha Bouvet</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW">
+    <value>Botswana</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY">
+    <value>Belarus</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ">
+    <value>Belize</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA">
+    <value>Kanada</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC">
+    <value>Visiwa vya Cocos (Keeling)</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD">
+    <value>Jamhuri ya Kidemokrasia ya Kongo</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF">
+    <value>Jamhuri ya Afrika ya Kati</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG">
+    <value>Kongo</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH">
+    <value>Uswisi</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI">
+    <value>Côte d'Ivoire</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK">
+    <value>Visiwa vya Cook</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL">
+    <value>Chile</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM">
+    <value>Kameruni</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN">
+    <value>China</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO">
+    <value>Kolombia</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR">
+    <value>Kostarika</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU">
+    <value>Kuba</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV">
+    <value>Rasi ya Kijani</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW">
+    <value>Curacao</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX">
+    <value>Kisiwa cha Christmas</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY">
+    <value>Kupros</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ">
+    <value>Chekia</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE">
+    <value>Ujerumani</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ">
+    <value>Jibuti</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK">
+    <value>Denmaki</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM">
+    <value>Dominika</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO">
+    <value>Jamhuri ya Dominika</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ">
+    <value>Aljeria</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC">
+    <value>Ekwador</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE">
+    <value>Estonia</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG">
+    <value>Misri</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH">
+    <value>Sahara Magharibi</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER">
+    <value>Eritrea</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES">
+    <value>Hispania</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET">
+    <value>Ethiopia</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI">
+    <value>Ufini</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ">
+    <value>Fiji</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK">
+    <value>Visiwa vya Falkland (Malvinas)</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM">
+    <value>Mikronesia</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO">
+    <value>Visiwa vya Faroe</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR">
+    <value>Ufaransa</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA">
+    <value>Gaboni</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB">
+    <value>Uingereza</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD">
+    <value>Grenada</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE">
+    <value>Jojia</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF">
+    <value>Gwiyana ya Kifaransa</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG">
+    <value>Guernsey</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH">
+    <value>Ghana</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI">
+    <value>Gibraltar</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL">
+    <value>Grinland</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM">
+    <value>Gambia</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN">
+    <value>Guinea</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP">
+    <value>Guadeloupe</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ">
+    <value>Guinea ya Ikweta</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR">
+    <value>Ugiriki</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS">
+    <value>Jojia Kusini na Visiwa vya Sandwich Kusini</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT">
+    <value>Guatemala</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU">
+    <value>Guam</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW">
+    <value>Guinea-Bissau</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY">
+    <value>Guyana</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK">
+    <value>Hong Kong</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM">
+    <value>Kisiwa cha Heard na Visiwa vya McDonald</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN">
+    <value>Honduras</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR">
+    <value>Korasia</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT">
+    <value>Haiti</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU">
+    <value>Hungaria</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID">
+    <value>Indonesia</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE">
+    <value>Ayalandi</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL">
+    <value>Israeli</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM">
+    <value>Kisiwa cha Man</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN">
+    <value>India</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO">
+    <value>Eneo la Britania la Bahari ya Hindi</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ">
+    <value>Iraki</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR">
+    <value>Irani</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS">
+    <value>Aislandi</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT">
+    <value>Italia</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE">
+    <value>Jersey</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM">
+    <value>Jamaika</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO">
+    <value>Jordani</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP">
+    <value>Japani</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE">
+    <value>Kenya</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG">
+    <value>Kyrgyzstan</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH">
+    <value>Kambodia</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI">
+    <value>Kiribati</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM">
+    <value>Komori</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN">
+    <value>Saint Kitts na Nevis</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP">
+    <value>Korea Kaskazini</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR">
+    <value>Korea Kusini</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW">
+    <value>Kuwait</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY">
+    <value>Visiwa vya Cayman</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ">
+    <value>Kazakhstan</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA">
+    <value>Laos</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB">
+    <value>Lebanoni</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC">
+    <value>Saint Lucia</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI">
+    <value>Liechtenstein</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK">
+    <value>Sri Lanka</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR">
+    <value>Liberia</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS">
+    <value>Lesotho</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT">
+    <value>Lithuania</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU">
+    <value>Luxembourg</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV">
+    <value>Latvia</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY">
+    <value>Libya</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA">
+    <value>Moroko</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC">
+    <value>Monaco</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD">
+    <value>Moldova</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME">
+    <value>Montenegro</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF">
+    <value>Saint Martin (sehemu ya Ufaransa)</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG">
+    <value>Madagaska</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH">
+    <value>Visiwa vya Marshall</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK">
+    <value>Masedonia</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML">
+    <value>Mali</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM">
+    <value>Myanmar</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN">
+    <value>Mongolia</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO">
+    <value>Macao</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP">
+    <value>Visiwa vya Mariana vya Kaskazini</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ">
+    <value>Martinique</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR">
+    <value>Mauritania</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS">
+    <value>Montserrat</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT">
+    <value>Malta</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU">
+    <value>Morisi</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV">
+    <value>Maldives</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW">
+    <value>Malawi</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX">
+    <value>Meksiko</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY">
+    <value>Malaysia</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ">
+    <value>Msumbiji</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA">
+    <value>Namibia</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC">
+    <value>New Caledonia</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE">
+    <value>Niger</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF">
+    <value>Kisiwa cha Norfolk</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG">
+    <value>Nigeria</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI">
+    <value>Nicaragua</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL">
+    <value>Uholanzi</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO">
+    <value>Norway</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP">
+    <value>Nepal</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR">
+    <value>Nauru</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU">
+    <value>Niue</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ">
+    <value>New Zealand</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM">
+    <value>Oman</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA">
+    <value>Panama</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE">
+    <value>Peru</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF">
+    <value>Polynesia ya Ufaransa</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG">
+    <value>Papua New Guinea</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH">
+    <value>Ufilipino</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK">
+    <value>Pakistan</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL">
+    <value>Poland</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM">
+    <value>Saint Pierre na Miquelon</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN">
+    <value>Pitcairn</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR">
+    <value>Puerto Rico</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS">
+    <value>Palestina</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT">
+    <value>Ureno</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW">
+    <value>Palau</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY">
+    <value>Paraguay</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA">
+    <value>Qatar</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE">
+    <value>Réunion</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO">
+    <value>Romania</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS">
+    <value>Serbia</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU">
+    <value>Urusi</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW">
+    <value>Rwanda</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA">
+    <value>Saudi Arabia</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB">
+    <value>Visiwa vya Solomon</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC">
+    <value>Seychelles</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD">
+    <value>Sudan</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE">
+    <value>Uswidi</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG">
+    <value>Singapore</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH">
+    <value>Saint Helena, Ascension na Tristan da Cunha</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI">
+    <value>Slovenia</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ">
+    <value>Svalbard na Jan Mayen</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK">
+    <value>Slovakia</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL">
+    <value>Sierra Leone</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM">
+    <value>San Marino</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN">
+    <value>Senegal</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO">
+    <value>Somalia</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR">
+    <value>Suriname</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS">
+    <value>Sudan Kusini</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST">
+    <value>Sao Tome na Principe</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV">
+    <value>El Salvador</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX">
+    <value>Sint Maarten (sehemu ya Uholanzi)</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY">
+    <value>Jamhuri ya Kiarabu ya Siria</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ">
+    <value>Eswatini</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC">
+    <value>Visiwa vya Turks na Caicos</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD">
+    <value>Chad</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF">
+    <value>Maeneo ya Kusini ya Ufaransa</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG">
+    <value>Togo</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH">
+    <value>Thailand</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ">
+    <value>Tajikistan</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK">
+    <value>Tokelau</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL">
+    <value>Timor-Leste</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM">
+    <value>Turkmenistan</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN">
+    <value>Tunisia</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO">
+    <value>Tonga</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR">
+    <value>Uturuki</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT">
+    <value>Trinidad na Tobago</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV">
+    <value>Tuvalu</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW">
+    <value>Taiwan</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ">
+    <value>Tanzania</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA">
+    <value>Ukraine</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG">
+    <value>Uganda</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK">
+    <value>Uingereza</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM">
+    <value>Visiwa Vidogo vya Nje vya Marekani</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US">
+    <value>Marekani</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY">
+    <value>Uruguay</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ">
+    <value>Uzbekistan</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA">
+    <value>Mji wa Vatikani</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC">
+    <value>Saint Vincent na Grenadines</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE">
+    <value>Venezuela</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG">
+    <value>Visiwa vya Virgin, Britania</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI">
+    <value>Visiwa vya Virgin vya Marekani</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN">
+    <value>Vietnam</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU">
+    <value>Vanuatu</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF">
+    <value>Wallis na Futuna</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS">
+    <value>Samoa</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_XK">
+    <value>Kosovo</value>
+    <comment>The name of XK country</comment>
+  </data>
+  <data name="Country_val_YE">
+    <value>Yemen</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT">
+    <value>Mayotte</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA">
+    <value>Afrika Kusini</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM">
+    <value>Zambia</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW">
+    <value>Zimbabwe</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ">
+    <value>Haijulikani</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Description">
+    <value>Huduma ya Base Filtering Engine (BFE) kwenye kifaa chako cha Windows imezimwa. Huduma hii inahitaji kuwashwa ili Proton VPN ifanye kazi vizuri.</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable">
+    <value>Jinsi ya kuwasha Base Filtering Engine</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title">
+    <value>Washa Base Filtering Engine ili uendelee</value>
+  </data>
+  <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
+    <value>Pata nafasi zisizo na kikomo za kubadilisha seva kwa VPN Plus.</value>
+  </data>
+  <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
+    <value>Umefikia kiwango cha juu cha mabadiliko ya seva bila malipo kwa sasa.</value>
+  </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>Anza</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>Usajili umeisha muda</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Pandisha daraja upate tena kufikia seva na vipengele vya Plus.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description">
+    <value>Inaonekana huduma ya Proton VPN imezimwa. Utahitaji kuwasha huduma hiyo tena ili uunganishe.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title">
+    <value>Washa huduma ya Windows ili uendelee</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_One">
+    <value>Proton Free inakuunganisha kiotomatiki na seva huru yenye kasi zaidi inayopatikana kutoka katika nchi yetu huru ya {0}. Kwa kawaida, hii itakuwa seva iliyo karibu zaidi na eneo lako.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Other">
+    <value>Proton Free inakuunganisha kiotomatiki na seva huru yenye kasi zaidi inayopatikana kutoka katika nchi zetu {0} huru. Kwa kawaida, hii itakuwa seva iliyo karibu zaidi na eneo lako.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_One">
+    <value>Nchi ya seva huru ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Other">
+    <value>Nchi za seva huru ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Title">
+    <value>Miunganisho ya bure</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>Tuambie kwa nini ulitoa ukadiriaji huo.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>Maoni yako hayakuweza kutumwa. Tafadhali angalia muunganisho wako kisha ujaribu tena.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>Hitilafu fulani imetokea</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>10 ni uwezekano mkubwa sana</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>0 ni uwezekano mdogo sana</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>Si lazima</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>Shiriki bila kujulikana</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>Maoni yako hutusaidia kuboresha Proton VPN.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>Asante kwa maoni yako</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>Kuna uwezekano gani kwamba utapendekeza Proton VPN kwa rafiki?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>Jaribu tena</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description">
+    <value>Pandisha daraja ili kufungua seva za P2P (rika kwa rika) kwa michezo ya mtandaoni ya kasi na torrenting, au simamisha shughuli zako za P2P ili kurudisha muunganisho wako.</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Title">
+    <value>P2P hairuhusiwi kwenye seva za VPN ya bure</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>Gundua VPN Plus</value>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email">
+    <value>Barua pepe</value>
+    <comment>The label for user e-mail address in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
+    <value>mfano@kikoa.ke</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Field_MinLength">
+    <value>Minimum {0} characters</value>
+    <comment>Hint shown below a Report an issue text field that has a minimum length. {0} is the minimum number of characters.</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
+    <value>Tuma kumbukumbu za hitilafu</value>
+    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
+    <value>Kumbukumbu za hitilafu zinatuonyesha kilichokwenda mrama na hatua zipi zilisababisha tatizo lako. Tutazitumia tu kusaidia wahandisi wetu kurekebisha kasoro.</value>
+    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Header">
+    <value>Je, tatizo ni nini?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_NoLogsWarning">
+    <value>Kumbukumbu za hitilafu hutusaidia kufikia chanzo cha tatizo lako. Usipoziongeza, huenda tukashindwa kuchunguza tatizo kikamilifu.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes">
+    <value>Marekebisho ya haraka</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Footer">
+    <value>Hakufanya kazi?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Header">
+    <value>Vidokezo hivi vinaweza kukusaidia kutatua tatizo lako kwa upesi zaidi.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_DoneAction">
+    <value>Imekamilika</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail">
+    <value>Hitilafu fulani imetokea</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail_Description">
+    <value>Ripoti yako haikuweza kutumwa. Tafadhali angalia muunganisho wako kisha ujaribu tena.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success">
+    <value>Ripoti imetumwa</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success_Description">
+    <value>Asante kwa maoni yako. Tutawasiliana nawe haraka iwezekanavyo.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_SendReport">
+    <value>Tuma ripoti</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Steps">
+    <value>Hatua ya {0} kati ya {1}</value>
+    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Title">
+    <value>Ripoti tatizo</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>Gundua VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>Seva za VPN Plus hukuruhusu kufurahia filamu na vipindi vya TV unavyopenda kutoka kote duniani.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>Pandisha daraja ili kuepuka vizuizi vya VPN</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>Labda baadaye</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description">
+    <value>Inaonekana kifaa chako kinatumia seva mbadala. Hii inaweza kuingiliana na ulinzi wako wa VPN.</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Title">
+    <value>Seva mbadala imegunduliwa</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>Zima programu za antivirus au ngome</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>Programu hizi zinaweza kuingiliana na miunganisho ya VPN.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>Angalia muunganisho wako wa intaneti</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>Hakikisha uko mtandaoni na kuwa muunganisho wako ni imara.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>Marekebisho haya ya haraka yanaweza kukusaidia kuunganisha na Proton.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>Tumia mtandao tofauti</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>Jaribu kubadili mtandao wa Wi-Fi au tumia data ya simu badala yake.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>Angalia ukurasa wetu wa hali</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>Kuhakikisha tu kwamba huduma za Proton zinafanya kazi kama kawaida.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>Msaada wa muunganisho</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
+    <value>Hii itakutenganisha na VPN. Miunganisho yote ya intaneti iliyo hai itakuwa bila ulinzi kwa muda.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
+    <value>Hii itakutenganisha na VPN na kuzima kizima cha dharura kwa muda. Miunganisho yote ya intaneti iliyo hai itakuwa bila ulinzi kwa muda.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install">
+    <value>Sakinisha sasisho?</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart">
+    <value>Anzisha upya Proton VPN ili kukamilisha sasisho</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Description">
+    <value>Inaonekana saa ya mfumo wako haijapangwa ipasavyo. Hii inaweza kusababisha matatizo wakati wa kuunganisha kwa VPN.</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_PrimaryButton">
+    <value>Jinsi ya kusasisha saa ya mfumo</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Title">
+    <value>Sasisha saa ya mfumo</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>Rahisi. Bila usumbufu. Salama. Jilinde mtandaoni na ufikie kwa usalama tovuti, programu na faili za shirika lako.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Karibu kwenye Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>Vinjari kwa faragha, fikia maudhui yaliyozuiwa, na furahia uhuru wa kidijitali bila vikomo vya data au kasi.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>VPN iliyothibitishwa isiyohifadhi kumbukumbu</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>Shughuli zako zinalindwa na sheria za faragha za Uswisi. Hatutakufuatilia mtandaoni wala kushiriki maelezo yako na wahusika wengine.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>Vinjari kwa uhuru popote pale</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
+    <value>Ficha eneo lako la mtandaoni na utumie intaneti kutoka mojawapo ya nchi zetu {0} inayopatikana.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>Ficha eneo lako la mtandaoni na utumie intaneti kutoka mojawapo ya nchi zetu {0} zinazopatikana.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>Linda vifaa 10 kwa wakati mmoja</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>Panua ulinzi wa VPN hadi kompyuta yako ya mezani, simu, kivinjari, TV, na vifaa vingine.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>Tiririsha kwa azimio la juu</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>Tazama filamu na vipindi vya TV kutoka dunia kote, bila kuhatarisha kasi au ubora.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>Karibu kwenye VPN Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description">
+    <value>Umefungua vipengele vyote vya kiwango cha juu vya Proton VPN, Mail, Calendar, Drive na Pass.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>Karibu kwenye {0}</value>
+    <comment>Title to welcome the user after an account upgrade. {0} is a placeholder for the name of the new plan (eg. Proton Unlimited, Proton Duo, Proton Family).</comment>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>Sasa unaweza kuunganisha printa, vipaza sauti na vifaa vingine kwenye mtandao wako wa ndani (LAN), bila kupitia tuneli ya VPN.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>Miunganisho ya LAN</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>Ukiwasha usambazaji wa mlango, sasa utaona namba ya mlango unaotumika kwenye skrini ya nyumbani.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>Namba ya mlango unaotumika</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Angalia</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>Kilicho kipya</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>Sasa unaweza kuunganisha, kutenganisha, na kubadilisha muunganisho wako wa chaguo-msingi kutoka kwenye trei ya mfumo.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>Programu mpya ya trei ya mfumo</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations">
+    <value>Tenga maeneo</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
+    <value>Kama kuna maeneo usiyotaka kuunganishwa nayo kiotomatiki, unaweza kuyatenga kwenye nchi ya Haraka zaidi na Nasibu.</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
+    <value>Ruka</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
+    <value>Si nchi uliyotaka?</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_ActionButton">
+    <value>Tenga maeneo</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_CloseButton">
+    <value>Labda baadaye</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_Subtitle">
+    <value>Sasa unaweza kutenga nchi au miji kwenye miunganisho ya Haraka zaidi na Nasibu.</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_Title">
+    <value>Epuka maeneo usiyoyataka</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>Unataka kuondoka Proton VPN?</value>
+  </data>
+  <data name="Exit_Message">
+    <value>Inatenganisha kutoka VPN...</value>
+  </data>
+  <data name="Exit_Title">
+    <value>Ondoka kwenye Proton VPN</value>
+  </data>
+  <data name="Flyouts_Country_Description1">
+    <value>Kutumia intaneti bila VPN kunakufanya kuwa hatarini kwa vizuizi vya intaneti vinavyotegemea eneo.</value>
+  </data>
+  <data name="Flyouts_Country_Description2">
+    <value>Tovuti zinaweza kutumia vizuizi vya kijiografia ili maudhui yapatikane maeneo fulani tu. Serikali pia zinaweza kuagiza ISPs (watoa huduma za intaneti) kuzuia tovuti fulani katika nchi zao.</value>
+  </data>
+  <data name="Flyouts_Country_Description3">
+    <value>VPN inafanya ionekane kama unatumia intaneti kutoka mahali pengine, na hivyo kukulinda kutokana na ufuatiliaji na udhibiti.</value>
+  </data>
+  <data name="Flyouts_Country_Title">
+    <value>Nchi</value>
+  </data>
+  <data name="Flyouts_Country_Warning">
+    <value>Unganisha VPN ili kubadilisha eneo lako la mtandaoni</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Connected">
+    <value>IP ya VPN inafunika anwani yako halisi ya IP. Hii inafanya ionekane kama unatumia intaneti kutoka eneo lako la VPN, hivyo shughuli zako za mtandaoni haziwezi kuhusishwa na kifaa chako.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected1">
+    <value>Msimbo huu wa kipekee unaweza kutumiwa na tovuti na ISPs (watoa huduma za intaneti) kuunganisha eneo lako na historia yako ya kuvinjari na kifaa chako.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2">
+    <value>VPN inafunika anwani yako ya IP, na hivyo kuwa vigumu kufuatilia shughuli zako hadi kwako.</value>
+  </data>
+  <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
+    <value>Anwani ya IP ni nini?</value>
+  </data>
+  <data name="Flyouts_IpAddress_Title">
+    <value>Anwani ya IP</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIp">
+    <value>IP ya VPN</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv6</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIp">
+    <value>IP yako</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIpIsVisible">
+    <value>Anwani yako ya IP inaonekana</value>
+  </data>
+  <data name="Flyouts_Isp_Description1">
+    <value>ISP yako (mtoa huduma za intaneti) ni kampuni inayokuunganisha na intaneti.</value>
+  </data>
+  <data name="Flyouts_Isp_Description2">
+    <value>Wanaweza kuweka kumbukumbu za shughuli zako za mtandaoni. Katika nchi zingine, wanaweza kuuza data yako kwa watangazaji. Katika nyingine, wanaweza kuhitajika kuikabidhi kwa serikali.</value>
+  </data>
+  <data name="Flyouts_Isp_Description3">
+    <value>VPN inaficha anwani yako ya IP, na hivyo kukulinda kutokana na uingiliaji wa ISP.</value>
+  </data>
+  <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
+    <value>Mtoa huduma za intaneti (ISP) ni nini?</value>
+  </data>
+  <data name="Flyouts_Isp_Title">
+    <value>Mtoa huduma</value>
+  </data>
+  <data name="Flyouts_Isp_Warning">
+    <value>Mtoa huduma wako anaweza kuona tovuti unazotembelea</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success">
+    <value>Inazuia ufikiaji wote wa intaneti ukiwa haujaunganishwa na Proton VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info">
+    <value>Anwani yako ya IP inaweza kufichuliwa ikiwa muunganisho wako wa VPN unakatika</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>Kizima cha dharura cha hali ya juu kinazima intaneti yako kulinda anwani yako ya IP ukiwa haujaunganishwa na Proton VPN.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success">
+    <value>Ikiwa muunganisho wako wa VPN unakatika, utatenganishwa na intaneti hadi VPN irejeshwe</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected">
+    <value>Kizima cha dharura cha hali ya juu kinatumika hata ukitenganisha VPN kwa makusudi</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected">
+    <value>Ili kurudi mtandaoni, unganisha VPN au zima kizima cha dharura cha hali ya juu</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackersAdultContent_Success">
+    <value>Umelindwa dhidi ya matangazo, vifuatiliaji, programu hasidi na maudhui ya watu wazima.</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
+    <value>Umelindwa dhidi ya matangazo, vifuatiliaji na programu hasidi.</value>
+  </data>
+  <data name="Flyouts_NetShield_Info">
+    <value>Linda uvinjari wako kwenye tovuti na programu.</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success">
+    <value>Umelindwa dhidi ya programu hasidi pekee.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description">
+    <value>Zuia matangazo, vifuatiliaji, programu hasidi, na maudhui ya watu wazima kwa VPN Plus.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title">
+    <value>Furahia kuvinjari bila matangazo</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort">
+    <value>Namba ya mlango unaotumika</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Imeshindikana kupata namba ya mlango hai. Anzisha upya muunganisho wako na ujaribu tena.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info">
+    <value>Weka namba ya mlango hai kwenye programu yako ya torrent au ya P2P kwa utendaji bora zaidi.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info">
+    <value>Inaboresha kasi ya kupakua ya peer-to-peer</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description">
+    <value>Boresha utendaji wa kushiriki faili kwa peer-to-peer (P2P) kwa kutumia VPN Plus.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title">
+    <value>Boresha kasi ya P2P</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning">
+    <value>Unganisha kwenye seva ya P2P ili kuongeza kasi ya kupakua kwa torrent</value>
+  </data>
+  <data name="Flyouts_Protocol_Description">
+    <value>Itifaki ya VPN inaamua jinsi trafiki inavyosimbwa fiche na kutumwa kupitia VPN.</value>
+  </data>
+  <data name="Flyouts_Protocol_KnowledgeBaseLinkTitle">
+    <value>Itifaki ipi ya VPN ni bora zaidi?</value>
+  </data>
+  <data name="Flyouts_Protocol_Title">
+    <value>Itifaki</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Description">
+    <value>Mzigo wa seva unaonyesha jinsi seva ilivyo karibu na uwezo wake wa juu kabisa. Mzigo mkubwa wa seva unaweza kupunguza kasi ya muunganisho wako.</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High">
+    <value>Juu (91 hadi 100%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High_Description">
+    <value>VPN inaweza kuendeshwa polepole kuliko ya kawaida.</value>
+  </data>
+  <data name="Flyouts_ServerLoad_KnowledgeBaseLinkTitle">
+    <value>Mzigo wa seva ni nini?</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low">
+    <value>Chini (1 hadi 75%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low_Description">
+    <value>Kasi ya umeme</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium">
+    <value>Wastani (76 hadi 90%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium_Description">
+    <value>Hauna uwezekano wa kuathiri kasi ya muunganisho</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Title">
+    <value>Mzigo wa seva</value>
+  </data>
+  <data name="Flyouts_Speed_Description1">
+    <value>Inaonyesha kiasi cha data kinachopitia tuneli ya VPN wakati halisi.</value>
+  </data>
+  <data name="Flyouts_Speed_Description2">
+    <value>Hii inatokana na shughuli za sasa za kifaa chako. Katika hali nyingi, haiwakilishi kasi ya juu zaidi ya VPN.</value>
+  </data>
+  <data name="Flyouts_Speed_Download">
+    <value>Upakuaji</value>
+    <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
+  </data>
+  <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
+    <value>Maelezo ya kasi na trafiki ya VPN</value>
+  </data>
+  <data name="Flyouts_Speed_Title">
+    <value>Trafiki ya sasa</value>
+  </data>
+  <data name="Flyouts_Speed_Upload">
+    <value>Upakiaji</value>
+    <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
+    <value>Programu iliyotengwa ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
+    <value>Programu zilizotengwa ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
+    <value>Anwani ya IP iliyotengwa ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
+    <value>Anwani za IP zilizotengwa ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Info">
+    <value>Inaruhusu programu zilizoaminiwa na anwani za IP kuunganishwa bila ulinzi wa VPN.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info">
+    <value>Ni programu na anwani za IP hizi pekee zinazounganishwa kupitia VPN. Trafiki nyingine yote haijalindwa.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_One">
+    <value>Programu iliyolindwa ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
+    <value>Programu zilizolindwa ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_One">
+    <value>Anwani ya IP iliyolindwa ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
+    <value>Anwani za IP zilizolindwa ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info">
+    <value>Programu na anwani za IP hizi huunganishwa bila ulinzi wa VPN. Trafiki nyingine yote imelindwa.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description">
+    <value>Gawanya trafiki yako kuwa mirija ya VPN na isiyokuwa ya VPN ukitumia VPN Plus.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title">
+    <value>Pata faida za pande zote mbili</value>
+  </data>
+  <data name="Flyouts_Volume_Description">
+    <value>Inaonyesha jumla ya data iliyopitia tuneli ya VPN tangu ulipounganishwa.</value>
+  </data>
+  <data name="Flyouts_Volume_Download">
+    <value>Upakuaji</value>
+    <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
+  </data>
+  <data name="Flyouts_Volume_Title">
+    <value>Jumla ya trafiki</value>
+  </data>
+  <data name="Flyouts_Volume_Upload">
+    <value>Upakiaji</value>
+    <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
+  </data>
+  <data name="Format_Size_Bytes">
+    <value>{0} B</value>
+    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
+  </data>
+  <data name="Format_Size_Exabytes">
+    <value>{0} EB</value>
+    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
+  </data>
+  <data name="Format_Size_Gigabytes">
+    <value>{0} GB</value>
+    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
+  </data>
+  <data name="Format_Size_Kilobytes">
+    <value>{0} KB</value>
+    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
+  </data>
+  <data name="Format_Size_Megabytes">
+    <value>{0} MB</value>
+    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
+  </data>
+  <data name="Format_Size_Petabytes">
+    <value>{0} PB</value>
+    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
+  </data>
+  <data name="Format_Size_Terabytes">
+    <value>{0} TB</value>
+    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_SpeedUnit">
+    <value>Trafiki ya sasa ({0})</value>
+    <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
+  </data>
+  <data name="Format_Speed_BytesPerSecond">
+    <value>{0} B/s</value>
+    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
+  </data>
+  <data name="Format_Speed_ExabytesPerSecond">
+    <value>{0} EB/s</value>
+    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
+  </data>
+  <data name="Format_Speed_GigabytesPerSecond">
+    <value>{0} GB/s</value>
+    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
+  </data>
+  <data name="Format_Speed_KilobytesPerSecond">
+    <value>{0} KB/s</value>
+    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
+  </data>
+  <data name="Format_Speed_MegabytesPerSecond">
+    <value>{0} MB/s</value>
+    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
+  </data>
+  <data name="Format_Speed_PetabytesPerSecond">
+    <value>{0} PB/s</value>
+    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
+  </data>
+  <data name="Format_Speed_TerabytesPerSecond">
+    <value>{0} TB/s</value>
+    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
+  </data>
+  <data name="Format_Time_Day_One">
+    <value>{0} siku</value>
+  </data>
+  <data name="Format_Time_Day_Other">
+    <value>{0} siku</value>
+  </data>
+  <data name="Format_Time_DayHour_One">
+    <value>{0} siku {1} saa</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
+    <value>{0} siku {1} saa</value>
+  </data>
+  <data name="Format_Time_Hours">
+    <value>{0} saa</value>
+    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutes">
+    <value>{0} saa {1} dak</value>
+    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutesSeconds_Short">
+    <value>hh\:mm\:ss</value>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
+  </data>
+  <data name="Format_Time_Hours_Ago_One">
+    <value>Saa {0} iliyopita</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>Saa {0} zilizopita</value>
+  </data>
+  <data name="Format_Time_Minutes">
+    <value>{0} dak</value>
+    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds">
+    <value>{0} dak {1} sek</value>
+    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds_Short">
+    <value>mm\:ss</value>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
+  </data>
+  <data name="Format_Time_Minutes_Ago_One">
+    <value>Dakika {0} iliyopita</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>Dakika {0} zilizopita</value>
+  </data>
+  <data name="Format_Time_Seconds">
+    <value>{0} sek</value>
+    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_One">
+    <value>Sekunde {0} iliyopita</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>Sekunde {0} zilizopita</value>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>Pakua faili kwa kutumia BitTorrent na itifaki nyingine za kushiriki faili</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>Ongeza tabaka lingine la usimbaji fiche kwenye muunganisho wako wa VPN</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>Tumia mtandao wa Tor juu ya muunganisho wako wa VPN kwa faragha zaidi</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>Pata upatikanaji wa kimataifa kwa VPN Plus</value>
+  </data>
+  <data name="Gateway_Fastest">
+    <value>Lango la haraka zaidi</value>
+  </data>
+  <data name="Gateway_Random">
+    <value>Lango la nasibu</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>Unganisha kwenye lango ili kufikia VPN ya shirika lako.</value>
+  </data>
+  <data name="Gateways_Page_Title">
+    <value>Malango</value>
+  </data>
+  <data name="Home_Account_SignOut">
+    <value>Ondoka</value>
+  </data>
+  <data name="Home_Account_SignOut_Confirmation_Title">
+    <value>Unataka kuondoka kwenye {0}?</value>
+    <comment>{0} is a placeholder for the username</comment>
+  </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Badilisha muunganisho wa chaguo-msingi</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeServer">
+    <value>Badilisha seva</value>
+  </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>Kizima cha dharura cha hali ya juu kimewashwa</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>Unganisha VPN ili kurudisha muunganisho wako wa intaneti.</value>
+  </data>
+  <data name="Home_ConnectionDetails_Connecting">
+    <value>Inaunganisha</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectingSubLabel">
+    <value>Inalinda utambulisho wako wa kidijitali...</value>
+  </data>
+  <data name="Home_ConnectionDetails_Country">
+    <value>Nchi</value>
+  </data>
+  <data name="Home_ConnectionDetails_Isp">
+    <value>Mtoa huduma</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protected">
+    <value>Imelindwa</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protocol">
+    <value>Itifaki</value>
+  </data>
+  <data name="Home_ConnectionDetails_ServerLoad">
+    <value>Mzigo wa seva</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Thibitisha tena kwenye portal ya Uthibitishaji wa Hatua Mbili ya shirika lako ili kuendelea.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>Muda wa Uthibitishaji wa Hatua Mbili umeisha.</value>
+  </data>
+  <data name="Home_ConnectionDetails_Unprotected">
+    <value>Haijalindwa</value>
+  </data>
+  <data name="Home_ConnectionDetails_UnprotectedSubLabel">
+    <value>Simba kwa njia fiche shughuli zako za mtandaoni kwa kuunganisha kwa VPN.</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume">
+    <value>Jumla ya trafiki</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnIp">
+    <value>IP ya VPN</value>
+  </data>
+  <data name="Home_ConnectionDetails_YourIpAddress">
+    <value>Anwani yako ya IP</value>
+  </data>
+  <data name="Home_FreeConnections_About">
+    <value>Maelezo zaidi kuhusu muunganisho wa bila malipo</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_One">
+    <value>Tangazo limezuiwa</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>Matangazo yamezuiwa</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>Matangazo ni mabango ya kiutangazaji au madirisha ibukizi yanayoonekana kwenye tovuti na programu.</value>
+  </data>
+  <data name="Home_NetShield_DataSaved">
+    <value>Data iliyohifadhiwa</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>Makadirio ya data iliyohifadhiwa kwa kuzuia matangazo yasiyohitajika, vifuatiliaji, na programu hasidi.</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_One">
+    <value>Kifuatiliaji kimezuiwa</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>Vifuatiliaji vimezuiwa</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>Vifuatiliaji ni vidakuzi na tovuti za mhusika mwingine zinazokusanya, kuhifadhi, na kuuza taarifa kuhusu shughuli zako za wavuti.</value>
+  </data>
+  <data name="Home_Recents_Pin">
+    <value>Gandisha</value>
+  </data>
+  <data name="Home_Recents_Restricted">
+    <value>Seva inapatikana na VPN Plus</value>
+  </data>
+  <data name="Home_Recents_ServerUnderMaintenance">
+    <value>Seva inafanyiwa matunzo</value>
+  </data>
+  <data name="Home_Recents_Title">
+    <value>Hivi karibuni</value>
+  </data>
+  <data name="Home_Recents_Unpin">
+    <value>Bandua</value>
+  </data>
+  <data name="Home_TitleBar_Menu_About">
+    <value>Kuhusu</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Account">
+    <value>Akaunti</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp">
+    <value>Toka kwenye programu</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help">
+    <value>Msaada</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
+    <value>Tatizo ni nini?</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings">
+    <value>Mipangilio</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout">
+    <value>Ondoka</value>
+  </data>
+  <data name="Home_TitleBar_Menu_UpdateNow">
+    <value>Sasisha</value>
+  </data>
+  <data name="LoadingPage_Tip">
+    <value>Dunia bora huanza na faragha na uhuru wa kidijitali.</value>
+  </data>
+  <data name="Login_Error_GetSessionDetailsFailed">
+    <value>Hitilafu imetokea wakati wa kupata maelezo ya kipindi. Tafadhali jaribu tena.</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>Huwezi kuingia kutokana na mipangilio ya mtandao kwenye kifaa chako. Hii inaweza kusababishwa na mobile hotspot, programu tumizi nyingine ya VPN, au programu ya mashine ya pepe. Tafadhali kagua mpangilio wako wa mtandao au wasiliana na msaada kwa usaidizi.</value>
+  </data>
+  <data name="Login_Error_IncorrectTwoFactorCode">
+    <value>Msimbo si sahihi. Tafadhali jaribu tena.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>Faili inayohitajika kwa kuingia imekosekana kwenye usakinishaji wako. Tafadhali sakinisha upya Proton VPN ili kutatua tatizo hili.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>Imeshindikana kuingia</value>
+  </data>
+  <data name="Login_Error_SessionExpired">
+    <value>Muda wa kipindi chako umeisha. Tafadhali ingia tena.</value>
+    <comment>The message displayed in Login window when expired session is detected</comment>
+  </data>
+  <data name="Login_Error_SsoAuthFailed">
+    <value>Uthibitishaji wa SSO haukufanikiwa. Tafadhali jaribu tena.</value>
+  </data>
+  <data name="Login_Error_TwoFactorFailed">
+    <value>Uthibitishaji wa vipengele viwili haukufanikiwa. Tafadhali ingia tena.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>Uthibitishaji wa ufunguo wa usalama haupatikani kwa kifaa chako au muunganisho wa remote desktop.</value>
+  </data>
+  <data name="Login_TwoFactorForm_Authenticate">
+    <value>Thibitisha</value>
+    <comment>Authenticate button inside two factor form during login</comment>
+  </data>
+  <data name="Login_TwoFactorForm_Subtitle">
+    <value>Msimbo wa uthibitishaji wa tarakimu sita</value>
+  </data>
+  <data name="Login_TwoFactorForm_Title">
+    <value>Uthibitishaji wa vipengele viwili</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>Programu ya uthibitishaji</value>
+  </data>
+  <data name="Login_TwoFactor_Digit1">
+    <value>Tarakimu ya kwanza</value>
+  </data>
+  <data name="Login_TwoFactor_Digit2">
+    <value>Tarakimu ya pili</value>
+  </data>
+  <data name="Login_TwoFactor_Digit3">
+    <value>Tarakimu ya tatu</value>
+  </data>
+  <data name="Login_TwoFactor_Digit4">
+    <value>Tarakimu ya nne</value>
+  </data>
+  <data name="Login_TwoFactor_Digit5">
+    <value>Tarakimu ya tano</value>
+  </data>
+  <data name="Login_TwoFactor_Digit6">
+    <value>Tarakimu ya sita</value>
+  </data>
+  <data name="Login_TwoFactor_EnterCode">
+    <value>Weka msimbo wako</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>Hakuna njia inayojulikana ya uthibitishaji wa vipengele viwili.</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>Ufunguo wa usalama</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>Ongeza funguo ya U2F au FIDO iliyounganishwa na akaunti yako ya Proton.</value>
+  </data>
+  <data name="Main_Loading">
+    <value>Inapakia, tafadhali subiri...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
+  <data name="Main_Loading_SigningIn">
+    <value>Inaingia, subiri...</value>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>Hii inachukua muda mrefu zaidi ya kawaida, lakini tunaendelea kufanya kazi juu yake.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
+  </data>
+  <data name="Main_Loading_SigningOut">
+    <value>Inatoka kwenye akaunti, subiri...</value>
+    <comment>Message in the loading screen when signing out</comment>
+  </data>
+  <data name="Map_ConnectTo">
+    <value>Unganisha - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>Wasiliana nasi</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>Hatukuweza kupakia orodha ya seva.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Unahitaji msaada?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Ondoka</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Waombe msimamizi wako awashe ufikiaji wa VPN kwa akaunti yako.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>Hakuna muunganisho wa VPN uliopo</value>
+  </data>
+  <data name="NoServers_UnderMaintenance_Tip">
+    <value>Hatukuweza kupakia seva yoyote. Bofya Onyesha upya ili kusasisha orodha ya seva.</value>
+  </data>
+  <data name="Notifications_KillSwitch_Description">
+    <value>Ili kulinda anwani yako ya IP, kizima cha dharura kinazuia muunganisho wako wa intaneti.</value>
+  </data>
+  <data name="Notifications_PortForwarding_CopyPortNumber">
+    <value>Nakili nambari ya mlango</value>
+  </data>
+  <data name="Notifications_PortForwarding_Description">
+    <value>Nenda kwenye programu yako ya torrent au ya P2P kisha weka namba hii.</value>
+  </data>
+  <data name="Notifications_SessionLimit_Description">
+    <value>Umefikia kikomo cha juu cha vifaa. Ili kuunganisha tena kwenye VPN, tafadhali tenganisha kifaa kingine.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>Mpango wako umeshushwa daraja hadi Proton Free, na tunakurejesha kwenye seva ya bure yenye kasi zaidi.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Description">
+    <value>Mitandao ya Wi-Fi ya umma iko hatarini zaidi kwa vitisho vya usalama. Unganisha kwenye VPN ili kuvinjari kwa usalama.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Title">
+    <value>Muunganisho wa Wi-Fi usio salama umegunduliwa</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Proton VPN - Utafiti</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>Ili kujumuisha anwani za IPv6, unahitaji kuruhusu miunganisho ya IPv6 kupitia tuneli ya VPN.</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>Washa IPv6</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>Sio sasa</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>IPv6 imezimwa</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Action">
+    <value>Sasisha</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Message">
+    <value>Toleo hili la programu limepitwa na wakati. Lazima usasishe programu ili uendelee kutumia Proton VPN.</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Title">
+    <value>Sasisha Proton VPN ili uendelee</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Description">
+    <value>Seva zetu za P2P (peer-to-peer) hukuruhusu kufikia mitandao ya P2P huku zikilinda anwani yako ya IP na shughuli zako mtandaoni.</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Header">
+    <value>P2P VPN ni nini?</value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Description">
+    <value>Mitandao ya P2P inaruhusu vifaa viwili kuunganishwa na kubadilishana data bila kupitia seva kuu. </value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Header">
+    <value>Mtandao wa P2P ni nini?</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Description">
+    <value>  •  Kupakua faili za torrent
+  •  Kuboresha utendaji wa michezo mtandaoni na simu za video
+  •  Kuunganishwa na vifaa vya mtandao wa eneo la ndani (LAN)</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Header">
+    <value>Mitandao ya P2P hutumika kufanya nini?</value>
+  </data>
+  <data name="Overlay_P2P_LearnMore">
+    <value>P2P ni nini?</value>
+  </data>
+  <data name="Overlay_P2P_Title">
+    <value>P2P</value>
+  </data>
+  <data name="Overlay_Profile_Description1">
+    <value>Wasifu ni miunganisho maalum ya VPN unayoweza kurekebisha kwa mahitaji yako na kuhifadhi ili kufikia kwa haraka.</value>
+  </data>
+  <data name="Overlay_Profile_Description2">
+    <value>Weka eneo unalopendelea na uboreshe mipangilio yako kwa usalama, utendaji, michezo, au hali nyingine yoyote.</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore">
+    <value>Wasifu wa VPN ni nini?</value>
+  </data>
+  <data name="Overlay_Profile_Title">
+    <value>Wasifu</value>
+  </data>
+  <data name="Overlay_SecureCore_Description1">
+    <value>Secure Core inakuunganisha na seva yako ya marudio kupitia seva ya pili ya VPN yenye usalama wa hali ya juu kabisa.</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2">
+    <value>Ulinzi wa kiwango hiki cha juu unaweza kusababisha ucheleweshaji mkubwa zaidi na kasi za polepole zaidi.</value>
+  </data>
+  <data name="Overlay_SecureCore_LearnMore">
+    <value>Secure Core ni nini?</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection">
+    <value>Secure Core
+muunganisho wa VPN</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
+    <value>Ucheleweshaji mkubwa</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Privacy">
+    <value>Faragha ya hali ya juu</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection">
+    <value>Kawaida
+muunganisho wa VPN</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Latency">
+    <value>Ucheleweshaji mdogo</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Privacy">
+    <value>Faragha ya juu</value>
+  </data>
+  <data name="Overlay_SecureCore_Title">
+    <value>Secure Core</value>
+  </data>
+  <data name="Overlay_ServerLoad_Description">
+    <value>Mzigo wa seva unaonyesha jinsi seva ilivyo karibu na uwezo wake wa juu kabisa.
+
+Mzigo mkubwa wa seva unaweza kupunguza kasi ya muunganisho wako.</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Description">
+    <value>VPN inaweza kuendeshwa polepole kuliko ya kawaida.</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Title">
+    <value>Juu (91 hadi 100%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_LearnMore">
+    <value>Mzigo wa seva ni nini?</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Description">
+    <value>Kasi ya umeme</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Title">
+    <value>Chini (1 hadi 75%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Description">
+    <value>Hauna uwezekano wa kuathiri kasi ya VPN</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Title">
+    <value>Wastani (76 hadi 90%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_Title">
+    <value>Mzigo wa seva</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description1">
+    <value>Smart Routing huturuhusu kutoa huduma ya VPN katika nchi zilizo ngumu kufikia.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2">
+    <value>Unapounganisha kwenye seva ya Smart Routing, utaonekana kama unavinjari kutoka nchi unayolenga, ingawa seva halisi ipo mahali pengine.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3">
+    <value>Smart Routing kwa kawaida hutumika kuzunguka sheria zinazoipinga faragha na aina nyingine za udhibiti.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Header">
+    <value>Inakuunganisha na nchi unayolenga kupitia seva zilizowekwa mahali pengine: {0}.</value>
+    <comment>{0} is a placeholder for the countries where the physical servers are. Can be either one country or multiple countries separated with comma.</comment>
+  </data>
+  <data name="Overlay_SmartRouting_LearnMore">
+    <value>Smart Routing ni nini?</value>
+  </data>
+  <data name="Overlay_SmartRouting_Title">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Overlay_Tor_Description">
+    <value>Unganisha kwenye seva ya Tor ili kufikia huduma zilizofichwa na tovuti za onion kwa kutumia kivinjari chochote.</value>
+  </data>
+  <data name="Overlay_Tor_LearnMore">
+    <value>Jinsi ya kufikia mtandao wa Tor</value>
+  </data>
+  <data name="Overlay_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Profile_CustomSettings_Description">
+    <value>Ukiwa umeunganishwa, mipangilio ya wasifu itabatilisha mipangilio yako ya VPN.</value>
+  </data>
+  <data name="Profile_CustomSettings_Header">
+    <value>Ongeza mipangilio maalum</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide">
+    <value>Ficha mipangilio</value>
+  </data>
+  <data name="Profile_CustomSettings_Show">
+    <value>Onyesha mipangilio</value>
+  </data>
+  <data name="Profile_NatType_Conflict_Description">
+    <value>Hii itazima usambazaji wa mlango kwa wasifu huu.</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description">
+    <value>Hii itazima DNS maalum kwa wasifu huu.</value>
+  </data>
+  <data name="Profile_Options_Application">
+    <value>Programu</value>
+  </data>
+  <data name="Profile_Options_Application_Select">
+    <value>Teua programu</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Application">
+    <value>Fungua programu</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
+    <value>Tumia hali ya kuvinjari kwa faragha</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Website">
+    <value>Fungua tovuti</value>
+  </data>
+  <data name="Profile_Options_Description">
+    <value>Fungua kiotomatiki tovuti au programu unayoichagua unapounganisha na wasifu huu.</value>
+  </data>
+  <data name="Profile_Options_Header">
+    <value>Unganisha na uende</value>
+  </data>
+  <data name="Profile_Options_Url">
+    <value>URL ya tovuti</value>
+  </data>
+  <data name="Profile_Options_Url_Error">
+    <value>Weka URL halali</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description">
+    <value>Hii itabadilisha aina ya NAT kwa wasifu huu kuwa kali (aina ya 3).</value>
+  </data>
+  <data name="Profiles_Default_Gaming">
+    <value>Michezo</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity">
+    <value>Usalama wa hali ya juu</value>
+  </data>
+  <data name="Profiles_Default_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection">
+    <value>Muunganisho wa nasibu</value>
+  </data>
+  <data name="Profiles_Default_Streaming">
+    <value>Utiririshaji Marekani</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool">
+    <value>Kazi/Shule</value>
+  </data>
+  <data name="Profiles_Page_Description">
+    <value>Sanidi mipangilio yako mwenyewe ya VPN na unganisha kwa kubofya mara moja.</value>
+  </data>
+  <data name="Profiles_Page_Title">
+    <value>Wasifu</value>
+  </data>
+  <data name="Search_InputBox_Placeholder">
+    <value>Vinjari kutoka...</value>
+  </data>
+  <data name="Search_NoInput_CityOrState">
+    <value>Mji au jimbo la Marekani</value>
+    <comment>The word used for one single city and one single United States state</comment>
+  </data>
+  <data name="Search_NoInput_Country">
+    <value>Nchi</value>
+    <comment>The word used for one single country</comment>
+  </data>
+  <data name="Search_NoInput_Server">
+    <value>Seva</value>
+    <comment>The word used for one single server</comment>
+  </data>
+  <data name="Search_NoInput_TrySearchingFor">
+    <value>Jaribu kutafuta...</value>
+  </data>
+  <data name="Search_NoResults_Description">
+    <value>Jaribu neno lingine la utafutaji.</value>
+  </data>
+  <data name="Search_NoResults_Title">
+    <value>Hakuna matokeo yaliyopatikana</value>
+  </data>
+  <data name="Server">
+    <value>Seva</value>
+  </data>
+  <data name="Server_Fastest">
+    <value>Seva ya haraka zaidi</value>
+  </data>
+  <data name="Server_Fastest_Free">
+    <value>Seva ya bure ya haraka zaidi</value>
+  </data>
+  <data name="Server_Feature_B2B">
+    <value>Lango</value>
+  </data>
+  <data name="Server_Feature_B2B_Description">
+    <value>Fikia seva za shirika lako</value>
+  </data>
+  <data name="Server_Feature_None">
+    <value>Kawaida</value>
+  </data>
+  <data name="Server_Feature_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Server_Feature_P2P_Description">
+    <value>Imeboreshwa kwa Torrent</value>
+  </data>
+  <data name="Server_Feature_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description">
+    <value>Ulinzi maradufu</value>
+  </data>
+  <data name="Server_Feature_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Server_Free">
+    <value>Seva ya bure</value>
+  </data>
+  <data name="Server_Random">
+    <value>Seva ya nasibu</value>
+  </data>
+  <data name="Servers">
+    <value>Seva</value>
+  </data>
+  <data name="Settings_About_Changelog">
+    <value>Rekodi ya mabadiliko</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Toleo la sasa</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>Taarifa za rekodi ya mabadiliko hazikuweza kupakiwa.</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>Pata maelezo zaidi</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Leseni</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Inapakia</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>Kuhusu</value>
+  </data>
+  <data name="Settings_Account_Account">
+    <value>Akaunti</value>
+  </data>
+  <data name="Settings_Account_Exit">
+    <value>Toka kwenye programu</value>
+  </data>
+  <data name="Settings_Account_SignOut">
+    <value>Ondoka</value>
+  </data>
+  <data name="Settings_AppVersion">
+    <value>Toleo la programu</value>
+  </data>
+  <data name="Settings_Censorship_Footer">
+    <value>Takwimu hizi hazina anwani yako ya IP, na haziwezi kutumika kukutambulisha. Hatutawahi kuzishiriki na wahusika wengine.</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports">
+    <value>Shiriki ripoti za hitilafu za programu bila utambulisho</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports_Description">
+    <value>Ripoti za hitilafu za programu hutusaidia kurekebisha kasoro, kutambua ngome na kuepuka vizuizi vya VPN.</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics">
+    <value>Shiriki takwimu za matumizi bila utambulisho</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics_Description">
+    <value>Data ya matumizi hutusaidia kuzidi vizuizi vya VPN na kuboresha utendaji wa programu.</value>
+  </data>
+  <data name="Settings_Common_Apply">
+    <value>Tumia</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>Anwani imeongezwa tayari</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>Weka anwani halali ya IPv4 au IPv6</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Connection">
+    <value>Muunganisho</value>
+  </data>
+  <data name="Settings_Connection_AdvancedSettings">
+    <value>Mipangilio ya kina</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting">
+    <value>Uelekezaji mbadala</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
+    <value>Ikiwa huduma za Proton zimezuiwa kwa sababu ya vikwazo vya mtandao, tutajaribu kutumia uelekezaji mbadala wa mtandao ili kukuunganisha na tovuti zetu.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers">
+    <value>Seva za DNS maalum</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>Ongeza seva mpya ya DNS</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
+    <value>Hutaweza kutumia NetShield ukiwa umeunganishwa kwa seva ya DNS maalum.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
+    <value>Uwasha seva za DNS maalum?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
+    <value>Unganisha kwenye Proton VPN ukitumia Mfumo wa Jina la Kikoa (DNS) wako mwenyewe. Tumia seva za DNS unazoamini tu.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>Tutajaribu kuunganisha kwenye seva hizi kwa mpangilio. Ikiwa hazifanyi kazi zote, DNS ya chaguo-msingi ya Proton VPN itatumika.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_FormattedHeader">
+    <value>Seva za DNS ({0})</value>
+    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+    <value>Seva za DNS</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Select">
+    <value>Teua seva za DNS</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>Usaidizi wa IPv6</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
+    <value>Ulinzi dhidi ya uvujaji wa IPv6</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
+    <value>Huzuia kuvuja kwa data kwa kuzuia trafiki ya IPv6 isiyopita kupitia tuneli ya VPN.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>Huruhusu trafiki ya IPv6 kupita kupitia tuneli ya VPN. Hii huboresha ulinganifu na tovuti na huduma za IPv6.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections">
+    <value>Ruhusu miunganisho ya LAN</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_Description">
+    <value>Inaruhusu miunganisho na printa, vipaza sauti na vifaa vingine kwenye mtandao wako wa ndani.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
+    <value>Inatumia mDNS kuunganisha na vifaa kwa kutumia majina kama 'My-Printer' au 'router.local' badala ya anwani za IP. DNS ya kawaida bado inaelekezwa kupitia tneli ya VPN. Imezimwa kwa chaguo-msingi ili VPN ifanye kazi kwa kasi zaidi.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
+    <value>Fikia vifaa kwa jina</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType">
+    <value>Aina ya NAT</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
+    <value>Hutaweza kutumia usambazaji wa mlango na NAT ya Wastani.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
+    <value>Uwasha NAT ya Wastani?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Description">
+    <value>Teua aina ya NAT kwa muunganisho wako.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate">
+    <value>Wastani (aina ya 2)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
+    <value>Kuna kizuizo kidogo kwa data inayoingia kwenye mtandao wako. Chaguo hili ni bora kwa michezo ya video mtandaoni.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict">
+    <value>Mkali (aina ya 3)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict_Description">
+    <value>Inazuia data inayoingia kwenye mtandao wako. Chaguo hili ni salama zaidi, lakini linaweza kufanya muunganisho wa michezo ya P2P kuwa mgumu zaidi.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
+    <value>Inaunganisha trafiki ya mtandao. Ni polepole kuliko TUN, lakini inahitajika kwa baadhi ya usanidi wa mtandao wa kizamani au maalum.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
+    <value>Inaelekeza trafiki kati ya mitandao tofauti. TUN inaweza kuwa ya haraka na thabiti zaidi kuliko TAP.</value>
+  </data>
+  <data name="Settings_Connection_ConnectionPreferences">
+    <value>Mapendeleo ya muunganisho</value>
+  </data>
+  <data name="Settings_Connection_ConnectionPreferences_Description">
+    <value>Muunganisho wa chaguo-msingi na maeneo yaliyotengwa</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
+    <value>DNS maalum haiwezi kuwashwa kwa sababu umeunganishwa kwa wasifu ambao NetShield imewashwa.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
+    <value>DNS maalum imezimwa kwa sababu kwa sasa umeunganishwa kwa wasifu ambao NetShield imewashwa.</value>
+  </data>
+  <data name="Settings_Connection_Default">
+    <value>Muunganisho wa chaguo-msingi</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>Nchi yenye kasi zaidi</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>Seva bora kulingana na eneo lako</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>Muunganisho wa mwisho</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>Muunganisho wako uliotumika hivi karibuni</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Nchi nasibu</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Seva tofauti kila unapounganisha</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Za hivi karibuni</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations">
+    <value>Maeneo yaliyotengwa</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Cities">
+    <value>Miji</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Countries">
+    <value>Nchi</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Description">
+    <value>Maeneo yaliyochaguliwa hayatasatumika kamwe unapounganisha kwa Haraka zaidi au Nasibu.</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_NoLocations">
+    <value>Hakuna maeneo yanayopatikana</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Search">
+    <value>Teua...</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_States">
+    <value>Majimbo</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch">
+    <value>Kizima cha dharura</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced">
+    <value>Ya kina</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced_Description">
+    <value>Ruhusu ufikiaji wa intaneti ukiwa umeunganishwa na Proton VPN pekee. Kizima cha dharura cha kina kitaendelea kufanya kazi hata ukianzisha upya kifaa chako.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Description">
+    <value>Hulinda anwani yako ya IP kwa kukutenganisha na intaneti ukipoteza muunganisho wako wa VPN.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard">
+    <value>Kawaida</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard_Description">
+    <value>Inajitenganisha na intaneti kiotomatiki muunganisho wa VPN ukipotea.</value>
+  </data>
+  <data name="Settings_Connection_NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
+    <value>Zuia matangazo, vifuatiliaji, na programu hasidi</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent">
+    <value>Zuia matangazo, vifuatiliaji, programu hasidi, na maudhui ya watu wazima</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockMalwareOnly">
+    <value>Zuia programu hasidi pekee</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Description">
+    <value>Hutaweza kuunganishwa kwa seva ya DNS maalum, NetShield ikiwa imewashwa.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information">
+    <value>NetShield haioani na DNS maalum.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Title">
+    <value>Uwasha NetShield?</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Description">
+    <value>Linda uvinjari wako kwenye tovuti na programu.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Footer">
+    <value>Tovuti zingine zinaweza kutopakiwa ipasavyo matangazo na vifuatiliaji vinapozuiwa.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_PrivacyPanel">
+    <value>Paneli ya faragha ya NetShield</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding">
+    <value>Usambazaji wa mlango</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort">
+    <value>Namba ya mlango hai:</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
+    <value>Nakili nambari ya mlango</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Description">
+    <value>Hutaweza kutumia NAT ya Wastani ukiwa usambazaji wa mlango umewashwa.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Title">
+    <value>Uwasha usambazaji wa mlango?</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Description">
+    <value>Huboresha kasi ya kupakua kwa torrent na ya michezo kwa kuruhusu miunganisho ya moja kwa moja ya P2P kupitia mlango maalum.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Footer">
+    <value>Ili kutumia usambazaji wa mlango, unganisha kwenye seva inayounga mkono P2P.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>Ilibadilishwa mara ya mwisho: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Loading">
+    <value>Inapakia...</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications">
+    <value>Arifa</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications_Description">
+    <value>Pata arifa namba ya mlango wako unaotumika inapobadilika.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Haipatikani</value>
+  </data>
+  <data name="Settings_Connection_Protocol">
+    <value>Itifaki</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling">
+    <value>Mgawanyo wa trafiki</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Description">
+    <value>Teua programu zitakazotengwa na muunganisho wa VPN</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_FormattedHeader">
+    <value>Programu zilizotengwa ({0})</value>
+    <comment>Header for the list of apps to exclude for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Excluded apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Header">
+    <value>Programu zilizotengwa</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
+    <value>Faili za programu</value>
+    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_Description">
+    <value>Teua programu zitakazojumuishwa kwenye muunganisho wa VPN</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader">
+    <value>Programu zilizojumuishwa ({0})</value>
+    <comment>Header for the list of apps to include for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Included apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_Header">
+    <value>Programu zilizojumuishwa</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Select">
+    <value>Teua programu</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Description">
+    <value>Weka muunganisho wako maalum kwa kuamua ni programu gani na anwani zipi za IP zinazolindwa na VPN.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse">
+    <value>Hali ya kujumuisha</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Description">
+    <value>Programu na anwani za IP zilizochaguliwa pekee ndizo zinazounganisha kupitia VPN, trafiki yote nyingine haijalindwa.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>Jumuisha</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>Ongeza anwani mpya ya IPv4 au IPv6</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Description">
+    <value>Teua anwani za IP zitakazotengwa na muunganisho wa VPN</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_FormattedHeader">
+    <value>Anwani za IP zilizotengwa ({0})</value>
+    <comment>Header for the list of IP addresses to exclude for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Excluded IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Header">
+    <value>Anwani za IP zilizotengwa</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Description">
+    <value>Teua anwani za IP zitakazojumuishwa kwenye muunganisho wa VPN</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_FormattedHeader">
+    <value>Anwani za IP zilizojumuishwa ({0})</value>
+    <comment>Header for the list of IP addresses to include for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Included IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Header">
+    <value>Anwani za IP zilizojumuishwa</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Select">
+    <value>Teua anwani za IP</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard">
+    <value>Hali ya kutenga</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Description">
+    <value>Programu na anwani za IP zilizochaguliwa zinatengwa na muunganisho wako wa VPN.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>Tenga</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
+  </data>
+  <data name="Settings_Connection_VpnAccelerator">
+    <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Tupa mabadiliko</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Endelea kuhariri</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Je, utupe mabadiliko yasiyohifadhiwa?</value>
+  </data>
+  <data name="Settings_General">
+    <value>Kwa ujumla</value>
+  </data>
+  <data name="Settings_General_AutoStartup">
+    <value>Uanzaji kiotomatiki</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect">
+    <value>Unganisha kiotomatiki</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Description">
+    <value>Inaunganisha kiotomatiki kwenye muunganisho wako wa chaguo-msingi wakati Proton VPN inapofunguliwa.</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch">
+    <value>Fungua kiotomatiki</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Description">
+    <value>Proton VPN itafunguliwa kiotomatiki unapoingia kwenye kifaa chako.</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
+    <value>Fungua kwenye eneo la kazi</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
+    <value>Punguza kwenye tray ya mfumo</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
+    <value>Punguza kwenye ubao wa kazi</value>
+  </data>
+  <data name="Settings_General_AutoStartup_Description">
+    <value>Weka programu ifunguke au iunganishe kiotomatiki.</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates">
+    <value>Sasisho za kiotomatiki</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates_Description">
+    <value>Kagua na sakinisha masasisho ya Proton VPN kiotomatiki.</value>
+  </data>
+  <data name="Settings_General_BetaAccess">
+    <value>Ufikiaji wa Beta</value>
+  </data>
+  <data name="Settings_General_BetaAccess_Description">
+    <value>Pata ufikiaji wa mapema na utusaidie kujaribu matoleo mapya ya Proton VPN.</value>
+  </data>
+  <data name="Settings_General_Language">
+    <value>Lugha</value>
+  </data>
+  <data name="Settings_General_Notifications">
+    <value>Arifa</value>
+  </data>
+  <data name="Settings_General_Notifications_Description">
+    <value>Pata arifa kuhusu mabadiliko ya hali ya muunganisho wako.</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver">
+    <value>Kiendeshi cha mtandao wa OpenVPN</value>
+  </data>
+  <data name="Settings_General_Theme">
+    <value>Mandhari</value>
+  </data>
+  <data name="Settings_Improve">
+    <value>Boresha Proton</value>
+  </data>
+  <data name="Settings_Improve_Censorship">
+    <value>Tusaidie kupambana na udhibiti</value>
+  </data>
+  <data name="Settings_OperatingSystemVersion">
+    <value>Toleo la mfumo wa uendeshaji</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description1">
+    <value>Mipangilio hii imeunganishwa na wasifu wako unaotumika.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2">
+    <value>Hariri wasifu wako ili kufanya mabadiliko, au tenganisha ili kuhariri mipangilio yako ya jumla ya VPN.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline">
+    <value>Mipangilio hii imeunganishwa na wasifu wa '{0}' na inaweza kudhibitiwa tu katika Wasifu.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Title">
+    <value>Dhibiti {0} katika Wasifu</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
+  <data name="Settings_Page_Title">
+    <value>Mipangilio</value>
+  </data>
+  <data name="Settings_Protocols_Explanation">
+    <value>Itifaki ya VPN huamua jinsi data inavyosafiri kati ya seva ya VPN na kifaa chako.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Description">
+    <value>Itifaki iliyozoeleka, imejaribiwa vizuri, na salama. OpenVPN inaaminika hata katika hali za mtandao duni, lakini huenda isiwe haraka kama itifaki nyingine.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Description">
+    <value>Itifaki iliyozoeleka, imejaribiwa vizuri, na salama. OpenVPN hutumia betri zaidi kuliko baadhi ya itifaki nyingine.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Description">
+    <value>Mfumo wetu mpya unaotegemea WireGuard kwa uthabiti zaidi, utendaji bora na uwezo wa kuepuka udhibiti.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Description">
+    <value>Mfumo wetu mpya unaotegemea WireGuard kwa uthabiti zaidi, utendaji bora na uwezo wa kuepuka udhibiti.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Title">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Description">
+    <value>Mfumo wetu mpya unaotegemea WireGuard kwa uthabiti zaidi, utendaji bora na uwezo wa kuepuka udhibiti.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description">
+    <value>Tumia toleo la Proton VPN lenyewe la WireGuard. Hii ni kipengele cha majaribio, hivyo unaweza kukumbana na matatizo ya uthabiti.</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title">
+    <value>Itifaki za Proton</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Description">
+    <value>Huteua kiotomatiki itifaki bora kwa muunganisho wako.</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Title">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_Protocols_TcpCategory">
+    <value>Uaminifu (TCP)</value>
+  </data>
+  <data name="Settings_Protocols_UdpCategory">
+    <value>Kasi (UDP)</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>Itifaki ya kisasa kwa usalama na utendaji.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>Huvuka vizuizi vya VPN kwa kuficha muunganisho wako wa VPN kutoka kwa wadhibiti. Stealth inavumilia DPI (uchunguzi wa kina wa pakiti), lakini huenda isiwe haraka kama itifaki nyingine.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Description">
+    <value>Itifaki ya kisasa kwa usalama na utendaji.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Reconnection_Title">
+    <value>Unganisha tena ili kutumia mabadiliko</value>
+  </data>
+  <data name="Settings_RestoreDefault">
+    <value>Rudisha mipangilio ya chaguo-msingi</value>
+  </data>
+  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
+    <value>Rudisha na unganisha tena</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Action">
+    <value>Rudisha mipangilio ya chaguo-msingi</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Message">
+    <value>Hii itaweka upya mipangilio yako ya Proton VPN na kuirudisha katika hali yake ya awali.</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Title">
+    <value>Rudisha mipangilio ya chaguo-msingi?</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnTcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnUdp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardUdp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="Settings_Support">
+    <value>Usaidizi</value>
+  </data>
+  <data name="Settings_Support_DebugLogs">
+    <value>Kumbukumbu za kuondoa kasoro</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Application">
+    <value>Kumbukumbu za programu tumizi</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_ErrorMessage">
+    <value>Folda ya kumbukumbu haikupatikana.</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Service">
+    <value>Kumbukumbu za huduma</value>
+  </data>
+  <data name="Settings_Support_ReportIssue">
+    <value>Ripoti tatizo</value>
+  </data>
+  <data name="Settings_Support_SupportCenter">
+    <value>Kituo cha usaidizi</value>
+  </data>
+  <data name="Settings_Theme_Dark">
+    <value>Nyeusi</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Chaguo-msingi</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Nyeupe</value>
+  </data>
+  <data name="Settings_VpnAccelerator_Description">
+    <value>Ongeza kasi ya muunganisho wako hadi 400% kwa teknolojia zinazoimarisha utendaji.</value>
+  </data>
+  <data name="SignIn_Form_AdvancedKillSwitchDescription">
+    <value>Kizima cha dharura cha hali ya juu kinazui muunganisho wako wa intaneti.</value>
+  </data>
+  <data name="SignIn_Form_BestSecureVpnForSpeed">
+    <value>VPN bora na salama kwa kasi</value>
+  </data>
+  <data name="SignIn_Form_CreateAccount">
+    <value>Fungua akaunti</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_Description">
+    <value>Weka maelezo ya akaunti yako ya Proton.</value>
+  </data>
+  <data name="SignIn_Form_DisableKillSwitch">
+    <value>Zima kizima cha dharura</value>
+  </data>
+  <data name="SignIn_Form_Email">
+    <value>Barua pepe</value>
+  </data>
+  <data name="SignIn_Form_ForgotUsername">
+    <value>Umesahau jina la mtumiaji</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_Help">
+    <value>Msaada</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_NoLogsPolicy">
+    <value>Sera ya kutotunza kumbukumbu</value>
+  </data>
+  <data name="SignIn_Form_OpenSource">
+    <value>Chanzo huria</value>
+  </data>
+  <data name="SignIn_Form_Password">
+    <value>Nenosiri</value>
+  </data>
+  <data name="SignIn_Form_PasswordError">
+    <value>Weka nenosiri lako</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a password</comment>
+  </data>
+  <data name="SignIn_Form_ReportAnIssue">
+    <value>Ripoti tatizo</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_ResetPassword">
+    <value>Umesahau nenosiri</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_SignIn">
+    <value>Ingia</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_SignInWithSso">
+    <value>Ingia kwa SSO</value>
+  </data>
+  <data name="SignIn_Form_SwissBased">
+    <value>Ina makao Uswisi</value>
+  </data>
+  <data name="SignIn_Form_Title">
+    <value>Ingia</value>
+  </data>
+  <data name="SignIn_Form_TroubleSigningIn">
+    <value>Kituo cha usaidizi</value>
+    <comment>A button at the bottom of the login window inside Get help popup</comment>
+  </data>
+  <data name="SignIn_Form_Username">
+    <value>Barua pepe au jina la mtumiaji</value>
+  </data>
+  <data name="SignIn_Form_UsernameError">
+    <value>Weka barua pepe au jina la mtumiaji</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
+  </data>
+  <data name="SignIn_KillSwitch_Disabled">
+    <value>Kizima cha dharura kimezimwa</value>
+  </data>
+  <data name="State_Fastest">
+    <value>Jimbo la haraka zaidi</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>Jimbo la nasibu</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="SystemNotification_Connected">
+    <value>Umelindwa.</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>Imeunganishwa na {0}.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>Imetenganishwa</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>Fungua torrenting na michezo ya mtandaoni kupitia itifaki za P2P (peer-to-peer) kwa kutumia seva za VPN za kulipa.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>P2P haipatikani na VPN Free</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Tovuti zingine na huduma za utiririshaji huzuia watumiaji wa VPN ya bure. Pandisha daraja hadi Proton VPN Plus ili kuepuka vizuizi hivi.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Tovuti imezuiwa?</value>
+  </data>
+  <data name="System_Tray_Actions_Connect">
+    <value>Unganisha</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Tenganisha</value>
+  </data>
+  <data name="System_Tray_Actions_ExitApplication">
+    <value>Toka</value>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
+    <value>Fungua {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
+    <value>Toka</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication">
+    <value>Fungua {0}</value>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>Fungua programu ili kuingia</value>
+  </data>
+  <data name="Unit_BytesPerSecond">
+    <value>B/s</value>
+    <comment>Unit for Bytes per second</comment>
+  </data>
+  <data name="Unit_ExabytesPerSecond">
+    <value>EB/s</value>
+    <comment>Unit for Exabytes per second</comment>
+  </data>
+  <data name="Unit_GigabytesPerSecond">
+    <value>GB/s</value>
+    <comment>Unit for Gigabytes per second</comment>
+  </data>
+  <data name="Unit_KilobytesPerSecond">
+    <value>KB/s</value>
+    <comment>Unit for Kilobytes per second</comment>
+  </data>
+  <data name="Unit_MegabytesPerSecond">
+    <value>MB/s</value>
+    <comment>Unit for Megabytes per second</comment>
+  </data>
+  <data name="Unit_PetabytesPerSecond">
+    <value>PB/s</value>
+    <comment>Unit for Petabytes per second</comment>
+  </data>
+  <data name="Unit_TerabytesPerSecond">
+    <value>TB/s</value>
+    <comment>Unit for Terabytes per second</comment>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>Pakua faili kupitia BitTorrent na itifaki nyingine za kushiriki faili.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>Usaidizi wa P2P</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>Pandisha daraja ili kuchagua seva yoyote.</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>Si nchi uliyotaka?</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>Fungua ubinafsishaji wa VPN wa hali ya juu</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>Unganisha kwenye VPN ukitumia Mfumo wa Jina la Kikoa (DNS) wako maalum</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>Fikia vifaa kwenye mtandao wako wa eneo la karibu (LAN) ukiwa umeunganishwa</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>Boresha uzoefu wako wa michezo kwa kubadili hadi aina ya NAT 2 (wastani)</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>Unganisha hadi vifaa 10 kwa wakati mmoja</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>Tumia Proton VPN kwenye majukwaa tofauti</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>Android na Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>Kivinjari</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>Usalama na faragha kwenye vifaa vyako vyote</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>Furahia kuvinjari bila matangazo</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>Zuia matangazo na vifuatiliaji kwa kutumia NetShield</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>Linda kifaa chako kutokana na programu hasidi.</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>Fungua upakuaji wa peer-to-peer na kushiriki faili (P2P).</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>Ficha anwani yako ya IP kutoka kwa mtoa huduma wako na wenzako.</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>Ongeza kasi ya P2P kwa usambazaji wa mlango.</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>Kasi ya juu ya kupakia na kupakua</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ zaidi</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_Profiles">
+    <value>Fikia kwa urahisi miunganisho unayotumia mara kwa mara.</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience">
+    <value>Weka wasifu kama muunganisho wako wa chaguo-msingi na unganisha kwa kubofya mara moja.</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Creation">
+    <value>Tengeneza na hifadhi mipangilio yako mwenyewe ya VPN kwa Wasifu.</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization">
+    <value>Weka eneo lako, itifaki, na mipangilio unavyopenda.</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>Ongeza tabaka lingine la ulinzi kwenye muunganisho wako.</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>Marudufisha usimbaji fiche wako kwa Secure Core.</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>Jilinde dhidi ya mashambulizi ya mtandao.</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>Pitia seva zenye usalama wa hali ya juu nchini Uswisi, Uswidi, na Iceland.</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>Vinjari kwa kasi ya juu zaidi.</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>Vinjari kwa kasi ya hadi 400% zaidi kwa VPN Accelerator.</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>Fikia seva zenye kasi zaidi na zenye watu wachache.</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>Pata kasi ya muunganisho ya hadi 10 Gbps.</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>Pata ubora wa pande zote mbili.</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>Vinjari kutoka maeneo mawili kwa wakati mmoja kwa mgawanyo wa trafiki.</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>Ruhusu programu zilizoaminiwa na anwani za IP kuunganishwa moja kwa moja kwenye intaneti, huku VPN yako ikilinda kila kitu kingine.</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>Tiririsha filamu na vipindi vyako unavyovipenda vya TV.</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>Fikia TV na filamu zilizozuiwa kijiografia kutoka mahali popote duniani.</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>Tazama kwa ubora wa 4K bila kusubiri, kupungua kwa kasi, au kubanwa kwa kasi</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>Gundua VPN Plus</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>Fikia mtandao wa Tor kwa faragha ya ziada</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>Fikia tovuti zilizofichwa na tovuti za onion</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>Vinjari mtandao wa Tor kwa kutumia kivinjari chako cha kawaida</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>Linda data yako ya kibinafsi unapovinjari</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>Fikia zaidi ya {0} katika {1}.</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>Zunguka udhibiti wa mtandao kwa vipengele vya usalama vya hali ya juu</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
+    <value>nchi {0}</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>nchi {0}</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>Utiririshaji salama, kupakua kwa torrent, na huduma nyingine</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>Teua nchi yoyote kutoka kwenye mtandao wetu wa kimataifa</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
+    <value>seva salama {0}</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>seva salama {0}</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp_Description">
+    <value>Iliyoimarika, imejaribiwa vizuri, na salama</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp_Description">
+    <value>Iliyoimarika, imejaribiwa vizuri, na salama</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description">
+    <value>Itifaki ya kisasa kwa usalama na utendaji</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description">
+    <value>Inashinda vizuizi vya VPN kwa kuficha muunganisho wako kutoka kwa wadhibiti.</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description">
+    <value>Itifaki ya kisasa kwa usalama na utendaji</value>
+  </data>
+  <data name="VpnProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp_Description">
+    <value>Itifaki ya kisasa kwa usalama na utendaji</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls_Description">
+    <value>Inavuka vizuizi vya VPN kwa kuficha muunganisho wako usigundulike na wazuiji.</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp_Description">
+    <value>Itifaki ya kisasa kwa usalama na utendaji</value>
+  </data>
+</root>

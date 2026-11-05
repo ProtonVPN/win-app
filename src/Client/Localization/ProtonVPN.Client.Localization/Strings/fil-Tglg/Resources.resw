@@ -3636,16 +3636,16 @@ VPN connection</value>
     <value>ᜈᜃ-block ᜈ website?</value>
   </data>
   <data name="System_Tray_Actions_Connect">
-    <value>Connect</value>
+    <value>ᜃᜓᜋᜓᜈᜒᜃ᜔ᜆ</value>
   </data>
   <data name="System_Tray_Actions_Disconnect">
-    <value>Disconnect</value>
+    <value>ᜁ-disconnect</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
-    <value>Exit</value>
+    <value>ᜎᜓᜋᜊᜐ᜔</value>
   </data>
   <data name="System_Tray_Actions_OpenApplication">
-    <value>Open {0}</value>
+    <value>ᜊᜓᜃ᜔ᜐᜈ᜔ ᜀᜅ᜔ {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_ExitApplication">

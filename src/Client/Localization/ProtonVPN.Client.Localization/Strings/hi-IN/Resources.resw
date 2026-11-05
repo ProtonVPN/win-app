@@ -1,0 +1,3925 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account_VpnPlan_Free">
+    <value>Proton VPN Free</value>
+  </data>
+  <data name="Automation_Properties_ConnectionDetails_Page">
+    <value>कनेक्शन जानकारी पेज</value>
+  </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page">
+    <value>कनेक्शन वरीयताएं पेज</value>
+  </data>
+  <data name="Automation_Properties_Connection_Card_Component">
+    <value>कनेक्शन कार्ड</value>
+  </data>
+  <data name="Automation_Properties_KillSwitch_Page">
+    <value>किल स्विच पेज</value>
+  </data>
+  <data name="Automation_Properties_LocationDetails_Page">
+    <value>स्थान की जानकारी पेज</value>
+  </data>
+  <data name="Automation_Properties_Login_Page">
+    <value>लॉग-इन पेज</value>
+  </data>
+  <data name="Automation_Properties_Main_Page">
+    <value>मुख्य पेज</value>
+  </data>
+  <data name="Automation_Properties_NetShield_Page">
+    <value>NetShield पेज</value>
+  </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>कोई सर्वर नहीं पेज</value>
+  </data>
+  <data name="Automation_Properties_PortForwarding_Page">
+    <value>पोर्ट फॉरवर्ड पेज</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page">
+    <value>प्रोफ़ाइल पेज</value>
+  </data>
+  <data name="Automation_Properties_Settings_Advanced_Page">
+    <value>एडवांस सेटिंग पेज</value>
+  </data>
+  <data name="Automation_Properties_Settings_Common_Page">
+    <value>सामान्य सेटिंग पेज</value>
+  </data>
+  <data name="Automation_Properties_Settings_Page">
+    <value>सेटिंग पेज</value>
+  </data>
+  <data name="Automation_Properties_Sidebar">
+    <value>साइडबार</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Countries_Page">
+    <value>देश पेज</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
+    <value>गेटवे पेज</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Page">
+    <value>कनेक्शन पेज</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Profiles_Page">
+    <value>प्रोफ़ाइल पेज</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Recents_Page">
+    <value>हाल के कनेक्शन पेज</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Search_Results_Page">
+    <value>खोज परिणाम</value>
+  </data>
+  <data name="Automation_Properties_SplitTunneling_Page">
+    <value>स्प्लिट टनलिंग पेज</value>
+  </data>
+  <data name="City_Fastest">
+    <value>सबसे तेज़ शहर</value>
+  </data>
+  <data name="City_Random">
+    <value>रैंडम शहर</value>
+  </data>
+  <data name="Common_Actions_Add">
+    <value>जोड़ें</value>
+  </data>
+  <data name="Common_Actions_Back">
+    <value>वापस जाएं</value>
+  </data>
+  <data name="Common_Actions_Cancel">
+    <value>रद्द करें</value>
+  </data>
+  <data name="Common_Actions_Change">
+    <value>बदलें</value>
+  </data>
+  <data name="Common_Actions_Close">
+    <value>बंद करें</value>
+  </data>
+  <data name="Common_Actions_Connect">
+    <value>कनेक्ट करें</value>
+  </data>
+  <data name="Common_Actions_ContactUs">
+    <value>हमें संपर्क करें</value>
+  </data>
+  <data name="Common_Actions_Delete">
+    <value>मिटाएं</value>
+  </data>
+  <data name="Common_Actions_Disconnect">
+    <value>डिस्कनेक्ट करें</value>
+  </data>
+  <data name="Common_Actions_Duplicate">
+    <value>प्रतिरूप बनाएं</value>
+  </data>
+  <data name="Common_Actions_Edit">
+    <value>एडिट करें</value>
+  </data>
+  <data name="Common_Actions_Enable">
+    <value>सक्षम करें</value>
+  </data>
+  <data name="Common_Actions_Exit_ProtonVPN">
+    <value>Proton VPN से बाहर निकलें</value>
+  </data>
+  <data name="Common_Actions_GotIt">
+    <value>समझ गए</value>
+  </data>
+  <data name="Common_Actions_Install">
+    <value>इंस्टॉल करें</value>
+  </data>
+  <data name="Common_Actions_MoveDown">
+    <value>नीचे जाएं</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>ऊपर जाएं</value>
+  </data>
+  <data name="Common_Actions_Reconnect">
+    <value>वापस कनेक्ट करें</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>रीफ्रेश करें</value>
+  </data>
+  <data name="Common_Actions_Remove">
+    <value>हटाएं</value>
+  </data>
+  <data name="Common_Actions_Restart">
+    <value>वापस शुरू करें</value>
+  </data>
+  <data name="Common_Actions_Save">
+    <value>सेव करें</value>
+  </data>
+  <data name="Common_Actions_TryAgain">
+    <value>वापस कोशिश करें</value>
+  </data>
+  <data name="Common_Actions_Update">
+    <value>अपडेट करें</value>
+  </data>
+  <data name="Common_Actions_Upgrade">
+    <value>अपग्रेड करें</value>
+  </data>
+  <data name="Common_Confirmation_KillSwitch_Message">
+    <value>एडवांस किल स्विच सक्षम है। VPN के बिना इंटरनेट इस्तेमाल करने के लिए, एडवांस किल स्विच अक्षम करें।</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
+    <value>एडवांस किल स्विच सक्षम है। जारी रखने पर, आपका इंटरनेट से कनेक्शन टूट जाएगा।</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnected_Message">
+    <value>VPN से डिस्कनेक्ट हो जाएंगे।</value>
+  </data>
+  <data name="Common_Links_LearnMore">
+    <value>और जानें</value>
+  </data>
+  <data name="Common_Message_AppNotFound">
+    <value>एप्लीकेशन नहीं मिली।</value>
+  </data>
+  <data name="Common_States_Off">
+    <value>बंद</value>
+  </data>
+  <data name="Common_States_On">
+    <value>चालू</value>
+  </data>
+  <data name="Common_Tags_Beta">
+    <value>बीटा</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
+  <data name="Common_Tags_New">
+    <value>नया</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
+  </data>
+  <data name="Common_Tags_Recommended">
+    <value>अनुशंसित</value>
+    <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
+  </data>
+  <data name="Components_Update_GetMostFromYourVpn">
+    <value>ऐप के नवीनतम संस्करण पे अपडेट करके अपने VPN का पूरा फायदा उठाएं।</value>
+  </data>
+  <data name="Components_Update_MoreLikelyIssues">
+    <value>Proton VPN के पुराने संस्करणों पर आपको समस्याएँ होने की अधिक संभावना है।</value>
+  </data>
+  <data name="Components_Update_UpdateAvailable">
+    <value>अपडेट मौजूद</value>
+  </data>
+  <data name="Components_Update_UpdateProtonVpn">
+    <value>Proton VPN अपडेट करें</value>
+  </data>
+  <data name="Connection_Error_AllServersExcluded">
+    <value>आपकी वरीयताएं सभी उपलब्ध सर्वर को बाहर रखती हैं। कनेक्ट करने के लिए बहिष्करण बदलें।</value>
+  </data>
+  <data name="Connection_Error_AllServersExcluded_Action">
+    <value>बहिष्कृत स्थान</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>इसे ठीक करने के लिए, इनसे जुड़े ऐप को बंद करें या अनइंस्टॉल करें:</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>कोई दूसरा ऐप Proton VPN को कनेक्ट होने से रोक रहा हो सकता है</value>
+  </data>
+  <data name="Connection_Error_EditProfile">
+    <value>प्रोफाइल एडिट करें</value>
+  </data>
+  <data name="Connection_Error_MissingConnectionCertificate">
+    <value>Proton VPN नेटवर्क समस्या की वजह से ऑथेंटिकेशन प्रमाण लाने में असफल रहा।</value>
+  </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>आपके डिवाइस की नेटवर्क सेटिंग्स ने कनेक्शन को ब्लॉक कर दिया। इसकी वजह मोबाइल हॉटस्पॉट, कोई और VPN एप्लीकेशन या वर्चुअल मशीन सॉफ्टवेयर हो सकता है। कृपया अपनी नेटवर्क संरचना जांचें या मदद के लिए सहायता टीम से संपर्क करें।</value>
+  </data>
+  <data name="Connection_Error_NoServers">
+    <value>आपके चुने गए सभी सर्वर अनुपलब्ध हैं। कृपया अपना चुनाव बढ़ाएं या बाद में फिर प्रयास करें।</value>
+  </data>
+  <data name="Connection_Error_NoServers_Profile">
+    <value>'{0}' के लिए चुना गया सर्वर अनुपलब्ध है। कोई दूसरा सर्वर चुनें या बाद में फिर प्रयास करें।</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Connection_Error_NoTapAdapters">
+    <value>नेटवर्क एडेप्टर गायब है।</value>
+  </data>
+  <data name="Connection_Error_ReportAnIssue">
+    <value>समस्या को रिपोर्ट करें</value>
+  </data>
+  <data name="Connection_Error_RpcServerUnavailable">
+    <value>Proton VPN कनेक्ट नहीं हो पा रहा क्योंकि आरपीसी सर्वर आपके सिस्टम पे मौजूद नहीं।</value>
+  </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>सर्वर की जानकारी सत्यापित नहीं हो सकी। कोई दूसरा सर्वर आज़माएं, या समस्या की रिपोर्ट हमारी ग्राहक सहायता टीम को करें।</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedFreeUser">
+    <value>आपके डिवाइसों की अधिकतम सीमा पूरी हो गई है। कृपया इसे कनेक्ट करने के लिए किसी दूसरे डिवाइस को डिस्कनेक्ट करें या एक ही समय में 10 तक डिवाइस कनेक्ट करने के लिए PLUS पे अपग्रेड करें।</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedPaidUser">
+    <value>आपके डिवाइसों की अधिकतम सीमा पूरी हो गई है। कृपया इसे कनेक्ट करने के लिए किसी दूसरे डिवाइस को डिस्कनेक्ट करें।</value>
+  </data>
+  <data name="Connection_Error_TapAdapterInUse">
+    <value>आपका नेटवर्क एडेप्टर वर्तमान में उपयोग में है।</value>
+  </data>
+  <data name="Connection_Error_TapRequiresUpdate">
+    <value>नेटवर्क एडेप्टर संस्करण पुराना है।</value>
+  </data>
+  <data name="Connection_Error_Title">
+    <value>कनेक्शन विफल रहा</value>
+  </data>
+  <data name="Connection_Error_TlsCertificate">
+    <value>VPN सर्वर प्रमाणपत्र को सत्यापित करने में समस्या है, जो इस बात का संकेत हो सकता है कि नेटवर्क कनेक्शन के साथ छेड़छाड़ की जा रही है या जिस सर्वर से कनेक्ट करने की कोशिश की जा रही है उसमें संरचना की समस्या है। समस्या रिपोर्ट भेजकर हमारी ग्राहक सहायता से मदद पाएं।</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>VPN से कनेक्ट करने के लिए अपने संगठन के 2FA पोर्टल पे जाएं और अपनी सिक्योरिटी की टैप करें।</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>टू-फैक्टर सत्यापन (2FA) ज़रूरी है</value>
+  </data>
+  <data name="Connection_Error_Unknown">
+    <value>अपने इंटरनेट कनेक्शन की जांच करें और दोबारा कोशिश करें। अगर इससे भी काम न हो, तो हमारी ग्राहक सहायता टीम से संपर्क करें।
+
+एरर कोड: {0}</value>
+  </data>
+  <data name="Connection_Error_ViewPossibleSolutions">
+    <value>समाधान देखें</value>
+  </data>
+  <data name="Connection_Error_WireGuardAdapterInUse">
+    <value>आपके डिवाइस का WireGuard एडाप्टर इस्तेमाल में है। अपने डिवाइस पे चल रहे किसी भी दूसरे VPN से डिस्कनेक्ट करें, फिर दोबारा कोशिश करें।</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>आपका कनेक्शन कैसा है?</value>
+  </data>
+  <data name="Connection_Intent_AutoSelected">
+    <value>इनमें से अपनेआप चुना</value>
+    <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
+  </data>
+  <data name="Connection_Via_SecureCore">
+    <value>वाया {0}</value>
+    <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
+  </data>
+  <data name="Connections_Cities_One">
+    <value>शहर ({0})</value>
+  </data>
+  <data name="Connections_Cities_Other">
+    <value>शहर ({0})</value>
+  </data>
+  <data name="Connections_City">
+    <value>शहर</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>इस शहर में सर्वर VPN Plus के साथ उपलब्ध हैं।</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>इस शहर के सभी सर्वर रखरखाव के अधीन हैं।</value>
+  </data>
+  <data name="Connections_Countries_One">
+    <value>देश ({0})</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>देश ({0})</value>
+  </data>
+  <data name="Connections_Country">
+    <value>देश</value>
+  </data>
+  <data name="Connections_Country_Middle">
+    <value>मध्य देश</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>इस देश में सर्वर VPN Plus के साथ उपलब्ध हैं।</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>इस देश में सभी सर्वर रखरखाव के अधीन हैं।</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>कनेक्ट नहीं कर पा रहे</value>
+  </data>
+  <data name="Connections_Fastest">
+    <value>सबसे तेज़</value>
+  </data>
+  <data name="Connections_Free_Servers_One">
+    <value>फ्री सर्वर</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>फ्री सर्वर</value>
+  </data>
+  <data name="Connections_Gateway">
+    <value>गेटवे</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>इस गेटवे में सर्वर VPN Plus के साथ उपलब्ध हैं।</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>इस गेटवे के सभी सर्वर रखरखाव के अधीन हैं।</value>
+  </data>
+  <data name="Connections_Gateways_One">
+    <value>गेटवे ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>गेटवे ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Server">
+    <value>विशेष सर्वर</value>
+  </data>
+  <data name="Connections_Gateways_Servers_One">
+    <value>विशेष सर्वर ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>विशेष सर्वर ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_One">
+    <value>P2P शहर ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>P2P शहर ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_One">
+    <value>P2P देश ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>P2P देश ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_One">
+    <value>P2P सर्वर</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>P2P सर्वर</value>
+  </data>
+  <data name="Connections_P2P_States_One">
+    <value>P2P राज्य ({0})</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>P2P राज्य ({0})</value>
+  </data>
+  <data name="Connections_Profiles_One">
+    <value>प्रोफाइल ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Other">
+    <value>प्रोफाइल ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Create">
+    <value>प्रोफाइल बनाएं</value>
+    <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
+  </data>
+  <data name="Connections_Profiles_Delete">
+    <value>प्रोफाइल मिटा दें</value>
+  </data>
+  <data name="Connections_Profiles_Delete_Message">
+    <value>'{0}' स्थायी रूप से हटा दिया जाएगा।</value>
+    <comment>{0} is a placeholder for the name of the profile.</comment>
+  </data>
+  <data name="Connections_Profiles_Delete_Title">
+    <value>प्रोफाइल मिटा दें?</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Description">
+    <value>प्रोफाइल, सेव किए गए कनेक्शन होते हैं, जिनमें आप अपनी पसंद का स्थान, सर्वर और प्रोटोकॉल चुनते हैं।</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Title">
+    <value>अपनी पहली प्रोफाइल बनाएं</value>
+  </data>
+  <data name="Connections_Profiles_Location_Header">
+    <value>कनेक्शन का प्रकार और स्थान चुनें</value>
+  </data>
+  <data name="Connections_Profiles_Name">
+    <value>अपनी प्रोफाइल को एक नाम दें</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default">
+    <value>अनाम</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate">
+    <value>{0} की कॉपी</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
+  </data>
+  <data name="Connections_Profiles_New">
+    <value>नई प्रोफाइल</value>
+    <comment>"New profile" is more appropriate when you already have a profile</comment>
+  </data>
+  <data name="Connections_Profiles_NotAvailable_Tooltip">
+    <value>प्रोफाइल VPN Plus के साथ उपलब्ध हैं</value>
+    <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
+  </data>
+  <data name="Connections_Recents_One">
+    <value>हालिया ({0})</value>
+  </data>
+  <data name="Connections_Recents_Other">
+    <value>हाल के ({0})</value>
+  </data>
+  <data name="Connections_Recents_Empty_Description">
+    <value>अपना कनेक्शन इतिहास यहां देखें।</value>
+  </data>
+  <data name="Connections_Recents_Empty_Title">
+    <value>अभी तक कोई हाल का कनेक्शन नहीं है</value>
+  </data>
+  <data name="Connections_Recents_Pinned_One">
+    <value>पिन किया गया ({0})</value>
+  </data>
+  <data name="Connections_Recents_Pinned_Other">
+    <value>पिन किए गए ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_One">
+    <value>Secure Core देश ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>Secure Core देश ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_One">
+    <value>Secure Core सर्वर</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>Secure Core सर्वर</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>सर्वर VPN Plus के साथ उपलब्ध है।</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>ये सर्वर रखरखाव के अधीन है।</value>
+  </data>
+  <data name="Connections_Servers_One">
+    <value>सर्वर</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>सर्वर</value>
+  </data>
+  <data name="Connections_State">
+    <value>राज्य</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>इस राज्य में सर्वर VPN Plus के साथ उपलब्ध हैं।</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>इस राज्य के सभी सर्वर रखरखाव के अधीन हैं।</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_One">
+    <value>राज्य ({0})</value>
+  </data>
+  <data name="Connections_States_Other">
+    <value>राज्य ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_One">
+    <value>Tor देश ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>Tor देश ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_One">
+    <value>Tor सर्वर</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>Tor सर्वर</value>
+  </data>
+  <data name="Countries">
+    <value>देश</value>
+  </data>
+  <data name="Countries_All">
+    <value>सब</value>
+  </data>
+  <data name="Countries_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Countries_P2P_Description">
+    <value>P2P (पीयर-टू-पीयर) नेटवर्क पे फाइलें डाउनलोड करें और अपने ऑनलाइन गेमिंग और वीडियो कॉलिंग के अनुभव को बेहतर बनाएं।</value>
+  </data>
+  <data name="Countries_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>अपने VPN कनेक्शन में एन्क्रिप्शन की एक और परत जोड़ें।</value>
+  </data>
+  <data name="Countries_ServerLoad">
+    <value>सर्वर लोड</value>
+  </data>
+  <data name="Countries_SmartRouting">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Countries_SmartRouting_RoutedThrough">
+    <value>Smart Routing का उपयोग करके {0} के ज़रिए रूट किया गया</value>
+    <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
+  </data>
+  <data name="Countries_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>अतिरिक्त प्राइवेसी के लिए VPN कनेक्शन पे Tor नेटवर्क का उपयोग करें।</value>
+  </data>
+  <data name="Country_Fastest">
+    <value>सबसे तेज़ देश</value>
+  </data>
+  <data name="Country_Fastest_ExcludingMyCountry">
+    <value>सबसे तेज़ (मेरे देश को छोड़कर)</value>
+  </data>
+  <data name="Country_Random">
+    <value>रैंडम देश</value>
+  </data>
+  <data name="Country_Random_ExcludingMyCountry">
+    <value>रैंडम (मेरे देश को छोड़कर)</value>
+  </data>
+  <data name="Country_val_AD">
+    <value>अंडोरा</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE">
+    <value>संयुक्त अरब अमीरात</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF">
+    <value>अफगानिस्तान</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG">
+    <value>एंटिगुआ और बरबुडा</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI">
+    <value>एंगुइला</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL">
+    <value>अल्बानिया</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM">
+    <value>आर्मीनिया</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO">
+    <value>अंगोला</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ">
+    <value>अंटार्कटिका</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR">
+    <value>अर्जेंटीना</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS">
+    <value>अमेरिकी समोआ</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT">
+    <value>ऑस्ट्रिया</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU">
+    <value>ऑस्ट्रेलिया</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW">
+    <value>अरूबा</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX">
+    <value>एलैंड द्वीप समूह</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ">
+    <value>अज़रबाइजान</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA">
+    <value>बोस्निया और हर्जेगोविना</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB">
+    <value>बारबाडोस</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD">
+    <value>बांग्लादेश</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE">
+    <value>बेल्जियम</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF">
+    <value>बुर्किना फासो</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG">
+    <value>बल्गारिया</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH">
+    <value>बहरीन</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI">
+    <value>बुरुंडी</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ">
+    <value>बेनिन</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL">
+    <value>सेंट बार्थेलेमी</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM">
+    <value>बरमूडा</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN">
+    <value>ब्रुनेई दारुस्सलाम</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO">
+    <value>बोलीविया</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ">
+    <value>बोनेयर, सिंट युसटेशियस और सबा</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR">
+    <value>ब्राज़ील</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS">
+    <value>बहामास</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT">
+    <value>भूटान</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV">
+    <value>बुवेत द्वीप</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW">
+    <value>बोत्सवाना</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY">
+    <value>बेलारूस</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ">
+    <value>बेलीज़</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA">
+    <value>कनाडा</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC">
+    <value>कोकोस (कीलिंग) द्वीप समूह</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD">
+    <value>कांगो (लोकतांत्रिक गणराज्य)</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF">
+    <value>मध्य अफ्रीकी गणराज्य</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG">
+    <value>कांगो</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH">
+    <value>स्विट्ज़रलैंड</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI">
+    <value>कोटे डी आइवर</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK">
+    <value>कुक द्वीपसमूह</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL">
+    <value>चिली</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM">
+    <value>कैमरून</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN">
+    <value>चीन</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO">
+    <value>कोलंबिया</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR">
+    <value>कोस्टा रिका</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU">
+    <value>क्यूबा</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV">
+    <value>केप वर्दे</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW">
+    <value>क्यूरासाओ</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX">
+    <value>क्रिसमस द्वीप</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY">
+    <value>साइप्रस</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ">
+    <value>चेकिया</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE">
+    <value>जर्मनी</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ">
+    <value>जिबूती</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK">
+    <value>डेनमार्क</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM">
+    <value>डोमिनिका</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO">
+    <value>डॉमिनिकन गणराज्य</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ">
+    <value>अल्जीरिया</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC">
+    <value>इक्वाडोर</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE">
+    <value>एस्टोनिया</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG">
+    <value>मिस्र</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH">
+    <value>पश्चिमी सहारा</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER">
+    <value>इरीट्रिया</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES">
+    <value>स्पेन</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET">
+    <value>इथियोपिया</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI">
+    <value>फिनलैंड</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ">
+    <value>फिजी</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK">
+    <value>फॉकलैंड आइलैंड्स (माल्विनास)</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM">
+    <value>माइक्रोनेशिया</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO">
+    <value>फेरो द्वीपसमूह</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR">
+    <value>फ्रांस</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA">
+    <value>गैबॉन</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB">
+    <value>यूनाइटेड किंगडम</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD">
+    <value>ग्रेनाडा</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE">
+    <value>जॉर्जिया</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF">
+    <value>फ्रेंच गयाना</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG">
+    <value>ग्वेर्नसे</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH">
+    <value>घाना</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI">
+    <value>जिब्राल्टर</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL">
+    <value>ग्रीनलैंड</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM">
+    <value>गाम्बिया</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN">
+    <value>गिनी</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP">
+    <value>ग्वाडेलोप</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ">
+    <value>इक्वेटोरियल गिनी</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR">
+    <value>यूनान</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS">
+    <value>दक्षिण जॉर्जिया और दक्षिण सैंडविच आइलैंड्स</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT">
+    <value>ग्वाटेमाला</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU">
+    <value>गुआम</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW">
+    <value>गिनी-बिसाऊ</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY">
+    <value>गुयाना</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK">
+    <value>हाँग काँग</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM">
+    <value>हर्ड आइलैंड और मैकडोनाल्ड आइलैंड्स</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN">
+    <value>होंडुरस</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR">
+    <value>क्रोएशिया</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT">
+    <value>हैती</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU">
+    <value>हंगरी</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID">
+    <value>इंडोनेशिया</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE">
+    <value>आयरलैंड</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL">
+    <value>इज़राइल</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM">
+    <value>आइल ऑफ मैन</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN">
+    <value>भारत</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO">
+    <value>ब्रिटिश हिंद महासागरीय क्षेत्र</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ">
+    <value>इराक</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR">
+    <value>ईरान</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS">
+    <value>आइसलैंड</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT">
+    <value>इटली</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE">
+    <value>जर्सी</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM">
+    <value>जमैका</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO">
+    <value>जॉर्डन</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP">
+    <value>जापान</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE">
+    <value>केन्या</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG">
+    <value>किरगिज़स्तान</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH">
+    <value>कंबोडिया</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI">
+    <value>किरिबाती</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM">
+    <value>कोमोरोस</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN">
+    <value>सेंट किट्स और नेविस</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP">
+    <value>उत्तर कोरिया</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR">
+    <value>दक्षिण कोरिया</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW">
+    <value>कुवैत</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY">
+    <value>कैमेन द्वीपसमूह</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ">
+    <value>कज़ाकिस्तान</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA">
+    <value>लाओस</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB">
+    <value>लेबनान</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC">
+    <value>सेंट लूसिया</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI">
+    <value>लिचेंस्टीन</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK">
+    <value>श्री लंका</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR">
+    <value>लाइबेरिया</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS">
+    <value>लेसोथो</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT">
+    <value>लिथुआनिया</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU">
+    <value>लक्समबर्ग</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV">
+    <value>लातविया</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY">
+    <value>लीबिया</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA">
+    <value>मोरक्को</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC">
+    <value>मोनाको</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD">
+    <value>मॉल्डोवा</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME">
+    <value>मोंटेनेग्रो</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF">
+    <value>सेंट मार्टिन (फ्रांसीसी भाग)</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG">
+    <value>मेडागास्कर</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH">
+    <value>मार्शल द्वीपसमूह</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK">
+    <value>मैसिडोनिया</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML">
+    <value>माली</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM">
+    <value>म्यांमार</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN">
+    <value>मंगोलिया</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO">
+    <value>मकाओ</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP">
+    <value>उत्तरी मारियाना द्वीपसमूह</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ">
+    <value>मार्टिनिक</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR">
+    <value>मॉरिटानिया</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS">
+    <value>मॉन्टसेराट</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT">
+    <value>माल्टा</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU">
+    <value>मॉरीशस</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV">
+    <value>मालदीव</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW">
+    <value>मलावी</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX">
+    <value>मेक्सिको</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY">
+    <value>मलेशिया</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ">
+    <value>मोज़ांबिक</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA">
+    <value>नामीबिया</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC">
+    <value>न्यू कैलेडोनिया</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE">
+    <value>नाइजर</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF">
+    <value>नॉरफोक द्वीप</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG">
+    <value>नाइजीरिया</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI">
+    <value>निकारागुआ</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL">
+    <value>नेदरलैंड</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO">
+    <value>नॉर्वे</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP">
+    <value>नेपाल</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR">
+    <value>नाउरू</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU">
+    <value>नियू</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ">
+    <value>न्यूज़ीलैंड</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM">
+    <value>ओमान</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA">
+    <value>पनामा</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE">
+    <value>पेरू</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF">
+    <value>फ़्रांसीसी पोलिनेशिया</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG">
+    <value>पापुआ न्यू गिनी</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH">
+    <value>फिलीपींस</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK">
+    <value>पाकिस्तान</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL">
+    <value>पोलैंड</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM">
+    <value>सेंट पियरे और मिकेलॉन</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN">
+    <value>पिटकेर्न</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR">
+    <value>पोर्टो रीको</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS">
+    <value>फिलिस्तीन</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT">
+    <value>पुर्तगाल</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW">
+    <value>पलाऊ</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY">
+    <value>पैराग्वे</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA">
+    <value>कतर</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE">
+    <value>रियूनियन</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO">
+    <value>रोमानिया</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS">
+    <value>सर्बिया</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU">
+    <value>रूस</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW">
+    <value>रवांडा</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA">
+    <value>सऊदी अरब</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB">
+    <value>सोलोमन द्वीप समूह</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC">
+    <value>सेशेल्स</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD">
+    <value>सूडान</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE">
+    <value>स्वीडन</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG">
+    <value>सिंगापुर</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH">
+    <value>सेंट हेलेना, असेंशन और ट्रिस्टन दा कुन्हा</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI">
+    <value>स्लोवेनिया</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ">
+    <value>स्वालबार्ड और जान मायेन</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK">
+    <value>स्लोवाकिया</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL">
+    <value>सिएरा लियोन</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM">
+    <value>सैन मैरीनो</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN">
+    <value>सेनेगल</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO">
+    <value>सोमालिया</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR">
+    <value>सूरीनाम</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS">
+    <value>दक्षिण सूडान</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST">
+    <value>साओ टोमे और प्रिंसिपे</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV">
+    <value>एल साल्वाडोर</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX">
+    <value>सिंट मार्टन (डच भाग)</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY">
+    <value>सीरियाई अरब गणराज्य</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ">
+    <value>एस्वातीनी</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC">
+    <value>तुर्क्स और कैकोज़ द्वीपसमूह</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD">
+    <value>चाड</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF">
+    <value>फ्रांसीसी दक्षिणी क्षेत्र</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG">
+    <value>टोगो</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH">
+    <value>थाईलैंड</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ">
+    <value>ताजिकिस्तान</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK">
+    <value>टोकेलाऊ</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL">
+    <value>तिमोर-लेस्ते</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM">
+    <value>तुर्कमेनिस्तान</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN">
+    <value>ट्यूनीशिया</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO">
+    <value>टोंगा</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR">
+    <value>तुर्की</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT">
+    <value>त्रिनिदाद और टोबैगो</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV">
+    <value>तुवालु</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW">
+    <value>ताइवान</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ">
+    <value>तंज़ानिया</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA">
+    <value>यूक्रेन</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG">
+    <value>यूगांडा</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK">
+    <value>यूनाइटेड किंगडम</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM">
+    <value>यूनाइटेड स्टेट्स माइनर आउटलाइंग द्वीप</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US">
+    <value>संयुक्त राज्य अमेरिका</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY">
+    <value>उरुग्वे</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ">
+    <value>उज़्बेकिस्तान</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA">
+    <value>वेटिकन सिटी</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC">
+    <value>सेंट विन्सेंट और ग्रेनेजियन्स</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE">
+    <value>वेनेज़ुएला</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG">
+    <value>वर्जिन द्वीप समूह, ब्रिटिश</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI">
+    <value>वर्जिन द्वीप समूह, USA</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN">
+    <value>वियतनाम</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU">
+    <value>वानुअतु</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF">
+    <value>वालीस और फ्युटुना</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS">
+    <value>समोआ</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_XK">
+    <value>कोसोवो</value>
+    <comment>The name of XK country</comment>
+  </data>
+  <data name="Country_val_YE">
+    <value>यमन</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT">
+    <value>मैयट</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA">
+    <value>दक्षिण अफ्रीका</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM">
+    <value>जाम्बिया</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW">
+    <value>ज़िम्बाब्वे</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ">
+    <value>अज्ञात</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Description">
+    <value>आपके Windows डिवाइस पे Base Filtering Engine (BFE) सर्विस अक्षम है। Proton VPN के ठीक से काम करने के लिए इस सर्विस को सक्षम करना ज़रूरी है।</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable">
+    <value>Base Filtering Engine कैसे सक्षम करें</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title">
+    <value>आगे बढ़ने के लिए Base Filtering Engine सक्षम करें</value>
+  </data>
+  <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
+    <value>VPN Plus के साथ असीमित सर्वर बदलाव पाएं।</value>
+  </data>
+  <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
+    <value>अभी के लिए फ्री सर्वर परिवर्तनों की अधिकतम सीमा पूरी हो गई है।</value>
+  </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>शुरू करें</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>सदस्यता एक्सपायर हो गई</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Plus सर्वर और खासियत तक फिर एक्सेस पाने के लिए अपग्रेड करें।</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description">
+    <value>लगता है कि Proton VPN सर्विस अक्षम है। कनेक्ट करने के लिए आपको सर्विस को दोबारा सक्षम करना होगा।</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title">
+    <value>आगे बढ़ने के लिए Windows सर्विस सक्षम करें</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_One">
+    <value>Proton Free आपको हमारे {0} फ्री देश के सबसे तेज़ फ्री सर्वर से अपनेआप कनेक्ट कर देता है। ये आमतौर पे आपका नज़दीकी सर्वर होगा।</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Other">
+    <value>Proton Free आपको हमारे {0} फ्री देशों के सबसे तेज़ फ्री सर्वर से अपनेआप कनेक्ट कर देता है। ये आमतौर पे आपका नज़दीकी सर्वर होगा।</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_One">
+    <value>फ्री सर्वर वाले देश ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Other">
+    <value>फ्री सर्वर वाले देश ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Title">
+    <value>फ्री कनेक्शन</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>कृपया हमें बताएं कि आपने वो रेटिंग क्यों दी</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>हम आपका सुझाव नहीं भेज पाए। कृपया अपना कनेक्शन चेक करें और वापस कोशिश करें।</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>कोई गड़बड़ हो गई</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>10 यानी बहुत ज़्यादा संभावना</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>0 यानी बहुत कम संभावना</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>वैकल्पिक</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>गुमनाम रूप से शेयर करें</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>आपका सुझाव हमें Proton VPN को बेहतर बनाने में मदद करता है।</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>आपके सुझाव के लिए शुक्रिया</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>किसी दोस्त को Proton VPN की सिफारिश करने की कितनी संभावना है?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>वापस कोशिश करें</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description">
+    <value>तेज़ ऑनलाइन गेमिंग और टोरेंटिंग के लिए P2P (पीयर-टू-पीयर) सर्वर अनलॉक करने के लिए अपग्रेड करें, या अपना कनेक्शन रीस्टोर करने के लिए अपनी P2P गतिविधि बंद करें।</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Title">
+    <value>मुफ्त VPN सर्वर पर P2P की अनुमति नहीं है</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>VPN Plus के बारे में जानें</value>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email">
+    <value>ईमेल</value>
+    <comment>The label for user e-mail address in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
+    <value>udaharan@domain.in</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Field_MinLength">
+    <value>Minimum {0} characters</value>
+    <comment>Hint shown below a Report an issue text field that has a minimum length. {0} is the minimum number of characters.</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
+    <value>गड़बड़ी लॉग भेजें</value>
+    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
+    <value>गड़बड़ी लॉग हमें बताते हैं कि क्या गड़बड़ हुई और किन कार्रवाइयों से आपकी समस्या पैदा हुई। हम इन्हें सिर्फ हमारे इंजीनियरों की बग ठीक करने में मदद के लिए इस्तेमाल करेंगे।</value>
+    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Header">
+    <value>क्या समस्या है?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_NoLogsWarning">
+    <value>गड़बड़ी लॉग हमें आपकी समस्या की जड़ तक जाने में मदद करते हैं। अगर उन्हें शामिल नहीं किया गया, तो हम पूरी तरह से जांच नहीं कर पाएंगे।</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes">
+    <value>त्वरित समाधान</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Footer">
+    <value>काम नहीं किया?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Header">
+    <value>ये सलाह आपको अपनी समस्या जल्दी सुलझाने में मदद करेंगे।</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_DoneAction">
+    <value>हो गया</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail">
+    <value>कोई गड़बड़ हो गई</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail_Description">
+    <value>हम आपकी रिपोर्ट नहीं भेज पाए। अपना कनेक्शन चेक करें और वापस कोशिश करें।</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success">
+    <value>रिपोर्ट भेज दी गई</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success_Description">
+    <value>आपके सुझाव के लिए धन्यवाद। हम जल्द से जल्द आपसे संपर्क करेंगे।</value>
+  </data>
+  <data name="Dialogs_ReportIssue_SendReport">
+    <value>रिपोर्ट भेजें</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Steps">
+    <value>{1} में से चरण {0}</value>
+    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Title">
+    <value>समस्या को रिपोर्ट करें</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>VPN Plus के बारे में जानें</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>VPN Plus सर्वर से दुनिया भर की अपनी पसंदीदा फिल्में और टीवी शो एन्जॉय करें।</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>VPN ब्लॉक को बायपास करने के लिए अपग्रेड करें</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>शायद बाद में</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description">
+    <value>लगता है कि आपका डिवाइस प्रॉक्सी सर्वर इस्तेमाल कर रहा है। इससे आपकी VPN सुरक्षा में बाधा आ सकती है।</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Title">
+    <value>प्रॉक्सी सर्वर का पता चला</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>एंटीवायरस या फायरवॉल सॉफ्टवेयर बंद करें</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>ये प्रोग्राम VPN कनेक्शन में बाधा डाल सकते हैं।</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>अपना इंटरनेट कनेक्शन देखें</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>पक्का करें कि आप ऑनलाइन हैं और आपका कनेक्शन स्थिर है।</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>ये आसान उपाय आपको Proton से कनेक्ट करने में मदद कर सकते हैं।</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>अन्य नेटवर्क का उपयोग करें</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>Wi-Fi नेटवर्क बदलकर देखें, या इसकी जगह मोबाइल डेटा इस्तेमाल करें।</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>हमारा स्थिति पृष्ठ देखें</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>इससे पक्का हो जाएगा कि Proton की सर्विसेज़ सामान्य तरह से चल रही हैं।</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>कनेक्शन से जुड़ी मदद</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
+    <value>इससे आप VPN से डिस्कनेक्ट हो जाएंगे। कोई भी चालू इंटरनेट कनेक्शन अस्थायी रूप से असुरक्षित रहेगा।</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
+    <value>इससे VPN डिस्कनेक्ट हो जाएगा और किल स्विच अस्थायी रूप से अक्षम हो जाएगा। कोई भी चालू इंटरनेट कनेक्शन अस्थायी रूप से असुरक्षित रहेगा।</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install">
+    <value>क्या अपडेट इंस्टॉल करें?</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart">
+    <value>अपडेट पूरा करने के लिए Proton VPN को रीस्टार्ट करें</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Description">
+    <value>लगता है कि आपका सिस्टम क्लॉक सिंक में नहीं है। इससे VPN से कनेक्ट करते समय समस्या हो सकती है।</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_PrimaryButton">
+    <value>सिस्टम क्लॉक कैसे अपडेट करें</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Title">
+    <value>सिस्टम क्लॉक अपडेट करें</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>सरल। सहज। सुरक्षित। ऑनलाइन खुद को सुरक्षित रखें और अपने संगठन की साइटों, सॉफ्टवेयर और फाइलों तक सुरक्षित तरीके से एक्सेस करें।</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Proton VPN में आपका स्वागत है</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>निजी रूप से ब्राउज़ करें, अवरुद्ध सामग्री तक एक्सेस करें और बिना किसी डेटा या स्पीड लिमिट के डिजिटल स्वतंत्रता का आनंद लें।</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>प्रमाणित नो-लॉग VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>आपकी गतिविधि स्विस प्राइवेसी कानूनों द्वारा संरक्षित है। हम कभी भी आपको ऑनलाइन ट्रैक नहीं करेंगे या आपकी जानकारी तीसरे पक्ष के साथ शेयर नहीं करेंगे।</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>कहीं से भी आज़ादी से ब्राउज़ करें</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_One">
+    <value>अपना वर्चुअल स्थान छिपा दें और हमारे {0} उपलब्ध देश में से किसी एक से इंटरनेट का अनुभव करें।</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>अपना वर्चुअल स्थान छिपा दें और हमारे {0} उपलब्ध देशों में से किसी एक से इंटरनेट का अनुभव करें।</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>एक बार में 10 डिवाइस सुरक्षित करें</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>VPN सुरक्षा को अपने डेस्कटॉप, मोबाइल, ब्राउज़र, TV और भी बहुत कुछ तक बढ़ाएं। </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>हाई रेज़ोल्यूशन में स्ट्रीम करें</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>दुनिया भर की फ़िल्में और TV शो देखें, बिना स्पीड या क्वालिटी से समझौता किए।</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>VPN Plus में स्वागत है</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description">
+    <value>आपने Proton VPN, Mail, Calendar, Drive और Pass की सभी प्रीमियम खासियतें अनलॉक कर ली हैं।</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>{0} में स्वागत है</value>
+    <comment>Title to welcome the user after an account upgrade. {0} is a placeholder for the name of the new plan (eg. Proton Unlimited, Proton Duo, Proton Family).</comment>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>अब VPN टनल को बायपास करते हुए अपने लोकल नेटवर्क (LAN) पे प्रिंटर, स्पीकर और अन्य डिवाइस से कनेक्ट किया जा सकता है।</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>LAN कनेक्शन</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>पोर्ट फॉरवर्ड सक्षम करने पे अब आपको होम स्क्रीन पे अपना सक्रिय पोर्ट नंबर दिखेगा।</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>सक्रिय पोर्ट नंबर</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>ज़रा देख लो</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>नया क्या है</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>अब सिस्टम ट्रे से कनेक्ट और डिस्कनेक्ट किया जा सकता है और अपना डिफॉल्ट कनेक्शन बदला जा सकता है।</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>नया सिस्टम ट्रे ऐप</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations">
+    <value>स्थान बाहर रखें</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
+    <value>अगर कुछ स्थानों से ऑटोमैटिक कनेक्ट नहीं होना है, तो उन्हें सबसे तेज़ और रैंडम देश विकल्पों से बाहर रखा जा सकता है।</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
+    <value>स्किप करें</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
+    <value>क्या वह देश नहीं है जो चाहते थे?</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_ActionButton">
+    <value>स्थान बाहर रखें</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_CloseButton">
+    <value>शायद बाद में</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_Subtitle">
+    <value>अब सबसे तेज़ और रैंडम कनेक्शन से देशों या शहरों को बाहर रखा जा सकता है।</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_Title">
+    <value>अनचाहे स्थानों से बचें</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>Proton VPN से बाहर निकलें?</value>
+  </data>
+  <data name="Exit_Message">
+    <value>VPN से डिस्कनेक्ट हो रहा है...</value>
+  </data>
+  <data name="Exit_Title">
+    <value>Proton VPN से बाहर निकलें</value>
+  </data>
+  <data name="Flyouts_Country_Description1">
+    <value>VPN के बिना ब्राउज़ करने पे स्थान-आधारित इंटरनेट प्रतिबंधों का खतरा रहता है।</value>
+  </data>
+  <data name="Flyouts_Country_Description2">
+    <value>वेबसाइटें जियोब्लॉक का इस्तेमाल करके सामग्री को कुछ खास स्थानों तक सीमित कर सकती हैं। सरकारें भी ISPs (इंटरनेट सेवा प्रोवाइडरों) को अपने देश में कुछ वेबसाइटें ब्लॉक करने का निर्देश दे सकती हैं।</value>
+  </data>
+  <data name="Flyouts_Country_Description3">
+    <value>VPN से ऐसा लगता है कि ब्राउज़िंग कहीं और से हो रही है, जिससे निगरानी और सेंसरशिप से आपकी सुरक्षा होती है।</value>
+  </data>
+  <data name="Flyouts_Country_Title">
+    <value>देश</value>
+  </data>
+  <data name="Flyouts_Country_Warning">
+    <value>अपना वर्चुअल स्थान बदलने के लिए VPN से कनेक्ट करें</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Connected">
+    <value>आपका VPN IP आपके असली IP पते को छिपा देता है। इससे ऐसा लगता है कि ब्राउज़िंग आपके VPN स्थान से हो रही है, जिससे आपकी ऑनलाइन गतिविधि को आपके डिवाइस से जोड़ा नहीं जा सकता।</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected1">
+    <value>वेबसाइटें और ISPs (इंटरनेट सेवा प्रोवाइडर) इस यूनीक कोड का इस्तेमाल आपके स्थान और ब्राउज़िंग इतिहास को आपके डिवाइस से जोड़ने के लिए कर सकते हैं।</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2">
+    <value>VPN आपका IP पता छिपा देता है, जिससे आपकी गतिविधि का आप तक पता लगाना मुश्किल हो जाता है।</value>
+  </data>
+  <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
+    <value>IP पता क्या है?</value>
+  </data>
+  <data name="Flyouts_IpAddress_Title">
+    <value>IP पता</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIp">
+    <value>VPN IP</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv6</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIp">
+    <value>आपका IP</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIpIsVisible">
+    <value>आपका IP पता दिख रहा है</value>
+  </data>
+  <data name="Flyouts_Isp_Description1">
+    <value>आपका ISP (इंटरनेट सेवा प्रोवाइडर) वह कंपनी है जो आपको इंटरनेट से कनेक्ट करती है।</value>
+  </data>
+  <data name="Flyouts_Isp_Description2">
+    <value>वे आपकी ऑनलाइन गतिविधि का लॉग रख सकते हैं। कुछ देशों में वे आपका डेटा विज्ञापनदाताओं को बेच सकते हैं। दूसरे देशों में उन्हें ये सरकार को सौंपने के लिए कहा जा सकता है।</value>
+  </data>
+  <data name="Flyouts_Isp_Description3">
+    <value>VPN आपका IP पता छिपा देता है, जिससे ISP के हस्तक्षेप से आपकी सुरक्षा होती है।</value>
+  </data>
+  <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
+    <value>इंटरनेट सेवा प्रोवाइडर (ISP) क्या है?</value>
+  </data>
+  <data name="Flyouts_Isp_Title">
+    <value>प्रदाता</value>
+  </data>
+  <data name="Flyouts_Isp_Warning">
+    <value>आपका प्रदाता देख सकता है कि आपने कौन-कौन सी वेबसाइटें विज़िट की हैं</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success">
+    <value>जब आप Proton VPN से कनेक्ट नहीं होते हैं तो सभी इंटरनेट एक्सेस को ब्लॉक करता है</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info">
+    <value>अगर आपका VPN कनेक्शन टूट जाए तो आपका IP पता उजागर हो सकता है</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>जब आप Proton VPN से कनेक्ट नहीं होते, तब एडवांस किल स्विच आपका IP पता सुरक्षित रखने के लिए आपका इंटरनेट अक्षम कर देता है।</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success">
+    <value>अगर आपका VPN कनेक्शन टूट जाता है, तो VPN रीस्टोर होने तक आपका इंटरनेट कनेक्शन बंद रहेगा</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected">
+    <value>एडवांस किल स्विच तब भी लागू रहता है जब आप जानबूझकर VPN से डिस्कनेक्ट करें</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected">
+    <value>दोबारा ऑनलाइन आने के लिए VPN से कनेक्ट करें या एडवांस किल स्विच को अक्षम करें</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackersAdultContent_Success">
+    <value>विज्ञापन, ट्रैकर, मालवेयर और वयस्क कॉन्टेंट से आप सुरक्षित हैं।</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
+    <value>विज्ञापन, ट्रैकर और मालवेयर से आप सुरक्षित हैं।</value>
+  </data>
+  <data name="Flyouts_NetShield_Info">
+    <value>वेबसाइट और ऐप पे अपनी ब्राउज़िंग को सुरक्षित रखें।</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success">
+    <value>सिर्फ मालवेयर से आप सुरक्षित हैं।</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description">
+    <value>VPN Plus के साथ विज्ञापन, ट्रैकर, मालवेयर और वयस्क कॉन्टेंट को ब्लॉक करें।</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title">
+    <value>विज्ञापन मुक्त ब्राउज़िंग का आनंद लें</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort">
+    <value>सक्रिय पोर्ट नंबर</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>सक्रिय पोर्ट नंबर नहीं मिल सका। अपना कनेक्शन रीस्टार्ट करें और दोबारा कोशिश करें।</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info">
+    <value>बेहतर परफ़ॉर्मेंस के लिए अपने टोरेंट क्लाइंट या P2P ऐप में सक्रिय पोर्ट नंबर दर्ज करें।</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info">
+    <value>पीयर-टू-पीयर डाउनलोड गति में सुधार करता है</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description">
+    <value>VPN Plus के साथ पीयर-टू-पीयर (P2P) फाइल शेयरिंग की परफ़ॉर्मेंस को कई गुना बढ़ाएं।</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title">
+    <value>P2P गति में सुधार करें</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning">
+    <value>टोरेंटिंग की गति बढ़ाने के लिए P2P सर्वर से कनेक्ट करें</value>
+  </data>
+  <data name="Flyouts_Protocol_Description">
+    <value>VPN प्रोटोकॉल तय करता है कि ट्रैफिक को VPN पे कैसे एन्क्रिप्ट करके भेजा जाएगा।</value>
+  </data>
+  <data name="Flyouts_Protocol_KnowledgeBaseLinkTitle">
+    <value>कौन सा VPN प्रोटोकॉल सबसे बेहतर है?</value>
+  </data>
+  <data name="Flyouts_Protocol_Title">
+    <value>प्रोटोकॉल</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Description">
+    <value>सर्वर लोड से पता चलता है कि सर्वर अपनी अधिकतम क्षमता के कितने करीब है। अधिक सर्वर लोड कनेक्शन को धीमा कर सकता है।</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High">
+    <value>ज़्यादा (91-100%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High_Description">
+    <value>VPN नॉर्मल से ज़्यादा स्लो चल सकता है।</value>
+  </data>
+  <data name="Flyouts_ServerLoad_KnowledgeBaseLinkTitle">
+    <value>सर्वर लोड क्या है?</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low">
+    <value>कम (1-75%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low_Description">
+    <value>बिजली जैसी तेज़ गति</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium">
+    <value>मीडियम (76-90%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium_Description">
+    <value>कनेक्शन गति प्रभावित होने की संभावना नहीं</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Title">
+    <value>सर्वर लोड</value>
+  </data>
+  <data name="Flyouts_Speed_Description1">
+    <value>रियल टाइम में दिखाता है कि VPN टनल से कितना डेटा गुज़रता है।</value>
+  </data>
+  <data name="Flyouts_Speed_Description2">
+    <value>ये आपके डिवाइस की मौजूदा गतिविधि पे आधारित है। ज़्यादातर मामलों में, ये VPN की अधिकतम गति को दर्शाता नहीं है।</value>
+  </data>
+  <data name="Flyouts_Speed_Download">
+    <value>डाउनलोड</value>
+    <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
+  </data>
+  <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
+    <value>VPN की गति और ट्रैफिक की जानकारी</value>
+  </data>
+  <data name="Flyouts_Speed_Title">
+    <value>वर्तमान ट्रैफिक</value>
+  </data>
+  <data name="Flyouts_Speed_Upload">
+    <value>अपलोड करें</value>
+    <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_One">
+    <value>बहिष्कृत ऐप ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
+    <value>बहिष्कृत ऐप्स ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
+    <value>बहिष्कृत IP पता ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
+    <value>बहिष्कृत IP पते ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Info">
+    <value>भरोसेमंद ऐप्स और IP पतों को VPN सुरक्षा के बिना कनेक्ट होने की अनुमति देता है।</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info">
+    <value>केवल ये ऐप और IP पते ही VPN के माध्यम से कनेक्ट होते हैं। अन्य सभी ट्रैफिक असुरक्षित है।</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_One">
+    <value>सुरक्षित ऐप ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
+    <value>सुरक्षित ऐप्स ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_One">
+    <value>सुरक्षित IP पता ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
+    <value>सुरक्षित IP पते ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info">
+    <value>ये ऐप और IP पते बिना VPN सुरक्षा के कनेक्ट होते हैं। बाकी सभी ट्रैफिक सुरक्षित है।</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description">
+    <value>VPN Plus के साथ अपने ट्रैफिक को VPN और गैर-VPN टनल में विभाजित करें।</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title">
+    <value>दोनों दुनिया का सर्वोत्तम प्राप्त करें</value>
+  </data>
+  <data name="Flyouts_Volume_Description">
+    <value>दिखाता है कि कनेक्ट होने के बाद से VPN टनल से कुल कितना डेटा गुज़रा है।</value>
+  </data>
+  <data name="Flyouts_Volume_Download">
+    <value>डाउनलोड</value>
+    <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
+  </data>
+  <data name="Flyouts_Volume_Title">
+    <value>कुल ट्रैफिक</value>
+  </data>
+  <data name="Flyouts_Volume_Upload">
+    <value>अपलोड करें</value>
+    <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
+  </data>
+  <data name="Format_Size_Bytes">
+    <value>{0} बाइट</value>
+    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
+  </data>
+  <data name="Format_Size_Exabytes">
+    <value>{0} ईबी</value>
+    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
+  </data>
+  <data name="Format_Size_Gigabytes">
+    <value>{0} जीबी</value>
+    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
+  </data>
+  <data name="Format_Size_Kilobytes">
+    <value>{0} केबी</value>
+    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
+  </data>
+  <data name="Format_Size_Megabytes">
+    <value>{0} MB</value>
+    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
+  </data>
+  <data name="Format_Size_Petabytes">
+    <value>{0} पीबी</value>
+    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
+  </data>
+  <data name="Format_Size_Terabytes">
+    <value>{0} TB</value>
+    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_SpeedUnit">
+    <value>वर्तमान ट्रैफिक ({0})</value>
+    <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
+  </data>
+  <data name="Format_Speed_BytesPerSecond">
+    <value>{0} बाइट/सेकंड</value>
+    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
+  </data>
+  <data name="Format_Speed_ExabytesPerSecond">
+    <value>{0} ईबी/सेकंड</value>
+    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
+  </data>
+  <data name="Format_Speed_GigabytesPerSecond">
+    <value>{0} जीबी/सेकंड</value>
+    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
+  </data>
+  <data name="Format_Speed_KilobytesPerSecond">
+    <value>{0} केबी/सेकंड</value>
+    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
+  </data>
+  <data name="Format_Speed_MegabytesPerSecond">
+    <value>{0} MB/सेकंड</value>
+    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
+  </data>
+  <data name="Format_Speed_PetabytesPerSecond">
+    <value>{0} पीबी/सेकंड</value>
+    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
+  </data>
+  <data name="Format_Speed_TerabytesPerSecond">
+    <value>{0} TB/सेकंड</value>
+    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
+  </data>
+  <data name="Format_Time_Day_One">
+    <value>{0} दिन</value>
+  </data>
+  <data name="Format_Time_Day_Other">
+    <value>{0} दिन</value>
+  </data>
+  <data name="Format_Time_DayHour_One">
+    <value>{0} दिन {1} घंटे</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
+    <value>{0} दिन {1} घंटे</value>
+  </data>
+  <data name="Format_Time_Hours">
+    <value>{0} घंटे</value>
+    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutes">
+    <value>{0} घंटे {1} मिनट</value>
+    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutesSeconds_Short">
+    <value>hh\:mm\:ss</value>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
+  </data>
+  <data name="Format_Time_Hours_Ago_One">
+    <value>{0} घंटा पहले</value>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>{0} घंटे पहले</value>
+  </data>
+  <data name="Format_Time_Minutes">
+    <value>{0} मिनट</value>
+    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds">
+    <value>{0} मिनट {1} सेकंड</value>
+    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds_Short">
+    <value>mm\:ss</value>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
+  </data>
+  <data name="Format_Time_Minutes_Ago_One">
+    <value>{0} मिनट पहले</value>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>{0} मिनट पहले</value>
+  </data>
+  <data name="Format_Time_Seconds">
+    <value>{0} सेकंड</value>
+    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_One">
+    <value>{0} सेकंड पहले</value>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>{0} सेकंड पहले</value>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>BitTorrent और अन्य फाइल शेयरिंग प्रोटोकॉल के माध्यम से फाइलें डाउनलोड करें</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>अपने VPN कनेक्शन में एन्क्रिप्शन की एक और परत जोड़ें</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>अतिरिक्त प्राइवेसी के लिए VPN कनेक्शन पर Tor नेटवर्क का उपयोग करें</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>VPN Plus के साथ दुनिया भर में कवरेज पाएं</value>
+  </data>
+  <data name="Gateway_Fastest">
+    <value>सबसे तेज़ गेटवे</value>
+  </data>
+  <data name="Gateway_Random">
+    <value>रैंडम गेटवे</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>अपने संगठन के VPN को एक्सेस करने के लिए किसी गेटवे से कनेक्ट करें।</value>
+  </data>
+  <data name="Gateways_Page_Title">
+    <value>गेटवे</value>
+  </data>
+  <data name="Home_Account_SignOut">
+    <value>साइन-आउट करें</value>
+  </data>
+  <data name="Home_Account_SignOut_Confirmation_Title">
+    <value>{0} से साइन-आउट करें?</value>
+    <comment>{0} is a placeholder for the username</comment>
+  </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>डिफॉल्ट कनेक्शन बदलें</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeServer">
+    <value>सर्वर बदलें</value>
+  </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>एडवांस किल स्विच सक्षम हो गया</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>अपना इंटरनेट कनेक्शन रीस्टोर करने के लिए VPN से कनेक्ट करें।</value>
+  </data>
+  <data name="Home_ConnectionDetails_Connecting">
+    <value>जुड़ रहे</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectingSubLabel">
+    <value>आपकी डिजिटल पहचान की सुरक्षा...</value>
+  </data>
+  <data name="Home_ConnectionDetails_Country">
+    <value>देश</value>
+  </data>
+  <data name="Home_ConnectionDetails_Isp">
+    <value>प्रदाता</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protected">
+    <value>सुरक्षित</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protocol">
+    <value>प्रोटोकॉल</value>
+  </data>
+  <data name="Home_ConnectionDetails_ServerLoad">
+    <value>सर्वर लोड</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>जारी रखने के लिए अपने संगठन के 2FA पोर्टल में दोबारा सत्यापन करें।</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>2FA एक्सपायर हो गया</value>
+  </data>
+  <data name="Home_ConnectionDetails_Unprotected">
+    <value>असुरक्षित</value>
+  </data>
+  <data name="Home_ConnectionDetails_UnprotectedSubLabel">
+    <value>VPN से कनेक्ट करके अपनी ऑनलाइन गतिविधि को एन्क्रिप्ट करें।</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume">
+    <value>कुल ट्रैफिक</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnIp">
+    <value>VPN IP</value>
+  </data>
+  <data name="Home_ConnectionDetails_YourIpAddress">
+    <value>आपका IP पता</value>
+  </data>
+  <data name="Home_FreeConnections_About">
+    <value>फ्री कनेक्शन के बारे में ज़्यादा जानकारी</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_One">
+    <value>विज्ञापन ब्लॉक किया</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>विज्ञापन ब्लॉक किए</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>विज्ञापन प्रोमोशनल बैनर या पॉप-अप होते हैं जो वेबसाइटों और ऐप पर दिखाई देते हैं।</value>
+  </data>
+  <data name="Home_NetShield_DataSaved">
+    <value>डेटा बचाया</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>अनचाहे विज्ञापन, ट्रैकर और मालवेयर को ब्लॉक करने से बचाए गए अनुमानित डेटा।</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_One">
+    <value>ट्रैकर ब्लॉक किया</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>ट्रैकर ब्लॉक किए</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>ट्रैकर कुकी और थर्ड-पार्टी वेबसाइटें हैं जो आपकी वेब गतिविधि की जानकारी इकट्ठा करके स्टोर करती और बेचती हैं।</value>
+  </data>
+  <data name="Home_Recents_Pin">
+    <value>पिन</value>
+  </data>
+  <data name="Home_Recents_Restricted">
+    <value>सर्वर VPN Plus के साथ उपलब्ध है</value>
+  </data>
+  <data name="Home_Recents_ServerUnderMaintenance">
+    <value>सर्वर रखरखाव में है</value>
+  </data>
+  <data name="Home_Recents_Title">
+    <value>हालिया</value>
+  </data>
+  <data name="Home_Recents_Unpin">
+    <value>पिन हटाएं</value>
+  </data>
+  <data name="Home_TitleBar_Menu_About">
+    <value>हमारे बारे में</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Account">
+    <value>खाता</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp">
+    <value>ऐप से बाहर निकलें</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help">
+    <value>मदद</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
+    <value>क्या समस्या है?</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings">
+    <value>सेटिंग</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout">
+    <value>साइन-आउट करें</value>
+  </data>
+  <data name="Home_TitleBar_Menu_UpdateNow">
+    <value>अभी अपडेट करें</value>
+  </data>
+  <data name="LoadingPage_Tip">
+    <value>एक बेहतर दुनिया की शुरुआत प्राइवेसी और डिजिटल आज़ादी से होती है।</value>
+  </data>
+  <data name="Login_Error_GetSessionDetailsFailed">
+    <value>सत्र की जानकारी लाते समय गड़बड़ी हुई। कृपया फिर से कोशिश करें।</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>आपके डिवाइस की नेटवर्क सेटिंग्स की वजह से साइनइन नहीं हो पा रहा। इसकी वजह मोबाइल हॉटस्पॉट, कोई और VPN एप्लीकेशन या वर्चुअल मशीन सॉफ्टवेयर हो सकता है। कृपया अपनी नेटवर्क संरचना जांचें या मदद के लिए सहायता टीम से संपर्क करें।</value>
+  </data>
+  <data name="Login_Error_IncorrectTwoFactorCode">
+    <value>गलत कोड। कृपया फिर से कोशिश करें।</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>साइनइन के लिए ज़रूरी एक फाइल आपके इंस्टॉलेशन में मौजूद नहीं है। इस समस्या को ठीक करने के लिए कृपया Proton VPN को फिर से इंस्टॉल करें।</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>साइनइन नहीं हो सका</value>
+  </data>
+  <data name="Login_Error_SessionExpired">
+    <value>आपका सत्र एक्सपायर हो गया है। कृपया वापस साइन-इन करें।</value>
+    <comment>The message displayed in Login window when expired session is detected</comment>
+  </data>
+  <data name="Login_Error_SsoAuthFailed">
+    <value>SSO ऑथेंटिकेशन असफल हुआ। कृपया फिर से कोशिश करें।</value>
+  </data>
+  <data name="Login_Error_TwoFactorFailed">
+    <value>टू-फैक्टर सत्यापन असफल हुआ। कृपया दोबारा साइन-इन करें।</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>सिक्योरिटी की ऑथेंटिकेशन आपके डिवाइस या रिमोट डेस्कटॉप कनेक्शन के लिए उपलब्ध नहीं है।</value>
+  </data>
+  <data name="Login_TwoFactorForm_Authenticate">
+    <value>सत्यापन करें</value>
+    <comment>Authenticate button inside two factor form during login</comment>
+  </data>
+  <data name="Login_TwoFactorForm_Subtitle">
+    <value>6 अंकों का ऑथेंटिकेशन कोड</value>
+  </data>
+  <data name="Login_TwoFactorForm_Title">
+    <value>टू-फैक्टर सत्यापन</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>ऑथेंटिकेटर ऐप</value>
+  </data>
+  <data name="Login_TwoFactor_Digit1">
+    <value>पहला अंक</value>
+  </data>
+  <data name="Login_TwoFactor_Digit2">
+    <value>दूसरा अंक</value>
+  </data>
+  <data name="Login_TwoFactor_Digit3">
+    <value>तीसरा अंक</value>
+  </data>
+  <data name="Login_TwoFactor_Digit4">
+    <value>चौथा अंक</value>
+  </data>
+  <data name="Login_TwoFactor_Digit5">
+    <value>पांचवां अंक</value>
+  </data>
+  <data name="Login_TwoFactor_Digit6">
+    <value>छठा अंक</value>
+  </data>
+  <data name="Login_TwoFactor_EnterCode">
+    <value>अपना कोड दर्ज करें</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>कोई जाना-माना टू-फैक्टर सत्यापन तरीका नहीं मिला।</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>सुरक्षा चाबी</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>अपने Proton खाते से जुड़ी U2F या FIDO चाबी डालें।</value>
+  </data>
+  <data name="Main_Loading">
+    <value>लोड हो रहा है, कृपया इंतज़ार करें...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
+  <data name="Main_Loading_SigningIn">
+    <value>साइनइन कर रहे हैं, कृपया इंतज़ार करें...</value>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>इसमें आमतौर पर जितना समय लगता है उससे ज़्यादा लग रहा है, लेकिन हम इस पे काम कर रहे हैं।</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
+  </data>
+  <data name="Main_Loading_SigningOut">
+    <value>साइनआउट कर रहे हैं, कृपया इंतज़ार करें...</value>
+    <comment>Message in the loading screen when signing out</comment>
+  </data>
+  <data name="Map_ConnectTo">
+    <value>कनेक्ट करें - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>हमें संपर्क करें</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>हम सर्वर सूची लोड नहीं कर सके।</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>मदद चाहिए?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>साइन-आउट करें</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>अपने एडमिनिस्ट्रेटर से कहें कि वे आपके खाते के लिए VPN एक्सेस सक्षम करें।</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>कोई VPN कनेक्शन उपलब्ध नहीं</value>
+  </data>
+  <data name="NoServers_UnderMaintenance_Tip">
+    <value>कोई सर्वर लोड नहीं हो सका। सर्वर सूची अपडेट करने के लिए रीफ्रेश पर क्लिक करें।</value>
+  </data>
+  <data name="Notifications_KillSwitch_Description">
+    <value>आपका IP पता सुरक्षित रखने के लिए किल स्विच आपके इंटरनेट कनेक्शन को ब्लॉक कर रहा है।</value>
+  </data>
+  <data name="Notifications_PortForwarding_CopyPortNumber">
+    <value>पोर्ट नंबर कॉपी करें</value>
+  </data>
+  <data name="Notifications_PortForwarding_Description">
+    <value>अपने टोरेंट क्लाइंट या P2P ऐप पे जाएं और ये नंबर दर्ज करें।</value>
+  </data>
+  <data name="Notifications_SessionLimit_Description">
+    <value>आपकी डिवाइस सीमा पूरी हो चुकी है। VPN से दोबारा कनेक्ट करने के लिए, कृपया किसी और डिवाइस से डिस्कनेक्ट करें।</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>आपका प्लान Proton Free में डाउनग्रेड कर दिया गया है, और हम आपको सबसे तेज़ फ्री सर्वर से दोबारा कनेक्ट कर रहे हैं।</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Description">
+    <value>पब्लिक वाईफाई नेटवर्क सुरक्षा खतरों के लिए ज़्यादा कमज़ोर होते हैं। सुरक्षित ब्राउज़िंग के लिए VPN से कनेक्ट करें।</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Title">
+    <value>असुरक्षित वाईफाई कनेक्शन का पता चला</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Proton VPN - सर्वे</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>IPv6 पतों को शामिल करने के लिए आपको VPN टनल से IPv6 कनेक्शन की अनुमति देनी होगी।</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>IPv6 सक्षम करें</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>अभी नहीं</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>IPv6 अक्षम है</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Action">
+    <value>अभी अपडेट करें</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Message">
+    <value>ये ऐप वर्शन पुराना है। Proton VPN का उपयोग जारी रखने के लिए ऐप को अपडेट करना ज़रूरी है।</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Title">
+    <value>जारी रखने के लिए Proton VPN अपडेट करें</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Description">
+    <value>हमारे P2P (पीयर-टू-पीयर) सर्वर आपको P2P नेटवर्क एक्सेस करने देते हैं और साथ ही आपका IP पता और ऑनलाइन गतिविधि भी सुरक्षित रखते हैं।</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Header">
+    <value>P2P VPN क्या है?</value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Description">
+    <value>P2P नेटवर्क दो डिवाइस को केंद्रीय सर्वर से गुज़रे बिना कनेक्ट होकर डेटा ट्रांसफर करने देते हैं। </value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Header">
+    <value>P2P नेटवर्क क्या है?</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Description">
+    <value>  •  टोरेंट फाइल डाउनलोड करना
+  •  ऑनलाइन गेमिंग और वीडियो कॉल की परफ़ॉर्मेंस बेहतर करना
+  •  लोकल एरिया नेटवर्क (LAN) डिवाइस से कनेक्ट करना</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Header">
+    <value>P2P नेटवर्क का इस्तेमाल किस लिए होता है?</value>
+  </data>
+  <data name="Overlay_P2P_LearnMore">
+    <value>P2P क्या है?</value>
+  </data>
+  <data name="Overlay_P2P_Title">
+    <value>P2P</value>
+  </data>
+  <data name="Overlay_Profile_Description1">
+    <value>प्रोफ़ाइल कस्टम VPN कनेक्शन हैं, जिन्हें अपनी ज़रूरत के हिसाब से ढाला जा सकता है और तेज़ी से एक्सेस करने के लिए सेव किया जा सकता है।</value>
+  </data>
+  <data name="Overlay_Profile_Description2">
+    <value>अपनी पसंद का स्थान सेट करें और सुरक्षा, परफ़ॉर्मेंस, गेमिंग या किसी और स्थिति के लिए अपनी सेटिंग ऑप्टिमाइज़ करें।</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore">
+    <value>VPN प्रोफ़ाइल क्या होती है?</value>
+  </data>
+  <data name="Overlay_Profile_Title">
+    <value>प्रोफाइल</value>
+  </data>
+  <data name="Overlay_SecureCore_Description1">
+    <value>Secure Core आपको एक दूसरे, अधिकतम सुरक्षा वाले VPN सर्वर के ज़रिए आपके डेस्टिनेशन सर्वर से कनेक्ट करता है।</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2">
+    <value>सुरक्षा के इस बेहतर स्तर की वजह से लेटेंसी ज़्यादा और स्पीड धीमी हो सकती है।</value>
+  </data>
+  <data name="Overlay_SecureCore_LearnMore">
+    <value>Secure Core क्या है?</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection">
+    <value>Secure Core
+VPN कनेक्शन</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
+    <value>उच्चतर विलंबता</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Privacy">
+    <value>उन्नत प्राइवेसी</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection">
+    <value>मानक
+VPN कनेक्शन</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Latency">
+    <value>कम विलंबता</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Privacy">
+    <value>उच्च प्राइवेसी</value>
+  </data>
+  <data name="Overlay_SecureCore_Title">
+    <value>Secure Core</value>
+  </data>
+  <data name="Overlay_ServerLoad_Description">
+    <value>सर्वर लोड ये दिखाता है कि कोई सर्वर अपनी फुल कैपेसिटी के कितना करीब है।
+
+ज़्यादा सर्वर लोड आपके कनेक्शन को स्लो कर सकता है।</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Description">
+    <value>VPN नॉर्मल से ज़्यादा स्लो चल सकता है।</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Title">
+    <value>ज़्यादा (91-100%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_LearnMore">
+    <value>सर्वर लोड क्या है?</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Description">
+    <value>बिजली जैसी तेज़ गति</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Title">
+    <value>कम (1-75%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Description">
+    <value>VPN गति प्रभावित होने की संभावना नहीं</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Title">
+    <value>मीडियम (76-90%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_Title">
+    <value>सर्वर लोड</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description1">
+    <value>Smart Routing की मदद से हम मुश्किल से पहुंच वाले देशों में VPN कवरेज दे पाते हैं।</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2">
+    <value>Smart Routing सर्वर से कनेक्ट करने पर ऐसा लगेगा कि ब्राउज़िंग आपके गंतव्य देश में हो रही है, भले ही फ़िज़िकल सर्वर कहीं और स्थित हो।</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3">
+    <value>Smart Routing का इस्तेमाल आम तौर पर प्राइवेसी विरोधी कानूनों और दूसरी तरह की सेंसरशिप से बचने के लिए किया जाता है।</value>
+  </data>
+  <data name="Overlay_SmartRouting_Header">
+    <value>यह आपको आपके गंतव्य देश से उन सर्वरों के माध्यम से कनेक्ट करता है जो भौतिक रूप से कहीं और स्थित हैं: {0}।</value>
+    <comment>{0} is a placeholder for the countries where the physical servers are. Can be either one country or multiple countries separated with comma.</comment>
+  </data>
+  <data name="Overlay_SmartRouting_LearnMore">
+    <value>Smart Routing क्या है?</value>
+  </data>
+  <data name="Overlay_SmartRouting_Title">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Overlay_Tor_Description">
+    <value>किसी भी ब्राउज़र से अनियन साइटों और छिपी सेवाओं को एक्सेस करने के लिए Tor सर्वर से कनेक्ट करें।</value>
+  </data>
+  <data name="Overlay_Tor_LearnMore">
+    <value>Tor नेटवर्क कैसे एक्सेस करें</value>
+  </data>
+  <data name="Overlay_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Profile_CustomSettings_Description">
+    <value>कनेक्ट होने पर प्रोफ़ाइल सेटिंग आपकी VPN सेटिंग को ओवरराइड कर देगी।</value>
+  </data>
+  <data name="Profile_CustomSettings_Header">
+    <value>कस्टम सेटिंग जोड़ें</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide">
+    <value>सेटिंग छिपाएं</value>
+  </data>
+  <data name="Profile_CustomSettings_Show">
+    <value>सेटिंग दिखाएं</value>
+  </data>
+  <data name="Profile_NatType_Conflict_Description">
+    <value>इससे इस प्रोफाइल के लिए पोर्ट फॉरवर्ड अक्षम हो जाएगा।</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description">
+    <value>इससे इस प्रोफाइल के लिए कस्टम DNS अक्षम हो जाएगा।</value>
+  </data>
+  <data name="Profile_Options_Application">
+    <value>ऐप</value>
+  </data>
+  <data name="Profile_Options_Application_Select">
+    <value>ऐप चुनें</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Application">
+    <value>कोई ऐप खोलें</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
+    <value>प्राइवेट ब्राउज़िंग मोड इस्तेमाल करें</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Website">
+    <value>कोई वेबसाइट खोलें</value>
+  </data>
+  <data name="Profile_Options_Description">
+    <value>इस प्रोफाइल से कनेक्ट करने पे अपनी पसंद की वेबसाइट या ऐप अपनेआप खोलें।</value>
+  </data>
+  <data name="Profile_Options_Header">
+    <value>कनेक्ट करें और चलें</value>
+  </data>
+  <data name="Profile_Options_Url">
+    <value>वेबसाइट URL</value>
+  </data>
+  <data name="Profile_Options_Url_Error">
+    <value>मान्य URL दर्ज करें</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description">
+    <value>इससे इस प्रोफाइल का NAT टाइप सख्त (टाइप 3) हो जाएगा।</value>
+  </data>
+  <data name="Profiles_Default_Gaming">
+    <value>गेमिंग</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity">
+    <value>अधिकतम सुरक्षा</value>
+  </data>
+  <data name="Profiles_Default_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection">
+    <value>रैंडम कनेक्शन</value>
+  </data>
+  <data name="Profiles_Default_Streaming">
+    <value>स्ट्रीमिंग US</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool">
+    <value>ऑफिस/स्कूल</value>
+  </data>
+  <data name="Profiles_Page_Description">
+    <value>अपनी खुद की VPN सेटिंग कॉन्फिगर करें और एक क्लिक में कनेक्ट करें।</value>
+  </data>
+  <data name="Profiles_Page_Title">
+    <value>प्रोफाइल</value>
+  </data>
+  <data name="Search_InputBox_Placeholder">
+    <value>...से ब्राउज़ करें</value>
+  </data>
+  <data name="Search_NoInput_CityOrState">
+    <value>शहर या अमेरिकी राज्य</value>
+    <comment>The word used for one single city and one single United States state</comment>
+  </data>
+  <data name="Search_NoInput_Country">
+    <value>देश</value>
+    <comment>The word used for one single country</comment>
+  </data>
+  <data name="Search_NoInput_Server">
+    <value>सर्वर</value>
+    <comment>The word used for one single server</comment>
+  </data>
+  <data name="Search_NoInput_TrySearchingFor">
+    <value>खोजने का प्रयास करें...</value>
+  </data>
+  <data name="Search_NoResults_Description">
+    <value>कोई दूसरा शब्द आज़माएं।</value>
+  </data>
+  <data name="Search_NoResults_Title">
+    <value>कोई नतीजा नहीं मिला</value>
+  </data>
+  <data name="Server">
+    <value>सर्वर</value>
+  </data>
+  <data name="Server_Fastest">
+    <value>सबसे तेज़ सर्वर</value>
+  </data>
+  <data name="Server_Fastest_Free">
+    <value>सबसे तेज़ फ्री सर्वर</value>
+  </data>
+  <data name="Server_Feature_B2B">
+    <value>गेटवे</value>
+  </data>
+  <data name="Server_Feature_B2B_Description">
+    <value>अपने संगठन के सर्वर एक्सेस करें</value>
+  </data>
+  <data name="Server_Feature_None">
+    <value>मानक</value>
+  </data>
+  <data name="Server_Feature_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Server_Feature_P2P_Description">
+    <value>टोरेंट के लिए ऑप्टिमाइज़्ड</value>
+  </data>
+  <data name="Server_Feature_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description">
+    <value>दोहरी सुरक्षा</value>
+  </data>
+  <data name="Server_Feature_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Server_Free">
+    <value>फ्री सर्वर</value>
+  </data>
+  <data name="Server_Random">
+    <value>रैंडम सर्वर</value>
+  </data>
+  <data name="Servers">
+    <value>सर्वर</value>
+  </data>
+  <data name="Settings_About_Changelog">
+    <value>परिवर्तन लॉग</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>चालू संस्करण</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>बदलाव लॉग की जानकारी लोड नहीं हो सकी।</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>और जानें</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>लाइसेंसिंग</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>लोड हो रहा है</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>हमारे बारे में</value>
+  </data>
+  <data name="Settings_Account_Account">
+    <value>खाता</value>
+  </data>
+  <data name="Settings_Account_Exit">
+    <value>ऐप से बाहर निकलें</value>
+  </data>
+  <data name="Settings_Account_SignOut">
+    <value>साइन-आउट करें</value>
+  </data>
+  <data name="Settings_AppVersion">
+    <value>ऐप वर्शन</value>
+  </data>
+  <data name="Settings_Censorship_Footer">
+    <value>ये आंकड़े आपका IP पता नहीं रखते, और इनका इस्तेमाल कभी भी आपको पहचानने में नहीं किया जा सकता। हम कभी भी इन्हें दूसरे लोगों से शेयर नहीं करते।</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports">
+    <value>अज्ञात क्रैश रिपोर्ट शेयर करें</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports_Description">
+    <value>क्रेश रिपोर्ट हमें बग्स ठीक करने, फॉयरवॉल डिटेक्ट करने और VPN ब्लॉक से बचने में मदद करती हैं।</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics">
+    <value>अज्ञात इस्तेमाल आंकड़े शेयर करें</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics_Description">
+    <value>इस्तेमाल डेटा हमें VPN ब्लॉक से बचने और ऐप प्रदर्शन को बेहतर करने में मदद करता है।</value>
+  </data>
+  <data name="Settings_Common_Apply">
+    <value>लागू करें</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>पता पहले से जोड़ा गया है</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>एक मान्य IPv4 या IPv6 पता दर्ज करें</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Connection">
+    <value>कनेक्शन</value>
+  </data>
+  <data name="Settings_Connection_AdvancedSettings">
+    <value>एडवांस सेटिंग</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting">
+    <value>दूसरा रूट</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
+    <value>यदि नेटवर्क प्रतिबंधों के कारण Proton सेवाएं अवरुद्ध हैं, तो हम हमारी साइटों से कनेक्ट करने के लिए वैकल्पिक नेटवर्क रूटिंग का उपयोग करने का प्रयास करेंगे।</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers">
+    <value>कस्टम DNS सर्वर</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>नया DNS सर्वर जोड़ें</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
+    <value>कस्टम DNS सर्वर से कनेक्ट होने पर आप NetShield का उपयोग नहीं कर पाएंगे।</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
+    <value>कस्टम DNS सर्वर सक्षम करें?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
+    <value>अपने खुद के डोमेन नेम सिस्टम (DNS) के साथ Proton VPN से कनेक्ट करें। सिर्फ ऐसे DNS सर्वर इस्तेमाल करें जो विश्वसनीय हों।</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>हम इन सर्वर से क्रम में कनेक्ट करने की कोशिश करेंगे। अगर कोई भी काम न करे, तो डिफॉल्ट Proton VPN DNS इस्तेमाल होगा।</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_FormattedHeader">
+    <value>DNS सर्वर ({0})</value>
+    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+    <value>DNS सर्वर</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Select">
+    <value>DNS सर्वर चुनें</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>IPv6 समर्थन</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
+    <value>IPv6 लीक संरक्षण</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
+    <value>VPN टनल से न गुज़रने वाले IPv6 ट्रैफिक को ब्लॉक करके डेटा लीक होने से रोकता है।</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>IPv6 ट्रैफिक को VPN टनल से गुज़रने देता है। इससे IPv6 वेबसाइट और सेवाओं के साथ संगतता बेहतर होती है।</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections">
+    <value>LAN कनेक्शन की अनुमति दें</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_Description">
+    <value>स्थानीय नेटवर्क में प्रिंटर, स्पीकर और अन्य डिवाइस से कनेक्शन की अनुमति देता है।</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
+    <value>IP पतों की जगह 'My-Printer' या 'router.local' जैसे नामों से डिवाइसों से कनेक्ट करने के लिए mDNS इस्तेमाल करता है। स्टैंडर्ड DNS अब भी VPN टनल से रूट होता रहता है। तेज़ VPN स्पीड के लिए डिफॉल्ट रूप से अक्षम है।</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
+    <value>नाम से डिवाइस एक्सेस करें</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType">
+    <value>NAT प्रकार</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
+    <value>मध्यम NAT के साथ आप पोर्ट फॉरवर्ड का उपयोग नहीं कर पाएंगे।</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
+    <value>मध्यम NAT सक्षम करें?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Description">
+    <value>कनेक्शन के लिए नेटवर्क पता ट्रांसलेशन प्रकार चुनें।</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate">
+    <value>मध्यम (प्रकार 2)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
+    <value>नेटवर्क में प्रवेश करने वाले डेटा पर कुछ प्रतिबंध। यह विकल्प ऑनलाइन वीडियो गेमिंग के लिए सबसे अच्छा है।</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict">
+    <value>सख्त (प्रकार 3)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict_Description">
+    <value>नेटवर्क में प्रवेश करने वाले डेटा को प्रतिबंधित करता है। यह विकल्प अधिक सुरक्षित है, लेकिन पीयर-टू-पीयर गेमिंग कनेक्शन को अधिक कठिन बना सकता है।</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
+    <value>नेटवर्क ट्रैफिक को ब्रिज करता है। TUN से धीमा है, लेकिन कुछ विरासत या खास नेटवर्क सेटअप के लिए ज़रूरी है।</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
+    <value>अलग-अलग नेटवर्क के बीच ट्रैफिक को रूट करता है। TUN, TAP से ज़्यादा तेज़ और स्थिर हो सकता है।</value>
+  </data>
+  <data name="Settings_Connection_ConnectionPreferences">
+    <value>कनेक्शन वरीयताएं</value>
+  </data>
+  <data name="Settings_Connection_ConnectionPreferences_Description">
+    <value>डिफॉल्ट कनेक्शन और बाहर रखे गए स्थान</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
+    <value>कस्टम DNS चालू नहीं हो सकता, क्योंकि आप ऐसी प्रोफ़ाइल से कनेक्ट हैं जिसमें NetShield सक्षम है।</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
+    <value>कस्टम DNS अक्षम है, क्योंकि आप अभी ऐसी प्रोफ़ाइल से कनेक्ट हैं जिसमें NetShield सक्षम है।</value>
+  </data>
+  <data name="Settings_Connection_Default">
+    <value>डिफॉल्ट कनेक्शन</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>सबसे तेज़ देश</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>स्थान के आधार पर सर्वोत्तम सर्वर</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>अंतिम कनेक्शन</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>हाल ही में उपयोग किया गया कनेक्शन</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>रैंडम देश</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>हर बार कनेक्ट करने पे अलग सर्वर</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>हालिया</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations">
+    <value>बाहर रखे गए स्थान</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Cities">
+    <value>शहर</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Countries">
+    <value>देश</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Description">
+    <value>जब आप Fastest या Random से कनेक्ट करें, तो चुने गए स्थानों का इस्तेमाल कभी नहीं किया जाएगा।</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_NoLocations">
+    <value>कोई स्थान उपलब्ध नहीं है</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Search">
+    <value>चुनें...</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_States">
+    <value>राज्य</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch">
+    <value>किल स्विच</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced">
+    <value>एडवांस्ड</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced_Description">
+    <value>सिर्फ Proton VPN से कनेक्ट होने पर ही इंटरनेट एक्सेस की अनुमति दें। एडवांस्ड किल स्विच आपका डिवाइस वापिस शुरु करने पर भी चालू रहेगा।</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Description">
+    <value>अगर आपका VPN कनेक्शन टूट जाता है, तो ये आपको इंटरनेट से डिस्कनेक्ट करके आपका IP पता सुरक्षित रखता है।</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard">
+    <value>मानक</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard_Description">
+    <value>VPN कनेक्शन टूटने पर इंटरनेट से अपने-आप डिस्कनेक्ट हो जाएं।</value>
+  </data>
+  <data name="Settings_Connection_NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
+    <value>विज्ञापन, ट्रैकर और मालवेयर को ब्लॉक करें</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent">
+    <value>विज्ञापन, ट्रैकर, मालवेयर और वयस्क कॉन्टेंट को ब्लॉक करें</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockMalwareOnly">
+    <value>मालवेयर ब्लॉक करें</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Description">
+    <value>NetShield सक्षम होने पर आप कस्टम DNS सर्वर से कनेक्ट नहीं हो पाएंगे।</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information">
+    <value>NetShield, कस्टम DNS के साथ संगत नहीं है।</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Title">
+    <value>NetShield सक्षम करें?</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Description">
+    <value>वेबसाइट और ऐप पे अपनी ब्राउज़िंग को सुरक्षित रखें।</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Footer">
+    <value>जब विज्ञापन और ट्रैकर ब्लॉक किए जाते हैं तो कुछ वेबसाइटें ठीक से लोड नहीं हो पाती हैं।</value>
+  </data>
+  <data name="Settings_Connection_NetShield_PrivacyPanel">
+    <value>NetShield प्राइवेसी पैनल</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding">
+    <value>पोर्ट फॉरवर्ड</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort">
+    <value>सक्रिय पोर्ट नंबर:</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
+    <value>पोर्ट नंबर कॉपी करें</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Description">
+    <value>पोर्ट फॉरवर्ड सक्षम होने पर आप Moderate NAT का उपयोग नहीं कर पाएंगे।</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Title">
+    <value>पोर्ट फॉरवर्ड सक्षम करें?</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Description">
+    <value>एक तय पोर्ट के ज़रिए डायरेक्ट P2P कनेक्शन की अनुमति देकर टोरेंटिंग और गेमिंग की गति बढ़ाता है।</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Footer">
+    <value>पोर्ट फॉरवर्ड के लिए, कृपया ऐसे सर्वर से कनेक्ट करें जो P2P सपोर्ट करता हो।</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>आखिरी बदलाव: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Loading">
+    <value>लोड हो रहा है...</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications">
+    <value>नोटिफिकेशन</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications_Description">
+    <value>आपका सक्रिय पोर्ट नंबर बदलने पे सूचना पाएं।</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>अनुपलब्ध</value>
+  </data>
+  <data name="Settings_Connection_Protocol">
+    <value>प्रोटोकॉल</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling">
+    <value>स्प्लिट टनलिंग</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Description">
+    <value>वे ऐप चुनें जो VPN कनेक्शन से बाहर रखे जाएंगे</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_FormattedHeader">
+    <value>बहिष्कृत ऐप ({0})</value>
+    <comment>Header for the list of apps to exclude for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Excluded apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Header">
+    <value>बहिष्कृत ऐप</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
+    <value>ऐप फाइल</value>
+    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_Description">
+    <value>वे ऐप चुनें जो VPN कनेक्शन में शामिल होंगे</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader">
+    <value>शामिल ऐप ({0})</value>
+    <comment>Header for the list of apps to include for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Included apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_Header">
+    <value>शामिल ऐप</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Select">
+    <value>ऐप चुनें</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Description">
+    <value>कनेक्शन को ये तय करके अनुकूलित करें कि कौन से ऐप और IP पते VPN द्वारा सुरक्षित हैं।</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse">
+    <value>शामिल करने का मोड</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Description">
+    <value>केवल चयनित ऐप और IP पते ही VPN के माध्यम से कनेक्ट होते हैं, अन्य सभी ट्रैफिक असुरक्षित है।</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>शामिल करें</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>नया IPv4 या IPv6 पता जोड़ें</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Description">
+    <value>वे IP पते चुनें जो VPN कनेक्शन से बाहर रखे जाएंगे</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_FormattedHeader">
+    <value>बहिष्कृत IP पते ({0})</value>
+    <comment>Header for the list of IP addresses to exclude for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Excluded IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Header">
+    <value>बहिष्कृत IP पते</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Description">
+    <value>वे IP पते चुनें जो VPN कनेक्शन में शामिल होंगे</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_FormattedHeader">
+    <value>शामिल IP पते ({0})</value>
+    <comment>Header for the list of IP addresses to include for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Included IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Header">
+    <value>शामिल IP पते</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Select">
+    <value>IP पते चुनें</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard">
+    <value>बाहर करने का मोड</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Description">
+    <value>चयनित ऐप और IP पते को आपके VPN कनेक्शन से बाहर रखा गया है।</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>बाहर करें</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
+  </data>
+  <data name="Settings_Connection_VpnAccelerator">
+    <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>परिवर्तन फेंक दें</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>संपादन जारी रखें</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>सहेजे न गए परिवर्तनों को फेंक दें?</value>
+  </data>
+  <data name="Settings_General">
+    <value>सामान्य</value>
+  </data>
+  <data name="Settings_General_AutoStartup">
+    <value>ऑटो स्टार्टअप</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect">
+    <value>अपनेआप-कनेक्ट</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Description">
+    <value>Proton VPN खुलने पे अपनेआप आपके डिफॉल्ट कनेक्शन से जुड़ जाता है।</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch">
+    <value>अपनेआप-लॉन्च</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Description">
+    <value>डिवाइस में साइनइन करने पे Proton VPN अपनेआप खुल जाएगा।</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
+    <value>डेस्कटॉप पे खोलें</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
+    <value>सिस्टम ट्रे में छोटा करें</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
+    <value>टास्कबार में छोटा करें</value>
+  </data>
+  <data name="Settings_General_AutoStartup_Description">
+    <value>ऐप को अपनेआप लॉन्च या कनेक्ट करने के लिए सेट करें।</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates">
+    <value>स्वचालित अपडेट</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates_Description">
+    <value>Proton VPN के अपडेट अपनेआप ढूंढें और इंस्टॉल करें।</value>
+  </data>
+  <data name="Settings_General_BetaAccess">
+    <value>बीटा एक्सेस</value>
+  </data>
+  <data name="Settings_General_BetaAccess_Description">
+    <value>जल्दी एक्सेस पाएं और Proton VPN के नए वर्ज़न टेस्ट करने में हमारी मदद करें।</value>
+  </data>
+  <data name="Settings_General_Language">
+    <value>भाषा</value>
+  </data>
+  <data name="Settings_General_Notifications">
+    <value>नोटिफिकेशन</value>
+  </data>
+  <data name="Settings_General_Notifications_Description">
+    <value>कनेक्शन स्टेटस में बदलाव के बारे में सूचना पाएं।</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver">
+    <value>OpenVPN नेटवर्क ड्राइवर</value>
+  </data>
+  <data name="Settings_General_Theme">
+    <value>थीम</value>
+  </data>
+  <data name="Settings_Improve">
+    <value>Proton सुधारें</value>
+  </data>
+  <data name="Settings_Improve_Censorship">
+    <value>सेंसरशिप से लड़ाई में हमारी मदद करें</value>
+  </data>
+  <data name="Settings_OperatingSystemVersion">
+    <value>ऑपरेटिंग सिस्टम वर्शन</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description1">
+    <value>ये सेटिंग आपकी सक्रिय प्रोफाइल से जुड़ी है।</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2">
+    <value>बदलाव करने के लिए अपनी प्रोफाइल एडिट करें, या अपनी सामान्य VPN सेटिंग बदलने के लिए डिस्कनेक्ट करें।</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline">
+    <value>ये सेटिंग '{0}' प्रोफाइल से जुड़ी हैं और इन्हें सिर्फ प्रोफाइल में मैनेज किया जा सकता है।</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Title">
+    <value>प्रोफाइल में {0} मैनेज करें</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
+  <data name="Settings_Page_Title">
+    <value>सेटिंग</value>
+  </data>
+  <data name="Settings_Protocols_Explanation">
+    <value>VPN प्रोटोकॉल यह निर्धारित करता है कि VPN सर्वर और डिवाइस के बीच डेटा कैसे चलता है।</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Description">
+    <value>स्थापित, अच्छी तरह से परखा हुआ और सुरक्षित। OpenVPN खराब नेटवर्क स्थितियों में विश्वसनीय है, लेकिन अन्य प्रोटोकॉल जितना तेज नहीं हो सकता है।</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Description">
+    <value>स्थापित, अच्छी तरह से परखा हुआ और सुरक्षित। OpenVPN कुछ अन्य प्रोटोकॉल की तुलना में कम बैटरी-कुशल है।</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Description">
+    <value>ज़्यादा स्थिरता, कार्यक्षमता और सेंसरशिप के प्रति प्रतिरोध के लिए हमारा नया, WireGuard पर आधारित फ्रेमवर्क।</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Description">
+    <value>ज़्यादा स्थिरता, कार्यक्षमता और सेंसरशिप के प्रति प्रतिरोध के लिए हमारा नया, WireGuard पर आधारित फ्रेमवर्क।</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Title">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Description">
+    <value>ज़्यादा स्थिरता, कार्यक्षमता और सेंसरशिप के प्रति प्रतिरोध के लिए हमारा नया, WireGuard पर आधारित फ्रेमवर्क।</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description">
+    <value>WireGuard के लिए Proton VPN का अपना इम्प्लीमेंटेशन इस्तेमाल करें। यह एक प्रायोगिक खासियत है, इसलिए कुछ अस्थिरता का अनुभव हो सकता है।</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title">
+    <value>Proton प्रोटोकॉल</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Description">
+    <value>कनेक्शन के लिए सर्वोत्तम प्रोटोकॉल का स्वतः चयन करता है।</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Title">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_Protocols_TcpCategory">
+    <value>विश्वसनीयता (TCP)</value>
+  </data>
+  <data name="Settings_Protocols_UdpCategory">
+    <value>गति (UDP)</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>सुरक्षा और प्रदर्शन के लिए अत्याधुनिक प्रोटोकॉल।</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>VPN कनेक्शन को सेंसर से छिपाकर VPN अवरोधों पर काबू पा लेता है। Stealth DPI (डीप पैकेट इंस्पेक्शन) प्रतिरोधी है, लेकिन अन्य प्रोटोकॉल जितना तेज नहीं हो सकता है।</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Description">
+    <value>सुरक्षा और प्रदर्शन के लिए अत्याधुनिक प्रोटोकॉल।</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Reconnection_Title">
+    <value>बदलाव लागू करने के लिए दोबारा कनेक्ट करें</value>
+  </data>
+  <data name="Settings_RestoreDefault">
+    <value>डिफॉल्ट सेटिंग रीस्टोर करें</value>
+  </data>
+  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
+    <value>रीस्टोर करें और दोबारा कनेक्ट करें</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Action">
+    <value>डिफॉल्ट सेटिंग रीस्टोर करें</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Message">
+    <value>इससे आपकी Proton VPN सेटिंग अपनी मूल स्थिति में रीसेट हो जाएंगी।</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Title">
+    <value>डिफॉल्ट सेटिंग रीस्टोर करें?</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnTcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnUdp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardUdp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="Settings_Support">
+    <value>सहायता</value>
+  </data>
+  <data name="Settings_Support_DebugLogs">
+    <value>डिबग लॉग</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Application">
+    <value>एप्लीकेशन लॉग</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_ErrorMessage">
+    <value>लॉग फोल्डर नहीं मिला।</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Service">
+    <value>सेवा लॉग</value>
+  </data>
+  <data name="Settings_Support_ReportIssue">
+    <value>समस्या को रिपोर्ट करें</value>
+  </data>
+  <data name="Settings_Support_SupportCenter">
+    <value>सहायता केंद्र</value>
+  </data>
+  <data name="Settings_Theme_Dark">
+    <value>गहरा</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>डिफॉल्ट</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>हल्का</value>
+  </data>
+  <data name="Settings_VpnAccelerator_Description">
+    <value>परफॉरमेंस वर्धक प्रौद्योगिकियों के साथ कनेक्शन की गति को 400% तक बढ़ाएं।</value>
+  </data>
+  <data name="SignIn_Form_AdvancedKillSwitchDescription">
+    <value>एडवांस किल स्विच आपका इंटरनेट कनेक्शन ब्लॉक कर रहा है।</value>
+  </data>
+  <data name="SignIn_Form_BestSecureVpnForSpeed">
+    <value>स्पीड के लिए सबसे सुरक्षित VPN</value>
+  </data>
+  <data name="SignIn_Form_CreateAccount">
+    <value>खाता बनाएं</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_Description">
+    <value>अपने Proton खाते की जानकारी दर्ज करें।</value>
+  </data>
+  <data name="SignIn_Form_DisableKillSwitch">
+    <value>किल स्विच अक्षम करें</value>
+  </data>
+  <data name="SignIn_Form_Email">
+    <value>ईमेल</value>
+  </data>
+  <data name="SignIn_Form_ForgotUsername">
+    <value>यूज़रनेम भूले</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_Help">
+    <value>मदद</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_NoLogsPolicy">
+    <value>नो-लॉग्स नीति</value>
+  </data>
+  <data name="SignIn_Form_OpenSource">
+    <value>ओपन सोर्स</value>
+  </data>
+  <data name="SignIn_Form_Password">
+    <value>पासवर्ड</value>
+  </data>
+  <data name="SignIn_Form_PasswordError">
+    <value>अपना पासवर्ड दर्ज करें</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a password</comment>
+  </data>
+  <data name="SignIn_Form_ReportAnIssue">
+    <value>समस्या को रिपोर्ट करें</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_ResetPassword">
+    <value>पासवर्ड भूल गए</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_SignIn">
+    <value>साइन इन करें</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_SignInWithSso">
+    <value>SSO से साइन इन करें</value>
+  </data>
+  <data name="SignIn_Form_SwissBased">
+    <value>स्विस आधारित</value>
+  </data>
+  <data name="SignIn_Form_Title">
+    <value>साइन इन करें</value>
+  </data>
+  <data name="SignIn_Form_TroubleSigningIn">
+    <value>सहायता केंद्र</value>
+    <comment>A button at the bottom of the login window inside Get help popup</comment>
+  </data>
+  <data name="SignIn_Form_Username">
+    <value>ईमेल या यूज़रनाम</value>
+  </data>
+  <data name="SignIn_Form_UsernameError">
+    <value>अपना ईमेल या यूज़रनाम दर्ज करें</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
+  </data>
+  <data name="SignIn_KillSwitch_Disabled">
+    <value>किल स्विच अक्षम है</value>
+  </data>
+  <data name="State_Fastest">
+    <value>सबसे तेज़ राज्य</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>रैंडम राज्य</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="SystemNotification_Connected">
+    <value>अब आप सुरक्षित हैं</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>{0} से जुड़ा।</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>कनेक्शन टूटा</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>पेड VPN सर्वर से P2P (पीयर-टू-पीयर) प्रोटोकॉल पे टोरेंटिंग और ऑनलाइन गेमिंग अनलॉक करें।</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>VPN Free के साथ P2P उपलब्ध नहीं है</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>कुछ वेबसाइट और स्ट्रीमिंग सर्विसेज़ मुफ्त VPN यूज़र्स को ब्लॉक करती हैं। इन ब्लॉक को बायपास करने के लिए Proton VPN Plus में अपग्रेड करें।</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>वेबसाइट ब्लॉक है?</value>
+  </data>
+  <data name="System_Tray_Actions_Connect">
+    <value>कनेक्ट करें</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>डिस्कनेक्ट करें</value>
+  </data>
+  <data name="System_Tray_Actions_ExitApplication">
+    <value>बाहर निकलें</value>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
+    <value>{0} खोलें</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
+    <value>बाहर निकलें</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication">
+    <value>{0} खोलें</value>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>साइनइन के लिए ऐप खोलें</value>
+  </data>
+  <data name="Unit_BytesPerSecond">
+    <value>बाइट/सेकंड</value>
+    <comment>Unit for Bytes per second</comment>
+  </data>
+  <data name="Unit_ExabytesPerSecond">
+    <value>ईबी/सेकंड</value>
+    <comment>Unit for Exabytes per second</comment>
+  </data>
+  <data name="Unit_GigabytesPerSecond">
+    <value>जीबी/सेकंड</value>
+    <comment>Unit for Gigabytes per second</comment>
+  </data>
+  <data name="Unit_KilobytesPerSecond">
+    <value>केबी/सेकंड</value>
+    <comment>Unit for Kilobytes per second</comment>
+  </data>
+  <data name="Unit_MegabytesPerSecond">
+    <value>MB/सेकंड</value>
+    <comment>Unit for Megabytes per second</comment>
+  </data>
+  <data name="Unit_PetabytesPerSecond">
+    <value>पीबी/सेकंड</value>
+    <comment>Unit for Petabytes per second</comment>
+  </data>
+  <data name="Unit_TerabytesPerSecond">
+    <value>TB/सेकंड</value>
+    <comment>Unit for Terabytes per second</comment>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>BitTorrent और अन्य फाइल शेयरिंग प्रोटोकॉल के माध्यम से फाइलें डाउनलोड करें।</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>P2P समर्थन</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>किसी भी सर्वर को चुनने के लिए अपग्रेड करें।</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>क्या वह देश नहीं है जो चाहते थे?</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>उन्नत VPN अनुकूलन अनलॉक करें</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>कस्टम डोमेन नाम सिस्टम (DNS) के साथ VPN से कनेक्ट करें</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>कनेक्ट रहते हुए स्थानीय नेटवर्क (LAN) पे डिवाइस एक्सेस करें</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>NAT टाइप 2 (मॉडरेट) पे स्विच करके अपने गेमिंग अनुभव को बेहतर बनाएं</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>एक समय में 10 डिवाइस तक कनेक्ट करें</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>अलग-अलग प्लेटफ़ॉर्म पे Proton VPN इस्तेमाल करें</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>Android और Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>ब्राउज़र</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>सभी डिवाइस पे सुरक्षा और प्राइवेसी</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>विज्ञापन मुक्त ब्राउज़िंग का आनंद लें</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>NetShield के साथ विज्ञापनों और ट्रैकर को ब्लॉक करें</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>अपने डिवाइस को मालवेयर से बचाएं</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>पीयर-टू-पीयर (P2P) डाउनलोड और फाइल शेयर अनलॉक करें</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>सेवा प्रदाता और पीयर से IP पता छिपाएं</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>पोर्ट फॉरवर्ड से P2P की स्पीड कई गुना बढ़ाएं</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>अपलोड और डाउनलोड गति में वृद्धि</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ और</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_Profiles">
+    <value>अपने बारंबार कनेक्शनों तक त्वरित एक्सेस पाएं</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience">
+    <value>प्रोफाइल को अपने डिफॉल्ट कनेक्शन के तौर पे सेट करें और 1 क्लिक में कनेक्ट करें</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Creation">
+    <value>Profiles के साथ अपनी खुद की VPN संरचनाएं बनाएं और सेव करें</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization">
+    <value>अपना स्थान, प्रोटोकॉल और सेटिंग कस्टमाइज़ करें</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>अपने कनेक्शन में सुरक्षा की एक और परत जोड़ें</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>Secure Core के साथ एन्क्रिप्शन को दोगुना करें</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>नेटवर्क हमलों से खुद को सुरक्षित रखें</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>स्विट्ज़रलैंड, स्वीडन और आइसलैंड के बढ़िया सुरक्षित सर्वर से गुज़ार के ले जाएं</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>और भी अधिक गति से ब्राउज़ करें</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>VPN Accelerator के साथ 400% तक तेज़ ब्राउज़ करें</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>तेज, कम व्यस्त सर्वर एक्सेस करें</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>10 जीबीपीएस तक की कनेक्शन गति पाएं</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>दोनों दुनिया का सर्वोत्तम प्राप्त करें</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>स्प्लिट टनलिंग के साथ एक साथ दो स्थानों से ब्राउज़ करें</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>भरोसेमंद ऐप और IP पतों को सीधे इंटरनेट से कनेक्ट होने दें, और बाकी सब कुछ अपने VPN के साथ सुरक्षित रखें</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>पसंदीदा फिल्में और टीवी शो स्ट्रीम करें</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>दुनिया की किसी भी जगह से जियोब्लॉक किए गए टीवी और फिल्में एक्सेस करें</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>बिना बफरिंग, धीमेपन या थ्रॉटलिंग के 4K में देखें</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>VPN Plus के बारे में जानें</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>ज़्यादा प्राइवेसी के लिए Tor नेटवर्क एक्सेस करें</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>छिपी साइटों और अनियन साइटों को एक्सेस करें</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>अपने रेगुलर ब्राउज़र से Tor नेटवर्क पे ब्राउज़ करें</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>ब्राउज़िंग के दौरान अपना पर्सनल डेटा सुरक्षित रखें</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>{1} में {0} से ज़्यादा एक्सेस करें</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>उन्नत सुरक्षा खासियतों के साथ सेंसरशिप को बायपास करें</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_One">
+    <value>{0} देश</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>{0} देश</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>सुरक्षित स्ट्रीमिंग, टोरेंटिंग और बहुत कुछ</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>हमारे दुनिया भर के नेटवर्क में से कोई भी देश चुनें</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
+    <value>{0} सुरक्षित सर्वर</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>{0} सुरक्षित सर्वर</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp_Description">
+    <value>स्थापित, अच्छी तरह परखा हुआ और सुरक्षित</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp_Description">
+    <value>स्थापित, अच्छी तरह परखा हुआ और सुरक्षित</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description">
+    <value>सुरक्षा और प्रदर्शन के लिए अत्याधुनिक प्रोटोकॉल</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description">
+    <value>सेंसर से अपना कनेक्शन छिपाकर VPN ब्लॉक को दरकिनार करता है।</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description">
+    <value>सुरक्षा और प्रदर्शन के लिए अत्याधुनिक प्रोटोकॉल</value>
+  </data>
+  <data name="VpnProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp_Description">
+    <value>सुरक्षा और प्रदर्शन के लिए अत्याधुनिक प्रोटोकॉल</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls_Description">
+    <value>सेंसर से अपना कनेक्शन छिपाकर VPN ब्लॉक को दरकिनार करता है।</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp_Description">
+    <value>सुरक्षा और प्रदर्शन के लिए अत्याधुनिक प्रोटोकॉल</value>
+  </data>
+</root>

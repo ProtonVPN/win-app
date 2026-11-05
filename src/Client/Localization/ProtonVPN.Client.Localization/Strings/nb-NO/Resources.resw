@@ -450,7 +450,7 @@ Feilkode: {0}</value>
     <value>Servere i denne gatewayen krever VPN Plus</value>
   </data>
   <data name="Connections_Gateway_UnderMaintenance">
-    <value>All servere i denne gatewayen er under vedlikehold</value>
+    <value>Alle servere i denne gatewayen er under vedlikehold</value>
   </data>
   <data name="Connections_Gateways_One">
     <value>Gateway ({0})</value>
@@ -589,7 +589,7 @@ Feilkode: {0}</value>
     <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_State_UnderMaintenance">
-    <value>All servere i denne staten er under vedlikehold.</value>
+    <value>Alle servere i denne staten er under vedlikehold.</value>
     <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_States_One">
@@ -1760,7 +1760,7 @@ Feilkode: {0}</value>
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Field_MinLength">
-    <value>Minimum {0} characters</value>
+    <value>Minimum {0} tegn</value>
     <comment>Hint shown below a Report an issue text field that has a minimum length. {0} is the minimum number of characters.</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">

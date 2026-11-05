@@ -3185,7 +3185,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Aktivera vidarebefordran av port?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Improves torrenting and gaming speeds by allowing direct P2P connections through a designated port.</value>
+    <value>Förbättrar hastigheter för torrenting och spel genom att tillåta direkta P2P-anslutningar via en dedikerad port.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>För att använda vidarebefordran av port, anslut till en server som stöder P2P.</value>

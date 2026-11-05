@@ -280,7 +280,7 @@
     <value>Pelajari lebih lanjut</value>
   </data>
   <data name="Common_Message_AppNotFound">
-    <value>Application not found</value>
+    <value>Aplikasi tidak ditemukan</value>
   </data>
   <data name="Common_States_Off">
     <value>Nonaktif</value>
@@ -316,7 +316,7 @@
     <value>Your preferences exclude all available servers. Adjust exclusions to connect.</value>
   </data>
   <data name="Connection_Error_AllServersExcluded_Action">
-    <value>Excluded locations</value>
+    <value>Lokasi yang dikecualikan</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Description">
     <value>To fix it, close or uninstall the app associated with:</value>
@@ -1860,7 +1860,7 @@ Kode kesalahan: {0}</value>
     <value>You unlocked all premium Proton VPN, Mail, Calendar, Drive, and Pass features.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
-    <value>Welcome to {0}</value>
+    <value>Selamat datang di {0}</value>
     <comment>Title to welcome the user after an account upgrade. {0} is a placeholder for the name of the new plan (eg. Proton Unlimited, Proton Duo, Proton Family).</comment>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
@@ -1894,16 +1894,16 @@ Kode kesalahan: {0}</value>
     <value>If there are locations you don't want to be automatically connected to, you can exclude them from Fastest and Random country.</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
-    <value>Skip</value>
+    <value>Lewati</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
-    <value>Not the country you wanted?</value>
+    <value>Bukan negara yang Anda inginkan?</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_ActionButton">
     <value>Exclude locations</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_CloseButton">
-    <value>Maybe later</value>
+    <value>Mungkin nanti</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Subtitle">
     <value>You can now exclude countries or cities from Fastest and Random connections.</value>
@@ -2005,13 +2005,13 @@ Kode kesalahan: {0}</value>
     <value>You're protected from ads, trackers, malware, and adult content.</value>
   </data>
   <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
-    <value>You're protected from ads, trackers, and malware.</value>
+    <value>Anda terlindungi dari iklan, pelacak, dan malware.</value>
   </data>
   <data name="Flyouts_NetShield_Info">
     <value>Protect your browsing on websites and apps.</value>
   </data>
   <data name="Flyouts_NetShield_MalwareOnly_Success">
-    <value>You're protected from malware only.</value>
+    <value>Anda hanya terlindungi dari malware saja.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Description">
     <value>Block ads, trackers, malware, and adult content with VPN Plus.</value>
@@ -2905,7 +2905,7 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Kami akan berusaha untuk terhubung ke server ini sesuai urutan. Apabila tidak ada satu pun dari server ini yang dapat digunakan, DNS bawaan milik Proton VPN akan digunakan.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_FormattedHeader">
-    <value>DNS servers ({0})</value>
+    <value>Server DNS ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
@@ -2969,7 +2969,7 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Routes traffic between different networks. TUN can be faster and more stable than TAP.</value>
   </data>
   <data name="Settings_Connection_ConnectionPreferences">
-    <value>Connection preferences</value>
+    <value>Preferensi koneksi</value>
   </data>
   <data name="Settings_Connection_ConnectionPreferences_Description">
     <value>Default connection and excluded locations</value>
@@ -3005,25 +3005,25 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Terkini</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations">
-    <value>Excluded locations</value>
+    <value>Lokasi yang dikecualikan</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Cities">
-    <value>Cities</value>
+    <value>Kota</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Countries">
-    <value>Countries</value>
+    <value>Negara</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Description">
     <value>The selected locations will never be used when you connect to Fastest or Random</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_NoLocations">
-    <value>No locations available</value>
+    <value>Tidak ada lokasi yang tersedia</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Search">
     <value>Select...</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_States">
-    <value>States</value>
+    <value>Negara Bagian</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill switch</value>
@@ -3047,7 +3047,7 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>NetShield</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
-    <value>Block ads, trackers, and malware</value>
+    <value>Blokir iklan, pelacak, dan malware</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent">
     <value>Block ads, trackers, malware, and adult content</value>
@@ -3120,11 +3120,11 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Select apps which will be excluded from the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Excluded_FormattedHeader">
-    <value>Excluded apps ({0})</value>
+    <value>Aplikasi yang dikecualikan ({0})</value>
     <comment>Header for the list of apps to exclude for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Excluded apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Header">
-    <value>Excluded apps</value>
+    <value>Aplikasi yang dikecualikan</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>File aplikasi</value>
@@ -3134,11 +3134,11 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Select apps which will be included in the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader">
-    <value>Included apps ({0})</value>
+    <value>Aplikasi yang disertakan ({0})</value>
     <comment>Header for the list of apps to include for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Included apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Included_Header">
-    <value>Included apps</value>
+    <value>Aplikasi yang disertakan</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Select">
     <value>Select apps</value>
@@ -3163,21 +3163,21 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Select IP addresses which will be excluded from the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_FormattedHeader">
-    <value>Excluded IP addresses ({0})</value>
+    <value>Alamat IP yang dikecualikan ({0})</value>
     <comment>Header for the list of IP addresses to exclude for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Excluded IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Header">
-    <value>Excluded IP addresses</value>
+    <value>Alamat IP yang dikecualikan</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Description">
     <value>Select IP addresses which will be included in the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_FormattedHeader">
-    <value>Included IP addresses ({0})</value>
+    <value>Alamat IP yang disertakan ({0})</value>
     <comment>Header for the list of IP addresses to include for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Included IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Header">
-    <value>Included IP addresses</value>
+    <value>Alamat IP yang disertakan</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Select">
     <value>Select IP addresses</value>
@@ -3324,7 +3324,7 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Use Proton VPN's own implementation of WireGuard. This is an experimental feature, so you may experience some instability.</value>
   </data>
   <data name="Settings_Protocols_ProtonProtocols_Title">
-    <value>Proton protocols</value>
+    <value>Protokol Proton</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Memilih protokol terbaik secara otomatis untuk koneksi Anda.</value>
@@ -3540,16 +3540,16 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Situs web diblokir?</value>
   </data>
   <data name="System_Tray_Actions_Connect">
-    <value>Connect</value>
+    <value>Hubungkan</value>
   </data>
   <data name="System_Tray_Actions_Disconnect">
-    <value>Disconnect</value>
+    <value>Putuskan koneksi</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
-    <value>Exit</value>
+    <value>Keluar</value>
   </data>
   <data name="System_Tray_Actions_OpenApplication">
-    <value>Open {0}</value>
+    <value>Buka {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_ExitApplication">
@@ -3785,19 +3785,19 @@ Beban server yang tinggi dapat memperlambat koneksi Anda.</value>
     <value>Proton WireGuard (TCP)</value>
   </data>
   <data name="VpnProtocol_ProTun_Tcp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Protokol mutakhir untuk keamanan dan performa</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls">
     <value>Proton Stealth</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls_Description">
-    <value>Overcomes VPN blocks by hiding your connection from censors</value>
+    <value>Menangkal pemblokiran VPN dengan menyembunyikan koneksi Anda dari sensor</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp">
     <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>Protokol mutakhir untuk keamanan dan performa</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

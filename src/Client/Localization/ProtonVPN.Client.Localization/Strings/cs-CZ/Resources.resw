@@ -350,7 +350,7 @@
     <value>Proton VPN se nemůže připojit, protože RPC server není ve vašem systému dostupný.</value>
   </data>
   <data name="Connection_Error_ServerValidation">
-    <value>The server details couldn't be verified. Try another server, or report the issue to our Customer Support team.</value>
+    <value>Detaily serveru se nepodařilo ověřit. Zkuste jiný server nebo nahlaste tento problém našemu týmu zákaznické podpory.</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>Dosáhli jste maximálního počtu zařízení. Chcete-li se připojit, odpojte jiné zařízení nebo přejděte na tarif PLUS, abyste mohli připojit až 10 zařízení současně.</value>
@@ -1880,7 +1880,7 @@ Kód chyby: {0}</value>
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Field_MinLength">
-    <value>Minimum {0} characters</value>
+    <value>Minimálně {0} znaků</value>
     <comment>Hint shown below a Report an issue text field that has a minimum length. {0} is the minimum number of characters.</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">

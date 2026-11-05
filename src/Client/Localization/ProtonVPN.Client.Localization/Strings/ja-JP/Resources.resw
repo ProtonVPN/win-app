@@ -124,7 +124,7 @@
     <value>接続詳細ページ</value>
   </data>
   <data name="Automation_Properties_ConnectionPreferences_Page">
-    <value>Connection preferences page</value>
+    <value>接続設定ページ</value>
   </data>
   <data name="Automation_Properties_Connection_Card_Component">
     <value>接続カード</value>
@@ -313,16 +313,16 @@
     <value>Proton VPN をアップデート</value>
   </data>
   <data name="Connection_Error_AllServersExcluded">
-    <value>Your preferences exclude all available servers. Adjust exclusions to connect.</value>
+    <value>設定により、利用可能なすべてのサーバーが除外されています。接続するには除外設定を調整してください。</value>
   </data>
   <data name="Connection_Error_AllServersExcluded_Action">
-    <value>Excluded locations</value>
+    <value>除外された位置</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Description">
-    <value>To fix it, close or uninstall the app associated with:</value>
+    <value>問題を解決するには、以下に関連付けられているアプリを終了またはアンインストールしてください:</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Title">
-    <value>Another app might be preventing Proton VPN from connecting</value>
+    <value>他のアプリが Proton VPN の接続を妨げている可能性があります</value>
   </data>
   <data name="Connection_Error_EditProfile">
     <value>プロファイルを編集</value>
@@ -350,7 +350,7 @@
     <value>システムで RPC サーバーが利用できないため、Proton VPN は接続できません。</value>
   </data>
   <data name="Connection_Error_ServerValidation">
-    <value>The server details couldn't be verified. Try another server, or report the issue to our Customer Support team.</value>
+    <value>サーバーの詳細情報を検証できませんでした。別のサーバーをお試しいただくか、カスタマーサポートチームにこの問題を報告してください。</value>
   </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>デバイスの最大制限に達しました。 別のデバイスを切断してこのデバイスに接続するか、PLUS にアップグレードして最大 10 台のデバイスを同時に接続してください。</value>
@@ -388,7 +388,7 @@
     <value>デバイスのWireGuardアダプタが使用中です。今実行中の他のVPN接続を切断して、もう一度お試しください。</value>
   </data>
   <data name="Connection_Feedback_Question">
-    <value>How is your connection?</value>
+    <value>接続状況はいかがですか？</value>
   </data>
   <data name="Connection_Intent_AutoSelected">
     <value>から自動選択</value>
@@ -581,7 +581,7 @@
     <value>スマートルーティング</value>
   </data>
   <data name="Countries_SmartRouting_RoutedThrough">
-    <value>Smart routed through {0}</value>
+    <value>スマートルーティング経由: {0}</value>
     <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
   </data>
   <data name="Countries_Tor">
@@ -1700,7 +1700,7 @@
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Field_MinLength">
-    <value>Minimum {0} characters</value>
+    <value>{0} 文字以上</value>
     <comment>Hint shown below a Report an issue text field that has a minimum length. {0} is the minimum number of characters.</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
@@ -1857,10 +1857,10 @@
     <value>VPN Plusへようこそ</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Description">
-    <value>You unlocked all premium Proton VPN, Mail, Calendar, Drive, and Pass features.</value>
+    <value>Proton VPN、Mail、Calendar、Drive、Pass のすべてのプレミアム機能が利用可能になりました。</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
-    <value>Welcome to {0}</value>
+    <value>{0} へようこそ</value>
     <comment>Title to welcome the user after an account upgrade. {0} is a placeholder for the name of the new plan (eg. Proton Unlimited, Proton Duo, Proton Family).</comment>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
@@ -1888,28 +1888,28 @@
     <value>新規システムトレイアプリ</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations">
-    <value>Exclude locations</value>
+    <value>位置を除外</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
-    <value>If there are locations you don't want to be automatically connected to, you can exclude them from Fastest and Random country.</value>
+    <value>自動的に接続したくない場所がある場合は、「最速」や「ランダムな国」の接続先から除外できます。</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
-    <value>Skip</value>
+    <value>スキップ</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
-    <value>Not the country you wanted?</value>
+    <value>ご希望の国ではありませんか？</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_ActionButton">
-    <value>Exclude locations</value>
+    <value>位置を除外</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_CloseButton">
-    <value>Maybe later</value>
+    <value>またあとで</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Subtitle">
-    <value>You can now exclude countries or cities from Fastest and Random connections.</value>
+    <value>「最速」および「ランダム」接続の対象から、特定の国や都市を除外できるようになりました。</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Title">
-    <value>Avoid unwanted locations</value>
+    <value>不要な場所を回避</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>Proton VPN を終了しますか?</value>
@@ -2398,10 +2398,10 @@
     <value>無効なコードです。再度お試しください。</value>
   </data>
   <data name="Login_Error_MissingSrpDll_Message">
-    <value>A file required for sign-in is missing from your installation. Please reinstall Proton VPN to fix this issue.</value>
+    <value>サインインに必要なファイルがインストール環境に見つかりません。この問題を解決するには、Proton VPN を再インストールしてください。</value>
   </data>
   <data name="Login_Error_MissingSrpDll_Title">
-    <value>Unable to sign in</value>
+    <value>サインインできません</value>
   </data>
   <data name="Login_Error_SessionExpired">
     <value>セッションの有効期限が切れました。再度サインインしてください。</value>
@@ -2655,7 +2655,7 @@ VPN接続</value>
     <value>スマートルーティングは、通常、プライバシー保護法やその他の検閲を回避するために使用されます。</value>
   </data>
   <data name="Overlay_SmartRouting_Header">
-    <value>Connects you to your destination country through servers physically located elsewhere: {0}.</value>
+    <value>物理的に別の場所に設置されたサーバーを経由して、目的の国に接続します: {0}。</value>
     <comment>{0} is a placeholder for the countries where the physical servers are. Can be either one country or multiple countries separated with comma.</comment>
   </data>
   <data name="Overlay_SmartRouting_LearnMore">
@@ -2972,7 +2972,7 @@ VPN接続</value>
     <value>接続設定</value>
   </data>
   <data name="Settings_Connection_ConnectionPreferences_Description">
-    <value>Default connection and excluded locations</value>
+    <value>デフォルトの接続と除外する場所</value>
   </data>
   <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
     <value>NetShield が有効なプロファイルに接続しているため、カスタム DNS を有効にできません。</value>
@@ -3005,25 +3005,25 @@ VPN接続</value>
     <value>最近</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations">
-    <value>Excluded locations</value>
+    <value>除外された位置</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Cities">
-    <value>Cities</value>
+    <value>都市</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Countries">
-    <value>Countries</value>
+    <value>国</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Description">
-    <value>The selected locations will never be used when you connect to Fastest or Random</value>
+    <value>選択した場所は、「最速」または「ランダム」で接続する際に使用されることはありません</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_NoLocations">
-    <value>No locations available</value>
+    <value>利用可能な位置はありません</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Search">
-    <value>Select...</value>
+    <value>選択...</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_States">
-    <value>States</value>
+    <value>州</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>キルスイッチ</value>
@@ -3303,28 +3303,28 @@ VPN接続</value>
     <value>OpenVPN</value>
   </data>
   <data name="Settings_Protocols_ProTunTcp_Description">
-    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+    <value>安定性、機能性、および検閲耐性を向上させるために設計された、WireGuard ベースの新しいフレームワークです。</value>
   </data>
   <data name="Settings_Protocols_ProTunTcp_Title">
     <value>Proton WireGuard</value>
   </data>
   <data name="Settings_Protocols_ProTunTls_Description">
-    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+    <value>接続の安定性、高機能化、検閲への耐性をさらに強化した、新しい WireGuard ベースの通信フレームワークです。</value>
   </data>
   <data name="Settings_Protocols_ProTunTls_Title">
     <value>Proton Stealth</value>
   </data>
   <data name="Settings_Protocols_ProTunUdp_Description">
-    <value>Our new WireGuard-based framework for increased stability, functionality, and censorship resistance.</value>
+    <value>接続の安定性、高機能化、検閲への耐性をさらに強化した、新しい WireGuard ベースの通信フレームワークです。</value>
   </data>
   <data name="Settings_Protocols_ProTunUdp_Title">
     <value>Proton WireGuard</value>
   </data>
   <data name="Settings_Protocols_ProtonProtocols_Description">
-    <value>Use Proton VPN's own implementation of WireGuard. This is an experimental feature, so you may experience some instability.</value>
+    <value>Proton VPN 独自実装の WireGuard を使用します。これは実験的な機能であるため、動作が一部不安定になる場合があります。</value>
   </data>
   <data name="Settings_Protocols_ProtonProtocols_Title">
-    <value>Proton protocols</value>
+    <value>Protonプロトコル</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>接続に最適なプロトコルを自動選択します。</value>
@@ -3381,7 +3381,7 @@ VPN接続</value>
     <value>OpenVPN (UDP)</value>
   </data>
   <data name="Settings_SelectedProtocol_ProTunTcp">
-    <value>Proton WireGuard (TCP)</value>
+    <value>Proton WireGuard(TCP)</value>
   </data>
   <data name="Settings_SelectedProtocol_ProTunTls">
     <value>Proton Stealth</value>
@@ -3540,16 +3540,16 @@ VPN接続</value>
     <value>ブロックされたウェブサイトですか？</value>
   </data>
   <data name="System_Tray_Actions_Connect">
-    <value>Connect</value>
+    <value>接続</value>
   </data>
   <data name="System_Tray_Actions_Disconnect">
-    <value>Disconnect</value>
+    <value>切断</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
-    <value>Exit</value>
+    <value>終了</value>
   </data>
   <data name="System_Tray_Actions_OpenApplication">
-    <value>Open {0}</value>
+    <value>{0} を開く</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_ExitApplication">
@@ -3785,19 +3785,19 @@ VPN接続</value>
     <value>Proton WireGuard (TCP)</value>
   </data>
   <data name="VpnProtocol_ProTun_Tcp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>セキュリティとパフォーマンスのための最先端のプロトコル</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls">
     <value>Proton Stealth</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls_Description">
-    <value>Overcomes VPN blocks by hiding your connection from censors</value>
+    <value>接続を検閲から隠すことで VPNブロックを克服します</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp">
     <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>セキュリティとパフォーマンスのための最先端のプロトコル</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>
