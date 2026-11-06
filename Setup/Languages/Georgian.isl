@@ -12,7 +12,7 @@
 [LangOptions]
 ; The following three entries are very important. Be sure to read and 
 ; understand the '[LangOptions] section' topic in the help file.
-LanguageName=Georgian
+LanguageName=<10E5><10D0><10E0><10D7><10E3><10DA><10D8>
 LanguageID=$0437
 LanguageCodePage=0
 ; If the language you are translating to requires special font faces or

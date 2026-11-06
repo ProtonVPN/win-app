@@ -15,7 +15,7 @@
 [LangOptions]
 ; The following three entries are very important. Be sure to read and 
 ; understand the '[LangOptions] section' topic in the help file.
-LanguageName=Urdu
+LanguageName=<0627><0631><062F><0648>
 LanguageID=$0420
 LanguageCodePage=0
 RightToLeft=yes
