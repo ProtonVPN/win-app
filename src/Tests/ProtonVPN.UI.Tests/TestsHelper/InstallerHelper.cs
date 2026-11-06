@@ -255,7 +255,7 @@ public static class InstallerHelper
         return retry.Success;
     }
 
-    private static double CalculateImageSimilarity(Bitmap reference, Bitmap actual, int pixelTolerance)
+    internal static double CalculateImageSimilarity(Bitmap reference, Bitmap actual, int pixelTolerance)
     {
         using Bitmap resizedActual = actual.Width == reference.Width && actual.Height == reference.Height
             ? new Bitmap(actual)

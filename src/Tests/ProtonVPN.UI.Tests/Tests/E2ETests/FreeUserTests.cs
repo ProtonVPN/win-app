@@ -163,6 +163,46 @@ public class FreeUserTests : FreshSessionSetUp
     }
 
     [Test]
+    [Property("TestCaseId", "890289")]
+    [Ignore("JIRA - VPNWIN-3345")]
+    public void TaskbarIconStateWithUpsellCarousel()
+    {
+        DesktopRobot
+            .PinAppToTaskbar()
+            .Verify.IsAppPinnedToTaskbar();
+
+        SettingRobot
+            .OpenSettings()
+            .OpenAutoStartupSettings()
+            .SelectAutoLaunchSetting(AutoLaunchOption.OpenOnDesktop)
+            .ApplySettings()
+            .CloseSettings();
+
+        SidebarRobot
+            .ConnectToFastest();
+        UpsellCarrouselRobot
+            .Verify.IsServersUpsellDisplayed();
+
+        HomeRobot
+            .CloseClientViaCloseButton();
+        Thread.Sleep(TestConstants.TwoSecondsTimeout);
+        TaskbarIconHelper.VerifyTaskbarIcon(TaskbarIconHelper.NO_BADGE_WINDOW_CLOSED);
+
+        TrayRobot
+            .DoubleClickTrayApp();
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+        ReopenUpsellCarouselIfClosed();
+
+        CommonUiFlows.ExitAppFromTray();
+        TaskbarIconHelper.VerifyTaskbarIcon(TaskbarIconHelper.NO_BADGE_APP_EXITED);
+
+        LaunchClient(ClientLaunchParams.StartWithNoOnboarding);
+        HomeRobot
+            .Verify.IsConnected();
+        TaskbarIconHelper.VerifyTaskbarIcon(TaskbarIconHelper.PROTECTED_BADGE);
+    }
+
+    [Test]
     [Property("TestCaseId", "602388")]
     public void UpsellThroughSettings()
     {
@@ -349,6 +389,22 @@ public class FreeUserTests : FreshSessionSetUp
         {
             BrowserUtils.KillAllBrowsers();
             TorrentHelper.StopAndCleanup();
+        }
+    }
+
+    private void ReopenUpsellCarouselIfClosed()
+    {
+        try
+        {
+            UpsellCarrouselRobot
+                .Verify.IsServersUpsellDisplayed();
+        }
+        catch (TimeoutException)
+        {
+            SidebarRobot
+                .ConnectToFastest();
+            UpsellCarrouselRobot
+                .Verify.IsServersUpsellDisplayed();
         }
     }
 

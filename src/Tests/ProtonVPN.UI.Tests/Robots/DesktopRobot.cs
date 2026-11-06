@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -145,6 +146,12 @@ public class DesktopRobot : IDisposable
         AutomationElement CloseButton = SurveyWindow!.FindFirstDescendant(cf => cf.ByAutomationId("Close"))!;
         CloseButton.Click();
         return this;
+    }
+
+    public static Rectangle? GetProtonVpnTaskbarButtonBounds()
+    {
+        Rectangle? bounds = ProtonVpnPinned?.BoundingRectangle;
+        return bounds is { IsEmpty: false } ? bounds : null;
     }
 
     public DesktopRobot LaunchAppFromTaskbar()

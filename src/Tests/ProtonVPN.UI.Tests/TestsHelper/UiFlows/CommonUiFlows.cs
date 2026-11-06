@@ -102,6 +102,27 @@ public class CommonUiFlows : BaseTest
             .Verify.IsDisconnected();
     }
 
+    public static void ExitAppFromTray()
+    {
+        using (TrayApp)
+        {
+            TrayRobot
+                .ClickExitAppButton();
+        }
+
+        try
+        {
+            HomeRobot
+                .ExitViaKebabMenuWithConfirmation();
+        }
+        catch { }
+
+        // give it time to exit
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
+
+        CommonAssertions.VerifyAppIsNotRunning();
+    }
+
     public static void ChangeProtocol(Protocol protocol, bool shouldEnableProTun = false)
     {
         SettingRobot

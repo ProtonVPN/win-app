@@ -366,23 +366,7 @@ public class TrayTests : BaseTest
     [Retry(3)]
     public void ExitAppFromTray()
     {
-        using (TrayApp)
-        {
-            TrayRobot
-                .ClickExitAppButton();
-        }
-
-        try
-        {
-            HomeRobot
-                .ExitViaKebabMenuWithConfirmation();
-        }
-        catch { }
-
-        // give it time to exit
-        Thread.Sleep(TestConstants.FiveSecondsTimeout);
-
-        CommonAssertions.VerifyAppIsNotRunning();
+        CommonUiFlows.ExitAppFromTray();
     }
 
     private void ToggleKillSwitch(bool shouldBeEnabled)
