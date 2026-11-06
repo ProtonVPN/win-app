@@ -31,7 +31,7 @@
         <PackageReference Include="System.Text.Json" />
     </ItemGroup>
     <PropertyGroup>
-        <TargetFramework>net8.0-windows</TargetFramework>
+        <TargetFramework>$(NetVersion)-windows</TargetFramework>
         <PreserveCompilationContext>true</PreserveCompilationContext>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     </PropertyGroup>
