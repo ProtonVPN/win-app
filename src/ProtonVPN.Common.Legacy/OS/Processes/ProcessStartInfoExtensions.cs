@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -39,16 +39,6 @@ public static class ProcessStartInfoExtensions
         info.CreateNoWindow = true;
         info.UseShellExecute = false;
         info.RedirectStandardOutput = true;
-
-        return info;
-    }
-
-    public static ProcessStartInfo ElevatedInfo(this ProcessStartInfo info)
-    {
-        info.CreateNoWindow = true;
-        info.UseShellExecute = true;
-        info.RedirectStandardOutput = false;
-        info.Verb = "runas";
 
         return info;
     }

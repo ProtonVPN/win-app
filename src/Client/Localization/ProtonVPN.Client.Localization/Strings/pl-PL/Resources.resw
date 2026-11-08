@@ -349,6 +349,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Proton VPN nie może nawiązać połączenia, ponieważ serwer RPC jest niedostępny na Twoim systemie.</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>The server details couldn't be verified. Try another server, or report the issue to our Customer Support team.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>Osiągnięto maksymalną liczbę podłączonych urządzeń. Aby połączyć się, rozłącz inne urządzenie lub ulepsz konto do planu Plus i podłącz nawet 10 urządzeń jednocześnie.</value>
   </data>
@@ -1742,7 +1745,7 @@ Error code: {0}</value>
     <comment>The name of WS country</comment>
   </data>
   <data name="Country_val_XK">
-    <value>Kosovo</value>
+    <value>Kosowo</value>
     <comment>The name of XK country</comment>
   </data>
   <data name="Country_val_YE">

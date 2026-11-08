@@ -36,7 +36,10 @@ public class OpenVpnEndpointArguments : IEnumerable<string>
 
     public IEnumerator<string> GetEnumerator()
     {
-        yield return $"--remote {_endpoint.Server.Ip} {_endpoint.Port} {VpnProtocolToString(_endpoint.VpnProtocol)}";
+        yield return "--remote";
+        yield return _endpoint.Server.Ip;
+        yield return _endpoint.Port.ToString();
+        yield return VpnProtocolToString(_endpoint.VpnProtocol);
     }
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

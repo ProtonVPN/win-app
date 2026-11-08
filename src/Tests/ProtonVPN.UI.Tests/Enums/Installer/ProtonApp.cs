@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,11 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Api.Contracts
+using System.ComponentModel.DataAnnotations;
+
+namespace ProtonVPN.UI.Tests.Enums.Installer;
+
+public enum ProtonApp
 {
-    public class PromoCodeRequest
-    {
-        public string Product { get; set; } = "VPN";
-        public string[] Codes { get; set; }
-    }
+    Vpn,
+    Mail,
+    Drive,
+    Pass,
 }

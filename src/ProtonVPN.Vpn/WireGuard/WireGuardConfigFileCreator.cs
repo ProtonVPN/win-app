@@ -19,7 +19,6 @@
 
 using System.Collections.Generic;
 using System.IO;
-using System.Security.AccessControl;
 using System.Text;
 using ProtonVPN.Common.Legacy.Vpn;
 using ProtonVPN.Configurations.Contracts;
@@ -34,29 +33,28 @@ public class WireGuardConfigFileCreator : IWireGuardConfigFileCreator
     private const string IPV4_ALLOWED_IP = "0.0.0.0/0";
     private const string IPV6_ALLOWED_IP = "::/0";
 
-    // SYSTEM: Full Control; Administrators: Delete only; inheritance blocked.
-    // Only processes running under the SYSTEM account can read.
-    private const string SECURE_SDDL = "O:SYG:SYD:P(A;;FA;;;SY)(A;;SD;;;BA)";
-
     private readonly IStaticConfiguration _staticConfig;
     private readonly IX25519KeyGenerator _x25519KeyGenerator;
     private readonly IWireGuardDnsServersCreator _wireGuardDnsServersCreator;
+    private readonly ISecureConfigFileWriter _secureConfigFileWriter;
 
     public WireGuardConfigFileCreator(
         IStaticConfiguration staticConfig,
         IX25519KeyGenerator x25519KeyGenerator,
-        IWireGuardDnsServersCreator wireGuardDnsServersCreator)
+        IWireGuardDnsServersCreator wireGuardDnsServersCreator,
+        ISecureConfigFileWriter secureConfigFileWriter)
     {
         _staticConfig = staticConfig;
         _x25519KeyGenerator = x25519KeyGenerator;
         _wireGuardDnsServersCreator = wireGuardDnsServersCreator;
+        _secureConfigFileWriter = secureConfigFileWriter;
     }
 
     public void Create(VpnEndpoint endpoint, VpnCredentials credentials, VpnConfig vpnConfig)
     {
         CreateDirectory();
         string configContent = GenerateConfig(endpoint, credentials, vpnConfig);
-        WriteConfigSecurely(_staticConfig.WireGuard.ConfigFilePath, configContent);
+        _secureConfigFileWriter.Write(_staticConfig.WireGuard.ConfigFilePath, configContent);
     }
 
     private void CreateDirectory()
@@ -88,29 +86,6 @@ public class WireGuardConfigFileCreator : IWireGuardConfigFileCreator
             .AppendLine($"Endpoint = {endpoint.Server.Ip}:{endpoint.Port}");
 
         return sb.ToString();
-    }
-
-    private static void WriteConfigSecurely(string path, string content)
-    {
-        // Delete first so FileMode.CreateNew applies the FileSecurity
-        if (File.Exists(path))
-        {
-            File.Delete(path);
-        }
-
-        FileSecurity fileSecurity = new();
-        fileSecurity.SetSecurityDescriptorSddlForm(SECURE_SDDL);
-
-        FileInfo fileInfo = new(path);
-        using FileStream stream = fileInfo.Create(
-            FileMode.CreateNew,
-            FileSystemRights.WriteData,
-            FileShare.None,
-            bufferSize: 4096,
-            FileOptions.None,
-            fileSecurity);
-        using StreamWriter writer = new(stream);
-        writer.Write(content);
     }
 
     private SecretKey GetX25519SecretKey(SecretKey secretKey)

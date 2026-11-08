@@ -349,6 +349,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Proton VPN kan inte ansluta eftersom RPC-servern är otillgänglig på ditt system.</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>The server details couldn't be verified. Try another server, or report the issue to our Customer Support team.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>Du har nått din maximala enhetsgräns. Koppla från en annan enhet för att ansluta denna eller uppgradera till PLUS för att få upp till 10 enheter anslutna samtidigt.</value>
   </data>
@@ -632,7 +635,7 @@ Felkod: {0}</value>
     <value>Smart dirigering</value>
   </data>
   <data name="Countries_SmartRouting_RoutedThrough">
-    <value>Smart routed through {0}</value>
+    <value>Smart dirigerad genom {0}</value>
     <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
   </data>
   <data name="Countries_Tor">

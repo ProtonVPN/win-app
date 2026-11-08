@@ -75,4 +75,9 @@ public class CallerProfile
     }
 
     public override int GetHashCode() => System.HashCode.Combine(SourceClassName, SourceMemberName, SourceLineNumber);
+
+    public override string ToString()
+    {
+        return $"{SourceClassName}.{SourceMemberName}:{SourceLineNumber}";
+    }
 }

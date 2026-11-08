@@ -55,8 +55,6 @@ public interface IGlobalSettings
     bool IsGlobalSettingsMigrationDone { get; set; }
     KillSwitchMode KillSwitchMode { get; set; }
     List<FeatureFlag> FeatureFlags { get; set; }
-    bool IsFeatureConnectedServerCheckEnabled { get; set; }
-    TimeSpan ConnectedServerCheckInterval { get; set; }
     ChangeServerSettings ChangeServerSettings { get; set; }
     bool IsShareCrashReportsEnabled { get; set; }
     string? ActiveAlternativeApiBaseUrl { get; set; }

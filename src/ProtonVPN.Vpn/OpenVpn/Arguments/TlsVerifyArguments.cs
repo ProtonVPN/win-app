@@ -38,9 +38,15 @@ public class TlsVerifyArguments : IEnumerable<string>
 
     public IEnumerator<string> GetEnumerator()
     {
-        yield return $"--setenv {SERVER_NAME_ENVIRONMENT_VARIABLE} \"{_serverName}\"";
-        yield return $"--tls-export-cert \"{_openVpnConfigs.TlsExportCertFolder}\"";
-        yield return $"--tls-verify \"{_openVpnConfigs.TlsVerifyExePath}\"";
+        yield return "--setenv";
+        yield return SERVER_NAME_ENVIRONMENT_VARIABLE;
+        yield return _serverName;
+
+        yield return "--tls-export-cert";
+        yield return _openVpnConfigs.TlsExportCertFolder;
+
+        yield return "--tls-verify";
+        yield return _openVpnConfigs.TlsVerifyExePath;
     }
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

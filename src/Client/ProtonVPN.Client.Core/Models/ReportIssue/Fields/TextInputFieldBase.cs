@@ -17,16 +17,80 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System;
+using CommunityToolkit.Mvvm.ComponentModel;
+
 namespace ProtonVPN.Client.Core.Models.ReportIssue.Fields;
 
-public abstract class TextInputFieldBase : IssueInputField<string>
+public abstract partial class TextInputFieldBase : IssueInputField<string>
 {
-    protected TextInputFieldBase(bool isFieldMandatory)
-        : base(isFieldMandatory)
-    { }
+    // Fields are mandatory unless the API explicitly sets a minimum length of 0
+    private const int DEFAULT_MINIMUM_LENGTH = 1;
+
+    protected abstract int DefaultMaximumLength { get; }
+
+    [ObservableProperty]
+    private int? _minimumLength;
+
+    [ObservableProperty]
+    private int? _maximumLength;
+
+    public int EffectiveMinimumLength => MinimumLength ?? DEFAULT_MINIMUM_LENGTH;
+
+    public int EffectiveMaximumLength => MaximumLength ?? Math.Max(DefaultMaximumLength, EffectiveMinimumLength);
+
+    // 0 = optional, 1 = mandatory, 2 or more = mandatory with a minimum length limitation
+    public bool IsMandatory => EffectiveMinimumLength > 0;
+
+    public bool HasLengthConstraint => HasMinimumLength || HasMaximumLength;
+
+    public bool HasMinimumLength => EffectiveMinimumLength > 1;
+
+    public bool HasMaximumLength => EffectiveMaximumLength > 0;
+
+    public int CurrentLength => Value?.Length ?? 0;
+
+    public string FormattedCurrentLength => $"{CurrentLength}/{EffectiveMaximumLength}";
+
+    public bool IsMinimumLengthMet => !HasMinimumLength || CurrentLength >= EffectiveMinimumLength;
+
+    public string LengthHint { get; set; } = string.Empty;
+
+    // The value is validated on construction, before the constraints are set
+    partial void OnMinimumLengthChanged(int? value)
+    {
+        ValidateProperty(Value, nameof(Value));
+    }
+
+    partial void OnMaximumLengthChanged(int? value)
+    {
+        ValidateProperty(Value, nameof(Value));
+    }
 
     protected override string GetSerializedValue()
     {
         return Value ?? string.Empty;
+    }
+
+    protected override void OnValueChanged()
+    {
+        base.OnValueChanged();
+
+        OnPropertyChanged(nameof(CurrentLength));
+        OnPropertyChanged(nameof(FormattedCurrentLength));
+        OnPropertyChanged(nameof(IsMinimumLengthMet));
+    }
+
+    protected override bool IsValid()
+    {
+        if (string.IsNullOrWhiteSpace(Value))
+        {
+            return !IsMandatory;
+        }
+
+        int length = Value.Length;
+
+        return (!HasMinimumLength || length >= EffectiveMinimumLength) &&
+               (!HasMaximumLength || length <= EffectiveMaximumLength);
     }
 }

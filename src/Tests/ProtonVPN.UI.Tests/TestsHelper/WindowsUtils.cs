@@ -18,9 +18,10 @@
  */
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.Win32;
 using NUnit.Framework;
 
@@ -64,8 +65,10 @@ public class WindowsUtils
         }
     }
 
-    public static void RunPowerShellScript(string psScript, bool shouldEnableLogging = false, string? stringToAssert = null)
+    public static string RunPowerShellScript(string psScript, bool shouldEnableLogging = false, string? stringToAssert = null, TimeSpan? timeout = null)
     {
+        TimeSpan effectiveTimeout = timeout ?? TestConstants.ThirtySecondsTimeout;
+
         ProcessStartInfo psi = new()
         {
             FileName = "powershell.exe",
@@ -80,8 +83,24 @@ public class WindowsUtils
         process.StartInfo = psi;
         process.Start();
 
-        string psOutput = process.StandardOutput.ReadToEnd();
-        string psError = process.StandardError.ReadToEnd();
+        Task<string> outputTask = process.StandardOutput.ReadToEndAsync();
+        Task<string> errorTask = process.StandardError.ReadToEndAsync();
+
+        bool exited = process.WaitForExit(effectiveTimeout);
+
+        if (!exited)
+        {
+            TestContext.WriteLine($"PowerShell script '{psScript}' did not exit within {effectiveTimeout.TotalSeconds}s. Killing the process tree.");
+            try
+            {
+                process.Kill(entireProcessTree: true);
+            }
+            catch { }
+            process.WaitForExit(TestConstants.FiveSecondsTimeout);
+        }
+
+        string psOutput = outputTask.Wait(TestConstants.FiveSecondsTimeout) ? outputTask.Result : string.Empty;
+        string psError = errorTask.Wait(TestConstants.FiveSecondsTimeout) ? errorTask.Result : string.Empty;
 
         if (shouldEnableLogging)
         {
@@ -89,23 +108,9 @@ public class WindowsUtils
             TestContext.WriteLine($"PS ERROR: {psError}");
         }
 
-        if (!string.IsNullOrEmpty(stringToAssert))
-        {
-            Assert.That(psOutput, Does.Contain(stringToAssert));
-        }
-
-        bool exited = process.WaitForExit(TestConstants.ThirtySecondsTimeout);
         if (!exited)
         {
-            TestContext.WriteLine($"PowerShell script '{psScript}' did not exit within the timeout. Exiting by force");
-            try
-            {
-                process.Kill(entireProcessTree: true);
-            }
-            catch { }
-            process.WaitForExit(TestConstants.ThirtySecondsTimeout);
-
-            throw new TimeoutException($"PowerShell script did not complete within {TestConstants.ThirtySecondsTimeout}s and was force-killed.\n" +
+            throw new TimeoutException($"PowerShell script did not complete within {effectiveTimeout.TotalSeconds}s and was force-killed.\n" +
                 $"Script: {psScript}\nPS OUTPUT: {psOutput}\nPS ERROR: {psError}");
         }
 
@@ -114,6 +119,13 @@ public class WindowsUtils
             throw new InvalidOperationException($"PowerShell script exited with code {process.ExitCode}.\n" +
                 $"Script: {psScript}\nPS OUTPUT: {psOutput}\nPS ERROR: {psError}");
         }
+
+        if (!string.IsNullOrEmpty(stringToAssert))
+        {
+            Assert.That(psOutput, Does.Contain(stringToAssert));
+        }
+
+        return psOutput.Trim();
     }
 
     public static void AssertVpnRunsOnStartup(bool shouldRunOnStartup)

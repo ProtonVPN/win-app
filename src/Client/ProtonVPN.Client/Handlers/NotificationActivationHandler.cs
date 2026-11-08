@@ -68,7 +68,7 @@ public class NotificationActivationHandler : IHandler,
                 _uiThreadDispatcher.TryEnqueue(_portForwardingClipboardService.CopyActivePortToClipboardAsync);
                 break;
             default:
-                _uiThreadDispatcher.TryEnqueue(_mainWindowActivator.Activate);
+                _uiThreadDispatcher.TryEnqueue(() => _mainWindowActivator.Activate());
                 break;
         }
     }

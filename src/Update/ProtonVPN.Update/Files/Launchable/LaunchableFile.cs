@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,26 +17,26 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections.Generic;
 using ProtonVPN.Common.Legacy.OS.Processes;
 
-namespace ProtonVPN.Update.Files.Launchable
+namespace ProtonVPN.Update.Files.Launchable;
+
+/// <summary>
+/// Starts new process requesting elevation.
+/// </summary>
+public class LaunchableFile : ILaunchableFile
 {
-    /// <summary>
-    /// Starts new process requesting elevation.
-    /// </summary>
-    public class LaunchableFile : ILaunchableFile
+    private readonly IOsProcesses _processes;
+
+    public LaunchableFile(IOsProcesses processes)
     {
-        private readonly IOsProcesses _processes;
+        _processes = processes;
+    }
 
-        public LaunchableFile(IOsProcesses processes)
-        {
-            _processes = processes;
-        }
-
-        public void Launch(string filename, string arguments)
-        {
-            _processes.ElevatedProcess(filename, arguments)
-                .Start();
-        }
+    public void Launch(string filename, IEnumerable<string> arguments)
+    {
+        _processes.BuildElevatedProcess(filename, arguments)
+            .Start();
     }
 }

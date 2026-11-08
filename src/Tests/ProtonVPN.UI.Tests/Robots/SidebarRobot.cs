@@ -46,7 +46,8 @@ public class SidebarRobot
     private static readonly string _secureCoreInfo = LanguageHelper.GetTranslatedString("Overlay_SecureCore_Description1") + "\r\n\r\n" + LanguageHelper.GetTranslatedString("Overlay_SecureCore_Description2");
     private static readonly string _p2pInfo = LanguageHelper.GetTranslatedString("Overlay_P2P_Bullet2_Description");
     private static readonly string _torInfo = LanguageHelper.GetTranslatedString("Overlay_Tor_Description");
-
+    private static readonly string _smartRoutingModalInfo = LanguageHelper.GetTranslatedString("Overlay_SmartRouting_Description1") + "\r\n\r\n" + LanguageHelper.GetTranslatedString("Overlay_SmartRouting_Description2") + "\r\n\r\n" + LanguageHelper.GetTranslatedString("Overlay_SmartRouting_Description3");
+    private static readonly string _smartRoutingButtonInfo = LanguageHelper.GetTranslatedString("Overlay_SmartRouting_Header").Replace("{0}.", "");
     private static readonly string _worldWideCoverageLabelTranslated = LanguageHelper.GetTranslatedString("FreeConnections_WorldwideCoverageUpsell");
     private static readonly string _profileSidebarUpsellLabelTranslated = LanguageHelper.GetTranslatedString("Profiles_Page_Description");
     private static readonly string _secureCoreSidebarUpsellLabelTranslated = LanguageHelper.GetTranslatedString("FreeConnections_SecureCoreUpsell");
@@ -99,6 +100,7 @@ public class SidebarRobot
     protected Element CountryInfoBanner => Element.ByAutomationId("ProminentBannerDescription");
     protected Element TabInfoButton = Element.ByAutomationId("TabInfoButton");
     protected Element ServerLoadInfoButton = Element.ByAutomationId("ServerLoadInfoButton");
+    protected Element SmartRoutingButton = Element.ByAutomationId("SmartRoutingButton");
     protected Element CloseContentDialogButton = Element.ByAutomationId("CloseContentDialogButton");
     protected Element OverlayMessage = Element.ByAutomationId("OverlayMessage");
 
@@ -298,6 +300,19 @@ public class SidebarRobot
     public SidebarRobot ClickServerLoadInfoButton()
     {
         ServerLoadInfoButton.Click();
+        return this;
+    }
+
+    public SidebarRobot ClickSmartRoutingButton()
+    {
+        SmartRoutingButton.Click();
+        return this;
+    }
+
+    public SidebarRobot HoverOverSmartRoutingGlobe()
+    {
+        ConnectToSpecificServer.HoverOverElementAtOffset(offsetX: 20, offsetY: 0);
+        Thread.Sleep(TestConstants.AnimationDelay);
         return this;
     }
 
@@ -523,6 +538,21 @@ public class SidebarRobot
             return this;
         }
 
+        public Verifications IsSmartRoutingModalInfoShown()
+        {
+            List<string> allChildren = GetOverlayMessageChildren();
+            Assert.That(allChildren, Does.Contain(_smartRoutingModalInfo));
+            return this;
+        }
+
+        public Verifications IsSmartRoutingButtonInfoShown()
+        {
+            SmartRoutingButton.WaitUntilDisplayed();
+            List<string> allChildren = SmartRoutingButton.GetAllChildrenNames();
+            Assert.That(allChildren, Has.Some.Contain(_smartRoutingButtonInfo));
+            return this;
+        }
+
         public Verifications AreAllServersDisplayed()
         {
             string totalCountries = ConnectionItemsHeader.GetAutomationElementName()!;
@@ -593,6 +623,20 @@ public class SidebarRobot
         {
             Element connectionOption = Element.ByAutomationId($"Actions_for_{connectionValue}");
             connectionOption.DoesNotExist();
+            return this;
+        }
+
+        public Verifications IsCountryAtRecentsPosition(Country country, int position)
+        {
+            CountriesListGroup.WaitUntilDisplayed();
+            List<string> items = CountriesListGroup.GetAllChildrenNames();
+
+            //Need the `+ 1` because the `GetAllChildrenNames()` gets the "Recents (n)" header as well
+            string? actualName = items[position + 1]; 
+            string expectedName = country.GetName();
+
+            Assert.That(actualName, Is.EqualTo(expectedName), $"Expected '{expectedName}' at Recents position {position}, but found '{actualName}'.");
+
             return this;
         }
 

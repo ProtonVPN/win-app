@@ -312,12 +312,12 @@ public class UnauthorizedResponseHandlerTest
             // Sending first request and pause it
             HttpRequestMessage request1 = new(HttpMethod.Get, VPN_INFO_ENDPOINT);
             task1 = client.SendAsync(request1);
-            BreakpointHit request1Hit = await requestBreakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+            BreakpointHit request1Hit = await requestBreakpoint.WaitForHit().WaitAsync(TestTimeout);
 
             // Sending second request and pause it
             HttpRequestMessage request2 = new(HttpMethod.Get, VPN_INFO_ENDPOINT);
             task2 = client.SendAsync(request2);
-            BreakpointHit request2Hit = await requestBreakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+            BreakpointHit request2Hit = await requestBreakpoint.WaitForHit().WaitAsync(TestTimeout);
 
             // Continue first and second requests and get Unauthorized
             _innerHandler.When(HttpMethod.Get, VPN_INFO_API_URL)
@@ -328,19 +328,19 @@ public class UnauthorizedResponseHandlerTest
             request2Hit.Continue();
 
             // Token refresh
-            await tokenClientBreakpoint.WaitForHitAndContinue().TimeoutAfter(TestTimeout);
+            await tokenClientBreakpoint.WaitForHitAndContinue().WaitAsync(TestTimeout);
 
             // First and second requests retried with new access token
             _innerHandler.When(HttpMethod.Get, VPN_INFO_API_URL)
                 .WithHeaders(AUTH_HEADER_KEY, AUTH_HEADER_VALUE)
                 .Respond(req => response);
-            await requestBreakpoint.WaitForHitAndContinue().TimeoutAfter(TestTimeout);
-            await requestBreakpoint.WaitForHitAndContinue().TimeoutAfter(TestTimeout);
+            await requestBreakpoint.WaitForHitAndContinue().WaitAsync(TestTimeout);
+            await requestBreakpoint.WaitForHitAndContinue().WaitAsync(TestTimeout);
         }
         finally
         {
-            await task1.TimeoutAfter(TestTimeout);
-            await task2.TimeoutAfter(TestTimeout);
+            await task1.WaitAsync(TestTimeout);
+            await task2.WaitAsync(TestTimeout);
         }
 
         // Assert
@@ -379,10 +379,10 @@ public class UnauthorizedResponseHandlerTest
             // First request continues and gets Unauthorized
             _innerHandler.When(HttpMethod.Get, VPN_INFO_API_URL)
                 .Respond(HttpStatusCode.Unauthorized);
-            await requestBreakpoint.WaitForHitAndContinue().TimeoutAfter(TestTimeout);
+            await requestBreakpoint.WaitForHitAndContinue().WaitAsync(TestTimeout);
 
             // First request initiated token refresh, pausing it
-            BreakpointHit tokenClientHit = await tokenClientBreakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+            BreakpointHit tokenClientHit = await tokenClientBreakpoint.WaitForHit().WaitAsync(TestTimeout);
 
             // Sending second request, it is waiting for token refresh to finish
             HttpRequestMessage request2 = new(HttpMethod.Get, VPN_INFO_ENDPOINT);
@@ -395,13 +395,13 @@ public class UnauthorizedResponseHandlerTest
             _innerHandler.When(HttpMethod.Get, VPN_INFO_API_URL)
                 .WithHeaders(AUTH_HEADER_KEY, AUTH_HEADER_VALUE)
                 .Respond(req => response);
-            await requestBreakpoint.WaitForHitAndContinue().TimeoutAfter(TestTimeout);
-            await requestBreakpoint.WaitForHitAndContinue().TimeoutAfter(TestTimeout);
+            await requestBreakpoint.WaitForHitAndContinue().WaitAsync(TestTimeout);
+            await requestBreakpoint.WaitForHitAndContinue().WaitAsync(TestTimeout);
         }
         finally
         {
-            await task1.TimeoutAfter(TestTimeout);
-            await task2.TimeoutAfter(TestTimeout);
+            await task1.WaitAsync(TestTimeout);
+            await task2.WaitAsync(TestTimeout);
         }
 
         // Assert
@@ -436,12 +436,12 @@ public class UnauthorizedResponseHandlerTest
             // Sending first request and pausing it
             HttpRequestMessage request1 = new(HttpMethod.Get, VPN_INFO_ENDPOINT);
             task1 = client.SendAsync(request1);
-            BreakpointHit request1Hit = await requestBreakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+            BreakpointHit request1Hit = await requestBreakpoint.WaitForHit().WaitAsync(TestTimeout);
 
             // Sending second request and pausing it
             HttpRequestMessage request2 = new(HttpMethod.Get, PROFILES_ENDPOINT);
             task2 = client.SendAsync(request2);
-            BreakpointHit request2Hit = await requestBreakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+            BreakpointHit request2Hit = await requestBreakpoint.WaitForHit().WaitAsync(TestTimeout);
 
             // Continue first request and get Unauthorized
             _innerHandler.Expect(HttpMethod.Get, VPN_INFO_API_URL)
@@ -449,15 +449,15 @@ public class UnauthorizedResponseHandlerTest
             request1Hit.Continue();
 
             // First request initiated token refresh
-            await tokenClientBreakpoint.WaitForHitAndContinue().TimeoutAfter(TestTimeout);
+            await tokenClientBreakpoint.WaitForHitAndContinue().WaitAsync(TestTimeout);
 
             // First request retried with new tokens
-            request1Hit = await requestBreakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+            request1Hit = await requestBreakpoint.WaitForHit().WaitAsync(TestTimeout);
             _innerHandler.Expect(HttpMethod.Get, VPN_INFO_API_URL)
                 .WithHeaders(AUTH_HEADER_KEY, AUTH_HEADER_VALUE)
                 .Respond(req => response);
             request1Hit.Continue();
-            await task1.TimeoutAfter(TestTimeout);
+            await task1.WaitAsync(TestTimeout);
 
             // Second request continues and gets Unauthorized
             _innerHandler.Expect(HttpMethod.Get, PROFILES_API_URL)
@@ -465,7 +465,7 @@ public class UnauthorizedResponseHandlerTest
             request2Hit.Continue();
 
             // Second request retried with new access token
-            request2Hit = await requestBreakpoint.WaitForHit().TimeoutAfter(TestTimeout);
+            request2Hit = await requestBreakpoint.WaitForHit().WaitAsync(TestTimeout);
             _innerHandler.Expect(HttpMethod.Get, PROFILES_API_URL)
                 .WithHeaders(AUTH_HEADER_KEY, AUTH_HEADER_VALUE)
                 .Respond(req => response);
@@ -473,8 +473,8 @@ public class UnauthorizedResponseHandlerTest
         }
         finally
         {
-            await task1.TimeoutAfter(TestTimeout);
-            await task2.TimeoutAfter(TestTimeout);
+            await task1.WaitAsync(TestTimeout);
+            await task2.WaitAsync(TestTimeout);
         }
 
         // Assert

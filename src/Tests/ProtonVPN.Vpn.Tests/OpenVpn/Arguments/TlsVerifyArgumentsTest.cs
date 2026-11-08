@@ -50,7 +50,7 @@ public class TlsVerifyArgumentsTest
         List<string> result = subject.ToList();
 
         // Assert
-        result.Should().HaveCount(3);
+        result.Should().HaveCount(7);
     }
 
     [TestMethod]
@@ -67,7 +67,7 @@ public class TlsVerifyArgumentsTest
         List<string> result = subject.ToList();
 
         // Assert
-        result.Should().Contain($"--setenv peer_dns_name \"{serverName}\"");
+        result.Should().ContainInOrder("--setenv", "peer_dns_name", serverName);
     }
 
     [TestMethod]
@@ -84,7 +84,7 @@ public class TlsVerifyArgumentsTest
         List<string> result = subject.ToList();
 
         // Assert
-        result.Should().Contain($"--tls-export-cert \"{exportCertFolder}\"");
+        result.Should().ContainInOrder("--tls-export-cert", exportCertFolder);
     }
 
     [TestMethod]
@@ -101,6 +101,6 @@ public class TlsVerifyArgumentsTest
         List<string> result = subject.ToList();
 
         // Assert
-        result.Should().Contain($"--tls-verify \"{tlsVerifyExePath}\"");
+        result.Should().ContainInOrder("--tls-verify", tlsVerifyExePath);
     }
 }

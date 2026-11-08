@@ -111,7 +111,7 @@ if (Test-Path '{_configPath}') {{
 
     public static void RemoveVpnSpeedLimit()
     {
-        WindowsUtils.RunPowerShellScript(_removeVpnLimitScript);
+        WindowsUtils.RunPowerShellScript(_removeVpnLimitScript, timeout: TestConstants.TwoMinutesTimeout);
     }
 
     public static void ConnectToWireGuard()

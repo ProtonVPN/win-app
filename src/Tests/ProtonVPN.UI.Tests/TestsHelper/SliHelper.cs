@@ -94,6 +94,28 @@ public class SliHelper
 
     public static void AddNetworkSpeedToMetrics(string downloadSpeedLabel, string uploadSpeedLabel)
     {
+        KillLingeringSpeedtestProcesses();
+        DnsHelper.FlushDns();
+        Dictionary<string, double>? networkSpeedConnected = null;
+        RetryResult<bool> retry = Retry.WhileException(
+            () =>
+            {
+                networkSpeedConnected = GetNetworkSpeed(TestConstants.TwoMinutesTimeout);
+            },
+            TestConstants.FourMinutesTimeout, TestConstants.TenSecondsTimeout);
+
+        if (!retry.Success)
+        {
+            KillLingeringSpeedtestProcesses();
+            throw new Exception($"Could not measure network speed: {retry.LastException?.Message}", retry.LastException);
+        }
+
+        AddMetric(downloadSpeedLabel, networkSpeedConnected?["downloadSpeed"].ToString() ?? string.Empty);
+        AddMetric(uploadSpeedLabel, networkSpeedConnected?["uploadSpeed"].ToString() ?? string.Empty);
+    }
+
+    private static void KillLingeringSpeedtestProcesses()
+    {
         foreach (Process process in Process.GetProcessesByName("speedtest"))
         {
             try
@@ -107,37 +129,18 @@ public class SliHelper
                 process.Dispose();
             }
         }
-
-        DnsHelper.FlushDns();
-        Dictionary<string, double>? networkSpeedConnected = null;
-        RetryResult<bool> retry = Retry.WhileException(
-            () =>
-            {
-                networkSpeedConnected = GetNetworkSpeed();
-            },
-            TestConstants.OneMinuteTimeout, TestConstants.TenSecondsTimeout);
-
-        if (!retry.Success)
-        {
-            throw new Exception(retry.LastException?.Message);
-        }
-
-        AddMetric(downloadSpeedLabel, networkSpeedConnected?["downloadSpeed"].ToString() ?? string.Empty);
-        AddMetric(uploadSpeedLabel, networkSpeedConnected?["uploadSpeed"].ToString() ?? string.Empty);
     }
 
-    public static Dictionary<string, double> GetNetworkSpeed()
+    public static Dictionary<string, double> GetNetworkSpeed(TimeSpan? timeout = null)
     {
-        Dictionary<string, double> networkStats = new();
-        string speedTestPath = "speedtest.exe";
+        TimeSpan effectiveTimeout = timeout ?? TestConstants.ThirtySecondsTimeout;
 
-        // Arguments for speedtest.exe to output in JSON format
-        string arguments = "--accept-gdpr --accept-license -f json";
+        Dictionary<string, double> networkStats = new();
 
         ProcessStartInfo startInfo = new()
         {
-            FileName = speedTestPath,
-            Arguments = arguments,
+            FileName = "speedtest.exe",
+            Arguments = "--accept-gdpr --accept-license --progress=no -f json",
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = false,
@@ -148,21 +151,34 @@ public class SliHelper
         process.StartInfo = startInfo;
         process.Start();
 
+        Task<string> outputTask = process.StandardOutput.ReadToEndAsync();
         Task<string> errorTask = process.StandardError.ReadToEndAsync();
-        string output = process.StandardOutput.ReadToEnd();
-        string error = errorTask.GetAwaiter().GetResult();
 
-        process.WaitForExit(TestConstants.ThirtySecondsTimeout);
+        bool exited = process.WaitForExit(effectiveTimeout);
+
+        if (!exited)
+        {
+            TestContext.WriteLine($"speedtest.exe did not exit within {effectiveTimeout.TotalSeconds}s. Killing the process tree.");
+            try
+            {
+                process.Kill(entireProcessTree: true);
+            }
+            catch { }
+            process.WaitForExit(TestConstants.FiveSecondsTimeout);
+        }
+
+        string output = outputTask.Wait(TestConstants.FiveSecondsTimeout) ? outputTask.Result : string.Empty;
+        string error = errorTask.Wait(TestConstants.FiveSecondsTimeout) ? errorTask.Result : string.Empty;
+
         JObject result = JObject.Parse(output);
-
         JToken? downloadToken = result["download"]?["bandwidth"];
         JToken? uploadToken = result["upload"]?["bandwidth"];
 
         if (downloadToken is null || uploadToken is null)
         {
-            throw new InvalidOperationException($"Speedtest output missing required bandwidth fields. " +
-                $"Output: {output}" +
-                $"Error: {error}");
+            throw new InvalidOperationException(
+                $"Speedtest output missing required bandwidth fields (exit code {process.ExitCode}).\n" +
+                $"OUTPUT: {output}\nERROR: {error}");
         }
 
         double downloadSpeedInMbps = ConvertBytesToMbps((double)downloadToken);

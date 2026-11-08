@@ -392,7 +392,6 @@ public class CustomDnsTests : FreshSessionSetUp
 
         try
         {
-
             (Point Position, Size Size) elementBeforeTyping = UiActions.GetElementSizeAndPosition(IpSelectorRobot.IpAddressTextBox);
 
             UiActions.VerifyElementSizeAndPosition(IpSelectorRobot.IpAddressTextBox, elementBeforeTyping, () =>

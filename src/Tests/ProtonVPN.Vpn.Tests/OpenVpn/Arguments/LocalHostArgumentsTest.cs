@@ -38,7 +38,7 @@ namespace ProtonVPN.Vpn.Tests.OpenVpn.Arguments
             List<string> result = subject.ToList();
 
             // Assert
-            result.Should().HaveCount(2);
+            result.Should().HaveCount(4);
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@ namespace ProtonVPN.Vpn.Tests.OpenVpn.Arguments
             List<string> result = subject.ToList();
 
             // Assert
-            result.Should().Contain($"--local {localIp}");
+            result.Should().ContainInOrder("--local", localIp);
         }
 
         [TestMethod]
@@ -66,7 +66,7 @@ namespace ProtonVPN.Vpn.Tests.OpenVpn.Arguments
             List<string> result = subject.ToList();
 
             // Assert
-            result.Should().Contain($"--lport 0");
+            result.Should().ContainInOrder("--lport", "0");
         }
     }
 }

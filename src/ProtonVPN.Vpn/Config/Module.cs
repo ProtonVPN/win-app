@@ -18,6 +18,7 @@
  */
 
 using Autofac;
+using ProtonVPN.Vpn.Common;
 using ProtonVPN.Vpn.Connection;
 using ProtonVPN.Vpn.Gateways;
 using ProtonVPN.Vpn.LocalAgent;
@@ -61,6 +62,7 @@ public class Module
         builder.RegisterType<WintunTrafficManager>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<WireGuardService>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<WireGuardConfigFileCreator>().AsImplementedInterfaces().SingleInstance();
+        builder.RegisterType<SecureConfigFileWriter>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<LocalAgent.LocalAgent>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<LocalAgentEventReceiver>().AsImplementedInterfaces().SingleInstance();
         builder.RegisterType<ProTunConnection>().AsImplementedInterfaces().SingleInstance();

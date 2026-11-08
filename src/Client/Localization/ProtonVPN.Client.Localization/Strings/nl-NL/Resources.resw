@@ -350,6 +350,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Proton VPN kan geen verbinding maken, omdat de RPC-server niet beschikbaar is op uw systeem.</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>The server details couldn't be verified. Try another server, or report the issue to our Customer Support team.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>U hebt uw maximale apparaatlimiet bereikt. Koppel een ander apparaat los om dit apparaat te verbinden of upgrade naar PLUS om maximaal 10 apparaten tegelijkertijd te kunnen verbinden.</value>
   </data>

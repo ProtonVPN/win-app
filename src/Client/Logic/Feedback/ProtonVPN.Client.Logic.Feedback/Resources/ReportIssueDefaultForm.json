@@ -1,0 +1,388 @@
+{
+    "Code": 1000,
+    "Categories": [
+        {
+            "Label": "Payment issues",
+            "Suggestions": [
+                {
+                    "Text": "Force-close and reopen the app. Purchases sometimes need a fresh session to sync to your account."
+                },
+                {
+                    "Text": "Log out and log back in. If relaunching didn't work, signing out and back in forces your account to re-sync."
+                },
+                {
+                    "Text": "If you were charged but your account is still free, tap 'Contact us' below and include your payment details or receipt.",
+                    "Link": "https://protonvpn.com/support/payment-issues"
+                }
+            ],
+            "InputFields": [
+                {
+                    "Label": "What did you purchase and when?",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Example => VPN Plus, 16:00 CEST today",
+                    "SubmitLabel": "What did you purchase and when?"
+                },
+                {
+                    "Label": "Where did you pay? Did you use our website, or one of the in-app payment options? (Google/Apple Store)",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Example => I purchased through my App Store account",
+                    "SubmitLabel": "Where did you pay? Did you use our website, or one of the in-app payment options? (Google/Apple Store)"
+                },
+                {
+                    "Label": "Please describe the process in detail and if you received an error message, let us know what it said.",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Example => I tried purchasing through the website and got an error that the payment got declined.",
+                    "Constraints": {
+                        "MinimumLength": 100,
+                        "MaximumLength": 4000
+                    },
+                    "SubmitLabel": "Please describe the process in detail and if you received an error message, let us know what it said."
+                }
+            ],
+            "SubmitLabel": "Payment issues"
+        },
+        {
+            "Label": "Browsing speed",
+            "Suggestions": [
+                {
+                    "Text": "Turn off Secure Core. It can sometimes slow down your connection.",
+                    "Link": "https://protonvpn.com/support/secure-core-vpn/"
+                },
+                {
+                    "Text": "Use another VPN protocol.",
+                    "Link": "https://protonvpn.com/support/how-to-change-vpn-protocols/"
+                },
+                {
+                    "Text": "Try a different server. Servers in nearby countries often have faster connection speeds."
+                }
+            ],
+            "InputFields": [
+                {
+                    "Label": "Network type",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Example => Home Wi-Fi, Home ethernet, Mobile network, public Wi-Fi, school or university Wi-Fi, work Wi-Fi",
+                    "SubmitLabel": "Network type"
+                },
+                {
+                    "Label": "What are you trying to do?",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Example => browse a website, upload pictures, download files",
+                    "Constraints": {
+                        "MinimumLength": 100,
+                        "MaximumLength": 4000
+                    },
+                    "SubmitLabel": "What are you trying to do?"
+                },
+                {
+                    "Label": "What is your current download speed? You can find this by performing a free speed test online.",
+                    "Type": "TextSingleLine",
+                    "Placeholder": "Example => 50 Mb/s",
+                    "SubmitLabel": "What is your current download speed? You can find this by performing a free speed test online."
+                },
+                {
+                    "Label": "Disconnect from VPN and perform another speed test. Enter your download speed below.",
+                    "Type": "TextSingleLine",
+                    "Placeholder": "Example => 80 Mb/s",
+                    "SubmitLabel": "Disconnect from VPN and perform another speed test. Enter your download speed below."
+                }
+            ],
+            "SubmitLabel": "Browsing speed"
+        },
+        {
+            "Label": "CAPTCHA issues",
+            "Suggestions": [
+                {
+                    "Text": "Try a different server with lower server load.",
+                    "Link": "https://protonvpn.com/support/server-load-percentages-and-colors-explained/"
+                },
+                {
+                    "Text": "Clear your cache. You can do this in your browser settings.",
+                    "Link": "https://protonvpn.com/support/clear-browser-cache-cookies/"
+                },
+                {
+                    "Text": "Try a different web browser."
+                }
+            ],
+            "InputFields": [
+                {
+                    "Label": "What is the website/service you are unable to access?",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Please provide the exact URL (link) of the website/service you are unable to access.",
+                    "SubmitLabel": "What is the website/service you are unable to access?"
+                },
+                {
+                    "Label": "Which VPN server are you connected to? Enter the full server name or IP address.",
+                    "Type": "TextSingleLine",
+                    "Placeholder": "Example => CH#10",
+                    "SubmitLabel": "Which VPN server are you connected to? Enter the full server name or IP address."
+                },
+                {
+                    "Label": "Which quick fixes have you tried?",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Example => Tried a different server, cleared my cache, used a different web browser",
+                    "SubmitLabel": "Which quick fixes have you tried?"
+                }
+            ],
+            "SubmitLabel": "CAPTCHA issues"
+        },
+        {
+            "Label": "Connecting to VPN",
+            "Suggestions": [
+                {
+                    "Text": "Try a different server. Servers in nearby countries often have faster connection speeds."
+                },
+                {
+                    "Text": "Try a different VPN protocol.",
+                    "Link": "https://protonvpn.com/support/how-to-change-vpn-protocols/"
+                },
+                {
+                    "Text": "Turn off any antivirus or firewall software. They could be interfering with your VPN connection."
+                }
+            ],
+            "InputFields": [
+                {
+                    "Label": "Network type",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Example => Home Wi-Fi, Home ethernet, Mobile network, public Wi-Fi, school or university Wi-Fi, work Wi-Fi",
+                    "SubmitLabel": "Network type"
+                },
+                {
+                    "Label": "Which server are you trying to connect to? Enter the full server name or IP address.",
+                    "Type": "TextSingleLine",
+                    "Placeholder": "Example => CH#10",
+                    "SubmitLabel": "Which server are you trying to connect to? Enter the full server name or IP address."
+                },
+                {
+                    "Label": "Which quick fixes have you tried?",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Example => Tried a different server, used another VPN protocol, turned off antivirus or firewall",
+                    "SubmitLabel": "Which quick fixes have you tried?"
+                }
+            ],
+            "SubmitLabel": "Connecting to VPN"
+        },
+        {
+            "Label": "Weak or unstable connection",
+            "Suggestions": [
+                {
+                    "Text": "Try a different server. Servers in nearby countries often have faster connection speeds."
+                },
+                {
+                    "Text": "Try a different VPN protocol.",
+                    "Link": "https://protonvpn.com/support/how-to-change-vpn-protocols/"
+                },
+                {
+                    "Text": "Turn off any antivirus or firewall software. They could be interfering with your VPN connection."
+                },
+                {
+                    "Text": "Turn off power-saving (battery-optimization) mode."
+                }
+            ],
+            "InputFields": [
+                {
+                    "Label": "Network type",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Example => Home Wi-Fi, Home ethernet, Mobile network, public Wi-Fi, school or university Wi-Fi, work Wi-Fi",
+                    "SubmitLabel": "Network type"
+                },
+                {
+                    "Label": "Are there any specific actions that cause this problem?",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Example => Locking my device, switching network, putting my device in sleep mode",
+                    "SubmitLabel": "Are there any specific actions that cause this problem?"
+                },
+                {
+                    "Label": "Which quick fixes have you tried?",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Example => Tried a different server, used another VPN protocol, turned off antivirus or firewall, turned off power-saving mode",
+                    "SubmitLabel": "Which quick fixes have you tried?"
+                }
+            ],
+            "SubmitLabel": "Weak or unstable connection"
+        },
+        {
+            "Label": "Using the app",
+            "Suggestions": [
+                {
+                    "Text": "Sign out and sign back in."
+                },
+                {
+                    "Text": "Restart the app."
+                },
+                {
+                    "Text": "Update the app."
+                }
+            ],
+            "InputFields": [
+                {
+                    "Label": "What are you trying to do?",
+                    "Type": "TextMultiLine",
+                    "Constraints": {
+                        "MinimumLength": 100,
+                        "MaximumLength": 4000
+                    },
+                    "SubmitLabel": "What are you trying to do?"
+                },
+                {
+                    "Label": "What went wrong?",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Please describe the problem in as much detail as you can. If there was an error message, let us know what it said.",
+                    "Constraints": {
+                        "MinimumLength": 100,
+                        "MaximumLength": 4000
+                    },
+                    "SubmitLabel": "What went wrong?"
+                },
+                {
+                    "Label": "Which quick fixes have you tried?",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Signed out and signed back in, restarted the app, updated the app",
+                    "SubmitLabel": "Which quick fixes have you tried?"
+                }
+            ],
+            "SubmitLabel": "Using the app"
+        },
+        {
+            "Label": "Can't access a website or service",
+            "Suggestions": [
+                {
+                    "Text": "Turn off any ad blockers or proxies. If you use NetShield, set it to \"don't block\"."
+                },
+                {
+                    "Text": "Try a server from a different country."
+                },
+                {
+                    "Text": "Clear your cache. You can do this in your browser settings.",
+                    "Link": "https://protonvpn.com/support/clear-browser-cache-cookies/"
+                }
+            ],
+            "InputFields": [
+                {
+                    "Label": "Which website or service are you unable to access? Please provide the exact URL.",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Example => https://example.com/example",
+                    "SubmitLabel": "Which website or service are you unable to access? Please provide the exact URL."
+                },
+                {
+                    "Label": "Which VPN server are you connected to? Enter the full server name or IP address.",
+                    "Type": "TextSingleLine",
+                    "Placeholder": "Example => CH#10",
+                    "SubmitLabel": "Which VPN server are you connected to? Enter the full server name or IP address."
+                },
+                {
+                    "Label": "Are you using a custom DNS, proxy, or NetShield?",
+                    "Type": "TextSingleLine",
+                    "SubmitLabel": "Are you using a custom DNS, proxy, or NetShield?"
+                },
+                {
+                    "Label": "What is the error message you received?",
+                    "Type": "TextMultiLine",
+                    "SubmitLabel": "What is the error message you received?"
+                }
+            ],
+            "SubmitLabel": "Can't access a website or service"
+        },
+        {
+            "Label": "Streaming",
+            "Suggestions": [
+                {
+                    "Text": "Try a different Plus server. Just so you know, streaming is only available on a paid VPN subscription."
+                },
+                {
+                    "Text": "Clear your cache. If that doesn't work, try a different web browser."
+                },
+                {
+                    "Text": "Turn off any ad blockers or proxies. If you use NetShield, set it to \"don't block\"."
+                },
+                {
+                    "Text": "Try the additional fixes in our streaming troubleshooting guide.",
+                    "Link": "https://protonvpn.com/support/streaming-troubleshooting-guide/"
+                }
+            ],
+            "InputFields": [
+                {
+                    "Label": "Which streaming service are you trying to use?",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Example => Netflix, Disney+, HBO",
+                    "SubmitLabel": "Which streaming service are you trying to use?"
+                },
+                {
+                    "Label": "Are you using a custom DNS, proxy, or NetShield?",
+                    "Type": "TextMultiLine",
+                    "SubmitLabel": "Are you using a custom DNS, proxy, or NetShield?"
+                },
+                {
+                    "Label": "What went wrong? If you received an error message, let us know what it said.",
+                    "Type": "TextMultiLine",
+                    "Constraints": {
+                        "MinimumLength": 100,
+                        "MaximumLength": 4000
+                    },
+                    "SubmitLabel": "What went wrong? If you received an error message, let us know what it said."
+                }
+            ],
+            "SubmitLabel": "Streaming"
+        },
+        {
+            "Label": "LAN (local network) connections",
+            "Suggestions": [
+                {
+                    "Text": "Make sure LAN connections are enabled. Go to Settings → Advanced Settings → Allow LAN connections."
+                },
+                {
+                    "Text": "Enable mDNS (multicast DNS). Go to Settings → Advanced Settings → Allow LAN connections and check \"Access devices by name\".",
+                    "Link": "https://protonvpn.com/support/local-dns-devices-by-name"
+                }
+            ],
+            "InputFields": [
+                {
+                    "Label": "What are you trying to do?",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Example => browse a website, upload pictures, download files",
+                    "Constraints": {
+                        "MinimumLength": 100,
+                        "MaximumLength": 4000
+                    },
+                    "SubmitLabel": "What are you trying to do?"
+                },
+                {
+                    "Label": "What went wrong?",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Please describe the problem in as much detail as you can. If there was an error message, let us know what it said.",
+                    "Constraints": {
+                        "MinimumLength": 100,
+                        "MaximumLength": 4000
+                    },
+                    "SubmitLabel": "What went wrong?"
+                }
+            ],
+            "SubmitLabel": "LAN (local network) connections"
+        },
+        {
+            "Label": "Something else",
+            "InputFields": [
+                {
+                    "Label": "What are you trying to do?",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Example => browse a website, upload pictures, download files",
+                    "Constraints": {
+                        "MinimumLength": 100,
+                        "MaximumLength": 4000
+                    },
+                    "SubmitLabel": "What are you trying to do?"
+                },
+                {
+                    "Label": "What went wrong?",
+                    "Type": "TextMultiLine",
+                    "Placeholder": "Please describe the problem in as much detail as you can. If there was an error message, let us know what it said.",
+                    "Constraints": {
+                        "MinimumLength": 100,
+                        "MaximumLength": 4000
+                    },
+                    "SubmitLabel": "What went wrong?"
+                }
+            ],
+            "SubmitLabel": "Something else"
+        }
+    ]
+}

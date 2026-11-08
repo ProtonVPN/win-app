@@ -32,5 +32,5 @@ public enum ServerFeatures : ulong
     DoubleRestricted = 128,
 
     B2B = Restricted | DoubleRestricted,
-    NonStandard = SecureCore | Tor | Restricted | Partner | DoubleRestricted,
+    NonStandard = SecureCore | Tor | Restricted | DoubleRestricted,
 }

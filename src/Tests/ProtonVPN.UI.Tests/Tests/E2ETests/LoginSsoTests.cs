@@ -17,11 +17,14 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Drawing;
 using System.Threading;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Robots;
+using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.TestsHelper.TestData;
 
 namespace ProtonVPN.UI.Tests.Tests.E2ETests;
 
@@ -70,6 +73,25 @@ public class LoginSsoTests : FreshSessionSetUp
             .EnterEmail(TestUserData.FakePlusUserWithDomain)
             .ClickSignInButton()
             .Verify.IsErrorMessageDisplayed(_regularLoginError);
+    }
+
+    [Test]
+    [Property("TestCaseId", "890293")]
+    [Ignore("JIRA - VPNWIN-3343")]
+    public void LoginToSsoWithMaxChars()
+    {
+        VerifyIsOnLoginPage();
+
+        LoginRobot
+            .ClickSignInWithSso();
+
+        (Point Position, Size Size) elementBeforeTyping = UiActions.GetElementSizeAndPosition(LoginRobot.UsernameTextBox);
+
+        UiActions.VerifyElementSizeAndPosition(LoginRobot.UsernameTextBox, elementBeforeTyping, () =>
+            LoginRobot
+                .EnterEmail(InputTestData.LongInput)
+        );
+        LoginRobot.Verify.IsSignInButtonDisplayed();
     }
 
     private void CompleteSsoLogin()

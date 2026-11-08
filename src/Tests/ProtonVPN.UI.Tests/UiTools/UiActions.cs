@@ -403,6 +403,13 @@ public static class UiActions
         return desiredElement;
     }
 
+    public static T HoverOverElementAtOffset<T>(this T desiredElement, int offsetX, int offsetY) where T : Element
+    {
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        element!.HoverSmart(offsetX, offsetY);
+        return desiredElement;
+    }
+
     public static T FindChild<T>(this T desiredElement, Element childSelector) where T : Element
     {
         desiredElement.ChildElement = childSelector;
@@ -487,11 +494,6 @@ public static class UiActions
         Assert.That(hasSameSize, Is.True, "Element size changed." +
               $"Before: Width: {elementBeforeTyping.Size.Width}, Height: {elementBeforeTyping.Size.Height}" +
               $"After: Width: {elementAfterTyping.Size.Width}, Height: {elementAfterTyping.Size.Height}");
-    }
-
-    public static void ClearInputWithKeyboard()
-    {
-        Keyboard.TypeSimultaneously(VirtualKeyShort.CONTROL, VirtualKeyShort.KEY_A, VirtualKeyShort.DELETE);
     }
 
     public static T ClearInput<T>(this T desiredElement) where T : Element
@@ -727,6 +729,11 @@ public static class UiActions
                 {
                     // Sometimes framework throws these exceptions when searching for elements.
                     // Ignoring it, does not introduce side effects and increases stability.
+                    return false;
+                }
+                catch (TimeoutException e)
+                {
+                    TestContext.WriteLine($"Window refresh failed while waiting for {desiredElement.SelectorName}, retrying: {e.Message}");
                     return false;
                 }
             },

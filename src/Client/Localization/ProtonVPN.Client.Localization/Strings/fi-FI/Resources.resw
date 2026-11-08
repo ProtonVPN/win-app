@@ -349,6 +349,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Proton VPN ei voi muodostaa yhteyttä, koska RPC-palvelinta ei tavoiteta järjestelmästäsi.</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>The server details couldn't be verified. Try another server, or report the issue to our Customer Support team.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>Olet saavuttanut tilaukseesi sisältyvän laitteiden enimmäismäärän. Katkaise jonkin muun laitteesi yhteys yhdistääksesi tämän laitteen tai päivitä Plus-tilaukseen yhdistääksesi samanaikaisesti 10 laitetta.</value>
   </data>

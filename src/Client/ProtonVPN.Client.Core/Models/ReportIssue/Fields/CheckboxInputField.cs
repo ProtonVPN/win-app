@@ -21,10 +21,6 @@ namespace ProtonVPN.Client.Core.Models.ReportIssue.Fields;
 
 public class CheckboxInputField : IssueInputField<bool>
 {
-    public CheckboxInputField(bool isFieldMandatory)
-        : base(isFieldMandatory)
-    { }
-
     protected override string GetSerializedValue()
     {
         return Value.ToString();

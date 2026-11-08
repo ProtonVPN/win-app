@@ -349,6 +349,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Proton VPN 無法連線，因為系統上的 RPC 伺服器無法使用。</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>The server details couldn't be verified. Try another server, or report the issue to our Customer Support team.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>您已達到裝置連線數上限。請中斷另一個裝置的連線，或是升級到 PLUS 方案以享有最多 10 個裝置同時連線。</value>
   </data>

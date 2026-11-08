@@ -36,11 +36,13 @@ internal class NetworkDriverArgument : IEnumerable<string>
 
     public IEnumerator<string> GetEnumerator()
     {
-        yield return $"--dev-node \"{_interfaceGuid}\"";
+        yield return "--dev-node";
+        yield return _interfaceGuid;
 
         if (_openVpnAdapter == OpenVpnAdapter.Tun)
         {
-            yield return "--windows-driver wintun";
+            yield return "--windows-driver";
+            yield return "wintun";
         }
     }
 

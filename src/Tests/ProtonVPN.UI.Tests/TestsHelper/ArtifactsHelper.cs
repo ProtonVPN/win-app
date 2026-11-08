@@ -31,10 +31,9 @@ namespace ProtonVPN.UI.Tests.TestsHelper;
 public class ArtifactsHelper
 {
     public static VideoRecorder? Recorder;
+    public static string ArtifactsDirectory { get; set; } = string.Empty;
     private static System.Timers.Timer? _videoTimer;
     private static readonly object _recorderLock = new();
-
-    private static string ArtifactsDirectory { get; set; } = string.Empty;
     private static EventLog? _eventViewerLogs = EventLog.GetEventLogs().Where(logs => logs.Log == "Application").FirstOrDefault();
 
     public static async Task StartVideoCaptureAsync(string testName)

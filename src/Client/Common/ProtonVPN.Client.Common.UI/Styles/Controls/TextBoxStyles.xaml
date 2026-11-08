@@ -575,7 +575,7 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
         <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollMode" Value="Auto" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False" />
         <Setter Property="MinHeight" Value="{ThemeResource TextControlThemeMinSize}" />
         <Setter Property="MinWidth" Value="{ThemeResource TextControlThemeMinSize}" />
@@ -646,6 +646,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
                         <ScrollViewer x:Name="ContentElement"
                                       Grid.Row="1"
                                       Grid.Column="0"
+                                      MinHeight="{Binding (attached:TextBoxContentSizing.ContentMinHeight), RelativeSource={RelativeSource TemplatedParent}}"
+                                      MaxHeight="{Binding (attached:TextBoxContentSizing.ContentMaxHeight), RelativeSource={RelativeSource TemplatedParent}}"
                                       Margin="{TemplateBinding BorderThickness}"
                                       Padding="{TemplateBinding Padding}"
                                       VerticalAlignment="Top"

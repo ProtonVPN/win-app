@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
+/*
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,13 +17,9 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
-using ProtonVPN.Api.Contracts.Common;
+namespace ProtonVPN.Vpn.Common;
 
-namespace ProtonVPN.Api.Contracts.Partners
+public interface ISecureConfigFileWriter
 {
-    public class PartnersResponse : BaseResponse
-    {
-        public List<PartnerTypeResponse> PartnerTypes { get; set; }
-    }
+    void Write(string path, string content);
 }

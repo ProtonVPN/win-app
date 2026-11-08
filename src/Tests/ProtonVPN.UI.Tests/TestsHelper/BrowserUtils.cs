@@ -18,15 +18,16 @@
  */
 
 using System;
-using System.Diagnostics;
+using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Net.WebSockets;
 using System.Text;
-using System.Text.Json;
-using System.Text.RegularExpressions;
+using System.Net.Http;
 using System.Threading;
+using System.Text.Json;
+using System.Diagnostics;
+using System.Net.WebSockets;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using FlaUI.Core.Tools;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
@@ -38,8 +39,10 @@ public class BrowserUtils
 {
     private const int CHROME_PORT = 9222;
     private const int EDGE_PORT = 9223;
+    private const int BRAVE_PORT = 9224;
     private const string CHROME_PATH = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
     private const string EDGE_PATH = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe";
+    private static readonly string _bravePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"BraveSoftware\Brave-Browser\Application\brave.exe");
 
     private const string WEB_RTC_SCRIPT = """
         new Promise((resolve) => {
@@ -60,14 +63,17 @@ public class BrowserUtils
     public static void KillAllBrowsers()
     {
         Thread.Sleep(TestConstants.OneSecondTimeout);
-        foreach (string? name in new[] { "chrome", "msedge" })
+        foreach (string name in new[] { "chrome", "msedge", "brave" })
         {
             foreach (Process process in Process.GetProcessesByName(name))
             {
                 try
                 {
                     process.Kill(entireProcessTree: true);
-                    process.WaitForExit(TestConstants.ThirtySecondsTimeout);
+                    if (!process.WaitForExit(TestConstants.FiveSecondsTimeout))
+                    {
+                        TestContext.WriteLine($"'{process.ProcessName}' (PID {process.Id}) did not exit after a tree-kill.");
+                    }
                 }
                 catch { }
                 finally
@@ -76,12 +82,17 @@ public class BrowserUtils
                 }
             }
         }
-        Thread.Sleep(TestConstants.FiveSecondsTimeout);
+        Thread.Sleep(TestConstants.OneSecondTimeout);
     }
 
     public static void VerifyWebRtcNotLeaking(Browser browserApp, string vpnIp)
     {
         string publicIp = GetBrowserWebRtcIpWithRetry(browserApp);
+
+        if (publicIp == "No internet")
+        {
+            TestContext.WriteLine($"No WebRTC candidates were obtained from {browserApp} - treating as no leak.");
+        }
 
         Assert.That(publicIp, Is.EqualTo(vpnIp).Or.Contains("No internet"),
             $"WebRTC leak detected in {browserApp}!" +
@@ -160,7 +171,11 @@ public class BrowserUtils
         StartBrowserWithCDP(browserConfig.Path, browserConfig.DebugPort);
 
         RetryResult<string> retry = Retry.WhileEmpty(
-            () => operation(browserConfig.DebugPort).Result ?? string.Empty,
+            () =>
+            {
+                Task<string> task = Task.Run(() => operation(browserConfig.DebugPort));
+                return task.Wait(TestConstants.OneMinuteTimeout) ? task.Result ?? string.Empty : string.Empty;
+            },
             TestConstants.OneMinuteTimeout, TestConstants.ApiRetryInterval, ignoreException: true);
 
         return retry.Result ?? "No internet";
@@ -174,6 +189,8 @@ public class BrowserUtils
                 return (CHROME_PATH, CHROME_PORT);
             case Browser.Edge:
                 return (EDGE_PATH, EDGE_PORT);
+            case Browser.Brave:
+                return (_bravePath, BRAVE_PORT);
             default:
                 throw new ArgumentException($"Unknown browser: {browserApp}");
         }
@@ -181,11 +198,22 @@ public class BrowserUtils
 
     private static void StartBrowserWithCDP(string browserPath, int debugPort)
     {
-        using Process process = Process.Start(new ProcessStartInfo
+        string userDataDir = Path.Combine(Path.GetTempPath(), $"cdp-profile-{debugPort}");
+
+        ProcessStartInfo startInfo = new()
         {
             FileName = browserPath,
-            Arguments = $"--remote-debugging-port={debugPort} --headless about:blank"
-        })!;
+            Arguments = $"--remote-debugging-port={debugPort} --headless " +
+                        $"--user-data-dir=\"{userDataDir}\" " +
+                        "--no-first-run --no-default-browser-check --disable-gpu about:blank",
+            UseShellExecute = false,
+            CreateNoWindow = true
+        };
+
+        Process? process = Process.Start(startInfo) ?? throw new InvalidOperationException(
+                $"'{browserPath}' handed off to an existing instance instead of starting; CDP port {debugPort} will not be available.");
+
+        TestContext.WriteLine($"Started {Path.GetFileName(browserPath)} (PID {process.Id}) with CDP on port {debugPort}.");
     }
 
     private static async Task<string> ExecuteScriptInBrowserAsync(int debugPort, string url, string expression)

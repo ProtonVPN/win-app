@@ -77,9 +77,31 @@ public class AppFilter : IAppFilter
                 }, [layer]);
             }
         }
+        catch (NonLocalAppPathException)
+        {
+            _logger.Warn<SplitTunnelLog>($"Skipped app filter for path {path} because it is not on a local drive.");
+        }
         catch (InvalidArgumentException)
         {
             _logger.Error<SplitTunnelLog>($"Failed to create app filter for path {path} due to invalid argument.");
+        }
+    }
+
+    public void Replace(string[] paths, Tuple<Layer, Action>[] filters)
+    {
+        List<Guid> previousGuids = _list.Values.SelectMany(guids => guids).ToList();
+        _list.Clear();
+
+        try
+        {
+            Add(paths, filters);
+        }
+        finally
+        {
+            foreach (Guid guid in previousGuids)
+            {
+                _ipFilter.DynamicSublayer.DestroyFilter(guid);
+            }
         }
     }
 

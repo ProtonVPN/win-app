@@ -186,7 +186,8 @@ public static class DefaultConfiguration
     public static TimeSpan ConnectionCertificateUpdateInterval => TimeSpan.FromMinutes(5);
     public static TimeSpan ServerUpdateInterval => TimeSpan.FromHours(12);
     public static TimeSpan ServerLoadUpdateInterval => TimeSpan.FromMinutes(15);
-    public static TimeSpan MinimumServerLoadUpdateInterval => TimeSpan.FromMinutes(15);
+    public static TimeSpan OverdueServerLoadUpdateTimeout => TimeSpan.FromSeconds(1);
+    public static TimeSpan ResumeRefreshTimeout => TimeSpan.FromSeconds(5);
     public static TimeSpan AnnouncementsUpdateInterval => TimeSpan.FromMinutes(150);
     public static TimeSpan AlternativeRoutingCheckInterval => TimeSpan.FromMinutes(30);
     public static TimeSpan UpdateCheckInterval => TimeSpan.FromHours(3);

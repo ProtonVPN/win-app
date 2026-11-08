@@ -349,6 +349,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Proton VPN no es pot connectar perquè el servidor RPC no està disponible al vostre sistema.</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>No s'han pogut verificar els detalls del servidor. Proveu-ho amb un altre servidor o informeu del problema al nostre servei d'Atenció al Client.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>Heu assolit el límit màxim de dispositius. Desconnecteu un altre dispositiu per a connectar aquest o milloreu a PLUS per tenir fins a 10 dispositius connectats alhora.</value>
   </data>
@@ -3633,10 +3636,10 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Connecteu-vos</value>
   </data>
   <data name="System_Tray_Actions_Disconnect">
-    <value>Desconnecteu-vos</value>
+    <value>Desconnecta</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
-    <value>Sortir</value>
+    <value>Surt</value>
   </data>
   <data name="System_Tray_Actions_OpenApplication">
     <value>Obrir {0}</value>
@@ -3684,7 +3687,7 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Descarregueu fitxers a través de BitTorrent i altres protocols d'intercanvi de fitxers.</value>
   </data>
   <data name="UpsellBanner_P2P_Title">
-    <value>Suport P2P</value>
+    <value>Compatibilitat P2P</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>Actualitzi per poder escollir qualsevol servidor.</value>

@@ -42,15 +42,17 @@ public static class TestConstants
     public static TimeSpan TwoMinutesTimeout => TimeSpan.FromMinutes(2);
     public static TimeSpan FourMinutesTimeout => TimeSpan.FromMinutes(4);
     public static TimeSpan MoreFrequentRetryInterval => TimeSpan.FromMilliseconds(50);
-    public static TimeSpan RetryInterval => TimeSpan.FromMilliseconds(200);
+    public static TimeSpan RetryInterval => TimeSpan.FromMilliseconds(500);
     public static TimeSpan AnimationDelay => TimeSpan.FromMilliseconds(500);
     public static TimeSpan NavigationDelay => TimeSpan.FromMilliseconds(500);
     public static TimeSpan UserInputSimulationDelay => TimeSpan.FromMilliseconds(500);
 
     public static string AppFolderPath = @"C:\Program Files\Proton\VPN";
     public static string LauncherPath = @"C:\Program Files\Proton\VPN\ProtonVPN.Launcher.exe";
-    public static string ClientLogsPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN\Logs\client-logs.txt");
-    public static string UserStoragePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Proton\Proton VPN");
+    public static readonly string SolutionRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\.."));
+    public static string LocalAppData => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+    public static string ClientLogsPath => Path.Combine(LocalAppData, @"Proton\Proton VPN\Logs\client-logs.txt");
+    public static string UserStoragePath => Path.Combine(LocalAppData, @"Proton\Proton VPN");
     public static string StoragePath => Path.Combine(UserStoragePath, "Storage");
     public static string? ServerStoragePath => Directory.GetFiles(StoragePath, "Servers.*.bin").OrderByDescending(File.GetLastWriteTime).FirstOrDefault();
     public static string GlobalSettingsPath => Path.Combine(StoragePath, "GlobalSettings.json");
@@ -64,6 +66,7 @@ public static class TestConstants
 
     private const string PROTUN_PROTOCOL_PREFIX = "ProTun";
     private const string WIREGUARD_PROTOCOL_PREFIX = "WireGuard";
+    public static bool IsProTunProtocol(Protocol protocol) => protocol.ToString().StartsWith(PROTUN_PROTOCOL_PREFIX);
 
     public static IEnumerable<Protocol> AllNonProTunProtocols()
     {
@@ -78,5 +81,10 @@ public static class TestConstants
     public static IEnumerable<Protocol> ProTunProtocols()
     {
         return Enum.GetValues<Protocol>().Where(p => p.ToString().StartsWith(PROTUN_PROTOCOL_PREFIX));
+    }
+
+    public static IEnumerable<Protocol> SomeProtocols()
+    {
+        return [Protocol.ProTunUdp, Protocol.WireGuardTcp, Protocol.OpenVpnUdp];
     }
 }

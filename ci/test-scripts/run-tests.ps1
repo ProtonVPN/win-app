@@ -21,7 +21,7 @@ if ($Category -ne "5") {
 
 $keywords = @("BVI-", "BackdropLocal", "missing frame", "worldTransform", "0.00, 0.00", "chunk", "decoding stream", "Sequence file will not be generated", "Test execution complete")
 
-$hardTimeoutSeconds = 2700 # 45 min
+$hardTimeoutSeconds = 4200 # 70 min
 
 function Stop-ProcessWithTimeout {
     param(
@@ -29,25 +29,38 @@ function Stop-ProcessWithTimeout {
         [int]$TimeoutSeconds = 15
     )
 
-    $job = Start-Job -ScriptBlock {
-        param($targetId)
-        try { Stop-Process -Id $targetId -Force -ErrorAction Stop } catch {}
-    } -ArgumentList $ProcessId
-
-    $done = Wait-Job $job -Timeout $TimeoutSeconds
-    $result = $true
-    if (-not $done) {
-        Write-Host "WARNING: Stop-Process on PID $ProcessId did not return within ${TimeoutSeconds}s - likely stuck in a driver/kernel call."
-        $result = $false
+    $killer = $null
+    try {
+        $killer = Start-Process -FilePath "taskkill.exe" `
+            -ArgumentList @("/PID", $ProcessId, "/T", "/F") `
+            -NoNewWindow -PassThru -ErrorAction Stop
     }
-    Remove-Job $job -Force -ErrorAction Ignore
-    return $result
+    catch {
+        Write-Host "WARNING: could not start taskkill for PID ${ProcessId}: $_"
+        return $false
+    }
+
+    if (-not $killer.WaitForExit($TimeoutSeconds * 1000)) {
+        Write-Host "WARNING: taskkill on PID $ProcessId did not return within ${TimeoutSeconds}s - target is likely stuck in a driver/kernel call."
+        try { $killer.Kill() } catch { }
+        return $false
+    }
+
+    return $true
 }
 
 function Stop-LingeringProcesses {
-    $targets = Get-Process | Where-Object {
-        $_.Name -like "WerFault*" -or $_.Name -like "testhost*" -or $_.Name -like "vstest*" -or
-        $_.Name -like "proton*" -or $_.Name -like "unins0*"
+    $targets = Get-Process -ErrorAction SilentlyContinue | Where-Object {
+        $_.Name -like "WerFault*"   -or
+        $_.Name -like "chrome*"     -or
+        $_.Name -like "msedge*"     -or
+        $_.Name -like "crashpad*"   -or
+        $_.Name -like "testhost*"   -or
+        $_.Name -like "vstest*"     -or
+        $_.Name -like "proton*"     -or
+        $_.Name -like "*unins*"     -or
+        $_.Name -like "_iu*"        -or
+        $_.Name -like "msiexec*"
     }
 
     foreach ($p in $targets) {
@@ -62,17 +75,24 @@ function Stop-DriverWithTimeout {
         [int]$TimeoutSeconds = 15
     )
 
-    $job = Start-Job -ScriptBlock {
-        param($name)
-        & sc.exe stop $name | Out-Null
-    } -ArgumentList $DriverName
-
-    $done = Wait-Job $job -Timeout $TimeoutSeconds
-    if (-not $done) {
-        Write-Host "WARNING: 'sc.exe stop $DriverName' did not return within ${TimeoutSeconds}s - driver is likely wedged and cannot be cleanly stopped from user mode. A reboot of the runner may be required to fully clear it."
+    $stopper = $null
+    try {
+        $stopper = Start-Process -FilePath "sc.exe" `
+            -ArgumentList @("stop", $DriverName) `
+            -NoNewWindow -PassThru -ErrorAction Stop
     }
-    Remove-Job $job -Force -ErrorAction Ignore
-    return $done
+    catch {
+        Write-Host "WARNING: could not start 'sc.exe stop $DriverName': $_"
+        return $false
+    }
+
+    if (-not $stopper.WaitForExit($TimeoutSeconds * 1000)) {
+        Write-Host "WARNING: 'sc.exe stop $DriverName' did not return within ${TimeoutSeconds}s - driver is likely wedged and cannot be cleanly stopped from user mode. A reboot of the runner may be required to fully clear it."
+        try { $stopper.Kill() } catch { }
+        return $false
+    }
+
+    return $true
 }
 
 function Stop-StuckServices {
@@ -93,9 +113,22 @@ function Stop-StuckServices {
     }
 }
 
-$stdOutFile = "$env:UI_TEST_REPORT_PATH\stdout_$Category.log"
-$stdErrFile = "$env:UI_TEST_REPORT_PATH\stderr_$Category.log"
-Remove-Item $stdOutFile, $stdErrFile -ErrorAction Ignore
+$logDir = Join-Path $env:TEMP "ui-test-logs"
+New-Item -ItemType Directory -Force -Path $logDir | Out-Null
+
+$stdOutFile = Join-Path $logDir "stdout_$Category.log"
+$stdErrFile = Join-Path $logDir "stderr_$Category.log"
+
+if (Test-Path $stdOutFile) {
+    try { Remove-Item $stdOutFile -ErrorAction Stop }
+    catch {
+        $stamp = Get-Date -Format "yyyyMMdd-HHmmss"
+        $stdOutFile = Join-Path $logDir "stdout_${Category}_$stamp.log"
+        $stdErrFile = Join-Path $logDir "stderr_${Category}_$stamp.log"
+        Write-Host "WARNING: previous log file was locked; using $stdOutFile instead."
+    }
+}
+Remove-Item $stdErrFile -ErrorAction Ignore
 
 $vstestArgs = @(
     "src\bin\e2e\ProtonVPN.UI.Tests.dll"
@@ -146,19 +179,22 @@ function Test-RunWasSuccessful {
 
     $content = Get-Content -Path $FilePath -ErrorAction SilentlyContinue
     $wasSuccessful = $true
+    $primaryReasons = @()
+    $secondaryReasons = @()
 
     if ($content | Select-String -Pattern "Test Run Aborted" -Quiet) {
-        Write-Host "WARNING: 'Test Run Aborted' found in output."
+        $primaryReasons += "'Test Run Aborted' found in output."
         $wasSuccessful = $false
     }
 
     if ($content | Select-String -Pattern "test run timeout of" -Quiet) {
-        Write-Host "WARNING: 'test run timeout of' found in output."
+        $primaryReasons += "'test run timeout of' found in output."
         $wasSuccessful = $false
     }
 
     $failedLine = $content | Select-String -Pattern '^\s*Failed:\s*(\d+)' | Select-Object -Last 1
     if ($failedLine -and [int]$failedLine.Matches[0].Groups[1].Value -gt 0) {
+        $primaryReasons += "$($failedLine.Matches[0].Groups[1].Value) test(s) failed."
         $wasSuccessful = $false
     }
 
@@ -166,7 +202,7 @@ function Test-RunWasSuccessful {
     if ($blameLines) {
         $badBlameLines = $blameLines | Where-Object { $_.Line -notmatch 'All tests finished running' }
         if ($badBlameLines) {
-            Write-Host "WARNING: Blame data collector reported a problem: $($badBlameLines[0].Line.Trim())"
+            $primaryReasons += "Blame data collector reported a problem: $($badBlameLines[0].Line.Trim())"
             $wasSuccessful = $false
         }
     }
@@ -196,18 +232,21 @@ try {
             $timedOut = $true
 
             if ($script:aborted) {
-                Write-Host "Test Run Aborted"
+                Write-Host "Test run is aborting - giving VSTest up to 90s to flush its results file."
+                if (-not $process.WaitForExit(90 * 1000)) {
+                    Write-Host "VSTest did not exit after the abort; terminating its process tree."
+                }
             }
             else {
                 Write-Host "Hard timeout of $hardTimeoutSeconds seconds reached with no clean abort"
             }
 
-            Write-Host "Attempting bounded termination of VSTest (PID $($process.Id)) and its process tree..."
+            Write-NewLines -FilePath $stdOutFile -ShownCount ([ref]$linesShown)
 
             if (-not $process.HasExited) {
                 $killedOk = Stop-ProcessWithTimeout -ProcessId $process.Id -TimeoutSeconds 15
                 if (-not $killedOk) {
-                    Write-Host "Primary process did not respond to kill within timeout - it is likely stuck in a kernel/driver call. Not waiting further; proceeding to cleanup so the job can still finish."
+                    Write-Host "Primary process did not respond to kill within timeout - it is likely stuck in a kernel/driver call. Proceeding to cleanup so the job can still finish."
                 }
             }
 
@@ -234,6 +273,18 @@ try {
 }
 finally {
     Write-Host "Running cleanup..."
+
+    if ((Test-Path $stdErrFile) -and (Get-Item $stdErrFile).Length -gt 0) {
+        Write-Host "===== STDERR ($Category) ====="
+        Get-Content $stdErrFile -ErrorAction SilentlyContinue | ForEach-Object { Write-Host $_ }
+        Write-Host "===== END STDERR ====="
+    }
+
+    foreach ($f in @($stdOutFile, $stdErrFile)) {
+        if (Test-Path $f) {
+            Copy-Item $f -Destination $env:UI_TEST_REPORT_PATH -Force -ErrorAction SilentlyContinue
+        }
+    }
 
     Stop-LingeringProcesses
     Stop-StuckServices

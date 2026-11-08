@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,10 +17,11 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace ProtonVPN.Update.Files.Launchable
+using System.Collections.Generic;
+
+namespace ProtonVPN.Update.Files.Launchable;
+
+public interface ILaunchableFile
 {
-    public interface ILaunchableFile
-    {
-        void Launch(string filename, string arguments);
-    }
+    void Launch(string filename, IEnumerable<string> arguments);
 }

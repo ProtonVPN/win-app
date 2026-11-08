@@ -77,7 +77,7 @@ public class TokenClient : BaseApiClient, ITokenClient
 
         try
         {
-            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth/refresh");
+            HttpRequestMessage request = GetAuthorizedRequest(HttpMethod.Post, "auth/v4/refresh");
             ValidateRequestHeaders(request);
             request.Content = GetJsonContent(refreshTokenRequest);
             LogRefreshToken(refreshTokenRequest);

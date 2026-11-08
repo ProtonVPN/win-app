@@ -40,7 +40,9 @@ namespace ProtonVPN.Vpn.OpenVpn.Arguments
 
             foreach (var dns in _dns)
             {
-                yield return $"--dhcp-option DNS {dns}";
+                yield return "--dhcp-option";
+                yield return "DNS";
+                yield return dns;
             }
         }
 

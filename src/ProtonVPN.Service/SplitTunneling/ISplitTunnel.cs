@@ -26,5 +26,5 @@ public interface ISplitTunnel
     void UpdateContext(SplitTunnelContext context);
     void OnVpnConnected(VpnState state);
     void OnVpnConnecting(VpnState state);
-    void OnVpnDisconnected(VpnState state);
+    void OnVpnDisconnected(VpnState state, bool isReconnecting);
 }

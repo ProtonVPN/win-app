@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2023 Proton AG
+/*
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -17,21 +17,10 @@
  * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using FluentAssertions;
-using ProtonVPN.Client.Logic.Feedback.Diagnostics.Logs;
+namespace ProtonVPN.Api.Contracts.ReportAnIssue;
 
-namespace ProtonVPN.Client.Logic.Feedback.Tests.Diagnostics;
-
-[TestClass]
-public class DriverInstallLogTest : LogBaseTest
+public class IssueInputConstraintsResponse
 {
-    [TestMethod]
-    public void ItShouldCreateLogFile()
-    {
-        // Act
-        new DriverInstallLog(StaticConfig!).Write();
-
-        // Assert
-        File.Exists(Path.Combine(TMP_PATH, "setupapi.dev.zip")).Should().BeTrue();
-    }
+    public int? MinimumLength { get; set; }
+    public int? MaximumLength { get; set; }
 }

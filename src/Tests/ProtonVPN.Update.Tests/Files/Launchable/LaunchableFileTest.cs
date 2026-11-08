@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Proton AG
+ * Copyright (c) 2026 Proton AG
  *
  * This file is part of ProtonVPN.
  *
@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -25,61 +26,60 @@ using NSubstitute.ExceptionExtensions;
 using ProtonVPN.Common.Legacy.OS.Processes;
 using ProtonVPN.Update.Files.Launchable;
 
-namespace ProtonVPN.Update.Tests.Files.Launchable
+namespace ProtonVPN.Update.Tests.Files.Launchable;
+
+[TestClass]
+public class LaunchableFileTest
 {
-    [TestClass]
-    public class LaunchableFileTest
+    private IOsProcesses _processes;
+
+    [TestInitialize]
+    public virtual void TestInitialize()
     {
-        private IOsProcesses _processes;
+        _processes = Substitute.For<IOsProcesses>();
+    }
 
-        [TestInitialize]
-        public virtual void TestInitialize()
-        {
-            _processes = Substitute.For<IOsProcesses>();
-        }
+    [TestMethod]
+    public void Launch_ShouldCreate_ElevatedProcess()
+    {
+        const string filename = "File to launch";
+        IEnumerable<string> args = ["Launch arguments"];
+        LaunchableFile launchable = new LaunchableFile(_processes);
 
-        [TestMethod]
-        public void Launch_ShouldCreate_ElevatedProcess()
-        {
-            const string filename = "File to launch";
-            const string args = "Launch arguments";
-            LaunchableFile launchable = new LaunchableFile(_processes);
+        launchable.Launch(filename, args);
 
-            launchable.Launch(filename, args);
+        _processes.Received(1).BuildElevatedProcess(filename, args);
+    }
 
-            _processes.Received(1).ElevatedProcess(filename, args);
-        }
+    [TestMethod]
+    public void Launch_ShouldStart_ElevatedProcess()
+    {
+        LaunchableFile launchable = new LaunchableFile(_processes);
 
-        [TestMethod]
-        public void Launch_ShouldStart_ElevatedProcess()
-        {
-            LaunchableFile launchable = new LaunchableFile(_processes);
+        launchable.Launch("", []);
 
-            launchable.Launch("", "");
+        _processes.BuildElevatedProcess("", []).Received(1).Start();
+    }
 
-            _processes.ElevatedProcess("", "").Received(1).Start();
-        }
+    [TestMethod]
+    public void Valid_ShouldPassException_WhenOsProcesses_ElevatedProcess_Throws()
+    {
+        _processes.BuildElevatedProcess("", []).ThrowsForAnyArgs<Exception>();
+        LaunchableFile launchable = new LaunchableFile(_processes);
 
-        [TestMethod]
-        public void Valid_ShouldPassException_WhenOsProcesses_ElevatedProcess_Throws()
-        {
-            _processes.ElevatedProcess("", "").ThrowsForAnyArgs<Exception>();
-            LaunchableFile launchable = new LaunchableFile(_processes);
+        Action action = () => launchable.Launch("", []);
 
-            Action action = () => launchable.Launch("", "");
+        action.Should().Throw<Exception>();
+    }
 
-            action.Should().Throw<Exception>();
-        }
+    [TestMethod]
+    public void Valid_ShouldPassException_WhenElevatedProcess_Start_Throws()
+    {
+        _processes.BuildElevatedProcess("", []).WhenForAnyArgs(x => x.Start()).Throws<Exception>();
+        LaunchableFile launchable = new LaunchableFile(_processes);
 
-        [TestMethod]
-        public void Valid_ShouldPassException_WhenElevatedProcess_Start_Throws()
-        {
-            _processes.ElevatedProcess("", "").WhenForAnyArgs(x => x.Start()).Throws<Exception>();
-            LaunchableFile launchable = new LaunchableFile(_processes);
+        Action action = () => launchable.Launch("", []);
 
-            Action action = () => launchable.Launch("", "");
-
-            action.Should().Throw<Exception>();
-        }
+        action.Should().Throw<Exception>();
     }
 }

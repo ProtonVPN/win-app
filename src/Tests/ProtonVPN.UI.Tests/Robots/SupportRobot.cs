@@ -24,6 +24,7 @@ using FlaUI.Core.Definitions;
 using FlaUI.Core.AutomationElements;
 using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.TestsHelper.TestData;
 
 namespace ProtonVPN.UI.Tests.Robots;
 
@@ -56,7 +57,7 @@ public class SupportRobot
         return this;
     }
 
-    public SupportRobot FillOtherFieldsInBugReportForm(string otherFields = "Ignore report. Testing")
+    public SupportRobot FillOtherFieldsInBugReportForm(string otherFields = InputTestData.BugReportFieldInput)
     {
         foreach (AutomationElement field in GetOtherFieldsElements())
         {

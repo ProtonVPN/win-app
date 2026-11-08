@@ -54,7 +54,7 @@ public class ServerFeatureExtensionsTest
     [DataRow(ServerFeatures.Streaming, true)]
     [DataRow(ServerFeatures.Ipv6, true)]
     [DataRow(ServerFeatures.Restricted, false)]
-    [DataRow(ServerFeatures.Partner, false)]
+    [DataRow(ServerFeatures.Partner, true)]
     [DataRow(ServerFeatures.DoubleRestricted, false)]
     [DataRow(ServerFeatures.B2B, false)]
     [DataRow(ServerFeatures.NonStandard, false)]

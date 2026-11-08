@@ -349,6 +349,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>Proton VPN не может подключиться, поскольку RPC-сервер недоступен в вашей системе.</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>The server details couldn't be verified. Try another server, or report the issue to our Customer Support team.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>Вы достигли максимального числа подключённых устройств. Отключите одно из них, чтобы подключить это устройство, или улучшите тариф до PLUS, чтобы подключать до 10 устройств одновременно.</value>
   </data>
@@ -1836,10 +1839,10 @@ Error code: {0}</value>
     <value>Что-то пошло не так</value>
   </data>
   <data name="Dialogs_NpsSurvey_HighRateDescription">
-    <value>10 довольно вероятно</value>
+    <value>10 очень вероятно</value>
   </data>
   <data name="Dialogs_NpsSurvey_LowRateDescription">
-    <value>0 очень маловероятно</value>
+    <value>0 крайне маловероятно</value>
   </data>
   <data name="Dialogs_NpsSurvey_Optional">
     <value>Необязательно</value>
@@ -1866,7 +1869,7 @@ Error code: {0}</value>
     <value>P2P is not allowed on free VPN servers</value>
   </data>
   <data name="Dialogs_P2PDetection_WindowTitle">
-    <value>Discover VPN Plus</value>
+    <value>Откройте для себя VPN Plus</value>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email">
     <value>Электронная почта</value>
@@ -1925,7 +1928,7 @@ Error code: {0}</value>
     <value>Сообщить о проблеме</value>
   </data>
   <data name="Dialogs_StreamingDetection_WindowTitle">
-    <value>Discover VPN Plus</value>
+    <value>Откройте для себя VPN Plus</value>
   </data>
   <data name="Dialogs_StreamingWarning_Description">
     <value>VPN Plus servers let you enjoy your favorite movies and TV shows from around the world.</value>

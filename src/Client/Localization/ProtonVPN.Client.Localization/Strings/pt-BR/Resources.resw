@@ -349,6 +349,9 @@
   <data name="Connection_Error_RpcServerUnavailable">
     <value>O Proton VPN não consegue se conectar porque o servidor RPC não está disponível em seu sistema.</value>
   </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>The server details couldn't be verified. Try another server, or report the issue to our Customer Support team.</value>
+  </data>
   <data name="Connection_Error_SessionLimitReachedFreeUser">
     <value>Você atingiu seu limite máximo de dispositivos. Desconecte outro dispositivo para conectar este ou atualize para PLUS para conectar até 10 dispositivos ao mesmo tempo.</value>
   </data>
@@ -3813,7 +3816,7 @@ Uma carga alta de servidor pode tornar sua conexão mais lenta.</value>
     <value>Disney+</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Platforms_HBO">
-    <value>Max</value>
+    <value>HBO Max</value>
   </data>
   <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
     <value>Netflix</value>

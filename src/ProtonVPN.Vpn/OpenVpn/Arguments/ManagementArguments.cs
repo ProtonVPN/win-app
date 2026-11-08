@@ -36,8 +36,13 @@ public class ManagementArguments : IEnumerable<string>
 
     public IEnumerator<string> GetEnumerator()
     {
-        yield return $"--management {_openVpnConfigs.ManagementHost} {_managementPort} stdin";
+        yield return "--management";
+        yield return _openVpnConfigs.ManagementHost;
+        yield return _managementPort.ToString();
+        yield return "stdin";
+
         yield return "--management-query-passwords";
+
         yield return "--management-hold";
     }
 

@@ -20,6 +20,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using ProtonVPN.Client.Core.Bases;
+using ProtonVPN.Client.Core.Models.ReportIssue;
 
 namespace ProtonVPN.Client.UI.Dialogs.ReportIssue.Pages;
 
@@ -52,6 +53,14 @@ public sealed partial class ReportIssueContactPageView : IContextAware
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Deactivate();
+    }
+
+    private void OnInputFieldLostFocus(object sender, RoutedEventArgs e)
+    {
+        if (sender is FrameworkElement { DataContext: IssueInputField field })
+        {
+            field.MarkAsTouched();
+        }
     }
 
     private void OnInfoBarIsOpenChanged(DependencyObject sender, DependencyProperty dp)
