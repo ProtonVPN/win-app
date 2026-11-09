@@ -52,6 +52,10 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
 
     private const DefaultProfile PROFILE_NAME = DefaultProfile.StreamingUS;
 
+    // 12 emojis + 1 char = 25 UTF-16 chars, the profile name max length.
+    private const string LONG_PROFILE_NAME = "😀😀😀😀😀😀😀😀😀😀😀😀A";
+    private const int MAX_RECENT_CONNECTION_NAME_WIDTH = 200;
+
     private static readonly Country[] _balkanCountries = [Country.Macedonia, Country.Greece, Country.Albania, Country.Bulgaria, Country.Serbia, Country.Kosovo, Country.Montenegro];
     private static readonly Country[] _euCountries = [Country.Austria, Country.Germany, Country.Hungary, Country.Lithuania, Country.France, Country.Poland];
     private static readonly Country[] _lastConnectionCountries = [Country.Sweden, Country.Greece, Country.Switzerland, Country.Finland, Country.Belgium];
@@ -362,6 +366,29 @@ public class ConnectionPreferencesTests : FreshSessionSetUp
             .Verify.IsCountryAtRecentsPosition(_lastConnectionCountries[2], position: 0)
             .Verify.IsCountryAtRecentsPosition(_lastConnectionCountries[4], position: 1)
             .Verify.IsCountryAtRecentsPosition(_lastConnectionCountries[0], position: 4);
+    }
+
+    [Test]
+    public void LongProfileNameIsTrimmedInConnectionPreferencesDropdown()
+    {
+        SidebarRobot
+            .NavigateToProfiles()
+            .ClickCreateProfile();
+        ProfileRobot
+            .SetProfileName(LONG_PROFILE_NAME, pasteText: true)
+            .SaveProfile();
+        Thread.Sleep(TestConstants.AnimationDelay);
+
+        RecentsFlow.PopulateRecentsListWithProfile(LONG_PROFILE_NAME);
+
+        HomeRobot
+            .Verify.ConnectionPreferencesDropdownTextIsNotWiderThan(LONG_PROFILE_NAME, MAX_RECENT_CONNECTION_NAME_WIDTH);
+
+        SettingRobot
+            .OpenSettings()
+            .OpenConnectionPreferencesSettingsCard();
+        HomeRobot
+            .Verify.ConnectionPreferencesDropdownTextIsNotWiderThan(LONG_PROFILE_NAME, MAX_RECENT_CONNECTION_NAME_WIDTH, isOnConnectionPreferencesPage: true);
     }
 
     private static void PopulateRecents()

@@ -29,6 +29,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
     x:DefaultBindMode="OneWay">
 
     <UserControl.Resources>
+        <x:Double x:Key="RecentConnectionHeaderMaxWidth">200</x:Double>
+
         <Style x:Key="DefaultConnectionComboItemTextBlockStyle" BasedOn="{StaticResource BodyTextBlockStyle}"
                TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -140,7 +142,8 @@ along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
 
                 <StackPanel Grid.Column="1" Spacing="6" Orientation="Horizontal" VerticalAlignment="Center">
 
-                    <TextBlock Style="{StaticResource DefaultConnectionComboItemTextBlockStyle}"
+                    <TextBlock MaxWidth="{StaticResource RecentConnectionHeaderMaxWidth}"
+                               Style="{StaticResource DefaultConnectionComboItemTextBlockStyle}"
                                Text="{x:Bind Header}" />
 
                     <TextBlock Style="{StaticResource DefaultConnectionComboItemTextBlockStyle}"

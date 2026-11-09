@@ -21,10 +21,13 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Collections.Generic;
+using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Definitions;
 using FlaUI.Core.Input;
 using FlaUI.Core.WindowsAPI;
 using NUnit.Framework;
 using ProtonVPN.UI.Tests.Enums;
+using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.UiTools;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.Enums.Locations;
@@ -595,7 +598,24 @@ public class HomeRobot
             return this;
         }
 
-        private List<string> OpenDropdownAndGetTexts(bool isOnConnectionPreferencesPage)
+        public Verifications ConnectionPreferencesDropdownTextIsNotWiderThan(string text, int maxWidth, bool isOnConnectionPreferencesPage = false)
+        {
+            OpenDropdown(isOnConnectionPreferencesPage);
+
+            AutomationElement? textElement = DefaultConnectionDropdown.GetControlType(ControlType.Text)
+                .FirstOrDefault(element => element.Name == text);
+            Assert.That(textElement, Is.Not.Null, $"Text '{text}' was not found in the connection preferences dropdown.");
+
+            double dpiScale = UiTools.Interop.User32.GetDpiForWindow(BaseTest.Window!.Properties.NativeWindowHandle.Value) / 96.0;
+            Assert.That(textElement!.BoundingRectangle.Width, Is.LessThanOrEqualTo(Math.Ceiling(maxWidth * dpiScale)),
+                $"Text '{text}' in the connection preferences dropdown is wider than {maxWidth} px (DPI scale {dpiScale}), so it is not trimmed.");
+
+            Thread.Sleep(TestConstants.AnimationDelay);
+            ConnectionCardTitle.Click();
+            return this;
+        }
+
+        private void OpenDropdown(bool isOnConnectionPreferencesPage)
         {
             if (isOnConnectionPreferencesPage)
             {
@@ -607,6 +627,11 @@ public class HomeRobot
             }
 
             Thread.Sleep(TestConstants.AnimationDelay);
+        }
+
+        private List<string> OpenDropdownAndGetTexts(bool isOnConnectionPreferencesPage)
+        {
+            OpenDropdown(isOnConnectionPreferencesPage);
 
             return DefaultConnectionDropdown.GetAllChildrenNames();
         }

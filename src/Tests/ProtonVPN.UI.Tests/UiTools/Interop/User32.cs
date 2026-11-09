@@ -33,5 +33,8 @@ internal static class User32
     internal static extern bool SetForegroundWindow(IntPtr hWnd);
 
     [DllImport("user32.dll", SetLastError = true)]
-    internal static extern uint SendInput(uint nInputs, Input[] pInputs, int cbSize);    
+    internal static extern uint SendInput(uint nInputs, Input[] pInputs, int cbSize);
+
+    [DllImport("user32.dll")]
+    internal static extern uint GetDpiForWindow(IntPtr hWnd);
 }
