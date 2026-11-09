@@ -405,10 +405,10 @@ Error code: {0}</value>
     <value>Города ({0})</value>
   </data>
   <data name="Connections_Cities_Many">
-    <value>Городов ({0})</value>
+    <value>Города ({0})</value>
   </data>
   <data name="Connections_Cities_Other">
-    <value>Городов ({0})</value>
+    <value>Города ({0})</value>
   </data>
   <data name="Connections_City">
     <value>Город</value>
@@ -2292,10 +2292,10 @@ Error code: {0}</value>
     <value>Исключённые приложения ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_Many">
-    <value>Исключённые приложений ({0})</value>
+    <value>Исключённые приложения ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
-    <value>Исключённых приложений ({0})</value>
+    <value>Исключённые приложения ({0})</value>
   </data>
   <data name="Flyouts_SplitTunneling_Excluded_Ips_One">
     <value>Исключённый IP-адрес ({0})</value>
@@ -3296,7 +3296,7 @@ Error code: {0}</value>
     <value>Excluded locations</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Cities">
-    <value>Городов</value>
+    <value>Города</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Countries">
     <value>Страны</value>
@@ -3408,7 +3408,7 @@ Error code: {0}</value>
     <value>Select apps which will be excluded from the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Excluded_FormattedHeader">
-    <value>Исключённые приложений ({0})</value>
+    <value>Исключённые приложения ({0})</value>
     <comment>Header for the list of apps to exclude for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Excluded apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Header">

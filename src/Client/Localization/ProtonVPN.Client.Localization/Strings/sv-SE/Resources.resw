@@ -1760,7 +1760,7 @@ Felkod: {0}</value>
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Field_MinLength">
-    <value>Minimum {0} characters</value>
+    <value>Minimum {0} tecken</value>
     <comment>Hint shown below a Report an issue text field that has a minimum length. {0} is the minimum number of characters.</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">

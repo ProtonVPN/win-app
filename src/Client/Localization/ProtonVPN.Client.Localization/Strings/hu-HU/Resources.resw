@@ -2553,7 +2553,7 @@ Error code: {0}</value>
     <value>Hitelesítési kulcs</value>
   </data>
   <data name="Login_TwoFactor_SecurityKey_Description">
-    <value>Helyezze be a Proton fiókjához kapcsolt U2F vagy FODE kulcsot.</value>
+    <value>Helyezze be a Proton fiókjához kapcsolt U2F vagy FIDO kulcsot.</value>
   </data>
   <data name="Main_Loading">
     <value>Betöltés, kis türelmet...</value>

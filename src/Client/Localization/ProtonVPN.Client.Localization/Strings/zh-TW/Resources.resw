@@ -1945,10 +1945,10 @@
     <value>VPN 會遮罩您的 IP 位址，讓您的活動更難被追溯到您。</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
-    <value>什麼是IP地址？</value>
+    <value>什麼是 IP 位址？</value>
   </data>
   <data name="Flyouts_IpAddress_Title">
-    <value>IP 地址</value>
+    <value>IP 位址</value>
   </data>
   <data name="Flyouts_IpAddress_VpnIp">
     <value>VPN IP</value>
@@ -1963,7 +1963,7 @@
     <value>您的 IP</value>
   </data>
   <data name="Flyouts_IpAddress_YourIpIsVisible">
-    <value>你的IP地址可見</value>
+    <value>你的 IP 位址可見</value>
   </data>
   <data name="Flyouts_Isp_Description1">
     <value>您的 ISP (網際網路服務供應商) 是將您連線到網際網路的公司。</value>
@@ -2324,7 +2324,7 @@
     <value>VPN IP</value>
   </data>
   <data name="Home_ConnectionDetails_YourIpAddress">
-    <value>你的IP地址</value>
+    <value>你的 IP 位址</value>
   </data>
   <data name="Home_FreeConnections_About">
     <value>關於免費連線的更多資訊</value>
@@ -2548,7 +2548,7 @@
     <value>更新 Proton VPN 以繼續</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Description">
-    <value> 我們的 P2P (點對點 ) 伺服器可以讓你接入P2P網絡，同時間還能保護你的IP地址和在線活動。</value>
+    <value>我們的 P2P（點對點）伺服器可讓你連上 P2P 網路，同時保護你的 IP 位址和線上活動。</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Header">
     <value> 甚麼是P2P VPN?</value>
@@ -3125,7 +3125,7 @@ VPN 連線</value>
     <comment>Header for the list of apps to exclude for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Excluded apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Header">
-    <value>排除所有應用程式</value>
+    <value>已排除的應用程式</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>應用程式檔案</value>
@@ -3168,7 +3168,7 @@ VPN 連線</value>
     <comment>Header for the list of IP addresses to exclude for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Excluded IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Header">
-    <value>排除的IP2地址</value>
+    <value>排除的 IP 位址</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Description">
     <value>Select IP addresses which will be included in the VPN connection</value>
@@ -3178,7 +3178,7 @@ VPN 連線</value>
     <comment>Header for the list of IP addresses to include for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Included IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Header">
-    <value>包含的IP2地址</value>
+    <value>包含的 IP 位址</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Select">
     <value>Select IP addresses</value>
@@ -3710,7 +3710,7 @@ VPN 連線</value>
     <value>使用分隔通道同時瀏覽兩個地點</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Configuration">
-    <value>允許信任的應用程式及IP地址直接連接網路，同時使用虛擬私有網路保護任何東西</value>
+    <value>允許受信任的應用程式和 IP 位址直接連上網際網路，其他一切則由你的 VPN 保護</value>
   </data>
   <data name="Upsell_Carousel_Streaming">
     <value>影音串流觀看您喜愛的電影與電視節目</value>
