@@ -20,7 +20,8 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Albireo.Base32" />
-        <PackageReference Include="ARSoft.Tools.Net.Dns" />
+        <PackageReference Include="ARSoft.Tools.Net" />
+        <PackageReference Include="BouncyCastle.Cryptography" />
         <PackageReference Include="DnsClient" />
         <PackageReference Include="System.Formats.Asn1" />
         <PackageReference Include="System.Text.Json" />

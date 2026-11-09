@@ -28,7 +28,7 @@
         <PackageReference Include="Otp.NET" />
         <PackageReference Include="MSTest.TestAdapter" />
         <PackageReference Include="MSTest.TestFramework" />
-        <PackageReference Include="Portable.BouncyCastle" />
+        <PackageReference Include="BouncyCastle.Cryptography" />
         <PackageReference Include="System.Formats.Asn1" />
         <PackageReference Include="System.ServiceProcess.ServiceController" />
         <PackageReference Include="System.Text.Json" />

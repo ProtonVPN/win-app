@@ -15,7 +15,7 @@
         </Compile>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="BouncyCastle.NetCore" />
+        <PackageReference Include="BouncyCastle.Cryptography" />
         <PackageReference Include="System.Formats.Asn1" />
         <PackageReference Include="System.Security.Cryptography.ProtectedData" />
         <PackageReference Include="System.Text.Json" />
