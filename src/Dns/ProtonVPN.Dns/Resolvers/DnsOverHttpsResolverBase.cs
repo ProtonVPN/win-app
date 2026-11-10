@@ -210,7 +210,11 @@ public abstract class DnsOverHttpsResolverBase : DnsResolverBase
         DnsOverHttpsParallelHttpRequestConfiguration config)
     {
         UriBuilder dohProviderUriBuilder = new UriBuilder(config.ProviderUrl);
-        HttpRequestMessage requestMessage = new();
+        HttpRequestMessage requestMessage = new()
+        {
+            Version = new Version(2, 0),
+            VersionPolicy = HttpVersionPolicy.RequestVersionOrLower,
+        };
         UriBuilder uriBuilder = new(config.ProviderUrl)
         {
             Host = ipAddress.ToString(),

@@ -123,16 +123,22 @@ public abstract class DnsOverHttpsResolverTestBase<T>
         {
             _mockHttpMessageHandler
                 .When($"https://{ipAddress}/dns-query?dns=AAABAAABAAAAAAAAA2FwaQlwcm90b252cG4CY2gAAAEAAQ")
+                .With(request => request.Version == HttpVersion.Version20
+                    && request.VersionPolicy == HttpVersionPolicy.RequestVersionOrLower)
                 .Respond(_ => new(HttpStatusCode.OK)
                 {
+                    Version = HttpVersion.Version11,
                     Content = new ByteArrayContent(
                         "AACBgAABAAEAAAAAA2FwaQlwcm90b252cG4CY2gAAAEAAcAMAAEAAQAAAfAABLmfn6o=".FromBase64String())
                 });
 
             _mockHttpMessageHandler
                 .When($"https://{ipAddress}/dns-query?dns=AAABAAABAAAAAAAAG2RNRllHU0xUUU9KWFhJMzNPT1pZRzRMVEROQQlwcm90b25wcm8DeHl6AAAQAAE")
+                .With(request => request.Version == HttpVersion.Version20
+                    && request.VersionPolicy == HttpVersionPolicy.RequestVersionOrLower)
                 .Respond(_ => new(HttpStatusCode.OK)
                 {
+                    Version = HttpVersion.Version11,
                     Content = new ByteArrayContent(
                         "AACBgAABAAMAAAAAG2RNRllHU0xUUU9KWFhJMzNPT1pZRzRMVEROQQlwcm90b25wcm8DeHl6AAAQAAHADAAQAAEAAAB4ADMyZWMyLTMtNjUtMjYtMTQ4LmV1LWNlbnRyYWwtMS5jb21wdXRlLmFtYXpvbmF3cy5jb23ADAAQAAEAAAB4ADY1ZWMyLTE4LTE5Mi0xMTUtMTg2LmV1LWNlbnRyYWwtMS5jb21wdXRlLmFtYXpvbmF3cy5jb23ADAAQAAEAAAB4ADQzZWMyLTMtNjgtMjMyLTIwMy5ldS1jZW50cmFsLTEuY29tcHV0ZS5hbWF6b25hd3MuY29t".FromBase64String())
                 });
