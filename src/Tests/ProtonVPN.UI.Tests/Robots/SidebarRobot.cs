@@ -687,6 +687,21 @@ public class SidebarRobot
             return this;
         }
 
+        public Verifications DoesProfileExist(string profileName)
+        {
+            // The list can refresh after a profile is saved and reset the scroll position,
+            // so the profile is scrolled into view again on every attempt.
+            RetryResult<bool> retry = Retry.WhileFalse(() =>
+            {
+                Element.ByAutomationId($"Actions_for_{profileName}").ScrollIntoView();
+                Element.ByName(profileName).WaitUntilDisplayed(TestConstants.FiveSecondsTimeout);
+                return true;
+            }, TestConstants.ThirtySecondsTimeout, TestConstants.RetryInterval, ignoreException: true);
+
+            Assert.That(retry.Success, Is.True, $"Profile '{profileName}' was not displayed in the profiles list. {retry.LastException?.Message}");
+            return this;
+        }
+
         public Verifications DuplicateProfiles(string profileName, int expectedCount = 2)
         {
             List<string> allChildren = CountriesListGroup.GetAllChildrenNames();
