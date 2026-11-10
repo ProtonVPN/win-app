@@ -29,6 +29,7 @@ using ProtonVPN.Common.Core.Extensions;
 using ProtonVPN.Configurations.Contracts;
 using ProtonVPN.IssueReporting.Contracts;
 using ProtonVPN.Logging.Contracts;
+using ProtonVPN.Logging.Contracts.Events.AppLogs;
 
 namespace ProtonVPN.Client.Logic.Servers.Observers;
 
@@ -38,9 +39,13 @@ public class ServersObserver : PollingObserverBase, IServersObserver,
     IEventMessageReceiver<DeviceLocationChangedMessage>,
     IEventMessageReceiver<MainWindowVisibilityChangedMessage>
 {
+    private static readonly TimeSpan _firstRetryDelay = TimeSpan.FromSeconds(20);
+
     private readonly IServersUpdater _serversUpdater;
     private readonly IUserAuthenticator _userAuthenticator;
     private readonly IConfiguration _config;
+
+    private TimeSpan? _retryDelay;
 
     protected override TimeSpan PollingInterval => TimeSpanExtensions.Min(_config.ServerLoadUpdateInterval, _config.ServerUpdateInterval);
 
@@ -58,12 +63,21 @@ public class ServersObserver : PollingObserverBase, IServersObserver,
 
     public void Receive(LoggedInMessage message)
     {
+        _retryDelay = null;
         StartTimer();
+
+        // The first update is made by the authenticator before logging in.
+        if (_serversUpdater.IsRefreshNeeded())
+        {
+            ScheduleRetry();
+        }
     }
 
     public void Receive(LoggedOutMessage message)
     {
         StopTimer();
+        _retryDelay = null;
+
         _serversUpdater.ClearCacheAsync().FireAndForget();
     }
 
@@ -82,9 +96,52 @@ public class ServersObserver : PollingObserverBase, IServersObserver,
 
     protected override async Task OnTriggerAsync()
     {
-        if (_userAuthenticator.IsLoggedIn)
+        if (!_userAuthenticator.IsLoggedIn)
+        {
+            return;
+        }
+
+        bool isUpdated = false;
+
+        try
         {
             await _serversUpdater.UpdateAsync();
+            isUpdated = !_serversUpdater.IsRefreshNeeded();
         }
+        finally
+        {
+            // The user may have logged out while the update was running.
+            if (_userAuthenticator.IsLoggedIn)
+            {
+                if (!isUpdated)
+                {
+                    ScheduleRetry();
+                }
+                else if (_retryDelay is not null)
+                {
+                    _retryDelay = null;
+                    StopTimer();
+                    StartTimer();
+                }
+            }
+        }
+    }
+
+    private void ScheduleRetry()
+    {
+        TimeSpan delay = _retryDelay * 2 ?? _firstRetryDelay;
+        if (delay >= PollingInterval)
+        {
+            // The polling takes over, the backoff restarts only after a successful update.
+            Logger.Info<AppLog>("Servers still need a refresh, retrying at the next polling.");
+            return;
+        }
+
+        _retryDelay = delay;
+
+        Logger.Info<AppLog>($"Servers still need a refresh, retrying in {delay.TotalSeconds:0} seconds.");
+
+        StopTimer();
+        StartTimerWithDelay(delay);
     }
 }

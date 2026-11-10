@@ -40,12 +40,12 @@ public interface IServersCache
     bool IsOutdated();
     bool IsLoadOutdated();
     bool IsLoadOverdue();
+    bool HasStatusFile();
     bool HasServersRequestFailed();
     bool HasNoServers();
 
     void Clear();
     void LoadFromFileIfEmpty();
-    void ReprocessServers();
     void RecomputeLoads();
 
     Task UpdateAsync(CancellationToken cancellationToken);

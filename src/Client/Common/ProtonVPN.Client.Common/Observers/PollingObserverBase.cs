@@ -44,7 +44,7 @@ public abstract class PollingObserverBase : ObserverBase, IDisposable
         StartTimerWithDelay(TimeSpan.Zero);
     }
 
-    private void StartTimerWithDelay(TimeSpan initialDelay)
+    protected void StartTimerWithDelay(TimeSpan initialDelay)
     {
         if (_timer.Enabled)
         {

@@ -32,4 +32,6 @@ public interface IServersUpdater
     Task ClearCacheAsync(CancellationToken cancellationToken = default);
 
     bool HasServersRequestFailed();
+
+    bool IsRefreshNeeded();
 }
