@@ -45,8 +45,7 @@ public class SystemNetworkInterfaces : ISystemNetworkInterfaces
     {
         try
         {
-            NetworkInterface[] interfaces =
-                System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces();
+            NetworkInterface[] interfaces = VisibleNetworkInterfaces.Get();
 
             return interfaces
                 .Select(i => new SystemNetworkInterface(i))
@@ -73,8 +72,7 @@ public class SystemNetworkInterfaces : ISystemNetworkInterfaces
     {
         return TryGet(() =>
         {
-            NetworkInterface[] interfaces =
-            System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces();
+            NetworkInterface[] interfaces = VisibleNetworkInterfaces.Get();
 
             foreach (NetworkInterface i in interfaces)
             {
@@ -121,7 +119,7 @@ public class SystemNetworkInterfaces : ISystemNetworkInterfaces
     {
         try
         {
-            NetworkInterface[] activeInterfaces = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces()
+            NetworkInterface[] activeInterfaces = VisibleNetworkInterfaces.Get()
                 .Where(ni => ni.OperationalStatus == OperationalStatus.Up &&
                              (ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
                               ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211))
