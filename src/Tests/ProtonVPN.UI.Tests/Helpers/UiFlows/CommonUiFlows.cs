@@ -1,0 +1,156 @@
+﻿/*
+ * Copyright (c) 2026 Proton AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using System;
+using System.Threading;
+using ProtonVPN.UI.Tests.Enums;
+using ProtonVPN.UI.Tests.Robots;
+using ProtonVPN.UI.Tests.TestBase;
+
+namespace ProtonVPN.UI.Tests.TestsHelper.UiFlows;
+
+public class CommonUiFlows : BaseTest
+{
+    public static void CloseConnectionHelpModalIfDisaplyed(TimeSpan? timeout = null)
+    {
+        timeout ??= TestConstants.TenSecondsTimeout;
+
+        try
+        {
+            SupportRobot
+                .Verify.IsConnectionHelpDisplayed(timeout)
+                .CloseSupportWindow(); // sometimes there is no internet and the connection help modal shows
+        }
+        catch { }
+    }
+
+    public static void FullLogin(TestUserData testUser, bool isProTunVersion = true)
+    {
+        LoginRobot
+            .Login(testUser);
+
+        NavigationRobot
+            .Verify.IsOnMainPage()
+                   .IsOnHomePage();
+
+        // Remove when VPNWIN-2599 is implemented. 
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+
+        if (!isProTunVersion)
+        {
+            HomeRobot.DismissWelcomeModal();
+        }
+    }
+
+    public static void Logout(TimeSpan? timeout = null)
+    {
+        timeout ??= TestConstants.OneMinuteTimeout;
+
+        HomeRobot
+            .ExpandKebabMenuButton();
+
+        SettingRobot
+            .SignOut()
+            .ConfirmSignOut();
+
+        LoginRobot
+            .Verify.IsLoginWindowDisplayed(timeout);
+    }
+
+    public static void EnsureUserIsDisconnected(bool shouldVerifyKillSwitch = false, bool shouldCancelConnection = false)
+    {
+        Action verifyDisconnectState = shouldVerifyKillSwitch
+            ? () => HomeRobot.Verify.IsAdvancedKillSwitchActivated()
+            : () => HomeRobot.Verify.IsDisconnected(TestConstants.TenSecondsTimeout);
+
+        Action InteruptConnection = shouldCancelConnection
+            ? () => HomeRobot.CancelConnection()
+            : () => HomeRobot.Disconnect();
+
+        try
+        {
+            verifyDisconnectState();
+        }
+        catch (TimeoutException)
+        {
+            InteruptConnection();
+            verifyDisconnectState();
+        }
+    }
+
+    public static void VerifyIsConnectedThenDisconnect()
+    {
+        HomeRobot
+            .Verify.IsConnected()
+            .Disconnect()
+            .Verify.IsDisconnected();
+    }
+
+    public static void ExitAppFromTray()
+    {
+        using (TrayApp)
+        {
+            TrayRobot
+                .ClickExitAppButton();
+        }
+
+        try
+        {
+            HomeRobot
+                .ExitViaKebabMenuWithConfirmation();
+        }
+        catch { }
+
+        // give it time to exit
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
+
+        ProcessHelper.VerifyAppIsNotRunning();
+    }
+
+    public static void ChangeProtocol(Protocol protocol, bool shouldEnableProTun = false)
+    {
+        SettingRobot
+            .OpenSettings()
+            .OpenProtocolSettings();
+
+        HandleProtun(shouldEnableProTun);
+
+        SettingRobot
+            .SelectProtocol(protocol)
+            .ApplySettings()
+            .CloseSettings();
+    }
+
+    private static void HandleProtun(bool shouldEnableProTun)
+    {
+        if (TestConstants.IsProTunVersion)
+        {
+            if (shouldEnableProTun)
+            {
+                SettingRobot.EnableProtunToggle();
+            }
+            else
+            {
+                SettingRobot
+                    .DisableProtunToggle()
+                    .Verify.ProtonProtocolsAreHidden();
+            }
+        }
+    }
+}

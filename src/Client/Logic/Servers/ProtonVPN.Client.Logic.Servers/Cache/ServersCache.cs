@@ -145,12 +145,17 @@ public class ServersCache : IServersCache
 
     public bool IsOutdated()
     {
-        return DateTime.UtcNow - _lastFullUpdateUtc >= _config.ServerUpdateInterval - _updateIntervalTolerance;
+        return GetWithReadLock(() => DateTime.UtcNow - _lastFullUpdateUtc >= _config.ServerUpdateInterval - _updateIntervalTolerance);
     }
 
     public bool IsLoadOutdated()
     {
         return IsLoadOlderThan(_config.ServerLoadUpdateInterval - _updateIntervalTolerance);
+    }
+
+    public bool HasStatusFile()
+    {
+        return StatusFile is not null;
     }
 
     public bool IsLoadOverdue()
@@ -161,8 +166,9 @@ public class ServersCache : IServersCache
     private bool IsLoadOlderThan(TimeSpan maxAge)
     {
         // Without a retained blob there is nothing to score against, and a recompute cannot produce one.
-        return StatusFile is null
-            || DateTime.UtcNow - _lastLoadsUpdateUtc >= maxAge;
+        return GetWithReadLock(() => 
+            _statusFile is null ||
+            DateTime.UtcNow - _lastLoadsUpdateUtc >= maxAge);
     }
 
     public bool HasServersRequestFailed()
@@ -221,8 +227,7 @@ public class ServersCache : IServersCache
 
     public void Clear()
     {
-        _lock.EnterWriteLock();
-        try
+        SetWithWriteLock(() =>
         {
             _lastFullUpdateUtc = DateTime.MinValue;
             _lastLoadsUpdateUtc = DateTime.MinValue;
@@ -240,11 +245,7 @@ public class ServersCache : IServersCache
             _cities = [];
             _gateways = [];
             _secureCoreCountryPairs = [];
-        }
-        finally
-        {
-            _lock.ExitWriteLock();
-        }
+        });
     }
 
     public async Task UpdateAsync(CancellationToken cancellationToken)
@@ -274,7 +275,7 @@ public class ServersCache : IServersCache
                 _logger.Info<ApiLog>("API: Get servers response was not modified since last call, using cached data.");
 
                 // _lastLoadsUpdateUtc is left stale on purpose, so the caller still runs a loads update.
-                _lastFullUpdateUtc = utcNow;
+                SetWithWriteLock(() => _lastFullUpdateUtc = utcNow);
                 return;
             }
 
@@ -306,17 +307,17 @@ public class ServersCache : IServersCache
             sbyte userMaxTier = _settings.VpnPlan.MaxTier;
 
             SaveToFile(deviceLocation ?? DeviceLocation.Unknown, userMaxTier, servers);
-            ProcessServers(deviceLocation ?? DeviceLocation.Unknown, userMaxTier, servers, statusFile);
+            ApplyServers(deviceLocation ?? DeviceLocation.Unknown, userMaxTier, servers, statusFile, utcNow, isFullUpdate: true);
 
-            // Committed only once the list is applied.
+            // Committed only once the list is applied, and before the receivers are notified.
             _settings.LastLogicalsStatusId = response.Value.StatusId;
-            _lastFullUpdateUtc = utcNow;
-            _lastLoadsUpdateUtc = utcNow;
 
             if (response.LastModified.HasValue)
             {
                 _settings.LogicalsLastModifiedDate = response.LastModified.Value;
             }
+
+            NotifyServersChanged();
         }
         catch (Exception e)
         {
@@ -376,9 +377,9 @@ public class ServersCache : IServersCache
             sbyte? userMaxTier = ServersUserMaxTier;
 
             SaveToFile(deviceLocation, userMaxTier, servers);
-            ProcessServers(deviceLocation, userMaxTier, servers, statusFile);
+            ApplyServers(deviceLocation, userMaxTier, servers, statusFile, utcNow);
 
-            _lastLoadsUpdateUtc = utcNow;
+            NotifyServersChanged();
         }
         catch (Exception e)
         {
@@ -464,8 +465,19 @@ public class ServersCache : IServersCache
         return statusFile;
     }
 
-
     private void ProcessServers(DeviceLocation deviceLocation, sbyte? userMaxTier, IReadOnlyList<Server> servers, byte[]? statusFile)
+    {
+        ApplyServers(deviceLocation, userMaxTier, servers, statusFile);
+        NotifyServersChanged();
+    }
+
+    private void ApplyServers(
+        DeviceLocation deviceLocation,
+        sbyte? userMaxTier,
+        IReadOnlyList<Server> servers,
+        byte[]? statusFile,
+        DateTime? updateUtc = null,
+        bool isFullUpdate = false)
     {
         SetIpv6Flags(servers);
 
@@ -477,12 +489,21 @@ public class ServersCache : IServersCache
         IReadOnlyList<SecureCoreCountryPair> secureCoreCountryPairs = GetSecureCoreCountryPairs(servers);
         IReadOnlyList<Server> filteredServers = GetFilteredServers(servers);
 
-        _lock.EnterWriteLock();
-        try
+        SetWithWriteLock(() =>
         {
             _serversDeviceLocation = deviceLocation;
             _serversUserMaxTier = userMaxTier;
             _statusFile = statusFile;
+
+            if (updateUtc.HasValue)
+            {
+                _lastLoadsUpdateUtc = updateUtc.Value;
+
+                if (isFullUpdate)
+                {
+                    _lastFullUpdateUtc = updateUtc.Value;
+                }
+            }
 
             _originalServers = servers;
             _filteredServers = filteredServers;
@@ -492,13 +513,25 @@ public class ServersCache : IServersCache
             _cities = cities;
             _gateways = gateways;
             _secureCoreCountryPairs = secureCoreCountryPairs;
+        });
+    }
+
+    private void NotifyServersChanged()
+    {
+        _eventMessageSender.Send(new ServerListChangedMessage());
+    }
+
+    private void SetWithWriteLock(Action action)
+    {
+        _lock.EnterWriteLock();
+        try
+        {
+            action();
         }
         finally
         {
             _lock.ExitWriteLock();
         }
-
-        _eventMessageSender.Send(new ServerListChangedMessage());
     }
 
     private static void SetIpv6Flags(IEnumerable<Server> servers)
@@ -695,12 +728,6 @@ public class ServersCache : IServersCache
             DeviceIpAddress = deviceLocation.IpAddress,
         };
         _serversFileReaderWriter.Save(serversFile);
-    }
-
-    public void ReprocessServers()
-    {
-        _logger.Info<AppLog>("Reprocessing servers.");
-        ProcessServers(_serversDeviceLocation, _serversUserMaxTier, _originalServers, _statusFile);
     }
 
     public async Task<ApiResponseResult<LookupServerResponse>?> LookupAsync(string input)

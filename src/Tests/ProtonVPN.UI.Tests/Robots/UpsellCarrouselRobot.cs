@@ -133,6 +133,12 @@ public class UpsellCarrouselRobot
             return this;
         }
 
+        public Verifications IsStreamingInProgressUpsellNotDisplayed()
+        {
+            StreamingInProgressUpsellTitle.DoesNotExist();
+            return this;
+        }
+
         public Verifications IsTenDevicesUpsellDisplayed()
         {
             TenDevicesUpsellTitle.WaitUntilDisplayed();

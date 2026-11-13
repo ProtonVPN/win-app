@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Linq;
 using System.Threading;
 using System.Collections.Generic;
 using FlaUI.Core.Input;
@@ -92,7 +93,7 @@ public class SidebarRobot
 
     protected Element CreateProfileButton = Element.ByAutomationId("CreateProfileButton");
 
-    protected Element SearchTextBox = Element.ByAutomationId("SearchTextBox");
+    public Element SearchTextBox => Element.ByAutomationId("SearchTextBox");
     protected Element SearchBackButton = Element.ByAutomationId("SearchBackButton");
     protected Element CountryExpanderButton = Element.ByAutomationId("ExpanderButton");
     protected Element SecondaryButton = Element.ByAutomationId("SecondaryButton");
@@ -579,6 +580,7 @@ public class SidebarRobot
 
         public Verifications SidebarSearchResultContains(string textToLookFor)
         {
+            Thread.Sleep(TestConstants.OneSecondTimeout);
             List<string> allChildren = SearchResultsPage.GetAllChildrenNames();
             Assert.That(allChildren, Does.Contain(textToLookFor));
             return this;
@@ -682,6 +684,33 @@ public class SidebarRobot
         public Verifications DoesConnectionItemExist(string connectionItemName)
         {
             Element.ByName(connectionItemName).WaitUntilDisplayed();
+            return this;
+        }
+
+        public Verifications DoesProfileExist(string profileName)
+        {
+            // The list can refresh after a profile is saved and reset the scroll position,
+            // so the profile is scrolled into view again on every attempt.
+            RetryResult<bool> retry = Retry.WhileFalse(() =>
+            {
+                Element.ByAutomationId($"Actions_for_{profileName}").ScrollIntoView();
+                Element.ByName(profileName).WaitUntilDisplayed(TestConstants.FiveSecondsTimeout);
+                return true;
+            }, TestConstants.ThirtySecondsTimeout, TestConstants.RetryInterval, ignoreException: true);
+
+            Assert.That(retry.Success, Is.True, $"Profile '{profileName}' was not displayed in the profiles list. {retry.LastException?.Message}");
+            return this;
+        }
+
+        public Verifications DuplicateProfiles(string profileName, int expectedCount = 2)
+        {
+            List<string> allChildren = CountriesListGroup.GetAllChildrenNames();
+            int actualCount = allChildren.Count(n => n == profileName);
+
+            Assert.That(actualCount, Is.EqualTo(expectedCount),
+                $"Expected {expectedCount} children named '{profileName}' inside '{CountriesListGroup.SelectorName}', " +
+                $"but found {actualCount}. All children: [{string.Join(", ", allChildren)}].");
+
             return this;
         }
 

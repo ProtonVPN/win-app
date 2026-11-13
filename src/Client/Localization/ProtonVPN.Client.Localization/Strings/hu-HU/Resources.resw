@@ -247,7 +247,7 @@
     <value>Újrakapcsolódás</value>
   </data>
   <data name="Common_Actions_Refresh">
-    <value>Refresh</value>
+    <value>Frissítés</value>
   </data>
   <data name="Common_Actions_Remove">
     <value>Eltávolítás</value>
@@ -297,7 +297,7 @@
     <comment>This tag indicates that a newer version of the app is currently available</comment>
   </data>
   <data name="Common_Tags_Recommended">
-    <value>Recommended</value>
+    <value>Ajánlott</value>
     <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
   </data>
   <data name="Components_Update_GetMostFromYourVpn">
@@ -438,10 +438,10 @@ Error code: {0}</value>
     <value>Leggyorsabb</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Free server</value>
+    <value>Ingyenes szerver</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Free servers</value>
+    <value>Ingyenes szerverek</value>
   </data>
   <data name="Connections_Gateway">
     <value>Átjáró</value>
@@ -483,7 +483,7 @@ Error code: {0}</value>
     <value>P2P server</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P servers</value>
+    <value>P2P szerverek</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>P2P állapota ({0})</value>
@@ -567,7 +567,7 @@ Error code: {0}</value>
     <value>Secure Core server</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Secure Core servers</value>
+    <value>Secure Core szerverek</value>
   </data>
   <data name="Connections_Server_Restricted">
     <value>A szerver csak VPN Plus csomaggal érhető el</value>
@@ -576,10 +576,10 @@ Error code: {0}</value>
     <value>A szerver karbantartás alatt áll</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Server</value>
+    <value>Szerver</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Servers</value>
+    <value>Szerverek</value>
   </data>
   <data name="Connections_State">
     <value>Állapot</value>
@@ -1749,7 +1749,7 @@ Error code: {0}</value>
     <value>P2P is not allowed on free VPN servers</value>
   </data>
   <data name="Dialogs_P2PDetection_WindowTitle">
-    <value>Discover VPN Plus</value>
+    <value>VPN Plus felfedezése</value>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email">
     <value>E-mail cím</value>
@@ -1758,6 +1758,10 @@ Error code: {0}</value>
   <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
     <value>példa@domain.com</value>
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Field_MinLength">
+    <value>Minimum {0} characters</value>
+    <comment>Hint shown below a Report an issue text field that has a minimum length. {0} is the minimum number of characters.</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
     <value>Hibanapló beküldése</value>
@@ -1808,7 +1812,7 @@ Error code: {0}</value>
     <value>Hibajelentés</value>
   </data>
   <data name="Dialogs_StreamingDetection_WindowTitle">
-    <value>Discover VPN Plus</value>
+    <value>VPN Plus felfedezése</value>
   </data>
   <data name="Dialogs_StreamingWarning_Description">
     <value>VPN Plus servers let you enjoy your favorite movies and TV shows from around the world.</value>
@@ -1919,7 +1923,7 @@ Error code: {0}</value>
     <value>You unlocked all premium Proton VPN, Mail, Calendar, Drive, and Pass features.</value>
   </data>
   <data name="Dialogs_WelcomeUnlimited_Title">
-    <value>Welcome to {0}</value>
+    <value>Üdvözli a {0}</value>
     <comment>Title to welcome the user after an account upgrade. {0} is a placeholder for the name of the new plan (eg. Proton Unlimited, Proton Duo, Proton Family).</comment>
   </data>
   <data name="Dialogs_WhatsNew_LanConnections_Description">
@@ -1953,16 +1957,16 @@ Error code: {0}</value>
     <value>If there are locations you don't want to be automatically connected to, you can exclude them from Fastest and Random country.</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
-    <value>Skip</value>
+    <value>Kihagyás</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
-    <value>Not the country you wanted?</value>
+    <value>Nem az az ország, amit szeretett volna?</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_ActionButton">
     <value>Exclude locations</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_CloseButton">
-    <value>Maybe later</value>
+    <value>Talán később</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Subtitle">
     <value>You can now exclude countries or cities from Fastest and Random connections.</value>
@@ -2070,7 +2074,7 @@ Error code: {0}</value>
     <value>Protect your browsing on websites and apps.</value>
   </data>
   <data name="Flyouts_NetShield_MalwareOnly_Success">
-    <value>You're protected from malware only.</value>
+    <value>Csak a rosszindulatú szoftverektől van védve.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Description">
     <value>Block ads, trackers, malware, and adult content with VPN Plus.</value>
@@ -2082,7 +2086,7 @@ Error code: {0}</value>
     <value>Aktív portszám</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Error">
-    <value>Cannot retrieve active port number. Restart your connection and try again.</value>
+    <value>Nem sikerült lekérni az aktív portszámot. Indítsa újra a kapcsolatot, és próbálja meg újra.</value>
   </data>
   <data name="Flyouts_PortForwarding_ActivePort_Info">
     <value>Enter the active port number into your torrent client or P2P app for enhanced performance.</value>
@@ -2513,13 +2517,13 @@ Error code: {0}</value>
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>6-digit authentication code</value>
+    <value>6 jegyű hitelesítő kód</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>Kétlépcsős hitelesítés</value>
   </data>
   <data name="Login_TwoFactor_Authenticator">
-    <value>Authenticator app</value>
+    <value>Hitelesítő alkalmazás</value>
   </data>
   <data name="Login_TwoFactor_Digit1">
     <value>Első számjegy</value>
@@ -2546,10 +2550,10 @@ Error code: {0}</value>
     <value>No known two-factor authentication methods found.</value>
   </data>
   <data name="Login_TwoFactor_SecurityKey">
-    <value>Security key</value>
+    <value>Hitelesítési kulcs</value>
   </data>
   <data name="Login_TwoFactor_SecurityKey_Description">
-    <value>Insert the U2F or FIDO key linked to your Proton Account.</value>
+    <value>Helyezze be a Proton fiókjához kapcsolt U2F vagy FIDO kulcsot.</value>
   </data>
   <data name="Main_Loading">
     <value>Betöltés, kis türelmet...</value>
@@ -2572,22 +2576,22 @@ Error code: {0}</value>
     <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
   </data>
   <data name="NoServers_ContactUs">
-    <value>Contact us</value>
+    <value>Kapcsolatfelvétel</value>
   </data>
   <data name="NoServers_FailedToLoad">
     <value>We couldn't load the server list.</value>
   </data>
   <data name="NoServers_NeedHelp">
-    <value>Need help?</value>
+    <value>Segítségre van szüksége?</value>
   </data>
   <data name="NoServers_SignOut">
-    <value>Sign out</value>
+    <value>Kijelentkezés</value>
   </data>
   <data name="NoServers_Tip">
-    <value>Ask your administrator to enable VPN access for your account.</value>
+    <value>Kérje meg az adminisztrátorát, hogy engedélyezze a VPN hozzáférést az Ön fiókjához.</value>
   </data>
   <data name="NoServers_Title">
-    <value>No VPN connections available</value>
+    <value>Nincs elérhető VPN kapcsolat</value>
   </data>
   <data name="NoServers_UnderMaintenance_Tip">
     <value>We couldn't load any servers. Click Refresh to update the server list.</value>
@@ -2599,7 +2603,7 @@ Error code: {0}</value>
     <value>Port számának másolása</value>
   </data>
   <data name="Notifications_PortForwarding_Description">
-    <value>Go to your torrent client or P2P app and enter this number.</value>
+    <value>Menjen a torrent kliensére vagy a P2P alkalmazásába, és írja be ezt a számot.</value>
   </data>
   <data name="Notifications_SessionLimit_Description">
     <value>Elérte a maximális eszközlimitet. A VPN-hez való újbóli csatlakozáshoz kérjük, válassza le a kapcsolatot egy másik eszközről.</value>
@@ -2784,7 +2788,7 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Ez letiltja az egyéni DNS-t ehhez a profilhoz.</value>
   </data>
   <data name="Profile_Options_Application">
-    <value>App</value>
+    <value>Alkalmazás</value>
   </data>
   <data name="Profile_Options_Application_Select">
     <value>Select an app</value>
@@ -2832,7 +2836,7 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Munka/Iskola</value>
   </data>
   <data name="Profiles_Page_Description">
-    <value>Configure your own VPN settings and connect in one click</value>
+    <value>Állítsa össze saját VPN-beállításait és csatlakozzon egyetlen kattintással</value>
   </data>
   <data name="Profiles_Page_Title">
     <value>Profilok</value>
@@ -2865,7 +2869,7 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Szerver</value>
   </data>
   <data name="Server_Fastest">
-    <value>Fastest server</value>
+    <value>Leggyorsabb szerver</value>
   </data>
   <data name="Server_Fastest_Free">
     <value>A leggyorsabb ingyenes szerver</value>
@@ -2997,7 +3001,7 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Ezekhez a szerverekhez sorrendben próbálunk csatlakozni. Ha egyik sem működik, az alapértelmezett Proton VPN DNS lesz használva.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_FormattedHeader">
-    <value>DNS servers ({0})</value>
+    <value>DNS szerverek ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
@@ -3100,10 +3104,10 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Excluded locations</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Cities">
-    <value>Cities</value>
+    <value>Városok</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Countries">
-    <value>Countries</value>
+    <value>Országok</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Description">
     <value>The selected locations will never be used when you connect to Fastest or Random</value>
@@ -3115,7 +3119,7 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Select...</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_States">
-    <value>States</value>
+    <value>Államok</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Vészkapcsoló</value>
@@ -3139,7 +3143,7 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>NetShield</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
-    <value>Block ads, trackers, and malware</value>
+    <value>Hirdetések, trackerek és rosszindulatú programok blokkolása</value>
   </data>
   <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent">
     <value>Block ads, trackers, malware, and adult content</value>
@@ -3169,7 +3173,7 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Port átirányítás</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Active port number:</value>
+    <value>Aktív portszám:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>Port számának másolása</value>
@@ -3197,10 +3201,10 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Értesítések</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Notifications_Description">
-    <value>Get notified when your active port number changes.</value>
+    <value>Értesítést kap, ha a port átirányítási száma megváltozik.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Unavailable">
-    <value>Unavailable</value>
+    <value>Nem elérhető</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>Protokoll</value>
@@ -3212,11 +3216,11 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Select apps which will be excluded from the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Excluded_FormattedHeader">
-    <value>Excluded apps ({0})</value>
+    <value>Kizárt alkalmazások ({0})</value>
     <comment>Header for the list of apps to exclude for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Excluded apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Header">
-    <value>Excluded apps</value>
+    <value>Kihagyott alkalmazások</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>Alkalmazás fájlok</value>
@@ -3226,11 +3230,11 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Select apps which will be included in the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader">
-    <value>Included apps ({0})</value>
+    <value>Bevont alkalmazások ({0})</value>
     <comment>Header for the list of apps to include for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Included apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Included_Header">
-    <value>Included apps</value>
+    <value>Bevont alkalmazások</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Select">
     <value>Select apps</value>
@@ -3242,7 +3246,7 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Befoglaló mód</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Only selected apps and IP addresses connect through VPN, all other traffic is unprotected.</value>
+    <value>Csak a kiválasztott alkalmazások és IP-címek csatlakoznak a VPN-en keresztül, minden más forgalom nincs védve.</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
     <value>Tartalmaz</value>
@@ -3255,21 +3259,21 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Select IP addresses which will be excluded from the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_FormattedHeader">
-    <value>Excluded IP addresses ({0})</value>
+    <value>Kizárt IP címek ({0})</value>
     <comment>Header for the list of IP addresses to exclude for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Excluded IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Header">
-    <value>Excluded IP addresses</value>
+    <value>Kihagyott IP címek</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Description">
     <value>Select IP addresses which will be included in the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_FormattedHeader">
-    <value>Included IP addresses ({0})</value>
+    <value>Elfogadott IP címek ({0})</value>
     <comment>Header for the list of IP addresses to include for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Included IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Header">
-    <value>Included IP addresses</value>
+    <value>Bevont IP-címek</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Select">
     <value>Select IP addresses</value>
@@ -3303,7 +3307,7 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Automatikus indítás</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>Auto-connect</value>
+    <value>Automatikus csatlakozás</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>Automatikusan csatlakozik az alapértelmezett kapcsolatához, amikor a Proton VPN megnyílik.</value>
@@ -3324,19 +3328,19 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Kicsinyítés a tálcára</value>
   </data>
   <data name="Settings_General_AutoStartup_Description">
-    <value>Set the app to launch or connect automatically.</value>
+    <value>Az alkalmazás automatikus indításának vagy csatlakoztatásának beállítása.</value>
   </data>
   <data name="Settings_General_AutomaticUpdates">
     <value>Automatikus frissítések</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Automatically check and install Proton VPN updates.</value>
+    <value>A Proton VPN frissítések automatikus keresése és telepítése.</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>Béta hozzáférés</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>Get early access and help us test new versions of Proton VPN.</value>
+    <value>Szerezzen korai hozzáférést, és segítsen tesztelni a Proton VPN új verzióit.</value>
   </data>
   <data name="Settings_General_Language">
     <value>Nyelv</value>
@@ -3632,16 +3636,16 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Blocked website?</value>
   </data>
   <data name="System_Tray_Actions_Connect">
-    <value>Connect</value>
+    <value>Kapcsolódás</value>
   </data>
   <data name="System_Tray_Actions_Disconnect">
-    <value>Disconnect</value>
+    <value>Leválasztás</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
-    <value>Exit</value>
+    <value>Kilépés</value>
   </data>
   <data name="System_Tray_Actions_OpenApplication">
-    <value>Open {0}</value>
+    <value>{0} megnyitása</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_ExitApplication">
@@ -3683,10 +3687,10 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <comment>Unit for Terabytes per second</comment>
   </data>
   <data name="UpsellBanner_P2P_Description">
-    <value>Download files through BitTorrent and other file sharing protocols.</value>
+    <value>Fájlok letöltése BitTorrent és más fájlmegosztó protokollokon keresztül.</value>
   </data>
   <data name="UpsellBanner_P2P_Title">
-    <value>P2P support</value>
+    <value>P2P támogatás</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>Váltson nagyobb csomagra tetszőleges szerver kiválasztásához.</value>
@@ -3883,19 +3887,19 @@ A nagy szerverterhelés lelassíthatja a kapcsolatot.</value>
     <value>Proton WireGuard (TCP)</value>
   </data>
   <data name="VpnProtocol_ProTun_Tcp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>A legkorszerűbb protokoll a biztonság és a teljesítmény érdekében</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls">
     <value>Proton Stealth</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls_Description">
-    <value>Overcomes VPN blocks by hiding your connection from censors</value>
+    <value>Legyőzi a VPN korlátozásokat a kapcsolat elrejtésével a cenzorok elől</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp">
     <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>A legkorszerűbb protokoll a biztonság és a teljesítmény érdekében</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

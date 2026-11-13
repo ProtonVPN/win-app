@@ -109,7 +109,7 @@ public class InstallerRobot
 
     public InstallerRobot RunVerySilentInstallation()
     {
-        WindowsUtils.RunPowerShellScript(_protonVpnFullInstallScript, timeout: TestConstants.FourMinutesTimeout);
+        ScriptHelper.RunPowerShellScript(_protonVpnFullInstallScript, timeout: TestConstants.FourMinutesTimeout);
         return this;
     }
 
@@ -124,16 +124,16 @@ public class InstallerRobot
         switch (protonApp)
         {
             case ProtonApp.Vpn:
-                WindowsUtils.RunPowerShellScript(_protonVpnFullUninstallScript, timeout: TestConstants.FourMinutesTimeout);
+                ScriptHelper.RunPowerShellScript(_protonVpnFullUninstallScript, timeout: TestConstants.FourMinutesTimeout);
                 break;
             case ProtonApp.Mail:
-                WindowsUtils.RunPowerShellScript(_protonMailUninstallerCommand, timeout: TestConstants.TwoMinutesTimeout);
+                ScriptHelper.RunPowerShellScript(_protonMailUninstallerCommand, timeout: TestConstants.TwoMinutesTimeout);
                 break;
             case ProtonApp.Drive:
                 UninstallMsiProduct(ProtonDriveUninstallerCode);
                 break;
             case ProtonApp.Pass:
-                WindowsUtils.RunPowerShellScript(_protonPassUninstallerCommand, timeout: TestConstants.TwoMinutesTimeout);
+                ScriptHelper.RunPowerShellScript(_protonPassUninstallerCommand, timeout: TestConstants.TwoMinutesTimeout);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(protonApp), protonApp, null);
@@ -143,7 +143,7 @@ public class InstallerRobot
 
     public InstallerRobot SelectLanguage()
     {
-        InstallerHelper.WaitForAndFocusWindow(INSTALLER_LANGUAGE_WINDOW);
+        WindowHelper.WaitForAndFocusWindow(INSTALLER_LANGUAGE_WINDOW);
         Keyboard.Type(VirtualKeyShort.ENTER);
         Thread.Sleep(TestConstants.UserInputSimulationDelay);
         return this;
@@ -151,7 +151,7 @@ public class InstallerRobot
 
     public InstallerRobot UncheckApps()
     {
-        InstallerHelper.WaitForAndFocusWindow(INSTALLER_WINDOW);
+        WindowHelper.WaitForAndFocusWindow(INSTALLER_WINDOW);
         if (!TestEnvironment.AreTestsRunningLocally())
         {
             Thread.Sleep(TestConstants.UserInputSimulationDelay);
@@ -173,7 +173,7 @@ public class InstallerRobot
 
     public InstallerRobot CloseSameVersionWindow()
     {
-        InstallerHelper.WaitForAndFocusWindow(INSTALLER_ALREADY_INSTALLED_WINDOW);
+        WindowHelper.WaitForAndFocusWindow(INSTALLER_ALREADY_INSTALLED_WINDOW);
         Keyboard.Type(VirtualKeyShort.ENTER);
         Thread.Sleep(TestConstants.UserInputSimulationDelay);
         return this;
@@ -181,7 +181,7 @@ public class InstallerRobot
 
     public InstallerRobot ClickInstall()
     {
-        InstallerHelper.WaitForAndFocusWindow(INSTALLER_WINDOW);
+        WindowHelper.WaitForAndFocusWindow(INSTALLER_WINDOW);
         Keyboard.Type(VirtualKeyShort.ENTER);
         Thread.Sleep(TestConstants.UserInputSimulationDelay);
         return this;
@@ -189,7 +189,7 @@ public class InstallerRobot
 
     public InstallerRobot ConfirmUninstall()
     {
-        InstallerHelper.WaitForAndFocusWindow(UNINSTALLER_WINDOW);
+        WindowHelper.WaitForAndFocusWindow(UNINSTALLER_WINDOW);
         Keyboard.Type(VirtualKeyShort.TAB);
         Thread.Sleep(TestConstants.UserInputSimulationDelay);
         Keyboard.Type(VirtualKeyShort.ENTER);
@@ -199,7 +199,7 @@ public class InstallerRobot
 
     public InstallerRobot CloseUninstallationCompletedWindow()
     {
-        InstallerHelper.WaitForAndFocusWindow(UNINSTALLER_WINDOW);
+        WindowHelper.WaitForAndFocusWindow(UNINSTALLER_WINDOW);
         Keyboard.Type(VirtualKeyShort.ENTER);
         Thread.Sleep(TestConstants.UserInputSimulationDelay);
         return this;
@@ -207,7 +207,7 @@ public class InstallerRobot
 
     public InstallerRobot TrySkipFolderSelection()
     {
-        bool isFolderSelectionDisplayed = InstallerHelper.IsWindowMatchingScreenshot(INSTALLER_WINDOW, FOLDER_SELECTION, out _, out _);
+        bool isFolderSelectionDisplayed = InstallerScreenshotHelper.IsWindowMatchingScreenshot(INSTALLER_WINDOW, FOLDER_SELECTION, out _, out _);
 
         if (isFolderSelectionDisplayed)
         {
@@ -224,7 +224,7 @@ public class InstallerRobot
 
     private InstallerRobot ClickNext()
     {
-        InstallerHelper.WaitForAndFocusWindow(INSTALLER_WINDOW);
+        WindowHelper.WaitForAndFocusWindow(INSTALLER_WINDOW);
         Keyboard.Type(VirtualKeyShort.ENTER);
         Thread.Sleep(TestConstants.UserInputSimulationDelay);
         return this;
@@ -275,7 +275,7 @@ public class InstallerRobot
     {
         public Verifications IsNewerVersionInstalledMessageDisplayed()
         {
-            InstallerHelper.VerifyScreenshot(
+            InstallerScreenshotHelper.VerifyScreenshot(
                 INSTALLER_ALREADY_INSTALLED_WINDOW,
                 NEWER_VERSION_INSTALLED);
             return this;
@@ -283,7 +283,7 @@ public class InstallerRobot
 
         public Verifications IsLanguageSelectionDisplayed()
         {
-            InstallerHelper.VerifyScreenshot(
+            InstallerScreenshotHelper.VerifyScreenshot(
                 INSTALLER_LANGUAGE_WINDOW,
                 LANGUAGE_SELECTION,
                 requiredSimilarity: 0.85);
@@ -292,7 +292,7 @@ public class InstallerRobot
 
         public Verifications IsUniversalInstallerDisplayed()
         {
-            InstallerHelper.VerifyScreenshot(
+            InstallerScreenshotHelper.VerifyScreenshot(
                 INSTALLER_WINDOW,
                 UNIVERSAL_INSTALLER);
             return this;
@@ -300,7 +300,7 @@ public class InstallerRobot
 
         public Verifications IsRegularInstallerDisplayed()
         {
-            InstallerHelper.VerifyScreenshot(
+            InstallerScreenshotHelper.VerifyScreenshot(
                 INSTALLER_WINDOW,
                 REGULAR_INSTALLER);
             return this;
@@ -308,7 +308,7 @@ public class InstallerRobot
 
         public Verifications IsInstallationInProgress()
         {
-            InstallerHelper.VerifyScreenshotNonFatal(
+            InstallerScreenshotHelper.VerifyScreenshotNonFatal(
                 INSTALLER_WINDOW,
                 IN_PROGRESS);
             return this;
@@ -322,7 +322,7 @@ public class InstallerRobot
 
         public Verifications IsUninstallerDisplayed()
         {
-            InstallerHelper.VerifyScreenshot(
+            InstallerScreenshotHelper.VerifyScreenshot(
                 UNINSTALLER_WINDOW,
                 UNINSTALL_CONFIRMATION,
                 requiredSimilarity: 0.85);
@@ -332,7 +332,7 @@ public class InstallerRobot
         public Verifications IsUninstallationCompleted()
         {
             Thread.Sleep(TestConstants.TenSecondsTimeout);
-            InstallerHelper.VerifyScreenshot(
+            InstallerScreenshotHelper.VerifyScreenshot(
                 UNINSTALLER_WINDOW,
                 UNINSTALL_COMPLETED,
                 requiredSimilarity: 0.85);
@@ -380,7 +380,7 @@ public class InstallerRobot
 
     private static bool IsMsixInstalled(string packageName)
     {
-        string output = WindowsUtils.RunPowerShellScript($"Get-AppxPackage -Name '{packageName}' | Select-Object -ExpandProperty PackageFullName");
+        string output = ScriptHelper.RunPowerShellScript($"Get-AppxPackage -Name '{packageName}' | Select-Object -ExpandProperty PackageFullName");
         return !string.IsNullOrWhiteSpace(output);
     }
 

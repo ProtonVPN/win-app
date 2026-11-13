@@ -1,0 +1,3823 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account_VpnPlan_Free">
+    <value>Proton VPN Free</value>
+  </data>
+  <data name="Automation_Properties_ConnectionDetails_Page">
+    <value>Ojú-ewé àwọn àlàyé àsopọ̀</value>
+  </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page">
+    <value>Ojú-ewé àwọn ààyò àsopọ̀</value>
+  </data>
+  <data name="Automation_Properties_Connection_Card_Component">
+    <value>Káàdì àsopọ̀</value>
+  </data>
+  <data name="Automation_Properties_KillSwitch_Page">
+    <value>Ojú-ewé olùdá ààbò bo àdírẹ́sì IP</value>
+  </data>
+  <data name="Automation_Properties_LocationDetails_Page">
+    <value>Ojú-ewé àwọn àlàyé ibùdó</value>
+  </data>
+  <data name="Automation_Properties_Login_Page">
+    <value>Ojú-ewé ìwọlé</value>
+  </data>
+  <data name="Automation_Properties_Main_Page">
+    <value>Ojú-ewé àkọ́kọ́</value>
+  </data>
+  <data name="Automation_Properties_NetShield_Page">
+    <value>Ojú-ewé NetShield</value>
+  </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>Ojú-ewé tí kò sí sáfà</value>
+  </data>
+  <data name="Automation_Properties_PortForwarding_Page">
+    <value>Ojú-ewé fífi ihò ìtẹ̀bọ̀ ránṣẹ́</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page">
+    <value>Ojú-ewé profáìlì</value>
+  </data>
+  <data name="Automation_Properties_Settings_Advanced_Page">
+    <value>Ojú-ewé àwọn ààtò tó gájú</value>
+  </data>
+  <data name="Automation_Properties_Settings_Common_Page">
+    <value>Ojú-ewé àwọn ààtò àpapọ̀</value>
+  </data>
+  <data name="Automation_Properties_Settings_Page">
+    <value>Ojú-ewé àwọn ààtò</value>
+  </data>
+  <data name="Automation_Properties_Sidebar">
+    <value>Ojú-ẹ̀gbẹ́</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Countries_Page">
+    <value>Ojú-ewé àwọn orílẹ̀-èdè</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
+    <value>Ojú-ewé àwọn ipa ọ̀nà</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Page">
+    <value>Ojú-ewé àwọn àsopọ̀</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Profiles_Page">
+    <value>Ojú-ewé àwọn profáìlì</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Recents_Page">
+    <value>Ojú-ewé àìpẹ́</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Search_Results_Page">
+    <value>Èsì wíwá</value>
+  </data>
+  <data name="Automation_Properties_SplitTunneling_Page">
+    <value>Ojú-ewé ìkáàkiri tí a pín</value>
+  </data>
+  <data name="City_Fastest">
+    <value>Ìlú tó yára jù</value>
+  </data>
+  <data name="City_Random">
+    <value>Ìlú láìròtẹlẹ̀</value>
+  </data>
+  <data name="Common_Actions_Add">
+    <value>Fi kún</value>
+  </data>
+  <data name="Common_Actions_Back">
+    <value>Padà</value>
+  </data>
+  <data name="Common_Actions_Cancel">
+    <value>Fagi lé e</value>
+  </data>
+  <data name="Common_Actions_Change">
+    <value>Yí padà</value>
+  </data>
+  <data name="Common_Actions_Close">
+    <value>Pa á dé</value>
+  </data>
+  <data name="Common_Actions_Connect">
+    <value>So ó pọ̀</value>
+  </data>
+  <data name="Common_Actions_ContactUs">
+    <value>Ẹ kàn sí wa</value>
+  </data>
+  <data name="Common_Actions_Delete">
+    <value>Pa á rẹ́</value>
+  </data>
+  <data name="Common_Actions_Disconnect">
+    <value>Tú ìsopọ̀</value>
+  </data>
+  <data name="Common_Actions_Duplicate">
+    <value>Ṣàdàkọ</value>
+  </data>
+  <data name="Common_Actions_Edit">
+    <value>Ṣe àtúkọ rẹ̀</value>
+  </data>
+  <data name="Common_Actions_Enable">
+    <value>Fi ààyè gbà á</value>
+  </data>
+  <data name="Common_Actions_Exit_ProtonVPN">
+    <value>Jáde kúrò nínú Proton VPN</value>
+  </data>
+  <data name="Common_Actions_GotIt">
+    <value>Mo gbà</value>
+  </data>
+  <data name="Common_Actions_Install">
+    <value>Gbé áàpù sórí ẹ̀rọ</value>
+  </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Sún sílẹ̀</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Sún sókè</value>
+  </data>
+  <data name="Common_Actions_Reconnect">
+    <value>Tún so mọ́</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Tún u sọjí</value>
+  </data>
+  <data name="Common_Actions_Remove">
+    <value>Yọ ọ́ kúrò</value>
+  </data>
+  <data name="Common_Actions_Restart">
+    <value>Tún u bẹ̀rẹ̀</value>
+  </data>
+  <data name="Common_Actions_Save">
+    <value>Fi pamọ́</value>
+  </data>
+  <data name="Common_Actions_TryAgain">
+    <value>Gbìyànjú lẹ́ẹ̀kansi</value>
+  </data>
+  <data name="Common_Actions_Update">
+    <value>Mú u dé ojú ìwọ̀n</value>
+  </data>
+  <data name="Common_Actions_Upgrade">
+    <value>Gbé e ga</value>
+  </data>
+  <data name="Common_Confirmation_KillSwitch_Message">
+    <value>A ti fi ààyè gba olùdá ààbò bo àdírẹ́sì IP tó gájú. Láti lo ayélujára láìsí VPN, ẹ paná olùdá ààbò bo àdírẹ́sì IP tó gájú.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
+    <value>A ti fi ààyè gba olùdá ààbò bo àdírẹ́sì IP tó gájú. Bí ẹ bá tẹ̀síwájú, ẹ yóò tú kúrò ní ayélujára.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnected_Message">
+    <value>Ẹ yóò tú ìsopọ̀ VPN.</value>
+  </data>
+  <data name="Common_Links_LearnMore">
+    <value>Mọ̀ síi</value>
+  </data>
+  <data name="Common_Message_AppNotFound">
+    <value>A kò rí aplikéṣàn náà.</value>
+  </data>
+  <data name="Common_States_Off">
+    <value>Pa</value>
+  </data>
+  <data name="Common_States_On">
+    <value>Tàn</value>
+  </data>
+  <data name="Common_Tags_Beta">
+    <value>BẸ́TÀ</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
+  <data name="Common_Tags_New">
+    <value>TÚNTUN</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
+  </data>
+  <data name="Common_Tags_Recommended">
+    <value>A gbaniyanju</value>
+    <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
+  </data>
+  <data name="Components_Update_GetMostFromYourVpn">
+    <value>Ẹ lè gba èrè pípọ̀ láti ọ̀dọ̀ VPN yín nípa ṣíṣàtúnṣe sí ẹ̀yà tó tún jùlọ ti áàpù náà.</value>
+  </data>
+  <data name="Components_Update_MoreLikelyIssues">
+    <value>Ìṣòro máa ń pọ̀ jù lórí àwọn ẹ̀yà Proton VPN àgbà.</value>
+  </data>
+  <data name="Components_Update_UpdateAvailable">
+    <value>Àtúnṣe wà</value>
+  </data>
+  <data name="Components_Update_UpdateProtonVpn">
+    <value>Mú Proton VPN dé ojú ìwọ̀n</value>
+  </data>
+  <data name="Connection_Error_AllServersExcluded">
+    <value>Àwọn ààyò yín yọ gbogbo àwọn sáfà tí ó ṣetán kúrò. Ẹ ṣàtúnṣe àwọn ìyọkúrò kí ẹ lè so pọ̀.</value>
+  </data>
+  <data name="Connection_Error_AllServersExcluded_Action">
+    <value>Àwọn ibùdó tí a yọ kúrò</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>Láti tún ṣe é dápadà, ẹ pa á dé tàbí kí ẹ yọ ọ́ kúrò, áàpù tí ó níí ṣe pẹ̀lú:</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>Áàpù mìíràn lè kó ìdìwọ̀ fún Proton VPN láti lè so pọ̀</value>
+  </data>
+  <data name="Connection_Error_EditProfile">
+    <value>Ṣe àtúkọ prófáìlì</value>
+  </data>
+  <data name="Connection_Error_MissingConnectionCertificate">
+    <value>Proton VPN kò lè mú sẹ́tífíkẹ́tì ìjẹ́rìísí wá nítorí ìṣòro nẹ́tíwọ́ọ̀kì.</value>
+  </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>Àwọn ààtò nẹ́tíwọ́ọ̀kì lórí irin iṣẹ́ yín ni dí àsopọ̀ náà mú. Mobile hotspot, aplikéṣàn VPN mìíràn, tàbí sọ́fweà ẹ̀rọ afarawé lè fa ìṣẹ̀lẹ̀ yìí. Jọ̀wọ́, ẹ ṣe àyẹ̀wò ìṣètò nẹ́tíwọ́ọ̀kì yín tàbí kàn sí àtìlẹ́yìn fún ìrànlọ́wọ́.</value>
+  </data>
+  <data name="Connection_Error_NoServers">
+    <value>Gbogbo àwọn sáfà tí ẹ yàn kò wà. Ẹ fún yíyan yín lẹ́kùn tàbí kí ẹ tún gbìyànjú nígbà mìíràn.</value>
+  </data>
+  <data name="Connection_Error_NoServers_Profile">
+    <value>Sáfà tí ẹ yàn fún '{0}' kò sí. Ẹ yan sáfà mìíràn tàbí kí ẹ tún gbìyànjú nígbà mìíràn.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Connection_Error_NoTapAdapters">
+    <value>A kò rí àdápítà nẹ́tíwọ́ọ̀kì.</value>
+  </data>
+  <data name="Connection_Error_ReportAnIssue">
+    <value>Jábọ̀ nípa ìṣòro</value>
+  </data>
+  <data name="Connection_Error_RpcServerUnavailable">
+    <value>Proton VPN kò lè so pọ̀ nítorí pé sáfà RPC kò wà lórí ètò yín.</value>
+  </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>A kò lè fidi àwọn àlàyé sáfà náà múlẹ̀. Ẹ gbìyànjú sáfà mìíràn, tàbí kí ẹ sọ ìṣòro náà fún ẹ̀ka àtìlẹ́yìn oníbàárà wa.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedFreeUser">
+    <value>Ẹ ti dé iye irin iṣẹ́ tó pọ̀ jù lọ yín. Ẹ tú ìsopọ̀ ọ̀kan lára àwọn irin iṣẹ́ mìíràn kí ẹ lè so irin iṣẹ́ yìí mọ́, tàbí kí ẹ gbé e ga sí PLUS kí ẹ lè so irin iṣẹ́ títí dé 10 mọ́ ní ìgbà kan.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedPaidUser">
+    <value>Ẹ ti dé iye irin iṣẹ́ tó pọ̀ jù lọ yín. Ẹ tú ìsopọ̀ ọ̀kan lára àwọn irin iṣẹ́ mìíràn kí ẹ lè so irin iṣẹ́ yìí mọ́.</value>
+  </data>
+  <data name="Connection_Error_TapAdapterInUse">
+    <value>A ń lò àdápítà nẹ́tíwọ́ọ̀kì yín ní báyìí.</value>
+  </data>
+  <data name="Connection_Error_TapRequiresUpdate">
+    <value>Ẹ̀yà àdápítà nẹ́tíwọ́ọ̀kì náà ti sọ àgbà.</value>
+  </data>
+  <data name="Connection_Error_Title">
+    <value>Àsopọ̀ kò gbẹ̀yìn</value>
+  </data>
+  <data name="Connection_Error_TlsCertificate">
+    <value>Àṣìṣe kan wáyé nígbà ìfìdí sẹ́tífíkẹ́tì sáfà VPN múlẹ̀, èyí tó lè jẹ́ wí pé ẹnìkan ń fọwọ́ bà àsopọ̀ nẹ́tíwọ́ọ̀kì náà tàbí pé sáfà tí ẹ ń gbìyànjú láti so pọ̀ mọ́ ní ìṣòro ìṣètò kan. Ẹ gba ìrànlọ́wọ́ lọ́dọ̀ ẹ̀ka àtìlẹ́yìn oníbàárà wa nípa fífi Ìjábọ̀ Ìṣòro kan ránṣẹ́.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>Láti so pọ̀ mọ́ VPN, ẹ wọ ojú-ìwọlé 2FA àjọ yín, ẹ sì fi ọwọ́ tọ́ bọ́tìnnì ààbò yín.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>A nílò ìjẹ́rìísí oníbejì (2FA)</value>
+  </data>
+  <data name="Connection_Error_Unknown">
+    <value>Ṣàyẹ̀wò àsopọ̀ ayélujára yín, ẹ sì tún gbìyànjú. Bí èyí kò bá ṣiṣẹ́, ẹ kan sí ẹ̀ka àtìlẹ́yìn oníbàárà wa.
+
+Kóòdù àṣìṣe: {0}</value>
+  </data>
+  <data name="Connection_Error_ViewPossibleSolutions">
+    <value>Wo àwọn ojútùú</value>
+  </data>
+  <data name="Connection_Error_WireGuardAdapterInUse">
+    <value>A ń lò àdápítà WireGuard irin iṣẹ́ yín báyìí. Ẹ tú ìsopọ̀ VPN mìíràn tí ó ń ṣiṣẹ́ lórí irin iṣẹ́ yín, lẹ́yìn èyí kí ẹ tún gbìyànjú.</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>Báwo ni àsopọ̀ yín ṣe ń lọ?</value>
+  </data>
+  <data name="Connection_Intent_AutoSelected">
+    <value>A yàn án láìfọwọ́ láti</value>
+    <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
+  </data>
+  <data name="Connection_Via_SecureCore">
+    <value>nípasẹ̀ {0}</value>
+    <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
+  </data>
+  <data name="Connections_Cities_Other">
+    <value>Àwọn ìlú ({0})</value>
+  </data>
+  <data name="Connections_City">
+    <value>Ìlú</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>Àwọn sáfà ní ìlú yìí wà ní ọ̀fẹ́ pẹ̀lú VPN Plus.</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>Gbogbo àwọn sáfà ní ìlú yìí wà lábẹ́ ìtọ́jú.</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>Àwọn orílẹ̀-èdè ({0})</value>
+  </data>
+  <data name="Connections_Country">
+    <value>Orílẹ̀-èdè</value>
+  </data>
+  <data name="Connections_Country_Middle">
+    <value>Orílẹ̀-èdè àárín</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>Àwọn sáfà ní orílẹ̀-èdè yìí wà ní ọ̀fẹ́ pẹ̀lú VPN Plus.</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>Gbogbo àwọn sáfà ní orílẹ̀-èdè yìí wà lábẹ́ ìtọ́jú.</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>A kò lè so pọ̀</value>
+  </data>
+  <data name="Connections_Fastest">
+    <value>Tó yára jù</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>Àwọn sáfà ọ̀fẹ́</value>
+  </data>
+  <data name="Connections_Gateway">
+    <value>Ipa ọ̀nà</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>Àwọn sáfà ní ipa ọ̀nà yìí wà ní ọ̀fẹ́ pẹ̀lú VPN Plus.</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>Gbogbo àwọn sáfà ní ipa ọ̀nà yìí wà lábẹ́ ìtọ́jú.</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>Àwọn ipa ọ̀nà ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Server">
+    <value>Sáfà àdáni</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>Àwọn sáfà àdáni ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>Àwọn ìlú P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>Àwọn orílẹ̀-èdè P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>Àwọn sáfà P2P</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>Àwọn ìpínlẹ̀ P2P ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Other">
+    <value>Àwọn prófáìlì ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Create">
+    <value>Ṣẹ̀dá prófáìlì</value>
+    <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
+  </data>
+  <data name="Connections_Profiles_Delete">
+    <value>Pa prófáìlì rẹ́</value>
+  </data>
+  <data name="Connections_Profiles_Delete_Message">
+    <value>Wọ́n yóò yọ '{0}' kúrò láéláé.</value>
+    <comment>{0} is a placeholder for the name of the profile.</comment>
+  </data>
+  <data name="Connections_Profiles_Delete_Title">
+    <value>Ṣé ẹ fẹ́ pa prófáìlì yìí rẹ́?</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Description">
+    <value>Àwọn prófáìlì jẹ́ àwọn àsopọ̀ tí a fipamọ́ pẹ̀lú ìyànfẹ̀ yín nípa ibùdó, sáfà, àti prọ́tọ́kọ́lì.</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Title">
+    <value>Ṣẹ̀dá prófáìlì àkọ́kọ́ yín</value>
+  </data>
+  <data name="Connections_Profiles_Location_Header">
+    <value>Yàn irú àsopọ̀ àti ibùdó</value>
+  </data>
+  <data name="Connections_Profiles_Name">
+    <value>Fún prófáìlì yín ní orúkọ</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default">
+    <value>Àìní orúkọ</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate">
+    <value>Àdàkọ {0}</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
+  </data>
+  <data name="Connections_Profiles_New">
+    <value>Prófáìlì tuntun</value>
+    <comment>"New profile" is more appropriate when you already have a profile</comment>
+  </data>
+  <data name="Connections_Profiles_NotAvailable_Tooltip">
+    <value>Àwọn prófáìlì wà fún àwọn tí ó ní VPN Plus.</value>
+    <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
+  </data>
+  <data name="Connections_Recents_Other">
+    <value>Àwọn ìsomọ́ ṣẹ̀ṣẹ̀ ({0})</value>
+  </data>
+  <data name="Connections_Recents_Empty_Description">
+    <value>Ẹ lè wo ìtàn àsopọ̀ yín níbí.</value>
+  </data>
+  <data name="Connections_Recents_Empty_Title">
+    <value>Kò sí ìsomọ́ ṣẹ̀ṣẹ̀ rí</value>
+  </data>
+  <data name="Connections_Recents_Pinned_Other">
+    <value>Àwọn ìsomọ́ tí a dẹ́ ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>Àwọn orílẹ̀-èdè Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>Àwọn sáfà Secure Core</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>Sáfà yìí wà pẹ̀lú VPN Plus.</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>Sáfà yìí wà lábẹ́ ìtọ́jú.</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>Àwọn sáfà</value>
+  </data>
+  <data name="Connections_State">
+    <value>Ìpínlẹ̀</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Àwọn sáfà tí wà ní ìpínlẹ̀ yìí wà pẹ̀lú VPN Plus.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>Gbogbo àwọn sáfà tí wà ní ìpínlẹ̀ yìí wà lábẹ́ ìtọ́jú.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_Other">
+    <value>Àwọn ìpínlẹ̀ ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>Àwọn orílẹ̀-èdè Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>Àwọn sáfà Tor</value>
+  </data>
+  <data name="Countries">
+    <value>Àwọn orílẹ̀-èdè</value>
+  </data>
+  <data name="Countries_All">
+    <value>Gbogbo</value>
+  </data>
+  <data name="Countries_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Countries_P2P_Description">
+    <value>Ẹ lè gbà fáìlì wọlé lórí àwọn nẹ́tíwọ́ọ̀kì P2P (peer-to-peer), èyí sì máa ń mú ìrírí eré lórí ayélujára àti ìpè fídíò yín dára sí i.</value>
+  </data>
+  <data name="Countries_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>Ẹ fi ìpele sísọ di àṣírí mìíràn kún àsopọ̀ VPN yín.</value>
+  </data>
+  <data name="Countries_ServerLoad">
+    <value>Ìfẹ́sẹ̀mulẹ̀ sáfà</value>
+  </data>
+  <data name="Countries_SmartRouting">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Countries_SmartRouting_RoutedThrough">
+    <value>Ìdarí Smart Routing nípasẹ̀ {0}</value>
+    <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
+  </data>
+  <data name="Countries_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>Ẹ lè lo nẹ́tíwọ́ọ̀kì Tor lórí àsopọ̀ VPN yín láti fi àṣírí pọ̀ sí i.</value>
+  </data>
+  <data name="Country_Fastest">
+    <value>Orílẹ̀-èdè tó yára jù</value>
+  </data>
+  <data name="Country_Fastest_ExcludingMyCountry">
+    <value>Tó yára jù (àyọkúrò orílẹ̀-èdè mi)</value>
+  </data>
+  <data name="Country_Random">
+    <value>Orílẹ̀-èdè tí a yàn níwoòwoò</value>
+  </data>
+  <data name="Country_Random_ExcludingMyCountry">
+    <value>Tí a yàn níwoòwoò (àyọkúrò orílẹ̀-èdè mi)</value>
+  </data>
+  <data name="Country_val_AD">
+    <value>Andorra</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE">
+    <value>Àpapọ̀ Orílẹ̀-èdè Lárúbáwá</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF">
+    <value>Afghanistan</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG">
+    <value>Antígúà àti Bárbúdà</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI">
+    <value>Àngílílà</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL">
+    <value>Albania</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM">
+    <value>Armenia</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO">
+    <value>Angola</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ">
+    <value>Antarctica</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR">
+    <value>Argentina</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS">
+    <value>Samoa Amẹ́ríkà</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT">
+    <value>Austria</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU">
+    <value>Australia</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW">
+    <value>Aruba</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX">
+    <value>Àwọn Erékùṣù Áland</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ">
+    <value>Azerbaijan</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA">
+    <value>Bosnia àti Herzegovina</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB">
+    <value>Barbados</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD">
+    <value>Bangladesh</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE">
+    <value>Belgium</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF">
+    <value>Burkina Faso</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG">
+    <value>Bulgaria</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH">
+    <value>Báréìn</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI">
+    <value>Bùrúndí</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ">
+    <value>Bẹ̀nẹ̀</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL">
+    <value>Sẹ́ntí Bátéléèmì</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM">
+    <value>Bẹ́múdà</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN">
+    <value>Búrúné Dárúsàlám</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO">
+    <value>Bọ̀lífíà</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ">
+    <value>Bónáìrè, Síntí Eustatius àti Saba</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR">
+    <value>Bàràsíl</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS">
+    <value>Bàhámà</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT">
+    <value>Bùtán</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV">
+    <value>Erékùṣù Bùfétì</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW">
+    <value>Bọ̀ṣwánà</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY">
+    <value>Bélárúsì</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ">
+    <value>Bèlísì</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA">
+    <value>Kánádà</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC">
+    <value>Àwọn Erékùṣù Kòkósì (Kíìlìń)</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD">
+    <value>Kóngò (Orílẹ̀-èdè Olómìníràn Tiwantiwa)</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF">
+    <value>Orílẹ̀-èdè Àárín Áfíríkà</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG">
+    <value>Kóngò</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH">
+    <value>Súísà</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI">
+    <value>Côte d'Ivoire</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK">
+    <value>Àwọn Erékùṣù Kúùkù</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL">
+    <value>Ṣìlì</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM">
+    <value>Kàmárún</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN">
+    <value>Ṣáínà</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO">
+    <value>Kọlọ́mbíà</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR">
+    <value>Kọ́stà Ríkà</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU">
+    <value>Kúbà</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV">
+    <value>Kẹ́pù Vẹ́èdé</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW">
+    <value>Kùràsàó</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX">
+    <value>Erékùṣù Kírísímì</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY">
+    <value>Sáiprúsì</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ">
+    <value>Ṣẹ́kíà</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE">
+    <value>Jámání</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ">
+    <value>Jíbúùtì</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK">
+    <value>Dẹ̀nìmáàkì</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM">
+    <value>Dòmíníkà</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO">
+    <value>Orílẹ̀-èdè Dòmíníkànì</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ">
+    <value>Àlùgèrìà</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC">
+    <value>Ekwádò</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE">
+    <value>Èsítóníà</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG">
+    <value>Eégípítò</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH">
+    <value>Sàhárà Ìwọ̀ Oòrùn</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER">
+    <value>Èrítrèà</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES">
+    <value>Sipéèni</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET">
+    <value>Ìtóòpíà</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI">
+    <value>Fínlándì</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ">
+    <value>Fíjì</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK">
+    <value>Àwọn Erékùṣù Fọ́klándì (Málvínásì)</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM">
+    <value>Màìkronésíà</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO">
+    <value>Àwọn Erékùṣù Fáòrò</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR">
+    <value>Fáírànsè</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA">
+    <value>Gàbónì</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB">
+    <value>Ilẹ̀ọba Àpapọ̀</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD">
+    <value>Gìrénádà</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE">
+    <value>Gẹ́ọ́gíà</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF">
+    <value>Gayaní Faransé</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG">
+    <value>Gwẹ́nsì</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH">
+    <value>Gánà</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI">
+    <value>Gíbárálìtà</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL">
+    <value>Grínlándì</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM">
+    <value>Gámbíà</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN">
+    <value>Gíní</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP">
+    <value>Gúàdèlúpù</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ">
+    <value>Gíní Èkwítọ́ríà</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR">
+    <value>Gríìsì</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS">
+    <value>Gẹ́ọ́gíà Gúúsù àti Àwọn Erékùṣù Sándíwììchì Gúúsù</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT">
+    <value>Gúàtémálà</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU">
+    <value>Gúwámù</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW">
+    <value>Gíní-Bìsáú</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY">
+    <value>Gúyánà</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK">
+    <value>Hóngí Kòngí</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM">
+    <value>Erékùṣù Hẹ́ẹ̀dì àti Àwọn Erékùṣù Màkídónáìlì</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN">
+    <value>Hóndúrásì</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR">
+    <value>Króátíà</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT">
+    <value>Háìtì</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU">
+    <value>Hángárí</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID">
+    <value>Indonésíà</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE">
+    <value>Áìrílándì</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL">
+    <value>Ìsírẹ́ẹ̀lì</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM">
+    <value>Erékùṣù Mán</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN">
+    <value>Íńdíà</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO">
+    <value>Àgbègbè Òkun Íńdíà ti Bírítì</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ">
+    <value>Írààkì</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR">
+    <value>Íránì</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS">
+    <value>Áìsílándì</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT">
+    <value>Ítáli</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE">
+    <value>Jẹ́sì</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM">
+    <value>Jámaíkà</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO">
+    <value>Jọ́dánì</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP">
+    <value>Jápáà</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE">
+    <value>Kẹ́nyà</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG">
+    <value>Kírgìsítánì</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH">
+    <value>Kámbódíà</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI">
+    <value>Kìrìbátì</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM">
+    <value>Kòmóròsù</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN">
+    <value>Sánìtì Kìtìsì àti Nífìísì</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP">
+    <value>Kòríà Àríwá</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR">
+    <value>Kòríà Gúúsù</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW">
+    <value>Kùwéìtì</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY">
+    <value>Àwọn Erékùṣù Káyimánì</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ">
+    <value>Kàsàkístànì</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA">
+    <value>Láòsì</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB">
+    <value>Lẹ́bánọ́nì</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC">
+    <value>Sẹ́ntì Lúkíà</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI">
+    <value>Lìtẹ́nístéénì</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK">
+    <value>Srí Lánkà</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR">
+    <value>Lìbéríà</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS">
+    <value>Lésótò</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT">
+    <value>Lítuíníà</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU">
+    <value>Lùkísẹ̀mbọ́ọ̀gù</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV">
+    <value>Látífíà</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY">
+    <value>Lìbìyà</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA">
+    <value>Morọ́kò</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC">
+    <value>Mónákò</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD">
+    <value>Mọ́lódófà</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME">
+    <value>Mọ́nítẹ́nẹ́grò</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF">
+    <value>Sẹ́ntì Mátínì (apá Fáránsé)</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG">
+    <value>Mádágàsíkà</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH">
+    <value>Àwọn Erékùṣù Máṣàlì</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK">
+    <value>Masẹdóníà</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML">
+    <value>Màlì</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM">
+    <value>Miyánmà</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN">
+    <value>Mòngólíà</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO">
+    <value>Mákáò</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP">
+    <value>Àwọn Erékùṣù Màríánà Àríwá</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ">
+    <value>Mátíníkì</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR">
+    <value>Mórítáníà</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS">
+    <value>Mọ́ntsérátì</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT">
+    <value>Málítà</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU">
+    <value>Móríṣọ̀sì</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV">
+    <value>Málídíífù</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW">
+    <value>Máláwì</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX">
+    <value>Mẹ́síkò</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY">
+    <value>Màléṣíà</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ">
+    <value>Mòsámíbìkì</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA">
+    <value>Námíbíà</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC">
+    <value>Kálẹ́dóníà Tuntun</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE">
+    <value>Nìjẹ̀</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF">
+    <value>Erékùṣù Nọ́fọ́kì</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG">
+    <value>Nàìjíríà</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI">
+    <value>Níkárágùà</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL">
+    <value>Họ́lándì</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO">
+    <value>Nọ́wíì</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP">
+    <value>Nẹ́páàlù</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR">
+    <value>Náárù</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU">
+    <value>Níúẹ̀</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ">
+    <value>Sílandì Tuntun</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM">
+    <value>Ọmáànì</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA">
+    <value>Panamà</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE">
+    <value>Pẹrú</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF">
+    <value>Polynesia Fáránsé</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG">
+    <value>Papua Gini Tuntun</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH">
+    <value>Filípínì</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK">
+    <value>Pákísítánì</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL">
+    <value>Pólándì</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM">
+    <value>Sẹ́ntì Pierre àti Miquelon</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN">
+    <value>Pitcairn</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR">
+    <value>Puerto Ríkò</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS">
+    <value>Palestini</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT">
+    <value>Pọ́túgál</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW">
+    <value>Palau</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY">
+    <value>Paraguay</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA">
+    <value>Katari</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE">
+    <value>Ríúníyòn</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO">
+    <value>Romania</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS">
+    <value>Serbia</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU">
+    <value>Rọ́ṣíà</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW">
+    <value>Rùwándà</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA">
+    <value>Saudi Arabia</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB">
+    <value>Àwọn Erékùṣù Solomon</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC">
+    <value>Sèyèlẹ́sì</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD">
+    <value>Sudan</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE">
+    <value>Swidin</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG">
+    <value>Singapo</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH">
+    <value>Saint Helena, Ascension àti Tristan da Cunha</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI">
+    <value>Slovenia</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ">
+    <value>Svalbard àti Jan Mayen</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK">
+    <value>Slovakia</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL">
+    <value>Sierra Leone</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM">
+    <value>San Marino</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN">
+    <value>Senegal</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO">
+    <value>Somalia</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR">
+    <value>Suriname</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS">
+    <value>Gúúsù Sudan</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST">
+    <value>Sao Tome àti Principe</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV">
+    <value>El Salvador</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX">
+    <value>Sint Maarten (apá Netherlands)</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY">
+    <value>Orílẹ̀-èdè Arábi Sírià</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ">
+    <value>Eswatini</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC">
+    <value>Àwọn Erékùṣù Turks àti Caicos</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD">
+    <value>Chad</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF">
+    <value>Àwọn Agbègbè Gúúsù Fáránsé</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG">
+    <value>Togo</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH">
+    <value>Thailandi</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ">
+    <value>Tajikistan</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK">
+    <value>Tokelau</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL">
+    <value>Timor-Leste</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM">
+    <value>Turkmenistan</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN">
+    <value>Tùnísíà</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO">
+    <value>Tóngà</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR">
+    <value>Túrúkì</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT">
+    <value>Trinidad àti Tobago</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV">
+    <value>Tuvalu</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW">
+    <value>Tàiwán</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ">
+    <value>Tànzáníà</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA">
+    <value>Yúkrèénì</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG">
+    <value>Yùgándà</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK">
+    <value>Ilẹ̀ọba Àpapọ̀</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM">
+    <value>Àwọn Erékùṣù Ìta ti Orílẹ̀-èdè Àpapọ̀ ilẹ̀ Amẹ́ríkà</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US">
+    <value>Orílẹ̀-èdè Àpapọ̀ ilẹ̀ Amẹ́ríkà</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY">
+    <value>Ùrúguàì</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ">
+    <value>Ùsúbẹ́kísítánì</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA">
+    <value>Ìlú Vátíkànù</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC">
+    <value>Saint Vincent àti Grenadines</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE">
+    <value>Fẹ́nẹsúẹ́là</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG">
+    <value>Àwọn Erékùṣù Fíríjìnì, Bríténì</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI">
+    <value>Àwọn Erékùṣù Fíríjìnì, Amẹ́ríkà</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN">
+    <value>Fíẹ̀tnámù</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU">
+    <value>Fánúátù</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF">
+    <value>Wálìsì àti Fútúnà</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS">
+    <value>Sámóà</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_XK">
+    <value>Kòsófò</value>
+    <comment>The name of XK country</comment>
+  </data>
+  <data name="Country_val_YE">
+    <value>Yémẹ̀nì</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT">
+    <value>Mayọ̀tù</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA">
+    <value>Gúúsù Áfíríkà</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM">
+    <value>Sámbíà</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW">
+    <value>Símbábwè</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ">
+    <value>Àìmọ̀</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Description">
+    <value>A ti paná iṣẹ́ Base Filtering Engine (BFE) lórí irin iṣẹ́ Windows yín. A gbọdọ̀ fi ààyè gba iṣẹ́ náà kí Proton VPN lè bá ṣiṣẹ́ dáadáa.</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable">
+    <value>Bí a ṣe lè fi ààyè gba Base Filtering Engine</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title">
+    <value>Fi ààyè gba Base Filtering Engine láti tẹ̀ síwájú</value>
+  </data>
+  <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
+    <value>Ẹ gba yíyí sáfà tí kò ní ìdíwọ̀n pẹ̀lú VPN Plus.</value>
+  </data>
+  <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
+    <value>Ẹ ti dé iye àlà yíyí sáfà ọ̀fẹ́ fún ìgbà yìí.</value>
+  </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>Bẹ̀rẹ̀</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>Ìforúkọsílẹ̀ ti wá sí òpin</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Ẹ gbé e ga láti tún ní ìráàyèsí sí àwọn sáfà àti àbùdá Plus.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description">
+    <value>Ó dà bí pé a ti paná iṣẹ́ Proton VPN. Ẹ gbọ́dọ̀ tún fi ààyè gba iṣẹ́ náà kí ẹ lè so pọ̀.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title">
+    <value>Fi ààyè gba iṣẹ́ Windows láti tẹ̀ síwájú</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Other">
+    <value>Proton Free ń so yín mọ́ fúnra rẹ̀ sí sáfà ọ̀fẹ́ tí ó yára jù tí ó wà níbẹ̀ láti inú {0} orílẹ̀-èdè ọ̀fẹ́ wa. Èyí ń jẹ́ sáfà tí ó súnmọ́ ibùdó yín jù nígbà gbogbo.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Other">
+    <value>Àwọn orílẹ̀-èdè sáfà ọ̀fẹ́ ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Title">
+    <value>Àwọn àsopọ̀ ọ̀fẹ́</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>Ẹ sọ fún wa ohun tí ó mú kí ẹ fún àmì ìyẹ́wò yìí.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>A kò lè fi ìfèsí yín ránṣẹ́. Jọ̀wọ́, ẹ ṣàyẹ̀wò àsopọ̀ yín kí ẹ sì tún gbiyànjú.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>Àṣìṣe kan wáyé</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>10 túmọ̀ pé ó ṣe é ṣe dájú.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>0 túmọ̀ pé ó kì í ṣe é ṣe rárá.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>Kì í ṣe dandan</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>Ṣe alábàápín láìfihàn orúkọ</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>Ìfèsí yín ń ran wa lọ́wọ́ láti mú Proton VPN dàgbà sókè.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>A dúpẹ́ fún ìfèsí yín</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>Éló ni ó ṣe é ṣe kí ẹ sọ Proton VPN fún ọ̀rẹ́ kan?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>Ẹ tún gbiyànjú</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description">
+    <value>Ẹ gbé e ga láti ṣí àwọn sáfà P2P (ẹnì kọ̀ọ̀kan sí ẹnì kọ̀ọ̀kan) sílẹ̀ fún ṣíṣeré ayélujára tó yára àti lílo torrent, tàbí ẹ dá iṣẹ́ P2P yín dúró kí ẹ lè mú àsopọ̀ yín padà.</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Title">
+    <value>A kò fàyèè gba P2P lórí àwọn sáfà VPN ọ̀fẹ́</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>Ṣàwárí VPN Plus</value>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email">
+    <value>Ímeèlì</value>
+    <comment>The label for user e-mail address in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
+    <value>apere@ayelujarayin.ng</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Field_MinLength">
+    <value>Minimum {0} characters</value>
+    <comment>Hint shown below a Report an issue text field that has a minimum length. {0} is the minimum number of characters.</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
+    <value>Fi àwọn àkọsílẹ̀ àṣìṣe ránṣẹ́</value>
+    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
+    <value>Àwọn àkọsílẹ̀ àṣìṣe fi hàn wa ohun tí ó ṣẹ̀, àti àwọn ìṣe tí ó yọrí sí ìṣòro yín. A máa lo wọ́n nìkan láti ràn àwọn onímọ̀ ẹ̀rọ wa lọ́wọ́ láti ṣàtúnṣe àwọn àṣìṣe ẹ̀rọ.</value>
+    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Header">
+    <value>Kí ni ìṣòro náà?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_NoLogsWarning">
+    <value>Àwọn àkọsílẹ̀ àṣìṣe ń ràn wa lọ́wọ́ láti rí ohun tí ń fa ìṣòro yín. Bí ẹ kò bá fi wọ́n kún wa, a lè má ṣe é ṣe fún wa láti ṣe ìwádìí ní kíkún.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes">
+    <value>Àwọn ìtùnjú kíákíá</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Footer">
+    <value>Ó kò ṣiṣẹ́?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Header">
+    <value>Àwọn ìmọ̀ràn wọ̀nyí lè ràn yín lọ́wọ́ láti yanjú ìṣòro yín kíákíá.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_DoneAction">
+    <value>Parí</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail">
+    <value>Àṣìṣe kan wáyé</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail_Description">
+    <value>A kò lè fi ìjábọ̀ yín ránṣẹ́. Jọ̀wọ́, ẹ ṣàyẹ̀wò àsopọ̀ yín, kí ẹ sì tún gbìyànjú.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success">
+    <value>A ti fi ìjábọ̀ náà ránṣẹ́.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success_Description">
+    <value>Ẹ ṣé fún ìfèsí yín. A máa tún bá yín sọ̀rọ̀ ní kété tí a bá leè.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_SendReport">
+    <value>Fi ìjábọ̀ ránṣẹ́</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Steps">
+    <value>Ìgbésẹ̀ {0} nínú {1}</value>
+    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Title">
+    <value>Jábọ̀ nípa ìṣòro</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>Ṣàwárí VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>Àwọn sáfà VPN Plus fún yín láyè láti gbádùn àwọn fíìmù àti etò TV àyànáfẹ́ yín láti gbogbo àgbáyé.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>Gbé e ga láti kọjá ìdènà VPN</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>Bóyá lẹ́yìn ìgbà</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description">
+    <value>Ó dà bíi pé irin iṣẹ́ yín ń lo sáfà aṣojú kan. Èyí lè bà á lé lórí ààbò VPN yín.</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Title">
+    <value>A rí sáfà aṣojú</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>Pa sọ́fweà kòlùkòtì ààrùn tàbí ààbò orí kọ̀mpútà</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>Àwọn ìmúlò yìí lè bà á lé lórí àwọn àsopọ̀ VPN.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>Ṣàyẹ̀wò àsopọ̀ ayélujára yín</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>Ẹ rìí pé ẹ wà lórí ayélujára, àti pé àsopọ̀ yín ń ṣiṣẹ́ dáadáa.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>Àwọn ọ̀nà yìí lè ràn yín lọ́wọ́ kíákíá láti so pọ̀ mọ́ Proton.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>Lo nẹ́tíwọ́ọ̀kì mìíràn</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>Ẹ gbìyànjú láti yí nẹ́tíwọ́ọ̀kì Wi-Fi padà, tàbí kí ẹ lo dátà ẹ̀rọ alágbèéká.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>Ṣàyẹ̀wò ojú-ewé ipò wa</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>Kí a lè dájú pé àwọn iṣẹ́ Proton ń ṣiṣẹ́ déédéé.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>Ìrànlọ́wọ́ àsopọ̀</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
+    <value>Èyí máa tú ìsopọ̀ yín kúrò ní VPN. Àsopọ̀ ayélujára kọ̀ọ̀kan tí ó ṣiṣẹ́ kò ní ní ààbò fún ìgbà díẹ̀.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
+    <value>Èyí máa tú ìsopọ̀ yín kúrò ní VPN, ó sì máa paná olùdá ààbò bo àdírẹ́sì IP fún ìgbà díẹ̀. Àsopọ̀ ayélujára kọ̀ọ̀kan tí ó ṣiṣẹ́ kò ní ní ààbò fún ìgbà díẹ̀.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install">
+    <value>Ṣé kí a fi àtúnṣe sórí ẹ̀rọ?</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart">
+    <value>Tún Proton VPN bẹ̀rẹ̀ láti parí àtúnṣe náà</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Description">
+    <value>Ó dà bíi pé àago ẹ̀rọ yín kò bá àkókò mu. Èyí lè fa ìṣòro nígbà tí ẹ bá ń so pọ̀ mọ́ VPN.</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_PrimaryButton">
+    <value>Bí a ṣe ń mú àago ẹ̀rọ dé ojú ìwọ̀n</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Title">
+    <value>Mú àago ẹ̀rọ dé ojú ìwọ̀n</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>Rọrùn. Dáradára. Ààbò. Ẹ dáàbò bo ara yín lórí ayélujára, kí ẹ sì ní ìráàyèsí sí ojú-ewé, sọ́fweà àti fáìlì àjọ yín pẹ̀lú ààbò.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Ẹ kú àbọ̀ sí Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>Ẹ kiri ayélujára ní títọ́, ẹ ní ìráàyèsí sí àwọn ohun tí a déènà, kí ẹ sì gbadùn òmìnira digitíi láìní ìdíwọ̀n lórí dátà tàbí ìyára.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>VPN àìní àkọsílẹ̀ tí a fọwọ́sì</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>Ìgbésẹ̀ yín ní ààbò pẹ̀lú òfin àṣírí orílẹ̀-èdè Switzerland. A kì í tẹ̀lé yín lórí ayélujára, a kò sì ní ṣe alábàápín àlàyé yín pẹ̀lú àwọn ẹgbẹ́ kẹta.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>Kiri ayélujára ní òmìnira láti ibíkíbi</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>Fi ibùdó digitíi yín pamọ́, kí ẹ sì leè rí ayélujára láti orílẹ̀-èdè kọ̀ọ̀kan nínú àwọn orílẹ̀-èdè {0} tí wa ti ṣí sílẹ̀.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>Dáàbò bo irin iṣẹ́ 10 ní ìgbà kan náà</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>Fi ààbò VPN tó dé kọ̀ǹpútà yín, ẹ̀rọ alágbèéká, bráósà, TV… </value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>Gbé fídíò sórí afẹ́fẹ́ ní ìwọ̀n àwòrán gíga</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>Wo àwọn fíìmù àti àwọn eré TV láti gbogbo àgbáyé, láì fi sínú ewu nípa ìyára tàbí dídára.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>Ẹ kú àbọ̀ sí VPN Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description">
+    <value>Ẹ ti ṣí gbogbo àwọn àfikún àbùdá ti Proton VPN, Mail, Calendar, Drive, àti Pass.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>Ẹ kú àbọ̀ sí {0}</value>
+    <comment>Title to welcome the user after an account upgrade. {0} is a placeholder for the name of the new plan (eg. Proton Unlimited, Proton Duo, Proton Family).</comment>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>Ẹ lè so pọ̀ mọ́ àwọn ẹ̀rọ ìtẹ̀, àwọn ẹ̀rọ ohùn, àti àwọn irin iṣẹ́ míràn lórí nẹ́tíwọ́ọ̀kì àdúgbò yín (LAN), láì kọjá inú túnẹ́ẹ̀lì VPN.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>Àwọn àsopọ̀ LAN</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>Nígbà tí ẹ bá fi ààyè gba fífi ihò ìtẹ̀bọ̀ ránṣẹ́, ẹ máa rí nọ́mbà ihò ìtẹ̀bọ̀ tí ó ń ṣiṣẹ́ lórí ojú-ewé àkọ́kọ́.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>Nọ́mbà ihò ìtẹ̀bọ̀ tí ó ń ṣiṣẹ́</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Ẹ wo ó</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>Àwọn ohun tuntun</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>Ẹ lè so pọ̀, tú ìsopọ̀, kí ẹ sì yí àsopọ̀ yín bí ó ti wà padà láti inú àpótí ẹ̀rọ.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>Áàpù àpòti ẹ̀rọ tuntun</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations">
+    <value>Yọ àwọn ibùdó kúrò</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
+    <value>Tí àwọn ibùdó kan bá wà tí ẹ kò fẹ́ kí a máa so yín pọ̀ mọ́ láìfọwọ́yí, ẹ lè yọ wọ́n kúrò nínú Tó yára jù àti Orílẹ̀-èdè tí a yan níwoòwoò.</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
+    <value>Fò</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
+    <value>Ṣé kì í ṣe orílẹ̀-èdè tí ẹ fẹ́?</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_ActionButton">
+    <value>Yọ àwọn ibùdó kúrò</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_CloseButton">
+    <value>Bóyá lẹ́yìn ìgbà díẹ̀</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_Subtitle">
+    <value>Ẹ lè yọ orílẹ̀-èdè tàbí ìlú kúrò nínú àwọn àsopọ̀ Tó yára jù àti Aláìròtẹlẹ̀.</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_Title">
+    <value>Yàgbé àwọn ibùdó tí ẹ kò fẹ́</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>Ṣé kí ẹ kó jáde ní Proton VPN?</value>
+  </data>
+  <data name="Exit_Message">
+    <value>Ó ń tú ìsopọ̀ kúrò ní VPN...</value>
+  </data>
+  <data name="Exit_Title">
+    <value>Kó jáde ní Proton VPN</value>
+  </data>
+  <data name="Flyouts_Country_Description1">
+    <value>Kíkiri ayélujára láìní VPN ń fi yín hàn fún àwọn ìdènà ayélujára tí ó da lé lórí ibùdó.</value>
+  </data>
+  <data name="Flyouts_Country_Description2">
+    <value>Àwọn wẹ́bsáìtì lè lo geoblocks láti déènà oríṣiríṣi ohun sí ibùdó kanpátá. Àwọn ìjọba lè tún pa láṣẹ fún àwọn ISPs (olùpèsè iṣẹ́ ìtọ́jú íntánẹ́ẹ̀tì) kí wọ́n déènà diẹ̀ nínú àwọn wẹ́bsáìtì nínú orílẹ̀-èdè wọn.</value>
+  </data>
+  <data name="Flyouts_Country_Description3">
+    <value>VPN ń mú kí ó dà bíi pé ẹ ń kiri ayélujára láti ibòmíràn, ó sì ń dá yín lọ́wọ́ àbojútó àti ìdènà ọ̀rọ̀-sísọ.</value>
+  </data>
+  <data name="Flyouts_Country_Title">
+    <value>Orílẹ̀-èdè</value>
+  </data>
+  <data name="Flyouts_Country_Warning">
+    <value>So pọ̀ mọ́ VPN kí ẹ leè yí ibùdó digitíi yín padà</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Connected">
+    <value>IP VPN yín ń bò IP àdírẹ́sì gidi yín mọ́lẹ̀. Èyí ń mú kí ó dà bíi pé ẹ ń kiri ayélujára láti ibùdó VPN yín, kí ìgbésẹ̀ yín lórí ayélujára kì bá fi irin iṣẹ́ yín mu.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected1">
+    <value>Àwọn wẹ́bsáìtì àti àwọn ISPs (olùpèsè iṣẹ́ ìtọ́jú íntánẹ́ẹ̀tì) lè lo kóòdù aláìtọ́nọ̀ yìí láti so ibùdó àti ìtàn ìwádií yín mọ́ irin iṣẹ́ yín.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2">
+    <value>VPN kan bò àdírẹ́sì IP yín mọ́lẹ̀, èyí tí ó ń ṣe é ṣòro kí wọ́n lè tọ ìṣe yín padà sí i.</value>
+  </data>
+  <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
+    <value>Kí ni àdírẹ́sì IP?</value>
+  </data>
+  <data name="Flyouts_IpAddress_Title">
+    <value>Àdírẹ́sì IP</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIp">
+    <value>IP VPN</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv6</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIp">
+    <value>IP yín</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIpIsVisible">
+    <value>Wọ́n lè rí àdírẹ́sì IP yín</value>
+  </data>
+  <data name="Flyouts_Isp_Description1">
+    <value>ISP yín (olùpèsè iṣẹ́ ìtọ́jú íntánẹ́ẹ̀tì) ni olùpèsè iṣẹ́ tí ó so yín mọ́ ayélujára.</value>
+  </data>
+  <data name="Flyouts_Isp_Description2">
+    <value>Wọ́n lè fi ìṣe tí ẹ̀ ń ṣe lórí ayélujára sí àkọsílẹ̀. Ní àwọn orílẹ̀-èdè kan, wọ́n lè tà dátà yín fún àwọn oníṣẹ́ ìpolówó. Ní àwọn mìíràn, wọ́n lè ní láti fi í fún ìjọba.</value>
+  </data>
+  <data name="Flyouts_Isp_Description3">
+    <value>VPN kan fi àdírẹ́sì IP yín pamọ́, ó sì ń dá yín lọ́wọ́ ìdàbobo ISP.</value>
+  </data>
+  <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
+    <value>Kí ni olùpèsè iṣẹ́ ìtọ́jú íntánẹ́ẹ̀tì (ISP)?</value>
+  </data>
+  <data name="Flyouts_Isp_Title">
+    <value>Olùpèsè</value>
+  </data>
+  <data name="Flyouts_Isp_Warning">
+    <value>Olùpèsè yín lè rí àwọn wẹ́bsáìtì tí ẹ̀ ń ṣàbẹ̀wò sí</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success">
+    <value>Ó dá gbogbo ìráàyèsí sí ayélujára dúró nígbà tí ẹ kò bá so pọ̀ mọ́ Proton VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info">
+    <value>Àdírẹ́sì IP yín lè hàn nígbà tí àsopọ̀ VPN yín bá tú</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>Olùdá ààbò bo àdírẹ́sì IP ìlọsókè ń paná ayélujára yín láti dáàbò bo àdírẹ́sì IP yín nígbà tí ẹ kò bá so pọ̀ mọ́ Proton VPN.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success">
+    <value>Tí àsopọ̀ VPN yín bá tú, àsopọ̀ yín pẹ̀lú ayélujára yóò tú títí tí VPN yóò fi padà</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected">
+    <value>Olùdá ààbò bo àdírẹ́sì IP ìlọsókè ń ṣiṣẹ́ pẹ̀lú bí ẹ bá pinnu láti tú ìsopọ̀ mọ́ VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected">
+    <value>Láti padà sí ayélujára, ẹ so pọ̀ mọ́ VPN tàbí ẹ paná olùdá ààbò bo àdírẹ́sì IP ìlọsókè</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackersAdultContent_Success">
+    <value>A ti dá ẹ̀ bò lọ́wọ́ ìpolongo ìtajà, olùtọpa, máálweà àti ohun àgbàlagbà.</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
+    <value>A ti dá ẹ̀ bò lọ́wọ́ ìpolongo ìtajà, olùtọpa, àti máálweà.</value>
+  </data>
+  <data name="Flyouts_NetShield_Info">
+    <value>Ẹ dá ìrìn ayélujára yín lórí wẹ́bsáìtì àti àwọn áàpù bò.</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success">
+    <value>Máálweà nìkan ni a ti dá ẹ̀ bò lọ́wọ́.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description">
+    <value>Ẹ dí ìpolongo ìtajà, olùtọpa, máálweà àti ohun àgbàlagbà mú pẹ̀lú VPN Plus.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title">
+    <value>Gbádùn ìwádií ayélujára láìní ìpolongo ìtajà</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort">
+    <value>Nọ́mbà ihò ìtẹ̀bọ̀ tí ó ń ṣiṣẹ́</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>A kò lè gba nọ́mbà ihò ìtẹ̀bọ̀ tí ó ń ṣiṣẹ́. Ẹ tún àsopọ̀ yín bẹ̀rẹ̀, ẹ sì tún gbìyànjú.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info">
+    <value>Ẹ tẹ nọ́mbà ihò ìtẹ̀bọ̀ tí ó ń ṣiṣẹ́ sínú kìlíanì torrent yín tàbí áàpù P2P yín kí ó le ṣiṣẹ́ dáadáa jù.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info">
+    <value>Ó ń mú ìyára gbígbà láti orí ẹ̀rọ peer-to-peer pọ̀</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description">
+    <value>Ẹ fi VPN Plus mú iṣẹ́ ṣíṣe alábàápín fáìlì peer-to-peer (P2P) lágbára púpọ̀.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title">
+    <value>Mú ìyára P2P pọ̀</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning">
+    <value>So pọ̀ mọ́ sáfà P2P láti mú ìyára torrenting pọ̀ sí i</value>
+  </data>
+  <data name="Flyouts_Protocol_Description">
+    <value>Ìlànà VPN kan ń pinnu bí a ṣe ń sọ lílọ bíbọ̀ di àṣírí àti bí a ṣe ń fi ránṣẹ́ kiri lórí VPN.</value>
+  </data>
+  <data name="Flyouts_Protocol_KnowledgeBaseLinkTitle">
+    <value>Ìlànà VPN wo ni ó dára jùlọ?</value>
+  </data>
+  <data name="Flyouts_Protocol_Title">
+    <value>Ìlànà</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Description">
+    <value>Ìfẹ́sẹ̀mulẹ̀ sáfà fi hàn bí sáfà kan ṣe súnmọ́ ibi tí agbára rẹ tí ó ga jùlọ wà. Ìfẹ́sẹ̀mulẹ̀ sáfà tó ga lè dín àsopọ̀ yín kù.</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High">
+    <value>Gíga (91-100%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High_Description">
+    <value>VPN lè ṣiṣẹ́ ní ìyára tó dín ju ti ìwọ̀n ìgbà deede lọ.</value>
+  </data>
+  <data name="Flyouts_ServerLoad_KnowledgeBaseLinkTitle">
+    <value>Kí ni ìfẹ́sẹ̀mulẹ̀ sáfà?</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low">
+    <value>Kékèé (1-75%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low_Description">
+    <value>Ìyára tó yára bí ìmọ́lẹ̀</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium">
+    <value>Àárín (76-90%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium_Description">
+    <value>Kò ṣeéṣe kí ó ba ìyára àsopọ̀ jẹ́</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Title">
+    <value>Ìfẹ́sẹ̀mulẹ̀ sáfà</value>
+  </data>
+  <data name="Flyouts_Speed_Description1">
+    <value>Ó fi hàn iye dátà tó ń kọjá nínu VPN ní ìgbà gidi.</value>
+  </data>
+  <data name="Flyouts_Speed_Description2">
+    <value>Ìyẹn dá lórí ohun tí irin iṣẹ́ yín ń ṣe nígbà yìí. Ní ọ̀pọ̀ ìgbà, kì í dùró fún ìyára àgbájú VPN.</value>
+  </data>
+  <data name="Flyouts_Speed_Download">
+    <value>Gbígbà láti orí ẹ̀rọ</value>
+    <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
+  </data>
+  <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
+    <value>Àlàyé nípa ìyára àti lílọ bíbọ̀ VPN</value>
+  </data>
+  <data name="Flyouts_Speed_Title">
+    <value>Lílọ bíbọ̀ lọ́wọ́lọ́wọ́</value>
+  </data>
+  <data name="Flyouts_Speed_Upload">
+    <value>Gbígbé sórí ẹ̀rọ</value>
+    <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
+    <value>Àwọn áàpù tí a yọ kúrò ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
+    <value>Àwọn àdírẹ́sì IP tí a yọ kúrò ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Info">
+    <value>Ó gba àwọn áàpù àti àwọn àdírẹ́sì IP tí a fi ọkàn tán láàyè láti so pọ̀ láìní ààbò VPN.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info">
+    <value>Àwọn áàpù àti àwọn àdírẹ́sì IP wọ̀nyí nìkan ni ń so pọ̀ nípasẹ̀ VPN. Gbogbo lílọ bíbọ̀ mìíràn kò ní ààbò.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
+    <value>Àwọn áàpù tí a dáàbò bò ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
+    <value>Àwọn àdírẹ́sì IP tí a dáàbò bò ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info">
+    <value>Àwọn áàpù àti àwọn àdírẹ́sì IP wọ̀nyí ń so pọ̀ láìní ààbò VPN. Gbogbo lílọ bíbọ̀ mìíràn ní ààbò.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description">
+    <value>Ẹ pín lílọ bíbọ̀ yín sí ọ̀nà VPN àti ọ̀nà tí kìí ṣe VPN pẹ̀lú VPN Plus.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title">
+    <value>Gba ànfààní ọ̀nà méjèèjì</value>
+  </data>
+  <data name="Flyouts_Volume_Description">
+    <value>Ó fi àpapọ̀ iye dátà tí ó kọjá nínú VPN hàn láti ìgbà tí ẹ ti so pọ̀.</value>
+  </data>
+  <data name="Flyouts_Volume_Download">
+    <value>Gbígbà láti orí ẹ̀rọ</value>
+    <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
+  </data>
+  <data name="Flyouts_Volume_Title">
+    <value>Àpapọ̀ lílọ bíbọ̀</value>
+  </data>
+  <data name="Flyouts_Volume_Upload">
+    <value>Gbígbé sórí ẹ̀rọ</value>
+    <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
+  </data>
+  <data name="Format_Size_Bytes">
+    <value>{0} B</value>
+    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
+  </data>
+  <data name="Format_Size_Exabytes">
+    <value>{0} EB</value>
+    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
+  </data>
+  <data name="Format_Size_Gigabytes">
+    <value>{0} GB</value>
+    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
+  </data>
+  <data name="Format_Size_Kilobytes">
+    <value>{0} KB</value>
+    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
+  </data>
+  <data name="Format_Size_Megabytes">
+    <value>{0} MB</value>
+    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
+  </data>
+  <data name="Format_Size_Petabytes">
+    <value>{0} PB</value>
+    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
+  </data>
+  <data name="Format_Size_Terabytes">
+    <value>{0} TB</value>
+    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_SpeedUnit">
+    <value>Lílọ bíbọ̀ lọ́wọ́lọ́wọ́ ({0})</value>
+    <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
+  </data>
+  <data name="Format_Speed_BytesPerSecond">
+    <value>{0} B/s</value>
+    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
+  </data>
+  <data name="Format_Speed_ExabytesPerSecond">
+    <value>{0} EB/s</value>
+    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
+  </data>
+  <data name="Format_Speed_GigabytesPerSecond">
+    <value>{0} GB/s</value>
+    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
+  </data>
+  <data name="Format_Speed_KilobytesPerSecond">
+    <value>{0} KB/s</value>
+    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
+  </data>
+  <data name="Format_Speed_MegabytesPerSecond">
+    <value>{0} MB/s</value>
+    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
+  </data>
+  <data name="Format_Speed_PetabytesPerSecond">
+    <value>{0} PB/s</value>
+    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
+  </data>
+  <data name="Format_Speed_TerabytesPerSecond">
+    <value>{0} TB/s</value>
+    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
+  </data>
+  <data name="Format_Time_Day_Other">
+    <value>{0} ọjọ́</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
+    <value>{0} ọjọ́ {1} wákàdí</value>
+  </data>
+  <data name="Format_Time_Hours">
+    <value>{0} wákàdí</value>
+    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutes">
+    <value>{0} wákàdí {1} ìsẹ́jú</value>
+    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutesSeconds_Short">
+    <value>hh\:mm\:ss</value>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>{0} wákàdí ti kọjá</value>
+  </data>
+  <data name="Format_Time_Minutes">
+    <value>{0} ìsẹ́jú</value>
+    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds">
+    <value>{0} ìsẹ́jú {1} ààyọ</value>
+    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds_Short">
+    <value>mm\:ss</value>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>{0} ìsẹ́jú ti kọjá</value>
+  </data>
+  <data name="Format_Time_Seconds">
+    <value>{0} ààyọ</value>
+    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>{0} ààyọ ti kọjá</value>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>Gbà fáìlì wọlé nípasẹ̀ BitTorrent àti àwọn ọ̀nà ṣíṣe alábàápín fáìlì mìíràn</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>Fi ìpele sísọ di àṣírí mìíràn kún àsopọ̀ VPN yín</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>Lo nẹ́tíwọ́ọ̀kì Tor lórí àsopọ̀ VPN yín kí àṣírí yín le pọ̀ sí i</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>Gba ìran kárí ayé pẹ̀lú VPN Plus</value>
+  </data>
+  <data name="Gateway_Fastest">
+    <value>Ipa ọ̀nà tó yára jù</value>
+  </data>
+  <data name="Gateway_Random">
+    <value>Ipa ọ̀nà láìròtẹlẹ̀</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>So pọ̀ mọ́ ipa ọ̀nà kan kí ẹ lè ní ìráàyèsí sí VPN àjọ yín.</value>
+  </data>
+  <data name="Gateways_Page_Title">
+    <value>Àwọn ipa ọ̀nà</value>
+  </data>
+  <data name="Home_Account_SignOut">
+    <value>Jáde</value>
+  </data>
+  <data name="Home_Account_SignOut_Confirmation_Title">
+    <value>Jáde kúrò ní {0}?</value>
+    <comment>{0} is a placeholder for the username</comment>
+  </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Yí àsopọ̀ bí ó ti wà padà</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeServer">
+    <value>Yí sáfà padà</value>
+  </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>Olùdá ààbò bo àdírẹ́sì IP ilọ̀síwájú ti tan sílẹ̀.</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>Ẹ so pọ̀ mọ́ VPN láti mú àsopọ̀ ayélujára yín padà.</value>
+  </data>
+  <data name="Home_ConnectionDetails_Connecting">
+    <value>Ó ń so pọ̀</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectingSubLabel">
+    <value>Ó ń dá àbọ̀ fún ìdánimọ̀ díjítà yín...</value>
+  </data>
+  <data name="Home_ConnectionDetails_Country">
+    <value>Orílẹ̀-èdè</value>
+  </data>
+  <data name="Home_ConnectionDetails_Isp">
+    <value>Olùpèsè</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protected">
+    <value>Ti dá àbọ̀</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protocol">
+    <value>Ìlànà</value>
+  </data>
+  <data name="Home_ConnectionDetails_ServerLoad">
+    <value>Ìfẹ́sẹ̀mulẹ̀ sáfà</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Ẹ tún jẹ́rìísí ní ojú-ìwọlé 2FA àjọ yín láti tẹ̀síwájú.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>2FA ti wá sí òpin</value>
+  </data>
+  <data name="Home_ConnectionDetails_Unprotected">
+    <value>Kò tíì dá àbọ̀</value>
+  </data>
+  <data name="Home_ConnectionDetails_UnprotectedSubLabel">
+    <value>Ẹ sọ ìṣe yín lórí ayélujára di àṣírí nípa síso pọ̀ mọ́ VPN.</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume">
+    <value>Gbogbo lílọ bíbọ̀</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnIp">
+    <value>IP VPN</value>
+  </data>
+  <data name="Home_ConnectionDetails_YourIpAddress">
+    <value>Àdírẹ́sì IP yín</value>
+  </data>
+  <data name="Home_FreeConnections_About">
+    <value>Àlàyé síwájú sí i nípa àsopọ̀ ọ̀fẹ́</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>Àwọn ìpolongo tí a dẹ́kùn</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>Àwọn ìpolongo ni àwọn báǹnér ìpolówó tàbí ìbújáde tí ó ń hàn lórí àwọn wẹ́bsáìtì àti ní àwọn áàpù.</value>
+  </data>
+  <data name="Home_NetShield_DataSaved">
+    <value>Dátà tí a fàájù</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>Àpérò dátà tí a fàájù nípa dídẹ́kùn àwọn ìpolongo àìnfọwọ́yì, àwọn olùtọpa àti máálweà.</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>Àwọn olùtọpa tí a dẹ́kùn</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>Àwọn olùtọpa ni kúúkì àti àwọn wẹ́bsáìtì alàgàta tí wọ́n ń kó, fi pamọ́, àti tà àlàyé nípa ìṣeréyọ̀ yín lórí wẹ́ẹ̀bù.</value>
+  </data>
+  <data name="Home_Recents_Pin">
+    <value>Dé</value>
+  </data>
+  <data name="Home_Recents_Restricted">
+    <value>Sáfà yìí wà pẹ̀lú VPN Plus</value>
+  </data>
+  <data name="Home_Recents_ServerUnderMaintenance">
+    <value>Sáfà náà wà ní abẹ́ ìtọ́jú</value>
+  </data>
+  <data name="Home_Recents_Title">
+    <value>Àwọn tó ṣẹ́ṣẹ́ wá</value>
+  </data>
+  <data name="Home_Recents_Unpin">
+    <value>Gbà sílẹ̀</value>
+  </data>
+  <data name="Home_TitleBar_Menu_About">
+    <value>Nípa</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Account">
+    <value>Àkántì</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp">
+    <value>Jáde nínú áàpù</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help">
+    <value>Ìrànwọ́</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
+    <value>Kí ni ìṣòro náà?</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings">
+    <value>Àwọn ààtò</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout">
+    <value>Jáde</value>
+  </data>
+  <data name="Home_TitleBar_Menu_UpdateNow">
+    <value>Mú u dé ojú ìwọ̀n</value>
+  </data>
+  <data name="LoadingPage_Tip">
+    <value>Ayé tó dára bẹ̀rẹ̀ pẹ̀lú àṣírí àti òmììnira digití.</value>
+  </data>
+  <data name="Login_Error_GetSessionDetailsFailed">
+    <value>Àṣìṣe kan wáyé nígbà tí a ń gba àwọn àlàyé sáà náà. Jọ̀wọ́, ẹ tún gbìyànjú.</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>A kò lè wọlé nítorí àwọn ààtò nẹ́tíwọ́ọ̀kì lórí irin iṣẹ́ yín. Mobile hotspot, aplikéṣàn VPN mìíràn, tàbí sọ́fweà ẹ̀rọ ìfihàn lè fa ìṣẹ̀lẹ̀ yìí. Jọ̀wọ́, ẹ ṣe àyẹ̀wò ìṣètò nẹ́tíwọ́ọ̀kì yín tàbí kàn sí àtìlẹ́yìn fún ìrànlọ́wọ́.</value>
+  </data>
+  <data name="Login_Error_IncorrectTwoFactorCode">
+    <value>Kóòdù yìí kò tọ́. Jọ̀wọ́, ẹ tún gbìyànjú.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>Fáìlì kan tí a fi ń lo fún ìwọlé kò wà nínú ìfisọrí-ẹ̀rọ yín. Jọ̀wọ́, ẹ tún fi Proton VPN sórí ẹ̀rọ láti yanjú ìṣòro yìí.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>A kò lè wọlé</value>
+  </data>
+  <data name="Login_Error_SessionExpired">
+    <value>Sáà yín ti wá sí òpin. Jọ̀wọ́, ẹ tún wọlé.</value>
+    <comment>The message displayed in Login window when expired session is detected</comment>
+  </data>
+  <data name="Login_Error_SsoAuthFailed">
+    <value>A kò lè ṣe ìjẹ́rìísí SSO. Jọ̀wọ́, ẹ tún gbìyànjú.</value>
+  </data>
+  <data name="Login_Error_TwoFactorFailed">
+    <value>Ìjẹ́rìísí ọ̀nà méjì kò gbẹ́yìn. Jọ̀wọ́, ẹ tún wọlé.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>Ìjẹ́rìísí bọ́tìnnì ààbò kò ṣiṣẹ́ fún irin iṣẹ́ yín tàbí àsopọ̀ déṣìkọ́tọ́pù jìjìnnà.</value>
+  </data>
+  <data name="Login_TwoFactorForm_Authenticate">
+    <value>Jẹ́rìísí</value>
+    <comment>Authenticate button inside two factor form during login</comment>
+  </data>
+  <data name="Login_TwoFactorForm_Subtitle">
+    <value>Kóòdù ìjẹ́rìísí ìkà mẹ́fà</value>
+  </data>
+  <data name="Login_TwoFactorForm_Title">
+    <value>Ìjẹ́rìísí oníbejì</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>Áàpù ìjẹ́rìísí</value>
+  </data>
+  <data name="Login_TwoFactor_Digit1">
+    <value>Ìkà kìíní</value>
+  </data>
+  <data name="Login_TwoFactor_Digit2">
+    <value>Ìkà ìkejì</value>
+  </data>
+  <data name="Login_TwoFactor_Digit3">
+    <value>Ìkà ìkẹta</value>
+  </data>
+  <data name="Login_TwoFactor_Digit4">
+    <value>Ìkà ìkẹrin</value>
+  </data>
+  <data name="Login_TwoFactor_Digit5">
+    <value>Ìkà ìkarùn-ún</value>
+  </data>
+  <data name="Login_TwoFactor_Digit6">
+    <value>Ìkà ìkẹfà</value>
+  </data>
+  <data name="Login_TwoFactor_EnterCode">
+    <value>Ẹ tẹ̀ kóòdù yín sínú</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>A kò rí ọ̀nà ìjẹ́rìísí oníbejì tí a mọ̀.</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>Kọ́kọ́rọ́ ààbò</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>Fi kọ́kọ́rọ́ U2F tàbí FIDO tí a so mọ́ àkántì Proton yín sínú.</value>
+  </data>
+  <data name="Main_Loading">
+    <value>Ó ń gbéwọlé, ẹ jọ̀wọ́ dúró...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
+  <data name="Main_Loading_SigningIn">
+    <value>A ń wọlé, ẹ jọ̀wọ́ dúró díẹ̀...</value>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>Ó ń gba àkókò ju àṣà lọ, ṣùgbọ́n a ń ṣiṣẹ́ lórí rẹ̀.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
+  </data>
+  <data name="Main_Loading_SigningOut">
+    <value>A ń jáde, ẹ jọ̀wọ́ dúró díẹ̀...</value>
+    <comment>Message in the loading screen when signing out</comment>
+  </data>
+  <data name="Map_ConnectTo">
+    <value>So pọ̀ - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>Ẹ kàn sí wa</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>A kò lè gbé àkójọ àwọn sáfà náà wọlé.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Ṣe ẹ nilo ìrànlọ́wọ́?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Jáde</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Ẹ bẹ̀ alábòójútó yín kí ó fi ààyè gba ìráàyèsí VPN fún àkántì yín.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>Kò sí àsopọ̀ VPN tí ó wà</value>
+  </data>
+  <data name="NoServers_UnderMaintenance_Tip">
+    <value>A kò lè gbé sáfà kankan wá. Ẹ tẹ "Tún u sọjí" láti mú àkójọ àwọn sáfà dé ojú ìwọ̀n.</value>
+  </data>
+  <data name="Notifications_KillSwitch_Description">
+    <value>Láti dáàbò bò àdírẹ́sì IP yín, olùdá ààbò bo àdírẹ́sì IP ń dì àsopọ̀ ayélujára yín mọ́.</value>
+  </data>
+  <data name="Notifications_PortForwarding_CopyPortNumber">
+    <value>Ṣàdàkọ nọ́mbà ihò ìtẹ̀bọ̀</value>
+  </data>
+  <data name="Notifications_PortForwarding_Description">
+    <value>Ẹ lọ sí kìlíanì torrent yín tàbí áàpù P2P yín, ẹ sì tẹ nọ́mbà yìí sínú.</value>
+  </data>
+  <data name="Notifications_SessionLimit_Description">
+    <value>Ẹ ti dé iye irin iṣẹ́ tó pọ̀ jùlọ. Láti tún so mọ́ VPN, ẹ jọ̀wọ́ tú ìsopọ̀ ní irin iṣẹ́ mìíràn.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>A ti rẹ̀ ètò yín sílẹ̀ sí Proton Free, àti pé a ń tún so yín mọ́ sáfà ọ̀fẹ́ tí ó yára jùlọ.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Description">
+    <value>Àwọn nẹ́tíwọ́ọ̀kì Wi-Fi gbàngbàngán wà nínú ewu ààbò sí jù. Ẹ so pọ̀ mọ́ VPN kí ẹ lè kiri lórí ayélujára ní ààbò.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Title">
+    <value>A ti rí àsopọ̀ Wi-Fi tí kò ní ààbò</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Proton VPN - Ìwádìí</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>Kí a lè kó àwọn àdírẹ́sì IPv6 mọ́, ẹ ní láti gba àwọn àsopọ̀ IPv6 láyè nípasẹ̀ túnnẹ́lì VPN.</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>Fi ààyè gba IPv6</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>Kì í ṣe báyìí</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>A ti paná IPv6</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Action">
+    <value>Mú u dé ojú ìwọ̀n</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Message">
+    <value>Ẹ̀yà áàpù yìí ti pẹ́ láyé. Ẹ ní láti mú áàpù náà dé ojú ìwọ̀n kí ẹ lè tẹ̀ síwájú láti lo Proton VPN.</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Title">
+    <value>Mú Proton VPN dé ojú ìwọ̀n kí ẹ lè tẹ̀ síwájú</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Description">
+    <value>Àwọn sáfà P2P wa ń gbà yín láyè láti ní ìráàyèsí sí àwọn nẹ́tíwọ́ọ̀kì P2P, ṣùgbọ́n wọ́n ń tún dáàbò bò àdírẹ́sì IP àti ìṣeréyọ̀ yín lórí ayélujára.</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Header">
+    <value>Kí ni P2P VPN?</value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Description">
+    <value>Àwọn nẹ́tíwọ́ọ̀kì P2P ń jẹ́ kí irin iṣẹ́ méjì so pọ̀ mọ́ ara wọn, kí wọ́n sì fi dátà ránṣẹ́ láìkọjá nínú sáfà àárín. </value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Header">
+    <value>Kí ni nẹ́tíwọ́ọ̀kì P2P?</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Description">
+    <value>  •  Gígba fáìlì torrent wọlé
+  •  Dídára iṣẹ́ eré lórí ayélujára àti ìpè fídíò
+  •  Ṣísọ mọ́ àwọn irin iṣẹ́ LAN (nẹ́tíwọ́ọ̀kì àdúgbò)</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Header">
+    <value>Kí ni wọ́n fi àwọn nẹ́tíwọ́ọ̀kì P2P ṣe?</value>
+  </data>
+  <data name="Overlay_P2P_LearnMore">
+    <value>Kí ni P2P?</value>
+  </data>
+  <data name="Overlay_P2P_Title">
+    <value>P2P</value>
+  </data>
+  <data name="Overlay_Profile_Description1">
+    <value>Àwọn profáìlì ni àsopọ̀ VPN àkànṣe tí ẹ lè dé tó déẹ̀ mọ́ àwọn àìní yín, kí ẹ sì fi pamọ́ fún wíwọlé kíákíá.</value>
+  </data>
+  <data name="Overlay_Profile_Description2">
+    <value>Ẹ yan ibùdó tí ẹ fẹ́, kí ẹ sì dé àwọn ààtò yín dé ojúṣe tó dára fún ààbò, iṣẹ́ dáradára, eré, tàbí ọ̀nà ìṣe kan mìíràn.</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore">
+    <value>Kín ni profáìlì VPN?</value>
+  </data>
+  <data name="Overlay_Profile_Title">
+    <value>Àwọn profáìlì</value>
+  </data>
+  <data name="Overlay_SecureCore_Description1">
+    <value>Secure Core so ẹ mọ́ sáfà ìparí ìrìnàjò yín nípasẹ̀ sáfà VPN kejì tí ó ní ààbò ga jùlọ.</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2">
+    <value>Ìpele ààbò tí ó ga jù yìí lè mú kí látenṣì pọ̀ sí i àti kí ìyára dín kù.</value>
+  </data>
+  <data name="Overlay_SecureCore_LearnMore">
+    <value>Kín ni Secure Core?</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection">
+    <value>Secure Core
+Àsopọ̀ VPN</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
+    <value>Látenṣì tó ga jù</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Privacy">
+    <value>Àṣírí ìlọsíwájú</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection">
+    <value>Déédéé
+Àsopọ̀ VPN</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Latency">
+    <value>Látenṣì tó dín kù</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Privacy">
+    <value>Àṣírí tó ga</value>
+  </data>
+  <data name="Overlay_SecureCore_Title">
+    <value>Secure Core</value>
+  </data>
+  <data name="Overlay_ServerLoad_Description">
+    <value>Ìtí sáfà fi hàn bí sáfà kan ṣe ti sunmò agbára tó pọ̀ jùlọ rẹ̀.
+
+Ìtí sáfà tó ga lè dín àsopọ̀ yín kù.</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Description">
+    <value>Ìyára VPN lè dín kù ju ti ìgbà gbogbo lọ.</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Title">
+    <value>Gíga (91 sí 100%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_LearnMore">
+    <value>Kín ni ìtí sáfà?</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Description">
+    <value>Ìyára tó yára bí ìmọ́lẹ̀</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Title">
+    <value>Dín (1 sí 75%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Description">
+    <value>Kò ní í ní ipa lórí ìyára VPN</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Title">
+    <value>Àárín (76 sí 90%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_Title">
+    <value>Ìfẹ́sẹ̀mulẹ̀ sáfà</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description1">
+    <value>Smart Routing gba wa láyè láti pèsè àbò VPN ní àwọn orílẹ̀ èdè tó ṣòro láti dé.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2">
+    <value>Nígbà tí ẹ bá so pọ̀ mọ́ sáfà Smart Routing, yóò dà bí ẹ ti ń wákiri ayélujára ní orílẹ̀ èdè tí ẹ ń lọ sí, àmọ́ sáfà gidi náà wà ní ibòmíràn.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3">
+    <value>Wọ́n ma ń lo Smart Routing láti kọjá òfin tí ó ń dé àṣírí mọ́ àti àwọn ọ̀nà ìdẹ̀kùn mìíràn.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Header">
+    <value>Ó so yín mọ́ orílẹ̀ èdè tí ẹ̀yin ń lọ sí nípasẹ̀ àwọn sáfà tí wọ́n wà ní ààyè mìíràn lára: {0}.</value>
+    <comment>{0} is a placeholder for the countries where the physical servers are. Can be either one country or multiple countries separated with comma.</comment>
+  </data>
+  <data name="Overlay_SmartRouting_LearnMore">
+    <value>Kín ni Smart Routing?</value>
+  </data>
+  <data name="Overlay_SmartRouting_Title">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Overlay_Tor_Description">
+    <value>Ẹ so pọ̀ mọ́ sáfà Tor láti ní ìráàyèsí sí àwọn iṣẹ́ tí wọ́n fi pamọ́ àti àwọn ojú ewé ìráàyèsí mọ níwọ̀nba pẹ̀lú bráósà èyíkéyìí.</value>
+  </data>
+  <data name="Overlay_Tor_LearnMore">
+    <value>Bí a ṣe lè ní ìráàyèsí sí nẹ́tíwọ́ọ̀kì Tor</value>
+  </data>
+  <data name="Overlay_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Profile_CustomSettings_Description">
+    <value>Àwọn ààtò àwoṣe yóò gorí àwọn ààtò VPN yín nígbà ìsomọ́.</value>
+  </data>
+  <data name="Profile_CustomSettings_Header">
+    <value>Fi àwọn ààtò àkànṣe kún</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide">
+    <value>Fi àwọn ààtò pamọ́</value>
+  </data>
+  <data name="Profile_CustomSettings_Show">
+    <value>Fi àwọn ààtò hàn</value>
+  </data>
+  <data name="Profile_NatType_Conflict_Description">
+    <value>Èyí yóò paná fífi ihò ìtẹ̀bọ̀ ránṣẹ́ fún àwoṣe yìí.</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description">
+    <value>Èyí yóò paná DNS àkànṣe fún àwoṣe yìí.</value>
+  </data>
+  <data name="Profile_Options_Application">
+    <value>Áàpù</value>
+  </data>
+  <data name="Profile_Options_Application_Select">
+    <value>Yan áàpù kan</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Application">
+    <value>Ṣí áàpù kan</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
+    <value>Lo ipò ìṣiṣẹ́ ìlọkiri àṣírí</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Website">
+    <value>Ṣí wẹ́bsáìtì kan</value>
+  </data>
+  <data name="Profile_Options_Description">
+    <value>Ó máa ń ṣí wẹ́bsáìtì tàbí áàpù tí ẹ yàn láìfọwọ́yí nígbà tí ẹ bá so pọ̀ mọ́ àwoṣe yìí.</value>
+  </data>
+  <data name="Profile_Options_Header">
+    <value>So pọ̀ kí ẹ lọ</value>
+  </data>
+  <data name="Profile_Options_Url">
+    <value>URL wẹ́bsáìtì</value>
+  </data>
+  <data name="Profile_Options_Url_Error">
+    <value>Ẹ tẹ̀ URL tó tọ́ sínú</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description">
+    <value>Eyi yóò yí irú NAT àwoṣe yìí padà sí Strict (irú 3).</value>
+  </data>
+  <data name="Profiles_Default_Gaming">
+    <value>Síṣe eré</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity">
+    <value>Ààbò tó ga jùlọ</value>
+  </data>
+  <data name="Profiles_Default_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection">
+    <value>Àsopọ̀ àdàkọ</value>
+  </data>
+  <data name="Profiles_Default_Streaming">
+    <value>Gbígbé sórí afẹ́fẹ́ US</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool">
+    <value>Iṣẹ́/Ilé-ẹ̀kọ́</value>
+  </data>
+  <data name="Profiles_Page_Description">
+    <value>Ṣètò àwọn ààtò VPN tiyín kí ẹ sì so pọ̀ ní ìfọwọ́tẹ̀ kan.</value>
+  </data>
+  <data name="Profiles_Page_Title">
+    <value>Àwọn profáìlì</value>
+  </data>
+  <data name="Search_InputBox_Placeholder">
+    <value>Wákiri láti...</value>
+  </data>
+  <data name="Search_NoInput_CityOrState">
+    <value>Ìlú tàbí ìpínlẹ̀ US</value>
+    <comment>The word used for one single city and one single United States state</comment>
+  </data>
+  <data name="Search_NoInput_Country">
+    <value>Orílẹ̀-èdè</value>
+    <comment>The word used for one single country</comment>
+  </data>
+  <data name="Search_NoInput_Server">
+    <value>Sáfà</value>
+    <comment>The word used for one single server</comment>
+  </data>
+  <data name="Search_NoInput_TrySearchingFor">
+    <value>Ẹ gbiyànjú láti wá...</value>
+  </data>
+  <data name="Search_NoResults_Description">
+    <value>Ẹ gbìyànjú ọ̀rọ̀ àwárí mìíràn.</value>
+  </data>
+  <data name="Search_NoResults_Title">
+    <value>Kò sí èsì</value>
+  </data>
+  <data name="Server">
+    <value>Sáfà</value>
+  </data>
+  <data name="Server_Fastest">
+    <value>Sáfà tó yára jù</value>
+  </data>
+  <data name="Server_Fastest_Free">
+    <value>Sáfà ọ̀fẹ́ tí ó yára jùlọ</value>
+  </data>
+  <data name="Server_Feature_B2B">
+    <value>Ipa ọ̀nà</value>
+  </data>
+  <data name="Server_Feature_B2B_Description">
+    <value>Ní ìráàyèsí sí àwọn sáfà àjọ yín</value>
+  </data>
+  <data name="Server_Feature_None">
+    <value>Ti déédé</value>
+  </data>
+  <data name="Server_Feature_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Server_Feature_P2P_Description">
+    <value>Ti ṣètò fún Torrent</value>
+  </data>
+  <data name="Server_Feature_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description">
+    <value>Ààbò lábẹ́méjì</value>
+  </data>
+  <data name="Server_Feature_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Server_Free">
+    <value>Sáfà ọ̀fẹ́</value>
+  </data>
+  <data name="Server_Random">
+    <value>Sáfà láìròtẹlẹ̀</value>
+  </data>
+  <data name="Servers">
+    <value>Àwọn sáfà</value>
+  </data>
+  <data name="Settings_About_Changelog">
+    <value>Àkọsílẹ̀ àyípadà</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Ẹ̀dà lọ́wọ́lọ́wọ́</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>A kò lè gbá àkọsílẹ̀ àyípadà náà wá.</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>Mọ̀ síi</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Ìfúnnilẹ̀sẹ̀</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Ó ń gbé wá</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>Nípa</value>
+  </data>
+  <data name="Settings_Account_Account">
+    <value>Àkántì</value>
+  </data>
+  <data name="Settings_Account_Exit">
+    <value>Jáde nínú áàpù</value>
+  </data>
+  <data name="Settings_Account_SignOut">
+    <value>Jáde</value>
+  </data>
+  <data name="Settings_AppVersion">
+    <value>Ẹ̀dà áàpù</value>
+  </data>
+  <data name="Settings_Censorship_Footer">
+    <value>Àwọn ìṣirò yìí kò ní àdírẹ́sì IP yín, wọ́n kò sì lè jẹ́ kí a mọ ẹ́ mọ̀. A kò ní ṣe alábàápín wọn pẹ̀lú ẹgbẹ́ kẹta láé.</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports">
+    <value>Ṣe alábàápín ìjábọ̀ àìṣiṣẹ́ láìní orúkọ</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports_Description">
+    <value>Ìjábọ̀ àìṣiṣẹ́ ń ràn wá lọ́wọ́ láti ṣàtúnṣe àṣìṣe ẹ̀rọ àti láti ṣàwárí ààbò orí kọ̀mpútà kí a sì lè yàgbé ìdè VPN.</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics">
+    <value>Ṣe alábàápín ìṣirò ìlò láìní orúkọ</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics_Description">
+    <value>Dátà ìlò ń ràn wá lọ́wọ́ láti bori ìdè VPN àti láti mú iṣẹ́ áàpù ga.</value>
+  </data>
+  <data name="Settings_Common_Apply">
+    <value>Ṣe àmúlò</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>Àdírẹ́sì náà ti wà tẹ́lẹ̀.</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>Ẹ tẹ̀ àdírẹ́sì IPv4 tàbí IPv6 tó wúlò sínú.</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Connection">
+    <value>Àsopọ̀</value>
+  </data>
+  <data name="Settings_Connection_AdvancedSettings">
+    <value>Àwọn ààtò tó jinlẹ̀</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting">
+    <value>Yíyan ipa ọ̀nà míràn</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
+    <value>Tí àwọn iṣẹ́ Proton bá dé ìdè nítorí àwọn àdínkù nẹ́tíwọ́ọ̀kì, a yóò gbìyànjú láti lo ìdarí ọ̀nà mìíràn nẹ́tíwọ́ọ̀kì láti so yín mọ́ àwọn ojú-ewé wa.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers">
+    <value>Àwọn sáfà DNS àkànṣe</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>Fi sáfà DNS tuntun kún</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
+    <value>Ẹ kò ní lè lo NetShield nígbà tí ẹ bá so pọ̀ mọ́ sáfà DNS àkànṣe.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
+    <value>Ṣé kí a fi ààyè gba àwọn sáfà DNS àkànṣe?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
+    <value>So pọ̀ mọ́ Proton VPN nípa lílo Ètò Orúkọ Ojú Òpó (DNS) tiyín. Ẹ lo sáfà DNS tí ẹ bá gbẹ́kẹ̀lé nìkan.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>A ó gbìyànjú láti so pọ̀ mọ́ àwọn sáfà wọ̀nyí ní ìtẹ̀léra. Bí kò bá sí ọ̀kan nínú wọn tí ó ṣiṣẹ́, a ó lo DNS Proton VPN bí ó ti wà.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_FormattedHeader">
+    <value>Àwọn sáfà DNS ({0})</value>
+    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+    <value>Àwọn sáfà DNS</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Select">
+    <value>Yan àwọn sáfà DNS</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>Àtìlẹ́yìn IPv6</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
+    <value>Ààbò jíjò IPv6</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
+    <value>Ó dẹ̀kun jíjò dátà nípa títi lílọ bíbọ̀ IPv6 tí kì í kọjá nínu tunnel VPN mọ́.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>Ó gba láyè kí lílọ bíbọ̀ IPv6 leè kọjá nínu tunnel VPN. Èyí sì mú ìbáṣepọ̀ pọ̀ sí i pẹ̀lú àwọn wẹ́bsáìtì àti àwọn iṣẹ́ IPv6.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections">
+    <value>Gba àwọn àsopọ̀ LAN láyè</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_Description">
+    <value>Ó gba láyè àsopọ̀ sí àwọn átẹ̀wé, agbóhùnsáfẹ́fẹ́ àti àwọn irin iṣẹ́ mìíràn nínú nẹ́tíwọ́ọ̀kì àgbègbè yín.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
+    <value>Ó ń lo mDNS láti so pọ̀ mọ́ àwọn irin iṣẹ́ nípa lílo orúkọ bíi 'My-Printer' tàbí 'router.local' dípò àdírẹ́sì IP. DNS ìpéwọ̀n máa ń tẹ̀síwájú láti darí dátà nípasẹ̀ tunnel VPN. A paná ìlànà yìí bí ó ti wà kí ìyára VPN lè pọ̀.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
+    <value>Ní ìráàyèsí sí àwọn irin iṣẹ́ nípa orúkọ wọn</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType">
+    <value>Irú NAT</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
+    <value>Ẹ kò ní lè lo fífi ihò ìtẹ̀bọ̀ ránṣẹ́ pẹ̀lú Moderate NAT.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
+    <value>Ṣé kí a fi ààyè gba Moderate NAT?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Description">
+    <value>Ẹ yàn irú ìtúmọ̀ àdírẹ́sì nẹ́tíwọ́ọ̀kì fún àsopọ̀ yín.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate">
+    <value>Moderate (írú 2)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
+    <value>Ìdènà kan wà lórí dátà tí ń tẹ̀ wọlé sí nẹ́tíwọ́ọ̀kì yín. Aṣàyàn yìí dára jù fún eré fídíò lórí ayélujára.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict">
+    <value>Strict (írú 3)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict_Description">
+    <value>Ó dènà dátà tí ń tẹ̀ wọlé sínú nẹ́tíwọ́ọ̀kì yín. Aṣàyàn yìí ní ààbò síwájú sí i, ṣùgbọ́n ó lè jẹ́ kí àsopọ̀ eré P2P nira síwájú.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
+    <value>Ó ń dàpọ̀ mọ́ ọn lílọ bíbọ̀ nẹ́tíwọ́ọ̀kì. Ìyára rẹ̀ kéré ju ti TUN lọ, ṣùgbọ́n a nílò rẹ̀ fún díẹ̀ nínú àwọn ìṣètò nẹ́tíwọ́ọ̀kì ogún tàbí àwọn èyí pàtàkì.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
+    <value>Ó ń darí lílọ bíbọ̀ láàárín àwọn nẹ́tíwọ́ọ̀kì ọtọ̀ọ̀tọ̀. TUN lè yára ju TAP lọ, ó sì lè dájú ju ti TAP lọ.</value>
+  </data>
+  <data name="Settings_Connection_ConnectionPreferences">
+    <value>Àwọn ààyò àsopọ̀</value>
+  </data>
+  <data name="Settings_Connection_ConnectionPreferences_Description">
+    <value>Àsopọ̀ bí ó ti wà àti àwọn ibùdó tí a yọ kúrò</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
+    <value>A kò lè ṣí DNS àkànṣe nítorí pé ẹ so pọ̀ mọ́ pọ́fáìlì kan tí a ti fi ààyè gba NetShield.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
+    <value>A ti paná DNS àkànṣe nítorí pé ẹ ti so pọ̀ mọ́ pọ́fáìlì kan tí a ti fi ààyè gba NetShield ní báyìí.</value>
+  </data>
+  <data name="Settings_Connection_Default">
+    <value>Àsopọ̀ bí ó ti wà</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>Orílẹ̀-èdè tí ó yára jùlọ</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>Sáfà tó dára jùlọ nípa ààyè ibùdó yín</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>Àsopọ̀ tó kẹ́yìn</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>Àsopọ̀ tí ẹ fi lò ní kété</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Orílẹ̀-èdè tí a yan níwoòwoò</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Sáfà kan yàtọ̀ nígbà gbogbo tí ẹ bá so pọ̀.</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Àwọn tó ṣẹ́ṣẹ́ wá</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations">
+    <value>Àwọn ibùdó tí a yọ kúrò</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Cities">
+    <value>Àwọn ìlú</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Countries">
+    <value>Àwọn orílẹ̀-èdè</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Description">
+    <value>Nígbà tí ẹ bá so pọ̀ mọ́ Fastest tàbí Random, a kò ní lo àwọn ibùdó tí a ti yàn rárá.</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_NoLocations">
+    <value>Kò sí ibùdó tí ó wà</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Search">
+    <value>Yan...</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_States">
+    <value>Àwọn ìpínlẹ̀</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch">
+    <value>Olùdá ààbò bo àdírẹ́sì IP</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced">
+    <value>Tó gbilẹ̀</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced_Description">
+    <value>Ó máa ń fún yín ní ìráàyèsí sí ayélujára nìkan nígbà tí ẹ bá so pọ̀ mọ́ Proton VPN. Olùdá ààbò bo àdírẹ́sì IP tó gbilẹ̀ yóò máa ṣiṣẹ́ pẹ̀lú nígbà tí ẹ bá tún irin iṣẹ́ yín bẹ̀rẹ̀.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Description">
+    <value>Ó ń dá àdírẹ́sì IP yín láàbò nípa títú ìsopọ̀ ayélujára yín tí ẹ bá sọ àsopọ̀ VPN yín nù.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard">
+    <value>Déédé</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard_Description">
+    <value>A máa ń tú ìsopọ̀ ayélujára ní ìkọ̀ọ̀kiri tí àsopọ̀ VPN bá dẹ́kùn.</value>
+  </data>
+  <data name="Settings_Connection_NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
+    <value>Dí ìpolongo ìtajà, olùtọpa, àti máálweà mú</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent">
+    <value>Dí ìpolongo ìtajà, olùtọpa, máálweà, àti ohun àgbàlagbà mú</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockMalwareOnly">
+    <value>Dí máálweà nìkan mú</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Description">
+    <value>Ẹ kò ní lè so pọ̀ mọ́ sáfà DNS àkànṣe nígbà tí ẹ bá ti fi ààyè gba NetShield.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information">
+    <value>NetShield kò ṣiṣẹ́ pẹ̀lú DNS àkànṣe.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Title">
+    <value>Fi ààyè gba NetShield?</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Description">
+    <value>Ẹ dá ìrìn ayélujára yín lórí wẹ́bsáìtì àti àwọn áàpù bò.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Footer">
+    <value>Àwọn wẹ́bsáìtì kan lè má ṣí dáadáa nígbà tí a bá dénù àwọn ìpolongo ìtajà àti àwọn olùtọpa.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_PrivacyPanel">
+    <value>Pánẹ́lì Àṣírí NetShield</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding">
+    <value>Fífi ihò ìtẹ̀bọ̀ ránṣẹ́</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort">
+    <value>Nọ́mbà ihò ìtẹ̀bọ̀ tí ó ń ṣiṣẹ́:</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
+    <value>Ṣàdàkọ nọ́mbà ihò ìtẹ̀bọ̀</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Description">
+    <value>Ẹ kò ní lè lo Moderate NAT nígbà tí ẹ bá ti fi ààyè gba fífi ihò ìtẹ̀bọ̀ ránṣẹ́.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Title">
+    <value>Fi ààyè gba fífi ihò ìtẹ̀bọ̀ ránṣẹ́?</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Description">
+    <value>Ó mú ìyára sílẹ̀ fún lílo torrent àti ṣíṣeré ayélujára nípa jíjẹ́ kí àsopọ̀ P2P tààrà lè ṣẹlẹ̀ nípasẹ̀ ihò ìtẹ̀bọ̀ tí a yàn fún rẹ̀.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Footer">
+    <value>Láti lo fífi ihò ìtẹ̀bọ̀ ránṣẹ́, ẹ so pọ̀ mọ́ sáfà kan tí ó ń tìlẹ́yìn P2P.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>Ìtúnṣe ìkẹhìn: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Loading">
+    <value>Ó ń gbéjáde...</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications">
+    <value>Àwọn ìwífúnni</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications_Description">
+    <value>Ẹ máa gbà ìfitọ́nilétí nígbà tí nọ́mbà ihò ìtẹ̀bọ̀ tí ó ń ṣiṣẹ́ bá yípadà.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Kò wà</value>
+  </data>
+  <data name="Settings_Connection_Protocol">
+    <value>Prótíkọ́lù</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling">
+    <value>Ìkáàkiri tí a pín</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Description">
+    <value>Yàn àwọn áàpù tí á yọ kúrò nínú àsopọ̀ VPN.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_FormattedHeader">
+    <value>Àwọn áàpù tí a yọ kúrò ({0})</value>
+    <comment>Header for the list of apps to exclude for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Excluded apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Header">
+    <value>Àwọn áàpù tí a yọ kúrò</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
+    <value>Àwọn fáìlì áàpù</value>
+    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_Description">
+    <value>Yàn àwọn áàpù tí á fi mọ́ àsopọ̀ VPN.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader">
+    <value>Àwọn áàpù tí a fi mọ́ ({0})</value>
+    <comment>Header for the list of apps to include for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Included apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_Header">
+    <value>Àwọn áàpù tí a fi mọ́</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Select">
+    <value>Yan àwọn áàpù</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Description">
+    <value>Ṣètò àsopọ̀ yín ní àdáni nípa pínnu àwọn áàpù àti àdírẹ́sì IP tí VPN yóò dáàbò bò.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse">
+    <value>Ipò ìkíkí</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Description">
+    <value>Áàpù àti àdírẹ́sì IP tí a yàn nìkan ni ó máa ń so pọ̀ nípasẹ̀ VPN, gbogbo lílọ bíbọ̀ mìíràn kò ní ààbò.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>Ìkíkí</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>Fi àdírẹ́sì IPv4 tàbí IPv6 tuntun kún</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Description">
+    <value>Yàn àwọn àdírẹ́sì IP tí á yọ kúrò nínú àsopọ̀ VPN.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_FormattedHeader">
+    <value>Àwọn àdírẹ́sì IP tí a yọ kúrò ({0})</value>
+    <comment>Header for the list of IP addresses to exclude for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Excluded IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Header">
+    <value>Àwọn àdírẹ́sì IP tí a yọ kúrò</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Description">
+    <value>Yàn àwọn àdírẹ́sì IP tí á fi mọ́ àsopọ̀ VPN.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_FormattedHeader">
+    <value>Àwọn àdírẹ́sì IP tí a fi mọ́ ({0})</value>
+    <comment>Header for the list of IP addresses to include for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Included IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Header">
+    <value>Àwọn àdírẹ́sì IP tí a fi mọ́</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Select">
+    <value>Yan àwọn àdírẹ́sì IP</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard">
+    <value>Ipò ìyọ̀kúrò</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Description">
+    <value>Wọ́n yọ áàpù àti àdírẹ́sì IP tí a yàn kúrò nínú àsopọ̀ VPN yín.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>Ìyọ̀kúrò</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
+  </data>
+  <data name="Settings_Connection_VpnAccelerator">
+    <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Sọ àwọn àyípadà nù</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Tẹ̀síwájú láti ṣe àtúkọ</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Sọ àwọn àyípadà tí a kò fipáàmọ̀ nù?</value>
+  </data>
+  <data name="Settings_General">
+    <value>Àpapọ̀</value>
+  </data>
+  <data name="Settings_General_AutoStartup">
+    <value>Ìbẹ̀rẹ̀ àìfọwọ́</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect">
+    <value>Ìsomọ́ àìfọwọ́</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Description">
+    <value>Ó máa ń so pọ̀ mọ́ àsopọ̀ yín bí ó ti wà láìfọwọ́yí nígbà tí Proton VPN bá ṣí.</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch">
+    <value>Ìbẹ̀rẹ̀ àìfọwọ́</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Description">
+    <value>Proton VPN yóò ṣí ní àìfọwọ́ nígbà tí ẹ bá wọlé sí irin iṣẹ́ yín.</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
+    <value>Ṣí ní ojú ìṣẹ́ dẹ́sítọ́pù</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
+    <value>Sọ ọ́ di kékeré sínú Tráy Ètò</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
+    <value>Sọ ọ́ di kékeré sínú táàkìbáà</value>
+  </data>
+  <data name="Settings_General_AutoStartup_Description">
+    <value>Ṣètò áàpù náà kí ó máa bẹ̀rẹ̀ tàbí kí ó so pọ̀ láìfọwọ́yí.</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates">
+    <value>Àwọn àtúnṣe láìfọwọ́</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates_Description">
+    <value>Ṣàyẹ̀wò àti fi àwọn àtúnṣe Proton VPN sórí ẹ̀rọ láìfọwọ́.</value>
+  </data>
+  <data name="Settings_General_BetaAccess">
+    <value>Beta Access</value>
+  </data>
+  <data name="Settings_General_BetaAccess_Description">
+    <value>Ẹ gba ìtètè ráàyèsí, ẹ sì ràn wa lọ́wọ́ láti dánwò àwọn ẹ̀yà tuntun Proton VPN.</value>
+  </data>
+  <data name="Settings_General_Language">
+    <value>Èdè</value>
+  </data>
+  <data name="Settings_General_Notifications">
+    <value>Àwọn ìwífúnni</value>
+  </data>
+  <data name="Settings_General_Notifications_Description">
+    <value>Ẹ máa gbà ìfitọ́nilétí nípa àwọn àyípadà nínú ipò àsopọ̀ yín.</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver">
+    <value>Ẹ̀yà sọ́fítíwíà nẹ́tíwọ́ọ̀kì OpenVPN</value>
+  </data>
+  <data name="Settings_General_Theme">
+    <value>Àkòrí</value>
+  </data>
+  <data name="Settings_Improve">
+    <value>Mú Proton dára sí i</value>
+  </data>
+  <data name="Settings_Improve_Censorship">
+    <value>Ẹ ràn wá lọ́wọ́ láti bá ìdẹ̀kùn jagun</value>
+  </data>
+  <data name="Settings_OperatingSystemVersion">
+    <value>Ẹ̀dà ọprétín siistẹ̀ẹ̀mù</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description1">
+    <value>Ètò yìí ti so pọ̀ mọ́ pọ́fáìlì tí ẹ ń lò.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2">
+    <value>Ṣe àtúkọ pọ́fáìlì yín láti ṣe àyípadà, tàbí kí ẹ tú ìsopọ̀ láti lè ṣe àtúkọ àwọn ààtò VPN àpapọ̀ yín.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline">
+    <value>Àwọn ààtò wọ̀nyí ti so pọ̀ mọ́ pọ́fáìlì '{0}' àti pé a lè bójú tó wọn nìkan nínú Àwọn Pọ́fáìlì.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Title">
+    <value>Bójú tó {0} nínú Àwọn Pọ́fáìlì</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
+  <data name="Settings_Page_Title">
+    <value>Àwọn ààtò</value>
+  </data>
+  <data name="Settings_Protocols_Explanation">
+    <value>Púrótókọ́l VPN kan ń pinnu bí dátà ṣe ń rin kiri láàárín sáfà VPN kan àti irin iṣẹ́ yín.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Description">
+    <value>Ó ti fi ìpìlẹ̀ sílẹ̀, wọ́n ti dán wò dàrada, ó sì ní ààbò. OpenVPN ń ṣiṣẹ́ dáadáà nígbà tí nẹ́tíwọ́ọ̀kì bá kéré, ṣùgbọ́n ó lè kì yára tó àwọn púrótókọ́l mìíràn.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Description">
+    <value>Ó ti fi ìpìlẹ̀ sílẹ̀, wọ́n ti dán wò dàrada, ó sì ní ààbò. OpenVPN ń lo bátírì ju díẹ̀ nínú àwọn púrótókọ́l mìíràn lọ.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Description">
+    <value>Àgbékalẹ̀ tuntun wa tí ó dá lórí WireGuard fún ìdúróṣinṣin tó pọ̀ sí i, iṣẹ́ dáadáa àti ìfòyẹ́họ̀ ìdẹ̀kùn.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Description">
+    <value>Àgbékalẹ̀ tuntun wa tí ó dá lórí WireGuard fún ìdúróṣinṣin tó pọ̀ sí i, iṣẹ́ dáadáa àti ìfòyẹ́họ̀ ìdẹ̀kùn.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Title">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Description">
+    <value>Àgbékalẹ̀ tuntun wa tí ó dá lórí WireGuard fún ìdúróṣinṣin tó pọ̀ sí i, iṣẹ́ dáadáa àti ìfòyẹ́họ̀ ìdẹ̀kùn.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description">
+    <value>Lò ìmọ̀-ẹ̀rọ WireGuard ti Proton VPN fúnra rẹ̀. Èyí jẹ́ àbùdá ìdánwò kan, nítorí náà ẹ lè rí àìdúróṣinṣin díẹ̀.</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title">
+    <value>Àwọn púrótókọ́l Proton</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Description">
+    <value>Ó ń yàn púrótókọ́l tó dára jù fún àsopọ̀ yín láìròyè.</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Title">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_Protocols_TcpCategory">
+    <value>Ìgbẹ́kẹ̀lé (TCP)</value>
+  </data>
+  <data name="Settings_Protocols_UdpCategory">
+    <value>Ìyára (UDP)</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>Púrótókọ́l tó ga jùlọ fún ààbò àti iṣẹ́ dáadáa.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>Ó ń borí àwọn ìdẹ̀dé VPN nípa fí àsopọ̀ VPN yín pamọ́ kí àwọn olùdènà má baà rí i. Stealth lè kojú DPI (ìwádìí àpókè jínjín), ṣùgbọ́n ó lè kì yára tó àwọn púrótókọ́l mìíràn.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Description">
+    <value>Púrótókọ́l tó ga jùlọ fún ààbò àti iṣẹ́ dáadáa.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Reconnection_Title">
+    <value>Tún so mọ́ láti fi àwọn àtúntò sílò</value>
+  </data>
+  <data name="Settings_RestoreDefault">
+    <value>Mú àwọn ààtò bí ó ti wà padà</value>
+  </data>
+  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
+    <value>Mú u bọ̀ sípò, tún so mọ́</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Action">
+    <value>Mú àwọn ààtò bí ó ti wà padà</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Message">
+    <value>Èyí yóò tún àwọn ààtò Proton VPN yín ṣe padà sí ipò ìpìlẹ̀ wọn.</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Title">
+    <value>Ṣé kí a mú àwọn ààtò bí ó ti wà padà?</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnTcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnUdp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardUdp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="Settings_Support">
+    <value>Àtìlẹ́yìn</value>
+  </data>
+  <data name="Settings_Support_DebugLogs">
+    <value>Àwọn àkọsílẹ̀ ṣíṣe àtúnṣe</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Application">
+    <value>Àwọn àkọsílẹ̀ aplikéṣàn</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_ErrorMessage">
+    <value>A kò lè rí fóldà àwọn àkọsílẹ̀ náà.</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Service">
+    <value>Àwọn àkọsílẹ̀ iṣẹ́</value>
+  </data>
+  <data name="Settings_Support_ReportIssue">
+    <value>Jábọ̀ nípa ìṣòro</value>
+  </data>
+  <data name="Settings_Support_SupportCenter">
+    <value>Àárín àtìlẹ́yìn</value>
+  </data>
+  <data name="Settings_Theme_Dark">
+    <value>Dúdú</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Bí ó ti wà</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Funfun</value>
+  </data>
+  <data name="Settings_VpnAccelerator_Description">
+    <value>Ìmọ̀ ẹ̀rọ tó ń mú ìṣe dàgbà lè pọ̀ sí iyára àsopọ̀ yín títí dé 400%.</value>
+  </data>
+  <data name="SignIn_Form_AdvancedKillSwitchDescription">
+    <value>Olùdá ààbò bo àdírẹ́sì IP ìpele gíga ń dí àsopọ̀ ayélujára yín mú.</value>
+  </data>
+  <data name="SignIn_Form_BestSecureVpnForSpeed">
+    <value>VPN ààbò tó ga jù fún iyára</value>
+  </data>
+  <data name="SignIn_Form_CreateAccount">
+    <value>Ẹ ṣẹ́dá àkántì</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_Description">
+    <value>Ẹ tẹ̀ àwọn àlàyé àkántì Proton yín sínú.</value>
+  </data>
+  <data name="SignIn_Form_DisableKillSwitch">
+    <value>Paná olùdá ààbò bo àdírẹ́sì IP</value>
+  </data>
+  <data name="SignIn_Form_Email">
+    <value>Ímeèlì</value>
+  </data>
+  <data name="SignIn_Form_ForgotUsername">
+    <value>Mo gbagbé orúkọ olùmúlò</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_Help">
+    <value>Ìrànlọ́wọ́</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_NoLogsPolicy">
+    <value>Ìlànà àìsí ìwọlé</value>
+  </data>
+  <data name="SignIn_Form_OpenSource">
+    <value>Orísun ṣíṣí</value>
+  </data>
+  <data name="SignIn_Form_Password">
+    <value>Ọ̀rọ̀ ìgbaniwọlé</value>
+  </data>
+  <data name="SignIn_Form_PasswordError">
+    <value>Ẹ tẹ̀ ọ̀rọ̀ ìgbaniwọlé yín sínú</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a password</comment>
+  </data>
+  <data name="SignIn_Form_ReportAnIssue">
+    <value>Jábọ̀ nípa ìṣòro</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_ResetPassword">
+    <value>Mo gbagbé ọ̀rọ̀ ìgbaniwọlé</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_SignIn">
+    <value>Kó wọlé</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_SignInWithSso">
+    <value>Kó wọlé pẹ̀lú SSO</value>
+  </data>
+  <data name="SignIn_Form_SwissBased">
+    <value>Ìdásílẹ̀ ní Switzerland</value>
+  </data>
+  <data name="SignIn_Form_Title">
+    <value>Kó wọlé</value>
+  </data>
+  <data name="SignIn_Form_TroubleSigningIn">
+    <value>Àárín àtìlẹ́yìn</value>
+    <comment>A button at the bottom of the login window inside Get help popup</comment>
+  </data>
+  <data name="SignIn_Form_Username">
+    <value>Ímeèlì tàbí orúkọ olùmúlò</value>
+  </data>
+  <data name="SignIn_Form_UsernameError">
+    <value>Ẹ tẹ̀ ímeèlì yín tàbí orúkọ olùmúlò yín sínú.</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
+  </data>
+  <data name="SignIn_KillSwitch_Disabled">
+    <value>A ti paná olùdá ààbò bo àdírẹ́sì IP.</value>
+  </data>
+  <data name="State_Fastest">
+    <value>Ìpínlẹ̀ tó yára jù</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>Ìpínlẹ̀ láìròtẹlẹ̀</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="SystemNotification_Connected">
+    <value>Ẹ ti ní ààbò.</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>A ti so pọ̀ mọ́ {0}.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>A ti tú ìsopọ̀.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>Ṣí torrenting àti eré lórí ayélujára nípasẹ̀ àwọn ọ̀nà P2P (peer-to-peer) pẹ̀lú àwọn sáfà VPN tí a sanwó fún.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>P2P kò sí pẹ̀lú VPN Free</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Àwọn wẹ́bsáìtì kan àti àwọn iṣẹ́ gbígbé sórí afẹ́fẹ́ ń dí àwọn olùmúlò VPN ọ̀fẹ́ mú. Gbé e ga sí Proton VPN Plus láti kọjá àwọn àdínkù wọ̀nyí.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Ṣé wọ́n dí wẹ́bsáìtì kan mú?</value>
+  </data>
+  <data name="System_Tray_Actions_Connect">
+    <value>So ó pọ̀</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Tú ìsopọ̀</value>
+  </data>
+  <data name="System_Tray_Actions_ExitApplication">
+    <value>Jáde</value>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
+    <value>Ṣí {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
+    <value>Jáde</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication">
+    <value>Ṣí {0}</value>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>Ṣí áàpù láti wọlé</value>
+  </data>
+  <data name="Unit_BytesPerSecond">
+    <value>B/s</value>
+    <comment>Unit for Bytes per second</comment>
+  </data>
+  <data name="Unit_ExabytesPerSecond">
+    <value>EB/s</value>
+    <comment>Unit for Exabytes per second</comment>
+  </data>
+  <data name="Unit_GigabytesPerSecond">
+    <value>GB/s</value>
+    <comment>Unit for Gigabytes per second</comment>
+  </data>
+  <data name="Unit_KilobytesPerSecond">
+    <value>KB/s</value>
+    <comment>Unit for Kilobytes per second</comment>
+  </data>
+  <data name="Unit_MegabytesPerSecond">
+    <value>MB/s</value>
+    <comment>Unit for Megabytes per second</comment>
+  </data>
+  <data name="Unit_PetabytesPerSecond">
+    <value>PB/s</value>
+    <comment>Unit for Petabytes per second</comment>
+  </data>
+  <data name="Unit_TerabytesPerSecond">
+    <value>TB/s</value>
+    <comment>Unit for Terabytes per second</comment>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>Gbà àwọn fáìlì wọlé nípasẹ̀ BitTorrent àti àwọn ọ̀nà ṣíṣe alábàápín fáìlì mìíràn.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>Àtìlẹ́yìn P2P</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>Gbé e ga kí ẹ lè yan sáfà èyíkéyìí.</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>Ṣé kì í ṣe orílẹ̀-èdè tí ẹ fẹ́?</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>Ṣí iṣẹ́ àdáni VPN tí ó ga jù</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>So pọ̀ mọ́ VPN nípa lílo Ètò Orúkọ Ojú Òpó (DNS) àkànṣe yín</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>Ní ìráàyèsí sí àwọn irin iṣẹ́ tí ó wà lórí nẹ́tíwọ́ọ̀kì ìbílẹ̀ yín (LAN) nígbà tí ẹ bá ti so pọ̀</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>Gbe ìrírí eré yín lárugẹ pẹ̀lú yíyí padà sí irúfẹ́ NAT 2 (àárín)</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>So irin iṣẹ́ tó 10 pọ̀ nígbà kan</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>Lò Proton VPN lórí àwọn ojú àtẹ tí ó yàtọ̀</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>Android àti Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>Bráósà</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>Ààbò àti àṣírí lórí gbogbo irin iṣẹ́ yín</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>Gbádùn ìwákiri tí kò ní ìpolówó</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>Dẹ́kun ìpolówó àti olùtọpa pẹ̀lú NetShield</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>Dáàbò bo irin iṣẹ́ yín lọ́wọ́ máálweà</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>Ṣí ìgbàwọlé àti ṣíṣe alábàápín fáìlì ẹlẹ́gbẹ́ sí ẹlẹ́gbẹ́ (P2P)</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>Fi àdírẹ́sì IP yín pamọ́ kúrò fún olùpèsè ìṣẹ́ yín àti àwọn ẹlẹ́gbẹ́ yín</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>Mu ìyára P2P ga púpọ̀ pẹ̀lú fífi ihò ìtẹ̀bọ̀ ránṣẹ́</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>Ìyára ìgbésókè àti ìgbàwọlé tí ó pọ̀ sí</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ àwọn mìíràn</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_Profiles">
+    <value>Ẹ ní ìráàyèsí kíákíá sí àwọn àsopọ̀ pípè</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience">
+    <value>Fi prófáìlì kan ṣe àsopọ̀ yín bí ó ti wà kí ẹ sì so pọ̀ ní ìtẹ́ kan</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Creation">
+    <value>Ṣẹ̀dá àti fi àwọn ìṣètò VPN yín pamọ́ pẹ̀lú àwọn Prófáìlì</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization">
+    <value>Ṣetò ibùdó, protókólì àti àwọn ààtò yín</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>Fi ìpele ààbò mìíràn kun àsopọ̀ yín</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>Ṣe ìlọ́po méjì sísọ di àṣírí yín pẹ̀lú Secure Core</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>Dáàbò bo ara yín lọ́wọ́ àwọn ìkọlu nẹ́tíwọ́ọ̀kì</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>Darí dátà yín kọjá ní àwọn sáfà tí ó ní ààbò gíga ní Súísà, Swidin àti Áìsílándì</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>Kiri ayélujára pẹ̀lú ìyára tí ó ga sí i</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>Kiri ayélujára ní ìyára tó 400% pẹ̀lú VPN Accelerator</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>Ní ìráàyèsí sí àwọn sáfà tí ó yára, tí kò sì ní àwọn olùlò púpọ̀</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>Gba ìyára àsopọ̀ tó 10 Gbps</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>Gba ànfàní ẹgbẹ́ méjèèjì</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>Wákiri láti ibùdó méjì nígbà kan pẹ̀lú ìkáàkiri tí a pín</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>Jẹ́ kí àwọn áàpù àti àdírẹ́sì IP tí a fi ọkàn tán so pọ̀ mọ́ ayélujára tàárà, kí VPN yín sì dá àwọn nǹkan mìíràn gbogbo láàbò</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>Gbé àwọn fíìmù àti eré TV tí ẹ fẹ́ràn jù sórí afẹ́fẹ́</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>Ní ìráàyèsí sí àwọn TV àti fíìmù tí orílẹ̀-èdè dè láti ibikíbi ní àgbáyé</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>Wò ní 4K láìsí ìdádúró, ìlọra, tàbí ìdínkù ìyára</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>Ṣàwárí VPN Plus</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>Ní ìráàyèsí sí nẹ́tíwọ́ọ̀kì Tor fún àṣírí tí ó ga pọ̀ sí</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>Ní ìráàyèsí sí àwọn ojú-ewé tí wọ́n fi pamọ́ àti àwọn ojú-ewé ìráàyèsí mọ níwọ̀nba</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>Kiri nẹ́tíwọ́ọ̀kì Tor nípa lílo bráósà tí ẹ máa ń lò</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>Dáàbò bo dátà ìkọ̀kọ̀ yín nígbà tí ẹ bá ń kiri ayélujára</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>Ní ìráàyèsí sí ju {0} lọ nínú {1}</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>Kọ̀já ìdẹ̀kun àdálù pẹ̀lú àwọn àbùdá ààbò ìlọsíwájú</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>Àwọn orílẹ̀-èdè {0}</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>Gbígbé sórí afẹ́fẹ́ tí ó ní ààbò, torrenting, bẹ́ẹ̀ bẹ́ẹ̀ lọ</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>Yan orílẹ̀-èdè èyíkéyìí láti inú nẹ́tíwọ́ọ̀kì wa agbáyé</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>Àwọn sáfà ààbò {0}</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp_Description">
+    <value>Wọ́n ti fi ọjọ́ pípẹ́ lò ó, wọ́n ti dán wò, ó sì ní ààbò.</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp_Description">
+    <value>Wọ́n ti fi ọjọ́ pípẹ́ lò ó, wọ́n ti dán wò, ó sì ní ààbò.</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description">
+    <value>Ìmọ̀-ẹ̀rọ tó ga jùlọ fún ààbò àti iṣẹ́ dáadáa</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description">
+    <value>Ó ṣẹ́gun àwọn ìdènà VPN nípa fí àsopọ̀ yín pamọ́ kúrò lọ́wọ́ àwọn olùdènà.</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description">
+    <value>Ìmọ̀-ẹ̀rọ tó ga jùlọ fún ààbò àti iṣẹ́ dáadáa</value>
+  </data>
+  <data name="VpnProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp_Description">
+    <value>Ìmọ̀-ẹ̀rọ tó ga jùlọ fún ààbò àti iṣẹ́ dáadáa</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls_Description">
+    <value>Ó ṣẹ́gun àwọn ìdènà VPN nípa fí àsopọ̀ yín pamọ́ kúrò lọ́wọ́ àwọn olùdènà.</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp_Description">
+    <value>Ìmọ̀-ẹ̀rọ tó ga jùlọ fún ààbò àti iṣẹ́ dáadáa</value>
+  </data>
+</root>

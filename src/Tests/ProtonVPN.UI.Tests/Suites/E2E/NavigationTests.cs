@@ -1,0 +1,172 @@
+﻿/*
+ * Copyright (c) 2025 Proton AG
+ *
+ * This file is part of ProtonVPN.
+ *
+ * ProtonVPN is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ProtonVPN is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ProtonVPN.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+using System;
+using System.Linq;
+using System.Threading;
+using System.Diagnostics;
+using FlaUI.Core.WindowsAPI;
+using NUnit.Framework;
+using ProtonVPN.UI.Tests.TestBase;
+using ProtonVPN.UI.Tests.TestsHelper;
+using ProtonVPN.UI.Tests.TestsHelper.UiFlows;
+
+namespace ProtonVPN.UI.Tests.Tests.E2ETests;
+
+[TestFixture]
+[Category("2")]
+[Category("ARM")]
+[Category("SMOKE_1")]
+public class NavigationTests : FreshSessionSetUp
+{
+    [SetUp]
+    public void TestInitialize()
+    {
+        CommonUiFlows.FullLogin(TestUserData.PlusUser);
+    }
+
+    [Test]
+    [Property("TestCaseId", "602397")]
+    public void NavigateToSettingsViaKebabMenu()
+    {
+        HomeRobot.ExpandKebabMenuButton()
+            .NavigateToSettingsViaKebabMenu();
+
+        SettingRobot.Verify.IsSettingsPageDisplayed();
+    }
+
+    [Test]
+    [Property("TestCaseId", "602429")]
+    public void NavigateToFeatureSettingsPageFromHome()
+    {
+        FeaturesRobot.ClickNetShieldWidget();
+        NavigationRobot.Verify.IsOnNetShieldPage();
+        SettingRobot.CloseSettings();
+
+        FeaturesRobot.ClickKillSwitchWidget();
+        NavigationRobot.Verify.IsOnKillSwitchPage();
+        SettingRobot.CloseSettings();
+
+        FeaturesRobot.ClickPortForwardingWidget();
+        NavigationRobot.Verify.IsOnPortForwardingPage();
+        SettingRobot.CloseSettings();
+
+        FeaturesRobot.ClickSplitTunnelingWidget();
+        NavigationRobot.Verify.IsOnSplitTunnelingPage();
+        SettingRobot.CloseSettings();
+    }
+
+    [Test]
+    [Property("TestCaseId", "602394")]
+    public void AppExitViaKebabMenu()
+    {
+        HomeRobot.ExpandKebabMenuButton()
+            .ExitViaKebabMenu();
+
+        // Allow some delay after exiting the app
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
+
+        ProcessHelper.VerifyAppIsNotRunning();
+    }
+
+    [Test]
+    [Property("TestCaseId", "602393")]
+    public void AppExitViaAccountDropDown()
+    {
+        SettingRobot
+            .OpenSettings()
+            .ExpandAccountDropdown()
+            .ExitTheApp();
+
+        // Allow some delay after exiting the app
+        Thread.Sleep(TestConstants.FiveSecondsTimeout);
+
+        ProcessHelper.VerifyAppIsNotRunning();
+    }
+
+    [Test]
+    [Property("TestCaseId", "602395")]
+    public void ClickingOnSidebarClosesSettings()
+    {
+        SettingRobot.OpenSettings()
+            .Verify.IsSettingsPageDisplayed();
+        SidebarRobot.ClickOnSidebar();
+        SettingRobot.Verify.IsSettingsPageNotDisplayed();
+    }
+
+    [Test]
+    [Property("TestCaseId", "602396")]
+    public void KeyboardShortcutsNavigateToRelevantComponents()
+    {
+        SidebarRobot
+            .Verify.IsSidebarConnectionsDisplayed()
+            .ShortcutTo(VirtualKeyShort.NUMPAD1)
+            .Verify.IsSidebarRecentsDisplayed()
+            .ShortcutTo(VirtualKeyShort.NUMPAD2)
+            .Verify.IsSidebarCountriesDisplayed()
+            .ShortcutTo(VirtualKeyShort.NUMPAD3)
+            .Verify.IsSidebarProfilesDisplayed()
+            .ShortcutTo(VirtualKeyShort.KEY_1)
+            .Verify.IsSidebarRecentsDisplayed()
+            .ShortcutTo(VirtualKeyShort.KEY_2)
+            .Verify.IsSidebarCountriesDisplayed()
+            .ShortcutTo(VirtualKeyShort.KEY_3)
+            .Verify.IsSidebarProfilesDisplayed()
+            .ShortcutTo(VirtualKeyShort.KEY_F)
+            .Verify.IsSidebarSearchResultsDisplayed()
+            .ExitSearchWithTab()
+            .Verify.IsSidebarConnectionsDisplayed();
+
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+
+        Window?.Focus();
+
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+
+        SettingRobot
+            .OpenSettingsViaShortcut()
+            .Verify.IsSettingsPageDisplayed();
+
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+
+        Window?.Focus();
+
+        Thread.Sleep(TestConstants.OneSecondTimeout);
+
+        SettingRobot
+            .CloseSettingsUsingEscButton()
+            .Verify.IsSettingsPageNotDisplayed();
+    }
+
+    [Test]
+    [Property("TestCaseId", "602392")]
+    public void AboutPageIsOpened()
+    {
+        SettingRobot
+            .OpenSettings()
+            .ScrollToAboutSection()
+            .Verify.IsCorrectAppVersionDisplayedInAboutSettingsCard(TestEnvironment.GetAppVersion())
+            .OpenAboutSection()
+            .Verify
+                .IsChangelogDispalyed()
+                .IsCorrectAppVersionDisplayedInAboutSection(TestEnvironment.GetAppVersion())
+            .PressLearnMore()
+            .Verify.IsLicensingDisplayed();
+    }
+}

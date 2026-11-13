@@ -1689,7 +1689,7 @@
     <value>P2P is not allowed on free VPN servers</value>
   </data>
   <data name="Dialogs_P2PDetection_WindowTitle">
-    <value>Discover VPN Plus</value>
+    <value>探索 VPN Plus</value>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_Email">
     <value>電子信箱</value>
@@ -1698,6 +1698,10 @@
   <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
     <value>example@domain.com</value>
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Field_MinLength">
+    <value>Minimum {0} characters</value>
+    <comment>Hint shown below a Report an issue text field that has a minimum length. {0} is the minimum number of characters.</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
     <value>傳送錯誤紀錄檔</value>
@@ -1748,13 +1752,13 @@
     <value>回報問題</value>
   </data>
   <data name="Dialogs_StreamingDetection_WindowTitle">
-    <value>Discover VPN Plus</value>
+    <value>探索 VPN Plus</value>
   </data>
   <data name="Dialogs_StreamingWarning_Description">
-    <value>VPN Plus servers let you enjoy your favorite movies and TV shows from around the world.</value>
+    <value>VPN Plus 伺服器讓您能觀賞來自世界各地的喜愛電影與電視節目。</value>
   </data>
   <data name="Dialogs_StreamingWarning_Title">
-    <value>Upgrade to bypass VPN blocks</value>
+    <value>升級以繞過 VPN 封鎖</value>
   </data>
   <data name="Dialogs_SubscriptionExpired_MaybeLater">
     <value>稍後再說</value>
@@ -1893,13 +1897,13 @@
     <value>略過</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
-    <value>Not the country you wanted?</value>
+    <value>不是您想要的國家？</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_ActionButton">
     <value>Exclude locations</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_CloseButton">
-    <value>Maybe later</value>
+    <value>稍後再說</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Subtitle">
     <value>You can now exclude countries or cities from Fastest and Random connections.</value>
@@ -1941,10 +1945,10 @@
     <value>VPN 會遮罩您的 IP 位址，讓您的活動更難被追溯到您。</value>
   </data>
   <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
-    <value>什麼是IP地址？</value>
+    <value>什麼是 IP 位址？</value>
   </data>
   <data name="Flyouts_IpAddress_Title">
-    <value>IP 地址</value>
+    <value>IP 位址</value>
   </data>
   <data name="Flyouts_IpAddress_VpnIp">
     <value>VPN IP</value>
@@ -1959,7 +1963,7 @@
     <value>您的 IP</value>
   </data>
   <data name="Flyouts_IpAddress_YourIpIsVisible">
-    <value>你的IP地址可見</value>
+    <value>你的 IP 位址可見</value>
   </data>
   <data name="Flyouts_Isp_Description1">
     <value>您的 ISP (網際網路服務供應商) 是將您連線到網際網路的公司。</value>
@@ -2320,7 +2324,7 @@
     <value>VPN IP</value>
   </data>
   <data name="Home_ConnectionDetails_YourIpAddress">
-    <value>你的IP地址</value>
+    <value>你的 IP 位址</value>
   </data>
   <data name="Home_FreeConnections_About">
     <value>關於免費連線的更多資訊</value>
@@ -2418,7 +2422,7 @@
     <comment>Authenticate button inside two factor form during login</comment>
   </data>
   <data name="Login_TwoFactorForm_Subtitle">
-    <value>6-digit authentication code</value>
+    <value>6 位數驗證代碼</value>
   </data>
   <data name="Login_TwoFactorForm_Title">
     <value>兩步驟驗證</value>
@@ -2451,7 +2455,7 @@
     <value>No known two-factor authentication methods found.</value>
   </data>
   <data name="Login_TwoFactor_SecurityKey">
-    <value>Security key</value>
+    <value>安全性密鑰</value>
   </data>
   <data name="Login_TwoFactor_SecurityKey_Description">
     <value>Insert the U2F or FIDO key linked to your Proton Account.</value>
@@ -2483,16 +2487,16 @@
     <value>We couldn't load the server list.</value>
   </data>
   <data name="NoServers_NeedHelp">
-    <value>Need help?</value>
+    <value>需要協助嗎？</value>
   </data>
   <data name="NoServers_SignOut">
     <value>登出</value>
   </data>
   <data name="NoServers_Tip">
-    <value>Ask your administrator to enable VPN access for your account.</value>
+    <value>請您的管理員為您的帳號啟用 VPN 服務。</value>
   </data>
   <data name="NoServers_Title">
-    <value>No VPN connections available</value>
+    <value>沒有 VPN 連線可供使用</value>
   </data>
   <data name="NoServers_UnderMaintenance_Tip">
     <value>無法載入任何伺服器。請點選重新整理以更新伺服器列表。</value>
@@ -2526,13 +2530,13 @@
     <value>To include IPv6 addresses, you need to allow IPv6 connections through the VPN tunnel.</value>
   </data>
   <data name="Overlay_Ipv6Disabled_PrimaryButton">
-    <value>Enable IPv6</value>
+    <value>啟用 IPv6</value>
   </data>
   <data name="Overlay_Ipv6Disabled_SecondaryButton">
-    <value>Not now</value>
+    <value>容後再說</value>
   </data>
   <data name="Overlay_Ipv6Disabled_Title">
-    <value>IPv6 is disabled</value>
+    <value>IPv6 已停用</value>
   </data>
   <data name="Overlay_OutdatedClient_Action">
     <value>立即更新</value>
@@ -2544,7 +2548,7 @@
     <value>更新 Proton VPN 以繼續</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Description">
-    <value> 我們的 P2P (點對點 ) 伺服器可以讓你接入P2P網絡，同時間還能保護你的IP地址和在線活動。</value>
+    <value>我們的 P2P（點對點）伺服器可讓你連上 P2P 網路，同時保護你的 IP 位址和線上活動。</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Header">
     <value> 甚麼是P2P VPN?</value>
@@ -2689,19 +2693,19 @@ VPN 連線</value>
     <value>這將會停用此設定檔的自訂 DNS。</value>
   </data>
   <data name="Profile_Options_Application">
-    <value>App</value>
+    <value>應用程式</value>
   </data>
   <data name="Profile_Options_Application_Select">
     <value>選擇應用程式</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_Application">
-    <value>Open an app</value>
+    <value>開啟應用程式</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
     <value>Use private browsing mode</value>
   </data>
   <data name="Profile_Options_ConnectAndGo_Website">
-    <value>Open a website</value>
+    <value>開啟網頁</value>
   </data>
   <data name="Profile_Options_Description">
     <value>Automatically open a website or an app of your choice when you connect to this profile.</value>
@@ -2803,7 +2807,7 @@ VPN 連線</value>
     <value>免費伺服器</value>
   </data>
   <data name="Server_Random">
-    <value>Random server</value>
+    <value>隨機選擇的伺服器</value>
   </data>
   <data name="Servers">
     <value>伺服器</value>
@@ -2861,7 +2865,7 @@ VPN 連線</value>
     <comment>Apply action. Used to apply changes made on a settings page</comment>
   </data>
   <data name="Settings_Common_IpAddresses_AlreadyExists">
-    <value>Address already added</value>
+    <value>位址已新增</value>
   </data>
   <data name="Settings_Common_IpAddresses_Invalid">
     <value>Enter a valid IPv4 or IPv6 address</value>
@@ -2912,10 +2916,10 @@ VPN 連線</value>
     <value>選擇 DNS 伺服器</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6">
-    <value>IPv6 support</value>
+    <value>IPv6 支援服務</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
-    <value>IPv6 leak protection</value>
+    <value>IPv6 洩漏防護</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
     <value>Prevents data leaks by blocking IPv6 traffic that doesn't pass through the VPN tunnel.</value>
@@ -3074,7 +3078,7 @@ VPN 連線</value>
     <value>通訊埠轉送</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort">
-    <value>Active port number:</value>
+    <value>在用通訊埠號碼:</value>
   </data>
   <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
     <value>複製連接埠號碼</value>
@@ -3105,7 +3109,7 @@ VPN 連線</value>
     <value>Get notified when your active port number changes.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Unavailable">
-    <value>Unavailable</value>
+    <value>不可用</value>
   </data>
   <data name="Settings_Connection_Protocol">
     <value>協定</value>
@@ -3121,7 +3125,7 @@ VPN 連線</value>
     <comment>Header for the list of apps to exclude for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Excluded apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Header">
-    <value>Excluded apps</value>
+    <value>已排除的應用程式</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>應用程式檔案</value>
@@ -3131,11 +3135,11 @@ VPN 連線</value>
     <value>Select apps which will be included in the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader">
-    <value>Included apps ({0})</value>
+    <value>包含的應用程式 ({0} 個)</value>
     <comment>Header for the list of apps to include for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Included apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Included_Header">
-    <value>Included apps</value>
+    <value>包含的應用程式</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Select">
     <value>選取應用程式</value>
@@ -3147,7 +3151,7 @@ VPN 連線</value>
     <value>包含模式</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Description">
-    <value>Only selected apps and IP addresses connect through VPN, all other traffic is unprotected.</value>
+    <value>僅限選取的應用程式和 IP 位址透過 VPN 連線，其餘流量不受保護。</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Inverse_Short">
     <value>包含</value>
@@ -3160,21 +3164,21 @@ VPN 連線</value>
     <value>Select IP addresses which will be excluded from the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_FormattedHeader">
-    <value>Excluded IP addresses ({0})</value>
+    <value>排除的 IP 位址 ({0} 個)</value>
     <comment>Header for the list of IP addresses to exclude for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Excluded IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Header">
-    <value>Excluded IP addresses</value>
+    <value>排除的 IP 位址</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Description">
     <value>Select IP addresses which will be included in the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_FormattedHeader">
-    <value>Included IP addresses ({0})</value>
+    <value>包含的 IP 位址 ({0} 個)</value>
     <comment>Header for the list of IP addresses to include for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Included IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Header">
-    <value>Included IP addresses</value>
+    <value>包含的 IP 位址</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Select">
     <value>Select IP addresses</value>
@@ -3208,7 +3212,7 @@ VPN 連線</value>
     <value>自動啟動</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect">
-    <value>Auto-connect</value>
+    <value>自動連線</value>
   </data>
   <data name="Settings_General_AutoStartup_AutoConnect_Description">
     <value>當 Proton VPN 開啟時，自動連線到您的預設連線。</value>
@@ -3235,13 +3239,13 @@ VPN 連線</value>
     <value>自動更新</value>
   </data>
   <data name="Settings_General_AutomaticUpdates_Description">
-    <value>Automatically check and install Proton VPN updates.</value>
+    <value>自動檢查並安裝 Proton VPN 更新.</value>
   </data>
   <data name="Settings_General_BetaAccess">
     <value>測試版本存取</value>
   </data>
   <data name="Settings_General_BetaAccess_Description">
-    <value>Get early access and help us test new versions of Proton VPN.</value>
+    <value>提前使用 Proton VPN 的新版本並提供測試回饋.</value>
   </data>
   <data name="Settings_General_Language">
     <value>語言</value>
@@ -3321,7 +3325,7 @@ VPN 連線</value>
     <value>Use Proton VPN's own implementation of WireGuard. This is an experimental feature, so you may experience some instability.</value>
   </data>
   <data name="Settings_Protocols_ProtonProtocols_Title">
-    <value>Proton protocols</value>
+    <value>Proton 通訊協定</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>自動為您選擇最適合的通訊協定。</value>
@@ -3531,10 +3535,10 @@ VPN 連線</value>
     <value>P2P not available with VPN Free</value>
   </data>
   <data name="SystemNotification_StreamingWarning_Description">
-    <value>Some websites and streaming services block free VPN users. Upgrade to Proton VPN Plus to bypass these blocks.</value>
+    <value>有些網站和串流平台會封鎖免費 VPN 使用者。升級至 Proton VPN Plus 以繞過這些封鎖。</value>
   </data>
   <data name="SystemNotification_StreamingWarning_Title">
-    <value>Blocked website?</value>
+    <value>網站被封鎖？</value>
   </data>
   <data name="System_Tray_Actions_Connect">
     <value>連線</value>
@@ -3588,10 +3592,10 @@ VPN 連線</value>
     <comment>Unit for Terabytes per second</comment>
   </data>
   <data name="UpsellBanner_P2P_Description">
-    <value>Download files through BitTorrent and other file sharing protocols.</value>
+    <value>透過 BitTorrent 及其他檔案共享通訊協定下載檔案.</value>
   </data>
   <data name="UpsellBanner_P2P_Title">
-    <value>P2P support</value>
+    <value>P2P支援服務</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
     <value>升級以選擇任何伺服器.</value>
@@ -3706,7 +3710,7 @@ VPN 連線</value>
     <value>使用分隔通道同時瀏覽兩個地點</value>
   </data>
   <data name="Upsell_Carousel_SplitTunneling_Configuration">
-    <value>允許信任的應用程式及IP地址直接連接網路，同時使用虛擬私有網路保護任何東西</value>
+    <value>允許受信任的應用程式和 IP 位址直接連上網際網路，其他一切則由你的 VPN 保護</value>
   </data>
   <data name="Upsell_Carousel_Streaming">
     <value>影音串流觀看您喜愛的電影與電視節目</value>

@@ -118,8 +118,16 @@ public class ServersUpdater : IServersUpdater
                 return;
             }
 
-            _logger.Info<AppLog>("Server loads are overdue, updating");
-            _issueReporter.CaptureMessage("Overdue server loads detected");
+            if (_serversCache.HasStatusFile())
+            {
+                _logger.Info<AppLog>("Server loads are overdue, updating");
+                _issueReporter.CaptureMessage("Overdue server loads detected");
+            }
+            else
+            {
+                _logger.Info<AppLog>("Server loads are unavailable, updating");
+                _issueReporter.CaptureMessage("Unavailable server loads detected");
+            }
 
             // Callers must not wait longer than the configured timeout.
             Task updateTask = UpdateLoadsIfOverdueAsync(CancellationToken.None);
@@ -196,6 +204,11 @@ public class ServersUpdater : IServersUpdater
     public bool HasServersRequestFailed()
     {
         return _serversCache.HasServersRequestFailed();
+    }
+
+    public bool IsRefreshNeeded()
+    {
+        return IsServersCacheInvalid() || IsServersUpdateNeeded() || IsLoadsUpdateNeeded();
     }
 
     private bool IsLoadsOverdue()

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>$(NetVersion)</TargetFramework>
         <PreserveCompilationContext>true</PreserveCompilationContext>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -11,6 +11,9 @@
     <ItemGroup>
       <PackageReference Include="System.Formats.Asn1" />
       <PackageReference Include="System.Text.Json" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="..\Common\ProtonVPN.Common.Core\Helpers\OSVersion.cs" Link="Helpers\OSVersion.cs" />
     </ItemGroup>
 
     <ItemGroup>

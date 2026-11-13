@@ -145,7 +145,7 @@
     <value>NetShield-side</value>
   </data>
   <data name="Automation_Properties_NoServers_Page">
-    <value>Ingen tjenerside</value>
+    <value>Ingen serverside</value>
   </data>
   <data name="Automation_Properties_PortForwarding_Page">
     <value>Portvideresendingsside</value>
@@ -169,7 +169,7 @@
     <value>Side for land</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
-    <value>Side for gateway-tjenere</value>
+    <value>Side for gateway-servere</value>
   </data>
   <data name="Automation_Properties_Sidebar_Connections_Page">
     <value>Tilkoblingsside</value>
@@ -334,10 +334,10 @@
     <value>Tilkoblingen ble blokkert av nettverksinnstillingene på enheten din. Dette kan være forårsaket av et mobilt hotspot, et annet VPN-program eller programvare for virtuelle maskiner. Se over nettverkskonfigurasjonen din eller kontakt kundestøtte for å få hjelp.</value>
   </data>
   <data name="Connection_Error_NoServers">
-    <value>Alle tjenere i ditt utvalg er utilgjengelige. Utvid utvalget eller prøv igjen senere.</value>
+    <value>Alle servere i ditt utvalg er utilgjengelige. Utvid utvalget eller prøv igjen senere.</value>
   </data>
   <data name="Connection_Error_NoServers_Profile">
-    <value>Tjenervalget ditt for '{0}' er ikke tilgjengelig. Velg en annen tjener eller prøv igjen senere.</value>
+    <value>Servervalget ditt for '{0}' er ikke tilgjengelig. Velg en annen server eller prøv igjen senere.</value>
     <comment>{0} is a placeholder for the profile name</comment>
   </data>
   <data name="Connection_Error_NoTapAdapters">
@@ -347,7 +347,7 @@
     <value>Rapporter et problem</value>
   </data>
   <data name="Connection_Error_RpcServerUnavailable">
-    <value>Proton VPN kan ikke koble til fordi RPC-tjeneren ikke er tilgjengelig på systemet ditt.</value>
+    <value>Proton VPN kan ikke koble til fordi RPC-serveren ikke er tilgjengelig på systemet ditt.</value>
   </data>
   <data name="Connection_Error_ServerValidation">
     <value>Serverdetaljene kunne ikke bekreftes. Prøv en annen server, eller rapporter problemet til kundestøtte.</value>
@@ -368,7 +368,7 @@
     <value>Tilkobling mislyktes</value>
   </data>
   <data name="Connection_Error_TlsCertificate">
-    <value>Det har oppstått et problem med å validere VPN-tjenersertifikatet, som kan tyde på at nettverkstilkoblingen tukles med eller at tjeneren du prøver å koble til, har et konfigurasjonsproblem. Få hjelp fra vår kundestøtte ved å sende en feilmelding.</value>
+    <value>Det har oppstått et problem med å validere VPN-serversertifikatet, som kan tyde på at nettverkstilkoblingen tukles med eller at serveren du prøver å koble til, har et konfigurasjonsproblem. Få hjelp fra vår kundestøtte ved å sende en feilmelding.</value>
   </data>
   <data name="Connection_Error_TwoFactorRequired_Description">
     <value>For å koble til VPN, gå til organisasjonens 2FA-portal og trykk på sikkerhetsnøkkelen din.</value>
@@ -408,10 +408,10 @@ Feilkode: {0}</value>
     <value>By</value>
   </data>
   <data name="Connections_City_Restricted">
-    <value>Tjenere i denne byen er tilgjengelig med VPN Plus</value>
+    <value>Servere i denne byen er tilgjengelig med VPN Plus</value>
   </data>
   <data name="Connections_City_UnderMaintenance">
-    <value>Alle tjenere i denne byen er under vedlikehold</value>
+    <value>Alle servere i denne byen er under vedlikehold</value>
   </data>
   <data name="Connections_Countries_One">
     <value>Land ({0})</value>
@@ -426,10 +426,10 @@ Feilkode: {0}</value>
     <value>Mellomland</value>
   </data>
   <data name="Connections_Country_Restricted">
-    <value>Tjenere i dette landet er tilgjengelig med VPN Plus</value>
+    <value>Servere i dette landet er tilgjengelig med VPN Plus</value>
   </data>
   <data name="Connections_Country_UnderMaintenance">
-    <value>Alle tjenere i dette landet er under vedlikehold</value>
+    <value>Alle servere i dette landet er under vedlikehold</value>
   </data>
   <data name="Connections_Country_UnderMaintenance_Title">
     <value>Kan ikke koble til</value>
@@ -438,34 +438,34 @@ Feilkode: {0}</value>
     <value>Raskeste</value>
   </data>
   <data name="Connections_Free_Servers_One">
-    <value>Gratis tjener</value>
+    <value>Gratis server</value>
   </data>
   <data name="Connections_Free_Servers_Other">
-    <value>Gratis tjenere</value>
+    <value>Gratis servere</value>
   </data>
   <data name="Connections_Gateway">
     <value>Gateway</value>
   </data>
   <data name="Connections_Gateway_Restricted">
-    <value>Tjenere i denne gatewayen krever VPN Plus</value>
+    <value>Servere i denne gatewayen krever VPN Plus</value>
   </data>
   <data name="Connections_Gateway_UnderMaintenance">
-    <value>All tjenere i denne gatewayen er under vedlikehold</value>
+    <value>Alle servere i denne gatewayen er under vedlikehold</value>
   </data>
   <data name="Connections_Gateways_One">
     <value>Gateway ({0})</value>
   </data>
   <data name="Connections_Gateways_Other">
-    <value>Gateway-tjenere ({0})</value>
+    <value>Gateway-servere ({0})</value>
   </data>
   <data name="Connections_Gateways_Server">
-    <value>Dedikert tjener</value>
+    <value>Dedikert server</value>
   </data>
   <data name="Connections_Gateways_Servers_One">
-    <value>Dedikert tjener ({0})</value>
+    <value>Dedikert server ({0})</value>
   </data>
   <data name="Connections_Gateways_Servers_Other">
-    <value>Dedikerte tjenere ({0})</value>
+    <value>Dedikerte servere ({0})</value>
   </data>
   <data name="Connections_P2P_Cities_One">
     <value>P2P-by ({0})</value>
@@ -480,10 +480,10 @@ Feilkode: {0}</value>
     <value>P2P-land ({0})</value>
   </data>
   <data name="Connections_P2P_Servers_One">
-    <value>P2P-tjener</value>
+    <value>P2P-server</value>
   </data>
   <data name="Connections_P2P_Servers_Other">
-    <value>P2P-tjenere</value>
+    <value>P2P-servere</value>
   </data>
   <data name="Connections_P2P_States_One">
     <value>P2P-stat ({0})</value>
@@ -512,7 +512,7 @@ Feilkode: {0}</value>
     <value>Slett profil?</value>
   </data>
   <data name="Connections_Profiles_Empty_Description">
-    <value>Profiler er lagrede tilkoblinger med ditt valg av plassering, tjener og protokoll.</value>
+    <value>Profiler er lagrede tilkoblinger med ditt valg av plassering, server og protokoll.</value>
   </data>
   <data name="Connections_Profiles_Empty_Title">
     <value>Opprett din første profil</value>
@@ -564,32 +564,32 @@ Feilkode: {0}</value>
     <value>Secure Core-land ({0})</value>
   </data>
   <data name="Connections_SecureCore_Servers_One">
-    <value>Secure Core-tjener</value>
+    <value>Secure Core-server</value>
   </data>
   <data name="Connections_SecureCore_Servers_Other">
-    <value>Secure Core-tjenere</value>
+    <value>Secure Core-servere</value>
   </data>
   <data name="Connections_Server_Restricted">
-    <value>Tjener tilgjengelig med VPN Plus</value>
+    <value>Server tilgjengelig med VPN Plus</value>
   </data>
   <data name="Connections_Server_UnderMaintenance">
-    <value>Denne tjeneren er under vedlikehold</value>
+    <value>Denne serveren er under vedlikehold</value>
   </data>
   <data name="Connections_Servers_One">
-    <value>Tjener</value>
+    <value>Server</value>
   </data>
   <data name="Connections_Servers_Other">
-    <value>Tjenere</value>
+    <value>Servere</value>
   </data>
   <data name="Connections_State">
     <value>Stat</value>
   </data>
   <data name="Connections_State_Restricted">
-    <value>Tjenere i denne staten kan brukes med VPN Plus.</value>
+    <value>Servere i denne staten kan brukes med VPN Plus.</value>
     <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_State_UnderMaintenance">
-    <value>All tjenere i denne staten er under vedlikehold.</value>
+    <value>Alle servere i denne staten er under vedlikehold.</value>
     <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
   </data>
   <data name="Connections_States_One">
@@ -605,10 +605,10 @@ Feilkode: {0}</value>
     <value>Tor-land ({0})</value>
   </data>
   <data name="Connections_Tor_Servers_One">
-    <value>Tor-tjener</value>
+    <value>Tor-server</value>
   </data>
   <data name="Connections_Tor_Servers_Other">
-    <value>Tor-tjenere</value>
+    <value>Tor-servere</value>
   </data>
   <data name="Countries">
     <value>Land</value>
@@ -629,7 +629,7 @@ Feilkode: {0}</value>
     <value>Legg til et ekstra krypteringslag til VPN-tilkoblingen din.</value>
   </data>
   <data name="Countries_ServerLoad">
-    <value>Tjenerbelastning</value>
+    <value>Serverbelastning</value>
   </data>
   <data name="Countries_SmartRouting">
     <value>Smart ruting</value>
@@ -1674,10 +1674,10 @@ Feilkode: {0}</value>
     <value>Aktiver Base Filtering Engine for å fortsette</value>
   </data>
   <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
-    <value>Få ubegrensede tjenerbytter med VPN Plus.</value>
+    <value>Få ubegrensede serverbytter med VPN Plus.</value>
   </data>
   <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
-    <value>Du har nådd maksimalt antall gratis tjenerbytter for nå</value>
+    <value>Du har nådd maksimalt antall gratis serverbytter for nå</value>
   </data>
   <data name="Dialogs_Common_GetStarted">
     <value>Kom i gang</value>
@@ -1686,7 +1686,7 @@ Feilkode: {0}</value>
     <value>Abonnement utløpt</value>
   </data>
   <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
-    <value>Oppgrader for å få tilbake tilgang til Plus-tjenere og funksjoner.</value>
+    <value>Oppgrader for å få tilbake tilgang til Plus-servere og funksjoner.</value>
   </data>
   <data name="Dialogs_DisabledService_Description">
     <value>Ser ut til at Proton VPN-tjenesten er deaktivert. Du må aktivere tjenesten på nytt for å koble til.</value>
@@ -1695,16 +1695,16 @@ Feilkode: {0}</value>
     <value>Aktiver Windows-tjenesten for å fortsette</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_One">
-    <value>Proton Free kobler deg automatisk til den raskeste tilgjengelige gratis tjeneren fra vårt {0} gratis land. Dette vil normalt være den nærmeste tjeneren til din plassering.</value>
+    <value>Proton Free kobler deg automatisk til den raskeste tilgjengelige gratis serveren fra vårt {0} gratis land. Dette vil normalt være den nærmeste serveren til din plassering.</value>
   </data>
   <data name="Dialogs_FreeConnections_Description_Other">
-    <value>Proton Free kobler deg automatisk til den raskeste tilgjengelige tjeneren fra våre {0} gratis land. Dette vil normalt være den nærmeste tjeneren til din plassering.</value>
+    <value>Proton Free kobler deg automatisk til den raskeste tilgjengelige serveren fra våre {0} gratis land. Dette vil normalt være den nærmeste serveren til din plassering.</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_One">
-    <value>Free-tjener land ({0})</value>
+    <value>Free-server land ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Header_Other">
-    <value>Free-tjener land ({0})</value>
+    <value>Free-server land ({0})</value>
   </data>
   <data name="Dialogs_FreeConnections_Title">
     <value>Gratis forbindelser</value>
@@ -1743,10 +1743,10 @@ Feilkode: {0}</value>
     <value>Prøv igjen</value>
   </data>
   <data name="Dialogs_P2PDetection_Description">
-    <value>Oppgrader for å låse opp P2P (node-til-node)-tjenere for rask nettspilling og torrenting, eller avslutt P2P-aktiviteten for å gjenopprette tilkoblingen.</value>
+    <value>Oppgrader for å låse opp P2P (node-til-node)-servere for rask nettspilling og torrenting, eller avslutt P2P-aktiviteten for å gjenopprette tilkoblingen.</value>
   </data>
   <data name="Dialogs_P2PDetection_Title">
-    <value>P2P er ikke tillatt på gratis VPN-tjenere</value>
+    <value>P2P er ikke tillatt på gratis VPN-servere</value>
   </data>
   <data name="Dialogs_P2PDetection_WindowTitle">
     <value>Oppdag VPN Plus</value>
@@ -1758,6 +1758,10 @@ Feilkode: {0}</value>
   <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
     <value>eksempel@domain.no</value>
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Field_MinLength">
+    <value>Minimum {0} tegn</value>
+    <comment>Hint shown below a Report an issue text field that has a minimum length. {0} is the minimum number of characters.</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
     <value>Send feillogger</value>
@@ -1811,7 +1815,7 @@ Feilkode: {0}</value>
     <value>Oppdag VPN Plus</value>
   </data>
   <data name="Dialogs_StreamingWarning_Description">
-    <value>VPN Plus-tjenere lar deg se favorittfilmene og TV-programmene dine fra hele verden.</value>
+    <value>VPN Plus-servere lar deg se favorittfilmene og TV-programmene dine fra hele verden.</value>
   </data>
   <data name="Dialogs_StreamingWarning_Title">
     <value>Oppgrader for å omgå VPN-blokkeringer</value>
@@ -1820,10 +1824,10 @@ Feilkode: {0}</value>
     <value>Kanskje senere</value>
   </data>
   <data name="Dialogs_SystemProxy_Description">
-    <value>Det ser ut til at enheten din bruker en proxy-tjener. Dette kan forstyrre VPN-beskyttelsen din.</value>
+    <value>Det ser ut til at enheten din bruker en proxy-server. Dette kan forstyrre VPN-beskyttelsen din.</value>
   </data>
   <data name="Dialogs_SystemProxy_Title">
-    <value>Proxy-tjener oppdaget</value>
+    <value>Proxy-server oppdaget</value>
   </data>
   <data name="Dialogs_Troubleshooting_Antivirus">
     <value>Slå av antivirus- eller brannmurprogramvare</value>
@@ -2097,7 +2101,7 @@ Feilkode: {0}</value>
     <value>Forbedre P2P-hastigheten</value>
   </data>
   <data name="Flyouts_PortForwarding_Warning">
-    <value>Koble til en P2P-tjener for å forbedre torrentinghastigheter</value>
+    <value>Koble til en P2P-server for å forbedre torrentinghastigheter</value>
   </data>
   <data name="Flyouts_Protocol_Description">
     <value>En VPN-protokoll avgjør hvordan trafikk krypteres og overføres over VPN.</value>
@@ -2109,7 +2113,7 @@ Feilkode: {0}</value>
     <value>Protokoll</value>
   </data>
   <data name="Flyouts_ServerLoad_Description">
-    <value>Tjenerbelastning viser hvor nær en server er maksimal kapasitet. En høy tjenerbelastning kan redusere tilkoblingen.</value>
+    <value>Serverbelastning viser hvor nær en server er maksimal kapasitet. En høy serverbelastning kan redusere tilkoblingen.</value>
   </data>
   <data name="Flyouts_ServerLoad_High">
     <value>Høy (91–100%)</value>
@@ -2118,7 +2122,7 @@ Feilkode: {0}</value>
     <value>VPN kan kjøre tregere enn normalt</value>
   </data>
   <data name="Flyouts_ServerLoad_KnowledgeBaseLinkTitle">
-    <value>Hva er tjenerbelastning?</value>
+    <value>Hva er serverbelastning?</value>
   </data>
   <data name="Flyouts_ServerLoad_Low">
     <value>Lav (1–75%)</value>
@@ -2133,7 +2137,7 @@ Feilkode: {0}</value>
     <value>Vil neppe påvirke tilkoblingshastigheten</value>
   </data>
   <data name="Flyouts_ServerLoad_Title">
-    <value>Tjenerbelastning</value>
+    <value>Serverbelastning</value>
   </data>
   <data name="Flyouts_Speed_Description1">
     <value>Viser hvor mye data som går gjennom VPN-tunnelen i sanntid.</value>
@@ -2348,7 +2352,7 @@ Feilkode: {0}</value>
     <value>Koble til en gateway for å få tilgang til organisasjonens VPN.</value>
   </data>
   <data name="Gateways_Page_Title">
-    <value>Gateway-tjenere</value>
+    <value>Gateway-servere</value>
   </data>
   <data name="Home_Account_SignOut">
     <value>Logg av</value>
@@ -2361,7 +2365,7 @@ Feilkode: {0}</value>
     <value>Endre standard tilkobling</value>
   </data>
   <data name="Home_ConnectionCard_ChangeServer">
-    <value>Endre tjener</value>
+    <value>Endre server</value>
   </data>
   <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
     <value>Avansert nødstopp aktivert</value>
@@ -2388,7 +2392,7 @@ Feilkode: {0}</value>
     <value>Protokoll</value>
   </data>
   <data name="Home_ConnectionDetails_ServerLoad">
-    <value>Tjenerbelastning</value>
+    <value>Serverbelastning</value>
   </data>
   <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
     <value>Autentiser deg på nytt i organisasjonens 2FA-portal for å fortsette.</value>
@@ -2442,10 +2446,10 @@ Feilkode: {0}</value>
     <value>Fest</value>
   </data>
   <data name="Home_Recents_Restricted">
-    <value>Tjener er tilgjengelig med VPN Plus</value>
+    <value>Server er tilgjengelig med VPN Plus</value>
   </data>
   <data name="Home_Recents_ServerUnderMaintenance">
-    <value>Tjener er under vedlikehold</value>
+    <value>Server er under vedlikehold</value>
   </data>
   <data name="Home_Recents_Title">
     <value>Nylige</value>
@@ -2575,7 +2579,7 @@ Feilkode: {0}</value>
     <value>Kontakt oss</value>
   </data>
   <data name="NoServers_FailedToLoad">
-    <value>Vi kunne ikke laste inn tjenerlisten.</value>
+    <value>Vi kunne ikke laste inn serverlisten.</value>
   </data>
   <data name="NoServers_NeedHelp">
     <value>Trenger du hjelp?</value>
@@ -2590,7 +2594,7 @@ Feilkode: {0}</value>
     <value>Ingen VPN-tilkoblinger tilgjengelig</value>
   </data>
   <data name="NoServers_UnderMaintenance_Tip">
-    <value>Vi kunne ikke laste inn noen tjenere. Klikk på Oppdater for å oppdatere tjenerlisten.</value>
+    <value>Vi kunne ikke laste inn noen servere. Klikk på Oppdater for å oppdatere serverlisten.</value>
   </data>
   <data name="Notifications_KillSwitch_Description">
     <value>For å beskytte IP-adressen din blokkerer nødstopp internettforbindelsen.</value>
@@ -2605,7 +2609,7 @@ Feilkode: {0}</value>
     <value>Du har nådd den maksimale enhetsgrensen. For å koble til VPN igjen, koble fra en annen enhet.</value>
   </data>
   <data name="Notifications_SubscriptionExpired_Description_Connected">
-    <value>Planen din har blitt nedgradert til Proton Free, og vi kobler deg til den raskeste gratistjeneren igjen.</value>
+    <value>Planen din har blitt nedgradert til Proton Free, og vi kobler deg til den raskeste gratisserveren igjen.</value>
   </data>
   <data name="Notifications_UnsecureWifi_Description">
     <value>Offentlige Wi-Fi-nettverk er mer sårbare for sikkerhetstrusler. Koble til VPN for å surfe trygt.</value>
@@ -2639,13 +2643,13 @@ Feilkode: {0}</value>
     <value>Oppdater Proton VPN for å fortsette</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Description">
-    <value>Våre P2P-tjenere (node-til-node) lar deg få tilgang til P2P-nettverk samtidig som du beskytter din IP-adresse og nettaktivitet.</value>
+    <value>Våre P2P-servere (node-til-node) lar deg få tilgang til P2P-nettverk samtidig som du beskytter din IP-adresse og nettaktivitet.</value>
   </data>
   <data name="Overlay_P2P_Bullet1_Header">
     <value>Hva er P2P-VPN?</value>
   </data>
   <data name="Overlay_P2P_Bullet2_Description">
-    <value>P2P-nettverk lar to enheter koble til og overføre data uten å passere gjennom en sentral tjener. </value>
+    <value>P2P-nettverk lar to enheter koble til og overføre data uten å passere gjennom en sentral server. </value>
   </data>
   <data name="Overlay_P2P_Bullet2_Header">
     <value>Hva er et P2P-nettverk?</value>
@@ -2677,7 +2681,7 @@ Feilkode: {0}</value>
     <value>Profiler</value>
   </data>
   <data name="Overlay_SecureCore_Description1">
-    <value>Secure Core kobler deg til destinasjonstjeneren din via en andre VPN-tjener med maksimal sikkerhet.</value>
+    <value>Secure Core kobler deg til destinasjonsserveren din via en andre VPN-server med maksimal sikkerhet.</value>
   </data>
   <data name="Overlay_SecureCore_Description2">
     <value>Dette høyere beskyttelsesnivået kan føre til høyere forsinkelse og lavere hastigheter.</value>
@@ -2709,9 +2713,9 @@ VPN-forbindelse</value>
     <value>Secure Core</value>
   </data>
   <data name="Overlay_ServerLoad_Description">
-    <value>Tjenerbelastning viser hvor nær en tjener er maksimal kapasitet. 
+    <value>Serverbelastning viser hvor nær en server er maksimal kapasitet. 
 
-En høy tjenerbelastning kan redusere tilkoblingen.</value>
+En høy serverbelastning kan redusere tilkoblingen.</value>
   </data>
   <data name="Overlay_ServerLoad_HighRange_Description">
     <value>VPN kan kjøre tregere enn normalt</value>
@@ -2720,7 +2724,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Høy (91–100%)</value>
   </data>
   <data name="Overlay_ServerLoad_LearnMore">
-    <value>Hva er tjenerbelastning?</value>
+    <value>Hva er serverbelastning?</value>
   </data>
   <data name="Overlay_ServerLoad_LowRange_Description">
     <value>Lynraske hastigheter</value>
@@ -2735,13 +2739,13 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Middels (76–90%)</value>
   </data>
   <data name="Overlay_ServerLoad_Title">
-    <value>Tjenerbelastning</value>
+    <value>Serverbelastning</value>
   </data>
   <data name="Overlay_SmartRouting_Description1">
     <value>Smart Routing lar oss tilby VPN-dekning i land som er vanskelige å nå.</value>
   </data>
   <data name="Overlay_SmartRouting_Description2">
-    <value>Når du kobler til en Smart Routing-tjener, ser det ut som om du surfer i destinasjonslandet, selv om den fysiske tjeneren er plassert et annet sted.</value>
+    <value>Når du kobler til en Smart Routing-server, ser det ut som om du surfer i destinasjonslandet, selv om den fysiske serveren er plassert et annet sted.</value>
   </data>
   <data name="Overlay_SmartRouting_Description3">
     <value>Smart Routing brukes vanligvis for å omgå anti-personvernlover og andre former for sensur.</value>
@@ -2757,7 +2761,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Smart Routing</value>
   </data>
   <data name="Overlay_Tor_Description">
-    <value>Koble til en Tor-tjener for å få tilgang til skjulte tjenester og onion-sider ved hjelp av hvilken som helst nettleser.</value>
+    <value>Koble til en Tor-server for å få tilgang til skjulte tjenester og onion-sider ved hjelp av hvilken som helst nettleser.</value>
   </data>
   <data name="Overlay_Tor_LearnMore">
     <value>Hvordan få tilgang til Tor-nettverket</value>
@@ -2849,7 +2853,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <comment>The word used for one single country</comment>
   </data>
   <data name="Search_NoInput_Server">
-    <value>Tjener</value>
+    <value>Server</value>
     <comment>The word used for one single server</comment>
   </data>
   <data name="Search_NoInput_TrySearchingFor">
@@ -2862,19 +2866,19 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Ingen resultater funnet</value>
   </data>
   <data name="Server">
-    <value>Tjener</value>
+    <value>Server</value>
   </data>
   <data name="Server_Fastest">
-    <value>Raskeste tjener</value>
+    <value>Raskeste server</value>
   </data>
   <data name="Server_Fastest_Free">
-    <value>Raskeste gratis tjener</value>
+    <value>Raskeste gratis server</value>
   </data>
   <data name="Server_Feature_B2B">
     <value>Gateway</value>
   </data>
   <data name="Server_Feature_B2B_Description">
-    <value>Få tilgang til organisasjonens tjenere</value>
+    <value>Få tilgang til organisasjonens servere</value>
   </data>
   <data name="Server_Feature_None">
     <value>Standard</value>
@@ -2895,13 +2899,13 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Tor</value>
   </data>
   <data name="Server_Free">
-    <value>Free-tjener</value>
+    <value>Free-server</value>
   </data>
   <data name="Server_Random">
-    <value>Tilfeldig tjener</value>
+    <value>Tilfeldig server</value>
   </data>
   <data name="Servers">
-    <value>Tjenere</value>
+    <value>Servere</value>
   </data>
   <data name="Settings_About_Changelog">
     <value>Endringslogg</value>
@@ -2978,33 +2982,33 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Hvis Proton-tjenester er blokkert på grunn av nettverksbegrensninger, prøver vi å bruke alternativ nettverksruting for å koble deg til nettstedene våre.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers">
-    <value>Egendefinerte DNS-tjenere</value>
+    <value>Egendefinerte DNS-servere</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
-    <value>Legg til ny DNS-tjener</value>
+    <value>Legg til ny DNS-server</value>
     <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
-    <value>Du vil ikke kunne bruke NetShield når du er koblet til en egendefinert DNS-tjener.</value>
+    <value>Du vil ikke kunne bruke NetShield når du er koblet til en egendefinert DNS-server.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
-    <value>Aktivere egendefinerte DNS-tjenere?</value>
+    <value>Aktivere egendefinerte DNS-servere?</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
-    <value>Koble til Proton VPN ved å bruke ditt eget domenenavnsystem (DNS). Bruk kun DNS-tjenere du stoler på.</value>
+    <value>Koble til Proton VPN ved å bruke ditt eget domenenavnsystem (DNS). Bruk kun DNS-servere du stoler på.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
-    <value>Vi vil prøve å koble til disse tjenerne i rekkefølge. Hvis ingen av dem fungerer, vil standard Proton VPN DNS brukes.</value>
+    <value>Vi vil prøve å koble til disse serverne i rekkefølge. Hvis ingen av dem fungerer, vil standard Proton VPN DNS brukes.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_FormattedHeader">
-    <value>DNS-tjenere ({0})</value>
+    <value>DNS-servere ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
-    <value>DNS-tjenere</value>
+    <value>DNS-servere</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Select">
-    <value>Velg DNS-tjenere</value>
+    <value>Velg DNS-servere</value>
   </data>
   <data name="Settings_Connection_Advanced_Ipv6">
     <value>IPv6-støtte</value>
@@ -3079,7 +3083,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Raskeste land</value>
   </data>
   <data name="Settings_Connection_Default_Fastest_Description">
-    <value>Den beste tjeneren basert på plasseringen din</value>
+    <value>Den beste serveren basert på plasseringen din</value>
   </data>
   <data name="Settings_Connection_Default_Last">
     <value>Siste forbindelse</value>
@@ -3091,7 +3095,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Tilfeldig land</value>
   </data>
   <data name="Settings_Connection_Default_Random_Description">
-    <value>Forskjellig tjener hver gang du kobler til</value>
+    <value>Forskjellig server hver gang du kobler til</value>
   </data>
   <data name="Settings_Connection_Default_Recents">
     <value>Nylige</value>
@@ -3148,7 +3152,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Blokkér kun skadevare</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Description">
-    <value>Du vil ikke kunne koble til en egendefinert DNS-tjener når NetShield er aktivert.</value>
+    <value>Du vil ikke kunne koble til en egendefinert DNS-server når NetShield er aktivert.</value>
   </data>
   <data name="Settings_Connection_NetShield_Conflict_Information">
     <value>NetShield er ikke kompatibel med egendefinert DNS.</value>
@@ -3184,7 +3188,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Forbedrer torrent- og spillhastigheter ved å tillate direkte P2P-tilkoblinger gjennom en angitt port.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
-    <value>For å bruke portviderekobling må du koble til en tjener som støtter P2P.</value>
+    <value>For å bruke portviderekobling må du koble til en server som støtter P2P.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_LastChanged">
     <value>Sist endret: {0}</value>
@@ -3380,7 +3384,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Innstillinger</value>
   </data>
   <data name="Settings_Protocols_Explanation">
-    <value>En VPN-protokoll bestemmer hvordan data beveger seg mellom en VPN-tjener og enheten din.</value>
+    <value>En VPN-protokoll bestemmer hvordan data beveger seg mellom en VPN-server og enheten din.</value>
   </data>
   <data name="Settings_Protocols_OpenVpnTcp_Description">
     <value>Etablert, godt testet og sikker. OpenVPN er pålitelig under dårlige nettverksforhold, men er kanskje ikke like rask som andre protokoller.</value>
@@ -3620,7 +3624,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Frakoblet</value>
   </data>
   <data name="SystemNotification_P2PWarning_Description">
-    <value>Lås opp torrenting og nettspilling over P2P-protokoller (node-til-node) med betalte VPN-tjenere.</value>
+    <value>Lås opp torrenting og nettspilling over P2P-protokoller (node-til-node) med betalte VPN-servere.</value>
   </data>
   <data name="SystemNotification_P2PWarning_Title">
     <value>P2P er ikke tilgjengelig med VPN Free</value>
@@ -3689,7 +3693,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>P2P-støtte</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Description">
-    <value>Oppgrader for å velge hvilken som helst tjener.</value>
+    <value>Oppgrader for å velge hvilken som helst server.</value>
   </data>
   <data name="UpsellBanner_WrongCountry_Title">
     <value>Ikke det landet du ønsket?</value>
@@ -3780,7 +3784,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Beskytt deg mot nettverksangrep</value>
   </data>
   <data name="Upsell_Carousel_SecureCore_Routing">
-    <value>Rute gjennom ultrasikre tjenere i Sveits, Sverige og Island.</value>
+    <value>Rute gjennom ultrasikre servere i Sveits, Sverige og Island.</value>
   </data>
   <data name="Upsell_Carousel_Speed">
     <value>Surf med enda høyere hastigheter</value>
@@ -3789,7 +3793,7 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Surf opptil 400 % raskere med VPN Accelerator</value>
   </data>
   <data name="Upsell_Carousel_Speed_Access">
-    <value>Få tilgang til raskere, mindre overfylte tjenere</value>
+    <value>Få tilgang til raskere, mindre overfylte servere</value>
   </data>
   <data name="Upsell_Carousel_Speed_Traffic">
     <value>Få tilkoblingshastigheter på opptil 10 Gbps</value>
@@ -3862,10 +3866,10 @@ En høy tjenerbelastning kan redusere tilkoblingen.</value>
     <value>Velg et hvilket som helst land fra vårt verdensomspennende nettverk</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_One">
-    <value>{0} sikker tjener</value>
+    <value>{0} sikker server</value>
   </data>
   <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
-    <value>{0} sikre tjenere</value>
+    <value>{0} sikre servere</value>
   </data>
   <data name="VpnProtocol_OpenVPN_Tcp">
     <value>OpenVPN (TCP)</value>

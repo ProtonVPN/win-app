@@ -280,7 +280,7 @@
     <value>Matuto pa</value>
   </data>
   <data name="Common_Message_AppNotFound">
-    <value>Application not found</value>
+    <value>Hindi nahanap ang application</value>
   </data>
   <data name="Common_States_Off">
     <value>Naka-off</value>
@@ -316,7 +316,7 @@
     <value>Your preferences exclude all available servers. Adjust exclusions to connect.</value>
   </data>
   <data name="Connection_Error_AllServersExcluded_Action">
-    <value>Excluded locations</value>
+    <value>Mga ibinukod na lokasyon</value>
   </data>
   <data name="Connection_Error_ConflictingAdapter_Description">
     <value>To fix it, close or uninstall the app associated with:</value>
@@ -1759,6 +1759,10 @@ Error code: {0}</value>
     <value>example@domain.com</value>
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Field_MinLength">
+    <value>Minimum {0} characters</value>
+    <comment>Hint shown below a Report an issue text field that has a minimum length. {0} is the minimum number of characters.</comment>
+  </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
     <value>Ipadala ang mga log ng error</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
@@ -1953,16 +1957,16 @@ Error code: {0}</value>
     <value>If there are locations you don't want to be automatically connected to, you can exclude them from Fastest and Random country.</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
-    <value>Skip</value>
+    <value>Laktawan</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
-    <value>Not the country you wanted?</value>
+    <value>Hindi ang bansang gusto mo?</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_ActionButton">
     <value>Exclude locations</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_CloseButton">
-    <value>Maybe later</value>
+    <value>Siguro sa ibang pagkakataon</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Subtitle">
     <value>You can now exclude countries or cities from Fastest and Random connections.</value>
@@ -2064,13 +2068,13 @@ Error code: {0}</value>
     <value>You're protected from ads, trackers, malware, and adult content.</value>
   </data>
   <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
-    <value>You're protected from ads, trackers, and malware.</value>
+    <value>Protektado ka mula sa mga ad, tracker at malware.</value>
   </data>
   <data name="Flyouts_NetShield_Info">
     <value>Protect your browsing on websites and apps.</value>
   </data>
   <data name="Flyouts_NetShield_MalwareOnly_Success">
-    <value>You're protected from malware only.</value>
+    <value>Protektado ka mula sa malware lamang.</value>
   </data>
   <data name="Flyouts_NetShield_Upsell_Description">
     <value>Block ads, trackers, malware, and adult content with VPN Plus.</value>
@@ -2997,7 +3001,7 @@ Maaaring pabagalin ng mataas na load ng server ang koneksyon mo.</value>
     <value>Susubukan naming kumonekta sa mga server na ito nang sunud-sunod. Kung walang gumana sa mga ito, gagamitin ang default na Proton VPN DNS.</value>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_FormattedHeader">
-    <value>DNS servers ({0})</value>
+    <value>Mga DNS server ({0})</value>
     <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
   </data>
   <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
@@ -3061,7 +3065,7 @@ Maaaring pabagalin ng mataas na load ng server ang koneksyon mo.</value>
     <value>Routes traffic between different networks. TUN can be faster and more stable than TAP.</value>
   </data>
   <data name="Settings_Connection_ConnectionPreferences">
-    <value>Connection preferences</value>
+    <value>Mga kagustuhan sa koneksyon</value>
   </data>
   <data name="Settings_Connection_ConnectionPreferences_Description">
     <value>Default connection and excluded locations</value>
@@ -3097,25 +3101,25 @@ Maaaring pabagalin ng mataas na load ng server ang koneksyon mo.</value>
     <value>Mga recent</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations">
-    <value>Excluded locations</value>
+    <value>Mga ibinukod na lokasyon</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Cities">
-    <value>Cities</value>
+    <value>Mga Lungsod</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Countries">
-    <value>Countries</value>
+    <value>Mga Bansa</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Description">
     <value>The selected locations will never be used when you connect to Fastest or Random</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_NoLocations">
-    <value>No locations available</value>
+    <value>Walang available na lokasyon</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Search">
     <value>Select...</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_States">
-    <value>States</value>
+    <value>Mga Estado</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>Kill switch</value>
@@ -3212,11 +3216,11 @@ Maaaring pabagalin ng mataas na load ng server ang koneksyon mo.</value>
     <value>Select apps which will be excluded from the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Excluded_FormattedHeader">
-    <value>Excluded apps ({0})</value>
+    <value>Mga ibinukod na app ({0})</value>
     <comment>Header for the list of apps to exclude for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Excluded apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Header">
-    <value>Excluded apps</value>
+    <value>Mga na-exclude na app</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
     <value>Mga app file</value>
@@ -3226,11 +3230,11 @@ Maaaring pabagalin ng mataas na load ng server ang koneksyon mo.</value>
     <value>Select apps which will be included in the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader">
-    <value>Included apps ({0})</value>
+    <value>Mga isinamang app ({0})</value>
     <comment>Header for the list of apps to include for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Included apps (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Included_Header">
-    <value>Included apps</value>
+    <value>Mga isinamang app</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_Apps_Select">
     <value>Select apps</value>
@@ -3255,21 +3259,21 @@ Maaaring pabagalin ng mataas na load ng server ang koneksyon mo.</value>
     <value>Select IP addresses which will be excluded from the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_FormattedHeader">
-    <value>Excluded IP addresses ({0})</value>
+    <value>Mga ibinukod na IP address ({0})</value>
     <comment>Header for the list of IP addresses to exclude for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Excluded IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Header">
-    <value>Excluded IP addresses</value>
+    <value>Mga ibinukod na IP address</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Description">
     <value>Select IP addresses which will be included in the VPN connection</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_FormattedHeader">
-    <value>Included IP addresses ({0})</value>
+    <value>Mga isinamang IP address ({0})</value>
     <comment>Header for the list of IP addresses to include for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Included IP addresses (2)")</comment>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Header">
-    <value>Included IP addresses</value>
+    <value>Mga isinamang IP address</value>
   </data>
   <data name="Settings_Connection_SplitTunneling_IpAddresses_Select">
     <value>Select IP addresses</value>
@@ -3416,7 +3420,7 @@ Maaaring pabagalin ng mataas na load ng server ang koneksyon mo.</value>
     <value>Use Proton VPN's own implementation of WireGuard. This is an experimental feature, so you may experience some instability.</value>
   </data>
   <data name="Settings_Protocols_ProtonProtocols_Title">
-    <value>Proton protocols</value>
+    <value>Mga protocol ng Proton</value>
   </data>
   <data name="Settings_Protocols_Smart_Description">
     <value>Awtomatikong pinipili ang pinakamahusay na protocol para sa iyong koneksyon</value>
@@ -3632,16 +3636,16 @@ Maaaring pabagalin ng mataas na load ng server ang koneksyon mo.</value>
     <value>Naka-block na website?</value>
   </data>
   <data name="System_Tray_Actions_Connect">
-    <value>Connect</value>
+    <value>Kumonekta</value>
   </data>
   <data name="System_Tray_Actions_Disconnect">
-    <value>Disconnect</value>
+    <value>I-disconnect</value>
   </data>
   <data name="System_Tray_Actions_ExitApplication">
-    <value>Exit</value>
+    <value>Lumabas</value>
   </data>
   <data name="System_Tray_Actions_OpenApplication">
-    <value>Open {0}</value>
+    <value>Buksan ang {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_ExitApplication">
@@ -3883,19 +3887,19 @@ Maaaring pabagalin ng mataas na load ng server ang koneksyon mo.</value>
     <value>Proton WireGuard (TCP)</value>
   </data>
   <data name="VpnProtocol_ProTun_Tcp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>State-of-the-art na protocol para sa seguridad at performance</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls">
     <value>Proton Stealth</value>
   </data>
   <data name="VpnProtocol_ProTun_Tls_Description">
-    <value>Overcomes VPN blocks by hiding your connection from censors</value>
+    <value>Nilalampasan ang mga pag-block sa VPN sa pamamagitan ng pagtatago ng iyong koneksyon mula sa mga censor</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp">
     <value>Proton WireGuard (UDP)</value>
   </data>
   <data name="VpnProtocol_ProTun_Udp_Description">
-    <value>State-of-the-art protocol for security and performance</value>
+    <value>State-of-the-art na protocol para sa seguridad at performance</value>
   </data>
   <data name="VpnProtocol_Smart">
     <value>Smart</value>

@@ -692,26 +692,26 @@ public class SettingRobot
         public Verifications IsNetshieldBlocking(NetShieldMode netShieldMode)
         {
             DnsHelper.FlushDns();
-            CommonAssertions.AssertDnsIsResolved(NETSHIELD_NO_BLOCK);
+            DnsHelper.AssertDnsIsResolved(NETSHIELD_NO_BLOCK);
 
             switch (netShieldMode)
             {
                 case NetShieldMode.BlockMalwareOnly:
-                    CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_MALWARE_ENDPOINT);
-                    CommonAssertions.AssertDnsIsResolved(NETSHIELD_ADS_ENDPOINT);
-                    CommonAssertions.AssertAtLeastOneDomainResolved(_netShieldAdultContentDomains);
+                    DnsHelper.AssertDnsIsNotResolved(NETSHIELD_MALWARE_ENDPOINT);
+                    DnsHelper.AssertDnsIsResolved(NETSHIELD_ADS_ENDPOINT);
+                    DnsHelper.AssertAtLeastOneDomainResolved(_netShieldAdultContentDomains);
                     break;
                 case NetShieldMode.BlockAdsMalwareTrackers:
-                    CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_MALWARE_ENDPOINT);
-                    CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_ADS_ENDPOINT);
-                    CommonAssertions.AssertAtLeastOneDomainResolved(_netShieldAdultContentDomains);
+                    DnsHelper.AssertDnsIsNotResolved(NETSHIELD_MALWARE_ENDPOINT);
+                    DnsHelper.AssertDnsIsNotResolved(NETSHIELD_ADS_ENDPOINT);
+                    DnsHelper.AssertAtLeastOneDomainResolved(_netShieldAdultContentDomains);
                     break;
                 case NetShieldMode.BlockAdsMalwareTrackersAdultContent:
-                    CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_MALWARE_ENDPOINT);
-                    CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_ADS_ENDPOINT);
+                    DnsHelper.AssertDnsIsNotResolved(NETSHIELD_MALWARE_ENDPOINT);
+                    DnsHelper.AssertDnsIsNotResolved(NETSHIELD_ADS_ENDPOINT);
                     foreach (string adultContentDomain in _netShieldAdultContentDomains)
                     {
-                        CommonAssertions.AssertDnsIsNotResolved(adultContentDomain);
+                        DnsHelper.AssertDnsIsNotResolved(adultContentDomain);
                     }
                     break;
             }
@@ -797,23 +797,23 @@ public class SettingRobot
         public Verifications IsNetshieldNotBlocking()
         {
             AssertCommonNetShieldDisabledState();
-            CommonAssertions.AssertDnsIsResolved(NETSHIELD_MALWARE_ENDPOINT);
+            DnsHelper.AssertDnsIsResolved(NETSHIELD_MALWARE_ENDPOINT);
             return this;
         }
 
         public Verifications IsFreeUserNetShieldState()
         {
             AssertCommonNetShieldDisabledState();
-            CommonAssertions.AssertDnsIsNotResolved(NETSHIELD_MALWARE_ENDPOINT);
+            DnsHelper.AssertDnsIsNotResolved(NETSHIELD_MALWARE_ENDPOINT);
             return this;
         }
 
         private void AssertCommonNetShieldDisabledState()
         {
             DnsHelper.FlushDns();
-            CommonAssertions.AssertDnsIsResolved(NETSHIELD_NO_BLOCK);
-            CommonAssertions.AssertDnsIsResolved(NETSHIELD_ADS_ENDPOINT);
-            CommonAssertions.AssertAtLeastOneDomainResolved(_netShieldAdultContentDomains);
+            DnsHelper.AssertDnsIsResolved(NETSHIELD_NO_BLOCK);
+            DnsHelper.AssertDnsIsResolved(NETSHIELD_ADS_ENDPOINT);
+            DnsHelper.AssertAtLeastOneDomainResolved(_netShieldAdultContentDomains);
         }
 
         public Verifications IsSettingsPageDisplayed()

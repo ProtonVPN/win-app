@@ -1999,6 +1999,10 @@
     <value>example@domain.com</value>
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Field_MinLength">
+    <value>الحد الأدنى {0} من الأحرف</value>
+    <comment>Hint shown below a Report an issue text field that has a minimum length. {0} is the minimum number of characters.</comment>
+  </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
     <value>إرسال سجل الأخطاء</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
@@ -2205,22 +2209,22 @@
     <value>يمكنك استبعاد المواقع التي تفضل عدم الاتصال بها بشكل تلقائي عند استخدام الخادم الأسرع ودولة عشوائية.</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
-    <value>Skip</value>
+    <value>تخطي</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
-    <value>Not the country you wanted?</value>
+    <value>هل تبحث عن دولة مختلفة؟</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_ActionButton">
-    <value>Exclude locations</value>
+    <value>المواقع المستبعدة</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_CloseButton">
-    <value>Maybe later</value>
+    <value>ربما لاحقا</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Subtitle">
     <value>You can now exclude countries or cities from Fastest and Random connections.</value>
   </data>
   <data name="ExcludedLocations_TeachingTip_Title">
-    <value>Avoid unwanted locations</value>
+    <value>استبعاد المواقع غير المرغوب فيها</value>
   </data>
   <data name="Exit_Confirmation_Title">
     <value>الخروج من Proton VPN؟</value>
@@ -3493,13 +3497,13 @@ VPN</value>
     <value>The selected locations will never be used when you connect to Fastest or Random</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_NoLocations">
-    <value>No locations available</value>
+    <value>لا تتوفر مواقع مستبعدة بعد</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_Search">
     <value>Select...</value>
   </data>
   <data name="Settings_Connection_ExcludedLocations_States">
-    <value>States</value>
+    <value>الولايات</value>
   </data>
   <data name="Settings_Connection_KillSwitch">
     <value>مفتاح الأمان</value>

@@ -70,7 +70,7 @@ public class LokiApiClient
 
     private Pkcs12Store CreatePkcs12Store(Org.BouncyCastle.X509.X509Certificate cert, AsymmetricKeyParameter privateKey)
     {
-        Pkcs12Store store = new();
+        Pkcs12Store store = new Pkcs12StoreBuilder().Build();
         string alias = cert.SubjectDN.ToString();
         X509CertificateEntry certEntry = new(cert);
         store.SetCertificateEntry(alias, certEntry);

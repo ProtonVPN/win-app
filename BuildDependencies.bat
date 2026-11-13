@@ -10,7 +10,7 @@ set publishDirBTI=%currentDir%src\bin\win-%PLATFORM%\BTI\publish\
 set binDir=%currentDir%src\bin\
 set resourcesDir=%binDir%Resources\
 set mainDir=%binDir%
-set cppDependenciesHash=698d521c
+set cppDependenciesHash=9cdd2384
 set localAgentHash=3e8ad1b
 set ipv6chaosHash=c3baf3a
 set binaryStatusHash=c751e8c
@@ -74,7 +74,7 @@ echo Fetching %~1 %time%
 
 echo "%DEPENDENCY_CACHE_URL%/%~2/%~3/%~1"
 
-curl --fail -o "%destDir%%~1" "%DEPENDENCY_CACHE_URL%/%~2/%~3/%~1" || (
+curl --fail --connect-timeout 10 --speed-limit 10000 --speed-time 60 -o "%destDir%%~1" "%DEPENDENCY_CACHE_URL%/%~2/%~3/%~1" || (
     echo ERROR: Failed to fetch %~1 from %DEPENDENCY_CACHE_URL%/%~2/%~3/%~1 1>&2
     exit /b 1
 )

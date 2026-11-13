@@ -1,0 +1,3823 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account_VpnPlan_Free">
+    <value>Proton VPN Free</value>
+  </data>
+  <data name="Automation_Properties_ConnectionDetails_Page">
+    <value>Halaman butiran sambungan</value>
+  </data>
+  <data name="Automation_Properties_ConnectionPreferences_Page">
+    <value>Halaman keutamaan sambungan</value>
+  </data>
+  <data name="Automation_Properties_Connection_Card_Component">
+    <value>Kad sambungan</value>
+  </data>
+  <data name="Automation_Properties_KillSwitch_Page">
+    <value>Halaman suis pemutus</value>
+  </data>
+  <data name="Automation_Properties_LocationDetails_Page">
+    <value>Halaman butiran lokasi</value>
+  </data>
+  <data name="Automation_Properties_Login_Page">
+    <value>Halaman log masuk</value>
+  </data>
+  <data name="Automation_Properties_Main_Page">
+    <value>Halaman utama</value>
+  </data>
+  <data name="Automation_Properties_NetShield_Page">
+    <value>Halaman NetShield</value>
+  </data>
+  <data name="Automation_Properties_NoServers_Page">
+    <value>Halaman tiada pelayan</value>
+  </data>
+  <data name="Automation_Properties_PortForwarding_Page">
+    <value>Halaman pemajuan port</value>
+  </data>
+  <data name="Automation_Properties_Profile_Page">
+    <value>Halaman profil</value>
+  </data>
+  <data name="Automation_Properties_Settings_Advanced_Page">
+    <value>Halaman tetapan lanjutan</value>
+  </data>
+  <data name="Automation_Properties_Settings_Common_Page">
+    <value>Halaman tetapan umum</value>
+  </data>
+  <data name="Automation_Properties_Settings_Page">
+    <value>Halaman tetapan</value>
+  </data>
+  <data name="Automation_Properties_Sidebar">
+    <value>Bar sisi</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Countries_Page">
+    <value>Halaman negara</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Gateways_Page">
+    <value>Halaman get laluan</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Page">
+    <value>Halaman sambungan</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Profiles_Page">
+    <value>Halaman profil</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Connections_Recents_Page">
+    <value>Halaman terkini</value>
+  </data>
+  <data name="Automation_Properties_Sidebar_Search_Results_Page">
+    <value>Hasil carian</value>
+  </data>
+  <data name="Automation_Properties_SplitTunneling_Page">
+    <value>Halaman pemisahan terowong</value>
+  </data>
+  <data name="City_Fastest">
+    <value>Bandar paling pantas</value>
+  </data>
+  <data name="City_Random">
+    <value>Bandar rawak</value>
+  </data>
+  <data name="Common_Actions_Add">
+    <value>Tambah</value>
+  </data>
+  <data name="Common_Actions_Back">
+    <value>Kembali</value>
+  </data>
+  <data name="Common_Actions_Cancel">
+    <value>Batal</value>
+  </data>
+  <data name="Common_Actions_Change">
+    <value>Tukar</value>
+  </data>
+  <data name="Common_Actions_Close">
+    <value>Tutup</value>
+  </data>
+  <data name="Common_Actions_Connect">
+    <value>Sambung</value>
+  </data>
+  <data name="Common_Actions_ContactUs">
+    <value>Hubungi kami</value>
+  </data>
+  <data name="Common_Actions_Delete">
+    <value>Padam</value>
+  </data>
+  <data name="Common_Actions_Disconnect">
+    <value>Putuskan sambungan</value>
+  </data>
+  <data name="Common_Actions_Duplicate">
+    <value>Duplikasi</value>
+  </data>
+  <data name="Common_Actions_Edit">
+    <value>Sunting</value>
+  </data>
+  <data name="Common_Actions_Enable">
+    <value>Dayakan</value>
+  </data>
+  <data name="Common_Actions_Exit_ProtonVPN">
+    <value>Keluar dari Proton VPN</value>
+  </data>
+  <data name="Common_Actions_GotIt">
+    <value>Faham</value>
+  </data>
+  <data name="Common_Actions_Install">
+    <value>Pasang</value>
+  </data>
+  <data name="Common_Actions_MoveDown">
+    <value>Alih ke bawah</value>
+  </data>
+  <data name="Common_Actions_MoveUp">
+    <value>Alih ke atas</value>
+  </data>
+  <data name="Common_Actions_Reconnect">
+    <value>Sambung semula</value>
+  </data>
+  <data name="Common_Actions_Refresh">
+    <value>Muat semula</value>
+  </data>
+  <data name="Common_Actions_Remove">
+    <value>Alih keluar</value>
+  </data>
+  <data name="Common_Actions_Restart">
+    <value>Mula semula</value>
+  </data>
+  <data name="Common_Actions_Save">
+    <value>Simpan</value>
+  </data>
+  <data name="Common_Actions_TryAgain">
+    <value>Cuba lagi</value>
+  </data>
+  <data name="Common_Actions_Update">
+    <value>Kemas kini</value>
+  </data>
+  <data name="Common_Actions_Upgrade">
+    <value>Naik taraf</value>
+  </data>
+  <data name="Common_Confirmation_KillSwitch_Message">
+    <value>Suis pemutus lanjutan didayakan. Untuk menggunakan internet tanpa VPN, lumpuhkan suis pemutus lanjutan.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnectedWithKillSwitch_Message">
+    <value>Suis pemutus lanjutan didayakan. Jika anda teruskan, sambungan internet anda akan diputuskan.</value>
+  </data>
+  <data name="Common_Confirmation_YouWillBeDisconnected_Message">
+    <value>Sambungan VPN anda akan diputuskan.</value>
+  </data>
+  <data name="Common_Links_LearnMore">
+    <value>Ketahui lebih lanjut</value>
+  </data>
+  <data name="Common_Message_AppNotFound">
+    <value>Aplikasi tidak ditemui</value>
+  </data>
+  <data name="Common_States_Off">
+    <value>Mati</value>
+  </data>
+  <data name="Common_States_On">
+    <value>Hidup</value>
+  </data>
+  <data name="Common_Tags_Beta">
+    <value>BETA</value>
+    <comment>This tag indicates that this version of the app is currently in beta (early access)</comment>
+  </data>
+  <data name="Common_Tags_New">
+    <value>BAHARU</value>
+    <comment>This tag indicates that a newer version of the app is currently available</comment>
+  </data>
+  <data name="Common_Tags_Recommended">
+    <value>Disyorkan</value>
+    <comment>This tag indicates that a given option in the settings is recommended by Proton</comment>
+  </data>
+  <data name="Components_Update_GetMostFromYourVpn">
+    <value>Dapatkan yang terbaik daripada VPN anda dengan mengemas kini ke versi terkini apl.</value>
+  </data>
+  <data name="Components_Update_MoreLikelyIssues">
+    <value>Anda lebih berkemungkinan menghadapi masalah pada versi Proton VPN yang lebih lama.</value>
+  </data>
+  <data name="Components_Update_UpdateAvailable">
+    <value>Kemas kini tersedia</value>
+  </data>
+  <data name="Components_Update_UpdateProtonVpn">
+    <value>Kemas kini Proton VPN</value>
+  </data>
+  <data name="Connection_Error_AllServersExcluded">
+    <value>Keutamaan anda mengecualikan semua pelayan yang tersedia. Laraskan pengecualian untuk bersambung.</value>
+  </data>
+  <data name="Connection_Error_AllServersExcluded_Action">
+    <value>Lokasi yang dikecualikan</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Description">
+    <value>Untuk membaikinya, tutup atau nyahpasang apl yang berkaitan dengan:</value>
+  </data>
+  <data name="Connection_Error_ConflictingAdapter_Title">
+    <value>Apl lain mungkin menghalang Proton VPN daripada membuat sambungan</value>
+  </data>
+  <data name="Connection_Error_EditProfile">
+    <value>Sunting profil</value>
+  </data>
+  <data name="Connection_Error_MissingConnectionCertificate">
+    <value>Proton VPN tidak dapat mengambil sijil pengesahan kerana masalah rangkaian.</value>
+  </data>
+  <data name="Connection_Error_MobileHotspotEnabled">
+    <value>Sambungan telah disekat oleh tetapan rangkaian pada peranti anda. Punca yang mungkin ialah titik panas mudah alih, aplikasi VPN lain atau perisian mesin maya. Sila semak konfigurasi rangkaian anda atau hubungi sokongan untuk bantuan.</value>
+  </data>
+  <data name="Connection_Error_NoServers">
+    <value>Semua pelayan dalam pilihan anda tidak tersedia. Sila perluaskan pilihan anda atau cuba lagi kemudian.</value>
+  </data>
+  <data name="Connection_Error_NoServers_Profile">
+    <value>Pilihan pelayan anda untuk '{0}' tidak tersedia. Pilih pelayan lain atau cuba lagi kemudian.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Connection_Error_NoTapAdapters">
+    <value>Penyesuai rangkaian tidak ditemui.</value>
+  </data>
+  <data name="Connection_Error_ReportAnIssue">
+    <value>Laporkan masalah</value>
+  </data>
+  <data name="Connection_Error_RpcServerUnavailable">
+    <value>Proton VPN tidak dapat membuat sambungan kerana pelayan RPC tidak tersedia pada sistem anda.</value>
+  </data>
+  <data name="Connection_Error_ServerValidation">
+    <value>Butiran pelayan tidak dapat disahkan. Cuba pelayan lain, atau laporkan masalah ini kepada pasukan sokongan pelanggan kami.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedFreeUser">
+    <value>Anda telah mencapai had peranti maksimum. Sila putuskan sambungan peranti lain untuk menyambungkan peranti ini atau naik taraf ke PLUS untuk mendapatkan sambungan sehingga 10 peranti pada masa yang sama.</value>
+  </data>
+  <data name="Connection_Error_SessionLimitReachedPaidUser">
+    <value>Anda telah mencapai had peranti maksimum. Sila putuskan sambungan peranti lain untuk menyambungkan peranti ini.</value>
+  </data>
+  <data name="Connection_Error_TapAdapterInUse">
+    <value>Penyesuai rangkaian anda sedang digunakan.</value>
+  </data>
+  <data name="Connection_Error_TapRequiresUpdate">
+    <value>Versi penyesuai rangkaian telah lapuk.</value>
+  </data>
+  <data name="Connection_Error_Title">
+    <value>Sambungan gagal</value>
+  </data>
+  <data name="Connection_Error_TlsCertificate">
+    <value>Terdapat masalah semasa mengesahkan sijil pelayan VPN, dan ini mungkin menunjukkan bahawa sambungan rangkaian sedang diusik atau pelayan yang anda cuba sambungkan mempunyai masalah konfigurasi. Dapatkan bantuan daripada sokongan pelanggan kami dengan menghantar Laporan Masalah.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Description">
+    <value>Untuk menyambung ke VPN, pergi ke portal 2FA organisasi anda dan ketik kunci keselamatan anda.</value>
+  </data>
+  <data name="Connection_Error_TwoFactorRequired_Title">
+    <value>Pengesahan dua faktor (2FA) diperlukan</value>
+  </data>
+  <data name="Connection_Error_Unknown">
+    <value>Semak sambungan internet anda dan cuba lagi. Jika masih tidak berjaya, hubungi pasukan sokongan pelanggan kami.
+
+Kod ralat: {0}</value>
+  </data>
+  <data name="Connection_Error_ViewPossibleSolutions">
+    <value>Lihat penyelesaian</value>
+  </data>
+  <data name="Connection_Error_WireGuardAdapterInUse">
+    <value>Penyesuai WireGuard peranti anda sedang digunakan. Putuskan sambungan daripada sebarang VPN lain yang berjalan pada peranti anda, kemudian cuba lagi.</value>
+  </data>
+  <data name="Connection_Feedback_Question">
+    <value>Bagaimanakah sambungan anda?</value>
+  </data>
+  <data name="Connection_Intent_AutoSelected">
+    <value>Dipilih secara automatik daripada</value>
+    <comment>Appears in the connection card for free users. A set of flags is displayed after the text (eg. Auto-selected from [us-flag] [jp-flag]...)</comment>
+  </data>
+  <data name="Connection_Via_SecureCore">
+    <value>melalui {0}</value>
+    <comment>Label used when connecting through Secure Core. {0} is a place holder for the name of the country the user is going through.</comment>
+  </data>
+  <data name="Connections_Cities_Other">
+    <value>Bandar ({0})</value>
+  </data>
+  <data name="Connections_City">
+    <value>Bandar</value>
+  </data>
+  <data name="Connections_City_Restricted">
+    <value>Pelayan dalam bandar ini tersedia dengan VPN Plus</value>
+  </data>
+  <data name="Connections_City_UnderMaintenance">
+    <value>Semua pelayan dalam bandar ini sedang diselenggara</value>
+  </data>
+  <data name="Connections_Countries_Other">
+    <value>Negara ({0})</value>
+  </data>
+  <data name="Connections_Country">
+    <value>Negara</value>
+  </data>
+  <data name="Connections_Country_Middle">
+    <value>Negara tengah</value>
+  </data>
+  <data name="Connections_Country_Restricted">
+    <value>Pelayan dalam negara ini tersedia dengan VPN Plus</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance">
+    <value>Semua pelayan dalam negara ini sedang diselenggara</value>
+  </data>
+  <data name="Connections_Country_UnderMaintenance_Title">
+    <value>Tidak dapat bersambung</value>
+  </data>
+  <data name="Connections_Fastest">
+    <value>Terpantas</value>
+  </data>
+  <data name="Connections_Free_Servers_Other">
+    <value>Pelayan percuma</value>
+  </data>
+  <data name="Connections_Gateway">
+    <value>Get laluan</value>
+  </data>
+  <data name="Connections_Gateway_Restricted">
+    <value>Pelayan dalam get laluan ini tersedia dengan VPN Plus</value>
+  </data>
+  <data name="Connections_Gateway_UnderMaintenance">
+    <value>Semua pelayan dalam get laluan ini sedang diselenggara</value>
+  </data>
+  <data name="Connections_Gateways_Other">
+    <value>Get laluan ({0})</value>
+  </data>
+  <data name="Connections_Gateways_Server">
+    <value>Pelayan khusus</value>
+  </data>
+  <data name="Connections_Gateways_Servers_Other">
+    <value>Pelayan khusus ({0})</value>
+  </data>
+  <data name="Connections_P2P_Cities_Other">
+    <value>Bandar P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Countries_Other">
+    <value>Negara P2P ({0})</value>
+  </data>
+  <data name="Connections_P2P_Servers_Other">
+    <value>Pelayan P2P</value>
+  </data>
+  <data name="Connections_P2P_States_Other">
+    <value>Negeri P2P ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Other">
+    <value>Profil ({0})</value>
+  </data>
+  <data name="Connections_Profiles_Create">
+    <value>Cipta profil</value>
+    <comment>"Create profile" is more appropriate for the empty profiles page, when you have no profiles</comment>
+  </data>
+  <data name="Connections_Profiles_Delete">
+    <value>Padam profil</value>
+  </data>
+  <data name="Connections_Profiles_Delete_Message">
+    <value>'{0}' akan dialih keluar secara kekal.</value>
+    <comment>{0} is a placeholder for the name of the profile.</comment>
+  </data>
+  <data name="Connections_Profiles_Delete_Title">
+    <value>Padam profil?</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Description">
+    <value>Profil ialah sambungan tersimpan dengan pilihan lokasi, pelayan dan protokol anda.</value>
+  </data>
+  <data name="Connections_Profiles_Empty_Title">
+    <value>Cipta profil pertama anda</value>
+  </data>
+  <data name="Connections_Profiles_Location_Header">
+    <value>Pilih jenis sambungan dan lokasi</value>
+  </data>
+  <data name="Connections_Profiles_Name">
+    <value>Beri nama profil anda</value>
+  </data>
+  <data name="Connections_Profiles_Name_Default">
+    <value>Tanpa tajuk</value>
+    <comment>This will be used as the default profile name if the user creates a profile without entering a name</comment>
+  </data>
+  <data name="Connections_Profiles_Name_Duplicate">
+    <value>Salinan {0}</value>
+    <comment>This will be used as the profile name when duplicating a profile. {0} is a placeholder for the original profile name.</comment>
+  </data>
+  <data name="Connections_Profiles_New">
+    <value>Profil baharu</value>
+    <comment>"New profile" is more appropriate when you already have a profile</comment>
+  </data>
+  <data name="Connections_Profiles_NotAvailable_Tooltip">
+    <value>Profil tersedia dengan VPN Plus</value>
+    <comment>The text in the tooltip when hovering a profile and the user has a free plan</comment>
+  </data>
+  <data name="Connections_Recents_Other">
+    <value>Terkini ({0})</value>
+  </data>
+  <data name="Connections_Recents_Empty_Description">
+    <value>Lihat sejarah sambungan anda di sini.</value>
+  </data>
+  <data name="Connections_Recents_Empty_Title">
+    <value>Tiada sambungan terkini lagi</value>
+  </data>
+  <data name="Connections_Recents_Pinned_Other">
+    <value>Disemat ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Countries_Other">
+    <value>Negara Secure Core ({0})</value>
+  </data>
+  <data name="Connections_SecureCore_Servers_Other">
+    <value>Pelayan Secure Core</value>
+  </data>
+  <data name="Connections_Server_Restricted">
+    <value>Pelayan tersedia dengan VPN Plus</value>
+  </data>
+  <data name="Connections_Server_UnderMaintenance">
+    <value>Pelayan ini sedang diselenggara</value>
+  </data>
+  <data name="Connections_Servers_Other">
+    <value>Pelayan</value>
+  </data>
+  <data name="Connections_State">
+    <value>Negeri</value>
+  </data>
+  <data name="Connections_State_Restricted">
+    <value>Pelayan di negeri ini tersedia dengan VPN Plus.</value>
+    <comment>Message appears as a tooltip whenever a free user is trying to connect to a state. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_State_UnderMaintenance">
+    <value>Semua pelayan di negeri ini sedang diselenggara.</value>
+    <comment>Message appears as a tooltip whenever all the servers from that state are under maintenance. In this context, States refers to Country states (eg. Arizona, California... for USA)</comment>
+  </data>
+  <data name="Connections_States_Other">
+    <value>Negeri ({0})</value>
+  </data>
+  <data name="Connections_Tor_Countries_Other">
+    <value>Negara Tor ({0})</value>
+  </data>
+  <data name="Connections_Tor_Servers_Other">
+    <value>Pelayan Tor</value>
+  </data>
+  <data name="Countries">
+    <value>Negara</value>
+  </data>
+  <data name="Countries_All">
+    <value>Semua</value>
+  </data>
+  <data name="Countries_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Countries_P2P_Description">
+    <value>Muat turun fail melalui rangkaian P2P (rakan-ke-rakan) dan tingkatkan pengalaman permainan dalam talian serta panggilan video anda.</value>
+  </data>
+  <data name="Countries_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Countries_SecureCore_Description">
+    <value>Tambahkan lapisan penyulitan lain pada sambungan VPN anda.</value>
+  </data>
+  <data name="Countries_ServerLoad">
+    <value>Beban pelayan</value>
+  </data>
+  <data name="Countries_SmartRouting">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Countries_SmartRouting_RoutedThrough">
+    <value>Dihalakan secara Smart Routing melalui {0}</value>
+    <comment>Label used when server is virtual. {0} is a place holder for the name of the country the server is routed through.</comment>
+  </data>
+  <data name="Countries_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Countries_Tor_Description">
+    <value>Gunakan rangkaian Tor melalui sambungan VPN anda untuk privasi tambahan.</value>
+  </data>
+  <data name="Country_Fastest">
+    <value>Negara terpantas</value>
+  </data>
+  <data name="Country_Fastest_ExcludingMyCountry">
+    <value>Terpantas (tidak termasuk negara saya)</value>
+  </data>
+  <data name="Country_Random">
+    <value>Negara rawak</value>
+  </data>
+  <data name="Country_Random_ExcludingMyCountry">
+    <value>Rawak (tidak termasuk negara saya)</value>
+  </data>
+  <data name="Country_val_AD">
+    <value>Andorra</value>
+    <comment>The name of AD country</comment>
+  </data>
+  <data name="Country_val_AE">
+    <value>Emiriah Arab Bersatu</value>
+    <comment>The name of AE country</comment>
+  </data>
+  <data name="Country_val_AF">
+    <value>Afghanistan</value>
+    <comment>The name of AF country</comment>
+  </data>
+  <data name="Country_val_AG">
+    <value>Antigua dan Barbuda</value>
+    <comment>The name of AG country</comment>
+  </data>
+  <data name="Country_val_AI">
+    <value>Anguilla</value>
+    <comment>The name of AI country</comment>
+  </data>
+  <data name="Country_val_AL">
+    <value>Albania</value>
+    <comment>The name of AL country</comment>
+  </data>
+  <data name="Country_val_AM">
+    <value>Armenia</value>
+    <comment>The name of AM country</comment>
+  </data>
+  <data name="Country_val_AO">
+    <value>Angola</value>
+    <comment>The name of AO country</comment>
+  </data>
+  <data name="Country_val_AQ">
+    <value>Antartika</value>
+    <comment>The name of AQ country</comment>
+  </data>
+  <data name="Country_val_AR">
+    <value>Argentina</value>
+    <comment>The name of AR country</comment>
+  </data>
+  <data name="Country_val_AS">
+    <value>Samoa Amerika</value>
+    <comment>The name of AS country</comment>
+  </data>
+  <data name="Country_val_AT">
+    <value>Austria</value>
+    <comment>The name of AT country</comment>
+  </data>
+  <data name="Country_val_AU">
+    <value>Australia</value>
+    <comment>The name of AU country</comment>
+  </data>
+  <data name="Country_val_AW">
+    <value>Aruba</value>
+    <comment>The name of AW country</comment>
+  </data>
+  <data name="Country_val_AX">
+    <value>Kepulauan Åland</value>
+    <comment>The name of AX country</comment>
+  </data>
+  <data name="Country_val_AZ">
+    <value>Azerbaijan</value>
+    <comment>The name of AZ country</comment>
+  </data>
+  <data name="Country_val_BA">
+    <value>Bosnia dan Herzegovina</value>
+    <comment>The name of BA country</comment>
+  </data>
+  <data name="Country_val_BB">
+    <value>Barbados</value>
+    <comment>The name of BB country</comment>
+  </data>
+  <data name="Country_val_BD">
+    <value>Bangladesh</value>
+    <comment>The name of BD country</comment>
+  </data>
+  <data name="Country_val_BE">
+    <value>Belgium</value>
+    <comment>The name of BE country</comment>
+  </data>
+  <data name="Country_val_BF">
+    <value>Burkina Faso</value>
+    <comment>The name of BF country</comment>
+  </data>
+  <data name="Country_val_BG">
+    <value>Bulgaria</value>
+    <comment>The name of BG country</comment>
+  </data>
+  <data name="Country_val_BH">
+    <value>Bahrain</value>
+    <comment>The name of BH country</comment>
+  </data>
+  <data name="Country_val_BI">
+    <value>Burundi</value>
+    <comment>The name of BI country</comment>
+  </data>
+  <data name="Country_val_BJ">
+    <value>Benin</value>
+    <comment>The name of BJ country</comment>
+  </data>
+  <data name="Country_val_BL">
+    <value>Saint Barthélemy</value>
+    <comment>The name of BL country</comment>
+  </data>
+  <data name="Country_val_BM">
+    <value>Bermuda</value>
+    <comment>The name of BM country</comment>
+  </data>
+  <data name="Country_val_BN">
+    <value>Brunei Darussalam</value>
+    <comment>The name of BN country</comment>
+  </data>
+  <data name="Country_val_BO">
+    <value>Bolivia</value>
+    <comment>The name of BO country</comment>
+  </data>
+  <data name="Country_val_BQ">
+    <value>Bonaire, Sint Eustatius dan Saba</value>
+    <comment>The name of BQ country</comment>
+  </data>
+  <data name="Country_val_BR">
+    <value>Brazil</value>
+    <comment>The name of BR country</comment>
+  </data>
+  <data name="Country_val_BS">
+    <value>Bahamas</value>
+    <comment>The name of BS country</comment>
+  </data>
+  <data name="Country_val_BT">
+    <value>Bhutan</value>
+    <comment>The name of BT country</comment>
+  </data>
+  <data name="Country_val_BV">
+    <value>Pulau Bouvet</value>
+    <comment>The name of BV country</comment>
+  </data>
+  <data name="Country_val_BW">
+    <value>Botswana</value>
+    <comment>The name of BW country</comment>
+  </data>
+  <data name="Country_val_BY">
+    <value>Belarus</value>
+    <comment>The name of BY country</comment>
+  </data>
+  <data name="Country_val_BZ">
+    <value>Belize</value>
+    <comment>The name of BZ country</comment>
+  </data>
+  <data name="Country_val_CA">
+    <value>Kanada</value>
+    <comment>The name of CA country</comment>
+  </data>
+  <data name="Country_val_CC">
+    <value>Kepulauan Cocos (Keeling)</value>
+    <comment>The name of CC country</comment>
+  </data>
+  <data name="Country_val_CD">
+    <value>Kongo (Republik Demokratik)</value>
+    <comment>The name of CD country</comment>
+  </data>
+  <data name="Country_val_CF">
+    <value>Republik Afrika Tengah</value>
+    <comment>The name of CF country</comment>
+  </data>
+  <data name="Country_val_CG">
+    <value>Kongo</value>
+    <comment>The name of CG country</comment>
+  </data>
+  <data name="Country_val_CH">
+    <value>Switzerland</value>
+    <comment>The name of CH country</comment>
+  </data>
+  <data name="Country_val_CI">
+    <value>Côte d'Ivoire</value>
+    <comment>The name of CI country</comment>
+  </data>
+  <data name="Country_val_CK">
+    <value>Kepulauan Cook</value>
+    <comment>The name of CK country</comment>
+  </data>
+  <data name="Country_val_CL">
+    <value>Chile</value>
+    <comment>The name of CL country</comment>
+  </data>
+  <data name="Country_val_CM">
+    <value>Kamerun</value>
+    <comment>The name of CM country</comment>
+  </data>
+  <data name="Country_val_CN">
+    <value>China</value>
+    <comment>The name of CN country</comment>
+  </data>
+  <data name="Country_val_CO">
+    <value>Colombia</value>
+    <comment>The name of CO country</comment>
+  </data>
+  <data name="Country_val_CR">
+    <value>Costa Rica</value>
+    <comment>The name of CR country</comment>
+  </data>
+  <data name="Country_val_CU">
+    <value>Cuba</value>
+    <comment>The name of CU country</comment>
+  </data>
+  <data name="Country_val_CV">
+    <value>Tanjung Verde</value>
+    <comment>The name of CV country</comment>
+  </data>
+  <data name="Country_val_CW">
+    <value>Curaçao</value>
+    <comment>The name of CW country</comment>
+  </data>
+  <data name="Country_val_CX">
+    <value>Pulau Krismas</value>
+    <comment>The name of CX country</comment>
+  </data>
+  <data name="Country_val_CY">
+    <value>Cyprus</value>
+    <comment>The name of CY country</comment>
+  </data>
+  <data name="Country_val_CZ">
+    <value>Czechia</value>
+    <comment>The name of CZ country</comment>
+  </data>
+  <data name="Country_val_DE">
+    <value>Jerman</value>
+    <comment>The name of DE country</comment>
+  </data>
+  <data name="Country_val_DJ">
+    <value>Djibouti</value>
+    <comment>The name of DJ country</comment>
+  </data>
+  <data name="Country_val_DK">
+    <value>Denmark</value>
+    <comment>The name of DK country</comment>
+  </data>
+  <data name="Country_val_DM">
+    <value>Dominica</value>
+    <comment>The name of DM country</comment>
+  </data>
+  <data name="Country_val_DO">
+    <value>Republik Dominika</value>
+    <comment>The name of DO country</comment>
+  </data>
+  <data name="Country_val_DZ">
+    <value>Algeria</value>
+    <comment>The name of DZ country</comment>
+  </data>
+  <data name="Country_val_EC">
+    <value>Ecuador</value>
+    <comment>The name of EC country</comment>
+  </data>
+  <data name="Country_val_EE">
+    <value>Estonia</value>
+    <comment>The name of EE country</comment>
+  </data>
+  <data name="Country_val_EG">
+    <value>Mesir</value>
+    <comment>The name of EG country</comment>
+  </data>
+  <data name="Country_val_EH">
+    <value>Sahara Barat</value>
+    <comment>The name of EH country</comment>
+  </data>
+  <data name="Country_val_ER">
+    <value>Eritrea</value>
+    <comment>The name of ER country</comment>
+  </data>
+  <data name="Country_val_ES">
+    <value>Sepanyol</value>
+    <comment>The name of ES country</comment>
+  </data>
+  <data name="Country_val_ET">
+    <value>Habsyah</value>
+    <comment>The name of ET country</comment>
+  </data>
+  <data name="Country_val_FI">
+    <value>Finland</value>
+    <comment>The name of FI country</comment>
+  </data>
+  <data name="Country_val_FJ">
+    <value>Fiji</value>
+    <comment>The name of FJ country</comment>
+  </data>
+  <data name="Country_val_FK">
+    <value>Kepulauan Falkland (Malvinas)</value>
+    <comment>The name of FK country</comment>
+  </data>
+  <data name="Country_val_FM">
+    <value>Mikronesia</value>
+    <comment>The name of FM country</comment>
+  </data>
+  <data name="Country_val_FO">
+    <value>Kepulauan Faroe</value>
+    <comment>The name of FO country</comment>
+  </data>
+  <data name="Country_val_FR">
+    <value>Perancis</value>
+    <comment>The name of FR country</comment>
+  </data>
+  <data name="Country_val_GA">
+    <value>Gabon</value>
+    <comment>The name of GA country</comment>
+  </data>
+  <data name="Country_val_GB">
+    <value>United Kingdom</value>
+    <comment>The name of GB country</comment>
+  </data>
+  <data name="Country_val_GD">
+    <value>Grenada</value>
+    <comment>The name of GD country</comment>
+  </data>
+  <data name="Country_val_GE">
+    <value>Georgia</value>
+    <comment>The name of GE country</comment>
+  </data>
+  <data name="Country_val_GF">
+    <value>Guiana Perancis</value>
+    <comment>The name of GF country</comment>
+  </data>
+  <data name="Country_val_GG">
+    <value>Guernsey</value>
+    <comment>The name of GG country</comment>
+  </data>
+  <data name="Country_val_GH">
+    <value>Ghana</value>
+    <comment>The name of GH country</comment>
+  </data>
+  <data name="Country_val_GI">
+    <value>Gibraltar</value>
+    <comment>The name of GI country</comment>
+  </data>
+  <data name="Country_val_GL">
+    <value>Greenland</value>
+    <comment>The name of GL country</comment>
+  </data>
+  <data name="Country_val_GM">
+    <value>Gambia</value>
+    <comment>The name of GM country</comment>
+  </data>
+  <data name="Country_val_GN">
+    <value>Guinea</value>
+    <comment>The name of GN country</comment>
+  </data>
+  <data name="Country_val_GP">
+    <value>Guadeloupe</value>
+    <comment>The name of GP country</comment>
+  </data>
+  <data name="Country_val_GQ">
+    <value>Guinea Khatulistiwa</value>
+    <comment>The name of GQ country</comment>
+  </data>
+  <data name="Country_val_GR">
+    <value>Greece</value>
+    <comment>The name of GR country</comment>
+  </data>
+  <data name="Country_val_GS">
+    <value>Georgia Selatan dan Kepulauan Sandwich Selatan</value>
+    <comment>The name of GS country</comment>
+  </data>
+  <data name="Country_val_GT">
+    <value>Guatemala</value>
+    <comment>The name of GT country</comment>
+  </data>
+  <data name="Country_val_GU">
+    <value>Guam</value>
+    <comment>The name of GU country</comment>
+  </data>
+  <data name="Country_val_GW">
+    <value>Guinea-Bissau</value>
+    <comment>The name of GW country</comment>
+  </data>
+  <data name="Country_val_GY">
+    <value>Guyana</value>
+    <comment>The name of GY country</comment>
+  </data>
+  <data name="Country_val_HK">
+    <value>Hong Kong</value>
+    <comment>The name of HK country</comment>
+  </data>
+  <data name="Country_val_HM">
+    <value>Pulau Heard dan Kepulauan McDonald</value>
+    <comment>The name of HM country</comment>
+  </data>
+  <data name="Country_val_HN">
+    <value>Honduras</value>
+    <comment>The name of HN country</comment>
+  </data>
+  <data name="Country_val_HR">
+    <value>Croatia</value>
+    <comment>The name of HR country</comment>
+  </data>
+  <data name="Country_val_HT">
+    <value>Haiti</value>
+    <comment>The name of HT country</comment>
+  </data>
+  <data name="Country_val_HU">
+    <value>Hungary</value>
+    <comment>The name of HU country</comment>
+  </data>
+  <data name="Country_val_ID">
+    <value>Indonesia</value>
+    <comment>The name of ID country</comment>
+  </data>
+  <data name="Country_val_IE">
+    <value>Ireland</value>
+    <comment>The name of IE country</comment>
+  </data>
+  <data name="Country_val_IL">
+    <value>Israel</value>
+    <comment>The name of IL country</comment>
+  </data>
+  <data name="Country_val_IM">
+    <value>Pulau Man</value>
+    <comment>The name of IM country</comment>
+  </data>
+  <data name="Country_val_IN">
+    <value>India</value>
+    <comment>The name of IN country</comment>
+  </data>
+  <data name="Country_val_IO">
+    <value>Wilayah Lautan Hindi British</value>
+    <comment>The name of IO country</comment>
+  </data>
+  <data name="Country_val_IQ">
+    <value>Iraq</value>
+    <comment>The name of IQ country</comment>
+  </data>
+  <data name="Country_val_IR">
+    <value>Iran</value>
+    <comment>The name of IR country</comment>
+  </data>
+  <data name="Country_val_IS">
+    <value>Iceland</value>
+    <comment>The name of IS country</comment>
+  </data>
+  <data name="Country_val_IT">
+    <value>Itali</value>
+    <comment>The name of IT country</comment>
+  </data>
+  <data name="Country_val_JE">
+    <value>Jersey</value>
+    <comment>The name of JE country</comment>
+  </data>
+  <data name="Country_val_JM">
+    <value>Jamaica</value>
+    <comment>The name of JM country</comment>
+  </data>
+  <data name="Country_val_JO">
+    <value>Jordan</value>
+    <comment>The name of JO country</comment>
+  </data>
+  <data name="Country_val_JP">
+    <value>Jepun</value>
+    <comment>The name of JP country</comment>
+  </data>
+  <data name="Country_val_KE">
+    <value>Kenya</value>
+    <comment>The name of KE country</comment>
+  </data>
+  <data name="Country_val_KG">
+    <value>Kyrgyzstan</value>
+    <comment>The name of KG country</comment>
+  </data>
+  <data name="Country_val_KH">
+    <value>Kemboja</value>
+    <comment>The name of KH country</comment>
+  </data>
+  <data name="Country_val_KI">
+    <value>Kiribati</value>
+    <comment>The name of KI country</comment>
+  </data>
+  <data name="Country_val_KM">
+    <value>Comoros</value>
+    <comment>The name of KM country</comment>
+  </data>
+  <data name="Country_val_KN">
+    <value>Saint Kitts dan Nevis</value>
+    <comment>The name of KN country</comment>
+  </data>
+  <data name="Country_val_KP">
+    <value>Korea Utara</value>
+    <comment>The name of KP country</comment>
+  </data>
+  <data name="Country_val_KR">
+    <value>Korea Selatan</value>
+    <comment>The name of KR country</comment>
+  </data>
+  <data name="Country_val_KW">
+    <value>Kuwait</value>
+    <comment>The name of KW country</comment>
+  </data>
+  <data name="Country_val_KY">
+    <value>Kepulauan Cayman</value>
+    <comment>The name of KY country</comment>
+  </data>
+  <data name="Country_val_KZ">
+    <value>Kazakhstan</value>
+    <comment>The name of KZ country</comment>
+  </data>
+  <data name="Country_val_LA">
+    <value>Laos</value>
+    <comment>The name of LA country</comment>
+  </data>
+  <data name="Country_val_LB">
+    <value>Lubnan</value>
+    <comment>The name of LB country</comment>
+  </data>
+  <data name="Country_val_LC">
+    <value>Saint Lucia</value>
+    <comment>The name of LC country</comment>
+  </data>
+  <data name="Country_val_LI">
+    <value>Liechtenstein</value>
+    <comment>The name of LI country</comment>
+  </data>
+  <data name="Country_val_LK">
+    <value>Sri Lanka</value>
+    <comment>The name of LK country</comment>
+  </data>
+  <data name="Country_val_LR">
+    <value>Liberia</value>
+    <comment>The name of LR country</comment>
+  </data>
+  <data name="Country_val_LS">
+    <value>Lesotho</value>
+    <comment>The name of LS country</comment>
+  </data>
+  <data name="Country_val_LT">
+    <value>Lithuania</value>
+    <comment>The name of LT country</comment>
+  </data>
+  <data name="Country_val_LU">
+    <value>Luxembourg</value>
+    <comment>The name of LU country</comment>
+  </data>
+  <data name="Country_val_LV">
+    <value>Latvia</value>
+    <comment>The name of LV country</comment>
+  </data>
+  <data name="Country_val_LY">
+    <value>Libya</value>
+    <comment>The name of LY country</comment>
+  </data>
+  <data name="Country_val_MA">
+    <value>Maghribi</value>
+    <comment>The name of MA country</comment>
+  </data>
+  <data name="Country_val_MC">
+    <value>Monaco</value>
+    <comment>The name of MC country</comment>
+  </data>
+  <data name="Country_val_MD">
+    <value>Moldova</value>
+    <comment>The name of MD country</comment>
+  </data>
+  <data name="Country_val_ME">
+    <value>Montenegro</value>
+    <comment>The name of ME country</comment>
+  </data>
+  <data name="Country_val_MF">
+    <value>Saint Martin (bahagian Perancis)</value>
+    <comment>The name of MF country</comment>
+  </data>
+  <data name="Country_val_MG">
+    <value>Madagascar</value>
+    <comment>The name of MG country</comment>
+  </data>
+  <data name="Country_val_MH">
+    <value>Kepulauan Marshall</value>
+    <comment>The name of MH country</comment>
+  </data>
+  <data name="Country_val_MK">
+    <value>Macedonia</value>
+    <comment>The name of MK country</comment>
+  </data>
+  <data name="Country_val_ML">
+    <value>Mali</value>
+    <comment>The name of ML country</comment>
+  </data>
+  <data name="Country_val_MM">
+    <value>Myanmar</value>
+    <comment>The name of MM country</comment>
+  </data>
+  <data name="Country_val_MN">
+    <value>Mongolia</value>
+    <comment>The name of MN country</comment>
+  </data>
+  <data name="Country_val_MO">
+    <value>Macau</value>
+    <comment>The name of MO country</comment>
+  </data>
+  <data name="Country_val_MP">
+    <value>Kepulauan Mariana Utara</value>
+    <comment>The name of MP country</comment>
+  </data>
+  <data name="Country_val_MQ">
+    <value>Martinique</value>
+    <comment>The name of MQ country</comment>
+  </data>
+  <data name="Country_val_MR">
+    <value>Mauritania</value>
+    <comment>The name of MR country</comment>
+  </data>
+  <data name="Country_val_MS">
+    <value>Montserrat</value>
+    <comment>The name of MS country</comment>
+  </data>
+  <data name="Country_val_MT">
+    <value>Malta</value>
+    <comment>The name of MT country</comment>
+  </data>
+  <data name="Country_val_MU">
+    <value>Mauritius</value>
+    <comment>The name of MU country</comment>
+  </data>
+  <data name="Country_val_MV">
+    <value>Maldives</value>
+    <comment>The name of MV country</comment>
+  </data>
+  <data name="Country_val_MW">
+    <value>Malawi</value>
+    <comment>The name of MW country</comment>
+  </data>
+  <data name="Country_val_MX">
+    <value>Mexico</value>
+    <comment>The name of MX country</comment>
+  </data>
+  <data name="Country_val_MY">
+    <value>Malaysia</value>
+    <comment>The name of MY country</comment>
+  </data>
+  <data name="Country_val_MZ">
+    <value>Mozambique</value>
+    <comment>The name of MZ country</comment>
+  </data>
+  <data name="Country_val_NA">
+    <value>Namibia</value>
+    <comment>The name of NA country</comment>
+  </data>
+  <data name="Country_val_NC">
+    <value>Kaledonia Baharu</value>
+    <comment>The name of NC country</comment>
+  </data>
+  <data name="Country_val_NE">
+    <value>Niger</value>
+    <comment>The name of NE country</comment>
+  </data>
+  <data name="Country_val_NF">
+    <value>Pulau Norfolk</value>
+    <comment>The name of NF country</comment>
+  </data>
+  <data name="Country_val_NG">
+    <value>Nigeria</value>
+    <comment>The name of NG country</comment>
+  </data>
+  <data name="Country_val_NI">
+    <value>Nicaragua</value>
+    <comment>The name of NI country</comment>
+  </data>
+  <data name="Country_val_NL">
+    <value>Belanda</value>
+    <comment>The name of NL country</comment>
+  </data>
+  <data name="Country_val_NO">
+    <value>Norway</value>
+    <comment>The name of NO country</comment>
+  </data>
+  <data name="Country_val_NP">
+    <value>Nepal</value>
+    <comment>The name of NP country</comment>
+  </data>
+  <data name="Country_val_NR">
+    <value>Nauru</value>
+    <comment>The name of NR country</comment>
+  </data>
+  <data name="Country_val_NU">
+    <value>Niue</value>
+    <comment>The name of NU country</comment>
+  </data>
+  <data name="Country_val_NZ">
+    <value>New Zealand</value>
+    <comment>The name of NZ country</comment>
+  </data>
+  <data name="Country_val_OM">
+    <value>Oman</value>
+    <comment>The name of OM country</comment>
+  </data>
+  <data name="Country_val_PA">
+    <value>Panama</value>
+    <comment>The name of PA country</comment>
+  </data>
+  <data name="Country_val_PE">
+    <value>Peru</value>
+    <comment>The name of PE country</comment>
+  </data>
+  <data name="Country_val_PF">
+    <value>Polinesia Perancis</value>
+    <comment>The name of PF country</comment>
+  </data>
+  <data name="Country_val_PG">
+    <value>Papua New Guinea</value>
+    <comment>The name of PG country</comment>
+  </data>
+  <data name="Country_val_PH">
+    <value>Filipina</value>
+    <comment>The name of PH country</comment>
+  </data>
+  <data name="Country_val_PK">
+    <value>Pakistan</value>
+    <comment>The name of PK country</comment>
+  </data>
+  <data name="Country_val_PL">
+    <value>Poland</value>
+    <comment>The name of PL country</comment>
+  </data>
+  <data name="Country_val_PM">
+    <value>Saint Pierre dan Miquelon</value>
+    <comment>The name of PM country</comment>
+  </data>
+  <data name="Country_val_PN">
+    <value>Pitcairn</value>
+    <comment>The name of PN country</comment>
+  </data>
+  <data name="Country_val_PR">
+    <value>Puerto Rico</value>
+    <comment>The name of PR country</comment>
+  </data>
+  <data name="Country_val_PS">
+    <value>Palestin</value>
+    <comment>The name of PS country</comment>
+  </data>
+  <data name="Country_val_PT">
+    <value>Portugal</value>
+    <comment>The name of PT country</comment>
+  </data>
+  <data name="Country_val_PW">
+    <value>Palau</value>
+    <comment>The name of PW country</comment>
+  </data>
+  <data name="Country_val_PY">
+    <value>Paraguay</value>
+    <comment>The name of PY country</comment>
+  </data>
+  <data name="Country_val_QA">
+    <value>Qatar</value>
+    <comment>The name of QA country</comment>
+  </data>
+  <data name="Country_val_RE">
+    <value>Réunion</value>
+    <comment>The name of RE country</comment>
+  </data>
+  <data name="Country_val_RO">
+    <value>Romania</value>
+    <comment>The name of RO country</comment>
+  </data>
+  <data name="Country_val_RS">
+    <value>Serbia</value>
+    <comment>The name of RS country</comment>
+  </data>
+  <data name="Country_val_RU">
+    <value>Rusia</value>
+    <comment>The name of RU country</comment>
+  </data>
+  <data name="Country_val_RW">
+    <value>Rwanda</value>
+    <comment>The name of RW country</comment>
+  </data>
+  <data name="Country_val_SA">
+    <value>Arab Saudi</value>
+    <comment>The name of SA country</comment>
+  </data>
+  <data name="Country_val_SB">
+    <value>Kepulauan Solomon</value>
+    <comment>The name of SB country</comment>
+  </data>
+  <data name="Country_val_SC">
+    <value>Seychelles</value>
+    <comment>The name of SC country</comment>
+  </data>
+  <data name="Country_val_SD">
+    <value>Sudan</value>
+    <comment>The name of SD country</comment>
+  </data>
+  <data name="Country_val_SE">
+    <value>Sweden</value>
+    <comment>The name of SE country</comment>
+  </data>
+  <data name="Country_val_SG">
+    <value>Singapura</value>
+    <comment>The name of SG country</comment>
+  </data>
+  <data name="Country_val_SH">
+    <value>Saint Helena, Ascension dan Tristan da Cunha</value>
+    <comment>The name of SH country</comment>
+  </data>
+  <data name="Country_val_SI">
+    <value>Slovenia</value>
+    <comment>The name of SI country</comment>
+  </data>
+  <data name="Country_val_SJ">
+    <value>Svalbard dan Jan Mayen</value>
+    <comment>The name of SJ country</comment>
+  </data>
+  <data name="Country_val_SK">
+    <value>Slovakia</value>
+    <comment>The name of SK country</comment>
+  </data>
+  <data name="Country_val_SL">
+    <value>Sierra Leone</value>
+    <comment>The name of SL country</comment>
+  </data>
+  <data name="Country_val_SM">
+    <value>San Marino</value>
+    <comment>The name of SM country</comment>
+  </data>
+  <data name="Country_val_SN">
+    <value>Senegal</value>
+    <comment>The name of SN country</comment>
+  </data>
+  <data name="Country_val_SO">
+    <value>Somalia</value>
+    <comment>The name of SO country</comment>
+  </data>
+  <data name="Country_val_SR">
+    <value>Suriname</value>
+    <comment>The name of SR country</comment>
+  </data>
+  <data name="Country_val_SS">
+    <value>Sudan Selatan</value>
+    <comment>The name of SS country</comment>
+  </data>
+  <data name="Country_val_ST">
+    <value>Sao Tome dan Principe</value>
+    <comment>The name of ST country</comment>
+  </data>
+  <data name="Country_val_SV">
+    <value>El Salvador</value>
+    <comment>The name of SV country</comment>
+  </data>
+  <data name="Country_val_SX">
+    <value>Sint Maarten (bahagian Belanda)</value>
+    <comment>The name of SX country</comment>
+  </data>
+  <data name="Country_val_SY">
+    <value>Republik Arab Syria</value>
+    <comment>The name of SY country</comment>
+  </data>
+  <data name="Country_val_SZ">
+    <value>Eswatini</value>
+    <comment>The name of SZ country</comment>
+  </data>
+  <data name="Country_val_TC">
+    <value>Kepulauan Turks dan Caicos</value>
+    <comment>The name of TC country</comment>
+  </data>
+  <data name="Country_val_TD">
+    <value>Chad</value>
+    <comment>The name of TD country</comment>
+  </data>
+  <data name="Country_val_TF">
+    <value>Wilayah Selatan Perancis</value>
+    <comment>The name of TF country</comment>
+  </data>
+  <data name="Country_val_TG">
+    <value>Togo</value>
+    <comment>The name of TG country</comment>
+  </data>
+  <data name="Country_val_TH">
+    <value>Thailand</value>
+    <comment>The name of TH country</comment>
+  </data>
+  <data name="Country_val_TJ">
+    <value>Tajikistan</value>
+    <comment>The name of TJ country</comment>
+  </data>
+  <data name="Country_val_TK">
+    <value>Tokelau</value>
+    <comment>The name of TK country</comment>
+  </data>
+  <data name="Country_val_TL">
+    <value>Timor-Leste</value>
+    <comment>The name of TL country</comment>
+  </data>
+  <data name="Country_val_TM">
+    <value>Turkmenistan</value>
+    <comment>The name of TM country</comment>
+  </data>
+  <data name="Country_val_TN">
+    <value>Tunisia</value>
+    <comment>The name of TN country</comment>
+  </data>
+  <data name="Country_val_TO">
+    <value>Tonga</value>
+    <comment>The name of TO country</comment>
+  </data>
+  <data name="Country_val_TR">
+    <value>Turki</value>
+    <comment>The name of TR country</comment>
+  </data>
+  <data name="Country_val_TT">
+    <value>Trinidad dan Tobago</value>
+    <comment>The name of TT country</comment>
+  </data>
+  <data name="Country_val_TV">
+    <value>Tuvalu</value>
+    <comment>The name of TV country</comment>
+  </data>
+  <data name="Country_val_TW">
+    <value>Taiwan</value>
+    <comment>The name of TW country</comment>
+  </data>
+  <data name="Country_val_TZ">
+    <value>Tanzania</value>
+    <comment>The name of TZ country</comment>
+  </data>
+  <data name="Country_val_UA">
+    <value>Ukraine</value>
+    <comment>The name of UA country</comment>
+  </data>
+  <data name="Country_val_UG">
+    <value>Uganda</value>
+    <comment>The name of UG country</comment>
+  </data>
+  <data name="Country_val_UK">
+    <value>United Kingdom</value>
+    <comment>The name of UK country</comment>
+  </data>
+  <data name="Country_val_UM">
+    <value>Kepulauan Kecil Terpencil Amerika Syarikat</value>
+    <comment>The name of UM country</comment>
+  </data>
+  <data name="Country_val_US">
+    <value>Amerika Syarikat</value>
+    <comment>The name of US country</comment>
+  </data>
+  <data name="Country_val_UY">
+    <value>Uruguay</value>
+    <comment>The name of UY country</comment>
+  </data>
+  <data name="Country_val_UZ">
+    <value>Uzbekistan</value>
+    <comment>The name of UZ country</comment>
+  </data>
+  <data name="Country_val_VA">
+    <value>Kota Vatican</value>
+    <comment>The name of VA country</comment>
+  </data>
+  <data name="Country_val_VC">
+    <value>Saint Vincent dan Grenadines</value>
+    <comment>The name of VC country</comment>
+  </data>
+  <data name="Country_val_VE">
+    <value>Venezuela</value>
+    <comment>The name of VE country</comment>
+  </data>
+  <data name="Country_val_VG">
+    <value>Kepulauan Virgin British</value>
+    <comment>The name of VG country</comment>
+  </data>
+  <data name="Country_val_VI">
+    <value>Kepulauan Virgin Amerika Syarikat</value>
+    <comment>The name of VI country</comment>
+  </data>
+  <data name="Country_val_VN">
+    <value>Vietnam</value>
+    <comment>The name of VN country</comment>
+  </data>
+  <data name="Country_val_VU">
+    <value>Vanuatu</value>
+    <comment>The name of VU country</comment>
+  </data>
+  <data name="Country_val_WF">
+    <value>Wallis dan Futuna</value>
+    <comment>The name of WF country</comment>
+  </data>
+  <data name="Country_val_WS">
+    <value>Samoa</value>
+    <comment>The name of WS country</comment>
+  </data>
+  <data name="Country_val_XK">
+    <value>Kosovo</value>
+    <comment>The name of XK country</comment>
+  </data>
+  <data name="Country_val_YE">
+    <value>Yaman</value>
+    <comment>The name of YE country</comment>
+  </data>
+  <data name="Country_val_YT">
+    <value>Mayotte</value>
+    <comment>The name of YT country</comment>
+  </data>
+  <data name="Country_val_ZA">
+    <value>Afrika Selatan</value>
+    <comment>The name of ZA country</comment>
+  </data>
+  <data name="Country_val_ZM">
+    <value>Zambia</value>
+    <comment>The name of ZM country</comment>
+  </data>
+  <data name="Country_val_ZW">
+    <value>Zimbabwe</value>
+    <comment>The name of ZW country</comment>
+  </data>
+  <data name="Country_val_ZZ">
+    <value>Tidak diketahui</value>
+    <comment>The name of ZZ (unknown or not specified) country</comment>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Description">
+    <value>Perkhidmatan Base Filtering Engine (BFE) pada peranti Windows anda dilumpuhkan. Perkhidmatan ini perlu didayakan agar Proton VPN dapat berfungsi dengan baik.</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_HowToEnable">
+    <value>Cara mendayakan Base Filtering Engine</value>
+  </data>
+  <data name="Dialogs_BaseFilteringEngine_Title">
+    <value>Dayakan Base Filtering Engine untuk teruskan</value>
+  </data>
+  <data name="Dialogs_ChangeServer_GetUnlimitedServerChanges">
+    <value>Dapatkan perubahan pelayan tanpa had dengan VPN Plus.</value>
+  </data>
+  <data name="Dialogs_ChangeServer_MaximumServerChangesReached">
+    <value>Anda telah mencapai bilangan maksimum perubahan pelayan percuma buat masa ini</value>
+  </data>
+  <data name="Dialogs_Common_GetStarted">
+    <value>Mulakan</value>
+  </data>
+  <data name="Dialogs_Common_SubscriptionExpired">
+    <value>Langganan telah luput</value>
+  </data>
+  <data name="Dialogs_Common_UpgradeToGetPlusFeatures">
+    <value>Naik taraf untuk mendapatkan semula akses kepada pelayan dan ciri Plus.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Description">
+    <value>Nampaknya perkhidmatan Proton VPN dilumpuhkan. Anda perlu mendayakan semula perkhidmatan ini untuk bersambung.</value>
+  </data>
+  <data name="Dialogs_DisabledService_Title">
+    <value>Dayakan perkhidmatan Windows untuk teruskan</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Description_Other">
+    <value>Proton Free menyambungkan anda secara automatik kepada pelayan percuma yang paling pantas daripada {0} negara percuma kami. Biasanya, pelayan ini paling hampir dengan lokasi anda.</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Header_Other">
+    <value>Negara pelayan percuma ({0})</value>
+  </data>
+  <data name="Dialogs_FreeConnections_Title">
+    <value>Sambungan percuma</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_CommentLabel">
+    <value>Beritahu kami mengapa anda memberi penilaian tersebut</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorSubtitle">
+    <value>Kami tidak dapat menghantar maklum balas anda. Sila semak sambungan anda dan cuba lagi.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ErrorTitle">
+    <value>Sesuatu tidak kena</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_HighRateDescription">
+    <value>10 bermakna sangat mungkin</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_LowRateDescription">
+    <value>0 bermakna sangat tidak mungkin</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Optional">
+    <value>Pilihan</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_ShareAnonymously">
+    <value>Kongsi secara tanpa nama</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessSubtitle">
+    <value>Maklum balas anda membantu kami menambah baik Proton VPN.</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_SuccessTitle">
+    <value>Terima kasih atas maklum balas anda</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_Title">
+    <value>Sejauh mana anda mungkin mengesyorkan Proton VPN kepada rakan?</value>
+  </data>
+  <data name="Dialogs_NpsSurvey_TryAgain">
+    <value>Cuba lagi</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Description">
+    <value>Naik taraf untuk membuka pelayan P2P (rakan-ke-rakan) bagi permainan dalam talian dan torrent yang pantas, atau tamatkan aktiviti P2P anda untuk mengembalikan sambungan anda.</value>
+  </data>
+  <data name="Dialogs_P2PDetection_Title">
+    <value>P2P tidak dibenarkan pada pelayan VPN percuma</value>
+  </data>
+  <data name="Dialogs_P2PDetection_WindowTitle">
+    <value>Terokai VPN Plus</value>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email">
+    <value>E-mel</value>
+    <comment>The label for user e-mail address in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
+    <value>pengguna@domainanda.my</value>
+    <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Field_MinLength">
+    <value>Minimum {0} characters</value>
+    <comment>Hint shown below a Report an issue text field that has a minimum length. {0} is the minimum number of characters.</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
+    <value>Hantar log ralat</value>
+    <comment>The label for the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs_Description">
+    <value>Log ralat menunjukkan kepada kami apa yang tidak kena dan tindakan yang menyebabkan masalah anda. Kami hanya akan menggunakannya untuk membantu jurutera kami membaiki pepijat.</value>
+    <comment>The tooltip displayed on the Send error logs checkbox in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Header">
+    <value>Apakah masalahnya?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_NoLogsWarning">
+    <value>Log ralat membantu kami mencari punca masalah anda. Jika anda tidak menyertakannya, kami mungkin tidak dapat menyiasat sepenuhnya.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes">
+    <value>Penyelesaian pantas</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Footer">
+    <value>Tidak berjaya?</value>
+  </data>
+  <data name="Dialogs_ReportIssue_QuickFixes_Header">
+    <value>Petua ini boleh membantu menyelesaikan masalah anda dengan lebih cepat.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_DoneAction">
+    <value>Selesai</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail">
+    <value>Sesuatu tidak kena</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Fail_Description">
+    <value>Laporan anda tidak dapat dihantar. Sila semak sambungan anda dan cuba lagi.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success">
+    <value>Laporan telah dihantar</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Result_Success_Description">
+    <value>Terima kasih atas maklum balas anda. Kami akan menghubungi anda secepat mungkin.</value>
+  </data>
+  <data name="Dialogs_ReportIssue_SendReport">
+    <value>Hantar laporan</value>
+  </data>
+  <data name="Dialogs_ReportIssue_Steps">
+    <value>Langkah {0} daripada {1}</value>
+    <comment>Steps header for the Report an issue dialog. {0} is a placeholder for the current step. {1} is a placeholder for the total number of steps. (eg. Step 1 of 3)</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_Title">
+    <value>Laporkan masalah</value>
+  </data>
+  <data name="Dialogs_StreamingDetection_WindowTitle">
+    <value>Terokai VPN Plus</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Description">
+    <value>Pelayan VPN Plus membolehkan anda menikmati filem dan rancangan TV kegemaran anda dari seluruh dunia.</value>
+  </data>
+  <data name="Dialogs_StreamingWarning_Title">
+    <value>Naik taraf untuk melepasi sekatan VPN</value>
+  </data>
+  <data name="Dialogs_SubscriptionExpired_MaybeLater">
+    <value>Mungkin kemudian</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Description">
+    <value>Nampaknya peranti anda menggunakan pelayan proksi. Ini mungkin mengganggu perlindungan VPN anda.</value>
+  </data>
+  <data name="Dialogs_SystemProxy_Title">
+    <value>Pelayan proksi dikesan</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus">
+    <value>Matikan perisian antivirus atau tembok api</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Antivirus_Description">
+    <value>Perisian ini boleh mengganggu sambungan VPN.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet">
+    <value>Semak sambungan internet anda</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_CheckInternet_Description">
+    <value>Pastikan anda dalam talian dan sambungan anda stabil.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Description">
+    <value>Penyelesaian pantas ini mungkin membantu anda menyambung ke Proton.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork">
+    <value>Guna rangkaian lain</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_DifferentNetwork_Description">
+    <value>Cuba tukar rangkaian Wi-Fi atau gunakan data mudah alih.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage">
+    <value>Semak halaman status kami</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_StatusPage_Description">
+    <value>Untuk memastikan perkhidmatan Proton berjalan seperti biasa.</value>
+  </data>
+  <data name="Dialogs_Troubleshooting_Title">
+    <value>Bantuan sambungan</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOff">
+    <value>Tindakan ini akan memutuskan sambungan anda daripada VPN. Sebarang sambungan internet yang aktif akan buat sementara waktu tidak dilindungi.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Message_KillSwitchOn">
+    <value>Tindakan ini akan memutuskan sambungan anda daripada VPN dan melumpuhkan suis pemutus buat sementara waktu. Sebarang sambungan internet yang aktif akan buat sementara waktu tidak dilindungi.</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Install">
+    <value>Pasang kemas kini?</value>
+  </data>
+  <data name="Dialogs_UpdateConfirmation_Title_Restart">
+    <value>Mulakan semula Proton VPN untuk melengkapkan kemas kini</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Description">
+    <value>Nampaknya jam sistem anda tidak segerak. Ini mungkin menyebabkan masalah semasa menyambung ke VPN.</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_PrimaryButton">
+    <value>Cara mengemas kini jam sistem</value>
+  </data>
+  <data name="Dialogs_UpdateSystemClock_Title">
+    <value>Kemas kini jam sistem</value>
+  </data>
+  <data name="Dialogs_WelcomeB2B_Description">
+    <value>Ringkas. Lancar. Selamat. Lindungi diri anda dalam talian dan akses tapak web, perisian serta fail organisasi anda dengan selamat.</value>
+  </data>
+  <data name="Dialogs_WelcomeToProton_Title">
+    <value>Selamat datang ke Proton VPN</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_Description">
+    <value>Layari internet secara peribadi, akses kandungan yang disekat dan nikmati kebebasan digital tanpa had data atau kelajuan.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs">
+    <value>VPN tanpa log yang bersertifikat</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnFree_NoLogs_Description">
+    <value>Aktiviti anda dilindungi oleh undang-undang privasi Switzerland. Kami tidak akan sekali-kali mengesan anda dalam talian atau berkongsi maklumat anda dengan pihak ketiga.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely">
+    <value>Layari internet dengan bebas dari mana-mana sahaja</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_BrowseFreely_Description_Other">
+    <value>Sembunyikan lokasi maya anda dan alami internet dari mana-mana satu daripada {0} negara yang tersedia.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices">
+    <value>Lindungi 10 peranti sekaligus</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_ProtectDevices_Description">
+    <value>Lanjutkan perlindungan VPN ke komputer meja, telefon mudah alih, pelayar, TV...</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream">
+    <value>Strim dalam resolusi tinggi</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Stream_Description">
+    <value>Tonton filem dan rancangan TV dari seluruh dunia tanpa menjejaskan kelajuan atau kualiti.</value>
+  </data>
+  <data name="Dialogs_WelcomeToVpnPlus_Title">
+    <value>Selamat datang ke VPN Plus</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Description">
+    <value>Anda telah membuka semua ciri premium Proton VPN, Mail, Calendar, Drive dan Pass.</value>
+  </data>
+  <data name="Dialogs_WelcomeUnlimited_Title">
+    <value>Selamat datang ke {0}</value>
+    <comment>Title to welcome the user after an account upgrade. {0} is a placeholder for the name of the new plan (eg. Proton Unlimited, Proton Duo, Proton Family).</comment>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Description">
+    <value>Kini anda boleh bersambung ke pencetak, pembesar suara dan peranti lain pada rangkaian setempat (LAN) anda tanpa melalui terowong VPN.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_LanConnections_Title">
+    <value>Sambungan LAN</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Description">
+    <value>Apabila pemajuan port didayakan, anda kini akan melihat nombor port aktif anda pada skrin utama.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_PortNumber_Title">
+    <value>Nombor port aktif</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TakeALook">
+    <value>Lihat</value>
+  </data>
+  <data name="Dialogs_WhatsNew_Title">
+    <value>Apa yang baharu</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Description">
+    <value>Kini anda boleh bersambung, putuskan sambungan dan menukar sambungan lalai anda daripada tray sistem.</value>
+  </data>
+  <data name="Dialogs_WhatsNew_TrayApp_Title">
+    <value>Apl tray sistem baharu</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_ExcludeLocations">
+    <value>Kecualikan lokasi</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Message">
+    <value>Jika ada lokasi yang anda tidak mahu disambungkan secara automatik, anda boleh mengecualikannya daripada negara Terpantas dan Rawak.</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
+    <value>Langkau</value>
+  </data>
+  <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
+    <value>Bukan negara yang anda mahukan?</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_ActionButton">
+    <value>Kecualikan lokasi</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_CloseButton">
+    <value>Mungkin kemudian</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_Subtitle">
+    <value>Kini anda boleh mengecualikan negara atau bandar daripada sambungan Terpantas dan Rawak.</value>
+  </data>
+  <data name="ExcludedLocations_TeachingTip_Title">
+    <value>Elakkan lokasi yang tidak diingini</value>
+  </data>
+  <data name="Exit_Confirmation_Title">
+    <value>Keluar dari Proton VPN?</value>
+  </data>
+  <data name="Exit_Message">
+    <value>Sedang memutuskan sambungan daripada VPN...</value>
+  </data>
+  <data name="Exit_Title">
+    <value>Keluar dari Proton VPN</value>
+  </data>
+  <data name="Flyouts_Country_Description1">
+    <value>Melayari internet tanpa VPN mendedahkan anda kepada sekatan internet berasaskan lokasi.</value>
+  </data>
+  <data name="Flyouts_Country_Description2">
+    <value>Tapak web boleh menggunakan sekatan geo untuk mengehadkan kandungan kepada lokasi tertentu. Kerajaan juga boleh mengarahkan ISPs (penyedia perkhidmatan internet) untuk menyekat tapak web tertentu di negara mereka.</value>
+  </data>
+  <data name="Flyouts_Country_Description3">
+    <value>VPN menjadikan seolah-olah anda melayari internet dari tempat lain, melindungi anda daripada pemantauan dan penapisan.</value>
+  </data>
+  <data name="Flyouts_Country_Title">
+    <value>Negara</value>
+  </data>
+  <data name="Flyouts_Country_Warning">
+    <value>Sambung ke VPN untuk menukar lokasi maya anda</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Connected">
+    <value>IP VPN anda menyamarkan alamat IP sebenar anda. Ini menjadikan seolah-olah anda melayari internet dari lokasi VPN anda, supaya aktiviti dalam talian anda tidak dapat dikaitkan dengan peranti anda.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected1">
+    <value>Kod unik ini boleh digunakan oleh tapak web dan ISPs (penyedia perkhidmatan internet) untuk memautkan lokasi dan sejarah penyemakan imbas anda dengan peranti anda.</value>
+  </data>
+  <data name="Flyouts_IpAddress_Description_Disconnected2">
+    <value>VPN menyamarkan alamat IP anda, menyukarkan aktiviti anda untuk dikesan sehingga kepada anda.</value>
+  </data>
+  <data name="Flyouts_IpAddress_KnowledgeBaseLinkTitle">
+    <value>Apakah alamat IP?</value>
+  </data>
+  <data name="Flyouts_IpAddress_Title">
+    <value>Alamat IP</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIp">
+    <value>IP VPN</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv4">
+    <value>VPN IPv4</value>
+  </data>
+  <data name="Flyouts_IpAddress_VpnIpv6">
+    <value>VPN IPv6</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIp">
+    <value>IP anda</value>
+  </data>
+  <data name="Flyouts_IpAddress_YourIpIsVisible">
+    <value>Alamat IP anda dapat dilihat</value>
+  </data>
+  <data name="Flyouts_Isp_Description1">
+    <value>ISP (penyedia perkhidmatan internet) anda ialah syarikat yang menyambungkan anda ke internet.</value>
+  </data>
+  <data name="Flyouts_Isp_Description2">
+    <value>Mereka boleh merekodkan aktiviti dalam talian anda. Di sesetengah negara, mereka boleh menjual data anda kepada pengiklan. Di negara lain, mereka mungkin diwajibkan menyerahkannya kepada kerajaan.</value>
+  </data>
+  <data name="Flyouts_Isp_Description3">
+    <value>VPN menyembunyikan alamat IP anda, melindungi anda daripada gangguan ISP.</value>
+  </data>
+  <data name="Flyouts_Isp_KnowledgeBaseLinkTitle">
+    <value>Apakah penyedia perkhidmatan internet (ISP)?</value>
+  </data>
+  <data name="Flyouts_Isp_Title">
+    <value>Penyedia</value>
+  </data>
+  <data name="Flyouts_Isp_Warning">
+    <value>Penyedia anda dapat melihat tapak web yang anda lawati</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Advanced_Success">
+    <value>Sekat semua akses internet apabila anda tidak disambungkan ke Proton VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info">
+    <value>Alamat IP anda boleh terdedah jika sambungan VPN anda terputus</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Info_Disconnected">
+    <value>Suis pemutus lanjutan melumpuhkan internet anda untuk melindungi alamat IP anda semasa anda tidak disambungkan ke Proton VPN.</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Standard_Success">
+    <value>Jika sambungan VPN anda terputus, sambungan internet anda akan terputus sehingga VPN dikembalikan</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Connected">
+    <value>Suis pemutus lanjutan kekal digunakan walaupun anda sengaja memutuskan sambungan daripada VPN</value>
+  </data>
+  <data name="Flyouts_KillSwitch_Warning_Disconnected">
+    <value>Untuk kembali dalam talian, sambung ke VPN atau lumpuhkan suis pemutus lanjutan</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackersAdultContent_Success">
+    <value>Anda dilindungi daripada iklan, penjejak, perisian hasad dan kandungan dewasa.</value>
+  </data>
+  <data name="Flyouts_NetShield_AdsMalwareTrackers_Success">
+    <value>Anda dilindungi daripada iklan, penjejak dan perisian hasad.</value>
+  </data>
+  <data name="Flyouts_NetShield_Info">
+    <value>Lindungi penjelajahan anda di tapak web dan apl.</value>
+  </data>
+  <data name="Flyouts_NetShield_MalwareOnly_Success">
+    <value>Anda hanya dilindungi daripada perisian hasad.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Description">
+    <value>Sekat iklan, penjejak, perisian hasad dan kandungan dewasa dengan VPN Plus.</value>
+  </data>
+  <data name="Flyouts_NetShield_Upsell_Title">
+    <value>Nikmati penyemakan imbas tanpa iklan</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort">
+    <value>Nombor port aktif</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Error">
+    <value>Tidak dapat mendapatkan nombor port aktif. Mulakan semula sambungan anda dan cuba lagi.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_ActivePort_Info">
+    <value>Masukkan nombor port aktif ke dalam klien torrent atau apl P2P anda untuk prestasi yang lebih baik.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Info">
+    <value>Meningkatkan kelajuan muat turun rakan-ke-rakan</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Description">
+    <value>Tingkatkan prestasi perkongsian fail rakan-ke-rakan (P2P) dengan VPN Plus.</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Upsell_Title">
+    <value>Tingkatkan kelajuan P2P</value>
+  </data>
+  <data name="Flyouts_PortForwarding_Warning">
+    <value>Sambung ke pelayan P2P untuk meningkatkan kelajuan torrent</value>
+  </data>
+  <data name="Flyouts_Protocol_Description">
+    <value>Protokol VPN menentukan cara trafik disulitkan dan dihantar melalui VPN.</value>
+  </data>
+  <data name="Flyouts_Protocol_KnowledgeBaseLinkTitle">
+    <value>Protokol VPN yang manakah terbaik?</value>
+  </data>
+  <data name="Flyouts_Protocol_Title">
+    <value>Protokol</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Description">
+    <value>Beban pelayan menunjukkan tahap hampir pelayan dengan kapasiti maksimumnya. Beban pelayan yang tinggi boleh memperlahankan sambungan anda.</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High">
+    <value>Tinggi (91-100%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_High_Description">
+    <value>VPN mungkin berjalan lebih perlahan daripada biasa</value>
+  </data>
+  <data name="Flyouts_ServerLoad_KnowledgeBaseLinkTitle">
+    <value>Apakah beban pelayan?</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low">
+    <value>Rendah (1-75%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Low_Description">
+    <value>Kelajuan secepat kilat</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium">
+    <value>Sederhana (76-90%)</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Medium_Description">
+    <value>Tidak dijangka menjejaskan kelajuan sambungan</value>
+  </data>
+  <data name="Flyouts_ServerLoad_Title">
+    <value>Beban pelayan</value>
+  </data>
+  <data name="Flyouts_Speed_Description1">
+    <value>Memaparkan jumlah data yang melalui terowong VPN secara masa nyata.</value>
+  </data>
+  <data name="Flyouts_Speed_Description2">
+    <value>Ini berdasarkan aktiviti semasa peranti anda. Dalam kebanyakan kes, ia tidak mewakili kelajuan maksimum VPN.</value>
+  </data>
+  <data name="Flyouts_Speed_Download">
+    <value>Muat turun</value>
+    <comment>Refers to the download speed (e.g., Download [new line] 10 MB/s).</comment>
+  </data>
+  <data name="Flyouts_Speed_KnowledgeBaseLinkTitle">
+    <value>Penjelasan kelajuan dan trafik VPN</value>
+  </data>
+  <data name="Flyouts_Speed_Title">
+    <value>Trafik semasa</value>
+  </data>
+  <data name="Flyouts_Speed_Upload">
+    <value>Muat naik</value>
+    <comment>Refers to the upload speed (e.g., Upload [new line] 2.5 MB/s).</comment>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Apps_Other">
+    <value>Apl yang dikecualikan ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Excluded_Ips_Other">
+    <value>Alamat IP yang dikecualikan ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Info">
+    <value>Membenarkan apl dan alamat IP yang dipercayai untuk disambungkan tanpa perlindungan VPN</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Inverse_Info">
+    <value>Hanya apl dan alamat IP ini disambungkan melalui VPN. Semua trafik lain tidak dilindungi.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Apps_Other">
+    <value>Apl yang dilindungi ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Protected_Ips_Other">
+    <value>Alamat IP yang dilindungi ({0})</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Standard_Info">
+    <value>Apl dan alamat IP ini disambungkan tanpa perlindungan VPN. Semua trafik lain dilindungi.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Description">
+    <value>Bahagikan trafik anda kepada terowong VPN dan bukan VPN dengan VPN Plus.</value>
+  </data>
+  <data name="Flyouts_SplitTunneling_Upsell_Title">
+    <value>Dapatkan yang terbaik daripada kedua-dua dunia</value>
+  </data>
+  <data name="Flyouts_Volume_Description">
+    <value>Memaparkan jumlah keseluruhan data yang melalui terowong VPN sejak anda bersambung.</value>
+  </data>
+  <data name="Flyouts_Volume_Download">
+    <value>Muat turun</value>
+    <comment>Refers to the downloaded volume (e.g., Download [new line] 250 MB).</comment>
+  </data>
+  <data name="Flyouts_Volume_Title">
+    <value>Jumlah trafik</value>
+  </data>
+  <data name="Flyouts_Volume_Upload">
+    <value>Muat naik</value>
+    <comment>Refers to the uploaded volume (e.g., Upload [new line] 250 MB).</comment>
+  </data>
+  <data name="Format_Size_Bytes">
+    <value>{0} B</value>
+    <comment>Format a size in Bytes. {0} is a place holder for the number of Bytes (eg. 30 B)</comment>
+  </data>
+  <data name="Format_Size_Exabytes">
+    <value>{0} EB</value>
+    <comment>Format a size in Exabytes. {0} is a place holder for the number of Exabytes (eg. 30 EB)</comment>
+  </data>
+  <data name="Format_Size_Gigabytes">
+    <value>{0} GB</value>
+    <comment>Format a size in Gigabytes. {0} is a place holder for the number of Gigabytes (eg. 30 GB)</comment>
+  </data>
+  <data name="Format_Size_Kilobytes">
+    <value>{0} KB</value>
+    <comment>Format a size in Kilobytes. {0} is a place holder for the number of Kilobytes (eg. 30 KB)</comment>
+  </data>
+  <data name="Format_Size_Megabytes">
+    <value>{0} MB</value>
+    <comment>Format a size in Megabytes. {0} is a place holder for the number of Megabytes (eg. 30 MB)</comment>
+  </data>
+  <data name="Format_Size_Petabytes">
+    <value>{0} PB</value>
+    <comment>Format a size in Petabytes. {0} is a place holder for the number of Petabytes (eg. 30 PB)</comment>
+  </data>
+  <data name="Format_Size_Terabytes">
+    <value>{0} TB</value>
+    <comment>Format a size in Terabytes. {0} is a place holder for the number of Terabytes (eg. 30 TB)</comment>
+  </data>
+  <data name="Format_SpeedUnit">
+    <value>Trafik semasa ({0})</value>
+    <comment>This string is used to format speed measurements in various units. The placeholder {0} will be replaced by the appropriate unit of measurement, such as B/s (Bytes per second), kB/s (Kilobytes per second), MB/s (Megabytes per second), and so on.</comment>
+  </data>
+  <data name="Format_Speed_BytesPerSecond">
+    <value>{0} B/s</value>
+    <comment>Format a speed in Bytes per second. {0} is a place holder for the number of Bytes per second (eg. 30 B/s)</comment>
+  </data>
+  <data name="Format_Speed_ExabytesPerSecond">
+    <value>{0} EB/s</value>
+    <comment>Format a speed in Exabytes per second. {0} is a place holder for the number of Exabytes per second (eg. 30 EB/s)</comment>
+  </data>
+  <data name="Format_Speed_GigabytesPerSecond">
+    <value>{0} GB/s</value>
+    <comment>Format a speed in Gigabytes per second. {0} is a place holder for the number of Gigabytes per second (eg. 30 GB/s)</comment>
+  </data>
+  <data name="Format_Speed_KilobytesPerSecond">
+    <value>{0} KB/s</value>
+    <comment>Format a speed in Kilobytes per second. {0} is a place holder for the number of Kilobytes per second (eg. 30 KB/s)</comment>
+  </data>
+  <data name="Format_Speed_MegabytesPerSecond">
+    <value>{0} MB/s</value>
+    <comment>Format a speed in Megabytes per second. {0} is a place holder for the number of Megabytes per second (eg. 30 MB/s)</comment>
+  </data>
+  <data name="Format_Speed_PetabytesPerSecond">
+    <value>{0} PB/s</value>
+    <comment>Format a speed in Petabytes per second. {0} is a place holder for the number of Petabytes per second (eg. 30 PB/s)</comment>
+  </data>
+  <data name="Format_Speed_TerabytesPerSecond">
+    <value>{0} TB/s</value>
+    <comment>Format a speed in Terabytes per second. {0} is a place holder for the number of Terabytes per second (eg. 30 TB/s)</comment>
+  </data>
+  <data name="Format_Time_Day_Other">
+    <value>{0} hari</value>
+  </data>
+  <data name="Format_Time_DayHour_Other">
+    <value>{0} hari {1} j</value>
+  </data>
+  <data name="Format_Time_Hours">
+    <value>{0} j</value>
+    <comment>Format a time as a number of hours. {0} is a placeholder for the number of hours (eg. 1 hr or 20 hr). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutes">
+    <value>{0} j {1} min</value>
+    <comment>Format a time as a number of hours and minutes. {0} is a placeholder for the number of hours and {1} for the number of minutes (eg. 5 hr 36 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_HoursMinutesSeconds_Short">
+    <value>hh\:mm\:ss</value>
+    <comment>Format a time as a number of hours, minutes and seconds in a short format. 'hh' is a placeholder for the number of hours, 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. hh\:mm\:ss gives 01:05:36).</comment>
+  </data>
+  <data name="Format_Time_Hours_Ago_Other">
+    <value>{0} jam yang lalu</value>
+  </data>
+  <data name="Format_Time_Minutes">
+    <value>{0} min</value>
+    <comment>Format a time as a number of minutes. {0} is a placeholder for the number of minutes (eg. 1 min or 20 min). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds">
+    <value>{0} min {1} s</value>
+    <comment>Format a time as a number of minutes and seconds. {0} is a placeholder for the number of minutes and {1} for the number of seconds (eg. 5 min 36 sec). Use abbreviations, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_MinutesSeconds_Short">
+    <value>mm\:ss</value>
+    <comment>Format a time as a number of minutes and seconds in a short format. 'mm' is a placeholder for the number of minutes and 'ss' for the number of seconds. The separator (if any) needs to be escaped using '' character (eg. mm\:ss gives 05:36).</comment>
+  </data>
+  <data name="Format_Time_Minutes_Ago_Other">
+    <value>{0} minit yang lalu</value>
+  </data>
+  <data name="Format_Time_Seconds">
+    <value>{0} s</value>
+    <comment>Format a time as a number of seconds. {0} is a placeholder for the number of second (eg. 1 sec or 20 sec). Use abbreviations for seconds, no pluralization.</comment>
+  </data>
+  <data name="Format_Time_Seconds_Ago_Other">
+    <value>{0} saat yang lalu</value>
+  </data>
+  <data name="FreeConnections_P2PUpsell">
+    <value>Muat turun fail melalui BitTorrent dan protokol perkongsian fail yang lain</value>
+  </data>
+  <data name="FreeConnections_SecureCoreUpsell">
+    <value>Tambah lapisan penyulitan lain pada sambungan VPN anda</value>
+  </data>
+  <data name="FreeConnections_TorUpsell">
+    <value>Gunakan rangkaian Tor melalui sambungan VPN anda untuk privasi tambahan</value>
+  </data>
+  <data name="FreeConnections_WorldwideCoverageUpsell">
+    <value>Dapatkan liputan seluruh dunia dengan VPN Plus</value>
+  </data>
+  <data name="Gateway_Fastest">
+    <value>Get laluan terpantas</value>
+  </data>
+  <data name="Gateway_Random">
+    <value>Get laluan rawak</value>
+  </data>
+  <data name="Gateways_Page_Description">
+    <value>Sambung ke get laluan untuk mengakses VPN organisasi anda.</value>
+  </data>
+  <data name="Gateways_Page_Title">
+    <value>Get laluan</value>
+  </data>
+  <data name="Home_Account_SignOut">
+    <value>Log keluar</value>
+  </data>
+  <data name="Home_Account_SignOut_Confirmation_Title">
+    <value>Log keluar dari {0}?</value>
+    <comment>{0} is a placeholder for the username</comment>
+  </data>
+  <data name="Home_ConnectionCard_ChangeDefaultConnection">
+    <value>Tukar sambungan lalai</value>
+  </data>
+  <data name="Home_ConnectionCard_ChangeServer">
+    <value>Tukar pelayan</value>
+  </data>
+  <data name="Home_ConnectionDetails_AdvancedKillSwitchActivated">
+    <value>Suis pemutus termaju diaktifkan</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectToRestoreConnection">
+    <value>Sambung ke VPN untuk mengembalikan sambungan internet anda.</value>
+  </data>
+  <data name="Home_ConnectionDetails_Connecting">
+    <value>Sedang menyambung</value>
+  </data>
+  <data name="Home_ConnectionDetails_ConnectingSubLabel">
+    <value>Sedang melindungi identiti digital anda...</value>
+  </data>
+  <data name="Home_ConnectionDetails_Country">
+    <value>Negara</value>
+  </data>
+  <data name="Home_ConnectionDetails_Isp">
+    <value>Penyedia</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protected">
+    <value>Dilindungi</value>
+  </data>
+  <data name="Home_ConnectionDetails_Protocol">
+    <value>Protokol</value>
+  </data>
+  <data name="Home_ConnectionDetails_ServerLoad">
+    <value>Beban pelayan</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Description">
+    <value>Jalankan pengesahan semula dalam portal 2FA organisasi anda untuk meneruskan.</value>
+  </data>
+  <data name="Home_ConnectionDetails_TwoFactorRequired_Title">
+    <value>2FA telah luput</value>
+  </data>
+  <data name="Home_ConnectionDetails_Unprotected">
+    <value>Tidak dilindungi</value>
+  </data>
+  <data name="Home_ConnectionDetails_UnprotectedSubLabel">
+    <value>Sulitkan aktiviti dalam talian anda dengan menyambung ke VPN.</value>
+  </data>
+  <data name="Home_ConnectionDetails_Volume">
+    <value>Jumlah trafik</value>
+  </data>
+  <data name="Home_ConnectionDetails_VpnIp">
+    <value>IP VPN</value>
+  </data>
+  <data name="Home_ConnectionDetails_YourIpAddress">
+    <value>Alamat IP anda</value>
+  </data>
+  <data name="Home_FreeConnections_About">
+    <value>Maklumat lanjut tentang sambungan percuma</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Other">
+    <value>Iklan disekat</value>
+  </data>
+  <data name="Home_NetShield_AdsBlocked_Description">
+    <value>Iklan ialah sepanduk promosi atau tetingkap timbul yang muncul pada tapak web dan apl.</value>
+  </data>
+  <data name="Home_NetShield_DataSaved">
+    <value>Data dijimatkan</value>
+  </data>
+  <data name="Home_NetShield_DataSaved_Description">
+    <value>Anggaran data yang dijimatkan dengan menyekat iklan, penjejak dan perisian hasad yang tidak diingini.</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Other">
+    <value>Penjejak dihalang</value>
+  </data>
+  <data name="Home_NetShield_TrackersStopped_Description">
+    <value>Penjejak ialah kuki dan tapak web pihak ketiga yang mengumpul, menyimpan dan menjual maklumat tentang aktiviti web anda.</value>
+  </data>
+  <data name="Home_Recents_Pin">
+    <value>Semat</value>
+  </data>
+  <data name="Home_Recents_Restricted">
+    <value>Pelayan tersedia dengan VPN Plus</value>
+  </data>
+  <data name="Home_Recents_ServerUnderMaintenance">
+    <value>Pelayan sedang diselenggara</value>
+  </data>
+  <data name="Home_Recents_Title">
+    <value>Terkini</value>
+  </data>
+  <data name="Home_Recents_Unpin">
+    <value>Nyahsemat</value>
+  </data>
+  <data name="Home_TitleBar_Menu_About">
+    <value>Perihal</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Account">
+    <value>Akaun</value>
+  </data>
+  <data name="Home_TitleBar_Menu_ExitTheApp">
+    <value>Keluar dari apl</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help">
+    <value>Bantuan</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Help_WhatsTheIssue">
+    <value>Apakah masalahnya?</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Settings">
+    <value>Tetapan</value>
+  </data>
+  <data name="Home_TitleBar_Menu_Signout">
+    <value>Log keluar</value>
+  </data>
+  <data name="Home_TitleBar_Menu_UpdateNow">
+    <value>Kemas kini</value>
+  </data>
+  <data name="LoadingPage_Tip">
+    <value>Dunia yang lebih baik bermula dengan privasi dan kebebasan digital.</value>
+  </data>
+  <data name="Login_Error_GetSessionDetailsFailed">
+    <value>Ralat berlaku semasa mendapatkan butiran sesi. Sila cuba lagi.</value>
+  </data>
+  <data name="Login_Error_GuestHoleFailedDueToMobileHotspot">
+    <value>Tidak dapat log masuk kerana tetapan rangkaian pada peranti anda. Punca yang mungkin ialah titik panas mudah alih, aplikasi VPN lain atau perisian mesin maya. Sila semak konfigurasi rangkaian anda atau hubungi sokongan untuk bantuan.</value>
+  </data>
+  <data name="Login_Error_IncorrectTwoFactorCode">
+    <value>Kod tidak sah. Sila cuba lagi.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Message">
+    <value>Fail yang diperlukan untuk log masuk tiada dalam pemasangan anda. Sila pasang semula Proton VPN untuk menyelesaikan masalah ini.</value>
+  </data>
+  <data name="Login_Error_MissingSrpDll_Title">
+    <value>Tidak dapat log masuk</value>
+  </data>
+  <data name="Login_Error_SessionExpired">
+    <value>Sesi anda telah luput. Sila log masuk semula.</value>
+    <comment>The message displayed in Login window when expired session is detected</comment>
+  </data>
+  <data name="Login_Error_SsoAuthFailed">
+    <value>Pengesahan SSO tidak berjaya. Sila cuba lagi.</value>
+  </data>
+  <data name="Login_Error_TwoFactorFailed">
+    <value>Pengesahan dua faktor tidak berjaya. Sila log masuk semula.</value>
+  </data>
+  <data name="Login_Error_WebAuthnNotSupported">
+    <value>Pengesahan kunci keselamatan tidak tersedia untuk peranti anda atau sambungan desktop jauh.</value>
+  </data>
+  <data name="Login_TwoFactorForm_Authenticate">
+    <value>Sahkan</value>
+    <comment>Authenticate button inside two factor form during login</comment>
+  </data>
+  <data name="Login_TwoFactorForm_Subtitle">
+    <value>Kod pengesahan 6 digit</value>
+  </data>
+  <data name="Login_TwoFactorForm_Title">
+    <value>Pengesahan dua faktor</value>
+  </data>
+  <data name="Login_TwoFactor_Authenticator">
+    <value>Apl pengesah</value>
+  </data>
+  <data name="Login_TwoFactor_Digit1">
+    <value>Digit pertama</value>
+  </data>
+  <data name="Login_TwoFactor_Digit2">
+    <value>Digit kedua</value>
+  </data>
+  <data name="Login_TwoFactor_Digit3">
+    <value>Digit ketiga</value>
+  </data>
+  <data name="Login_TwoFactor_Digit4">
+    <value>Digit keempat</value>
+  </data>
+  <data name="Login_TwoFactor_Digit5">
+    <value>Digit kelima</value>
+  </data>
+  <data name="Login_TwoFactor_Digit6">
+    <value>Digit keenam</value>
+  </data>
+  <data name="Login_TwoFactor_EnterCode">
+    <value>Masukkan kod</value>
+  </data>
+  <data name="Login_TwoFactor_NoMethodAvailable">
+    <value>Kaedah pengesahan dua faktor yang diketahui tidak dijumpai.</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey">
+    <value>Kunci keselamatan</value>
+  </data>
+  <data name="Login_TwoFactor_SecurityKey_Description">
+    <value>Sisipkan kunci U2F atau FIDO yang dipautkan ke akaun Proton anda.</value>
+  </data>
+  <data name="Main_Loading">
+    <value>Sedang dimuatkan, sila tunggu...</value>
+    <comment>Message in the loading screen when starting the app</comment>
+  </data>
+  <data name="Main_Loading_SigningIn">
+    <value>Sedang log masuk, sila tunggu...</value>
+    <comment>Message in the loading screen when signing in</comment>
+  </data>
+  <data name="Main_Loading_SigningIn_Longer">
+    <value>Ia mengambil masa lebih lama daripada biasa, tetapi kami sedang mengusahakannya.</value>
+    <comment>Message in the loading screen when sign in action takes longer than expected</comment>
+  </data>
+  <data name="Main_Loading_SigningOut">
+    <value>Sedang log keluar, sila tunggu...</value>
+    <comment>Message in the loading screen when signing out</comment>
+  </data>
+  <data name="Map_ConnectTo">
+    <value>Sambung - {0}</value>
+    <comment>A label inside a map pin tooltip. {0} is a placeholder for country, state or city. (eg. "Connect - United States", "Connect - New York")</comment>
+  </data>
+  <data name="NoServers_ContactUs">
+    <value>Hubungi kami</value>
+  </data>
+  <data name="NoServers_FailedToLoad">
+    <value>Kami tidak dapat memuatkan senarai pelayan.</value>
+  </data>
+  <data name="NoServers_NeedHelp">
+    <value>Perlukan bantuan?</value>
+  </data>
+  <data name="NoServers_SignOut">
+    <value>Log keluar</value>
+  </data>
+  <data name="NoServers_Tip">
+    <value>Minta pentadbir anda mendayakan akses VPN untuk akaun anda.</value>
+  </data>
+  <data name="NoServers_Title">
+    <value>Tiada sambungan VPN tersedia</value>
+  </data>
+  <data name="NoServers_UnderMaintenance_Tip">
+    <value>Kami tidak dapat memuatkan sebarang pelayan. Klik Muat semula untuk mengemas kini senarai pelayan.</value>
+  </data>
+  <data name="Notifications_KillSwitch_Description">
+    <value>Untuk melindungi alamat IP anda, suis pemutus menyekat sambungan internet.</value>
+  </data>
+  <data name="Notifications_PortForwarding_CopyPortNumber">
+    <value>Salin nombor port</value>
+  </data>
+  <data name="Notifications_PortForwarding_Description">
+    <value>Pergi ke klien torrent atau apl P2P anda dan masukkan nombor ini.</value>
+  </data>
+  <data name="Notifications_SessionLimit_Description">
+    <value>Anda telah mencapai had peranti maksimum. Untuk menyambung semula ke VPN, sila putuskan sambungan daripada peranti lain.</value>
+  </data>
+  <data name="Notifications_SubscriptionExpired_Description_Connected">
+    <value>Pelan anda telah diturunkan taraf ke Proton Free, dan anda sedang disambung semula ke pelayan percuma yang paling laju.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Description">
+    <value>Rangkaian Wi-Fi awam lebih terdedah kepada ancaman keselamatan. Sambung ke VPN untuk melayar dengan selamat.</value>
+  </data>
+  <data name="Notifications_UnsecureWifi_Title">
+    <value>Sambungan Wi-Fi tidak selamat dikesan</value>
+  </data>
+  <data name="NpsSurvey_Title">
+    <value>Proton VPN - Tinjauan</value>
+    <comment>The window title displayed at the top of the NPS (Net Promoter Score) survey</comment>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Description">
+    <value>Untuk memasukkan alamat IPv6, anda perlu membenarkan sambungan IPv6 melalui terowong VPN.</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_PrimaryButton">
+    <value>Dayakan IPv6</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_SecondaryButton">
+    <value>Bukan sekarang</value>
+  </data>
+  <data name="Overlay_Ipv6Disabled_Title">
+    <value>IPv6 dilumpuhkan</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Action">
+    <value>Kemas kini</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Message">
+    <value>Versi apl ini telah usang. Anda perlu mengemas kini apl untuk terus menggunakan Proton VPN.</value>
+  </data>
+  <data name="Overlay_OutdatedClient_Title">
+    <value>Kemas kini Proton VPN untuk teruskan</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Description">
+    <value>Pelayan P2P (peer-to-peer) kami membolehkan anda mengakses rangkaian P2P sambil melindungi alamat IP dan aktiviti dalam talian anda.</value>
+  </data>
+  <data name="Overlay_P2P_Bullet1_Header">
+    <value>Apakah itu P2P VPN?</value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Description">
+    <value>Rangkaian P2P membolehkan dua peranti bersambung dan memindahkan data tanpa melalui pelayan pusat. </value>
+  </data>
+  <data name="Overlay_P2P_Bullet2_Header">
+    <value>Apakah itu rangkaian P2P?</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Description">
+    <value>  •  Memuat turun fail torrent
+  •  Meningkatkan prestasi permainan dalam talian dan panggilan video
+  •  Menyambung ke peranti rangkaian kawasan setempat (LAN)</value>
+  </data>
+  <data name="Overlay_P2P_Bullet3_Header">
+    <value>Apakah kegunaan rangkaian P2P?</value>
+  </data>
+  <data name="Overlay_P2P_LearnMore">
+    <value>Apakah itu P2P?</value>
+  </data>
+  <data name="Overlay_P2P_Title">
+    <value>P2P</value>
+  </data>
+  <data name="Overlay_Profile_Description1">
+    <value>Profil ialah sambungan VPN tersuai yang boleh anda sesuaikan mengikut keperluan dan simpan untuk akses pantas.</value>
+  </data>
+  <data name="Overlay_Profile_Description2">
+    <value>Tetapkan lokasi pilihan anda dan optimumkan tetapan untuk keselamatan, prestasi, permainan atau senario lain.</value>
+  </data>
+  <data name="Overlay_Profile_LearnMore">
+    <value>Apakah itu profil VPN?</value>
+  </data>
+  <data name="Overlay_Profile_Title">
+    <value>Profil</value>
+  </data>
+  <data name="Overlay_SecureCore_Description1">
+    <value>Secure Core menyambungkan anda ke pelayan destinasi anda melalui pelayan VPN kedua dengan keselamatan maksimum.</value>
+  </data>
+  <data name="Overlay_SecureCore_Description2">
+    <value>Tahap perlindungan yang lebih tinggi ini mungkin menyebabkan latensi lebih tinggi dan kelajuan lebih perlahan.</value>
+  </data>
+  <data name="Overlay_SecureCore_LearnMore">
+    <value>Apakah itu Secure Core?</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection">
+    <value>Secure Core
+Sambungan VPN</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Latency">
+    <value>Latensi lebih tinggi</value>
+  </data>
+  <data name="Overlay_SecureCore_SecureCoreConnection_Privacy">
+    <value>Privasi lanjutan</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection">
+    <value>Piawai
+Sambungan VPN</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Latency">
+    <value>Latensi lebih rendah</value>
+  </data>
+  <data name="Overlay_SecureCore_StandardConnection_Privacy">
+    <value>Privasi tinggi</value>
+  </data>
+  <data name="Overlay_SecureCore_Title">
+    <value>Secure Core</value>
+  </data>
+  <data name="Overlay_ServerLoad_Description">
+    <value>Beban pelayan menunjukkan betapa hampirnya sesuatu pelayan dengan kapasiti maksimumnya.
+
+Beban pelayan yang tinggi boleh memperlahankan sambungan anda.</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Description">
+    <value>VPN mungkin berjalan lebih perlahan daripada biasa</value>
+  </data>
+  <data name="Overlay_ServerLoad_HighRange_Title">
+    <value>Tinggi (91 hingga 100%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_LearnMore">
+    <value>Apakah itu beban pelayan?</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Description">
+    <value>Kelajuan secepat kilat</value>
+  </data>
+  <data name="Overlay_ServerLoad_LowRange_Title">
+    <value>Rendah (1 hingga 75%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Description">
+    <value>Tidak mungkin menjejaskan kelajuan VPN</value>
+  </data>
+  <data name="Overlay_ServerLoad_MediumRange_Title">
+    <value>Sederhana (76 hingga 90%)</value>
+  </data>
+  <data name="Overlay_ServerLoad_Title">
+    <value>Beban pelayan</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description1">
+    <value>Smart Routing membolehkan kami menyediakan liputan VPN di negara yang sukar dicapai.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description2">
+    <value>Apabila anda menyambung ke pelayan Smart Routing, anda akan kelihatan melayari internet di negara destinasi anda walaupun pelayan fizikalnya terletak di tempat lain.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Description3">
+    <value>Smart Routing biasanya digunakan untuk mengelakkan undang-undang anti-privasi dan bentuk penapisan yang lain.</value>
+  </data>
+  <data name="Overlay_SmartRouting_Header">
+    <value>Menyambungkan anda ke negara destinasi melalui pelayan yang terletak secara fizikal di tempat lain: {0}.</value>
+    <comment>{0} is a placeholder for the countries where the physical servers are. Can be either one country or multiple countries separated with comma.</comment>
+  </data>
+  <data name="Overlay_SmartRouting_LearnMore">
+    <value>Apakah itu Smart Routing?</value>
+  </data>
+  <data name="Overlay_SmartRouting_Title">
+    <value>Smart Routing</value>
+  </data>
+  <data name="Overlay_Tor_Description">
+    <value>Sambung ke pelayan Tor untuk mengakses perkhidmatan tersembunyi dan laman web onion menggunakan mana-mana pelayar.</value>
+  </data>
+  <data name="Overlay_Tor_LearnMore">
+    <value>Cara mengakses rangkaian Tor</value>
+  </data>
+  <data name="Overlay_Tor_Title">
+    <value>Tor</value>
+  </data>
+  <data name="Profile_CustomSettings_Description">
+    <value>Tetapan profil akan mengatasi tetapan VPN anda semasa disambungkan.</value>
+  </data>
+  <data name="Profile_CustomSettings_Header">
+    <value>Tambah tetapan tersuai</value>
+  </data>
+  <data name="Profile_CustomSettings_Hide">
+    <value>Sembunyikan tetapan</value>
+  </data>
+  <data name="Profile_CustomSettings_Show">
+    <value>Papar tetapan</value>
+  </data>
+  <data name="Profile_NatType_Conflict_Description">
+    <value>Tindakan ini akan melumpuhkan pemajuan port untuk profil ini.</value>
+  </data>
+  <data name="Profile_NetShield_Conflict_Description">
+    <value>Tindakan ini akan melumpuhkan DNS tersuai untuk profil ini.</value>
+  </data>
+  <data name="Profile_Options_Application">
+    <value>Apl</value>
+  </data>
+  <data name="Profile_Options_Application_Select">
+    <value>Pilih apl</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Application">
+    <value>Buka apl</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_PrivateBrowsingMode">
+    <value>Gunakan mod pelayaran peribadi</value>
+  </data>
+  <data name="Profile_Options_ConnectAndGo_Website">
+    <value>Buka tapak web</value>
+  </data>
+  <data name="Profile_Options_Description">
+    <value>Buka tapak web atau apl pilihan anda secara automatik apabila anda menyambung ke profil ini.</value>
+  </data>
+  <data name="Profile_Options_Header">
+    <value>Sambung terus</value>
+  </data>
+  <data name="Profile_Options_Url">
+    <value>URL tapak web</value>
+  </data>
+  <data name="Profile_Options_Url_Error">
+    <value>Masukkan URL yang sah</value>
+  </data>
+  <data name="Profile_PortForwarding_Conflict_Description">
+    <value>Tindakan ini akan menukar jenis NAT untuk profil ini kepada Ketat (jenis 3).</value>
+  </data>
+  <data name="Profiles_Default_Gaming">
+    <value>Gaming</value>
+  </data>
+  <data name="Profiles_Default_MaxSecurity">
+    <value>Keselamatan maksimum</value>
+  </data>
+  <data name="Profiles_Default_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Profiles_Default_RandomConnection">
+    <value>Sambungan rawak</value>
+  </data>
+  <data name="Profiles_Default_Streaming">
+    <value>Penstriman AS</value>
+  </data>
+  <data name="Profiles_Default_WorkSchool">
+    <value>Kerja/Sekolah</value>
+  </data>
+  <data name="Profiles_Page_Description">
+    <value>Konfigurasikan tetapan VPN anda sendiri dan sambung dengan satu klik</value>
+  </data>
+  <data name="Profiles_Page_Title">
+    <value>Profil</value>
+  </data>
+  <data name="Search_InputBox_Placeholder">
+    <value>Layari dari...</value>
+  </data>
+  <data name="Search_NoInput_CityOrState">
+    <value>Bandar atau negeri AS</value>
+    <comment>The word used for one single city and one single United States state</comment>
+  </data>
+  <data name="Search_NoInput_Country">
+    <value>Negara</value>
+    <comment>The word used for one single country</comment>
+  </data>
+  <data name="Search_NoInput_Server">
+    <value>Pelayan</value>
+    <comment>The word used for one single server</comment>
+  </data>
+  <data name="Search_NoInput_TrySearchingFor">
+    <value>Cuba cari...</value>
+  </data>
+  <data name="Search_NoResults_Description">
+    <value>Cuba kata kunci yang berbeza.</value>
+  </data>
+  <data name="Search_NoResults_Title">
+    <value>Tiada hasil ditemui</value>
+  </data>
+  <data name="Server">
+    <value>Pelayan</value>
+  </data>
+  <data name="Server_Fastest">
+    <value>Pelayan paling pantas</value>
+  </data>
+  <data name="Server_Fastest_Free">
+    <value>Pelayan percuma terpantas</value>
+  </data>
+  <data name="Server_Feature_B2B">
+    <value>Get laluan</value>
+  </data>
+  <data name="Server_Feature_B2B_Description">
+    <value>Akses pelayan organisasi anda</value>
+  </data>
+  <data name="Server_Feature_None">
+    <value>Standard</value>
+  </data>
+  <data name="Server_Feature_P2P">
+    <value>P2P</value>
+  </data>
+  <data name="Server_Feature_P2P_Description">
+    <value>Dioptimumkan untuk Torrent</value>
+  </data>
+  <data name="Server_Feature_SecureCore">
+    <value>Secure Core</value>
+  </data>
+  <data name="Server_Feature_SecureCore_Description">
+    <value>Perlindungan berganda</value>
+  </data>
+  <data name="Server_Feature_Tor">
+    <value>Tor</value>
+  </data>
+  <data name="Server_Free">
+    <value>Pelayan percuma</value>
+  </data>
+  <data name="Server_Random">
+    <value>Pelayan rawak</value>
+  </data>
+  <data name="Servers">
+    <value>Pelayan</value>
+  </data>
+  <data name="Settings_About_Changelog">
+    <value>Log perubahan</value>
+  </data>
+  <data name="Settings_About_CurrentVersion">
+    <value>Versi semasa</value>
+  </data>
+  <data name="Settings_About_FailedToFetch">
+    <value>Maklumat log perubahan tidak dapat dimuatkan.</value>
+  </data>
+  <data name="Settings_About_LearnMore">
+    <value>Ketahui lebih lanjut</value>
+  </data>
+  <data name="Settings_About_Licensing">
+    <value>Perlesenan</value>
+  </data>
+  <data name="Settings_About_Loading">
+    <value>Memuatkan</value>
+  </data>
+  <data name="Settings_About_Title">
+    <value>Perihal</value>
+  </data>
+  <data name="Settings_Account_Account">
+    <value>Akaun</value>
+  </data>
+  <data name="Settings_Account_Exit">
+    <value>Keluar dari apl</value>
+  </data>
+  <data name="Settings_Account_SignOut">
+    <value>Log keluar</value>
+  </data>
+  <data name="Settings_AppVersion">
+    <value>Versi apl</value>
+  </data>
+  <data name="Settings_Censorship_Footer">
+    <value>Statistik ini tidak mengandungi alamat IP anda dan tidak boleh digunakan untuk mengenal pasti anda. Kami tidak akan pernah berkongsi statistik ini dengan pihak ketiga.</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports">
+    <value>Kongsi laporan ranap tanpa nama</value>
+  </data>
+  <data name="Settings_Censorship_ShareCrashReports_Description">
+    <value>Laporan ranap membantu kami membaiki pepijat, mengesan tembok api dan mengelakkan sekatan VPN.</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics">
+    <value>Kongsi statistik penggunaan tanpa nama</value>
+  </data>
+  <data name="Settings_Censorship_ShareStatistics_Description">
+    <value>Data penggunaan membantu kami mengatasi sekatan VPN dan menambah baik prestasi apl.</value>
+  </data>
+  <data name="Settings_Common_Apply">
+    <value>Guna</value>
+    <comment>Apply action. Used to apply changes made on a settings page</comment>
+  </data>
+  <data name="Settings_Common_IpAddresses_AlreadyExists">
+    <value>Alamat telah ditambah</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Invalid">
+    <value>Masukkan alamat IPv4 atau IPv6 yang sah</value>
+  </data>
+  <data name="Settings_Common_IpAddresses_Watermark">
+    <value>192.0.2.0</value>
+    <comment>Watermark for the IP Address field in the Custom DNS servers settings page</comment>
+  </data>
+  <data name="Settings_Connection">
+    <value>Sambungan</value>
+  </data>
+  <data name="Settings_Connection_AdvancedSettings">
+    <value>Tetapan lanjutan</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting">
+    <value>Penghalaan alternatif</value>
+  </data>
+  <data name="Settings_Connection_Advanced_AlternativeRouting_Description">
+    <value>Jika perkhidmatan Proton disekat kerana sekatan rangkaian, kami akan cuba menggunakan penghalaan rangkaian alternatif untuk menyambungkan anda ke laman kami.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers">
+    <value>Pelayan DNS tersuai</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_AddNew">
+    <value>Tambah pelayan DNS baharu</value>
+    <comment>Label above an input field where users can enter a new DNS server IP address.</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Description">
+    <value>Anda tidak akan dapat menggunakan NetShield apabila disambungkan dengan pelayan DNS tersuai.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Conflict_Title">
+    <value>Dayakan pelayan DNS tersuai?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Description">
+    <value>Sambung ke Proton VPN menggunakan Sistem Nama Domain (DNS) anda sendiri. Gunakan hanya pelayan DNS yang anda percayai.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Footer">
+    <value>Kami akan cuba menyambung ke pelayan-pelayan ini mengikut turutan. Jika tiada yang berjaya, DNS lalai Proton VPN akan digunakan.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_FormattedHeader">
+    <value>Pelayan DNS ({0})</value>
+    <comment>Header for the list of Custom DNS servers defined. {0} is a placeholder for the number of DNS servers in the list. (eg. "DNS servers (4)")</comment>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Header">
+    <value>Pelayan DNS</value>
+  </data>
+  <data name="Settings_Connection_Advanced_CustomDnsServers_Select">
+    <value>Pilih pelayan DNS</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6">
+    <value>Sokongan IPv6</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection">
+    <value>Perlindungan kebocoran IPv6</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6LeakProtection_Description">
+    <value>Mencegah kebocoran data dengan menyekat trafik IPv6 yang tidak melalui terowong VPN.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_Ipv6_Description">
+    <value>Membenarkan trafik IPv6 melalui terowong VPN. Ini meningkatkan keserasian dengan tapak web dan perkhidmatan IPv6.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections">
+    <value>Benarkan sambungan LAN</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_Description">
+    <value>Membenarkan sambungan kepada pencetak, pembesar suara dan peranti lain dalam rangkaian setempat anda.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Description">
+    <value>Menggunakan mDNS untuk menyambung ke peranti menggunakan nama seperti 'My-Printer' atau 'router.local' dan bukannya alamat IP. DNS standard terus dihalakan melalui terowong VPN. Dilumpuhkan secara lalai untuk kelajuan VPN yang lebih pantas.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_LanConnections_LocalDns_Title">
+    <value>Akses peranti mengikut nama</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType">
+    <value>Jenis NAT</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Description">
+    <value>Anda tidak akan dapat menggunakan pemajuan port dengan NAT Sederhana.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Conflict_Title">
+    <value>Dayakan NAT Sederhana?</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Description">
+    <value>Pilih jenis penterjemahan alamat rangkaian untuk sambungan anda.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate">
+    <value>Sederhana (jenis 2)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Moderate_Description">
+    <value>Sedikit sekatan pada data yang masuk ke rangkaian anda. Pilihan ini paling sesuai untuk permainan video dalam talian.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict">
+    <value>Ketat (jenis 3)</value>
+  </data>
+  <data name="Settings_Connection_Advanced_NatType_Strict_Description">
+    <value>Menyekat data yang masuk ke rangkaian anda. Pilihan ini lebih selamat, tetapi boleh menyukarkan sambungan permainan rakan-ke-rakan.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tap">
+    <value>Menjembatangi trafik rangkaian. Lebih perlahan daripada TUN, tetapi diperlukan untuk sesetengah persediaan rangkaian legasi atau istimewa.</value>
+  </data>
+  <data name="Settings_Connection_Advanced_OpenVpnDriver_Tun_Description">
+    <value>Menghala trafik antara rangkaian yang berbeza. TUN boleh lebih pantas dan stabil daripada TAP.</value>
+  </data>
+  <data name="Settings_Connection_ConnectionPreferences">
+    <value>Keutamaan sambungan</value>
+  </data>
+  <data name="Settings_Connection_ConnectionPreferences_Description">
+    <value>Sambungan lalai dan lokasi yang dikecualikan</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenDisabled">
+    <value>DNS tersuai tidak dapat didayakan kerana anda disambungkan ke profil yang mendayakan NetShield.</value>
+  </data>
+  <data name="Settings_Connection_CustomDns_Conflict_Information_WhenEnabled">
+    <value>DNS tersuai dilumpuhkan kerana anda sedang disambungkan ke profil yang mendayakan NetShield.</value>
+  </data>
+  <data name="Settings_Connection_Default">
+    <value>Sambungan lalai</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest">
+    <value>Negara terpantas</value>
+  </data>
+  <data name="Settings_Connection_Default_Fastest_Description">
+    <value>Pelayan terbaik berdasarkan lokasi anda</value>
+  </data>
+  <data name="Settings_Connection_Default_Last">
+    <value>Sambungan terakhir</value>
+  </data>
+  <data name="Settings_Connection_Default_Last_Description">
+    <value>Sambungan yang paling baru digunakan</value>
+  </data>
+  <data name="Settings_Connection_Default_Random">
+    <value>Negara rawak</value>
+  </data>
+  <data name="Settings_Connection_Default_Random_Description">
+    <value>Pelayan berbeza setiap kali anda bersambung</value>
+  </data>
+  <data name="Settings_Connection_Default_Recents">
+    <value>Terbaru</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations">
+    <value>Lokasi yang dikecualikan</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Cities">
+    <value>Bandar</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Countries">
+    <value>Negara</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Description">
+    <value>Lokasi yang dipilih tidak akan pernah digunakan semasa anda menyambung ke Terpantas atau Rawak</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_NoLocations">
+    <value>Tiada lokasi tersedia</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_Search">
+    <value>Pilih...</value>
+  </data>
+  <data name="Settings_Connection_ExcludedLocations_States">
+    <value>Negeri</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch">
+    <value>Suis pemutus</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced">
+    <value>Lanjutan</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Advanced_Description">
+    <value>Hanya benarkan akses internet semasa disambungkan ke Proton VPN. Suis pemutus lanjutan akan kekal aktif walaupun anda memulakan semula peranti anda.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Description">
+    <value>Melindungi alamat IP anda dengan memutuskan sambungan anda dari internet jika sambungan VPN terputus.</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard">
+    <value>Standard</value>
+  </data>
+  <data name="Settings_Connection_KillSwitch_Standard_Description">
+    <value>Putuskan sambungan dari internet secara automatik jika sambungan VPN terputus.</value>
+  </data>
+  <data name="Settings_Connection_NetShield">
+    <value>NetShield</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackers">
+    <value>Sekat iklan, penjejak dan perisian hasad</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockAdsMalwareTrackersAdultContent">
+    <value>Sekat iklan, penjejak, perisian hasad dan kandungan dewasa</value>
+  </data>
+  <data name="Settings_Connection_NetShield_BlockMalwareOnly">
+    <value>Sekat perisian hasad sahaja</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Description">
+    <value>Anda tidak akan dapat menyambung dengan pelayan DNS tersuai apabila NetShield didayakan.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Information">
+    <value>NetShield tidak serasi dengan DNS tersuai.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Conflict_Title">
+    <value>Dayakan NetShield?</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Description">
+    <value>Lindungi penjelajahan anda di tapak web dan apl.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_Footer">
+    <value>Sesetengah tapak web mungkin tidak dimuatkan dengan betul apabila iklan dan penjejak disekat.</value>
+  </data>
+  <data name="Settings_Connection_NetShield_PrivacyPanel">
+    <value>Panel Privasi NetShield</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding">
+    <value>Pemajuan port</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort">
+    <value>Nombor port aktif:</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_ActivePort_Copy">
+    <value>Salin nombor port</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Description">
+    <value>Anda tidak akan dapat menggunakan NAT Sederhana apabila pemajuan port didayakan.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Conflict_Title">
+    <value>Dayakan pemajuan port?</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Description">
+    <value>Meningkatkan kelajuan torrent dan permainan dengan membenarkan sambungan P2P secara langsung melalui port yang ditetapkan.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Footer">
+    <value>Untuk menggunakan pemajuan port, sambung ke pelayan yang menyokong P2P.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_LastChanged">
+    <value>Kali terakhir diubah: {0}</value>
+    <comment>Indicates when the active port was changed for the last time. {0} is a placeholder for the time. (eg. "Last changed: 5 minutes ago" or "Last changed: May 20, at 14:32")</comment>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Loading">
+    <value>Memuatkan...</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications">
+    <value>Pemberitahuan</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Notifications_Description">
+    <value>Dapatkan pemberitahuan apabila nombor port aktif anda berubah.</value>
+  </data>
+  <data name="Settings_Connection_PortForwarding_Unavailable">
+    <value>Tidak tersedia</value>
+  </data>
+  <data name="Settings_Connection_Protocol">
+    <value>Protokol</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling">
+    <value>Pemisahan terowong</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Description">
+    <value>Pilih apl yang akan dikecualikan daripada sambungan VPN</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_FormattedHeader">
+    <value>Apl yang dikecualikan ({0})</value>
+    <comment>Header for the list of apps to exclude for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Excluded apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Excluded_Header">
+    <value>Apl yang dikecualikan</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_FilesFilterName">
+    <value>Fail apl</value>
+    <comment>Describe the name of the filter used to select executable files in the Open file dialog</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_Description">
+    <value>Pilih apl yang akan dimasukkan dalam sambungan VPN</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_FormattedHeader">
+    <value>Apl yang dimasukkan ({0})</value>
+    <comment>Header for the list of apps to include for Split Tunneling. {0} is a placeholder for the number of selected apps in the list. (eg. "Included apps (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Included_Header">
+    <value>Apl yang dimasukkan</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Apps_Select">
+    <value>Pilih apl</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Description">
+    <value>Sesuaikan sambungan anda dengan menentukan apl dan alamat IP mana yang dilindungi oleh VPN.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse">
+    <value>Mod sertakan</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Description">
+    <value>Hanya apl dan alamat IP yang dipilih disambungkan melalui VPN, manakala trafik lain tidak dilindungi.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Inverse_Short">
+    <value>Sertakan</value>
+    <comment>Shorter version (if possible) of "Include mode". To be used when available space is limited.</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_AddNew">
+    <value>Tambah alamat IPv4 atau IPv6 baharu</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Description">
+    <value>Pilih alamat IP yang akan dikecualikan daripada sambungan VPN</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_FormattedHeader">
+    <value>Alamat IP yang dikecualikan ({0})</value>
+    <comment>Header for the list of IP addresses to exclude for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Excluded IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Excluded_Header">
+    <value>Alamat IP yang dikecualikan</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Description">
+    <value>Pilih alamat IP yang akan dimasukkan dalam sambungan VPN</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_FormattedHeader">
+    <value>Alamat IP yang dimasukkan ({0})</value>
+    <comment>Header for the list of IP addresses to include for Split Tunneling. {0} is a placeholder for the number of selected IP addresses in the list. (eg. "Included IP addresses (2)")</comment>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Included_Header">
+    <value>Alamat IP yang dimasukkan</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_IpAddresses_Select">
+    <value>Pilih alamat IP</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard">
+    <value>Mod kecualikan</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Description">
+    <value>Apl dan alamat IP yang dipilih dikecualikan daripada sambungan VPN anda.</value>
+  </data>
+  <data name="Settings_Connection_SplitTunneling_Standard_Short">
+    <value>Kecualikan</value>
+    <comment>Shorter version (if possible) of "Exclude mode". To be used when available space is limited.</comment>
+  </data>
+  <data name="Settings_Connection_VpnAccelerator">
+    <value>VPN Accelerator</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Action">
+    <value>Buang perubahan</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Cancel">
+    <value>Teruskan menyunting</value>
+  </data>
+  <data name="Settings_DiscardChanges_Confirmation_Title">
+    <value>Buang perubahan yang belum disimpan?</value>
+  </data>
+  <data name="Settings_General">
+    <value>Umum</value>
+  </data>
+  <data name="Settings_General_AutoStartup">
+    <value>Permulaan automatik</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect">
+    <value>Sambung automatik</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoConnect_Description">
+    <value>Menyambung secara automatik ke sambungan lalai anda apabila Proton VPN dibuka.</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch">
+    <value>Lancar automatik</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Description">
+    <value>Proton VPN akan dibuka secara automatik apabila anda log masuk ke peranti anda</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Desktop">
+    <value>Buka pada desktop</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_SystemTray">
+    <value>Minimumkan ke Baki Sistem</value>
+  </data>
+  <data name="Settings_General_AutoStartup_AutoLaunch_Taskbar">
+    <value>Minimumkan ke Bar Tugas</value>
+  </data>
+  <data name="Settings_General_AutoStartup_Description">
+    <value>Tetapkan apl untuk dilancarkan atau disambung secara automatik.</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates">
+    <value>Kemas kini automatik</value>
+  </data>
+  <data name="Settings_General_AutomaticUpdates_Description">
+    <value>Semak dan pasang kemas kini Proton VPN secara automatik.</value>
+  </data>
+  <data name="Settings_General_BetaAccess">
+    <value>Akses Beta</value>
+  </data>
+  <data name="Settings_General_BetaAccess_Description">
+    <value>Dapatkan akses awal dan bantu kami menguji versi baharu Proton VPN.</value>
+  </data>
+  <data name="Settings_General_Language">
+    <value>Bahasa</value>
+  </data>
+  <data name="Settings_General_Notifications">
+    <value>Pemberitahuan</value>
+  </data>
+  <data name="Settings_General_Notifications_Description">
+    <value>Dapatkan pemberitahuan tentang perubahan status sambungan anda.</value>
+  </data>
+  <data name="Settings_General_OpenVpnNetworkDriver">
+    <value>Pemacu rangkaian OpenVPN</value>
+  </data>
+  <data name="Settings_General_Theme">
+    <value>Tema</value>
+  </data>
+  <data name="Settings_Improve">
+    <value>Tingkatkan Proton</value>
+  </data>
+  <data name="Settings_Improve_Censorship">
+    <value>Bantu kami menentang penapisan</value>
+  </data>
+  <data name="Settings_OperatingSystemVersion">
+    <value>Versi sistem pengendalian</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description1">
+    <value>Tetapan ini dikaitkan dengan profil aktif anda.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Description2">
+    <value>Sunting profil anda untuk membuat perubahan, atau putuskan sambungan untuk menyunting tetapan VPN umum anda.</value>
+  </data>
+  <data name="Settings_OverriddenByProfile_Tagline">
+    <value>Tetapan ini dikaitkan dengan profil '{0}' dan hanya boleh diurus dalam Profil.</value>
+    <comment>{0} is a placeholder for the profile name</comment>
+  </data>
+  <data name="Settings_OverriddenByProfile_Title">
+    <value>Urus {0} dalam Profil</value>
+    <comment>{0} is a placeholder for the name of the settings being overridden by the profile. (eg. Manage NetShield in Profiles)</comment>
+  </data>
+  <data name="Settings_Page_Title">
+    <value>Tetapan</value>
+  </data>
+  <data name="Settings_Protocols_Explanation">
+    <value>Protokol VPN menentukan cara data bergerak antara pelayan VPN dan peranti anda.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Description">
+    <value>Protokol yang mantap, telah diuji dengan teliti dan selamat. OpenVPN boleh dipercayai dalam keadaan rangkaian yang lemah, tetapi mungkin tidak secepat protokol lain.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnTcp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Description">
+    <value>Protokol yang mantap, telah diuji dengan teliti dan selamat. OpenVPN kurang menjimatkan bateri berbanding sesetengah protokol lain.</value>
+  </data>
+  <data name="Settings_Protocols_OpenVpnUdp_Title">
+    <value>OpenVPN</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Description">
+    <value>Rangka kerja baharu kami berasaskan WireGuard untuk meningkatkan kestabilan, kefungsian dan ketahanan terhadap penapisan.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTcp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Description">
+    <value>Rangka kerja baharu kami berasaskan WireGuard untuk meningkatkan kestabilan, kefungsian dan ketahanan terhadap penapisan.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunTls_Title">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Description">
+    <value>Rangka kerja baharu kami berasaskan WireGuard untuk meningkatkan kestabilan, kefungsian dan ketahanan terhadap penapisan.</value>
+  </data>
+  <data name="Settings_Protocols_ProTunUdp_Title">
+    <value>Proton WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Description">
+    <value>Gunakan pelaksanaan WireGuard milik Proton VPN sendiri. Ini merupakan ciri eksperimen, jadi anda mungkin mengalami sedikit ketidakstabilan.</value>
+  </data>
+  <data name="Settings_Protocols_ProtonProtocols_Title">
+    <value>Protokol Proton</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Description">
+    <value>Memilih secara automatik protokol terbaik untuk sambungan anda.</value>
+  </data>
+  <data name="Settings_Protocols_Smart_Title">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_Protocols_TcpCategory">
+    <value>Kebolehpercayaan (TCP)</value>
+  </data>
+  <data name="Settings_Protocols_UdpCategory">
+    <value>Kelajuan (UDP)</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Description">
+    <value>Protokol termaju untuk keselamatan dan prestasi.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTcp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Description">
+    <value>Mengatasi sekatan VPN dengan menyembunyikan sambungan VPN anda daripada pihak penapis. Stealth tahan terhadap DPI (pemeriksaan paket mendalam), tetapi mungkin tidak secepat protokol lain.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardTls_Title">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Description">
+    <value>Protokol termaju untuk keselamatan dan prestasi.</value>
+  </data>
+  <data name="Settings_Protocols_WireGuardUdp_Title">
+    <value>WireGuard</value>
+  </data>
+  <data name="Settings_Reconnection_Title">
+    <value>Sambung semula untuk menggunakan perubahan</value>
+  </data>
+  <data name="Settings_RestoreDefault">
+    <value>Kembalikan tetapan lalai</value>
+  </data>
+  <data name="Settings_RestoreDefaultAndReconnect_Confirmation_Action">
+    <value>Kembalikan dan sambung semula</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Action">
+    <value>Kembalikan tetapan lalai</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Message">
+    <value>Tindakan ini akan menetapkan semula tetapan Proton VPN anda kepada keadaan asal.</value>
+  </data>
+  <data name="Settings_RestoreDefault_Confirmation_Title">
+    <value>Kembalikan tetapan lalai?</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnTcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_OpenVpnUdp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunTls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_ProTunUdp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardTls">
+    <value>Stealth</value>
+  </data>
+  <data name="Settings_SelectedProtocol_WireGuardUdp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="Settings_Support">
+    <value>Sokongan</value>
+  </data>
+  <data name="Settings_Support_DebugLogs">
+    <value>Log nyahpepijat</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Application">
+    <value>Log aplikasi</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_ErrorMessage">
+    <value>Folder log tidak dapat dijumpai.</value>
+  </data>
+  <data name="Settings_Support_DebugLogs_Service">
+    <value>Log perkhidmatan</value>
+  </data>
+  <data name="Settings_Support_ReportIssue">
+    <value>Laporkan masalah</value>
+  </data>
+  <data name="Settings_Support_SupportCenter">
+    <value>Pusat sokongan</value>
+  </data>
+  <data name="Settings_Theme_Dark">
+    <value>Gelap</value>
+  </data>
+  <data name="Settings_Theme_Default">
+    <value>Lalai</value>
+  </data>
+  <data name="Settings_Theme_Light">
+    <value>Cerah</value>
+  </data>
+  <data name="Settings_VpnAccelerator_Description">
+    <value>Tingkatkan kelajuan sambungan anda sehingga 400% dengan teknologi yang meningkatkan prestasi.</value>
+  </data>
+  <data name="SignIn_Form_AdvancedKillSwitchDescription">
+    <value>Suis pemutus termaju menyekat sambungan internet anda.</value>
+  </data>
+  <data name="SignIn_Form_BestSecureVpnForSpeed">
+    <value>VPN selamat terbaik untuk kelajuan</value>
+  </data>
+  <data name="SignIn_Form_CreateAccount">
+    <value>Cipta akaun</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_Description">
+    <value>Masukkan butiran akaun Proton anda.</value>
+  </data>
+  <data name="SignIn_Form_DisableKillSwitch">
+    <value>Lumpuhkan suis pemutus</value>
+  </data>
+  <data name="SignIn_Form_Email">
+    <value>E-mel</value>
+  </data>
+  <data name="SignIn_Form_ForgotUsername">
+    <value>Lupa nama pengguna</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_Help">
+    <value>Bantuan</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_NoLogsPolicy">
+    <value>Dasar tanpa log</value>
+  </data>
+  <data name="SignIn_Form_OpenSource">
+    <value>Sumber terbuka</value>
+  </data>
+  <data name="SignIn_Form_Password">
+    <value>Kata laluan</value>
+  </data>
+  <data name="SignIn_Form_PasswordError">
+    <value>Masukkan kata laluan</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a password</comment>
+  </data>
+  <data name="SignIn_Form_ReportAnIssue">
+    <value>Laporkan masalah</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_ResetPassword">
+    <value>Lupa kata laluan</value>
+    <comment>Help button at the bottom of the login window</comment>
+  </data>
+  <data name="SignIn_Form_SignIn">
+    <value>Log masuk</value>
+    <comment>A button inside sign in form</comment>
+  </data>
+  <data name="SignIn_Form_SignInWithSso">
+    <value>Log masuk dengan SSO</value>
+  </data>
+  <data name="SignIn_Form_SwissBased">
+    <value>Berpangkalan di Switzerland</value>
+  </data>
+  <data name="SignIn_Form_Title">
+    <value>Log masuk</value>
+  </data>
+  <data name="SignIn_Form_TroubleSigningIn">
+    <value>Pusat sokongan</value>
+    <comment>A button at the bottom of the login window inside Get help popup</comment>
+  </data>
+  <data name="SignIn_Form_Username">
+    <value>E-mel atau nama pengguna</value>
+  </data>
+  <data name="SignIn_Form_UsernameError">
+    <value>Masukkan e-mel atau nama pengguna anda</value>
+    <comment>An error message is displayed when the user attempts to sign in without entering a username</comment>
+  </data>
+  <data name="SignIn_KillSwitch_Disabled">
+    <value>Suis pemutus dilumpuhkan</value>
+  </data>
+  <data name="State_Fastest">
+    <value>Negeri paling pantas</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="State_Random">
+    <value>Negeri rawak</value>
+    <comment>State describes a country state such as California or Arizona in the US</comment>
+  </data>
+  <data name="SystemNotification_Connected">
+    <value>Anda kini dilindungi</value>
+  </data>
+  <data name="SystemNotification_ConnectedTo">
+    <value>Disambungkan ke {0}.</value>
+    <comment>{0} is a placeholder for a country and server name (eg. Connected to Netherlands #342342).</comment>
+  </data>
+  <data name="SystemNotification_Disconnected">
+    <value>Sambungan diputuskan</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Description">
+    <value>Nikmati torrenting dan permainan dalam talian melalui protokol P2P (peer-to-peer) dengan pelayan VPN berbayar.</value>
+  </data>
+  <data name="SystemNotification_P2PWarning_Title">
+    <value>P2P tidak tersedia dengan VPN Free</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Description">
+    <value>Sesetengah tapak web dan perkhidmatan penstriman menyekat pengguna VPN percuma. Naik taraf ke Proton VPN Plus untuk melepasi sekatan ini.</value>
+  </data>
+  <data name="SystemNotification_StreamingWarning_Title">
+    <value>Tapak web disekat?</value>
+  </data>
+  <data name="System_Tray_Actions_Connect">
+    <value>Sambung</value>
+  </data>
+  <data name="System_Tray_Actions_Disconnect">
+    <value>Putuskan sambungan</value>
+  </data>
+  <data name="System_Tray_Actions_ExitApplication">
+    <value>Keluar</value>
+  </data>
+  <data name="System_Tray_Actions_OpenApplication">
+    <value>Buka {0}</value>
+    <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_ExitApplication">
+    <value>Keluar</value>
+  </data>
+  <data name="Tray_Actions_OpenApplication">
+    <value>Buka {0}</value>
+    <comment>Button displayed in the tray window to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
+  </data>
+  <data name="Tray_Actions_OpenApplicationToSignIn">
+    <value>Buka apl untuk log masuk</value>
+  </data>
+  <data name="Unit_BytesPerSecond">
+    <value>B/s</value>
+    <comment>Unit for Bytes per second</comment>
+  </data>
+  <data name="Unit_ExabytesPerSecond">
+    <value>EB/s</value>
+    <comment>Unit for Exabytes per second</comment>
+  </data>
+  <data name="Unit_GigabytesPerSecond">
+    <value>GB/s</value>
+    <comment>Unit for Gigabytes per second</comment>
+  </data>
+  <data name="Unit_KilobytesPerSecond">
+    <value>KB/s</value>
+    <comment>Unit for Kilobytes per second</comment>
+  </data>
+  <data name="Unit_MegabytesPerSecond">
+    <value>MB/s</value>
+    <comment>Unit for Megabytes per second</comment>
+  </data>
+  <data name="Unit_PetabytesPerSecond">
+    <value>PB/s</value>
+    <comment>Unit for Petabytes per second</comment>
+  </data>
+  <data name="Unit_TerabytesPerSecond">
+    <value>TB/s</value>
+    <comment>Unit for Terabytes per second</comment>
+  </data>
+  <data name="UpsellBanner_P2P_Description">
+    <value>Muat turun fail melalui BitTorrent dan protokol perkongsian fail lain.</value>
+  </data>
+  <data name="UpsellBanner_P2P_Title">
+    <value>Sokongan P2P</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Description">
+    <value>Naik taraf untuk memilih mana-mana pelayan.</value>
+  </data>
+  <data name="UpsellBanner_WrongCountry_Title">
+    <value>Bukan negara yang anda mahu?</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings">
+    <value>Buka kunci penyesuaian VPN yang lebih lanjut</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_DNS">
+    <value>Sambung ke VPN dengan Sistem Nama Domain (DNS) tersuai anda</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_LAN">
+    <value>Akses peranti dalam rangkaian kawasan setempat (LAN) anda semasa disambungkan</value>
+  </data>
+  <data name="Upsell_Carousel_AdvancedSettings_ModerateNAT">
+    <value>Tingkatkan pengalaman permainan anda dengan bertukar kepada jenis NAT 2 (sederhana)</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices">
+    <value>Sambungkan sehingga 10 peranti pada satu masa</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms">
+    <value>Gunakan Proton VPN pada pelbagai platform</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Android">
+    <value>Android dan Android TV</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Browser">
+    <value>Pelayar</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Linux">
+    <value>Linux</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_MacOS">
+    <value>macOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_Windows">
+    <value>Windows</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Platforms_iOS">
+    <value>iOS</value>
+  </data>
+  <data name="Upsell_Carousel_MultipleDevices_Privacy">
+    <value>Keselamatan dan privasi pada semua peranti anda</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield">
+    <value>Nikmati pelayaran tanpa iklan</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Block">
+    <value>Sekat iklan dan penjejak dengan NetShield</value>
+  </data>
+  <data name="Upsell_Carousel_NetShield_Protection">
+    <value>Lindungi peranti anda daripada perisian hasad</value>
+  </data>
+  <data name="Upsell_Carousel_P2P">
+    <value>Buka kunci muat turun rakan-ke-rakan dan perkongsian fail (P2P)</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Discretion">
+    <value>Sembunyikan alamat IP anda daripada pembekal perkhidmatan dan rakan sebaya</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_PortForwarding">
+    <value>Tingkatkan kelajuan P2P dengan pemajuan port</value>
+  </data>
+  <data name="Upsell_Carousel_P2P_Speed">
+    <value>Kelajuan muat naik dan muat turun yang lebih tinggi</value>
+  </data>
+  <data name="Upsell_Carousel_Platforms_More">
+    <value>+ lagi</value>
+    <comment>This label indicates that there are more platforms available than the ones listed. The plus sign is important.</comment>
+  </data>
+  <data name="Upsell_Carousel_Profiles">
+    <value>Akses sambungan yang kerap digunakan dengan pantas</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Convenience">
+    <value>Tetapkan profil sebagai sambungan lalai anda dan sambung dengan satu klik</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Creation">
+    <value>Cipta dan simpan konfigurasi VPN anda sendiri dengan Profil</value>
+  </data>
+  <data name="Upsell_Carousel_Profiles_Customization">
+    <value>Sesuaikan lokasi, protokol dan tetapan anda</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore">
+    <value>Tambah lapisan perlindungan lain pada sambungan anda</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Encryption">
+    <value>Gandakan penyulitan anda dengan Secure Core</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Protection">
+    <value>Lindungi diri anda daripada serangan rangkaian</value>
+  </data>
+  <data name="Upsell_Carousel_SecureCore_Routing">
+    <value>Halakan lalu lintas melalui pelayan yang sangat selamat di Switzerland, Sweden dan Iceland</value>
+  </data>
+  <data name="Upsell_Carousel_Speed">
+    <value>Layari internet pada kelajuan lebih tinggi</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Acceleration">
+    <value>Layari internet sehingga 400% lebih pantas dengan VPN Accelerator</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Access">
+    <value>Akses pelayan yang lebih pantas dan kurang sesak</value>
+  </data>
+  <data name="Upsell_Carousel_Speed_Traffic">
+    <value>Dapatkan kelajuan sambungan sehingga 10 Gbps</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling">
+    <value>Dapatkan yang terbaik daripada kedua-dua dunia</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Browsing">
+    <value>Layari internet dari dua lokasi pada satu masa dengan pemisahan terowong</value>
+  </data>
+  <data name="Upsell_Carousel_SplitTunneling_Configuration">
+    <value>Benarkan apl dan alamat IP yang dipercayai disambungkan terus ke internet, sementara segala yang lain dilindungi dengan VPN anda</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming">
+    <value>Strim filem dan rancangan TV kegemaran anda</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Access">
+    <value>Akses TV dan filem yang disekat geografi dari mana-mana sahaja di dunia</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_BBC">
+    <value>BBC iPlayer</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Disney">
+    <value>Disney+</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_HBO">
+    <value>HBO Max</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_Netflix">
+    <value>Netflix</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Platforms_PrimeVideo">
+    <value>Amazon Prime Video</value>
+  </data>
+  <data name="Upsell_Carousel_Streaming_Speed">
+    <value>Tonton dalam 4K tanpa penampan, keperlahan atau penyekatan</value>
+  </data>
+  <data name="Upsell_Carousel_Title">
+    <value>Temui VPN Plus</value>
+  </data>
+  <data name="Upsell_Carousel_Tor">
+    <value>Akses rangkaian Tor untuk privasi tambahan</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Access">
+    <value>Akses laman tersembunyi dan laman onion</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Browsing">
+    <value>Layari rangkaian Tor menggunakan pelayar biasa anda</value>
+  </data>
+  <data name="Upsell_Carousel_Tor_Protection">
+    <value>Lindungi data peribadi anda semasa melayari internet</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage">
+    <value>Akses lebih daripada {0} di {1}</value>
+    <comment>Title for the worldwide coverage upsell feature page. {0} is a placeholder for the number of servers (eg. 100 secure servers) and {1} for the number of countries available (eg. 60 countries).</comment>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Censorship">
+    <value>Memintas penapisan dengan ciri keselamatan termaju</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Countries_Other">
+    <value>{0} negara</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Features">
+    <value>Penstriman dan torrent selamat, dan banyak lagi</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Selection">
+    <value>Pilih mana-mana negara daripada rangkaian seluruh dunia kami</value>
+  </data>
+  <data name="Upsell_Carousel_WorldwideCoverage_Servers_Other">
+    <value>{0} pelayan selamat</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp">
+    <value>OpenVPN (TCP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Tcp_Description">
+    <value>Mapan, teruji dan selamat</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp">
+    <value>OpenVPN (UDP)</value>
+  </data>
+  <data name="VpnProtocol_OpenVPN_Udp_Description">
+    <value>Mapan, teruji dan selamat</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp">
+    <value>Proton WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tcp_Description">
+    <value>Protokol termaju untuk keselamatan dan prestasi</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls">
+    <value>Proton Stealth</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Tls_Description">
+    <value>Mengatasi sekatan VPN dengan menyembunyikan sambungan anda daripada penapis</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp">
+    <value>Proton WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_ProTun_Udp_Description">
+    <value>Protokol termaju untuk keselamatan dan prestasi</value>
+  </data>
+  <data name="VpnProtocol_Smart">
+    <value>Smart</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp">
+    <value>WireGuard (TCP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tcp_Description">
+    <value>Protokol termaju untuk keselamatan dan prestasi</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls">
+    <value>Stealth</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Tls_Description">
+    <value>Mengatasi sekatan VPN dengan menyembunyikan sambungan anda daripada penapis</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp">
+    <value>WireGuard (UDP)</value>
+  </data>
+  <data name="VpnProtocol_WireGuard_Udp_Description">
+    <value>Protokol termaju untuk keselamatan dan prestasi</value>
+  </data>
+</root>

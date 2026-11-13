@@ -1759,6 +1759,10 @@ Felkod: {0}</value>
     <value>example@domain.com</value>
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Field_MinLength">
+    <value>Minimum {0} tecken</value>
+    <comment>Hint shown below a Report an issue text field that has a minimum length. {0} is the minimum number of characters.</comment>
+  </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
     <value>Skicka felloggar</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>
@@ -3181,7 +3185,7 @@ En hög serverbelastning kan sakta ner din anslutning.</value>
     <value>Aktivera vidarebefordran av port?</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Description">
-    <value>Improves torrenting and gaming speeds by allowing direct P2P connections through a designated port.</value>
+    <value>Förbättrar hastigheter för torrenting och spel genom att tillåta direkta P2P-anslutningar via en dedikerad port.</value>
   </data>
   <data name="Settings_Connection_PortForwarding_Footer">
     <value>För att använda vidarebefordran av port, anslut till en server som stöder P2P.</value>

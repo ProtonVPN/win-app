@@ -14,7 +14,7 @@
 [LangOptions]
 ; The following three entries are very important. Be sure to read and 
 ; understand the '[LangOptions] section' topic in the help file.
-LanguageName=Farsi
+LanguageName=<0641><0627><0631><0633><06CC>
 LanguageID=$0429
 LanguageCodePage=1256
 RightToLeft=yes

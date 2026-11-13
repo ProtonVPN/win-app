@@ -1759,6 +1759,10 @@ Fejlkode: {0}</value>
     <value>eksempel@domæne.dk</value>
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
   </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Field_MinLength">
+    <value>Mindst {0} tegn</value>
+    <comment>Hint shown below a Report an issue text field that has a minimum length. {0} is the minimum number of characters.</comment>
+  </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
     <value>Send fejllogfiler</value>
     <comment>The label for the Send error logs checkbox in Report an issue window</comment>

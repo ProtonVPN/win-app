@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
+        <TargetFramework>$(NetVersion)-windows10.0.22621.0</TargetFramework>
         <PreserveCompilationContext>true</PreserveCompilationContext>
         <OutputType>Library</OutputType>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -28,7 +28,7 @@
         <PackageReference Include="Otp.NET" />
         <PackageReference Include="MSTest.TestAdapter" />
         <PackageReference Include="MSTest.TestFramework" />
-        <PackageReference Include="Portable.BouncyCastle" />
+        <PackageReference Include="BouncyCastle.Cryptography" />
         <PackageReference Include="System.Formats.Asn1" />
         <PackageReference Include="System.ServiceProcess.ServiceController" />
         <PackageReference Include="System.Text.Json" />

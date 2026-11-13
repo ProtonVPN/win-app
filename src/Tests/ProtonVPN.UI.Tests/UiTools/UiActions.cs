@@ -32,6 +32,7 @@ using FlaUI.Core.Conditions;
 using FlaUI.Core.Definitions;
 using FlaUI.Core.AutomationElements;
 using NUnit.Framework;
+using ProtonVPN.UI.Tests.Robots;
 using ProtonVPN.UI.Tests.TestBase;
 using ProtonVPN.UI.Tests.TestsHelper;
 using ProtonVPN.UI.Tests.Enums.Locations;
@@ -278,6 +279,9 @@ public static class UiActions
         return element?.Name;
     }
 
+    public static string? GetTextBoxText<T>(this T desiredElement) where T : Element
+        => WaitUntilExists(desiredElement)?.AsTextBox().Text;
+
     public static T SetText<T>(this T desiredElement, string input) where T : Element
     {
         AutomationElement? elementToClick = WaitUntilExists(desiredElement);
@@ -285,6 +289,19 @@ public static class UiActions
         {
             elementToClick.AsTextBox().Text = input;
         }
+
+        return desiredElement;
+    }
+
+    public static T PasteText<T>(this T desiredElement, string input) where T : Element
+    {
+        AutomationElement? element = WaitUntilExists(desiredElement);
+        element?.WaitUntilClickable(TestConstants.TenSecondsTimeout);
+        element?.Click();
+
+        DesktopRobot.SetClipboardText(input);
+        Thread.Sleep(TestConstants.UserInputSimulationDelay);
+        Keyboard.TypeSimultaneously(VirtualKeyShort.CONTROL, VirtualKeyShort.KEY_V);
 
         return desiredElement;
     }
@@ -478,7 +495,11 @@ public static class UiActions
         return (elementPosition, elementSize);
     }
 
-    public static void VerifyElementSizeAndPosition(Element elementToVerify, (Point Position, Size Size) elementBeforeTyping, Action typeAction)
+    public static void VerifyElementSizeAndPosition(
+        string input,
+        Element elementToVerify,
+        (Point Position, Size Size) elementBeforeTyping,
+        Action typeAction)
     {
         typeAction();
 
@@ -487,13 +508,15 @@ public static class UiActions
         bool hasSamePosition = elementBeforeTyping.Position.X == elementAfterTyping.Position.X && elementBeforeTyping.Position.Y == elementAfterTyping.Position.Y;
         bool hasSameSize = elementBeforeTyping.Size.Width == elementAfterTyping.Size.Width && elementBeforeTyping.Size.Height == elementAfterTyping.Size.Height;
 
-        Assert.That(hasSamePosition, Is.True, "Element position changed." +
-            $"Before: X: {elementBeforeTyping.Position.X}, Y: {elementBeforeTyping.Position.Y}" +
-            $"After: X: {elementAfterTyping.Position.X}, Y: {elementAfterTyping.Position.Y}");
+        string inputDescription = input.Length > 20 ? $"input with {input.Length} chars" : $"{input}";
 
-        Assert.That(hasSameSize, Is.True, "Element size changed." +
-              $"Before: Width: {elementBeforeTyping.Size.Width}, Height: {elementBeforeTyping.Size.Height}" +
-              $"After: Width: {elementAfterTyping.Size.Width}, Height: {elementAfterTyping.Size.Height}");
+        Assert.That(hasSamePosition, Is.True, $"Element position changed when typing: {inputDescription}" +
+            $"\nBefore: X: {elementBeforeTyping.Position.X}, Y: {elementBeforeTyping.Position.Y}" +
+            $"\nAfter: X: {elementAfterTyping.Position.X}, Y: {elementAfterTyping.Position.Y}");
+
+        Assert.That(hasSameSize, Is.True, $"Element size changed when typing: {inputDescription}" +
+            $"\nBefore: Width: {elementBeforeTyping.Size.Width}, Height: {elementBeforeTyping.Size.Height}" +
+            $"\nAfter: Width: {elementAfterTyping.Size.Width}, Height: {elementAfterTyping.Size.Height}");
     }
 
     public static T ClearInput<T>(this T desiredElement) where T : Element
@@ -511,7 +534,7 @@ public static class UiActions
     {
         AutomationElement? element = WaitUntilExists(desiredElement);
 
-        Rectangle rect = element!.Parent.BoundingRectangle;
+        Rectangle rect = element!.BoundingRectangle;
         int x = rect.Right - (rect.Height / 2);
         int y = rect.Top + rect.Height / 2;
 

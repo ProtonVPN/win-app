@@ -98,6 +98,7 @@ public class LoginRobot
     public LoginRobot ClickSignInWithSso()
     {
         SignInWithSsoButton.Click();
+        Thread.Sleep(TestConstants.OneSecondTimeout);
         return this;
     }
 

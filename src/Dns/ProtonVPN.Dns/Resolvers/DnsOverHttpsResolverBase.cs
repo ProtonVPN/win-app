@@ -22,10 +22,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using ARSoft.Tools.Net;
 using ARSoft.Tools.Net.Dns;
 using Microsoft.AspNetCore.WebUtilities;
 using ProtonVPN.Common.Core.Extensions;
@@ -90,38 +88,12 @@ public abstract class DnsOverHttpsResolverBase : DnsResolverBase
 
     private string GenerateBase64DnsMessage(string host)
     {
-        byte[] bytes = GenerateDnsQueryMessageBytes(host);
-        byte[] cleanBytes = bytes.TrimTrailingZeroBytes();
+        byte[] bytes = DnsQueryEncoder.Encode(host, _recordType);
 
-        return Convert.ToBase64String(cleanBytes)
+        return Convert.ToBase64String(bytes)
             .TrimEnd('=')
             .Replace('+', '-')
             .Replace('/', '_');
-    }
-
-    private byte[] GenerateDnsQueryMessageBytes(string host)
-    {
-        DnsMessage dnsMessage = new();
-        DnsQuestion question = new(DomainName.Parse(host), _recordType, RecordClass.INet);
-        dnsMessage.Questions.Add(question);
-        dnsMessage.IsRecursionDesired = true;
-
-        return EncodeDnsQueryMessageToBytes(dnsMessage);
-    }
-
-    private byte[] EncodeDnsQueryMessageToBytes(DnsMessage message)
-    {
-        MethodInfo m = message.GetType().GetMethod(
-            "Encode",
-            BindingFlags.Instance | BindingFlags.NonPublic,
-            null,
-            new[] { typeof(bool), typeof(byte[]).MakeByRefType() },
-            null);
-
-        object[] args = { false, null };
-        m.Invoke(message, args);
-
-        return args[1] as byte[];
     }
 
     private async Task<DnsResponse> TryRequestAsync(DnsOverHttpsParallelHttpRequestConfiguration config,

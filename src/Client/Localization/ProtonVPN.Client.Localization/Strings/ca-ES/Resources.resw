@@ -1716,13 +1716,13 @@ Codi d'error: {0}</value>
     <value>No hem pogut enviar els vostres comentaris. Comproveu la vostra connexió i torneu-ho a provar.</value>
   </data>
   <data name="Dialogs_NpsSurvey_ErrorTitle">
-    <value>Alguna cosa ha anat malament.</value>
+    <value>S'ha produït un error</value>
   </data>
   <data name="Dialogs_NpsSurvey_HighRateDescription">
-    <value>10: Molt probable</value>
+    <value>10 és molt probable</value>
   </data>
   <data name="Dialogs_NpsSurvey_LowRateDescription">
-    <value>0: Molt improbable</value>
+    <value>0 és molt poc probable</value>
   </data>
   <data name="Dialogs_NpsSurvey_Optional">
     <value>Opcional</value>
@@ -1758,6 +1758,10 @@ Codi d'error: {0}</value>
   <data name="Dialogs_ReportIssue_ContactForm_Email_Description">
     <value>exemple@domini.com</value>
     <comment>The watermark text displayed in empty user e-mail text box in Report an issue window</comment>
+  </data>
+  <data name="Dialogs_ReportIssue_ContactForm_Field_MinLength">
+    <value>Mínim {0} caràcters</value>
+    <comment>Hint shown below a Report an issue text field that has a minimum length. {0} is the minimum number of characters.</comment>
   </data>
   <data name="Dialogs_ReportIssue_ContactForm_IncludeLogs">
     <value>Envia registres d'error</value>
@@ -1954,7 +1958,7 @@ Codi d'error: {0}</value>
     <value>Si hi ha ubicacions a les quals no us voleu connectar automàticament, podeu excloure-les de "País més ràpid»"i "País aleatori".</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Skip">
-    <value>Ometre</value>
+    <value>Omet</value>
   </data>
   <data name="ExcludedLocations_SmartDiscovery_Prompt_Title">
     <value>No és el país que volíeu?</value>
@@ -3642,7 +3646,7 @@ Una càrrega elevada del servidor pot alentir la vostra connexió.</value>
     <value>Surt</value>
   </data>
   <data name="System_Tray_Actions_OpenApplication">
-    <value>Obrir {0}</value>
+    <value>Obre {0}</value>
     <comment>Button displayed in the tray icon to open the Proton VPN application. {0} is a placeholder for the name of the application (eg. "Open Proton VPN")</comment>
   </data>
   <data name="Tray_Actions_ExitApplication">

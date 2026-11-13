@@ -35,6 +35,7 @@ namespace ProtonVPN.UI.Tests.Robots;
 
 public class ProfileRobot
 {
+    public const int MAX_PROFILE_NAME_LENGTH = 25;
     private static readonly string _countryDropdownTranslated = LanguageHelper.GetTranslatedString("Connections_Country");
     private static readonly string _middleCountryDropdownTranslated = LanguageHelper.GetTranslatedString("Connections_Country_Middle");
     private static readonly string _cityDropdownTranslated = LanguageHelper.GetTranslatedString("Connections_City");
@@ -43,7 +44,7 @@ public class ProfileRobot
     protected Element MiddleCountryDropdown = Element.ByName(_middleCountryDropdownTranslated).And(Element.ByClassName("ComboBox"));
     protected Element CityDropdown = Element.ByName(_cityDropdownTranslated).And(Element.ByClassName("ComboBox"));
 
-    protected Element ProfileNameTextBox = Element.ByAutomationId("ProfileNameTextBox");
+    public Element ProfileNameTextBox => Element.ByAutomationId("ProfileNameTextBox");
 
     protected Element ApplyButton = Element.ByAutomationId("ApplyButton");
 
@@ -101,11 +102,20 @@ public class ProfileRobot
 
     protected Element ConnectAndGoAppSelector = Element.ByAutomationId("ConnectAndGoAppSelector");
 
+    protected Element ConnectAndGoMicrosoftAppSelector = Element.ByAutomationId("ConnectAndGoMicrosoftAppSelector");
+
     protected Element ConnectAndGoPrivateModeCheckbox = Element.ByAutomationId("ConnectAndGoPrivateModeCheckbox");
 
-    public ProfileRobot SetProfileName(string profileName)
+    public ProfileRobot SetProfileName(string profileName, bool pasteText = false)
     {
-        ProfileNameTextBox.SetText(profileName);
+        if (pasteText)
+        {
+            ProfileNameTextBox.PasteText(profileName);
+        }
+        else
+        {
+            ProfileNameTextBox.SetText(profileName);
+        }
         return this;
     }
 
@@ -281,6 +291,14 @@ public class ProfileRobot
         return this;
     }
 
+    public ProfileRobot SelectConnectAndGoMicrosoftApp(string microsoftApp)
+    {
+        Thread.Sleep(TestConstants.NavigationDelay);
+        ConnectAndGoMicrosoftAppSelector.Click();
+        Thread.Sleep(TestConstants.NavigationDelay);
+        throw new NotImplementedException($"Selecting the Microsoft app '{microsoftApp}' is not implemented yet.");
+    }
+
     public ProfileRobot TypeConnectAndGoWebsite(string websiteUrl, bool usePrivateMode = false)
     {
         AutomationElement[] children = ConnectAndGoParent.GetControlType(ControlType.Edit);
@@ -303,9 +321,11 @@ public class ProfileRobot
             return this;
         }
 
-        public Verifications ProfileNameEquals(string profileName)
+        public Verifications ProfileNameIsTruncatedTo(string expectedName)
         {
-            ProfileNameTextBox.TextBoxEquals(profileName);
+            string? actual = ProfileNameTextBox.GetTextBoxText();
+            Assert.That(actual, Is.EqualTo(expectedName));
+            Assert.That(actual!.Length, Is.LessThanOrEqualTo(MAX_PROFILE_NAME_LENGTH));
             return this;
         }
     }

@@ -44,7 +44,7 @@ public class NetworkInterfacesProvider : INetworkInterfacesProvider
         NetworkInterface[] networkInterfaces;
         try
         {
-            networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+            networkInterfaces = VisibleNetworkInterfaces.Get();
         }
         catch (Exception ex)
         {
